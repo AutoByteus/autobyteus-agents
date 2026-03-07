@@ -1,0 +1,15 @@
+{
+  "coordinatorMemberName": "deep_researcher",
+  "members": [
+    {
+      "memberName": "deep_researcher",
+      "ref": "deep-researcher",
+      "refType": "agent"
+    },
+    {
+      "memberName": "infographic_powerpoint_designer",
+      "ref": "infographic-powerpoint-designer",
+      "refType": "agent"
+    }
+  ]
+}

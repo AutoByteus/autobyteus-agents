@@ -6,6 +6,10 @@ This repository contains reusable AutoByteus agent and agent-team definitions.
 
 The software engineering workflow team is organized as a practical delivery group that can take work from investigation and requirements engineering through API and E2E validation, review, release, and deployment.
 
+## Research To Deck Team
+
+The research-to-deck team is organized as a two-specialist workflow that takes a topic from deep research and reasoning through infographic-style PowerPoint deck production.
+
 Each role-agent folder is packaged as a small specialist bundle:
 
 - `agent.md`: distilled runtime prompt
