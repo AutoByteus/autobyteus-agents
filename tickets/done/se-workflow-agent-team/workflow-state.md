@@ -8,11 +8,11 @@ Stage movement is controlled by this file's Stage Transition Contract + Transiti
 
 - Ticket: `se-workflow-agent-team`
 - Current Stage: `10`
-- Next Stage: `10 Final Handoff`
+- Next Stage: `Archived in tickets/done`
 - Code Edit Permission: `Locked`
 - Active Re-Entry: `No`
 - Re-Entry Classification (`Local Fix`/`Design Impact`/`Requirement Gap`/`Unclear`): `N/A`
-- Last Transition ID: `T-010`
+- Last Transition ID: `T-011`
 - Last Updated: `2026-03-07`
 
 ## Stage Gates
@@ -29,7 +29,7 @@ Stage movement is controlled by this file's Stage Transition Contract + Transiti
 | 7 API/E2E Testing | Pass | API/E2E test implementation complete + AC scenario gate complete | `tickets/in-progress/se-workflow-agent-team/api-e2e-testing.md` |
 | 8 Code Review | Pass | Code review gate `Pass`/`Fail` recorded + all changed source files `<=500` effective non-empty lines + `>220` delta-gate assessments recorded + shared-principles/layering + decoupling + module/file placement + no-backward-compat/no-legacy checks satisfied for `Pass` | `tickets/in-progress/se-workflow-agent-team/code-review.md` |
 | 9 Docs Sync | Pass | Docs updated or no-impact rationale recorded | `README.md`, `tickets/in-progress/se-workflow-agent-team/handoff.md` |
-| 10 Handoff / Ticket State | In Progress | Final handoff complete + ticket state decision recorded | `tickets/in-progress/se-workflow-agent-team/handoff.md` |
+| 10 Handoff / Ticket State | Pass | Final handoff complete + ticket state decision recorded | `tickets/in-progress/se-workflow-agent-team/handoff.md` |
 
 ## Stage Transition Contract (Quick Reference)
 
@@ -100,6 +100,7 @@ Stage movement is controlled by this file's Stage Transition Contract + Transiti
 | T-008 | 2026-03-07 | 7 | 8 | Definitions-only validation passed for file layout, frontmatter shape, and team-member references. | N/A | Locked | `tickets/in-progress/se-workflow-agent-team/api-e2e-testing.md`, `tickets/in-progress/se-workflow-agent-team/workflow-state.md` |
 | T-009 | 2026-03-07 | 8 | 9 | Code review passed with no findings. | N/A | Locked | `tickets/in-progress/se-workflow-agent-team/code-review.md`, `tickets/in-progress/se-workflow-agent-team/workflow-state.md` |
 | T-010 | 2026-03-07 | 9 | 10 | Docs sync completed and handoff artifact recorded; awaiting user confirmation before ticket completion. | N/A | Locked | `README.md`, `tickets/in-progress/se-workflow-agent-team/handoff.md`, `tickets/in-progress/se-workflow-agent-team/workflow-state.md` |
+| T-011 | 2026-03-07 | 10 | 10 | User explicitly confirmed closure; ticket is ready to move from `tickets/in-progress` to `tickets/done`. | N/A | Locked | `tickets/in-progress/se-workflow-agent-team/handoff.md`, `tickets/in-progress/se-workflow-agent-team/workflow-state.md` |
 
 ## Audible Notification Log (Optional Tracking)
 
@@ -110,9 +111,10 @@ Stage movement is controlled by this file's Stage Transition Contract + Transiti
 | 2026-03-07 | Transition | Stage 3 complete, moving to Stage 4 runtime modeling for the software engineering workflow agent team. Code edits remain locked. | Success | N/A |
 | 2026-03-07 | Gate | Stage 5 review gate passed with Go Confirmed for the software engineering workflow agent team. | Success | N/A |
 | 2026-03-07 | LockChange | Code edit permission changed to Unlocked at Stage 6 for the software engineering workflow agent team. | Success | N/A |
-| 2026-03-07 | Gate | Stage 7 validation gate passed for the software engineering workflow agent team. | Pending | N/A |
-| 2026-03-07 | Gate | Stage 8 code review gate passed for the software engineering workflow agent team. | Pending | N/A |
-| 2026-03-07 | LockChange | Code edit permission changed to Locked after implementation/testing completion for the software engineering workflow agent team. | Pending | N/A |
+| 2026-03-07 | Gate | Stage 7 validation gate passed for the software engineering workflow agent team. | Success | N/A |
+| 2026-03-07 | Gate | Stage 8 code review gate passed for the software engineering workflow agent team. | Success | N/A |
+| 2026-03-07 | LockChange | Code edit permission changed to Locked after implementation/testing completion for the software engineering workflow agent team. | Success | N/A |
+| 2026-03-07 | Transition | User confirmed ticket closure; ticket will be archived under `tickets/done`. | Pending | N/A |
 
 ## Process Violation Log
 
