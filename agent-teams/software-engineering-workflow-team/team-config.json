@@ -1,0 +1,35 @@
+{
+  "coordinatorMemberName": "workflow_lead",
+  "members": [
+    {
+      "memberName": "workflow_lead",
+      "ref": "workflow-lead",
+      "refType": "agent"
+    },
+    {
+      "memberName": "requirements_analyst",
+      "ref": "requirements-analyst",
+      "refType": "agent"
+    },
+    {
+      "memberName": "system_architect",
+      "ref": "system-architect",
+      "refType": "agent"
+    },
+    {
+      "memberName": "implementation_engineer",
+      "ref": "implementation-engineer",
+      "refType": "agent"
+    },
+    {
+      "memberName": "api_e2e_tester",
+      "ref": "api-e2e-tester",
+      "refType": "agent"
+    },
+    {
+      "memberName": "code_reviewer",
+      "ref": "code-reviewer",
+      "refType": "agent"
+    }
+  ]
+}
