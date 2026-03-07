@@ -4,7 +4,7 @@ This repository contains reusable AutoByteus agent and agent-team definitions.
 
 ## Software Engineering Workflow Team
 
-The software engineering workflow team is organized as a practical delivery group that can take work from request clarification through release and deployment.
+The software engineering workflow team is organized as a practical delivery group that can take work from investigation and requirements engineering through release and deployment.
 
 Each role-agent folder is packaged as a small specialist bundle:
 

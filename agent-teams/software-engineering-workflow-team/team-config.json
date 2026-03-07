@@ -1,9 +1,9 @@
 {
-  "coordinatorMemberName": "requirements_analyst",
+  "coordinatorMemberName": "requirements_engineer",
   "members": [
     {
-      "memberName": "requirements_analyst",
-      "ref": "requirements-analyst",
+      "memberName": "requirements_engineer",
+      "ref": "requirements-engineer",
       "refType": "agent"
     },
     {

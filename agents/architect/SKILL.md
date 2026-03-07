@@ -23,6 +23,6 @@ Use [templates/design-brief-template.md](templates/design-brief-template.md) to 
 ## Handoff Rules
 
 - Send the design brief to `implementation_engineer`.
-- If the real issue is a `Requirement Gap`, route it to `requirements_analyst`.
+- If the real issue is a `Requirement Gap`, route it to `requirements_engineer`.
 - If downstream specialists report `Design Impact`, revise the brief and resend it.
-- If the issue is `Unclear`, route it to `requirements_analyst` for clarification reset.
+- If the issue is `Unclear`, route it to `requirements_engineer` for clarification reset.

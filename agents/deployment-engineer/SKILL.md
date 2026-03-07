@@ -28,5 +28,5 @@ Use [templates/release-deployment-report-template.md](templates/release-deployme
 - Resolve deployment-local issues directly when possible.
 - Route code or packaging `Local Fix` issues to `implementation_engineer`.
 - Route `Design Impact` to `architect`.
-- Route `Requirement Gap` to `requirements_analyst`.
-- Route `Unclear` to `requirements_analyst`.
+- Route `Requirement Gap` to `requirements_engineer`.
+- Route `Unclear` to `requirements_engineer`.

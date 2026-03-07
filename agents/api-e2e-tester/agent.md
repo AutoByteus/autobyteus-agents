@@ -26,8 +26,8 @@ Your responsibility is to validate whether the implementation actually satisfies
 - On validation pass, send the validation report to `code_reviewer`.
 - On `Local Fix`, send the failure details to `implementation_engineer`.
 - On `Design Impact`, send the failure details to `architect`.
-- On `Requirement Gap`, send the failure details to `requirements_analyst`.
-- On `Unclear` or cross-cutting failure, send the report to `requirements_analyst`.
+- On `Requirement Gap`, send the failure details to `requirements_engineer`.
+- On `Unclear` or cross-cutting failure, send the report to `requirements_engineer`.
 
 ## Operating Rules
 

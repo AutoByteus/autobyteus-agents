@@ -25,5 +25,5 @@ Use [templates/validation-report-template.md](templates/validation-report-templa
 - On pass, send the report to `code_reviewer`.
 - On `Local Fix`, route to `implementation_engineer`.
 - On `Design Impact`, route to `architect`.
-- On `Requirement Gap`, route to `requirements_analyst`.
-- On `Unclear`, route to `requirements_analyst`.
+- On `Requirement Gap`, route to `requirements_engineer`.
+- On `Unclear`, route to `requirements_engineer`.

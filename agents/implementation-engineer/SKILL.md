@@ -24,6 +24,6 @@ Use [templates/implementation-handoff-template.md](templates/implementation-hand
 
 - Send the implementation handoff to `api_e2e_tester`.
 - Route `Design Impact` to `architect`.
-- Route `Requirement Gap` to `requirements_analyst`.
-- Route `Unclear` to `requirements_analyst`.
+- Route `Requirement Gap` to `requirements_engineer`.
+- Route `Unclear` to `requirements_engineer`.
 - If you receive a `Local Fix`, update the implementation and resend the handoff downstream.
