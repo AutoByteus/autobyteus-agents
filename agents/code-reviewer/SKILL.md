@@ -22,7 +22,7 @@ Use [templates/review-report-template.md](templates/review-report-template.md) t
 
 ## Handoff Rules
 
-- On pass, treat the review report as the terminal workflow artifact.
+- On pass, send the review report to `deployment_engineer`.
 - On `Local Fix`, route to `implementation_engineer`.
 - On `Design Impact`, route to `architect`.
 - On `Requirement Gap`, route to `requirements_analyst`.

@@ -13,5 +13,6 @@ Each role-agent folder is packaged as a small specialist bundle:
 - `templates/`: lightweight role-specific artifacts and output templates
 
 The team is intentionally modeled as direct specialist cooperation instead of a separate coordinator agent. The transition logic from the original single-agent workflow is expressed through `team.md` and each specialist's routing rules.
+The software-engineering workflow team also includes a deployment specialist so release preparation, versioning, tagging, rollout, and deploy verification can be owned explicitly instead of being left implicit at the end.
 
 The runtime configuration is intentionally lightweight. After importing these definitions into AutoByteus, users are expected to customize tools, processors, models, and other config details to match their own environment.

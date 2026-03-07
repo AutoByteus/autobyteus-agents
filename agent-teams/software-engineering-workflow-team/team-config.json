@@ -25,6 +25,11 @@
       "memberName": "code_reviewer",
       "ref": "code-reviewer",
       "refType": "agent"
+    },
+    {
+      "memberName": "deployment_engineer",
+      "ref": "deployment-engineer",
+      "refType": "agent"
     }
   ]
 }
