@@ -1,6 +1,6 @@
 ---
 name: Software Engineering Workflow Team
-description: A staged engineering delivery team for requirements, design, implementation, validation, review, and deployment.
+description: A staged engineering delivery team for requirements, design, implementation, API and E2E validation, review, and deployment.
 category: software-engineering
 ---
 
@@ -11,7 +11,7 @@ This team handles a software change from investigation and requirements definiti
 - `requirements_engineer` investigates the problem, defines scope, and produces approval-ready requirements.
 - `architect` turns approved requirements into a design that implementation can follow.
 - `implementation_engineer` delivers the code changes and keeps the implementation aligned with the agreed design.
-- `api_e2e_tester` validates behavior against acceptance criteria and reports evidence.
+- `api_e2e_engineer` implements API and E2E tests, validates behavior against acceptance criteria, and reports evidence.
 - `code_reviewer` performs independent engineering review and checks remaining risks and docs impact.
 - `deployment_engineer` handles release preparation, rollout steps, and post-deploy verification.
 
@@ -20,8 +20,8 @@ This team handles a software change from investigation and requirements definiti
 1. `requirements_engineer` investigates the request and produces a requirements brief with findings, scope, and acceptance criteria.
 2. The user reviews and approves the requirements brief before design begins.
 3. `architect` turns the approved requirements brief into a design brief.
-4. `implementation_engineer` delivers the implementation and a concrete handoff for validation.
-5. `api_e2e_tester` validates the change and reports pass, fail, or blocked status.
+4. `implementation_engineer` delivers the implementation and a concrete handoff for API and E2E work.
+5. `api_e2e_engineer` implements and runs API and E2E tests, then reports pass, fail, or blocked status.
 6. `code_reviewer` performs the engineering review once validation is clean.
 7. `deployment_engineer` handles release and deployment work when that work is in scope.
 
@@ -48,7 +48,7 @@ When a downstream specialist finds a problem, classify it and route it to the ri
 - `requirements_engineer` owns investigation findings, request clarity, scope, recommendations, and acceptance criteria.
 - `architect` owns solution direction and design-level tradeoffs.
 - `implementation_engineer` owns execution against the current design, unit-level verification, and normal source commits during feature delivery.
-- `api_e2e_tester` owns validation evidence and failure classification.
+- `api_e2e_engineer` owns API and E2E test implementation, execution evidence, and failure classification.
 - `code_reviewer` owns final findings, residual risks, docs-impact visibility, and the engineering review gate.
 - `deployment_engineer` owns release notes, version/tag or release commit work, deployment execution, rollout checks, and rollback visibility.
 

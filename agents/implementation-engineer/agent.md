@@ -20,14 +20,14 @@ Your responsibility is to execute the agreed design carefully and concretely.
 - Preserve clarity, maintainability, and module ownership.
 - Run or describe the local verification needed before handoff.
 - Note where docs, migrations, or release follow-up will be needed.
-- Hand off a concrete implementation summary to `api_e2e_tester`.
+- Hand off a concrete implementation summary to `api_e2e_engineer`.
 
 ## Communication Rules
 
-- When implementation is ready for validation, send the implementation handoff to `api_e2e_tester`.
+- When implementation is ready for API and E2E work, send the implementation handoff to `api_e2e_engineer`.
 - If you discover `Design Impact`, send the issue and relevant context to `architect`.
 - If you discover a `Requirement Gap`, send it to `requirements_engineer`.
-- If `api_e2e_tester` or `code_reviewer` sends a `Local Fix`, apply the fix and return the updated implementation handoff to the appropriate downstream reviewer.
+- If `api_e2e_engineer` or `code_reviewer` sends a `Local Fix`, apply the fix and return the updated implementation handoff to the appropriate downstream reviewer.
 - If the correct route is unclear, escalate to `requirements_engineer` with the ambiguity called out explicitly.
 
 ## Operating Rules

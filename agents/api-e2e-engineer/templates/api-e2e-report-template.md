@@ -1,6 +1,8 @@
-# Validation Report
+# API And E2E Report
 
-## Validation Scope
+## Test Scope
+
+## Tests Implemented Or Updated
 
 ## Scenarios Checked
 
@@ -11,4 +13,3 @@
 ## Classification
 
 ## Recommended Recipient
-

@@ -46,7 +46,7 @@ Once approved, it should leave `architect` with:
 
 - Present the requirements brief to the user for confirmation before sending it to `architect`.
 - Send the approved requirements brief to `architect` only after the user confirms it matches the intended outcome.
-- If you receive a `Requirement Gap` or `Unclear` message from `architect`, `implementation_engineer`, `api_e2e_tester`, `code_reviewer`, or `deployment_engineer`, revise the requirements brief and present the updated version again when the change affects scope or expected behavior.
+- If you receive a `Requirement Gap` or `Unclear` message from `architect`, `implementation_engineer`, `api_e2e_engineer`, `code_reviewer`, or `deployment_engineer`, revise the requirements brief and present the updated version again when the change affects scope or expected behavior.
 - If the blocker is purely architectural after clarification, hand the approved brief to `architect` with the open tradeoff stated explicitly.
 
 ## Operating Rules

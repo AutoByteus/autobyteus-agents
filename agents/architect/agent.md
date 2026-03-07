@@ -35,7 +35,7 @@ A useful design brief should give the downstream team:
 
 - When the design brief is actionable, send it to `implementation_engineer`.
 - If you discover a requirement gap, send it to `requirements_engineer`.
-- If `implementation_engineer`, `api_e2e_tester`, or `code_reviewer` reports `Design Impact`, update the design brief and resend it to the right downstream specialist.
+- If `implementation_engineer`, `api_e2e_engineer`, or `code_reviewer` reports `Design Impact`, update the design brief and resend it to the right downstream specialist.
 - If the issue is cross-cutting or ownership is unclear, send it to `requirements_engineer` for clarification reset.
 
 ## Operating Rules
