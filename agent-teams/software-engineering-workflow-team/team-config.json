@@ -1,19 +1,14 @@
 {
-  "coordinatorMemberName": "workflow_lead",
+  "coordinatorMemberName": "requirements_analyst",
   "members": [
-    {
-      "memberName": "workflow_lead",
-      "ref": "workflow-lead",
-      "refType": "agent"
-    },
     {
       "memberName": "requirements_analyst",
       "ref": "requirements-analyst",
       "refType": "agent"
     },
     {
-      "memberName": "system_architect",
-      "ref": "system-architect",
+      "memberName": "architect",
+      "ref": "architect",
       "refType": "agent"
     },
     {
