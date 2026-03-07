@@ -1,81 +1,68 @@
 ---
 name: Software Engineering Workflow Team
-description: A staged multi-agent software-engineering team derived from the software-engineering-workflow-skill.
+description: A staged engineering delivery team for requirements, design, implementation, validation, review, and deployment.
 category: software-engineering
 ---
 
-This team converts the single `software-engineering-workflow-skill` into a coordinated multi-agent workflow.
+This team handles a software change from request clarification through release and deployment.
 
-## Collaboration Model
+## Team Roles
 
-- `requirements_analyst` handles clarification and requirements refinement.
-- `architect` handles design basis and architecture reasoning.
-- `implementation_engineer` handles implementation delivery.
-- `api_e2e_tester` handles acceptance validation.
-- `code_reviewer` handles the final engineering review and docs-impact closure.
-- `deployment_engineer` handles release preparation, deployment execution, and post-deploy verification.
+- `requirements_analyst` clarifies the request, defines scope, and writes acceptance criteria.
+- `architect` turns approved requirements into a design that implementation can follow.
+- `implementation_engineer` delivers the code changes and keeps the implementation aligned with the agreed design.
+- `api_e2e_tester` validates behavior against acceptance criteria and reports evidence.
+- `code_reviewer` performs independent engineering review and checks remaining risks and docs impact.
+- `deployment_engineer` handles release preparation, rollout steps, and post-deploy verification.
 
-## Required Sequence
+## Delivery Flow
 
-1. Clarify the request and make scope explicit through `requirements_analyst`.
-2. Turn the clarified request into design direction through `architect`.
-3. Implement against that direction.
-4. Validate the result against expected behavior.
-5. Review the final work for quality, remaining gaps, and docs impact.
-6. Prepare and execute release or deployment work when required.
+1. `requirements_analyst` turns the request into a requirements brief.
+2. `architect` turns the requirements brief into a design brief.
+3. `implementation_engineer` delivers the implementation and a concrete handoff for validation.
+4. `api_e2e_tester` validates the change and reports pass, fail, or blocked status.
+5. `code_reviewer` performs the engineering review once validation is clean.
+6. `deployment_engineer` handles release and deployment work when that work is in scope.
 
-## Team Protocol
+## Working Agreement
 
-### Shared Principle
+- Every handoff should include a concrete artifact, the current decision state, open risks, and the next expected action.
+- Use `send_message_to` when handing work to another specialist.
+- Downstream specialists should not guess around upstream ambiguity. Send the work back with a clear classification instead.
+- Small tasks should stay lightweight, but the team should still preserve role boundaries and explicit handoffs.
 
-Each specialist should produce one artifact that the next specialist can act on directly.
-Do not hand off vague commentary when a concrete artifact or classification is possible.
-The original workflow skill's transition matrix is implemented here as agent-to-agent routing rather than a separate workflow-state controller.
+## Issue Routing
 
-### Primary Handoff Chain
-
-1. `requirements_analyst` produces a requirements brief and sends it to `architect`.
-2. `architect` produces a design brief and sends it to `implementation_engineer`.
-3. `implementation_engineer` produces an implementation handoff and sends it to `api_e2e_tester`.
-4. `api_e2e_tester` sends a validation report to `code_reviewer` when validation passes.
-5. `code_reviewer` sends the approved review report to `deployment_engineer` when review passes.
-6. `deployment_engineer` produces the final release and deployment report and acts as the terminal pass gate when deployment is in scope.
-
-### Feedback Loop Routing
-
-When a downstream specialist finds a problem, classify it and route it using `send_message_to`:
+When a downstream specialist finds a problem, classify it and route it to the right owner:
 
 - `Local Fix` -> `implementation_engineer`
 - `Design Impact` -> `architect`
 - `Requirement Gap` -> `requirements_analyst`
 - `Deployment Fix` -> `deployment_engineer`
-- `Unclear` or cross-cutting issue -> `requirements_analyst` as the reset point for clarification
+- `Unclear` or cross-cutting issue -> `requirements_analyst`
 
-### Specialist Expectations
+## Ownership
 
 - `requirements_analyst` owns request clarity, scope, and acceptance criteria.
 - `architect` owns solution direction and design-level tradeoffs.
-- `implementation_engineer` owns execution against the current design and normal source commits during feature delivery.
+- `implementation_engineer` owns execution against the current design, unit-level verification, and normal source commits during feature delivery.
 - `api_e2e_tester` owns validation evidence and failure classification.
 - `code_reviewer` owns final findings, residual risks, docs-impact visibility, and the engineering review gate.
 - `deployment_engineer` owns release notes, version/tag or release commit work, deployment execution, rollout checks, and rollback visibility.
 
-### Send-Back Rules
+## Send-Back Rules
 
 - Do not push a requirement issue into implementation as a coding task.
-- Do not ask the reviewer to solve architecture gaps directly.
-- Do not treat testing failures as all belonging to implementation; classify them first.
-- When a specialist receives rework, they should produce an updated artifact and resend it to the correct downstream specialist.
-- If a downstream issue changes assumptions or intended behavior, route back upstream before more implementation work continues.
-- Do not leave release ownership implicit: if deployment is in scope, hand review-passed work to `deployment_engineer`.
+- Do not ask the reviewer to redesign the system instead of routing design issues back to `architect`.
+- Do not treat testing failures as all belonging to implementation. Distinguish product defects, environment blockers, design problems, and requirement gaps.
+- When a specialist receives rework, update the relevant artifact and resend it to the correct downstream specialist.
+- If a downstream issue changes intended behavior, scope, or acceptance criteria, route back upstream before more implementation work continues.
+- If release or deployment work is required, hand review-passed work to `deployment_engineer` instead of leaving release ownership implicit.
 
 ## Team Rules
 
-- Do not skip directly from user request to implementation without requirements and design.
-- If upstream understanding is weak, route the work back instead of guessing.
-- If testing or review discovers meaningful problems, route the work back to the right specialist.
-- `requirements_analyst` is the runtime entrypoint because the team no longer depends on a separate coordinator agent.
-- If no release or deployment work is required for a task, `deployment_engineer` may simply record that no deploy action was needed and close the flow.
+- Start with `requirements_analyst` unless the task already comes with approved requirements.
+- Do not move to implementation without a stable design basis.
+- Do not move to deployment before validation and review are clean.
+- If no deployment work is required, `deployment_engineer` should record that explicitly.
 - Keep outputs concise, actionable, and ready for the next specialist.
-
-This repository intentionally keeps runtime configuration lightweight. Users are expected to customize models, tools, and processors after importing the definitions into AutoByteus.

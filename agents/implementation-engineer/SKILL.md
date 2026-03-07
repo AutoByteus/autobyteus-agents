@@ -13,6 +13,7 @@ Implement the approved design and prepare a handoff that validation can act on d
 
 - solution execution
 - local implementation fixes
+- development commits
 - implementation-level risk visibility
 
 ## Primary Output
