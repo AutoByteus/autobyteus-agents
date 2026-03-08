@@ -1,2 +1,18 @@
-{}
-
+{
+  "skillNames": [
+    "requirements-engineer"
+  ],
+  "toolNames": [
+    "edit_file",
+    "read_file",
+    "write_file",
+    "send_message_to"
+  ],
+  "inputProcessorNames": [],
+  "llmResponseProcessorNames": [],
+  "systemPromptProcessorNames": [],
+  "toolExecutionResultProcessorNames": [],
+  "toolInvocationPreprocessorNames": [],
+  "lifecycleProcessorNames": [],
+  "avatarUrl": null
+}
