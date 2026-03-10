@@ -2,9 +2,9 @@
 
 This repository contains reusable AutoByteus agent and agent-team definitions.
 
-## Software Engineering Workflow Team
+## Software Engineering Team
 
-The software engineering workflow team is organized as a practical delivery group that can take work from investigation and requirements engineering through API and E2E validation, review, release, and deployment.
+The software engineering team is organized as a practical delivery group that can take work from investigation and requirements engineering through API and E2E validation, review, release, and deployment.
 
 ## Research To Deck Team
 
@@ -85,6 +85,6 @@ Rules:
 - Even when a bundled `SKILL.md` exists, keep `agent-config.json.skillNames` explicit so the package is self-describing and runtime wiring is deterministic.
 
 The team is intentionally modeled as direct specialist cooperation instead of a separate coordinator agent. Handoffs and rework paths are expressed through `team.md` and each specialist's routing rules.
-The software-engineering workflow team also includes a deployment specialist so release preparation, versioning, tagging, rollout, and deploy verification can be owned explicitly instead of being left implicit at the end.
+The software engineering team also includes a deployment specialist so release preparation, versioning, tagging, rollout, and deploy verification can be owned explicitly instead of being left implicit at the end.
 
 The runtime configuration is intentionally lightweight. After importing these definitions into AutoByteus, users are expected to customize tools, processors, models, and other config details to match their own environment.

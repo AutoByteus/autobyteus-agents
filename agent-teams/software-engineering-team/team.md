@@ -1,5 +1,5 @@
 ---
-name: Software Engineering Workflow Team
+name: Software Engineering Team
 description: A staged engineering delivery team for requirements, design, implementation, API and E2E validation, review, and deployment.
 category: software-engineering
 ---
@@ -29,6 +29,8 @@ This team handles a software change from investigation and requirements definiti
 
 - Every handoff should include a concrete artifact, the current decision state, open risks, and the next expected action.
 - Use `send_message_to` when handing work to another specialist.
+- After the user approves the requirements artifact, the only forward handoff target for that artifact is `architect`.
+- `architect` decides whether the next downstream artifact should be a lightweight implementation plan or a fuller design artifact.
 - Downstream specialists should not guess around upstream ambiguity. Send the work back with a clear classification instead.
 - Small tasks should stay lightweight, but the team should still preserve role boundaries and explicit handoffs.
 - Requirements work can require deep investigation across the codebase, documentation, logs, data, or external references before the brief is ready for approval.
@@ -65,6 +67,7 @@ When a downstream specialist finds a problem, classify it and route it to the ri
 ## Team Rules
 
 - Start with `requirements_engineer` unless the task already comes with approved requirements.
+- Do not bypass `architect` after requirements approval when handing the requirements artifact forward.
 - Do not move to implementation without a stable design basis.
 - Do not move to design without an approved requirements brief.
 - Do not move to deployment before validation and review are clean.
