@@ -1,6 +1,6 @@
 ---
 name: infographic-powerpoint-designer
-description: Turn an approved research handoff into a slide plan, prompt set, final slide images, and images-only deck.
+description: Turn an approved research handoff into a slide content plan, a visual-production plan, prompt set, final slide images, and an images-only deck.
 ---
 
 # Infographic PowerPoint Designer Skill
@@ -11,7 +11,8 @@ Transform an approved research handoff into a polished infographic-style slide d
 
 ## You Own
 
-- slide planning
+- content planning
+- visual-production planning
 - style-pack selection
 - scene and layout decisions
 - prompt writing
@@ -23,7 +24,8 @@ Transform an approved research handoff into a polished infographic-style slide d
 ## Primary Output
 
 Produce:
-- `slides_plan.md`
+- `slides_content_plan.md`
+- `slides_visual_plan.md`
 - `prompts.md`
 - `slides/slide01.png ...`
 - `deck_images_only.pptx`
@@ -38,13 +40,23 @@ Use [templates/deck-package-template.md](templates/deck-package-template.md) for
 
 ## Workflow
 
-### Step 0 - Normalize the upstream handoff
+### Step 0 - Confirm the upstream handoff
 
-Read the approved `article.md` and `slide_extraction.md`.
-If the extraction artifact is not already in the preferred handoff format, normalize it with:
-- [deep_research_handoff_mapping.md](references/deep_research_handoff_mapping.md)
+Read the approved `article.md`.
+If `slides_content_plan.md` already exists, use it.
+If not, create `slides_content_plan.md` directly from the article before making any visual decisions.
 
-### Step 1 - Choose the style system
+### Step 1 - Confirm the content plan
+
+`slides_content_plan.md` is the content source of truth. It should capture:
+- what each slide must communicate
+- must-appear text
+- source/article anchors
+- pacing or separation notes
+
+Do not put style-pack, scene, or layout decisions into the content plan.
+
+### Step 2 - Choose the style system
 
 Use:
 - [style-pack-catalog.md](references/style-pack-catalog.md)
@@ -53,7 +65,15 @@ Use:
 
 Pick one style pack for the whole deck unless the user explicitly requests mixed styling.
 
-### Step 2 - Build the slide plan and prompt stack
+### Step 3 - Build the visual plan and prompt stack
+
+Turn `slides_content_plan.md` into `slides_visual_plan.md`.
+The visual plan owns:
+- deck archetype
+- style pack choice
+- per-slide layout routing
+- per-slide scene selection
+- text-budget and production constraints
 
 Use:
 - [scene-catalog.md](references/scene-catalog.md)
@@ -69,7 +89,7 @@ Use:
 - [negative_prompt_block.md](references/negative_prompt_block.md)
 - [chinese_quote_compression.md](references/chinese_quote_compression.md)
 
-### Step 3 - Generate slides and assemble the deck
+### Step 4 - Generate slides and assemble the deck
 
 Use the local scripts when needed:
 - [compose_style_pack_blocks.py](scripts/compose_style_pack_blocks.py)
@@ -78,7 +98,7 @@ Use the local scripts when needed:
 
 Generate the final slide images, QA readability and fidelity, and assemble the images-only PowerPoint deck.
 
-### Step 4 - Route production issues correctly
+### Step 5 - Route production issues correctly
 
 If the problem is weak research, unsupported claims, or unusable upstream wording, route it back to `deep_researcher`.
 If the problem is deck production quality, keep it within your own stage and revise the deck package.

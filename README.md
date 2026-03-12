@@ -12,13 +12,16 @@ The research-to-deck team is organized as a two-specialist workflow that takes a
 
 ## Bible Learning Team
 
-The Bible learning team is organized as a context-first teaching workflow that takes a passage, topic, or question from deep background research through teaching preparation, critical review, and optional slide-deck preparation.
+The Bible learning team is organized as a context-first teaching workflow that takes a passage, topic, or question from deep background research through teaching preparation, critical review, and default slide-deck production unless the user explicitly wants a teaching-only result.
 
-Each role-agent folder is packaged as a small specialist bundle:
+Each role-agent folder always includes:
 
 - `agent.md`: distilled runtime prompt
-- `SKILL.md`: fuller specialist workflow and collaboration guidance
 - `agent-config.json`: runtime wiring such as `skillNames`, tools, and processors
+
+When a role owns a local bundled skill, the folder also includes:
+
+- `SKILL.md`: fuller specialist workflow and collaboration guidance
 - `templates/`: role-specific artifacts and output templates
 
 Some bundles also include richer local support files such as `references/` and `scripts/` when the underlying workflow depends on them.
@@ -51,7 +54,7 @@ Rules:
 - The skill name, agent folder name, and configured `skillNames` entry should match.
 - `SKILL.md` being present does not auto-attach that skill to the agent at runtime. Runtime attachment is explicit through `skillNames`.
 
-This repository uses that pattern.
+This repository uses both patterns: most specialist roles use agent-bundled skills, and some roles intentionally attach shared standalone skills directly from `agent-config.json`.
 
 ### 2. Standalone shared skill source
 
@@ -87,6 +90,7 @@ Rules:
 - If a skill is owned by a single agent, keep it bundled in that agent folder.
 - If a skill is shared across multiple agents, move it to a standalone shared skill source.
 - Even when a bundled `SKILL.md` exists, keep `agent-config.json.skillNames` explicit so the package is self-describing and runtime wiring is deterministic.
+- If an agent intentionally reuses a shared standalone skill instead of a bundled local one, keep the specialization in `agent.md` and point `agent-config.json.skillNames` at the shared skill.
 - Keep `agent.md` short. Move detailed workflow steps, artifact schemas, and output section structure into `SKILL.md` and local `templates/` so the same skill format works cleanly for bundled agent skills and custom skills.
 
 The team is intentionally modeled as direct specialist cooperation instead of a separate coordinator agent. Handoffs and rework paths are expressed through `team.md` and each specialist's routing rules.

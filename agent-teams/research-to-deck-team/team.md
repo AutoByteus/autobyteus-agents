@@ -8,12 +8,12 @@ This team handles a topic from deep research through infographic-style PowerPoin
 
 ## Team Roles
 
-- `deep_researcher` performs source-backed research, writes the reasoning artifact, and prepares a slide-ready extraction package.
-- `infographic_powerpoint_designer` turns the approved research handoff into a slide plan, image prompts, final deck images, and an images-only PowerPoint file.
+- `deep_researcher` uses the shared `deep-research-article` workflow and writes the approved reasoning artifact.
+- `infographic_powerpoint_designer` creates `slides_content_plan.md` from the approved research handoff when it is not already present, then produces the visual package, image prompts, final deck images, and an images-only PowerPoint file.
 
 ## Delivery Flow
 
-1. `deep_researcher` investigates the topic and produces the research package.
+1. `deep_researcher` investigates the topic with `deep-research-article` and produces the research package.
 2. The user reviews and approves the research package before deck production starts.
 3. `infographic_powerpoint_designer` turns the approved handoff into the final deck package.
 
@@ -35,8 +35,8 @@ When a downstream specialist finds a problem, classify it and route it to the ri
 
 ## Ownership
 
-- `deep_researcher` owns source collection, evidence synthesis, article structure, slide extraction, and research-package readiness.
-- `infographic_powerpoint_designer` owns slide planning, prompt writing, slide image generation, deck assembly, and presentation-level consistency.
+- `deep_researcher` owns source collection, evidence synthesis, article structure, and research-package readiness.
+- `infographic_powerpoint_designer` owns slide content planning, visual planning, prompt writing, slide image generation, deck assembly, and presentation-level consistency.
 
 ## Send-Back Rules
 
@@ -48,6 +48,6 @@ When a downstream specialist finds a problem, classify it and route it to the ri
 ## Team Rules
 
 - Default to internet-backed research unless the user explicitly forbids web research.
-- The research handoff should include an article artifact and a slide extraction artifact.
-- The final deck package should include a slide plan, slide prompts, final slide images, and a deck file.
+- The research handoff should include an article artifact plus the supporting research package.
+- The final deck package should include `slides_content_plan.md`, `slides_visual_plan.md`, slide prompts, final slide images, and a deck file.
 - Keep outputs concise, actionable, and ready for the next specialist.

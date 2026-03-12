@@ -2,15 +2,25 @@
 
 ## Work Folder
 
+## Review Phase
+
+## Review Round
+
 ## Inputs Reviewed
 
 ## Review Scope
+
+## Previous Findings Status
 
 ## Decision
 
 ## Findings
 
-## Depth Assessment
+## Teaching Assessment
+
+## Slide Content Plan Assessment
+
+## Visual Quality Assessment
 
 ## Questions That Must Be Answered
 

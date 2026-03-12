@@ -49,7 +49,7 @@ Optional (for long verses): `references/chinese_quote_compression.md`
 
 ### Title
 - Title (exact): `[标题，含经文范围]`
-- Scene ID (from `references/scene-catalog.md`): `[scene-id]`
+- Scene ID (from `references/scene-catalog.md` or `slides_visual_plan.md`): `[scene-id]`
   - Optional: select a ready preset from `references/scene-preset-library.md`.
 
 ### 必须出现文字（逐字准确）
@@ -62,7 +62,7 @@ Include **everything** that must appear on the slide, verbatim:
 - `[页脚小字]`
 
 Rules:
-- If content comes from `deep-research-article/slide_extraction.md`, copy from `Must-appear text (verbatim)` first.
+- If content comes from `slides_content_plan.md`, copy from `Must-appear text (verbatim)` first.
 - Keep quote blocks short; if too long, split into 2 slides.
 - If any character is wrong in output, regenerate with stricter instruction: “逐字准确，不得改写，不得增删标点/空格”.
  - For long verses, follow `references/chinese_quote_compression.md` (split, don’t paraphrase).

@@ -2,14 +2,17 @@
 
 ## Approved Input Artifacts
 
-- `article.md`
-- `slide_extraction.md`
+- `article.md` or an approved upstream `slides_content_plan.md`
 
 ## Style Pack Decision
 
-## Slide Plan Artifact
+## Slide Content Plan Artifact
 
-- `slides_plan.md`
+- `slides_content_plan.md`
+
+## Slide Visual Plan Artifact
+
+- `slides_visual_plan.md`
 
 ## Prompt Artifact
 
