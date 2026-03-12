@@ -9,7 +9,7 @@ This team handles a software change from investigation and requirements definiti
 ## Team Roles
 
 - `requirements_engineer` investigates the problem, defines scope, and produces approval-ready requirements.
-- `architect` turns approved requirements into a design that implementation can follow.
+- `architect` turns approved requirements into a detailed design spec that implementation can follow.
 - `implementation_engineer` delivers the code changes and keeps the implementation aligned with the agreed design.
 - `api_e2e_engineer` implements API and E2E tests, validates behavior against acceptance criteria, and reports evidence.
 - `code_reviewer` performs independent engineering review and checks remaining risks and docs impact.
@@ -19,7 +19,7 @@ This team handles a software change from investigation and requirements definiti
 
 1. `requirements_engineer` investigates the request and produces a requirements brief with findings, scope, and acceptance criteria.
 2. The user reviews and approves the requirements brief before design begins.
-3. `architect` turns the approved requirements brief into a design brief.
+3. `architect` turns the approved requirements brief into a design spec.
 4. `implementation_engineer` delivers the implementation and a concrete handoff for API and E2E work.
 5. `api_e2e_engineer` implements and runs API and E2E tests, then reports pass, fail, or blocked status.
 6. `code_reviewer` performs the engineering review once validation is clean.
@@ -28,9 +28,10 @@ This team handles a software change from investigation and requirements definiti
 ## Working Agreement
 
 - Every handoff should include a concrete artifact, the current decision state, open risks, and the next expected action.
+- The design spec from `architect` should identify the primary execution/data-flow spine first, name the key main-line nodes on that spine, and keep support services explicitly off that spine unless they own core sequencing.
 - Use `send_message_to` when handing work to another specialist.
 - After the user approves the requirements artifact, the only forward handoff target for that artifact is `architect`.
-- `architect` decides whether the next downstream artifact should be a lightweight implementation plan or a fuller design artifact.
+- `architect` produces the detailed design spec that downstream implementation follows.
 - Downstream specialists should not guess around upstream ambiguity. Send the work back with a clear classification instead.
 - Small tasks should stay lightweight, but the team should still preserve role boundaries and explicit handoffs.
 - Requirements work can require deep investigation across the codebase, documentation, logs, data, or external references before the brief is ready for approval.
@@ -48,7 +49,7 @@ When a downstream specialist finds a problem, classify it and route it to the ri
 ## Ownership
 
 - `requirements_engineer` owns investigation findings, request clarity, scope, recommendations, and acceptance criteria.
-- `architect` owns solution direction and design-level tradeoffs.
+- `architect` owns solution direction, design-level tradeoffs, spine clarity, and identification of the key main-line nodes.
 - `implementation_engineer` owns execution against the current design, unit-level verification, and normal source commits during feature delivery.
 - `api_e2e_engineer` owns API and E2E test implementation, execution evidence, and failure classification.
 - `code_reviewer` owns final findings, residual risks, docs-impact visibility, and the engineering review gate.

@@ -34,7 +34,7 @@ An approval-ready brief should give the user:
 - acceptance criteria
 - key risks, assumptions, and tradeoffs
 
-Once approved, it should leave `architect` with:
+Once approved, it should leave `architect` with enough detail to produce the design spec:
 
 - clear goal or problem statement
 - concrete use cases

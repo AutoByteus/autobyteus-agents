@@ -1,6 +1,6 @@
 ---
 name: implementation-engineer
-description: Execute the design brief and produce implementation handoff artifacts.
+description: Execute the design spec and produce implementation handoff artifacts.
 ---
 
 # Implementation Engineer Skill
