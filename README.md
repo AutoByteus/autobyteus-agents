@@ -10,6 +10,10 @@ The software engineering team is organized as a practical delivery group that ca
 
 The research-to-deck team is organized as a two-specialist workflow that takes a topic from deep research and reasoning through infographic-style PowerPoint deck production.
 
+## Bible Learning Team
+
+The Bible learning team is organized as a context-first teaching workflow that takes a passage, topic, or question from deep background research through teaching preparation, critical review, and optional slide-deck preparation.
+
 Each role-agent folder is packaged as a small specialist bundle:
 
 - `agent.md`: distilled runtime prompt
@@ -83,6 +87,7 @@ Rules:
 - If a skill is owned by a single agent, keep it bundled in that agent folder.
 - If a skill is shared across multiple agents, move it to a standalone shared skill source.
 - Even when a bundled `SKILL.md` exists, keep `agent-config.json.skillNames` explicit so the package is self-describing and runtime wiring is deterministic.
+- Keep `agent.md` short. Move detailed workflow steps, artifact schemas, and output section structure into `SKILL.md` and local `templates/` so the same skill format works cleanly for bundled agent skills and custom skills.
 
 The team is intentionally modeled as direct specialist cooperation instead of a separate coordinator agent. Handoffs and rework paths are expressed through `team.md` and each specialist's routing rules.
 The software engineering team also includes a deployment specialist so release preparation, versioning, tagging, rollout, and deploy verification can be owned explicitly instead of being left implicit at the end.

@@ -1,0 +1,12 @@
+{
+  "toolNames": [
+    "edit_file",
+    "read_file",
+    "write_file",
+    "send_message_to"
+  ],
+  "skillNames": [
+    "bible-teaching-preparer",
+    "infographic-powerpoint-deck"
+  ]
+}

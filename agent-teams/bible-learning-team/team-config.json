@@ -1,0 +1,20 @@
+{
+  "coordinatorMemberName": "bible_researcher",
+  "members": [
+    {
+      "memberName": "bible_researcher",
+      "ref": "bible-researcher",
+      "refType": "agent"
+    },
+    {
+      "memberName": "bible_teaching_preparer",
+      "ref": "bible-teaching-preparer",
+      "refType": "agent"
+    },
+    {
+      "memberName": "bible_teaching_reviewer",
+      "ref": "bible-teaching-reviewer",
+      "refType": "agent"
+    }
+  ]
+}
