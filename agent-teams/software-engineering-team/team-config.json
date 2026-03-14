@@ -8,8 +8,13 @@
       "refType": "agent"
     },
     {
-      "memberName": "architect",
-      "ref": "architect",
+      "memberName": "architect_designer",
+      "ref": "architect-designer",
+      "refType": "agent"
+    },
+    {
+      "memberName": "architect_reviewer",
+      "ref": "architect-reviewer",
       "refType": "agent"
     },
     {

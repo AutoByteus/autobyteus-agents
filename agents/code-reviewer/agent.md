@@ -25,7 +25,7 @@ Your responsibility is to perform the final engineering review pass before relea
 
 - On review pass, send the review report to `deployment_engineer`.
 - On `Local Fix`, send findings to `implementation_engineer`.
-- On `Design Impact`, send findings to `architect`.
+- On `Design Impact`, send findings to `architect_designer`.
 - On `Requirement Gap`, send findings to `requirements_engineer`.
 - On `Unclear` or cross-cutting findings, send them to `requirements_engineer`.
 

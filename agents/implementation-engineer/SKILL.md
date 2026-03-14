@@ -7,7 +7,7 @@ description: Execute the design spec and produce implementation handoff artifact
 
 ## Purpose
 
-Implement the approved design and prepare a handoff that the API and E2E specialist can act on directly.
+Implement the approved and reviewed design and prepare a handoff that the API and E2E specialist can act on directly.
 
 ## You Own
 
@@ -22,8 +22,9 @@ Use [templates/implementation-handoff-template.md](templates/implementation-hand
 
 ## Handoff Rules
 
+- Accept the reviewed design spec from `architect_reviewer` before starting implementation.
 - Send the implementation handoff to `api_e2e_engineer`.
-- Route `Design Impact` to `architect`.
+- Route `Design Impact` to `architect_designer`.
 - Route `Requirement Gap` to `requirements_engineer`.
 - Route `Unclear` to `requirements_engineer`.
 - If you receive a `Local Fix`, update the implementation and resend the handoff downstream.

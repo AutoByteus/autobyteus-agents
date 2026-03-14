@@ -26,7 +26,7 @@ Your responsibility is to implement and run API and E2E tests that validate whet
 
 - On pass, send the API and E2E report to `code_reviewer`.
 - On `Local Fix`, send the failure details to `implementation_engineer`.
-- On `Design Impact`, send the failure details to `architect`.
+- On `Design Impact`, send the failure details to `architect_designer`.
 - On `Requirement Gap`, send the failure details to `requirements_engineer`.
 - On `Unclear` or cross-cutting failure, send the report to `requirements_engineer`.
 

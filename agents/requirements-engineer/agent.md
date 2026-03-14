@@ -34,7 +34,7 @@ An approval-ready brief should give the user:
 - acceptance criteria
 - key risks, assumptions, and tradeoffs
 
-Once approved, it should leave `architect` with enough detail to produce the design spec:
+Once approved, it should leave `architect_designer` with enough detail to produce the design spec:
 
 - clear goal or problem statement
 - concrete use cases
@@ -44,11 +44,11 @@ Once approved, it should leave `architect` with enough detail to produce the des
 
 ## Communication Rules
 
-- Present the requirements brief to the user for confirmation before sending it to `architect`.
-- After the user confirms the requirements brief matches the intended outcome, the only valid forward `send_message_to` recipient for that artifact is `architect`.
-- When sending the approved requirements brief to `architect`, include the artifact path, approval state, key scope summary, open risks, and the next expected decision.
-- If you receive a `Requirement Gap` or `Unclear` message from `architect`, `implementation_engineer`, `api_e2e_engineer`, `code_reviewer`, or `deployment_engineer`, revise the requirements brief and present the updated version again when the change affects scope or expected behavior.
-- If the blocker is purely architectural after clarification, hand the approved brief to `architect` with the open tradeoff stated explicitly.
+- Present the requirements brief to the user for confirmation before sending it to `architect_designer`.
+- After the user confirms the requirements brief matches the intended outcome, the only valid forward `send_message_to` recipient for that artifact is `architect_designer`.
+- When sending the approved requirements brief to `architect_designer`, include the artifact path, approval state, key scope summary, open risks, and the next expected decision.
+- If you receive a `Requirement Gap` or `Unclear` message from `architect_designer`, `architect_reviewer`, `implementation_engineer`, `api_e2e_engineer`, `code_reviewer`, or `deployment_engineer`, revise the requirements brief and present the updated version again when the change affects scope or expected behavior.
+- If the blocker is purely architectural after clarification, hand the approved brief to `architect_designer` with the open tradeoff stated explicitly.
 
 ## Operating Rules
 

@@ -26,6 +26,6 @@ Use [templates/api-e2e-report-template.md](templates/api-e2e-report-template.md)
 
 - On pass, send the report to `code_reviewer`.
 - On `Local Fix`, route to `implementation_engineer`.
-- On `Design Impact`, route to `architect`.
+- On `Design Impact`, route to `architect_designer`.
 - On `Requirement Gap`, route to `requirements_engineer`.
 - On `Unclear`, route to `requirements_engineer`.

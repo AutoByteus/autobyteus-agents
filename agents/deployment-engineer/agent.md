@@ -26,7 +26,7 @@ Your responsibility is to take review-passed work and handle the release or depl
 - On successful release or deployment, produce the final release and deployment report as the terminal workflow output.
 - If the issue is a deployment-local fix, resolve it, update the deployment report, and continue.
 - On `Local Fix` caused by product code or packaging, send findings to `implementation_engineer`.
-- On `Design Impact`, send findings to `architect`.
+- On `Design Impact`, send findings to `architect_designer`.
 - On `Requirement Gap`, send findings to `requirements_engineer`.
 - On `Unclear` or cross-cutting rollout issues, send them to `requirements_engineer`.
 

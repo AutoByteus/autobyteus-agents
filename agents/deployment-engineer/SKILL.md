@@ -27,6 +27,6 @@ Use [templates/release-deployment-report-template.md](templates/release-deployme
 - On successful deployment or explicit no-deploy decision, produce the terminal workflow artifact.
 - Resolve deployment-local issues directly when possible.
 - Route code or packaging `Local Fix` issues to `implementation_engineer`.
-- Route `Design Impact` to `architect`.
+- Route `Design Impact` to `architect_designer`.
 - Route `Requirement Gap` to `requirements_engineer`.
 - Route `Unclear` to `requirements_engineer`.

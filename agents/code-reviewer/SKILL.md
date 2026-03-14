@@ -24,6 +24,6 @@ Use [templates/review-report-template.md](templates/review-report-template.md) t
 
 - On pass, send the review report to `deployment_engineer`.
 - On `Local Fix`, route to `implementation_engineer`.
-- On `Design Impact`, route to `architect`.
+- On `Design Impact`, route to `architect_designer`.
 - On `Requirement Gap`, route to `requirements_engineer`.
 - On `Unclear`, route to `requirements_engineer`.
