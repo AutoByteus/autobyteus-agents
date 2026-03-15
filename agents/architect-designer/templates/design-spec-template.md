@@ -39,6 +39,10 @@ State who may depend on, call, or emit to whom, and name the shortcuts or cross-
 
 List the services that resolve, persist, map, observe, publish, or adapt around the spine, and name which owner on the spine each one serves.
 
+## Applied Patterns (If Any)
+
+Name any local patterns used, where they live, what problem they solve, and which owner or support branch they belong to.
+
 ## Target Modules / Files
 
 Name the modules and files that should be created, changed, moved, or deleted, and explain what belongs in each one.

@@ -7,11 +7,14 @@ description: Design the target architecture, produce the design spec, and iterat
 
 ## Purpose
 
-Transform a design-ready requirements brief and the current implementation reality into an actionable design spec for implementation.
+Transform a design-ready requirements doc, its supporting investigation notes, and the current implementation reality into an actionable design spec for implementation.
+Own the architecture-level investigation required to make the design accurate.
 
 ## You Own
 
 - architecture direction
+- deep architecture investigation of the current system
+- use of the requirements-engineer investigation notes as design input
 - current-state design assessment
 - primary execution/data-flow spine
 - spine actors or main-line domain nodes
@@ -30,8 +33,17 @@ Transform a design-ready requirements brief and the current implementation reali
 
 Use [templates/design-spec-template.md](templates/design-spec-template.md) to produce a design spec.
 
+## Optional Pattern Guidance
+
+- If the design needs a local structural mechanism such as a state machine, event loop, factory, registry, adapter, strategy, repository, or manager, read [references/common-design-patterns.md](references/common-design-patterns.md).
+- Treat that file as helper guidance only. The primary spine, domain subject nodes, and ownership model still come first.
+
 ## Required Current-State Read
 
+- Read the requirements-engineer investigation notes first and use them as the starting design context.
+- Perform your own architecture-level investigation after that; the requirements-stage investigation is input, not a replacement.
+- Investigation may use any relevant evidence source or verification method needed to understand the real current system and the real design constraints.
+- It is not limited to reading existing material; it can also include reproduction, probing, tracing, querying, running commands, writing small scripts, or creating focused test artifacts when needed.
 - Inspect the relevant current implementation before finalizing the design spec.
 - Identify:
   - the current execution spine or the lack of one
@@ -39,6 +51,7 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
   - current coupling points, coordination blobs, or fragmented support services
   - constraints that the target design must respect during the transition
 - Do not write a greenfield-style target design when the task is really a refactor of an existing code path.
+- Do not assume the requirements engineer has already uncovered every architectural fact needed for design.
 
 ## Design Standard
 
@@ -73,6 +86,7 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 - Specify where each changed owner, interface, adapter, or support branch should live in modules/files.
 - If the target structure cannot be landed in one step, describe the staged transition instead of leaving the migration implicit.
 - Let layering emerge from the spine and ownership model: upstream initiators, mid-line domain/control nodes, downstream engines/providers.
+- If you apply a pattern, state which owner or support branch uses it and why it helps there.
 
 ## Examples
 
@@ -93,7 +107,7 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 
 ## Handoff Rules
 
-- Accept approved requirements artifacts from `requirements_engineer` as the only forward handoff source for requirements-stage output.
+- Accept the approved requirements doc and investigation notes from `requirements_engineer` as the only forward handoff source for requirements-stage output.
 - Produce the design spec before handing work downstream.
 - Send the design spec to `architect_reviewer`.
 - If the real issue is a `Requirement Gap`, route it to `requirements_engineer`.
