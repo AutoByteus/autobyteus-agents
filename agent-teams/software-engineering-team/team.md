@@ -12,7 +12,7 @@ This team handles a software change from investigation and requirements definiti
 - `architect_designer` performs architecture-level investigation and turns approved requirements into a detailed design spec grounded in the current codebase, organized around the primary spine, and clear about ownership boundaries.
 - `architect_reviewer` reviews the design spec before implementation and checks spine clarity, ownership, naming, decoupling, and migration safety.
 - `implementation_engineer` delivers the code changes and keeps the implementation aligned with the agreed design.
-- `api_e2e_engineer` implements API and E2E tests, validates behavior against acceptance criteria, and reports evidence.
+- `api_e2e_engineer` owns API, E2E, and executable validation work, including coverage design, realistic setup, and evidence needed to verify behavior.
 - `code_reviewer` performs independent engineering review and checks remaining risks and docs impact.
 - `deployment_engineer` handles release preparation, rollout steps, and post-deploy verification.
 
@@ -23,7 +23,7 @@ This team handles a software change from investigation and requirements definiti
 3. `architect_designer` uses the approved requirements doc and investigation notes as starting input, performs architecture-level investigation, and turns that into a design spec.
 4. `architect_reviewer` reviews the design spec, sends findings back to `architect_designer` until the design passes review, and then sends the reviewed design to `implementation_engineer`.
 5. `implementation_engineer` delivers the implementation from the reviewed design and a concrete handoff for API and E2E work.
-6. `api_e2e_engineer` implements and runs API and E2E tests, then reports pass, fail, or blocked status.
+6. `api_e2e_engineer` derives detailed validation coverage from the requirements, reviewed design, implementation handoff, and observed behavior; executes API, E2E, and other executable validation work; pushes validation until real blockers are reached; and then reports pass, fail, untested, or blocked status.
 7. `code_reviewer` performs the engineering review once validation is clean.
 8. `deployment_engineer` handles release and deployment work when that work is in scope.
 
@@ -38,6 +38,9 @@ This team handles a software change from investigation and requirements definiti
 - `architect_designer` produces the detailed design spec that `architect_reviewer` reviews before any implementation starts.
 - `architect_reviewer` must review the design spec for spine clarity, ownership clarity, naming clarity, dependency direction, module/file placement, and migration safety before implementation begins.
 - The `architect_designer` and `architect_reviewer` loop may repeat for multiple rounds until the design passes review.
+- The `api_e2e_engineer` should derive validation coverage from the requirements doc, reviewed design spec, implementation handoff, and observed behavior instead of relying on only one source.
+- The `api_e2e_engineer` should use any reasonable executable validation method needed to verify the behavior, not just tests already present in the codebase.
+- The `api_e2e_engineer` should make tested, untested, blocked, and mocked or emulated coverage explicit.
 - Downstream specialists should not guess around upstream ambiguity. Send the work back with a clear classification instead.
 - Small tasks should stay lightweight, but the team should still preserve role boundaries and explicit handoffs.
 - Requirements work can require deep investigation across the codebase, documentation, logs, data, or external references before the requirements doc and investigation notes are ready for handoff.
@@ -58,7 +61,7 @@ When a downstream specialist finds a problem, classify it and route it to the ri
 - `architect_designer` owns solution direction, architecture-level investigation, design-level tradeoffs, spine clarity, ownership clarity, and identification of the key main-line nodes.
 - `architect_reviewer` owns the design review gate, independent design findings, and pass/fail judgment for the design spec.
 - `implementation_engineer` owns execution against the current design, unit-level verification, and normal source commits during feature delivery.
-- `api_e2e_engineer` owns API and E2E test implementation, execution evidence, and failure classification.
+- `api_e2e_engineer` owns validation coverage design, validation implementation, executable setup, execution evidence, and failure classification.
 - `code_reviewer` owns final findings, residual risks, docs-impact visibility, and the engineering review gate.
 - `deployment_engineer` owns release notes, version/tag or release commit work, deployment execution, rollout checks, and rollback visibility.
 

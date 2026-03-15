@@ -8,5 +8,8 @@
 
 ## Known Risks
 
-## What Needs Validation
+## Environment Or Dependency Notes
 
+## Validation Hints / Suggested Scenarios
+
+## What Needs Validation
