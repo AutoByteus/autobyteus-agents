@@ -6,10 +6,26 @@ Describe the current execution path, current ownership boundaries, current coupl
 
 ## Intended Change
 
-## Primary Execution Spine
+## Data-Flow Spine Inventory
 
-Write as a short arrow chain, for example:
+List every relevant spine that matters to understanding the design.
+
+| Spine ID | Scope (`Primary End-to-End`/`Return-Event`/`Bounded Local`) | Start | End | Governing Owner | Why It Matters |
+| --- | --- | --- | --- | --- | --- |
+| DS-001 |  |  |  |  |  |
+
+## Primary Execution Spine(s)
+
+Write each primary execution spine as a short arrow chain, for example:
 `Input -> Manager -> Run -> Backend -> Engine / Client -> Provider`
+
+## Spine Narratives (Mandatory)
+
+For each important spine, explain the end-to-end motion in prose so a reader can understand the design by following the flow instead of reconstructing it from files.
+
+| Spine ID | Short Narrative | Main Domain Subject Nodes | Governing Owner | Key Support Branches |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
 
 ## Spine Actors / Main-Line Nodes
 
@@ -19,13 +35,27 @@ List only the nodes that directly advance the core request, command, or data.
 
 State what each main-line node owns: lifecycle, state, invariants, sequencing, contracts, or transformations.
 
-## Return Or Event Spine (If Applicable)
+## Return Or Event Spine(s) (If Applicable)
 
 Write the return or event flow on the same principle as the execution spine.
+
+## Bounded Local / Internal Spines (If Applicable)
+
+Use this section when an event loop, worker loop, state machine, dispatch cycle, or callback flow materially shapes one owner's behavior.
+For each one, name:
+- parent owner
+- short arrow chain
+- why this bounded local spine matters
 
 ## Supporting Structure Around The Spine
 
 List the important supporting owners, adapters, translators, persistence pieces, or transport pieces around the spine.
+
+## Spine-To-Support Mapping
+
+| Spine ID | Support Branch / Service | Serves Which Owner | Why It Exists | Risk If Misplaced On Main Line |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
 
 ## Ownership Boundaries
 
@@ -34,6 +64,28 @@ Explain where authority changes hands and what must stay encapsulated inside eac
 ## Dependency Rules
 
 State who may depend on, call, or emit to whom, and name the shortcuts or cross-boundary dependencies that are forbidden.
+
+## Interface Boundary Mapping
+
+| Interface / API / Query / Command / Method | Subject Owned | Responsibility | Accepted Identity Shape(s) | Notes |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+
+Rule:
+- Do not use one generic boundary when the subject or identity meaning differs.
+- Split boundaries by subject or require an explicit compound identity shape.
+
+## Interface Boundary Check
+
+| Interface | Responsibility Is Singular? (`Yes`/`No`) | Identity Shape Is Explicit? (`Yes`/`No`) | Ambiguous Selector Risk (`Low`/`Medium`/`High`) | Corrective Action |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+
+## Main Domain Subject Naming Check
+
+| Node / Subject | Current / Proposed Name | Name Is Natural And Self-Descriptive? (`Yes`/`No`) | Naming Drift Risk | Corrective Action |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
 
 ## Support Branches / Services Off The Spine
 
@@ -49,7 +101,7 @@ Name the modules and files that should be created, changed, moved, or deleted, a
 
 ## Derived Layering (If Useful)
 
-Describe the layer shape only after the spine and ownership model are clear.
+Describe the layer shape only after the spine inventory, ownership model, and interface boundaries are clear.
 
 ## Migration / Refactor Sequence
 

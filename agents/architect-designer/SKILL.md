@@ -16,12 +16,14 @@ Own the architecture-level investigation required to make the design accurate.
 - deep architecture investigation of the current system
 - use of the requirements-engineer investigation notes as design input
 - current-state design assessment
-- primary execution/data-flow spine
+- data-flow spine inventory for the scope
 - spine actors or main-line domain nodes
 - ownership model for spine actors and their support branches
-- primary return/event spine when applicable
+- return/event spines when applicable
+- bounded local/internal spines when they materially shape one owner
 - production of the detailed design spec after approved requirements arrive
 - module and responsibility boundaries
+- interface-boundary design and explicit identity shapes
 - dependency direction and forbidden shortcuts
 - target module and file placement
 - migration or refactor sequencing
@@ -37,6 +39,13 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 
 - If the design needs a local structural mechanism such as a state machine, event loop, factory, registry, adapter, strategy, repository, or manager, read [references/common-design-patterns.md](references/common-design-patterns.md).
 - Treat that file as helper guidance only. The primary spine, domain subject nodes, and ownership model still come first.
+
+## Optional Example Guidance
+
+- If the design would benefit from concrete precedent, read [references/spine-first-design-examples.md](references/spine-first-design-examples.md).
+- Use those examples to learn how a strong design spec can look across CRUD flow, runtime flow, bounded local loop flow, team orchestration, state-machine flow, and interface-boundary design.
+- That file also includes explicit bad-practice anti-examples so the architect can recognize generic boundaries, fragmented coordinator chains, hidden local loops, and overloaded main-line nodes.
+- Treat the examples as shape guidance, not copy-paste templates.
 
 ## Required Current-State Read
 
@@ -55,18 +64,21 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 
 ## Design Standard
 
-- Treat good architecture as: one readable primary spine, clear ownership, and clear boundaries.
+- Treat good architecture as: a readable spine inventory for the scope, clear ownership, and clear boundaries.
 - Find the spine before decomposing concerns.
 - Define ownership before decomposing support concerns around the spine.
 - Do not let concern-first decomposition produce a fragmented design with many peer coordinators and no clear main line.
 - Do not let shared support services accumulate business authority without explicit ownership.
 - The design spec should identify:
-  - the main execution spine
-  - the key spine actors that directly advance it
+  - the relevant spine inventory for the scope
+  - the key spine actors that directly advance each important spine
+  - a short readable narrative for each important spine
   - what each main-line actor owns
   - the return/event spine when applicable
+  - any bounded local/internal spine that materially affects the design
   - the support branches or services that must stay off the spine
   - which owner on the spine each support branch serves
+  - the key interface boundaries, what subject each one owns, and what identity shape each one accepts
   - allowed dependency direction and forbidden shortcuts
   - target modules and files for the changed structure
   - the migration sequence from current to target
@@ -76,10 +88,14 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 
 - Ask first: what is the current path through the code today, and where is it fragmented?
 - Ask first: what is the shortest end-to-end path that carries the system's core intent?
+- Ask next: are there multiple meaningful spines in this scope, including return/event or bounded local spines?
 - Keep only true main-line actors on that path: each node should advance the request, command, or data one step further.
+- Ask next: if someone reads only the spine narratives, would they understand how the system works end to end?
 - Ask next: what does each main-line actor own?
 - Move support concerns off the spine unless they truly own core sequencing.
 - Make each support branch answerable to a clear owner on the spine.
+- Ask next: which interface boundaries do callers depend on, and do any of them mix subjects, blur ownership, or guess identity meaning?
+- Split generic interface boundaries by subject when needed; avoid one API, query, command, or service method that tries to interpret multiple subject types behind one ambiguous input.
 - If several peer services all appear to coordinate the use case, simplify until one dominant line is visible.
 - If behavior is important but no owner is obvious, the boundary is wrong.
 - Make dependency rules explicit so the target decoupling is mechanically checkable.
@@ -100,8 +116,13 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
   `Input -> AgentTeamRunManager -> TeamRun -> TeamRunBackend -> member AgentRuns -> member runtimes`
 - CRUD request:
   `HTTP Controller -> Application Service -> Domain Aggregate -> Repository`
+- Bounded local/internal spine:
+  `Queue/Event Source -> Runtime Loop -> Handler/Transition -> Output Event`
 - Example ownership:
   domain aggregate owns invariants, application service owns use-case sequencing, repository owns persistence fulfillment.
+- Interface-boundary example:
+  avoid `getRunResumeConfig(runId)`
+  prefer `getAgentRunResumeConfig(runId)`, `getTeamRunResumeConfig(teamRunId)`, `getTeamMemberRunResumeConfig(teamRunId, memberKey)`
 - Typical support services that should stay off the spine:
   definition resolution, persistence, projections, message mapping, callbacks, metrics, audit logging.
 
