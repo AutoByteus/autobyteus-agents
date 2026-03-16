@@ -95,9 +95,42 @@ List the services that resolve, persist, map, observe, publish, or adapt around 
 
 Name any local patterns used, where they live, what problem they solve, and which owner or support branch they belong to.
 
-## Target Modules / Files
+## Target Folder / Module / File Mapping
 
-Name the modules and files that should be created, changed, moved, or deleted, and explain what belongs in each one.
+Name the folders, modules, and files that should be created, changed, moved, or deleted, and explain what belongs in each one.
+This mapping should be spine-led and ownership-led, but not mechanical. The goal is readability, not a rigid one-folder-per-spine-step rule.
+
+| Path | Kind (`Folder`/`Module`/`File`) | Owner / Boundary | Responsibility | Why It Belongs Here | Must Not Contain |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+Rules:
+- If the design has meaningful structural depth, usually reflect it in folders rather than flattening everything into one mixed directory.
+- Do not place transport entrypoints, main-line domain/control nodes, persistence, adapters, and unrelated support branches in one flat folder when that hides ownership or structural depth.
+- A compact layout is acceptable when it remains easy to read for the scope. If you keep it flatter, state why that is the clearer tradeoff.
+- Folder boundaries should make ownership and structural depth easier to read, not hide them.
+
+## Folder Boundary Check
+
+| Path / Folder | Intended Structural Depth (`Transport`/`Main-Line Domain-Control`/`Persistence-Provider`/`Support Branch`/`Mixed Justified`) | Ownership Boundary Is Clear? (`Yes`/`No`) | Mixed-Layer Or Over-Split Risk (`Low`/`Medium`/`High`) | Justification / Corrective Action |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+
+## Concrete Examples / Shape Guidance (Recommended)
+
+Use short examples when they make the design easier to understand.
+Examples can explain:
+- a spine shape
+- an interface-boundary split
+- a folder/module/file mapping choice
+- a bounded local spine such as a loop or state machine
+- a bad-practice shape that this design is intentionally avoiding
+
+| Topic | Good Example | Bad / Avoided Shape | Why The Example Matters |
+| --- | --- | --- | --- |
+|  |  |  |  |
+
+Use this section when the design would otherwise remain too abstract.
 
 ## Derived Layering (If Useful)
 

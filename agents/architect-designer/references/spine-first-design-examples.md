@@ -8,7 +8,7 @@ Use them to learn how a good design spec can read when the architecture is organ
 - ownership
 - support structure around the spine
 - interface boundaries with explicit identity shape
-- derived module/file placement
+- derived folder/module/file placement
 
 Do not copy these literally.
 Use them to recognize the shape of a clear design.
@@ -61,15 +61,34 @@ The system validates the request, applies domain rules, persists the order, and 
 | `createOrder(customerId, orderDraft)` | `Order` | `customerId + orderDraft` | clear create boundary |
 | `getOrder(orderId)` | `Order` | `orderId` | explicit order identity |
 
-### Derived Module/File Mapping
+### Derived Folder / Module / File Mapping
 
-| Module/File | Owner | Responsibility |
+Recommended folder shape:
+
+```text
+orders/
+  transport/
+    OrderController.ts
+  application/
+    OrderApplicationService.ts
+  domain/
+    Order.ts
+  persistence/
+    OrderRepository.ts
+  presentation/
+    OrderPresenter.ts
+```
+
+| Path | Owner | Responsibility |
 | --- | --- | --- |
-| `orders/OrderController.ts` | request boundary | HTTP/API transport entry |
-| `orders/OrderApplicationService.ts` | use-case owner | orchestration |
+| `orders/transport/OrderController.ts` | request boundary | HTTP/API transport entry |
+| `orders/application/OrderApplicationService.ts` | use-case owner | orchestration |
 | `orders/domain/Order.ts` | domain owner | rules and invariants |
 | `orders/persistence/OrderRepository.ts` | persistence boundary | storage contract |
 | `orders/presentation/OrderPresenter.ts` | support branch | response mapping |
+
+This is one good shape, not the only possible shape.
+The point is that the folders make the ownership and structural depth easy to read.
 
 ### Why This Is Clean
 
@@ -88,6 +107,24 @@ Why this degrades:
 - the main domain subject becomes hard to find
 - ownership is fragmented across utility-style pieces
 - the request path becomes harder to reason about
+
+Flat folder shape that usually accompanies this smell:
+
+```text
+orders/
+  OrderController.ts
+  OrderService.ts
+  ValidationHelper.ts
+  PricingHelper.ts
+  PersistenceHelper.ts
+  Repository.ts
+```
+
+Why this folder shape also hurts:
+
+- transport, orchestration, domain, and persistence boundaries are mixed together
+- the next engineer cannot see the structural depth from the directory layout
+- support helpers accumulate because the folder no longer communicates boundaries
 
 ## Example 2: Agent Run Runtime With Internal Event Loop
 
@@ -155,16 +192,38 @@ Prefer:
 | `getTeamRunResumeConfig(teamRunId)` | `TeamRun` | `teamRunId` | team run |
 | `getTeamMemberRunResumeConfig(teamRunId, memberKey)` | team-member run | `teamRunId + memberKey` | explicit member identity |
 
-### Derived Module/File Mapping
+### Derived Folder / Module / File Mapping
 
-| Module/File | Owner | Responsibility |
+Recommended folder shape:
+
+```text
+runs/
+  entry/
+    AgentRunManager.ts
+  lifecycle/
+    AgentRun.ts
+  backend/
+    AgentRunBackend.ts
+  transport/
+    WsEventMapper.ts
+runtime/
+  engine/
+    RuntimeEngine.ts
+  provider/
+    ProviderClient.ts
+```
+
+| Path | Owner | Responsibility |
 | --- | --- | --- |
-| `runs/AgentRunManager.ts` | run entry owner | run creation and lookup |
-| `runs/AgentRun.ts` | run lifecycle owner | run state |
-| `runs/AgentRunBackend.ts` | adaptation owner | runtime normalization |
-| `runtime/RuntimeEngine.ts` | runtime owner | event loop and provider interaction |
-| `runtime/ProviderClient.ts` | support/adapter | provider protocol transport |
-| `runs/WsEventMapper.ts` | support branch | transport mapping |
+| `runs/entry/AgentRunManager.ts` | run entry owner | run creation and lookup |
+| `runs/lifecycle/AgentRun.ts` | run lifecycle owner | run state |
+| `runs/backend/AgentRunBackend.ts` | adaptation owner | runtime normalization |
+| `runtime/engine/RuntimeEngine.ts` | runtime owner | event loop and provider interaction |
+| `runtime/provider/ProviderClient.ts` | support/adapter | provider protocol transport |
+| `runs/transport/WsEventMapper.ts` | support branch | transport mapping |
+
+This is one good projection of the design into code.
+Another layout can also be valid if it keeps the same ownership and structural boundaries readable.
 
 ### Why This Is Clean
 
@@ -182,6 +241,23 @@ Why this degrades:
 - there is no obvious main domain subject
 - sequencing authority is blurred across generic coordination pieces
 - the next engineer has to reconstruct the real flow from fragments
+
+Flat folder shape that often accompanies this smell:
+
+```text
+runtime/
+  RuntimeCompositionService.ts
+  RuntimeSessionStore.ts
+  EventBridge.ts
+  SnapshotService.ts
+  CodexClient.ts
+```
+
+Why this folder shape also hurts:
+
+- the folder hides which files are main-line nodes versus support branches
+- runtime control, persistence-ish storage, mapping, and transport are mixed together
+- the directory layout stops helping the reader understand the architecture
 
 ## Example 3: Team Run Orchestration
 
@@ -429,6 +505,25 @@ Better direction:
 
 - keep the node as the owner of core sequencing
 - split support concerns around it under clear ownership
+
+### 5. Flat Mixed-Layer Folder
+
+Bad shape:
+
+- one folder contains transport entrypoints, application sequencing, domain owners, persistence adapters, and support utilities together
+
+Why it hurts:
+
+- structural depth disappears from the code layout
+- folder names stop helping the reader reason about ownership
+- later support pieces pile up in the same directory because there is no visible boundary
+
+Better direction:
+
+- let folder structure reflect real architectural boundaries
+- keep different structural depths in different folders when the change is non-trivial
+- do this with judgment, not by mechanically copying every flow step into its own directory
+- treat file placement as a readable projection of the spine and ownership model
 
 ## How To Use These Examples
 

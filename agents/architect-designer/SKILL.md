@@ -22,10 +22,10 @@ Own the architecture-level investigation required to make the design accurate.
 - return/event spines when applicable
 - bounded local/internal spines when they materially shape one owner
 - production of the detailed design spec after approved requirements arrive
-- module and responsibility boundaries
+- folder, module, and responsibility boundaries
 - interface-boundary design and explicit identity shapes
 - dependency direction and forbidden shortcuts
-- target module and file placement
+- target folder, module, and file placement
 - migration or refactor sequencing
 - derived layering validation
 - design tradeoffs
@@ -40,12 +40,13 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 - If the design needs a local structural mechanism such as a state machine, event loop, factory, registry, adapter, strategy, repository, or manager, read [references/common-design-patterns.md](references/common-design-patterns.md).
 - Treat that file as helper guidance only. The primary spine, domain subject nodes, and ownership model still come first.
 
-## Optional Example Guidance
+## Example Guidance
 
-- If the design would benefit from concrete precedent, read [references/spine-first-design-examples.md](references/spine-first-design-examples.md).
+- Read [references/spine-first-design-examples.md](references/spine-first-design-examples.md) whenever a concrete example would make the design easier to understand, teach, or review.
 - Use those examples to learn how a strong design spec can look across CRUD flow, runtime flow, bounded local loop flow, team orchestration, state-machine flow, and interface-boundary design.
 - That file also includes explicit bad-practice anti-examples so the architect can recognize generic boundaries, fragmented coordinator chains, hidden local loops, and overloaded main-line nodes.
 - Treat the examples as shape guidance, not copy-paste templates.
+- Do not rely on abstract principles alone when a short example would clarify the intended shape faster.
 
 ## Required Current-State Read
 
@@ -80,8 +81,10 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
   - which owner on the spine each support branch serves
   - the key interface boundaries, what subject each one owns, and what identity shape each one accepts
   - allowed dependency direction and forbidden shortcuts
+  - target folders or justified compact layout that make major ownership or structural boundaries readable
   - target modules and files for the changed structure
   - the migration sequence from current to target
+  - concrete examples when they make the design easier to grasp
   - the derived layering only when it helps explain the structure
 
 ## Spine-First Heuristics
@@ -99,9 +102,12 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 - If several peer services all appear to coordinate the use case, simplify until one dominant line is visible.
 - If behavior is important but no owner is obvious, the boundary is wrong.
 - Make dependency rules explicit so the target decoupling is mechanically checkable.
-- Specify where each changed owner, interface, adapter, or support branch should live in modules/files.
+- Specify where each changed owner, interface, adapter, or support branch should live in folders/modules/files.
+- Do not map the spine into code mechanically. Use judgment so the resulting layout is natural and readable for the scope.
+- Ask next: do the proposed folders make the structural boundaries readable, or do they flatten several layers and owners into one mixed directory?
 - If the target structure cannot be landed in one step, describe the staged transition instead of leaving the migration implicit.
 - Let layering emerge from the spine and ownership model: upstream initiators, mid-line domain/control nodes, downstream engines/providers.
+- When the structure is non-trivial, often keep those distinct structural depths in distinct folders, but do not force splits that are too small or artificial. If a flatter layout stays clearer, justify it.
 - If you apply a pattern, state which owner or support branch uses it and why it helps there.
 
 ## Examples

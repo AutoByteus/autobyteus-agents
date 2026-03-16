@@ -32,11 +32,11 @@ This team handles a software change from investigation and requirements definiti
 - Every handoff should include a concrete artifact, the current decision state, open risks, and the next expected action.
 - The requirements stage should hand off both the approved requirements doc and the current investigation notes before design starts.
 - The `architect_designer` must still perform architecture-level investigation and must not rely on the requirements-stage notes alone when design depends on deeper structural facts.
-- The design spec from `architect_designer` should identify the relevant data-flow spine inventory first, name the key main-line nodes on those spines, define what those nodes own, state dependency direction, specify interface boundaries and identity shapes, specify target modules/files, and keep support services explicitly off those spines unless they own core sequencing.
+- The design spec from `architect_designer` should identify the relevant data-flow spine inventory first, name the key main-line nodes on those spines, define what those nodes own, state dependency direction, specify interface boundaries and identity shapes, specify spine-led target folders/modules/files, and keep support services explicitly off those spines unless they own core sequencing.
 - Use `send_message_to` when handing work to another specialist.
 - After the user approves the requirements artifact, the only forward handoff target for that artifact is `architect_designer`.
 - `architect_designer` produces the detailed design spec that `architect_reviewer` reviews before any implementation starts.
-- `architect_reviewer` must review the design spec for spine inventory completeness, ownership clarity, naming clarity, interface-boundary clarity, dependency direction, module/file placement, and migration safety before implementation begins.
+- `architect_reviewer` must review the design spec for spine inventory completeness, ownership clarity, naming clarity, interface-boundary clarity, dependency direction, folder/module/file placement, example-based clarity when needed, and migration safety before implementation begins.
 - The `architect_designer` and `architect_reviewer` loop may repeat for multiple rounds until the design passes review.
 - The `api_e2e_engineer` should derive validation coverage from the requirements doc, reviewed design spec, implementation handoff, and observed behavior instead of relying on only one source.
 - The `api_e2e_engineer` should use any reasonable executable validation method needed to verify the behavior, not just tests already present in the codebase.
@@ -58,8 +58,8 @@ When a downstream specialist finds a problem, classify it and route it to the ri
 ## Ownership
 
 - `requirements_engineer` owns investigation findings, investigation notes, request clarity, scope, recommendations, and acceptance criteria.
-- `architect_designer` owns solution direction, architecture-level investigation, design-level tradeoffs, spine inventory completeness, readable spine narratives, ownership clarity, interface-boundary design, and identification of the key main-line nodes.
-- `architect_reviewer` owns the design review gate, independent design findings, and pass/fail judgment for spine inventory completeness, readable spine narratives, ownership clarity, interface-boundary clarity, and migration safety in the design spec.
+- `architect_designer` owns solution direction, architecture-level investigation, design-level tradeoffs, spine inventory completeness, readable spine narratives, ownership clarity, interface-boundary design, directory/module/file mapping clarity, and identification of the key main-line nodes.
+- `architect_reviewer` owns the design review gate, independent design findings, and pass/fail judgment for spine inventory completeness, readable spine narratives, ownership clarity, interface-boundary clarity, dependency direction, justified code-layout clarity, example-based clarity when needed, and migration safety in the design spec.
 - `implementation_engineer` owns execution against the current design, unit-level verification, and normal source commits during feature delivery.
 - `api_e2e_engineer` owns validation coverage design, validation implementation, executable setup, execution evidence, and failure classification.
 - `code_reviewer` owns final findings, residual risks, docs-impact visibility, and the engineering review gate.
