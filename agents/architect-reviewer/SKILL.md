@@ -32,8 +32,11 @@ Use [templates/design-review-report-template.md](templates/design-review-report-
   - spine clarity
   - spine inventory completeness
   - per-spine narrative clarity
+  - thin facade versus governing owner clarity when both exist
   - ownership clarity
   - naming clarity for main-line nodes and support branches
+  - reuse of existing capability areas or owning subsystems when they already fit the support need
+  - rejection of backward-compatibility wrappers, dual-path behavior, and retained legacy fallback paths for in-scope behavior
   - interface-boundary clarity and explicit identity shapes
   - dependency direction and forbidden shortcuts
   - target folder, module, and file placement
@@ -42,9 +45,12 @@ Use [templates/design-review-report-template.md](templates/design-review-report-
   - missing use cases or weak assumptions
 - Do not pass a design that is elegant in theory but not actionable in the current codebase.
 - Do not pass a design that lists spines but still makes the reader reconstruct the real flow from scattered sections.
+- Do not pass a design that mistakes a thin public facade for the deeper owner that actually governs lifecycle, sequencing, or runtime control.
 - Do not pass a non-obvious design that stays abstract when a short example would make the intended structure materially clearer.
 - Do not pass code placement that hides ownership or structural depth, whether it is too flat or too artificially fragmented.
 - A flatter layout can be acceptable when it is genuinely clearer for the scope, but the design must justify that tradeoff.
+- Do not pass a design that keeps adding fresh helper pieces when an existing capability area already owns that kind of responsibility cleanly.
+- Do not pass a design that keeps compatibility wrappers, dual-path behavior, or legacy fallback branches for old behavior that is being replaced in scope.
 - Do not pass generic APIs, queries, commands, service methods, or list/query surfaces that blur subject ownership or guess identity meaning.
 
 ## Handoff Rules

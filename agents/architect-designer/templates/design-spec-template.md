@@ -6,6 +6,12 @@ Describe the current execution path, current ownership boundaries, current coupl
 
 ## Intended Change
 
+## Legacy Removal Policy (Mandatory)
+
+- Policy: `No backward compatibility; remove legacy code paths.`
+- Required action: identify obsolete legacy paths/files included in this scope.
+- Gate rule: the design is invalid if it depends on compatibility wrappers, dual-path behavior, or legacy fallback branches kept only for old behavior.
+
 ## Data-Flow Spine Inventory
 
 List every relevant spine that matters to understanding the design.
@@ -22,6 +28,7 @@ Write each primary execution spine as a short arrow chain, for example:
 ## Spine Narratives (Mandatory)
 
 For each important spine, explain the end-to-end motion in prose so a reader can understand the design by following the flow instead of reconstructing it from files.
+Keep support branches summary-level here only; use the detailed support-structure section below for the full mapping.
 
 | Spine ID | Short Narrative | Main Domain Subject Nodes | Governing Owner | Key Support Branches |
 | --- | --- | --- | --- | --- |
@@ -34,6 +41,14 @@ List only the nodes that directly advance the core request, command, or data.
 ## Ownership Map
 
 State what each main-line node owns: lifecycle, state, invariants, sequencing, contracts, or transformations.
+
+If a public facade or entry wrapper exists, say explicitly whether it is only a thin boundary or whether it is also a governing owner.
+
+## Thin Entry Facades / Public Wrappers (If Applicable)
+
+| Facade / Entry Wrapper | Governing Owner Behind It | Why It Exists | Must Not Secretly Own |
+| --- | --- | --- | --- |
+|  |  |  |  |
 
 ## Return Or Event Spine(s) (If Applicable)
 
@@ -49,11 +64,19 @@ For each one, name:
 
 ## Supporting Structure Around The Spine
 
-List the important supporting owners, adapters, translators, persistence pieces, or transport pieces around the spine.
+Use this as the full support-branch inventory.
+Do not repeat the same mapping again in another section.
 
-## Spine-To-Support Mapping
+| Support Branch / Service | Related Spine ID(s) | Serves Which Owner | Responsibility | Why It Exists | Risk If Misplaced On Main Line |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
 
-| Spine ID | Support Branch / Service | Serves Which Owner | Why It Exists | Risk If Misplaced On Main Line |
+## Existing Capability / Subsystem Reuse Check
+
+When a support need appears, do not create a new helper immediately.
+First check whether an existing capability area, subsystem, or owning module already fits that responsibility.
+
+| Need / Concern | Existing Capability Area / Subsystem | Decision (`Reuse`/`Extend`/`Create New`) | Why | If New, Why Existing Areas Are Not Right |
 | --- | --- | --- | --- | --- |
 |  |  |  |  |  |
 
@@ -87,10 +110,6 @@ Rule:
 | --- | --- | --- | --- | --- |
 |  |  |  |  |  |
 
-## Support Branches / Services Off The Spine
-
-List the services that resolve, persist, map, observe, publish, or adapt around the spine, and name which owner on the spine each one serves.
-
 ## Applied Patterns (If Any)
 
 Name any local patterns used, where they live, what problem they solve, and which owner or support branch they belong to.
@@ -109,6 +128,7 @@ Rules:
 - Do not place transport entrypoints, main-line domain/control nodes, persistence, adapters, and unrelated support branches in one flat folder when that hides ownership or structural depth.
 - A compact layout is acceptable when it remains easy to read for the scope. If you keep it flatter, state why that is the clearer tradeoff.
 - Folder boundaries should make ownership and structural depth easier to read, not hide them.
+- Shared-layer, feature-oriented, runtime-oriented, and hybrid projections can all be valid when they make the intended ownership and flow easier to understand.
 
 ## Folder Boundary Check
 
@@ -116,7 +136,7 @@ Rules:
 | --- | --- | --- | --- | --- |
 |  |  |  |  |  |
 
-## Concrete Examples / Shape Guidance (Recommended)
+## Concrete Examples / Shape Guidance (Mandatory When Needed)
 
 Use short examples when they make the design easier to understand.
 Examples can explain:
@@ -132,13 +152,19 @@ Examples can explain:
 
 Use this section when the design would otherwise remain too abstract.
 
+## Backward-Compatibility Rejection Log (Mandatory)
+
+| Candidate Compatibility Mechanism | Why It Was Considered | Rejection Decision (`Rejected`/`N/A`) | Clean-Cut Replacement / Removal Plan |
+| --- | --- | --- | --- |
+|  |  |  |  |
+
 ## Derived Layering (If Useful)
 
 Describe the layer shape only after the spine inventory, ownership model, and interface boundaries are clear.
 
 ## Migration / Refactor Sequence
 
-Describe the order of change from current state to target state, including any temporary seams and what must be removed at the end.
+Describe the order of change from current state to target state, including any temporary seams and what obsolete paths, compatibility-only boundaries, or legacy code must be removed at the end.
 
 ## Key Tradeoffs
 

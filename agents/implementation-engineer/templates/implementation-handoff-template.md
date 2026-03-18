@@ -8,6 +8,8 @@
 
 ## Known Risks
 
+## Legacy / Compatibility Removal Check
+
 ## Environment Or Dependency Notes
 
 ## Validation Hints / Suggested Scenarios

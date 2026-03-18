@@ -36,7 +36,7 @@ The system validates the request, applies domain rules, persists the order, and 
 
 ### Return Spine
 
-`OrderRepository -> OrderApplicationService -> OrderPresenter -> Frontend`
+`OrderRepository -> OrderApplicationService -> Frontend`
 
 ### Main Domain Subject Nodes
 
@@ -55,6 +55,7 @@ The system validates the request, applies domain rules, persists the order, and 
 | `RequestValidator` | `OrderController` | input validation |
 | `AuditLogger` | `OrderApplicationService` | audit recording |
 | `MetricsPublisher` | `OrderApplicationService` | metrics emission |
+| `OrderResponseMapper` (optional) | `OrderController` or `OrderApplicationService` | output mapping when response shaping becomes non-trivial |
 
 ### Interface Boundary Mapping
 
@@ -81,8 +82,6 @@ persistence/
     OrderRepository.ts
   models/
     OrderRecord.ts
-presenters/
-  OrderPresenter.ts
 ```
 
 | Path | Owner | Responsibility |
@@ -92,7 +91,6 @@ presenters/
 | `domain/orders/Order.ts` | domain owner | rules and invariants |
 | `persistence/repositories/OrderRepository.ts` | persistence boundary | storage contract |
 | `persistence/models/OrderRecord.ts` | persistence support | database-facing record/model |
-| `presenters/OrderPresenter.ts` | support branch | response mapping |
 
 Another valid feature-oriented projection:
 
@@ -103,10 +101,10 @@ orders/
   Order.ts
   OrderRepository.ts
   OrderRecord.ts
-  OrderPresenter.ts
 ```
 
 This can also be good when the codebase is already feature-oriented and the folder still makes ownership readable.
+If response mapping later becomes non-trivial, add an explicit `OrderResponseMapper` near the transport boundary rather than pushing that concern into the domain owner.
 
 The point is not that one exact folder convention is always right.
 The point is that the code layout should make the ownership and structural depth easy to read for that codebase.
@@ -216,7 +214,7 @@ Prefer:
 
 ### Derived Folder / Module / File Mapping
 
-Recommended folder shape:
+One valid folder shape:
 
 ```text
 runs/
@@ -281,7 +279,133 @@ Why this folder shape also hurts:
 - runtime control, persistence-ish storage, mapping, and transport are mixed together
 - the directory layout stops helping the reader understand the architecture
 
-## Example 3: Team Run Orchestration
+## Example 3: Event-Driven Agent Runtime With Thin Facade And Internal Worker Loop
+
+### Situation
+
+An external caller posts a user or inter-agent message to an agent.
+The public `Agent` surface stays thin.
+`AgentRuntime` owns lifecycle and submission, while `AgentWorker` owns the serialized event loop.
+Queues, dispatchers, registries, status projection, bootstrap, shutdown, and streaming support that runtime instead of competing with it.
+
+### Spine Inventory
+
+| Spine ID | Scope | Start | End | Governing Owner | Why It Matters |
+| --- | --- | --- | --- | --- | --- |
+| DS-151 | `Primary End-to-End` | `Caller / Agent Client` | `Concrete Event Handler` | `AgentRuntime` | main path for request intake into runtime processing |
+| DS-152 | `Return-Event` | `Handled / Derived Event` | `External Notifier / Stream Consumer` | `AgentRuntime` | outward event/status visibility |
+| DS-153 | `Bounded Local` | `Input Event Queues` | `Handled Event Or Follow-Up Event` | `AgentWorker` | serialized worker loop that materially shapes runtime behavior |
+
+### Primary Execution Spine
+
+`Caller -> Agent -> AgentRuntime -> AgentInputEventQueueManager -> AgentWorker -> WorkerEventDispatcher -> Event Handler`
+
+### Return/Event Spine
+
+`Event Handler / Status Projection -> AgentExternalEventNotifier -> External Stream / Consumer`
+
+### Bounded Local Spine
+
+Parent owner: `AgentWorker`
+
+`Input Event Queues -> AgentWorker.asyncRun() -> WorkerEventDispatcher -> Event Handler -> Derived Event / Next Queue Item`
+
+### Main Domain Subject Nodes
+
+| Node | Role | Ownership |
+| --- | --- | --- |
+| `Agent` | thin public facade | public entry convenience only; should not own runtime sequencing |
+| `AgentRuntime` | governing runtime owner | lifecycle, event submission, outward notifier wiring |
+| `AgentWorker` | bounded local owner | serialized worker loop and shutdown path |
+| `WorkerEventDispatcher` | dispatch owner inside worker flow | applies status projection and routes each event to a concrete handler |
+
+### Support Structure Around The Spine
+
+| Support Branch | Serves Which Owner | Responsibility |
+| --- | --- | --- |
+| `AgentInputEventQueueManager` | `AgentWorker` | prioritized queue intake and delivery |
+| `EventHandlerRegistry` | `WorkerEventDispatcher` | handler lookup by event type |
+| `AgentStatusManager` / status derivation | `AgentRuntime` | runtime-visible status projection |
+| `AgentEventStore` | `AgentWorker` | event persistence/history support |
+| `AgentExternalEventNotifier` | `AgentRuntime` | outward event/status publishing |
+| `AgentBootstrapper` | `AgentWorker` | startup sequencing |
+| `AgentShutdownOrchestrator` | `AgentWorker` | cleanup and shutdown sequencing |
+
+### Design Lesson
+
+This is a strong example of how a real design can have several spines at once:
+
+- a public request spine
+- a return/event spine
+- a bounded local worker-loop spine
+
+It also shows an important ownership distinction:
+the first public class in the flow (`Agent`) is not automatically the deepest owner.
+Sometimes a public facade exists mainly to forward into the true governing owner (`AgentRuntime`), and the bounded local loop owner (`AgentWorker`) sits one level deeper again.
+It also shows capability-area reuse:
+once the system already has `events/`, `handlers/`, `status/`, `context/`, `streaming/`, `bootstrap-steps/`, and `shutdown-steps`, new support responsibilities in those categories should normally land there instead of becoming new ad hoc helpers.
+
+### Derived Folder / Module / File Mapping
+
+One valid runtime-oriented shared-structure projection:
+
+```text
+agent/
+  agent.ts
+  runtime/
+    agent-runtime.ts
+    agent-worker.ts
+  events/
+    agent-events.ts
+    agent-input-event-queue-manager.ts
+    worker-event-dispatcher.ts
+    notifiers.ts
+  handlers/
+    event-handler-registry.ts
+    user-input-message-event-handler.ts
+    tool-result-event-handler.ts
+  status/
+    manager.ts
+    status-deriver.ts
+  context/
+    agent-context.ts
+    agent-runtime-state.ts
+  streaming/
+    agent-event-stream.ts
+  bootstrap-steps/
+    agent-bootstrapper.ts
+  shutdown-steps/
+    agent-shutdown-orchestrator.ts
+```
+
+Why this folder shape is good:
+
+- `runtime/` keeps the governing runtime owner and the bounded local worker owner together without hiding the distinction between them
+- `events/`, `handlers/`, `status/`, `context/`, and `streaming/` are clear support structures around that runtime
+- the layout is not pretending to be one-folder-per-spine-step; it is a readable projection of ownership and runtime depth
+
+### Bad Practice To Avoid
+
+```text
+agent/
+  Agent.ts
+  RuntimeService.ts
+  QueueService.ts
+  DispatchService.ts
+  StatusService.ts
+  StreamService.ts
+  BootstrapService.ts
+  ShutdownService.ts
+```
+
+Why this degrades:
+
+- thin facade, governing runtime owner, loop owner, and support branches collapse into one flat directory
+- many generic `...Service` names blur authority
+- queues, dispatch, status, and streaming start competing with the runtime instead of clearly serving it
+- the bounded local worker-loop spine becomes hard to see
+
+## Example 4: Team Run Orchestration
 
 ### Situation
 
@@ -342,7 +466,7 @@ Why this degrades:
 - ID meaning becomes ambiguous
 - later logic grows around guessing what kind of run the caller meant
 
-## Example 4: Workflow With State Machine
+## Example 5: Workflow With State Machine
 
 ### Situation
 
@@ -401,7 +525,7 @@ Why this degrades:
 - the state machine stops being a clear bounded local flow
 - helper and registry structures quietly become business owners
 
-## Example 5: Generic List Surface To Avoid
+## Example 6: Generic List Surface To Avoid
 
 ### Situation
 
@@ -547,6 +671,43 @@ Better direction:
 - do this with judgment, not by mechanically copying every flow step into its own directory
 - treat file placement as a readable projection of the spine and ownership model
 
+### 6. Ad Hoc Support Creation Instead Of Reusing An Existing Capability Area
+
+Bad shape:
+
+- each new support need creates a new local helper, utility, or service even though the codebase already has an established subsystem for that job
+
+Why it hurts:
+
+- responsibilities scatter across the codebase
+- existing subsystem boundaries weaken over time
+- the next engineer stops knowing where that kind of logic belongs
+- support structure grows by convenience instead of ownership
+
+Better direction:
+
+- check whether an existing capability area or subsystem already owns that kind of responsibility
+- reuse or extend it when the fit is natural
+- create a new support branch only when the current system truly lacks the right owner
+
+### 7. Mistaking A Thin Facade For The Governing Owner
+
+Bad shape:
+
+- the first public class in the call chain is treated as the true owner even though it mostly forwards
+
+Why it hurts:
+
+- ownership appears simpler than it really is
+- runtime control or lifecycle authority gets hidden
+- later support pieces get attached to the wrong boundary
+
+Better direction:
+
+- name the thin facade explicitly
+- name the deeper governing owner explicitly
+- if a bounded local loop exists below that, name it too
+
 ## How To Use These Examples
 
 - Start from the example whose shape is closest to the current task.
@@ -555,4 +716,5 @@ Better direction:
 - Keep ownership explicit.
 - Keep support branches around the spine.
 - Keep interface boundaries singular and identity-explicit.
+- Distinguish thin public facades from deeper governing owners when both exist.
 - Let files/modules appear after the design story is already clear.

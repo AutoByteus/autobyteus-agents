@@ -18,9 +18,12 @@ Own the architecture-level investigation required to make the design accurate.
 - current-state design assessment
 - data-flow spine inventory for the scope
 - spine actors or main-line domain nodes
+- distinction between thin public facades and true governing owners when both exist
 - ownership model for spine actors and their support branches
 - return/event spines when applicable
 - bounded local/internal spines when they materially shape one owner
+- reuse or extension of existing capability areas or owning subsystems when they already fit the needed support responsibility
+- rejection of backward-compatibility wrappers, dual-path behavior, and legacy old-behavior retention in the target design
 - production of the detailed design spec after approved requirements arrive
 - folder, module, and responsibility boundaries
 - interface-boundary design and explicit identity shapes
@@ -43,8 +46,9 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 ## Example Guidance
 
 - Read [references/spine-first-design-examples.md](references/spine-first-design-examples.md) whenever a concrete example would make the design easier to understand, teach, or review.
-- Use those examples to learn how a strong design spec can look across CRUD flow, runtime flow, bounded local loop flow, team orchestration, state-machine flow, and interface-boundary design.
+- Use those examples to learn how a strong design spec can look across CRUD flow, runtime flow, bounded local loop flow, event-driven runtime flow, team orchestration, state-machine flow, and interface-boundary design.
 - That file also includes explicit bad-practice anti-examples so the architect can recognize generic boundaries, fragmented coordinator chains, hidden local loops, and overloaded main-line nodes.
+- Pay attention to how those examples distinguish thin public facades from the deeper owners that actually govern lifecycle, sequencing, or runtime control.
 - Treat the examples as shape guidance, not copy-paste templates.
 - Do not rely on abstract principles alone when a short example would clarify the intended shape faster.
 
@@ -70,15 +74,19 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 - Define ownership before decomposing support concerns around the spine.
 - Do not let concern-first decomposition produce a fragmented design with many peer coordinators and no clear main line.
 - Do not let shared support services accumulate business authority without explicit ownership.
+- Treat no backward compatibility and no legacy-code retention as a hard modernization rule for in-scope behavior.
 - The design spec should identify:
   - the relevant spine inventory for the scope
   - the key spine actors that directly advance each important spine
   - a short readable narrative for each important spine
+  - any thin public facade or entry wrapper that sits before a deeper governing owner
   - what each main-line actor owns
   - the return/event spine when applicable
   - any bounded local/internal spine that materially affects the design
   - the support branches or services that must stay off the spine
   - which owner on the spine each support branch serves
+  - which existing capability areas or owning subsystems should be reused or extended instead of creating a new ad hoc support piece
+  - which compatibility wrappers, dual-path branches, legacy fallback paths, or obsolete files are removed instead of retained
   - the key interface boundaries, what subject each one owns, and what identity shape each one accepts
   - allowed dependency direction and forbidden shortcuts
   - target folders or justified compact layout that make major ownership or structural boundaries readable
@@ -93,11 +101,15 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 - Ask first: what is the shortest end-to-end path that carries the system's core intent?
 - Ask next: are there multiple meaningful spines in this scope, including return/event or bounded local spines?
 - Keep only true main-line actors on that path: each node should advance the request, command, or data one step further.
+- If the first class in the path mostly forwards, name it as a thin facade or entry boundary instead of pretending it is the governing owner.
 - Ask next: if someone reads only the spine narratives, would they understand how the system works end to end?
 - Ask next: what does each main-line actor own?
 - Move support concerns off the spine unless they truly own core sequencing.
 - Make each support branch answerable to a clear owner on the spine.
+- Ask next: does this support need already belong to an existing capability area or owning subsystem in the codebase?
+- Reuse or extend an existing well-owned area when it already fits the responsibility. Do not create a fresh helper or mini-service just because the current spine needs something.
 - Ask next: which interface boundaries do callers depend on, and do any of them mix subjects, blur ownership, or guess identity meaning?
+- Ask next: is any part of this proposal relying on compatibility wrappers, dual-path logic, or old-behavior retention instead of a clean-cut target shape? If yes, redesign it.
 - Split generic interface boundaries by subject when needed; avoid one API, query, command, or service method that tries to interpret multiple subject types behind one ambiguous input.
 - If several peer services all appear to coordinate the use case, simplify until one dominant line is visible.
 - If behavior is important but no owner is obvious, the boundary is wrong.
@@ -105,6 +117,7 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 - Specify where each changed owner, interface, adapter, or support branch should live in folders/modules/files.
 - Do not map the spine into code mechanically. Use judgment so the resulting layout is natural and readable for the scope.
 - Ask next: do the proposed folders make the structural boundaries readable, or do they flatten several layers and owners into one mixed directory?
+- Remember that shared-layer, feature-oriented, runtime-oriented, and hybrid layouts can all be correct when they make the ownership and structural depth easier to read.
 - If the target structure cannot be landed in one step, describe the staged transition instead of leaving the migration implicit.
 - Let layering emerge from the spine and ownership model: upstream initiators, mid-line domain/control nodes, downstream engines/providers.
 - When the structure is non-trivial, often keep those distinct structural depths in distinct folders, but do not force splits that are too small or artificial. If a flatter layout stays clearer, justify it.
@@ -122,6 +135,9 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
   `Input -> AgentTeamRunManager -> TeamRun -> TeamRunBackend -> member AgentRuns -> member runtimes`
 - CRUD request:
   `HTTP Controller -> Application Service -> Domain Aggregate -> Repository`
+- Facade versus owner:
+  `Agent facade -> AgentRuntime -> AgentWorker`
+  where the facade is the public entry surface and the runtime/worker are the governing owners of lifecycle and serialized control flow.
 - Bounded local/internal spine:
   `Queue/Event Source -> Runtime Loop -> Handler/Transition -> Output Event`
 - Example ownership:
@@ -131,6 +147,10 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
   prefer `getAgentRunResumeConfig(runId)`, `getTeamRunResumeConfig(teamRunId)`, `getTeamMemberRunResumeConfig(teamRunId, memberKey)`
 - Typical support services that should stay off the spine:
   definition resolution, persistence, projections, message mapping, callbacks, metrics, audit logging.
+- Capability-area reuse example:
+  if a codebase already has `events/`, `status/`, `handlers/`, `streaming/`, or `bootstrap-steps/`, new work in those categories should normally land there instead of creating a one-off neighbor helper.
+- Modernization example:
+  reject `NewRuntime + LegacyRuntime + CompatibilityLayer` when the change is meant to replace the old runtime behavior in scope; design the clean-cut target and explicitly remove the legacy path.
 
 ## Handoff Rules
 

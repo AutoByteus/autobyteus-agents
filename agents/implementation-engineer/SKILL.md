@@ -15,6 +15,7 @@ Implement the approved and reviewed design and prepare a handoff that the API an
 - local implementation fixes
 - development commits
 - implementation-level risk visibility
+- clean-cut implementation without backward-compatibility wrappers or legacy old-behavior retention in scope
 
 ## Primary Output
 
@@ -28,3 +29,10 @@ Use [templates/implementation-handoff-template.md](templates/implementation-hand
 - Route `Requirement Gap` to `requirements_engineer`.
 - Route `Unclear` to `requirements_engineer`.
 - If you receive a `Local Fix`, update the implementation and resend the handoff downstream.
+
+## Operating Rules
+
+- Keep the implementation aligned with the reviewed design basis.
+- Do not preserve replaced behavior behind compatibility wrappers, dual-path reads/writes, or legacy fallback branches when that behavior is in scope for replacement.
+- Remove obsolete or superseded paths/files in scope instead of leaving them as dormant legacy neighbors.
+- If the only apparent implementation path is a compatibility shim, stop and route the issue back as `Design Impact` or `Requirement Gap` instead of forcing it through.
