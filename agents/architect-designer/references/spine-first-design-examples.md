@@ -13,6 +13,8 @@ Use them to learn how a good design spec can read when the architecture is organ
 Do not copy these literally.
 Use them to recognize the shape of a clear design.
 This file includes both good examples and bad-practice anti-examples.
+Folder layouts in these examples are illustrative projections of the design, not universal conventions.
+When mapping a design into code, follow the spine and ownership model, but also respect the established codebase style when it stays readable.
 
 ## Example 1: CRUD / Request Flow
 
@@ -63,32 +65,51 @@ The system validates the request, applies domain rules, persists the order, and 
 
 ### Derived Folder / Module / File Mapping
 
-Recommended folder shape:
+One valid conventional shared-layer projection:
 
 ```text
-orders/
-  transport/
-    OrderController.ts
-  application/
+controllers/
+  OrderController.ts
+services/
+  orders/
     OrderApplicationService.ts
-  domain/
+domain/
+  orders/
     Order.ts
-  persistence/
+persistence/
+  repositories/
     OrderRepository.ts
-  presentation/
-    OrderPresenter.ts
+  models/
+    OrderRecord.ts
+presenters/
+  OrderPresenter.ts
 ```
 
 | Path | Owner | Responsibility |
 | --- | --- | --- |
-| `orders/transport/OrderController.ts` | request boundary | HTTP/API transport entry |
-| `orders/application/OrderApplicationService.ts` | use-case owner | orchestration |
-| `orders/domain/Order.ts` | domain owner | rules and invariants |
-| `orders/persistence/OrderRepository.ts` | persistence boundary | storage contract |
-| `orders/presentation/OrderPresenter.ts` | support branch | response mapping |
+| `controllers/OrderController.ts` | request boundary | HTTP/API transport entry |
+| `services/orders/OrderApplicationService.ts` | use-case owner | orchestration |
+| `domain/orders/Order.ts` | domain owner | rules and invariants |
+| `persistence/repositories/OrderRepository.ts` | persistence boundary | storage contract |
+| `persistence/models/OrderRecord.ts` | persistence support | database-facing record/model |
+| `presenters/OrderPresenter.ts` | support branch | response mapping |
 
-This is one good shape, not the only possible shape.
-The point is that the folders make the ownership and structural depth easy to read.
+Another valid feature-oriented projection:
+
+```text
+orders/
+  OrderController.ts
+  OrderApplicationService.ts
+  Order.ts
+  OrderRepository.ts
+  OrderRecord.ts
+  OrderPresenter.ts
+```
+
+This can also be good when the codebase is already feature-oriented and the folder still makes ownership readable.
+
+The point is not that one exact folder convention is always right.
+The point is that the code layout should make the ownership and structural depth easy to read for that codebase.
 
 ### Why This Is Clean
 
@@ -125,6 +146,7 @@ Why this folder shape also hurts:
 - transport, orchestration, domain, and persistence boundaries are mixed together
 - the next engineer cannot see the structural depth from the directory layout
 - support helpers accumulate because the folder no longer communicates boundaries
+- it looks feature-grouped on paper, but the files themselves no longer reflect clear owned boundaries
 
 ## Example 2: Agent Run Runtime With Internal Event Loop
 
