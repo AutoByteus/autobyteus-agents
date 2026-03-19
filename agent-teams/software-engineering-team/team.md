@@ -21,7 +21,7 @@ This team handles a software change from investigation and requirements definiti
 - `implementation_engineer` delivers the code changes, keeps the implementation aligned with the agreed design, and removes in-scope legacy or compatibility paths instead of preserving them.
 - `api_e2e_engineer` owns API, E2E, and executable validation work, including coverage design, realistic setup, and evidence needed to verify behavior.
 - `code_reviewer` performs independent engineering review and checks remaining risks and docs impact.
-- `deployment_engineer` handles post-review docs synchronization, release preparation, rollout steps, and post-deploy verification.
+- `deployment_engineer` handles post-review docs synchronization, Stage 10 user-verification hold, ticket archival/repository finalization, release preparation, rollout steps, and post-deploy verification.
 
 ## Delivery Flow
 
@@ -32,7 +32,7 @@ This team handles a software change from investigation and requirements definiti
 5. `implementation_engineer` delivers the implementation from the reviewed design and a concrete handoff for API and E2E work.
 6. `api_e2e_engineer` derives detailed validation coverage from the requirements, reviewed design, implementation handoff, and observed behavior; executes API, E2E, and other executable validation work; pushes validation until real blockers are reached; and then reports pass, fail, untested, or blocked status.
 7. `code_reviewer` performs the engineering review once validation is clean.
-8. `deployment_engineer` synchronizes long-lived project docs after review, records explicit no-impact when appropriate, and then handles release and deployment work when that work is in scope.
+8. `deployment_engineer` synchronizes long-lived project docs after review, records explicit no-impact when appropriate, waits for explicit user completion/verification before ticket archival/repository finalization, and then handles release and deployment work when that work is in scope.
 
 ## Working Agreement
 
@@ -42,6 +42,8 @@ This team handles a software change from investigation and requirements definiti
 - The design spec from `architect_designer` should identify the relevant data-flow spine inventory first, name the key main-line nodes on those spines, distinguish thin facades from the true governing owners when both exist, define what those nodes own, check whether support needs belong in existing capability areas or subsystems before creating new helpers, check whether repeated structures should become reusable owned files instead of duplicated local copies, state dependency direction, specify interface boundaries and identity shapes, specify spine-led target subsystem/folder/file placement, and keep support services explicitly off those spines unless they own core sequencing.
 - No backward compatibility and no legacy-code retention are hard rules across design, implementation, and code review for in-scope behavior.
 - After review passes, long-lived project docs must be updated to match the final implemented behavior, or an explicit no-impact decision must be recorded, before deployment or release proceeds.
+- Do not move to ticket archival or repository finalization before explicit user completion/verification is received.
+- After the explicit user completion/verification signal, move the ticket to the archived `done` path before the final commit, then run the repository finalization sequence required by that repo.
 - Use `send_message_to` when handing work to another specialist.
 - After the user approves the requirements artifact, the only forward handoff target for that artifact is `architect_designer`.
 - `architect_designer` produces the detailed design spec that `architect_reviewer` reviews before any implementation starts.
@@ -73,7 +75,7 @@ When a downstream specialist finds a problem, classify it and route it to the ri
 - `implementation_engineer` owns execution against the current design, clean-cut removal of in-scope legacy/compatibility paths, unit-level verification, and normal source commits during feature delivery.
 - `api_e2e_engineer` owns validation coverage design, validation implementation, executable setup, execution evidence, and failure classification.
 - `code_reviewer` owns final findings, residual risks, docs-impact visibility, and the engineering review gate, including the hard no-backward-compat/no-legacy check.
-- `deployment_engineer` owns post-review docs synchronization, release notes, version/tag or release commit work, deployment execution, rollout checks, and rollback visibility.
+- `deployment_engineer` owns post-review docs synchronization, Stage 10 user-verification hold, archived ticket-state transition, release notes, version/tag or release commit work, latest-personal-branch update/merge flow when required, deployment execution, rollout checks, and rollback visibility.
 
 ## Send-Back Rules
 
@@ -85,6 +87,7 @@ When a downstream specialist finds a problem, classify it and route it to the ri
 - If a downstream issue changes intended behavior, scope, or acceptance criteria, route back upstream before more implementation work continues.
 - If release or deployment work is required, hand review-passed work to `deployment_engineer` instead of leaving release ownership implicit.
 - Do not move from review-passed implementation into release/deployment work until docs synchronization is complete or an explicit no-impact decision is recorded.
+- Do not move from docs-synced handoff into ticket archival/repository finalization until the user explicitly confirms completion/verification.
 - Do not start design work until the user has confirmed that the requirements doc matches the intended outcome and the supporting investigation notes are current.
 
 ## Team Rules
@@ -94,5 +97,6 @@ When a downstream specialist finds a problem, classify it and route it to the ri
 - Do not move to implementation without a reviewed design spec that has passed the `architect_reviewer` gate.
 - Do not move to design without an approved requirements doc and current investigation notes.
 - Do not move to deployment before validation, review, and post-review docs synchronization are clean.
+- Do not move to ticket archival/repository finalization before explicit user completion/verification is received.
 - If no deployment work is required, `deployment_engineer` should record that explicitly after docs synchronization is complete or explicit no-impact is recorded.
 - Keep outputs concise, actionable, and ready for the next specialist.
