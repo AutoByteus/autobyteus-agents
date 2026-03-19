@@ -10,6 +10,13 @@ description: Design the target architecture, produce the design spec, and iterat
 Transform a design-ready requirements doc, its supporting investigation notes, and the current implementation reality into an actionable design spec for implementation.
 Own the architecture-level investigation required to make the design accurate.
 
+## Terminology
+
+- `Subsystem` / `capability area`: a larger functional area that owns a broader category of work and may contain multiple files plus optional module groupings.
+- `Module`: an optional intermediate grouping inside a subsystem when the codebase benefits from it. Do not use `module` as a synonym for one file or as the default ownership term.
+- `File`: one concrete source file and the primary unit where one concrete concern should land.
+- `Folder` / `directory`: a physical grouping used to organize files and any optional module groupings.
+
 ## You Own
 
 - architecture direction
@@ -22,13 +29,14 @@ Own the architecture-level investigation required to make the design accurate.
 - ownership model for spine actors and their support branches
 - return/event spines when applicable
 - bounded local/internal spines when they materially shape one owner
-- reuse or extension of existing capability areas or owning subsystems when they already fit the needed support responsibility
+- reuse or extension of existing capability areas or subsystems when they already fit the needed support responsibility
+- extraction of reusable owned files when repeated data structures, types, normalizers, converters, mappers, or schemas would otherwise be duplicated
 - rejection of backward-compatibility wrappers, dual-path behavior, and legacy old-behavior retention in the target design
 - production of the detailed design spec after approved requirements arrive
-- folder, module, and responsibility boundaries
+- subsystem boundaries, file responsibilities, optional module groupings when they add clarity, and folder boundaries
 - interface-boundary design and explicit identity shapes
 - dependency direction and forbidden shortcuts
-- target folder, module, and file placement
+- target subsystem, file responsibility, and folder/file placement, with module groupings only when they add clarity
 - migration or refactor sequencing
 - derived layering validation
 - design tradeoffs
@@ -75,6 +83,7 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 - Do not let concern-first decomposition produce a fragmented design with many peer coordinators and no clear main line.
 - Do not let shared support services accumulate business authority without explicit ownership.
 - Treat no backward compatibility and no legacy-code retention as a hard modernization rule for in-scope behavior.
+- Move from abstract to concrete in this order: spine -> subsystem/capability-area allocation -> draft file responsibilities -> extract reusable owned structures -> finalize file responsibilities -> folder/path mapping.
 - The design spec should identify:
   - the relevant spine inventory for the scope
   - the key spine actors that directly advance each important spine
@@ -85,12 +94,12 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
   - any bounded local/internal spine that materially affects the design
   - the support branches or services that must stay off the spine
   - which owner on the spine each support branch serves
-  - which existing capability areas or owning subsystems should be reused or extended instead of creating a new ad hoc support piece
+  - which existing capability areas or subsystems should be reused or extended instead of creating a new ad hoc support piece
   - which compatibility wrappers, dual-path branches, legacy fallback paths, or obsolete files are removed instead of retained
   - the key interface boundaries, what subject each one owns, and what identity shape each one accepts
   - allowed dependency direction and forbidden shortcuts
   - target folders or justified compact layout that make major ownership or structural boundaries readable
-  - target modules and files for the changed structure
+  - target subsystems, files, and folders for the changed structure, plus optional module groupings only when they materially help readability
   - the migration sequence from current to target
   - concrete examples when they make the design easier to grasp
   - the derived layering only when it helps explain the structure
@@ -106,15 +115,18 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 - Ask next: what does each main-line actor own?
 - Move support concerns off the spine unless they truly own core sequencing.
 - Make each support branch answerable to a clear owner on the spine.
-- Ask next: does this support need already belong to an existing capability area or owning subsystem in the codebase?
+- Ask next: does this support need already belong to an existing capability area or subsystem in the codebase?
 - Reuse or extend an existing well-owned area when it already fits the responsibility. Do not create a fresh helper or mini-service just because the current spine needs something.
+- Ask next: what are the draft file responsibilities for the concrete concerns on this change?
+- Ask next: are repeated data structures, types, normalizers, converters, mappers, or schemas appearing across several files, and should they be extracted into reusable owned files under the right subsystem?
+- Ask next: after that extraction, do the file responsibilities need to be tightened before folder placement is finalized?
 - Ask next: which interface boundaries do callers depend on, and do any of them mix subjects, blur ownership, or guess identity meaning?
 - Ask next: is any part of this proposal relying on compatibility wrappers, dual-path logic, or old-behavior retention instead of a clean-cut target shape? If yes, redesign it.
 - Split generic interface boundaries by subject when needed; avoid one API, query, command, or service method that tries to interpret multiple subject types behind one ambiguous input.
 - If several peer services all appear to coordinate the use case, simplify until one dominant line is visible.
 - If behavior is important but no owner is obvious, the boundary is wrong.
 - Make dependency rules explicit so the target decoupling is mechanically checkable.
-- Specify where each changed owner, interface, adapter, or support branch should live in folders/modules/files.
+- Specify where each changed owner, interface, adapter, or support branch should live in subsystems, files, and folders, and name module groupings only when they make the structure easier to read.
 - Do not map the spine into code mechanically. Use judgment so the resulting layout is natural and readable for the scope.
 - Ask next: do the proposed folders make the structural boundaries readable, or do they flatten several layers and owners into one mixed directory?
 - Remember that shared-layer, feature-oriented, runtime-oriented, and hybrid layouts can all be correct when they make the ownership and structural depth easier to read.

@@ -6,6 +6,22 @@ Describe the current execution path, current ownership boundaries, current coupl
 
 ## Intended Change
 
+## Terminology
+
+- `Subsystem` / `capability area`: a larger functional area that owns a broader category of work and may contain multiple files plus optional module groupings.
+- `Module`: an optional intermediate grouping inside a subsystem when the codebase benefits from it. Do not use `module` as a synonym for one file or as the default ownership term.
+- `File`: one concrete source file and the primary unit where one concrete concern should land.
+- `Folder` / `directory`: a physical grouping used to organize files and any optional module groupings.
+
+## Design Reading Order
+
+Read and write this design from abstract to concrete:
+
+1. data-flow spine
+2. subsystem / capability-area allocation
+3. draft file responsibilities -> extract reusable owned structures -> finalize file responsibilities
+4. folder/path mapping
+
 ## Legacy Removal Policy (Mandatory)
 
 - Policy: `No backward compatibility; remove legacy code paths.`
@@ -74,11 +90,44 @@ Do not repeat the same mapping again in another section.
 ## Existing Capability / Subsystem Reuse Check
 
 When a support need appears, do not create a new helper immediately.
-First check whether an existing capability area, subsystem, or owning module already fits that responsibility.
+First check whether an existing capability area or subsystem already fits that responsibility.
 
 | Need / Concern | Existing Capability Area / Subsystem | Decision (`Reuse`/`Extend`/`Create New`) | Why | If New, Why Existing Areas Are Not Right |
 | --- | --- | --- | --- | --- |
 |  |  |  |  |  |
+
+## Subsystem / Capability-Area Allocation
+
+Use this section to show which broader functional areas own which parts of the target behavior before you map concrete concerns into files.
+
+| Subsystem / Capability Area | Owns Which Concerns | Related Spine ID(s) | Governing Owner(s) Served | Decision (`Reuse`/`Extend`/`Create New`) | Notes |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+## Draft File Responsibility Mapping
+
+Draft the concrete file responsibilities after the spine and subsystem allocations are clear.
+Treat this as the first concrete pass, not the final answer.
+
+| Candidate File | Owning Subsystem / Capability Area | Owner / Boundary | Concrete Concern | Why This Is One File | Reuses Shared Structure? |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+## Reusable Owned Structures Check
+
+When repeated data structures, types, normalizers, converters, mappers, or schemas appear across several files, decide whether they should be extracted into reusable owned files under the correct subsystem.
+
+| Repeated Structure / Logic | Candidate Shared File | Owning Subsystem | Why Shared | Must Not Become |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+
+## Final File Responsibility Mapping
+
+Re-tighten the file responsibilities after extracting reusable owned structures and before final folder/path placement.
+
+| File | Owning Subsystem / Capability Area | Owner / Boundary | Concrete Concern | Why This Is One File | Reuses Shared Structure? |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
 
 ## Ownership Boundaries
 
@@ -114,9 +163,9 @@ Rule:
 
 Name any local patterns used, where they live, what problem they solve, and which owner or support branch they belong to.
 
-## Target Folder / Module / File Mapping
+## Target Subsystem / Folder / File Mapping
 
-Name the folders, modules, and files that should be created, changed, moved, or deleted, and explain what belongs in each one.
+Name the folders and files that should be created, changed, moved, or deleted, and explain what belongs in each one. This is the most concrete projection of the earlier spine, subsystem, and file-responsibility decisions. If the codebase benefits from an intermediate module grouping, name it explicitly but treat it as optional structure rather than the default ownership term.
 This mapping should be spine-led and ownership-led, but not mechanical. The goal is readability, not a rigid one-folder-per-spine-step rule.
 
 | Path | Kind (`Folder`/`Module`/`File`) | Owner / Boundary | Responsibility | Why It Belongs Here | Must Not Contain |
@@ -142,7 +191,7 @@ Use short examples when they make the design easier to understand.
 Examples can explain:
 - a spine shape
 - an interface-boundary split
-- a folder/module/file mapping choice
+- a subsystem, optional module grouping, folder, and file mapping choice
 - a bounded local spine such as a loop or state machine
 - a bad-practice shape that this design is intentionally avoiding
 
@@ -157,6 +206,9 @@ Use this section when the design would otherwise remain too abstract.
 | Candidate Compatibility Mechanism | Why It Was Considered | Rejection Decision (`Rejected`/`N/A`) | Clean-Cut Replacement / Removal Plan |
 | --- | --- | --- | --- |
 |  |  |  |  |
+
+Hard block:
+- Any design that depends on backward-compatibility wrappers, dual-path behavior, or retained legacy flow for in-scope replaced behavior fails review.
 
 ## Derived Layering (If Useful)
 

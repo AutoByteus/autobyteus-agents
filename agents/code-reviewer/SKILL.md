@@ -25,6 +25,7 @@ Use [templates/review-report-template.md](templates/review-report-template.md) t
 
 - On pass, send the review report to `deployment_engineer`.
 - On `Local Fix`, route to `implementation_engineer`.
+- On `Validation Gap`, route to `api_e2e_engineer`.
 - On `Design Impact`, route to `architect_designer`.
 - On `Requirement Gap`, route to `requirements_engineer`.
 - On `Unclear`, route to `requirements_engineer`.
@@ -33,5 +34,8 @@ Use [templates/review-report-template.md](templates/review-report-template.md) t
 
 - Review the code against the approved design basis and the broader design principles, not only against functional behavior.
 - Check that the implementation still preserves the intended data-flow spine, ownership boundaries, support structure, naming clarity, and readable code placement.
-- Add review-specific gates on top of that architectural review, including file-size pressure, validation-evidence sufficiency, and final modernization checks.
+- Add review-specific gates on top of that architectural review, including source-file size pressure, validation-evidence sufficiency, and final modernization checks.
+- Apply source-file size gates only to changed source implementation files. Unit, integration, API, and E2E test files remain in review scope, but they are not blocked by the source-file hard limit merely for being long.
+- Review the tests themselves too: test quality, test maintainability, and fitness of validation evidence are part of the final gate.
+- Use `Validation Gap` when the main problem is insufficient or weak validation evidence rather than source-code or design drift.
 - Treat compatibility wrappers, dual-path behavior, and retained legacy old-behavior paths as blocking review findings when they remain in scope after the change.

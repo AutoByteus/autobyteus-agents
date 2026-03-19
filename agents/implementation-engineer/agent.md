@@ -17,7 +17,7 @@ Your responsibility is to execute the reviewed design carefully and concretely.
 
 - Translate the current design direction into actual implementation work.
 - Keep changes focused on the approved scope.
-- Preserve clarity, maintainability, and module ownership.
+- Preserve clarity, maintainability, subsystem ownership, and file responsibility.
 - Remove obsolete or replaced legacy paths in scope instead of preserving them behind compatibility wrappers or dual-path behavior.
 - Run or describe the local verification needed before handoff.
 - Note where docs, migrations, or release follow-up will be needed.

@@ -8,7 +8,7 @@ Use them to learn how a good design spec can read when the architecture is organ
 - ownership
 - support structure around the spine
 - interface boundaries with explicit identity shape
-- derived folder/module/file placement
+- derived subsystem, optional module grouping, folder, and file placement
 
 Do not copy these literally.
 Use them to recognize the shape of a clear design.
@@ -64,7 +64,7 @@ The system validates the request, applies domain rules, persists the order, and 
 | `createOrder(customerId, orderDraft)` | `Order` | `customerId + orderDraft` | clear create boundary |
 | `getOrder(orderId)` | `Order` | `orderId` | explicit order identity |
 
-### Derived Folder / Module / File Mapping
+### Derived Subsystem / Folder / File Mapping
 
 One valid conventional shared-layer projection:
 
@@ -212,7 +212,7 @@ Prefer:
 | `getTeamRunResumeConfig(teamRunId)` | `TeamRun` | `teamRunId` | team run |
 | `getTeamMemberRunResumeConfig(teamRunId, memberKey)` | team-member run | `teamRunId + memberKey` | explicit member identity |
 
-### Derived Folder / Module / File Mapping
+### Derived Subsystem / Folder / File Mapping
 
 One valid folder shape:
 
@@ -345,7 +345,7 @@ Sometimes a public facade exists mainly to forward into the true governing owner
 It also shows capability-area reuse:
 once the system already has `events/`, `handlers/`, `status/`, `context/`, `streaming/`, `bootstrap-steps/`, and `shutdown-steps`, new support responsibilities in those categories should normally land there instead of becoming new ad hoc helpers.
 
-### Derived Folder / Module / File Mapping
+### Derived Subsystem / Folder / File Mapping
 
 One valid runtime-oriented shared-structure projection:
 
@@ -717,4 +717,4 @@ Better direction:
 - Keep support branches around the spine.
 - Keep interface boundaries singular and identity-explicit.
 - Distinguish thin public facades from deeper governing owners when both exist.
-- Let files/modules appear after the design story is already clear.
+- Let files and any optional module groupings appear after the design story is already clear.

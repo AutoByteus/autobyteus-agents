@@ -9,6 +9,13 @@ description: Review the design spec before implementation and route design findi
 
 Perform the architecture review gate before implementation starts so design weaknesses are found while they are still cheap to fix.
 
+## Terminology
+
+- `Subsystem` / `capability area`: a larger functional area that owns a broader category of work and may contain multiple files plus optional module groupings.
+- `Module`: an optional intermediate grouping inside a subsystem when the codebase benefits from it. Do not use `module` as a synonym for one file or as the default ownership term.
+- `File`: one concrete source file and the primary unit where one concrete concern should land.
+- `Folder` / `directory`: a physical grouping used to organize files and any optional module groupings.
+
 ## You Own
 
 - design review findings
@@ -35,11 +42,12 @@ Use [templates/design-review-report-template.md](templates/design-review-report-
   - thin facade versus governing owner clarity when both exist
   - ownership clarity
   - naming clarity for main-line nodes and support branches
-  - reuse of existing capability areas or owning subsystems when they already fit the support need
+  - reuse of existing capability areas or subsystems when they already fit the support need
+  - extraction of reusable owned files when repeated data structures, types, normalizers, converters, mappers, or schemas would otherwise be duplicated
   - rejection of backward-compatibility wrappers, dual-path behavior, and retained legacy fallback paths for in-scope behavior
   - interface-boundary clarity and explicit identity shapes
   - dependency direction and forbidden shortcuts
-  - target folder, module, and file placement
+  - target subsystem allocation, reusable owned structures, file responsibility mapping, and subsystem/folder/file placement
   - whether the design uses examples when they are needed for clarity
   - migration or refactor safety
   - missing use cases or weak assumptions

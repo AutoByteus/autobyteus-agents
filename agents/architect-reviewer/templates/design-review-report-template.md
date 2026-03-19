@@ -14,6 +14,24 @@
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |  |  |
 
+## Subsystem / Capability-Area Allocation Verdict
+
+| Subsystem / Capability Area | Ownership Allocation Is Clear? (`Pass`/`Fail`) | Reuse / Extend / Create-New Decision Is Sound? (`Pass`/`Fail`) | Supports The Right Spine Owners? (`Pass`/`Fail`) | Verdict (`Pass`/`Fail`) | Notes |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+## Reusable Owned Structures Verdict
+
+| Repeated Structure / Logic | Extraction Need Was Evaluated? (`Pass`/`Fail`) | Shared File Choice Is Sound? (`Pass`/`Fail`/`N/A`) | Ownership Of Shared Structure Is Clear? (`Pass`/`Fail`/`N/A`) | Verdict (`Pass`/`Fail`) | Notes |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+## File Responsibility Mapping Verdict
+
+| File | Responsibility Is Singular And Clear? (`Pass`/`Fail`) | Responsibility Matches The Intended Owner/Boundary? (`Pass`/`Fail`) | Responsibilities Were Re-Tightened After Shared-Structure Extraction? (`Pass`/`Fail`/`N/A`) | Verdict (`Pass`/`Fail`) | Notes |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
 ## Dependency Direction / Forbidden Shortcut Verdict
 
 | Owner / Boundary | Allowed Dependencies Are Clear? (`Pass`/`Fail`) | Forbidden Shortcuts Are Explicit? (`Pass`/`Fail`) | Direction Is Coherent With Ownership? (`Pass`/`Fail`) | Verdict (`Pass`/`Fail`) | Notes |
@@ -26,7 +44,7 @@
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
 
-## Folder / Module / File Placement Verdict
+## Subsystem / Folder / File Placement Verdict
 
 | Path / Item | Target Placement Is Clear? (`Pass`/`Fail`) | Folder Matches Owning Boundary? (`Pass`/`Fail`) | Mixed-Layer Or Over-Split Risk (`Low`/`Medium`/`High`) | Verdict (`Pass`/`Fail`) | Notes |
 | --- | --- | --- | --- | --- | --- |
