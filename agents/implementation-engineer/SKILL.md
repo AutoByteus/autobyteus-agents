@@ -35,4 +35,5 @@ Use [templates/implementation-handoff-template.md](templates/implementation-hand
 - Keep the implementation aligned with the reviewed design basis.
 - Do not preserve replaced behavior behind compatibility wrappers, dual-path reads/writes, or legacy fallback branches when that behavior is in scope for replacement.
 - Remove obsolete or superseded paths/files in scope instead of leaving them as dormant legacy neighbors.
+- Remove dead code, obsolete files, unused helpers/tests/flags/adapters, and dormant replaced paths in scope as part of normal completion, not as optional later cleanup.
 - If the only apparent implementation path is a compatibility shim, stop and route the issue back as `Design Impact` or `Requirement Gap` instead of forcing it through.

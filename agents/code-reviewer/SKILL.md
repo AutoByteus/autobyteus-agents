@@ -36,6 +36,7 @@ Use [templates/review-report-template.md](templates/review-report-template.md) t
 - Use earlier design artifacts as context, not as truth. If independent review shows the earlier design basis was weak, incomplete, or wrong, classify `Design Impact`.
 - Check that the implementation preserves a clear data-flow spine, ownership boundaries, support structure, naming clarity, and readable code placement.
 - Treat unjustified duplicated code, repeated structures, or repeated policy logic left in changed scope as a blocking Stage 8 issue unless the duplication is clearly temporary and removal is part of the same bounded fix.
+- Treat dead code, obsolete files, unused helpers/tests/flags/adapters, and dormant replaced paths left in changed scope as blocking Stage 8 issues.
 - Add review-specific gates on top of that architectural review, including source-file size pressure, validation-evidence sufficiency, and final modernization checks.
 - Apply source-file size gates only to changed source implementation files. Unit, integration, API, and E2E test files remain in review scope, but they are not blocked by the source-file hard limit merely for being long.
 - Review the tests themselves too: test quality, test maintainability, and fitness of validation evidence are part of the final gate.

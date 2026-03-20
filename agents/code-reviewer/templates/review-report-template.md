@@ -29,6 +29,7 @@ Do not apply the source-file hard limit to unit, integration, API, or E2E test f
 | File placement / layout clarity |  |  |  |
 | Naming-to-responsibility alignment |  |  |  |
 | Duplication / patch layering control |  |  |  |
+| Dead/obsolete code cleanup completeness in changed scope |  |  |  |
 
 ## Findings
 
@@ -42,6 +43,12 @@ Do not apply the source-file hard limit to unit, integration, API, or E2E test f
 | Tests | Main issue is `Validation Gap` rather than source/design drift |  |  |
 
 ## Legacy / Backward-Compatibility Verdict
+
+| Check | Result (`Pass`/`Fail`) | Notes |
+| --- | --- | --- |
+| No backward-compatibility mechanisms in changed scope |  |  |
+| No legacy old-behavior retention in changed scope |  |  |
+| Dead/obsolete code cleanup completeness in changed scope |  |  |
 
 ## Docs-Impact Verdict
 
