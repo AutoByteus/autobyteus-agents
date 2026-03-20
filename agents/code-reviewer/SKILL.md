@@ -15,7 +15,7 @@ Perform the final quality gate and route findings to the correct specialist inst
 - residual risk visibility
 - docs-impact visibility
 - review pass/fail decision
-- final enforcement of the approved design principles plus review-specific engineering gates
+- final enforcement of the shared design principles, common design practices, and review-specific engineering gates
 
 ## Primary Output
 
@@ -32,8 +32,9 @@ Use [templates/review-report-template.md](templates/review-report-template.md) t
 
 ## Review Standard
 
-- Review the code against the approved design basis and the broader design principles, not only against functional behavior.
-- Check that the implementation still preserves the intended data-flow spine, ownership boundaries, support structure, naming clarity, and readable code placement.
+- Review the code independently against the shared design principles, common design practices, and Stage 8 review gates, not only against functional behavior.
+- Use earlier design artifacts as context, not as truth. If independent review shows the earlier design basis was weak, incomplete, or wrong, classify `Design Impact`.
+- Check that the implementation preserves a clear data-flow spine, ownership boundaries, support structure, naming clarity, and readable code placement.
 - Add review-specific gates on top of that architectural review, including source-file size pressure, validation-evidence sufficiency, and final modernization checks.
 - Apply source-file size gates only to changed source implementation files. Unit, integration, API, and E2E test files remain in review scope, but they are not blocked by the source-file hard limit merely for being long.
 - Review the tests themselves too: test quality, test maintainability, and fitness of validation evidence are part of the final gate.

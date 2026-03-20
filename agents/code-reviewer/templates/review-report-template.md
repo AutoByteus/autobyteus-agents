@@ -1,5 +1,9 @@
 # Review Report
 
+Use earlier design artifacts as context only.
+The review authority is the shared design principles, common design practices, and the code-review gate itself.
+If the review shows that an earlier design artifact was weak, incomplete, or wrong, classify that as `Design Impact`.
+
 ## Review Scope
 
 ## Source File Size And Structure Audit (If Applicable)
@@ -15,7 +19,7 @@ Do not apply the source-file hard limit to unit, integration, API, or E2E test f
 
 | Check | Result (`Pass`/`Fail`) | Evidence | Required Action |
 | --- | --- | --- | --- |
-| Data-flow spine preservation |  |  |  |
+| Data-flow spine clarity and preservation under shared principles |  |  |  |
 | Ownership boundary preservation |  |  |  |
 | Support structure clarity |  |  |  |
 | Existing capability/subsystem reuse |  |  |  |
@@ -45,6 +49,12 @@ Do not apply the source-file hard limit to unit, integration, API, or E2E test f
 - Files or areas likely affected:
 
 ## Classification
+
+- `Local Fix`: bounded source fix, no upstream design/requirement update needed
+- `Validation Gap`: main issue is insufficient validation evidence
+- `Design Impact`: structural issue in code or earlier design artifact was weak/wrong/incomplete
+- `Requirement Gap`: missing or ambiguous intended behavior
+- `Unclear`: cross-cutting or low-confidence root cause
 
 ## Recommended Recipient
 
