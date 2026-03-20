@@ -83,6 +83,7 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 - Do not let concern-first decomposition produce a fragmented design with many peer coordinators and no clear main line.
 - Do not let shared support services accumulate business authority without explicit ownership.
 - Treat no backward compatibility and no legacy-code retention as a hard modernization rule for in-scope behavior.
+- Treat removal as first-class architecture work: when a clearer owner or reusable owned file replaces fragmented pieces, explicitly name what becomes unnecessary and remove/decommission it in scope.
 - Move from abstract to concrete in this order: spine -> subsystem/capability-area allocation -> draft file responsibilities -> extract reusable owned structures -> finalize file responsibilities -> folder/path mapping.
 - The design spec should identify:
   - the relevant spine inventory for the scope
@@ -122,6 +123,7 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 - Ask next: after that extraction, do the file responsibilities need to be tightened before folder placement is finalized?
 - Ask next: which interface boundaries do callers depend on, and do any of them mix subjects, blur ownership, or guess identity meaning?
 - Ask next: is any part of this proposal relying on compatibility wrappers, dual-path logic, or old-behavior retention instead of a clean-cut target shape? If yes, redesign it.
+- Ask next: is this design only adding new structure, or is it also removing the redundant fragments, duplicate structures, and obsolete helpers that the new structure makes unnecessary?
 - Split generic interface boundaries by subject when needed; avoid one API, query, command, or service method that tries to interpret multiple subject types behind one ambiguous input.
 - If several peer services all appear to coordinate the use case, simplify until one dominant line is visible.
 - If behavior is important but no owner is obvious, the boundary is wrong.

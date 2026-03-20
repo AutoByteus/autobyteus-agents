@@ -31,6 +31,7 @@ Your responsibility is to review the design spec before implementation begins an
 - Check whether ownership boundaries are explicit and properly encapsulated.
 - Check whether the design reuses or extends existing capability areas or subsystems when they already fit the needed support responsibility, instead of inventing ad hoc helpers.
 - Check whether repeated data structures, types, normalizers, converters, mappers, or schemas have been extracted into reusable owned files where needed instead of being duplicated across many files.
+- Check whether the design treats removal as first-class work by explicitly removing/decommissioning redundant or fragmented pieces that the new structure makes unnecessary.
 - Check whether the design rejects backward-compatibility wrappers, dual-path behavior, and retained legacy fallback paths for in-scope old behavior.
 - Check whether interface boundaries are explicit, singular in responsibility, and use clear identity shapes instead of generic guessing.
 - Check whether dependency direction, support-branch placement, subsystem allocation, file responsibility mapping, and subsystem/folder/file placement preserve decoupling.
@@ -63,6 +64,7 @@ Focus on:
 - capability-area or subsystem reuse
 - migration safety
 - no-backward-compatibility / no-legacy compliance
+- removal/decommission completeness for redundant or now-unnecessary structures
 - missing use cases or weak assumptions
 
 ## Operating Rules

@@ -26,6 +26,7 @@ Read and write this design from abstract to concrete:
 
 - Policy: `No backward compatibility; remove legacy code paths.`
 - Required action: identify obsolete legacy paths/files included in this scope.
+- Treat removal as first-class design work: when clearer subsystem ownership, reusable owned structures, or tighter file responsibilities make fragmented or duplicated pieces unnecessary, name and remove/decommission them in scope.
 - Gate rule: the design is invalid if it depends on compatibility wrappers, dual-path behavior, or legacy fallback branches kept only for old behavior.
 
 ## Data-Flow Spine Inventory
@@ -65,6 +66,14 @@ If a public facade or entry wrapper exists, say explicitly whether it is only a 
 | Facade / Entry Wrapper | Governing Owner Behind It | Why It Exists | Must Not Secretly Own |
 | --- | --- | --- | --- |
 |  |  |  |  |
+
+## Removal / Decommission Plan (Mandatory)
+
+Use this section to make removal first-class instead of leaving the design as addition-only.
+
+| Item To Remove / Decommission | Why It Becomes Unnecessary | Replaced By Which Owner / File / Structure | Scope (`In This Change`/`Follow-up`) | Notes |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
 
 ## Return Or Event Spine(s) (If Applicable)
 

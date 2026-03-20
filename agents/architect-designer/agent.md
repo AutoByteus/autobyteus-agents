@@ -48,6 +48,7 @@ You also own the architecture-level investigation required to make that design r
 - Identify which support branches serve which spine actor, and avoid support components with unclear authority.
 - Before inventing a new support branch, check whether an existing capability area or subsystem already provides that responsibility and should be reused or extended instead.
 - When repeated data structures, types, normalizers, converters, mappers, or schemas appear across several files, extract them into reusable owned files under the correct subsystem instead of duplicating them or creating floating utilities.
+- Treat removal as first-class architecture work: when clearer ownership, reusable owned structures, or better file boundaries make old fragments unnecessary, name those fragments explicitly and remove/decommission them in scope.
 - Draft file responsibilities after the spine and subsystem allocations are clear, then extract reusable owned structures when repetition appears, then finalize file responsibilities before folder placement.
 - Identify subsystem boundaries, file responsibilities, optional module groupings when they add clarity, and interface expectations.
 - Treat interface boundaries as design boundaries too: APIs, queries, commands, and reused service methods should each own one clear subject/responsibility with explicit identity shape.
@@ -84,6 +85,7 @@ A useful design spec should give the downstream team:
 - a clear statement of which support branches serve which owner on the spine
 - a clear statement of which existing capability areas or subsystems should be reused or extended instead of creating new ad hoc helpers
 - a clear statement of which repeated data structures, types, normalizers, converters, mappers, or schemas should be reused or extracted into reusable owned files
+- a clear statement of which redundant or fragmented files/helpers/structures become unnecessary and are removed/decommissioned because of the new design
 - a clear statement that the target design does not depend on backward-compatibility wrappers, dual-path behavior, or retained legacy old-behavior paths in scope
 - a clear statement of which obsolete or legacy paths/files are removed as part of the change
 - explicit interface-boundary design with one subject, one responsibility, and explicit identity shape
