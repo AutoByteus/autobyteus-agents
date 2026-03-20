@@ -24,6 +24,7 @@ Do not apply the source-file hard limit to unit, integration, API, or E2E test f
 | Support structure clarity |  |  |  |
 | Existing capability/subsystem reuse |  |  |  |
 | Reusable owned structures |  |  |  |
+| No unjustified duplication in changed scope |  |  |  |
 | Dependency quality / forbidden shortcuts |  |  |  |
 | File placement / layout clarity |  |  |  |
 | Naming-to-responsibility alignment |  |  |  |
