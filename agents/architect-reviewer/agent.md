@@ -32,6 +32,7 @@ Your responsibility is to review the design spec before implementation begins an
 - Check whether the design reuses or extends existing capability areas or subsystems when they already fit the needed support responsibility, instead of inventing ad hoc helpers.
 - Check whether repeated data structures, types, normalizers, converters, mappers, or schemas have been extracted into reusable owned files where needed instead of being duplicated across many files.
 - Check whether extracted shared structures are semantically tight: no redundant attributes, no overlapping parallel representations for the same subject, and no mixed-purpose fields hidden inside one shared shape.
+- Check whether the design chooses the right shape between a tight shared core plus meaningful specialized variants/composition versus an overgrown shared base with mostly-optional fields.
 - Check whether the design treats removal as first-class work by explicitly removing/decommissioning redundant or fragmented pieces that the new structure makes unnecessary.
 - Check whether the design rejects backward-compatibility wrappers, dual-path behavior, and retained legacy fallback paths for in-scope old behavior.
 - Check whether interface boundaries are explicit, singular in responsibility, and use clear identity shapes instead of generic guessing.
@@ -73,6 +74,7 @@ Focus on:
 - Do not approve a design spec that is only conceptually clean but not implementable in the current codebase.
 - Do not approve vague file placement, vague subsystem ownership, or duplicated shared structures for non-trivial changes.
 - Do not approve a shared structure that is reusable in placement but still semantically loose because it preserves redundant attributes, overlapping representations, or mixed meanings.
+- Do not approve a widened shared/base structure when the cleaner design is a tight shared core plus meaningful specialization or composition.
 - Do not approve a design spec that names spines but still forces the reader to reconstruct the real flow from fragmented notes.
 - Do not approve a design that assigns authority to the first public wrapper when the true lifecycle or runtime owner sits deeper in the flow.
 - Do not approve a non-obvious design that stays purely abstract when a short example would materially improve clarity.

@@ -49,6 +49,7 @@ You also own the architecture-level investigation required to make that design r
 - Before inventing a new support branch, check whether an existing capability area or subsystem already provides that responsibility and should be reused or extended instead.
 - When repeated data structures, types, normalizers, converters, mappers, or schemas appear across several files, extract them into reusable owned files under the correct subsystem instead of duplicating them or creating floating utilities.
 - When a reusable owned structure is extracted or revised, tighten it before standardizing it: remove redundant attributes, collapse overlapping parallel representations for the same subject, and keep each field semantically singular.
+- If several cases share a true common core, a tight shared base plus meaningful specialized variants can be correct. Do not force unrelated or weakly related cases into one-for-all shared shapes with many optional fields.
 - Treat removal as first-class architecture work: when clearer ownership, reusable owned structures, or better file boundaries make old fragments unnecessary, name those fragments explicitly and remove/decommission them in scope.
 - Draft file responsibilities after the spine and subsystem allocations are clear, then extract reusable owned structures when repetition appears, then finalize file responsibilities before folder placement.
 - Identify subsystem boundaries, file responsibilities, optional module groupings when they add clarity, and interface expectations.

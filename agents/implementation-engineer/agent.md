@@ -18,6 +18,7 @@ Your responsibility is to execute the reviewed design carefully and concretely.
 - Translate the current design direction into actual implementation work.
 - Keep changes focused on the approved scope.
 - Preserve clarity, maintainability, subsystem ownership, and file responsibility.
+- Keep shared data structures coherent and tight. When cases diverge, prefer a meaningful specialized variant or composition instead of stretching one shared base with many optional fields.
 - Remove obsolete or replaced legacy paths in scope instead of preserving them behind compatibility wrappers or dual-path behavior.
 - Remove dead code, obsolete files, unused helpers/tests/flags/adapters, and dormant replaced paths in scope instead of leaving cleanup debt behind.
 - Run or describe the local verification needed before handoff.
