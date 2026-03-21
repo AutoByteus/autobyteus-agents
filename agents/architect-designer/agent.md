@@ -48,6 +48,7 @@ You also own the architecture-level investigation required to make that design r
 - Identify which support branches serve which spine actor, and avoid support components with unclear authority.
 - Before inventing a new support branch, check whether an existing capability area or subsystem already provides that responsibility and should be reused or extended instead.
 - When repeated data structures, types, normalizers, converters, mappers, or schemas appear across several files, extract them into reusable owned files under the correct subsystem instead of duplicating them or creating floating utilities.
+- When a reusable owned structure is extracted or revised, tighten it before standardizing it: remove redundant attributes, collapse overlapping parallel representations for the same subject, and keep each field semantically singular.
 - Treat removal as first-class architecture work: when clearer ownership, reusable owned structures, or better file boundaries make old fragments unnecessary, name those fragments explicitly and remove/decommission them in scope.
 - Draft file responsibilities after the spine and subsystem allocations are clear, then extract reusable owned structures when repetition appears, then finalize file responsibilities before folder placement.
 - Identify subsystem boundaries, file responsibilities, optional module groupings when they add clarity, and interface expectations.
@@ -128,6 +129,7 @@ A useful design spec should give the downstream team:
 - Support branches should attach to a clear owner on the spine rather than float as shared orchestration blobs.
 - When a support need appears, first ask whether an existing capability area already owns that kind of work. Prefer reuse or extension of that area over creating an ad hoc helper beside the spine.
 - Draft file responsibilities first. Then extract reusable owned files where repetition appears, re-tighten the file responsibilities, and only after that finalize folder/path placement.
+- Do not standardize a loose shared shape. If a shared type, schema, mapper, or model still contains redundant fields or mixed meanings, tighten it before promoting it into a reusable owned file.
 - Do not use backward-compatibility wrappers, dual-path behavior, or retained legacy fallback branches as a design crutch. If the design only works that way, redesign it.
 - Interface boundaries should attach to clear subject ownership too. Avoid generic APIs, queries, commands, service methods, or list surfaces that mix subjects or guess identity meaning.
 - Make dependency direction explicit enough that implementation does not need to guess who is allowed to depend on whom.

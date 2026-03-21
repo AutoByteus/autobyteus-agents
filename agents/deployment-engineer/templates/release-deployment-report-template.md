@@ -9,6 +9,7 @@
 
 ## Docs Sync Result
 
+- Docs sync artifact:
 - Docs sync result: `Updated` / `No impact`
 - Docs updated:
 - No-impact rationale (if applicable):
@@ -24,10 +25,11 @@
 
 - Ticket branch:
 - Ticket branch push result:
-- Latest personal branch:
-- Personal branch update result:
-- Merge result:
-- Push result:
+- Finalization target remote:
+- Finalization target branch:
+- Target branch update result:
+- Merge into target result:
+- Push target branch result:
 - Release script result:
 - Release notes handoff result: `Used` / `Not required` / `Blocked`
 - Blocker (if applicable):

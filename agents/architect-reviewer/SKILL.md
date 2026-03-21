@@ -44,6 +44,7 @@ Use [templates/design-review-report-template.md](templates/design-review-report-
   - naming clarity for main-line nodes and support branches
   - reuse of existing capability areas or subsystems when they already fit the support need
   - extraction of reusable owned files when repeated data structures, types, normalizers, converters, mappers, or schemas would otherwise be duplicated
+  - semantic tightness of shared structures so extracted reusable files do not preserve redundant attributes, overlapping representations, or mixed-purpose fields
   - removal/decommission of redundant or fragmented pieces that the new structure makes unnecessary
   - rejection of backward-compatibility wrappers, dual-path behavior, and retained legacy fallback paths for in-scope behavior
   - interface-boundary clarity and explicit identity shapes
@@ -59,6 +60,7 @@ Use [templates/design-review-report-template.md](templates/design-review-report-
 - Do not pass code placement that hides ownership or structural depth, whether it is too flat or too artificially fragmented.
 - A flatter layout can be acceptable when it is genuinely clearer for the scope, but the design must justify that tradeoff.
 - Do not pass a design that keeps adding fresh helper pieces when an existing capability area already owns that kind of responsibility cleanly.
+- Do not pass a design that standardizes a shared type/schema/model with redundant fields or overlapping representations just because it improves reuse mechanically.
 - Do not pass an addition-only design when the cleaner target structure clearly makes older fragmented pieces unnecessary but never names their removal/decommission plan.
 - Do not pass a design that keeps compatibility wrappers, dual-path behavior, or legacy fallback branches for old behavior that is being replaced in scope.
 - Do not pass generic APIs, queries, commands, service methods, or list/query surfaces that blur subject ownership or guess identity meaning.

@@ -31,6 +31,7 @@ Own the architecture-level investigation required to make the design accurate.
 - bounded local/internal spines when they materially shape one owner
 - reuse or extension of existing capability areas or subsystems when they already fit the needed support responsibility
 - extraction of reusable owned files when repeated data structures, types, normalizers, converters, mappers, or schemas would otherwise be duplicated
+- semantic tightening of shared data structures so reusable owned files do not preserve redundant attributes or overlapping representations
 - rejection of backward-compatibility wrappers, dual-path behavior, and legacy old-behavior retention in the target design
 - production of the detailed design spec after approved requirements arrive
 - subsystem boundaries, file responsibilities, optional module groupings when they add clarity, and folder boundaries
@@ -85,6 +86,7 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 - Treat no backward compatibility and no legacy-code retention as a hard modernization rule for in-scope behavior.
 - Treat removal as first-class architecture work: when a clearer owner or reusable owned file replaces fragmented pieces, explicitly name what becomes unnecessary and remove/decommission it in scope.
 - Move from abstract to concrete in this order: spine -> subsystem/capability-area allocation -> draft file responsibilities -> extract reusable owned structures -> finalize file responsibilities -> folder/path mapping.
+- Do not promote a shared structure just because it is repeated. Tighten it first: remove redundant attributes, collapse overlapping parallel shapes, and keep each field's meaning singular and explicit.
 - The design spec should identify:
   - the relevant spine inventory for the scope
   - the key spine actors that directly advance each important spine
@@ -120,6 +122,7 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 - Reuse or extend an existing well-owned area when it already fits the responsibility. Do not create a fresh helper or mini-service just because the current spine needs something.
 - Ask next: what are the draft file responsibilities for the concrete concerns on this change?
 - Ask next: are repeated data structures, types, normalizers, converters, mappers, or schemas appearing across several files, and should they be extracted into reusable owned files under the right subsystem?
+- Ask next: if a shared structure is extracted, is the shape itself tight, or is it still carrying redundant attributes, overlapping representations, or mixed meanings that should be removed first?
 - Ask next: after that extraction, do the file responsibilities need to be tightened before folder placement is finalized?
 - Ask next: which interface boundaries do callers depend on, and do any of them mix subjects, blur ownership, or guess identity meaning?
 - Ask next: is any part of this proposal relying on compatibility wrappers, dual-path logic, or old-behavior retention instead of a clean-cut target shape? If yes, redesign it.

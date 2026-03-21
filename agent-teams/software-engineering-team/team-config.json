@@ -33,6 +33,11 @@
       "refType": "agent"
     },
     {
+      "memberName": "documentation_engineer",
+      "ref": "documentation-engineer",
+      "refType": "agent"
+    },
+    {
       "memberName": "deployment_engineer",
       "ref": "deployment-engineer",
       "refType": "agent"

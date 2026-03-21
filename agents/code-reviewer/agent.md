@@ -29,7 +29,7 @@ Your responsibility is to perform the final engineering review pass before relea
 
 ## Communication Rules
 
-- On review pass, send the review report to `deployment_engineer`.
+- On review pass, send the review report to `documentation_engineer`.
 - On `Local Fix`, send findings to `implementation_engineer`.
 - On `Validation Gap`, send findings to `api_e2e_engineer`.
 - On `Design Impact`, send findings to `architect_designer`.

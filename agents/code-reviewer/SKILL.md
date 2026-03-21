@@ -23,7 +23,7 @@ Use [templates/review-report-template.md](templates/review-report-template.md) t
 
 ## Handoff Rules
 
-- On pass, send the review report to `deployment_engineer`.
+- On pass, send the review report to `documentation_engineer`.
 - On `Local Fix`, route to `implementation_engineer`.
 - On `Validation Gap`, route to `api_e2e_engineer`.
 - On `Design Impact`, route to `architect_designer`.
