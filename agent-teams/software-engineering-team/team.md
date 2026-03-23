@@ -22,7 +22,7 @@ This team handles a software change from investigation and requirements definiti
 - `api_e2e_engineer` owns API, E2E, and executable validation work, including coverage design, realistic setup, and evidence needed to verify behavior.
 - `code_reviewer` performs independent engineering review and checks remaining risks and docs impact.
 - `documentation_engineer` synchronizes long-lived project docs after review, promotes durable design/runtime knowledge out of ticket artifacts, and records the Stage 9 docs-sync result.
-- `deployment_engineer` handles Stage 10 user-verification hold, ticket archival/repository finalization, release preparation, rollout steps, and post-deploy verification after docs synchronization is complete.
+- `deployment_engineer` handles Stage 10 handoff summary, user-verification hold, ticket archival/repository finalization, release preparation, rollout steps, and post-deploy verification after docs synchronization is complete.
 
 ## Delivery Flow
 
@@ -34,7 +34,7 @@ This team handles a software change from investigation and requirements definiti
 6. `api_e2e_engineer` derives detailed validation coverage from the requirements, reviewed design, implementation handoff, and observed behavior; executes API, E2E, and other executable validation work; pushes validation until real blockers are reached; and then reports pass, fail, untested, or blocked status.
 7. `code_reviewer` performs the engineering review once validation is clean.
 8. `documentation_engineer` synchronizes long-lived project docs after review, records explicit no-impact when appropriate, and hands the docs-sync result forward when Stage 9 is complete.
-9. `deployment_engineer` waits for explicit user completion/verification before ticket archival/repository finalization, and then handles release and deployment work when that work is in scope.
+9. `deployment_engineer` creates the Stage 10 handoff summary, waits for explicit user completion/verification before ticket archival/repository finalization, and then handles release and deployment work when that work is in scope.
 
 ## Working Agreement
 
@@ -80,7 +80,7 @@ When a downstream specialist finds a problem, classify it and route it to the ri
 - `api_e2e_engineer` owns validation coverage design, validation implementation, executable setup, execution evidence, and failure classification.
 - `code_reviewer` owns final findings, residual risks, docs-impact visibility, and the engineering review gate, including the hard no-backward-compat/no-legacy check.
 - `documentation_engineer` owns post-review docs synchronization, the `docs-sync` artifact, explicit no-impact decisions, and promotion of durable design/runtime knowledge from ticket artifacts into long-lived project docs.
-- `deployment_engineer` owns Stage 10 user-verification hold, archived ticket-state transition, release notes, version/tag or release commit work, finalization-target-branch update/merge flow when required, deployment execution, rollout checks, and rollback visibility.
+- `deployment_engineer` owns Stage 10 handoff summary, user-verification hold, archived ticket-state transition, release notes, version/tag or release commit work, finalization-target-branch update/merge flow when required, deployment execution, rollout checks, and rollback visibility.
 
 ## Send-Back Rules
 

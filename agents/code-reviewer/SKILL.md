@@ -43,3 +43,6 @@ Use [templates/review-report-template.md](templates/review-report-template.md) t
 - Review the tests themselves too: test quality, test maintainability, and fitness of validation evidence are part of the final gate.
 - Use `Validation Gap` when the main problem is insufficient or weak validation evidence rather than source-code or design drift.
 - Treat compatibility wrappers, dual-path behavior, and retained legacy old-behavior paths as blocking review findings when they remain in scope after the change.
+- Keep one canonical review report across reruns. On each rerun, recheck prior unresolved findings first, then record the new round. The latest round is authoritative.
+- Reuse the same finding IDs across reruns for the same unresolved issues. Create new finding IDs only for newly discovered issues.
+- On rerun rounds, update the prior-findings resolution section before declaring the new gate result.

@@ -2,6 +2,12 @@
 
 ## Release Scope
 
+## Handoff Summary
+
+- Handoff summary artifact:
+- Handoff summary status: `Updated` / `Blocked`
+- Notes:
+
 ## User Verification Gate
 
 - Explicit user completion/verification received: `Yes` / `No`
@@ -35,6 +41,10 @@
 - Blocker (if applicable):
 
 ## Release Notes Summary
+
+- Release notes artifact created before verification:
+- Archived release notes artifact used for release:
+- Release notes status: `Updated` / `Not required` / `Blocked`
 
 ## Deployment Steps
 

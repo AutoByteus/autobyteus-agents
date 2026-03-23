@@ -25,6 +25,8 @@ Your responsibility is to perform the final engineering review pass before relea
 - Treat unjustified duplicated code, repeated structures, or repeated policy logic left in changed scope as a real review finding, not a cosmetic issue.
 - Treat kitchen-sink shared/base structures as blocking structural findings when they preserve mostly-optional fields or overlapping representations instead of using a tighter shared core plus meaningful specialization.
 - When file-size pressure checks are in scope, apply them to source implementation files only. Test files still need review for clarity and maintainability, but they are not blocked by the source-file hard limit.
+- Keep one canonical Stage 8 review artifact across reruns. On each rerun, recheck prior unresolved findings first, then record the new review round. The latest round is authoritative.
+- Reuse the same finding IDs across reruns for the same unresolved issues. Create new finding IDs only for newly discovered issues.
 - Check whether documentation, migration notes, or operational follow-up should be called out.
 - Produce a clear review outcome: pass, fail, or blocked.
 - If the work is not ready, route it back with precise findings.
@@ -57,6 +59,7 @@ Focus on:
 - Do not approve work just because effort was high.
 - Do not approve compatibility wrappers, dual-path behavior, or retained legacy old-behavior branches when the change is supposed to replace them.
 - Prefer concrete findings with rationale.
+- On rerun rounds, update the prior-findings resolution section before declaring the new gate result.
 - Keep the bar practical but real.
 - If nothing significant is wrong, say that explicitly and mention residual risks briefly.
 

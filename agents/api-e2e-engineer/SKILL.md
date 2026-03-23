@@ -31,11 +31,14 @@ Use [templates/api-e2e-report-template.md](templates/api-e2e-report-template.md)
 - Cover happy paths, edge cases, failure paths, integration boundaries, and environment-specific behavior whenever those can reasonably be exercised.
 - Treat the implementation handoff as input, not as the only source of truth.
 - Make untested areas explicit instead of silently skipping them.
+- Keep one canonical validation report across reruns. On each rerun, recheck prior unresolved failures first, then record the new round. The latest round is authoritative.
+- Reuse the same scenario IDs across reruns for the same scenarios. Create new scenario IDs only for newly discovered coverage.
 
 ## Validation Standard
 
 - The minimum bar is to implement or update the validation that should live in the codebase and run it against the current implementation.
 - That minimum is not the full job. If proving the behavior requires more than codebase-resident tests, continue with broader executable validation work.
+- Persist the validation that should govern future changes in the repository whenever it belongs there.
 - Validate as much as can reasonably be exercised inside the task constraints.
 - Validation is not limited to tests already present in the codebase.
 - Use whatever executable validation method is needed when reasonable:
@@ -45,10 +48,12 @@ Use [templates/api-e2e-report-template.md](templates/api-e2e-report-template.md)
   - local or containerized environment setup
   - mocked or emulated dependencies
   - multi-process or multi-node verification
+  - browser or computer automation when that is the practical way to prove the flow
 - Investigation for validation is active work, not just reading. Use commands, scripts, probes, runtime setup, or focused test artifacts when they help prove behavior.
 - Push validation until you hit a real blocker.
 - A blocker is real only when the required system, access, or behavior cannot reasonably be reproduced, configured, mocked, emulated, or created within the task constraints.
 - If you create temporary validation scaffolding only for proof, remove it afterward unless it should remain as durable coverage.
+- On rerun rounds, update the prior-failure resolution section before declaring the new gate result.
 
 ## Minimum Vs Full Validation
 
@@ -62,6 +67,7 @@ Use [templates/api-e2e-report-template.md](templates/api-e2e-report-template.md)
   - use Docker or other containerized setup
   - seed data or configure dependencies
   - mock or emulate an external dependency when that still proves the relevant behavior
+  - use browser or computer automation when the behavior cannot be proved adequately from repository-resident tests alone
 - Stop only at a real blocker, not at inconvenience or missing prebuilt setup.
 
 ## Examples
@@ -72,6 +78,10 @@ Use [templates/api-e2e-report-template.md](templates/api-e2e-report-template.md)
 - If an external dependency is required but can be reasonably mocked or emulated without losing the point of the validation, do that and keep going.
 - If a bug claim is uncertain, write a small probe script or focused test artifact to reproduce or disprove it instead of guessing.
 - If temporary validation setup is created only to prove the behavior for the current task, clean it up afterward unless it should become durable coverage.
+- In the final report, distinguish clearly between:
+  - durable validation added or updated in the repository,
+  - temporary executable validation used only to prove the current ticket,
+  - residual blocked or infeasible scenarios.
 
 ## Handoff Rules
 

@@ -3,8 +3,35 @@
 Use earlier design artifacts as context only.
 The review authority is the shared design principles, common design practices, and the code-review gate itself.
 If the review shows that an earlier design artifact was weak, incomplete, or wrong, classify that as `Design Impact`.
+Keep one canonical Stage 8 review report path across reruns.
+Do not create versioned copies by default.
+On round `>1`, recheck prior unresolved findings first, update the prior-findings resolution section, and then record the new round result.
+The latest round is authoritative; earlier rounds remain history.
+
+## Review Round Meta
+
+- Current Review Round:
+- Trigger Stage:
+- Prior Review Round Reviewed:
+- Latest Authoritative Round:
+
+Round rules:
+- Reuse the same finding IDs across reruns for the same unresolved issues.
+- Create new finding IDs only for newly discovered review findings.
+
+## Round History
+
+| Round | Trigger | Prior Unresolved Findings Rechecked | New Findings Found | Gate Decision | Latest Authoritative | Notes |
+| --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |
 
 ## Review Scope
+
+## Prior Findings Resolution Check (Mandatory On Round >1)
+
+| Prior Round | Finding ID | Previous Severity | Current Resolution | Evidence | Notes |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
 
 ## Source File Size And Structure Audit (If Applicable)
 
@@ -33,6 +60,11 @@ Do not apply the source-file hard limit to unit, integration, API, or E2E test f
 | Dead/obsolete code cleanup completeness in changed scope |  |  |  |
 
 ## Findings
+
+Rules:
+- Reuse the same finding ID when the same issue persists across rounds.
+- Create a new finding ID only for newly discovered issues.
+- Mark resolved or obsolete earlier findings in the prior-findings resolution table instead of silently dropping them.
 
 ## Validation And Test Quality Verdict
 
@@ -68,3 +100,8 @@ Do not apply the source-file hard limit to unit, integration, API, or E2E test f
 ## Recommended Recipient
 
 ## Residual Risks
+
+## Latest Authoritative Result
+
+- Gate Decision:
+- Notes:
