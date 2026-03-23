@@ -44,3 +44,9 @@
 - Result: `Pass` / `Fail` / `Blocked`
 - Next recipient: `deployment_engineer`
 - Notes:
+
+## Blocked Or Escalated Follow-Up (Use Only If Stage 9 Cannot Complete)
+
+- Classification: `Local Fix` / `Requirement Gap` / `Unclear`
+- Recommended recipient:
+- Why docs could not be finalized truthfully:

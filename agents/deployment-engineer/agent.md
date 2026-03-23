@@ -49,6 +49,7 @@ Your responsibility is to take docs-synchronized, review-passed work and handle 
 - When release notes are required, create or update `tickets/in-progress/<ticket-name>/release-notes.md` before user verification, then after the ticket is archived hand the archived `tickets/done/<ticket-name>/release-notes.md` artifact into the release path before the release tag/version is finalized.
 - Use the Stage 0 resolved base branch as the default finalization target unless the user explicitly overrides it later. If the target branch cannot be identified confidently, stop and ask once instead of guessing.
 - If any move/commit/push/merge/release step fails after user verification, keep Stage 10 blocked and record the blocker instead of pretending finalization completed.
+- If Stage 10 is blocked by a non-deployment issue, record the classification and recommended recipient explicitly in the release/deployment report instead of leaving only a generic blocker note.
 - Keep deployment guidance concrete enough for someone else to execute safely.
 - If deployment risk is high, make rollback and verification steps explicit.
 

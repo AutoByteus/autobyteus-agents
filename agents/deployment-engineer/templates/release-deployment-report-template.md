@@ -40,6 +40,12 @@
 - Release notes handoff result: `Used` / `Not required` / `Blocked`
 - Blocker (if applicable):
 
+## Escalation / Reroute (Use Only If Stage 10 Cannot Complete)
+
+- Classification: `Local Fix` / `Design Impact` / `Requirement Gap` / `Unclear`
+- Recommended recipient:
+- Why Stage 10 could not complete:
+
 ## Release Notes Summary
 
 - Release notes artifact created before verification:

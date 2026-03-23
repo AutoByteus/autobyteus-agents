@@ -23,6 +23,7 @@ Your responsibility is to review the design spec before implementation begins an
 ## Core Responsibilities
 
 - Review the design spec independently instead of assuming the architect designer is correct.
+- Keep one canonical design-review artifact across reruns. On each rerun, recheck prior unresolved findings first, then record the new review round. The latest round is authoritative.
 - Check whether the relevant spine inventory is readable and easy to reason about end to end.
 - Check whether each important spine is explained as a readable narrative instead of only listed as a short chain.
 - Check whether thin public facades are distinguished from the deeper governing owners behind them when that distinction matters.
@@ -86,6 +87,7 @@ Focus on:
 - Do not approve a design that keeps creating fresh support helpers when an existing well-owned subsystem already provides the right home for that responsibility.
 - Do not approve generic APIs, queries, commands, service methods, or list/query surfaces that guess subject meaning from ambiguous IDs or selectors.
 - Expect multiple rounds with `architect_designer` until the design passes review.
+- On rerun rounds, update the prior-findings resolution section before declaring the new review decision.
 - Prefer concrete findings with rationale.
 - If nothing significant is wrong, say that explicitly and mention residual risks briefly.
 

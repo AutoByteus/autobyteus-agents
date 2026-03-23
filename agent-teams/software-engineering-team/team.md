@@ -45,6 +45,7 @@ This team handles a software change from investigation and requirements definiti
 - No backward compatibility and no legacy-code retention are hard rules across design, implementation, and code review for in-scope behavior.
 - After review passes, long-lived project docs must be updated to match the final implemented behavior, or an explicit no-impact decision must be recorded, before deployment or release proceeds.
 - Stage 9 is not cosmetic. It exists to promote durable design/runtime knowledge from ticket artifacts into long-lived project docs so future readers do not need old tickets to understand the current system.
+- Stage 9 is also not a second design-review gate. `documentation_engineer` should synchronize docs to the final reviewed implementation state and only send work back when the final state is still too unclear to document truthfully.
 - Do not move to ticket archival or repository finalization before explicit user completion/verification is received.
 - After the explicit user completion/verification signal, move the ticket to the archived `done` path before the final commit, then run the repository finalization sequence required by that repo against the resolved bootstrap base branch unless the user explicitly overrides that target.
 - Use `send_message_to` when handing work to another specialist.

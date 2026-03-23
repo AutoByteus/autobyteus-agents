@@ -1,12 +1,36 @@
 # Design Review Report
 
-## Review Basis
+Keep one canonical design-review report path across reruns.
+Do not create versioned copies by default.
+On round `>1`, recheck prior unresolved findings first, update the prior-findings resolution section, and then record the new round result.
+The latest round is authoritative; earlier rounds remain history.
+
+## Review Round Meta
 
 - Reviewed Design Spec:
-- Review Round:
+- Current Review Round:
+- Trigger Stage:
+- Prior Review Round Reviewed:
+- Latest Authoritative Round:
 - Current-State Evidence Basis:
 
+Round rules:
+- Reuse the same finding IDs across reruns for the same unresolved design-review issues.
+- Create new finding IDs only for newly discovered issues.
+
+## Round History
+
+| Round | Trigger | Prior Unresolved Findings Rechecked | New Findings Found | Review Decision | Latest Authoritative | Notes |
+| --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |
+
 ## Reviewed Design Spec
+
+## Prior Findings Resolution Check (Mandatory On Round >1)
+
+| Prior Round | Finding ID | Previous Severity | Current Resolution | Evidence | Notes |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
 
 ## Spine Inventory Verdict
 
@@ -99,13 +123,24 @@
 If none, write `None`.
 Otherwise list actionable findings with:
 - type
+- finding ID
 - severity
 - evidence
 - required update
 - recommended recipient
+
+Rules:
+- Reuse the same finding ID when the same issue persists across rounds.
+- Create a new finding ID only for newly discovered issues.
+- Mark resolved or obsolete earlier findings in the prior-findings resolution table instead of silently dropping them.
 
 ## Classification
 
 ## Recommended Recipient
 
 ## Residual Risks
+
+## Latest Authoritative Result
+
+- Review Decision:
+- Notes:

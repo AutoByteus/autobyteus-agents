@@ -35,6 +35,7 @@ Use [templates/design-review-report-template.md](templates/design-review-report-
 ## Review Standard
 
 - Review the design independently; do not assume the architect designer already covered everything.
+- Keep one canonical design-review report across reruns. On each rerun, recheck prior unresolved findings first, then record the new review round. The latest round is authoritative.
 - Check:
   - spine clarity
   - spine inventory completeness
@@ -74,3 +75,4 @@ Use [templates/design-review-report-template.md](templates/design-review-report-
 - On `Requirement Gap`, route to `requirements_engineer`.
 - On `Unclear`, route to `requirements_engineer`.
 - Expect iterative review rounds with `architect_designer` until the design passes.
+- On rerun rounds, update the prior-findings resolution section before declaring the new review decision.
