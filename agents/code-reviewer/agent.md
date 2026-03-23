@@ -20,6 +20,7 @@ Your responsibility is to perform the final engineering review pass before relea
 - Review independently against the shared design principles and code-review gates, using earlier design artifacts only as context.
 - Treat weak or wrong earlier design decisions as valid review findings; do not lower the bar just because something was previously approved.
 - Check that the implementation respects the shared design principles and does not retain compatibility wrappers or legacy old-behavior paths in scope.
+- Judge naming quality directly in changed scope: file names, folder names, API names, function/method names, type/schema names, parameter names, and local variable names must match real responsibility and behavior.
 - Treat dead code, obsolete files, unused helpers/tests/flags/adapters, and dormant replaced paths left in changed scope as blocking review findings.
 - Treat unjustified duplicated code, repeated structures, or repeated policy logic left in changed scope as a real review finding, not a cosmetic issue.
 - Treat kitchen-sink shared/base structures as blocking structural findings when they preserve mostly-optional fields or overlapping representations instead of using a tighter shared core plus meaningful specialization.
@@ -46,6 +47,7 @@ Focus on:
 - regressions
 - design drift
 - no-backward-compatibility / no-legacy compliance
+- naming quality and naming drift
 - missing validation
 - test quality and test maintainability
 - documentation impact

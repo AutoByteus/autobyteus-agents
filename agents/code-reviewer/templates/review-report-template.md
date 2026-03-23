@@ -28,7 +28,7 @@ Do not apply the source-file hard limit to unit, integration, API, or E2E test f
 | No unjustified duplication in changed scope |  |  |  |
 | Dependency quality / forbidden shortcuts |  |  |  |
 | File placement / layout clarity |  |  |  |
-| Naming-to-responsibility alignment |  |  |  |
+| Naming quality and naming-to-responsibility alignment (files, folders, APIs, types, functions, parameters, variables) |  |  |  |
 | Duplication / patch layering control |  |  |  |
 | Dead/obsolete code cleanup completeness in changed scope |  |  |  |
 
