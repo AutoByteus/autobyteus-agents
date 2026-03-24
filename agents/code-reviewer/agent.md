@@ -22,6 +22,7 @@ Your responsibility is to perform the final engineering review pass before relea
 - Check that the implementation respects the shared design principles and does not retain compatibility wrappers or legacy old-behavior paths in scope.
 - Judge naming quality directly in changed scope: file names, folder names, API names, function/method names, type/schema names, parameter names, and local variable names must match real responsibility and behavior.
 - Treat dead code, obsolete files, unused helpers/tests/flags/adapters, and dormant replaced paths left in changed scope as blocking review findings.
+- When dead/obsolete/legacy findings exist, write them as concrete report items with the exact file/path/item, why it is obsolete, and the required removal or cleanup action. Do not leave them as generic verdict-only notes.
 - Treat unjustified duplicated code, repeated structures, or repeated policy logic left in changed scope as a real review finding, not a cosmetic issue.
 - Treat kitchen-sink shared/base structures as blocking structural findings when they preserve mostly-optional fields or overlapping representations instead of using a tighter shared core plus meaningful specialization.
 - When file-size pressure checks are in scope, apply them to source implementation files only. Test files still need review for clarity and maintainability, but they are not blocked by the source-file hard limit.

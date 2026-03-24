@@ -38,6 +38,7 @@ Use [templates/review-report-template.md](templates/review-report-template.md) t
 - Treat unjustified duplicated code, repeated structures, or repeated policy logic left in changed scope as a blocking Stage 8 issue unless the duplication is clearly temporary and removal is part of the same bounded fix.
 - Treat loose shared/base structures as blocking Stage 8 issues when one-for-all models, mostly-optional fields, or overlapping parallel shapes replace a tighter shared core plus meaningful specialization.
 - Treat dead code, obsolete files, unused helpers/tests/flags/adapters, and dormant replaced paths left in changed scope as blocking Stage 8 issues.
+- When dead/obsolete/legacy findings exist, record them concretely in the review report with the exact file/path/item, why it should be removed, and the required cleanup action. Do not rely only on high-level pass/fail verdict rows.
 - Add review-specific gates on top of that architectural review, including source-file size pressure, validation-evidence sufficiency, and final modernization checks.
 - Apply source-file size gates only to changed source implementation files. Unit, integration, API, and E2E test files remain in review scope, but they are not blocked by the source-file hard limit merely for being long.
 - Review the tests themselves too: test quality, test maintainability, and fitness of validation evidence are part of the final gate.

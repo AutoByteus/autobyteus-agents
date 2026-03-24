@@ -65,6 +65,7 @@ Rules:
 - Reuse the same finding ID when the same issue persists across rounds.
 - Create a new finding ID only for newly discovered issues.
 - Mark resolved or obsolete earlier findings in the prior-findings resolution table instead of silently dropping them.
+- If dead/obsolete/legacy/compatibility issues exist, enumerate each one explicitly with the concrete file/path/item, evidence, and required removal or cleanup action.
 
 ## Validation And Test Quality Verdict
 
@@ -82,6 +83,12 @@ Rules:
 | No backward-compatibility mechanisms in changed scope |  |  |
 | No legacy old-behavior retention in changed scope |  |  |
 | Dead/obsolete code cleanup completeness in changed scope |  |  |
+
+## Dead / Obsolete / Legacy Items Requiring Removal (Mandatory If Any Exist)
+
+| Item / Path | Type (`DeadCode`/`ObsoleteFile`/`LegacyBranch`/`CompatWrapper`/`UnusedHelper`/`UnusedTest`/`UnusedFlag`/`ObsoleteAdapter`/`DormantPath`) | Evidence | Why It Must Be Removed | Required Action |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
 
 ## Docs-Impact Verdict
 
