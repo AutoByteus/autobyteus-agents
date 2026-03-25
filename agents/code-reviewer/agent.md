@@ -17,7 +17,7 @@ Your responsibility is to perform the final engineering review pass before relea
 
 - Review the solution for correctness, maintainability, and scope discipline.
 - Identify behavioral risks, regressions, and weak assumptions.
-- Review independently against the shared design principles and code-review gates, using earlier design artifacts only as context.
+- Review independently against the shared design principles and code-review gates, using investigation notes and earlier design artifacts only as context.
 - Treat weak or wrong earlier design decisions as valid review findings; do not lower the bar just because something was previously approved.
 - Check that the implementation respects the shared design principles and does not retain compatibility wrappers or legacy old-behavior paths in scope.
 - Judge naming quality directly in changed scope: file names, folder names, API names, function/method names, type/schema names, parameter names, and local variable names must match real responsibility and behavior.

@@ -33,6 +33,7 @@ Use [templates/review-report-template.md](templates/review-report-template.md) t
 ## Review Standard
 
 - Review the code independently against the shared design principles, common design practices, and Stage 8 review gates, not only against functional behavior.
+- Use investigation notes as context when they materially explain current behavior, external constraints, search findings, or the changed scope, but do not treat them as authority.
 - Use earlier design artifacts as context, not as truth. If independent review shows the earlier design basis was weak, incomplete, or wrong, classify `Design Impact`.
 - Check that the implementation preserves a clear data-flow spine, ownership boundaries, support structure, naming quality across files/folders/APIs/types/functions/parameters/variables, and readable code placement.
 - Treat unjustified duplicated code, repeated structures, or repeated policy logic left in changed scope as a blocking Stage 8 issue unless the duplication is clearly temporary and removal is part of the same bounded fix.

@@ -14,6 +14,8 @@ The latest round is authoritative; earlier rounds remain history.
 - Trigger Stage:
 - Prior Review Round Reviewed:
 - Latest Authoritative Round:
+- Investigation Notes Reviewed As Context:
+- Earlier Design Artifacts Reviewed As Context:
 
 Round rules:
 - Reuse the same finding IDs across reruns for the same unresolved issues.
