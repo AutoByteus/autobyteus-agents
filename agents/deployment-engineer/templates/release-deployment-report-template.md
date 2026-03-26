@@ -1,6 +1,6 @@
-# Release And Deployment Report
+# Release / Publication / Deployment Report
 
-## Release Scope
+## Release / Publication / Deployment Scope
 
 ## Handoff Summary
 
@@ -30,13 +30,22 @@
 ## Repository Finalization
 
 - Ticket branch:
+- Ticket branch commit result:
 - Ticket branch push result:
 - Finalization target remote:
 - Finalization target branch:
 - Target branch update result:
 - Merge into target result:
 - Push target branch result:
-- Release script result:
+- Repository finalization status: `Completed` / `Blocked`
+- Blocker (if applicable):
+
+## Release / Publication / Deployment
+
+- Applicable: `Yes` / `No`
+- Method: `Release Script` / `Documented Command` / `Git Tag Workflow` / `GitHub Release` / `Deployment Path` / `Other`
+- Method reference / command:
+- Release/publication/deployment result: `Completed` / `Not required` / `Blocked`
 - Release notes handoff result: `Used` / `Not required` / `Blocked`
 - Blocker (if applicable):
 
@@ -49,7 +58,7 @@
 ## Release Notes Summary
 
 - Release notes artifact created before verification:
-- Archived release notes artifact used for release:
+- Archived release notes artifact used for release/publication:
 - Release notes status: `Updated` / `Not required` / `Blocked`
 
 ## Deployment Steps
