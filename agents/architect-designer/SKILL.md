@@ -26,10 +26,10 @@ Own the architecture-level investigation required to make the design accurate.
 - data-flow spine inventory for the scope
 - spine actors or main-line domain nodes
 - distinction between thin public facades and true governing owners when both exist
-- ownership model for spine actors and their support branches
+- ownership model for spine actors and their off-spine concerns
 - return/event spines when applicable
 - bounded local/internal spines when they materially shape one owner
-- reuse or extension of existing capability areas or subsystems when they already fit the needed support responsibility
+- reuse or extension of existing capability areas or subsystems when they already fit the needed off-spine responsibility
 - extraction of reusable owned files when repeated data structures, types, normalizers, converters, mappers, or schemas would otherwise be duplicated
 - semantic tightening of shared data structures so reusable owned files do not preserve redundant attributes or overlapping representations
 - rejection of backward-compatibility wrappers, dual-path behavior, and legacy old-behavior retention in the target design
@@ -71,7 +71,7 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 - Identify:
   - the current execution spine or the lack of one
   - current ownership boundaries or ownership ambiguity
-  - current coupling points, coordination blobs, or fragmented support services
+  - current coupling points, coordination blobs, or fragmented off-spine concerns
   - constraints that the target design must respect during the transition
 - Do not write a greenfield-style target design when the task is really a refactor of an existing code path.
 - Do not assume the requirements engineer has already uncovered every architectural fact needed for design.
@@ -80,9 +80,10 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 
 - Treat good architecture as: a readable spine inventory for the scope, clear ownership, and clear boundaries.
 - Find the spine before decomposing concerns.
-- Define ownership before decomposing support concerns around the spine.
+- Define ownership before decomposing off-spine concerns around the spine.
 - Do not let concern-first decomposition produce a fragmented design with many peer coordinators and no clear main line.
-- Do not let shared support services accumulate business authority without explicit ownership.
+- Do not let shared off-spine concerns accumulate business authority without explicit ownership.
+- Treat `spine`, `owner`, and `off-spine concern` as architecture relationship terms, not naming templates. Do not literalize them into vague names like `Support`, `Supporting`, `OffSpine`, `SideConcern`, or `Helper`.
 - Treat no backward compatibility and no legacy-code retention as a hard modernization rule for in-scope behavior.
 - Treat removal as first-class architecture work: when a clearer owner or reusable owned file replaces fragmented pieces, explicitly name what becomes unnecessary and remove/decommission it in scope.
 - Move from abstract to concrete in this order: spine -> subsystem/capability-area allocation -> draft file responsibilities -> extract reusable owned structures -> finalize file responsibilities -> folder/path mapping.
@@ -95,9 +96,9 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
   - what each main-line actor owns
   - the return/event spine when applicable
   - any bounded local/internal spine that materially affects the design
-  - the support branches or services that must stay off the spine
-  - which owner on the spine each support branch serves
-  - which existing capability areas or subsystems should be reused or extended instead of creating a new ad hoc support piece
+  - the off-spine concerns that must stay off the spine
+  - which owner on the spine each off-spine concern serves
+  - which existing capability areas or subsystems should be reused or extended instead of creating a new ad hoc off-spine concern
   - which compatibility wrappers, dual-path branches, legacy fallback paths, or obsolete files are removed instead of retained
   - the key interface boundaries, what subject each one owns, and what identity shape each one accepts
   - allowed dependency direction and forbidden shortcuts
@@ -116,9 +117,9 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 - If the first class in the path mostly forwards, name it as a thin facade or entry boundary instead of pretending it is the governing owner.
 - Ask next: if someone reads only the spine narratives, would they understand how the system works end to end?
 - Ask next: what does each main-line actor own?
-- Move support concerns off the spine unless they truly own core sequencing.
-- Make each support branch answerable to a clear owner on the spine.
-- Ask next: does this support need already belong to an existing capability area or subsystem in the codebase?
+- Move off-spine concerns off the spine unless they truly own core sequencing.
+- Make each off-spine concern answerable to a clear owner on the spine.
+- Ask next: does this off-spine need already belong to an existing capability area or subsystem in the codebase?
 - Reuse or extend an existing well-owned area when it already fits the responsibility. Do not create a fresh helper or mini-service just because the current spine needs something.
 - Ask next: what are the draft file responsibilities for the concrete concerns on this change?
 - Ask next: are repeated data structures, types, normalizers, converters, mappers, or schemas appearing across several files, and should they be extracted into reusable owned files under the right subsystem?
@@ -131,14 +132,14 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 - If several peer services all appear to coordinate the use case, simplify until one dominant line is visible.
 - If behavior is important but no owner is obvious, the boundary is wrong.
 - Make dependency rules explicit so the target decoupling is mechanically checkable.
-- Specify where each changed owner, interface, adapter, or support branch should live in subsystems, files, and folders, and name module groupings only when they make the structure easier to read.
+- Specify where each changed owner, interface, adapter, or off-spine concern should live in subsystems, files, and folders, and name module groupings only when they make the structure easier to read.
 - Do not map the spine into code mechanically. Use judgment so the resulting layout is natural and readable for the scope.
 - Ask next: do the proposed folders make the structural boundaries readable, or do they flatten several layers and owners into one mixed directory?
 - Remember that shared-layer, feature-oriented, runtime-oriented, and hybrid layouts can all be correct when they make the ownership and structural depth easier to read.
 - If the target structure cannot be landed in one step, describe the staged transition instead of leaving the migration implicit.
 - Let layering emerge from the spine and ownership model: upstream initiators, mid-line domain/control nodes, downstream engines/providers.
 - When the structure is non-trivial, often keep those distinct structural depths in distinct folders, but do not force splits that are too small or artificial. If a flatter layout stays clearer, justify it.
-- If you apply a pattern, state which owner or support branch uses it and why it helps there.
+- If you apply a pattern, state which owner or off-spine concern uses it and why it helps there.
 
 ## Examples
 
@@ -162,7 +163,7 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 - Interface-boundary example:
   avoid `getRunResumeConfig(runId)`
   prefer `getAgentRunResumeConfig(runId)`, `getTeamRunResumeConfig(teamRunId)`, `getTeamMemberRunResumeConfig(teamRunId, memberKey)`
-- Typical support services that should stay off the spine:
+- Typical off-spine concerns that should stay off the spine:
   definition resolution, persistence, projections, message mapping, callbacks, metrics, audit logging.
 - Capability-area reuse example:
   if a codebase already has `events/`, `status/`, `handlers/`, `streaming/`, or `bootstrap-steps/`, new work in those categories should normally land there instead of creating a one-off neighbor helper.

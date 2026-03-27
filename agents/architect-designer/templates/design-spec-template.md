@@ -45,9 +45,9 @@ Write each primary execution spine as a short arrow chain, for example:
 ## Spine Narratives (Mandatory)
 
 For each important spine, explain the end-to-end motion in prose so a reader can understand the design by following the flow instead of reconstructing it from files.
-Keep support branches summary-level here only; use the detailed support-structure section below for the full mapping.
+Keep off-spine concerns summary-level here only; use the detailed off-spine concerns section below for the full mapping.
 
-| Spine ID | Short Narrative | Main Domain Subject Nodes | Governing Owner | Key Support Branches |
+| Spine ID | Short Narrative | Main Domain Subject Nodes | Governing Owner | Key Off-Spine Concerns |
 | --- | --- | --- | --- | --- |
 |  |  |  |  |  |
 
@@ -87,18 +87,18 @@ For each one, name:
 - short arrow chain
 - why this bounded local spine matters
 
-## Supporting Structure Around The Spine
+## Off-Spine Concerns Around The Spine
 
-Use this as the full support-branch inventory.
+Use this as the full off-spine concern inventory.
 Do not repeat the same mapping again in another section.
 
-| Support Branch / Service | Related Spine ID(s) | Serves Which Owner | Responsibility | Why It Exists | Risk If Misplaced On Main Line |
+| Off-Spine Concern | Related Spine ID(s) | Serves Which Owner | Responsibility | Why It Exists | Risk If Misplaced On Main Line |
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
 
 ## Existing Capability / Subsystem Reuse Check
 
-When a support need appears, do not create a new helper immediately.
+When an off-spine need appears, do not create a new helper immediately.
 First check whether an existing capability area or subsystem already fits that responsibility.
 
 | Need / Concern | Existing Capability Area / Subsystem | Decision (`Reuse`/`Extend`/`Create New`) | Why | If New, Why Existing Areas Are Not Right |
@@ -178,7 +178,7 @@ Rule:
 
 ## Applied Patterns (If Any)
 
-Name any local patterns used, where they live, what problem they solve, and which owner or support branch they belong to.
+Name any local patterns used, where they live, what problem they solve, and which owner or off-spine concern they belong to.
 
 ## Target Subsystem / Folder / File Mapping
 
@@ -191,14 +191,14 @@ This mapping should be spine-led and ownership-led, but not mechanical. The goal
 
 Rules:
 - If the design has meaningful structural depth, usually reflect it in folders rather than flattening everything into one mixed directory.
-- Do not place transport entrypoints, main-line domain/control nodes, persistence, adapters, and unrelated support branches in one flat folder when that hides ownership or structural depth.
+- Do not place transport entrypoints, main-line domain/control nodes, persistence, adapters, and unrelated off-spine concerns in one flat folder when that hides ownership or structural depth.
 - A compact layout is acceptable when it remains easy to read for the scope. If you keep it flatter, state why that is the clearer tradeoff.
 - Folder boundaries should make ownership and structural depth easier to read, not hide them.
 - Shared-layer, feature-oriented, runtime-oriented, and hybrid projections can all be valid when they make the intended ownership and flow easier to understand.
 
 ## Folder Boundary Check
 
-| Path / Folder | Intended Structural Depth (`Transport`/`Main-Line Domain-Control`/`Persistence-Provider`/`Support Branch`/`Mixed Justified`) | Ownership Boundary Is Clear? (`Yes`/`No`) | Mixed-Layer Or Over-Split Risk (`Low`/`Medium`/`High`) | Justification / Corrective Action |
+| Path / Folder | Intended Structural Depth (`Transport`/`Main-Line Domain-Control`/`Persistence-Provider`/`Off-Spine Concern`/`Mixed Justified`) | Ownership Boundary Is Clear? (`Yes`/`No`) | Mixed-Layer Or Over-Split Risk (`Low`/`Medium`/`High`) | Justification / Corrective Action |
 | --- | --- | --- | --- | --- |
 |  |  |  |  |  |
 

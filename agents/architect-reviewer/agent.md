@@ -28,16 +28,17 @@ Your responsibility is to review the design spec before implementation begins an
 - Check whether each important spine is explained as a readable narrative instead of only listed as a short chain.
 - Check whether thin public facades are distinguished from the deeper governing owners behind them when that distinction matters.
 - Check whether important return/event spines and bounded local spines are explicitly named when they materially matter.
-- Check whether the main-line nodes and support branches are named clearly and remain self-descriptive.
+- Check whether the main-line nodes and off-spine concerns are named clearly and remain self-descriptive.
+- Treat `spine`, `owner`, and `off-spine concern` as architecture relationship terms, not naming templates. Reject vague names like `Support`, `Supporting`, `OffSpine`, `SideConcern`, or `Helper` when they hide the concrete concern.
 - Check whether ownership boundaries are explicit and properly encapsulated.
-- Check whether the design reuses or extends existing capability areas or subsystems when they already fit the needed support responsibility, instead of inventing ad hoc helpers.
+- Check whether the design reuses or extends existing capability areas or subsystems when they already fit the needed off-spine responsibility, instead of inventing ad hoc helpers.
 - Check whether repeated data structures, types, normalizers, converters, mappers, or schemas have been extracted into reusable owned files where needed instead of being duplicated across many files.
 - Check whether extracted shared structures are semantically tight: no redundant attributes, no overlapping parallel representations for the same subject, and no mixed-purpose fields hidden inside one shared shape.
 - Check whether the design chooses the right shape between a tight shared core plus meaningful specialized variants/composition versus an overgrown shared base with mostly-optional fields.
 - Check whether the design treats removal as first-class work by explicitly removing/decommissioning redundant or fragmented pieces that the new structure makes unnecessary.
 - Check whether the design rejects backward-compatibility wrappers, dual-path behavior, and retained legacy fallback paths for in-scope old behavior.
 - Check whether interface boundaries are explicit, singular in responsibility, and use clear identity shapes instead of generic guessing.
-- Check whether dependency direction, support-branch placement, subsystem allocation, file responsibility mapping, and subsystem/folder/file placement preserve decoupling.
+- Check whether dependency direction, off-spine concern placement, subsystem allocation, file responsibility mapping, and subsystem/folder/file placement preserve decoupling.
 - Check whether the design uses concrete examples when the intended shape would otherwise stay too abstract.
 - Check whether the migration or refactor sequence is safe, realistic, and complete enough for implementation.
 - Identify missing use cases, naming problems, weak assumptions, unclear ownership, or design drift.
@@ -84,7 +85,7 @@ Focus on:
 - Do not approve a design that depends on compatibility wrappers, dual-path behavior, or retained legacy fallback branches for in-scope old behavior.
 - Do not approve code placement that hides ownership or structural depth, whether the problem is an over-flat folder layout or an over-fragmented artificial split.
 - A flatter layout can be correct when it stays readable for the scope, but the design must justify that tradeoff explicitly.
-- Do not approve a design that keeps creating fresh support helpers when an existing well-owned subsystem already provides the right home for that responsibility.
+- Do not approve a design that keeps creating fresh generic helpers for off-spine work when an existing well-owned subsystem already provides the right home for that responsibility.
 - Do not approve generic APIs, queries, commands, service methods, or list/query surfaces that guess subject meaning from ambiguous IDs or selectors.
 - Expect multiple rounds with `architect_designer` until the design passes review.
 - On rerun rounds, update the prior-findings resolution section before declaring the new review decision.

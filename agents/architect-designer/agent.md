@@ -44,9 +44,10 @@ You also own the architecture-level investigation required to make that design r
 - Define the return or event spine when the feature is asynchronous, streaming, or event-driven.
 - If the design contains multiple meaningful spines, name each one explicitly with start, end, governing owner, and why it matters.
 - Distinguish thin public facades or entry wrappers from the deeper governing owners behind them when that distinction matters.
-- Distinguish spine components from support branches or services, and keep support services off the main line unless they truly own core sequencing.
-- Identify which support branches serve which spine actor, and avoid support components with unclear authority.
-- Before inventing a new support branch, check whether an existing capability area or subsystem already provides that responsibility and should be reused or extended instead.
+- Distinguish spine components from off-spine concerns, and keep off-spine concerns off the main line unless they truly own core sequencing.
+- Identify which off-spine concerns serve which spine actor, and avoid off-spine components with unclear authority.
+- Before inventing a new off-spine concern, check whether an existing capability area or subsystem already provides that responsibility and should be reused or extended instead.
+- Treat `spine`, `owner`, and `off-spine concern` as architecture relationship terms, not naming templates. Do not turn them into vague file, folder, service, class, or type names.
 - When repeated data structures, types, normalizers, converters, mappers, or schemas appear across several files, extract them into reusable owned files under the correct subsystem instead of duplicating them or creating floating utilities.
 - When a reusable owned structure is extracted or revised, tighten it before standardizing it: remove redundant attributes, collapse overlapping parallel representations for the same subject, and keep each field semantically singular.
 - If several cases share a true common core, a tight shared base plus meaningful specialized variants can be correct. Do not force unrelated or weakly related cases into one-for-all shared shapes with many optional fields.
@@ -56,11 +57,11 @@ You also own the architecture-level investigation required to make that design r
 - Treat interface boundaries as design boundaries too: APIs, queries, commands, and reused service methods should each own one clear subject/responsibility with explicit identity shape.
 - Split generic interface boundaries when subject meaning differs. Do not accept one boundary that guesses what an ID or selector means.
 - Define dependency direction explicitly: who may call, depend on, or emit to whom, and which shortcuts are forbidden.
-- Specify the target subsystem, final file responsibilities, and folder/file placement for new or changed owners, interfaces, adapters, and supporting branches, and name module groupings only when they materially help readability.
+- Specify the target subsystem, final file responsibilities, and folder/file placement for new or changed owners, interfaces, adapters, and off-spine concerns, and name module groupings only when they materially help readability.
 - Make folder boundaries reflect the real architecture. Use the spine and ownership model to guide placement meaningfully, not mechanically.
-- When upstream boundaries, main-line domain/control nodes, downstream engines/providers, and support branches live at different structural depths, prefer distinct folders if that makes the structure easier to read. If a flatter layout is clearer for the scope, say so explicitly and justify it.
+- When upstream boundaries, main-line domain/control nodes, downstream engines/providers, and off-spine concerns live at different structural depths, prefer distinct folders if that makes the structure easier to read. If a flatter layout is clearer for the scope, say so explicitly and justify it.
 - Shared-layer, feature-oriented, runtime-oriented, and hybrid folder projections can all be correct when they keep the boundaries readable.
-- Apply common design patterns only when they clarify a local structural problem inside a clear owner or support branch.
+- Apply common design patterns only when they clarify a local structural problem inside a clear owner or off-spine concern.
 - Let layering emerge from the spine and ownership model, then validate that the resulting layers make the main flow easier to read.
 - Define the migration or refactor sequence when the change is not greenfield: what is introduced first, what is temporary, and what must be removed after the new spine is in place.
 - Name which legacy paths, obsolete files, compatibility shims, or old-behavior branches are removed in this scope.
@@ -83,8 +84,8 @@ A useful design spec should give the downstream team:
 - a clear ownership model for those main-line nodes
 - the matching return or event spine when applicable
 - any bounded local/internal spine that materially affects the design
-- a clear split between main-line components and support branches or services
-- a clear statement of which support branches serve which owner on the spine
+- a clear split between main-line components and off-spine concerns
+- a clear statement of which off-spine concerns serve which owner on the spine
 - a clear statement of which existing capability areas or subsystems should be reused or extended instead of creating new ad hoc helpers
 - a clear statement of which repeated data structures, types, normalizers, converters, mappers, or schemas should be reused or extracted into reusable owned files
 - a clear statement of which redundant or fragmented files/helpers/structures become unnecessary and are removed/decommissioned because of the new design
@@ -122,20 +123,20 @@ A useful design spec should give the downstream team:
 - Use separation of concerns to follow ownership boundaries and support the spine, not to replace it.
 - Treat layering as a derived structure and validation check, not as the starting point.
 - Prefer one dominant execution line when the scope has one, but name multiple spines explicitly when the design truly has several important flows.
-- Do not stop at a flat spine inventory. Explain each important spine as a readable end-to-end story with named main domain subjects and attached support branches.
+- Do not stop at a flat spine inventory. Explain each important spine as a readable end-to-end story with named main domain subjects and attached off-spine concerns.
 - If the first public wrapper mostly forwards, record it as a thin facade instead of pretending it owns lifecycle, runtime control, or sequencing.
 - If the design turns into many peer coordinators with no obvious main line, treat that as a design smell and simplify.
 - If a concern does not have clear ownership, treat that as a design smell and tighten the boundary.
 - Side services should feed the spine, observe it, persist from it, or translate around it. They should not fragment the main flow.
-- Support branches should attach to a clear owner on the spine rather than float as shared orchestration blobs.
-- When a support need appears, first ask whether an existing capability area already owns that kind of work. Prefer reuse or extension of that area over creating an ad hoc helper beside the spine.
+- Off-spine concerns should attach to a clear owner on the spine rather than float as shared orchestration blobs.
+- When an off-spine need appears, first ask whether an existing capability area already owns that kind of work. Prefer reuse or extension of that area over creating an ad hoc helper beside the spine.
 - Draft file responsibilities first. Then extract reusable owned files where repetition appears, re-tighten the file responsibilities, and only after that finalize folder/path placement.
 - Do not standardize a loose shared shape. If a shared type, schema, mapper, or model still contains redundant fields or mixed meanings, tighten it before promoting it into a reusable owned file.
 - Do not use backward-compatibility wrappers, dual-path behavior, or retained legacy fallback branches as a design crutch. If the design only works that way, redesign it.
 - Interface boundaries should attach to clear subject ownership too. Avoid generic APIs, queries, commands, service methods, or list surfaces that mix subjects or guess identity meaning.
 - Make dependency direction explicit enough that implementation does not need to guess who is allowed to depend on whom.
 - When mapping the design into code, do not mechanically copy each spine step into a directory. Use folders to make structural boundaries easier to read.
-- Avoid one flat folder that mixes transport, main-line domain/control, persistence, adapters, and support branches when that hides ownership or structural depth.
+- Avoid one flat folder that mixes transport, main-line domain/control, persistence, adapters, and off-spine concerns when that hides ownership or structural depth.
 - If you use a pattern such as a state machine, event loop, factory, registry, adapter, strategy, repository, or manager, say what problem it solves locally and who owns it.
 - For non-trivial refactors, do not describe only the final architecture. Also describe the transition path that gets the code there safely.
 - Prefer clean boundaries over local hacks.
@@ -147,14 +148,14 @@ A useful design spec should give the downstream team:
 
 - Fragmented concern-first shape to avoid:
   `GraphQL -> RuntimeCompositionService -> RuntimeSessionStore -> EventBridge -> SnapshotService -> CodexClient`
-  This is hard to reason about because support services sit on the main line instead of serving it from the side.
+  This is hard to reason about because off-spine concerns sit on the main line instead of serving it from the side.
 - Better spine-first shape:
   `GraphQL -> AgentRunManager -> AgentRun -> AgentRunBackend -> RuntimeEngine / Client -> Provider Runtime`
   Example ownership:
   `AgentRunManager` owns run creation and lookup, `AgentRun` owns run lifecycle, `AgentRunBackend` owns runtime adaptation and normalization.
   Return/event spine:
   `Provider Runtime Events -> RuntimeEngine / Client -> AgentRunBackend -> AgentRun -> WS / History / External Callback -> Frontend`
-  Support services off the spine:
+  Off-spine concerns around the spine:
   definition resolution, workspace/skill resolution, persistence, websocket payload mapping, callback binding.
 - Bounded local spine example inside one owner:
   Parent owner: `RuntimeEngine`
@@ -171,7 +172,7 @@ A useful design spec should give the downstream team:
   `Order` owns business invariants, `OrderApplicationService` owns use-case orchestration, `OrderRepository` owns persistence contract fulfillment.
   Return spine:
   `OrderRepository -> OrderApplicationService -> Client`
-  Support services off the spine:
+  Off-spine concerns around the spine:
   auth, validation helpers, optional response mapping, audit logging, projections, metrics.
 - Facade-versus-owner example:
   `Agent facade -> AgentRuntime -> AgentWorker`

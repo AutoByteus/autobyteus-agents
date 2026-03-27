@@ -1,7 +1,7 @@
 # Common Design Patterns
 
 These patterns are secondary to the primary execution/data-flow spine and ownership model.
-Use them only when they help a clearly owned spine node or support branch solve a specific structural problem.
+Use them only when they help a clearly owned spine node or off-spine concern solve a specific structural problem.
 Do not introduce a pattern if it obscures the spine, blurs ownership, or creates generic coordination blobs.
 
 ## State Machine
@@ -27,9 +27,9 @@ Do not introduce a pattern if it obscures the spine, blurs ownership, or creates
 ## Registry
 
 - Solves: lookup of capabilities, handlers, providers, or definitions by key.
-- Best fit: support branch for indexed lookup.
+- Best fit: off-spine concern for indexed lookup.
 - Avoid: hiding business decisions or orchestration inside the registry.
-- Example shape: `EventHandlerRegistry` or a parser strategy registry stays as lookup support for a dispatcher or parser owner.
+- Example shape: `EventHandlerRegistry` or a parser strategy registry stays as lookup infrastructure for a dispatcher or parser owner.
 
 ## Adapter
 
@@ -62,6 +62,6 @@ Do not introduce a pattern if it obscures the spine, blurs ownership, or creates
 ## Pattern Rule
 
 - Start with the spine.
-- Identify the owned node or support branch that has a concrete structural problem.
+- Identify the owned node or off-spine concern that has a concrete structural problem.
 - Apply a pattern only if it clarifies that local structure.
-- Record the applied pattern and why it belongs inside that owner or support branch.
+- Record the applied pattern and why it belongs inside that owner or off-spine concern.

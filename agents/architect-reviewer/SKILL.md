@@ -42,8 +42,8 @@ Use [templates/design-review-report-template.md](templates/design-review-report-
   - per-spine narrative clarity
   - thin facade versus governing owner clarity when both exist
   - ownership clarity
-  - naming clarity for main-line nodes and support branches
-  - reuse of existing capability areas or subsystems when they already fit the support need
+  - naming clarity for main-line nodes and off-spine concerns
+  - reuse of existing capability areas or subsystems when they already fit the off-spine need
   - extraction of reusable owned files when repeated data structures, types, normalizers, converters, mappers, or schemas would otherwise be duplicated
   - semantic tightness of shared structures so extracted reusable files do not preserve redundant attributes, overlapping representations, or mixed-purpose fields
   - correctness of the shared-core versus specialization/composition decision when related cases partially overlap

@@ -6,7 +6,7 @@ Use them to learn how a good design spec can read when the architecture is organ
 - data-flow spine inventory
 - main domain subject nodes
 - ownership
-- support structure around the spine
+- off-spine concerns around the spine
 - interface boundaries with explicit identity shape
 - derived subsystem, optional module grouping, folder, and file placement
 
@@ -47,9 +47,9 @@ The system validates the request, applies domain rules, persists the order, and 
 | `Order` | domain owner | invariants, business rules, state transitions |
 | `OrderRepository` | persistence boundary | storage contract fulfillment |
 
-### Support Structure Around The Spine
+### Off-Spine Concerns Around The Spine
 
-| Support Branch | Serves Which Owner | Responsibility |
+| Off-Spine Concern | Serves Which Owner | Responsibility |
 | --- | --- | --- |
 | `AuthPolicy` | `OrderController` | request authorization |
 | `RequestValidator` | `OrderController` | input validation |
@@ -90,7 +90,7 @@ persistence/
 | `services/orders/OrderApplicationService.ts` | use-case owner | orchestration |
 | `domain/orders/Order.ts` | domain owner | rules and invariants |
 | `persistence/repositories/OrderRepository.ts` | persistence boundary | storage contract |
-| `persistence/models/OrderRecord.ts` | persistence support | database-facing record/model |
+| `persistence/models/OrderRecord.ts` | persistence adapter | database-facing record/model |
 
 Another valid feature-oriented projection:
 
@@ -113,7 +113,7 @@ The point is that the code layout should make the ownership and structural depth
 
 - The request path is easy to draw.
 - The domain aggregate owns business rules instead of helpers or repositories.
-- The support pieces help the main flow but do not replace it.
+- The off-spine concerns help the main flow but do not replace it.
 - The interfaces are subject-specific and identity-specific.
 
 ### Bad Practice To Avoid
@@ -143,7 +143,7 @@ Why this folder shape also hurts:
 
 - transport, orchestration, domain, and persistence boundaries are mixed together
 - the next engineer cannot see the structural depth from the directory layout
-- support helpers accumulate because the folder no longer communicates boundaries
+- generic helpers accumulate because the folder no longer communicates boundaries
 - it looks feature-grouped on paper, but the files themselves no longer reflect clear owned boundaries
 
 ## Example 2: Agent Run Runtime With Internal Event Loop
@@ -188,9 +188,9 @@ It is the internal control flow of one owned node.
 | `AgentRunBackend` | adaptation owner | provider/runtime normalization |
 | `RuntimeEngine` | runtime control owner | provider session, loop, dispatch |
 
-### Support Structure Around The Spine
+### Off-Spine Concerns Around The Spine
 
-| Support Branch | Serves Which Owner | Responsibility |
+| Off-Spine Concern | Serves Which Owner | Responsibility |
 | --- | --- | --- |
 | `RunDefinitionResolver` | `AgentRunManager` | definition lookup |
 | `WorkspaceResolver` | `AgentRun` | workspace context lookup |
@@ -239,8 +239,8 @@ runtime/
 | `runs/lifecycle/AgentRun.ts` | run lifecycle owner | run state |
 | `runs/backend/AgentRunBackend.ts` | adaptation owner | runtime normalization |
 | `runtime/engine/RuntimeEngine.ts` | runtime owner | event loop and provider interaction |
-| `runtime/provider/ProviderClient.ts` | support/adapter | provider protocol transport |
-| `runs/transport/WsEventMapper.ts` | support branch | transport mapping |
+| `runtime/provider/ProviderClient.ts` | provider adapter | provider protocol transport |
+| `runs/transport/WsEventMapper.ts` | off-spine concern | transport mapping |
 
 This is one good projection of the design into code.
 Another layout can also be valid if it keeps the same ownership and structural boundaries readable.
@@ -257,7 +257,7 @@ Another layout can also be valid if it keeps the same ownership and structural b
 
 Why this degrades:
 
-- support services sit on the main line instead of serving it
+- off-spine concerns sit on the main line instead of serving it
 - there is no obvious main domain subject
 - sequencing authority is blurred across generic coordination pieces
 - the next engineer has to reconstruct the real flow from fragments
@@ -275,7 +275,7 @@ runtime/
 
 Why this folder shape also hurts:
 
-- the folder hides which files are main-line nodes versus support branches
+- the folder hides which files are main-line nodes versus off-spine concerns
 - runtime control, persistence-ish storage, mapping, and transport are mixed together
 - the directory layout stops helping the reader understand the architecture
 
@@ -286,7 +286,7 @@ Why this folder shape also hurts:
 An external caller posts a user or inter-agent message to an agent.
 The public `Agent` surface stays thin.
 `AgentRuntime` owns lifecycle and submission, while `AgentWorker` owns the serialized event loop.
-Queues, dispatchers, registries, status projection, bootstrap, shutdown, and streaming support that runtime instead of competing with it.
+Queues, dispatchers, registries, status projection, bootstrap, shutdown, and streaming serve that runtime instead of competing with it.
 
 ### Spine Inventory
 
@@ -319,14 +319,14 @@ Parent owner: `AgentWorker`
 | `AgentWorker` | bounded local owner | serialized worker loop and shutdown path |
 | `WorkerEventDispatcher` | dispatch owner inside worker flow | applies status projection and routes each event to a concrete handler |
 
-### Support Structure Around The Spine
+### Off-Spine Concerns Around The Spine
 
-| Support Branch | Serves Which Owner | Responsibility |
+| Off-Spine Concern | Serves Which Owner | Responsibility |
 | --- | --- | --- |
 | `AgentInputEventQueueManager` | `AgentWorker` | prioritized queue intake and delivery |
 | `EventHandlerRegistry` | `WorkerEventDispatcher` | handler lookup by event type |
 | `AgentStatusManager` / status derivation | `AgentRuntime` | runtime-visible status projection |
-| `AgentEventStore` | `AgentWorker` | event persistence/history support |
+| `AgentEventStore` | `AgentWorker` | event persistence/history |
 | `AgentExternalEventNotifier` | `AgentRuntime` | outward event/status publishing |
 | `AgentBootstrapper` | `AgentWorker` | startup sequencing |
 | `AgentShutdownOrchestrator` | `AgentWorker` | cleanup and shutdown sequencing |
@@ -343,7 +343,7 @@ It also shows an important ownership distinction:
 the first public class in the flow (`Agent`) is not automatically the deepest owner.
 Sometimes a public facade exists mainly to forward into the true governing owner (`AgentRuntime`), and the bounded local loop owner (`AgentWorker`) sits one level deeper again.
 It also shows capability-area reuse:
-once the system already has `events/`, `handlers/`, `status/`, `context/`, `streaming/`, `bootstrap-steps/`, and `shutdown-steps`, new support responsibilities in those categories should normally land there instead of becoming new ad hoc helpers.
+once the system already has `events/`, `handlers/`, `status/`, `context/`, `streaming/`, `bootstrap-steps/`, and `shutdown-steps`, new off-spine responsibilities in those categories should normally land there instead of becoming new ad hoc helpers.
 
 ### Derived Subsystem / Folder / File Mapping
 
@@ -381,7 +381,7 @@ agent/
 Why this folder shape is good:
 
 - `runtime/` keeps the governing runtime owner and the bounded local worker owner together without hiding the distinction between them
-- `events/`, `handlers/`, `status/`, `context/`, and `streaming/` are clear support structures around that runtime
+- `events/`, `handlers/`, `status/`, `context/`, and `streaming/` are clear off-spine concerns around that runtime
 - the layout is not pretending to be one-folder-per-spine-step; it is a readable projection of ownership and runtime depth
 
 ### Bad Practice To Avoid
@@ -400,7 +400,7 @@ agent/
 
 Why this degrades:
 
-- thin facade, governing runtime owner, loop owner, and support branches collapse into one flat directory
+- thin facade, governing runtime owner, loop owner, and off-spine concerns collapse into one flat directory
 - many generic `...Service` names blur authority
 - queues, dispatch, status, and streaming start competing with the runtime instead of clearly serving it
 - the bounded local worker-loop spine becomes hard to see
@@ -500,9 +500,9 @@ Parent owner: `WorkflowStateMachine`
 | `WorkflowStateMachine` | bounded local owner | transition policy |
 | `WorkflowRepository` | persistence boundary | state persistence |
 
-### Support Structure Around The Spine
+### Off-Spine Concerns Around The Spine
 
-| Support Branch | Serves Which Owner | Responsibility |
+| Off-Spine Concern | Serves Which Owner | Responsibility |
 | --- | --- | --- |
 | `NotificationAdapter` | `WorkflowInstanceService` | send notifications |
 | `AuditTrailStore` | `WorkflowInstanceService` | audit persistence |
@@ -608,13 +608,13 @@ Typical symptoms:
 Why it hurts:
 
 - the spine is hidden
-- support pieces compete with the main flow
+- off-spine concerns compete with the main flow
 - debugging and change analysis become expensive
 
 Better direction:
 
 - restore a readable spine
-- attach support branches to clear owners on that spine
+- attach off-spine concerns to clear owners on that spine
 
 ### 3. Hidden Local Loop
 
@@ -644,25 +644,25 @@ Bad shape:
 Why it hurts:
 
 - the node becomes a god-object
-- support responsibilities stop being explicit
+- off-spine responsibilities stop being explicit
 - the design looks spine-first on paper but is not truly decomposed
 
 Better direction:
 
 - keep the node as the owner of core sequencing
-- split support concerns around it under clear ownership
+- split off-spine concerns around it under clear ownership
 
 ### 5. Flat Mixed-Layer Folder
 
 Bad shape:
 
-- one folder contains transport entrypoints, application sequencing, domain owners, persistence adapters, and support utilities together
+- one folder contains transport entrypoints, application sequencing, domain owners, persistence adapters, and generic utilities together
 
 Why it hurts:
 
 - structural depth disappears from the code layout
 - folder names stop helping the reader reason about ownership
-- later support pieces pile up in the same directory because there is no visible boundary
+- later off-spine concerns pile up in the same directory because there is no visible boundary
 
 Better direction:
 
@@ -675,20 +675,20 @@ Better direction:
 
 Bad shape:
 
-- each new support need creates a new local helper, utility, or service even though the codebase already has an established subsystem for that job
+- each new off-spine need creates a new local helper, utility, or service even though the codebase already has an established subsystem for that job
 
 Why it hurts:
 
 - responsibilities scatter across the codebase
 - existing subsystem boundaries weaken over time
 - the next engineer stops knowing where that kind of logic belongs
-- support structure grows by convenience instead of ownership
+- off-spine concern structure grows by convenience instead of ownership
 
 Better direction:
 
 - check whether an existing capability area or subsystem already owns that kind of responsibility
 - reuse or extend it when the fit is natural
-- create a new support branch only when the current system truly lacks the right owner
+- create a new off-spine concern only when the current system truly lacks the right owner
 
 ### 7. Mistaking A Thin Facade For The Governing Owner
 
@@ -700,7 +700,7 @@ Why it hurts:
 
 - ownership appears simpler than it really is
 - runtime control or lifecycle authority gets hidden
-- later support pieces get attached to the wrong boundary
+- later off-spine concerns get attached to the wrong boundary
 
 Better direction:
 
@@ -714,7 +714,7 @@ Better direction:
 - Reuse the reasoning style, not the exact names.
 - Keep the design spine-first.
 - Keep ownership explicit.
-- Keep support branches around the spine.
+- Keep off-spine concerns around the spine.
 - Keep interface boundaries singular and identity-explicit.
 - Distinguish thin public facades from deeper governing owners when both exist.
 - Let files and any optional module groupings appear after the design story is already clear.
