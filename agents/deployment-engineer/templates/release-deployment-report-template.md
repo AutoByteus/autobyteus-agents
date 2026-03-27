@@ -49,6 +49,15 @@
 - Release notes handoff result: `Used` / `Not required` / `Blocked`
 - Blocker (if applicable):
 
+## Post-Finalization Cleanup
+
+- Dedicated ticket worktree path:
+- Worktree cleanup result: `Completed` / `Not required` / `Blocked`
+- Worktree prune result: `Completed` / `Not required` / `Blocked`
+- Local ticket branch cleanup result: `Completed` / `Not required` / `Blocked`
+- Remote branch cleanup result: `Not required` / `Completed` / `Blocked`
+- Blocker (if applicable):
+
 ## Escalation / Reroute (Use Only If Stage 10 Cannot Complete)
 
 - Classification: `Local Fix` / `Design Impact` / `Requirement Gap` / `Unclear`
