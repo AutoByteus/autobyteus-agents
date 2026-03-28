@@ -58,7 +58,7 @@ This team handles a software change from investigation and requirements definiti
 - The `api_e2e_engineer` should make tested, untested, blocked, and mocked or emulated coverage explicit.
 - Downstream specialists should not guess around upstream ambiguity. Send the work back with a clear classification instead.
 - Small tasks should stay lightweight, but the team should still preserve role boundaries and explicit handoffs.
-- Requirements work can require deep investigation across the codebase, documentation, logs, data, or external references before the requirements doc and investigation notes are ready for handoff.
+- Requirements work can require deep investigation before the requirements doc and investigation notes are ready for handoff: codebase and runtime reading, public API/spec/issue-tracker research, reproductions, probes, focused scripts or tests, minimal setup or mocks, and upstream/vendor/sample-repo inspection when those are the practical ways to gather evidence.
 
 ## Issue Routing
 

@@ -48,6 +48,10 @@ The investigation notes should give `architect_designer`:
 
 - the current execution path or the currently fragmented path
 - relevant files, components, and boundaries already found in the codebase
+- exact source-backed evidence: paths, URLs, commands, queries, and observed behavior
+- runtime or probe findings when reproductions, traces, scripts, or focused test artifacts were needed
+- external, public-API, upstream-source, or sample-repo findings when they materially shaped understanding
+- reproduction or setup prerequisites when they materially affected what was observed
 - current constraints, operational expectations, and migration facts
 - open technical unknowns, evidence, and follow-up questions that still matter for design
 
@@ -65,7 +69,8 @@ The investigation notes should give `architect_designer`:
 - Prefer explicit assumptions over silent guessing.
 - Investigate deeply when the problem is unclear, high-risk, or likely to hide important constraints.
 - Investigation is not limited to reading existing material. Use any relevant evidence-gathering method needed to make the requirements accurate and design-ready.
-- Investigation may include reading, tracing, querying, reproducing behavior, running commands, writing small scripts, or creating focused test artifacts when needed to verify understanding.
+- Treat investigation methods as problem-dependent and non-exhaustive.
+- Investigation may include reading, tracing, querying, reproducing behavior, running commands, writing small scripts, creating focused test artifacts, minimal environment or mock setup, public API/spec/issue research, or inspecting/cloning upstream, vendor, or sample repositories when needed to verify understanding.
 - Keep requirements testable.
 - Distinguish user intent from your own proposed solution.
 - If the request is under-specified, make the gap visible.

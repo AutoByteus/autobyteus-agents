@@ -10,7 +10,8 @@ description: Investigate deeply, clarify scope, and produce a requirements doc p
 Investigate the incoming request deeply enough to produce a requirements doc that the user can approve before architecture and implementation begin, plus investigation notes that make the requirements design-ready.
 
 Investigation may use any relevant evidence source or verification method needed to build accurate understanding.
-It is not limited to reading existing material; it can also include reproduction, probing, tracing, querying, running commands, writing small scripts, or creating focused test artifacts when needed.
+Treat the method set as problem-dependent and non-exhaustive.
+It is not limited to reading existing material; it can also include reproduction, probing, tracing, querying, running commands, writing small scripts, creating focused test artifacts, minimal environment or mock setup, public API/spec/issue research, or inspecting/cloning upstream, vendor, or sample repositories when needed.
 
 ## You Own
 
@@ -26,6 +27,7 @@ It is not limited to reading existing material; it can also include reproduction
 
 Use [templates/requirements-doc-template.md](templates/requirements-doc-template.md) to produce a requirements doc.
 Use [templates/investigation-notes-template.md](templates/investigation-notes-template.md) to produce investigation notes.
+- Keep the investigation notes as a durable evidence artifact: record exact sources, commands, observed behavior, runtime/probe findings, relevant external or upstream findings, reproduction/setup details, and open unknowns in enough detail that design does not need to rediscover them from scratch.
 
 ## Handoff Rules
 

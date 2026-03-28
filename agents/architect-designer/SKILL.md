@@ -66,7 +66,8 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 - Read the requirements-engineer investigation notes first and use them as the starting design context.
 - Perform your own architecture-level investigation after that; the requirements-stage investigation is input, not a replacement.
 - Investigation may use any relevant evidence source or verification method needed to understand the real current system and the real design constraints.
-- It is not limited to reading existing material; it can also include reproduction, probing, tracing, querying, running commands, writing small scripts, or creating focused test artifacts when needed.
+- Treat the method set as problem-dependent and non-exhaustive.
+- It is not limited to reading existing material; it can also include reproduction, probing, tracing, querying, running commands, writing small scripts, creating focused test artifacts, minimal environment or mock setup, public API/spec/issue research, or inspecting/cloning upstream, vendor, or sample repositories when needed.
 - Inspect the relevant current implementation before finalizing the design spec.
 - Identify:
   - the current execution spine or the lack of one
