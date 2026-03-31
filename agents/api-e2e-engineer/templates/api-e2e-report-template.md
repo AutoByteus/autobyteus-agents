@@ -1,9 +1,10 @@
-# API And E2E Validation Report
+# API, E2E, And Executable Validation Report
 
 Keep one canonical Stage 7 report path across reruns.
 Do not create versioned copies by default.
 On round `>1`, recheck prior unresolved failures first, update the prior-failure resolution section, and then record the new round result.
 The latest round is authoritative; earlier rounds remain history.
+Stage 7 may cover API, browser UI, native desktop UI, CLI, process/lifecycle, integration, or distributed validation depending on the real boundaries being proven.
 
 ## Validation Round Meta
 
@@ -23,6 +24,12 @@ Round rules:
 |  |  |  |  |  |  |  |
 
 ## Validation Basis
+
+## Validation Surfaces / Modes
+
+## Platform / Runtime Targets
+
+## Lifecycle / Upgrade / Restart / Migration Checks
 
 ## Coverage Matrix
 

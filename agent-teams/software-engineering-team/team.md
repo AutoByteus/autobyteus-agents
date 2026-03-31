@@ -1,6 +1,6 @@
 ---
 name: Software Engineering Team
-description: A staged engineering delivery team for requirements, design, implementation, API and E2E validation, review, documentation synchronization, and deployment.
+description: A staged engineering delivery team for requirements, design, implementation, API/E2E and broader executable validation, review, documentation synchronization, and deployment.
 category: software-engineering
 ---
 
@@ -30,8 +30,8 @@ This team handles a software change from investigation and requirements definiti
 2. The user reviews and approves the requirements doc before design begins, while the investigation notes remain attached as design input.
 3. `architect_designer` uses the approved requirements doc and investigation notes as starting input, performs architecture-level investigation, and turns that into a design spec.
 4. `architect_reviewer` reviews the design spec, sends findings back to `architect_designer` until the design passes review, and then sends the reviewed design to `implementation_engineer`.
-5. `implementation_engineer` delivers the implementation from the reviewed design and a concrete handoff for API and E2E work.
-6. `api_e2e_engineer` derives detailed validation coverage from the requirements, reviewed design, implementation handoff, and observed behavior; executes API, E2E, and other executable validation work; pushes validation until real blockers are reached; and then reports pass, fail, untested, or blocked status.
+5. `implementation_engineer` delivers the implementation from the reviewed design and a concrete handoff for Stage 7 validation work.
+6. `api_e2e_engineer` derives detailed validation coverage from the requirements, reviewed design, implementation handoff, and observed behavior; executes API, E2E, and other executable validation work across the real system boundaries; pushes validation until real blockers are reached; and then reports pass, fail, untested, or blocked status.
 7. `code_reviewer` performs the engineering review once validation is clean.
 8. `documentation_engineer` synchronizes long-lived project docs after review, records explicit no-impact when appropriate, and hands the docs-sync result forward when Stage 9 is complete.
 9. `deployment_engineer` creates the Stage 10 handoff summary, waits for explicit user completion/verification before ticket archival/repository finalization, and then handles release and deployment work when that work is in scope.
@@ -55,7 +55,8 @@ This team handles a software change from investigation and requirements definiti
 - The `architect_designer` and `architect_reviewer` loop may repeat for multiple rounds until the design passes review.
 - The `api_e2e_engineer` should derive validation coverage from the requirements doc, reviewed design spec, implementation handoff, and observed behavior instead of relying on only one source.
 - The `api_e2e_engineer` should use any reasonable executable validation method needed to verify the behavior, not just tests already present in the codebase.
-- The `api_e2e_engineer` should make tested, untested, blocked, and mocked or emulated coverage explicit.
+- The `api_e2e_engineer` should treat validation mode as scenario-dependent rather than hardcoded to HTTP or browser flows. API, browser UI, native desktop UI, CLI, process/lifecycle, integration, and distributed checks are all valid when they match the real boundary being proven.
+- The `api_e2e_engineer` should make tested, untested, blocked, and mocked or emulated coverage explicit, including platform/runtime specifics for installer, updater, restart, migration, or other lifecycle-sensitive scenarios.
 - Downstream specialists should not guess around upstream ambiguity. Send the work back with a clear classification instead.
 - Small tasks should stay lightweight, but the team should still preserve role boundaries and explicit handoffs.
 - Requirements work can require deep investigation before the requirements doc and investigation notes are ready for handoff: codebase and runtime reading, public API/spec/issue-tracker research, reproductions, probes, focused scripts or tests, minimal setup or mocks, and upstream/vendor/sample-repo inspection when those are the practical ways to gather evidence.

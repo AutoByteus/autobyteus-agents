@@ -7,13 +7,14 @@ description: Design and execute API, E2E, and other executable validation work, 
 
 ## Purpose
 
-Design the validation coverage, implement the required API and E2E tests, perform whatever executable validation is needed against the expected behavior, and classify failures precisely.
+Design the validation coverage, implement the required durable validation, perform whatever executable validation is needed against the expected behavior, and classify failures precisely.
 
 ## You Own
 
 - validation coverage design
 - API test implementation
 - E2E test implementation
+- native desktop, lifecycle, and process validation when in scope
 - validation scenarios
 - validation environment setup
 - temporary validation scripts, harnesses, or probes when needed
@@ -23,12 +24,13 @@ Design the validation coverage, implement the required API and E2E tests, perfor
 
 ## Primary Output
 
-Use [templates/api-e2e-report-template.md](templates/api-e2e-report-template.md) to produce an API and E2E validation report.
+Use [templates/api-e2e-report-template.md](templates/api-e2e-report-template.md) to produce an API, E2E, and executable validation report.
 
 ## Validation Design
 
 - Derive the validation coverage from the approved requirements doc, the reviewed design spec, the implementation handoff, and the behavior you can directly observe.
 - Cover happy paths, edge cases, failure paths, integration boundaries, and environment-specific behavior whenever those can reasonably be exercised.
+- Treat validation mode as scenario-dependent, not hardcoded. API, browser UI, native desktop UI, CLI, process/lifecycle, integration, and distributed checks are all valid when they are the real boundary being proven.
 - Treat the implementation handoff as input, not as the only source of truth.
 - Make untested areas explicit instead of silently skipping them.
 - Keep one canonical validation report across reruns. On each rerun, recheck prior unresolved failures first, then record the new round. The latest round is authoritative.
@@ -43,23 +45,26 @@ Use [templates/api-e2e-report-template.md](templates/api-e2e-report-template.md)
 - Validation is not limited to tests already present in the codebase.
 - Use whatever executable validation method is needed when reasonable:
   - API tests
-  - E2E tests
+  - browser or native E2E tests
+  - CLI or lifecycle harnesses
   - temporary scripts or harnesses
   - local or containerized environment setup
   - mocked or emulated dependencies
   - multi-process or multi-node verification
   - browser or computer automation when that is the practical way to prove the flow
+  - native desktop automation, updater/restart checks, or other lifecycle-specific verification when that is the real behavior under test
 - Investigation for validation is active work, not just reading. Use commands, scripts, probes, runtime setup, or focused test artifacts when they help prove behavior.
 - Push validation until you hit a real blocker.
 - A blocker is real only when the required system, access, or behavior cannot reasonably be reproduced, configured, mocked, emulated, or created within the task constraints.
 - If you create temporary validation scaffolding only for proof, remove it afterward unless it should remain as durable coverage.
+- For native desktop, installer, updater, restart, migration, recovery, or process-lifecycle cases, record platform/runtime specifics, version `from`/`to` when relevant, and relaunch or lifecycle evidence instead of reducing the case to generic API or browser terminology.
 - On rerun rounds, update the prior-failure resolution section before declaring the new gate result.
 
 ## Minimum Vs Full Validation
 
 - Minimum:
-  - add or update the API and E2E tests that should exist in the codebase
-  - run those tests and record the result
+  - add or update the durable validation that should exist in the codebase for the relevant boundary
+  - run that validation and record the result
 - Beyond minimum, when needed to prove behavior:
   - stand up a realistic local environment
   - create temporary scripts, probes, or focused test harnesses
@@ -68,11 +73,14 @@ Use [templates/api-e2e-report-template.md](templates/api-e2e-report-template.md)
   - seed data or configure dependencies
   - mock or emulate an external dependency when that still proves the relevant behavior
   - use browser or computer automation when the behavior cannot be proved adequately from repository-resident tests alone
+  - use native desktop automation or lifecycle-specific harnesses when the critical behavior is install/update/startup/restart/migration/recovery rather than a simple HTTP or browser flow
 - Stop only at a real blocker, not at inconvenience or missing prebuilt setup.
 
 ## Examples
 
 - If the feature changes an API contract, the minimum is to update or add the API tests that belong in the repo and run them.
+- If the feature is a browser UI change, the minimum may be browser-resident UI automation rather than a pure API test.
+- If the feature is a desktop updater or Electron relaunch flow, the minimum may include a local updater or restart harness that proves version `from` -> version `to`, relaunch, and persisted-state behavior.
 - If the behavior depends on a worker, queue consumer, or background process, go beyond the minimum and start the needed local processes so the full flow can be exercised.
 - If the behavior depends on two nodes synchronizing, set up a two-node local or containerized environment and verify the synchronization directly when feasible.
 - If an external dependency is required but can be reasonably mocked or emulated without losing the point of the validation, do that and keep going.
