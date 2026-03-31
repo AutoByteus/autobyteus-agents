@@ -36,6 +36,7 @@ Use [templates/review-report-template.md](templates/review-report-template.md) t
 - Use investigation notes as context when they materially explain current behavior, external constraints, search findings, or the changed scope, but do not treat them as authority.
 - Use earlier design artifacts as context, not as truth. If independent review shows the earlier design basis was weak, incomplete, or wrong, classify `Design Impact`.
 - Check that the implementation preserves a clear data-flow spine, ownership boundaries, off-spine concern quality, naming quality across files/folders/APIs/types/functions/parameters/variables, and readable code placement.
+- Check that authoritative public boundaries remain authoritative, so callers above them do not depend on both the outer boundary and one of its internal lower-level concerns.
 - Treat unjustified duplicated code, repeated structures, or repeated policy logic left in changed scope as a blocking Stage 8 issue unless the duplication is clearly temporary and removal is part of the same bounded fix.
 - Treat loose shared/base structures as blocking Stage 8 issues when one-for-all models, mostly-optional fields, or overlapping parallel shapes replace a tighter shared core plus meaningful specialization.
 - Treat dead code, obsolete files, unused helpers/tests/flags/adapters, and dormant replaced paths left in changed scope as blocking Stage 8 issues.
@@ -45,6 +46,7 @@ Use [templates/review-report-template.md](templates/review-report-template.md) t
 - Review the tests themselves too: test quality, test maintainability, and fitness of validation evidence are part of the final gate.
 - Use `Validation Gap` when the main problem is insufficient or weak validation evidence rather than source-code or design drift.
 - Treat compatibility wrappers, dual-path behavior, and retained legacy old-behavior paths as blocking review findings when they remain in scope after the change.
+- Treat boundary-bypass shapes as blocking review findings when callers above an authoritative boundary depend on both that boundary and one of its internal mechanisms.
 - Keep one canonical review report across reruns. On each rerun, recheck prior unresolved findings first, then record the new round. The latest round is authoritative.
 - Reuse the same finding IDs across reruns for the same unresolved issues. Create new finding IDs only for newly discovered issues.
 - On rerun rounds, update the prior-findings resolution section before declaring the new gate result.

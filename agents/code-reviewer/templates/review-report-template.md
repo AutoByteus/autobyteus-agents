@@ -56,6 +56,7 @@ Do not apply the source-file hard limit to unit, integration, API, or E2E test f
 | Shared-structure / data-model tightness |  |  |  |
 | No unjustified duplication in changed scope |  |  |  |
 | Dependency quality / forbidden shortcuts |  |  |  |
+| Boundary encapsulation / authoritative entrypoint preservation |  |  |  |
 | File placement / layout clarity |  |  |  |
 | Naming quality and naming-to-responsibility alignment (files, folders, APIs, types, functions, parameters, variables) |  |  |  |
 | Duplication / patch layering control |  |  |  |

@@ -22,6 +22,7 @@ Perform the architecture review gate before implementation starts so design weak
 - design pass/fail/blocked decision
 - residual design-risk visibility
 - naming, ownership, interface-boundary, and decoupling review
+- boundary-encapsulation review
 
 ## Primary Output
 
@@ -50,6 +51,7 @@ Use [templates/design-review-report-template.md](templates/design-review-report-
   - removal/decommission of redundant or fragmented pieces that the new structure makes unnecessary
   - rejection of backward-compatibility wrappers, dual-path behavior, and retained legacy fallback paths for in-scope behavior
   - interface-boundary clarity and explicit identity shapes
+  - boundary encapsulation clarity so authoritative public entrypoints do not get bypassed by upstream callers
   - dependency direction and forbidden shortcuts
   - target subsystem allocation, reusable owned structures, file responsibility mapping, and subsystem/folder/file placement
   - whether the design uses examples when they are needed for clarity
@@ -67,6 +69,7 @@ Use [templates/design-review-report-template.md](templates/design-review-report-
 - Do not pass an addition-only design when the cleaner target structure clearly makes older fragmented pieces unnecessary but never names their removal/decommission plan.
 - Do not pass a design that keeps compatibility wrappers, dual-path behavior, or legacy fallback branches for old behavior that is being replaced in scope.
 - Do not pass generic APIs, queries, commands, service methods, or list/query surfaces that blur subject ownership or guess identity meaning.
+- Do not pass a design where callers above an authoritative boundary depend on both that boundary and one of its internal lower-level concerns instead of using one authoritative entrypoint.
 
 ## Handoff Rules
 

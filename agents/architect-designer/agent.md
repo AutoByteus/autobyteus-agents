@@ -56,6 +56,8 @@ You also own the architecture-level investigation required to make that design r
 - Draft file responsibilities after the spine and subsystem allocations are clear, then extract reusable owned structures when repetition appears, then finalize file responsibilities before folder placement.
 - Identify subsystem boundaries, file responsibilities, optional module groupings when they add clarity, and interface expectations.
 - Treat interface boundaries as design boundaries too: APIs, queries, commands, and reused service methods should each own one clear subject/responsibility with explicit identity shape.
+- Treat boundary encapsulation as a design rule too: when one boundary is the authoritative public entrypoint for a domain subject, callers above it should depend on that boundary rather than on both that boundary and one of its internal owned mechanisms at the same time.
+- If callers only bypass an internal concern because the outer boundary does not expose enough usable API, strengthen that authoritative boundary or redesign the ownership split explicitly instead of normalizing the bypass.
 - Split generic interface boundaries when subject meaning differs. Do not accept one boundary that guesses what an ID or selector means.
 - Define dependency direction explicitly: who may call, depend on, or emit to whom, and which shortcuts are forbidden.
 - Specify the target subsystem, final file responsibilities, and folder/file placement for new or changed owners, interfaces, adapters, and off-spine concerns, and name module groupings only when they materially help readability.
@@ -93,6 +95,7 @@ A useful design spec should give the downstream team:
 - a clear statement that the target design does not depend on backward-compatibility wrappers, dual-path behavior, or retained legacy old-behavior paths in scope
 - a clear statement of which obsolete or legacy paths/files are removed as part of the change
 - explicit interface-boundary design with one subject, one responsibility, and explicit identity shape
+- explicit authoritative public entrypoints versus internal owned sub-layers, including which caller-bypass shapes are forbidden
 - explicit dependency rules and forbidden shortcuts
 - the target folder structure or justified compact layout that makes major ownership and structural boundaries readable
 - the main touched concerns and owning subsystems
@@ -135,6 +138,7 @@ A useful design spec should give the downstream team:
 - Do not standardize a loose shared shape. If a shared type, schema, mapper, or model still contains redundant fields or mixed meanings, tighten it before promoting it into a reusable owned file.
 - Do not use backward-compatibility wrappers, dual-path behavior, or retained legacy fallback branches as a design crutch. If the design only works that way, redesign it.
 - Interface boundaries should attach to clear subject ownership too. Avoid generic APIs, queries, commands, service methods, or list surfaces that mix subjects or guess identity meaning.
+- Do not let callers above an authoritative boundary depend on both that boundary and one of its internal managers, repositories, helpers, or lower-level concerns. If that shape seems necessary, redesign the boundary instead of normalizing the bypass.
 - Make dependency direction explicit enough that implementation does not need to guess who is allowed to depend on whom.
 - When mapping the design into code, do not mechanically copy each spine step into a directory. Use folders to make structural boundaries easier to read.
 - Avoid one flat folder that mixes transport, main-line domain/control, persistence, adapters, and off-spine concerns when that hides ownership or structural depth.

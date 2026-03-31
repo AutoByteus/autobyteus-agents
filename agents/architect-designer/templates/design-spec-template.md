@@ -149,10 +149,18 @@ Re-tighten the file responsibilities after extracting reusable owned structures 
 ## Ownership Boundaries
 
 Explain where authority changes hands and what must stay encapsulated inside each owner.
+Name which boundaries are authoritative public entrypoints versus internal owned mechanisms that should stay behind them.
+
+## Boundary Encapsulation Map
+
+| Authoritative Boundary | Internal Owned Mechanism(s) It Encapsulates | Upstream Callers That Must Use The Boundary | Forbidden Bypass Shape | If Boundary API Is Too Thin, Fix By |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
 
 ## Dependency Rules
 
 State who may depend on, call, or emit to whom, and name the shortcuts or cross-boundary dependencies that are forbidden.
+Make boundary-bypass rules explicit when one public boundary is supposed to encapsulate a lower-level concern.
 
 ## Interface Boundary Mapping
 

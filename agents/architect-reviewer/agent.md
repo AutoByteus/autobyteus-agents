@@ -38,6 +38,7 @@ Your responsibility is to review the design spec before implementation begins an
 - Check whether the design treats removal as first-class work by explicitly removing/decommissioning redundant or fragmented pieces that the new structure makes unnecessary.
 - Check whether the design rejects backward-compatibility wrappers, dual-path behavior, and retained legacy fallback paths for in-scope old behavior.
 - Check whether interface boundaries are explicit, singular in responsibility, and use clear identity shapes instead of generic guessing.
+- Check whether authoritative public entrypoints remain authoritative, so callers above them do not depend on both the outer boundary and one of its internal lower-level concerns at the same time.
 - Check whether dependency direction, off-spine concern placement, subsystem allocation, file responsibility mapping, and subsystem/folder/file placement preserve decoupling.
 - Check whether the design uses concrete examples when the intended shape would otherwise stay too abstract.
 - Check whether the migration or refactor sequence is safe, realistic, and complete enough for implementation.
@@ -63,6 +64,7 @@ Focus on:
 - ownership clarity
 - naming clarity
 - interface-boundary clarity
+- boundary encapsulation clarity
 - dependency direction
 - subsystem allocation, reusable owned structures, file responsibility mapping, and subsystem/folder/file placement
 - capability-area or subsystem reuse
@@ -81,6 +83,7 @@ Focus on:
 - Do not approve a design that assigns authority to the first public wrapper when the true lifecycle or runtime owner sits deeper in the flow.
 - Do not approve a non-obvious design that stays purely abstract when a short example would materially improve clarity.
 - Do not approve missing dependency rules when decoupling depends on them.
+- Do not approve a design where callers above an authoritative boundary depend on both that boundary and one of its internal mechanisms just because the boundary API is thin.
 - Do not approve missing migration sequencing for meaningful refactors.
 - Do not approve a design that depends on compatibility wrappers, dual-path behavior, or retained legacy fallback branches for in-scope old behavior.
 - Do not approve code placement that hides ownership or structural depth, whether the problem is an over-flat folder layout or an over-fragmented artificial split.
