@@ -20,6 +20,7 @@ The latest round is authoritative; earlier rounds remain history.
 Round rules:
 - Reuse the same finding IDs across reruns for the same unresolved issues.
 - Create new finding IDs only for newly discovered review findings.
+- Update the scorecard on every review round; the latest round's scorecard is authoritative.
 
 ## Round History
 
@@ -61,6 +62,34 @@ Do not apply the source-file hard limit to unit, integration, API, or E2E test f
 | Naming quality and naming-to-responsibility alignment (files, folders, APIs, types, functions, parameters, variables) |  |  |  |
 | Duplication / patch layering control |  |  |  |
 | Dead/obsolete code cleanup completeness in changed scope |  |  |  |
+
+## Review Scorecard (Mandatory)
+
+Record the scorecard even when the review fails.
+The scorecard explains the current quality level; it does not override the gate result.
+Use equal-weight scoring across all ten categories.
+
+- Overall score (`/10`):
+- Overall score (`/100`):
+- Score calculation note: equal-weight average across the ten categories below; round `/10` to one decimal place and `/100` to the nearest whole number.
+
+| Category | Score (`1.0-10.0`) | Why This Score | What Is Weak / Holding It Down | What Should Improve |
+| --- | --- | --- | --- | --- |
+| Spine clarity and traceability |  |  |  |  |
+| Ownership clarity and boundary encapsulation |  |  |  |  |
+| Separation of concerns and file placement |  |  |  |  |
+| API/interface/query/command clarity |  |  |  |  |
+| Shared-structure/data-model tightness and reusable owned structures |  |  |  |  |
+| Dependency quality and shortcut avoidance |  |  |  |  |
+| Naming quality and local readability |  |  |  |  |
+| Validation strength |  |  |  |  |
+| Runtime correctness under edge cases |  |  |  |  |
+| Modernization / cleanup / no legacy |  |  |  |  |
+
+Rules:
+- Do not record raw numbers without explanation.
+- Every row must include the reason for the score, the concrete weakness or drag, and the expected improvement.
+- No minimum numeric score automatically passes or fails the review; the gate still follows the actual findings and mandatory checks.
 
 ## Findings
 
@@ -114,4 +143,5 @@ Rules:
 ## Latest Authoritative Result
 
 - Gate Decision:
+- Score Summary:
 - Notes:

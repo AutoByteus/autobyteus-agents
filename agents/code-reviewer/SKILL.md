@@ -12,6 +12,7 @@ Perform the final quality gate and route findings to the correct specialist inst
 ## You Own
 
 - final review findings
+- review scorecard
 - residual risk visibility
 - docs-impact visibility
 - review pass/fail decision
@@ -33,6 +34,8 @@ Use [templates/review-report-template.md](templates/review-report-template.md) t
 ## Review Standard
 
 - Review the code independently against the shared design principles, common design practices, and Stage 8 review gates, not only against functional behavior.
+- Record a detailed review scorecard in the review report: overall `/10` and `/100` plus category rows for spine clarity/traceability, ownership plus boundary encapsulation, separation of concerns plus placement, API/interface clarity, shared-structure tightness plus reusable owned structures, dependency quality, naming/readability, validation strength, runtime correctness under edge cases, and modernization/cleanup/no legacy.
+- Use equal-weight scoring across those ten categories. Every score row must say why it earned that score, what is weak, and what should improve. Scores supplement pass/fail; they do not override blocking findings or failed Stage 8 checks.
 - Use investigation notes as context when they materially explain current behavior, external constraints, search findings, or the changed scope, but do not treat them as authority.
 - Use earlier design artifacts as context, not as truth. If independent review shows the earlier design basis was weak, incomplete, or wrong, classify `Design Impact`.
 - Check that the implementation preserves a clear data-flow spine, ownership boundaries, off-spine concern quality, naming quality across files/folders/APIs/types/functions/parameters/variables, and readable code placement.

@@ -20,7 +20,7 @@ This team handles a software change from investigation and requirements definiti
 - `architect_reviewer` reviews the design spec before implementation and checks spine inventory completeness, governing-owner clarity, ownership, boundary encapsulation, subsystem reuse, naming, interface boundaries, decoupling, migration safety, and the no-legacy/no-backward-compat rule.
 - `implementation_engineer` delivers the code changes, keeps the implementation aligned with the agreed design, and removes in-scope legacy or compatibility paths instead of preserving them.
 - `api_e2e_engineer` owns API, E2E, and executable validation work, including coverage design, realistic setup, and evidence needed to verify behavior.
-- `code_reviewer` performs independent engineering review and checks remaining risks and docs impact.
+- `code_reviewer` performs independent engineering review, produces an evidence-based quality scorecard, and checks remaining risks and docs impact.
 - `documentation_engineer` synchronizes long-lived project docs after review, promotes durable design/runtime knowledge out of ticket artifacts, and records the Stage 9 docs-sync result.
 - `deployment_engineer` handles Stage 10 handoff summary, user-verification hold, ticket archival/repository finalization, release preparation, rollout steps, and post-deploy verification after docs synchronization is complete.
 
@@ -32,7 +32,7 @@ This team handles a software change from investigation and requirements definiti
 4. `architect_reviewer` reviews the design spec, sends findings back to `architect_designer` until the design passes review, and then sends the reviewed design to `implementation_engineer`.
 5. `implementation_engineer` delivers the implementation from the reviewed design and a concrete handoff for Stage 7 validation work.
 6. `api_e2e_engineer` derives detailed validation coverage from the requirements, reviewed design, implementation handoff, and observed behavior; executes API, E2E, and other executable validation work across the real system boundaries; pushes validation until real blockers are reached; and then reports pass, fail, untested, or blocked status.
-7. `code_reviewer` performs the engineering review once validation is clean.
+7. `code_reviewer` performs the engineering review and records the Stage 8 scorecard once validation is clean.
 8. `documentation_engineer` synchronizes long-lived project docs after review, records explicit no-impact when appropriate, and hands the docs-sync result forward when Stage 9 is complete.
 9. `deployment_engineer` creates the Stage 10 handoff summary, waits for explicit user completion/verification before ticket archival/repository finalization, and then handles release and deployment work when that work is in scope.
 
@@ -80,7 +80,7 @@ When a downstream specialist finds a problem, classify it and route it to the ri
 - `architect_reviewer` owns the design review gate, independent design findings, and pass/fail judgment for spine inventory completeness, readable spine narratives, thin-facade versus governing-owner clarity when relevant, ownership clarity, boundary encapsulation soundness, subsystem-allocation soundness, subsystem-reuse soundness, reusable-owned-structure extraction quality, file-responsibility mapping clarity, interface-boundary clarity, dependency direction, justified code-layout clarity, example-based clarity when needed, and migration safety in the design spec.
 - `implementation_engineer` owns execution against the current design, clean-cut removal of in-scope legacy/compatibility paths, unit-level verification, and normal source commits during feature delivery.
 - `api_e2e_engineer` owns validation coverage design, validation implementation, executable setup, execution evidence, and failure classification.
-- `code_reviewer` owns final findings, residual risks, docs-impact visibility, and the engineering review gate, including the hard no-backward-compat/no-legacy check.
+- `code_reviewer` owns final findings, the Stage 8 scorecard, residual risks, docs-impact visibility, and the engineering review gate, including the hard no-backward-compat/no-legacy check.
 - `documentation_engineer` owns post-review docs synchronization, the `docs-sync` artifact, explicit no-impact decisions, and promotion of durable design/runtime knowledge from ticket artifacts into long-lived project docs.
 - `deployment_engineer` owns Stage 10 handoff summary, user-verification hold, archived ticket-state transition, release notes, version/tag or release commit work, finalization-target-branch update/merge flow when required, deployment execution, rollout checks, and rollback visibility.
 
