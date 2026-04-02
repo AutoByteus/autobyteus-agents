@@ -4,12 +4,14 @@
     {
       "memberName": "deep_researcher",
       "ref": "deep-researcher",
-      "refType": "agent"
+      "refType": "agent",
+      "refScope": "team_local"
     },
     {
       "memberName": "infographic_powerpoint_designer",
       "ref": "infographic-powerpoint-designer",
-      "refType": "agent"
+      "refType": "agent",
+      "refScope": "team_local"
     }
   ]
 }

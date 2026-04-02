@@ -5,42 +5,50 @@
     {
       "memberName": "requirements_engineer",
       "ref": "requirements-engineer",
-      "refType": "agent"
+      "refType": "agent",
+      "refScope": "team_local"
     },
     {
       "memberName": "architect_designer",
       "ref": "architect-designer",
-      "refType": "agent"
+      "refType": "agent",
+      "refScope": "team_local"
     },
     {
       "memberName": "architect_reviewer",
       "ref": "architect-reviewer",
-      "refType": "agent"
+      "refType": "agent",
+      "refScope": "team_local"
     },
     {
       "memberName": "implementation_engineer",
       "ref": "implementation-engineer",
-      "refType": "agent"
+      "refType": "agent",
+      "refScope": "team_local"
     },
     {
       "memberName": "api_e2e_engineer",
       "ref": "api-e2e-engineer",
-      "refType": "agent"
+      "refType": "agent",
+      "refScope": "team_local"
     },
     {
       "memberName": "code_reviewer",
       "ref": "code-reviewer",
-      "refType": "agent"
+      "refType": "agent",
+      "refScope": "team_local"
     },
     {
       "memberName": "documentation_engineer",
       "ref": "documentation-engineer",
-      "refType": "agent"
+      "refType": "agent",
+      "refScope": "team_local"
     },
     {
       "memberName": "deployment_engineer",
       "ref": "deployment-engineer",
-      "refType": "agent"
+      "refType": "agent",
+      "refScope": "team_local"
     }
   ]
 }
