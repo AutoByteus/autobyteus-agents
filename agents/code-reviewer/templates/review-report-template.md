@@ -47,49 +47,62 @@ Do not apply the source-file hard limit to unit, integration, API, or E2E test f
 
 ## Structural / Design Checks
 
+Use the same mandatory structural checks as the shared Stage 8 template. Do not replace them with a smaller ad hoc checklist.
+
 | Check | Result (`Pass`/`Fail`) | Evidence | Required Action |
 | --- | --- | --- | --- |
-| Data-flow spine clarity and preservation under shared principles |  |  |  |
-| Ownership boundary preservation |  |  |  |
-| Support structure clarity |  |  |  |
-| Existing capability/subsystem reuse |  |  |  |
-| Reusable owned structures |  |  |  |
-| Shared-structure / data-model tightness |  |  |  |
-| No unjustified duplication in changed scope |  |  |  |
-| Dependency quality / forbidden shortcuts |  |  |  |
-| Boundary encapsulation / authoritative entrypoint preservation |  |  |  |
-| File placement / layout clarity |  |  |  |
-| Naming quality and naming-to-responsibility alignment (files, folders, APIs, types, functions, parameters, variables) |  |  |  |
-| Duplication / patch layering control |  |  |  |
+| Data-flow spine inventory clarity and preservation under shared principles |  |  |  |
+| Ownership boundary preservation and clarity |  |  |  |
+| Off-spine concern clarity (off-spine concerns serve clear owners and stay off the main line) |  |  |  |
+| Existing capability/subsystem reuse check (no fresh helper where an existing subsystem should own it) |  |  |  |
+| Reusable owned structures check (repeated structures extracted into the right owned file instead of copied across files) |  |  |  |
+| Shared-structure/data-model tightness check (no kitchen-sink base, no overlapping parallel shapes, specialization/composition used meaningfully) |  |  |  |
+| Repeated coordination ownership check (shared policy has a clear owner instead of being repeated across callers) |  |  |  |
+| Empty indirection check (no pass-through-only boundary) |  |  |  |
+| Scope-appropriate separation of concerns and file responsibility clarity |  |  |  |
+| Ownership-driven dependency check (no forbidden shortcuts or unjustified cycles) |  |  |  |
+| Boundary encapsulation check (callers do not depend on both an outer owner and that owner's internal manager/repository/helper/lower-level concern) |  |  |  |
+| File placement check (file/folder path matches owning concern or explicitly justified shared boundary) |  |  |  |
+| Flat-vs-over-split layout judgment (layout is readable for the scope and not artificially fragmented) |  |  |  |
+| Interface/API/query/command/service-method boundary clarity (one subject, one responsibility, explicit identity shape) |  |  |  |
+| Naming quality and naming-to-responsibility alignment check (files, folders, APIs, types, functions, parameters, variables) |  |  |  |
+| No unjustified duplication of code / repeated structures in changed scope |  |  |  |
+| Patch-on-patch complexity control |  |  |  |
 | Dead/obsolete code cleanup completeness in changed scope |  |  |  |
+| Test quality is acceptable for the changed behavior |  |  |  |
+| Test maintainability is acceptable for the changed behavior |  |  |  |
+| Validation evidence sufficiency for the changed flow |  |  |  |
+| No backward-compatibility mechanisms (no compatibility wrappers/dual-path behavior) |  |  |  |
+| No legacy code retention for old behavior |  |  |  |
 
 ## Review Scorecard (Mandatory)
 
 Record the scorecard even when the review fails.
 The scorecard explains the current quality level; it does not override the gate result.
-Use equal-weight scoring across all ten categories.
+Use the canonical priority order below. The order is the review reasoning order, not an equal-weight category list.
 
 - Overall score (`/10`):
 - Overall score (`/100`):
-- Score calculation note: equal-weight average across the ten categories below; round `/10` to one decimal place and `/100` to the nearest whole number.
+- Score calculation note: report `/10` and `/100` for summary/trend visibility only. If an overall score is reported, a simple average across the ten categories below is acceptable, but the average is never the review decision rule.
 
-| Category | Score (`1.0-10.0`) | Why This Score | What Is Weak / Holding It Down | What Should Improve |
-| --- | --- | --- | --- | --- |
-| Spine clarity and traceability |  |  |  |  |
-| Ownership clarity and boundary encapsulation |  |  |  |  |
-| Separation of concerns and file placement |  |  |  |  |
-| API/interface/query/command clarity |  |  |  |  |
-| Shared-structure/data-model tightness and reusable owned structures |  |  |  |  |
-| Dependency quality and shortcut avoidance |  |  |  |  |
-| Naming quality and local readability |  |  |  |  |
-| Validation strength |  |  |  |  |
-| Runtime correctness under edge cases |  |  |  |  |
-| Modernization / cleanup / no legacy |  |  |  |  |
+| Priority | Category | Score (`1.0-10.0`) | Why This Score | What Is Weak / Holding It Down | What Should Improve |
+| --- | --- | --- | --- | --- | --- |
+| `1` | `Data-Flow Spine Inventory and Clarity` |  |  |  |  |
+| `2` | `Ownership Clarity and Boundary Encapsulation` |  |  |  |  |
+| `3` | `API / Interface / Query / Command Clarity` |  |  |  |  |
+| `4` | `Separation of Concerns and File Placement` |  |  |  |  |
+| `5` | `Shared-Structure / Data-Model Tightness and Reusable Owned Structures` |  |  |  |  |
+| `6` | `Naming Quality and Local Readability` |  |  |  |  |
+| `7` | `Validation Strength` |  |  |  |  |
+| `8` | `Runtime Correctness Under Edge Cases` |  |  |  |  |
+| `9` | `No Backward-Compatibility / No Legacy Retention` |  |  |  |  |
+| `10` | `Cleanup Completeness` |  |  |  |  |
 
 Rules:
 - Do not record raw numbers without explanation.
 - Every row must include the reason for the score, the concrete weakness or drag, and the expected improvement.
-- No minimum numeric score automatically passes or fails the review; the gate still follows the actual findings and mandatory checks.
+- Every category is mandatory. Clean Stage 8 pass target is `>= 9.0` in every category. Any category below `9.0` is a real gap and should normally fail the review.
+- Do not let the overall summary override a weak category. The gate still follows the actual findings and mandatory checks.
 
 ## Findings
 
