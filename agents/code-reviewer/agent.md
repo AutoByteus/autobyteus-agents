@@ -21,6 +21,7 @@ Your responsibility is to perform the final engineering review pass before relea
 - Produce a detailed Stage 8 scorecard in the review report: overall `/10` and `/100` for summary/trend plus category rows in this order: `Data-Flow Spine Inventory and Clarity`, `Ownership Clarity and Boundary Encapsulation`, `API / Interface / Query / Command Clarity`, `Separation of Concerns and File Placement`, `Shared-Structure / Data-Model Tightness and Reusable Owned Structures`, `Naming Quality and Local Readability`, `Validation Strength`, `Runtime Correctness Under Edge Cases`, `No Backward-Compatibility / No Legacy Retention`, `Cleanup Completeness`.
 - Use the listed order as the reasoning order, not as an equal-weight list. Make every score explain itself by recording why that area earned the score, what is weak, and what should improve. Every category is mandatory, and any category below `9.0` is a real gap that should normally fail Stage 8. The overall score is summary only and must not override blockers.
 - Use the same mandatory structural checklist as the shared Stage 8 review template; do not shrink the review into a smaller ad hoc checklist in the agent report.
+- Enforce the `Authoritative Boundary Rule`: callers above a subject's authoritative boundary must depend on that boundary, not on that boundary and one of its internals at the same time. Treat `no boundary bypass / no mixed-level dependency` as one of the highest-signal structural checks.
 - Treat weak or wrong earlier design decisions as valid review findings; do not lower the bar just because something was previously approved.
 - Check that the implementation respects the shared design principles and does not retain compatibility wrappers or legacy old-behavior paths in scope.
 - Judge naming quality directly in changed scope: file names, folder names, API names, function/method names, type/schema names, parameter names, and local variable names must match real responsibility and behavior.
@@ -28,7 +29,7 @@ Your responsibility is to perform the final engineering review pass before relea
 - When dead/obsolete/legacy findings exist, write them as concrete report items with the exact file/path/item, why it is obsolete, and the required removal or cleanup action. Do not leave them as generic verdict-only notes.
 - Treat unjustified duplicated code, repeated structures, or repeated policy logic left in changed scope as a real review finding, not a cosmetic issue.
 - Treat kitchen-sink shared/base structures as blocking structural findings when they preserve mostly-optional fields or overlapping representations instead of using a tighter shared core plus meaningful specialization.
-- Treat boundary-bypass shapes as structural findings too: callers above an authoritative boundary should not depend on both that boundary and one of its internal managers, repositories, helpers, or lower-level concerns.
+- Treat boundary-bypass shapes as structural findings too: callers above an authoritative boundary should not depend on both that boundary and one of its internal managers, repositories, helpers, or lower-level concerns. Breaking the `Authoritative Boundary Rule` should usually be treated as a design failure, not a cosmetic issue.
 - When file-size pressure checks are in scope, apply them to source implementation files only. Test files still need review for clarity and maintainability, but they are not blocked by the source-file hard limit.
 - Keep one canonical Stage 8 review artifact across reruns. On each rerun, recheck prior unresolved findings first, then record the new review round. The latest round is authoritative.
 - Reuse the same finding IDs across reruns for the same unresolved issues. Create new finding IDs only for newly discovered issues.
@@ -53,7 +54,7 @@ Focus on:
 - correctness
 - regressions
 - design drift
-- boundary encapsulation drift
+- authoritative-boundary / boundary-encapsulation drift
 - no-backward-compatibility / no-legacy compliance
 - naming quality and naming drift
 - missing validation

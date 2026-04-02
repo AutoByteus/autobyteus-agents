@@ -48,6 +48,19 @@ Do not apply the source-file hard limit to unit, integration, API, or E2E test f
 ## Structural / Design Checks
 
 Use the same mandatory structural checks as the shared Stage 8 template. Do not replace them with a smaller ad hoc checklist.
+Treat the `Authoritative Boundary Rule` as one of the highest-signal structural checks in this section.
+
+Quick examples:
+- Good shape:
+  - `Caller -> Service`
+  - `Service -> Repository`
+- Bad shape:
+  - `Caller -> Service`
+  - `Caller -> Repository`
+  - `Service -> Repository`
+- Review interpretation:
+  - if the caller needs both `Service` and `Repository`, either the service is not the real authority or the caller is bypassing the authority
+  - call this out explicitly as an authoritative-boundary failure rather than leaving it as vague dependency drift
 
 | Check | Result (`Pass`/`Fail`) | Evidence | Required Action |
 | --- | --- | --- | --- |
@@ -61,7 +74,7 @@ Use the same mandatory structural checks as the shared Stage 8 template. Do not 
 | Empty indirection check (no pass-through-only boundary) |  |  |  |
 | Scope-appropriate separation of concerns and file responsibility clarity |  |  |  |
 | Ownership-driven dependency check (no forbidden shortcuts or unjustified cycles) |  |  |  |
-| Boundary encapsulation check (callers do not depend on both an outer owner and that owner's internal manager/repository/helper/lower-level concern) |  |  |  |
+| Authoritative Boundary Rule check (callers do not depend on both an outer owner and that owner's internal manager/repository/helper/lower-level concern) |  |  |  |
 | File placement check (file/folder path matches owning concern or explicitly justified shared boundary) |  |  |  |
 | Flat-vs-over-split layout judgment (layout is readable for the scope and not artificially fragmented) |  |  |  |
 | Interface/API/query/command/service-method boundary clarity (one subject, one responsibility, explicit identity shape) |  |  |  |
@@ -103,6 +116,7 @@ Rules:
 - Every row must include the reason for the score, the concrete weakness or drag, and the expected improvement.
 - Every category is mandatory. Clean Stage 8 pass target is `>= 9.0` in every category. Any category below `9.0` is a real gap and should normally fail the review.
 - Do not let the overall summary override a weak category. The gate still follows the actual findings and mandatory checks.
+- If the `Authoritative Boundary Rule` is broken, call it out explicitly in findings and in the relevant score rationale instead of hiding it under vague dependency wording.
 
 ## Findings
 
