@@ -58,7 +58,7 @@ Use [templates/api-e2e-report-template.md](templates/api-e2e-report-template.md)
 - A blocker is real only when the required system, access, or behavior cannot reasonably be reproduced, configured, mocked, emulated, or created within the task constraints.
 - If you create temporary validation scaffolding only for proof, remove it afterward unless it should remain as durable coverage.
 - For native desktop, installer, updater, restart, migration, recovery, or process-lifecycle cases, record platform/runtime specifics, version `from`/`to` when relevant, and relaunch or lifecycle evidence instead of reducing the case to generic API or browser terminology.
-- On rerun rounds, update the prior-failure resolution section before declaring the new gate result.
+- On rerun rounds, update the prior-failure resolution section before declaring the new result.
 
 ## Minimum Vs Full Validation
 

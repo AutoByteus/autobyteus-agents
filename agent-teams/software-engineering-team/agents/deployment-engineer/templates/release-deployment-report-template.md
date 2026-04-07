@@ -8,7 +8,7 @@
 - Handoff summary status: `Updated` / `Blocked`
 - Notes:
 
-## User Verification Gate
+## User Verification
 
 - Explicit user completion/verification received: `Yes` / `No`
 - Verification reference:
@@ -29,6 +29,7 @@
 
 ## Repository Finalization
 
+- Bootstrap context source:
 - Ticket branch:
 - Ticket branch commit result:
 - Ticket branch push result:
@@ -43,7 +44,7 @@
 ## Release / Publication / Deployment
 
 - Applicable: `Yes` / `No`
-- Method: `Release Script` / `Documented Command` / `Git Tag Workflow` / `GitHub Release` / `Deployment Path` / `Other`
+- Method: `Release Script` / `Documented Command` / `Git Tag Method` / `GitHub Release` / `Deployment Path` / `Other`
 - Method reference / command:
 - Release/publication/deployment result: `Completed` / `Not required` / `Blocked`
 - Release notes handoff result: `Used` / `Not required` / `Blocked`
@@ -58,11 +59,11 @@
 - Remote branch cleanup result: `Not required` / `Completed` / `Blocked`
 - Blocker (if applicable):
 
-## Escalation / Reroute (Use Only If Stage 10 Cannot Complete)
+## Escalation / Reroute (Use Only If Final Handoff Cannot Complete)
 
 - Classification: `Local Fix` / `Design Impact` / `Requirement Gap` / `Unclear`
 - Recommended recipient:
-- Why Stage 10 could not complete:
+- Why final handoff could not complete:
 
 ## Release Notes Summary
 

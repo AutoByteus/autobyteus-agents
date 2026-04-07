@@ -9,7 +9,7 @@ The latest round is authoritative; earlier rounds remain history.
 
 - Reviewed Design Spec:
 - Current Review Round:
-- Trigger Stage:
+- Trigger:
 - Prior Review Round Reviewed:
 - Latest Authoritative Round:
 - Current-State Evidence Basis:
@@ -124,6 +124,10 @@ Round rules:
 
 ## Review Decision
 
+- `Pass`: the design is ready for implementation.
+- `Fail`: the design needs upstream rework before implementation should proceed.
+- `Blocked`: the review cannot finish because required input, evidence, or clarification is missing.
+
 ## Findings
 
 If none, write `None`.
@@ -141,6 +145,10 @@ Rules:
 - Mark resolved or obsolete earlier findings in the prior-findings resolution table instead of silently dropping them.
 
 ## Classification
+
+- `Design Impact`: the design spec itself needs revision before implementation can proceed safely.
+- `Requirement Gap`: intended behavior, scope, or acceptance criteria are still missing or ambiguous.
+- `Unclear`: the issue is cross-cutting, low-confidence, or cannot yet be classified cleanly.
 
 ## Recommended Recipient
 

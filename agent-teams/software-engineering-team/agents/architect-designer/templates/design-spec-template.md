@@ -27,7 +27,7 @@ Read and write this design from abstract to concrete:
 - Policy: `No backward compatibility; remove legacy code paths.`
 - Required action: identify obsolete legacy paths/files included in this scope.
 - Treat removal as first-class design work: when clearer subsystem ownership, reusable owned structures, or tighter file responsibilities make fragmented or duplicated pieces unnecessary, name and remove/decommission them in scope.
-- Gate rule: the design is invalid if it depends on compatibility wrappers, dual-path behavior, or legacy fallback branches kept only for old behavior.
+- Decision rule: the design is invalid if it depends on compatibility wrappers, dual-path behavior, or legacy fallback branches kept only for old behavior.
 
 ## Data-Flow Spine Inventory
 

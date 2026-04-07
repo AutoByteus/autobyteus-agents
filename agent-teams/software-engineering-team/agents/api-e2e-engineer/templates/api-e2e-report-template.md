@@ -1,15 +1,15 @@
 # API, E2E, And Executable Validation Report
 
-Keep one canonical Stage 7 report path across reruns.
+Keep one canonical validation report path across reruns.
 Do not create versioned copies by default.
 On round `>1`, recheck prior unresolved failures first, update the prior-failure resolution section, and then record the new round result.
 The latest round is authoritative; earlier rounds remain history.
-Stage 7 may cover API, browser UI, native desktop UI, CLI, process/lifecycle, integration, or distributed validation depending on the real boundaries being proven.
+Validation may cover API, browser UI, native desktop UI, CLI, process/lifecycle, integration, or distributed checks depending on the real boundaries being proven.
 
 ## Validation Round Meta
 
 - Current Validation Round:
-- Trigger Stage:
+- Trigger:
 - Prior Round Reviewed:
 - Latest Authoritative Round:
 
@@ -19,7 +19,7 @@ Round rules:
 
 ## Round History
 
-| Round | Trigger | Prior Unresolved Failures Rechecked | New Failures Found | Gate Result | Latest Authoritative | Notes |
+| Round | Trigger | Prior Unresolved Failures Rechecked | New Failures Found | Result | Latest Authoritative | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |
 
@@ -67,11 +67,17 @@ Round rules:
 
 ## Classification
 
+- `Local Fix`: the main issue is a bounded implementation correction.
+- `Design Impact`: the main issue is a weakness or mismatch in the reviewed design.
+- `Requirement Gap`: intended behavior or acceptance criteria are missing or ambiguous.
+- `Unclear`: the issue is cross-cutting, low-confidence, or cannot yet be classified cleanly.
+
 ## Recommended Recipient
 
 ## Evidence / Notes
 
 ## Latest Authoritative Result
 
-- Gate Result:
+- Result values: `Pass` / `Fail` / `Blocked`
+- Result:
 - Notes:

@@ -7,7 +7,7 @@ description: Review the design spec before implementation and route design findi
 
 ## Purpose
 
-Perform the architecture review gate before implementation starts so design weaknesses are found while they are still cheap to fix.
+Perform the architecture review before implementation starts so design weaknesses are found while they are still cheap to fix.
 
 ## Terminology
 
@@ -27,6 +27,12 @@ Perform the architecture review gate before implementation starts so design weak
 ## Primary Output
 
 Use [templates/design-review-report-template.md](templates/design-review-report-template.md) to produce a design review report.
+
+## Shared References
+
+- Review the design against [../../shared/design-principles.md](../../shared/design-principles.md) first.
+- Use [../../shared/common-design-practices.md](../../shared/common-design-practices.md) as the shared practical checklist under those principles.
+- Treat those files as the shared reference set that must stay aligned across design, implementation, and code review.
 
 ## Example Guidance
 

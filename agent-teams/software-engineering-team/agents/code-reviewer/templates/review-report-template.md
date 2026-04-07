@@ -1,9 +1,9 @@
 # Review Report
 
 Use earlier design artifacts as context only.
-The review authority is the shared design principles, common design practices, and the code-review gate itself.
+The review authority is the shared design principles, common design practices, and the review criteria in this report.
 If the review shows that an earlier design artifact was weak, incomplete, or wrong, classify that as `Design Impact`.
-Keep one canonical Stage 8 review report path across reruns.
+Keep one canonical review report path across reruns.
 Do not create versioned copies by default.
 On round `>1`, recheck prior unresolved findings first, update the prior-findings resolution section, and then record the new round result.
 The latest round is authoritative; earlier rounds remain history.
@@ -11,7 +11,7 @@ The latest round is authoritative; earlier rounds remain history.
 ## Review Round Meta
 
 - Current Review Round:
-- Trigger Stage:
+- Trigger:
 - Prior Review Round Reviewed:
 - Latest Authoritative Round:
 - Investigation Notes Reviewed As Context:
@@ -24,7 +24,7 @@ Round rules:
 
 ## Round History
 
-| Round | Trigger | Prior Unresolved Findings Rechecked | New Findings Found | Gate Decision | Latest Authoritative | Notes |
+| Round | Trigger | Prior Unresolved Findings Rechecked | New Findings Found | Review Decision | Latest Authoritative | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |
 
@@ -41,13 +41,13 @@ Round rules:
 Use this section for changed source implementation files only.
 Do not apply the source-file hard limit to unit, integration, API, or E2E test files.
 
-| Source File | Effective Non-Empty Lines | `>500` Hard-Limit Check | `>220` Delta Gate | SoC / Ownership Check | Placement Check | Preliminary Classification | Required Action |
+| Source File | Effective Non-Empty Lines | `>500` Hard-Limit Check | `>220` Delta Check | SoC / Ownership Check | Placement Check | Preliminary Classification | Required Action |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |  |
 
 ## Structural / Design Checks
 
-Use the same mandatory structural checks as the shared Stage 8 template. Do not replace them with a smaller ad hoc checklist.
+Use the mandatory structural checks below on every review. Do not replace them with a smaller ad hoc checklist.
 Treat the `Authoritative Boundary Rule` as one of the highest-signal structural checks in this section.
 
 Quick examples:
@@ -91,7 +91,7 @@ Quick examples:
 ## Review Scorecard (Mandatory)
 
 Record the scorecard even when the review fails.
-The scorecard explains the current quality level; it does not override the gate result.
+The scorecard explains the current quality level; it does not override the review decision.
 Use the canonical priority order below. The order is the review reasoning order, not an equal-weight category list.
 
 - Overall score (`/10`):
@@ -114,8 +114,8 @@ Use the canonical priority order below. The order is the review reasoning order,
 Rules:
 - Do not record raw numbers without explanation.
 - Every row must include the reason for the score, the concrete weakness or drag, and the expected improvement.
-- Every category is mandatory. Clean Stage 8 pass target is `>= 9.0` in every category. Any category below `9.0` is a real gap and should normally fail the review.
-- Do not let the overall summary override a weak category. The gate still follows the actual findings and mandatory checks.
+- Every category is mandatory. Clean pass target is `>= 9.0` in every category. Any category below `9.0` is a real gap and should normally fail the review.
+- Do not let the overall summary override a weak category. The review still follows the actual findings and mandatory checks.
 - If the `Authoritative Boundary Rule` is broken, call it out explicitly in findings and in the relevant score rationale instead of hiding it under vague dependency wording.
 
 ## Findings
@@ -157,18 +157,36 @@ Rules:
 
 ## Classification
 
+- `Pass` is not a classification. Record pass/fail/blocked in `Latest Authoritative Result`, then use a classification below only when the review does not pass cleanly.
 - `Local Fix`: bounded source fix, no upstream design/requirement update needed
 - `Validation Gap`: main issue is insufficient validation evidence
 - `Design Impact`: structural issue in code or earlier design artifact was weak/wrong/incomplete
 - `Requirement Gap`: missing or ambiguous intended behavior
 - `Unclear`: cross-cutting or low-confidence root cause
 
+Decision rules:
+- Use `Local Fix` only when the next step is a bounded implementation correction and no upstream requirement/design revision is the primary need.
+- Use `Validation Gap` when the main issue is missing, weak, stale, or insufficient validation evidence rather than source-code or structural drift.
+- Use `Design Impact` when a mandatory structural/design check fails, when the likely fix requires redesign of ownership/boundaries/file placement/interfaces, or when independent review shows the earlier design basis was weak, wrong, or incomplete.
+- Use `Requirement Gap` when intended behavior, scope, or acceptance criteria are too ambiguous or incomplete for the review to judge correctness cleanly.
+- Use `Unclear` when the root cause is cross-cutting or confidence is too low to classify the issue more narrowly.
+- Do not default structural failures to `Local Fix`. If a mandatory structural/design check fails, classify `Design Impact` unless requirement ambiguity is the primary cause.
+
 ## Recommended Recipient
+
+- `Local Fix` -> `implementation_engineer`
+- `Validation Gap` -> `api_e2e_engineer`
+- `Design Impact` -> `architect_designer`
+- `Requirement Gap` -> `requirements_engineer`
+- `Unclear` -> `requirements_engineer`
+
+Routing note:
+- If a `Local Fix` changes validated behavior or weakens existing validation evidence, the updated implementation should return through `api_e2e_engineer` before code review resumes.
 
 ## Residual Risks
 
 ## Latest Authoritative Result
 
-- Gate Decision:
+- Review Decision:
 - Score Summary:
 - Notes:

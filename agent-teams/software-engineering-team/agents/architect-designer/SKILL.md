@@ -47,6 +47,12 @@ Own the architecture-level investigation required to make the design accurate.
 
 Use [templates/design-spec-template.md](templates/design-spec-template.md) to produce a design spec.
 
+## Shared References
+
+- Read [../../shared/design-principles.md](../../shared/design-principles.md) as the primary shared design reference for this team.
+- Read [../../shared/common-design-practices.md](../../shared/common-design-practices.md) for the practical mechanisms that sit under those principles.
+- Use those shared files as the common design language that should stay aligned across `architect_designer`, `architect_reviewer`, `implementation_engineer`, and `code_reviewer`.
+
 ## Optional Pattern Guidance
 
 - If the design needs a local structural mechanism such as a state machine, event loop, factory, registry, adapter, strategy, repository, or manager, read [references/common-design-patterns.md](references/common-design-patterns.md).
@@ -64,7 +70,7 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 ## Required Current-State Read
 
 - Read the requirements-engineer investigation notes first and use them as the starting design context.
-- Perform your own architecture-level investigation after that; the requirements-stage investigation is input, not a replacement.
+- Perform your own architecture-level investigation after that; the requirements investigation is input, not a replacement.
 - Investigation may use any relevant evidence source or verification method needed to understand the real current system and the real design constraints.
 - Treat the method set as problem-dependent and non-exhaustive.
 - It is not limited to reading existing material; it can also include reproduction, probing, tracing, querying, running commands, writing small scripts, creating focused test artifacts, minimal environment or mock setup, public API/spec/issue research, or inspecting/cloning upstream, vendor, or sample repositories when needed.
@@ -173,7 +179,7 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 
 ## Handoff Rules
 
-- Accept the approved requirements doc and investigation notes from `requirements_engineer` as the only forward handoff source for requirements-stage output.
+- Accept the approved requirements doc and investigation notes from `requirements_engineer` as the only forward handoff source for requirements output.
 - Produce the design spec before handing work downstream.
 - Send the design spec to `architect_reviewer`.
 - If the real issue is a `Requirement Gap`, route it to `requirements_engineer`.

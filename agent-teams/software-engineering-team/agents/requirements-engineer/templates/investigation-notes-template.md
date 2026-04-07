@@ -2,12 +2,22 @@
 
 ## Investigation Status
 
+- Bootstrap Status:
 - Current Status:
 - Investigation Goal:
 - Scope Summary:
 - Primary Questions To Resolve:
 
 ## Request Context
+
+## Bootstrap / Repository Context
+
+- Project Type (`Git`/`Non-Git`):
+- Current Branch:
+- Current Worktree / Working Directory:
+- Expected Base Branch (if known):
+- Expected Finalization Target (if known):
+- Notes For Downstream Agents:
 
 ## Source Log
 
