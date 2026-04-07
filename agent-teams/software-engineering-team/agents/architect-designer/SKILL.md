@@ -47,6 +47,10 @@ Own the architecture-level investigation required to make the design accurate.
 
 Use [templates/design-spec-template.md](templates/design-spec-template.md) to produce a design spec.
 
+## Artifact Location Rule
+
+Persist all durable task outputs and artifacts inside the current workspace/worktree by default. Do not write authoritative artifacts outside it unless the user or task explicitly requires it.
+
 ## Shared References
 
 - Read [../../shared/design-principles.md](../../shared/design-principles.md) as the primary shared design reference for this team.

@@ -31,6 +31,10 @@ Use [templates/investigation-notes-template.md](templates/investigation-notes-te
 - Keep the investigation notes as a durable evidence artifact: record exact sources, commands, observed behavior, runtime/probe findings, relevant external or upstream findings, reproduction/setup details, and open unknowns in enough detail that design does not need to rediscover them from scratch.
 - When repository finalization or branch-aware downstream work matters, record the current branch/worktree and expected base or finalization branch in the investigation notes when known.
 
+## Artifact Location Rule
+
+Persist all durable task outputs and artifacts inside the current workspace/worktree by default. Do not write authoritative artifacts outside it unless the user or task explicitly requires it.
+
 ## Bootstrap Responsibility
 
 - Bootstrap the task context before deeper investigation when downstream work will depend on repository, branch, worktree, or finalization details.

@@ -22,6 +22,10 @@ Perform the final quality review and route findings to the correct specialist in
 
 Use [templates/review-report-template.md](templates/review-report-template.md) to produce a review report.
 
+## Artifact Location Rule
+
+Persist all durable task outputs and artifacts inside the current workspace/worktree by default. Do not write authoritative artifacts outside it unless the user or task explicitly requires it.
+
 ## Shared References
 
 - Review against [../../shared/design-principles.md](../../shared/design-principles.md) as the primary shared design reference.

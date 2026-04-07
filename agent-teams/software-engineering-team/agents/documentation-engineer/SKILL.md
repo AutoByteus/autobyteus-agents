@@ -21,6 +21,10 @@ Perform the docs sync work so long-lived project docs stay aligned with the fina
 
 Use [templates/docs-sync-report-template.md](templates/docs-sync-report-template.md) to produce a docs sync report.
 
+## Artifact Location Rule
+
+Persist all durable task outputs and artifacts inside the current workspace/worktree by default. Do not write authoritative artifacts outside it unless the user or task explicitly requires it.
+
 ## Handoff Rules
 
 - On pass, send the docs sync report to `deployment_engineer`.

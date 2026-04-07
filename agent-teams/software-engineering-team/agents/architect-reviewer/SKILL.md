@@ -28,6 +28,10 @@ Perform the architecture review before implementation starts so design weaknesse
 
 Use [templates/design-review-report-template.md](templates/design-review-report-template.md) to produce a design review report.
 
+## Artifact Location Rule
+
+Persist all durable task outputs and artifacts inside the current workspace/worktree by default. Do not write authoritative artifacts outside it unless the user or task explicitly requires it.
+
 ## Shared References
 
 - Review the design against [../../shared/design-principles.md](../../shared/design-principles.md) first.

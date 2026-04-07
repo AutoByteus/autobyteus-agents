@@ -26,6 +26,10 @@ Design the validation coverage, implement the required durable validation, perfo
 
 Use [templates/api-e2e-report-template.md](templates/api-e2e-report-template.md) to produce an API, E2E, and executable validation report.
 
+## Artifact Location Rule
+
+Persist all durable task outputs and artifacts inside the current workspace/worktree by default. Do not write authoritative artifacts outside it unless the user or task explicitly requires it.
+
 ## Validation Design
 
 - Derive the validation coverage from the approved requirements doc, the reviewed design spec, the implementation handoff, and the behavior you can directly observe.

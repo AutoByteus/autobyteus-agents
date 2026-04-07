@@ -21,6 +21,10 @@ Implement the approved and reviewed design and prepare a handoff that the API an
 
 Use [templates/implementation-handoff-template.md](templates/implementation-handoff-template.md) to produce an implementation handoff.
 
+## Artifact Location Rule
+
+Persist all durable task outputs and artifacts inside the current workspace/worktree by default. Do not write authoritative artifacts outside it unless the user or task explicitly requires it.
+
 ## Shared References
 
 - Read [../../shared/design-principles.md](../../shared/design-principles.md) before implementation starts.

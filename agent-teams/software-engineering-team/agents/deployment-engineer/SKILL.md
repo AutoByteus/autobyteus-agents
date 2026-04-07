@@ -27,6 +27,10 @@ Take docs-synchronized, review-passed work through user-verification hold, repos
 
 Update the ticket-local handoff summary before final handoff, then use [templates/release-deployment-report-template.md](templates/release-deployment-report-template.md) to produce a release/publication/deployment report.
 
+## Artifact Location Rule
+
+Persist all durable task outputs and artifacts inside the current workspace/worktree by default. Do not write authoritative artifacts outside it unless the user or task explicitly requires it.
+
 ## Handoff Rules
 
 - On successful docs sync handoff plus explicit user verification plus repository finalization, and after any applicable release/publication/deployment work and required post-finalization cleanup are complete or explicitly recorded as not required, produce the final delivery artifact.
