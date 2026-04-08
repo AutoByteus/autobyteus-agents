@@ -36,13 +36,13 @@ Use [templates/investigation-notes-template.md](templates/investigation-notes-te
 ## Artifact Location Rule
 
 - Write the authoritative artifact files in the assigned task workspace/worktree before any handoff message.
-- Confirm the task workspace root with `pwd` before creating the first artifacts.
 - Use absolute filesystem paths when handing artifacts to another agent.
 
-## Bootstrap Responsibility
+## Bootstrap / Environment Discovery
 
-- Bootstrap the task context before deeper investigation begins.
-- Run `pwd` first and record the task workspace root in the investigation notes.
+- Discover and record the current task environment before deeper investigation begins.
+- Resolve the task workspace root before creating the first artifacts. Use `pwd` when needed.
+- Identify repo mode, current branch, current worktree/working directory, and relevant base or finalization branch context when that context matters downstream.
 - If the project is a git repository, resolve the bootstrap base branch from explicit user instruction when provided; otherwise use the tracked remote default or integration branch with highest confidence.
 - If the project is a git repository and a new task worktree/branch is needed, refresh tracked remote refs first.
 - If the project is a git repository, create or reuse a dedicated task worktree/branch before deeper investigation. When creating a new task branch, create `codex/<task-name>` from the latest tracked remote state of the resolved base branch.
@@ -55,7 +55,7 @@ Use [templates/investigation-notes-template.md](templates/investigation-notes-te
 - Reuse the existing task folder and task worktree/branch when they already match the task.
 - Do not create a new task worktree/branch from a stale local base branch.
 - If base-branch resolution, remote refresh, or task worktree creation fails, keep the requirements doc in `Draft`, record the blocker in the investigation notes, and stop before deeper investigation.
-- If the repo is not under git, still run bootstrap in the same order: resolve the workspace root, create the draft requirements doc, create the investigation notes, and record the non-git bootstrap decision.
+- If the repo is not under git, still run bootstrap in the same order: resolve the workspace root, create the draft requirements doc, create the investigation notes, and record the non-git environment decision.
 
 ## Investigation Standard
 

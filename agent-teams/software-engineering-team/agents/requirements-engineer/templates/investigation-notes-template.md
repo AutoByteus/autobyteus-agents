@@ -14,7 +14,7 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 ## Request Context
 
-## Bootstrap / Repository Context
+## Environment Discovery / Bootstrap Context
 
 - Project Type (`Git`/`Non-Git`):
 - Task Workspace Root:
