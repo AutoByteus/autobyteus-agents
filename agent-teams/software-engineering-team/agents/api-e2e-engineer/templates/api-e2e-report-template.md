@@ -1,5 +1,7 @@
 # API, E2E, And Executable Validation Report
 
+Write this artifact to a canonical file path in the assigned task workspace before any handoff message.
+
 Keep one canonical validation report path across reruns.
 Do not create versioned copies by default.
 On round `>1`, recheck prior unresolved failures first, update the prior-failure resolution section, and then record the new round result.

@@ -28,7 +28,8 @@ Use [templates/api-e2e-report-template.md](templates/api-e2e-report-template.md)
 
 ## Artifact Location Rule
 
-Persist all durable task outputs and artifacts inside the current workspace/worktree by default. Do not write authoritative artifacts outside it unless the user or task explicitly requires it.
+- Write the authoritative artifact file in the assigned task workspace/worktree before any handoff message.
+- Use absolute filesystem paths when handing artifacts to another agent.
 
 ## Validation Design
 

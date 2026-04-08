@@ -24,13 +24,14 @@ Use [templates/review-report-template.md](templates/review-report-template.md) t
 
 ## Artifact Location Rule
 
-Persist all durable task outputs and artifacts inside the current workspace/worktree by default. Do not write authoritative artifacts outside it unless the user or task explicitly requires it.
+- Write the authoritative artifact file in the assigned task workspace/worktree before any handoff message.
+- Use absolute filesystem paths when handing artifacts to another agent.
 
-## Shared References
+## Required Shared Reads
 
-- Review against [../../shared/design-principles.md](../../shared/design-principles.md) as the primary shared design reference.
-- Use [../../shared/common-design-practices.md](../../shared/common-design-practices.md) as the shared practical reference for implementation and review checks.
-- Treat those shared files as the common baseline that links design, implementation, and final code review.
+- Start by reading [design-principles.md](design-principles.md).
+- Then read [common-design-practices.md](common-design-practices.md).
+- Use both files as active review constraints while producing or revising the review report.
 
 ## Handoff Rules
 
@@ -44,12 +45,12 @@ Persist all durable task outputs and artifacts inside the current workspace/work
 ## Classification Rules
 
 - `Pass` is the review outcome, not a failure classification. Use it only when all mandatory review checks are satisfied and the work is ready for documentation sync.
-- Use `Local Fix` only when the main next step is a bounded implementation correction and no upstream requirement/design revision is the primary need.
-- Use `Validation Gap` when the main issue is insufficient, missing, weak, or stale validation evidence rather than source-code or structural drift.
-- Use `Design Impact` when a mandatory structural/design check fails, when the likely fix would require ownership/boundary/file-placement/interface redesign, or when independent review shows the earlier design basis was weak, wrong, or incomplete.
-- Use `Requirement Gap` when intended behavior, scope, or acceptance criteria are missing or ambiguous enough that the review cannot judge correctness cleanly.
-- Use `Unclear` when the root cause is cross-cutting or confidence is too low to classify the issue more narrowly.
-- Do not default structural failures to `Local Fix`. Structural failures should normally route as `Design Impact` unless requirement ambiguity is the primary cause.
+- `Local Fix`: bounded implementation correction.
+- `Validation Gap`: missing or weak validation evidence.
+- `Design Impact`: structural/design problem or weak earlier design basis.
+- `Requirement Gap`: missing or ambiguous intended behavior or acceptance criteria.
+- `Unclear`: cross-cutting or low-confidence root cause.
+- Structural failures normally route as `Design Impact`.
 - On a non-pass result, send the review report with the decision, classification, recommended recipient, finding IDs, required updates, and whether refreshed validation is required before review resumes.
 - If a `Local Fix` changes validated behavior or weakens existing validation evidence, expect the updated implementation to return through `api_e2e_engineer` before code review resumes.
 

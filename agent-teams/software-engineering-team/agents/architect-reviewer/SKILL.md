@@ -30,13 +30,14 @@ Use [templates/design-review-report-template.md](templates/design-review-report-
 
 ## Artifact Location Rule
 
-Persist all durable task outputs and artifacts inside the current workspace/worktree by default. Do not write authoritative artifacts outside it unless the user or task explicitly requires it.
+- Write the authoritative artifact file in the assigned task workspace/worktree before any handoff message.
+- Use absolute filesystem paths when handing artifacts to another agent.
 
-## Shared References
+## Required Shared Reads
 
-- Review the design against [../../shared/design-principles.md](../../shared/design-principles.md) first.
-- Use [../../shared/common-design-practices.md](../../shared/common-design-practices.md) as the shared practical checklist under those principles.
-- Treat those files as the shared reference set that must stay aligned across design, implementation, and code review.
+- Start by reading [design-principles.md](design-principles.md).
+- Then read [common-design-practices.md](common-design-practices.md).
+- Use both files as active review constraints while producing or revising the design review report.
 
 ## Example Guidance
 

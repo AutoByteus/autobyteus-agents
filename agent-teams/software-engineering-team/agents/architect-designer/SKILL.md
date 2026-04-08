@@ -49,13 +49,14 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 
 ## Artifact Location Rule
 
-Persist all durable task outputs and artifacts inside the current workspace/worktree by default. Do not write authoritative artifacts outside it unless the user or task explicitly requires it.
+- Write the authoritative artifact file in the assigned task workspace/worktree before any handoff message.
+- Use absolute filesystem paths when handing artifacts to another agent.
 
-## Shared References
+## Required Shared Reads
 
-- Read [../../shared/design-principles.md](../../shared/design-principles.md) as the primary shared design reference for this team.
-- Read [../../shared/common-design-practices.md](../../shared/common-design-practices.md) for the practical mechanisms that sit under those principles.
-- Use those shared files as the common design language that should stay aligned across `architect_designer`, `architect_reviewer`, `implementation_engineer`, and `code_reviewer`.
+- Start by reading [design-principles.md](design-principles.md).
+- Then read [common-design-practices.md](common-design-practices.md).
+- Use both files as active constraints while producing or revising the design spec.
 
 ## Optional Pattern Guidance
 

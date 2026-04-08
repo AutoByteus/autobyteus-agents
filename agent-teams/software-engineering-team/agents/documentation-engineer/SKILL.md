@@ -23,7 +23,8 @@ Use [templates/docs-sync-report-template.md](templates/docs-sync-report-template
 
 ## Artifact Location Rule
 
-Persist all durable task outputs and artifacts inside the current workspace/worktree by default. Do not write authoritative artifacts outside it unless the user or task explicitly requires it.
+- Write the authoritative artifact file in the assigned task workspace/worktree before any handoff message.
+- Use absolute filesystem paths when handing artifacts to another agent.
 
 ## Handoff Rules
 
@@ -35,12 +36,12 @@ Persist all durable task outputs and artifacts inside the current workspace/work
 
 ## Operating Rules
 
-- Do not skip docs sync just because tests and code review already passed.
-- Do not treat docs sync as another design-review round. The goal here is to synchronize long-lived docs to the final reviewed implementation state, not to reopen architecture review by default.
+- Complete docs sync after testing and code review pass.
+- Keep docs sync focused on the final reviewed implementation state.
 - Use the final implementation state as the primary truth for documentation, and use the reviewed design spec, validation artifacts, code-review artifact, ticket artifacts, and direct code reading as supporting inputs.
 - Update long-lived docs to match final implemented behavior.
 - Promote durable design/runtime knowledge from ticket artifacts into `docs/`, `ARCHITECTURE.md`, or other canonical project docs when that knowledge should outlive the ticket.
-- Do not create duplicate overlapping docs when one canonical doc can be updated in place.
+- Update the canonical doc in place when one already covers the functionality.
 - Record removed or replaced components so the docs do not preserve obsolete architecture understanding.
-- If the final implementation state or intended behavior is still too unclear to document truthfully, block docs sync and route the issue explicitly instead of guessing in the docs.
+- Block docs sync and route the issue explicitly when the final implementation state or intended behavior is too unclear to document truthfully.
 - If there is no docs impact, say so explicitly and explain why current long-lived docs already remain accurate.

@@ -1,10 +1,14 @@
 # Investigation Notes
 
+Write this artifact to a canonical file path in the assigned task workspace before any handoff message.
+
 ## Investigation Status
 
 - Bootstrap Status:
 - Current Status:
 - Investigation Goal:
+- Scope Classification (`Small`/`Medium`/`Large`):
+- Scope Classification Rationale:
 - Scope Summary:
 - Primary Questions To Resolve:
 
@@ -13,10 +17,16 @@
 ## Bootstrap / Repository Context
 
 - Project Type (`Git`/`Non-Git`):
+- Task Workspace Root:
+- Task Artifact Folder:
 - Current Branch:
 - Current Worktree / Working Directory:
+- Bootstrap Base Branch:
+- Remote Refresh Result:
+- Task Branch:
 - Expected Base Branch (if known):
 - Expected Finalization Target (if known):
+- Bootstrap Blockers:
 - Notes For Downstream Agents:
 
 ## Source Log

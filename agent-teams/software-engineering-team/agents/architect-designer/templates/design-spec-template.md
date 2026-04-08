@@ -1,5 +1,7 @@
 # Design Spec
 
+Write this artifact to a canonical file path in the assigned task workspace before any handoff message.
+
 ## Current-State Read
 
 Describe the current execution path, current ownership boundaries, current coupling/fragmentation problems, and the constraints that the target design must respect.

@@ -1,5 +1,7 @@
 # Implementation Handoff
 
+Write this artifact to a canonical file path in the assigned task workspace before any handoff message.
+
 ## What Changed
 
 ## Key Files Or Areas

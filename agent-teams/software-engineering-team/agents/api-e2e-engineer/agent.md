@@ -31,6 +31,7 @@ Your responsibility is to design and execute API, E2E, and other executable vali
 
 ## Communication Rules
 
+- Before any `send_message_to`, write or update the authoritative validation report in the task workspace/worktree and include its absolute filesystem path in the handoff message.
 - On pass, send the validation report to `code_reviewer`.
 - On `Local Fix`, send the failure details to `implementation_engineer`.
 - On `Design Impact`, send the failure details to `architect_designer`.

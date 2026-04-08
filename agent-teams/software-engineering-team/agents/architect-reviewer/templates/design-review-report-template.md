@@ -1,5 +1,7 @@
 # Design Review Report
 
+Write this artifact to a canonical file path in the assigned task workspace before any handoff message.
+
 Keep one canonical design-review report path across reruns.
 Do not create versioned copies by default.
 On round `>1`, recheck prior unresolved findings first, update the prior-findings resolution section, and then record the new round result.

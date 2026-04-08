@@ -29,7 +29,8 @@ Update the ticket-local handoff summary before final handoff, then use [template
 
 ## Artifact Location Rule
 
-Persist all durable task outputs and artifacts inside the current workspace/worktree by default. Do not write authoritative artifacts outside it unless the user or task explicitly requires it.
+- Write the authoritative artifact file in the assigned task workspace/worktree before any handoff message.
+- Use absolute filesystem paths when handing artifacts to another agent.
 
 ## Handoff Rules
 
@@ -42,17 +43,18 @@ Persist all durable task outputs and artifacts inside the current workspace/work
 
 ## Operating Rules
 
-- Do not bypass the completed docs sync handoff.
+- Start finalization after the completed docs sync handoff.
 - After docs sync is complete, wait for the user to explicitly confirm completion or verification.
 - Create or update the ticket-local `handoff-summary.md` before waiting for that user signal.
-- Do not move the ticket to `done`, commit, push, merge, or run release/publication/deployment work before that user signal.
+- Wait for that user signal before moving the ticket to `done`, committing, pushing, merging, or running release/publication/deployment work.
 - After the explicit user signal, move the ticket folder to `tickets/done/<ticket-name>/` before the final commit.
 - When the repository uses ticket-branch finalization, run it in this order: commit the ticket branch, push the ticket branch, update the recorded finalization target branch from remote, merge the ticket branch into it, then push the updated target branch.
 - Treat release/publication/deployment as a separate conditional step after repository finalization. Use the project's documented method when applicable; this may be a release script, a documented command, a git tag method, GitHub Release creation, or another deployment/publication path.
 - When release notes are required, create or update `tickets/in-progress/<ticket-name>/release-notes.md` before user verification, then after the ticket is archived pass the archived `tickets/done/<ticket-name>/release-notes.md` artifact into the release/publication path before final release publication when such a path is applicable.
 - After repository finalization and any applicable release/publication/deployment work, if the task used a dedicated ticket worktree/branch, remove that ticket worktree, run worktree prune, and when the local ticket branch is fully merged into the recorded finalization target and no longer needed, delete that local ticket branch.
-- Do not delete remote branches unless explicit user instruction or documented project policy requires it.
-- Use the bootstrap context recorded upstream as the default finalization target unless the user explicitly overrides it later. If that target branch is not recorded or cannot be identified confidently, stop and ask once instead of guessing.
+- Delete remote branches only when explicit user instruction or documented project policy requires it.
+- Use the recorded bootstrap context as the finalization target.
+- Ask once if the finalization target is missing.
 - If any move/commit/push/merge step fails after user verification, keep final handoff blocked and record the blocker.
 - If an applicable release/publication/deployment step later fails or is undocumented, record that blocker too, but do not undo completed repository finalization.
 - If required worktree/branch cleanup later fails, record that blocker too and keep final handoff open until cleanup is complete.

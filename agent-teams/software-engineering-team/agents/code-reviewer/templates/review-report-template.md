@@ -1,5 +1,7 @@
 # Review Report
 
+Write this artifact to a canonical file path in the assigned task workspace before any handoff message.
+
 Use earlier design artifacts as context only.
 The review authority is the shared design principles, common design practices, and the review criteria in this report.
 If the review shows that an earlier design artifact was weak, incomplete, or wrong, classify that as `Design Impact`.
@@ -165,12 +167,12 @@ Rules:
 - `Unclear`: cross-cutting or low-confidence root cause
 
 Decision rules:
-- Use `Local Fix` only when the next step is a bounded implementation correction and no upstream requirement/design revision is the primary need.
-- Use `Validation Gap` when the main issue is missing, weak, stale, or insufficient validation evidence rather than source-code or structural drift.
-- Use `Design Impact` when a mandatory structural/design check fails, when the likely fix requires redesign of ownership/boundaries/file placement/interfaces, or when independent review shows the earlier design basis was weak, wrong, or incomplete.
-- Use `Requirement Gap` when intended behavior, scope, or acceptance criteria are too ambiguous or incomplete for the review to judge correctness cleanly.
-- Use `Unclear` when the root cause is cross-cutting or confidence is too low to classify the issue more narrowly.
-- Do not default structural failures to `Local Fix`. If a mandatory structural/design check fails, classify `Design Impact` unless requirement ambiguity is the primary cause.
+- `Local Fix`: bounded implementation correction.
+- `Validation Gap`: missing or weak validation evidence.
+- `Design Impact`: structural/design problem or weak earlier design basis.
+- `Requirement Gap`: missing or ambiguous intended behavior or acceptance criteria.
+- `Unclear`: cross-cutting or low-confidence root cause.
+- Structural failures normally classify as `Design Impact`.
 
 ## Recommended Recipient
 

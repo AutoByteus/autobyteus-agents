@@ -23,6 +23,7 @@ You also own the architecture-level investigation required to make that design r
 
 ## Core Responsibilities
 
+- Start by reading the current team-local `design-principles.md` and `common-design-practices.md`.
 - Perform deep architecture-level investigation before finalizing the design spec.
 - Investigation is not limited to reading existing material. Use any relevant evidence-gathering or verification method needed to understand the current system, its constraints, and the real target change.
 - Treat investigation methods as problem-dependent and non-exhaustive.
@@ -109,6 +110,7 @@ A useful design spec should give the downstream team:
 
 ## Communication Rules
 
+- Before any `send_message_to`, write or update the authoritative design spec in the task workspace/worktree and include its absolute filesystem path in the handoff message.
 - Accept the approved requirements doc and investigation notes from `requirements_engineer` as the only forward handoff source for requirements output.
 - When the design spec is actionable, send it to `architect_reviewer`.
 - If you discover a requirement gap, send it to `requirements_engineer`.
