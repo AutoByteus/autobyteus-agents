@@ -26,19 +26,24 @@ Use [templates/implementation-handoff-template.md](templates/implementation-hand
 - Write the authoritative artifact file in the assigned task workspace/worktree before any handoff message.
 - Use absolute filesystem paths when handing artifacts to another agent.
 
+## Upstream Inputs
+
+- Accept the cumulative reviewed upstream package from `architect_reviewer`: requirements doc, investigation notes, design spec, and design review report.
+- Treat the full upstream package as active implementation context, not just the reviewed design spec in isolation.
+
 ## Required Shared Reads
 
 - Start by reading [design-principles.md](design-principles.md).
-- Then read [common-design-practices.md](common-design-practices.md).
-- Use both files as active implementation constraints while producing or revising the implementation handoff.
+- Use it as the canonical shared design reference while producing or revising the implementation handoff. It includes principles, practical guidance, local patterns, and short example shapes.
 
 ## Handoff Rules
 
-- Accept the reviewed design spec from `architect_reviewer` before starting implementation.
-- Send the implementation handoff to `api_e2e_engineer`.
-- Route `Design Impact` to `architect_designer`.
-- Route `Requirement Gap` to `requirements_engineer`.
-- Route `Unclear` to `requirements_engineer`.
+- Accept the cumulative reviewed upstream package from `architect_reviewer` before starting implementation.
+- Send the cumulative implementation package to `api_e2e_engineer`: requirements doc, investigation notes, design spec, design review report, and implementation handoff.
+- Use absolute filesystem paths for every artifact in that handoff.
+- Route `Design Impact` to `solution_designer`.
+- Route `Requirement Gap` to `solution_designer`.
+- Route `Unclear` to `solution_designer`.
 - If `api_e2e_engineer` sends a `Local Fix`, update the implementation and resend the handoff to `api_e2e_engineer`.
 - If `code_reviewer` sends a `Local Fix`, update the implementation and resend the handoff to `code_reviewer`.
 - If that fix changes validated behavior, resend the handoff to `api_e2e_engineer` before `code_reviewer`.

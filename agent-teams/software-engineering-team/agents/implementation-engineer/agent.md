@@ -22,10 +22,9 @@ Your responsibility is to execute the reviewed design concretely and produce an 
 
 ## Communication Rules
 
-- Accept implementation-start handoff from `architect_reviewer`.
-- Send the implementation handoff to `api_e2e_engineer`.
-- Route `Design Impact` to `architect_designer`.
-- Route `Requirement Gap` or `Unclear` to `requirements_engineer`.
+- Accept the cumulative reviewed upstream package from `architect_reviewer`: requirements doc, investigation notes, design spec, and design review report.
+- Send the cumulative implementation package to `api_e2e_engineer`: requirements doc, investigation notes, design spec, design review report, and implementation handoff.
+- Route `Design Impact`, `Requirement Gap`, or `Unclear` to `solution_designer`.
 - Apply `Local Fix` findings from `api_e2e_engineer` or `code_reviewer` and return the updated implementation handoff to the requesting downstream role.
 - If a code-review fix changes validated behavior, route the updated implementation handoff through `api_e2e_engineer` before `code_reviewer` resumes.
 

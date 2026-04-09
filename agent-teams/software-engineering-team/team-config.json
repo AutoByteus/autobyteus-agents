@@ -1,16 +1,10 @@
 {
-  "coordinatorMemberName": "requirements_engineer",
+  "coordinatorMemberName": "solution_designer",
   "avatarUrl": null,
   "members": [
     {
-      "memberName": "requirements_engineer",
-      "ref": "requirements-engineer",
-      "refType": "agent",
-      "refScope": "team_local"
-    },
-    {
-      "memberName": "architect_designer",
-      "ref": "architect-designer",
+      "memberName": "solution_designer",
+      "ref": "solution-designer",
       "refType": "agent",
       "refScope": "team_local"
     },
@@ -39,14 +33,8 @@
       "refScope": "team_local"
     },
     {
-      "memberName": "documentation_engineer",
-      "ref": "documentation-engineer",
-      "refType": "agent",
-      "refScope": "team_local"
-    },
-    {
-      "memberName": "deployment_engineer",
-      "ref": "deployment-engineer",
+      "memberName": "delivery_engineer",
+      "ref": "delivery-engineer",
       "refType": "agent",
       "refScope": "team_local"
     }

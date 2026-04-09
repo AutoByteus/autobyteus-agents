@@ -41,14 +41,14 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Docs impact: `No impact`
 - Rationale:
 
-## Handoff To Deployment
+## Delivery Continuation
 
 - Result: `Pass` / `Fail` / `Blocked`
-- Next recipient: `deployment_engineer`
+- Next owner: `delivery_engineer`
 - Notes:
 
 ## Blocked Or Escalated Follow-Up (Use Only If Docs Sync Cannot Complete)
 
-- Classification: `Local Fix` / `Requirement Gap` / `Unclear`
+- Classification: `Local Fix` / `Design Impact` / `Requirement Gap` / `Unclear`
 - Recommended recipient:
 - Why docs could not be finalized truthfully:

@@ -1,4 +1,4 @@
-# Release / Publication / Deployment Report
+# Delivery / Release / Deployment Report
 
 Write this artifact to a canonical file path in the assigned task workspace before any handoff message.
 

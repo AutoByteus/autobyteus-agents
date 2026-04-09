@@ -77,4 +77,4 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 ## Open Unknowns / Risks
 
-## Notes For Architect Designer
+## Notes For Architect Reviewer

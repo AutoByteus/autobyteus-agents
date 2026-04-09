@@ -1,7 +1,4 @@
 {
-  "skillNames": [
-    "requirements-engineer"
-  ],
   "toolNames": [
     "edit_file",
     "read_file",
@@ -13,6 +10,9 @@
     "search_web",
     "read_url",
     "send_message_to"
+  ],
+  "skillNames": [
+    "solution-designer"
   ],
   "inputProcessorNames": [],
   "llmResponseProcessorNames": [],
