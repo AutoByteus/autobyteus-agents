@@ -1,4 +1,4 @@
-# Spine-First Design Examples
+# Design Examples
 
 These examples are not rigid templates.
 Use them to learn how a good design spec can read when the architecture is organized around:

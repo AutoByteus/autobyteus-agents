@@ -3,7 +3,7 @@
 Write this artifact to a canonical file path in the assigned task workspace before any handoff message.
 
 Use earlier design artifacts as context only.
-The review authority is the shared design principles, common design practices, and the review criteria in this report.
+The review authority is the canonical shared design guidance and the review criteria in this report.
 If the review shows that an earlier design artifact was weak, incomplete, or wrong, classify that as `Design Impact`.
 Keep one canonical review report path across reruns.
 Do not create versioned copies by default.
@@ -12,12 +12,16 @@ The latest round is authoritative; earlier rounds remain history.
 
 ## Review Round Meta
 
+- Requirements Doc Reviewed As Context:
 - Current Review Round:
 - Trigger:
 - Prior Review Round Reviewed:
 - Latest Authoritative Round:
 - Investigation Notes Reviewed As Context:
-- Earlier Design Artifacts Reviewed As Context:
+- Design Spec Reviewed As Context:
+- Design Review Report Reviewed As Context:
+- Implementation Handoff Reviewed As Context:
+- Validation Report Reviewed As Context:
 
 Round rules:
 - Reuse the same finding IDs across reruns for the same unresolved issues.
@@ -165,22 +169,15 @@ Rules:
 - `Design Impact`: structural issue in code or earlier design artifact was weak/wrong/incomplete
 - `Requirement Gap`: missing or ambiguous intended behavior
 - `Unclear`: cross-cutting or low-confidence root cause
-
-Decision rules:
-- `Local Fix`: bounded implementation correction.
-- `Validation Gap`: missing or weak validation evidence.
-- `Design Impact`: structural/design problem or weak earlier design basis.
-- `Requirement Gap`: missing or ambiguous intended behavior or acceptance criteria.
-- `Unclear`: cross-cutting or low-confidence root cause.
 - Structural failures normally classify as `Design Impact`.
 
 ## Recommended Recipient
 
 - `Local Fix` -> `implementation_engineer`
 - `Validation Gap` -> `api_e2e_engineer`
-- `Design Impact` -> `architect_designer`
-- `Requirement Gap` -> `requirements_engineer`
-- `Unclear` -> `requirements_engineer`
+- `Design Impact` -> `solution_designer`
+- `Requirement Gap` -> `solution_designer`
+- `Unclear` -> `solution_designer`
 
 Routing note:
 - If a `Local Fix` changes validated behavior or weakens existing validation evidence, the updated implementation should return through `api_e2e_engineer` before code review resumes.

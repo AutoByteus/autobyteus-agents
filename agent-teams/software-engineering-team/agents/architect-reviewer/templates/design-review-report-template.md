@@ -9,6 +9,8 @@ The latest round is authoritative; earlier rounds remain history.
 
 ## Review Round Meta
 
+- Upstream Requirements Doc:
+- Upstream Investigation Notes:
 - Reviewed Design Spec:
 - Current Review Round:
 - Trigger:

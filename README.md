@@ -4,7 +4,7 @@ This repository contains reusable AutoByteus agent and agent-team definitions.
 
 ## Software Engineering Team
 
-The software engineering team is organized as a practical delivery group that can take work from investigation and requirements engineering through API and E2E validation, review, release, and deployment.
+The software engineering team is organized as a practical delivery group that can take work from upstream solution design through implementation, API and E2E validation, review, docs sync, final handoff, release, and deployment.
 
 ## Research To Deck Team
 

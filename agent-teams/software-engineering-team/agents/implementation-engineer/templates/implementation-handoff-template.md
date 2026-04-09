@@ -2,6 +2,13 @@
 
 Write this artifact to a canonical file path in the assigned task workspace before any handoff message.
 
+## Upstream Artifact Package
+
+- Requirements doc:
+- Investigation notes:
+- Design spec:
+- Design review report:
+
 ## What Changed
 
 ## Key Files Or Areas
@@ -16,7 +23,7 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Legacy old-behavior retained in scope: `No` / `Yes (blocked)`
 - Dead/obsolete code, obsolete files, unused helpers/tests/flags/adapters, and dormant replaced paths removed in scope: `Yes` / `No (blocked)`
 - Shared structures remain tight (no one-for-all base or overlapping parallel shapes introduced): `Yes` / `No (blocked)`
-- Shared design/common-practice rules were reapplied during implementation, and file-level design weaknesses were routed upstream when needed: `Yes` / `No (blocked)`
+- Canonical shared design guidance was reapplied during implementation, and file-level design weaknesses were routed upstream when needed: `Yes` / `No (blocked)`
 - Changed source implementation files stayed within proactive size-pressure guardrails (`>500` avoided; `>220` assessed/acted on): `Yes` / `No (blocked)`
 - Notes:
 

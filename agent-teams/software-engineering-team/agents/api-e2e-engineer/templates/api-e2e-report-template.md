@@ -10,6 +10,11 @@ Validation may cover API, browser UI, native desktop UI, CLI, process/lifecycle,
 
 ## Validation Round Meta
 
+- Requirements Doc:
+- Investigation Notes:
+- Design Spec:
+- Design Review Report:
+- Implementation Handoff:
 - Current Validation Round:
 - Trigger:
 - Prior Round Reviewed:

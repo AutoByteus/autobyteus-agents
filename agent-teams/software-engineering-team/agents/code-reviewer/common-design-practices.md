@@ -1,1 +1,0 @@
-../../shared/common-design-practices.md

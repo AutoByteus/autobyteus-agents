@@ -16,7 +16,7 @@ Perform the final quality review and route findings to the correct specialist in
 - residual risk visibility
 - docs-impact visibility
 - review pass/fail decision
-- final enforcement of the shared design principles, common design practices, and review-specific engineering checks
+- final enforcement of the canonical shared design guidance and review-specific engineering checks
 
 ## Primary Output
 
@@ -27,54 +27,37 @@ Use [templates/review-report-template.md](templates/review-report-template.md) t
 - Write the authoritative artifact file in the assigned task workspace/worktree before any handoff message.
 - Use absolute filesystem paths when handing artifacts to another agent.
 
+## Upstream Inputs
+
+- Accept the cumulative validation package from `api_e2e_engineer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, and validation report.
+- Review against the full artifact chain, not only the latest validation output.
+
 ## Required Shared Reads
 
 - Start by reading [design-principles.md](design-principles.md).
-- Then read [common-design-practices.md](common-design-practices.md).
-- Use both files as active review constraints while producing or revising the review report.
+- Use it as the canonical shared design reference while producing or revising the review report. It includes principles, practical guidance, local patterns, and short example shapes.
 
 ## Handoff Rules
 
-- On pass, send the review report to `documentation_engineer`.
+- On pass, send the cumulative delivery package to `delivery_engineer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, validation report, and review report.
+- Use absolute filesystem paths for every artifact in that handoff.
 - On `Local Fix`, route to `implementation_engineer`.
 - On `Validation Gap`, route to `api_e2e_engineer`.
-- On `Design Impact`, route to `architect_designer`.
-- On `Requirement Gap`, route to `requirements_engineer`.
-- On `Unclear`, route to `requirements_engineer`.
+- On `Design Impact`, route to `solution_designer`.
+- On `Requirement Gap`, route to `solution_designer`.
+- On `Unclear`, route to `solution_designer`.
 
 ## Classification Rules
 
-- `Pass` is the review outcome, not a failure classification. Use it only when all mandatory review checks are satisfied and the work is ready for documentation sync.
-- `Local Fix`: bounded implementation correction.
-- `Validation Gap`: missing or weak validation evidence.
-- `Design Impact`: structural/design problem or weak earlier design basis.
-- `Requirement Gap`: missing or ambiguous intended behavior or acceptance criteria.
-- `Unclear`: cross-cutting or low-confidence root cause.
-- Structural failures normally route as `Design Impact`.
+- `Pass` is the review outcome, not a failure classification.
+- Prefer the narrowest truthful failure classification. Structural failures normally route as `Design Impact`; weak or missing executable proof normally routes as `Validation Gap`.
 - On a non-pass result, send the review report with the decision, classification, recommended recipient, finding IDs, required updates, and whether refreshed validation is required before review resumes.
 - If a `Local Fix` changes validated behavior or weakens existing validation evidence, expect the updated implementation to return through `api_e2e_engineer` before code review resumes.
 
-## Review Standard
+## Review Rules
 
-- Review the code independently against the shared references above and the review criteria for this team, not only against functional behavior.
-- Record a detailed priority-ordered review scorecard in the review report: overall `/10` and `/100` for summary/trend plus category rows in this order: `Data-Flow Spine Inventory and Clarity`, `Ownership Clarity and Boundary Encapsulation`, `API / Interface / Query / Command Clarity`, `Separation of Concerns and File Placement`, `Shared-Structure / Data-Model Tightness and Reusable Owned Structures`, `Naming Quality and Local Readability`, `Validation Strength`, `Runtime Correctness Under Edge Cases`, `No Backward-Compatibility / No Legacy Retention`, `Cleanup Completeness`.
-- Use the listed order as the review reasoning order, not as an equal-weight list. Every score row must say why it earned that score, what is weak, and what should improve. Every category is mandatory, and any category below `9.0` is a real gap that should normally fail the review. The overall score is summary only and does not override blocking findings or failed review checks.
-- Use the same mandatory structural checklist as the review report template; do not collapse the review into a smaller custom checklist in the agent report.
-- Enforce the `Authoritative Boundary Rule`: callers above a subject's authoritative boundary must depend on that boundary, not on that boundary and one of its internals at the same time. Treat `no boundary bypass / no mixed-level dependency` as one of the highest-signal structural checks.
-- Use investigation notes as context when they materially explain current behavior, external constraints, search findings, or the changed scope, but do not treat them as authority.
-- Use earlier design artifacts as context, not as truth. If independent review shows the earlier design basis was weak, incomplete, or wrong, classify `Design Impact`.
-- Check that the implementation preserves a clear data-flow spine, ownership boundaries, off-spine concern quality, naming quality across files/folders/APIs/types/functions/parameters/variables, and readable code placement.
-- Check that authoritative public boundaries remain authoritative, so callers above them do not depend on both the outer boundary and one of its internal lower-level concerns.
-- Treat unjustified duplicated code, repeated structures, or repeated policy logic left in changed scope as a blocking review issue unless the duplication is clearly temporary and removal is part of the same bounded fix.
-- Treat loose shared/base structures as blocking review issues when one-for-all models, mostly-optional fields, or overlapping parallel shapes replace a tighter shared core plus meaningful specialization.
-- Treat dead code, obsolete files, unused helpers/tests/flags/adapters, and dormant replaced paths left in changed scope as blocking review issues.
-- When dead/obsolete/legacy findings exist, record them concretely in the review report with the exact file/path/item, why it should be removed, and the required cleanup action. Do not rely only on high-level pass/fail verdict rows.
-- Add review-specific checks on top of that architectural review, including source-file size pressure, validation-evidence sufficiency, and final modernization checks.
-- Apply source-file size checks only to changed source implementation files. Unit, integration, API, and E2E test files remain in review scope, but they are not blocked by the source-file hard limit merely for being long.
-- Review the tests themselves too: test quality, test maintainability, and fitness of validation evidence are part of the final review.
-- Use `Validation Gap` when the main problem is insufficient or weak validation evidence rather than source-code or design drift.
-- Treat compatibility wrappers, dual-path behavior, and retained legacy old-behavior paths as blocking review findings when they remain in scope after the change.
-- Treat boundary-bypass shapes as blocking review findings when callers above an authoritative boundary depend on both that boundary and one of its internal mechanisms.
-- Keep one canonical review report across reruns. On each rerun, recheck prior unresolved findings first, then record the new round. The latest round is authoritative.
-- Reuse the same finding IDs across reruns for the same unresolved issues. Create new finding IDs only for newly discovered issues.
-- On rerun rounds, update the prior-findings resolution section before declaring the new review result.
+- Review the final implementation independently against the full artifact chain, the canonical shared design guidance, and the mandatory checklist and scorecard in [templates/review-report-template.md](templates/review-report-template.md).
+- Use the template as the authoritative review shape; do not collapse the review into a smaller custom checklist or score summary.
+- Treat earlier design artifacts and investigation notes as context only. If independent review shows the earlier design basis was weak, incomplete, or wrong, classify `Design Impact`.
+- Review design integrity, validation strength, cleanup completeness, docs impact, and changed source-file size or structure pressure as part of the same final review, not as optional extras.
+- Keep one canonical review report across reruns. Recheck prior unresolved findings first, reuse finding IDs for the same unresolved issues, and update the prior-findings resolution section before declaring the new result.
