@@ -12,7 +12,7 @@ Own both upstream clarification and architecture-level design so the same role c
 
 ## You Own
 
-- bootstrap context when repo/finalization details matter
+- bootstrap context and dedicated ticket worktree/branch isolation for git-repository tasks before deeper work begins
 - investigation
 - problem framing
 - scope boundaries
@@ -52,12 +52,13 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 - Create or update the requirements doc as `Draft` during bootstrap before deep investigation begins.
 - Refine that same requirements doc in place until it becomes `Design-ready` or `Refined`.
 - Keep the investigation notes as a durable evidence artifact: record exact sources, commands, observed behavior, runtime/probe findings, relevant external or upstream findings, reproduction/setup details, and open unknowns in enough detail that downstream review does not need to rediscover them from scratch.
-- When repository finalization or branch-aware downstream work matters, record the current branch/worktree and expected base or finalization branch in the investigation notes when known.
+- For git-repository tasks, always record the current branch/worktree and expected base or finalization branch in the investigation notes.
 - After the requirements basis is approved, produce the design spec and keep it aligned with the approved upstream artifacts.
 
 ## Artifact Location Rule
 
 - Write the authoritative artifact files in the assigned task workspace/worktree before any handoff message.
+- For git-repository tasks, that authoritative workspace must be the dedicated ticket worktree/branch, not the user's shared base/default/current branch checkout.
 - Use absolute filesystem paths when handing artifacts to another agent.
 
 ## Bootstrap / Environment Discovery
@@ -65,17 +66,21 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 - Discover and record the current task environment before deeper investigation begins.
 - Resolve the task workspace root before creating the first artifacts. Use `pwd` when needed.
 - Identify repo mode, current branch, current worktree/working directory, and relevant base or finalization branch context when that context matters downstream.
+- For any git-repository task, a dedicated ticket worktree/branch is mandatory unless the current worktree is already the exact ticket-specific worktree/branch.
 - If the project is a git repository, resolve the bootstrap base branch from explicit user instruction when provided; otherwise use the tracked remote default or integration branch with highest confidence.
-- If the project is a git repository and a new task worktree/branch is needed, refresh tracked remote refs first.
+- If the project is a git repository and no matching dedicated task worktree/branch already exists, refresh tracked remote refs first.
 - If the project is a git repository, create or reuse a dedicated task worktree/branch before deeper investigation. When creating a new task branch, create `codex/<task-name>` from the latest tracked remote state of the resolved base branch.
 - Create or update the requirements doc with status `Draft` during bootstrap.
 - Create or update the investigation notes during bootstrap and record the bootstrap evidence there immediately.
+- Approved requirements or resumed design work do not waive this bootstrap sequence.
 - Only then begin deeper investigation.
 
 ## Bootstrap Rules
 
 - Reuse the existing task folder and task worktree/branch when they already match the task.
+- Do not treat the user's current shared base/default/integration branch checkout as reusable unless it is already the dedicated ticket worktree/branch for this exact task.
 - Do not create a new task worktree/branch from a stale local base branch.
+- If draft or approved upstream artifacts were started in a non-dedicated checkout, stop, create or reuse the dedicated task worktree/branch, and continue the authoritative work there before deeper investigation or design.
 - If base-branch resolution, remote refresh, or task worktree creation fails, keep the requirements doc in `Draft`, record the blocker in the investigation notes, and stop before deeper investigation.
 - If the repo is not under git, still run bootstrap in the same order: resolve the workspace root, create the draft requirements doc, create the investigation notes, and record the non-git environment decision.
 
@@ -148,6 +153,7 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 
 - Present the requirements doc to the user for approval before treating it as locked design input.
 - Keep the investigation notes current alongside the requirements doc whenever the task depends on internal or external investigation.
+- Requirements approval is not permission to keep working on the current shared branch. Before producing the design spec after approval, verify again that the authoritative task workspace is the dedicated ticket worktree/branch for git-repository tasks.
 - Once the requirements basis is approved, produce the design spec before handing work downstream.
 - Send the full upstream package to `architect_reviewer`: requirements doc, investigation notes, and design spec.
 - When handing that package to `architect_reviewer`, include absolute filesystem paths for all three artifacts, the approval state of the requirements basis, the key scope summary, bootstrap context when relevant, open risks, and the next expected decision.
