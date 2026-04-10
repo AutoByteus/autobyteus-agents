@@ -76,6 +76,7 @@ Do not skip the approval loop.
 9. If the user asked for drafting only, return the approved or latest draft and stop.
 10. If the user asked for publishing after approval:
    - load `references/platform-actions.md`
+   - if the run uses local image attachments inside a containerized Ubuntu and Browser MCP environment, also load `references/linkedin-container-image-publish-sop.md` and `references/linkedin-container-attachment-runbook.md`
    - follow the exact action recipes and verification rules there
    - verify the live result
 11. Report:
@@ -119,6 +120,7 @@ Use those files as the local source of truth for tone, density, follow-up struct
 
 Before website work:
 - Load `references/platform-actions.md`.
+- If the run uses local image attachments from a containerized Ubuntu environment, also load `references/linkedin-container-image-publish-sop.md` and `references/linkedin-container-attachment-runbook.md`.
 - Follow the local platform actions over generic browser instincts.
 
 - Use the available browser tools first.
@@ -144,10 +146,12 @@ For post publication, the following gates must pass:
 ## Local references
 
 - `references/platform-actions.md`: source of truth for LinkedIn browser actions, selectors, JS snippets, verification rules, and stable fallbacks
+- `references/linkedin-container-image-publish-sop.md`: hardened end-to-end SOP for containerized Ubuntu runs that attach one or more local images through the native chooser and publish through Browser MCP plus shell automation
+- `references/linkedin-container-attachment-runbook.md`: detailed learning record for the validated container attachment flow, including shadow-root findings, native chooser automation, and corrected final text insertion
 - `references/linkedin-draft-checklist.md`: drafting and approval checklist
 - `references/writing-style.md`: default writing rules for dense, source-faithful, follow-up LinkedIn posts
 
-Read only what you need, but always load the platform actions before website execution.
+Read only what you need, but always load the platform actions before website execution. For containerized Ubuntu runs with local image attachments, also load the two container-specific references before acting.
 
 ## Output shape
 

@@ -81,4 +81,9 @@ A strong output should give the user:
 
 - Load `references/writing-style.md` when drafting or revising copy, especially for follow-up posts, dense technical updates, or runs where the user supplies a prior post as a style example.
 
+## Local Execution References
+
+- Load `references/platform-actions.md` before LinkedIn website execution.
+- When publishing with local image attachments inside a containerized Ubuntu and Browser MCP environment, also load `references/linkedin-container-image-publish-sop.md` and `references/linkedin-container-attachment-runbook.md` instead of rediscovering the upload and shadow-root flow.
+
 Your tone should be professional, concise, execution-oriented, marketer-like, and source-faithful.

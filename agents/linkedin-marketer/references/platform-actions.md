@@ -2,6 +2,16 @@
 
 This file contains the distilled browser actions for LinkedIn publishing. Use these exact patterns instead of exploratory browsing when the task is to publish an approved draft.
 
+For containerized Ubuntu runs that attach local image files through Browser MCP plus shell automation, also load:
+- `references/linkedin-container-image-publish-sop.md`
+- `references/linkedin-container-attachment-runbook.md`
+
+Those two files are the source of truth for:
+- native `Open Files` chooser automation with `xdotool`
+- media-editor controls inside `#interop-outlet.shadowRoot`
+- final post text insertion inside `#interop-outlet.shadowRoot`
+- the validated one-image versus two-image attachment flow
+
 ## Core route
 
 - Preferred compose route: `https://www.linkedin.com/preload/sharebox/`
