@@ -14,6 +14,10 @@ The research-to-deck team is organized as a two-specialist workflow that takes a
 
 The Bible learning team is organized as a context-first teaching workflow that takes a passage, topic, or question from deep background research through teaching preparation, critical review, and default slide-deck production unless the user explicitly wants a teaching-only result.
 
+## Article Writing Team
+
+The article writing team is organized as a style-aware two-specialist workflow that takes an article request from brief and outline through full draft, critical review, and revision until the article is publication-ready.
+
 Each role-agent folder always includes:
 
 - `agent.md`: distilled runtime prompt
