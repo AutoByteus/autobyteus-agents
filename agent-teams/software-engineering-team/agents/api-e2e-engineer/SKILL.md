@@ -39,6 +39,7 @@ Use [templates/api-e2e-report-template.md](templates/api-e2e-report-template.md)
 ## Validation Rules
 
 - Derive the coverage from the approved requirements doc, reviewed design spec, implementation handoff, and the behavior you can directly observe.
+- Treat any implementation-side local checks in the handoff as helpful context only, not as authoritative API/E2E or executable-validation sign-off.
 - Cover happy paths, edge cases, failure paths, integration boundaries, and environment-specific behavior whenever those can reasonably be exercised. Make untested areas explicit instead of silently skipping them.
 - The minimum bar is to add or update the durable validation that should live in the codebase for the relevant boundary and run it against the current implementation.
 - That minimum is not the full job. If proving behavior requires more than repository-resident tests, continue with broader executable validation work until you hit a real blocker.

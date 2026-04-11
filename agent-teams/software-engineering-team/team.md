@@ -27,7 +27,7 @@ Detailed operating rules, artifact standards, and send-back behavior belong in e
 
 - `solution_designer`: bootstraps the task context, investigates the request, defines scope, writes the requirements doc and investigation notes, produces the design spec, and acts as the reset point when downstream work exposes a requirement gap, design impact, or cross-cutting ambiguity.
 - `architect_reviewer`: reviews the design spec and decides whether the design is ready for implementation.
-- `implementation_engineer`: delivers the code changes from the reviewed design and prepares the implementation handoff.
-- `api_e2e_engineer`: designs and executes executable validation and records pass, fail, blocked, and uncovered coverage with evidence.
+- `implementation_engineer`: delivers the code changes from the reviewed design, runs implementation-scoped local checks, and prepares the implementation handoff without owning API/E2E validation or validation-environment setup.
+- `api_e2e_engineer`: owns API, end-to-end, and broader executable validation coverage, validation-environment setup, execution, and evidence based on the implementation handoff.
 - `code_reviewer`: performs the engineering review and records the final findings and residual risks.
 - `delivery_engineer`: updates durable project documentation or records explicit no-impact once the reviewed implementation state is clear, then prepares the final handoff, waits for explicit user completion or verification before archival or repository finalization, and handles release or deployment work when it is in scope.

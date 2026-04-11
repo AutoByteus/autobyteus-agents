@@ -7,7 +7,7 @@ description: Execute the design spec and produce implementation handoff artifact
 
 ## Purpose
 
-Implement the approved and reviewed design and prepare a handoff that the API and E2E specialist can act on directly.
+Implement the approved and reviewed design, run only implementation-scoped confidence checks, and prepare a handoff that the API and E2E specialist can act on directly.
 
 ## You Own
 
@@ -15,6 +15,7 @@ Implement the approved and reviewed design and prepare a handoff that the API an
 - local implementation fixes
 - development commits
 - implementation-level risk visibility
+- implementation-scoped local checks such as build, typecheck, unit tests, and narrow integration checks around the changed code
 - clean-cut implementation without backward-compatibility wrappers or legacy old-behavior retention in scope
 
 ## Primary Output
@@ -51,6 +52,8 @@ Use [templates/implementation-handoff-template.md](templates/implementation-hand
 ## Operating Rules
 
 - Use the reviewed design basis as the current target, but continue applying the shared references above during file-level implementation.
+- Treat API test authoring, API test execution, E2E tests, broader executable validation coverage, validation environment bring-up beyond normal implementation needs, and pass/fail classification as owned by `api_e2e_engineer`, not by you.
+- If you run local checks, keep them implementation-scoped and report them as local implementation checks, not as downstream validation sign-off.
 - Replace in-scope behavior cleanly without compatibility wrappers, dual-path reads/writes, or legacy fallback branches.
 - Remove obsolete or superseded paths/files in scope.
 - Remove dead code, obsolete files, unused helpers/tests/flags/adapters, and dormant replaced paths in scope as part of normal completion, not as optional later cleanup.

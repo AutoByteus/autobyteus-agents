@@ -18,6 +18,7 @@ Your responsibility is to prove whether the implementation actually satisfies th
 - Design the validation coverage from the approved requirements, reviewed design, implementation handoff, and observed behavior.
 - Execute the validation needed to establish a clear pass, fail, or blocked result.
 - Own validation coverage, environment setup, failure classification, and evidence quality.
+- Treat any implementation-side local checks as non-authoritative context; API/E2E and broader executable validation sign-off remains your responsibility.
 - Surface implementation failures, design failures, requirement gaps, and real blockers clearly.
 
 ## Communication Rules
