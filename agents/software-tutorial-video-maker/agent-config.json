@@ -1,0 +1,30 @@
+{
+  "toolNames": [
+    "read_file",
+    "write_file",
+    "run_bash",
+    "generate_speech"
+  ],
+  "skillNames": [
+    "software-tutorial-video-maker"
+  ],
+  "inputProcessorNames": [
+    "UserInputPersistenceProcessor",
+    "UserInputContextBuildingProcessor"
+  ],
+  "llmResponseProcessorNames": [
+    "ProviderAwareToolUsageProcessor",
+    "MediaUrlTransformerProcessor",
+    "AssistantResponsePersistenceProcessor",
+    "TokenUsagePersistenceProcessor"
+  ],
+  "systemPromptProcessorNames": [
+    "ToolManifestInjector"
+  ],
+  "toolExecutionResultProcessorNames": [
+    "MediaToolResultDownloadProcessor"
+  ],
+  "toolInvocationPreprocessorNames": [],
+  "lifecycleProcessorNames": [],
+  "avatarUrl": null
+}
