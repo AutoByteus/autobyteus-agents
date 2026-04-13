@@ -42,10 +42,14 @@ Identify:
 - target platform
 - language mode
 - style profile
+- selected profile variant when present
+- rhetorical mode when present
+- opening stance when present
 - audience
 - one-sentence takeaway
 - whether the request is original drafting, conversion, or bilingual drafting
 - whether the source basis is strong enough
+- whether the user has active hard constraints from prior feedback such as `too salesy`, `too detached`, `too repetitive`, `too indirect`, or `not accurate`
 
 If the brief is missing enough information that the writer could not reasonably target the article, return `Brief Gap`.
 
@@ -55,10 +59,11 @@ If the source basis is too weak for the claimed article confidence or the cross-
 
 Check whether the outline has:
 
-- a clear thesis
+- the correct opening stance for the request
+- a clear thesis or main observation appropriate to that stance
 - section-level logic progression
 - an appropriate scope for the requested audience and platform
-- enough planned evidence, examples, or support
+- enough planned evidence, mechanism, examples, or support
 - a conclusion that lands the intended takeaway
 - a style direction that matches the requested profile
 
@@ -72,12 +77,16 @@ For single-language articles, check:
 
 - title quality
 - opening strength
-- thesis clarity
+- opening stance correctness
+- thesis clarity or main-observation clarity
+- factual accuracy
+- mechanism accuracy
 - structure and transitions
 - section usefulness
 - evidence quality
 - paragraph rhythm
 - style fidelity
+- ownership stance when the article is builder-authored
 - platform fit
 - ending strength
 - sentence-level clarity where line edits materially affect comprehension
@@ -92,16 +101,19 @@ For bilingual or conversion work, also check:
 
 Apply the shared writing principles before using narrower review taste or local preferences.
 
+If the draft is using the wrong Ryan variant, the wrong rhetorical mode, or the wrong ownership stance, treat that as a real structural problem rather than a cosmetic style note.
+
 ### Step 4 - Prioritize findings correctly
 
 Prioritize in this order:
 
-1. thesis or argument failure
-2. structural or outline weakness
-3. source fidelity or evidence weakness
-4. style-fit failure
-5. platform-fit failure
-6. local clarity or line-edit issues
+1. factual or mechanism inaccuracy
+2. opening stance or argument failure
+3. structural or outline weakness
+4. source fidelity or evidence weakness
+5. style-fit or ownership-stance failure
+6. platform-fit failure
+7. local clarity or line-edit issues
 
 Do not overload the report with line edits when the real problem is structural.
 
@@ -134,6 +146,7 @@ Use one of these decisions:
 - Re-review the full package after each revision.
 - Do not auto-pass on the first resubmission if the article still feels structurally weak.
 - If a style or fidelity issue materially changes the draft, review the whole argument again, not just the edited paragraph.
+- If a prior round flagged sales tone, detachment, repetition, or a too-generic mechanism, verify that the failure mode was actually removed.
 
 ## Reviewer Standards
 
@@ -141,3 +154,4 @@ Use one of these decisions:
 - Make findings concrete enough that the writer can act on them directly.
 - Preserve strong thesis and structure when they already work.
 - Prefer publication readiness over generic positivity.
+- Do not accept a draft that sounds more polished but remains inaccurate, wrongly framed, detached from the builder voice, or repetitive in the same places.

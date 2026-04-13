@@ -8,24 +8,25 @@ This is the canonical shared guidance file for article quality: thesis shape, st
 
 ## Core Principles
 
-### 1. Thesis First
+### 1. Opening Stance Must Match The Request
 
-- Every article should make its main claim early.
-- The reader should understand the core argument within the opening section, not after a long warm-up.
-- A strong opening usually does one of these:
-  - states a conclusion directly
-  - names a problem and then states the real cause
-  - contrasts a common belief with the deeper claim
-- If the thesis is still vague after the opening, the article is not ready.
+- Every article needs a strong opening, but not every article needs the same kind of opening.
+- The opening stance should be chosen explicitly:
+  - `thesis-first`: for argumentative Medium-style essays
+  - `scope-first`: for factual technical explanation
+  - `builder-direct`: for firsthand product or workflow narration
+  - `paper-report`: for more formal or report-like prose
+- A strong opening should tell the reader what kind of article they are reading within the first section.
+- Do not force `not X, but Y` or a compressed thesis hook when the request is better served by a direct system description or builder-owned sequence.
 
 ### 2. Outline Before Full Draft
 
 - The outline is not a formality. It is the structural contract for the article.
 - A strong outline should show:
   - working title options
-  - the thesis
+  - the selected opening stance
   - section-by-section purpose
-  - the evidence, examples, or reasoning burden of each section
+  - the evidence, mechanism, examples, or reasoning burden of each section
   - the intended ending move
 - Do not compensate for a weak outline with polished paragraphs.
 
@@ -51,10 +52,12 @@ This is the canonical shared guidance file for article quality: thesis shape, st
   - source-backed evidence when research is part of the task
 - Evidence should not be decorative. It should change whether the claim is believable.
 - If the article makes a strong claim without enough support, the support problem is structural, not stylistic.
+- If the user later provides a more exact mechanism, replace the earlier generic explanation instead of preserving the abstraction for stylistic continuity.
 
 ### 5. Style Is A Constraint, Not Decoration
 
 - When a style profile is requested, the draft should match that profile in:
+  - opening stance
   - thesis behavior
   - paragraph rhythm
   - transition style
@@ -63,6 +66,7 @@ This is the canonical shared guidance file for article quality: thesis shape, st
   - ending shape
 - Style matching should not distort the core reasoning.
 - If the requested profile is bootstrapping or weakly evidenced, preserve structure and truthfulness before attempting high-confidence imitation.
+- If a profile has variants or stance modes, choose one explicitly and keep the draft inside that variant.
 
 ### 6. Platform Fit Should Shape Packaging, Not Weaken Reasoning
 
@@ -83,7 +87,9 @@ This is the canonical shared guidance file for article quality: thesis shape, st
 ### 8. Review Must Challenge Structure Before Polish
 
 - Review should prioritize:
-  - thesis strength
+  - factual accuracy
+  - mechanism accuracy
+  - opening stance correctness
   - outline integrity
   - logic continuity
   - evidence sufficiency
@@ -94,23 +100,55 @@ This is the canonical shared guidance file for article quality: thesis shape, st
 - Do not bury major structural problems under many small edits.
 - A review that only line-edits a structurally weak article is not doing its job.
 
+### 9. Directness And Ownership Matter
+
+- If the article is about the author's own product, workflow, or runtime change, the draft should usually use builder ownership language such as `we used`, `we observed`, and `we changed`.
+- Do not let the article sound like an outside analyst if the user is clearly writing from firsthand ownership.
+- Direct builder narration is usually stronger than detached meta-openers such as `This article explains...` when the article is based on internal implementation or internal experiments.
+
+### 10. Redundancy Is A Structural Failure
+
+- Repetition of key nouns can be useful.
+- Repetition of the same claim without new evidence, mechanism, or implication is a structural weakness.
+- Each section should add at least one new contribution.
+- If one table already carries the main comparison, do not add a second summary table that merely repeats it.
+- Compress conclusion sections instead of reopening the same claim a third time.
+
+### 11. User Corrections Override Style Habit
+
+- When the user says `too salesy`, `too detached`, `too repetitive`, `too indirect`, or `not accurate`, treat that as an active correction to the writing direction.
+- Revision precedence should be:
+  1. factual accuracy
+  2. mechanism accuracy
+  3. ownership stance
+  4. logic and structure
+  5. style fit
+  6. local polish
+- A revision is not complete if it only softens the problem without actually removing the failure mode.
+
 ## Shared Failure Patterns
 
-- weak or delayed thesis
+- wrong opening stance for the requested article type
+- weak or delayed thesis when thesis-first framing is actually required
 - outline sections that do not build on one another
 - repeated claims without new evidence
+- repeated summary sections or duplicated comparison tables
 - examples that do not actually prove the point
 - style mimicry without real argument control
+- detached analyst tone on a builder-owned article
 - platform polish masking shallow structure
 - bilingual conversion that preserves words but loses reasoning
 - strong local paragraphs with a weak overall article arc
 
 ## Required Questions
 
-- What is the thesis, and where does it appear?
+- What opening stance does this article actually need?
+- If the article is thesis-first, what is the thesis, and where does it appear?
 - What does each section contribute to the thesis?
 - What evidence or mechanism makes the central claim believable?
 - Does the requested style affect only wording, or does it also affect structure and argument rhythm?
+- Is the article using the right ownership stance for who is speaking?
+- If the user supplied a more exact mechanism during revision, did the draft replace the earlier generic explanation?
 - Is the article genuinely ready for the requested platform?
 - If bilingual, does the target version preserve logic while sounding native?
 - If revised, were the substantive issues actually resolved, or only softened?
