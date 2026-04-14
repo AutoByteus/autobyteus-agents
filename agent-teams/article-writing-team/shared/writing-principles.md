@@ -54,6 +54,19 @@ This is the canonical shared guidance file for article quality: thesis shape, st
 - If the article makes a strong claim without enough support, the support problem is structural, not stylistic.
 - If the user later provides a more exact mechanism, replace the earlier generic explanation instead of preserving the abstraction for stylistic continuity.
 
+### 4A. Derivation Must Be Preserved When The Article Depends On It
+
+- Some articles are not mainly thesis-first essays. They are derivations.
+- In those cases, the article should preserve the user's reasoning chain instead of jumping to the conclusion too early.
+- For architecture or system articles, a common derivation sequence is:
+  - prior system
+  - who or what was actually doing the work
+  - what changed
+  - new decomposition or boundary
+  - practical UI, workflow, or product consequence
+  - bounded conclusion
+- If the user is reasoning from system structure to product consequence, do not rewrite the article into a generic opinion piece.
+
 ### 5. Style Is A Constraint, Not Decoration
 
 - When a style profile is requested, the draft should match that profile in:
@@ -106,6 +119,22 @@ This is the canonical shared guidance file for article quality: thesis shape, st
 - Do not let the article sound like an outside analyst if the user is clearly writing from firsthand ownership.
 - Direct builder narration is usually stronger than detached meta-openers such as `This article explains...` when the article is based on internal implementation or internal experiments.
 
+### 9A. Terminology Must Preserve Real Boundaries
+
+- Technical accuracy is often lost when a draft compresses distinct things into one vague noun.
+- If the article relies on distinctions such as:
+  - human doer
+  - software work surface
+  - application logic
+  - application UI
+  - agent runtime
+  - agent team runtime
+  - delivery boundary
+  - artifact
+  then those terms should remain explicit.
+- Do not replace a more exact mechanism with words like `system`, `runtime`, `interface`, or `process` if the reader can no longer tell what is actually meant.
+- A sentence can be smoother and still be less accurate. Accuracy wins.
+
 ### 10. Redundancy Is A Structural Failure
 
 - Repetition of key nouns can be useful.
@@ -136,6 +165,7 @@ This is the canonical shared guidance file for article quality: thesis shape, st
 - examples that do not actually prove the point
 - style mimicry without real argument control
 - detached analyst tone on a builder-owned article
+- vague system nouns that collapse real boundaries the user explicitly described
 - platform polish masking shallow structure
 - bilingual conversion that preserves words but loses reasoning
 - strong local paragraphs with a weak overall article arc
@@ -149,6 +179,7 @@ This is the canonical shared guidance file for article quality: thesis shape, st
 - Does the requested style affect only wording, or does it also affect structure and argument rhythm?
 - Is the article using the right ownership stance for who is speaking?
 - If the user supplied a more exact mechanism during revision, did the draft replace the earlier generic explanation?
+- Does every important noun still have a stable referent at sentence level, or did the draft blur distinct boundaries together?
 - Is the article genuinely ready for the requested platform?
 - If bilingual, does the target version preserve logic while sounding native?
 - If revised, were the substantive issues actually resolved, or only softened?
