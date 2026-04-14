@@ -7,7 +7,7 @@ description: Execute the design spec and produce implementation handoff artifact
 
 ## Purpose
 
-Implement the approved and reviewed design, run only implementation-scoped confidence checks, and prepare a handoff that the API and E2E specialist can act on directly.
+Implement the approved and reviewed design, run only implementation-scoped confidence checks, and prepare a handoff that the code reviewer can act on directly before API/E2E validation begins.
 
 ## You Own
 
@@ -40,14 +40,14 @@ Use [templates/implementation-handoff-template.md](templates/implementation-hand
 ## Handoff Rules
 
 - Accept the cumulative reviewed upstream package from `architect_reviewer` before starting implementation.
-- Send the cumulative implementation package to `api_e2e_engineer`: requirements doc, investigation notes, design spec, design review report, and implementation handoff.
+- Send the cumulative implementation package to `code_reviewer`: requirements doc, investigation notes, design spec, design review report, and implementation handoff.
 - Use absolute filesystem paths for every artifact in that handoff.
 - Route `Design Impact` to `solution_designer`.
 - Route `Requirement Gap` to `solution_designer`.
 - Route `Unclear` to `solution_designer`.
-- If `api_e2e_engineer` sends a `Local Fix`, update the implementation and resend the handoff to `api_e2e_engineer`.
 - If `code_reviewer` sends a `Local Fix`, update the implementation and resend the handoff to `code_reviewer`.
-- If that fix changes validated behavior, resend the handoff to `api_e2e_engineer` before `code_reviewer`.
+- If `api_e2e_engineer` sends a `Local Fix`, update the implementation and resend the handoff to `code_reviewer` before API/E2E resumes.
+- Do not route implementation changes directly back to `api_e2e_engineer`; code review must pass first.
 
 ## Operating Rules
 

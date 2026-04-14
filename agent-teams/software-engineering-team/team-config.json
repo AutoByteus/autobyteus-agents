@@ -21,14 +21,14 @@
       "refScope": "team_local"
     },
     {
-      "memberName": "api_e2e_engineer",
-      "ref": "api-e2e-engineer",
+      "memberName": "code_reviewer",
+      "ref": "code-reviewer",
       "refType": "agent",
       "refScope": "team_local"
     },
     {
-      "memberName": "code_reviewer",
-      "ref": "code-reviewer",
+      "memberName": "api_e2e_engineer",
+      "ref": "api-e2e-engineer",
       "refType": "agent",
       "refScope": "team_local"
     },

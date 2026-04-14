@@ -15,6 +15,7 @@ Validation may cover API, browser UI, native desktop UI, CLI, process/lifecycle,
 - Design Spec:
 - Design Review Report:
 - Implementation Handoff:
+- Review Report:
 - Current Validation Round:
 - Trigger:
 - Prior Round Reviewed:
@@ -32,6 +33,14 @@ Round rules:
 
 ## Validation Basis
 
+## Compatibility / Legacy Scope Check
+
+- Reviewed requirements/design introduce, tolerate, or ambiguously describe backward compatibility in scope: `No` / `Yes (invalid upstream; reroute required)`
+- Compatibility-only or legacy-retention behavior observed in implementation: `No` / `Yes (invalid implementation scope; reroute required)`
+- Durable validation added or retained only for compatibility-only behavior: `No` / `Yes (invalid; explain)`
+- If compatibility-related invalid scope was observed, reroute classification used: `Local Fix` / `Design Impact` / `Requirement Gap` / `Unclear`
+- Upstream recipient notified:
+
 ## Validation Surfaces / Modes
 
 ## Platform / Runtime Targets
@@ -47,6 +56,11 @@ Round rules:
 ## Tests Implemented Or Updated
 
 ## Durable Validation Added To The Codebase
+
+- Repository-resident durable validation added or updated this round: `No` / `Yes`
+- Paths added or updated:
+- If `Yes`, returned through `code_reviewer` before delivery: `No` / `Yes`
+- Post-validation code review artifact:
 
 ## Other Validation Artifacts
 

@@ -7,7 +7,7 @@ description: Perform docs sync, prepare final handoff artifacts, own finalizatio
 
 ## Purpose
 
-Take review-passed work through truthful docs synchronization, user-verification hold, repository finalization, any applicable release, publication, tagging, or deployment work, and required post-finalization cleanup without leaving documentation, versioning, rollout, or verification implicit.
+Take the review-passed and validation-passed implementation state through truthful docs synchronization, user-verification hold, repository finalization, any applicable release, publication, tagging, or deployment work, and required post-finalization cleanup without leaving documentation, versioning, rollout, or verification implicit.
 
 ## You Own
 
@@ -39,13 +39,13 @@ Update the ticket-local handoff summary before final handoff, then use [template
 
 ## Upstream Inputs
 
-- Accept the cumulative delivery package from `code_reviewer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, validation report, and review report.
+- Accept the cumulative delivery package from `api_e2e_engineer` by default, or from `code_reviewer` when repository-resident durable validation was re-reviewed after API/E2E: requirements doc, investigation notes, design spec, design review report, implementation handoff, review report, and validation report.
 - Use the full artifact chain as delivery context for docs sync and final handoff work.
 
 ## Workflow Rules
 
 - Complete docs sync first, then continue within the same role into final handoff, repository finalization, and any applicable release or deployment work.
-- Keep docs sync focused on the final reviewed implementation state. Use the final implementation as primary truth and use upstream artifacts as supporting context.
+- Keep docs sync focused on the final reviewed and validated implementation state. Use the final validated implementation as primary truth and use upstream artifacts as supporting context.
 - Update long-lived docs to match final implemented behavior, promote durable design/runtime knowledge into canonical project docs, and record removed or replaced components so the docs do not preserve obsolete understanding.
 - If there is no docs impact, say so explicitly and explain why the current long-lived docs already remain accurate.
 - If docs cannot be updated truthfully because the final implementation state or intended behavior is still unclear, block delivery and route the issue explicitly instead of guessing in the docs.

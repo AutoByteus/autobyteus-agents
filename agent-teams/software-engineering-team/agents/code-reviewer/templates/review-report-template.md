@@ -12,6 +12,7 @@ The latest round is authoritative; earlier rounds remain history.
 
 ## Review Round Meta
 
+- Review Entry Point: `Implementation Review` / `Post-Validation Durable-Validation Re-Review`
 - Requirements Doc Reviewed As Context:
 - Current Review Round:
 - Trigger:
@@ -22,6 +23,8 @@ The latest round is authoritative; earlier rounds remain history.
 - Design Review Report Reviewed As Context:
 - Implementation Handoff Reviewed As Context:
 - Validation Report Reviewed As Context:
+- API / E2E Validation Started Yet: `Yes` / `No`
+- Repository-Resident Durable Validation Added Or Updated After Prior Review: `Yes` / `No`
 
 Round rules:
 - Reuse the same finding IDs across reruns for the same unresolved issues.
@@ -90,7 +93,7 @@ Quick examples:
 | Dead/obsolete code cleanup completeness in changed scope |  |  |  |
 | Test quality is acceptable for the changed behavior |  |  |  |
 | Test maintainability is acceptable for the changed behavior |  |  |  |
-| Validation evidence sufficiency for the changed flow |  |  |  |
+| Validation or delivery readiness for the next workflow stage |  |  |  |
 | No backward-compatibility mechanisms (no compatibility wrappers/dual-path behavior) |  |  |  |
 | No legacy code retention for old behavior |  |  |  |
 
@@ -112,7 +115,7 @@ Use the canonical priority order below. The order is the review reasoning order,
 | `4` | `Separation of Concerns and File Placement` |  |  |  |  |
 | `5` | `Shared-Structure / Data-Model Tightness and Reusable Owned Structures` |  |  |  |  |
 | `6` | `Naming Quality and Local Readability` |  |  |  |  |
-| `7` | `Validation Strength` |  |  |  |  |
+| `7` | `Validation Readiness` |  |  |  |  |
 | `8` | `Runtime Correctness Under Edge Cases` |  |  |  |  |
 | `9` | `No Backward-Compatibility / No Legacy Retention` |  |  |  |  |
 | `10` | `Cleanup Completeness` |  |  |  |  |
@@ -132,14 +135,14 @@ Rules:
 - Mark resolved or obsolete earlier findings in the prior-findings resolution table instead of silently dropping them.
 - If dead/obsolete/legacy/compatibility issues exist, enumerate each one explicitly with the concrete file/path/item, evidence, and required removal or cleanup action.
 
-## Validation And Test Quality Verdict
+## Test Quality And Validation-Readiness Verdict
 
 | Area | Check | Result (`Pass`/`Fail`) | Notes |
 | --- | --- | --- | --- |
-| Validation Evidence | Sufficient for changed behavior |  |  |
+| Validation Readiness | Ready for the next workflow stage (`API / E2E` or `Delivery`) |  |  |
 | Tests | Test quality is acceptable |  |  |
 | Tests | Test maintainability is acceptable |  |  |
-| Tests | Main issue is `Validation Gap` rather than source/design drift |  |  |
+| Tests | Review findings are clear enough for the next owner before API / E2E or delivery resumes |  |  |
 
 ## Legacy / Backward-Compatibility Verdict
 
@@ -164,8 +167,7 @@ Rules:
 ## Classification
 
 - `Pass` is not a classification. Record pass/fail/blocked in `Latest Authoritative Result`, then use a classification below only when the review does not pass cleanly.
-- `Local Fix`: bounded source fix, no upstream design/requirement update needed
-- `Validation Gap`: main issue is insufficient validation evidence
+- `Local Fix`: bounded source or durable-validation fix, no upstream design/requirement update needed
 - `Design Impact`: structural issue in code or earlier design artifact was weak/wrong/incomplete
 - `Requirement Gap`: missing or ambiguous intended behavior
 - `Unclear`: cross-cutting or low-confidence root cause
@@ -173,14 +175,14 @@ Rules:
 
 ## Recommended Recipient
 
-- `Local Fix` -> `implementation_engineer`
-- `Validation Gap` -> `api_e2e_engineer`
+- `Local Fix` -> `implementation_engineer` when the bounded fix is in implementation-owned source or packaging
+- `Local Fix` -> `api_e2e_engineer` when the bounded fix is limited to repository-resident durable validation code or validation-report corrections added during API/E2E
 - `Design Impact` -> `solution_designer`
 - `Requirement Gap` -> `solution_designer`
 - `Unclear` -> `solution_designer`
 
 Routing note:
-- If a `Local Fix` changes validated behavior or weakens existing validation evidence, the updated implementation should return through `api_e2e_engineer` before code review resumes.
+- After a `Local Fix`, the updated implementation or durable validation should return through `code_reviewer` before API / E2E begins or resumes, or before delivery resumes.
 
 ## Residual Risks
 
