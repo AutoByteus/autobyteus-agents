@@ -72,12 +72,19 @@ Produce:
 - Explain state, intent, and consequence in clear language.
 - Keep narration concise and instructional by default.
 
-### 4. Timing Should Be Audio-Led
+### 4. Open With A Short Tutorial Framing Line
+
+- The first narrated segment should briefly tell the viewer what the tutorial will demonstrate before moving into the first visible action.
+- Default pattern: `In this tutorial, we'll show you how to ...`
+- Keep this opening line short, concrete, and aligned with the actual tutorial objective.
+- Do not add a long generic introduction that delays the visible teaching flow.
+
+### 5. Timing Should Be Audio-Led
 
 - Hold time should come from actual narration duration plus a small readability buffer.
 - Do not use arbitrary fixed durations when the speech is materially shorter or longer.
 
-### 5. Assembly Should Stay Simple Unless The User Asks For More
+### 6. Assembly Should Stay Simple Unless The User Asks For More
 
 - Default to still-image video assembly with cuts or light fades.
 - Do not add fake cursor movement, decorative animation, or cinematic motion unless the user explicitly wants that style.
@@ -115,6 +122,10 @@ Each segment should capture:
 - estimated hold seconds
 
 Keep one concrete teaching move per segment whenever possible.
+
+For the opening segment:
+- start the narration with a short framing line that tells the viewer what they will learn
+- then move directly into the first visible step without adding filler
 
 ### Step 3 - Generate narration
 
