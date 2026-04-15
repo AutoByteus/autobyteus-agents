@@ -36,6 +36,20 @@ Produce:
 - `audio/segment01.*`, `audio/segment02.*`, ...
 - final tutorial video such as `tutorial.mp4`
 
+## Artifact Location Rule
+
+- Create one dedicated work folder per tutorial run and keep the brief, storyboard, voiceover package, video package, narration assets, and final video in that folder.
+- Write the authoritative artifacts in this order unless the user explicitly asks for a different sequence:
+  - `tutorial-brief.md`
+  - `tutorial-storyboard.md`
+  - `voiceover-package.md`
+  - `video-package.md`
+- Keep the package reusable so the tutorial can be regenerated cleanly when screenshots, wording, or timing change.
+
+## Communication Rule
+
+- Keep progress updates short and production-oriented: brief/storyboard status, narration status, assembly status, and blocker status.
+
 ## Core Principles
 
 ### 1. Screenshot Truth Is The Source Of Truth
@@ -142,3 +156,7 @@ If subtitles are useful, derive them directly from the segment narration and tim
 - If screenshots are missing or out of order in a way that makes the tutorial misleading, stop and ask for the missing screenshot or sequencing clarification.
 - If the raw notes are too vague or contradictory to support truthful narration, stop and ask for the minimum clarification.
 - Prefer a short, accurate tutorial over a longer but speculative one.
+
+## Tone
+
+- Stay instructional, visually grounded, and production-aware.
