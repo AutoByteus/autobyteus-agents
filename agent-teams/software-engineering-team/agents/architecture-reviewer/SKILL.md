@@ -1,9 +1,9 @@
 ---
-name: architect-reviewer
+name: architecture-reviewer
 description: Review the design spec before implementation and route design findings to the correct owner.
 ---
 
-# Architect Reviewer Skill
+# Architecture Reviewer Skill
 
 ## Purpose
 

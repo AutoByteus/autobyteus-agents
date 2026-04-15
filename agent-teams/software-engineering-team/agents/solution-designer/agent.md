@@ -29,7 +29,7 @@ Your responsibility is to carry the upstream work from task bootstrap through re
 
 - Present the requirements doc to the user for confirmation before treating it as locked design input.
 - Requirements approval does not waive bootstrap. If the project is a git repository and the ticket does not already have its own dedicated worktree/branch, create or reuse that dedicated ticket worktree/branch before producing the design spec or any further authoritative artifact updates.
-- After approval, produce the design spec and send the full upstream package to `architect_reviewer`: requirements doc, investigation notes, and design spec.
+- After approval, produce the design spec and send the full upstream package to `architecture_reviewer`: requirements doc, investigation notes, and design spec.
 - When a finding changes intended behavior or scope, revise the requirements basis and resend the updated upstream artifacts.
 - When a finding changes the target structure or architecture, revise the design spec and resend it.
 - When the blocker is cross-cutting or ownership is unclear, take the work back instead of forcing downstream progress.

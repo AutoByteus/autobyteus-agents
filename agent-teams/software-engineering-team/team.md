@@ -16,7 +16,7 @@ Detailed operating rules, artifact standards, and send-back behavior belong in e
 - Every `send_message_to` handoff should include absolute filesystem paths for all still-relevant upstream artifacts produced so far, not only the latest local artifact.
 - Downstream specialists should be able to read the cumulative artifact package without having to rediscover earlier work from scratch.
 - Default cumulative package:
-  - `architect_reviewer`: requirements doc, investigation notes, design spec
+  - `architecture_reviewer`: requirements doc, investigation notes, design spec
   - `implementation_engineer`: requirements doc, investigation notes, design spec, design review report
   - `code_reviewer`: requirements doc, investigation notes, design spec, design review report, implementation handoff
   - `api_e2e_engineer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, review report
@@ -27,7 +27,7 @@ Detailed operating rules, artifact standards, and send-back behavior belong in e
 ## Team Members
 
 - `solution_designer`: bootstraps the task context, investigates the request, defines scope, writes the requirements doc and investigation notes, produces the design spec, and acts as the reset point when downstream work exposes a requirement gap, design impact, or cross-cutting ambiguity.
-- `architect_reviewer`: reviews the design spec and decides whether the design is ready for implementation.
+- `architecture_reviewer`: reviews the design spec and decides whether the design is ready for implementation.
 - `implementation_engineer`: delivers the code changes from the reviewed design, runs implementation-scoped local checks, and prepares the implementation handoff without owning API/E2E validation or validation-environment setup.
 - `code_reviewer`: performs the source and architecture review pass before API/E2E validation proceeds, and re-reviews any repository-resident durable validation code added later during API/E2E before delivery begins.
 - `api_e2e_engineer`: owns API, end-to-end, and broader executable validation coverage, validation-environment setup, execution, and evidence after the implementation has passed code review; when it adds or updates repository-resident durable validation, that updated state returns through `code_reviewer` before delivery.

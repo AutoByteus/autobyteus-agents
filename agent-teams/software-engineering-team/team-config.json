@@ -9,8 +9,8 @@
       "refScope": "team_local"
     },
     {
-      "memberName": "architect_reviewer",
-      "ref": "architect-reviewer",
+      "memberName": "architecture_reviewer",
+      "ref": "architecture-reviewer",
       "refType": "agent",
       "refScope": "team_local"
     },

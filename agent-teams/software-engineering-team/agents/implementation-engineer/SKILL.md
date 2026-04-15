@@ -29,7 +29,7 @@ Use [templates/implementation-handoff-template.md](templates/implementation-hand
 
 ## Upstream Inputs
 
-- Accept the cumulative reviewed upstream package from `architect_reviewer`: requirements doc, investigation notes, design spec, and design review report.
+- Accept the cumulative reviewed upstream package from `architecture_reviewer`: requirements doc, investigation notes, design spec, and design review report.
 - Treat the full upstream package as active implementation context, not just the reviewed design spec in isolation.
 
 ## Required Shared Reads
@@ -39,7 +39,7 @@ Use [templates/implementation-handoff-template.md](templates/implementation-hand
 
 ## Handoff Rules
 
-- Accept the cumulative reviewed upstream package from `architect_reviewer` before starting implementation.
+- Accept the cumulative reviewed upstream package from `architecture_reviewer` before starting implementation.
 - Send the cumulative implementation package to `code_reviewer`: requirements doc, investigation notes, design spec, design review report, and implementation handoff.
 - Use absolute filesystem paths for every artifact in that handoff.
 - Route `Design Impact` to `solution_designer`.

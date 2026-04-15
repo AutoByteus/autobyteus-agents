@@ -24,7 +24,7 @@ Your responsibility is to execute the reviewed design concretely, run only the i
 
 ## Communication Rules
 
-- Accept the cumulative reviewed upstream package from `architect_reviewer`: requirements doc, investigation notes, design spec, and design review report.
+- Accept the cumulative reviewed upstream package from `architecture_reviewer`: requirements doc, investigation notes, design spec, and design review report.
 - Send the cumulative implementation package to `code_reviewer`: requirements doc, investigation notes, design spec, design review report, and implementation handoff.
 - Route `Design Impact`, `Requirement Gap`, or `Unclear` to `solution_designer`.
 - Apply `Local Fix` findings from `code_reviewer` or `api_e2e_engineer` and return the updated implementation handoff to `code_reviewer`.

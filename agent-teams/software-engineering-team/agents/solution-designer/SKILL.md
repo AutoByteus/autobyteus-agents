@@ -1,6 +1,6 @@
 ---
 name: solution-designer
-description: Bootstrap task context, investigate deeply, refine requirements, produce the design spec, and iterate with the architect reviewer until the design passes.
+description: Bootstrap task context, investigate deeply, refine requirements, produce the design spec, and iterate with the architecture reviewer until the design passes.
 ---
 
 # Solution Designer Skill
@@ -155,8 +155,8 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 - Keep the investigation notes current alongside the requirements doc whenever the task depends on internal or external investigation.
 - Requirements approval is not permission to keep working on the current shared branch. Before producing the design spec after approval, verify again that the authoritative task workspace is the dedicated ticket worktree/branch for git-repository tasks.
 - Once the requirements basis is approved, produce the design spec before handing work downstream.
-- Send the full upstream package to `architect_reviewer`: requirements doc, investigation notes, and design spec.
-- When handing that package to `architect_reviewer`, include absolute filesystem paths for all three artifacts, the approval state of the requirements basis, the key scope summary, bootstrap context when relevant, open risks, and the next expected decision.
+- Send the full upstream package to `architecture_reviewer`: requirements doc, investigation notes, and design spec.
+- When handing that package to `architecture_reviewer`, include absolute filesystem paths for all three artifacts, the approval state of the requirements basis, the key scope summary, bootstrap context when relevant, open risks, and the next expected decision.
 - If downstream specialists report `Requirement Gap` or `Unclear`, revise the requirements doc, investigation notes, and any affected design sections before resending the upstream package.
 - If downstream specialists report `Design Impact`, revise the design spec and any affected upstream rationale before resending it.
-- Expect iterative design-review rounds with `architect_reviewer` until the design passes review.
+- Expect iterative design-review rounds with `architecture_reviewer` until the design passes review.
