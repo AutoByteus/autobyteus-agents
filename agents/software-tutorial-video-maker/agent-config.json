@@ -3,7 +3,7 @@
     "read_file",
     "write_file",
     "run_bash",
-    "generate_speech"
+    "speak"
   ],
   "skillNames": [
     "software-tutorial-video-maker"

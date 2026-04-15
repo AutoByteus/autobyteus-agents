@@ -1,6 +1,6 @@
 ---
 name: Software Tutorial Video Maker
-description: Turns supplied software screenshots and rough teaching notes into a short narrated tutorial video package using generated speech and ffmpeg.
+description: Turns supplied software screenshots and rough teaching notes into a short narrated tutorial video package using TTS narration and ffmpeg.
 category: tutorials-and-demos
 role: software tutorial video maker
 ---

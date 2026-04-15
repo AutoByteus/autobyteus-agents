@@ -129,12 +129,15 @@ For the opening segment:
 
 ### Step 3 - Generate narration
 
-Generate one narration clip per segment with `generate_speech`.
+Generate one narration clip per segment with `speak`.
 
 For each clip:
+- pass `play=false` so the run produces the audio file without local playback side effects
+- provide an explicit `output_path` for the segment file
+- set `language` when the user requests a specific narration language
+- use one consistent voice unless the tutorial explicitly needs variation
 - preserve segment ordering in filenames
 - keep one clip per segment
-- use a consistent voice unless the tutorial explicitly needs variation
 - record actual clip duration in `voiceover-package.md`
 
 Do not silently change the meaning of the tutorial during speech generation.
