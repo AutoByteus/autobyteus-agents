@@ -10,10 +10,29 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Handoff summary status: `Updated` / `Blocked`
 - Notes:
 
+## Initial Delivery Integration Refresh
+
+- Bootstrap base reference:
+- Latest tracked remote base reference checked:
+- Base advanced since bootstrap or previous refresh: `Yes` / `No`
+- New base commits integrated into the ticket branch: `Yes` / `No`
+- Local checkpoint commit result: `Completed` / `Not needed` / `Blocked`
+- Integration method: `Merge` / `Rebase` / `Already current`
+- Integration result: `Completed` / `Blocked`
+- Post-integration executable checks rerun: `Yes` / `No`
+- Post-integration verification result: `Passed` / `Blocked`
+- No-rerun rationale (only if no new base commits were integrated):
+- Delivery edits started only after integrated state was current: `Yes` / `No`
+- Handoff state current with latest tracked remote base: `Yes` / `No`
+- Blocker (if applicable):
+
 ## User Verification
 
-- Explicit user completion/verification received: `Yes` / `No`
-- Verification reference:
+- Initial explicit user completion/verification received: `Yes` / `No`
+- Initial verification reference:
+- Renewed verification required after later re-integration: `Yes` / `No`
+- Renewed verification received: `Yes` / `No` / `Not needed`
+- Renewed verification reference:
 
 ## Docs Sync Result
 
@@ -37,6 +56,9 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Ticket branch push result:
 - Finalization target remote:
 - Finalization target branch:
+- Target advanced after user verification: `Yes` / `No`
+- Delivery-owned edits protected before re-integration: `Completed` / `Not needed` / `Blocked`
+- Re-integration before final merge result: `Completed` / `Not needed` / `Blocked`
 - Target branch update result:
 - Merge into target result:
 - Push target branch result:

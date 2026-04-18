@@ -6,6 +6,9 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 - Ticket:
 - Trigger:
+- Bootstrap base reference:
+- Integrated base reference used for docs sync:
+- Post-integration verification reference:
 
 ## Why Docs Were Updated
 
