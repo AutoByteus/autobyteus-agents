@@ -7,9 +7,10 @@ category: software-engineering
 This team handles a software change from initial investigation through final handoff.
 
 This team definition is intentionally lightweight.
-There is no separate orchestrator for this team.
-Each specialist does its own work, follows its own agent definition, and hands work to the next relevant specialist when ready.
-Detailed operating rules, artifact standards, and send-back behavior belong in each member's own agent definition.
+`solution_designer` is the coordinator entry specialist for this team.
+There is no separate standalone orchestrator role beyond the listed specialists.
+Each specialist does its own work, follows its own bundled agent and skill definition, and hands work to the next relevant specialist when ready.
+Detailed operating rules, artifact standards, and send-back behavior belong in each member's bundled `SKILL.md` and local templates rather than being duplicated across `team.md` and `agent.md`.
 
 ## Artifact Visibility Rule
 

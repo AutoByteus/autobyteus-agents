@@ -97,6 +97,44 @@ Rules:
 - If an agent intentionally reuses a shared standalone skill instead of a bundled local one, keep the specialization in `agent.md` and point `agent-config.json.skillNames` at the shared skill.
 - Keep `agent.md` short. Move detailed workflow steps, artifact schemas, and output section structure into `SKILL.md` and local `templates/` so the same skill format works cleanly for bundled agent skills and custom skills.
 
+## Authoring Best Practices
+
+When a role has a reusable skill, treat `SKILL.md` as the main operating contract and keep `agent.md` intentionally thin.
+
+### Put In `agent.md`
+
+- role identity and short purpose
+- short reminder of which bundled or shared skills are authoritative
+- runtime-only specialization that should stay with the agent prompt
+- tone or review stance when that matters at runtime
+
+### Put In `SKILL.md`
+
+- reusable workflow steps and stage order
+- artifact order, artifact expectations, and handoff rules
+- routing rules, blocking rules, and send-back behavior
+- checklists, operating heuristics, and collaboration guidance
+- reusable policy or quality bars that should still apply if the skill is attached somewhere else later
+
+### Put In `templates/`
+
+- output structure
+- report skeletons
+- required sections or tables for durable artifacts
+
+### Avoid
+
+- copying the same workflow rules into both `agent.md` and `SKILL.md`
+- keeping artifact schemas or long checklists in `agent.md`
+- creating a second mini-skill inside `agent.md` after a proper `SKILL.md` already exists
+- splitting one reusable rule across multiple files unless the split has a clear ownership reason
+
+### Update Rule
+
+- When workflow behavior changes, update `SKILL.md` first.
+- Update `agent.md` only when the agent's identity, authoritative skill references, runtime-only specialization, or tone need to change too.
+- If the same guidance would still matter when the skill is reused without the current bundled `agent.md`, it belongs in `SKILL.md`, not `agent.md`.
+
 The team is intentionally modeled as direct specialist cooperation instead of a separate coordinator agent. Handoffs and rework paths are expressed through `team.md` and each specialist's routing rules.
 The software engineering team also includes a deployment specialist so release preparation, versioning, tagging, rollout, and deploy verification can be owned explicitly instead of being left implicit at the end.
 
