@@ -1,0 +1,29 @@
+{
+  "coordinatorMemberName": "manga_showrunner",
+  "members": [
+    {
+      "memberName": "manga_showrunner",
+      "ref": "manga-showrunner",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "storyboard_director",
+      "ref": "storyboard-director",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "manga_illustrator",
+      "ref": "manga-illustrator",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "voice_video_producer",
+      "ref": "voice-video-producer",
+      "refType": "agent",
+      "refScope": "team_local"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "toolNames": [
+    "edit_file",
+    "read_file",
+    "write_file",
+    "run_bash",
+    "start_background_process",
+    "get_process_output",
+    "stop_background_process",
+    "send_message_to"
+  ],
+  "skillNames": [
+    "storyboard-director"
+  ]
+}

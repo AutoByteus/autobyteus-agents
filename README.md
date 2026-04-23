@@ -10,6 +10,10 @@ The software engineering team is organized as a practical delivery group that ca
 
 The research-to-deck team is organized as a two-specialist workflow that takes a topic from deep research and reasoning through infographic-style PowerPoint deck production.
 
+## Manga Video Studio Team
+
+The manga video studio team is organized as a story-first creative workflow that takes a manga idea from canon and character design through storyboard, consistent image generation, and narrated motion-comic video assembly.
+
 ## Bible Learning Team
 
 The Bible learning team is organized as a context-first teaching workflow that takes a passage, topic, or question from deep background research through teaching preparation, critical review, and default slide-deck production unless the user explicitly wants a teaching-only result.
