@@ -93,6 +93,34 @@ Rules:
 - A directory literally named `skills/` is optional.
 - `skills/` is only needed when you want to organize multiple standalone skills under one root.
 
+## Shared Team Reference Files
+
+Some teams also keep a shared reference document under a team-local `shared/` folder, for example:
+
+```text
+<team-root>/
+  shared/
+    design-principles.md
+```
+
+When multiple agent-bundled skills in the same team need that shared file, prefer the software-engineering-team pattern:
+
+```text
+<team-root>/
+  agents/
+    <agent-id>/
+      SKILL.md
+      design-principles.md -> ../../shared/design-principles.md
+```
+
+Rules:
+
+- Keep the canonical shared file in the team's `shared/` folder.
+- Create a local symlink inside each consuming agent folder that points to the shared file.
+- In the consuming `SKILL.md`, reference the local file name such as `[design-principles.md](design-principles.md)` instead of a brittle relative path like `../../shared/design-principles.md`.
+- Use this pattern for shared reference docs, principles, and reusable policy files that belong to one team package but are read by multiple bundled agent skills.
+- Do not duplicate the shared file into each agent folder; use one canonical shared file plus symlinks so updates stay synchronized.
+
 ## Recommended Practice For Agent Packages
 
 - If a skill is owned by a single agent, keep it bundled in that agent folder.

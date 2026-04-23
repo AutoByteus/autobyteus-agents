@@ -20,6 +20,7 @@
 - Total runtime:
 - Scene timing notes:
 - Transition notes:
+- Static-hold pacing interventions:
 
 ## Subtitle Layout Settings
 

@@ -27,7 +27,7 @@ Use:
 
 ## Required Shared Reads
 
-- Start by reading [../../shared/production-principles.md](../../shared/production-principles.md).
+- Start by reading [production-principles.md](production-principles.md).
 - Use it as the shared reference for pacing, continuity, and motion-comic realism.
 
 ## Workflow
@@ -81,6 +81,8 @@ If the contract is `page-composed`, also capture explicit page-level layout auth
 
 The storyboard should be specific enough that the illustrator can render without inventing new plot logic.
 Once the storyboard exists, it becomes the source of truth for image generation, spoken-line segmentation, dialogue packaging, subtitle text, and video timing.
+For manga-style motion comics, assume one visible beat usually supports one speaker and one short clip.
+Do not board one unchanged image to carry a long multi-turn exchange. If a still unit would need roughly more than 8 to 10 seconds of uninterrupted speech or more than one clear speaker turn, split it into more panels, pages, or audio beats instead of leaving that compression for the voice stage.
 If a beat is long enough that portrait-safe subtitle layout is likely to matter, the storyboard should also specify the preferred subtitle-window split and any important line-break intent instead of leaving that entirely to the final burn stage.
 If the chapter uses narrator-led or hybrid delivery, the storyboard must explicitly record those narrator beats instead of leaving them implicit for the voice stage to invent later.
 If the chapter introduces a new recurring character, mark the debut clearly in the storyboard so downstream roles know when that character becomes production-real.

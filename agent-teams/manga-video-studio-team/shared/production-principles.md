@@ -19,7 +19,7 @@ Use this file as the shared operating contract for the whole manga-video team.
   - one stable story concept
   - one core cast
   - one pilot chapter or short arc
-  - one narrated pilot video
+  - one narrated pilot video only when voiced or video delivery is in scope
 - Do not promise a whole long-form manga book until the canon and visual identity are stable.
 
 ## 1A. Bootstrap Or Continue Explicitly
@@ -144,6 +144,7 @@ Use this file as the shared operating contract for the whole manga-video team.
   - light pans or zooms
   - optional light transitions
 - Do not present the output as full animation unless the user explicitly asks for that and the environment actually supports it.
+- Manga-only delivery is also valid. If the user does not want voiced or video output, stop after the visual package and keep the chapter package complete on disk without inventing unnecessary audio artifacts.
 
 ## 8A. Overall Style Is Series Canon
 
@@ -201,8 +202,12 @@ Use this file as the shared operating contract for the whole manga-video team.
 - Narration and dialogue should track what the viewer can actually see.
 - Do not use voiceover to smuggle in unsupported actions, off-screen plot repairs, or extra lore that breaks the canon.
 - Character voice mapping should stay stable across the whole production unit.
-- Default to one speaker per generated clip or audio beat.
-- Use multi-speaker generation only when one visible beat genuinely needs multiple spoken turns to live inside the same audio unit, such as a direct exchange tied to one image or one tightly bound render unit.
+- Default to one visible beat, one speaker, and one generated clip.
+- In manga-style motion comics, treat long spoken exchanges on one unchanged image as a pacing problem, not as a normal speech-generation pattern.
+- Use multi-speaker generation only as a narrow exception when one visible beat genuinely needs a short two-person exchange to live inside the same audio unit.
+- For this team's `generate_speech` workflow, multi-speaker means at most two mapped speakers per call.
+- If one still image or one tightly bound render unit would need roughly more than 8 to 10 seconds of uninterrupted speech, more than one clear speaker turn, or more than two distinct speakers, split it into additional beats or render units instead of stretching one static hold.
+- If a beat would require more than two distinct speakers in one audio unit, split it into separate clips or sequential one-speaker / two-speaker segments instead of sending an oversized speaker-mapping request.
 - If one audio beat spans multiple pages or panels, the final package must explicitly map that beat across the visible render units instead of leaving the pacing implicit.
 - Do not let a spoken line or subtitle advance to a new idea while the exported video is still holding on an unrelated visual unit.
 

@@ -44,7 +44,7 @@ Use:
 
 ## Required Shared Reads
 
-- Start by reading [../../shared/production-principles.md](../../shared/production-principles.md).
+- Start by reading [production-principles.md](production-principles.md).
 - Use it as the shared reference for motion-comic realism, subtitle fidelity, and voice continuity.
 
 ## Workflow
@@ -62,6 +62,8 @@ If the runtime provides `list_audio_models`, use it first and choose from the cu
 Start from the current voice mappings recorded in `character-registry.md` for recurring characters.
 Use the stable voice persona or delivery-style anchors from `character-bible.md` to keep casting and performance behavior coherent even if the runtime voice id changes.
 If a preferred recurring-character voice is unavailable in the current runtime, choose the nearest supported replacement and record that change explicitly for carry-forward sync.
+For this team's `generate_speech` workflow, multi-speaker means at most two mapped speakers per call.
+For manga-style motion comics, the working default is one visible beat, one speaker, and one short clip.
 
 Then map the storyboard into audio clips.
 Use the storyboard audio beats as the primary segmentation source instead of inventing clip boundaries ad hoc at this stage.
@@ -72,6 +74,7 @@ For each clip, record:
 - source storyboard audio beat ids
 - source scene or panel ids
 - clip generation mode
+- distinct speakers in clip
 - speaker or narrator
 - target voice
 - voice-style anchor ref when relevant
@@ -80,6 +83,7 @@ For each clip, record:
 - performance directions or stage cues
 - subtitle text
 - estimated seconds
+- static-hold risk
 
 Do not invent story action that the viewer cannot see or infer from the canon package.
 Do not build the voice package from `chapter-plan.md` if the storyboard already says something more precise.
@@ -90,7 +94,10 @@ Do not invent narrator lines, spoken-text splits, or subtitle phrasing that the 
 For every material speech-generation call, record:
 
 - clip id
+- source storyboard audio beat ids
 - source scene or panel ids
+- generation mode
+- distinct speakers in call
 - exact spoken text
 - performance directions or stage cues
 - speech tool used
@@ -110,7 +117,11 @@ For each clip:
 
 - keep a stable voice assignment per narrator or character
 - default to one speaker per clip
-- use multi-speaker generation only when one visible beat genuinely requires multiple spoken turns inside the same audio unit
+- do not use multi-speaker generation just because multiple characters exist in the same scene
+- use multi-speaker generation only when one visible beat genuinely requires a short two-person exchange inside the same audio unit
+- keep multi-speaker clips to two mapped speakers maximum
+- if more than two distinct speakers would be needed, split the exchange into separate clips or staged one-speaker / two-speaker segments and log the assembly explicitly
+- if one unchanged render unit would end up carrying roughly more than 8 to 10 seconds of uninterrupted speech or more than one clear speaker turn, split the clip or route a storyboard revision instead of shipping a sluggish static hold
 - preserve ordering in filenames
 - record actual durations in `voice-package.md`
 - prefer short, precise clips over one giant track
@@ -147,6 +158,22 @@ Borksen: [after a short pause] ……我是来参加讲习的。
 
 Matching subtitle text:
 下一位。……我是来参加讲习的。
+```
+
+```text
+Preferred split for most manga motion-comic beats:
+- Clip A
+Kurapika: [quiet, controlled] 下一位。
+
+- Clip B
+Borksen: [after a short pause] ……我是来参加讲习的。
+```
+
+```text
+If three voices would otherwise collide in one beat:
+- split narrator into its own clip, or
+- split the exchange into sequential two-speaker / one-speaker clips
+instead of sending one three-speaker mapping request.
 ```
 
 ### Step 4 - Build subtitles and timing
@@ -222,6 +249,7 @@ Record:
 - render timing map
 - subtitle layout settings
 - any storyboard subtitle-window deviations made for readability
+- any static-hold pacing interventions or storyboard deviations made to avoid a sluggish single-image hold
 - exact `ffmpeg` commands used
 - post-export QA method and results
 - explicit delivery gate status
@@ -245,6 +273,8 @@ Then route the full package back to `manga_showrunner` for series-level canon sy
 - If the storyboard does not support clear audio mapping, route the issue back to `storyboard_director`.
 - If the generated images are too inconsistent to cut into a coherent video, route that issue back to `manga_illustrator`.
 - If the visual package does not make the lettering state or subtitle-overlay expectation explicit, route that issue back to `manga_illustrator` before final burn decisions.
+- Do not send a `generate_speech` multi-speaker request with more than two mapped speakers. Split it first.
+- Do not ship one long clip that leaves the viewer on one unchanged image through an extended exchange when the pacing would feel static. Split it or send it back.
 - Do not compensate for story gaps with filler narration.
 - Do not add music unless the user supplied it or explicitly requested it.
 

@@ -9,6 +9,8 @@
 - Registry voice-map reference:
 - Character-bible voice-style reference:
 - Default clip generation mode:
+- Hard multi-speaker limit for this run:
+- Still-image pacing rule for this run:
 - Narrator voice:
 - Character voice map:
 - Voice replacements made this run:
@@ -21,6 +23,7 @@
 - Source storyboard audio beat ids:
 - Source scene or panel ids:
 - Clip generation mode:
+- Distinct speakers in clip:
 - Speaker:
 - Voice:
 - Voice-style anchor ref:
@@ -30,6 +33,7 @@
 - Subtitle text:
 - Estimated seconds:
 - Actual seconds:
+- Static-hold risk:
 - Pronunciation notes:
 - Audio-generation log entry ref:
 

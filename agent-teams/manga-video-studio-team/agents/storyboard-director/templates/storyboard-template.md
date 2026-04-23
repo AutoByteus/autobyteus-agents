@@ -62,6 +62,7 @@
 - Subtitle split policy:
 - Sync note:
 - Estimated audio seconds:
+- Long-hold or split note:
 
 ## Staging Risks
 

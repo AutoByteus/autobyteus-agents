@@ -9,8 +9,10 @@
 
 ### Clip: [clip-id]
 
+- Source storyboard audio beat ids:
 - Source scene or panel ids:
 - Generation mode:
+- Distinct speakers in call:
 - Exact spoken text:
 - Performance directions or stage cues:
 - Speech tool used:

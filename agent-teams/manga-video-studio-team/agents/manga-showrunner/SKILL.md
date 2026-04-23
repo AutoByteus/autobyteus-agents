@@ -26,7 +26,7 @@ Use:
 
 ## Required Shared Reads
 
-- Start by reading [../../shared/production-principles.md](../../shared/production-principles.md).
+- Start by reading [production-principles.md](production-principles.md).
 - Use it as the canonical shared reference for scope, continuity, and delivery realism.
 
 ## Default Scope Rule
@@ -36,7 +36,7 @@ Use:
   - one series concept
   - one locked core cast
   - one pilot chapter or short arc
-  - enough canon to support illustration and one narrated video episode
+  - enough canon to support illustration and, when requested, one narrated video episode
 
 ## Artifact Layout Rule
 
@@ -185,7 +185,7 @@ For each chapter or production unit, capture:
 - reveal or reversal
 - ending beat or cliffhanger
 - target page range
-- target video-runtime range
+- target video-runtime range when voiced or video delivery is in scope
 - visually essential moments
 
 Prefer a tightly escalating pilot over a vague high-volume roadmap.
@@ -200,8 +200,10 @@ Keep this file lightweight. It should help the storyboard director board the cha
 
 ### Step 7 - Refresh carry-forward canon after chapter completion
 
-- After `voice_video_producer` finishes a chapter, read `chapter-carry-forward.md`.
-- Update `character-registry.md` with new debuts, status changes, latest appearances, design-lock versions, current voice mappings, pronunciation-note refs, and reusable asset links.
+- After downstream production finishes the chapter package, refresh the series canon from the completed artifacts.
+- If `voice_video_producer` ran, read `chapter-carry-forward.md` first.
+- If the run was manga-only, sync directly from the approved storyboard, continuity ledger, visual package, and final chapter outputs instead of waiting for a missing carry-forward file.
+- Update `character-registry.md` with new debuts, status changes, latest appearances, design-lock versions, current voice mappings when relevant, pronunciation-note refs when relevant, and reusable asset links.
 - Update `character-bible.md` only when the stable identity, design anchors, psychology, or forbidden-drift rules changed, not for routine roster-state churn.
 - Update `series-state.md` with approved canon deltas and reusable assets.
 - Update `chapter-registry.md` with the chapter status, folder path, and final outputs.

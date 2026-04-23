@@ -1,10 +1,10 @@
 ---
 name: Manga Video Studio Team
-description: A story-first creative production team for original manga canon design, consistent image generation, and narrated motion-comic video delivery.
+description: A story-first creative production team for original manga canon design, consistent image generation, and optional narrated motion-comic video delivery.
 category: creative-media
 ---
 
-This team handles an original manga project from concept and character canon through storyboard, manga-style image generation, and final narrated motion-comic video delivery.
+This team handles an original manga project from concept and character canon through storyboard, manga-style image generation, and, when requested, final narrated motion-comic video delivery.
 
 This team definition is intentionally lightweight.
 `manga_showrunner` is the coordinator entry specialist for this team.
@@ -41,11 +41,11 @@ Each specialist does its own work, follows its own bundled agent and skill defin
   - `prompt-pack.md`
   - `image-generation-log.md`
   - `visual-production-package.md`
-  - `voice-package.md`
-  - `audio-generation-log.md`
-  - `subtitles.srt`
-  - `video-package.md`
-  - `chapter-carry-forward.md`
+  - `voice-package.md` when voiced delivery is in scope
+  - `audio-generation-log.md` when voiced delivery is in scope
+  - `subtitles.srt` when subtitled delivery is in scope
+  - `video-package.md` when video delivery is in scope
+  - `chapter-carry-forward.md` when `voice_video_producer` runs
   - `final/`
 
 ## Artifact Visibility Rule
@@ -55,7 +55,7 @@ Each specialist does its own work, follows its own bundled agent and skill defin
   - `storyboard_director`: `series-bible.md`, `character-bible.md`, `character-registry.md`, `series-state.md`, `chapter-registry.md`, current chapter `chapter-plan.md`
   - `manga_illustrator`: root canon files plus current chapter `chapter-plan.md`, `storyboard.md`, `continuity-ledger.md`
   - `voice_video_producer`: root canon files plus current chapter `chapter-plan.md`, `storyboard.md`, `continuity-ledger.md`, `visual-style-guide.md`, `prompt-pack.md`, `image-generation-log.md`, `visual-production-package.md`, reusable character sheets, generated page or panel assets
-  - `manga_showrunner` on final canon sync: the full current package plus `chapter-carry-forward.md`
+  - `manga_showrunner` on final canon sync: the full current package plus `chapter-carry-forward.md` when `voice_video_producer` ran, otherwise the final approved visual package and chapter outputs
 - Downstream specialists should be able to continue the series later without rediscovering prompts, edits, approved assets, or canon deltas from memory.
 
 ## Team Roles
@@ -72,8 +72,8 @@ Each specialist does its own work, follows its own bundled agent and skill defin
 3. If the user wants an explicit creative approval gate, stop after the showrunner package before heavy illustration and video production.
 4. `storyboard_director` turns the approved canon into chapter-local `storyboard.md` and `continuity-ledger.md`.
 5. `manga_illustrator` produces the reusable visual package: chapter-local `visual-style-guide.md`, `prompt-pack.md`, `image-generation-log.md`, reusable reference sheets in `shared-assets/`, page or panel images, and `visual-production-package.md`.
-6. `voice_video_producer` produces chapter-local `voice-package.md`, `audio-generation-log.md`, audio clips, subtitles, `video-package.md`, `chapter-carry-forward.md`, and the final motion-comic video.
-7. `manga_showrunner` refreshes `character-registry.md`, `series-state.md`, and `chapter-registry.md` from the completed chapter package so later chapters inherit approved canon, cast changes, reusable assets, and open hooks.
+6. If voiced or video delivery is in scope, `voice_video_producer` produces chapter-local `voice-package.md`, `audio-generation-log.md`, audio clips, subtitles, `video-package.md`, `chapter-carry-forward.md`, and the final motion-comic video.
+7. `manga_showrunner` refreshes `character-registry.md`, `series-state.md`, and `chapter-registry.md` from the completed chapter package, whether that package is manga-only or manga-plus-video, so later chapters inherit approved canon, cast changes, reusable assets, and open hooks.
 
 ## Working Agreement
 
@@ -85,6 +85,7 @@ Each specialist does its own work, follows its own bundled agent and skill defin
   - `key-asset preview`
 - `key-asset preview` is preview-only work and must never be treated as a completed chapter unless the user explicitly asked for preview-only output.
 - Default delivery is a narrated motion-comic style video assembled from generated manga images. Do not imply full frame-by-frame animation unless the user explicitly asks for it and the environment supports it.
+- For manga-style motion comics, the safe default is one visible beat, one speaker, and one short clip. Do not plan long multi-turn dialogue on one unchanged image unless the user explicitly wants a deliberate lingering hold.
 - Keep story direction, character identity, continuity, visual locking, and final edit scope explicit in the artifacts rather than leaving them implicit.
 - Treat prompts, tool settings, edit inputs, approved outputs, and speech text as durable production data. Do not leave them only in the model context.
 - Before final video export, `voice_video_producer` must build an explicit render timing map that assigns every page or panel asset its planned start and end time plus the linked subtitle or audio beat coverage.
@@ -119,7 +120,7 @@ Each specialist does its own work, follows its own bundled agent and skill defin
 
 ## Team Rules
 
-- Prefer one high-quality pilot chapter plus one high-quality pilot video over a low-consistency full-book attempt.
+- Prefer one high-quality pilot chapter, plus one high-quality pilot video when the user wants voiced delivery, over a low-consistency full-book attempt.
 - Keep the story inventive, but keep the production package reproducible.
 - Treat the active workspace as a container for one or more series roots. Do not scatter one series across unrelated top-level workspace files.
 - If the user asks to continue an existing series, reuse that series root. If the user asks for a new series or no matching root exists, bootstrap a new series root under the active workspace.
@@ -133,6 +134,7 @@ Each specialist does its own work, follows its own bundled agent and skill defin
 - A chapter is not visually complete until every storyboard render unit declared by the chapter render-unit contract has one approved final asset path recorded in `visual-production-package.md`.
 - `visual-production-package.md` must make missing coverage explicit. If any storyboard render unit is still missing, the package must remain marked incomplete.
 - `visual-production-package.md` must also declare whether the delivered assets are `clean-art`, `partially-lettered`, or `fully-lettered`, plus whether downstream subtitle burn-in is required, optional, or should be avoided.
+- If one still render unit would need a long spoken block, multiple clear speaker turns, or a static hold that would feel sluggish in playback, split the beat, add more render units, or revise the storyboard before final production.
 - A chapter video is not delivery-complete until `video-package.md` records:
   - the final render timing map
   - the exact export commands used

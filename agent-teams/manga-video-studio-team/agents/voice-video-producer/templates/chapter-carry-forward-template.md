@@ -5,7 +5,8 @@
 - Chapter id:
 - Status:
 - Folder path:
-- Final video path:
+- Final visual outputs:
+- Final video path when produced:
 
 ## New Canon Confirmed
 

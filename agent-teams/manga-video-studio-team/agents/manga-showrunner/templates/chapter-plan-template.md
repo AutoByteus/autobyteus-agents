@@ -25,7 +25,7 @@
 - Reveal or reversal:
 - Ending beat or cliffhanger:
 - Target page range:
-- Target video-runtime range:
+- Target video-runtime range when voiced or video delivery is in scope:
 - Must-render visual moments:
 - Continuity-sensitive notes:
 - Storyboard handoff note:

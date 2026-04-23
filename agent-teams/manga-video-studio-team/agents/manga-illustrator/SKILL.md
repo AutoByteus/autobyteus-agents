@@ -37,7 +37,7 @@ Also use [image-generation-log-template.md](templates/image-generation-log-templ
 
 ## Required Shared Reads
 
-- Start by reading [../../shared/production-principles.md](../../shared/production-principles.md).
+- Start by reading [production-principles.md](production-principles.md).
 - Use it as the shared reference for visual mode, character locking, and reproducibility.
 
 ## Workflow
