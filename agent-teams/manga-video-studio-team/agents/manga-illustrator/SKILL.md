@@ -1,6 +1,6 @@
 ---
 name: manga-illustrator
-description: Create a reusable visual package for manga pages or panels with stable character identity and prompt discipline.
+description: Create a reusable visual package for manga video frames by default, or pages/panels only when explicitly requested, with stable character identity and prompt discipline.
 ---
 
 # Manga Illustrator
@@ -19,7 +19,7 @@ Use this skill to create the reusable visual package for the manga video studio 
 - `chapters/<chapter-id>/continuity-ledger.md`
 
 `storyboard.md` is the operative source of truth for what must be rendered. `chapter-plan.md` is only supporting scope context once the storyboard exists.
-The storyboard must also tell you whether this run is `page-composed`, `panel-first`, or `key-asset preview`.
+The storyboard must also tell you whether this run is `video-frame`, `page-composed`, `panel-first`, or `key-asset preview`.
 
 ## Produced Artifacts
 
@@ -27,7 +27,7 @@ The storyboard must also tell you whether this run is `page-composed`, `panel-fi
 - `chapters/<chapter-id>/prompt-pack.md`
 - `chapters/<chapter-id>/image-generation-log.md`
 - `shared-assets/character-sheets/character-*.png`
-- `chapters/<chapter-id>/pages/page01.png ...` or `chapters/<chapter-id>/panels/panel001.png ...`
+- `chapters/<chapter-id>/frames/frame001.png ...`, `chapters/<chapter-id>/pages/page01.png ...`, or `chapters/<chapter-id>/panels/panel001.png ...`
 - `chapters/<chapter-id>/visual-production-package.md`
 
 Use [visual-style-guide-template.md](templates/visual-style-guide-template.md) to structure the chapter visual guide.
@@ -45,7 +45,7 @@ Also use [image-generation-log-template.md](templates/image-generation-log-templ
 ### Step 1 - Lock the visual language
 
 Write `chapters/<chapter-id>/visual-style-guide.md` before bulk generation.
-Start from the series-level visual identity in `series-bible.md`. The chapter guide should inherit that canon first, then add chapter-specific execution notes and approved deviations.
+Start from the series-level visual identity in `series-bible.md`. The chapter guide should inherit that canon first, including the locked series video aspect ratio, then add chapter-specific execution notes. Chapter-local style notes must not redefine the video canvas.
 
 Record:
 
@@ -59,24 +59,27 @@ Record:
 - camera grammar
 - background rendering rules
 - typography or SFX style notes
+- inherited locked series video aspect ratio and target resolution when video delivery is in scope
 - negative prompt block
 - consistency notes for recurring characters and locations
 
 If the user has not specified a style, default to a readable manga look rather than a painterly poster style.
-Do not casually override a locked series identity. If the series is full color, comedic, airy, grotesque, or hyper-dramatic, the chapter guide should preserve that instead of collapsing into generic grayscale tension manga.
+Do not casually override a locked series identity. If the series is full color, comedic, airy, grotesque, or hyper-dramatic, the chapter guide should preserve that instead of collapsing into generic grayscale tension manga. Never override the locked series video aspect ratio inside a normal chapter.
 
 ### Step 2 - Generate character reference sheets first
 
 - Use `generate_image` as the default image-generation route.
 - Use `edit_image` as the default local-fix route when an otherwise strong image needs targeted repair.
-- Create one reusable reference sheet per recurring character before rendering the main pages or panels.
+- Issue image-tool calls strictly sequentially. Call exactly one `generate_image` or `edit_image`, wait for the result, inspect and log it, then immediately run `sleep 60` before any further image-tool call.
+- Do not launch multiple `generate_image` or `edit_image` calls concurrently, in the background, or as a parallel batch. This applies to reference sheets, video frames, pages, panels, retries, and local fixes.
+- Create one reusable reference sheet per recurring character before rendering the main video frames. Render pages or panels only when the declared non-default contract explicitly requires them.
 - Use the lock language from `character-bible.md`.
 - If the chapter introduces a new recurring character, create or extend that character's reusable sheet package immediately after the design is approved.
 - Feed approved character sheets and other locked references back into later `generate_image` calls through `input_images` when the scene needs those references.
 - For scenes with multiple recurring characters or important recurring locations, include the relevant approved image paths in `input_images` instead of hoping the prompt alone will preserve identity.
 - If the active runtime expects multiple `input_images` refs as a comma-separated value, build that argument in the runtime's required comma-separated form.
 - Store approved reusable sheets in `shared-assets/character-sheets/` so later chapters can start from them.
-- Do not move into batch page generation if the character identity is still drifting.
+- Do not move into main frame generation if the character identity is still drifting. The same gate applies to page/panel generation when explicitly requested.
 
 ### Step 3 - Write `chapters/<chapter-id>/prompt-pack.md`
 
@@ -84,18 +87,34 @@ Create a durable prompt package that includes:
 
 - one canonical character block per recurring character
 - one location block per recurring setting
-- one page or panel prompt per storyboard unit
-- lettering specs for any page or panel that must contain readable on-image text
+- one video-frame prompt per storyboard unit for video delivery, or page/panel prompts only when explicitly requested
+- lettering specs for any video frame that must contain readable on-image text, or for page/panel text only when those assets were explicitly requested
 - negative prompts for drift, extra limbs, wrong props, wrong clothing, wrong age presentation, and unreadable composition
 
-When a page or panel must carry readable text, the prompt pack must specify:
+When a video frame must carry readable text, the prompt pack must specify the fields below. Apply the same fields to page/panel text only when an explicit non-default contract requires those assets.
 
 - exact text to render
 - whether it is a speech bubble, caption box, SFX, signage, or chapter-end mark
 - language or script
-- approximate placement on the page or panel
+- approximate placement on the frame, or on the page/panel only when those assets were explicitly requested
 - reading order when more than one text element appears
 - lettering style notes when that affects readability
+
+For a `video-frame` contract, every render-unit prompt must specify:
+
+- inherited locked series aspect ratio and orientation, such as `9:16 vertical` or `16:9 horizontal`
+- target dimensions matching the locked series video canvas when the image tool supports explicit size settings
+- `single full-bleed motion-comic frame`
+- one visible beat or one coherent full-screen composition
+- subject-safe and subtitle-safe composition notes
+- explicit negative prompt language: `no manga page, no panel grid, no page border, no white paper margin, no collage, no contact sheet, no reference sheet, no watermark`
+
+The `Exact final prompt` entry in `prompt-pack.md` is the actual constructed prompt to send to `generate_image`.
+For `video-frame` delivery, that final prompt is invalid unless the prompt text itself contains the locked series ratio and orientation, such as `single full-bleed 9:16 vertical motion-comic manga frame`.
+Do not rely on metadata fields alone to carry the ratio.
+
+Do not ask the image model for "two panels", "three panels", "manga page layout", "clean manga borders", or similar page-composition language when the contract is `video-frame`.
+If the storyboard beat contains multiple actions, split it into multiple video frames or stage a single coherent full-screen shot. Do not solve it by arranging several small images in rows on a paper-like background.
 
 Do not rely on bracket notation such as `[laughs]` as if it were special image syntax.
 For image generation, describe the visible result directly.
@@ -105,10 +124,13 @@ If the image should contain text, say exactly what text should appear and where.
 Examples:
 
 ```text
-Good clean-art prompt fragment:
+Good video-frame prompt fragment:
+single full-bleed 9:16 vertical motion-comic manga frame, Ada stepping from the train into amber station light, visibly focused young scholar, red notebook visible, immersive cinematic composition, subtitle-safe lower band with low visual clutter, no manga page, no panel grid, no page border, no white margin, no collage, no watermark
+
+Good panel clean-art prompt fragment, only when the contract is `panel-first`:
 black-and-white manga panel, Morena leaning forward over the card table, cold smile, Borksen rigid across from her, tense silence, dense screentone shadows, no speech bubbles, no captions, no watermark
 
-Good lettered prompt fragment:
+Good panel lettered prompt fragment, only when the contract is `panel-first` or `page-composed`:
 black-and-white manga panel, Kurapika at the doorway checking the list, Borksen visible at the end of the corridor, one clear speech bubble near Kurapika containing the exact Chinese text "下一位。", one second speech bubble near Borksen containing the exact Chinese text "……我是来参加讲习的。", readable handwritten manga lettering, right-to-left bubble flow, keep text large and legible
 ```
 
@@ -119,21 +141,26 @@ For every material `generate_image` or `edit_image` call that affects an approve
 - asset id
 - tool or image route used
 - model identifier when available
-- exact prompt or edit instruction
+- exact final prompt or edit instruction sent to the image tool
+- locked ratio phrase present in the final prompt for `video-frame` assets
 - visible text specification or explicit clean-art instruction
 - source image refs
-- generation config
+- generation config, including requested size fields when supported
+- actual output dimensions and measured aspect ratio
 - output path
 - approval status
+- sequential-call position and whether `sleep 60` was completed before the next image-tool call
 - reason for the iteration
 
 Future chapters should be able to reuse or refine these exact records instead of guessing what happened.
 
 ### Step 5 - Generate the main visual assets
 
-- Render the required pages or panels in storyboard order.
+- Render the required video frames in storyboard order. Render pages or panels only when the declared non-default contract explicitly requires them.
+- Generate assets one at a time in storyboard order. After each `generate_image` or `edit_image` result returns, immediately run `sleep 60` before requesting the next asset or correction.
 - Follow the declared chapter render-unit contract exactly.
 - If the contract is `key-asset preview`, treat the package as incomplete chapter coverage unless the user explicitly asked for preview-only output.
+- If the contract is `video-frame`, every approved asset must be one full-bleed video still at the inherited locked series aspect ratio, with no page border, panel gutter, paper margin, collage layout, reference-sheet layout, or generated watermark.
 - If the contract is `page-composed`, do not stop at scene key art or character locks.
 - If the contract is `panel-first`, do not stop until every renderable storyboard panel has a final approved asset.
 - Keep filenames stable and production-friendly.
@@ -141,6 +168,7 @@ Future chapters should be able to reuse or refine these exact records instead of
 - Prefer `generate_image` with deliberate `input_images` over blind prompt-only regeneration when identity consistency matters.
 - If the result needs small local fixes, use `edit_image` instead of regenerating the entire package blindly.
 - Do not invent staging, dialogue, or emotional beats from `chapter-plan.md` when `storyboard.md` is already explicit.
+- For `video-frame` delivery, inspect each generated frame before approval. Reject and regenerate frames that read as a manga page on paper, a multi-panel sheet, or an image pasted onto a blank background.
 - Make the lettering state explicit for the delivered assets:
   - `clean-art`
   - `partially-lettered`
@@ -160,13 +188,14 @@ Record:
 - reusable shared-asset updates
 - new or updated character-sheet assets
 - character sheet paths
-- page or panel paths
-- prompt-pack summary
+- video-frame paths for video delivery, plus page/panel paths only when explicitly requested
+- inherited locked series aspect ratio and frame-conformance QA for `video-frame` delivery
+- prompt-pack summary, including confirmation that final `video-frame` prompts contain the locked ratio phrase
 - image-generation-log path
 - QA findings
 - unresolved visual risks
 
-The approved storyboard-to-asset mapping should make it unambiguous which final image path corresponds to each storyboard page, panel, or other renderable unit.
+The approved storyboard-to-asset mapping should make it unambiguous which final image path corresponds to each storyboard video frame, page, panel, or other renderable unit.
 It should also make it unambiguous whether the mapped asset is clean art, partially lettered, or fully lettered, and whether the video stage should burn subtitles over it.
 If any storyboard render unit is not covered, keep the package marked incomplete and list the missing units directly.
 Then hand off the full cumulative package to `voice_video_producer`.

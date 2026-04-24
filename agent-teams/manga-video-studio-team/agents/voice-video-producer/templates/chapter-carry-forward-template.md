@@ -19,7 +19,7 @@
 ## Reusable Assets
 
 - Character sheet paths:
-- Reusable page or panel assets:
+- Reusable video-frame assets, or page/panel assets only for explicit non-default contracts:
 - Prompt blocks worth reusing:
 - Voice choices and pronunciation notes worth reusing:
 - Voice mapping updates for `character-registry.md`:

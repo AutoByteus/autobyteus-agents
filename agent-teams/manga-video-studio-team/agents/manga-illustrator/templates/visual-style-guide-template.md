@@ -14,8 +14,9 @@
 
 - Chapter id:
 - Render-unit contract:
+- Inherited locked series video aspect ratio and orientation copied from `series-bible.md`:
 - Chapter-specific mood target:
-- Any approved style deviation from the series canon:
+- Any approved style deviation from the series canon, excluding aspect-ratio changes:
 
 ## Rendering Rules
 
@@ -27,6 +28,7 @@
 - Camera grammar:
 - Background rendering rules:
 - FX, typography, or SFX notes:
+- Video-frame composition rules:
 
 ## Consistency Controls
 

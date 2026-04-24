@@ -9,6 +9,7 @@
 - Registry voice-map reference:
 - Character-bible voice-style reference:
 - Default clip generation mode:
+- Speech-generation pacing rule:
 - Hard multi-speaker limit for this run:
 - Still-image pacing rule for this run:
 - Narrator voice:
@@ -21,7 +22,7 @@
 ### Clip: [clip-id]
 
 - Source storyboard audio beat ids:
-- Source scene or panel ids:
+- Source scene and render-unit ids (frame ids for `video-frame`; page/panel ids only for explicit non-default contracts):
 - Clip generation mode:
 - Distinct speakers in clip:
 - Speaker:

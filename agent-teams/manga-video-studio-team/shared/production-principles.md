@@ -136,13 +136,17 @@ Use this file as the shared operating contract for the whole manga-video team.
 - Default art direction is manga-style imagery, usually black-and-white or limited-accent color unless the user requests a different look.
 - Use `generate_image` as the default primary manga-image generation route.
 - Use `edit_image` as the default targeted correction route for otherwise strong assets.
+- Image tool calls are strictly sequential. Call exactly one `generate_image` or `edit_image`, wait for that call to return, inspect and log the result, then immediately run `sleep 60` before making any further image-tool call.
+- Do not dispatch multiple image-tool calls at the same time, in the background, or as a parallel batch. This applies even when many frames are planned.
+- The 60-second cooldown applies after candidate, rejected, failed, and approved image-tool calls.
 - When a scene depends on multiple locked references, prefer passing the approved image paths through `input_images` instead of relying only on text prompts.
 - If the active runtime expects multiple `input_images` refs to be supplied as one comma-separated value, serialize them in that runtime-specific form instead of assuming a richer object wrapper.
 - Default video mode is motion-comic style:
-  - generated page or panel images
+  - generated full-bleed video-frame stills
   - simple cuts
   - light pans or zooms
   - optional light transitions
+- For video delivery, the visual source should look like a video frame first and manga art second: one immersive frame per visible beat, not a scanned or generated paper page inside the video.
 - Do not present the output as full animation unless the user explicitly asks for that and the environment actually supports it.
 - Manga-only delivery is also valid. If the user does not want voiced or video output, stop after the visual package and keep the chapter package complete on disk without inventing unnecessary audio artifacts.
 
@@ -160,16 +164,31 @@ Use this file as the shared operating contract for the whole manga-video team.
   - typography or SFX feel when it matters
 - `visual-style-guide.md` should inherit from that series-level identity and only add chapter-specific execution notes, not replace the series look casually.
 
-## 8B. Render Unit Must Be Explicit
+## 8B. Video Aspect Ratio Is Series-Locked
+
+- When voiced or video delivery is in scope, `series-bible.md` must define one locked video canvas before image generation starts, such as `9:16 vertical, 1080x1920` or `16:9 horizontal, 1920x1080`.
+- Chapter plans, storyboards, visual style guides, prompt packs, image-generation logs, visual-production packages, and video packages must restate the locked series ratio for traceability. They must not redefine it as a chapter-local preference.
+- Every `video-frame` prompt must include the locked ratio and orientation in positive prompt language, and the image-generation config should request matching dimensions whenever the tool supports explicit size fields.
+- The locked ratio must appear inside the final constructed image prompt text sent to `generate_image`, not only as adjacent metadata, a note, or a generation config field.
+- Every approved `video-frame` asset must be checked against the locked ratio before handoff to video assembly.
+- Mixed aspect ratios inside one final video are a blocking error. Do not pad, letterbox, or stretch mismatched source art to hide the problem.
+- If the user asks for a different ratio, treat that as a separate export variant requiring an explicit user decision and a regenerated or explicitly cropped full asset set. Do not let one chapter silently override the series video canvas.
+
+## 8C. Render Unit Must Be Explicit
 
 - Every chapter storyboard must declare one render-unit contract before high-volume image generation starts:
+  - `video-frame` for full-bleed motion-comic stills at the locked series video aspect ratio
   - `page-composed` for full manga pages
   - `panel-first` for complete storyboard panel coverage
   - `key-asset preview` for early visual exploration only
+- If voiced or video delivery is in scope, default to `video-frame` unless the user explicitly asks for printable/readable manga pages or separate panel assets as the primary deliverable.
+- `video-frame` assets must be single full-screen compositions. They must not contain multiple manga panels, page gutters, paper margins, page frames, contact-sheet layouts, reference-sheet layouts, large white borders, or a smaller image pasted onto a blank background.
+- A `video-frame` can use cinematic foreground/midground/background staging, layered action, or a deliberate full-bleed split-screen effect when truly needed, but it must still feel like one immersive video frame rather than art printed on paper.
+- If `page-composed` manga pages are also needed for a video, the video stage must crop/pan individual panels or request separate `video-frame` renders. Whole multi-panel pages are not acceptable as default full-screen video frames.
 - If the user asked for a real manga chapter, do not silently downgrade that request to `key-asset preview`.
 - If the chapter is being delivered as `panel-first`, make that explicit in the package instead of pretending it is already a full page-composed chapter.
 
-## 8C. Preview Assets Are Not Chapter Completion
+## 8D. Preview Assets Are Not Chapter Completion
 
 - Character locks, key art, and scene-preview images are useful, but they are not a finished chapter.
 - A chapter visual package is complete only when every declared storyboard render unit has:
@@ -181,9 +200,22 @@ Use this file as the shared operating contract for the whole manga-video team.
   - `partially-lettered`
   - `fully-lettered`
 - If the chapter will also produce a motion-comic video, the package should state whether subtitle burn-in is required, optional, or should be avoided for those assets.
+- For `video-frame` delivery, the package should also state the inherited locked series aspect ratio, target resolution if known, and a frame-conformance QA result for every approved frame.
 - If any render unit is still missing, the package should say so directly and remain incomplete.
 
-## 8D. Voice Identity Is Series Canon When Voiced Delivery Exists
+## 8E. Video-Frame Asset QA Is Mandatory
+
+- Before a `video-frame` asset is approved, inspect it as a video frame, not only as an attractive illustration.
+- Reject or regenerate any `video-frame` candidate with:
+  - visible page borders, panel gutters, comic-page layout, contact-sheet layout, or reference-sheet layout
+  - large white or blank margins around the art
+  - multiple unrelated mini-images inside one generated image
+  - wrong aspect ratio for the locked series video canvas
+  - generated watermark, app mark, UI badge, signature mark, or stray decorative icon
+  - focal action hidden behind the planned subtitle zone
+- The prompt pack for `video-frame` assets should include explicit positive language such as `single full-bleed 9:16 motion-comic frame` or `single full-bleed 16:9 motion-comic frame`, and explicit negative language such as `no manga page, no panel grid, no white border, no paper margin, no collage, no reference sheet`.
+
+## 8F. Voice Identity Is Series Canon When Voiced Delivery Exists
 
 - If narrated or voiced delivery is in scope, the series root should also lock a reusable voice identity layer.
 - At minimum, the upstream canon should state:
@@ -197,7 +229,7 @@ Use this file as the shared operating contract for the whole manga-video team.
 - `voice_video_producer` should inspect the live supported models and voices before locking a chapter voice map when the runtime exposes multiple choices.
 - If a previously preferred voice is no longer available, choose the nearest supported replacement and record that update explicitly for showrunner sync instead of silently drifting.
 
-## 9. Audio Must Follow The Visible Page
+## 9. Audio Must Follow The Visible Frame
 
 - Narration and dialogue should track what the viewer can actually see.
 - Do not use voiceover to smuggle in unsupported actions, off-screen plot repairs, or extra lore that breaks the canon.
@@ -206,14 +238,16 @@ Use this file as the shared operating contract for the whole manga-video team.
 - In manga-style motion comics, treat long spoken exchanges on one unchanged image as a pacing problem, not as a normal speech-generation pattern.
 - Use multi-speaker generation only as a narrow exception when one visible beat genuinely needs a short two-person exchange to live inside the same audio unit.
 - For this team's `generate_speech` workflow, multi-speaker means at most two mapped speakers per call.
+- Speech tool calls are strictly sequential. Call exactly one `generate_speech` or selected `speak` call, wait for that call to return, inspect and log the result, then immediately run `sleep 60` before making any further speech-tool call.
+- Do not dispatch multiple speech-tool calls at the same time, in the background, or as a parallel batch. The 60-second cooldown applies after candidate, rejected, failed, and approved speech-tool calls.
 - If one still image or one tightly bound render unit would need roughly more than 8 to 10 seconds of uninterrupted speech, more than one clear speaker turn, or more than two distinct speakers, split it into additional beats or render units instead of stretching one static hold.
 - If a beat would require more than two distinct speakers in one audio unit, split it into separate clips or sequential one-speaker / two-speaker segments instead of sending an oversized speaker-mapping request.
-- If one audio beat spans multiple pages or panels, the final package must explicitly map that beat across the visible render units instead of leaving the pacing implicit.
+- If one audio beat spans multiple render units, the final package must explicitly map that beat across the visible video frames. Page/panel ids belong in this map only when an explicit non-default contract produced them.
 - Do not let a spoken line or subtitle advance to a new idea while the exported video is still holding on an unrelated visual unit.
 
 ## 9A. Subtitle Layout Must Respect The Frame
 
-- Subtitle size and placement must be chosen for the actual output aspect ratio, not copied blindly from a previous export.
+- Subtitle size and placement must be chosen for the locked series output aspect ratio, not copied blindly from a previous export.
 - Portrait or vertical video usually needs:
   - smaller subtitle font than landscape
   - a lower subtitle block
@@ -235,7 +269,7 @@ Use this file as the shared operating contract for the whole manga-video team.
   - font size
   - outline or background treatment
   - bottom margin
-  - any aspect-ratio-specific layout decision
+  - any locked-aspect-ratio-specific layout decision
 
 ## 9B. Final Video QA Is Mandatory
 
@@ -252,11 +286,12 @@ Use this file as the shared operating contract for the whole manga-video team.
   - use per-unit timed clips or an equivalent method that preserves exact order and duration
   - do not rely on a slideshow path that has not been validated for the current assets
 - After export, verify the final file itself:
+  - for `video-frame` chapters with 30 render units or fewer, sample at least one midpoint timestamp per render unit
   - for `panel-first` chapters with 30 render units or fewer, sample at least one midpoint timestamp per render unit
   - for larger chapters, sample first, middle, and last render units of each scene plus every scene boundary
   - confirm the sampled frame matches the expected render unit from the timing map
-  - confirm subtitle progression and visible panel progression stay aligned around beat boundaries
-  - confirm subtitle size, line count, and vertical placement remain readable for the actual aspect ratio
+  - confirm subtitle progression and visible frame or panel progression stay aligned around beat boundaries
+  - confirm subtitle size, line count, and vertical placement remain readable for the locked series aspect ratio
 - If the final export fails those checks, the chapter video remains incomplete and must be rebuilt.
 
 ## 10. Production Economy Matters

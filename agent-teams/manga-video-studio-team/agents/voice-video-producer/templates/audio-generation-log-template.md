@@ -10,7 +10,7 @@
 ### Clip: [clip-id]
 
 - Source storyboard audio beat ids:
-- Source scene or panel ids:
+- Source scene and render-unit ids (frame ids for `video-frame`; page/panel ids only for explicit non-default contracts):
 - Generation mode:
 - Distinct speakers in call:
 - Exact spoken text:
@@ -22,4 +22,6 @@
 - Temperature, style instructions, or other settings:
 - Output path:
 - Approval status:
+- Sequential call number:
+- `sleep 60` completed before next speech-tool call:
 - Notes for reuse in future chapters:

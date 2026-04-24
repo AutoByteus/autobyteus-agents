@@ -22,7 +22,7 @@ Use this skill to convert the approved manga package into a narrated video.
 - `chapters/<chapter-id>/image-generation-log.md`
 - `chapters/<chapter-id>/visual-production-package.md`
 - generated character sheets
-- generated page or panel assets
+- generated video-frame assets for video delivery, or page/panel assets only when an explicit non-default contract produced them
 
 `storyboard.md` is the operative source of truth for clip structure and on-screen story beats. `chapter-plan.md` is only supporting scope context once the storyboard exists.
 
@@ -72,7 +72,7 @@ For each clip, record:
 
 - clip id
 - source storyboard audio beat ids
-- source scene or panel ids
+- source scene and render-unit ids
 - clip generation mode
 - distinct speakers in clip
 - speaker or narrator
@@ -95,7 +95,7 @@ For every material speech-generation call, record:
 
 - clip id
 - source storyboard audio beat ids
-- source scene or panel ids
+- source scene and render-unit ids
 - generation mode
 - distinct speakers in call
 - exact spoken text
@@ -107,11 +107,21 @@ For every material speech-generation call, record:
 - temperature, style instructions, or other settings when applicable
 - output path
 - approval status
+- sequential-call position and whether `sleep 60` was completed before the next speech-tool call
 - notes for reuse
 
 ### Step 3 - Generate the speech assets
 
 Generate one speech clip per audio beat with the approved speech tool for the run, such as `generate_speech` or `speak`.
+
+Speech generation must be strictly sequential:
+
+- call exactly one `generate_speech` or selected `speak` request
+- wait for the tool result before doing anything that depends on that clip
+- inspect and log the result in `audio-generation-log.md`
+- immediately run `sleep 60` before making any further speech-tool call
+- do not launch multiple speech-tool calls concurrently, in the background, or as a parallel batch
+- apply the same 60-second cooldown after retries, rejected candidates, failed calls, and approved clips
 
 For each clip:
 
@@ -184,7 +194,7 @@ instead of sending one three-speaker mapping request.
 - Read `visual-production-package.md` before final subtitle burn and respect its declared asset lettering state and subtitle overlay guidance.
 - Do not burn redundant subtitles over assets that are already fully lettered unless the package or the user explicitly calls for that.
 - If the storyboard provides a preferred subtitle-window plan or line-break hints, treat that as the default authority instead of silently re-segmenting from scratch.
-- Choose subtitle layout for the actual export aspect ratio instead of reusing one default style blindly.
+- Choose subtitle layout for the locked series export aspect ratio instead of reusing one default style blindly.
 - For portrait or vertical video:
   - start with a smaller subtitle font than landscape
   - keep the subtitle block visually anchored near the bottom
@@ -197,7 +207,7 @@ instead of sending one three-speaker mapping request.
   - rewrite line breaks more intelligently
 - If you must deviate from the storyboard's preferred subtitle windows for readability, record that deviation explicitly in `video-package.md`.
 - Record the chosen subtitle layout settings for the final export, including font size and bottom margin.
-- Build a render timing map before export that assigns each page or panel render unit:
+- Build a render timing map before export that assigns each video-frame render unit, or each page/panel render unit only when an explicit non-default contract produced them:
   - start time
   - end time
   - source asset path
@@ -219,6 +229,8 @@ Use `ffmpeg` for:
 Default output should feel like a clean motion comic, not fake full animation.
 When sync precision matters, prefer deterministic per-render-unit assembly over a raw slideshow concat path.
 Normalize still images before concatenation so mixed asset dimensions do not silently distort timing or ordering.
+If the visual package declares `video-frame`, confirm the assets are already full-bleed single-frame images at the locked series aspect ratio before assembly.
+Do not hide white paper margins, page gutters, collage layouts, or source art that mismatches the locked series aspect ratio with casual padding. Route those assets back to `manga_illustrator` unless the user explicitly approved a separate export variant with a full crop/regeneration plan.
 
 ### Step 5A - Run post-export QA on the final file
 
@@ -227,13 +239,14 @@ Do not stop at a successful export command.
 After the final MP4 is written:
 
 - sample validation frames from the exported file itself
+- for `video-frame` chapters with 30 render units or fewer, sample at least one midpoint timestamp per render unit
 - for `panel-first` chapters with 30 render units or fewer, sample at least one midpoint timestamp per render unit
 - for larger chapters, sample the first, middle, and last render units of each scene plus every scene boundary
 - compare the sampled frames against the intended render timing map
-- spot-check subtitle progression around audio-beat boundaries so the visible panel and subtitle sequence stay aligned
-- spot-check subtitle block size and vertical placement on the final file for the actual aspect ratio
+- spot-check subtitle progression around audio-beat boundaries so the visible frame/panel and subtitle sequence stay aligned
+- spot-check subtitle block size and vertical placement on the final file for the locked series aspect ratio
 
-If the sampled frames do not match the intended assets, or the subtitle progression is visibly out of sync with the panel progression, or the subtitle block is unreasonably large or too high for the frame, the export is invalid and must be rebuilt.
+If the sampled frames do not match the intended assets, or the subtitle progression is visibly out of sync with the frame/panel progression, or the subtitle block is unreasonably large or too high for the frame, the export is invalid and must be rebuilt.
 
 ### Step 6 - Write `chapters/<chapter-id>/video-package.md`
 
@@ -241,10 +254,12 @@ Record:
 
 - final video path
 - export resolution and frame rate
+- locked series aspect ratio
 - audio manifest
 - subtitle path
 - storyboard-to-asset mapping ref
 - image-asset order
+- source-asset frame conformance result when the render-unit contract is `video-frame`
 - timing summary
 - render timing map
 - subtitle layout settings
@@ -272,6 +287,7 @@ Then route the full package back to `manga_showrunner` for series-level canon sy
 
 - If the storyboard does not support clear audio mapping, route the issue back to `storyboard_director`.
 - If the generated images are too inconsistent to cut into a coherent video, route that issue back to `manga_illustrator`.
+- If video delivery uses `video-frame` and any approved asset looks like a manga page, panel grid, white paper sheet, collage, reference sheet, or wrong-aspect frame without an explicit crop plan, route it back to `manga_illustrator`.
 - If the visual package does not make the lettering state or subtitle-overlay expectation explicit, route that issue back to `manga_illustrator` before final burn decisions.
 - Do not send a `generate_speech` multi-speaker request with more than two mapped speakers. Split it first.
 - Do not ship one long clip that leaves the viewer on one unchanged image through an extended exchange when the pacing would feel static. Split it or send it back.

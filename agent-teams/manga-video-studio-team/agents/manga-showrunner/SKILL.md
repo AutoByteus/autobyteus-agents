@@ -90,6 +90,8 @@ Record:
 - primary language
 - target visual mode
 - series color strategy
+- default render-unit contract
+- locked series video aspect ratio and target resolution when voiced or video delivery is in scope
 - one-sentence hook
 - premise
 - genre blend
@@ -105,11 +107,13 @@ Record:
 - narrator strategy when voiced output is in scope
 - voice palette direction when voiced output is in scope
 - pronunciation or naming conventions when voiced output is in scope
-- target runtime or page-count direction
+- target runtime, frame-count, or page-count direction
 - production constraints
 
 If the user already supplied story canon, treat it as the source of truth and build around it instead of replacing it.
 If the user already supplied strong style canon, treat that as the source of truth and lock it into the series package instead of silently defaulting to grayscale tension manga.
+When voiced or video delivery is in scope, set the default render-unit contract to `video-frame` unless the user explicitly wants printable/readable manga pages or separate panel assets as the primary deliverable.
+Also lock one series-level video canvas before image generation starts, such as `9:16 vertical, 1080x1920` or `16:9 horizontal, 1920x1080`. Later chapter artifacts may restate that canvas, but they must not override it inside the same video series.
 
 ### Step 3 - Create `character-bible.md` and `character-registry.md`
 
@@ -184,8 +188,10 @@ For each chapter or production unit, capture:
 - escalation beats
 - reveal or reversal
 - ending beat or cliffhanger
-- target page range
+- target render-unit count or page range
 - target video-runtime range when voiced or video delivery is in scope
+- inherited locked series video aspect ratio when voiced or video delivery is in scope
+- intended render-unit direction, using `video-frame` for video delivery unless another deliverable is explicitly primary
 - visually essential moments
 
 Prefer a tightly escalating pilot over a vague high-volume roadmap.

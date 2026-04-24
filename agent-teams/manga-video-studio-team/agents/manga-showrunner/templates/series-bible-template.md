@@ -9,6 +9,9 @@
 - Target visual mode:
 - Series color strategy:
 - Intended delivery:
+- Default render-unit contract (`video-frame` for video-first delivery):
+- Locked series video aspect ratio and resolution when video delivery is in scope:
+- Ratio change policy: chapter artifacts inherit this canvas and must not override it inside the same video series.
 - Scope for this run:
 
 ## Hook

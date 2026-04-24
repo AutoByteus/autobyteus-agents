@@ -12,21 +12,41 @@
 - Source chapter ids:
 - Source chapter-plan path:
 - Chapter render-unit contract:
+- Inherited locked series video aspect ratio copied from `series-bible.md`:
 - Intended visual mode:
 - Intended video mode:
 - Chapter audio mode:
 
 ## Scene Entry Template
 
+Fill only the render-unit sections that match the declared contract. `video-frame` uses `Video Frames` as the production authority. `page-composed` uses `Pages` plus their child `Panels` only when printable/readable manga pages were explicitly requested. `panel-first` uses `Panels` only when separate panel assets were explicitly requested.
+
 ### Scene: [scene-id]
 
 - Narrative goal:
 - Location:
 - Time:
-- Page range:
+- Render-unit range:
 - Estimated video seconds:
 
-#### Pages
+#### Video Frames
+
+##### Frame: [frame-id]
+
+- Source scene id:
+- Source audio beat ids:
+- Inherited locked series aspect ratio and orientation:
+- Single visible action:
+- Camera or framing:
+- Acting beat:
+- Subject-safe zone:
+- Subtitle-safe zone:
+- On-screen text (dialogue, caption, signage, or SFX):
+- Required reference assets:
+- Transition note:
+- Long-hold or split note:
+
+#### Pages (Only For Explicit `page-composed` Delivery)
 
 ##### Page: [page-id]
 
@@ -35,7 +55,7 @@
 - Page-turn or reveal note:
 - Lettering density note:
 
-#### Panels
+#### Panels (Only For Explicit `page-composed` Or `panel-first` Delivery)
 
 ##### Panel: [panel-id]
 
@@ -52,7 +72,7 @@
 
 ##### Audio Beat: [beat-id]
 
-- Source panel ids:
+- Source render-unit ids (frame ids for `video-frame`; page/panel ids only for explicit non-default contracts):
 - Delivery mode:
 - Speaker or narrator:
 - Spoken text:

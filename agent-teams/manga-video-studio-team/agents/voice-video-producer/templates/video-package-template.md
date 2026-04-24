@@ -4,13 +4,17 @@
 
 - Final video path:
 - Resolution:
+- Locked series aspect ratio copied from `series-bible.md`:
 - Frame rate:
 - Subtitle mode:
 
 ## Source Manifest
 
 - Storyboard-to-asset mapping ref:
+- Render-unit contract:
 - Image assets used:
+- Source-asset frame conformance:
+- Mixed-ratio source asset check:
 - Audio clips used:
 - Subtitle path:
 - Audio-generation log path:
@@ -24,7 +28,7 @@
 
 ## Subtitle Layout Settings
 
-- Aspect ratio:
+- Locked series aspect ratio copied from `series-bible.md`:
 - Font name:
 - Font size:
 - Outline or background treatment:
@@ -52,6 +56,7 @@
 - Sampled timestamps:
 - Expected render units:
 - Observed result:
+- Full-bleed / border / gutter check:
 - Subtitle layout check:
 - Delivery gate:
 
