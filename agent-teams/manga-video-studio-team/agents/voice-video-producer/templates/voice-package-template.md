@@ -4,12 +4,13 @@
 
 - Delivery mode:
 - Generation route:
-- Generation model:
+- Resolved generation model, if returned by tool:
+- Speech settings:
 - Live model-list reference:
 - Registry voice-map reference:
 - Character-bible voice-style reference:
 - Default clip generation mode:
-- Speech-generation pacing rule:
+- Speech-generation pacing rule: serial-only queue; one call, result, inspection/logging, `sleep 60`, then next call.
 - Hard multi-speaker limit for this run:
 - Still-image pacing rule for this run:
 - Narrator voice:

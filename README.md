@@ -121,6 +121,45 @@ Rules:
 - Use this pattern for shared reference docs, principles, and reusable policy files that belong to one team package but are read by multiple bundled agent skills.
 - Do not duplicate the shared file into each agent folder; use one canonical shared file plus symlinks so updates stay synchronized.
 
+## Recommended Practice For Team Packages
+
+Treat `team.md` as the team's coordination contract, not as a second copy of each specialist's skill.
+
+### Put In `team.md`
+
+- short team purpose and entry specialist
+- member list and ownership boundaries
+- high-level delivery flow between members
+- handoff expectations, including `send_message_to` usage and required artifact visibility
+- issue routing between members
+- links or pointers to shared team references
+
+### Put In Team-Shared References
+
+- cross-member operating principles
+- shared quality bars and policy rules
+- shared artifact conventions that more than one member must respect
+- decisions that must stay synchronized across specialists
+
+### Put In Member `SKILL.md`
+
+- role-specific execution steps
+- role-specific artifact schemas and templates
+- tool-use rules owned by that role
+- detailed QA gates owned by that role
+- blocking, retry, and send-back behavior for that specialist
+
+### Avoid
+
+- copying role-specific workflow steps from member `SKILL.md` into `team.md`
+- listing detailed artifact schemas in `team.md` when a template or skill owns them
+- putting tool invocation details, media-generation settings, prompt rules, or validation procedures in `team.md`
+- duplicating the same operating rule in both `team.md` and a shared reference file
+
+If a rule applies to all team members, put it in a team-shared reference and point members to it.
+If a rule applies to one specialist, put it in that specialist's `SKILL.md`.
+Keep `team.md` focused on how the specialists work together.
+
 ## Recommended Practice For Agent Packages
 
 - If a skill is owned by a single agent, keep it bundled in that agent folder.

@@ -111,10 +111,10 @@ Use this file as the shared operating contract for the whole manga-video team.
 - For image generation and image editing, log:
   - asset id
   - tool or image route used
-  - model identifier when available
+  - model identifier returned by the tool, if available
   - exact prompt
   - input image refs
-  - generation or edit settings
+  - `generation_config` status, which should be `omitted` for prompt-only `generate_image` routes, or edit settings when using `edit_image`
   - output path
   - approval status
   - notes about why the iteration changed
@@ -123,10 +123,11 @@ Use this file as the shared operating contract for the whole manga-video team.
   - exact spoken text
   - performance directions or stage cues when used
   - speech tool used
-  - model identifier
+  - model identifier returned by the tool, if available
   - voice
   - language
-  - temperature or other settings when applicable
+  - speech settings used, when applicable
+  - prompt-level performance directions when applicable
   - output path
   - approval status
 - Prompts and settings should never exist only in the model context if later chapters may need them.
@@ -138,9 +139,11 @@ Use this file as the shared operating contract for the whole manga-video team.
 - Use `edit_image` as the default targeted correction route for otherwise strong assets.
 - Image tool calls are strictly sequential. Call exactly one `generate_image` or `edit_image`, wait for that call to return, inspect and log the result, then immediately run `sleep 60` before making any further image-tool call.
 - Do not dispatch multiple image-tool calls at the same time, in the background, or as a parallel batch. This applies even when many frames are planned.
-- The 60-second cooldown applies after candidate, rejected, failed, and approved image-tool calls.
+- The 60-second cooldown applies after candidate, rejected, timed-out, failed, and approved image-tool calls. Do not retry before the cooldown completes.
 - When a scene depends on multiple locked references, prefer passing the approved image paths through `input_images` instead of relying only on text prompts.
 - If the active runtime expects multiple `input_images` refs to be supplied as one comma-separated value, serialize them in that runtime-specific form instead of assuming a richer object wrapper.
+- For prompt-only image routes, call `generate_image` with a self-contained prompt and omit `generation_config`.
+- Do not create or pass `generation_config` or a model identifier just to carry model choice, aspect ratio, orientation, or target dimensions. Those belong either in runtime configuration or in the final prompt text.
 - Default video mode is motion-comic style:
   - generated full-bleed video-frame stills
   - simple cuts
@@ -167,12 +170,13 @@ Use this file as the shared operating contract for the whole manga-video team.
 ## 8B. Video Aspect Ratio Is Series-Locked
 
 - When voiced or video delivery is in scope, `series-bible.md` must define one locked video canvas before image generation starts, such as `9:16 vertical, 1080x1920` or `16:9 horizontal, 1920x1080`.
-- Chapter plans, storyboards, visual style guides, prompt packs, image-generation logs, visual-production packages, and video packages must restate the locked series ratio for traceability. They must not redefine it as a chapter-local preference.
-- Every `video-frame` prompt must include the locked ratio and orientation in positive prompt language, and the image-generation config should request matching dimensions whenever the tool supports explicit size fields.
-- The locked ratio must appear inside the final constructed image prompt text sent to `generate_image`, not only as adjacent metadata, a note, or a generation config field.
-- Every approved `video-frame` asset must be checked against the locked ratio before handoff to video assembly.
+- Chapter plans, storyboards, visual style guides, prompt packs, image-generation logs, visual-production packages, and video packages must restate the locked series aspect ratio for traceability. They must not redefine it as a chapter-local preference.
+- Every `video-frame` prompt must include the locked aspect ratio and orientation in positive prompt language.
+- Every final image prompt for `page-composed` or `panel-first` delivery must also include the approved page or panel aspect ratio and orientation in positive prompt language, such as `vertical 2:3 portrait manga page`.
+- The applicable aspect ratio and orientation must appear inside the final constructed image prompt text sent to `generate_image`, not only as adjacent metadata, a note, or a `generation_config` field.
+- Every approved `video-frame` asset must be checked against the locked aspect ratio before handoff to video assembly.
 - Mixed aspect ratios inside one final video are a blocking error. Do not pad, letterbox, or stretch mismatched source art to hide the problem.
-- If the user asks for a different ratio, treat that as a separate export variant requiring an explicit user decision and a regenerated or explicitly cropped full asset set. Do not let one chapter silently override the series video canvas.
+- If the user asks for a different aspect ratio, treat that as a separate export variant requiring an explicit user decision and a regenerated or explicitly cropped full asset set. Do not let one chapter silently override the series video canvas.
 
 ## 8C. Render Unit Must Be Explicit
 
@@ -238,8 +242,8 @@ Use this file as the shared operating contract for the whole manga-video team.
 - In manga-style motion comics, treat long spoken exchanges on one unchanged image as a pacing problem, not as a normal speech-generation pattern.
 - Use multi-speaker generation only as a narrow exception when one visible beat genuinely needs a short two-person exchange to live inside the same audio unit.
 - For this team's `generate_speech` workflow, multi-speaker means at most two mapped speakers per call.
-- Speech tool calls are strictly sequential. Call exactly one `generate_speech` or selected `speak` call, wait for that call to return, inspect and log the result, then immediately run `sleep 60` before making any further speech-tool call.
-- Do not dispatch multiple speech-tool calls at the same time, in the background, or as a parallel batch. The 60-second cooldown applies after candidate, rejected, failed, and approved speech-tool calls.
+- Speech tool calls are serial-only. Treat the clip list as a queue, not a batch: call exactly one `generate_speech` or selected `speak` call, wait for that call to return, inspect and log the result, then immediately run `sleep 60` before making any further speech-tool call.
+- Do not dispatch multiple speech-tool calls at the same time, in the background, through a background process, or as a parallel batch. The 60-second cooldown applies after candidate, rejected, timed-out, failed, and approved speech-tool calls. Do not retry before the cooldown completes.
 - If one still image or one tightly bound render unit would need roughly more than 8 to 10 seconds of uninterrupted speech, more than one clear speaker turn, or more than two distinct speakers, split it into additional beats or render units instead of stretching one static hold.
 - If a beat would require more than two distinct speakers in one audio unit, split it into separate clips or sequential one-speaker / two-speaker segments instead of sending an oversized speaker-mapping request.
 - If one audio beat spans multiple render units, the final package must explicitly map that beat across the visible video frames. Page/panel ids belong in this map only when an explicit non-default contract produced them.
@@ -269,7 +273,7 @@ Use this file as the shared operating contract for the whole manga-video team.
   - font size
   - outline or background treatment
   - bottom margin
-  - any locked-aspect-ratio-specific layout decision
+  - any layout decision specific to the locked aspect ratio
 
 ## 9B. Final Video QA Is Mandatory
 

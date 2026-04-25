@@ -31,7 +31,7 @@
 
 - Character lock blocks:
 - Location blocks:
-- Render-unit prompt coverage, including locked-ratio phrase coverage for final `video-frame` prompts:
+- Render-unit prompt coverage, including applicable aspect ratio and orientation phrase coverage for final prompts:
 - Drift risks:
 
 ## Asset Manifest

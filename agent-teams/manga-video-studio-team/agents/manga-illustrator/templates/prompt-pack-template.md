@@ -40,9 +40,10 @@ For video delivery, this section should cover video frames. Page or panel prompt
 - Prompt objective:
 - Render-unit type:
 - Inherited locked series aspect ratio and orientation copied from `series-bible.md`:
-- Requested generation size or dimensions when supported:
-- Exact final prompt to send to the image tool, including the locked ratio/orientation phrase for `video-frame`:
-- Locked ratio phrase present in final prompt:
+- Prompted target canvas or dimensions, if known:
+- Prompt self-containment check: render-unit id, contract/art state, aspect ratio and orientation, scene, character locks, style, text strategy, and negative constraints are all present:
+- Exact final prompt to send to the image tool, including the applicable aspect ratio and orientation phrase:
+- Applicable aspect ratio and orientation phrase present in final prompt:
 - Visible text spec:
 - Negative prompt:
 - Input reference assets:

@@ -14,7 +14,7 @@
 - Render-unit contract:
 - Image assets used:
 - Source-asset frame conformance:
-- Mixed-ratio source asset check:
+- Mixed aspect ratio source asset check:
 - Audio clips used:
 - Subtitle path:
 - Audio-generation log path:

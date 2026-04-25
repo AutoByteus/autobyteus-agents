@@ -70,7 +70,9 @@ Do not casually override a locked series identity. If the series is full color, 
 
 - Use `generate_image` as the default image-generation route.
 - Use `edit_image` as the default local-fix route when an otherwise strong image needs targeted repair.
+- For prompt-only `generate_image` routes, omit `generation_config` and do not specify a model identifier. Use the configured default image route. The final prompt must be self-contained.
 - Issue image-tool calls strictly sequentially. Call exactly one `generate_image` or `edit_image`, wait for the result, inspect and log it, then immediately run `sleep 60` before any further image-tool call.
+- The same cooldown applies after successful, rejected, timed-out, and failed image-tool calls. Do not retry before running `sleep 60`.
 - Do not launch multiple `generate_image` or `edit_image` calls concurrently, in the background, or as a parallel batch. This applies to reference sheets, video frames, pages, panels, retries, and local fixes.
 - Create one reusable reference sheet per recurring character before rendering the main video frames. Render pages or panels only when the declared non-default contract explicitly requires them.
 - Use the lock language from `character-bible.md`.
@@ -91,6 +93,17 @@ Create a durable prompt package that includes:
 - lettering specs for any video frame that must contain readable on-image text, or for page/panel text only when those assets were explicitly requested
 - negative prompts for drift, extra limbs, wrong props, wrong clothing, wrong age presentation, and unreadable composition
 
+Every final prompt sent to `generate_image` must be self-contained for the selected render-unit contract. It should include:
+
+- asset id or render-unit id
+- render-unit contract and art state, such as `video-frame`, `page-composed clean-art base`, `panel-first clean-art`, or `lettered panel`
+- aspect ratio and orientation in prompt text, such as `9:16 vertical`, `16:9 horizontal`, or `vertical 2:3 portrait`
+- scene and visible action
+- character lock details needed for identity
+- style and color mode
+- text strategy, such as exact readable text, clean empty areas for later text, or `do not render readable text`
+- negative constraints such as no watermark, no signature, no unwanted text, no wrong character type, and no contract-breaking layout
+
 When a video frame must carry readable text, the prompt pack must specify the fields below. Apply the same fields to page/panel text only when an explicit non-default contract requires those assets.
 
 - exact text to render
@@ -103,15 +116,17 @@ When a video frame must carry readable text, the prompt pack must specify the fi
 For a `video-frame` contract, every render-unit prompt must specify:
 
 - inherited locked series aspect ratio and orientation, such as `9:16 vertical` or `16:9 horizontal`
-- target dimensions matching the locked series video canvas when the image tool supports explicit size settings
+- target canvas or dimensions in prompt text when known, such as `1080x1920 vertical`
 - `single full-bleed motion-comic frame`
 - one visible beat or one coherent full-screen composition
 - subject-safe and subtitle-safe composition notes
 - explicit negative prompt language: `no manga page, no panel grid, no page border, no white paper margin, no collage, no contact sheet, no reference sheet, no watermark`
 
 The `Exact final prompt` entry in `prompt-pack.md` is the actual constructed prompt to send to `generate_image`.
-For `video-frame` delivery, that final prompt is invalid unless the prompt text itself contains the locked series ratio and orientation, such as `single full-bleed 9:16 vertical motion-comic manga frame`.
-Do not rely on metadata fields alone to carry the ratio.
+For `video-frame` delivery, that final prompt is invalid unless the prompt text itself contains the locked series aspect ratio and orientation, such as `single full-bleed 9:16 vertical motion-comic manga frame`.
+For `page-composed` delivery, that final prompt is invalid unless the prompt text itself contains the approved page aspect ratio and orientation, such as `vertical 2:3 portrait full-color manga page clean-art base`.
+For `panel-first` delivery, that final prompt is invalid unless the prompt text itself contains the approved panel shape or framing intent.
+Do not rely on metadata fields or `generation_config` to carry the aspect ratio, orientation, or target dimensions.
 
 Do not ask the image model for "two panels", "three panels", "manga page layout", "clean manga borders", or similar page-composition language when the contract is `video-frame`.
 If the storyboard beat contains multiple actions, split it into multiple video frames or stage a single coherent full-screen shot. Do not solve it by arranging several small images in rows on a paper-like background.
@@ -127,6 +142,9 @@ Examples:
 Good video-frame prompt fragment:
 single full-bleed 9:16 vertical motion-comic manga frame, Ada stepping from the train into amber station light, visibly focused young scholar, red notebook visible, immersive cinematic composition, subtitle-safe lower band with low visual clutter, no manga page, no panel grid, no page border, no white margin, no collage, no watermark
 
+Good page-composed clean-art prompt fragment, only when the contract is `page-composed`:
+vertical 2:3 portrait full-color manga page clean-art base for ch002-p01, one lush establishing splash page, midnight-blue and brass fantasy train gliding into a station under high arches, deep burgundy carpets hanging like banners, clerks in felt slippers crossing silently, brass lamps glowing through dust, compact badger scholar in midnight-blue coat with burgundy scarf, round spectacles, red notebook, standing alert in the train doorway, slim white cockatoo with yellow crest and citron waistcoat peering out excitedly, premium full-color animal fantasy manga, crisp ink lines, cinematic station architecture, leave clean empty areas for a station sign, banner, one speech bubble, and tiny SFX, do not render readable text, no grayscale, no human characters, no watermark, no signature
+
 Good panel clean-art prompt fragment, only when the contract is `panel-first`:
 black-and-white manga panel, Morena leaning forward over the card table, cold smile, Borksen rigid across from her, tense silence, dense screentone shadows, no speech bubbles, no captions, no watermark
 
@@ -140,12 +158,12 @@ For every material `generate_image` or `edit_image` call that affects an approve
 
 - asset id
 - tool or image route used
-- model identifier when available
+- model identifier returned by the tool, if available
 - exact final prompt or edit instruction sent to the image tool
-- locked ratio phrase present in the final prompt for `video-frame` assets
+- applicable aspect ratio and orientation phrase present in the final prompt
 - visible text specification or explicit clean-art instruction
 - source image refs
-- generation config, including requested size fields when supported
+- `generation_config` status, which should be `omitted` for prompt-only `generate_image` routes
 - actual output dimensions and measured aspect ratio
 - output path
 - approval status
@@ -157,7 +175,7 @@ Future chapters should be able to reuse or refine these exact records instead of
 ### Step 5 - Generate the main visual assets
 
 - Render the required video frames in storyboard order. Render pages or panels only when the declared non-default contract explicitly requires them.
-- Generate assets one at a time in storyboard order. After each `generate_image` or `edit_image` result returns, immediately run `sleep 60` before requesting the next asset or correction.
+- Generate assets one at a time in storyboard order. After each `generate_image` or `edit_image` result, timeout, or failure, immediately run `sleep 60` before requesting the next asset, retry, or correction.
 - Follow the declared chapter render-unit contract exactly.
 - If the contract is `key-asset preview`, treat the package as incomplete chapter coverage unless the user explicitly asked for preview-only output.
 - If the contract is `video-frame`, every approved asset must be one full-bleed video still at the inherited locked series aspect ratio, with no page border, panel gutter, paper margin, collage layout, reference-sheet layout, or generated watermark.
@@ -190,7 +208,7 @@ Record:
 - character sheet paths
 - video-frame paths for video delivery, plus page/panel paths only when explicitly requested
 - inherited locked series aspect ratio and frame-conformance QA for `video-frame` delivery
-- prompt-pack summary, including confirmation that final `video-frame` prompts contain the locked ratio phrase
+- prompt-pack summary, including confirmation that final prompts contain the applicable aspect ratio and orientation phrase
 - image-generation-log path
 - QA findings
 - unresolved visual risks

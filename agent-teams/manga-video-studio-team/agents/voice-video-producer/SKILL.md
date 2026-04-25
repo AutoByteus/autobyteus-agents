@@ -101,10 +101,11 @@ For every material speech-generation call, record:
 - exact spoken text
 - performance directions or stage cues
 - speech tool used
-- model identifier
+- model identifier returned by the tool, if available
 - voice
 - language
-- temperature, style instructions, or other settings when applicable
+- speech settings used, when applicable
+- prompt-level performance directions when applicable
 - output path
 - approval status
 - sequential-call position and whether `sleep 60` was completed before the next speech-tool call
@@ -114,14 +115,14 @@ For every material speech-generation call, record:
 
 Generate one speech clip per audio beat with the approved speech tool for the run, such as `generate_speech` or `speak`.
 
-Speech generation must be strictly sequential:
+Speech generation must be serial-only. Treat the clip list as a queue, not a batch:
 
 - call exactly one `generate_speech` or selected `speak` request
 - wait for the tool result before doing anything that depends on that clip
 - inspect and log the result in `audio-generation-log.md`
 - immediately run `sleep 60` before making any further speech-tool call
-- do not launch multiple speech-tool calls concurrently, in the background, or as a parallel batch
-- apply the same 60-second cooldown after retries, rejected candidates, failed calls, and approved clips
+- do not launch multiple speech-tool calls concurrently, in the background, through a background process, or as a parallel batch
+- apply the same 60-second cooldown after retries, rejected candidates, timed-out calls, failed calls, and approved clips
 
 For each clip:
 
@@ -136,8 +137,6 @@ For each clip:
 - record actual durations in `voice-package.md`
 - prefer short, precise clips over one giant track
 - if one tool path fails, a segmented fallback is acceptable, but the final clip assembly must still be logged explicitly
-
-If the chosen run uses `generate_speech` with a custom `generation_config`, inspect the live supported schema first instead of guessing fields.
 
 Speech prompt rules:
 
