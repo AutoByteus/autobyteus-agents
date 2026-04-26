@@ -3,7 +3,7 @@
 ## Logging Rule
 
 - Record one entry for every material speech-generation call.
-- Speech-generation calls must be serial-only: one call, result, inspection/logging, `sleep 60`, then the next call.
+- Speech-generation calls may run in parallel or batches when the active runtime supports high-throughput generation.
 - Keep the exact spoken text, speech tool, voice, and model identifier returned by the tool when available.
 
 ## Entry Template
@@ -20,6 +20,6 @@
 - Speech settings used:
 - Output path:
 - Approval status:
-- Sequential call number:
-- `sleep 60` completed before next speech-tool call or retry:
+- Batch id or parallel group:
+- Completion order:
 - Notes:

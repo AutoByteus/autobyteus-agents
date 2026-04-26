@@ -112,9 +112,9 @@ When using `generate_image`:
 - do not pass a model identifier
 - include the aspect ratio and orientation inside the prompt
 - make the prompt self-contained
-- call exactly one image tool request at a time
-- inspect and log the result
-- run `sleep 60` before any next image tool call
+- dispatch image tool requests in parallel or batches when the active runtime supports high-throughput generation
+- keep asset ids and shot mapping stable even when results return out of order
+- inspect, log, and approve or reject every returned result
 
 ### Step 6 - Write `visual-asset-plan.md`
 

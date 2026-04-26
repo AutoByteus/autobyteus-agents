@@ -4,7 +4,7 @@
 
 - Record one entry for every generated or edited supporting visual.
 - Generated visuals must support the promo and must not impersonate actual product UI.
-- Image-generation calls must be serial-only: one call, result, inspection/logging, `sleep 60`, then the next call.
+- Image-generation calls may run in parallel or batches when the active runtime supports high-throughput generation.
 
 ## Entry Template
 
@@ -21,5 +21,6 @@
 - Output path:
 - Approval status:
 - Reason for iteration:
-- `sleep 60` completed before next image-tool call or retry:
+- Batch id or parallel group:
+- Completion order:
 - Notes:

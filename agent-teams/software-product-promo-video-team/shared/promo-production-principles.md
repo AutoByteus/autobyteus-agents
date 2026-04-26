@@ -98,15 +98,16 @@ Use this file as the shared operating contract for the whole software product pr
 - For prompt-only image routes, call `generate_image` with a self-contained prompt and omit `generation_config`.
 - Do not create or pass `generation_config` or a model identifier just to carry model choice, aspect ratio, orientation, or target dimensions. Those belong either in runtime configuration or in the final prompt text.
 - Every final generated-image prompt must include the intended aspect ratio and orientation in positive prompt language.
-- Image tool calls are serial-only. Call exactly one `generate_image` or `edit_image`, wait for the result, inspect and log it, then run `sleep 60` before making any further image-tool call.
-- Do not dispatch multiple image-tool calls at the same time, in the background, through a background process, or as a parallel batch.
+- Image tool calls may be dispatched in parallel or batches when the active runtime supports high-throughput generation.
+- Parallel image generation is acceptable for supporting visuals, retries, and local fixes, but every returned result must still be inspected, logged, and either approved or rejected.
+- Keep planned asset ids and storyboard shot mapping stable even when calls return out of order.
 
-## 9. Speech Generation Is Serial-Only
+## 9. Speech Generation Can Run In Parallel
 
 - Default promo narration is one clear narrator voice unless the brief explicitly calls for dialogue, testimonial, or host-read delivery.
-- Speech tool calls are serial-only. Treat the clip list as a queue, not a batch: call exactly one `generate_speech` or selected `speak` call, wait for that call to return, inspect and log the result, then immediately run `sleep 60` before making any further speech-tool call.
-- Do not dispatch multiple speech-tool calls at the same time, in the background, through a background process, or as a parallel batch.
-- The 60-second cooldown applies after candidate, rejected, timed-out, failed, and approved speech-tool calls. Do not retry before the cooldown completes.
+- Speech tool calls may be dispatched in parallel or batches when the active runtime supports high-throughput generation.
+- Parallel speech generation is acceptable for independent clips, retries, and alternate takes, but every returned result must still be inspected, logged, and either approved or rejected.
+- Keep clip ids and final timeline order stable even when calls return out of order.
 - Generated speech prompts should keep spoken script and non-spoken performance directions clearly separated in the package.
 - Subtitle text should match what is spoken unless the user explicitly asks for condensed captions.
 

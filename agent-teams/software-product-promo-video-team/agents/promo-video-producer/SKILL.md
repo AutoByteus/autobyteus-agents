@@ -36,7 +36,7 @@ Use:
 ## Required Shared Reads
 
 - Start by reading [promo-production-principles.md](promo-production-principles.md).
-- Use it as the shared reference for speech serialization, visual truth, edit clarity, subtitles, and final QA.
+- Use it as the shared reference for speech generation, visual truth, edit clarity, subtitles, and final QA.
 
 ## Workflow
 
@@ -76,18 +76,17 @@ Record:
 Keep spoken lines concise and natural.
 Do not add new product claims while adapting the script for speech.
 
-### Step 3 - Generate speech clips serially
+### Step 3 - Generate speech clips
 
 Generate one speech clip per approved voiceover segment with the selected speech tool, such as `generate_speech` or `speak`.
 
-Speech generation must be serial-only. Treat the clip list as a queue, not a batch:
+Speech generation may be dispatched in parallel or batches when the active runtime supports high-throughput generation:
 
-- call exactly one `generate_speech` or selected `speak` request
-- wait for the tool result
-- inspect and log the result in `audio-generation-log.md`
-- immediately run `sleep 60` before making any further speech-tool call
-- do not launch multiple speech-tool calls concurrently, in the background, through a background process, or as a parallel batch
-- apply the same 60-second cooldown after retries, rejected candidates, timed-out calls, failed calls, and approved clips
+- parallel generation is acceptable for independent clips, retries, and alternate takes
+- keep clip ids and final timeline order stable even when calls return out of order
+- inspect and log every returned result in `audio-generation-log.md`
+- approve or reject every result before it enters the final voiceover package
+- do not let out-of-order completion change the intended spoken sequence
 
 For every speech-generation call, log:
 
@@ -101,8 +100,8 @@ For every speech-generation call, log:
 - speech settings used, when applicable
 - output path
 - approval status
-- sequential call number
-- whether `sleep 60` was completed before the next call or retry
+- batch id or parallel group, when applicable
+- completion order, when useful
 
 ### Step 4 - Build subtitles
 
