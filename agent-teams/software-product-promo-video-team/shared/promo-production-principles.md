@@ -91,6 +91,16 @@ Use this file as the shared operating contract for the whole software product pr
 - Keep overlays and captions away from the important UI.
 - Never cover the exact feature the narration is describing.
 
+## 7A. Default Visual Language Is Animated UI Showcase
+
+- The default visual style for software product promos is polished motion graphics built from real product UI, especially animated screenshot transitions, floating UI cards, feature callouts, and readable product-screen motion.
+- Product screenshots and recordings may be presented as layered cards with soft shadows, perspective tilt, scale changes, and smooth entrance or exit motion when that helps the viewer follow the product story.
+- Use motion to guide attention from one feature or screen state to the next, not as decoration that competes with the UI.
+- Keep card tilt, perspective, blur, speed, and overlap restrained enough that important product text and interface controls remain readable.
+- Every storyboard shot that uses this style should specify the intended motion treatment at a practical level.
+- `promo_script_storyboarder` owns story-level motion intent, `product_visual_director` owns the visual motion treatment, and `promo_video_producer` owns the actual implementation in the final edit.
+- Do not lock the team to one animation toolchain. The producer may use any available reliable method that fits the project, as long as the output remains truthful, readable, and reproducible enough to document.
+
 ## 8. Generated Visuals Are Supporting Material
 
 - Use generated images only when they help the promo communicate a mood, metaphor, transition, abstract concept, or non-product background.
@@ -117,6 +127,9 @@ Use this file as the shared operating contract for the whole software product pr
 - Avoid generic hype edits that obscure what the software actually does.
 - Match each spoken value claim to a visible product moment, proof point, or brand-safe supporting visual.
 - Use music, transitions, sound effects, and motion graphics as support, not as a replacement for product clarity.
+- Follow the storyboard and visual asset plan for shot-specific motion treatments.
+- Time motion graphics to the voiceover or music rhythm, but do not sacrifice UI legibility for speed.
+- Valid implementation routes include `ffmpeg` filters, scripted frame generation, HTML/CSS/canvas rendering captured to video, Remotion-style composition, available local video tools, or generated intermediate clips. Choose based on quality, controllability, and what the runtime actually supports.
 - If a shot needs too much narration to explain what it is, revise the shot or route the issue upstream.
 
 ## 11. Final QA Must Check The Export

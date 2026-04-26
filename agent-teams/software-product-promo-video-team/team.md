@@ -24,9 +24,9 @@ Detailed production rules, artifact schemas, media-generation rules, QA gates, a
 ## Team Members
 
 - `product_promo_strategist`: owns intake, product/audience research, positioning, claims discipline, project scope, and final message alignment.
-- `promo_script_storyboarder`: owns narrative structure, promotional script, storyboard, shot timing, and CTA flow.
-- `product_visual_director`: owns screenshot and screen-recording inventory, visual asset planning, UI readability, brand treatment, annotations, generated supporting visuals, and visual handoff.
-- `promo_video_producer`: owns voiceover, audio generation, subtitles, music or sound treatment, edit assembly, export QA, and delivery package.
+- `promo_script_storyboarder`: owns narrative structure, promotional script, storyboard, shot timing, motion intent, and CTA flow.
+- `product_visual_director`: owns screenshot and screen-recording inventory, visual asset planning, UI readability, brand treatment, annotations, motion-graphics treatment design, generated supporting visuals, and visual handoff.
+- `promo_video_producer`: owns voiceover, audio generation, subtitles, music or sound treatment, motion-graphics implementation, edit assembly, export QA, and delivery package.
 
 ## Communication
 
@@ -38,9 +38,9 @@ Detailed production rules, artifact schemas, media-generation rules, QA gates, a
 ## Delivery Flow
 
 1. `product_promo_strategist` starts the run, studies the supplied product context, researches only when useful and appropriate, prepares the product promo brief, and sends it to `promo_script_storyboarder`.
-2. `promo_script_storyboarder` turns the approved brief into a promotional script and storyboard, then sends the package to `product_visual_director`.
-3. `product_visual_director` prepares the visual asset plan, screenshot or recording requirements, generated supporting visual prompts when needed, and sends the visual package to `promo_video_producer`.
-4. `promo_video_producer` produces the voiceover, subtitles, edit package, final video, and delivery QA report.
+2. `promo_script_storyboarder` turns the approved brief into a promotional script and storyboard with shot-level motion intent, then sends the package to `product_visual_director`.
+3. `product_visual_director` prepares the visual asset plan, screenshot or recording requirements, motion-graphics treatment design, generated supporting visual prompts when needed, and sends the visual package to `promo_video_producer`.
+4. `promo_video_producer` produces the voiceover, subtitles, motion graphics, edit package, final video, and delivery QA report.
 5. `product_promo_strategist` can review the final package for message accuracy and claim discipline before external publication.
 
 ## Issue Routing

@@ -93,7 +93,7 @@ For each shot, define:
 - time range
 - visual source needed
 - screen region or feature focus
-- motion plan
+- motion plan, such as floating card tilt, fade, crossfade, slide, zoom, cursor path, layered screenshot stack, or callout reveal
 - overlay or callout text
 - voiceover reference
 - subtitle notes

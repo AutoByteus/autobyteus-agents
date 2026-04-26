@@ -123,16 +123,23 @@ Use the approved visual asset plan and storyboard as the edit map.
 Typical assembly may include:
 
 - image or screen-recording sequence
-- crop and zoom motion
-- cursor or callout highlights
-- light transitions
+- animated UI mockup transitions
+- floating screenshot cards with subtle 2.5D tilt or perspective rotation
+- fades, crossfades, slide-ins, push transitions, and gentle wipes
+- crop, pan, and zoom motion
+- layered screenshot stacks
+- cursor paths, highlight rings, and callout reveals
 - voiceover
 - music or sound bed when approved
 - subtitle burn-in or sidecar file
 - final export normalization
 
-Use `ffmpeg` or available local video tooling for deterministic assembly.
+Choose the best available implementation route for the motion graphics.
+Valid routes include `ffmpeg` filters, scripted frame generation, HTML/CSS/canvas rendering captured to video, Remotion-style composition, available local video tools, or generated intermediate clips.
+Prefer the simplest route that gives enough timing control, visual polish, and repeatability for the requested export.
+Use motion graphics to guide attention across real product screens.
 Do not distort product screens to fit the target aspect ratio.
+Do not tilt, blur, scale, or overlap screenshots so aggressively that important UI becomes unreadable.
 Do not hide missing visual support with generic stock-like footage.
 
 ### Step 6 - Validate the exported file

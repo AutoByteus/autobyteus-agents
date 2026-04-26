@@ -17,7 +17,7 @@
 - Aspect ratio and orientation phrase included in prompt:
 - Exact prompt:
 - Input image refs:
-- `generation_config` status:
+- `generation_config` status, should be `omitted` for prompt-only `generate_image` routes:
 - Output path:
 - Approval status:
 - Reason for iteration:

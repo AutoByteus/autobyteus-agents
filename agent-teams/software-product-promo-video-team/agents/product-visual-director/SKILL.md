@@ -59,6 +59,7 @@ For every storyboard shot, decide:
 - use screen recording
 - crop or zoom an existing asset
 - create callout or annotation
+- create a motion-graphics treatment
 - use generated supporting visual
 - route missing asset back upstream
 
@@ -77,6 +78,26 @@ For each planned shot, verify:
 - visual supports the spoken claim
 
 If the UI is too dense for the target export, plan a tighter crop, zoom path, or simplified region.
+
+### Step 3A - Plan software-promo motion graphics
+
+For each product-screen shot, define how the UI should move or transition.
+
+Use motion treatments such as:
+
+- floating screenshot card with soft shadow
+- subtle 2.5D tilt or perspective rotation
+- fade, crossfade, slide-in, push, or wipe transition
+- zoom into a feature region
+- pan across a dashboard or canvas
+- layered screenshot stack
+- cursor path, highlight ring, or feature callout reveal
+
+Keep all motion subordinate to comprehension.
+If a tilt, blur, overlap, or transition makes important UI hard to read, simplify the motion or plan a tighter crop.
+Do not use generated fake UI to create a more cinematic screen.
+Do not prescribe a single implementation tool unless the project already requires one.
+Describe the intended visual behavior clearly enough that `promo_video_producer` can choose the best available implementation route.
 
 ### Step 4 - Capture or prepare product visuals
 
@@ -124,6 +145,7 @@ Include:
 - asset inventory summary
 - shot-to-asset map
 - crop, zoom, highlight, and annotation plan
+- motion-graphics treatment for each shot, including card tilt, fade, slide, zoom, layered stack, cursor path, or callout plan when used
 - generated visual prompts and outputs when applicable
 - sensitive-data handling
 - missing visual risks

@@ -17,11 +17,11 @@
 - Generated supporting visuals:
 - Excluded assets:
 
-## Shot-To-Asset Map
+## Shot-To-Asset And Motion Map
 
-| Shot ID | Approved Asset Path | Asset Type | Crop / Zoom Plan | Overlay / Callout Plan | UI Readability Status | Notes |
-| --- | --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |  |
+| Shot ID | Approved Asset Path | Asset Type | Crop / Zoom Plan | Motion-Graphics Treatment | Overlay / Callout Plan | UI Readability Status | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |  |
 
 ## Capture Requirements
 
@@ -44,6 +44,9 @@
 ## Editor Handoff Notes
 
 - Motion priorities:
+- Floating card / tilt / fade / slide / zoom notes:
+- Layered screenshot stack notes:
+- Cursor path or feature highlight notes:
 - Subtitle-safe zones:
 - Important UI regions:
 - Export risks:

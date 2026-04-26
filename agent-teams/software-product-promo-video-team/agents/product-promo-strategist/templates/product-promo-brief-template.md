@@ -58,6 +58,7 @@
 - Voice:
 - Pacing:
 - Visual style:
+- Motion graphics direction:
 - Music or sound direction:
 - Words to use:
 - Words to avoid:
