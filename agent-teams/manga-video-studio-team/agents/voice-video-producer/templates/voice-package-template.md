@@ -10,7 +10,7 @@
 - Registry voice-map reference:
 - Character-bible voice-style reference:
 - Default clip generation mode:
-- Speech-generation pacing rule: serial-only queue; one call, result, inspection/logging, `sleep 60`, then next call.
+- Speech-generation pacing rule: parallel or batched calls allowed when the active runtime supports high-throughput generation; preserve final timeline order in the package.
 - Hard multi-speaker limit for this run:
 - Still-image pacing rule for this run:
 - Narrator voice:

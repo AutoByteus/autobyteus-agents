@@ -108,21 +108,20 @@ For every material speech-generation call, record:
 - prompt-level performance directions when applicable
 - output path
 - approval status
-- sequential-call position and whether `sleep 60` was completed before the next speech-tool call
+- batch id or parallel group, when applicable
 - notes for reuse
 
 ### Step 3 - Generate the speech assets
 
 Generate one speech clip per audio beat with the approved speech tool for the run, such as `generate_speech` or `speak`.
 
-Speech generation must be serial-only. Treat the clip list as a queue, not a batch:
+Speech generation may be dispatched in parallel or batches when the active runtime supports high-throughput generation:
 
-- call exactly one `generate_speech` or selected `speak` request
-- wait for the tool result before doing anything that depends on that clip
-- inspect and log the result in `audio-generation-log.md`
-- immediately run `sleep 60` before making any further speech-tool call
-- do not launch multiple speech-tool calls concurrently, in the background, through a background process, or as a parallel batch
-- apply the same 60-second cooldown after retries, rejected candidates, timed-out calls, failed calls, and approved clips
+- parallel generation is acceptable for independent clips, retries, and alternate takes
+- keep clip ids and final timeline order stable even when calls return out of order
+- inspect and log every returned result in `audio-generation-log.md`
+- approve or reject every result before it enters the final voice package
+- do not let out-of-order completion change the intended spoken sequence
 
 For each clip:
 

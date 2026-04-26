@@ -4,7 +4,7 @@
 
 - Record one entry for every material speech-generation call.
 - Keep the exact spoken text, speech tool, and model identifier returned by the tool when available so future chapters can reuse voice and phrasing patterns without guessing.
-- Speech-generation calls must be serial-only: one call, result, inspection/logging, `sleep 60`, then the next call.
+- Speech-generation calls may run in parallel or batches when the active runtime supports high-throughput generation.
 
 ## Entry Template
 
@@ -24,6 +24,6 @@
 - Prompt-level performance directions:
 - Output path:
 - Approval status:
-- Sequential call number:
-- `sleep 60` completed before next speech-tool call or retry:
+- Batch id or parallel group:
+- Completion order:
 - Notes for reuse in future chapters:

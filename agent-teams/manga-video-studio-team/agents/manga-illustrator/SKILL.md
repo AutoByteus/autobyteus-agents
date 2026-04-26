@@ -71,9 +71,9 @@ Do not casually override a locked series identity. If the series is full color, 
 - Use `generate_image` as the default image-generation route.
 - Use `edit_image` as the default local-fix route when an otherwise strong image needs targeted repair.
 - For prompt-only `generate_image` routes, omit `generation_config` and do not specify a model identifier. Use the configured default image route. The final prompt must be self-contained.
-- Issue image-tool calls strictly sequentially. Call exactly one `generate_image` or `edit_image`, wait for the result, inspect and log it, then immediately run `sleep 60` before any further image-tool call.
-- The same cooldown applies after successful, rejected, timed-out, and failed image-tool calls. Do not retry before running `sleep 60`.
-- Do not launch multiple `generate_image` or `edit_image` calls concurrently, in the background, or as a parallel batch. This applies to reference sheets, video frames, pages, panels, retries, and local fixes.
+- Image-tool calls may be dispatched in parallel or batches when the active runtime supports high-throughput generation.
+- Parallel generation is acceptable for reference sheets, video frames, pages, panels, retries, and local fixes, but every returned result must still be inspected, logged, and either approved or rejected.
+- Keep planned asset ids and storyboard order stable even when image calls return out of order.
 - Create one reusable reference sheet per recurring character before rendering the main video frames. Render pages or panels only when the declared non-default contract explicitly requires them.
 - Use the lock language from `character-bible.md`.
 - If the chapter introduces a new recurring character, create or extend that character's reusable sheet package immediately after the design is approved.
@@ -167,7 +167,7 @@ For every material `generate_image` or `edit_image` call that affects an approve
 - actual output dimensions and measured aspect ratio
 - output path
 - approval status
-- sequential-call position and whether `sleep 60` was completed before the next image-tool call
+- batch id or parallel group, when applicable
 - reason for the iteration
 
 Future chapters should be able to reuse or refine these exact records instead of guessing what happened.
@@ -175,7 +175,9 @@ Future chapters should be able to reuse or refine these exact records instead of
 ### Step 5 - Generate the main visual assets
 
 - Render the required video frames in storyboard order. Render pages or panels only when the declared non-default contract explicitly requires them.
-- Generate assets one at a time in storyboard order. After each `generate_image` or `edit_image` result, timeout, or failure, immediately run `sleep 60` before requesting the next asset, retry, or correction.
+- Generate assets in planned storyboard order, but dispatch calls in parallel or batches when the runtime supports it.
+- Use stable asset ids so returned results can be matched back to their storyboard units even when they complete out of order.
+- Log, inspect, and approve or reject every returned `generate_image` or `edit_image` result before it enters the visual package.
 - Follow the declared chapter render-unit contract exactly.
 - If the contract is `key-asset preview`, treat the package as incomplete chapter coverage unless the user explicitly asked for preview-only output.
 - If the contract is `video-frame`, every approved asset must be one full-bleed video still at the inherited locked series aspect ratio, with no page border, panel gutter, paper margin, collage layout, reference-sheet layout, or generated watermark.
