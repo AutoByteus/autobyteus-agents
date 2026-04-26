@@ -69,8 +69,8 @@ Use this file as the shared operating contract for the whole software product pr
 - Treat supplied screenshots, screen recordings, product URLs, app store pages, docs, brand assets, and existing marketing pages as source material.
 - Record source paths and URLs used for the brief and visual package.
 - Redact or avoid sensitive information in screenshots and recordings, including tokens, private customer data, internal emails, production secrets, and personal data.
-- If the provided screenshots are low resolution, stale, inconsistent, or visually unclear, route the issue instead of building the final video around them.
-- Use real product UI for product-specific moments. Generated or stock-like visuals may support transitions, metaphors, or backgrounds, but should not pretend to be actual product screens.
+- If the provided screenshots are low resolution, stale, inconsistent, or visually unclear, do not force the final video to rely on them. Capture better product visuals, use them as references, improve them with editing, or create stronger generated promo visuals when that is truthful.
+- Use real product UI for product-specific feature claims and proof moments. Generated or edited visuals may be first-class promo assets for hero scenes, product-context scenes, device mockups, transitions, metaphors, backgrounds, and polished marketing frames, but they must not pretend to show real product capabilities or UI states that are not supported.
 
 ## 6. Channel And Aspect Ratio Must Be Locked
 
@@ -101,15 +101,18 @@ Use this file as the shared operating contract for the whole software product pr
 - `promo_script_storyboarder` owns story-level motion intent, `product_visual_director` owns the visual motion treatment, and `promo_video_producer` owns the actual implementation in the final edit.
 - Do not lock the team to one animation toolchain. The producer may use any available reliable method that fits the project, as long as the output remains truthful, readable, and reproducible enough to document.
 
-## 8. Generated Visuals Are Supporting Material
+## 8. Generated And Edited Visuals Are First-Class Promo Assets
 
-- Use generated images only when they help the promo communicate a mood, metaphor, transition, abstract concept, or non-product background.
+- Use `generate_image` and `edit_image` proactively when they can create a stronger promotional image than the raw supplied material.
+- Generated or edited visuals may be used for hero images, polished product-context scenes, device mockups, animated-card backgrounds, transitions, metaphors, atmospheric scenes, and marketing frames based on the team's understanding of the product.
+- Use `edit_image` to improve supplied visuals when appropriate, including cleanup, redaction, extension, background replacement, mockup framing, lighting, cropping, and visual polish.
 - Do not generate fake UI screenshots and present them as the actual product.
+- Do not edit a product screenshot in a way that changes the factual UI state, product capability, result, data, pricing, proof, or claim being shown.
 - For prompt-only image routes, call `generate_image` with a self-contained prompt and omit `generation_config`.
 - Do not create or pass `generation_config` or a model identifier just to carry model choice, aspect ratio, orientation, or target dimensions. Those belong either in runtime configuration or in the final prompt text.
 - Every final generated-image prompt must include the intended aspect ratio and orientation in positive prompt language.
 - Image tool calls may be dispatched in parallel or batches when the active runtime supports high-throughput generation.
-- Parallel image generation is acceptable for supporting visuals, retries, and local fixes, but every returned result must still be inspected, logged, and either approved or rejected.
+- Parallel image generation is acceptable for generated promo visuals, edits, retries, and local fixes, but every returned result must still be inspected, logged, and either approved or rejected.
 - Keep planned asset ids and storyboard shot mapping stable even when calls return out of order.
 
 ## 9. Speech Generation Can Run In Parallel
@@ -125,7 +128,7 @@ Use this file as the shared operating contract for the whole software product pr
 
 - Fast cuts and motion are useful only when the viewer can still understand the product.
 - Avoid generic hype edits that obscure what the software actually does.
-- Match each spoken value claim to a visible product moment, proof point, or brand-safe supporting visual.
+- Match each spoken value claim to a visible product moment, proof point, or brand-safe approved visual.
 - Use music, transitions, sound effects, and motion graphics as support, not as a replacement for product clarity.
 - Follow the storyboard and visual asset plan for shot-specific motion treatments.
 - Time motion graphics to the voiceover or music rhythm, but do not sacrifice UI legibility for speed.
@@ -151,6 +154,6 @@ Use this file as the shared operating contract for the whole software product pr
 
 - Product positioning, audience, proof, or claim gaps belong to `product_promo_strategist`.
 - Script pacing, story order, hook, or CTA flow gaps belong to `promo_script_storyboarder`.
-- Screenshot, screen-recording, UI readability, brand asset, or generated visual gaps belong to `product_visual_director`.
+- Screenshot, screen-recording, UI readability, brand asset, generated visual, or edited visual gaps belong to `product_visual_director`.
 - Voiceover, subtitle, edit, audio, export, or final QA gaps belong to `promo_video_producer`.
 - Do not silently invent around a missing upstream decision.

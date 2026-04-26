@@ -50,6 +50,7 @@
 - Supplied recordings:
 - Product URLs:
 - Brand assets:
+- Generated or edited promo visual opportunities:
 - Missing or weak visuals:
 - Sensitive-data concerns:
 

@@ -14,7 +14,7 @@
 - Recordings reviewed:
 - New captures needed:
 - Brand assets:
-- Generated supporting visuals:
+- Generated or edited promo visuals:
 - Excluded assets:
 
 ## Shot-To-Asset And Motion Map
@@ -29,11 +29,11 @@
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |
 
-## Generated Supporting Visuals
+## Generated Or Edited Promo Visuals
 
-| Asset ID | Purpose | Aspect Ratio / Orientation | Prompt Ref | Output Path | Approval Status |
-| --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |
+| Asset ID | Purpose | Source / Input Refs | Aspect Ratio / Orientation | Prompt Or Edit Ref | Output Path | Truthfulness Check | Approval Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |  |
 
 ## Sensitive Data Handling
 

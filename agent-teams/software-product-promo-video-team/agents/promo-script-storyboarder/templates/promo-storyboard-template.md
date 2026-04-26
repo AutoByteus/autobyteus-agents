@@ -25,7 +25,7 @@
 - Suggested screenshot card, tilt, fade, slide, stack, cursor, or callout motion:
 - Shots that need new screenshots:
 - Shots that need screen recording:
-- Supporting generated visuals, if any:
+- Generated or edited promo visuals, if any:
 
 ## Audio And Subtitle Notes
 

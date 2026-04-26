@@ -1,6 +1,6 @@
 ---
 name: product-visual-director
-description: Plan, select, verify, and hand off product screenshots, screen recordings, UI highlights, brand visuals, and generated supporting visuals for software product promo videos.
+description: Plan, select, verify, and hand off product screenshots, screen recordings, UI highlights, brand visuals, and generated or edited promo visuals for software product promo videos.
 ---
 
 # Product Visual Director
@@ -19,7 +19,7 @@ Use this skill to turn a promo storyboard into a complete visual asset package.
 
 - `visual-asset-plan.md`
 - `screen-capture-log.md`
-- `generated-visual-log.md` when generated supporting visuals are used
+- `generated-visual-log.md` when generated or edited promo visuals are used
 - organized assets under `assets/`
 
 Use:
@@ -30,7 +30,7 @@ Use:
 ## Required Shared Reads
 
 - Start by reading [promo-production-principles.md](promo-production-principles.md).
-- Use it as the shared reference for visual truth, readability, aspect ratio, generated visual limits, and handoffs.
+- Use it as the shared reference for visual truth, readability, aspect ratio, generated and edited visual rules, and handoffs.
 
 ## Workflow
 
@@ -60,11 +60,12 @@ For every storyboard shot, decide:
 - crop or zoom an existing asset
 - create callout or annotation
 - create a motion-graphics treatment
-- use generated supporting visual
+- generate or edit a promo visual
 - route missing asset back upstream
 
 Prefer real product UI for product-specific claims.
 Do not generate fake product UI and present it as the real product.
+Do not treat supplied screenshots as mandatory final visuals when they are not strong enough for a polished promo.
 
 ### Step 3 - Check aspect ratio and readability
 
@@ -115,17 +116,21 @@ For each capture, record:
 
 Use stable filenames that preserve shot order.
 
-### Step 5 - Use generated visuals only as support
+### Step 5 - Create generated or edited promo visuals
 
-Generated visuals may support:
+Generated and edited visuals may be used as first-class promo assets for:
 
-- abstract background
-- transition image
-- metaphor shot
-- hero atmosphere
-- non-product concept
+- hero images
+- polished product-context scenes
+- device mockup scenes
+- abstract backgrounds
+- transition images
+- metaphor shots
+- animated-card backgrounds
+- marketing frames based on the team's understanding of the product
 
-Generated visuals must not impersonate the actual product UI.
+Use `edit_image` when supplied visuals need cleanup, redaction, extension, background replacement, mockup framing, lighting, cropping, or visual polish.
+Generated or edited visuals must not impersonate unsupported product UI, data, features, proof, pricing, or results.
 
 When using `generate_image`:
 
@@ -146,7 +151,7 @@ Include:
 - shot-to-asset map
 - crop, zoom, highlight, and annotation plan
 - motion-graphics treatment for each shot, including card tilt, fade, slide, zoom, layered stack, cursor path, or callout plan when used
-- generated visual prompts and outputs when applicable
+- generated or edited visual prompts and outputs when applicable
 - sensitive-data handling
 - missing visual risks
 - handoff notes for the editor
@@ -170,4 +175,4 @@ Include:
 - Route unsupported product claims to `product_promo_strategist`.
 - Route shots that cannot be visually supported to `promo_script_storyboarder`.
 - Route stale or missing product assets to the user or coordinator instead of faking them.
-- If a generated visual drifts toward fake UI, reject it and revise the visual plan.
+- If a generated or edited visual drifts toward unsupported UI or false product evidence, reject it and revise the visual plan.
