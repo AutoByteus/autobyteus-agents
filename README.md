@@ -6,6 +6,10 @@ This repository contains reusable AutoByteus agent and agent-team definitions.
 
 The software engineering team is organized as a practical delivery group that can take work from upstream solution design through implementation, API and E2E validation, review, docs sync, final handoff, release, and deployment.
 
+## Software Product Promo Video Team
+
+The software product promo video team is organized as a product-marketing video workflow for software products, mobile apps, websites, and SaaS tools. It takes supplied screenshots, recordings, product links, brand material, or rough notes from positioning and script through storyboard, visual asset planning, voiceover, subtitles, edit assembly, and final promotional video QA.
+
 ## Research To Deck Team
 
 The research-to-deck team is organized as a two-specialist workflow that takes a topic from deep research and reasoning through infographic-style PowerPoint deck production.

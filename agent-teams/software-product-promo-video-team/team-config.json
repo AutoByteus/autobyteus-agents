@@ -1,0 +1,29 @@
+{
+  "coordinatorMemberName": "product_promo_strategist",
+  "members": [
+    {
+      "memberName": "product_promo_strategist",
+      "ref": "product-promo-strategist",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "promo_script_storyboarder",
+      "ref": "promo-script-storyboarder",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "product_visual_director",
+      "ref": "product-visual-director",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "promo_video_producer",
+      "ref": "promo-video-producer",
+      "refType": "agent",
+      "refScope": "team_local"
+    }
+  ]
+}

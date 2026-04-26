@@ -1,0 +1,49 @@
+# Visual Asset Plan
+
+## Visual Contract
+
+- Product:
+- Channel:
+- Aspect ratio and target resolution:
+- Storyboard path:
+- Visual package version:
+
+## Asset Inventory Summary
+
+- Screenshots reviewed:
+- Recordings reviewed:
+- New captures needed:
+- Brand assets:
+- Generated supporting visuals:
+- Excluded assets:
+
+## Shot-To-Asset Map
+
+| Shot ID | Approved Asset Path | Asset Type | Crop / Zoom Plan | Overlay / Callout Plan | UI Readability Status | Notes |
+| --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |
+
+## Capture Requirements
+
+| Capture ID | Shot IDs | Source URL / App Area | Viewport / Device | Required State | Output Path | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |
+
+## Generated Supporting Visuals
+
+| Asset ID | Purpose | Aspect Ratio / Orientation | Prompt Ref | Output Path | Approval Status |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+## Sensitive Data Handling
+
+- Redactions made:
+- Assets excluded:
+- Remaining risks:
+
+## Editor Handoff Notes
+
+- Motion priorities:
+- Subtitle-safe zones:
+- Important UI regions:
+- Export risks:
