@@ -10,20 +10,23 @@
 - CTA:
 - Channel:
 - Aspect ratio:
-- Target duration:
+- Duration preference:
+- Hard duration limit:
 - Script version:
+- Approval status:
+- Approved by / date:
 
 ## Script
 
-| Time | Section | Voiceover | On-Screen Text | Visual Intent | Claim Source |
+| Beat ID | Section | Voiceover | On-Screen Text | Product/UI Moment | Claim Source |
 | --- | --- | --- | --- | --- | --- |
-| 0:00-0:03 | Hook |  |  |  |  |
-| 0:03-0:08 | Problem / Opportunity |  |  |  |  |
-| 0:08-0:13 | Product Reveal |  |  |  |  |
-| 0:13-0:23 | Capability Moment 1 |  |  |  |  |
-| 0:23-0:33 | Capability Moment 2 |  |  |  |  |
-| 0:33-0:43 | Proof / Credibility |  |  |  |  |
-| 0:43-0:50 | CTA |  |  |  |  |
+| beat001 | Hook |  |  |  |  |
+| beat002 | Problem / Opportunity |  |  |  |  |
+| beat003 | Product Reveal |  |  |  |  |
+| beat004 | Capability Moment 1 |  |  |  |  |
+| beat005 | Capability Moment 2 |  |  |  |  |
+| beat006 | Proof / Credibility |  |  |  |  |
+| beat007 | CTA |  |  |  |  |
 
 ## On-Screen Copy
 
@@ -35,6 +38,7 @@
 ## Notes
 
 - Lines requiring user approval:
-- Timing risks:
+- User approval summary:
+- Audio timing risks:
 - Visual dependency risks:
 - Claims intentionally avoided:

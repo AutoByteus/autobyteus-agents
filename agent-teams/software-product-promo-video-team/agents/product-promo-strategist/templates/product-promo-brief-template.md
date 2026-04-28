@@ -7,10 +7,14 @@
 - Promo format:
 - Primary channel:
 - Aspect ratio and target resolution:
-- Target duration:
+- Duration preference:
+- Hard duration limit:
+- Duration source:
 - Language:
 - CTA:
 - Project folder:
+- Approval status:
+- Approved by / date:
 
 ## Audience
 
@@ -50,6 +54,7 @@
 - Supplied recordings:
 - Product URLs:
 - Brand assets:
+- Generated or edited promo visual opportunities:
 - Missing or weak visuals:
 - Sensitive-data concerns:
 
@@ -58,6 +63,7 @@
 - Voice:
 - Pacing:
 - Visual style:
+- Motion graphics direction:
 - Music or sound direction:
 - Words to use:
 - Words to avoid:
@@ -73,5 +79,6 @@
 
 - Research notes:
 - Source asset inventory:
+- User approval summary:
 - Next specialist:
 - Handoff status:

@@ -3,14 +3,14 @@
 ## Logging Rule
 
 - Record one entry for every material speech-generation call.
-- Speech-generation calls must be serial-only: one call, result, inspection/logging, `sleep 60`, then the next call.
+- Speech-generation calls are serial-only. Complete one call, inspect and log it, then run `sleep 60` before the next call.
 - Keep the exact spoken text, speech tool, voice, and model identifier returned by the tool when available.
 
 ## Entry Template
 
 ### Clip: [clip-id]
 
-- Script section:
+- Beat id:
 - Exact spoken text:
 - Performance directions:
 - Speech tool used:
@@ -19,7 +19,7 @@
 - Language:
 - Speech settings used:
 - Output path:
+- Measured seconds:
 - Approval status:
-- Sequential call number:
-- `sleep 60` completed before next speech-tool call or retry:
+- Cooldown completed after call:
 - Notes:

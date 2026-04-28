@@ -8,7 +8,7 @@ The software engineering team is organized as a practical delivery group that ca
 
 ## Software Product Promo Video Team
 
-The software product promo video team is organized as a product-marketing video workflow for software products, mobile apps, websites, and SaaS tools. It takes supplied screenshots, recordings, product links, brand material, or rough notes from positioning and script through storyboard, visual asset planning, voiceover, subtitles, edit assembly, and final promotional video QA.
+The software product promo video team is organized as a product-marketing video workflow for software products, mobile apps, websites, and SaaS tools. It takes supplied screenshots, recordings, product links, brand material, or rough notes from positioning and approved script through measured voiceover, audio-informed storyboard, visual asset planning, visual asset production, internal visual fix/review loops, user visual review, subtitles, edit assembly, and final promotional video QA.
 
 ## Research To Deck Team
 

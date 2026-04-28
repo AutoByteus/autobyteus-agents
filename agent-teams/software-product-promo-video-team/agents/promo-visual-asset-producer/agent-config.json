@@ -7,9 +7,6 @@
     "start_background_process",
     "get_process_output",
     "stop_background_process",
-    "search_web",
-    "read_url",
-    "send_message_to",
     "close_tab",
     "dom_snapshot",
     "list_tabs",
@@ -17,9 +14,12 @@
     "open_tab",
     "read_page",
     "run_script",
-    "screenshot"
+    "screenshot",
+    "generate_image",
+    "edit_image",
+    "send_message_to"
   ],
   "skillNames": [
-    "product-visual-director"
+    "promo-visual-asset-producer"
   ]
 }

@@ -13,7 +13,7 @@ Use this skill to start and coordinate a software product promotional video proj
 - user-provided screenshots, screen recordings, app links, website links, docs, or rough notes
 - target audience or buyer persona when known
 - desired channel such as website, YouTube, LinkedIn, app store, or short-form social
-- preferred length, aspect ratio, language, tone, brand assets, and CTA when known
+- duration preference, hard duration limit when explicitly stated, aspect ratio, language, tone, brand assets, and CTA when known
 
 ## Produced Artifacts
 
@@ -65,6 +65,7 @@ Record:
 - screenshot or recording coverage
 - brand assets
 - known CTA
+- duration preference and hard duration limit when supplied
 - user constraints
 - missing information
 
@@ -83,7 +84,7 @@ Choose the right promotional format:
 - social ad
 - sales enablement video
 
-Lock:
+Confirm:
 
 - target audience
 - primary promise
@@ -91,7 +92,8 @@ Lock:
 - emotional tone
 - delivery channel
 - aspect ratio and resolution target
-- rough duration
+- duration preference when the user supplied one, or a recommendation when the user did not
+- hard duration limit only when the user or platform explicitly requires one
 - CTA
 
 When multiple export variants are requested, define the primary version first and list variants separately.
@@ -136,10 +138,30 @@ Include:
 - claims allowed and claims forbidden
 - visual source summary
 - brand and tone guidance
-- channel, aspect ratio, duration, CTA
+- channel, aspect ratio, duration preference, hard duration limit, CTA
 - open risks
 
-### Step 6 - Handoff to `promo_script_storyboarder`
+### Step 6 - Get user approval for the brief
+
+Present `product-promo-brief.md` to the user before downstream handoff.
+
+The approval request should make these decisions easy to review:
+
+- target audience
+- product problem or opportunity
+- core promise
+- key feature moments
+- proof points or reason to believe
+- allowed claims
+- forbidden or unverified claims
+- CTA
+- channel, aspect ratio, duration preference, and any hard duration limit
+- visual ambition, including whether generated or edited promo visuals are expected
+
+Do not treat the brief as approved downstream input until the user has approved the positioning and claim basis.
+If the user gives feedback, revise `product-promo-brief.md` and any affected research notes before requesting approval again.
+
+### Step 7 - Handoff to `promo_script_storyboarder`
 
 Send the approved brief downstream using `send_message_to`.
 
@@ -147,8 +169,10 @@ Include:
 
 - absolute path to `product-promo-brief.md`
 - absolute path to `research-notes.md` when present
+- absolute path to `source-asset-inventory.md` when present
+- approval status of the brief
 - source material paths
-- locked channel, aspect ratio, duration, and CTA
+- approved channel, aspect ratio, duration preference, hard duration limit if any, and CTA
 - unsupported claims that must not be used
 - open questions or risks
 
