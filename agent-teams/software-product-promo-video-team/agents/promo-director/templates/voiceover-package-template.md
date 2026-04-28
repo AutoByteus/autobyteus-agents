@@ -10,14 +10,14 @@
 - Speech settings:
 - Duration preference:
 - Hard duration limit:
-- Subtitle mode:
+- Caption/subtitle mode:
 - Brief approval status:
 - Script approval status:
 - Timing verdict:
 
 ## Clip Plan
 
-| Clip ID | Beat ID | Spoken Text | Performance Direction | Subtitle Text | Actual Seconds | Output Path | Approval Status |
+| Clip ID | Beat ID | Spoken Text | Performance Direction | Caption/Subtitle Text If In Scope | Actual Seconds | Output Path | Approval Status |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
 | clip001 | beat001 |  |  |  |  |  |  |
 
@@ -28,7 +28,7 @@
 - Clips too long, rushed, awkward, or unclear:
 - Lines requiring script revision:
 - CTA timing:
-- Subtitle risks:
+- Caption/subtitle risks:
 
 ## Handoff
 

@@ -23,8 +23,9 @@
 | No black frames or missing assets |  |  |
 | Product screens are legible |  |  |
 | Voiceover and visuals align |  |  |
-| Subtitles align |  |  |
-| Subtitles avoid important UI |  |  |
+| Multiple visuals under one voiceover clip stay in approved order |  |  |
+| Captions/subtitles align when in scope |  |  |
+| Captions/subtitles avoid important UI when in scope |  |  |
 | CTA is present and accurate |  |  |
 | Claims are supported by brief |  |  |
 | Sensitive information is not visible |  |  |
@@ -36,13 +37,13 @@
 - Voiceover package:
 - Audio generation log:
 - Promo storyboard:
+- Visual source index:
 - Visual asset plan:
-- Screen capture log:
 - Visual asset production log:
-- Visual asset review report:
+- Visual review report:
 - User visual approval summary:
 - Video edit package:
-- Subtitle path:
+- Caption/subtitle path if in scope:
 
 ## Open Issues
 

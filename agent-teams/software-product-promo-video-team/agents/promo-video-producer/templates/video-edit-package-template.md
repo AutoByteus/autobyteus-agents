@@ -14,9 +14,10 @@
 - Voiceover package path:
 - Audio generation log path:
 - Storyboard path:
+- Visual source index path:
 - Visual asset plan path:
 - Visual asset production log path:
-- Visual asset review report path:
+- Visual review report path:
 - Brief approval status:
 - Script approval status:
 - Voiceover package approval status:
@@ -25,9 +26,17 @@
 
 ## Segment Timeline Map
 
-| Segment ID | Start | End | Shot ID | Voiceover Clip | Visual Asset Path | Motion / Crop | Subtitle Ref | Notes |
-| --- | ---: | ---: | --- | --- | --- | --- | --- | --- |
-| seg001 |  |  |  |  |  | floating card tilt / fade / slide / zoom / callout reveal |  |  |
+| Segment ID | Start | End | Shot ID | Voiceover Clip ID | Clip Visual Order | Voiceover Clip Range / Audio Handling | Visual Asset Path | Motion / Crop | Caption Ref If Any | Notes |
+| --- | ---: | ---: | --- | --- | ---: | --- | --- | --- | --- | --- |
+| seg001 |  |  |  |  | 1 | start clip / continue clip / end clip / pause only |  | floating card tilt / fade / slide / zoom / non-text callout reveal |  |  |
+
+## Voiceover Clip Continuity
+
+- Voiceover clips with multiple visual segments:
+- Repeated voiceover clip ids keep one continuous audio clip:
+- Segment order follows `Clip Visual Order` from storyboard, visual asset plan, and approved visual manifest:
+- Any audio duplication, restart, overlap, or retiming:
+- Reason for any exception:
 
 ## Concatenation Plan
 
@@ -43,7 +52,7 @@
 - Fades, crossfades, slides, pushes, or wipes:
 - Crops, pans, and zooms:
 - Layered screenshot stacks:
-- Cursor paths, highlights, and callout reveals:
+- Cursor paths, highlights, and non-text callout reveals:
 - UI readability constraints:
 
 ## Audio
@@ -53,9 +62,10 @@
 - Sound effects:
 - Loudness normalization:
 
-## Subtitles
+## Captions Or Subtitles If In Scope
 
-- Subtitle file:
+- In scope: yes / no
+- Caption or subtitle file:
 - Burned in or sidecar:
 - Font:
 - Size:
@@ -72,5 +82,5 @@
 
 - Visual risks:
 - Audio risks:
-- Subtitle risks:
+- Caption/subtitle risks:
 - Claim risks:

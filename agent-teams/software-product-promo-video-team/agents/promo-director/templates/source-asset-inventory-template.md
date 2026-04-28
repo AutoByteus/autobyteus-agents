@@ -1,5 +1,8 @@
 # Source Asset Inventory
 
+This is the upstream intake inventory of material supplied or discovered before visual production.
+During visual production, `visual-source-index.md` becomes the source of truth for visual resources, generated/edited derivatives, lineage, review status, and final-use status.
+
 ## Asset Summary
 
 - Project:

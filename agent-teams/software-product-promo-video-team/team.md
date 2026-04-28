@@ -9,7 +9,7 @@ This team creates English-language software product promotional videos from user
 In English, the natural term for this deliverable is usually `promotional video`, `product promo video`, `product marketing video`, or `software product explainer`, depending on the context.
 
 This team file defines the team identity, member boundaries, communication rules, and top-level delivery flow.
-`product_promo_strategist` is the coordinator entry specialist for this team.
+`promo_director` is the coordinator entry specialist for this team.
 There is no separate standalone orchestrator beyond the listed specialists.
 Each specialist does its own work, follows its own bundled agent and skill definition, and hands work to the next relevant specialist when ready.
 
@@ -23,12 +23,10 @@ Detailed production rules, artifact schemas, media-generation rules, QA gates, a
 
 ## Team Members
 
-- `product_promo_strategist`: owns intake, product/audience research, positioning, claims discipline, project scope, and final message alignment.
-- `promo_script_storyboarder`: owns narrative structure, promotional script, audio-informed storyboard, which product or UI moment should support each spoken line, motion intent, and CTA flow.
-- `product_visual_director`: owns visual direction, screenshot and screen-recording inventory, visual asset planning, UI readability, brand treatment, annotations, motion-graphics treatment design, and precise asset-production requirements.
-- `promo_visual_asset_producer`: owns producing polished still assets, source-based edited screenshots, generated support visuals, callout/highlight frames, and the visual asset production log.
-- `promo_visual_asset_reviewer`: owns the visual asset QA and user visual approval gate before video production, including callout accuracy, truthfulness, readability, aspect ratio, sensitive-data checks, and user visual feedback routing.
-- `promo_video_producer`: owns the early voiceover timing pass, audio generation, measured clip durations, subtitles, music or sound treatment, motion-graphics implementation from approved assets, segment assembly, concatenation, export QA, and delivery package.
+- `promo_director`: owns intake, product/audience research, positioning, claims discipline, project scope, promotional script, voiceover generation, measured audio review, audio-informed storyboard, story-level motion intent, CTA flow, visual message intent, and final message alignment.
+- `visual_director`: owns visual direction, user-provided screenshot and screen-recording inventory, the durable visual source index, visual asset planning, UI readability, brand treatment, non-text attention guidance, motion-graphics treatment design, generated and edited visual production, source-based image polish, non-text callout/highlight frames, and the visual asset production log.
+- `visual_reviewer`: owns independent visual QA and the user visual approval gate before video production, including non-text callout/highlight accuracy, truthfulness, voiceover-to-visual content consistency, readability, no-added-text discipline, aspect ratio, sensitive-data checks, the approved still / hold frame manifest, and user visual feedback routing.
+- `promo_video_producer`: owns optional captions or subtitles when requested, music or sound treatment, motion-graphics implementation from approved assets, audio-led segment assembly from the approved voiceover package, concatenation, export QA, and delivery package.
 
 ## Communication
 
@@ -41,53 +39,50 @@ Detailed production rules, artifact schemas, media-generation rules, QA gates, a
 
 - Every `send_message_to` handoff should include absolute filesystem paths for all still-relevant upstream artifacts produced so far, not only the latest local artifact.
 - Downstream specialists should be able to read the cumulative promo package without reconstructing earlier decisions from chat history.
-- `product_promo_strategist` must present `product-promo-brief.md` to the user for approval before treating positioning, promise, allowed claims, CTA, channel, aspect ratio, duration preference, or hard duration limit as approved downstream input.
-- `promo_script_storyboarder` must present the spoken script and on-screen copy in `promo-script.md` to the user for approval before any audio or visual production begins.
-- `promo_video_producer` must generate and measure the approved voiceover before `promo_script_storyboarder` finalizes `promo-storyboard.md`.
-- If measured audio is too long, too rushed, awkward, or outside a real hard duration limit, route it back to `promo_script_storyboarder` for script revision and user reapproval before visual production.
-- `promo_visual_asset_reviewer` must present the visual asset package to the user only after internal review has no remaining blocking findings.
-- User visual approval must be recorded in `visual-asset-review-report.md`. If the user requests changes, route the feedback through `promo_visual_asset_reviewer` before video production continues.
+- `promo_director` must present `product-promo-brief.md` to the user for approval before treating positioning, promise, allowed claims, CTA, channel, aspect ratio, duration preference, or hard duration limit as approved downstream input.
+- `promo_director` must present the spoken script and visual message plan in `promo-script.md` to the user for approval before any voiceover or visual production begins.
+- `promo_director` must generate or select the approved voiceover, measure real clip durations, and review whether the narration works before finalizing `promo-storyboard.md`.
+- If measured audio is too long, too rushed, awkward, unclear, or outside a real hard duration limit, `promo_director` must revise the script, get user reapproval for affected lines, and regenerate the affected voiceover before visual production continues.
+- Added explanatory or marketing text overlays are not part of the default workflow. If a concept needs extra text to make sense, strengthen the narration, visual selection, product UI moment, crop, motion, or highlight plan instead.
+- `visual_reviewer` must present the visual package to the user only after internal review has no remaining blocking findings.
+- User visual approval must be recorded in `visual-review-report.md`. If the user requests changes, route the feedback through `visual_reviewer` before video production continues.
 - Default cumulative package:
-  - `promo_script_storyboarder`: approved product promo brief, research notes when present, source asset inventory when present
-  - `promo_video_producer` early audio pass: approved product promo brief, approved promo script, research notes when present, source asset inventory when present
-  - `promo_script_storyboarder` storyboard pass: approved product promo brief, approved promo script, voiceover package, audio generation log
-  - `product_visual_director`: approved product promo brief, research notes when present, source asset inventory when present, approved promo script, voiceover package, audio generation log, promo storyboard
-  - `promo_visual_asset_producer`: approved product promo brief, research notes when present, source asset inventory when present, approved promo script, voiceover package, audio generation log, promo storyboard, visual asset plan, screen capture log when present
-  - `promo_visual_asset_reviewer`: approved upstream package, research notes when present, source asset inventory when present, visual asset plan, screen capture log when present, visual asset production log, candidate visual assets
-  - `promo_video_producer` final assembly: approved product promo brief, research notes when present, source asset inventory when present, approved promo script, voiceover package, audio generation log, promo storyboard, visual asset plan, screen capture log when present, visual asset production log, user-approved visual asset review report, approved visual assets
-  - `product_promo_strategist` final review: final delivery report, video edit package, final export path, plus the approved upstream package
-- If a downstream specialist finds that an approved brief or script is weak, inaccurate, or too vague, route it back to the owning specialist before continuing production.
+  - `promo_director` to `visual_director`: approved product promo brief, research notes when present, source asset inventory when present, approved promo script, voiceover package, audio generation log, promo storyboard
+  - `visual_reviewer`: approved upstream package, research notes when present, source asset inventory when present, visual source index, visual asset plan, visual asset production log, candidate visuals
+  - `promo_video_producer` final assembly: approved product promo brief, research notes when present, source asset inventory when present, approved promo script, voiceover package, audio generation log, promo storyboard, visual source index, visual asset plan, visual asset production log, user-approved visual review report, approved visuals
+  - `promo_director` final review: final delivery report, video edit package, final export path, plus the approved upstream package
+- If a downstream specialist finds that an approved brief, script, voiceover, or storyboard is weak, inaccurate, or too vague, route it back to `promo_director` before continuing production.
 
 ## Delivery Flow
 
-1. `product_promo_strategist` starts the run, studies the supplied product context, researches only when useful and appropriate, prepares the product promo brief, gets user approval for the key positioning and claim basis, and sends the approved package to `promo_script_storyboarder`.
-2. `promo_script_storyboarder` turns the approved brief into `promo-script.md`, gets user approval for the spoken lines and on-screen copy, and sends the approved script package to `promo_video_producer` for the early voiceover timing pass.
-3. `promo_video_producer` generates the approved voiceover clips, measures real clip durations, records `voiceover-package.md` and `audio-generation-log.md`, and routes back to `promo_script_storyboarder` if the spoken result needs script revision and user reapproval.
-4. `promo_script_storyboarder` uses the approved measured audio package to create `promo-storyboard.md` with segment-level visual intent and motion intent, then sends the audio-informed storyboard package to `product_visual_director`.
-5. `product_visual_director` prepares the visual asset plan, screenshot or recording requirements, motion-graphics treatment design, generated or edited promo visual requirements, and sends the visual package to `promo_visual_asset_producer`.
-6. `promo_visual_asset_producer` creates the candidate visual assets and production log, then sends the package to `promo_visual_asset_reviewer`.
-7. `promo_visual_asset_reviewer` reviews the assets and sends `Visual Asset Fix` back to `promo_visual_asset_producer` for every blocking issue. This internal fix/review loop may repeat multiple times; only when the reviewer finds no remaining blocking problems does the reviewer present the visual package to the user. If the user requests changes, the reviewer routes the feedback to the owning specialist; if the user approves, the reviewer passes the approved visual package to `promo_video_producer`.
-8. `promo_video_producer` builds each audio-led video segment from approved visual assets, concatenates the segments in approved script order, produces subtitles, motion graphics, edit package, final video, and delivery QA report.
-9. `product_promo_strategist` can review the final package for message accuracy and claim discipline before external publication.
+1. `promo_director` starts the run, studies the supplied product context, researches only when useful and appropriate, prepares `product-promo-brief.md`, and gets user approval for positioning, claim basis, channel, aspect ratio, duration preference, and CTA.
+2. `promo_director` writes `promo-script.md` from the full investigation context, applies the audio-only narration test, plans the visual message without added explanatory text overlays, and gets user approval for the spoken lines and visual intent.
+3. `promo_director` creates `voiceover-package.md`, generates or selects voiceover clips serially, records `audio-generation-log.md`, measures real clip durations, and revises/reapproves/regenerates any weak or overlong line before visual production.
+4. `promo_director` creates `promo-storyboard.md` from the approved measured audio package, including segment-level visual intent, product/UI moments, clip visual order when one voiceover clip needs multiple visual moments, motion intent, holds, loops, CTA dwell guidance, visual attention guidance, and open visual risks, then sends the package to `visual_director`.
+5. `visual_director` updates `visual-source-index.md`, prepares the visual asset plan from user-provided screenshots, recordings, brand assets, upstream source inventory entries, and prior generated or edited outputs, designs motion-graphics treatments, produces generated or edited promo visuals, creates polished hold frames and non-text callout/highlight frames, records `visual-asset-production-log.md`, and sends the candidate visual package to `visual_reviewer`.
+6. `visual_reviewer` reviews the visuals and sends `Visual Fix` back to `visual_director` for every blocking issue. This includes checking that each still or hold frame matches the approved voiceover line and storyboard intent. This internal fix/review loop may repeat multiple times; only when the reviewer finds no remaining blocking problems does the reviewer present the visual package to the user. If the user requests changes, the reviewer routes the feedback to the owning specialist; if the user approves, the reviewer records the approved still / hold frame manifest and passes the approved visual package to `promo_video_producer`.
+7. `promo_video_producer` builds each audio-led video segment from the approved voiceover and approved visuals, keeps repeated voiceover clip ids as continuous audio when multiple visual segments share one clip, concatenates the segments in approved script order, produces captions or subtitles only when requested or required, creates motion graphics, edit package, final video, and delivery QA report.
+8. `promo_director` can review the final package for message accuracy and claim discipline before external publication.
 
 ## Issue Routing
 
-- `Positioning Gap` -> `product_promo_strategist`
-- `Unsupported Claim` -> `product_promo_strategist`
-- `Script Or Storyboard Revision` -> `promo_script_storyboarder`
-- `Missing Or Weak Visual Asset` -> `product_visual_director`
-- `Visual Asset Production` -> `promo_visual_asset_producer`
-- `Visual Asset Fix` -> `promo_visual_asset_producer`
-- `Visual Asset Review` -> `promo_visual_asset_reviewer`
-- `User Visual Feedback` -> `promo_visual_asset_reviewer`
-- `Audio Or Edit Fix` -> `promo_video_producer`
-- `Final Visual Asset Defect` -> `promo_visual_asset_reviewer`
-- `Unclear` -> `product_promo_strategist`
+- `Positioning Gap` -> `promo_director`
+- `Unsupported Claim` -> `promo_director`
+- `Script Or Storyboard Revision` -> `promo_director`
+- `Voiceover Quality Or Timing` -> `promo_director`
+- `Missing Or Weak Visual` -> `visual_director`
+- `Visual Production` -> `visual_director`
+- `Visual Fix` -> `visual_director`
+- `Visual Review` -> `visual_reviewer`
+- `User Visual Feedback` -> `visual_reviewer`
+- `Audio Mix Or Edit Fix` -> `promo_video_producer`
+- `Final Visual Defect` -> `visual_reviewer`
+- `Unclear` -> `promo_director`
 
 ## Ownership Boundaries
 
-- Do not let downstream specialists invent product capabilities, customer proof, pricing, integrations, awards, security claims, or metrics. Route those questions to `product_promo_strategist`.
-- Do not ask `product_visual_director` to hide a weak story with decorative visuals or decide the core story. Route narrative gaps and missing story-level product moments to `promo_script_storyboarder`.
-- Do not ask `promo_video_producer` to repair bad still assets, misplaced callouts, or unreviewed generated visuals. Route those issues through `promo_visual_asset_reviewer` and `promo_visual_asset_producer`.
+- Do not let downstream specialists invent product capabilities, customer proof, pricing, integrations, awards, security claims, or metrics. Route those questions to `promo_director`.
+- Do not ask `visual_director` to hide a weak story with decorative visuals or decide the core story. Route narrative gaps and missing story-level product moments to `promo_director`.
+- Do not ask `promo_video_producer` to rewrite the message, generate new voiceover, repair bad still assets, misplaced non-text callouts, or unreviewed generated visuals.
 - Do not ask `promo_video_producer` to fix inaccurate positioning with louder music, faster cuts, or filler narration.
 - Keep fixes with the specialist who owns the failing artifact unless the issue exposes an upstream decision gap.

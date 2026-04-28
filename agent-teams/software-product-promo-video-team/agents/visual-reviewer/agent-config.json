@@ -7,19 +7,9 @@
     "start_background_process",
     "get_process_output",
     "stop_background_process",
-    "close_tab",
-    "dom_snapshot",
-    "list_tabs",
-    "navigate_to",
-    "open_tab",
-    "read_page",
-    "run_script",
-    "screenshot",
-    "generate_image",
-    "edit_image",
     "send_message_to"
   ],
   "skillNames": [
-    "promo-visual-asset-producer"
+    "visual-reviewer"
   ]
 }

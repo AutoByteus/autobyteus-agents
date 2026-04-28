@@ -1,33 +1,21 @@
 {
-  "coordinatorMemberName": "product_promo_strategist",
+  "coordinatorMemberName": "promo_director",
   "members": [
     {
-      "memberName": "product_promo_strategist",
-      "ref": "product-promo-strategist",
+      "memberName": "promo_director",
+      "ref": "promo-director",
       "refType": "agent",
       "refScope": "team_local"
     },
     {
-      "memberName": "promo_script_storyboarder",
-      "ref": "promo-script-storyboarder",
+      "memberName": "visual_director",
+      "ref": "visual-director",
       "refType": "agent",
       "refScope": "team_local"
     },
     {
-      "memberName": "product_visual_director",
-      "ref": "product-visual-director",
-      "refType": "agent",
-      "refScope": "team_local"
-    },
-    {
-      "memberName": "promo_visual_asset_producer",
-      "ref": "promo-visual-asset-producer",
-      "refType": "agent",
-      "refScope": "team_local"
-    },
-    {
-      "memberName": "promo_visual_asset_reviewer",
-      "ref": "promo-visual-asset-reviewer",
+      "memberName": "visual_reviewer",
+      "ref": "visual-reviewer",
       "refType": "agent",
       "refScope": "team_local"
     },

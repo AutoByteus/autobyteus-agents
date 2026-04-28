@@ -7,6 +7,9 @@
     "start_background_process",
     "get_process_output",
     "stop_background_process",
+    "search_web",
+    "read_url",
+    "send_message_to",
     "close_tab",
     "dom_snapshot",
     "list_tabs",
@@ -15,9 +18,11 @@
     "read_page",
     "run_script",
     "screenshot",
-    "send_message_to"
+    "list_audio_models",
+    "generate_speech",
+    "speak"
   ],
   "skillNames": [
-    "promo-visual-asset-reviewer"
+    "promo-director"
   ]
 }

@@ -7,9 +7,6 @@
     "start_background_process",
     "get_process_output",
     "stop_background_process",
-    "list_audio_models",
-    "generate_speech",
-    "speak",
     "send_message_to"
   ],
   "skillNames": [
