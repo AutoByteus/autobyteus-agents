@@ -137,9 +137,9 @@ Use this file as the shared operating contract for the whole manga-video team.
 - Default art direction is manga-style imagery, usually black-and-white or limited-accent color unless the user requests a different look.
 - Use `generate_image` as the default primary manga-image generation route.
 - Use `edit_image` as the default targeted correction route for otherwise strong assets.
-- Image tool calls may be dispatched in parallel or batches when the active runtime supports high-throughput generation.
-- Parallel image generation is acceptable for reference sheets, video frames, pages, panels, retries, and local fixes, but every returned result must still be inspected, logged, and either approved or rejected.
-- Keep planned asset ids and storyboard order stable even when calls return out of order.
+- Image tool calls are strictly sequential. Call exactly one `generate_image` or `edit_image`, wait for that call to return, inspect and log the result, then immediately run `sleep 60` before making any further image-tool call.
+- Do not dispatch multiple image-tool calls at the same time, in the background, or as a parallel batch. This applies even when many frames are planned.
+- The 60-second cooldown applies after candidate, rejected, timed-out, failed, and approved image-tool calls. Do not retry before the cooldown completes.
 - When a scene depends on multiple locked references, prefer passing the approved image paths through `input_images` instead of relying only on text prompts.
 - If the active runtime expects multiple `input_images` refs to be supplied as one comma-separated value, serialize them in that runtime-specific form instead of assuming a richer object wrapper.
 - For prompt-only image routes, call `generate_image` with a self-contained prompt and omit `generation_config`.
@@ -242,9 +242,8 @@ Use this file as the shared operating contract for the whole manga-video team.
 - In manga-style motion comics, treat long spoken exchanges on one unchanged image as a pacing problem, not as a normal speech-generation pattern.
 - Use multi-speaker generation only as a narrow exception when one visible beat genuinely needs a short two-person exchange to live inside the same audio unit.
 - For this team's `generate_speech` workflow, multi-speaker means at most two mapped speakers per call.
-- Speech tool calls may be dispatched in parallel or batches when the active runtime supports high-throughput generation.
-- Parallel speech generation is acceptable for independent clips, retries, and alternate takes, but every returned result must still be inspected, logged, and either approved or rejected.
-- Keep clip ids and final timeline order stable even when calls return out of order.
+- Speech tool calls are serial-only. Treat the clip list as a queue, not a batch: call exactly one `generate_speech` or selected `speak` call, wait for that call to return, inspect and log the result, then immediately run `sleep 60` before making any further speech-tool call.
+- Do not dispatch multiple speech-tool calls at the same time, in the background, through a background process, or as a parallel batch. The 60-second cooldown applies after candidate, rejected, timed-out, failed, and approved speech-tool calls. Do not retry before the cooldown completes.
 - If one still image or one tightly bound render unit would need roughly more than 8 to 10 seconds of uninterrupted speech, more than one clear speaker turn, or more than two distinct speakers, split it into additional beats or render units instead of stretching one static hold.
 - If a beat would require more than two distinct speakers in one audio unit, split it into separate clips or sequential one-speaker / two-speaker segments instead of sending an oversized speaker-mapping request.
 - If one audio beat spans multiple render units, the final package must explicitly map that beat across the visible video frames. Page/panel ids belong in this map only when an explicit non-default contract produced them.

@@ -54,6 +54,8 @@ Use this file as the shared operating contract for the whole software product pr
   - `promo-storyboard.md`
   - `visual-asset-plan.md`
   - `screen-capture-log.md` when screenshots or recordings are selected or created
+  - `visual-asset-production-log.md` when generated, edited, polished, callout, or highlight assets are produced
+  - `visual-asset-review-report.md` before final video production
   - `voiceover-package.md` when voiceover is in scope
   - `audio-generation-log.md` when generated speech is used
   - `subtitles.srt` when subtitles are in scope
@@ -64,18 +66,53 @@ Use this file as the shared operating contract for the whole software product pr
   - `exports/`
 - Handoffs should reference absolute paths to the current artifact files.
 
+## 4A. User Approval Gates
+
+- Do not treat the promo brief as approved downstream input until the user has approved the product positioning, audience, product promise, key claims, CTA, channel, aspect ratio, duration preference, and any hard duration limit.
+- Do not start voiceover generation or visual production from a loose or unapproved script. The spoken script and on-screen copy are the main creative spine of the video.
+- Approval can happen through iterative rounds. If the user revises positioning, claims, CTA, voiceover lines, or on-screen copy, update the affected artifact before downstream handoff.
+- `promo_visual_asset_reviewer` must not send assets to user visual review until internal review has no remaining blocking findings. Internal `Visual Asset Fix` loops may repeat as many times as needed before that user gate.
+- After internal visual review passes, `promo_visual_asset_reviewer` must present the reviewed visual asset package to the user for approval before final video assembly starts. User visual feedback should be recorded in `visual-asset-review-report.md` and routed to the owning specialist before video production continues.
+- Handoff messages must state the approval status of the brief, script, and visual asset package when each is relevant to the receiving specialist.
+
+## 4B. Story-Level Visual Ownership
+
+- `promo_script_storyboarder` owns the story-level visual decision: which product screen, workflow state, feature moment, proof point, or conceptual support should appear for each spoken line.
+- `product_visual_director` owns the production-level visual plan: whether that moment is best created from a supplied screenshot, a screen recording, a cropped or polished asset, an edited image, a generated product visual, or a motion-graphics composition.
+- If the script asks for a product moment that cannot be shown truthfully, route the issue back to `promo_script_storyboarder` or `product_promo_strategist` before creating filler visuals.
+
+## 4C. Audio Timing Comes Before Visual Production
+
+- `promo-script.md` should contain approved words, on-screen copy, story order, product or UI moments, and claim sources. It should not contain timestamps, provisional time ranges, estimated spoken durations, or fixed segment lengths.
+- After the user approves `promo-script.md`, `promo_video_producer` should generate the voiceover clips, measure their real durations, and record the results before storyboard finalization and visual production.
+- If a measured clip is too long, too rushed, awkward, or incompatible with an explicit hard duration limit, route the issue back to `promo_script_storyboarder`. The script should be revised, reapproved by the user, and regenerated before visual planning continues.
+- `promo-storyboard.md` and `visual-asset-plan.md` may use measured voiceover clip durations, clip ids, and deliberate pause or hold guidance. They must not rely on guessed pre-audio timing.
+- Final assembly may render one video segment per approved voiceover clip or storyboard segment, then concatenate those segments in approved script order. Segment start times belong in `video-edit-package.md` after the real audio and visual assets exist.
+
+## 4D. Visual Asset Production And Review Gate
+
+- `product_visual_director` owns the visual plan and asset-production requirements, not the final approval of generated or edited still assets.
+- `promo_visual_asset_producer` owns producing candidate still assets with the configured image tools exposed to that agent, such as `generate_image` and `edit_image`.
+- Codex-only internal image generation is not a portable team dependency. If a runtime exposes a different image tool, the agent configuration must name that tool explicitly before the team can rely on it.
+- `promo_visual_asset_reviewer` must review candidate still assets before `promo_video_producer` uses them in motion or final assembly.
+- `promo_video_producer` may use only visual assets that have passed internal visual review and user visual approval, unless the user explicitly waives the visual approval gate.
+- Misplaced rectangles, arrows, rings, labels, callouts, highlight boxes, crops, or zoom targets are blocking visual asset defects. They must be fixed before video production.
+- The visual reviewer should expect iterative `Visual Asset Fix` loops with `promo_visual_asset_producer` until the package passes or an upstream decision must change.
+- User review happens only after that internal pass. After the user sees the internally passed package, the visual reviewer should expect possible user feedback loops before the package is approved for video production.
+
 ## 5. Source Material Discipline
 
 - Treat supplied screenshots, screen recordings, product URLs, app store pages, docs, brand assets, and existing marketing pages as source material.
 - Record source paths and URLs used for the brief and visual package.
 - Redact or avoid sensitive information in screenshots and recordings, including tokens, private customer data, internal emails, production secrets, and personal data.
-- If the provided screenshots are low resolution, stale, inconsistent, or visually unclear, do not force the final video to rely on them. Capture better product visuals, use them as references, improve them with editing, or create stronger generated promo visuals when that is truthful.
+- If the provided screenshots are low resolution, stale, inconsistent, or visually unclear, do not force the final video to rely on them. Capture better product visuals, use them as references for source-based editing, or request stronger generated promo visuals when that is truthful.
 - Use real product UI for product-specific feature claims and proof moments. Generated or edited visuals may be first-class promo assets for hero scenes, product-context scenes, device mockups, transitions, metaphors, backgrounds, and polished marketing frames, but they must not pretend to show real product capabilities or UI states that are not supported.
+- For software promos, source-based image editing is often the right middle path: use real screenshots or frames as the factual source, then polish them with configured image tools for crop, lighting, depth, background, redaction, callouts, and hold-frame quality. Prefer this over raw tutorial stills when it preserves product truth and produces a significantly stronger promo.
 
-## 6. Channel And Aspect Ratio Must Be Locked
+## 6. Channel And Aspect Ratio Must Be Approved
 
-- Lock intended channels before production begins, such as website, YouTube, LinkedIn, X/Twitter, TikTok, Instagram Reels, app store preview, investor deck, or sales email.
-- Lock the required aspect ratio and resolution for each export variant before visual planning:
+- Approve intended channels before production begins, such as website, YouTube, LinkedIn, X/Twitter, TikTok, Instagram Reels, app store preview, investor deck, or sales email.
+- Approve the required aspect ratio and resolution for each export variant before visual planning:
   - `16:9 horizontal` for YouTube, website embeds, and presentation use
   - `9:16 vertical` for short-form mobile social
   - `1:1 square` for feed placements when requested
@@ -103,26 +140,32 @@ Use this file as the shared operating contract for the whole software product pr
 
 ## 8. Generated And Edited Visuals Are First-Class Promo Assets
 
-- Use `generate_image` and `edit_image` proactively when they can create a stronger promotional image than the raw supplied material.
+- `promo_visual_asset_producer` should use the configured image tools, such as `generate_image` and `edit_image`, proactively when they can create a stronger promotional image than the raw supplied material.
 - Generated or edited visuals may be used for hero images, polished product-context scenes, device mockups, animated-card backgrounds, transitions, metaphors, atmospheric scenes, and marketing frames based on the team's understanding of the product.
-- Use `edit_image` to improve supplied visuals when appropriate, including cleanup, redaction, extension, background replacement, mockup framing, lighting, cropping, and visual polish.
+- If the product supports a use case but the user lacks a strong screenshot for it, `product_visual_director` may request a generated or edited visual and `promo_visual_asset_producer` may produce it with the configured image tools. The package must record which source material or approved brief supports that scenario.
+- Use source-based image editing to improve supplied visuals when appropriate, including cleanup, redaction, extension, background replacement, mockup framing, lighting, cropping, and visual polish.
+- When a product screenshot is true but visually weak, ask `promo_visual_asset_producer` for a source-based polished still and use the raw recording mainly as a motion bridge if that yields a clearer final video.
 - Do not generate fake UI screenshots and present them as the actual product.
 - Do not edit a product screenshot in a way that changes the factual UI state, product capability, result, data, pricing, proof, or claim being shown.
 - For prompt-only image routes, call `generate_image` with a self-contained prompt and omit `generation_config`.
 - Do not create or pass `generation_config` or a model identifier just to carry model choice, aspect ratio, orientation, or target dimensions. Those belong either in runtime configuration or in the final prompt text.
 - Every final generated-image prompt must include the intended aspect ratio and orientation in positive prompt language.
-- Image tool calls may be dispatched in parallel or batches when the active runtime supports high-throughput generation.
-- Parallel image generation is acceptable for generated promo visuals, edits, retries, and local fixes, but every returned result must still be inspected, logged, and either approved or rejected.
-- Keep planned asset ids and storyboard shot mapping stable even when calls return out of order.
+- Image tool calls are serial-only. Call exactly one `generate_image` or `edit_image`, wait for the result, inspect and log it, then run `sleep 60` before making any further image-tool call.
+- Do not dispatch multiple image-tool calls at the same time, in the background, through a background process, or as a parallel batch.
+- The 60-second cooldown applies after candidate, rejected, timed-out, failed, and approved image-tool calls. Do not retry before the cooldown completes.
+- Keep planned asset ids and storyboard shot mapping stable across the serial queue.
 
-## 9. Speech Generation Can Run In Parallel
+## 9. Speech Generation Is Serial
 
 - Default promo narration is one clear narrator voice unless the brief explicitly calls for dialogue, testimonial, or host-read delivery.
-- Speech tool calls may be dispatched in parallel or batches when the active runtime supports high-throughput generation.
-- Parallel speech generation is acceptable for independent clips, retries, and alternate takes, but every returned result must still be inspected, logged, and either approved or rejected.
-- Keep clip ids and final timeline order stable even when calls return out of order.
+- Speech tool calls are serial-only. Treat the clip list as a queue, not a batch: call exactly one `generate_speech` or selected `speak` call, wait for that call to return, inspect and log the result, then immediately run `sleep 60` before making any further speech-tool call.
+- Do not dispatch multiple speech-tool calls at the same time, in the background, through a background process, or as a parallel batch.
+- The 60-second cooldown applies after candidate, rejected, timed-out, failed, and approved speech-tool calls. Do not retry before the cooldown completes.
+- Keep clip ids and final timeline order stable across the serial queue.
+- If the runtime exposes model-backed generated-video tools, use the same serial-only pattern and 60-second cooldown for those calls. This does not apply to local deterministic editing commands such as ffmpeg concatenation or rendering from already-approved assets.
 - Generated speech prompts should keep spoken script and non-spoken performance directions clearly separated in the package.
 - Subtitle text should match what is spoken unless the user explicitly asks for condensed captions.
+- After speech is generated or recorded, measure actual clip durations before visual production. Treat natural narration timing as the primary timing source for the storyboard, visual plan, and edit unless an explicit hard duration limit has been supplied.
 
 ## 10. Editing Should Serve Comprehension
 
@@ -132,6 +175,11 @@ Use this file as the shared operating contract for the whole software product pr
 - Use music, transitions, sound effects, and motion graphics as support, not as a replacement for product clarity.
 - Follow the storyboard and visual asset plan for shot-specific motion treatments.
 - Time motion graphics to the voiceover or music rhythm, but do not sacrifice UI legibility for speed.
+- Build an audio-led segment plan from measured voiceover durations plus deliberate pauses, then make visuals serve that plan.
+- If a measured narration clip needs more visual support, extend the visual segment with holds, slower motion, loops, or longer end-card dwell. Do not cut off or unnaturally compress narration.
+- If a measured narration clip is short, keep the matching visual segment concise unless extra time is needed for readability, CTA dwell, or an intentional pause.
+- Avoid time-stretching voiceover. If an explicit hard duration limit makes speech retiming unavoidable, keep it minimal, pitch-corrected, and documented.
+- Video retiming is allowed when it preserves comprehension: stretch/hold/loop visuals for longer narration and trim/compress visual-only motion for shorter narration.
 - Valid implementation routes include `ffmpeg` filters, scripted frame generation, HTML/CSS/canvas rendering captured to video, Remotion-style composition, available local video tools, or generated intermediate clips. Choose based on quality, controllability, and what the runtime actually supports.
 - If a shot needs too much narration to explain what it is, revise the shot or route the issue upstream.
 
@@ -141,6 +189,7 @@ Use this file as the shared operating contract for the whole software product pr
 - Validate the exported video file itself.
 - Check:
   - correct export path, aspect ratio, resolution, duration, and format
+  - final duration follows measured narration and respects the approved duration preference or hard limit
   - no black frames, missing assets, or accidental placeholder screens
   - product screens are legible at the target viewing size
   - narration, subtitles, and visible shots stay aligned
@@ -154,6 +203,8 @@ Use this file as the shared operating contract for the whole software product pr
 
 - Product positioning, audience, proof, or claim gaps belong to `product_promo_strategist`.
 - Script pacing, story order, hook, or CTA flow gaps belong to `promo_script_storyboarder`.
-- Screenshot, screen-recording, UI readability, brand asset, generated visual, or edited visual gaps belong to `product_visual_director`.
+- Screenshot, screen-recording, UI readability, brand asset, or visual planning gaps belong to `product_visual_director`.
+- Generated or edited visual production gaps belong to `promo_visual_asset_producer`.
+- Visual truth, callout placement, highlight placement, and asset readiness gates belong to `promo_visual_asset_reviewer`.
 - Voiceover, subtitle, edit, audio, export, or final QA gaps belong to `promo_video_producer`.
 - Do not silently invent around a missing upstream decision.

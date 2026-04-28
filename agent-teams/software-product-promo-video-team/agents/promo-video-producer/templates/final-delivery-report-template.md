@@ -6,6 +6,8 @@
 - Final export path:
 - Export variants:
 - Duration:
+- Duration preference:
+- Hard duration limit:
 - Resolution:
 - Aspect ratio:
 - Format:
@@ -17,6 +19,7 @@
 | --- | --- | --- |
 | File opens successfully |  |  |
 | Correct aspect ratio and resolution |  |  |
+| Duration respects preference or hard limit |  |  |
 | No black frames or missing assets |  |  |
 | Product screens are legible |  |  |
 | Voiceover and visuals align |  |  |
@@ -30,9 +33,14 @@
 
 - Product promo brief:
 - Promo script:
+- Voiceover package:
+- Audio generation log:
 - Promo storyboard:
 - Visual asset plan:
-- Voiceover package:
+- Screen capture log:
+- Visual asset production log:
+- Visual asset review report:
+- User visual approval summary:
 - Video edit package:
 - Subtitle path:
 

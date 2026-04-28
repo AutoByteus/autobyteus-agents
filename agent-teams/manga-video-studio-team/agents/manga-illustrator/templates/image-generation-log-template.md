@@ -23,7 +23,7 @@
 - Output path:
 - Approval status:
 - Frame-conformance QA:
-- Batch id or parallel group:
-- Completion order:
+- Sequential call number:
+- `sleep 60` completed before next image-tool call or retry:
 - Why this iteration exists:
 - Notes for reuse in future chapters:

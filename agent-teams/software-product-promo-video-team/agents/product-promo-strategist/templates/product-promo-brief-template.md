@@ -7,10 +7,14 @@
 - Promo format:
 - Primary channel:
 - Aspect ratio and target resolution:
-- Target duration:
+- Duration preference:
+- Hard duration limit:
+- Duration source:
 - Language:
 - CTA:
 - Project folder:
+- Approval status:
+- Approved by / date:
 
 ## Audience
 
@@ -75,5 +79,6 @@
 
 - Research notes:
 - Source asset inventory:
+- User approval summary:
 - Next specialist:
 - Handoff status:

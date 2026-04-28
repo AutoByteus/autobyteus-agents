@@ -5,19 +5,35 @@
 - Product:
 - Channel:
 - Aspect ratio and resolution:
-- Target duration:
+- Duration preference:
+- Hard duration limit:
 - Actual duration:
 - Frame rate:
 - Export format:
 - Script path:
+- Voiceover package path:
+- Audio generation log path:
 - Storyboard path:
 - Visual asset plan path:
+- Visual asset production log path:
+- Visual asset review report path:
+- Brief approval status:
+- Script approval status:
+- Voiceover package approval status:
+- Visual asset approval status:
+- User visual approval status:
 
-## Timeline Map
+## Segment Timeline Map
 
-| Time | Shot ID | Visual Asset Path | Motion / Crop | Voiceover Clip | Subtitle Ref | Notes |
-| --- | --- | --- | --- | --- | --- | --- |
-|  |  |  | floating card tilt / fade / slide / zoom / callout reveal |  |  |  |
+| Segment ID | Start | End | Shot ID | Voiceover Clip | Visual Asset Path | Motion / Crop | Subtitle Ref | Notes |
+| --- | ---: | ---: | --- | --- | --- | --- | --- | --- |
+| seg001 |  |  |  |  |  | floating card tilt / fade / slide / zoom / callout reveal |  |  |
+
+## Concatenation Plan
+
+- Segment render folder:
+- Segment order source:
+- Concatenation tool or command:
 
 ## Motion Graphics Plan
 

@@ -20,6 +20,18 @@
       "refScope": "team_local"
     },
     {
+      "memberName": "promo_visual_asset_producer",
+      "ref": "promo-visual-asset-producer",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "promo_visual_asset_reviewer",
+      "ref": "promo-visual-asset-reviewer",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
       "memberName": "promo_video_producer",
       "ref": "promo-video-producer",
       "refType": "agent",

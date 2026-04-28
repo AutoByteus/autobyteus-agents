@@ -8,24 +8,31 @@
 - Voice:
 - Speech tool:
 - Speech settings:
-- Target duration:
+- Duration preference:
+- Hard duration limit:
 - Subtitle mode:
+- Brief approval status:
+- Script approval status:
+- Timing verdict:
 
 ## Clip Plan
 
-| Clip ID | Script Section | Spoken Text | Performance Direction | Subtitle Text | Estimated Seconds | Actual Seconds | Output Path |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| clip001 |  |  |  |  |  |  |  |
+| Clip ID | Beat ID | Spoken Text | Performance Direction | Subtitle Text | Actual Seconds | Output Path | Approval Status |
+| --- | --- | --- | --- | --- | ---: | --- | --- |
+| clip001 | beat001 |  |  |  |  |  |  |
 
 ## Timing Notes
 
-- Fast lines:
-- Lines to slow down:
+- Total measured narration seconds:
+- Recommended breath gaps:
+- Clips too long, rushed, awkward, or unclear:
+- Lines requiring script revision:
 - CTA timing:
 - Subtitle risks:
 
 ## Handoff
 
+- Script path:
 - Audio generation log:
-- Subtitle path:
-- Edit package:
+- Next specialist:
+- Timing issues requiring script revision:
