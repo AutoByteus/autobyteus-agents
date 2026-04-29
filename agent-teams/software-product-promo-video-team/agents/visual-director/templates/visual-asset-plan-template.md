@@ -28,9 +28,19 @@
 
 ## Shot-To-Asset And Motion Map
 
-| Shot ID | Voiceover Clip ID | Clip Visual Order | Clip Measured Seconds | Visual Dwell / Relative Placement | Story-Level Product/UI Moment | Source / Seed Asset Path | Final Image-Tool Output Path | Asset Type | Polish Route | Crop / Zoom Plan | Motion-Graphics Treatment | Non-Text Attention Guide Plan | Hold / Loop Guidance | UI Readability Status | Notes |
-| --- | --- | ---: | ---: | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-|  |  | 1 |  | opening hold / first third / middle / final emphasis / CTA dwell |  |  | required for final still use | source UI seed / source-based image polish / conceptual generated visual / same-style supported use case / replacement source needed |  |  |  |  |  |  |  |
+| Shot ID | Voiceover Clip ID | Clip Visual Order | Clip Measured Seconds | Visual Dwell / Relative Placement | Story-Level Product/UI Moment | Source / Seed Asset Path | Final `generate_image` / `edit_image` Output Path | Asset Type | Frame Role | Motion Source Strategy | Polish Route | Crop / Zoom Plan | Motion-Graphics Treatment | Non-Text Attention Guide Plan | Hold / Loop Guidance | UI Readability Status | Notes |
+| --- | --- | ---: | ---: | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+|  |  | 1 |  | opening hold / first third / middle / final emphasis / CTA dwell |  |  | required for final still use | still frame / hold frame / UI card / non-text highlight frame | full-view start / close-up hold / highlight reveal / transition bridge / end hold | single approved frame crop-zoom-pan / multiple approved frames | source UI seed / source-based image polish / conceptual generated visual / same-style supported use case / replacement source needed |  |  |  |  |  |  |
+
+## Motion Source Strategy
+
+- Shots using one approved frame for crop/zoom/pan:
+- Shots requiring multiple approved frames:
+- Full-view to close-up motions:
+- Close-up frames that need separate `generate_image` or `edit_image` outputs:
+- Non-text highlight reveal frames:
+- End-hold or CTA dwell frames:
+- Rationale for using one frame versus multiple frames:
 
 ## Visual Information Policy
 
@@ -84,6 +94,9 @@
 
 - Motion priorities:
 - Planned polished-frame map:
+- Motion source strategy map:
+- Single-frame crop/zoom/pan shots:
+- Multi-frame transition shots:
 - Raw recordings to use only as motion bridges:
 - Floating card / tilt / fade / slide / zoom notes:
 - Layered screenshot stack notes:

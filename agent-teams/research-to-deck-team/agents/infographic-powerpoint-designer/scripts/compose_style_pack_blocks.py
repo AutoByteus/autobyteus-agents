@@ -110,7 +110,7 @@ def main() -> int:
     parser.add_argument("--pack-id", default="", help="Style pack ID, e.g. editorial-light")
     parser.add_argument("--list", action="store_true", help="List available style packs")
     parser.add_argument("--packs-root", default=str(default_root), help="Path to style-packs directory")
-    parser.add_argument("--out", default="", help="Write composed output to file (optional)")
+    parser.add_argument("--out", default="", help="Write composed output to file")
     args = parser.parse_args()
 
     packs_root = Path(args.packs_root).resolve()

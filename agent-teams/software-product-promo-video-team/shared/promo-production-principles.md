@@ -173,6 +173,9 @@ Use this file as the shared operating contract for the whole software product pr
 - Keep card tilt, perspective, blur, speed, and overlap restrained enough that important product text and interface controls remain readable.
 - Every storyboard shot that uses this style should specify the intended motion treatment at a practical level.
 - `promo_director` owns story-level motion intent, `visual_director` owns the visual motion treatment, and `promo_video_producer` owns the actual implementation in the final edit.
+- For each motion moment, `visual_director` must decide the motion source strategy: animate crop, zoom, pan, or tilt from one approved high-resolution frame, or prepare multiple approved frames such as full view, closer view, highlight frame, and end hold.
+- Use one frame only when the planned crop/zoom remains readable, truthful, and visually polished. If the close-up needs better readability, cleaner composition, non-text highlighting, or a different crop, create separate `generate_image` or `edit_image` frame assets instead of forcing the producer to over-zoom one weak image.
+- Do not optimize for fewer frames when more approved frames would make the motion clearer. Any frame used as a motion source must pass visual-director self-check, internal visual review, and user visual approval before final assembly.
 - Do not lock the team to one animation toolchain. The producer may use any available reliable method that fits the project, as long as the output remains truthful, readable, and reproducible enough to document.
 
 ## 8. Generated And Edited Visuals Are Promo Assets

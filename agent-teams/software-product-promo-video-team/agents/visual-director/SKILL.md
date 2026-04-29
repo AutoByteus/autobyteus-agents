@@ -195,6 +195,14 @@ Do not prescribe a single implementation tool unless the project already require
 Describe the intended visual behavior clearly enough that `promo_video_producer` can choose the best available implementation route.
 Include measured-duration guidance: safe hold frames, loopable sections, minimum readable dwell, and any maximum duration before the shot feels stale or repetitive.
 
+For each motion moment, decide the motion source strategy:
+
+- `single approved frame`: the producer can animate crop, zoom, pan, tilt, or hold from one high-resolution approved frame because the close-up remains readable and truthful.
+- `multiple approved frames`: the visual package needs separate full-view, close-up, non-text highlight, detail, or end-hold frames because one image would not stay readable, polished, or well-composed through the motion.
+
+Do not minimize frame count just to save work. If the viewer needs a full view followed by a clear close-up, and a simple zoom would make the UI soft, cramped, or visually weak, produce the additional frame assets with `generate_image` or `edit_image`.
+Record the frame role for each asset, such as `full-view start`, `zoom target`, `close-up hold`, `highlight reveal`, `transition bridge`, or `end hold`.
+
 ### Step 8 - Register product visual sources
 
 Work from visual sources the user provides, files already present in the project, upstream source inventory entries, and generated or edited outputs created during the run.
@@ -225,6 +233,8 @@ Include:
 - visual source index path and asset ids used
 - asset inventory summary
 - shot-to-asset map
+- motion source strategy for each shot: one-frame crop/zoom/pan or multiple approved frames
+- frame role for each motion source asset, such as full-view start, close-up hold, highlight reveal, transition bridge, or end hold
 - crop, zoom, highlight, and non-text attention plan
 - motion-graphics treatment for each shot, including card tilt, fade, slide, zoom, layered stack, cursor path, or non-text callout plan when used
 - no-added-text status and any explicit user-required or legal/distribution-required text
@@ -248,6 +258,7 @@ For each planned still or frame:
 - use `generate_image` for same-style supported use cases only when creating a new generated composition; include user-provided UI source images as input/reference material when making product-adjacent visuals
 - before any same-style supported use-case generation, select and log the closest product UI base/reference image; if no suitable UI source exists, ask the user for one or record explicit user approval for a prompt-only representative visual
 - create non-text callout/highlight frames only when the target UI region is unambiguous
+- create separate full-view, close-up, highlight, transition, or end-hold frame assets when the motion source strategy requires multiple approved frames
 - keep product UI readable and truthful
 - save outputs under stable project paths in `assets/`
 

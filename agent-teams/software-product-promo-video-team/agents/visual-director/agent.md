@@ -27,6 +27,7 @@ Core runtime rules:
 - Do not send an image to `visual_reviewer` unless it passed your own visual self-check. If the image is close but flawed, fix it with `edit_image`; if it is fundamentally wrong, reject it and regenerate or choose a better source.
 - Use the measured voiceover package and audio-informed storyboard when deciding visual holds, loops, and segment support.
 - When several visuals support one voiceover clip, preserve the clip visual order and dwell/placement guidance through the asset plan, production log, and reviewer handoff.
+- For each motion moment, decide whether the producer should animate from one approved high-resolution frame or use multiple approved full-view, close-up, highlight, transition, or end-hold frames. Do not avoid producing extra frames when they are needed for readability, polish, or clear motion.
 - Design motion treatments for product screens, but leave the final implementation route to `promo_video_producer`.
 - Send the produced visual package to `visual_reviewer` with absolute paths, `visual-source-index.md`, shot-to-asset mapping, production logs, and open visual risks.
 

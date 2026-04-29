@@ -7,13 +7,9 @@
     "start_background_process",
     "get_process_output",
     "stop_background_process",
-    "search_web",
-    "read_url",
-    "generate_image",
-    "edit_image",
     "send_message_to"
   ],
   "skillNames": [
-    "infographic-powerpoint-designer"
+    "deck-reviewer"
   ]
 }

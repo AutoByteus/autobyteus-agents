@@ -12,6 +12,12 @@
       "ref": "infographic-powerpoint-designer",
       "refType": "agent",
       "refScope": "team_local"
+    },
+    {
+      "memberName": "deck_reviewer",
+      "ref": "deck-reviewer",
+      "refType": "agent",
+      "refScope": "team_local"
     }
   ]
 }

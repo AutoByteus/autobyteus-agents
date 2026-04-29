@@ -60,6 +60,9 @@ For every candidate asset, verify:
 - production log records a visual-director self-check decision, and the candidate was not marked `needs edit`, `rejected`, or `blocked`
 - asset id, shot id, and voiceover clip id match the plan
 - clip visual order is correct when multiple assets share the same voiceover clip
+- motion source strategy is clear: one approved frame for crop/zoom/pan, or multiple approved frames for full-view, close-up, highlight, transition, or end-hold motion
+- if the plan uses one frame for zoom or pan, the close-up remains readable and truthful at the intended crop
+- if the plan uses multiple frames, every frame needed for the motion has passed visual-director self-check and is present in the review package
 - asset has a `visual-source-index.md` entry with source or seed lineage when applicable
 - the visual supports the approved spoken line and product/UI moment
 - content consistency: the approved voiceover line, storyboard row, visual asset plan, and actual image all communicate the same idea without relying on added explanatory text

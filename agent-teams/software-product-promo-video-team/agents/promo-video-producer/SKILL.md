@@ -95,6 +95,7 @@ Create the final audio-led segment plan in `video-edit-package.md`:
 - Build the final segment plan from measured audio durations, deliberate pauses, and the audio-informed storyboard.
 - A single voiceover clip may drive multiple visual segments. Use the clip visual order and intended dwell/placement from the storyboard, visual asset plan, and approved still / hold frame manifest to lay those segments out under the same continuous voiceover.
 - Do not restart, duplicate, or overlap the same voiceover clip just because it has multiple visual assets.
+- Follow the visual asset plan's motion source strategy. If it specifies one approved frame, animate crop, zoom, pan, tilt, or hold from that frame. If it specifies multiple approved frames, transition between those approved full-view, close-up, highlight, bridge, or end-hold frames instead of inventing new visual sources.
 - If a measured clip needs more visual support, extend the matching visual segment with still holds, slower product-screen motion, looping screen-recording sections, or extended end cards before considering speech speed changes.
 - If a measured clip is short, keep the matching visual segment concise unless extra hold is needed for UI readability, CTA dwell time, or a deliberate dramatic pause.
 - Keep the total export aligned with the approved duration preference. If a hard limit exists and the measured audio-led edit cannot fit, route the issue to `promo_director` for script or voiceover revision.

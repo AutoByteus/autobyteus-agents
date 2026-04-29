@@ -1,14 +1,20 @@
 # Deck Package
 
-## Approved Input Artifacts
+## Research Input Artifacts
 
-- `article.md` or an approved upstream `slides_content_plan.md`
+- `article.md`
+- `research-resource-index.md`
+- `claim_evidence_ledger.md`
 
 ## Style Pack Decision
 
 ## Slide Content Plan Artifact
 
 - `slides_content_plan.md`
+
+## Deck Storyboard Artifact
+
+- `deck_storyboard.md`
 
 ## Slide Visual Plan Artifact
 
@@ -17,6 +23,18 @@
 ## Prompt Artifact
 
 - `prompts.md`
+
+## Deck Source Index
+
+- `deck-source-index.md`
+
+## Slide Generation Log
+
+- `slide-generation-log.md`
+
+## Slide Review Report
+
+- `slide-review-report.md`
 
 ## Final Slide Images
 

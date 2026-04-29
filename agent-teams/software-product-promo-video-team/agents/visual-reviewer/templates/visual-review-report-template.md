@@ -45,6 +45,15 @@ Only list assets that passed internal review and user visual approval.
 - Redundant or misleading frames:
 - Required fixes:
 
+## Motion Source Strategy QA
+
+- Shots using one approved frame for crop/zoom/pan:
+- Close-up readability from single-frame motion:
+- Shots requiring multiple approved frames:
+- All full-view, close-up, highlight, transition, and end-hold frames present:
+- Any producer-side guessing still required:
+- Required fixes:
+
 ## Visual Source Index QA
 
 - Index present and current:
