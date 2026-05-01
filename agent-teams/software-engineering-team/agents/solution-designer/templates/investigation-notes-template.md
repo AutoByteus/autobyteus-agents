@@ -44,6 +44,16 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Ownership or boundary observations:
 - Current behavior summary:
 
+## Design Health Assessment Evidence
+
+- Change posture (`Feature`/`Bug Fix`/`Behavior Change`/`Refactor`/`Cleanup`/`Performance`/`Larger Requirement`):
+- Candidate root cause classification (`Local Implementation Defect`/`Missing Invariant`/`Boundary Or Ownership Issue`/`Duplicated Policy Or Coordination`/`File Placement Or Responsibility Drift`/`Shared Structure Looseness`/`Legacy Or Compatibility Pressure`/`No Design Issue Found`/`Unclear`):
+- Refactor posture evidence summary:
+
+| Evidence Source | Observation | Design Health Implication | Follow-Up Needed |
+| --- | --- | --- | --- |
+|  |  |  |  |
+
 ## Relevant Files / Components
 
 | Path / Component | Current Responsibility | Finding / Observation | Design / Ownership Implication |

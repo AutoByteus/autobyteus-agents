@@ -16,6 +16,7 @@ Perform the architecture review before implementation starts so design weaknesse
 - residual design-risk visibility
 - naming, ownership, interface-boundary, and decoupling review
 - boundary-encapsulation review
+- task design health assessment review, including whether root-cause classification and refactor/no-refactor decisions are evidence-backed
 
 ## Primary Output
 
@@ -46,6 +47,7 @@ Use [templates/design-review-report-template.md](templates/design-review-report-
 - Review the design independently against the canonical shared design guidance and the mandatory checklist in [templates/design-review-report-template.md](templates/design-review-report-template.md).
 - Use the template as the authoritative review shape; do not replace it with a smaller ad hoc checklist in the review artifact.
 - Treat the requirements doc and investigation notes as supporting context only. Weak intended behavior should route as `Requirement Gap`; weak structure should route as `Design Impact`.
+- Do not pass a design that omits the task design health assessment, classifies the task without current-code evidence, says "no refactor needed" without explaining why the current design remains healthy, or says "refactor needed now" without reflecting that decision in concrete design sections.
 - Do not pass a design that is not actionable in the current codebase, hides the real flow behind scattered sections, stays too abstract when examples are needed, or leaves migration and removal too implicit for safe implementation.
 - Keep one canonical design-review report across reruns. Recheck prior unresolved findings first, reuse finding IDs for the same unresolved issues, and update the prior-findings resolution section before declaring the new result.
 

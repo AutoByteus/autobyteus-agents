@@ -124,6 +124,61 @@ One especially important law for this team is the `Authoritative Boundary Rule`:
 - Treat addition and removal symmetrically: when a clearer subsystem owner, reusable owned structure, or file responsibility replaces fragmented or duplicated pieces, record what becomes unnecessary and remove/decommission it in scope.
 - Add short concrete examples when they clarify a non-obvious spine, interface split, folder choice, or bounded local flow.
 
+## Task Design Health Assessment
+
+Every task needs an explicit design-health decision, regardless of size or posture.
+The assessment can be short for a narrow local fix, but it must be supported by current-state evidence rather than generic reassurance.
+
+Use the assessment to answer:
+
+- Is this task a feature request, bug fix, behavior change, refactor, cleanup, performance issue, or larger requirement?
+- Is the right response a local change, or does the task expose a design issue?
+- If a bug is reported, is the root cause a local defect, a missing invariant, a boundary/ownership problem, duplicated policy, or a data-model/API shape issue?
+- If a feature is requested, can the existing ownership model absorb it cleanly, or would direct addition make the product less maintainable?
+- Is refactoring required in this change, explicitly not needed, or deferred with a named residual risk?
+
+Root-cause classifications:
+
+- `Local Implementation Defect`: the existing owner and boundary are correct; one local branch, condition, conversion, or state update is wrong.
+- `Missing Invariant`: the right owner exists but does not enforce a required rule consistently.
+- `Boundary Or Ownership Issue`: the task crosses, bypasses, or confuses authoritative ownership.
+- `Duplicated Policy Or Coordination`: fallback, retry, aggregation, routing, fan-out, validation, or selection logic repeats across callers and needs one owner.
+- `File Placement Or Responsibility Drift`: the change would expand a file or folder beyond its real concern.
+- `Shared Structure Looseness`: shared DTOs, schemas, types, mappers, or normalizers are redundant, overlapping, or too generic.
+- `Legacy Or Compatibility Pressure`: the proposed answer keeps old paths, dual behavior, wrappers, or fallback branches that should be removed.
+- `No Design Issue Found`: the current design remains healthy for this scope; explain why.
+
+Decision examples:
+
+- Local bug with no refactor:
+  - `Change posture`: bug fix
+  - `Root cause classification`: local implementation defect
+  - `Refactor needed now`: no
+  - `Why`: the existing owner and boundary are correct; the defect is isolated to one validation branch and does not duplicate policy or bypass a boundary.
+- Bug that exposes a boundary problem:
+  - `Change posture`: bug fix
+  - `Root cause classification`: boundary or ownership issue
+  - `Refactor needed now`: yes
+  - `Why`: callers depend on both an outer service and one of its repositories, causing inconsistent invariant enforcement.
+  - `Design response`: strengthen the authoritative service boundary and remove direct repository access from those callers.
+- Feature that should reuse an existing subsystem:
+  - `Change posture`: feature
+  - `Root cause classification`: no design issue found
+  - `Refactor needed now`: no
+  - `Why`: the existing subsystem already owns the off-spine concern; the feature extends that owner without changing dependency direction.
+- Feature that requires refactor first:
+  - `Change posture`: feature
+  - `Root cause classification`: file placement or responsibility drift
+  - `Refactor needed now`: yes
+  - `Why`: adding the feature directly would grow an already mixed file that owns unrelated parsing, persistence, and orchestration.
+  - `Design response`: split file responsibilities by owner first, then add the feature under the correct owner.
+- Compatibility pressure:
+  - `Change posture`: behavior change
+  - `Root cause classification`: legacy or compatibility pressure
+  - `Refactor needed now`: yes
+  - `Why`: preserving old and new behavior through a dual-path branch would keep two representations authoritative.
+  - `Design response`: make a clean-cut replacement and record the old path removal in scope.
+
 ## Structural Triggers
 
 - Repeated coordination trigger:

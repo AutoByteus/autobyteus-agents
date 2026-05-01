@@ -8,6 +8,25 @@ Describe the current execution path, current ownership boundaries, current coupl
 
 ## Intended Change
 
+## Task Design Health Assessment (Mandatory)
+
+This section is required for every task: feature request, bug fix, behavior change, refactor, cleanup, performance issue, or larger requirement.
+Do not fill it with ritual text. Tie the decision to current-state evidence from the investigation notes and the real current code path.
+
+- Change posture (`Feature`/`Bug Fix`/`Behavior Change`/`Refactor`/`Cleanup`/`Performance`/`Larger Requirement`):
+- Current design issue found (`Yes`/`No`/`Unclear`):
+- Root cause classification (`Local Implementation Defect`/`Missing Invariant`/`Boundary Or Ownership Issue`/`Duplicated Policy Or Coordination`/`File Placement Or Responsibility Drift`/`Shared Structure Looseness`/`Legacy Or Compatibility Pressure`/`No Design Issue Found`/`Unclear`):
+- Refactor needed now (`Yes`/`No`/`Deferred`/`Unclear`):
+- Evidence:
+- Design response:
+- Refactor rationale:
+- Intentional deferrals and residual risk, if any:
+
+Rules:
+- `No refactor needed` is valid only when the existing owner, boundary, API shape, file placement, and changed data structures remain healthy for this scope.
+- `Refactor needed now` must be reflected in the removal/decommission plan, final file responsibilities, dependency rules, and migration/refactor sequence.
+- `Deferred` must name the residual risk and explain why the current task can still leave the in-scope behavior in a coherent state.
+
 ## Terminology
 
 - `Subsystem` / `capability area`: a larger functional area that owns a broader category of work and may contain multiple files plus optional module groupings.

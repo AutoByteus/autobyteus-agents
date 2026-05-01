@@ -30,6 +30,15 @@ Round rules:
 
 ## Reviewed Design Spec
 
+## Task Design Health Assessment Verdict
+
+| Assessment Area | Result (`Pass`/`Fail`) | Evidence | Required Action |
+| --- | --- | --- | --- |
+| Assessment is present for the current task posture |  |  |  |
+| Root-cause classification is explicit and evidence-backed |  |  |  |
+| Refactor needed now / no refactor needed / deferred decision is explicit |  |  |  |
+| Refactor decision is supported by the concrete design sections or residual-risk rationale |  |  |  |
+
 ## Prior Findings Resolution Check (Mandatory On Round >1)
 
 | Prior Round | Finding ID | Previous Severity | Current Resolution | Evidence | Notes |

@@ -73,6 +73,7 @@ Quick examples:
 
 | Check | Result (`Pass`/`Fail`) | Evidence | Required Action |
 | --- | --- | --- | --- |
+| Task design health assessment is present, evidence-backed, and preserved by the implementation |  |  |  |
 | Data-flow spine inventory clarity and preservation under shared principles |  |  |  |
 | Ownership boundary preservation and clarity |  |  |  |
 | Off-spine concern clarity (off-spine concerns serve clear owners and stay off the main line) |  |  |  |

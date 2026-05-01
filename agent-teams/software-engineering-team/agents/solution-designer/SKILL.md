@@ -24,6 +24,9 @@ Own both upstream clarification and architecture-level design so the same role c
 - deep architecture investigation of the current system
 - use of your investigation notes and requirements basis as design input
 - current-state design assessment
+- task design health assessment for every feature request, bug report, behavior change, refactor, cleanup, or larger requirement
+- root-cause classification that distinguishes local defects from missing invariants, boundary/ownership issues, duplicated policy or coordination, file responsibility drift, and broader design debt
+- explicit refactor-needed-now / no-refactor-needed / defer-refactor decision with current-code evidence
 - data-flow spine inventory for the scope
 - spine actors or main-line domain nodes
 - distinction between thin public facades and true governing owners when both exist
@@ -107,9 +110,13 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 - It is not limited to reading existing material; it can also include reproduction, probing, tracing, querying, running commands, writing small scripts, creating focused test artifacts, minimal environment or mock setup, public API/spec/issue research, or inspecting/cloning upstream, vendor, or sample repositories when needed.
 - Inspect the relevant current implementation before finalizing the design spec.
 - Identify:
+  - the task change posture: feature request, bug fix, behavior change, refactor, cleanup, performance issue, or larger product requirement
   - the current execution spine or the lack of one
   - current ownership boundaries or ownership ambiguity
   - current coupling points, coordination blobs, or fragmented off-spine concerns
+  - whether the task exposes a design issue or remains a local implementation change
+  - the root-cause classification for the task pressure: local implementation defect, missing invariant, boundary/ownership issue, duplicated policy/coordination, file placement or responsibility drift, shared-structure looseness, legacy/compatibility pressure, or no design issue found
+  - whether refactoring is needed in this change, explicitly not needed, or intentionally deferred
   - constraints that the target design must respect during the transition
 - Do not write a greenfield-style target design when the task is really a refactor of an existing code path.
 - Do not assume your earlier investigation has already uncovered every architectural fact needed for design.
@@ -144,6 +151,10 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 - Treat [design-principles.md](design-principles.md) as the canonical design authority instead of restating or overriding it locally.
 - Build the design from the approved requirements basis, investigation notes, current-state read, and current code reality.
 - Keep the design actionable in the current codebase: implementation and review should not need to reconstruct the intended structure from scattered notes.
+- Include a task design health assessment in the design spec for every task, even when the answer is "no refactor needed".
+- A "no refactor needed" decision must explain why the current owner, boundary, API shape, file placement, and changed data structures remain healthy for this scope.
+- A "refactor needed now" decision must connect the required refactor to concrete task evidence and map it into the removal/decommission plan, file responsibilities, dependency rules, and migration/refactor sequence.
+- A deferred refactor must name the residual risk, explain why it is outside this task, and avoid leaving the in-scope behavior dependent on a known-bad boundary.
 - Move from abstract to concrete in the design artifact: spine and ownership first, then subsystem allocation, then file responsibilities, then folder/path mapping.
 - Make removals, migration sequencing, dependency rules, and compatibility rejection explicit in the design spec instead of leaving them implicit.
 - Use short examples when the target shape would otherwise remain abstract or easy to misread.

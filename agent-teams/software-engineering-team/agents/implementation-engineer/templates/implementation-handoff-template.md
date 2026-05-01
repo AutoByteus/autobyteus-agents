@@ -17,6 +17,15 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 ## Known Risks
 
+## Task Design Health Assessment Implementation Check
+
+- Reviewed change posture:
+- Reviewed root-cause classification:
+- Reviewed refactor decision (`Refactor Needed Now`/`No Refactor Needed`/`Deferred`):
+- Implementation matched the reviewed assessment (`Yes`/`No`):
+- If challenged, routed as `Design Impact` (`Yes`/`No`/`N/A`):
+- Evidence / notes:
+
 ## Legacy / Compatibility Removal Check
 
 - Backward-compatibility mechanisms introduced: `None` / `List + redesign required`
