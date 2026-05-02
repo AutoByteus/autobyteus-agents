@@ -27,7 +27,7 @@
 
 ## Segment Assembly Map
 
-| Video Segment ID | Creation Tool | Segment Video Path | Slide ID | Slide Image Path | Clip ID | Audio Path | Transition Out | Boundary Audio QA Notes | Mapping Notes |
+| Video Segment ID | Creation Tool | Segment Video Path | Slide ID | Slide Image Path | Clip ID | Audio Path | Transition Out | Boundary Audio Validation Notes | Mapping Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | VS-001 | create_video_from_image_and_audio |  | SL-001 |  | VO-001 |  |  |  |  |
 
@@ -37,7 +37,7 @@
 
 ```
 
-## Boundary QA
+## Boundary Audio Validation
 
 | Boundary | Previous Segment | Next Segment | Audio Drop / Skip Check | Notes |
 | --- | --- | --- | --- | --- |

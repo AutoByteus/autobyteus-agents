@@ -15,9 +15,9 @@
 
 ## Clip Manifest
 
-| Clip ID | Segment ID | Slide ID(s) / Approved Slide Sequence | Selected Narrator Identity | Approved Narration Text | Speech Prompt Text / Cue Summary | Subtitle Text | Audio Path | Audio Generation Attempt ID | Voice Consistency Status | Status | Notes |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| VO-001 | SEG-001 | SL-001 |  |  |  |  |  | AUD-VO001-A1 |  |  |  |
+| Clip ID | Segment ID | Slide ID(s) / Approved Slide Sequence | Selected Narrator Identity | Approved Narration Text | Speech Prompt Text / Cue Summary | Subtitle Text | Audio Path | Audio Generation Attempt ID(s) | Subclip / Concatenation Lineage If Any | Voice Consistency Status | Status | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| VO-001 | SEG-001 | SL-001 |  |  |  |  |  | AUD-VO001-A1 |  |  |  |  |
 
 ## Performance Notes
 

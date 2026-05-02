@@ -53,7 +53,7 @@ Use:
 ## Required Shared Reads
 
 - Start by reading [narrated-presentation-principles.md](narrated-presentation-principles.md).
-- Use it as the shared reference for slide simplicity, source discipline, narration-slide mapping, required `generate_image` / `edit_image` slide creation, embedded slide content, `generate_speech`-only narration generation, audio-led assembly, optional subtitles, and final QA.
+- Use it as the shared reference for slide simplicity, source discipline, narration-slide mapping, required `generate_image` / `edit_image` slide creation, embedded slide content, `generate_speech`-only narration generation, audio-led assembly, optional subtitles, and final validation.
 - The only tools allowed for final slide image creation are `generate_image` and `edit_image`.
 - Image generation and image editing calls require a 60-second cooldown between calls.
 - The only generated narration tool allowed is `generate_speech` after checking `list_audio_models`.
@@ -80,9 +80,22 @@ Before production, confirm:
 If the script has not passed full review, route the package back to `narration_script_reviewer` or `presentation_director`.
 If the mapping is unclear, route the package back to `presentation_director`.
 
-### Step 2 - Build `media-resource-index.md`
+### Step 2 - Create the production package skeleton
 
-Inventory sources, generated resources, logs, and final outputs:
+Before any `generate_image`, `edit_image`, `generate_speech`, subtitle, segment-video, or final assembly call, create the package files from templates or minimal placeholders:
+
+- `media-resource-index.md`
+- `slide-video-production-plan.md`
+- `image-generation-log.md`
+- `voiceover-package.md`
+- `audio-generation-log.md`
+- `slide-video-production-log.md`
+- `video-assembly-package.md`
+- `final-delivery-report.md`
+
+This is a hard gate. Do not begin media generation with these files missing. Keep them as live records; do not reconstruct them only at the end.
+
+In `media-resource-index.md`, inventory sources, generated resources, logs, and final outputs:
 
 - user-provided images, screenshots, charts, diagrams, logos, and documents
 - source images extracted from supplied material
@@ -106,7 +119,7 @@ For each slide, plan:
 - main message
 - required embedded slide content: exact on-image wording when needed, labels, diagram content, chart content, source visuals, and visual structure the final slide image must contain
 - visual mood/style target for the slide, normally light, friendly, relaxed, clear, and audience-approachable
-- visual quality and engagement target, normally polished, high-quality, content-bearing, and visually engaging without becoming busy
+- visual standard / engagement intent, normally polished, high-quality, content-bearing, and visually engaging without becoming busy
 - image-only or low-text rationale when no written wording is planned
 - layout notes
 - visual asset or diagram needs
@@ -140,7 +153,7 @@ Required production route:
 - Use `generate_image` for new presentation/infographic slides, concept visuals, explanatory diagrams, timelines, process slides, comparison slides, summary slides, or slide compositions created from approved content.
 - Use `edit_image` when starting from user-provided screenshots, charts, source images, prior generated slides, or existing visual drafts.
 - Do not use Python/PIL-only, HTML/SVG-only, presentation-tool-only, or script-only rendering as the route for final slide visuals.
-- Local scripts may prepare source assets, measure dimensions, convert formats, inspect files, post-process already generated/edited outputs, assemble video, or create QA evidence, but they must not replace `generate_image` or `edit_image` for final slide image creation.
+- Local scripts may prepare source assets, measure dimensions, convert formats, inspect files, post-process already generated/edited outputs, assemble video, or create validation evidence, but they must not replace `generate_image` or `edit_image` for final slide image creation.
 - The generated or edited output must already be the finished content-bearing slide image. Do not generate a decorative background and add the real slide content later with scripts, PIL, HTML/SVG, presentation tools, ffmpeg overlays, or other post-generation overlay mechanisms.
 - Optional narration subtitles are allowed when requested or useful for accessibility, but they must not be used to compensate for missing embedded slide content.
 
@@ -148,7 +161,7 @@ Generated image and edit rules:
 
 - Run image generation and editing serially.
 - Call exactly one `generate_image` or `edit_image` request at a time.
-- Wait for the result, failure, or timeout, inspect the actual output image when present, and immediately update `image-generation-log.md` with that attempt and a pass/fix/reject/block decision.
+- Wait for the result, failure, or timeout, run the minimum visual acceptance check when an image is present, and immediately update `image-generation-log.md` with that attempt and decision.
 - Immediately run `sleep 60` before any further `generate_image` or `edit_image` call.
 - Do not dispatch image calls concurrently, in the background, or as a parallel batch.
 - Record every image attempt in `image-generation-log.md` with full prompt text, full generation/edit config JSON, and 60-second cooldown evidence. Update this file after each accepted, rejected, failed, timed-out, regenerated, or edited result before the cooldown and before the next image call; do not reconstruct it only at the end.
@@ -156,13 +169,14 @@ Generated image and edit rules:
 - Do not represent generated illustrative visuals as source evidence.
 - Reject and regenerate or edit any output that omits required embedded slide content, corrupts planned wording or labels, invents unsupported wording, or loses the slide's intended explanation.
 - Reject and regenerate or edit any output that violates the approved visual mood/style contract, including outputs that are too dark, solemn, ominous, poster-like, heavy, or unfriendly when the approved style is relaxed and light.
-- Reject and regenerate any output that is low-quality, static, generic, draft-like, poorly composed, visually dull, or not engaging enough for the approved viewer experience.
-- If the base candidate is globally low-quality or unengaging, do not try to polish it with `edit_image`. Regenerate from scratch with `generate_image` using the approved storyboard and a stronger high-quality visual storytelling prompt.
+- Reject and regenerate any output that has an obvious visual failure: low-quality, static, generic, draft-like, poorly composed, unreadable, or clearly not engaging enough for the approved viewer experience.
+- If the base candidate is globally weak, do not try to polish it with `edit_image`. Regenerate from scratch with `generate_image` using the approved storyboard and a stronger visual storytelling prompt.
 - For every retry, name the specific defect being fixed and preserve what already worked. Do not change the slide's visual type, composition model, or level of illustration unless that was the actual defect.
 - If a pictorial panel slide is close but has one unwanted visual element, prefer `edit_image` or a targeted regeneration prompt that preserves the pictorial panel structure. Do not rewrite it as a minimal icon/card slide unless the approved storyboard calls for an icon-based process infographic.
 - Avoid vague retry instructions like "clean infographic" by themselves; they can collapse a rich illustrated slide into flat icons. Specify the intended type, for example `illustrated presentation slide with three pictorial cards` or `process infographic with simple icons`.
 - A retry prompt should include a preservation clause, for example: `Preserve the previous attempt's light watercolor style, three pictorial cards, human scene illustrations, title hierarchy, and friendly mood. Only remove the unwanted oil press object and keep all required text accurate.`
 - If repeated generation/editing cannot produce the required embedded content correctly, block and route upstream instead of silently delivering an incomplete slide image.
+- Do not run a separate detailed visual-critique loop by default. If the user visually approves the generated slides and no required-content or obvious visual failure is present, record that approval in `image-generation-log.md` / `slide-video-production-log.md` and proceed. A user may waive detailed visual critique, but that never waives live logs, resource indexing, or final package records unless explicitly stated.
 
 Slide rules:
 
@@ -174,7 +188,7 @@ Slide rules:
 - visual mood should match the approved style contract; default to light, relaxed, friendly, clear, and audience-approachable
 - avoid dark cinematic, solemn, ominous, black/gold poster-like, or heavy visual styles unless explicitly approved
 - every final slide image is a complete content-bearing presentation or infographic image, not a plain background awaiting later overlays
-- no accepted slide should look like a low-quality draft, static placeholder, generic diagram, or weak first-pass image
+- no accepted slide should have an obvious low-quality, draft-like, static-placeholder, or generic first-pass failure
 - where text, labels, or diagram wording are planned, they should be readable and faithful to the approved storyboard
 - embedded slide content should support the narration, not duplicate it line for line
 - charts, diagrams, and screenshots must be accurate to the source basis
@@ -274,6 +288,8 @@ Speech generation is serial-only:
 - reject and regenerate any clip that uses a different narrator voice, speaker identity, language/accent target, or noticeably different persona from the approved voice package
 - reject and regenerate audio that sounds too serious, stiff, old-fashioned, stern, sermon-like, monotonous, or boring when the approved audio persona is relaxed and conversational
 
+If a model truncates or mishandles a long approved segment, split that segment into shorter subclips without changing the approved wording. Generate the subclips serially with the same narrator identity and config, log every subclip attempt in `audio-generation-log.md`, concatenate the subclips into the approved segment clip, inspect the combined clip for completeness and boundary smoothness, and record the subclip lineage in `voiceover-package.md` and `media-resource-index.md`.
+
 If using user-supplied audio, split or map the audio to segment ids only when the mapping is clear.
 
 ### Step 7 - Create optional subtitles
@@ -303,7 +319,7 @@ Default assembly:
 - preserve target aspect ratio and resolution
 
 Do not use raw ffmpeg stream-copy concat of independently encoded segments as the default final route because it can create small audio discontinuities at segment boundaries.
-If the video/audio tools are unavailable and ffmpeg is necessary, avoid a final `-c copy` concat unless the exported file passes boundary audio QA; otherwise re-encode the final concat or choose another documented route.
+If the video/audio tools are unavailable and ffmpeg is necessary, avoid a final `-c copy` concat unless the exported file passes boundary audio validation; otherwise re-encode the final concat or choose another documented route.
 Do not create a separate continuous concatenated audio track as a routine workaround.
 Only use a continuous-audio mux route when segment-video concatenation fails validation and the reason is documented in `video-assembly-package.md` and `final-delivery-report.md`.
 
@@ -320,7 +336,7 @@ Validate:
 - no black frames or missing slides
 - on-image wording, labels, diagrams, charts, and source images are readable at export resolution
 - every final slide image contains the required embedded slide content from the reviewer-passed storyboard
-- every final slide image passes visual quality and engagement QA; no accepted slide is low-quality, draft-like, generic, or visually dull
+- every final slide image passes the minimum visual acceptance check or has explicit user visual approval recorded; no accepted slide has an obvious low-quality, draft-like, generic, or visually dull failure
 - no post-generation text, label, diagram, callout, or explanatory slide-content overlay was used to compensate for an incomplete generated/edited slide image
 - final slide images are `generate_image` or `edit_image` outputs, with lineage recorded in `media-resource-index.md`
 - image-generation log includes full prompts, full configs, inspection decisions, and cooldown evidence for every image attempt, recorded immediately after each result rather than reconstructed only at the end
@@ -334,7 +350,18 @@ Validate:
 - segment videos were created from the correct slide/audio pairs
 - subtitles align and are readable when present
 - no unapproved narration or slide content appears
-- final export path and QA status are recorded
+- final export path and validation status are recorded
+
+Before final handoff, run a package-completeness check. If any required production package artifact is missing or empty, write or repair it before delivery:
+
+- `media-resource-index.md`
+- `slide-video-production-plan.md`
+- `image-generation-log.md`
+- `voiceover-package.md`
+- `audio-generation-log.md`
+- `slide-video-production-log.md`
+- `video-assembly-package.md`
+- `final-delivery-report.md`
 
 Send the final package back to `presentation_director` or the user with absolute paths and known limitations.
 

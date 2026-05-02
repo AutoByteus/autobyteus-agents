@@ -133,15 +133,16 @@ Flow defects are blocking review issues:
 - Use `generate_image` for new presentation/infographic slides, concept visuals, explanatory diagrams, timelines, process slides, comparison slides, summary slides, or slide compositions created from approved content.
 - Use `edit_image` when starting from user-provided screenshots, charts, source images, prior generated slides, or existing visual drafts.
 - Do not create final slide visuals with Python/PIL-only, HTML/SVG-only, presentation-tool-only, or script-only rendering.
-- Scripts may prepare source material, inspect outputs, convert formats, post-process already generated/edited outputs, assemble video, or create QA evidence, but they must not replace `generate_image` or `edit_image` for final slide image creation.
+- Scripts may prepare source material, inspect outputs, convert formats, post-process already generated/edited outputs, assemble video, or create validation evidence, but they must not replace `generate_image` or `edit_image` for final slide image creation.
 - The final generated/edited image must already contain the required embedded slide content. Do not add titles, labels, diagrams, callouts, or explanatory slide content later with scripts, PIL, HTML/SVG, presentation tools, ffmpeg overlays, or other post-generation overlay mechanisms.
 - Optional narration subtitles are allowed when requested or useful for accessibility, but they must not be used to compensate for missing slide content.
 - If generation omits required content, corrupts planned wording or labels, invents unsupported wording, or produces a decorative image instead of a finished slide, reject that output and regenerate or edit it. If repeated attempts fail, block and route upstream instead of delivering an incomplete slide image.
-- If a generated slide looks low-quality, dull, static, draft-like, generic, poorly composed, or visually unengaging for the approved audience, reject it before delivery. When the whole visual concept is weak, regenerate from scratch with `generate_image` using a stronger quality and engagement prompt instead of polishing a poor draft.
+- Inspect generated slides only for the minimum acceptance checks needed for delivery: file validity, required embedded content, readable on-image text, approved mood/style, and obvious visual failure. Do not run a separate detailed visual-critique loop by default; if the user visually approves the generated slides and no required-content or obvious failure is visible, record that approval and proceed.
+- If a generated slide has an obvious failure (missing/corrupt required content, unreadable text, wrong mood, low-quality/draft-like output, or a globally weak visual concept), reject it before delivery. When the whole visual concept is weak, regenerate from scratch with `generate_image` using a stronger prompt instead of polishing a poor draft.
 - When regenerating a mostly successful slide, preserve what already works: visual type, composition, information hierarchy, mood, and useful illustrations. The next attempt should fix the named defect only.
 - Do not make a retry more abstract, more minimal, or more icon-only unless the defect is that the prior slide was too visually busy or the approved storyboard asks for an icon-based slide.
 - Prefer `edit_image` for a local correction when the previous attempt is close. If using `generate_image` again, the retry prompt must explicitly preserve the successful prior design qualities and the image-generation log must record what should be preserved.
-- `generate_image` and `edit_image` calls are serial-only. Call exactly one image tool, wait for the result, failure, or timeout, inspect the actual output image when present, update `image-generation-log.md` with that attempt and decision, then immediately run `sleep 60` before making any further image-generation or image-editing call.
+- `generate_image` and `edit_image` calls are serial-only. Call exactly one image tool, wait for the result, failure, or timeout, run the minimum visual acceptance check when an image is present, update `image-generation-log.md` with that attempt and decision, then immediately run `sleep 60` before making any further image-generation or image-editing call.
 - The 60-second cooldown applies after candidate, rejected, timed-out, failed, and approved `generate_image` and `edit_image` calls.
 - Do not dispatch multiple image calls at the same time, in the background, through a background process, or as a parallel batch.
 - Generated narration must use `list_audio_models` followed by `generate_speech`.
@@ -153,13 +154,21 @@ Flow defects are blocking review issues:
 - Bad `style_instructions` example: `Read the Chinese transcript completely. Bracketed cue tags such as [warm, conversational] and [short pause] are delivery directions, not words to speak.`
 - All generated clips must preserve the approved narrator identity. If any regenerated clip uses a different voice, speaker identity, or noticeably different persona, reject it or regenerate it before final assembly.
 - `generate_speech` calls are serial-only. Call exactly one speech tool request, wait for the result, failure, or timeout, inspect the output when present, and update `audio-generation-log.md` with that attempt and decision before making any further `generate_speech` call.
+- If a speech model truncates or mishandles a long approved segment, split only that segment into shorter subclips without changing approved wording. Generate subclips serially with the same narrator identity/config, log each subclip attempt, concatenate them into the approved segment clip, inspect the combined clip for completeness and boundary smoothness, and record the lineage in `voiceover-package.md` and `media-resource-index.md`.
 - Keep separate generation logs:
   - `audio-generation-log.md` for every `generate_speech` call, including approved narration text, full speech prompt text sent to the tool, prompt-level performance cues, selected narrator identity, full generation config JSON, model/tool id, output path, voice-consistency check, inspection result, and rejected/regenerated attempts.
   - `image-generation-log.md` for every `generate_image` / `edit_image` call, including full prompt text, full generation/edit config JSON, model/tool id, output path, mood/style check, embedded-content check, 60-second cooldown evidence, inspection result, and rejected/regenerated attempts.
 - Treat both generation logs as live production records. Update the relevant log immediately after each accepted, rejected, failed, timed-out, regenerated, or edited tool result. For images, update before cooldown and before any next image call. For speech, update before any next speech call. Do not wait until the end of production to reconstruct the logs.
 - Do not replace full prompts or full configs with summaries in generation logs.
 
-### 12. Audio-Led Assembly
+### 12. Production Package And Logging Gates
+
+- Before the first image, edit, speech, or assembly call, create the production package skeletons from templates or minimal placeholders: `media-resource-index.md`, `slide-video-production-plan.md`, `image-generation-log.md`, `voiceover-package.md`, `audio-generation-log.md`, `slide-video-production-log.md`, `video-assembly-package.md`, and `final-delivery-report.md`.
+- Do not make the next media-generation call until the relevant live log has been updated for the previous result, failure, timeout, rejection, regeneration, edit, or subclip attempt.
+- User approval can replace a separate detailed visual-critique/retry pass, but it does not waive live generation logs, resource indexing, production logs, assembly records, or the final delivery report unless the user explicitly waives the delivery package itself.
+- After any interruption, route change, or user shortcut request, run a package-completeness check before final handoff and repair missing logs or package files.
+
+### 13. Audio-Led Assembly
 
 - Assembly follows the approved natural script and approved slide/audio pairs. It should not drive the script.
 - The default route is direct segment creation: pass each approved slide image and matching audio to `create_video_from_image_and_audio`.
@@ -182,9 +191,9 @@ Flow defects are blocking review issues:
 - `slide-video-production-log.md`: slide production, voiceover generation/import, assembly, and self-check log.
 - `voiceover-package.md`: final narration audio plan.
 - `audio-generation-log.md`: speech generation or imported audio log when applicable.
-- `image-generation-log.md`: image generation and editing prompts, configs, outputs, QA decisions, and rejected/regenerated attempts.
+- `image-generation-log.md`: image generation and editing prompts, configs, outputs, minimum visual acceptance decisions, and rejected/regenerated attempts.
 - `video-assembly-package.md`: final segment assembly map.
-- `final-delivery-report.md`: export QA and delivery notes.
+- `final-delivery-report.md`: export validation and delivery notes.
 
 ## Review Criteria For Narration Scripts
 
@@ -225,7 +234,7 @@ The narration script should pass all of these before visual production begins:
 - Important on-image wording, labels, diagrams, and images remain legible at the target video resolution.
 - The slide has enough visual substance for the assigned narration without becoming cluttered.
 - The slide does not look like a low-quality draft, generic static placeholder, or minimally polished diagram when the storyboard calls for an illustrated or visually engaging presentation slide.
-- The slide package has enough self-review evidence because no separate visual reviewer exists by default.
+- The slide package records enough minimum acceptance evidence in `image-generation-log.md` and `media-resource-index.md`; no separate detailed visual-review artifact is required by default.
 - Final slide images are outputs from `generate_image` or `edit_image`, with lineage recorded in `media-resource-index.md`.
 - Final slide images match the approved visual mood/style contract. Reject outputs that are too dark, heavy, ominous, solemn, or poster-like when the approved style is light, relaxed, and friendly.
 
