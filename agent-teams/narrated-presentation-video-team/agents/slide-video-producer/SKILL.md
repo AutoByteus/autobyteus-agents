@@ -56,7 +56,6 @@ Use:
 - Use it as the shared reference for slide simplicity, source discipline, narration-slide mapping, required `generate_image` / `edit_image` slide creation, embedded slide content, `generate_speech`-only narration generation, audio-led assembly, optional subtitles, and final QA.
 - The only tools allowed for final slide image creation are `generate_image` and `edit_image`.
 - Image generation and image editing calls require a 60-second cooldown between calls.
-- Generated speech calls require a 30-second cooldown between calls.
 - The only generated narration tool allowed is `generate_speech` after checking `list_audio_models`.
 - Prefer `create_video_from_image_and_audio` and `concatenate_videos` for still-slide video assembly.
 - Treat `speak`, Python/PIL-only final slide creation, HTML/SVG-only final slide creation, and script-only final slide creation as disallowed routes.
@@ -265,14 +264,12 @@ Cue misuse examples:
 - Do not use different voices for different slides just to make the audio feel varied. Keep one narrator and use cues for local delivery changes.
 - Do not put cue examples or cue-handling explanations into `style_instructions`; keep those in the speech prompt and logs.
 
-Speech generation is serial-only and requires a 30-second cooldown:
+Speech generation is serial-only:
 
 - call exactly one `generate_speech` request at a time
 - wait for the result, failure, or timeout
-- inspect the output when present and immediately update `audio-generation-log.md`, including approved narration text, full speech prompt text sent to the tool, prompt-level performance cues, selected narrator identity, full generation config JSON, model/tool id, output path, voice-consistency check, 30-second cooldown evidence, inspection result, and any rejection/regeneration notes
-- immediately run `sleep 30` before any further `generate_speech` call
-- apply the 30-second cooldown after candidate, rejected, timed-out, failed, and approved `generate_speech` calls
-- update `audio-generation-log.md` after each accepted, rejected, failed, timed-out, or regenerated result before the cooldown and before the next speech call; do not reconstruct it only at the end
+- inspect the output when present and immediately update `audio-generation-log.md`, including approved narration text, full speech prompt text sent to the tool, prompt-level performance cues, selected narrator identity, full generation config JSON, model/tool id, output path, voice-consistency check, inspection result, and any rejection/regeneration notes
+- update `audio-generation-log.md` after each accepted, rejected, failed, timed-out, or regenerated result before the next speech call; do not reconstruct it only at the end
 - do not dispatch speech calls concurrently, in the background, or as a parallel batch
 - reject and regenerate any clip that uses a different narrator voice, speaker identity, language/accent target, or noticeably different persona from the approved voice package
 - reject and regenerate audio that sounds too serious, stiff, old-fashioned, stern, sermon-like, monotonous, or boring when the approved audio persona is relaxed and conversational
@@ -288,6 +285,10 @@ Subtitles should:
 - match the approved narration
 - remain readable
 - avoid covering important slide content
+- default to a conservative bottom-safe style for 1080p exports: small enough to support listening without dominating the slide, normally `font_size` about `18`-`20`, bottom-center `alignment=2`, low `margin_v` about `10`-`16`, thin outline, and a modest semi-transparent background only if it improves readability
+- not be placed high on the slide by default; keep them near the lower safe area unless the slide itself has essential lower-third content, in which case choose the least intrusive position and document it
+- avoid large multi-line blocks that cover central slide titles, diagrams, faces, or prayer/template text; prefer shorter SRT cue chunks when a sentence would create a wide or tall subtitle block
+- be checked on at least one early-frame sample after the first subtitle export; if the subtitle covers main slide content or feels visually dominant, immediately create a corrected smaller/lower subtitle version before delivery and make that corrected version the final export
 
 ### Step 8 - Assemble the still-slide video
 
@@ -323,7 +324,7 @@ Validate:
 - no post-generation text, label, diagram, callout, or explanatory slide-content overlay was used to compensate for an incomplete generated/edited slide image
 - final slide images are `generate_image` or `edit_image` outputs, with lineage recorded in `media-resource-index.md`
 - image-generation log includes full prompts, full configs, inspection decisions, and cooldown evidence for every image attempt, recorded immediately after each result rather than reconstructed only at the end
-- audio-generation log includes approved narration text, full speech prompt text, prompt-level performance cues, selected narrator identity, voice-consistency checks, 30-second cooldown evidence, inspection decisions, and full configs for every generated speech attempt, recorded immediately after each result rather than reconstructed only at the end
+- audio-generation log includes approved narration text, full speech prompt text, prompt-level performance cues, selected narrator identity, voice-consistency checks, inspection decisions, and full configs for every generated speech attempt, recorded immediately after each result rather than reconstructed only at the end
 - visual mood/style matches the approved contract and is not too dark, solemn, or heavy unless explicitly approved
 - generated narration keeps one approved narrator voice/persona across clips, matches the approved audio persona, and is not too serious, stern, sermon-like, or boring unless explicitly approved
 - slide visuals remain source-supported or clearly marked as generated/representative
