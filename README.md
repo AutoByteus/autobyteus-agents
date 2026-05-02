@@ -10,6 +10,10 @@ The software engineering team is organized as a practical delivery group that ca
 
 The software product promo video team is organized as a product-marketing video workflow for software products, mobile apps, websites, and SaaS tools. It takes supplied screenshots, recordings, product links, brand material, or rough notes through a single promo director for positioning, approved script, voiceover generation, measured timing, and audio-informed storyboard, then continues through a merged visual director for visual planning and production, an independent visual reviewer for visual QA and user approval, optional captions when requested, edit assembly, and final promotional video QA. The visual director maintains `visual-source-index.md` as the durable source of truth for supplied images, generated or edited variants, lineage, missing visual needs, and final-use status. The team defaults to visuals plus narration instead of added explanatory text overlays.
 
+## Narrated Presentation Video Team
+
+The narrated presentation video team is organized as a slide-based explainer workflow. It takes user-provided materials, links, rough notes, documents, or topics through a presentation director for research, explanation framing, narration script writing, and slide storyboard planning, then requires full narration-script review before slide/video production, voiceover generation, and simple still-slide video assembly. The producer maintains `media-resource-index.md` as the durable registry for source media, generated slide images, audio clips, logs, and final exports.
+
 ## Research To Deck Team
 
 The research-to-deck team is organized as a two-specialist workflow that takes a topic from deep research and reasoning through infographic-style PowerPoint deck production.
@@ -37,6 +41,20 @@ When a role owns a local bundled skill, the folder also includes:
 - `templates/`: role-specific artifacts and output templates
 
 Some bundles also include richer local support files such as `references/` and `scripts/` when the underlying workflow depends on them.
+
+## Markdown File Reference Style
+
+When documentation or skills refer to a concrete repo-local source file, template, reference document, or script, use a Markdown link instead of a bare path.
+
+Good examples:
+
+- `[design-principles.md](design-principles.md)`
+- `[product-promo-brief-template.md](templates/product-promo-brief-template.md)`
+- `[shared/narrated-presentation-principles.md](shared/narrated-presentation-principles.md)`
+
+Use backticks for generated runtime artifacts, commands, JSON keys, identifiers, placeholder layout paths, and file names that are examples rather than links to one concrete file. For example, `presentation-brief.md`, `skillNames`, and `<team-root>/agents/<agent-id>/SKILL.md` are not source links.
+
+This keeps skills easy to navigate while preserving clear monospace formatting for generated artifacts and code-like identifiers.
 
 ## Supported Layouts
 

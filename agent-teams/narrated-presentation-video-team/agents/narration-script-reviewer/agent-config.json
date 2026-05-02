@@ -1,0 +1,17 @@
+{
+  "toolNames": [
+    "edit_file",
+    "read_file",
+    "write_file",
+    "run_bash",
+    "start_background_process",
+    "get_process_output",
+    "stop_background_process",
+    "search_web",
+    "read_url",
+    "send_message_to"
+  ],
+  "skillNames": [
+    "narration-script-reviewer"
+  ]
+}

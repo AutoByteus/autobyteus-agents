@@ -1,0 +1,25 @@
+{
+  "toolNames": [
+    "edit_file",
+    "read_file",
+    "write_file",
+    "run_bash",
+    "start_background_process",
+    "get_process_output",
+    "stop_background_process",
+    "search_web",
+    "read_url",
+    "send_message_to",
+    "close_tab",
+    "dom_snapshot",
+    "list_tabs",
+    "navigate_to",
+    "open_tab",
+    "read_page",
+    "run_script",
+    "screenshot"
+  ],
+  "skillNames": [
+    "presentation-director"
+  ]
+}

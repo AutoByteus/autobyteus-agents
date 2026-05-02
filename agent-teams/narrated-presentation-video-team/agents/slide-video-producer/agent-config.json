@@ -1,0 +1,23 @@
+{
+  "toolNames": [
+    "edit_file",
+    "read_file",
+    "write_file",
+    "run_bash",
+    "start_background_process",
+    "get_process_output",
+    "stop_background_process",
+    "send_message_to",
+    "generate_image",
+    "edit_image",
+    "list_audio_models",
+    "generate_speech",
+    "create_video_from_image_and_audio",
+    "concatenate_videos",
+    "add_subtitles",
+    "extract_frame_from_video"
+  ],
+  "skillNames": [
+    "slide-video-producer"
+  ]
+}

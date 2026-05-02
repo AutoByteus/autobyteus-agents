@@ -1,0 +1,23 @@
+{
+  "coordinatorMemberName": "presentation_director",
+  "members": [
+    {
+      "memberName": "presentation_director",
+      "ref": "presentation-director",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "narration_script_reviewer",
+      "ref": "narration-script-reviewer",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "slide_video_producer",
+      "ref": "slide-video-producer",
+      "refType": "agent",
+      "refScope": "team_local"
+    }
+  ]
+}
