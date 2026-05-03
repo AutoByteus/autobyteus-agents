@@ -1,10 +1,10 @@
 ---
 name: Narrated Presentation Video Team
-description: A slide-based explainer video team for researched narration scripts, clean presentation visuals, voiceover, and simple still-slide video assembly.
+description: A slide-based explainer and teaching-style video team for researched narration scripts, clean presentation visuals, voiceover, and simple still-slide video assembly.
 category: creative-media
 ---
 
-This team creates narrated presentation videos from user-provided materials, links, rough notes, documents, or topic requests.
+This team creates narrated presentation videos from user-provided materials, links, rough notes, documents, lessons, review subjects, or general topic requests.
 
 The output is a simple presentation-style video: still slide or page images are paired with narration, then the video advances through the deck with cuts or light fades. It is not a motion-graphics, cinematic promo, or animated explainer workflow by default.
 

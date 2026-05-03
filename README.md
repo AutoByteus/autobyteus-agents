@@ -12,7 +12,7 @@ The software product promo video team is organized as a product-marketing video 
 
 ## Narrated Presentation Video Team
 
-The narrated presentation video team is organized as a slide-based explainer workflow. It takes user-provided materials, links, rough notes, documents, or topics through a presentation director for research, explanation framing, narration script writing, and slide storyboard planning, then requires full narration-script review before slide/video production, voiceover generation, and simple still-slide video assembly. The producer maintains `media-resource-index.md` as the durable registry for source media, generated slide images, audio clips, logs, and final exports.
+The narrated presentation video team is organized as a slide-based explainer and teaching-style presentation workflow. It takes user-provided materials, links, rough notes, documents, or topics through a presentation director for research, explanation framing, narration script writing, and slide storyboard planning, then requires full narration-script review before slide/video production, voiceover generation, and simple still-slide video assembly. The producer maintains `media-resource-index.md` as the durable registry for source media, generated slide images, audio clips, logs, and final exports.
 
 ## Research To Deck Team
 
