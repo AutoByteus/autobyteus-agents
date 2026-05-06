@@ -5,7 +5,7 @@ Copy this template and fill in the bracketed parts. Keep it explicit and verbose
 ## 0) Output + hard constraints
 
 - Output: a **single 16:9 widescreen PPT slide image** (flat image), no separate layers.
-- Keep the generated image as the final artifact by default; no crop/pad/resize/post-processing unless user explicitly requests it.
+- Keep the generated or edited image as the final slide-image artifact; no crop/pad/resize/post-processing outside `generate_image` or `edit_image`.
 - Ratio lock sentence must be present in each concrete prompt: `画布比例硬约束：16:9 横版（宽屏），禁止方图。`
 - When writing an English prompt, use an equivalent explicit phrase such as: `Canvas hard constraint: 16:9 horizontal widescreen slide image; no square or vertical output.`
 - Language: **Simplified Chinese** (or specify bilingual).
@@ -64,7 +64,7 @@ Include **everything** that must appear on the slide, verbatim:
 - `[页脚小字]`
 
 Rules:
-- If content comes from `slides_content_plan.md`, copy from `Must-appear text (verbatim)` first.
+- If content comes from `deck_storyboard.md`, copy from `Must-Appear Text` first.
 - Keep quote blocks short; if too long, split into 2 slides.
 - If any character is wrong in output, regenerate with stricter instruction: “逐字准确，不得改写，不得增删标点/空格”.
  - For long verses, follow `references/chinese_quote_compression.md` (split, don’t paraphrase).

@@ -9,13 +9,13 @@ This team handles a topic from research through an image-based PowerPoint deck. 
 ## Team Roles
 
 - `deep_researcher` owns research, evidence synthesis, `article.md`, `research-resource-index.md`, and the internal research package.
-- `infographic_powerpoint_designer` owns the user-facing slide plan / deck storyboard, slide content planning, visual planning, prompts, generated or edited slide images, slide self-checks, and final images-only PowerPoint assembly.
+- `infographic_powerpoint_designer` owns the user-facing deck storyboard, visual planning, prompts, generated or edited slide images, slide self-checks, and final images-only PowerPoint assembly.
 - `deck_reviewer` owns independent review of generated or edited slide images before final deck assembly and user delivery.
 
 ## Delivery Flow
 
 1. `deep_researcher` investigates the topic and produces the research package.
-2. `infographic_powerpoint_designer` creates `slides_content_plan.md` and the user-facing `deck_storyboard.md`.
+2. `infographic_powerpoint_designer` creates the user-facing `deck_storyboard.md`.
 3. The user reviews `deck_storyboard.md`. If the user gives feedback, route it to the responsible owner and ask for slide-plan approval again.
 4. After slide-plan approval, `infographic_powerpoint_designer` creates `slides_visual_plan.md`, `prompts.md`, `deck-source-index.md`, `slide-generation-log.md`, and candidate slide images.
 5. `deck_reviewer` reviews the actual slide images and supporting artifacts.
@@ -55,8 +55,8 @@ When a downstream specialist finds a problem, classify it and route it to the ri
 
 - Default to internet-backed research unless the user explicitly forbids web research.
 - The research handoff must include `article.md`, `research-resource-index.md`, and supporting research artifacts.
-- The main user review artifact is `deck_storyboard.md`, which should make the story, slide sequence, core messages, and evidence anchors easy to approve or revise.
-- Final slide images must be outputs from `generate_image` or `edit_image`.
+- The main user review artifact is `deck_storyboard.md`, which should make the story, slide sequence, core messages, must-appear text, input resources, and evidence anchors easy to approve or revise.
+- All slide-image creation or modification must use `generate_image` or `edit_image`, including composition, text placement, overlays, highlights, crop/resize, cleanup, and polish.
 - The designer must inspect each generated or edited slide image and record the result before moving on.
 - `generate_image` and `edit_image` are serial-only with a 60-second cooldown after every candidate, failed, rejected, timed-out, edited, or accepted image call.
 - Keep outputs concise, actionable, and ready for the next specialist.

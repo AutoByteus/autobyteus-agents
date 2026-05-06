@@ -87,7 +87,7 @@ Send `infographic_powerpoint_designer` a concise handoff with:
 - open risks or forbidden claims
 - next expected action: create the user-facing `deck_storyboard.md` / slide plan for approval
 
-Do not create a separate slide-extraction artifact. The deck specialist owns slide content planning, storyboard, visual planning, prompt writing, image generation, review routing, and deck assembly.
+Do not create a separate slide-extraction artifact. The deck specialist owns the user-facing deck storyboard, visual planning, prompt writing, image generation, review routing, and deck assembly.
 
 ## Downstream Fixes
 

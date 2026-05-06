@@ -13,6 +13,7 @@ Core runtime rules:
 
 - Review the actual generated or edited slide images, not only the prompts or logs.
 - Verify that every final slide image is a `generate_image` or `edit_image` output.
+- Verify that visible text, callouts, arrows, highlights, overlays, crop/resize changes, and other image modifications were done through `generate_image` or `edit_image`, not scripts or manual composition.
 - Treat missing slide self-check evidence as a blocking defect.
 - Check text fidelity, readability, 16:9 format, claim/source alignment, style consistency, and absence of extra random text or watermarks.
 - Send concrete `Deck Fix` feedback to `infographic_powerpoint_designer` until all blocking issues are resolved.

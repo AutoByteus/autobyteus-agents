@@ -13,7 +13,6 @@ Keep this role separate from `infographic_powerpoint_designer` so slide QA remai
 - `article.md`
 - `research-resource-index.md`
 - `claim_evidence_ledger.md`
-- `slides_content_plan.md`
 - user-approved `deck_storyboard.md`
 - `slides_visual_plan.md`
 - `prompts.md`
@@ -39,12 +38,12 @@ Confirm that the package includes:
 
 - research package
 - user-approved deck storyboard
-- slide content plan
 - visual plan
 - prompt artifact
 - deck source index
 - slide generation log
 - candidate slide image paths
+- resource/input mapping from storyboard through visual plan to image output
 
 If anything needed for review is missing, route `Deck Fix` to `infographic_powerpoint_designer`.
 
@@ -53,17 +52,21 @@ If anything needed for review is missing, route `Deck Fix` to `infographic_power
 For each slide, inspect the actual image and verify:
 
 - the image is a `generate_image` or `edit_image` output
+- any visible text, callout, arrow, highlight, crop/resize, overlay, redaction, cleanup, or polish was produced through `generate_image` or `edit_image`, not scripts or manual composition
 - designer self-check decision exists and is not `needs edit`, `rejected`, or `blocked`
 - 16:9 horizontal format
 - all must-appear text is present and readable
 - no extra words, watermark, random text, or wrong language
 - claims match the article, claim evidence ledger, and user-approved deck storyboard
+- prompt-grounding resources used for the slide match the storyboard, visual plan, prompt/edit instruction, and `deck-source-index.md`
+- relevant text, file, URL, or source excerpt resources were read before prompt writing when the slide depends on them
+- relevant user-provided product/source image assets were used as image inputs when the slide depends on them, or a clear no-image-input rationale is logged
 - visual metaphor, chart, diagram, or illustration does not misrepresent the research
 - style pack, motif, typography, margins, and visual density are consistent across slides
 - slide is readable at presentation distance
 - no sensitive or restricted source material is exposed
 
-Treat missing self-check evidence, unreadable text, wrong text, unsupported claim, unindexed source image, raw non-generated final slide, wrong aspect ratio, or random generated text as blocking.
+Treat missing self-check evidence, missing resource/input mapping, unread prompt-grounding resources, unreadable text, wrong text, unsupported claim, unindexed source image, ignored relevant source assets, raw non-generated final slide, script-composed image edits, wrong aspect ratio, or random generated text as blocking.
 
 ### Step 3 - Write `slide-review-report.md`
 

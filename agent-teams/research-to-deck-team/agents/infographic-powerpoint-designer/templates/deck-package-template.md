@@ -8,10 +8,6 @@
 
 ## Style Pack Decision
 
-## Slide Content Plan Artifact
-
-- `slides_content_plan.md`
-
 ## Deck Storyboard Artifact
 
 - `deck_storyboard.md`

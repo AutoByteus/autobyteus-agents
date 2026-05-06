@@ -6,7 +6,6 @@
 - Review version:
 - Research resource index:
 - Claim evidence ledger:
-- Slides content plan:
 - User-approved deck storyboard:
 - Slides visual plan:
 - Deck source index:
@@ -16,9 +15,9 @@
 
 ## Slide Review
 
-| Slide ID | Image Path | Generated / Edited Output | Self-Check Present | Text Fidelity | Readability | Research Alignment | Decision | Finding | Required Fix |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| slide01 |  | generate_image / edit_image | yes / no | pass / fail | pass / fail | pass / fail | pass / fix required / reject |  |  |
+| Slide ID | Image Path | Generated / Edited Output | Prompt Grounding | Image Input Mapping | Self-Check Present | Text Fidelity | Readability | Research Alignment | Decision | Finding | Required Fix |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| slide01 |  | generate_image / edit_image | pass / fail | pass / fail | yes / no | pass / fail | pass / fail | pass / fail | pass / fix required / reject |  |  |
 
 ## Deck-Level QA
 

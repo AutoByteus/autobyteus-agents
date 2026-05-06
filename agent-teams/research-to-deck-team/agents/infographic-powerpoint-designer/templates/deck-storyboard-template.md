@@ -16,9 +16,9 @@
 
 ## Slide Flow
 
-| Slide ID | Narrative Role | Core Message | Must-Use Evidence / Claim IDs | Visual Job | Transition From Previous | Risk |
-| --- | --- | --- | --- | --- | --- | --- |
-| slide01 | opening / context / tension / evidence / framework / implication / close |  |  |  |  |  |
+| Slide ID | Narrative Role | Core Message | Must-Appear Text | Must-Use Evidence / Claim IDs | Input Resource Candidates (Text / File / Image IDs) | Visual Job | Transition From Previous | Risk |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| slide01 | opening / context / tension / evidence / framework / implication / close |  |  |  |  |  |  |  |
 
 ## Deck Arc
 
@@ -32,6 +32,7 @@
 ## Handoff To Visual Plan
 
 - Style implications:
+- Per-slide resource/input implications:
 - Slides requiring generated diagrams:
 - Slides requiring source-based image edits:
 - Slides with high text-fidelity risk:

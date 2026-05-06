@@ -27,7 +27,6 @@ The research package should include:
 
 The deck package should include:
 
-- `slides_content_plan.md`
 - `deck_storyboard.md`
 - `slides_visual_plan.md`
 - `prompts.md`
@@ -37,25 +36,39 @@ The deck package should include:
 - `deck_images_only.pptx`
 - `slides/slide01.png ...`
 
-`slides_content_plan.md` owns what each slide must communicate.
-`deck_storyboard.md` is the main user-facing slide plan. It owns the slide-by-slide narrative flow, core message, evidence anchors, visual job, pacing, and sequence.
-`slides_visual_plan.md` owns style pack, layout, scene, visual hierarchy, text budget, and per-slide production choices.
+`deck_storyboard.md` is the main user-facing slide plan. It owns what each slide must communicate, must-appear text, slide-by-slide narrative flow, core message, evidence anchors, visual job, pacing, sequence, and input resource candidates.
+`slides_visual_plan.md` owns style pack, layout, scene, visual hierarchy, text budget, per-slide production choices, factual prompt-grounding inputs, and concrete image-tool input strategy for each slide.
 
 Ask the user to review `deck_storyboard.md` before generating slide images. Do not ask the user to review `research-resource-index.md`, `research_notes.md`, or `claim_evidence_ledger.md` unless a high-risk research decision needs explicit confirmation or the user asks to inspect the evidence.
+
+## 3a. Slide Resource Grounding
+
+- Every slide must connect back to `research-resource-index.md`, `claim_evidence_ledger.md`, or both.
+- Slide inputs can be text passages, notes, PDFs, URLs, local files, screenshots, charts, diagrams, photos, brand assets, or source images.
+- `deck_storyboard.md` should identify candidate resource IDs for each slide.
+- `slides_visual_plan.md` must split those resources into factual prompt-grounding inputs and image-tool inputs.
+- Factual prompt-grounding inputs are text/file/URL/source content the designer must read before prompt writing.
+- Image-tool inputs are image paths to pass into `generate_image` when supported or `edit_image`.
+- If relevant user-provided product/source assets exist, identify the exact resource IDs and explain how they will be used.
+- If a slide uses no image input even though relevant source images exist, record the reason in `slides_visual_plan.md` and `deck-source-index.md`.
+- The final prompt or edit instruction must be grounded in the selected resource IDs. The designer should read relevant text/file resources before prompt writing so prompts are factual and do not come from nowhere.
+- Do not create slide visuals that feel unrelated to the user's product, source material, or approved deck story.
 
 ## 4. Image-Only Slide Rule
 
 - Final PowerPoint decks are image-only by default: each slide in the deck is a full-slide image placed into a blank PowerPoint slide.
-- Final slide images must be produced by `generate_image` or `edit_image`.
-- Do not create final slide images as Python/PIL-only or script-only composites.
-- Deterministic scripts may assemble internally reviewed slide images into a `.pptx`, inspect files, render previews, or perform mechanical validation, but they must not replace generated or edited slide images.
-- Do not use raw screenshots, charts, source images, or hand-composed screenshots as final slide images.
+- Every slide-image creation or modification operation must use `generate_image` or `edit_image`.
+- This includes composition, text placement, labels, callouts, overlays, highlights, arrows, crop/pad/resize, cleanup, redaction, polish, chart/image adaptation, and final slide rendering.
+- Do not use Python/PIL, scripts, presentation tools, screenshots, HTML/canvas rendering, or manual image composition to create or modify slide images.
+- Deterministic scripts may assemble internally reviewed slide images into a `.pptx`, inspect files, render previews, or perform non-image validation, but they must not create, modify, crop, resize, overlay, annotate, or repair slide images.
+- Raw screenshots, charts, or source images must be passed through `generate_image` or `edit_image` before they become slide images.
 
 ## 5. Image Tool Use
 
 - The deck designer has exactly two image creation/editing tools: `generate_image` and `edit_image`.
 - Use `generate_image` for new full-slide images from a self-contained slide prompt.
 - Use `edit_image` to correct a generated slide image, preserve a style while fixing text/readability/layout, polish a supplied source image, or adapt an indexed image into a stronger slide.
+- Use `edit_image` for any image operation that would otherwise be done by script, including adding text, arrows, highlights, masks, rectangles, overlays, redactions, zoomed crops, or layout corrections.
 - For `generate_image`, omit `generation_config`; put aspect ratio, orientation, language, required text, and layout requirements in the prompt itself.
 - Do not pass a model identifier just to choose a model or aspect ratio.
 - Every final slide prompt must state that the output is one 16:9 horizontal widescreen slide image.
@@ -66,6 +79,7 @@ Ask the user to review `deck_storyboard.md` before generating slide images. Do n
 - Do not dispatch multiple slide image calls in the background or as a parallel batch.
 - The 60-second cooldown applies after candidate, rejected, timed-out, failed, and accepted image calls.
 - Record every material image call in `slide-generation-log.md`, including prompt/edit instruction, tool used, input images, output path, self-check decision, defects, retry reason, and cooldown status.
+- `deck-source-index.md` must stay current with the latest candidate and reviewed image path for each slide, plus the prompt-grounding resource IDs and image-input resource IDs used to create it.
 
 ## 7. Slide Self-Check
 
