@@ -2,6 +2,12 @@
 
 This repository contains reusable AutoByteus agent and agent-team definitions.
 
+## Standalone Agents
+
+### Resume Designer
+
+The resume designer creates resume packages from user input or supplied resume sources, selects or authors an audience-appropriate pure-text style brief, dynamically generates a browser-rendered frontend resume app from that brief, starts a preview when possible, reviews it in the embedded in-app browser when available, verifies the render, and exports a print-ready PDF. It treats the frontend source as the editable resume system and the PDF as the default hiring-workflow handoff artifact.
+
 ## Software Engineering Team
 
 The software engineering team is organized as a practical delivery group that can take work from upstream solution design through implementation, API and E2E validation, review, docs sync, final handoff, release, and deployment.
