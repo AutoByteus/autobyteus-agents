@@ -1,0 +1,19 @@
+{
+  "toolNames": [
+    "read_file",
+    "write_file",
+    "edit_file",
+    "search_web",
+    "read_url",
+    "send_message_to"
+  ],
+  "skillNames": [],
+  "inputProcessorNames": [],
+  "llmResponseProcessorNames": [],
+  "systemPromptProcessorNames": [],
+  "toolExecutionResultProcessorNames": [],
+  "toolInvocationPreprocessorNames": [],
+  "lifecycleProcessorNames": [],
+  "avatarUrl": null,
+  "defaultLaunchConfig": null
+}

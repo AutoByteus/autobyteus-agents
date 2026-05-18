@@ -1,0 +1,36 @@
+{
+  "coordinatorMemberName": "vp_finance",
+  "avatarUrl": null,
+  "members": [
+    {
+      "memberName": "vp_finance",
+      "ref": "vp-finance",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "controller",
+      "ref": "controller",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "people_ops_lead",
+      "ref": "people-ops-lead",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "talent_acquisition_lead",
+      "ref": "talent-acquisition-lead",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "legal_compliance_lead",
+      "ref": "legal-compliance-lead",
+      "refType": "agent",
+      "refScope": "team_local"
+    }
+  ]
+}

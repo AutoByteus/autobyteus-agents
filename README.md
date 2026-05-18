@@ -12,6 +12,10 @@ The resume designer creates resume packages from user input or supplied resume s
 
 The software engineering team is organized as a practical delivery group that can take work from upstream solution design through implementation, API and E2E validation, review, docs sync, final handoff, release, and deployment.
 
+## Research Engineering Team
+
+The research engineering team is organized as a lean two-role workflow for dynamic research tasks: investigation, research planning, literature search, paper understanding, implementation when needed, local setup when needed, empirical validation when needed, benchmarking, result analysis, illustrative HTML explanation, and iterative research decisions. It is meant for work where the right execution path depends on the topic, such as reproducing a paper, implementing attention from scratch, setting up a research model locally, debugging a training run, comparing algorithms, or evaluating whether a research idea actually improves a metric.
+
 ## Software Product Promo Video Team
 
 The software product promo video team is organized as a product-marketing video workflow for software products, mobile apps, websites, and SaaS tools. It takes supplied screenshots, recordings, product links, brand material, or rough notes through a single promo director for positioning, approved script, voiceover generation, measured timing, and audio-informed storyboard, then continues through a merged visual director for visual planning and production, an independent visual reviewer for visual QA and user approval, optional captions when requested, edit assembly, and final promotional video QA. The visual director maintains `visual-source-index.md` as the durable source of truth for supplied images, generated or edited variants, lineage, missing visual needs, and final-use status. The team defaults to visuals plus narration instead of added explanatory text overlays.

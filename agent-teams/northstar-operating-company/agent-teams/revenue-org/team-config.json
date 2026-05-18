@@ -1,0 +1,36 @@
+{
+  "coordinatorMemberName": "vp_sales",
+  "avatarUrl": null,
+  "members": [
+    {
+      "memberName": "vp_sales",
+      "ref": "vp-sales",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "demand_generation_lead",
+      "ref": "demand-generation-lead",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "account_executive_manager",
+      "ref": "account-executive-manager",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "customer_success_lead",
+      "ref": "customer-success-lead",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "partnerships_lead",
+      "ref": "partnerships-lead",
+      "refType": "agent",
+      "refScope": "team_local"
+    }
+  ]
+}

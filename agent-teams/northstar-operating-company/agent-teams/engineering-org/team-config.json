@@ -1,0 +1,36 @@
+{
+  "coordinatorMemberName": "vp_engineering",
+  "avatarUrl": null,
+  "members": [
+    {
+      "memberName": "vp_engineering",
+      "ref": "vp-engineering",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "platform_engineering_manager",
+      "ref": "platform-engineering-manager",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "product_engineering_manager",
+      "ref": "product-engineering-manager",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "infrastructure_security_lead",
+      "ref": "infrastructure-security-lead",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "qa_release_manager",
+      "ref": "qa-release-manager",
+      "refType": "agent",
+      "refScope": "team_local"
+    }
+  ]
+}

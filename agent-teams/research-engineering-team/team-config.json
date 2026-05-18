@@ -1,0 +1,18 @@
+{
+  "coordinatorMemberName": "research_engineer",
+  "avatarUrl": null,
+  "members": [
+    {
+      "memberName": "research_engineer",
+      "ref": "research-engineer",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "research_reviewer",
+      "ref": "research-reviewer",
+      "refType": "agent",
+      "refScope": "team_local"
+    }
+  ]
+}

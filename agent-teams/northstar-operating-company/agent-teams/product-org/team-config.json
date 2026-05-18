@@ -1,0 +1,36 @@
+{
+  "coordinatorMemberName": "vp_product",
+  "avatarUrl": null,
+  "members": [
+    {
+      "memberName": "vp_product",
+      "ref": "vp-product",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "growth_product_manager",
+      "ref": "growth-product-manager",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "platform_product_manager",
+      "ref": "platform-product-manager",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "product_design_lead",
+      "ref": "product-design-lead",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "ux_research_lead",
+      "ref": "ux-research-lead",
+      "refType": "agent",
+      "refScope": "team_local"
+    }
+  ]
+}

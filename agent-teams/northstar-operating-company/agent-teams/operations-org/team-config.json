@@ -1,0 +1,36 @@
+{
+  "coordinatorMemberName": "vp_operations",
+  "avatarUrl": null,
+  "members": [
+    {
+      "memberName": "vp_operations",
+      "ref": "vp-operations",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "business_operations_lead",
+      "ref": "business-operations-lead",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "customer_operations_lead",
+      "ref": "customer-operations-lead",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "vendor_operations_lead",
+      "ref": "vendor-operations-lead",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "data_analytics_lead",
+      "ref": "data-analytics-lead",
+      "refType": "agent",
+      "refScope": "team_local"
+    }
+  ]
+}

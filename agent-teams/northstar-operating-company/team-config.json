@@ -1,0 +1,84 @@
+{
+  "coordinatorMemberName": "ceo",
+  "avatarUrl": null,
+  "members": [
+    {
+      "memberName": "ceo",
+      "ref": "ceo",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "chief_of_staff",
+      "ref": "chief-of-staff",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "cto",
+      "ref": "cto",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "cpo",
+      "ref": "cpo",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "cro",
+      "ref": "cro",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "coo",
+      "ref": "coo",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "cfo",
+      "ref": "cfo",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "chief_people_officer",
+      "ref": "chief-people-officer",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "engineering_org",
+      "ref": "engineering-org",
+      "refType": "agent_team",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "product_org",
+      "ref": "product-org",
+      "refType": "agent_team",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "revenue_org",
+      "ref": "revenue-org",
+      "refType": "agent_team",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "operations_org",
+      "ref": "operations-org",
+      "refType": "agent_team",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "finance_people_org",
+      "ref": "finance-people-org",
+      "refType": "agent_team",
+      "refScope": "team_local"
+    }
+  ]
+}
