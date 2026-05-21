@@ -9,7 +9,6 @@
     "stop_background_process",
     "search_web",
     "read_url",
-    "send_message_to",
     "close_tab",
     "dom_snapshot",
     "list_tabs",

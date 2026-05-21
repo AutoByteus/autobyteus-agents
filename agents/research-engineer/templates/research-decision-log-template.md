@@ -13,9 +13,9 @@ State what was learned and how strong the evidence is.
 | Evidence ID | Artifact / Path | What It Shows | Limitation |
 | --- | --- | --- | --- |
 
-## Review Outcome
+## Self-Review Outcome
 
-- Review decision:
+- Self-review decision:
 - Blocking findings:
 - Residual risks:
 
