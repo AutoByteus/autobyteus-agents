@@ -21,7 +21,7 @@
     "read_media_file"
   ],
   "skillNames": [
-    "unix-filesystem-practice"
+    "shell-first-operating-practice"
   ],
   "inputProcessorNames": [
     "UserInputPersistenceProcessor"
