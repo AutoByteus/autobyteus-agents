@@ -1,0 +1,42 @@
+{
+  "toolNames": [
+    "run_bash",
+    "read_url",
+    "search_web",
+    "close_tab",
+    "dom_snapshot",
+    "list_tabs",
+    "navigate_to",
+    "open_tab",
+    "read_page",
+    "run_script",
+    "screenshot",
+    "get_process_output",
+    "start_background_process",
+    "stop_background_process",
+    "download_media",
+    "edit_image",
+    "generate_image",
+    "generate_speech",
+    "read_media_file"
+  ],
+  "skillNames": [
+    "unix-filesystem-practice"
+  ],
+  "inputProcessorNames": [
+    "UserInputPersistenceProcessor"
+  ],
+  "llmResponseProcessorNames": [
+    "ProviderAwareToolUsageProcessor",
+    "AssistantResponsePersistenceProcessor",
+    "TokenUsagePersistenceProcessor"
+  ],
+  "systemPromptProcessorNames": [],
+  "toolExecutionResultProcessorNames": [
+    "MediaUrlToolResultTransformerProcessor"
+  ],
+  "toolInvocationPreprocessorNames": [],
+  "lifecycleProcessorNames": [],
+  "avatarUrl": null,
+  "defaultLaunchConfig": null
+}
