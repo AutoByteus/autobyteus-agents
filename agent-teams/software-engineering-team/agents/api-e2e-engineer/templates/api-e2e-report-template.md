@@ -15,7 +15,7 @@ Validation may cover API, browser UI, native desktop UI, CLI, process/lifecycle,
 - Design Spec:
 - Design Review Report:
 - Implementation Handoff:
-- Review Report:
+- Code Review Report:
 - Current Validation Round:
 - Trigger:
 - Prior Round Reviewed:

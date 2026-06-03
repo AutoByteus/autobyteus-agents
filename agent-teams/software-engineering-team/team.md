@@ -20,8 +20,8 @@ Detailed operating rules, artifact standards, and send-back behavior belong in e
   - `architecture_reviewer`: requirements doc, investigation notes, design spec
   - `implementation_engineer`: requirements doc, investigation notes, design spec, design review report
   - `code_reviewer`: requirements doc, investigation notes, design spec, design review report, implementation handoff
-  - `api_e2e_engineer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, review report
-  - `delivery_engineer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, review report, validation report
+  - `api_e2e_engineer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, code review report
+  - `delivery_engineer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, code review report, validation report
 - If `api_e2e_engineer` adds or updates repository-resident durable validation after the initial code review, route the cumulative package plus the validation report back through `code_reviewer` before `delivery_engineer`.
 - When a reroute or rework artifact is produced, include that artifact too alongside the already-existing upstream package.
 

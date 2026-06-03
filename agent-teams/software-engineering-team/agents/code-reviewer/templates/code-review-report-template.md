@@ -1,11 +1,11 @@
-# Review Report
+# Code Review Report
 
-Write this artifact to a canonical file path in the assigned task workspace before any handoff message.
+Write this artifact to `code-review-report.md` in the assigned task workspace before any handoff message.
 
 Use earlier design artifacts as context only.
 The review authority is the canonical shared design guidance and the review criteria in this report.
 If the review shows that an earlier design artifact was weak, incomplete, or wrong, classify that as `Design Impact`.
-Keep one canonical review report path across reruns.
+Keep one canonical code review report path across reruns.
 Do not create versioned copies by default.
 On round `>1`, recheck prior unresolved findings first, update the prior-findings resolution section, and then record the new round result.
 The latest round is authoritative; earlier rounds remain history.

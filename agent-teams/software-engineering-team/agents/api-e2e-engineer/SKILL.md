@@ -33,8 +33,8 @@ Use [templates/api-e2e-report-template.md](templates/api-e2e-report-template.md)
 
 ## Upstream Inputs
 
-- Accept the cumulative review-passed package from `code_reviewer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, and review report.
-- Treat the full upstream package as available validation context, not just the latest implementation handoff or review report.
+- Accept the cumulative review-passed package from `code_reviewer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, and code review report.
+- Treat the full upstream package as available validation context, not just the latest implementation handoff or code review report.
 - Read the implementation handoff's `Legacy / Compatibility Removal Check` before finalizing coverage. Treat any non-clean answer, or any mismatch between that section and the code, as an active validation signal.
 
 ## Validation Rules
@@ -66,8 +66,8 @@ Use [templates/api-e2e-report-template.md](templates/api-e2e-report-template.md)
 
 ## Handoff Rules
 
-- On pass with no repository-resident durable validation added or updated after the earlier code review, send the cumulative delivery package to `delivery_engineer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, review report, and validation report.
-- On pass with repository-resident durable validation added or updated after the earlier code review, send the cumulative validation-updated package back to `code_reviewer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, review report, and validation report.
+- On pass with no repository-resident durable validation added or updated after the earlier code review, send the cumulative delivery package to `delivery_engineer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, code review report, and validation report.
+- On pass with repository-resident durable validation added or updated after the earlier code review, send the cumulative validation-updated package back to `code_reviewer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, code review report, and validation report.
 - Use absolute filesystem paths for every artifact in that handoff.
 - On `Local Fix`, route to `implementation_engineer`.
 - On `Design Impact`, route to `solution_designer`.
