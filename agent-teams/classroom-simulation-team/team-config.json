@@ -1,0 +1,18 @@
+{
+  "coordinatorMemberName": "professor",
+  "avatarUrl": null,
+  "members": [
+    {
+      "memberName": "professor",
+      "ref": "professor",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "student",
+      "ref": "student",
+      "refType": "agent",
+      "refScope": "team_local"
+    }
+  ]
+}

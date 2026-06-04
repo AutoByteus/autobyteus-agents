@@ -24,6 +24,10 @@ The software product promo video team is organized as a product-marketing video 
 
 The narrated presentation video team is organized as a slide-based explainer and teaching-style presentation workflow. It takes user-provided materials, links, rough notes, documents, or topics through a presentation director for research, explanation framing, narration script writing, and slide storyboard planning, then requires full narration-script review before slide/video production, voiceover generation, and simple still-slide video assembly. The producer maintains `media-resource-index.md` as the durable registry for source media, generated slide images, audio clips, logs, and final exports.
 
+## Classroom Simulation Team
+
+The classroom simulation team is organized as a two-role teacher-student demo for agent-to-agent communication. Both agents start classroom file work with `pwd` and write classroom files under the current workspace returned by `pwd`. The `professor` writes assignments or feedback to files with `run_bash`, then sends them to `student` through `send_message_to` with the file paths as references. The `student` reads the referenced file, writes the answer file under the same workspace, and replies to `professor` through `send_message_to`.
+
 ## Research To Deck Team
 
 The research-to-deck team is organized as a two-specialist workflow that takes a topic from deep research and reasoning through infographic-style PowerPoint deck production.
