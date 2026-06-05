@@ -1,1 +1,0 @@
-../../shared/production-principles.md

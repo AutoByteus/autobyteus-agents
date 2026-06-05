@@ -1,1 +1,0 @@
-../../shared/narrated-presentation-principles.md

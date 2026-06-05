@@ -49,12 +49,12 @@ Each role-agent folder always includes:
 - `agent.md`: distilled runtime prompt
 - `agent-config.json`: runtime wiring such as `skillNames`, tools, and processors
 
-When a role owns a local bundled skill, the folder also includes:
+When a role owns a local bundled skill, the agent folder also includes a `skills/` subtree:
 
-- `SKILL.md`: fuller specialist workflow and collaboration guidance
-- `templates/`: role-specific artifacts and output templates
+- `skills/<skill-name>/SKILL.md`: fuller specialist workflow and collaboration guidance
+- `skills/<skill-name>/templates/`: role-specific artifacts and output templates
 
-Some bundles also include richer local support files such as `references/` and `scripts/` when the underlying workflow depends on them.
+Some bundles also include richer local support files such as `skills/<skill-name>/references/` and `skills/<skill-name>/scripts/` when the underlying workflow depends on them.
 
 ## Markdown File Reference Style
 
@@ -66,7 +66,7 @@ Good examples:
 - `[product-promo-brief-template.md](templates/product-promo-brief-template.md)`
 - `[shared/narrated-presentation-principles.md](shared/narrated-presentation-principles.md)`
 
-Use backticks for generated runtime artifacts, commands, JSON keys, identifiers, placeholder layout paths, and file names that are examples rather than links to one concrete file. For example, `presentation-brief.md`, `skillNames`, and `<team-root>/agents/<agent-id>/SKILL.md` are not source links.
+Use backticks for generated runtime artifacts, commands, JSON keys, identifiers, placeholder layout paths, and file names that are examples rather than links to one concrete file. For example, `presentation-brief.md`, `skillNames`, and `<team-root>/agents/<agent-id>/skills/<skill-name>/SKILL.md` are not source links.
 
 This keeps skills easy to navigate while preserving clear monospace formatting for generated artifacts and code-like identifiers.
 
@@ -84,18 +84,20 @@ Use this when a skill belongs to one specific agent bundle.
     <agent-id>/
       agent.md
       agent-config.json
-      SKILL.md
-      templates/
-      references/
-      scripts/
+      skills/
+        <skill-name>/
+          SKILL.md
+          templates/
+          references/
+          scripts/
 ```
 
 Rules:
 
-- `SKILL.md` in the agent folder is enough for the folder to be treated as a bundled skill.
+- Agent-owned skills must live under the agent's `skills/<skill-name>/` folder, even when the agent has only one skill.
 - `agent-config.json` should explicitly declare:
-  - `"skillNames": ["<agent-id>"]`
-- The skill name, agent folder name, and configured `skillNames` entry should match.
+  - `"skillNames": ["<skill-name>"]`
+- The skill folder name, configured `skillNames` entry, and `SKILL.md` frontmatter `name:` should match.
 - `SKILL.md` being present does not auto-attach that skill to the agent at runtime. Runtime attachment is explicit through `skillNames`.
 
 This repository uses both patterns: most specialist roles use agent-bundled skills, and some roles intentionally attach shared standalone skills directly from `agent-config.json`.
@@ -145,17 +147,19 @@ When multiple agent-bundled skills in the same team need that shared file, prefe
 <team-root>/
   agents/
     <agent-id>/
-      SKILL.md
-      design-principles.md -> ../../shared/design-principles.md
+      skills/
+        <skill-name>/
+          SKILL.md
+          design-principles.md -> ../../../../shared/design-principles.md
 ```
 
 Rules:
 
 - Keep the canonical shared file in the team's `shared/` folder.
-- Create a local symlink inside each consuming agent folder that points to the shared file.
+- Create a local symlink inside each consuming skill folder that points to the shared file.
 - In the consuming `SKILL.md`, reference the local file name such as `[design-principles.md](design-principles.md)` instead of a brittle relative path like `../../shared/design-principles.md`.
 - Use this pattern for shared reference docs, principles, and reusable policy files that belong to one team package but are read by multiple bundled agent skills.
-- Do not duplicate the shared file into each agent folder; use one canonical shared file plus symlinks so updates stay synchronized.
+- Do not duplicate the shared file into each skill folder; use one canonical shared file plus symlinks so updates stay synchronized.
 
 ## Recommended Practice For Team Packages
 
@@ -198,15 +202,15 @@ Keep `team.md` focused on how the specialists work together.
 
 ## Recommended Practice For Agent Packages
 
-- If a skill is owned by a single agent, keep it bundled in that agent folder.
+- If a skill is owned by a single agent, keep it bundled under that agent's `skills/<skill-name>/` folder.
 - If a skill is shared across multiple agents, move it to a standalone shared skill source.
-- Even when a bundled `SKILL.md` exists, keep `agent-config.json.skillNames` explicit so the package is self-describing and runtime wiring is deterministic.
+- Even when a bundled `skills/<skill-name>/SKILL.md` exists, keep `agent-config.json.skillNames` explicit so the package is self-describing and runtime wiring is deterministic.
 - If an agent intentionally reuses a shared standalone skill instead of a bundled local one, keep the specialization in `agent.md` and point `agent-config.json.skillNames` at the shared skill.
-- Keep `agent.md` short. Move detailed workflow steps, artifact schemas, and output section structure into `SKILL.md` and local `templates/` so the same skill format works cleanly for bundled agent skills and custom skills.
+- Keep `agent.md` short. Move detailed workflow steps, artifact schemas, and output section structure into `skills/<skill-name>/SKILL.md` and `skills/<skill-name>/templates/` so the same skill format works cleanly for bundled agent skills and custom skills.
 
 ## Authoring Best Practices
 
-When a role has a reusable skill, treat `SKILL.md` as the main operating contract and keep `agent.md` intentionally thin.
+When a role has a reusable skill, treat `skills/<skill-name>/SKILL.md` as the main operating contract and keep `agent.md` intentionally thin.
 
 ### Put In `agent.md`
 
