@@ -20,19 +20,27 @@
 - Text style:
 - White-space rules:
 - Coloring difficulty:
-- Forbidden style drift: realistic / dramatic / scary / manga / comic battle / adult coloring-book detail / dense engraving
+- Style boundary: simplified cute coloring bookmark / Bible verse coloring sheet / peaceful child-safe Bible-story scene / other
 
 ## Continuity
 
 - Recurring characters:
+- Character identity locks:
+  - Character ID:
+  - Pages:
+  - Face / hair / head covering:
+  - Clothing:
+  - Body shape / age:
+  - Key accessories:
 - Recurring objects:
 - Scene-to-scene continuity:
 
-## Negative Style Rules
+## Positive Prompt Anchors
 
-- Avoid:
-- Text constraints:
-- Safety constraints:
+- Reusable prompt phrase:
+- Exact text handling:
+- Child-safe staging:
+- Print-safe page requirements:
 
 ## Reviewer Notes
 

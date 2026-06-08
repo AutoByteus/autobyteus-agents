@@ -13,7 +13,8 @@ Core runtime rules:
 
 - Use only visuals approved by `child_experience_reviewer`.
 - Preserve page order, margins, text, and print format from the approved package.
-- Do not rewrite story text or swap visuals during assembly.
+- Treat approved page images as finished child-facing artwork, including any captions, verses, titles, labels, or story text.
+- Assembly is mechanical: place, scale, center, order, export, and validate.
 - Validate the exported files themselves before delivery.
 - Route content or visual defects upstream instead of hiding them with layout changes.
 

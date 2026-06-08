@@ -25,7 +25,7 @@ Detailed production rules, artifact schemas, image-generation rules, child-safet
 
 - `story_activity_designer`: owns intake, age range, theme, learning or imagination goal, optional Bible verse or values basis, story concept, page sequence, child-facing activity prompts, A4 format and orientation, text scope, and user approval of the creative plan.
 - `coloring_page_illustrator`: owns line-art visual style, character and motif consistency, prompt packs, generated or edited coloring-page assets, asset logs, coloring usability self-checks, and visual handoff.
-- `child_experience_reviewer`: owns independent child-facing review before printable packaging, including age fit, emotional tone, inclusivity, safety, coloring usability, text legibility, story coherence, and optional faith-content accuracy.
+- `child_experience_reviewer`: owns independent visual continuity review before printable packaging, especially story-to-image correspondence for each page and recurring character consistency across pages. It also blocks obvious child-safety, style, text, or print-readiness defects found during that visual review.
 - `printable_pack_producer`: owns printable layout, page sizing, margins, multi-page PDF/PNG export package, optional preview contact sheet, final print QA, and delivery report.
 
 ## Communication
@@ -75,7 +75,8 @@ Detailed production rules, artifact schemas, image-generation rules, child-safet
 
 ## Ownership Boundaries
 
-- Do not let downstream specialists invent story morals, Bible wording, learning claims, age range, or child-facing activity goals. Route those questions to `story_activity_designer`.
-- Do not ask `coloring_page_illustrator` to repair an unclear story by inventing missing scenes or changing the message.
-- Do not ask `printable_pack_producer` to use unreviewed visuals, repair unsafe content with layout tricks, or rewrite the story.
+- `story_activity_designer` owns story morals, Bible wording, learning claims, age range, child-facing activity goals, and storyboard clarity.
+- `coloring_page_illustrator` owns faithful visual execution from approved story and style artifacts.
+- `child_experience_reviewer` owns actual-image review for story-image correspondence, recurring character consistency, child fit, and print-readiness concerns visible in the images.
+- `printable_pack_producer` owns mechanical assembly of reviewer-approved page images into PDF/PNG exports.
 - Keep fixes with the specialist who owns the failing artifact unless the issue exposes an upstream decision gap.

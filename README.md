@@ -307,6 +307,47 @@ Typical contents include:
 
 When a role has a reusable skill, treat `skills/<skill-name>/SKILL.md` as the main operating contract and keep `agent.md` intentionally thin.
 
+### Prefer Positive Operating Contracts
+
+Write agent and skill instructions around the correct result and the successful workflow that produces it.
+
+Good agent guidance should answer:
+
+- what artifact should exist at the end
+- what a correct artifact looks like
+- what exact inputs the agent should use
+- what sequence of actions usually produces the correct result
+- what examples the agent can imitate
+- what quality checks prove the artifact is ready
+
+Use constraints only when they directly protect the target artifact. A useful negative instruction names a bad output state that would make the artifact fail. An unhelpful negative instruction focuses on an unrelated implementation workaround instead of teaching the agent what to produce.
+
+Prefer this:
+
+```text
+Create one complete A4 landscape coloring-page image for page003.
+Use cute black-and-white rounded doodle line art, large closed colorable shapes,
+a peaceful hillside scene with David and a sheep, and the exact bottom caption
+"David cared for the sheep." inside a simple caption band within the page border.
+```
+
+Instead of this:
+
+```text
+Do not use Python to add the caption later.
+```
+
+Positive examples are especially important for generation agents. If the desired final image, document, deck, video, or code artifact should be self-contained, say so as a finished-output requirement and show the correct prompt or artifact shape. Review and packaging roles should then verify and preserve that approved artifact rather than inventing a separate workaround.
+
+When negative guidance is needed, keep it relevant to the target artifact:
+
+```text
+When the storyboard requires a caption, the generated page image must include
+that exact caption. A generated page without the caption is not ready.
+```
+
+This teaches the agent which output fails and why, while the positive prompt still shows how to create the correct result.
+
 ### Put In `agent.md`
 
 - role identity and short purpose

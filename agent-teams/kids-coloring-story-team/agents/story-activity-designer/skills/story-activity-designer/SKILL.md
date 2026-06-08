@@ -97,11 +97,11 @@ Include:
 - emotional tone
 - imagination and activity goal
 - A4 page count and output format
-- allowed text and forbidden text
+- approved visible text and protected source wording
 - source text summary
 - visual style direction
-- child-safety constraints
-- print constraints
+- child-safety target
+- print requirements
 - open risks
 
 ### Step 5 - Write `coloring-storyboard.md`
@@ -112,11 +112,12 @@ For each A4 page, include:
 
 - page id
 - story beat
-- child-facing caption or prompt, if any
+- exact in-image caption, Bible verse, title, or prompt, if any
 - visual scene
 - character or motif continuity
 - coloring activity opportunity
-- text that must appear
+- text placement guidance, such as bottom caption band inside the page border
+- `word-free picture page` when the page should not include visible words
 - format notes, such as full A4 page, bookmark-style full-page design, or explicit user-requested cut-out sheet
 - open visual risks
 
@@ -146,7 +147,7 @@ Include:
 - A4 paper size, orientation, and format
 - one-image-per-A4-page status
 - visual style notes
-- text constraints
+- approved visible text and text placement notes
 - open visual risks
 
 ## Routing Rules

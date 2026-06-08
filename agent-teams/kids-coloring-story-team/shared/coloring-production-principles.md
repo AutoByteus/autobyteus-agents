@@ -66,6 +66,20 @@ Choose the product format intentionally instead of treating every request as a g
 - If the final product is a coloring bookmark, use a tall narrow panel with a clear border and simple top-to-bottom reading flow.
 - If the final product is a page, keep enough margins for home printers.
 
+## 6B. Self-Contained Generated Page Images
+
+- The approved page image is the complete child-facing page.
+- When a page includes a caption, Bible verse, title, prompt, or other visible words, put the exact approved text and its placement into the `generate_image` or `edit_image` prompt for that page.
+- Printable assembly treats approved page images as finished artwork. Its role is to place, scale, center, order, and export those images as print files.
+- When exact text is required, specify it verbatim in the image prompt and describe where it belongs, for example `bottom caption band inside the page border`.
+- When a page is word-free, describe it positively as a `word-free coloring scene` or `text-free picture page`.
+- When the storyboard requires visible text, a generated page without that text is not ready. Correct it in the image step through `edit_image` or regeneration, producing a new approved page image before packaging.
+
+Positive prompt patterns:
+
+- `Create one A4 landscape black-and-white coloring page. The page contains a rounded border, a peaceful hillside scene with David and a sheep, and the exact bottom caption "David cared for the sheep." The caption is inside a simple bottom caption band within the border.`
+- `Create one A4 landscape word-free black-and-white coloring page. The page shows David choosing smooth stones by a stream, with large closed shapes, rounded doodle outlines, and generous white space.`
+
 ## 6A. Non-Scary Bible Story Adaptation
 
 - Bible scenes should look peaceful and child-safe even when the source story contains conflict.
@@ -79,9 +93,9 @@ Choose the product format intentionally instead of treating every request as a g
 - Default final coloring-story output is a multi-page A4 PDF.
 - Each story image must occupy its own full A4 page with safe margins and large colorable areas.
 - A request for `6 pictures`, `7 pictures`, or a short picture sequence means 6, 7, or the approved number of separate A4 pages, not a collage, grid, storyboard contact sheet, or several small panels inside one generated image.
-- Do not ask the image model to create a six-panel sheet, seven-panel sheet, contact sheet, grid, comic strip, thumbnail board, or multiple small scenes in one image unless the user explicitly requests that exact cut-out/contact-sheet format.
-- A combined overview/contact sheet may be created only as an optional preview artifact. It is not the final child-coloring asset and must not replace the separate full-page images.
-- If any generated candidate combines multiple story scenes into one page when the approved format is separate pages, reject it and regenerate separate page assets.
+- Write one image prompt per storyboard page, each prompt describing one complete A4 page image for one story beat.
+- A combined overview/contact sheet is a preview artifact only when explicitly useful. The child-coloring assets remain separate full-page images.
+- If a generated candidate compresses multiple story pages into one image, regenerate the affected pages as separate A4 assets.
 
 ## 8. A4 Print And Format Rules
 
@@ -101,27 +115,35 @@ Choose the product format intentionally instead of treating every request as a g
 
 - `coloring_page_illustrator` owns image generation and image editing.
 - Use `generate_image` or `edit_image` for final visual assets.
-- Generate or edit one final coloring page image per approved storyboard page. Do not bundle several story pages into one image.
+- Generate or edit one final coloring page image per approved storyboard page.
+- Make each generated page image self-contained, including any required caption or verse text inside the image itself.
 - Image calls are serial-only. Call exactly one `generate_image` or `edit_image`, wait for the result, inspect the actual output, log pass/fix/reject/block, then run `sleep 60` before the next image call.
-- Do not dispatch image calls in parallel or through a background batch.
 - For every image, record prompt, output path, page id, source or reference ids when present, visual self-check result, and cooldown status in `image-generation-log.md`.
 - A successful tool return is not enough. Inspect the image for:
   - black-and-white coloring-page suitability
   - age fit
   - story match
   - clear outlines and colorable shapes
-  - no unwanted color fill
-  - no malformed text
-  - no scary or unsafe content
+  - pure black-and-white line art when the product is a coloring page
+  - required text appears inside the image exactly as specified, or the page is a word-free picture page
+  - text is legible and spelled correctly
+  - gentle, child-safe content
   - one scene/page only, unless the approved format explicitly asks for a multi-panel cut-out sheet
   - correct page format and margins
-- Do not send rejected, uninspected, or text-broken images to review.
+- Send only inspected candidate images that passed the illustrator self-check to review.
 
 ## 10. Review Gate
 
 - `child_experience_reviewer` must review actual candidate images before printable packaging.
+- The two primary review questions are:
+  - Does each image correspond to the approved storyboard page it claims to represent?
+  - Are recurring characters, objects, and motifs visually consistent across the full page sequence?
+- The reviewer must inspect the actual image files side by side with the storyboard and style guide. Prompt text, logs, and file names are not enough.
+- If the runtime cannot visually inspect the candidate images, the review status is `Blocked`, not `Approved`.
+- If recurring character consistency fails, the reviewer should name the strongest base/reference image and send concrete fix guidance to `coloring_page_illustrator`: use `edit_image` from that base/reference when the scene composition is otherwise usable, or regenerate with the locked character identity when the page is too far off.
 - Treat the following as blocking:
   - illegible or misspelled text
+  - required page text absent from the generated or edited page image
   - wrong Bible wording or missing citation when Scripture is used
   - overly dense detail for the target age
   - frightening, unsafe, shaming, or exclusionary content

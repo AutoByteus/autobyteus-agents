@@ -52,6 +52,7 @@ Confirm:
 - export expectations
 
 If any approved visual is missing or any required text conflicts, route the issue upstream before assembly.
+If a required caption, title, verse, or label is missing from the approved page image, route the issue upstream for a corrected approved image.
 
 ### Step 2 - Write `printable-package-plan.md`
 
@@ -76,7 +77,7 @@ Default package:
 - optional contact sheet or preview when useful, clearly marked as preview-only and not a replacement for the full-page coloring assets
 
 Use the simplest reliable local route available, such as PDF tooling or image-to-PDF assembly through `run_bash`.
-Do not change the story, wording, or visual content during layout except for mechanical scaling, centering, and margin-safe placement.
+Treat approved page images as finished child-facing artwork. During layout, apply only mechanical scaling, centering, margin-safe placement, ordering, and export.
 
 ### Step 4 - Validate the exported files
 
@@ -90,6 +91,7 @@ Check:
 - margins are not clipped
 - artwork is not distorted
 - text remains readable
+- required text is part of the approved page images
 - black-and-white line art remains clean
 - no unapproved asset entered the final export
 

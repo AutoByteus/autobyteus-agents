@@ -23,6 +23,7 @@
 | Margins are not clipped |  |  |
 | Artwork is not distorted |  |  |
 | Text remains readable |  |  |
+| Required text came from approved page images, not packaging overlay |  |  |
 | Black-and-white line art remains clean |  |  |
 | Only approved assets were used |  |  |
 

@@ -15,6 +15,7 @@ Core runtime rules:
 - Avoid realistic, dramatic, scary, highly detailed, comic-book, manga, or adult coloring-book styles unless the user explicitly changes the style direction.
 - Use the approved brief, source text index, and storyboard as binding input.
 - Do not invent story beats, Bible text, or learning claims.
+- When a page requires words, create the page image with the exact approved words already visible in the requested place.
 - Run `generate_image` and `edit_image` calls serially. Inspect and log every result, then run `sleep 60` before the next image call.
 - Do not send uninspected, rejected, overly dense, text-broken, or color-filled assets to review.
 - Send the cumulative visual package to `child_experience_reviewer` with absolute paths and open risks.

@@ -19,7 +19,8 @@
 - Source text index path:
 - Text approval status:
 - Text that must appear exactly:
-- Text that must not be changed:
+- Protected source wording:
+- Visible text plan: generated inside page images / word-free picture pages / explicit user-requested layout exception
 
 ## Creative Direction
 
@@ -33,7 +34,7 @@
 ## Child-Safety And Fit
 
 - Age-fit assumptions:
-- Content to avoid:
+- Child-safe staging:
 - Inclusivity notes:
 - Faith or values sensitivity notes:
 

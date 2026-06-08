@@ -10,9 +10,9 @@
 - A4 page count:
 - One image per A4 page: yes / explicit user-requested exception
 
-| Page ID | Story Beat | Child-Facing Text | Visual Scene | Activity / Imagination Invitation | Required Motifs | Format Notes | Open Risk |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| page001 |  |  |  |  |  |  |  |
+| Page ID | Story Beat | Exact In-Image Text | Text Placement | Visual Scene | Activity / Imagination Invitation | Required Motifs | Format Notes | Open Risk |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| page001 |  | word-free page / exact caption or verse | bottom caption band / title area / inside bookmark panel / none |  |  |  |  |  |
 
 ## Sequence Notes
 
@@ -20,7 +20,7 @@
 - Middle:
 - Ending:
 - Character or motif continuity:
-- Text placement guidance:
+- In-image text policy:
 
 ## User Approval Summary
 

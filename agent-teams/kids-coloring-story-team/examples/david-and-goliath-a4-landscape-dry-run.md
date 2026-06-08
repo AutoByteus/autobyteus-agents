@@ -33,7 +33,7 @@ Suggested seven-page storyboard:
 | --- | --- | --- | --- | --- |
 | page001 | David helps with sheep | David smiling with sheep on a hillside | Color the sheep and add flowers | Optional caption: `David cared for the sheep.` |
 | page002 | David brings food and listens | David carrying a small bundle near friendly camp tents | Find and color three helpful things | Keep the camp peaceful |
-| page003 | David hears about the big problem | David listens while people point toward a far-off tall figure | Circle one brave face | Avoid scary giant close-up |
+| page003 | David hears about the big problem | David listens while people point toward a far-off tall figure | Circle one brave face | Far-off simple figure only |
 | page004 | David remembers God helps him | David looking at a small harp or folded hands under a sunny sky | Draw something that reminds you God helps | Source theme, not direct quote |
 | page005 | David chooses simple tools | David with a small bag and stones near a stream | Count and color five smooth stones | Keep sling non-threatening |
 | page006 | David stands bravely | David in foreground, very distant simplified giant silhouette | Add rays of courage around David | No impact, no injury, no weapon focus |
@@ -42,35 +42,35 @@ Suggested seven-page storyboard:
 Source text discipline:
 
 - Record `1 Samuel 17` as the story source.
-- Do not quote exact Bible text unless the user supplies or approves translation and wording.
+- Use exact Bible text only after the user supplies or approves translation and wording.
 - If a verse is desired, the team should ask which translation and whether to use a short excerpt.
 
 ## Coloring Page Illustrator Dry Run
 
-The prompt pack should constrain each page as:
+The prompt pack should define each finished page image as:
 
 - A4 landscape full-page printable coloring sheet.
 - One full-page scene only for the current page id.
-- No collage, grid, contact sheet, comic strip, thumbnail board, six-panel sheet, or seven-panel sheet.
+- If the page has an approved caption, include that exact caption inside the generated image itself, in a simple bottom caption band inside the page border.
+- If the page is word-free, describe it as a word-free picture page.
 - Cute black-and-white line art matching simplified children's coloring bookmarks and Bible verse sheets.
-- Large closed shapes, simple faces, clean outlines, no gray shading, no filled color.
-- Friendly non-frightening characters.
-- No action violence, no injury, no impact scene, no scary giant, no dramatic comic style, no realistic battle illustration.
+- Large closed shapes, simple faces, clean outlines, and open interiors.
+- Friendly peaceful characters.
+- Calm symbolic staging for conflict pages: distance, courage, prayer, helpers, nature, and celebration.
 - Keep any sling or stones small and non-dramatic.
 
 Likely visual risk:
 
 - Image model may make Goliath scary, make the scene too battle-like, or add unwanted color.
 - Image model may compress several story beats into one page if the prompt mentions the whole sequence.
-- Text generation may misspell names or produce malformed letters.
+- Generated in-image text may be misspelled, malformed, missing, or placed incorrectly.
 
 Expected illustrator response:
 
 - Generate each page as a separate image.
-- Reject scary or violent candidates.
-- Reject any generated candidate that combines multiple story pages into one image.
-- Prefer no generated text inside images unless exact wording is critical.
-- If text is needed, keep it outside image generation or route to printable layout.
+- A page that becomes scary or violent is not ready.
+- A page that combines multiple story pages into one image is not ready for the standard A4 story pack.
+- When required caption text is absent, misspelled, or malformed inside the generated page image, correct it with `edit_image` or regeneration.
 
 ## Child Experience Reviewer Dry Run
 
@@ -83,6 +83,7 @@ Blocking findings should include:
 - tiny detailed battlefield clutter
 - wrong or invented Bible quote
 - misspelled text
+- required caption missing from the generated page image
 - unwanted color fill
 - multiple story scenes compressed into one generated page
 
@@ -100,7 +101,7 @@ Expected package:
 - optional PNG exports
 - optional preview-only contact sheet
 - one approved full-page image per A4 page inside safe margins
-- page title only if user approves text
+- page title or caption only when it is already inside the approved generated/edited image
 - no clipping, no distorted panels, no unapproved visuals
 
 ## Validation Result
