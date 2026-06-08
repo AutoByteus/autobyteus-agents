@@ -4,6 +4,10 @@ This repository contains reusable AutoByteus agent and agent-team definitions.
 
 ## Standalone Agents
 
+### Pitch Practice Investor
+
+The pitch practice investor simulates a startup investor for spoken pitch rehearsal. It studies user-provided startup materials from the conversation, then runs a realistic mock investor pitch round with focused questions, constructive pressure, and optional feedback. It is intentionally lightweight and uses only the `speak` tool during live pitch practice.
+
 ### Resume Designer
 
 The resume designer creates resume packages from user input or supplied resume sources, selects or authors an audience-appropriate pure-text style brief, dynamically generates a browser-rendered frontend resume app from that brief, starts a preview when possible, reviews it in the embedded in-app browser when available, verifies the render, and exports a print-ready PDF. It treats the frontend source as the editable resume system and the PDF as the default hiring-workflow handoff artifact.
@@ -12,9 +16,17 @@ The resume designer creates resume packages from user input or supplied resume s
 
 The research engineer is a standalone agent for dynamic research tasks: broad source discovery, internet and website research when allowed, paper or PDF retrieval when allowed, continuous research notes, research planning, literature search, paper understanding, implementation when needed, local setup when needed, empirical validation when needed, benchmarking, result analysis, illustrative HTML explanation, self-review, and iterative research decisions. It is meant for work where the right execution path depends on the topic, such as reproducing a paper, implementing attention from scratch, setting up a research model locally, debugging a training run, comparing algorithms, or evaluating whether a research idea actually improves a metric.
 
+### Paper Research Assistant
+
+The paper research assistant is a standalone agent for the common paper-reading workflow: search for relevant papers from a user question or topic, retrieve a supplied paper from a link, identifier, PDF, or local file, extract paper metadata and detailed content, and answer user questions grounded in the paper. It is intentionally narrower than the research engineer: it focuses on discovery, paper ingestion, paper dossiers, concise comparison, and evidence-aware paper QA rather than implementation, reproduction, training, or benchmarking.
+
 ## Software Engineering Team
 
 The software engineering team is organized as a practical delivery group that can take work from upstream solution design through implementation, API and E2E validation, review, docs sync, final handoff, release, and deployment.
+
+## Research Engineering Team
+
+The research engineering team is organized as a lean two-role loop for research-heavy engineering tasks: a `research_scientist` owns adaptive source discovery, immediate source-by-source research notes, prior-art and state-of-work assessment, paper and repository investigation, source-code reading when needed, research framing, lightweight exploratory probes, metrics, expected outcomes, and the `implementation-plan.md` handoff contract; an `implementation_engineer` owns minimal implementation, run execution, training or benchmark monitoring, validation evidence, requested output artifacts, and detailed feedback. It is meant for work where the right path emerges through repeated research, implementation/probing, validation, analysis, and revised implementation plans.
 
 ## Software Product Promo Video Team
 
@@ -200,6 +212,24 @@ If a rule applies to all team members, put it in a team-shared reference and poi
 If a rule applies to one specialist, put it in that specialist's `SKILL.md`.
 Keep `team.md` focused on how the specialists work together.
 
+## Multi-Agent Communication Best Practice
+
+Model inter-agent communication as email with attachments.
+
+The `send_message_to` message body is the email text: it should route the work, name the expected next action, and summarize the handoff briefly. The reference files field is the attachment list: it should carry the durable files that contain the full handoff context.
+
+For reliable agent-team handoffs, use file-backed handoffs by default:
+
+1. Before handing work to another agent, the sending agent must write the full handoff to a local file.
+2. The handoff file should preserve the complete context: user request, goals, source material, relevant links, artifact paths, constraints, approval state, current status, blockers, and expected output.
+3. The sending agent then calls `send_message_to`.
+4. The `send_message_to` message must mention the absolute path of the handoff file.
+5. The same handoff file must also be added to the `send_message_to` reference files field, like an email attachment.
+6. The receiving agent must read the referenced file before acting. The file is the source of truth; the short message is only routing context.
+7. When reporting back, write a result/status file first, then send a short message that mentions and attaches that file.
+
+This pattern is intentionally more explicit than putting all details in the message body. It pushes each specialist to materialize its handoff, gives the receiver a stable artifact to read, reduces context loss, and makes multi-step team workflows easier to audit and resume.
+
 ## Recommended Practice For Agent Packages
 
 - If a skill is owned by a single agent, keep it bundled under that agent's `skills/<skill-name>/` folder.
@@ -207,6 +237,67 @@ Keep `team.md` focused on how the specialists work together.
 - Even when a bundled `skills/<skill-name>/SKILL.md` exists, keep `agent-config.json.skillNames` explicit so the package is self-describing and runtime wiring is deterministic.
 - If an agent intentionally reuses a shared standalone skill instead of a bundled local one, keep the specialization in `agent.md` and point `agent-config.json.skillNames` at the shared skill.
 - Keep `agent.md` short. Move detailed workflow steps, artifact schemas, and output section structure into `skills/<skill-name>/SKILL.md` and `skills/<skill-name>/templates/` so the same skill format works cleanly for bundled agent skills and custom skills.
+
+## Core Files
+
+### `agent.md`
+
+This is the distilled runtime prompt for the agent.
+
+Keep it short.
+
+It should usually contain only:
+
+- role identity
+- short purpose
+- which bundled or shared skill is authoritative
+- runtime-only specialization that truly belongs in the agent prompt
+- tone or review stance if needed
+- team communication section when the agent is team-local
+
+### `SKILL.md`
+
+This is the main operating contract when a role has reusable workflow.
+
+Put the real behavior here:
+
+- workflow stages and ordering
+- artifact schemas and output expectations
+- handoff rules
+- validation rules
+- blocking rules
+- quality bars
+- routing rules
+- reusable heuristics
+
+### `agent-config.json`
+
+This is the runtime wiring.
+
+Typical contents include:
+
+- `toolNames`
+- `skillNames`
+- processors
+- lifecycle/runtime configuration
+
+Keep `skillNames` explicit even when a bundled local `skills/<skill-name>/SKILL.md` exists. Runtime attachment should stay deterministic and self-describing.
+
+### `team.md`
+
+Short team description and identity.
+
+### `team-config.json`
+
+Team member wiring.
+
+Typical contents include:
+
+- `coordinatorMemberName`
+- `members[].memberName`
+- `members[].ref`
+- `members[].refType`
+- `members[].refScope`
 
 ## Authoring Best Practices
 
@@ -245,6 +336,71 @@ When a role has a reusable skill, treat `skills/<skill-name>/SKILL.md` as the ma
 - When workflow behavior changes, update `SKILL.md` first.
 - Update `agent.md` only when the agent's identity, authoritative skill references, runtime-only specialization, or tone need to change too.
 - If the same guidance would still matter when the skill is reused without the current bundled `agent.md`, it belongs in `SKILL.md`, not `agent.md`.
+
+## Very Important Authoring Rule
+
+When a role has a bundled or attached skill, put as much reusable behavior as possible into `SKILL.md`, not `agent.md`.
+
+This is important because at runtime the final system prompt is effectively composed from:
+
+- the agent prompt in `agent.md`
+- the attached skill prompt content from `SKILL.md`
+
+If the same workflow rules are copied into both places, the runtime prompt becomes larger, noisier, and easier to drift out of sync.
+
+### Practical Rule
+
+If the guidance would still matter when the skill is reused elsewhere, it belongs in `SKILL.md`.
+
+If the guidance only exists because this exact agent has a special runtime identity or tone, it may belong in `agent.md`.
+
+## Bundled Skill Convention
+
+When a skill belongs to one specific agent bundle, keep it under that agent folder's `skills/` directory.
+
+Example:
+
+```text
+agents/<agent-id>/skills/<skill-name>/SKILL.md
+```
+
+or for a team-local role:
+
+```text
+agent-teams/<team-id>/agents/<agent-id>/skills/<skill-name>/SKILL.md
+```
+
+Rules:
+
+- the skill folder name should match `agent-config.json.skillNames` and `SKILL.md` frontmatter `name`
+- `agent-config.json.skillNames` should explicitly include that skill name
+- the presence of `SKILL.md` alone should not be treated as enough runtime wiring
+
+## Team Modeling Convention
+
+Teams are intentionally modeled as direct specialist cooperation.
+
+In practice:
+
+- `team.md` gives the team identity
+- `team-config.json` defines the member list and references
+- each specialist owns its own workflow in `SKILL.md`
+- handoffs should be expressed by the specialist packages, not hidden in a large team-level prompt
+
+Keep the team description simple and let the real operating detail live with the roles that own it.
+
+## Sanity Check Before Merging Agent Changes
+
+Before considering an agent package update complete, verify:
+
+- `agent.md` is thin
+- `SKILL.md` owns the workflow
+- `agent-config.json.skillNames` is explicit
+- tools in `agent-config.json` match what the workflow actually requires
+- team-local handoff names match `team-config.json`
+- reusable schemas and checklists are not duplicated across prompt files
+
+If an `agent.md` starts reading like a second `SKILL.md`, the split is wrong and should be corrected.
 
 The team is intentionally modeled as direct specialist cooperation instead of a separate coordinator agent. Handoffs and rework paths are expressed through `team.md` and each specialist's routing rules.
 The software engineering team also includes a deployment specialist so release preparation, versioning, tagging, rollout, and deploy verification can be owned explicitly instead of being left implicit at the end.
