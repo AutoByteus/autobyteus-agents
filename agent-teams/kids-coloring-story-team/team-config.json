@@ -1,0 +1,29 @@
+{
+  "coordinatorMemberName": "story_activity_designer",
+  "members": [
+    {
+      "memberName": "story_activity_designer",
+      "ref": "story-activity-designer",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "coloring_page_illustrator",
+      "ref": "coloring-page-illustrator",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "child_experience_reviewer",
+      "ref": "child-experience-reviewer",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "printable_pack_producer",
+      "ref": "printable-pack-producer",
+      "refType": "agent",
+      "refScope": "team_local"
+    }
+  ]
+}

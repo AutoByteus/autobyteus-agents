@@ -48,6 +48,10 @@ The research-to-deck team is organized as a two-specialist workflow that takes a
 
 The manga video studio team is organized as a story-first creative workflow that takes a manga idea from canon and character design through storyboard, consistent image generation, and narrated motion-comic video assembly.
 
+## Kids Coloring Story Team
+
+The kids coloring story team is organized as a child-friendly printable production workflow for short multi-page A4 coloring stories, coloring bookmarks, coloring sheets, mini coloring books, and activity pages. It takes a theme, Bible verse, value, rough story, or visual idea through age-aware story/activity planning, user-approved page sequence, cute black-and-white line-art asset production, independent child-experience review, and print-ready PDF/PNG packaging. By default, each story image gets its own A4 page; combined contact sheets are preview-only unless explicitly requested.
+
 ## Bible Learning Team
 
 The Bible learning team is organized as a context-first teaching workflow that takes a passage, topic, or question from deep background research through teaching preparation, critical review, and default slide-deck production unless the user explicitly wants a teaching-only result.

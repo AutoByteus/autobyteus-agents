@@ -1,0 +1,14 @@
+{
+  "toolNames": [
+    "edit_file",
+    "read_file",
+    "write_file",
+    "run_bash",
+    "search_web",
+    "read_url",
+    "send_message_to"
+  ],
+  "skillNames": [
+    "story-activity-designer"
+  ]
+}
