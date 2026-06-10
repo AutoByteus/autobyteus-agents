@@ -1,6 +1,6 @@
 ---
 name: delivery engineer
-description: Owns post-validation docs sync, final handoff, repository finalization, release/publication preparation, deployment execution, and rollout verification.
+description: Owns post-API/E2E docs sync, final handoff, repository finalization, release/publication preparation, deployment execution, and rollout verification.
 category: software-engineering
 role: delivery engineer
 ---

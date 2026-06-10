@@ -41,9 +41,9 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 ## Local Implementation Checks Run
 
 Record only implementation-scoped checks here, such as build, typecheck, unit tests, and narrow integration checks around the changed code.
-Do not stand up API/E2E validation environments or treat that work as part of this section.
-Do not report API, E2E, or broader executable validation as passed in this artifact.
+Do not stand up API/E2E execution environments or treat that work as part of this section.
+Do not report API, E2E, or broader executable checks as passed in this artifact.
 
-## Downstream Validation Hints / Suggested Scenarios
+## Downstream Coverage Hints / Suggested Scenarios
 
-## API / E2E / Executable Validation Still Required
+## API / E2E / Executable Coverage Investigation And Execution Still Required

@@ -12,7 +12,7 @@ The latest round is authoritative; earlier rounds remain history.
 
 ## Review Round Meta
 
-- Review Entry Point: `Implementation Review` / `Post-Validation Durable-Validation Re-Review`
+- Review Entry Point: `Implementation Review` / `Post-API/E2E Coverage-Code Re-Review`
 - Requirements Doc Reviewed As Context:
 - Current Review Round:
 - Trigger:
@@ -22,9 +22,9 @@ The latest round is authoritative; earlier rounds remain history.
 - Design Spec Reviewed As Context:
 - Design Review Report Reviewed As Context:
 - Implementation Handoff Reviewed As Context:
-- Validation Report Reviewed As Context:
-- API / E2E Validation Started Yet: `Yes` / `No`
-- Repository-Resident Durable Validation Added Or Updated After Prior Review: `Yes` / `No`
+- Execution Coverage Report Reviewed As Context:
+- API / E2E Execution Started Yet: `Yes` / `No`
+- Repository-Resident Durable Coverage Added, Updated, Or Removed After Prior Review: `Yes` / `No`
 
 Round rules:
 - Reuse the same finding IDs across reruns for the same unresolved issues.
@@ -116,7 +116,7 @@ Use the canonical priority order below. The order is the review reasoning order,
 | `4` | `Separation of Concerns and File Placement` |  |  |  |  |
 | `5` | `Shared-Structure / Data-Model Tightness and Reusable Owned Structures` |  |  |  |  |
 | `6` | `Naming Quality and Local Readability` |  |  |  |  |
-| `7` | `Validation Readiness` |  |  |  |  |
+| `7` | `API/E2E Readiness` |  |  |  |  |
 | `8` | `Runtime Correctness Under Edge Cases` |  |  |  |  |
 | `9` | `No Backward-Compatibility / No Legacy Retention` |  |  |  |  |
 | `10` | `Cleanup Completeness` |  |  |  |  |
@@ -140,7 +140,7 @@ Rules:
 
 | Area | Check | Result (`Pass`/`Fail`) | Notes |
 | --- | --- | --- | --- |
-| Validation Readiness | Ready for the next workflow stage (`API / E2E` or `Delivery`) |  |  |
+| API/E2E Readiness | Ready for the next workflow stage (`API / E2E` or `Delivery`) |  |  |
 | Tests | Test quality is acceptable |  |  |
 | Tests | Test maintainability is acceptable |  |  |
 | Tests | Review findings are clear enough for the next owner before API / E2E or delivery resumes |  |  |
@@ -168,7 +168,7 @@ Rules:
 ## Classification
 
 - `Pass` is not a classification. Record pass/fail/blocked in `Latest Authoritative Result`, then use a classification below only when the review does not pass cleanly.
-- `Local Fix`: bounded source or durable-validation fix, no upstream design/requirement update needed
+- `Local Fix`: bounded source or durable-coverage fix, no upstream design/requirement update needed
 - `Design Impact`: structural issue in code or earlier design artifact was weak/wrong/incomplete
 - `Requirement Gap`: missing or ambiguous intended behavior
 - `Unclear`: cross-cutting or low-confidence root cause
@@ -177,13 +177,13 @@ Rules:
 ## Recommended Recipient
 
 - `Local Fix` -> `implementation_engineer` when the bounded fix is in implementation-owned source or packaging
-- `Local Fix` -> `api_e2e_engineer` when the bounded fix is limited to repository-resident durable validation code or validation-report corrections added during API/E2E
+- `Local Fix` -> `api_e2e_engineer` when the bounded fix is limited to repository-resident durable coverage code or execution-coverage-report corrections added during API/E2E
 - `Design Impact` -> `solution_designer`
 - `Requirement Gap` -> `solution_designer`
 - `Unclear` -> `solution_designer`
 
 Routing note:
-- After a `Local Fix`, the updated implementation or durable validation should return through `code_reviewer` before API / E2E begins or resumes, or before delivery resumes.
+- After a `Local Fix`, the updated implementation or durable coverage should return through `code_reviewer` before API / E2E begins or resumes, or before delivery resumes.
 
 ## Residual Risks
 

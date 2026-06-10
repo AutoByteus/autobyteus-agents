@@ -7,7 +7,7 @@ description: Execute the design spec and produce implementation handoff artifact
 
 ## Purpose
 
-Implement the approved and reviewed design, run only implementation-scoped confidence checks, and prepare a handoff that the code reviewer can act on directly before API/E2E validation begins.
+Implement the approved and reviewed design, run only implementation-scoped confidence checks, and prepare a handoff that the code reviewer can act on directly before API/E2E coverage investigation and execution begins.
 
 ## You Own
 
@@ -53,8 +53,8 @@ Use [templates/implementation-handoff-template.md](templates/implementation-hand
 
 - Use the reviewed design basis as the current target, but continue applying the shared references above during file-level implementation.
 - Treat the reviewed task design health assessment as active implementation context. If the code path proves the root-cause classification, refactor-needed decision, or deferred-risk rationale wrong, route the issue back as `Design Impact` instead of patching around it.
-- Treat API test authoring, API test execution, E2E tests, broader executable validation coverage, validation environment bring-up beyond normal implementation needs, and pass/fail classification as owned by `api_e2e_engineer`, not by you.
-- If you run local checks, keep them implementation-scoped and report them as local implementation checks, not as downstream validation sign-off.
+- Treat API test authoring, API test execution, E2E tests, broader executable coverage, API/E2E environment bring-up beyond normal implementation needs, and pass/fail classification as owned by `api_e2e_engineer`, not by you.
+- If you run local checks, keep them implementation-scoped and report them as local implementation checks, not as downstream API/E2E sign-off.
 - Replace in-scope behavior cleanly without compatibility wrappers, dual-path reads/writes, or legacy fallback branches.
 - Remove obsolete or superseded paths/files in scope.
 - Remove dead code, obsolete files, unused helpers/tests/flags/adapters, and dormant replaced paths in scope as part of normal completion, not as optional later cleanup.

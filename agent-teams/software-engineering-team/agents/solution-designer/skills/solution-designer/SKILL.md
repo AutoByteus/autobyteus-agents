@@ -140,9 +140,10 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 - Requirements must describe verifiable behavior, not only narrative intent.
 - Each requirement must have a stable `requirement_id`.
 - Each acceptance criterion must have a stable `acceptance_criteria_id`.
-- Expected outcomes must be concrete enough to drive downstream validation.
+- Expected outcomes must be concrete enough to drive downstream API/E2E coverage investigation and execution.
 - Keep requirement-to-use-case coverage explicit.
 - Keep acceptance-criteria-to-scenario intent explicit.
+- Acceptance criteria should give `api_e2e_engineer` enough current-behavior authority to decide whether existing durable coverage is still valid, stale, needs update, should be removed, or must be expanded. Do not make final test-suite edit decisions in the requirements doc; those belong in the downstream coverage investigation.
 - Do not move design forward until the requirements doc is `Design-ready` or `Refined`.
 
 ## Design Production Rules

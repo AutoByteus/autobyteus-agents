@@ -1,14 +1,14 @@
-# API, E2E, And Executable Validation Report
+# API/E2E Execution Coverage Report
 
 Write this artifact to a canonical file path in the assigned task workspace before any handoff message.
 
-Keep one canonical validation report path across reruns.
+Keep one canonical execution coverage report path across reruns.
 Do not create versioned copies by default.
 On round `>1`, recheck prior unresolved failures first, update the prior-failure resolution section, and then record the new round result.
 The latest round is authoritative; earlier rounds remain history.
-Validation may cover API, browser UI, native desktop UI, CLI, process/lifecycle, integration, or distributed checks depending on the real boundaries being proven.
+Execution may cover API, browser UI, native desktop UI, CLI, process/lifecycle, integration, or distributed checks depending on the real boundaries being proven.
 
-## Validation Round Meta
+## Execution Round Meta
 
 - Requirements Doc:
 - Investigation Notes:
@@ -16,7 +16,8 @@ Validation may cover API, browser UI, native desktop UI, CLI, process/lifecycle,
 - Design Review Report:
 - Implementation Handoff:
 - Code Review Report:
-- Current Validation Round:
+- Coverage Investigation:
+- Current Execution Round:
 - Trigger:
 - Prior Round Reviewed:
 - Latest Authoritative Round:
@@ -31,17 +32,34 @@ Round rules:
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |
 
-## Validation Basis
+## Execution Basis
+
+## Pre-Execution Coverage Investigation
+
+- Coverage investigation artifact:
+- Completed before final test execution, durable coverage edits, durable coverage removals, or failure rerouting: `No` / `Yes`
+- Existing durable coverage inventory reviewed: `No` / `Yes`
+- Existing tests treated as authority without current-requirement validity review: `No` / `Yes (invalid; explain)`
+- Stale or obsolete coverage found: `No` / `Yes`
+- New durable coverage needed: `No` / `Yes`
+- Reroute required from investigation: `No` / `Yes`
+- Notes:
+
+## Existing Durable Coverage Decision Summary
+
+| Path / Scenario | Validity Decision (`Still Valid`/`Needs Update`/`Stale / Remove`/`Replace`/`Out Of Scope`/`Unclear`) | Action Taken | Evidence |
+| --- | --- | --- | --- |
+|  |  |  |  |
 
 ## Compatibility / Legacy Scope Check
 
 - Reviewed requirements/design introduce, tolerate, or ambiguously describe backward compatibility in scope: `No` / `Yes (invalid upstream; reroute required)`
 - Compatibility-only or legacy-retention behavior observed in implementation: `No` / `Yes (invalid implementation scope; reroute required)`
-- Durable validation added or retained only for compatibility-only behavior: `No` / `Yes (invalid; explain)`
+- Durable coverage added or retained only for compatibility-only behavior: `No` / `Yes (invalid; explain)`
 - If compatibility-related invalid scope was observed, reroute classification used: `Local Fix` / `Design Impact` / `Requirement Gap` / `Unclear`
 - Upstream recipient notified:
 
-## Validation Surfaces / Modes
+## Execution Surfaces / Modes
 
 ## Platform / Runtime Targets
 
@@ -51,20 +69,27 @@ Round rules:
 
 ## Test Scope
 
-## Validation Setup / Environment
+## Execution Setup / Environment
 
 ## Tests Implemented Or Updated
 
-## Durable Validation Added To The Codebase
+## Tests Removed As Stale Or Obsolete
 
-- Repository-resident durable validation added or updated this round: `No` / `Yes`
+| Path / Scenario | Obsolete Assertion | Upstream Evidence | Replacement Coverage Or No-Replacement Rationale |
+| --- | --- | --- | --- |
+|  |  |  |  |
+
+## Durable Coverage Changed In The Codebase
+
+- Repository-resident durable coverage added, updated, or removed this round: `No` / `Yes`
 - Paths added or updated:
+- Paths removed:
 - If `Yes`, returned through `code_reviewer` before delivery: `No` / `Yes`
-- Post-validation code review artifact:
+- Post-API/E2E coverage code review artifact:
 
-## Other Validation Artifacts
+## Other Execution Artifacts
 
-## Temporary Validation Methods / Scaffolding
+## Temporary Execution Methods / Scaffolding
 
 ## Dependencies Mocked Or Emulated
 

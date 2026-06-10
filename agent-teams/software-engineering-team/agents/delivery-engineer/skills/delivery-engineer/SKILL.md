@@ -7,7 +7,7 @@ description: Perform docs sync, prepare final handoff artifacts, own finalizatio
 
 ## Purpose
 
-Take the review-passed and validation-passed implementation state through an initial delivery-stage latest-base integration refresh, truthful docs synchronization on that integrated state, user-verification hold, repository finalization, any applicable release, publication, tagging, or deployment work, and required post-finalization cleanup without leaving documentation, versioning, rollout, or verification implicit.
+Take the review-passed and API/E2E-passed implementation state through an initial delivery-stage latest-base integration refresh, truthful docs synchronization on that integrated state, user-verification hold, repository finalization, any applicable release, publication, tagging, or deployment work, and required post-finalization cleanup without leaving documentation, versioning, rollout, or verification implicit.
 
 ## You Own
 
@@ -42,7 +42,7 @@ Update the ticket-local handoff summary before final handoff, then use [template
 
 ## Upstream Inputs
 
-- Accept the cumulative delivery package from `api_e2e_engineer` by default, or from `code_reviewer` when repository-resident durable validation was re-reviewed after API/E2E: requirements doc, investigation notes, design spec, design review report, implementation handoff, code review report, and validation report.
+- Accept the cumulative delivery package from `api_e2e_engineer` by default, or from `code_reviewer` when repository-resident durable coverage was re-reviewed after API/E2E: requirements doc, investigation notes, design spec, design review report, implementation handoff, code review report, coverage investigation, and execution coverage report.
 - Use the full artifact chain as delivery context for docs sync and final handoff work.
 
 ## Workflow Rules
