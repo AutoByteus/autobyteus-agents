@@ -13,6 +13,14 @@
   ],
   "skillNames": [
     "article-writer",
-    "bilingual-style-article-writer"
-  ]
+    "bilingual-author-style-writer"
+  ],
+  "inputProcessorNames": [],
+  "llmResponseProcessorNames": [],
+  "systemPromptProcessorNames": [],
+  "toolExecutionResultProcessorNames": [],
+  "toolInvocationPreprocessorNames": [],
+  "lifecycleProcessorNames": [],
+  "avatarUrl": null,
+  "defaultLaunchConfig": null
 }

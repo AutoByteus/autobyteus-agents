@@ -1,19 +1,23 @@
 ---
 name: article-reviewer
-description: Review outline-first article packages for thesis strength, structure, style fit, fidelity, platform fit, and publication readiness.
+description: Review investigation-led article packages for understanding sufficiency, evidence support, thesis strength, structure, style fit, fidelity, platform fit, and publication readiness.
 ---
 
 # Article Reviewer
 
 Use this skill to critically review article packages produced by `article_writer`.
+The writer owns investigation and drafting; the reviewer owns the gate that decides whether the understanding basis, outline, and draft are publication-ready.
 
 ## Expected Inputs
 
 - `brief.md`
+- `understanding-notes.md`
+- `source-index.md`
+- `claim-evidence-ledger.md` when present
+- `style-profile-notes.md` when an author/style profile, rhetorical mode, or platform style is part of the task
 - `outline.md`
 - source article or source notes when the request is research-backed or cross-language
 - draft files (`article.md` or bilingual draft set)
-- optional style-profile notes when the requested voice is part of the task
 
 ## Produced Artifact
 
@@ -23,11 +27,12 @@ Use `templates/review-report-template.md` as the report skeleton.
 
 ## Required Shared Reads
 
-- Start by reading [writing-principles.md](../../../../shared/writing-principles.md).
+- Start by reading [writing-principles.md](writing-principles.md).
 - Use it as the canonical shared writing reference while producing or revising the review report.
 
 ## Review Modes
 
+- `Understanding Review`: source basis, investigation notes, and claim/evidence support before or alongside outline review
 - `Outline Review`: before full drafting
 - `Draft Review`: single-language article review
 - `Bilingual Review`: bilingual pair or cross-language conversion review
@@ -47,6 +52,8 @@ Identify:
 - opening stance when present
 - audience
 - one-sentence takeaway
+- understanding mode
+- allowed investigation methods
 - whether the request is original drafting, conversion, or bilingual drafting
 - whether the source basis is strong enough
 - whether the user has active hard constraints from prior feedback such as `too salesy`, `too detached`, `too repetitive`, `too indirect`, or `not accurate`
@@ -55,7 +62,61 @@ If the brief is missing enough information that the writer could not reasonably 
 
 If the source basis is too weak for the claimed article confidence or the cross-language request has no reliable source text, return `Source Gap`.
 
-### Step 2 - Review the outline first
+### Step 2 - Review the style package
+
+When style matching, author voice, platform packaging, or bilingual adaptation is in scope, check whether `style-profile-notes.md` exists and is specific enough for review.
+
+Verify that it records:
+
+- selected profile ID and profile file path
+- example file paths when examples were used
+- selected profile variant or stance mode
+- rhetorical mode
+- platform and language rules that matter
+- concrete voice, structure, rhythm, terminology, and ending constraints
+- forbidden style moves for this request
+- active user corrections and bootstrapping limitations
+- evidence constraints for contrastive or recommendation-style moves
+
+Return `Style Fit Gap` when the style basis is missing or too vague to review style fit.
+Return `Evidence Gap` when the style package authorizes a move that conflicts with the source basis or shared writing principles.
+
+### Step 3 - Review the understanding package
+
+Check whether `understanding-notes.md`, `source-index.md`, and `claim-evidence-ledger.md` when present show enough understanding for the article being attempted.
+
+For supplied-source articles, verify:
+
+- supplied materials are identified and actually used
+- source notes capture the relevant mechanism, argument, chronology, or evidence
+- limitations or missing inputs are explicit
+
+For workspace or source-code articles, verify:
+
+- relevant files, docs, tests, examples, logs, commands, or runtime observations are listed
+- mechanism claims in the planned article map back to concrete paths, commands, or observations
+- the writer did not infer architecture or behavior without inspecting the current project evidence
+
+For online, documentation, paper, or PDF-backed articles, verify:
+
+- material sources were read deeply enough for the claims being made
+- dates and uncertainty are explicit when recency matters
+- opposing evidence, caveats, or source limitations are not hidden
+
+For builder-experience articles, verify:
+
+- the user's practical sequence, firsthand observations, and ownership stance are preserved
+- the article does not turn firsthand material into detached generic commentary
+
+Return:
+
+- `Understanding Gap` when the writer has not understood the subject deeply enough for the article
+- `Source Gap` when key sources are missing, inaccessible, or not actually inspected
+- `Evidence Gap` when the article direction contains load-bearing claims not supported by the recorded evidence, including author-style patterns that create an unsupported contrast, opponent, common belief, recommendation, root-cause claim, or production observation
+
+Do not ask the writer to fix missing understanding only through prose edits.
+
+### Step 4 - Review the outline first
 
 Check whether the outline has:
 
@@ -64,14 +125,16 @@ Check whether the outline has:
 - section-level logic progression
 - an appropriate scope for the requested audience and platform
 - enough planned evidence, mechanism, examples, or support
+- a visible relationship to the understanding package
 - a conclusion that lands the intended takeaway
 - a style direction that matches the requested profile
+- visible alignment with `style-profile-notes.md` when style matching is in scope
 
 If the outline is not strong enough, return `Outline Revision`.
 
 Do not let the process advance to full drafting on a weak outline unless the user explicitly asked to skip that gate.
 
-### Step 3 - Review the full draft package
+### Step 5 - Review the full draft package
 
 For single-language articles, check:
 
@@ -81,11 +144,14 @@ For single-language articles, check:
 - thesis clarity or main-observation clarity
 - factual accuracy
 - mechanism accuracy
+- understanding fidelity
 - structure and transitions
 - section usefulness
 - evidence quality
+- claim/evidence alignment
 - paragraph rhythm
 - style fidelity
+- alignment with `style-profile-notes.md` when present
 - ownership stance when the article is builder-authored
 - platform fit
 - ending strength
@@ -102,22 +168,26 @@ For bilingual or conversion work, also check:
 Apply the shared writing principles before using narrower review taste or local preferences.
 
 If the draft is using the wrong Ryan variant, the wrong rhetorical mode, or the wrong ownership stance, treat that as a real structural problem rather than a cosmetic style note.
+If the draft introduces claims, mechanisms, chronology, or comparisons that are not present in the understanding package or supplied user constraints, treat that as an evidence or fidelity problem.
+If the draft uses `not X, but Y`, `common explanation`, `should`, or `the deeper problem is`, verify that the setup side is grounded. If it is not grounded, classify it as `Evidence Gap`, not merely a tone issue.
 
-### Step 4 - Prioritize findings correctly
+### Step 6 - Prioritize findings correctly
 
 Prioritize in this order:
 
 1. factual or mechanism inaccuracy
-2. opening stance or argument failure
-3. structural or outline weakness
-4. source fidelity or evidence weakness
-5. style-fit or ownership-stance failure
-6. platform-fit failure
-7. local clarity or line-edit issues
+2. insufficient understanding or missing source investigation
+3. unsupported load-bearing claims
+4. opening stance or argument failure
+5. structural or outline weakness
+6. source fidelity or evidence weakness
+7. style-fit or ownership-stance failure
+8. platform-fit failure
+9. local clarity or line-edit issues
 
 Do not overload the report with line edits when the real problem is structural.
 
-### Step 5 - Write `review-report.md`
+### Step 7 - Write `review-report.md`
 
 The report should include:
 
@@ -133,7 +203,9 @@ Use one of these decisions:
 
 - `Pass`
 - `Brief Gap`
+- `Understanding Gap`
 - `Source Gap`
+- `Evidence Gap`
 - `Outline Revision`
 - `Draft Revision`
 - `Style Fit Gap`
@@ -146,6 +218,7 @@ Use one of these decisions:
 - Re-review the full package after each revision.
 - Do not auto-pass on the first resubmission if the article still feels structurally weak.
 - If a style or fidelity issue materially changes the draft, review the whole argument again, not just the edited paragraph.
+- If the writer changes the investigation notes, source index, or claim/evidence ledger, re-check the outline and draft against the updated understanding package.
 - If a prior round flagged sales tone, detachment, repetition, or a too-generic mechanism, verify that the failure mode was actually removed.
 
 ## Reviewer Standards
@@ -154,4 +227,4 @@ Use one of these decisions:
 - Make findings concrete enough that the writer can act on them directly.
 - Preserve strong thesis and structure when they already work.
 - Prefer publication readiness over generic positivity.
-- Do not accept a draft that sounds more polished but remains inaccurate, wrongly framed, detached from the builder voice, or repetitive in the same places.
+- Do not accept a draft that sounds more polished but remains under-investigated, inaccurate, unsupported, wrongly framed, detached from the builder voice, or repetitive in the same places.

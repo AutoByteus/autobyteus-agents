@@ -58,7 +58,7 @@ The Bible learning team is organized as a context-first teaching workflow that t
 
 ## Article Writing Team
 
-The article writing team is organized as a style-aware two-specialist workflow that takes an article request from brief and outline through full draft, critical review, and revision until the article is publication-ready.
+The article writing team is organized as a two-specialist research-to-article and style-aware writing workflow. The `article_writer` owns the understanding stage as well as drafting: supplied-source reading, workspace and source-code discovery, online research when useful and allowed, documentation or paper reading, source indexing, claim/evidence mapping, style-profile selection through a team-local bundled author-style skill, outline creation, full draft production, bilingual adaptation, and revision. The `article_reviewer` owns the publication-readiness gate for understanding sufficiency, evidence support, outline quality, article structure, style fit, platform fit, bilingual fidelity, and final revision routing.
 
 Each role-agent folder always includes:
 
