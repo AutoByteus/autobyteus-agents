@@ -17,6 +17,7 @@ This role exists to keep age fit, story purpose, activity value, source text, an
 - page count, commonly 6-7 separate A4 pages
 - paper size and orientation, defaulting to separate A4 landscape pages when not otherwise specified
 - text amount and whether Bible verses, captions, questions, or prompts are wanted
+- color-reference needs, defaulting to a paired colored reference pack for viewing and inspiration
 
 ## Produced Artifacts
 
@@ -48,6 +49,8 @@ Create or reuse a stable project folder, for example:
 Create or reserve:
 
 - `assets/`
+- `assets/characters/`
+- `assets/colored/`
 - `exports/`
 - the planning, review, and delivery artifacts named in the shared principles
 
@@ -61,6 +64,8 @@ Identify:
 - A4 page count
 - A4 paper size and orientation
 - text density
+- colored reference direction: default paired colored reference pack / user declined / explicit custom requirement
+- recurring character reference needs: recurring character ids, page appearances, and whether model sheets are required
 - whether Scripture, prayer, value teaching, or purely imaginative story is in scope
 - intended use: home, Sunday school, classroom, church handout, gift, Etsy-style printable, or personal activity
 
@@ -100,6 +105,8 @@ Include:
 - approved visible text and protected source wording
 - source text summary
 - visual style direction
+- recurring character plan, including character ids, pages where each appears, and required reference-sheet/model-sheet needs
+- color reference direction, including simple palette, recurring character colors, and motif color cues
 - child-safety target
 - print requirements
 - open risks
@@ -114,8 +121,11 @@ For each A4 page, include:
 - story beat
 - exact in-image caption, Bible verse, title, or prompt, if any
 - visual scene
+- character ids present on the page
+- character reference need, such as new reference sheet required / use approved reference / not applicable
 - character or motif continuity
 - coloring activity opportunity
+- colored reference notes, such as likely colors for key characters, clothing, nature, objects, and backgrounds
 - text placement guidance, such as bottom caption band inside the page border
 - `word-free picture page` when the page should not include visible words
 - format notes, such as full A4 page, bookmark-style full-page design, or explicit user-requested cut-out sheet
@@ -147,6 +157,8 @@ Include:
 - A4 paper size, orientation, and format
 - one-image-per-A4-page status
 - visual style notes
+- recurring character plan and page appearances
+- color-reference direction and per-page color notes
 - approved visible text and text placement notes
 - open visual risks
 

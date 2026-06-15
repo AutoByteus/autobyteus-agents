@@ -15,6 +15,9 @@ The professional terms for this work include:
 - sequential story pages
 - line-art illustration
 - black-and-white coloring page
+- character reference sheet
+- model sheet
+- character design reference
 - Bible verse coloring page, when Scripture is in scope
 
 Choose the product format intentionally instead of treating every request as a generic illustration.
@@ -66,6 +69,14 @@ Choose the product format intentionally instead of treating every request as a g
 - If the final product is a coloring bookmark, use a tall narrow panel with a clear border and simple top-to-bottom reading flow.
 - If the final product is a page, keep enough margins for home printers.
 
+## 6A. Non-Scary Bible Story Adaptation
+
+- Bible scenes should look peaceful and child-safe even when the source story contains conflict.
+- Use calm symbolic staging: distant silhouettes, before-and-after moments, prayer, helpers, nature motifs, celebration, and gentle facial expressions.
+- Do not show frightening giants, angry close-ups, impact moments, injury, weapons as the visual focus, battlefield chaos, or scared children.
+- If a source story has a dangerous or violent moment, choose the nearest safe story beat that still preserves the meaning for children.
+- The visual mood should make children curious and comfortable, not tense.
+
 ## 6B. Self-Contained Generated Page Images
 
 - The approved page image is the complete child-facing page.
@@ -80,21 +91,39 @@ Positive prompt patterns:
 - `Create one A4 landscape black-and-white coloring page. The page contains a rounded border, a peaceful hillside scene with David and a sheep, and the exact bottom caption "David cared for the sheep." The caption is inside a simple bottom caption band within the border.`
 - `Create one A4 landscape word-free black-and-white coloring page. The page shows David choosing smooth stones by a stream, with large closed shapes, rounded doodle outlines, and generous white space.`
 
-## 6A. Non-Scary Bible Story Adaptation
+## 6C. Colored Reference Pack
 
-- Bible scenes should look peaceful and child-safe even when the source story contains conflict.
-- Use calm symbolic staging: distant silhouettes, before-and-after moments, prayer, helpers, nature motifs, celebration, and gentle facial expressions.
-- Do not show frightening giants, angry close-ups, impact moments, injury, weapons as the visual focus, battlefield chaos, or scared children.
-- If a source story has a dangerous or violent moment, choose the nearest safe story beat that still preserves the meaning for children.
-- The visual mood should make children curious and comfortable, not tense.
+- Default delivery includes a colored reference pack in addition to the black-and-white printable coloring pages.
+- The black-and-white page remains the printable source of truth. The colored reference is for viewing, inspiration, classroom display, parent guidance, or child color planning, not a replacement for the coloring sheet.
+- Plan the color direction during the brief and storyboard stages. Record a simple palette, recurring character colors, motif colors, and per-page color notes before image production.
+- Keep colors natural, cheerful, and easy for children to understand. Use colors that support the story or real-world object recognition, such as green leaves, blue sky, warm sun, brown wood, or stable clothing colors for recurring characters.
+- Do not over-prescribe every area. The colored reference shows one possible finished interpretation while still leaving children free to choose their own colors.
+- Produce the colored reference only from the approved or self-checked black-and-white page image by using `edit_image` with the black-and-white page as the input image.
+- The colored reference must preserve the same composition, border, line art, character identity, page text, and page order. It should add color fills only, without changing the story beat, adding new objects, rewriting text, or removing open coloring shapes.
+- Store colored references separately, usually under `assets/colored/`, with stable paired names such as `page001-colored.png`.
+- If the black-and-white source page changes after review, regenerate or edit the paired colored reference from the corrected black-and-white page.
+- Review and deliver colored references as a separate reference-only package, clearly labeled so they are not mistaken for the black-and-white print sheets.
+
+## 6D. Recurring Character Reference Sheets
+
+- Recurring main characters need an approved character reference sheet, also called a model sheet or character design reference, before story-page image generation begins.
+- The storyboard should identify recurring character ids, the pages where each character appears, and the required reference needs.
+- Store recurring character references separately, usually under `assets/characters/`, with stable names such as `character-shepherd-reference.png`.
+- Record each reference in `character-reference-index.md`, including character id, role, pages used, visual identity locks, color locks, source path, approval status, and affected page ids.
+- The reference image is the visual source of truth for that character. It should show the character clearly enough to preserve face shape, hair or head covering, clothing, age/body proportions, expression range, and key accessories.
+- For every page containing that character, use `edit_image` with the approved character reference image as an input/reference. Do not rely only on text descriptions for recurring main characters.
+- Page prompts should name the character id and reference path, then describe the new story beat while preserving the character identity from the reference sheet.
+- If the reference sheet changes, all black-and-white pages and colored references that use that character must be checked and regenerated or edited when needed.
+- A recurring character appearing on multiple pages without an approved reference image is a blocking production gap unless the user explicitly approves a one-off loose style.
 
 ## 7. One Image Per A4 Page Rule
 
-- Default final coloring-story output is a multi-page A4 PDF.
+- Default printable coloring-story output is a multi-page black-and-white A4 PDF.
 - Each story image must occupy its own full A4 page with safe margins and large colorable areas.
 - A request for `6 pictures`, `7 pictures`, or a short picture sequence means 6, 7, or the approved number of separate A4 pages, not a collage, grid, storyboard contact sheet, or several small panels inside one generated image.
 - Write one image prompt per storyboard page, each prompt describing one complete A4 page image for one story beat.
 - A combined overview/contact sheet is a preview artifact only when explicitly useful. The child-coloring assets remain separate full-page images.
+- The colored reference pack should mirror the same page count and order as the black-and-white pack unless the user explicitly asks for a smaller reference subset.
 - If a generated candidate compresses multiple story pages into one image, regenerate the affected pages as separate A4 assets.
 
 ## 8. A4 Print And Format Rules
@@ -108,53 +137,66 @@ Positive prompt patterns:
 - Individual bookmark designs should still be generated as separate A4-safe page assets unless the user explicitly asks for multiple cut-out bookmarks on one sheet.
 - Record orientation, page count, and whether the output is full-page sheets, bookmarks, half-pages, cards, or a mini booklet.
 - Keep important art and text inside safe margins.
-- Final printable exports should normally include a PDF plus source PNGs when available.
+- Final printable exports should normally include a black-and-white PDF plus source PNGs when available.
+- Final delivery should also include colored reference PNGs, and may include a colored reference PDF or contact sheet when useful for screen viewing or adult guidance.
 - Validate that the final files open, print area is not clipped, page order is correct, and text remains readable.
 
-## 9. Image Generation And Editing
+## 9. Shared Visual Quality Checklist
+
+Use this checklist in both illustrator self-check and child-experience review. The illustrator uses it before handoff; the reviewer applies it independently before approval.
+
+For every black-and-white printable page:
+
+- Story match: the image corresponds to the approved storyboard page id, shows one story beat, and does not compress multiple pages into one image unless explicitly approved.
+- Character and motif continuity: recurring characters match the approved character reference sheet/model sheet when one is in scope; animals, objects, motif language, line weight, and page density stay consistent across the sequence.
+- Age fit and child safety: the tone is warm, calm, inclusive, non-scary, and appropriate for the target age.
+- Coloring usability: the page has clear outlines, closed shapes, generous white space, manageable detail density, and large colorable areas.
+- Black-and-white print suitability: the asset is pure black-and-white line art for coloring, with no unwanted color fills, heavy gray shading, halftones, painterly texture, or dense hatching.
+- Approved text only: required text appears exactly where approved, is readable, and matches source wording. Word-free pages stay word-free.
+- No stray text: the image contains no page numbers, `page001`-style labels, prompt ids, asset ids, signatures, watermarks, random letters, UI text, or decorative pseudo-text unless that exact text is approved in the storyboard.
+- Print format: the page has the requested A4 orientation, safe margins, border behavior, readable text, and no clipping-prone layout.
+- Image integrity: faces, hands, animals, objects, letters, and borders are well formed enough that they do not distract from coloring.
+
+For every colored reference page:
+
+- Source pairing: the reference clearly derives from the matching approved black-and-white page.
+- Source preservation: composition, line art, border, visible text, character identity, page order, and story beat are unchanged.
+- Color direction: colors follow the approved palette, recurring character colors, motif colors, and per-page color notes.
+- Reference-only status: the asset is stored, logged, reviewed, and delivered as a colored reference, not as a printable coloring sheet replacement.
+- No new text or objects: the edit does not add, remove, or rewrite page content.
+
+Any failed item in this shared checklist is a blocking issue unless the storyboard records an explicit user-approved exception.
+
+## 10. Image Generation And Editing
 
 - `coloring_page_illustrator` owns image generation and image editing.
 - Use `generate_image` or `edit_image` for final visual assets.
 - Generate or edit one final coloring page image per approved storyboard page.
 - Make each generated page image self-contained, including any required caption or verse text inside the image itself.
+- Before generating pages with recurring main characters, create or approve the needed character reference sheets and record them in `character-reference-index.md`.
+- When a storyboard page includes a recurring character, use `edit_image` with the approved character reference image as an input/reference and log the reference path used for that page.
+- After each black-and-white page passes illustrator self-check, create its paired colored reference with `edit_image` using the black-and-white page as the input image.
+- The colored reference edit instruction should ask for gentle color fills while preserving exact black outlines, border, composition, and text.
 - Image calls are serial-only. Call exactly one `generate_image` or `edit_image`, wait for the result, inspect the actual output, log pass/fix/reject/block, then run `sleep 60` before the next image call.
 - For every image, record prompt, output path, page id, source or reference ids when present, visual self-check result, and cooldown status in `image-generation-log.md`.
-- A successful tool return is not enough. Inspect the image for:
-  - black-and-white coloring-page suitability
-  - age fit
-  - story match
-  - clear outlines and colorable shapes
-  - pure black-and-white line art when the product is a coloring page
-  - required text appears inside the image exactly as specified, or the page is a word-free picture page
-  - text is legible and spelled correctly
-  - gentle, child-safe content
-  - one scene/page only, unless the approved format explicitly asks for a multi-panel cut-out sheet
-  - correct page format and margins
+- A successful tool return is not enough. Inspect every black-and-white page and colored reference against the shared visual quality checklist before handoff.
 - Send only inspected candidate images that passed the illustrator self-check to review.
 
-## 10. Review Gate
+## 11. Review Gate
 
 - `child_experience_reviewer` must review actual candidate images before printable packaging.
 - The two primary review questions are:
   - Does each image correspond to the approved storyboard page it claims to represent?
-  - Are recurring characters, objects, and motifs visually consistent across the full page sequence?
-- The reviewer must inspect the actual image files side by side with the storyboard and style guide. Prompt text, logs, and file names are not enough.
+  - Are recurring characters, objects, and motifs visually consistent with the approved character reference sheets and across the full page sequence?
+- The reviewer must inspect the actual image files side by side with the storyboard, style guide, visual asset index, and character reference images. Prompt text, logs, and file names are not enough.
 - If the runtime cannot visually inspect the candidate images, the review status is `Blocked`, not `Approved`.
-- If recurring character consistency fails, the reviewer should name the strongest base/reference image and send concrete fix guidance to `coloring_page_illustrator`: use `edit_image` from that base/reference when the scene composition is otherwise usable, or regenerate with the locked character identity when the page is too far off.
-- Treat the following as blocking:
-  - illegible or misspelled text
-  - required page text absent from the generated or edited page image
-  - wrong Bible wording or missing citation when Scripture is used
-  - overly dense detail for the target age
-  - frightening, unsafe, shaming, or exclusionary content
-  - malformed hands, faces, animals, objects, or page borders that distract from coloring
-  - unwanted color fill in a black-and-white coloring asset
-  - story-image mismatch
-  - multiple story images compressed into one final page when the approved format is one image per A4 page
-  - image not suitable for the requested print format
-- Only reviewer-approved visuals may enter the final printable package.
+- If recurring character consistency fails, the reviewer should name the approved character reference image when available, or the strongest base/reference image when the reference is missing, and send concrete fix guidance to `coloring_page_illustrator`: use `edit_image` from that reference when the scene composition is otherwise usable, or regenerate with the locked character identity when the page is too far off.
+- If a recurring main character has no approved character reference image, block review and route the package back to `coloring_page_illustrator`.
+- Treat any failed item in the shared visual quality checklist as blocking unless the storyboard records an explicit user-approved exception.
+- Only reviewer-approved black-and-white visuals may enter the final black-and-white printable package.
+- Only reviewer-approved colored references may enter the separate colored reference package.
 
-## 11. Handoffs
+## 12. Handoffs
 
 - Handoffs must reference absolute paths to current artifact files.
 - Handoff messages should state approval status, open risks, and next expected action.
