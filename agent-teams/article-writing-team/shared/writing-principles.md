@@ -4,7 +4,7 @@ This is the shared writing reference for the article writing team.
 
 Use these principles for draft creation and review work.
 They are the shared writing language for this team.
-This is the canonical shared guidance file for article quality: thesis shape, structure, evidence expectations, style handling, bilingual fidelity, platform fit, and common failure patterns live here.
+This is the canonical shared guidance file for article quality: thesis shape, structure, evidence expectations, visual planning, style handling, bilingual fidelity, platform fit, and common failure patterns live here.
 
 ## Core Principles
 
@@ -54,6 +54,17 @@ This is the canonical shared guidance file for article quality: thesis shape, st
   - the evidence, mechanism, examples, or reasoning burden of each section
   - the intended ending move
 - Do not compensate for a weak outline with polished paragraphs.
+
+### 4A. Visuals Are Article Structure, Not Decoration
+
+- Visuals should be planned from the article's reasoning flow, not appended after the prose is finished.
+- A useful visual explains, structures, compares, evidences, or summarizes a nearby section claim, mechanism, sequence, boundary, or decision.
+- Decorative images, generic stock-like illustrations, and images that merely make the article look longer should be omitted.
+- Visuals obey the same factual standard as prose. Do not create fake UI states, fake charts, fake architecture, fake screenshots, fake benchmarks, or fake source material.
+- Captions are claims. Every caption should be supported by the understanding package and should not smuggle in new facts.
+- For technical articles, prefer content-bearing visuals such as architecture diagrams, workflow diagrams, sequence diagrams, concept maps, comparison matrices, timelines, annotated screenshots, code-path maps, artifact maps, or evidence charts when the source basis supports them.
+- Use generated bitmap images only when they genuinely serve the article's explanation, metaphor, or platform presentation. If a structured diagram would be clearer and more truthful, use a diagram plan instead of a decorative generated image.
+- If an article would be clearer with visuals, the outline or visual plan should show where they belong and what each one teaches the reader.
 
 ### 5. One Section, One Job
 
@@ -135,6 +146,7 @@ This is the canonical shared guidance file for article quality: thesis shape, st
   - outline integrity
   - logic continuity
   - evidence sufficiency
+  - visual usefulness and factuality when visuals are part of the article package
   - style fit
   - bilingual fidelity when relevant
   - platform fit
@@ -200,6 +212,10 @@ This is the canonical shared guidance file for article quality: thesis shape, st
 - repeated claims without new evidence
 - repeated summary sections or duplicated comparison tables
 - examples that do not actually prove the point
+- missing visual plan for a technical or long-form article that needs diagrams, screenshots, or other structural aids
+- visuals that are decorative, generic, or disconnected from the nearby section
+- generated visuals, captions, diagrams, screenshots, or charts that invent unsupported facts
+- visual placement that interrupts the reasoning flow instead of clarifying it
 - style mimicry without real argument control
 - detached analyst tone on a builder-owned article
 - vague system nouns that collapse real boundaries the user explicitly described
@@ -218,6 +234,9 @@ This is the canonical shared guidance file for article quality: thesis shape, st
 - If the article is thesis-first, what is the thesis, and where does it appear?
 - What does each section contribute to the thesis?
 - What evidence or mechanism makes the central claim believable?
+- Would any section become clearer with a visual, and what exactly would that visual explain?
+- Does every planned or inserted visual support a nearby claim, mechanism, sequence, comparison, boundary, or takeaway?
+- Are captions and visual details supported by the understanding package rather than invented for presentation?
 - Does the requested style affect only wording, or does it also affect structure and argument rhythm?
 - Is the article using the right ownership stance for who is speaking?
 - If the user supplied a more exact mechanism during revision, did the draft replace the earlier generic explanation?

@@ -8,6 +8,7 @@ description: Produce a publication-ready article package from investigation-led 
 Use this skill to produce article packages for the article writing team.
 The writer owns the investigation and understanding stage as well as the article draft.
 Do not add a separate research specialist to this team by default.
+The writer also owns visual planning because image placement is part of the article's structure and explanation flow.
 
 ## Produced Artifacts
 
@@ -17,9 +18,13 @@ Do not add a separate research specialist to this team by default.
 - `claim-evidence-ledger.md` when factual, technical, or interpretive claims need explicit support
 - `style-profile-notes.md` when an author/style profile, rhetorical mode, or platform style is part of the task
 - `outline.md`
+- `visual-plan.md` when the article would benefit from diagrams, screenshots, generated images, charts, or other content-bearing visuals
+- `visual-asset-index.md` when visual assets are sourced, generated, inserted, or intentionally omitted
 - `article.md` or bilingual draft set
 
 Use [templates/style-profile-notes-template.md](templates/style-profile-notes-template.md) for `style-profile-notes.md`.
+Use [templates/visual-plan-template.md](templates/visual-plan-template.md) for `visual-plan.md`.
+Use [templates/visual-asset-index-template.md](templates/visual-asset-index-template.md) for `visual-asset-index.md`.
 
 ## Required Shared Reads
 
@@ -51,6 +56,7 @@ Record:
 - depth target
 - understanding mode
 - allowed investigation methods
+- visual expectations, visual constraints, and whether image generation, sourced images, diagrams, screenshots, or no visuals are appropriate
 - source basis
 - active user constraints from revision feedback such as `too salesy`, `too detached`, `too repetitive`, `too indirect`, or `not accurate`
 - explicit limitations or bootstrapping notes when relevant
@@ -157,13 +163,41 @@ Include:
 - thesis or main observation, depending on the selected stance
 - section purpose
 - planned evidence, mechanism, or examples for each section
+- visual opportunities for sections where an image, diagram, screenshot, chart, or table would materially improve understanding
 - intended ending move
 
 If the user provides a practical sequence such as `we used X -> it worked in Y way -> it started to break at Z -> we changed to W -> we observed Q`, preserve that sequence as the section spine instead of rewriting it into a generic essay shape.
 
 Do not proceed to full drafting on a weak outline unless the user explicitly wants to skip that gate.
 
-### Step 6 - Pre-draft gate
+### Step 6 - Create `visual-plan.md` when visuals would help
+
+Create `visual-plan.md` when:
+
+- the user asks for images, diagrams, screenshots, or visual explanation
+- the article is technical, architectural, process-heavy, comparative, data-backed, or long enough that visuals would improve comprehension
+- the platform or audience expects visual pacing
+- the outline contains mechanisms, sequences, boundaries, comparisons, or abstractions that would be clearer visually
+
+Do not create visuals merely to decorate the article. If the article should remain text-only, record that decision briefly in the outline or brief.
+
+For each planned visual, record:
+
+- visual ID
+- target section and exact placement intent
+- reader problem the visual solves
+- visual type: architecture diagram, workflow diagram, sequence diagram, concept map, comparison matrix, timeline, annotated screenshot, code-path map, artifact map, evidence chart, generated illustration, or other
+- content that must appear
+- content that must not be invented
+- source or evidence anchor from the understanding package
+- caption draft
+- production method: generate, diagram, source existing asset, screenshot, table, or placeholder
+- asset path when already available
+- status: `planned`, `generated`, `inserted`, `omitted`, or `needs user input`
+
+When using image generation, keep prompts constrained by the understanding package. Do not ask the image model to invent real interfaces, metrics, architecture, people, logos, or source evidence. Prefer structured diagrams or annotated screenshots when truthfulness matters more than illustration.
+
+### Step 7 - Pre-draft gate
 
 Before writing the full draft, verify:
 
@@ -171,10 +205,12 @@ Before writing the full draft, verify:
 - any review findings against understanding, evidence, style basis, or structure have been resolved in the corresponding artifact
 - the selected author style is constrained by the shared writing principles, especially `Style Never Creates Facts`
 - style-profile notes and the outline agree on opening stance, profile variant, rhetorical mode, and forbidden moves
+- `visual-plan.md` exists when visuals are requested or clearly needed by the article shape
+- each planned visual is anchored to the understanding package and has a clear explanatory purpose
 
 If a gate fails, update the upstream package before drafting.
 
-### Step 7 - Draft the article package
+### Step 8 - Draft the article package
 
 - For single-language work, write `article.md`.
 - For bilingual or conversion work, write the full draft set needed for review.
@@ -185,12 +221,17 @@ If a gate fails, update the upstream package before drafting.
 - Treat author style as expression, not evidence. Do not add an opponent, common belief, industry claim, prior failure, or production observation only because it fits the selected profile.
 - Preserve exact mechanisms, terminology, and source-code boundaries when those distinctions matter to the article.
 - Prefer a clear reasoning chain over a dramatic hook when the article is explanatory, factual-technical, paper-like, or builder-report prose.
+- Insert planned visuals at the point where they clarify the surrounding section, not at the end as a gallery.
+- Include image references or stable placeholders, captions, and nearby prose that explain why the reader is seeing the visual.
+- Create or update `visual-asset-index.md` when assets are generated, sourced, inserted, or intentionally omitted.
+- If a planned visual cannot be truthfully produced, keep the placeholder explicit, mark the status in `visual-plan.md`, and do not replace it with a generic image.
 
-### Step 8 - Revise after review
+### Step 9 - Revise after review
 
 - Read the review report fully.
 - Fix structural issues before local polish.
 - If the reviewer reports `Understanding Gap`, `Source Gap`, or `Evidence Gap`, return to the understanding package before editing prose.
+- If the reviewer reports `Visual Plan Gap`, revise the outline, visual plan, captions, assets, or article placement before polishing prose.
 - Preserve the original audience and selected direction unless the review identifies that the direction itself is wrong.
 - When style fit is weak, revise rhythm, transitions, and structural moves, not just isolated words.
 - If the user or reviewer supplies a more exact mechanism, replace the earlier generic explanation immediately.
@@ -199,5 +240,5 @@ If a gate fails, update the upstream package before drafting.
 ## Handoff Rules
 
 - Send the outline package to `article_reviewer` before the full draft in the normal flow.
-- Include the full cumulative package in every reviewer handoff: brief, understanding notes, source index, claim/evidence ledger when present, style-profile notes when present, source basis, outline, draft files, and any material style notes.
+- Include the full cumulative package in every reviewer handoff: brief, understanding notes, source index, claim/evidence ledger when present, style-profile notes when present, visual plan when present, visual asset index when present, source basis, outline, draft files, and any material style notes.
 - On revision rounds, resend the full cumulative package plus the latest review report context.

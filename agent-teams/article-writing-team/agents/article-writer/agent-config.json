@@ -9,7 +9,9 @@
     "stop_background_process",
     "search_web",
     "read_url",
-    "send_message_to"
+    "send_message_to",
+    "generate_image",
+    "generate_speech"
   ],
   "skillNames": [
     "article-writer",

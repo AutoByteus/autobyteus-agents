@@ -7,6 +7,7 @@
 - Style profile:
 - Style profile notes:
 - Understanding mode:
+- Visual expectations:
 
 ## Artifacts Reviewed
 
@@ -16,6 +17,8 @@
 - `claim-evidence-ledger.md`:
 - `style-profile-notes.md`:
 - `outline.md`
+- `visual-plan.md`:
+- `visual-asset-index.md`:
 - source basis:
 - draft files:
 
@@ -34,6 +37,16 @@
 - Unsupported or over-strong claims:
 - Style-created claims, opponents, or contrasts:
 - Open source or investigation gaps:
+
+## Visual Plan Check
+
+- Visual strategy:
+- Needed visuals missing:
+- Visuals disconnected from nearby content:
+- Decorative or redundant visuals:
+- Unsupported visual details or captions:
+- Asset/source/generation gaps:
+- Article flow and placement:
 
 ## High-Priority Findings
 
@@ -64,6 +77,7 @@
 - `Source Gap`
 - `Evidence Gap`
 - `Outline Revision`
+- `Visual Plan Gap`
 - `Draft Revision`
 - `Style Fit Gap`
 - `Fidelity Issue`
