@@ -4,6 +4,10 @@ This repository contains reusable AutoByteus agent and agent-team definitions.
 
 ## Standalone Agents
 
+### Codex
+
+The Codex wrapper agent is a lightweight standalone agent that mirrors the Codex-style general assistant shown in the app: it keeps the runtime prompt intentionally thin, attaches the global `software-engineering-workflow-skill`, and exposes browser, media, image, speech, and device-emulation tools without adding repository shell/file tools.
+
 ### Pitch Practice Investor
 
 The pitch practice investor simulates a startup investor for spoken pitch rehearsal. It studies user-provided startup materials from the conversation, then runs a realistic mock investor pitch round with focused questions, constructive pressure, and optional feedback. It is intentionally lightweight and uses only the `speak` tool during live pitch practice.

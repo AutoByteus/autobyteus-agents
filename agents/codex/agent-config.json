@@ -1,0 +1,30 @@
+{
+  "toolNames": [
+    "close_tab",
+    "dom_snapshot",
+    "list_tabs",
+    "navigate_to",
+    "open_tab",
+    "read_page",
+    "run_script",
+    "screenshot",
+    "download_media",
+    "edit_image",
+    "generate_image",
+    "generate_speech",
+    "read_media_file",
+    "set_device_emulation",
+    "speak"
+  ],
+  "skillNames": [
+    "software-engineering-workflow-skill"
+  ],
+  "inputProcessorNames": [],
+  "llmResponseProcessorNames": [],
+  "systemPromptProcessorNames": [],
+  "toolExecutionResultProcessorNames": [],
+  "toolInvocationPreprocessorNames": [],
+  "lifecycleProcessorNames": [],
+  "avatarUrl": null,
+  "defaultLaunchConfig": null
+}
