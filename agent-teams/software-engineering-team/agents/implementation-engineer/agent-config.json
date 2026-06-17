@@ -17,7 +17,10 @@
     "open_tab",
     "read_page",
     "run_script",
-    "screenshot"
+    "screenshot",
+    "edit_image",
+    "generate_image",
+    "generate_speech"
   ],
   "skillNames": [
     "implementation-engineer"
@@ -28,5 +31,6 @@
   "toolExecutionResultProcessorNames": [],
   "toolInvocationPreprocessorNames": [],
   "lifecycleProcessorNames": [],
-  "avatarUrl": null
+  "avatarUrl": null,
+  "defaultLaunchConfig": null
 }
