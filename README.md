@@ -30,7 +30,7 @@ The software engineering team is the default one-off engineering entrypoint. It 
 
 ## Product Iteration Team
 
-The product iteration team is the PM-first entrypoint for continuous product improvement. It starts with `product_manager`, turns a product goal or delivery completion packet into a Product Feature Brief, routes that brief to `solution_designer` for normal Engineering Intake / Stage 0, and expects `delivery_engineer` to return a completion packet to `product_manager` after truthful delivery completion so the next feature can be proposed without bypassing gates.
+The product iteration team is the PM-first entrypoint for continuous product improvement. It starts with `product_manager`, turns a product goal or delivery completion packet into a Product Feature Brief, routes that brief to `solution_designer` for normal Engineering Intake / Stage 0, and expects `delivery_engineer` to return a acceptance packet to `product_manager` after truthful delivery completion so Product Manager can accept the delivery and propose the next feature without bypassing gates.
 
 ## Research Engineering Team
 

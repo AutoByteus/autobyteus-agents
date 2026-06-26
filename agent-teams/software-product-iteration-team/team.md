@@ -19,21 +19,21 @@ The normal Software Engineering Team remains the one-off engineering entrypoint 
 
 ## Product Loop
 
-`Product Manager -> Product Feature Brief -> solution_designer / Engineering Intake -> normal Stage 0-10 engineering delivery -> delivery_engineer completion packet -> Product Manager -> next Product Feature Brief`
+`Product Manager -> Product Feature Brief -> solution_designer / Engineering Intake -> normal Stage 0-10 engineering delivery -> delivery_engineer acceptance packet -> Product Manager acceptance -> next Product Feature Brief`
 
 ## Team Members
 
-- `product_manager`: owns product opportunity selection, initial and next-feature proposals, Product Feature Briefs, and the delivery-to-product iteration loop.
+- `product_manager`: owns product opportunity selection, initial and next-feature proposals, Product Feature Briefs, Product Manager acceptance, and the delivery-to-product iteration loop.
 - `solution_designer`: converts a concrete Product Feature Brief into requirements, investigation notes, and a design spec through normal engineering intake.
 - `architecture_reviewer`: reviews the design spec before implementation.
 - `implementation_engineer`: implements the reviewed design.
 - `code_reviewer`: reviews the implementation and any later durable coverage edits.
 - `api_e2e_engineer`: owns API/E2E and broader executable coverage investigation, updates, execution, and evidence.
-- `delivery_engineer`: completes docs sync, final handoff, release/deployment/finalization when applicable, and sends the Product Manager completion packet when product-iteration mode is active.
+- `delivery_engineer`: completes docs sync, final handoff, release/deployment/finalization when applicable, and sends the Product Manager acceptance packet when product-iteration mode is active.
 
 ## Gate Preservation
 
 Product iteration changes the entry coordinator and adds the post-delivery callback; it does not weaken engineering controls.
-Every feature still enters Engineering Intake / Stage 0 and must pass requirements, design, implementation, validation, review, docs sync, user verification, finalization, release/deployment, and cleanup gates when applicable.
+Every feature still enters Engineering Intake / Stage 0 and must pass requirements, design, implementation, validation, review, docs sync, Product Manager acceptance or user verification as applicable, finalization, release/deployment, and cleanup gates when applicable.
 Product Manager must not route directly to implementation or choose engineering shortcuts.
 Delivery Engineer must not choose the next feature.
