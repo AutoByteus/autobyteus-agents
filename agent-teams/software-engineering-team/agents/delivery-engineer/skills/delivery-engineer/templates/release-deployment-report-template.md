@@ -83,6 +83,20 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Remote branch cleanup result: `Not required` / `Completed` / `Blocked`
 - Blocker (if applicable):
 
+## Product Manager Iteration Callback
+
+- Product iteration mode: `Active` / `Inactive`
+- Product Manager recipient: `product_manager` / `N/A`
+- Notification status: `Not Required` / `Not Started` / `Sent` / `Pending` / `Blocked`
+- Completion packet source / payload path:
+- `send_message_to(product_manager)` sent timestamp:
+- Pending / blocker reason:
+- Required packet fields confirmed (`ticket name`, `delivered scope`, `verification summary`, `docs sync result`, `finalization/release/deployment state`, `residual risks/deferred items`, `relevant artifact paths`, `product implications/follow-up context`, `request for next feature`): `Yes` / `No`
+- Relevant artifact paths:
+- Product implications / follow-up context:
+- Next iteration owner: `product_manager`
+- Notes:
+
 ## Escalation / Reroute (Use Only If Final Handoff Cannot Complete)
 
 - Classification: `Local Fix` / `Design Impact` / `Requirement Gap` / `Unclear`

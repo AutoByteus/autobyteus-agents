@@ -26,7 +26,7 @@ The paper research assistant is a standalone agent for the common paper-reading 
 
 ## Software Engineering Team
 
-The software engineering team is organized as a practical delivery group that can take work from upstream solution design through implementation, API and E2E validation, review, docs sync, final handoff, release, and deployment.
+The software engineering team is organized as a practical delivery group that can take work from Product Manager next-feature proposal or upstream solution design through implementation, API and E2E validation, review, docs sync, final handoff, release, and deployment. When product iteration is active, `product_manager` owns the next Product Feature Brief and `delivery_engineer` returns a completion packet to `product_manager` after truthful delivery completion so the next feature can enter Engineering Intake / `solution_designer` without bypassing gates.
 
 ## Research Engineering Team
 

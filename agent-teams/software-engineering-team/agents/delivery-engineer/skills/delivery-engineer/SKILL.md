@@ -29,6 +29,7 @@ Take the review-passed and API/E2E-passed implementation state through an initia
 - ticket-worktree/local-ticket-branch cleanup when applicable
 - rollout verification
 - rollback visibility
+- Product Manager completion notification when product iteration is active
 
 ## Primary Outputs
 
@@ -67,6 +68,13 @@ Update the ticket-local handoff summary before final handoff, then use [template
 - When release notes are required, create or update `tickets/in-progress/<ticket-name>/release-notes.md` before user verification, then pass the archived `tickets/done/<ticket-name>/release-notes.md` artifact into the release/publication path when that path is applicable.
 - After repository finalization and any applicable release/publication/deployment work, clean up ticket worktrees and branches when they were created for this task and when the recorded finalization target makes that cleanup safe.
 - If any finalization, release, deployment, or cleanup step fails, keep final handoff blocked and record the blocker explicitly. Do not undo already-completed repository finalization.
+- Product-iteration mode is active when a task starts from a Product Manager brief or the user explicitly requests continuous product improvement. For unrelated one-off work, record Product Manager notification as `Not Required` when a report field is present.
+- When product-iteration mode is active, after the delivery state is truthful enough to report finalization/release/deployment/cleanup status, prepare a self-contained completion packet for `product_manager`.
+- Use `send_message_to(product_manager)` when the tool and team-local recipient are available. Include the completion packet in the message body and attach relevant artifact paths in `reference_files`.
+- If the packet is ready but `send_message_to` or the `product_manager` recipient is unavailable, persist the packet source/path in the handoff or release/deployment report and record status as `Pending`.
+- If finalization state, artifact evidence, or routing is not truthful enough to create a usable packet, record status as `Blocked` with the blocker. Only a successful `send_message_to(product_manager)` counts as `Sent`.
+- The completion packet must include ticket name, delivered scope, verification summary, docs sync result, finalization/release/deployment state, residual risks or deferred items, relevant artifact paths, product implications or follow-up context, and a request for Product Manager to propose the next feature.
+- Delivery Engineer must not choose the next feature. Product Manager owns next-feature proposal and routes the next Product Feature Brief back through Engineering Intake / `solution_designer`.
 
 ## Routing Rules
 
