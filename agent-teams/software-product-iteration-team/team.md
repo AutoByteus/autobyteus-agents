@@ -15,6 +15,7 @@ The normal Software Engineering Team remains the one-off engineering entrypoint 
 - Use `Product Iteration Team` when the user asks for a product loop, continuous iteration, Product Manager first, or an open-ended product goal that should become a sequence of delivered features.
 - Use `Software Engineering Team` when the user asks for a single concrete implementation, bug fix, refactor, or investigation and does not ask for continuous iteration.
 - If a run starts here, product-iteration mode is `Active` by default.
+- Routine user verification is not part of this team loop. Product Manager acceptance is the verification signal for each delivered feature unless Product Manager explicitly blocks on a user/product decision or an external side effect requires explicit user approval.
 - If a run starts in the normal Software Engineering Team, product-iteration mode is `Inactive` by default unless the user explicitly requests the loop or supplies a Product Manager feature brief.
 
 ## Product Loop

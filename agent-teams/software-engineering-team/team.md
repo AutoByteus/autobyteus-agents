@@ -42,6 +42,7 @@ Detailed operating rules, artifact standards, and send-back behavior belong in e
 ## Product Iteration Coordination
 
 - Product iteration is active when the run starts in the separate Product Iteration Team, when a task starts from a Product Manager brief, or when the user explicitly asks for continuous product improvement. Unrelated one-off work in this team records the Product Manager acceptance callback as `Not Required`.
+- In active product iteration, do not wait for routine user verification at Stage 10; Product Manager acceptance replaces that verification gate for the loop.
 - `product_manager` proposes the next feature; `solution_designer` remains the engineering intake/coordinator for refining a concrete brief into requirements and design.
 - After Delivery Engineer has truthful delivery completion/finalization status for an active product-iteration task, `delivery_engineer` sends a self-contained acceptance packet to `product_manager` with relevant artifact paths using `send_message_to`.
 - If `product_manager` cannot be messaged, Delivery Engineer records the packet path and acceptance callback status as `Pending` or `Blocked`; only a successful `send_message_to(product_manager)` counts as `Sent`.

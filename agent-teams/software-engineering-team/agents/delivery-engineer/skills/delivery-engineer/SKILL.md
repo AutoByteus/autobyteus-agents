@@ -49,6 +49,7 @@ Update the ticket-local handoff summary before final handoff, then use [template
 
 ## Workflow Rules
 
+- Product-iteration verification override: when product-iteration mode is active, do not pause for routine user verification. Treat `product_manager` as the verification/acceptance owner, send the Product Manager acceptance packet as soon as the handoff summary and evidence are truthful, and continue according to Product Manager's `Accepted` / `Needs Rework` / `Blocked` response. Ask the user only if Product Manager blocks on a user/product decision, an external side effect requires explicit user approval, or the user explicitly requested manual verification.
 - Start delivery by refreshing the branch state against the latest tracked remote base, then continue within the same role into docs sync, final handoff, repository finalization, and any applicable release or deployment work.
 - Keep docs sync focused on the final integrated, reviewed, and validated implementation state. Use that integrated state as primary truth and use upstream artifacts as supporting context.
 - Update long-lived docs to match final implemented behavior, promote durable design/runtime knowledge into canonical project docs, and record removed or replaced components so the docs do not preserve obsolete understanding.
