@@ -4,11 +4,12 @@ description: A lightweight self-operating software engineering team for upstream
 category: software-engineering
 ---
 
-This team handles a software change from initial investigation through final handoff.
-When product iteration is active, the team can also run an outer loop where `product_manager` proposes the next Product Feature Brief, the normal engineering workflow delivers it through the existing gates, and `delivery_engineer` returns completion context to `product_manager` for the next proposal.
+This team handles a one-off software change from initial investigation through final handoff.
+It is the normal engineering entrypoint: product iteration is inactive by default here unless the user explicitly asks for the loop or supplies a Product Manager feature brief.
+For PM-first continuous iteration, use the separate `Product Iteration Team`, where `product_manager` is the coordinator and each proposed feature routes back into this same engineering workflow.
 
 This team definition is intentionally lightweight.
-`solution_designer` is the coordinator entry specialist for this team.
+`solution_designer` is the coordinator entry specialist for this one-off engineering team.
 There is no separate standalone orchestrator role beyond the listed specialists.
 Each specialist does its own work, follows its own bundled agent and skill definition, and hands work to the next relevant specialist when ready.
 Detailed operating rules, artifact standards, and send-back behavior belong in each member's bundled `SKILL.md` and local templates rather than being duplicated across `team.md` and `agent.md`.
@@ -40,7 +41,7 @@ Detailed operating rules, artifact standards, and send-back behavior belong in e
 
 ## Product Iteration Coordination
 
-- Product iteration is active when a task starts from a Product Manager brief or the user explicitly asks for continuous product improvement. Unrelated one-off work can record the Product Manager callback as `Not Required`.
+- Product iteration is active when the run starts in the separate Product Iteration Team, when a task starts from a Product Manager brief, or when the user explicitly asks for continuous product improvement. Unrelated one-off work in this team records the Product Manager callback as `Not Required`.
 - `product_manager` proposes the next feature; `solution_designer` remains the engineering intake/coordinator for refining a concrete brief into requirements and design.
 - After Delivery Engineer has truthful delivery completion/finalization status for an active product-iteration task, `delivery_engineer` sends a self-contained completion packet to `product_manager` with relevant artifact paths using `send_message_to`.
 - If `product_manager` cannot be messaged, Delivery Engineer records the packet path and callback status as `Pending` or `Blocked`; only a successful `send_message_to(product_manager)` counts as `Sent`.

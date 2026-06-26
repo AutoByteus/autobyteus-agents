@@ -26,7 +26,11 @@ The paper research assistant is a standalone agent for the common paper-reading 
 
 ## Software Engineering Team
 
-The software engineering team is organized as a practical delivery group that can take work from Product Manager next-feature proposal or upstream solution design through implementation, API and E2E validation, review, docs sync, final handoff, release, and deployment. When product iteration is active, `product_manager` owns the next Product Feature Brief and `delivery_engineer` returns a completion packet to `product_manager` after truthful delivery completion so the next feature can enter Engineering Intake / `solution_designer` without bypassing gates.
+The software engineering team is the default one-off engineering entrypoint. It starts with `solution_designer` and takes a concrete feature, bug fix, refactor, or investigation through implementation, API and E2E validation, review, docs sync, final handoff, release, and deployment. Product iteration is inactive by default here unless the user explicitly asks for the loop or supplies a Product Manager feature brief.
+
+## Product Iteration Team
+
+The product iteration team is the PM-first entrypoint for continuous product improvement. It starts with `product_manager`, turns a product goal or delivery completion packet into a Product Feature Brief, routes that brief to `solution_designer` for normal Engineering Intake / Stage 0, and expects `delivery_engineer` to return a completion packet to `product_manager` after truthful delivery completion so the next feature can be proposed without bypassing gates.
 
 ## Research Engineering Team
 
