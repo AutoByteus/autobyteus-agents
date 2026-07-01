@@ -1,0 +1,42 @@
+{
+  "coordinatorMemberName": "topic_research_coordinator",
+  "avatarUrl": null,
+  "members": [
+    {
+      "memberName": "topic_research_coordinator",
+      "ref": "topic-research-coordinator",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "perspective_miner",
+      "ref": "perspective-miner",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "expert_interviewer",
+      "ref": "expert-interviewer",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "outline_architect",
+      "ref": "outline-architect",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "cited_article_writer",
+      "ref": "cited-article-writer",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "article_polisher_verifier",
+      "ref": "article-polisher-verifier",
+      "refType": "agent",
+      "refScope": "team_local"
+    }
+  ]
+}
