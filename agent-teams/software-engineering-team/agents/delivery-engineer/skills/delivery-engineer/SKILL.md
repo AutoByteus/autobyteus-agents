@@ -20,7 +20,7 @@ Take the review-passed and API/E2E-passed implementation state through an initia
 - post-integration check recording
 - ticket handoff summary
 - user-verification hold for one-off engineering runs
-- Product Manager acceptance request for product-iteration runs
+- Product Manager acceptance packet/callback for product-iteration runs
 - archived ticket-state transition
 - release notes
 - version bump or release commit work when applicable
@@ -62,8 +62,8 @@ Update the ticket-local handoff summary before final handoff, then use [template
 - Complete docs sync and update any delivery-owned artifacts only against that integrated and checked branch state.
 - Create or update the ticket-local `handoff-summary.md` only after the ticket branch reflects the latest integrated base intended for the applicable verification owner, and record the integration method, checked base revision, and post-integration check result there or in the delivery report.
 - For normal one-off engineering runs, wait for explicit user verification before moving the ticket to `done`, pushing, merging into the finalization target branch, or running release, publication, or deployment work. The allowed pre-verification exception is a local checkpoint commit plus the base-into-ticket integration refresh described above.
-- For product-iteration runs, do not ask the user for routine verification. Send the Product Manager acceptance packet when the handoff summary and evidence are truthful. Product Manager acceptance is the verification signal for continuing the loop; if Product Manager reports `Needs Rework` or `Blocked`, route the stated issue instead of finalizing or starting the next feature.
-- After the applicable verification signal, move the ticket folder to `tickets/done/<ticket-name>/` before the final commit when repository finalization is in scope.
+- For product-iteration runs, do not ask the user for routine verification. Send the Product Manager acceptance packet when the handoff summary and evidence are truthful. Product Manager acceptance status `Accepted` is the verification signal for continuing the loop and unlocking ticket archival/finalization; if Product Manager reports `Needs Rework` or `Blocked`, route the stated issue instead of finalizing or starting the next feature.
+- After the applicable verification signal (explicit user verification for one-off runs; Product Manager Acceptance Status = `Accepted` for product-iteration runs), move the ticket folder to `tickets/done/<ticket-name>/` before the final commit when repository finalization is in scope.
 - Use the recorded bootstrap context as the finalization target. Ask once if that target is missing.
 - After the applicable verification signal, refresh the finalization target from remote again. If it has advanced beyond the verified handoff state, do not blindly finalize an older integration state; first protect any delivery-owned uncommitted edits, then bring the ticket branch current again, rerun the required checks, and if the handoff state materially changes, update docs or other delivery-owned artifacts as needed, update the handoff summary, and obtain renewed verification from the applicable owner before the final merge.
 - When the repository uses ticket-branch finalization, run it in this order: commit the ticket branch, push the ticket branch, update the recorded finalization target branch from remote, merge the ticket branch into it, then push the updated target branch.
@@ -75,9 +75,9 @@ Update the ticket-local handoff summary before final handoff, then use [template
 - When product-iteration mode is active, after the delivery state is truthful enough to support product acceptance, prepare a self-contained Product Manager acceptance packet for `product_manager`; do not wait for routine user verification.
 - Use `send_message_to(product_manager)` when the tool and team-local recipient are available. Include the acceptance packet in the message body and attach relevant artifact paths in `reference_files`.
 - If the acceptance packet is ready but `send_message_to` or the `product_manager` recipient is unavailable, persist the acceptance packet source/path in the handoff or release/deployment report and record status as `Pending`.
-- If finalization state, artifact evidence, or routing is not truthful enough to create a usable acceptance packet, record status as `Blocked` with the blocker. Only a successful `send_message_to(product_manager)` counts as `Sent`.
+- If finalization state, artifact evidence, or routing is not truthful enough to create a usable acceptance packet, record status as `Blocked` with the blocker. Only a successful `send_message_to(product_manager)` counts as callback `Sent`. Acceptance Callback Status (`Sent` / `Pending` / `Blocked`) is separate from Product Manager Acceptance Status (`Requested` / `Accepted` / `Needs Rework` / `Blocked`); callback `Sent` never permits product-iteration ticket archival/finalization without Product Manager `Accepted`.
 - The acceptance packet must include ticket name, delivered scope, source Product Feature Brief/requirements reference when available, verification summary, docs sync result, finalization/release/deployment state or explicit not-yet-finalized status, residual risks or deferred items, relevant artifact paths, product implications or follow-up context, and a request for Product Manager to accept the delivery and, if accepted, propose the next feature.
-- Delivery Engineer must not choose the next feature or self-accept product-loop work. Product Manager owns product acceptance and next-feature proposal, then routes the next Product Feature Brief back through Engineering Intake / `solution_designer`.
+- Delivery Engineer must not choose the next feature or self-accept product-loop work. Product Manager owns product acceptance, Product Iteration Plan updates, outer Product Iteration Loop Status, and next-feature proposal, then routes the next Product Feature Brief back through Engineering Intake / `solution_designer`.
 
 ## Routing Rules
 

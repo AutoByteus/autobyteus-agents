@@ -30,7 +30,7 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 - Verification owner: `User` / `Product Manager`
 - Initial explicit user completion/verification received: `Yes` / `No` / `N/A - Product Manager acceptance`
-- Product Manager acceptance status: `N/A` / `Requested` / `Accepted` / `Needs Rework` / `Blocked`
+- Product Manager acceptance status: `N/A` / `Requested` / `Accepted` / `Needs Rework` / `Blocked` (`Requested` is pre-decision only; only `Accepted` unlocks product-iteration ticket archival/finalization)
 - Initial verification / acceptance reference:
 - Renewed verification required after later re-integration: `Yes` / `No`
 - Renewed verification received: `Yes` / `No` / `Not needed` / `Product Manager accepted`
@@ -88,16 +88,19 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 ## Product Manager Iteration Acceptance Callback
 
 - Product iteration mode: `Active` / `Inactive`
+- Product Iteration Loop Status: `Inactive` / `Active` / `Paused` / `Blocked` / `Stopped`
 - Product Manager recipient: `product_manager` / `N/A`
-- Acceptance request status: `Not Required` / `Not Started` / `Sent` / `Pending` / `Blocked`
-- Completion packet source / payload path:
+- Acceptance callback status: `Not Required` / `Not Started` / `Sent` / `Pending` / `Blocked`
+- Acceptance packet source / payload path:
 - `send_message_to(product_manager)` sent timestamp:
 - Pending / blocker reason:
 - Required packet fields confirmed (`ticket name`, `delivered scope`, `source brief/requirements reference`, `verification summary`, `docs sync result`, `finalization/release/deployment state or explicit not-yet-finalized status`, `residual risks/deferred items`, `relevant artifact paths`, `product implications/follow-up context`, `request for Product Manager acceptance and next feature if accepted`): `Yes` / `No`
 - Relevant artifact paths:
 - Product implications / follow-up context:
-- Product Manager acceptance status: `N/A` / `Requested` / `Accepted` / `Needs Rework` / `Blocked`
+- Product Manager acceptance status: `N/A` / `Requested` / `Accepted` / `Needs Rework` / `Blocked` (`Requested` is pre-decision only; only `Accepted` unlocks product-iteration ticket archival/finalization)
 - Next iteration owner: `product_manager`
+- Next iteration status: `N/A` / `Proposal Sent` / `Pending` / `Blocked`
+- Next Product Feature Brief path / message reference:
 - Notes:
 
 ## Escalation / Reroute (Use Only If Final Handoff Cannot Complete)
