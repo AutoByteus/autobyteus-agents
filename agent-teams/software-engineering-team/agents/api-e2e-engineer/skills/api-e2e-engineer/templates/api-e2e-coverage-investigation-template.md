@@ -31,11 +31,11 @@ Update this artifact whenever new evidence changes a test-validity or coverage d
 | --- | --- | --- |
 |  |  |  |
 
-| Component / Dependency | Working Directory | Start / Setup Command | Isolated Port / Resource | Readiness Check | Stop / Cleanup Method |
+| Component / Dependency | Working Directory | Start / Setup Command | Runtime / Resource Notes | Readiness Check | Stop / Cleanup Method |
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
 
-| Data / Fixture / Identity Need | Existing Project Mechanism Or Creation Method | Worktree Isolation | Cleanup / Retention |
+| Data / Fixture / Identity Need | Existing Project Mechanism Or Creation Method | Environment / Data-Safety Notes | Cleanup / Retention |
 | --- | --- | --- | --- |
 |  |  |  |  |
 
@@ -141,7 +141,7 @@ Score each applicable category from `0%` to `100%`. Use `N/A` only with a concre
 ## Broader Validation Decision (Mandatory)
 
 - Decision: `Required` / `Not Required` / `Blocked`
-- Selected execution mode (`Browser`/`Live API`/`User-Approved Project Desktop Harness`/`CLI`/`Lifecycle`/`Worker or Distributed`/`Other`/`None`):
+- Selected execution mode (`Browser`/`Live API`/`Project Desktop Validation`/`CLI`/`Lifecycle`/`Worker or Distributed`/`Other`/`None`):
 - Specific confidence gap or residual risk addressed:
 - Why the selected mode can materially improve confidence:
 - Expected confidence after the selected validation:
@@ -152,25 +152,18 @@ Score each applicable category from `0%` to `100%`. Use `N/A` only with a concre
 ## Desktop Application Validation Decision (When Applicable)
 
 - Desktop framework / shell:
-- README / development instruction paths consulted:
-- Renderer and supporting services can run independently in a browser: `Yes` / `No` / `Unknown`
-- Documented backend/server development command and readiness check:
-- Documented frontend/client development command, readiness check, and browser URL:
-- Web-equivalent behaviors selected for browser validation:
-- Desktop shell relevant to the changed requirements: `No (Not Applicable)` / `Yes`
-- Desktop-shell-specific behaviors not proven by browser validation:
-- Project-provided isolated desktop harness available: `Yes` / `No`
-- Explicit user approval to launch that harness: `No` / `Yes` / `Not Requested`
-- Harness isolation evidence (profile/data directory, single-instance identity, exact child-process ownership):
-- Electron executable will remain closed for browser validation: `Yes` / `No (invalid plan)`
-- Existing user-owned desktop processes will remain untouched: `Yes` / `No (invalid plan)`
-- Selected strategy (`Browser Renderer`/`Repository Tests`/`User-Approved Project Desktop Harness`/`Not Tested`/`Blocked`):
-- Confidence consequence and remaining shell risk:
+- Relevant README or development instructions:
+- Web-equivalent behavior:
+- Shell-specific or lifecycle behavior:
+- Chosen validation approach and why it fits the project:
+- Server/frontend setup when browser validation is used:
+- Effect on any already-running desktop application: `None` / explain
+- Behavior not directly proven and confidence consequence:
 
 ## Live Environment And Fixture Plan (Required When Broader Validation Runs)
 
 - Startup order and commands:
-- Worktree-specific ports, databases, storage, caches, and temporary paths:
+- Environment choices that materially affect the run:
 - Health / readiness checks:
 - Seed data / fixtures:
 - Test identities, authentication, permissions, or session state:

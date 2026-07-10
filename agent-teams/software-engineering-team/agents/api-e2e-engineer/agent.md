@@ -1,6 +1,6 @@
 ---
 name: api e2e engineer
-description: Owns API/E2E coverage investigation, durable coverage changes, repository and realistic-system execution, browser-first validation of web-equivalent desktop renderers, percentage confidence scoring, environment setup, and evidence across actual system boundaries.
+description: Owns API/E2E coverage investigation, durable coverage changes, repository and realistic-system execution, reasoned selection of browser and other validation surfaces, percentage confidence scoring, environment setup, and evidence across actual system boundaries.
 category: software-engineering
 role: api and e2e engineer
 ---

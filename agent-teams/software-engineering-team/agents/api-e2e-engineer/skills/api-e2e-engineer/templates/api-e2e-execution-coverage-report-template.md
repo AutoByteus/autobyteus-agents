@@ -6,7 +6,7 @@ Keep one canonical execution coverage report path across reruns.
 Do not create versioned copies by default.
 On round `>1`, recheck prior unresolved failures first, update the prior-failure resolution section, and then record the new round result.
 The latest round is authoritative; earlier rounds remain history.
-Execution may cover API, browser UI, a web-equivalent desktop renderer served by independently started backend/frontend processes, a user-approved project-provided isolated desktop harness, CLI, process/lifecycle, integration, or distributed checks depending on the real boundaries being proven.
+Execution may cover API, browser UI, a web-equivalent desktop renderer through the project's development workflow, project-supported desktop validation, CLI, process/lifecycle, integration, or distributed checks depending on the real boundaries being proven.
 
 ## Execution Round Meta
 
@@ -57,7 +57,7 @@ Round rules:
 
 ## Changed Boundary And Evidence Matrix
 
-| Scenario ID | Requirement / Acceptance-Criteria IDs | Changed Boundary | Execution Surface / Mode | Evidence Type (`Durable`/`Temporary`/`Live`/`Browser`/`Desktop Harness`) | Result (`Pass`/`Fail`/`Blocked`/`Not Tested`) | Evidence / Artifact |
+| Scenario ID | Requirement / Acceptance-Criteria IDs | Changed Boundary | Execution Surface / Mode | Evidence Type (`Durable`/`Temporary`/`Live`/`Browser`/`Desktop`) | Result (`Pass`/`Fail`/`Blocked`/`Not Tested`) | Evidence / Artifact |
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |
 
@@ -93,14 +93,14 @@ Record the score after repository execution and the final score after broader va
 ## Broader Validation Decision And Execution
 
 - Decision after repository execution: `Required` / `Not Required` / `Blocked`
-- Selected execution mode (`Browser`/`Live API`/`User-Approved Project Desktop Harness`/`CLI`/`Lifecycle`/`Worker or Distributed`/`Other`/`None`):
+- Selected execution mode (`Browser`/`Live API`/`Project Desktop Validation`/`CLI`/`Lifecycle`/`Worker or Distributed`/`Other`/`None`):
 - Confidence gap or residual risk targeted:
 - Expected confidence after broader validation:
 - Browser-specific decision and rationale:
 - If `Not Required`, direct evidence that made broader validation unnecessary:
 - If `Blocked`, exact unavailable dependency or access and attempted alternatives:
 - Startup order, commands, and readiness results:
-- Worktree-specific ports, databases, storage, caches, and temporary paths:
+- Environment choices that materially affected the run:
 - Seed data, fixtures, identities, authentication, permissions, or session state:
 
 | Scenario / Journey Step | Expected Observable Result | Actual Observable Result | DOM / Screenshot / Log / API / Process Evidence | Result |
@@ -110,22 +110,12 @@ Record the score after repository execution and the final score after broader va
 ## Desktop Application Validation (When Applicable)
 
 - Desktop framework / shell:
-- README / development instruction paths used:
-- Backend/server command, readiness result, and owned process:
-- Frontend/client command, readiness result, browser URL, and owned process:
-- Browser-tested web-equivalent behaviors and evidence:
-- Desktop shell relevant to the changed requirements: `No (Not Applicable)` / `Yes`
-- Desktop-shell behaviors intentionally excluded from browser claims:
-- Project-provided desktop harness used: `No` / `Yes`
-- Explicit user approval for desktop harness launch:
-- Harness command and isolation evidence:
-- Electron executable launched during browser validation: `No` / `Yes (invalid execution)`
-- Existing user-owned desktop processes observed: `No` / `Yes`
-- Existing user-owned desktop processes left untouched: `Yes` / `No (invalid execution)`
-- Process-name cleanup such as `pkill` or `killall` used: `No` / `Yes (invalid execution)`
-- Exact child process created and stopped by this run, when applicable:
-- Desktop-shell result: `Pass` / `Fail` / `Not Tested` / `Blocked` / `Not Applicable`
-- Remaining shell-specific risk and confidence consequence:
+- Relevant README or development instructions used:
+- Chosen validation approach and why it fit the project:
+- Browser-tested web-equivalent behavior and evidence:
+- Shell-specific or lifecycle behavior and evidence:
+- Effect on any already-running desktop application: `None` / explain
+- Behavior not directly proven and confidence consequence:
 
 ## Platform / Runtime Targets
 

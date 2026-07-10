@@ -1,6 +1,6 @@
 ---
 name: api-e2e-engineer
-description: Investigate current API/E2E coverage, maintain durable tests, execute repository and realistic system checks, use browser-first validation for web-equivalent desktop renderers, and classify residual risks and failures truthfully.
+description: Investigate current API/E2E coverage, maintain durable tests, execute repository and realistic system checks, choose appropriate browser or other validation surfaces, and classify residual risks and failures truthfully.
 ---
 
 # API/E2E Coverage Engineer Skill
@@ -8,7 +8,7 @@ description: Investigate current API/E2E coverage, maintain durable tests, execu
 ## Purpose
 
 Prove the reviewed implementation against the approved requirements through a staged, evidence-driven validation process.
-First establish what the project expects and how it is run, then evaluate and maintain durable coverage, execute the relevant repository checks, assess remaining risk and confidence, and use live-system, browser, lifecycle, distributed, or project-provided isolated desktop-harness validation only when it can materially improve the evidence.
+First establish what the project expects and how it is run, then evaluate and maintain durable coverage, execute the relevant repository checks, assess remaining risk and confidence, and choose additional validation only when it can materially improve the evidence.
 
 ## You Own
 
@@ -18,11 +18,10 @@ First establish what the project expects and how it is run, then evaluate and ma
 - coverage investigation before durable coverage changes or final execution
 - existing durable coverage inventory and validity decisions
 - API and E2E test implementation
-- browser validation of web-equivalent desktop renderers and client/server journeys when justified
-- desktop-shell, lifecycle, process, worker, and distributed evidence through repository tests or documented isolated harnesses when available
+- reasoned selection of browser, desktop, lifecycle, process, worker, and distributed validation when justified
 - API/E2E environment setup inside the assigned worktree
 - deterministic fixture, seed-data, account, permission, and authentication setup when required
-- worktree-safe process, port, storage, and temporary-state isolation
+- safe use and cleanup of the project's test environment
 - post-repository-test confidence and residual-risk assessment
 - broader-validation selection and confidence decisions
 - temporary execution scripts, harnesses, or probes when needed
@@ -44,7 +43,7 @@ Follow this order:
 4. Decide which durable tests remain valid and which must be added, updated, replaced, or removed.
 5. Implement the approved durable coverage changes and execute the relevant repository checks from narrowest to broader scope.
 6. Update the investigation with the repository evidence, confidence percentage, residual risks, and explicit broader-validation decision.
-7. When broader validation is required, start an isolated realistic environment, prepare only the needed data and identities, execute the selected journeys, capture evidence, and clean up owned resources.
+7. When broader validation is required, follow the project's development instructions, prepare the needed environment and data, execute the selected journeys, capture evidence, and clean up resources created for the run.
 8. Reassess final confidence, write the execution coverage report, and hand off or reroute the cumulative package.
 
 Do not begin with browser interaction merely because browser tools are available. Do not stop at repository tests merely because they pass. Let the changed boundary, evidence directness, and residual risk determine the next validation surface.
@@ -65,29 +64,21 @@ Do not begin with browser interaction merely because browser tools are available
 
 - Read the closest applicable repository instructions before choosing commands or starting services. Inspect relevant `AGENTS.md`, `README`, contribution/development docs, package manifests and scripts, test-runner configuration, container or Compose definitions, environment examples, and fixture or seed-data documentation.
 - Record the exact instruction paths and the commands or constraints learned from them. Prefer the project's documented execution path over inventing a parallel setup.
-- Identify the required frontend, backend, worker, queue, database, emulator, or external-dependency processes; their startup order; working directories; health/readiness checks; and shutdown method.
-- For desktop applications, determine whether the renderer and supporting services have a documented independent web-development mode. Record the frontend and backend start commands and which behavior is web-equivalent versus desktop-shell-specific.
+- Identify the components and setup needed for the selected validation, including how the project expects them to be started and stopped.
+- For desktop applications, determine whether the renderer and supporting services can run through the project's documented web-development path and which behavior is web-equivalent versus desktop-shell-specific.
 - Identify required environment variables, build steps, ports, storage locations, databases, caches, generated assets, accounts, permissions, authentication state, fixtures, and seed data.
-- Treat the assigned worktree as the execution boundary. Use worktree-specific ports, databases, data directories, caches, temporary paths, and process identifiers whenever shared defaults could collide with another task or checkout.
+- Work from the assigned worktree and choose project-appropriate setup that does not collide with or damage other active work.
 - Do not stop, reset, delete, or reuse a process or data store unless ownership is known. Clean up only resources created or explicitly assigned for this validation run.
 - Use existing project fixtures, seed commands, public setup APIs, or documented bootstrap paths where possible. Create the smallest deterministic setup that proves the required behavior; do not manipulate production or unrelated shared data.
 - If a required secret, account, device, service, or environment cannot be safely provided or emulated, record the exact missing dependency and the affected evidence rather than fabricating success.
 
 ## Desktop Application Validation Strategy
 
-- For Electron or another web-wrapped desktop application, separate the changed behavior into:
-  - web-equivalent renderer and client/server behavior that can run in a normal browser
-  - desktop-shell behavior such as preload or IPC bridges, window management, native menus, tray, deep links, file dialogs, updater, packaging, and OS integration
-  - process, startup, shutdown, restart, and recovery behavior
-- When browser validation is selected, do not launch Electron. Read the closest README and development instructions, then inspect package scripts and configuration as needed to find the documented backend/server and frontend/client development commands.
-- Start the required backend/server and frontend/client independently in the assigned worktree, using isolated ports, data, caches, and process ownership. Wait for their documented readiness checks, open the frontend URL with browser tools, and execute the requirement-linked journeys there.
-- Prefer the real supporting services and isolated test data when safe; record any mocks and the confidence gap they create. Stop only the exact server/client processes created by this validation run.
-- When the approved requirements and changed implementation are fully web-equivalent and browser validation exercises the real supporting services, treat the desktop shell as `Not Applicable`; browser evidence may satisfy the clean-confidence target without launching Electron.
-- Browser validation proves only the web boundary it exercises. Never claim that browser DOM interaction proves Electron shell, preload/IPC, packaging, native integration, or real desktop-window behavior.
-- Direct desktop-shell UI execution is outside the default strategy. Consider it only when a critical requirement is shell-specific, the project provides a documented harness with an isolated instance, profile/data directory, single-instance identity, and exact child-process ownership, and the user explicitly approves launching it. Otherwise record shell behavior as `Not Tested` or `Blocked`.
-- Treat every desktop application process already running before validation as user-owned. Never close, restart, attach to, focus, reuse, or send second-instance behavior to it. Never use process-name cleanup such as `pkill` or `killall`; stop only the exact child process created by the approved harness.
-- If the documented server/client browser path cannot be started safely, ask for the missing command or dependency or record `Blocked`; never fall back to launching or restarting Electron.
-- If a critical acceptance criterion depends on desktop-shell behavior and no safe harness or direct evidence exists, do not declare `Pass`. Ask for the missing validation capability or record the blocker.
+- For Electron or another web-wrapped desktop application, distinguish web-equivalent renderer and client/server behavior from shell-specific behavior such as preload or IPC bridges, window management, native integration, packaging, and lifecycle behavior.
+- For web-equivalent UI behavior, browser validation is often the most practical choice. Read the project's README or relevant development instructions and use its documented server and frontend workflow when appropriate.
+- Choose setup and commands from the project rather than imposing a universal port, process, or harness convention. Use the evidence that most directly proves the changed requirement.
+- Browser interaction proves the web boundary it exercises, not Electron-shell behavior. When shell-specific behavior matters, use relevant repository coverage or a project-supported validation path; otherwise state the remaining uncertainty or blocker.
+- Do not disrupt the user's running desktop application. If the required behavior cannot be validated safely, record it as `Not Tested` or `Blocked` rather than claiming success.
 
 ## Coverage Investigation Rules
 
@@ -155,7 +146,7 @@ Broader validation is normally required when material uncertainty remains around
 - user journeys, UI state transitions, routing, rendering, responsiveness, or accessibility
 - browser APIs, storage, cookies, authentication, sessions, permissions, uploads, downloads, streaming, or WebSockets
 - web-equivalent desktop renderer journeys that can be exercised independently in a browser
-- desktop-shell boundaries when the requirement depends on them and a safe project-provided harness is available
+- desktop-shell boundaries when the requirement depends on them and the project provides an appropriate validation path
 - frontend/backend contract integration, bundling, environment injection, proxying, or runtime configuration
 - cross-process sequencing, workers, queues, external dependencies, migrations, restart, recovery, or platform lifecycle
 - behavior that repository tests cover only through mocks or that previously failed only in a realistic environment
@@ -164,14 +155,14 @@ Browser validation is normally unnecessary for a backend-local change when valid
 
 ## Broader Validation Execution Rules
 
-- Write the environment and fixture plan before starting processes. Include commands, working directories, startup order, ports, health checks, data/storage isolation, seed or fixture steps, identities/permissions, evidence targets, and cleanup.
-- Start only the services required to prove the selected scenarios. Capture process identifiers and logs, and wait for explicit readiness before exercising behavior.
+- Before starting broader validation, determine the needed services, setup, data, evidence, and cleanup from the project's instructions. Record the choices that materially affect reproducibility or confidence.
+- Start the services required to prove the selected scenarios and confirm they are ready using the project's normal signals.
 - Seed only the minimum deterministic data needed. Record how the data was created and how it will be removed or isolated.
 - Execute the requirement-linked journey through the selected real surface. For browser work, prefer semantic DOM/state assertions and observable behavior; use screenshots as supporting evidence rather than the sole proof.
 - Correlate browser or client observations with relevant backend, process, or service logs when the behavior crosses those boundaries.
 - If the scenario belongs in the repository as durable browser/API/E2E coverage, add or update that coverage. Use a temporary browser journey or probe only when durable automation would not be appropriate for the codebase or scope, and explain why.
 - Reassess confidence after broader execution. Record what uncertainty was eliminated, what remains, and whether the result is `Pass`, `Fail`, or `Blocked`.
-- Stop owned processes, close owned browser state when appropriate, and remove or preserve temporary data and artifacts according to the recorded cleanup plan.
+- Clean up processes, browser state, data, and artifacts created for the validation as appropriate to the project.
 
 ## Special Validation Constraints
 
@@ -179,7 +170,7 @@ Browser validation is normally unnecessary for a backend-local change when valid
 - When persisted data changes shape, validate representative supported source data through the explicit migration boundary, target-schema validation, completion gating, and required interruption/recovery behavior. Validate current runtime behavior against the latest schema only.
 - Reroute any compatibility wrapper, dual-path read/write, request-time schema-upgrade shim, retained legacy branch, or fallback in normal runtime code. Do not misclassify an approved isolated migration as backward-compatible runtime behavior.
 - Do not create or preserve durable coverage whose only purpose is to protect invalid compatibility behavior.
-- For desktop shell, installer, updater, restart, migration, recovery, or process-lifecycle cases, use repository coverage or a safe documented harness and record platform/runtime specifics, version `from`/`to` when relevant, and relaunch or lifecycle evidence. Do not substitute browser-renderer evidence for these boundaries.
+- For desktop shell, installer, updater, restart, migration, recovery, or process-lifecycle cases, use the project's relevant coverage or validation path and record the evidence that matters to the changed behavior. Do not substitute browser-renderer evidence for these boundaries.
 - When behavior depends on workers, queues, multi-process or multi-node coordination, or external dependencies, stand up or emulate enough of the real environment to prove the material boundary when reasonable.
 - When a bug claim remains uncertain, create a focused probe or harness to reproduce or disprove it instead of guessing.
 
