@@ -40,7 +40,7 @@ Use [templates/design-review-report-template.md](templates/design-review-report-
 
 ## Example Guidance
 
-- When judging whether a design is concrete enough, compare its shape against [design-examples.md](../../../solution-designer/skills/solution-designer/references/design-examples.md) whenever examples would clarify the target shape.
+- When judging whether a design is concrete enough, compare its shape against [references/design-examples.md](references/design-examples.md) whenever examples would clarify the target shape.
 - Use that file as a benchmark for what a clear design explanation can look like across different cases, and for what bad practice looks like when boundaries become generic or fragmented.
 
 ## Review Rules

@@ -55,6 +55,7 @@ For API/E2E failure-origin review:
 
 - Start implementation review by reading [design-principles.md](design-principles.md).
 - Use it as the canonical design authority for source and structural review.
+- Consult [references/design-examples.md](references/design-examples.md) only when a concrete structural example is needed to judge the implementation or its alignment with the reviewed design.
 - For the later entry points, reread only the requirements, design, changed tests, relevant source paths, and prior findings needed for the bounded review.
 
 ## General Review Rules
