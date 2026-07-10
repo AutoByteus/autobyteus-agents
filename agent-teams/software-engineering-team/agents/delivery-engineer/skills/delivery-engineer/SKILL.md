@@ -7,7 +7,7 @@ description: Perform docs sync, prepare final handoff artifacts, own finalizatio
 
 ## Purpose
 
-Take the review-passed and API/E2E-passed implementation state through an initial delivery-stage latest-base integration refresh, truthful docs synchronization on that integrated state, user-verification hold, repository finalization, any applicable release, publication, tagging, or deployment work, and required post-finalization cleanup without leaving documentation, versioning, rollout, or verification implicit.
+Take the implementation-review-passed, API/E2E-passed, and proportionally test-reviewed state through an initial delivery-stage latest-base integration refresh, truthful docs synchronization on that integrated state, user-verification hold, repository finalization, any applicable release, publication, tagging, or deployment work, and required post-finalization cleanup without leaving documentation, versioning, rollout, or verification implicit.
 
 ## You Own
 
@@ -42,8 +42,10 @@ Update the ticket-local handoff summary before final handoff, then use [template
 
 ## Upstream Inputs
 
-- Accept the cumulative delivery package from `api_e2e_engineer` by default, or from `code_reviewer` when repository-resident durable coverage was re-reviewed after API/E2E: requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, design review report, implementation handoff, code review report, coverage investigation, and execution coverage report.
+- Accept the cumulative API/E2E-passed and test-reviewed delivery package from `code_reviewer`: requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, design review report, implementation handoff, code review report, coverage investigation, execution coverage report, and API/E2E test review report.
 - Use the full artifact chain as delivery context for docs sync and final handoff work.
+- Do not begin delivery when the latest execution coverage report does not record `Pass` or still contains an unresolved critical acceptance-criteria failure.
+- Do not begin delivery unless the latest `api-e2e-test-review-report.md` records `Pass` or `Not Applicable` with no unresolved findings.
 
 ## Workflow Rules
 

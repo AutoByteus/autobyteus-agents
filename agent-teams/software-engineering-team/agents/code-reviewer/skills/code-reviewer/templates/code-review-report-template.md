@@ -10,9 +10,13 @@ Do not create versioned copies by default.
 On round `>1`, recheck prior unresolved findings first, update the prior-findings resolution section, and then record the new round result.
 The latest round is authoritative; earlier rounds remain history.
 
+Use the full report for `Implementation Review`. For `API/E2E Failure Re-Review`, record the failure context in the review meta and scope, update only affected findings or score rationale when needed, classify the cause, and route it without repeating the full source audit or scorecard.
+
+Do not record successful API/E2E test-code review here. Use the separate `api-e2e-test-review-report.md` template for that result.
+
 ## Review Round Meta
 
-- Review Entry Point: `Implementation Review` / `Post-API/E2E Coverage-Code Re-Review`
+- Review Entry Point: `Implementation Review` / `API/E2E Failure Re-Review`
 - Requirements Doc Reviewed As Context:
 - Supplemental Solution Artifacts Reviewed As Context:
 - Current Review Round:
@@ -23,14 +27,16 @@ The latest round is authoritative; earlier rounds remain history.
 - Design Spec Reviewed As Context:
 - Design Review Report Reviewed As Context:
 - Implementation Handoff Reviewed As Context:
-- Execution Coverage Report Reviewed As Context:
-- API / E2E Execution Started Yet: `Yes` / `No`
-- Repository-Resident Durable Coverage Added, Updated, Or Removed After Prior Review: `Yes` / `No`
+- Coverage Investigation Reviewed (failure re-review entry point):
+- Execution Coverage Report Reviewed (failure re-review entry point):
+- Failing Scenario IDs:
+- Exact Failing Commands / Execution Mode:
+- Failure Evidence Paths:
 
 Round rules:
 - Reuse the same finding IDs across reruns for the same unresolved issues.
 - Create new finding IDs only for newly discovered review findings.
-- Update the scorecard on every review round; the latest round's scorecard is authoritative.
+- Update the full scorecard on every implementation-review round. Do not repeat it for a failure-re-review-only round.
 
 ## Round History
 
@@ -48,6 +54,7 @@ Round rules:
 
 ## Source File Size And Structure Audit (If Applicable)
 
+Required for implementation review only.
 Use this section for changed source implementation files only.
 Do not apply the source-file hard limit to unit, integration, API, or E2E test files.
 
@@ -57,8 +64,10 @@ Do not apply the source-file hard limit to unit, integration, API, or E2E test f
 
 ## Structural / Design Checks
 
-Use the mandatory structural checks below on every review. Do not replace them with a smaller ad hoc checklist.
+Required for implementation review only.
+Use the mandatory structural checks below on every implementation review. Do not replace them with a smaller ad hoc checklist.
 Treat the `Authoritative Boundary Rule` as one of the highest-signal structural checks in this section.
+Review test structure proportionately when test files are relevant. Do not apply implementation-source size thresholds to tests, and do not fail a coherent test suite merely because its files are large.
 
 Quick examples:
 - Good shape:
@@ -94,15 +103,17 @@ Quick examples:
 | No unjustified duplication of code / repeated structures in changed scope |  |  |  |
 | Patch-on-patch complexity control |  |  |  |
 | Dead/obsolete code cleanup completeness in changed scope |  |  |  |
-| Test quality is acceptable for the changed behavior |  |  |  |
-| Test maintainability is acceptable for the changed behavior |  |  |  |
-| Validation or delivery readiness for the next workflow stage |  |  |  |
+| Relevant test scenarios and assertions are clear and requirement-aligned |  |  |  |
+| Test fixtures/helpers are reasonably reusable and test structure remains coherent |  |  |  |
+| No stale, duplicated, or compatibility-only tests are retained in changed scope |  |  |  |
+| API/E2E readiness for the next workflow stage |  |  |  |
 | No backward-compatibility mechanisms (no compatibility wrappers/dual-path behavior) |  |  |  |
 | No legacy code retention for old behavior |  |  |  |
 | Latest-schema runtime and isolated data-migration boundary when persisted data changes |  |  |  |
 
 ## Review Scorecard (Mandatory)
 
+Mandatory for implementation-review rounds. Do not repeat it for a failure-re-review-only round.
 Record the scorecard even when the review fails.
 The scorecard explains the current quality level; it does not override the review decision.
 Use the canonical priority order below. The order is the review reasoning order, not an equal-weight category list.
@@ -139,14 +150,15 @@ Rules:
 - Mark resolved or obsolete earlier findings in the prior-findings resolution table instead of silently dropping them.
 - If dead/obsolete/legacy/compatibility issues exist, enumerate each one explicitly with the concrete file/path/item, evidence, and required removal or cleanup action.
 
-## Test Quality And Validation-Readiness Verdict
+## Test Structure And Validation-Readiness Verdict
 
 | Area | Check | Result (`Pass`/`Fail`) | Notes |
 | --- | --- | --- | --- |
-| API/E2E Readiness | Ready for the next workflow stage (`API / E2E` or `Delivery`) |  |  |
-| Tests | Test quality is acceptable |  |  |
-| Tests | Test maintainability is acceptable |  |  |
-| Tests | Review findings are clear enough for the next owner before API / E2E or delivery resumes |  |  |
+| API/E2E Readiness | Ready for API/E2E coverage investigation and execution |  |  |
+| Tests | Relevant test scenarios and assertions are clear |  |  |
+| Tests | Large test files remain coherently organized without source-size enforcement |  |  |
+| Tests | Fixtures/helpers avoid unjustified repetition and stale coverage |  |  |
+| Review Handoff | Review findings are clear enough for the next owner before API/E2E resumes |  |  |
 
 ## Legacy / Backward-Compatibility Verdict
 
@@ -177,27 +189,31 @@ Approved historical schema files confined to the migration subsystem are not cur
 ## Classification
 
 - `Pass` is not a classification. Record pass/fail/blocked in `Latest Authoritative Result`, then use a classification below only when the review does not pass cleanly.
-- `Local Fix`: bounded source or durable-coverage fix, no upstream design/requirement update needed
+- `Local Fix`: bounded implementation, packaging, test, fixture, environment, execution, or report correction with no upstream design/requirement update needed
 - `Design Impact`: structural issue in code or earlier design artifact was weak/wrong/incomplete
 - `Requirement Gap`: missing or ambiguous intended behavior
-- `Unclear`: cross-cutting or low-confidence root cause
+- `Unclear`: cross-cutting issue that cannot be classified from available evidence
 - Structural failures normally classify as `Design Impact`.
 
 ## Recommended Recipient
 
 - `Local Fix` -> `implementation_engineer` when the bounded fix is in implementation-owned source or packaging
-- `Local Fix` -> `api_e2e_engineer` when the bounded fix is limited to repository-resident durable coverage code or execution-coverage-report corrections added during API/E2E
+- `Local Fix` -> `api_e2e_engineer` when the bounded fix is an invalid/stale test, fixture, environment, execution, or report problem
 - `Design Impact` -> `solution_designer`
 - `Requirement Gap` -> `solution_designer`
 - `Unclear` -> `solution_designer`
 
 Routing note:
-- After a `Local Fix`, the updated implementation or durable coverage should return through `code_reviewer` before API / E2E begins or resumes, or before delivery resumes.
+- Implementation-owned fixes return through implementation review and API/E2E again.
+- API/E2E-owned fixes return to API/E2E execution; a later pass returns for the separate proportional test-code review before delivery.
 
 ## Residual Risks
 
 ## Latest Authoritative Result
 
 - Review Decision:
+- Review Entry Point:
 - Score Summary:
+- Failure Origin (when applicable):
+- Recommended Recipient (when applicable):
 - Notes:

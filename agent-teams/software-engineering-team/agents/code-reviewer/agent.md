@@ -1,6 +1,6 @@
 ---
 name: code reviewer
-description: Performs the engineering source review pass before API/E2E coverage investigation and execution begins, and re-reviews repository-resident durable coverage added, updated, or removed during API/E2E.
+description: Reviews implementation source before API/E2E, reviews successful API/E2E test-code changes proportionately, and re-reviews relevant source when API/E2E fails.
 category: software-engineering
 role: code reviewer
 ---

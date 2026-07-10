@@ -176,8 +176,8 @@ Record the score after repository execution and the final score after broader va
 - Repository-resident durable coverage added, updated, or removed this round: `No` / `Yes`
 - Paths added or updated:
 - Paths removed:
-- If `Yes`, returned through `code_reviewer` before delivery: `No` / `Yes`
-- Post-API/E2E coverage code review artifact:
+- Added or updated paths attached for proportional test-code review: `Yes` / `No` / `Not Applicable`
+- Diff or repository evidence supplied for removed paths:
 
 ## Other Execution Artifacts
 
@@ -235,4 +235,5 @@ Record the score after repository execution and the final score after broader va
 - Any final applicable confidence category below `90%`: `No` / `Yes` — list:
 - Live-system / browser decision:
 - Critical acceptance criteria lacking direct proof:
+- Required next recipient (`Pass` -> `code_reviewer` for proportional test-code review; `Fail` -> `code_reviewer` for focused source re-review; `Blocked` -> user request):
 - Notes:

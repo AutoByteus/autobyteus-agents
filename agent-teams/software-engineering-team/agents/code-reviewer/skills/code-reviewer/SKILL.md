@@ -1,75 +1,125 @@
 ---
 name: code-reviewer
-description: Review the implementation state before API/E2E coverage investigation and execution, then re-review repository-resident durable coverage added, updated, or removed during API/E2E.
+description: Review implementation source before API/E2E, review successful API/E2E test-code changes proportionately, and re-review relevant source when API/E2E fails.
 ---
 
 # Code Reviewer Skill
 
 ## Purpose
 
-Perform the engineering source review before API/E2E coverage investigation and execution, then re-review any repository-resident durable coverage code added, updated, or removed during API/E2E before delivery, and route findings to the correct specialist instead of treating every issue as an implementation bug.
+Provide three proportionate review entry points in one role:
+
+1. full implementation source and architecture review before API/E2E
+2. lightweight test-code review after successful API/E2E
+3. focused source re-review after failed API/E2E
+
+Keep their standards distinct. Implementation code receives the full structural review. Test code receives a fast structure-and-correctness review without source-file size thresholds. A runtime failure reopens only the relevant source-review area.
 
 ## You Own
 
-- review findings
-- review scorecard
-- review pass/fail decision
-- pre-API/E2E enforcement of the canonical shared design guidance and review-specific engineering checks
-- post-API/E2E re-review of repository-resident durable coverage code added, updated, or removed during API/E2E
+- implementation-review findings, scorecard, and pass/fail decision
+- pre-API/E2E enforcement of canonical design guidance
+- proportional review of test files added, updated, or removed during successful API/E2E
+- focused implementation-source re-review after an API/E2E failure
+- failure classification and routing
 
-## Primary Output
+## Primary Outputs
 
-Use [templates/code-review-report-template.md](templates/code-review-report-template.md) to produce `code-review-report.md`.
+- Use [templates/code-review-report-template.md](templates/code-review-report-template.md) to produce and update the canonical `code-review-report.md` for implementation review and focused API/E2E failure re-review.
+- Use [templates/api-e2e-test-review-report-template.md](templates/api-e2e-test-review-report-template.md) to produce and update the separate canonical `api-e2e-test-review-report.md` after a successful API/E2E run.
+- Never merge the proportional test-code review into the full source-review report or scorecard.
 
 ## Artifact Location Rule
 
-- Write the authoritative artifact file as `code-review-report.md` in the assigned task workspace/worktree before any handoff message.
+- Write the applicable report in the assigned task workspace/worktree before any handoff message.
+- Keep one canonical path for each report across reruns.
 - Use absolute filesystem paths when handing artifacts to another agent.
 
 ## Upstream Inputs
 
-- Accept the cumulative implementation package from `implementation_engineer`: requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, design review report, and implementation handoff.
-- Review against the full implementation artifact chain, not only the latest handoff summary.
-- Accept the cumulative coverage-updated package from `api_e2e_engineer` when repository-resident durable coverage was added, updated, or removed after the earlier review: requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, design review report, implementation handoff, code review report, coverage investigation, and execution coverage report.
-- Use the coverage investigation and execution coverage report as context for that re-review entry point, not as a replacement for reviewing the changed durable coverage code itself.
+For implementation review:
+
+- Accept requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, design review report, and implementation handoff from `implementation_engineer`.
+- Review against the complete implementation artifact chain, not only the handoff summary.
+
+For successful API/E2E test-code review:
+
+- Accept the cumulative passed package from `api_e2e_engineer`: the full upstream chain, code review report, coverage investigation, execution coverage report, and every added, updated, or removed durable test path.
+- If no durable test file changed, record `Not Applicable` in the separate test-review report and forward the passed package without repeating implementation review.
+
+For API/E2E failure re-review:
+
+- Accept the cumulative failure package from `api_e2e_engineer`: the full upstream chain, code review report, coverage investigation, execution coverage report, failing scenario IDs, exact commands, expected/observed behavior, and failure evidence.
+- Treat a failing test as evidence to classify, not automatic proof that the implementation is wrong.
 
 ## Required Shared Reads
 
-- Start by reading [design-principles.md](design-principles.md).
-- Use it as the canonical shared design reference while producing or revising the code review report. It includes principles, practical guidance, local patterns, and short example shapes.
+- Start implementation review by reading [design-principles.md](design-principles.md).
+- Use it as the canonical design authority for source and structural review.
+- For the later entry points, reread only the requirements, design, changed tests, relevant source paths, and prior findings needed for the bounded review.
+
+## General Review Rules
+
+- Review independently and record findings; do not implement source or test-code fixes while acting as reviewer.
+- Keep the successful-test review and failed-execution re-review as mutually exclusive entry points. A passed execution triggers proportional test-code review; a failed execution triggers focused failure re-review.
+- Preserve the complete cumulative artifact package through every reroute.
+
+## Implementation Review Rules
+
+- Use the full implementation sections and mandatory scorecard in [templates/code-review-report-template.md](templates/code-review-report-template.md).
+- Review independently against the full artifact chain, canonical design guidance, and approved supplemental artifacts.
+- Write findings without implementing fixes.
+- Treat earlier design artifacts as context, not immunity from review. Classify an inadequate design as `Design Impact`.
+- Review design integrity, API/E2E readiness, cleanup completeness, and changed implementation-source size or structural pressure.
+- Apply `>500` and `>220` source thresholds only to changed implementation-source files, never to tests, fixtures, or generated coverage files.
+- When persisted data changes shape, verify latest-schema-only normal runtime, isolated migration ownership, ordering, validation, completion gating, restart safety, and recovery.
+- Keep one canonical report, recheck prior unresolved findings first, and reuse finding IDs across rounds.
+
+## Successful API/E2E Test-Code Review Rules
+
+- Use only [templates/api-e2e-test-review-report-template.md](templates/api-e2e-test-review-report-template.md). Do not reopen or append this result to `code-review-report.md`.
+- Review only durable test files added, updated, or removed during API/E2E. Do not review temporary probes or execution artifacts as production source code.
+- Do not apply implementation-source line limits, delta thresholds, architecture score categories, or forced file splitting to tests.
+- Accept large test files when they cover one coherent behavior/surface and remain navigable.
+- Check proportionately that:
+  - scenario organization and names make intent clear
+  - assertions prove the intended requirement rather than incidental implementation details
+  - fixtures, setup, helpers, and data builders are reused when repetition is meaningful
+  - tests remain isolated and deterministic enough for their boundary
+  - unrelated scenarios are not collapsed into one unstructured file
+  - stale, duplicated, disabled-without-reason, or compatibility-only tests are not retained
+- If no durable test file changed, record `Not Applicable` and pass quickly.
+- Do not rerun the successful API/E2E workflow by default. Run a focused command only when a changed assertion cannot be judged from the diff and existing evidence.
+- Produce an explicit `Pass`, `Fail`, or `Not Applicable` test-review result with concise evidence. This is a real review result, but it is intentionally smaller and faster than implementation source review.
+
+## API/E2E Failure Re-Review Rules
+
+- Use the failure context in the review meta and scope, affected findings or score rationale when needed, classification/routing, and latest-result fields. Do not repeat the full source audit or scorecard.
+- Confirm only that the failing scenario still represents approved behavior; do not generally review the test suite.
+- Inspect the failure evidence and smallest relevant implementation path needed to classify the cause.
+- Decide whether the origin is an implementation defect, earlier review gap, runtime-only behavior, implementation change after review, invalid/stale test, fixture/environment/execution issue, design impact, requirement gap, or unclear.
+- When a real review gap exists, state the exact source evidence or invariant that should have been caught and update only the affected finding or score rationale.
+- When the failure was not reasonably detectable in source review, say so explicitly rather than treating every runtime failure as reviewer error.
+
+## Classification Rules
+
+- `Pass` is a review outcome, not a failure classification.
+- `Local Fix` -> `implementation_engineer` for a bounded implementation or packaging defect.
+- `Local Fix` -> `api_e2e_engineer` for a test-code, stale-test, fixture, environment, execution, or report problem.
+- `Design Impact` -> `solution_designer` for a structural issue or inadequate reviewed design.
+- `Requirement Gap` -> `solution_designer` for missing or ambiguous intended behavior.
+- `Unclear` -> `solution_designer` for a cross-cutting issue that cannot be classified from available evidence.
+- After an implementation-owned fix, require source review and API/E2E again.
+- After an API/E2E-owned fix, require API/E2E execution and test-code review again when durable tests changed.
 
 ## Handoff Rules
 
 - Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an existing `memberName` from the team roster.
-- Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
-- After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; rely on AutoByteus messages and events to activate or resume team members.
-- On pass from the implementation-review entry point, send the cumulative review-passed package to `api_e2e_engineer`: requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, design review report, implementation handoff, and code review report.
-- On pass from the API/E2E coverage-code re-review entry point, send the cumulative delivery package to `delivery_engineer`: requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, design review report, implementation handoff, code review report, coverage investigation, and execution coverage report.
-- Use absolute filesystem paths for every artifact in that handoff.
-- On `Local Fix` in implementation-owned code, route to `implementation_engineer`.
-- On `Local Fix` limited to repository-resident durable coverage code or execution-coverage-report corrections added during API/E2E, route to `api_e2e_engineer`.
-- On `Design Impact`, route to `solution_designer`.
-- On `Requirement Gap`, route to `solution_designer`.
-- On `Unclear`, route to `solution_designer`.
-
-## Classification Rules
-
-- `Pass` is the review outcome, not a failure classification.
-- Prefer the narrowest truthful failure classification. Structural failures normally route as `Design Impact`.
-- Choose the `Local Fix` recipient by ownership of the bounded fix: implementation-owned source changes go to `implementation_engineer`; API/E2E-authored durable coverage changes go to `api_e2e_engineer`.
-- On a non-pass result, send the code review report with the decision, classification, recommended recipient, finding IDs, and required updates before API/E2E can begin or resume.
-- After a `Local Fix`, expect the updated work to return to `code_reviewer` before API/E2E starts or resumes, or before delivery resumes.
-
-## Review Rules
-
-- Review the implementation independently against the full artifact chain, the canonical shared design guidance, and the mandatory checklist and scorecard in [templates/code-review-report-template.md](templates/code-review-report-template.md).
-- Use the template as the authoritative review shape; do not collapse the review into a smaller custom checklist or score summary.
-- Write findings in the code review report and route them to the owning specialist. Do not implement source or durable-coverage fixes while acting as reviewer.
-- Treat earlier design artifacts and investigation notes as context only. If independent review shows the earlier design basis was weak, incomplete, or wrong, classify `Design Impact`.
-- Review the implementation against every approved supplemental solution artifact that constrains observable behavior. Treat contradictions with approved UI/UX journeys, interaction states, contracts, or mappings as real findings rather than optional polish.
-- When the review entry point comes from `api_e2e_engineer`, keep the review scope centered on the changed repository-resident durable coverage, any directly related implementation deltas, and the coverage/execution evidence needed to judge those changes.
-- Review design integrity, API/E2E readiness, cleanup completeness, and changed source-file size or structure pressure as part of the same pre-API/E2E review, not as optional extras.
-- When persisted data changes shape, verify that the implementation has a separate migration-owned boundary and that normal business, API, domain, and repository paths accept only the latest schema. Historical types and transforms may remain only inside migration-owned files required for ordered upgrades, replay, recovery, or audit; treat any leakage into current runtime paths as a structural failure.
-- Verify migration ordering, restart-safety or idempotency, target-schema validation, completion gating, and partial-failure recovery against the reviewed design. Do not accept dual reads/writes or request-time old-shape fallback as migration behavior.
-- Verify that the implementation preserved the reviewed task design health assessment. If implementation evidence shows the root cause classification, refactor decision, or deferred-risk rationale was wrong, classify that as `Design Impact` unless the issue is a bounded local implementation mistake.
-- Keep one canonical code review report across reruns. Recheck prior unresolved findings first, reuse finding IDs for the same unresolved issues, and update the prior-findings resolution section before declaring the new result.
+- Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
+- After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; rely on AutoByteus messages and events.
+- On implementation-review pass, send the cumulative package and code review report to `api_e2e_engineer`.
+- On successful post-API/E2E test-code review, send the complete passed package, including `api-e2e-test-review-report.md`, to `delivery_engineer`.
+- On failed post-API/E2E test-code review, send the complete package and test-review report to the confirmed owner; normally this is `api_e2e_engineer` for a bounded test-code correction.
+- After API/E2E failure re-review, send the complete failure package and updated code review report to the confirmed owning specialist.
+- Use absolute filesystem paths and include all relevant artifacts in the `send_message_to` reference-files parameter when available.
+- For successful test-code review, attach every added or updated durable test file and include diff or repository evidence for removed test paths when available.

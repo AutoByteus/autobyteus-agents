@@ -17,16 +17,18 @@ Detailed operating rules, artifact standards, and send-back behavior belong in e
 - `solution_designer`: bootstraps the task context, investigates the request, defines scope, writes the three mandatory solution artifacts, creates task-specific supplemental solution artifacts when they improve precision, and acts as the reset point when downstream work exposes a requirement gap, design impact, or cross-cutting ambiguity.
 - `architecture_reviewer`: reviews the complete solution package and decides whether the design is ready for implementation.
 - `implementation_engineer`: delivers the code changes from the reviewed design, runs implementation-scoped local checks, and prepares the implementation handoff without owning API/E2E coverage investigation, execution, or environment setup.
-- `code_reviewer`: performs the source and architecture review pass before API/E2E coverage investigation and execution proceeds, and re-reviews any repository-resident durable coverage code added, updated, or removed later during API/E2E before delivery begins.
-- `api_e2e_engineer`: owns API, end-to-end, and broader executable coverage investigation, existing-test validity decisions, coverage, project-specific environment discovery, repository execution, percentage confidence scoring, targeted browser/live-validation decisions, realistic execution setup, and evidence after the implementation has passed code review; when it adds, updates, or removes repository-resident durable coverage, that updated state returns through `code_reviewer` before delivery.
-- `delivery_engineer`: first refreshes the ticket branch against the latest tracked remote state of the recorded base branch, records the integrated-state check result, then updates durable project documentation or records explicit no-impact against that integrated state, prepares the final handoff, waits for explicit user completion or verification before archival or repository finalization, and handles release or deployment work when it is in scope.
+- `code_reviewer`: performs the full source and architecture review before API/E2E, produces a separate lightweight report for durable test-code changes after successful API/E2E, and reopens only the affected implementation-review area when API/E2E reports a failure.
+- `api_e2e_engineer`: owns API, end-to-end, and broader executable coverage investigation, existing-test validity decisions, durable test changes, project-specific environment discovery, repository execution, percentage confidence scoring, targeted browser/live-validation decisions, realistic execution setup, cleanup, and evidence after implementation review passes; both successful and failed results return to `code_reviewer`, but through distinct proportional test-review and focused source-failure-review paths.
+- `delivery_engineer`: accepts an API/E2E-passed and proportionally test-reviewed package from `code_reviewer`, then refreshes the ticket branch against the latest tracked remote state of the recorded base branch, records the integrated-state check result, updates durable project documentation or records explicit no-impact, prepares the final handoff, waits for explicit user completion or verification before archival or repository finalization, and handles release or deployment work when it is in scope.
 
 ## Delivery Flow
 
-- Primary pass path: `solution_designer` -> `architecture_reviewer` -> `implementation_engineer` -> `code_reviewer` -> `api_e2e_engineer` -> `delivery_engineer`.
+- Primary pass path: `solution_designer` -> `architecture_reviewer` -> `implementation_engineer` -> `code_reviewer` (implementation source review) -> `api_e2e_engineer` -> `code_reviewer` (proportional test-code review) -> `delivery_engineer`.
 - `Design Impact`, `Requirement Gap`, and `Unclear` return to `solution_designer`; the revised solution package returns through `architecture_reviewer` before implementation resumes.
-- A bounded `Local Fix` returns to the specialist that owns the affected code: `implementation_engineer` for implementation-owned source or packaging, and `api_e2e_engineer` for API/E2E-owned durable coverage. Updated code returns through `code_reviewer` before the next stage resumes.
-- When `api_e2e_engineer` adds, updates, or removes repository-resident durable coverage after the initial code review, the cumulative package returns through `code_reviewer` before `delivery_engineer`.
+- A bounded `Local Fix` returns to the specialist that owns it: `implementation_engineer` for implementation-owned source or packaging, and `api_e2e_engineer` for invalid/stale tests, fixtures, environment setup, execution, or reporting.
+- API/E2E failures first return to `code_reviewer` for focused failure-origin analysis. Implementation-owned fixes then return through source review and API/E2E again; API/E2E-owned fixes return to API/E2E execution.
+- Successful API/E2E results return to `code_reviewer` for the separate proportional test-code review report. Failed results return to the same reviewer for focused source-failure analysis. Blocked results preserve their artifacts and ask the user for the exact missing dependency instead of handing off to another member.
+- A successful test-code review sends the complete package to `delivery_engineer`. A failed test-code review returns to the classified owner, normally `api_e2e_engineer` for a bounded test-code correction.
 
 ## Team Orchestration Authority
 
@@ -40,7 +42,7 @@ Detailed operating rules, artifact standards, and send-back behavior belong in e
 
 ## Artifact Package Rules
 
-- Every `send_message_to` handoff should include absolute filesystem paths for all still-relevant upstream artifacts produced so far, not only the latest local artifact.
+- Every `send_message_to` handoff should include absolute filesystem paths for all still-relevant upstream artifacts produced so far, not only the latest local artifact, and attach those artifacts through the reference-files parameter when that parameter is available.
 - Downstream specialists should be able to read the cumulative artifact package without having to rediscover earlier work from scratch.
 - The mandatory solution package is always the requirements doc, investigation notes, and design spec.
 - `solution_designer` may add task-specific supplemental solution artifacts when a separate document materially improves requirement or design precision. Examples include a UI/UX specification, user-journey or interaction-state specification, protocol/API contract, or data-mapping specification.
@@ -49,8 +51,12 @@ Detailed operating rules, artifact standards, and send-back behavior belong in e
 - Default cumulative package:
   - `architecture_reviewer`: mandatory solution package, plus all still-relevant supplemental solution artifacts
   - `implementation_engineer`: reviewed solution package, plus the design review report
-  - `code_reviewer`: reviewed solution package, design review report, and implementation handoff
+  - `code_reviewer` (implementation review): reviewed solution package, design review report, and implementation handoff
   - `api_e2e_engineer`: reviewed solution package, design review report, implementation handoff, and code review report
-  - `delivery_engineer`: reviewed solution package, design review report, implementation handoff, code review report, coverage investigation, and execution coverage report
+  - `code_reviewer` (successful API/E2E test-code review): API/E2E-passed cumulative package, coverage investigation, execution coverage report, and every added, updated, or removed durable test path
+  - `code_reviewer` (API/E2E failure re-review): cumulative failure package, coverage investigation, execution coverage report, failing scenario IDs, exact execution context, and failure evidence
+  - `delivery_engineer`: API/E2E-passed cumulative package, code review report, coverage investigation, execution coverage report, and separate API/E2E test review report
 - `api_e2e_engineer` must produce a coverage investigation artifact before final test execution, durable coverage edits, durable coverage removals, or failure rerouting. That artifact records whether existing API/E2E coverage is still valid, stale, needs update, should be removed, or must be replaced or expanded.
+- For successful API/E2E test-code review, `code_reviewer` writes the separate `api-e2e-test-review-report.md`, reviews only changed durable test code, applies test-specific structure and correctness rules, and does not repeat the source audit or architecture scorecard. Large coherent test files are acceptable; dirty, unclear, duplicated, brittle, or requirement-misaligned test code is not.
+- For API/E2E failure re-review, `code_reviewer` records failure context and updates only affected findings or score rationale in the existing `code-review-report.md`. It does not run the successful-test review path or repeat the full implementation scorecard.
 - When a reroute or rework artifact is produced, include that artifact too alongside the already-existing upstream package.

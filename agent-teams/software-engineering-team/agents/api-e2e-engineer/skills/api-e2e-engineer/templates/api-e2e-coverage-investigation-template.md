@@ -209,6 +209,7 @@ State the ordered plan for durable coverage changes, temporary probes, final com
 - Repository-Resident Durable Coverage Will Be Added / Updated / Removed: `No` / `Yes`
 - Post-repository confidence:
 - Live-system / browser validation decision:
+- Required next recipient (`Pass` -> `code_reviewer` for proportional test-code review; `Fail` -> `code_reviewer` for focused source re-review; `Blocked` -> user request):
 - Reroute Required Before Validation Execution: `No` / `Yes`
 - Recommended Recipient If Reroute Required:
 - Notes:

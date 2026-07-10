@@ -166,23 +166,27 @@ Browser validation is normally unnecessary for a backend-local change when valid
 - When behavior depends on workers, queues, multi-process or multi-node coordination, or external dependencies, stand up or emulate enough of the real environment to prove the material boundary when reasonable.
 - When a bug claim remains uncertain, create a focused probe or harness to reproduce or disprove it instead of guessing.
 
-## Durable Coverage Review And Failure Routing
+## Outcome Routing
 
 - Distinguish durable coverage changes, temporary executable checks, and blocked or infeasible residual scenarios in the execution report.
-- If repository-resident durable coverage is added, updated, or removed after the earlier code review, persist the investigation and execution report and return the cumulative package to `code_reviewer` before delivery.
-- Keep that follow-up code review limited to the changed durable coverage, directly related implementation deltas, and evidence unless findings require broader review.
+- After a successful API/E2E result, persist the investigation and execution report and send the cumulative package to `code_reviewer` for a separate, proportional review of durable test-code changes.
+- Record all added, updated, or removed durable coverage paths in the execution report. The code reviewer must produce a separate `api-e2e-test-review-report.md`; it must not append the result to the implementation `code-review-report.md` or apply the full source-review scorecard.
 - Reuse one canonical execution report across reruns. Recheck prior unresolved failures first and reuse scenario IDs for the same scenarios.
-- Route a bounded implementation defect as `Local Fix` to `implementation_engineer`.
-- Route a structural mismatch or weak reviewed design as `Design Impact` to `solution_designer`.
-- Route missing or ambiguous intended behavior as `Requirement Gap` to `solution_designer`.
-- Route genuinely cross-cutting findings that cannot be classified from the available evidence as `Unclear` to `solution_designer`.
+- On `Fail`, record the preliminary classification and recommended owner, then send the complete failure package to `code_reviewer` for focused failure re-review of the affected implementation path and earlier review decision.
+- On `Blocked`, preserve the investigation, execution report, logs, and temporary evidence, then ask the user for the exact missing environment, access, credential, service, device, data, decision, or other dependency. State what was attempted, what remains unavailable, why it blocks validation, and how work resumes after the user provides it.
+- On success, `code_reviewer` reviews only changed durable test code for proportional structure, clarity, determinism, reuse, and requirement alignment. It does not reassess the confidence calculation, environment, cleanup, execution result, or temporary artifacts, and it does not reject a coherent test file merely for being large.
+- On failure, `code_reviewer` performs focused source-failure triage rather than the successful-test review.
 
 ## Handoff Rules
 
 - Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an existing `memberName` from the team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; rely on AutoByteus messages and events.
-- On pass with no repository-resident durable coverage change after the earlier code review, send the cumulative delivery package to `delivery_engineer`.
-- On pass with repository-resident durable coverage added, updated, or removed, send the cumulative coverage-updated package to `code_reviewer`.
+- On `Pass`, send the cumulative package to `code_reviewer` for the separate proportional test-code review.
+- On `Fail`, send the cumulative evidence package to `code_reviewer` for focused failure re-review.
+- On `Blocked`, do not perform an inter-member handoff. Ask the user for the concrete missing dependency and stop after preserving the artifacts.
 - Include requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, design review report, implementation handoff, code review report, coverage investigation, and execution coverage report as absolute filesystem paths.
-- Include the result, final confidence, browser/live-system decision, residual risks, changed durable coverage paths, and expected next action in the handoff message.
+- Attach the complete cumulative package through the `send_message_to` reference-files parameter when available; do not rely only on paths in the message text.
+- For a `Fail` message to `code_reviewer`, include failing scenario and acceptance-criteria IDs, exact commands or execution mode, expected versus observed behavior, relevant logs/screenshots/artifacts, preliminary classification, and why focused source re-review is requested.
+- For a `Pass` message to `code_reviewer`, include the result, final confidence, browser/live-system decision, residual risks, every added, updated, or removed durable coverage path, and an explicit request for proportional test-code review.
+- Attach added or updated durable test files through the `send_message_to` reference-files parameter when available. Removed paths cannot be attached, so identify them explicitly and provide the relevant diff or repository evidence.
