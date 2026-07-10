@@ -114,12 +114,12 @@ For API/E2E failure re-review:
 
 ## Handoff Rules
 
-- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an existing `memberName` from the team roster.
+- Use `send_message_to` for every inter-member handoff or reroute, targeting an exact recipient name from the visible team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
-- After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; rely on AutoByteus messages and events.
+- After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
 - On implementation-review pass, send the cumulative package and code review report to `api_e2e_engineer`.
 - On successful post-API/E2E test-code review, send the complete passed package, including `api-e2e-test-review-report.md`, to `delivery_engineer`.
 - On failed post-API/E2E test-code review, send the complete package and test-review report to the confirmed owner; normally this is `api_e2e_engineer` for a bounded test-code correction.
 - After API/E2E failure re-review, send the complete failure package and updated code review report to the confirmed owning specialist.
-- Use absolute filesystem paths and include all relevant artifacts in the `send_message_to` reference-files parameter when available.
+- Use absolute filesystem paths and attach all relevant artifacts using the tool's reference-file input when available.
 - For successful test-code review, attach every added or updated durable test file and include diff or repository evidence for removed test paths when available.

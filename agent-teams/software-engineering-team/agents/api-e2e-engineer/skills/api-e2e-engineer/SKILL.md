@@ -179,14 +179,14 @@ Browser validation is normally unnecessary for a backend-local change when valid
 
 ## Handoff Rules
 
-- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an existing `memberName` from the team roster.
+- Use `send_message_to` for every inter-member handoff or reroute, targeting an exact recipient name from the visible team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
-- After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; rely on AutoByteus messages and events.
+- After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
 - On `Pass`, send the cumulative package to `code_reviewer` for the separate proportional test-code review.
 - On `Fail`, send the cumulative evidence package to `code_reviewer` for focused failure re-review.
 - On `Blocked`, do not perform an inter-member handoff. Ask the user for the concrete missing dependency and stop after preserving the artifacts.
 - Include requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, design review report, implementation handoff, code review report, coverage investigation, and execution coverage report as absolute filesystem paths.
-- Attach the complete cumulative package through the `send_message_to` reference-files parameter when available; do not rely only on paths in the message text.
+- Attach the complete cumulative package using the tool's reference-file input when available; do not rely only on paths in the message text.
 - For a `Fail` message to `code_reviewer`, include failing scenario and acceptance-criteria IDs, exact commands or execution mode, expected versus observed behavior, relevant logs/screenshots/artifacts, preliminary classification, and why focused source re-review is requested.
 - For a `Pass` message to `code_reviewer`, include the result, final confidence, browser/live-system decision, residual risks, every added, updated, or removed durable coverage path, and an explicit request for proportional test-code review.
-- Attach added or updated durable test files through the `send_message_to` reference-files parameter when available. Removed paths cannot be attached, so identify them explicitly and provide the relevant diff or repository evidence.
+- Attach added or updated durable test files using the tool's reference-file input when available. Removed paths cannot be attached, so identify them explicitly and provide the relevant diff or repository evidence.

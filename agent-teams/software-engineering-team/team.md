@@ -6,11 +6,9 @@ category: software-engineering
 
 This team handles a software change from initial investigation through final handoff.
 
-This team definition is intentionally lightweight.
-`solution_designer` is the coordinator entry specialist for this team.
-There is no separate standalone orchestrator role beyond the listed specialists.
-Each specialist does its own work, follows its own bundled agent and skill definition, and hands work to the next relevant specialist when ready.
-Detailed operating rules, artifact standards, and send-back behavior belong in each member's bundled `SKILL.md` and local templates rather than being duplicated across `team.md` and `agent.md`.
+`solution_designer` is the entry specialist for this team.
+There is no separate orchestrator role beyond the specialists shown in the team roster.
+Each specialist owns its stage, follows its role skill, and hands work to the next relevant specialist when ready.
 
 ## Team Members
 
@@ -30,19 +28,19 @@ Detailed operating rules, artifact standards, and send-back behavior belong in e
 - Successful API/E2E results return to `code_reviewer` for the separate proportional test-code review report. Failed results return to the same reviewer for focused source-failure analysis. Blocked results preserve their artifacts and ask the user for the exact missing dependency instead of handing off to another member.
 - A successful test-code review sends the complete package to `delivery_engineer`. A failed test-code review returns to the classified owner, normally `api_e2e_engineer` for a bounded test-code correction.
 
-## Team Orchestration Authority
+## Team Handoff Authority
 
-- AutoByteus is the sole orchestration authority while an agent is running as a member of this team.
-- Use AutoByteus `send_message_to` with an existing `memberName` from `team-config.json` for every inter-member workflow handoff, reroute, rework request, or stage transition.
+- The visible team roster defines the available specialists, and `send_message_to` is the only tool for inter-member workflow handoffs.
+- For every handoff, reroute, rework request, or stage transition, use `send_message_to` with the exact recipient name shown in the team roster.
 - Do not use Codex-native multi-agent or collaboration tools such as `spawn_agent`, `wait_agent`, `list_agents`, `send_message`, `followup_task`, `interrupt_agent`, or equivalents, even when those tools are available in the runtime.
-- Never create `/root/...` agents or any other native subagents to stand in for the declared AutoByteus team members.
-- `coordinatorMemberName` identifies the AutoByteus entry specialist; it does not authorize that member to construct or supervise a parallel native-agent team.
-- After a successful `send_message_to` handoff, finish the current stage and rely on AutoByteus messages and events to activate or resume the appropriate member. Do not poll another agent with native wait or list tools.
+- Never create `/root/...` agents or other native subagents to stand in for specialists already present in the visible team roster.
+- `solution_designer` is the entry specialist; that responsibility does not authorize it to construct or supervise a parallel native-agent team.
+- After a successful `send_message_to` handoff, finish the current stage. If more work is required later, act on the next incoming team message; do not poll another agent with native wait or list tools.
 - If `send_message_to` is unavailable or a handoff cannot be completed after a bounded retry, preserve the artifacts and report the handoff blocker. Do not fall back to native subagent creation.
 
 ## Artifact Package Rules
 
-- Every `send_message_to` handoff should include absolute filesystem paths for all still-relevant upstream artifacts produced so far, not only the latest local artifact, and attach those artifacts through the reference-files parameter when that parameter is available.
+- Every `send_message_to` handoff should include absolute filesystem paths for all still-relevant upstream artifacts produced so far, not only the latest local artifact, and attach those artifacts using the tool's reference-file input when available.
 - Downstream specialists should be able to read the cumulative artifact package without having to rediscover earlier work from scratch.
 - The mandatory solution package is always the requirements doc, investigation notes, and design spec.
 - `solution_designer` may add task-specific supplemental solution artifacts when a separate document materially improves requirement or design precision. Examples include a UI/UX specification, user-journey or interaction-state specification, protocol/API contract, or data-mapping specification.
