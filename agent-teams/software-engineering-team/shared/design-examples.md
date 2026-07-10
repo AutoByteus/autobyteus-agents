@@ -25,7 +25,7 @@ The examples are intentionally detailed. Preserve them rather than shortening or
 - [Example 4: Team Run Orchestration](#example-4-team-run-orchestration)
 - [Example 5: Workflow With State Machine](#example-5-workflow-with-state-machine)
 - [Example 6: Generic List Surface To Avoid](#example-6-generic-list-surface-to-avoid)
-- [Example 7: Latest-Schema Runtime With Isolated Data Migration](#example-7-latest-schema-runtime-with-isolated-data-migration)
+- [Example 7: Current-Schema Runtime With Required Data Migration](#example-7-current-schema-runtime-with-required-data-migration)
 - [Example 8: Schema Contraction With No Data Migration](#example-8-schema-contraction-with-no-data-migration)
 - [Common Bad-Practice Patterns](#common-bad-practice-patterns)
 - [How To Use These Examples](#how-to-use-these-examples)
@@ -577,7 +577,7 @@ Or require an explicit compound selector:
 The key rule is:
 do not let a generic list surface become a mixed-subject bag just because it is convenient today.
 
-## Example 7: Latest-Schema Runtime With Isolated Data Migration
+## Example 7: Current-Schema Runtime With Required Data Migration
 
 ### Situation
 
@@ -936,5 +936,5 @@ Better direction:
 - Keep off-spine concerns around the spine.
 - Keep interface boundaries singular and identity-explicit.
 - Distinguish thin public facades from deeper governing owners when both exist.
-- Decide whether persisted data needs direct use, discard/rebuild, or migration before designing migration machinery.
+- Choose `Directly Usable — No Migration`, `Discard or Rebuild`, or `Migration Required` before designing migration machinery.
 - Let files and any optional module groupings appear after the design story is already clear.
