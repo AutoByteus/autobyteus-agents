@@ -57,7 +57,7 @@ Use [templates/design-review-report-template.md](templates/design-review-report-
 
 ## Handoff Rules
 
-- Use `send_message_to` for every inter-member handoff or reroute, targeting an exact recipient name from the visible team roster.
+- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an exact recipient name from the visible team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
 - On pass, send the cumulative reviewed solution package to `implementation_engineer`: requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, and design review report.

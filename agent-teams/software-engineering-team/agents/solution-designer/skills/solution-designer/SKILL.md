@@ -184,7 +184,7 @@ Always produce all three mandatory solution artifacts:
 
 ## Handoff Rules
 
-- Use `send_message_to` for every inter-member handoff or reroute, targeting an exact recipient name from the visible team roster.
+- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an exact recipient name from the visible team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
 - Present the requirements doc and every supplement that defines intended user-visible behavior to the user for approval before treating them as locked design input.

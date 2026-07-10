@@ -179,7 +179,7 @@ Browser validation is normally unnecessary for a backend-local change when valid
 
 ## Handoff Rules
 
-- Use `send_message_to` for every inter-member handoff or reroute, targeting an exact recipient name from the visible team roster.
+- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an exact recipient name from the visible team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
 - On `Pass`, send the cumulative package to `code_reviewer` for the separate proportional test-code review.
