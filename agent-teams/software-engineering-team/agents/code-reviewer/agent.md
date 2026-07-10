@@ -1,6 +1,6 @@
 ---
 name: code reviewer
-description: Reviews implementation source before API/E2E, reviews successful API/E2E test-code changes proportionately, and re-reviews relevant source when API/E2E fails.
+description: Reviews implementation source before API/E2E, reviews successful API/E2E test-code changes proportionately, and performs focused failure-origin review when API/E2E fails.
 category: software-engineering
 role: code reviewer
 ---

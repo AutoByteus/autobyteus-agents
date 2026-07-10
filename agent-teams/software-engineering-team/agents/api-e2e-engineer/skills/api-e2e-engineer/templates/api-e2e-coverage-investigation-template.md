@@ -20,25 +20,6 @@ Update this artifact whenever new evidence changes a test-validity or coverage d
 - Prior Investigation Reviewed:
 - Latest Authoritative Investigation:
 
-## Project Execution Discovery
-
-- Assigned task worktree / workspace:
-- Project type and runtime stack:
-- Conflicting, missing, or unclear project instructions:
-- Required environment variables or secrets available: `Yes` / `No` / `N/A` (do not record secret values)
-
-| Instruction / Configuration Path | Authority / Purpose | Commands, Setup, Or Constraints Learned |
-| --- | --- | --- |
-|  |  |  |
-
-| Component / Dependency | Working Directory | Start / Setup Command | Runtime / Resource Notes | Readiness Check | Stop / Cleanup Method |
-| --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |
-
-| Data / Fixture / Identity Need | Existing Project Mechanism Or Creation Method | Environment / Data-Safety Notes | Cleanup / Retention |
-| --- | --- | --- | --- |
-|  |  |  |  |
-
 ## Current Requirement And Design Basis
 
 Summarize the current behavior that must be proven from the approved requirements, acceptance criteria, reviewed design, applicable supplemental solution artifacts, implementation handoff, and code review report.
@@ -66,6 +47,38 @@ Identify behavior added, changed, removed, or intentionally preserved.
 | Migration / persisted state |  |  |  |  |  |
 | Worker / queue / distributed coordination |  |  |  |  |  |
 | External integration |  |  |  |  |  |
+
+## Project Execution Discovery
+
+- Assigned task worktree / workspace:
+- Project type and runtime stack:
+- Conflicting, missing, or unclear project instructions:
+- Required environment variables or secrets available: `Yes` / `No` / `N/A` (do not record secret values)
+
+| Instruction / Configuration Path | Authority / Purpose | Commands, Setup, Or Constraints Learned |
+| --- | --- | --- |
+|  |  |  |
+
+| Component / Dependency | Working Directory | Start / Setup Command | Runtime / Resource Notes | Readiness Check | Stop / Cleanup Method |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+| Data / Fixture / Identity Need | Existing Project Mechanism Or Creation Method | Environment / Data-Safety Notes | Cleanup / Retention |
+| --- | --- | --- | --- |
+|  |  |  |  |
+
+## Persisted Data Migration Coverage Basis (When Applicable)
+
+- Persisted data shape changed: `No` / `Yes`
+- Supported source schema/version and target schema/version:
+- Approved migration trigger, owner, ordering, and completion gate:
+- Representative source-data fixtures or setup:
+- Target-schema validation scenario:
+- Post-migration latest-schema-only runtime scenario:
+- Interruption, restart-safety/idempotency, and recovery scenarios required by risk/design:
+- Mixed-version access prevention or cutover/deployment-sequencing scenario, when applicable:
+- Runtime compatibility scenarios intentionally excluded:
+- Upstream ambiguity or reroute required:
 
 ## Existing Durable Coverage Inventory
 
@@ -170,19 +183,6 @@ Score each applicable category from `0%` to `100%`. Use `N/A` only with a concre
 - Requirement-linked journeys or scenarios:
 - DOM, screenshot, log, API, process, or other evidence to capture:
 - Owned processes and temporary state to clean up:
-
-## Persisted Data Migration Coverage Basis (When Applicable)
-
-- Persisted data shape changed: `No` / `Yes`
-- Supported source schema/version and target schema/version:
-- Approved migration trigger, owner, ordering, and completion gate:
-- Representative source-data fixtures or setup:
-- Target-schema validation scenario:
-- Post-migration latest-schema-only runtime scenario:
-- Interruption, restart-safety/idempotency, and recovery scenarios required by risk/design:
-- Mixed-version access prevention or cutover/deployment-sequencing scenario, when applicable:
-- Runtime compatibility scenarios intentionally excluded:
-- Upstream ambiguity or reroute required:
 
 ## Temporary Executable Validation Plan
 

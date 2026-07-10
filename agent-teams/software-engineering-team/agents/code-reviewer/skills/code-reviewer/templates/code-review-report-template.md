@@ -10,13 +10,13 @@ Do not create versioned copies by default.
 On round `>1`, recheck prior unresolved findings first, update the prior-findings resolution section, and then record the new round result.
 The latest round is authoritative; earlier rounds remain history.
 
-Use the full report for `Implementation Review`. For `API/E2E Failure Re-Review`, record the failure context in the review meta and scope, update only affected findings or score rationale when needed, classify the cause, and route it without repeating the full source audit or scorecard.
+Use the full report for `Implementation Review`. For `API/E2E Failure-Origin Review`, record the failure context in the review meta and scope, update only affected findings or score rationale when needed, classify the cause, and route it without repeating the full source audit or scorecard.
 
 Do not record successful API/E2E test-code review here. Use the separate `api-e2e-test-review-report.md` template for that result.
 
 ## Review Round Meta
 
-- Review Entry Point: `Implementation Review` / `API/E2E Failure Re-Review`
+- Review Entry Point: `Implementation Review` / `API/E2E Failure-Origin Review`
 - Requirements Doc Reviewed As Context:
 - Supplemental Solution Artifacts Reviewed As Context:
 - Current Review Round:
@@ -27,8 +27,8 @@ Do not record successful API/E2E test-code review here. Use the separate `api-e2
 - Design Spec Reviewed As Context:
 - Design Review Report Reviewed As Context:
 - Implementation Handoff Reviewed As Context:
-- Coverage Investigation Reviewed (failure re-review entry point):
-- Execution Coverage Report Reviewed (failure re-review entry point):
+- Coverage Investigation Reviewed (failure-origin entry point):
+- Execution Coverage Report Reviewed (failure-origin entry point):
 - Failing Scenario IDs:
 - Exact Failing Commands / Execution Mode:
 - Failure Evidence Paths:
@@ -36,7 +36,7 @@ Do not record successful API/E2E test-code review here. Use the separate `api-e2
 Round rules:
 - Reuse the same finding IDs across reruns for the same unresolved issues.
 - Create new finding IDs only for newly discovered review findings.
-- Update the full scorecard on every implementation-review round. Do not repeat it for a failure-re-review-only round.
+- Update the full scorecard on every implementation-review round. Do not repeat it for a failure-origin-only round.
 
 ## Round History
 
@@ -110,7 +110,7 @@ Quick examples:
 
 ## Review Scorecard (Mandatory)
 
-Mandatory for implementation-review rounds. Do not repeat it for a failure-re-review-only round.
+Mandatory for implementation-review rounds. Do not repeat it for a failure-origin-only round.
 Record the scorecard even when the review fails.
 The scorecard explains the current quality level; it does not override the review decision.
 Use the canonical priority order below. The order is the review reasoning order, not an equal-weight category list.

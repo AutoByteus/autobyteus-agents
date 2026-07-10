@@ -18,7 +18,8 @@ First establish what the project expects and how it is run, then evaluate and ma
 - coverage investigation before durable coverage changes or final execution
 - existing durable coverage inventory and validity decisions
 - API and E2E test implementation
-- reasoned selection of browser, desktop, lifecycle, process, worker, and distributed validation when justified
+- browser-preferred validation of web-equivalent desktop behavior, with actual desktop execution reserved for shell-specific last-resort evidence
+- reasoned selection of lifecycle, process, worker, and distributed validation when justified
 - API/E2E environment setup inside the assigned worktree
 - deterministic fixture, seed-data, account, permission, and authentication setup when required
 - safe use and cleanup of the project's test environment
@@ -38,8 +39,8 @@ Use [templates/api-e2e-execution-coverage-report-template.md](templates/api-e2e-
 Follow this order:
 
 1. Read the complete upstream artifact package and identify the behavior that must be proven.
-2. Discover the project's authoritative run, test, environment, and fixture instructions in the assigned worktree.
-3. Classify the changed runtime surfaces and boundaries, inventory relevant existing coverage, and write the initial coverage investigation.
+2. Classify the changed runtime surfaces and boundaries.
+3. Discover the project's authoritative run, test, environment, and fixture instructions, inventory relevant existing coverage, and write the initial coverage investigation.
 4. Decide which durable tests remain valid and which must be added, updated, replaced, or removed.
 5. Implement the approved durable coverage changes and execute the relevant repository checks from narrowest to broader scope.
 6. Update the investigation with the repository evidence, confidence percentage, residual risks, and explicit broader-validation decision.
@@ -65,7 +66,6 @@ Do not begin with browser interaction merely because browser tools are available
 - Read the closest applicable repository instructions before choosing commands or starting services. Inspect relevant `AGENTS.md`, `README`, contribution/development docs, package manifests and scripts, test-runner configuration, container or Compose definitions, environment examples, and fixture or seed-data documentation.
 - Record the exact instruction paths and the commands or constraints learned from them. Prefer the project's documented execution path over inventing a parallel setup.
 - Identify the components and setup needed for the selected validation, including how the project expects them to be started and stopped.
-- For desktop applications, determine whether the renderer and supporting services can run through the project's documented web-development path and which behavior is web-equivalent versus desktop-shell-specific.
 - Identify required environment variables, build steps, ports, storage locations, databases, caches, generated assets, accounts, permissions, authentication state, fixtures, and seed data.
 - Work from the assigned worktree and choose project-appropriate setup that does not collide with or damage other active work.
 - Do not stop, reset, delete, or reuse a process or data store unless ownership is known. Clean up only resources created or explicitly assigned for this validation run.
@@ -146,7 +146,7 @@ Broader validation is normally required when material uncertainty remains around
 - user journeys, UI state transitions, routing, rendering, responsiveness, or accessibility
 - browser APIs, storage, cookies, authentication, sessions, permissions, uploads, downloads, streaming, or WebSockets
 - web-equivalent desktop renderer journeys that can be exercised independently in a browser
-- desktop-shell boundaries that materially affect confidence and cannot be proven through browser or repository evidence
+- desktop-shell boundaries that materially affect confidence and cannot be proven through repository or other focused evidence
 - frontend/backend contract integration, bundling, environment injection, proxying, or runtime configuration
 - cross-process sequencing, workers, queues, external dependencies, migrations, restart, recovery, or platform lifecycle
 - behavior that repository tests cover only through mocks or that previously failed only in a realistic environment
@@ -170,15 +170,14 @@ Browser validation is normally unnecessary for a backend-local change when valid
 - When persisted data changes shape, validate representative supported source data through the explicit migration boundary, target-schema validation, completion gating, and required interruption/recovery behavior. Validate current runtime behavior against the latest schema only.
 - Reroute any compatibility wrapper, dual-path read/write, request-time schema-upgrade shim, retained legacy branch, or fallback in normal runtime code. Do not misclassify an approved isolated migration as backward-compatible runtime behavior.
 - Do not create or preserve durable coverage whose only purpose is to protect invalid compatibility behavior.
-- For desktop shell, installer, updater, restart, migration, recovery, or process-lifecycle cases, use the least disruptive project-supported evidence that proves the changed behavior. Do not substitute browser-renderer evidence for shell-specific boundaries, and execute the actual desktop application only as a last resort.
 - When behavior depends on workers, queues, multi-process or multi-node coordination, or external dependencies, stand up or emulate enough of the real environment to prove the material boundary when reasonable.
 - When a bug claim remains uncertain, create a focused probe or harness to reproduce or disprove it instead of guessing.
 
 ## Outcome Routing
 
 - Distinguish durable coverage changes, temporary executable checks, and blocked or infeasible residual scenarios in the execution report.
-- On `Pass`, persist both reports, record every added, updated, or removed durable coverage path, and send the cumulative package to `code_reviewer`. The reviewer checks only changed durable test code for proportional structure, clarity, determinism, reuse, and requirement alignment, then writes the separate `api-e2e-test-review-report.md` without reopening the implementation scorecard.
-- On `Fail`, record the preliminary classification and recommended owner, then send the complete failure package to `code_reviewer` for focused re-review of the affected implementation path and earlier review decision, not successful-test review.
+- On `Pass`, persist both reports, record every added, updated, or removed durable coverage path, and send the cumulative package to `code_reviewer`. The reviewer checks only changed durable test code for proportional structure, clarity, determinism, reuse, and requirement alignment, or records `Not Applicable` when no durable test changed. The reviewer then writes the separate `api-e2e-test-review-report.md` without reopening the implementation scorecard.
+- On `Fail`, record the preliminary classification and recommended owner, then send the complete failure package to `code_reviewer` for focused failure-origin review, not successful-test review.
 - On `Blocked`, do not hand off to another member. Preserve the reports, logs, and temporary evidence, then ask the user for the exact missing dependency. State what was attempted, why validation cannot continue, and how work resumes.
 - Reuse one canonical execution report across reruns. Recheck prior unresolved failures first and reuse scenario IDs for the same scenarios.
 - The proportional test review does not reassess confidence, environment, cleanup, execution results, or temporary artifacts, and it does not reject a coherent test file merely for being large.
@@ -190,6 +189,6 @@ Browser validation is normally unnecessary for a backend-local change when valid
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
 - Include requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, design review report, implementation handoff, code review report, coverage investigation, and execution coverage report as absolute filesystem paths.
 - Attach the complete cumulative package using the tool's reference-file input when available; do not rely only on paths in the message text.
-- For a `Fail` message to `code_reviewer`, include failing scenario and acceptance-criteria IDs, exact commands or execution mode, expected versus observed behavior, relevant logs/screenshots/artifacts, preliminary classification, and why focused source re-review is requested.
+- For a `Fail` message to `code_reviewer`, include failing scenario and acceptance-criteria IDs, exact commands or execution mode, expected versus observed behavior, relevant logs/screenshots/artifacts, preliminary classification, and why focused failure-origin review is requested.
 - For a `Pass` message to `code_reviewer`, include the result, final confidence, broader-validation decision, residual risks, every added, updated, or removed durable coverage path, and an explicit request for proportional test-code review.
 - Attach added or updated durable test files using the tool's reference-file input when available. Removed paths cannot be attached, so identify them explicitly and provide the relevant diff or repository evidence.

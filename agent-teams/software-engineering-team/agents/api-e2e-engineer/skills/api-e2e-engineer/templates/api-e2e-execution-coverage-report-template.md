@@ -37,11 +37,7 @@ Round rules:
 
 - Coverage investigation artifact:
 - Investigation completed before durable coverage changes or final execution: `No` / `Yes`
-- Assigned task worktree / workspace:
-- Project type and runtime stack:
-- Required environment variables or secrets available: `Yes` / `No` / `N/A` (do not record secret values)
-- Authoritative instruction/configuration paths applied:
-- Changes from the investigation's coverage, environment, fixture, or execution plan:
+- Investigation plan followed: `Yes` / `No` — explain material deviations:
 - Existing coverage decisions revised during execution, with evidence:
 - Reroute required before or during execution: `No` / `Yes`
 - Notes:
@@ -61,7 +57,9 @@ Round rules:
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |
 
-## Repository Coverage Execution
+## Additional Repository Coverage Execution
+
+Treat the updated coverage investigation as the authoritative record of planned and completed repository checks. Record only commands added or rerun after its post-repository confidence and broader-validation decision.
 
 | Order | Command | Working Directory / Configuration | Boundary Or Scenario Proven | Result (`Pass`/`Fail`/`Blocked`) | Evidence / Output Path |
 | --- | --- | --- | --- | --- | --- |
@@ -69,9 +67,9 @@ Round rules:
 
 ## Validation Confidence Scorecard (Mandatory)
 
-Record the score after repository execution and the final score after broader validation. If broader validation did not run, repeat the post-repository score as final and explain why it was unnecessary.
+Carry forward the post-repository scores from the coverage investigation and record the final scores after broader validation. Do not repeat unchanged supporting rationale. If broader validation did not run, repeat the post-repository score as final and explain why it was unnecessary.
 
-| Confidence Category | Post-Repository Score (`0-100%`/`N/A`) | Final Score (`0-100%`/`N/A`) | Change | Final Supporting Evidence | Residual Uncertainty |
+| Confidence Category | Post-Repository Score (`0-100%`/`N/A`) | Final Score (`0-100%`/`N/A`) | Change | New / Final Supporting Evidence | Residual Uncertainty |
 | --- | --- | --- | --- | --- | --- |
 | Requirement and acceptance-criteria proof |  |  |  |  |  |
 | Changed-boundary execution directness |  |  |  |  |  |
@@ -92,11 +90,9 @@ Record the score after repository execution and the final score after broader va
 
 ## Broader Validation Decision And Execution
 
-- Decision after repository execution: `Required` / `Not Required` / `Blocked`
-- Selected execution mode (`Browser`/`Live API`/`Project Desktop Validation`/`CLI`/`Lifecycle`/`Worker or Distributed`/`Other`/`None`):
-- Confidence gap or residual risk targeted:
-- Expected confidence after broader validation:
-- Browser-specific decision and rationale:
+- Decision and selected execution mode from the coverage investigation:
+- Material deviation from the planned mode or rationale:
+- Confidence gap or residual risk actually addressed:
 - If `Not Required`, direct evidence that made broader validation unnecessary:
 - If `Blocked`, exact unavailable dependency or access and attempted alternatives:
 - Startup order, commands, and readiness results:
@@ -109,9 +105,7 @@ Record the score after repository execution and the final score after broader va
 
 ## Desktop Application Validation (When Applicable)
 
-- Desktop framework / shell:
-- Relevant README or development instructions used:
-- Chosen validation approach and why it fit the project:
+- Validation approach executed and any deviation from the investigation:
 - Browser-tested web-equivalent behavior and evidence:
 - Shell-specific or lifecycle behavior and evidence:
 - Effect on any already-running desktop application: `None` / explain
@@ -195,7 +189,7 @@ Record the score after repository execution and the final score after broader va
 
 ## Classification
 
-- `Local Fix`: the main issue is a bounded implementation correction.
+- `Local Fix`: the main issue is a bounded implementation, test, fixture, environment, execution, or report correction; identify the owning specialist.
 - `Design Impact`: the main issue is a weakness or mismatch in the reviewed design.
 - `Requirement Gap`: intended behavior or acceptance criteria are missing or ambiguous.
 - `Unclear`: the issue is cross-cutting or cannot yet be classified cleanly from the available evidence.
@@ -213,5 +207,5 @@ Record the score after repository execution and the final score after broader va
 - Any final applicable confidence category below `90%`: `No` / `Yes` — list:
 - Broader validation decision:
 - Critical acceptance criteria lacking direct proof:
-- Required next recipient (`Pass` -> `code_reviewer` for proportional test-code review; `Fail` -> `code_reviewer` for focused source re-review; `Blocked` -> user request):
+- Required next recipient (`Pass` -> `code_reviewer` for proportional test-code review; `Fail` -> `code_reviewer` for focused failure-origin review; `Blocked` -> user request):
 - Notes:
