@@ -99,6 +99,16 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 ## Environment Or Migration Notes
 
+- Persisted data migration applicable: `No` / `Yes`
+- Source schema/version and target schema/version:
+- Migration method, trigger, owner, and ordering:
+- Migration result and completion evidence:
+- Target-schema validation result:
+- Post-migration current-runtime verification:
+- Backup, rollback, quarantine, or operator-recovery result:
+- Mixed-version access prevention and cutover / maintenance / deployment-sequencing result:
+- Evidence that normal runtime remains latest-schema-only:
+
 ## Verification Checks
 
 ## Rollback Criteria

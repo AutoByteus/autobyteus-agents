@@ -1,6 +1,6 @@
 ---
 name: architecture-reviewer
-description: Review the design spec before implementation and route design findings to the correct owner.
+description: Review the complete solution package before implementation and route requirement, supplemental-artifact, and design findings to the correct owner.
 ---
 
 # Architecture Reviewer Skill
@@ -29,8 +29,9 @@ Use [templates/design-review-report-template.md](templates/design-review-report-
 
 ## Upstream Inputs
 
-- Accept the upstream design package from `solution_designer`: requirements doc, investigation notes, and design spec.
-- Treat the requirements doc and investigation notes as supporting context for review, not as substitutes for independent design judgment.
+- Accept the complete solution package from `solution_designer`: requirements doc, investigation notes, design spec, and every still-relevant supplemental solution artifact.
+- Treat the requirements doc, investigation notes, and supplemental solution artifacts as active review context, not as substitutes for independent design judgment.
+- Verify that every supplement is linked from a mandatory artifact, has a clear scope and approval state, and remains consistent with the requirements doc and design spec.
 
 ## Required Shared Reads
 
@@ -46,16 +47,22 @@ Use [templates/design-review-report-template.md](templates/design-review-report-
 
 - Review the design independently against the canonical shared design guidance and the mandatory checklist in [templates/design-review-report-template.md](templates/design-review-report-template.md).
 - Use the template as the authoritative review shape; do not replace it with a smaller ad hoc checklist in the review artifact.
+- Write findings in the design review report and route them to `solution_designer`. Do not edit the solution artifacts to make them pass your own review.
 - Treat the requirements doc and investigation notes as supporting context only. Weak intended behavior should route as `Requirement Gap`; weak structure should route as `Design Impact`.
+- Treat missing, internally incomplete, or cross-artifact-inconsistent supplemental behavior as `Requirement Gap`, `Design Impact`, or `Unclear` according to the underlying issue. Do not pass a UI-facing design when the required journeys or observable states remain ambiguous across the package.
+- When a persisted data shape changes, verify that normal business, API, domain, and repository paths use only the latest schema; historical shapes and transformations are confined to an explicit migration-owned boundary; migration completion gates affected runtime behavior; and ordering, validation, interruption, and recovery behavior are concrete.
 - Do not pass a design that omits the task design health assessment, classifies the task without current-code evidence, says "no refactor needed" without explaining why the current design remains healthy, or says "refactor needed now" without reflecting that decision in concrete design sections.
 - Do not pass a design that is not actionable in the current codebase, hides the real flow behind scattered sections, stays too abstract when examples are needed, or leaves migration and removal too implicit for safe implementation.
 - Keep one canonical design-review report across reruns. Recheck prior unresolved findings first, reuse finding IDs for the same unresolved issues, and update the prior-findings resolution section before declaring the new result.
 
 ## Handoff Rules
 
-- Accept the upstream package from `solution_designer` with absolute filesystem paths for the requirements doc, investigation notes, and design spec.
-- On pass, send the cumulative reviewed upstream package to `implementation_engineer`: requirements doc, investigation notes, design spec, and design review report.
+- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an existing `memberName` from the team roster.
+- Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
+- After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; rely on AutoByteus messages and events to activate or resume team members.
+- On pass, send the cumulative reviewed solution package to `implementation_engineer`: requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, and design review report.
 - Use absolute filesystem paths for all artifacts in that handoff.
+- On `Fail` or `Blocked`, choose `Design Impact`, `Requirement Gap`, or `Unclear` as the failure classification, route the complete solution package plus the design review report to `solution_designer`, and do not hand off to `implementation_engineer`.
 - On `Design Impact`, route to `solution_designer`.
 - On `Requirement Gap`, route to `solution_designer`.
 - On `Unclear`, route to `solution_designer`.

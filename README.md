@@ -456,6 +456,6 @@ Before considering an agent package update complete, verify:
 If an `agent.md` starts reading like a second `SKILL.md`, the split is wrong and should be corrected.
 
 The team is intentionally modeled as direct specialist cooperation instead of a separate coordinator agent. Handoffs and rework paths are expressed through `team.md` and each specialist's routing rules.
-The software engineering team also includes a deployment specialist so release preparation, versioning, tagging, rollout, and deploy verification can be owned explicitly instead of being left implicit at the end.
+The software engineering team's `delivery_engineer` owns release preparation, versioning, tagging, rollout, deployment, and verification so those responsibilities are explicit instead of being left implicit at the end.
 
 The runtime configuration is intentionally lightweight. After importing these definitions into AutoByteus, users are expected to customize tools, processors, models, and other config details to match their own environment.

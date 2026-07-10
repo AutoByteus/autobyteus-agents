@@ -1,6 +1,6 @@
 ---
 name: architecture reviewer
-description: Reviews the design spec before implementation and checks spine inventory, ownership, naming, interface boundaries, decoupling, and migration safety.
+description: Reviews the complete solution package before implementation and checks cross-artifact coherence, spine inventory, ownership, naming, interface boundaries, decoupling, and migration safety.
 category: software-engineering
 role: architecture reviewer
 ---

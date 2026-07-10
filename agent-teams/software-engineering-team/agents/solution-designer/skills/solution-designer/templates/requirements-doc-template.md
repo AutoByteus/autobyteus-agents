@@ -8,6 +8,14 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 ## Investigation Findings
 
+## Supplemental Solution Artifacts
+
+Use supplemental artifacts only when a separate document materially improves precision. If none are needed, write `None`.
+
+| Artifact Path | Type / Purpose | Related Requirement IDs | Related Acceptance-Criteria IDs | Status / Approval | Authoritative Relationship |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
 ## Design Health Assessment (Mandatory)
 
 - Change posture (`Feature`/`Bug Fix`/`Behavior Change`/`Refactor`/`Cleanup`/`Performance`/`Larger Requirement`):
@@ -34,6 +42,14 @@ List each item with a stable `requirement_id`.
 List each item with a stable `acceptance_criteria_id`.
 
 ## Constraints / Dependencies
+
+## Persisted Data Outcome (When Applicable)
+
+- Stored subject / location:
+- Existing data to preserve, transform, discard, or quarantine:
+- Unacceptable data loss or corruption:
+- Availability, maintenance-window, or rollout constraints:
+- Related requirement and acceptance-criteria IDs:
 
 ## Assumptions
 

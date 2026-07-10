@@ -7,6 +7,7 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Requirements doc:
 - Investigation notes:
 - Design spec:
+- Supplemental solution artifacts:
 - Design review report:
 
 ## What Changed
@@ -35,6 +36,20 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Canonical shared design guidance was reapplied during implementation, and file-level design weaknesses were routed upstream when needed: `Yes` / `No (blocked)`
 - Changed source implementation files stayed within proactive size-pressure guardrails (`>500` avoided; `>220` assessed/acted on): `Yes` / `No (blocked)`
 - Notes:
+
+## Persisted Data Migration Check (When Applicable)
+
+- Persisted data shape changed: `No` / `Yes`
+- Latest canonical schema / version:
+- Migration path, trigger, owner, and ordering:
+- Normal business, API, domain, and repository paths use the latest schema only: `Yes` / `No (blocked)` / `N/A`
+- Historical schema types, decoders, and transforms are confined to migration-owned files: `Yes` / `No (blocked)` / `N/A`
+- Dual reads/writes, runtime old-shape branches, and compatibility fallbacks introduced: `None` / `List + redesign required`
+- Restart-safety or idempotency strategy:
+- Target-schema validation and completion marker:
+- Partial-failure, backup, rollback, quarantine, or operator-recovery behavior:
+- Mixed-version access prevention and cutover / maintenance / deployment sequencing:
+- Migration-focused checks run and results:
 
 ## Environment Or Dependency Notes
 

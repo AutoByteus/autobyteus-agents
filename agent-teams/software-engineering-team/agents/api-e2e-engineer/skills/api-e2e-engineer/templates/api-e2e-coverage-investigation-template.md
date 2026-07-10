@@ -11,6 +11,7 @@ Update this artifact whenever new evidence changes a test-validity or coverage d
 - Requirements Doc:
 - Investigation Notes:
 - Design Spec:
+- Supplemental Solution Artifacts:
 - Design Review Report:
 - Implementation Handoff:
 - Code Review Report:
@@ -21,7 +22,7 @@ Update this artifact whenever new evidence changes a test-validity or coverage d
 
 ## Current Requirement And Design Basis
 
-Summarize the current behavior that must be proven from the approved requirements, acceptance criteria, reviewed design, implementation handoff, and code review report.
+Summarize the current behavior that must be proven from the approved requirements, acceptance criteria, reviewed design, applicable supplemental solution artifacts, implementation handoff, and code review report.
 
 ## Changed Behavior Summary
 
@@ -72,6 +73,19 @@ Use this section before deleting or disabling existing durable coverage.
 | Existing Path / Scenario | Removal Reason | Requirement / Acceptance Criteria / Design Evidence | Replacement Or No-Replacement Decision |
 | --- | --- | --- | --- |
 |  |  |  |  |
+
+## Persisted Data Migration Coverage Basis (When Applicable)
+
+- Persisted data shape changed: `No` / `Yes`
+- Supported source schema/version and target schema/version:
+- Approved migration trigger, owner, ordering, and completion gate:
+- Representative source-data fixtures or setup:
+- Target-schema validation scenario:
+- Post-migration latest-schema-only runtime scenario:
+- Interruption, restart-safety/idempotency, and recovery scenarios required by risk/design:
+- Mixed-version access prevention or cutover/deployment-sequencing scenario, when applicable:
+- Runtime compatibility scenarios intentionally excluded:
+- Upstream ambiguity or reroute required:
 
 ## Temporary Executable Validation Plan
 

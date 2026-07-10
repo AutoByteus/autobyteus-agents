@@ -25,7 +25,7 @@ Investigate the current requirements and existing durable coverage first, write 
 - failure classification
 - execution evidence
 
-## Primary Output
+## Primary Outputs
 
 Use [templates/api-e2e-coverage-investigation-template.md](templates/api-e2e-coverage-investigation-template.md) to produce an API/E2E coverage investigation before final test execution, durable coverage updates, durable coverage removals, or failure rerouting.
 Use [templates/api-e2e-execution-coverage-report-template.md](templates/api-e2e-execution-coverage-report-template.md) to produce an API/E2E execution coverage report.
@@ -37,7 +37,7 @@ Use [templates/api-e2e-execution-coverage-report-template.md](templates/api-e2e-
 
 ## Upstream Inputs
 
-- Accept the cumulative review-passed package from `code_reviewer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, and code review report.
+- Accept the cumulative review-passed package from `code_reviewer`: requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, design review report, implementation handoff, and code review report.
 - Treat the full upstream package as available coverage and execution context, not just the latest implementation handoff or code review report.
 - Read the implementation handoff's `Legacy / Compatibility Removal Check` before finalizing coverage. Treat any non-clean answer, or any mismatch between that section and the code, as an active coverage signal.
 
@@ -45,7 +45,7 @@ Use [templates/api-e2e-execution-coverage-report-template.md](templates/api-e2e-
 
 - Before final API/E2E execution, durable coverage edits, durable coverage removals, or failure rerouting, read the full upstream package and inspect the relevant existing repository-resident API, E2E, integration, lifecycle, CLI, or executable coverage artifacts for the changed scope.
 - Write or update one canonical coverage investigation artifact in the assigned task workspace before acting on the test suite. Do not keep the validity review only in working memory or only in the final execution coverage report.
-- The coverage investigation must map current requirements, acceptance criteria, reviewed design behavior, implementation-handoff notes, and code-review findings to the existing durable coverage inventory.
+- The coverage investigation must map current requirements, acceptance criteria, reviewed design behavior, applicable supplemental solution artifacts, implementation-handoff notes, and code-review findings to the existing durable coverage inventory.
 - Existing tests are evidence, not authority. A test's existence does not prove that its asserted behavior is still required.
 - For every relevant existing durable coverage artifact or scenario, decide explicitly whether it is `Still Valid`, `Needs Update`, `Stale / Remove`, `Replace`, `Out Of Scope`, or `Unclear`.
 - For every required current behavior without adequate durable coverage, decide whether to `Add Durable Coverage`, `Use Temporary Executable Probe Only`, `Not Testable In Scope`, or `Escalate`.
@@ -58,15 +58,17 @@ Use [templates/api-e2e-execution-coverage-report-template.md](templates/api-e2e-
 
 ## Validation Rules
 
-- Derive the coverage from the approved requirements doc, reviewed design spec, implementation handoff, and the behavior you can directly observe.
+- Derive the coverage from the approved requirements doc, reviewed design spec, applicable supplemental solution artifacts, implementation handoff, and the behavior you can directly observe.
 - Start from the coverage investigation decisions. Execute, update, remove, or add tests according to that recorded plan unless new evidence requires updating the investigation first.
 - Treat any implementation-side local checks in the handoff as helpful context only, not as authoritative API/E2E or executable-check sign-off.
 - Treat the team's no-backward-compatibility and no-legacy-retention rule as an active coverage and execution constraint alongside the approved requirements and reviewed design.
+- When persisted data changes shape, validate representative supported source data through the explicit migration boundary, prove that target-schema validation and completion occur before affected current runtime behavior proceeds, and exercise interruption, restart, or recovery behavior when the risk and reviewed design require it.
+- After migration, validate current behavior against the latest schema only. Do not create durable coverage for request-time old-shape handling, dual reads/writes, or business-path compatibility fallback; migration-owned source-to-target transformation coverage is valid and required when applicable.
 - Cover happy paths, edge cases, failure paths, integration boundaries, and environment-specific behavior whenever those can reasonably be exercised. Make untested areas explicit instead of silently skipping them.
 - The minimum bar is to add, update, remove, or retain the durable coverage that should live in the codebase for the relevant boundary and run the current valid coverage against the current implementation.
 - That minimum is not the full job. If proving behavior requires more than repository-resident tests, continue with broader executable checks until you hit a real blocker.
-- Discovery of any compatibility wrapper, dual-path read or write, schema-upgrade shim, retained legacy branch, or fallback behavior for old behavior in the changed scope is an immediate reroute trigger.
-- Do not create or preserve durable API/E2E coverage whose only purpose is to verify compatibility wrappers, dual-path reads or writes, schema-upgrade shims, retained legacy branches, or fallback behavior.
+- Discovery of any compatibility wrapper, dual-path read or write, request-time schema-upgrade shim, retained legacy branch, or fallback behavior in normal business/runtime code is an immediate reroute trigger. Do not misclassify an approved, isolated migration-owned source-to-target transformation as backward-compatible runtime behavior.
+- Do not create or preserve durable API/E2E coverage whose only purpose is to verify compatibility wrappers, dual-path reads or writes, request-time schema-upgrade shims, retained legacy branches, or fallback behavior. Do create migration-focused coverage for the approved isolated migration path when persisted data changes.
 - Do not broaden regression coverage around that invalid scope. Capture the file/path/artifact evidence needed to identify the issue, then classify and reroute it immediately.
 - Keep durable coverage additions narrow, boundary-local, and directly tied to the exercised behavior. Do not use the API/E2E stage to introduce broader source or test architecture changes that should have been reviewed before API/E2E started.
 - If repository-resident durable coverage is added or updated after the earlier code review, do not hand the task directly to `delivery_engineer`. Persist the execution coverage report and return the cumulative package to `code_reviewer` for a coverage-code re-review before delivery resumes.
@@ -87,8 +89,11 @@ Use [templates/api-e2e-execution-coverage-report-template.md](templates/api-e2e-
 
 ## Handoff Rules
 
-- On pass with no repository-resident durable coverage added, updated, or removed after the earlier code review, send the cumulative delivery package to `delivery_engineer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, code review report, coverage investigation, and execution coverage report.
-- On pass with repository-resident durable coverage added, updated, or removed after the earlier code review, send the cumulative coverage-updated package back to `code_reviewer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, code review report, coverage investigation, and execution coverage report.
+- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an existing `memberName` from the team roster.
+- Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
+- After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; rely on AutoByteus messages and events to activate or resume team members.
+- On pass with no repository-resident durable coverage added, updated, or removed after the earlier code review, send the cumulative delivery package to `delivery_engineer`: requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, design review report, implementation handoff, code review report, coverage investigation, and execution coverage report.
+- On pass with repository-resident durable coverage added, updated, or removed after the earlier code review, send the cumulative coverage-updated package back to `code_reviewer`: requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, design review report, implementation handoff, code review report, coverage investigation, and execution coverage report.
 - Use absolute filesystem paths for every artifact in that handoff.
 - On `Local Fix`, route to `implementation_engineer`.
 - On `Design Impact`, route to `solution_designer`.

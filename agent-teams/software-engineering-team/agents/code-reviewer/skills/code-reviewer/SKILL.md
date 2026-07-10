@@ -28,9 +28,9 @@ Use [templates/code-review-report-template.md](templates/code-review-report-temp
 
 ## Upstream Inputs
 
-- Accept the cumulative implementation package from `implementation_engineer`: requirements doc, investigation notes, design spec, design review report, and implementation handoff.
+- Accept the cumulative implementation package from `implementation_engineer`: requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, design review report, and implementation handoff.
 - Review against the full implementation artifact chain, not only the latest handoff summary.
-- Accept the cumulative coverage-updated package from `api_e2e_engineer` when repository-resident durable coverage was added, updated, or removed after the earlier review: requirements doc, investigation notes, design spec, design review report, implementation handoff, code review report, coverage investigation, and execution coverage report.
+- Accept the cumulative coverage-updated package from `api_e2e_engineer` when repository-resident durable coverage was added, updated, or removed after the earlier review: requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, design review report, implementation handoff, code review report, coverage investigation, and execution coverage report.
 - Use the coverage investigation and execution coverage report as context for that re-review entry point, not as a replacement for reviewing the changed durable coverage code itself.
 
 ## Required Shared Reads
@@ -40,8 +40,11 @@ Use [templates/code-review-report-template.md](templates/code-review-report-temp
 
 ## Handoff Rules
 
-- On pass from the implementation-review entry point, send the cumulative review-passed package to `api_e2e_engineer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, and code review report.
-- On pass from the API/E2E coverage-code re-review entry point, send the cumulative delivery package to `delivery_engineer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, code review report, coverage investigation, and execution coverage report.
+- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an existing `memberName` from the team roster.
+- Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
+- After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; rely on AutoByteus messages and events to activate or resume team members.
+- On pass from the implementation-review entry point, send the cumulative review-passed package to `api_e2e_engineer`: requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, design review report, implementation handoff, and code review report.
+- On pass from the API/E2E coverage-code re-review entry point, send the cumulative delivery package to `delivery_engineer`: requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, design review report, implementation handoff, code review report, coverage investigation, and execution coverage report.
 - Use absolute filesystem paths for every artifact in that handoff.
 - On `Local Fix` in implementation-owned code, route to `implementation_engineer`.
 - On `Local Fix` limited to repository-resident durable coverage code or execution-coverage-report corrections added during API/E2E, route to `api_e2e_engineer`.
@@ -61,8 +64,12 @@ Use [templates/code-review-report-template.md](templates/code-review-report-temp
 
 - Review the implementation independently against the full artifact chain, the canonical shared design guidance, and the mandatory checklist and scorecard in [templates/code-review-report-template.md](templates/code-review-report-template.md).
 - Use the template as the authoritative review shape; do not collapse the review into a smaller custom checklist or score summary.
+- Write findings in the code review report and route them to the owning specialist. Do not implement source or durable-coverage fixes while acting as reviewer.
 - Treat earlier design artifacts and investigation notes as context only. If independent review shows the earlier design basis was weak, incomplete, or wrong, classify `Design Impact`.
+- Review the implementation against every approved supplemental solution artifact that constrains observable behavior. Treat contradictions with approved UI/UX journeys, interaction states, contracts, or mappings as real findings rather than optional polish.
 - When the review entry point comes from `api_e2e_engineer`, keep the review scope centered on the changed repository-resident durable coverage, any directly related implementation deltas, and the coverage/execution evidence needed to judge those changes.
 - Review design integrity, API/E2E readiness, cleanup completeness, and changed source-file size or structure pressure as part of the same pre-API/E2E review, not as optional extras.
+- When persisted data changes shape, verify that the implementation has a separate migration-owned boundary and that normal business, API, domain, and repository paths accept only the latest schema. Historical types and transforms may remain only inside migration-owned files required for ordered upgrades, replay, recovery, or audit; treat any leakage into current runtime paths as a structural failure.
+- Verify migration ordering, restart-safety or idempotency, target-schema validation, completion gating, and partial-failure recovery against the reviewed design. Do not accept dual reads/writes or request-time old-shape fallback as migration behavior.
 - Verify that the implementation preserved the reviewed task design health assessment. If implementation evidence shows the root cause classification, refactor decision, or deferred-risk rationale was wrong, classify that as `Design Impact` unless the issue is a bounded local implementation mistake.
 - Keep one canonical code review report across reruns. Recheck prior unresolved findings first, reuse finding IDs for the same unresolved issues, and update the prior-findings resolution section before declaring the new result.

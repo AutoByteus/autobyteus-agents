@@ -29,6 +29,12 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Bootstrap Blockers:
 - Notes For Downstream Agents:
 
+## Supplemental Solution Artifact Inventory
+
+| Artifact Path | Purpose | Evidence Or Decision Captured | Related Requirement / Acceptance-Criteria IDs | Status | Follow-Up Needed |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
 ## Source Log
 
 | Date | Source Type (`Code`/`Doc`/`Spec`/`Web`/`Repo`/`Issue`/`Command`/`Trace`/`Log`/`Data`/`Setup`/`Other`) | Exact Source / Query / Command | Why Consulted | Relevant Findings | Follow-Up Needed |
@@ -83,8 +89,18 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 ## Findings From Code / Docs / Data / Logs
 
+## Persisted Data / Schema Evidence (When Applicable)
+
+- Current stored subject, location, and schema/version shapes:
+- Version-detection or migration-ledger mechanism:
+- Current readers and writers:
+- Approximate record/data volume and migration-duration evidence:
+- Startup, deployment, maintenance, or rollout lifecycle constraints:
+- Backup, restore, quarantine, retry, or operator-recovery capability:
+- Mixed-version application access risk:
+
 ## Constraints / Dependencies / Compatibility Facts
 
 ## Open Unknowns / Risks
 
-## Notes For Architect Reviewer
+## Notes For Architecture Reviewer

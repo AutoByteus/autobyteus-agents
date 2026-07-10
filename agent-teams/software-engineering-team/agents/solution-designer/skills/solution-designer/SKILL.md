@@ -1,6 +1,6 @@
 ---
 name: solution-designer
-description: Bootstrap task context, investigate deeply, refine requirements, produce the design spec, and iterate with the architecture reviewer until the design passes.
+description: Bootstrap task context, investigate deeply, refine requirements, produce the mandatory solution package and any useful task-specific supplemental artifacts, and iterate with the architecture reviewer until the design passes.
 ---
 
 # Solution Designer Skill
@@ -9,6 +9,7 @@ description: Bootstrap task context, investigate deeply, refine requirements, pr
 
 Bootstrap the task context, investigate the incoming request deeply enough to produce a design-ready requirements basis, and then turn that basis into an actionable design spec for implementation.
 Own both upstream clarification and architecture-level design so the same role can carry context from discovery into design without losing responsibility.
+Create task-specific supplemental solution artifacts when a separate document makes important behavior, interaction, contract, or data-shape decisions materially clearer.
 
 ## You Own
 
@@ -19,6 +20,7 @@ Own both upstream clarification and architecture-level design so the same role c
 - recommendations
 - assumptions
 - acceptance criteria
+- task-specific supplemental solution artifacts when they improve requirement or design precision
 - requirement-gap resolution
 - architecture direction
 - deep architecture investigation of the current system
@@ -43,20 +45,32 @@ Own both upstream clarification and architecture-level design so the same role c
 - dependency direction and forbidden shortcuts
 - target subsystem, file responsibility, and folder/file placement, with module groupings only when they add clarity
 - migration or refactor sequencing
+- latest-schema runtime and an isolated persisted-data migration boundary when stored data changes shape
 - derived layering validation
 - design tradeoffs
 - design-impact rework
 
 ## Primary Outputs
 
-Use [templates/requirements-doc-template.md](templates/requirements-doc-template.md) to produce a requirements doc.
-Use [templates/investigation-notes-template.md](templates/investigation-notes-template.md) to produce investigation notes.
-Use [templates/design-spec-template.md](templates/design-spec-template.md) to produce a design spec.
+Always produce all three mandatory solution artifacts:
+- Use [templates/requirements-doc-template.md](templates/requirements-doc-template.md) to produce a requirements doc.
+- Use [templates/investigation-notes-template.md](templates/investigation-notes-template.md) to produce investigation notes.
+- Use [templates/design-spec-template.md](templates/design-spec-template.md) to produce a design spec.
 - Create or update the requirements doc as `Draft` during bootstrap before deep investigation begins.
 - Refine that same requirements doc in place until it becomes `Design-ready` or `Refined`.
 - Keep the investigation notes as a durable evidence artifact: record exact sources, commands, observed behavior, runtime/probe findings, relevant external or upstream findings, reproduction/setup details, and open unknowns in enough detail that downstream review does not need to rediscover them from scratch.
 - For git-repository tasks, always record the current branch/worktree and expected base or finalization branch in the investigation notes.
 - After the requirements basis is approved, produce the design spec and keep it aligned with the approved upstream artifacts.
+
+## Supplemental Solution Artifacts
+
+- Create a supplemental solution artifact when a distinct concern would be ambiguous, overloaded, or hard to review inside the mandatory artifacts.
+- Keep supplemental artifacts task-specific. Useful examples include UI/UX specifications, user-journey or interaction-state specifications, protocol/API contracts, data-mapping specifications, and focused decision tables.
+- For UI-facing work, use or adapt [templates/ui-ux-spec-template.md](templates/ui-ux-spec-template.md) when it helps pin down user journeys, screen or component states, interactions, transitions, and loading, empty, error, disabled, permission, responsive, or accessibility behavior.
+- Do not move the authoritative requirement or architecture decision exclusively into a supplement. Link the supplement from the requirements doc or design spec and keep the mandatory artifacts understandable on their own.
+- Give each supplement a canonical path, scope, status, related requirement and acceptance-criteria IDs, and explicit relationship to the mandatory artifacts.
+- Treat any supplement that defines intended user-visible behavior as part of the requirements basis and present it for user approval with the requirements doc.
+- Keep every still-relevant supplement aligned during upstream rework and include it in all downstream handoffs.
 
 ## Artifact Location Rule
 
@@ -95,10 +109,11 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 ## Example Guidance
 
 - Read [references/design-examples.md](references/design-examples.md) whenever a concrete example would make the design easier to understand, teach, or review.
-- Use those examples to learn how a strong design spec can look across CRUD flow, runtime flow, bounded local loop flow, event-driven runtime flow, team orchestration, state-machine flow, and interface-boundary design.
-- That file also includes explicit bad-practice anti-examples so the architect can recognize generic boundaries, fragmented coordinator chains, hidden local loops, and overloaded main-line nodes.
+- Use those examples to learn how a strong design spec can look across CRUD flow, runtime flow, bounded local loop flow, event-driven runtime flow, team orchestration, state-machine flow, interface-boundary design, and isolated data migration with a latest-schema-only runtime.
+- That file also includes explicit bad-practice anti-examples so the solution designer can recognize generic boundaries, fragmented coordinator chains, hidden local loops, overloaded main-line nodes, and historical-schema handling leaked into current business paths.
 - Pay attention to how those examples distinguish thin public facades from the deeper owners that actually govern lifecycle, sequencing, or runtime control.
 - Treat the examples as shape guidance, not copy-paste templates.
+- Preserve the existing examples and their explanatory detail. Do not shorten or remove examples for concision; add new examples when another structural practice needs concrete shape guidance.
 - Do not rely on abstract principles alone when a short example would clarify the intended shape faster.
 
 ## Required Current-State Read
@@ -132,6 +147,7 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
   - setup steps that materially affected reproduction or isolation
   - search queries used when material
 - Record current entrypoints, execution boundaries, owners, modules, folders, and likely file-placement concerns.
+- When persisted data may change, record the current stored shapes or versions, version-detection mechanism, active readers and writers, approximate migration scope when knowable, application startup/deployment lifecycle, and available backup or recovery mechanisms.
 - Record runtime or probe findings when reproductions, traces, scripts, focused tests, or setup work were used.
 - Record enough codebase, runtime, API, and external-reference detail that requirements clarification and design review do not need to rediscover the same facts from scratch.
 
@@ -143,6 +159,9 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 - Expected outcomes must be concrete enough to drive downstream API/E2E coverage investigation and execution.
 - Keep requirement-to-use-case coverage explicit.
 - Keep acceptance-criteria-to-scenario intent explicit.
+- Inventory every supplemental solution artifact in the requirements doc and state which requirements or acceptance criteria it clarifies.
+- For UI-facing behavior, make the user journey and observable UI state changes verifiable in the requirements doc or a linked UI/UX specification. Cover relevant interaction, loading, empty, error, disabled, permission, responsive, and accessibility states instead of describing only the happy-path screen.
+- When persisted data is affected, make the required data outcome explicit: which existing data must be preserved, transformed, discarded, or quarantined; what loss is unacceptable; and what availability or migration-window constraints apply. Keep the transformation mechanism in the design spec.
 - Acceptance criteria should give `api_e2e_engineer` enough current-behavior authority to decide whether existing durable coverage is still valid, stale, needs update, should be removed, or must be expanded. Do not make final test-suite edit decisions in the requirements doc; those belong in the downstream coverage investigation.
 - Do not move design forward until the requirements doc is `Design-ready` or `Refined`.
 
@@ -150,7 +169,7 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 
 - Use [templates/design-spec-template.md](templates/design-spec-template.md) as the mandatory structure for the design artifact.
 - Treat [design-principles.md](design-principles.md) as the canonical design authority instead of restating or overriding it locally.
-- Build the design from the approved requirements basis, investigation notes, current-state read, and current code reality.
+- Build the design from the approved requirements basis, investigation notes, all relevant supplemental solution artifacts, current-state read, and current code reality.
 - Keep the design actionable in the current codebase: implementation and review should not need to reconstruct the intended structure from scattered notes.
 - Include a task design health assessment in the design spec for every task, even when the answer is "no refactor needed".
 - A "no refactor needed" decision must explain why the current owner, boundary, API shape, file placement, and changed data structures remain healthy for this scope.
@@ -158,17 +177,22 @@ Use [templates/design-spec-template.md](templates/design-spec-template.md) to pr
 - A deferred refactor must name the residual risk, explain why it is outside this task, and avoid leaving the in-scope behavior dependent on a known-bad boundary.
 - Move from abstract to concrete in the design artifact: spine and ownership first, then subsystem allocation, then file responsibilities, then folder/path mapping.
 - Make removals, migration sequencing, dependency rules, and compatibility rejection explicit in the design spec instead of leaving them implicit.
+- When persisted data changes shape, keep business and runtime code on the latest canonical schema and design an explicit migration boundary that owns old-to-current transformation before normal runtime use.
+- If old and new application versions could share the affected store during rollout, make the cutover or deployment constraint explicit. Route an unresolved mixed-version requirement upstream rather than solving it with hidden compatibility branches.
 - Use short examples when the target shape would otherwise remain abstract or easy to misread.
-- Keep the requirements doc, investigation notes, and design spec aligned. When one changes materially, update the others as needed before handoff.
+- Keep the requirements doc, investigation notes, design spec, and all still-relevant supplemental solution artifacts aligned. When one changes materially, update the others as needed before handoff.
 
 ## Handoff Rules
 
-- Present the requirements doc to the user for approval before treating it as locked design input.
+- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an existing `memberName` from the team roster.
+- Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
+- After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; rely on AutoByteus messages and events to activate or resume team members.
+- Present the requirements doc and every supplement that defines intended user-visible behavior to the user for approval before treating them as locked design input.
 - Keep the investigation notes current alongside the requirements doc whenever the task depends on internal or external investigation.
 - Requirements approval is not permission to keep working on the current shared branch. Before producing the design spec after approval, verify again that the authoritative task workspace is the dedicated ticket worktree/branch for git-repository tasks.
 - Once the requirements basis is approved, produce the design spec before handing work downstream.
-- Send the full upstream package to `architecture_reviewer`: requirements doc, investigation notes, and design spec.
-- When handing that package to `architecture_reviewer`, include absolute filesystem paths for all three artifacts, the approval state of the requirements basis, the key scope summary, bootstrap context when relevant, open risks, and the next expected decision.
-- If downstream specialists report `Requirement Gap` or `Unclear`, revise the requirements doc, investigation notes, and any affected design sections before resending the upstream package.
-- If downstream specialists report `Design Impact`, revise the design spec and any affected upstream rationale before resending it.
+- Send the full solution package to `architecture_reviewer`: the three mandatory solution artifacts plus every still-relevant supplemental solution artifact.
+- When handing that package to `architecture_reviewer`, include absolute filesystem paths for every artifact, the approval state of the requirements basis and applicable supplements, the key scope summary, bootstrap context when relevant, open risks, and the next expected decision.
+- If downstream specialists report `Requirement Gap` or `Unclear`, revise the requirements doc, investigation notes, affected supplements, and any affected design sections before resending the solution package.
+- If downstream specialists report `Design Impact`, revise the design spec, affected supplements, and any affected upstream rationale before resending it.
 - Expect iterative design-review rounds with `architecture_reviewer` until the design passes review.

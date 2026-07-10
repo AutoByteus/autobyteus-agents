@@ -7,6 +7,19 @@ They are the shared design language for this team.
 This is the canonical design guidance file for this team: principles, practical application guidance, local patterns, design questions, smells, and short example shapes all live here.
 One especially important law for this team is the `Authoritative Boundary Rule`: callers above a subject's authoritative boundary must depend on that boundary, not on that boundary and one of its internals at the same time.
 
+## Contents
+
+- [Terminology](#terminology)
+- [Core Principles](#core-principles)
+- [Derived Checks](#derived-checks)
+- [Practical Application Guide](#practical-application-guide)
+- [Task Design Health Assessment](#task-design-health-assessment)
+- [Structural Triggers](#structural-triggers)
+- [Common Local Patterns](#common-local-patterns)
+- [Short Example Shapes](#short-example-shapes)
+- [Required Design Questions](#required-design-questions)
+- [Design Smells](#design-smells)
+
 ## Terminology
 
 - `Subsystem` / `capability area`: a larger functional area that owns a broader category of work and may contain multiple files plus optional module groupings.
@@ -78,10 +91,24 @@ One especially important law for this team is the `Authoritative Boundary Rule`:
 - `Spine`, `owner`, and `off-spine concern` are architecture relationship terms, not naming templates.
 - Do not name files, folders, services, classes, or types with vague labels like `Support`, `Supporting`, `OffSpine`, `SideConcern`, or `Helper` just because they sit off the main line. Name them by the concrete concern they own.
 
+### 4. Latest-Schema Runtime And Isolated Data Migration
+
+- Business, domain, API, and normal persistence code must operate only on the latest canonical schema and data model.
+- When existing persisted data must survive a schema change, transform it through an explicit migration boundary instead of adding old-shape handling, dual reads/writes, compatibility fields, or fallback branches to the main business path.
+- Treat migration as its own startup, deployment, or maintenance spine with a clear owner. Complete or block the migration before normal runtime behavior consumes the affected data.
+- Confine old schema types, legacy decoders, transformation rules, and version-to-version knowledge to migration-owned files. Do not expose them through current domain models, current repositories, or current service interfaces.
+- Make migrations ordered, deterministic, testable, and restart-safe or idempotent where interruption is possible. Record how completion is detected and how partial failure is recovered or safely retried.
+- Validate the transformed data against the latest schema before recording a migration as complete or allowing the current runtime to proceed.
+- Define backup, rollback, quarantine, or operator-recovery behavior according to the risk of destructive or irreversible transformation.
+- If old and new application versions could access the same store concurrently, resolve that operational constraint explicitly through cutover, maintenance-window, or deployment sequencing. If latest-schema-only runtime cannot be guaranteed, block or escalate the design instead of silently adding compatibility behavior to business code.
+- Historical migration files may remain inside the migration subsystem when the migration framework or version ledger requires them for fresh installs, replay, or audit. Their retention does not justify retaining legacy behavior in normal runtime code.
+- Remove obsolete compatibility branches, old-shape business logic, and temporary migration bridges once the explicit migration path owns the transition.
+
 ## Derived Checks
 
 - Separation of concerns is still mandatory, and it should get stronger as the spine and ownership model become clearer. It is derived from the spine, main subject nodes, and ownership boundaries rather than treated as the starting point.
 - No backward compatibility or legacy retention is a hard modernization rule for in-scope behavior. Design the clean-cut target directly and make removal of obsolete paths explicit.
+- Preserve existing persisted data through explicit migration into the latest canonical schema, not through backward-compatible business or runtime paths.
 - Removal is first-class architecture work, not optional cleanup. When clearer ownership, reusable owned structures, or better file responsibilities make redundant pieces unnecessary, name and remove/decommission those pieces explicitly in scope.
 - Dependency direction follows ownership; name allowed directions and forbidden shortcuts explicitly.
 - Authoritative Boundary Rule (mandatory): when one boundary or owner intentionally encapsulates another concern, callers above it should depend on the outer owner, not on both the outer owner and its internals at the same time.
@@ -120,6 +147,7 @@ One especially important law for this team is the `Authoritative Boundary Rule`:
 - If the layout stays flatter, record why that is clearer for this scope. If the layout splits more, make sure each split reflects a real owner or boundary.
 - Record change inventory explicitly: `Add`, `Modify`, `Rename/Move`, `Remove`.
 - Define migration/refactor sequence when the change is not greenfield.
+- When persisted data changes shape, design the migration as a separate owned spine and keep the target runtime current-schema-only.
 - Prefer clean-cut replacement over compatibility wrappers or dual-path behavior. If old behavior is being replaced, design and record its removal explicitly.
 - Treat addition and removal symmetrically: when a clearer subsystem owner, reusable owned structure, or file responsibility replaces fragmented or duplicated pieces, record what becomes unnecessary and remove/decommission it in scope.
 - Add short concrete examples when they clarify a non-obvious spine, interface split, folder choice, or bounded local flow.
@@ -201,6 +229,8 @@ Decision examples:
   - If the spine needs status, events, handlers, persistence, streaming, bootstrap, shutdown, or similar off-spine behavior, first check whether an existing subsystem already owns that work before creating a new local helper.
 - Legacy-cleanup trigger:
   - If a proposed solution keeps compatibility wrappers, dual-path reads/writes, or fallback branches only to preserve old behavior, redesign it toward a clean-cut replacement and explicit removal plan.
+- Data-migration boundary trigger:
+  - If existing persisted data uses an older schema, create an explicit migration owner and versioned transformation path. Do not teach the current business path to understand both old and new shapes.
 - Example-clarity trigger:
   - If a design point would otherwise remain abstract or easy to misread, add a short good-shape example and, when useful, a bad-shape anti-example.
 
@@ -303,6 +333,8 @@ Do not introduce a pattern if it obscures the spine, blurs ownership, or creates
 - Which off-spine concerns serve which owner on the spine?
 - Which off-spine needs should reuse or extend an existing capability area or subsystem instead of creating a new helper?
 - Which legacy paths, compatibility wrappers, dual-path branches, obsolete files, or deprecated boundaries are removed in this change?
+- Does persisted data need transformation into a new canonical schema, and if so, which migration owner and startup/deployment/maintenance spine performs it?
+- How does the migration detect source and target versions, validate completion, recover from interruption or partial failure, and prevent normal runtime code from observing an old shape?
 - Which duplicated, fragmented, or now-unnecessary helpers/files/structures become removable because the new design gives them a clearer owner or replacement?
 - Which shared data structures, schemas, DTOs, mappers, or types need tightening so redundant attributes or overlapping representations are removed instead of standardized?
 - Which dependencies are allowed, and which shortcuts are forbidden?
@@ -326,6 +358,8 @@ Do not introduce a pattern if it obscures the spine, blurs ownership, or creates
 - New helper or service pieces created ad hoc even though an existing subsystem already owns that kind of work
 - A caller depends on both a public boundary and one of its internal managers, repositories, helpers, or lower-level concerns at the same time
 - Compatibility wrappers, dual-path behavior, or legacy fallback branches kept only to preserve old flows
+- Old-schema decoding, branching, or dual reads/writes embedded in current business services or normal repositories instead of isolated migration-owned code
+- Migration steps that can partially apply without a completion marker, validation, restart strategy, or recovery path
 - Generic interface boundaries, list/query surfaces, or service methods that accept one ambiguous ID or selector and then guess what subject it belongs to
 - A higher boundary bypasses the intended owner and reaches directly into a deeper layer that should stay encapsulated
 - Names that do not describe the actual owner or role

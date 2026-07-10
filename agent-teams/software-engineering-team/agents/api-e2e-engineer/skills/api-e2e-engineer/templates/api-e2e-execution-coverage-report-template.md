@@ -13,6 +13,7 @@ Execution may cover API, browser UI, native desktop UI, CLI, process/lifecycle, 
 - Requirements Doc:
 - Investigation Notes:
 - Design Spec:
+- Supplemental Solution Artifacts:
 - Design Review Report:
 - Implementation Handoff:
 - Code Review Report:
@@ -55,6 +56,7 @@ Round rules:
 
 - Reviewed requirements/design introduce, tolerate, or ambiguously describe backward compatibility in scope: `No` / `Yes (invalid upstream; reroute required)`
 - Compatibility-only or legacy-retention behavior observed in implementation: `No` / `Yes (invalid implementation scope; reroute required)`
+- Approved historical-schema logic observed only inside the isolated migration boundary: `No` / `Yes` / `N/A`
 - Durable coverage added or retained only for compatibility-only behavior: `No` / `Yes (invalid; explain)`
 - If compatibility-related invalid scope was observed, reroute classification used: `Local Fix` / `Design Impact` / `Requirement Gap` / `Unclear`
 - Upstream recipient notified:
@@ -64,6 +66,17 @@ Round rules:
 ## Platform / Runtime Targets
 
 ## Lifecycle / Upgrade / Restart / Migration Checks
+
+- Persisted data migration applicable: `No` / `Yes`
+- Supported source schema/version and target schema/version:
+- Migration trigger, owner, and ordering:
+- Representative source data exercised:
+- Target-schema validation and completion-gate evidence:
+- Post-migration current-runtime behavior evidence:
+- Interruption, restart-safety/idempotency, and recovery evidence:
+- Mixed-version access prevention or cutover/deployment-sequencing evidence, when applicable:
+- Normal runtime old-shape path, dual read/write, or compatibility fallback observed: `No` / `Yes (reroute required)`
+- Residual untested migration risk:
 
 ## Coverage Matrix
 

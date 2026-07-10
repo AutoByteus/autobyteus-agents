@@ -42,7 +42,7 @@ Update the ticket-local handoff summary before final handoff, then use [template
 
 ## Upstream Inputs
 
-- Accept the cumulative delivery package from `api_e2e_engineer` by default, or from `code_reviewer` when repository-resident durable coverage was re-reviewed after API/E2E: requirements doc, investigation notes, design spec, design review report, implementation handoff, code review report, coverage investigation, and execution coverage report.
+- Accept the cumulative delivery package from `api_e2e_engineer` by default, or from `code_reviewer` when repository-resident durable coverage was re-reviewed after API/E2E: requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, design review report, implementation handoff, code review report, coverage investigation, and execution coverage report.
 - Use the full artifact chain as delivery context for docs sync and final handoff work.
 
 ## Workflow Rules
@@ -50,6 +50,8 @@ Update the ticket-local handoff summary before final handoff, then use [template
 - Start delivery by refreshing the branch state against the latest tracked remote base, then continue within the same role into docs sync, final handoff, repository finalization, and any applicable release or deployment work.
 - Keep docs sync focused on the final integrated, reviewed, and validated implementation state. Use that integrated state as primary truth and use upstream artifacts as supporting context.
 - Update long-lived docs to match final implemented behavior, promote durable design/runtime knowledge into canonical project docs, and record removed or replaced components so the docs do not preserve obsolete understanding.
+- Use approved supplemental solution artifacts as supporting delivery context. Promote durable UI/UX, interaction, contract, or data-shape knowledge into long-lived docs when it should outlive the ticket.
+- When an approved persisted-data migration applies, execute or verify only the documented startup, deployment, or maintenance migration path. Record the source and target versions, trigger, completion evidence, target-schema validation, post-migration current-runtime check, and applicable recovery result; do not introduce compatibility behavior during delivery.
 - If there is no docs impact, say so explicitly and explain why the current long-lived docs already remain accurate.
 - If docs cannot be updated truthfully because the final implementation state or intended behavior is still unclear, block delivery and route the issue explicitly instead of guessing in the docs.
 - At the start of delivery, refresh tracked remote refs for the recorded base branch and check whether the latest tracked remote base has advanced beyond the branch state that was previously reviewed and validated.
@@ -68,8 +70,11 @@ Update the ticket-local handoff summary before final handoff, then use [template
 - After repository finalization and any applicable release/publication/deployment work, clean up ticket worktrees and branches when they were created for this task and when the recorded finalization target makes that cleanup safe.
 - If any finalization, release, deployment, or cleanup step fails, keep final handoff blocked and record the blocker explicitly. Do not undo already-completed repository finalization.
 
-## Routing Rules
+## Handoff Rules
 
+- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an existing `memberName` from the team roster.
+- Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
+- After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; rely on AutoByteus messages and events to activate or resume team members.
 - Resolve documentation-local or deployment-local issues directly when possible.
 - Route code or packaging `Local Fix` issues to `implementation_engineer`.
 - Route `Design Impact` to `solution_designer`.

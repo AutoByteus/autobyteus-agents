@@ -12,6 +12,7 @@ The latest round is authoritative; earlier rounds remain history.
 - Upstream Requirements Doc:
 - Upstream Investigation Notes:
 - Reviewed Design Spec:
+- Supplemental Solution Artifacts Reviewed:
 - Current Review Round:
 - Trigger:
 - Prior Review Round Reviewed:
@@ -29,6 +30,14 @@ Round rules:
 |  |  |  |  |  |  |  |
 
 ## Reviewed Design Spec
+
+## Supplemental Artifact Coherence Verdict
+
+If no supplemental solution artifacts exist, write `None`.
+
+| Artifact | Purpose And Scope Are Clear? (`Pass`/`Fail`) | Linked To Mandatory Artifacts? (`Pass`/`Fail`) | Internally Complete? (`Pass`/`Fail`) | Consistent With Requirements And Design? (`Pass`/`Fail`) | Approval State Is Clear? (`Pass`/`Fail`) | Required Action |
+| --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |
 
 ## Task Design Health Assessment Verdict
 
@@ -113,9 +122,23 @@ Round rules:
 
 ## Legacy / Backward-Compatibility Verdict
 
+Do not classify migration-owned historical schema files as runtime legacy retention when they are required by the approved version ledger and remain isolated from current business paths. Judge them in the latest-schema/data-migration section below.
+
 | Area | Compatibility Wrapper / Dual-Path / Legacy Retention Exists? (`Yes`/`No`) | Clean-Cut Removal Is Explicit? (`Pass`/`Fail`) | Verdict (`Pass`/`Fail`) | Notes |
 | --- | --- | --- | --- | --- |
 |  |  |  |  |  |
+
+## Latest-Schema / Data-Migration Verdict
+
+Complete this section whenever the change affects a persisted data shape. Use `N/A` only when no persisted schema or stored representation changes.
+
+- Concurrent old/new application access risk:
+- Cutover, maintenance-window, or deployment-sequencing decision:
+- Unresolved mixed-version access exists: `No` / `Yes (Fail)` / `N/A`
+
+| Area / Stored Subject | Current Runtime Uses Latest Schema Only? (`Pass`/`Fail`/`N/A`) | Historical Shape Knowledge Is Migration-Owned Only? (`Pass`/`Fail`/`N/A`) | Trigger / Owner / Ordering Is Clear? (`Pass`/`Fail`/`N/A`) | Validation / Completion Gate Is Clear? (`Pass`/`Fail`/`N/A`) | Restart / Recovery Is Safe? (`Pass`/`Fail`/`N/A`) | Verdict (`Pass`/`Fail`/`N/A`) | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |  |
 
 ## Migration / Refactor Safety Verdict
 

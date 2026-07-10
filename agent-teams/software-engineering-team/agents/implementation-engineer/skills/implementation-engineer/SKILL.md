@@ -29,8 +29,8 @@ Use [templates/implementation-handoff-template.md](templates/implementation-hand
 
 ## Upstream Inputs
 
-- Accept the cumulative reviewed upstream package from `architecture_reviewer`: requirements doc, investigation notes, design spec, and design review report.
-- Treat the full upstream package as active implementation context, not just the reviewed design spec in isolation.
+- Accept the cumulative reviewed solution package from `architecture_reviewer`: requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, and design review report.
+- Treat the full reviewed solution package as active implementation context, not just the design spec in isolation.
 
 ## Required Shared Reads
 
@@ -39,8 +39,10 @@ Use [templates/implementation-handoff-template.md](templates/implementation-hand
 
 ## Handoff Rules
 
-- Accept the cumulative reviewed upstream package from `architecture_reviewer` before starting implementation.
-- Send the cumulative implementation package to `code_reviewer`: requirements doc, investigation notes, design spec, design review report, and implementation handoff.
+- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an existing `memberName` from the team roster.
+- Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
+- After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; rely on AutoByteus messages and events to activate or resume team members.
+- Send the cumulative implementation package to `code_reviewer`: requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, design review report, and implementation handoff.
 - Use absolute filesystem paths for every artifact in that handoff.
 - Route `Design Impact` to `solution_designer`.
 - Route `Requirement Gap` to `solution_designer`.
@@ -52,10 +54,14 @@ Use [templates/implementation-handoff-template.md](templates/implementation-hand
 ## Operating Rules
 
 - Use the reviewed design basis as the current target, but continue applying the shared references above during file-level implementation.
+- Implement user-visible behavior against approved supplemental UI/UX or interaction specifications when they exist. Route contradictions or missing states upstream instead of inventing the experience during implementation.
 - Treat the reviewed task design health assessment as active implementation context. If the code path proves the root-cause classification, refactor-needed decision, or deferred-risk rationale wrong, route the issue back as `Design Impact` instead of patching around it.
 - Treat API test authoring, API test execution, E2E tests, broader executable coverage, API/E2E environment bring-up beyond normal implementation needs, and pass/fail classification as owned by `api_e2e_engineer`, not by you.
 - If you run local checks, keep them implementation-scoped and report them as local implementation checks, not as downstream API/E2E sign-off.
 - Replace in-scope behavior cleanly without compatibility wrappers, dual-path reads/writes, or legacy fallback branches.
+- When persisted data changes shape, implement the reviewed migration as a separate versioned startup, deployment, or maintenance boundary before affected current runtime behavior proceeds. Keep business, domain, API, and normal repository paths latest-schema-only.
+- Confine historical schema types, decoders, transformations, and version-to-version knowledge to migration-owned files. Do not add old-shape branches, dual reads/writes, or fallback conversion to current services or repositories.
+- Make the migration's ordering, completion marker, target-schema validation, interruption behavior, and recovery path match the reviewed design. Do not mark completion before transformed data is proven valid.
 - Remove obsolete or superseded paths/files in scope.
 - Remove dead code, obsolete files, unused helpers/tests/flags/adapters, and dormant replaced paths in scope as part of normal completion, not as optional later cleanup.
 - Keep shared structures tight during implementation. If one case needs extra fields or behavior, prefer a meaningful specialized variant or composition over expanding one shared base into a mostly-optional structure.

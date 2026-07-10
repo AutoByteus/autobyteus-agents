@@ -14,6 +14,7 @@ The latest round is authoritative; earlier rounds remain history.
 
 - Review Entry Point: `Implementation Review` / `Post-API/E2E Coverage-Code Re-Review`
 - Requirements Doc Reviewed As Context:
+- Supplemental Solution Artifacts Reviewed As Context:
 - Current Review Round:
 - Trigger:
 - Prior Review Round Reviewed:
@@ -74,6 +75,7 @@ Quick examples:
 | Check | Result (`Pass`/`Fail`) | Evidence | Required Action |
 | --- | --- | --- | --- |
 | Task design health assessment is present, evidence-backed, and preserved by the implementation |  |  |  |
+| Implementation matches approved supplemental solution artifacts that constrain observable behavior |  |  |  |
 | Data-flow spine inventory clarity and preservation under shared principles |  |  |  |
 | Ownership boundary preservation and clarity |  |  |  |
 | Off-spine concern clarity (off-spine concerns serve clear owners and stay off the main line) |  |  |  |
@@ -97,6 +99,7 @@ Quick examples:
 | Validation or delivery readiness for the next workflow stage |  |  |  |
 | No backward-compatibility mechanisms (no compatibility wrappers/dual-path behavior) |  |  |  |
 | No legacy code retention for old behavior |  |  |  |
+| Latest-schema runtime and isolated data-migration boundary when persisted data changes |  |  |  |
 
 ## Review Scorecard (Mandatory)
 
@@ -147,11 +150,17 @@ Rules:
 
 ## Legacy / Backward-Compatibility Verdict
 
+Approved historical schema files confined to the migration subsystem are not current-runtime legacy behavior. Review their isolation and safety explicitly instead of failing them merely because they describe a historical source shape.
+
 | Check | Result (`Pass`/`Fail`) | Notes |
 | --- | --- | --- |
 | No backward-compatibility mechanisms in changed scope |  |  |
 | No legacy old-behavior retention in changed scope |  |  |
 | Dead/obsolete code cleanup completeness in changed scope |  |  |
+| Normal business, API, domain, and repository paths use only the latest schema |  |  |
+| Historical schema knowledge is confined to migration-owned files |  |  |
+| No dual reads/writes or request-time old-shape fallback exists |  |  |
+| Migration ordering, validation, completion gating, restart behavior, and recovery match the reviewed design |  |  |
 
 ## Dead / Obsolete / Legacy Items Requiring Removal (Mandatory If Any Exist)
 

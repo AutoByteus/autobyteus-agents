@@ -8,6 +8,14 @@ Describe the current execution path, current ownership boundaries, current coupl
 
 ## Intended Change
 
+## Supplemental Solution Artifacts
+
+List every still-relevant supplemental solution artifact and explain how it constrains or clarifies this design. If none exist, write `None`.
+
+| Artifact Path | Purpose | Related Requirement / Acceptance-Criteria IDs | Relationship To This Design | Status / Approval |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+
 ## Task Design Health Assessment (Mandatory)
 
 This section is required for every task: feature request, bug fix, behavior change, refactor, cleanup, performance issue, or larger requirement.
@@ -49,6 +57,7 @@ Read and write this design from abstract to concrete:
 - Required action: identify obsolete legacy paths/files included in this scope.
 - Treat removal as first-class design work: when clearer subsystem ownership, reusable owned structures, or tighter file responsibilities make fragmented or duplicated pieces unnecessary, name and remove/decommission them in scope.
 - Decision rule: the design is invalid if it depends on compatibility wrappers, dual-path behavior, or legacy fallback branches kept only for old behavior.
+- Existing persisted data that must survive the change must be transformed by an explicit migration into the latest canonical schema. Do not preserve it through dual-shape business logic or normal repository fallbacks.
 
 ## Data-Flow Spine Inventory
 
@@ -255,6 +264,34 @@ Use this section when the design would otherwise remain too abstract.
 
 Hard block:
 - Any design that depends on backward-compatibility wrappers, dual-path behavior, or retained legacy flow for in-scope replaced behavior fails review.
+
+## Persisted Data / State Migration Plan (Mandatory When Stored Data Shape Changes)
+
+Use this section when files, databases, caches, local storage, serialized state, queues, or other persisted data must move to a new schema. If no persisted shape changes, write `Not applicable` with a brief reason.
+
+- Latest canonical schema / version:
+- Older persisted schema version(s) that may exist:
+- Migration trigger (`Startup`/`Deployment`/`Maintenance Command`/`Other`):
+- Migration owner and file / subsystem location:
+- Normal business/runtime path that remains latest-schema-only:
+- Old-shape types or decoders confined to migration-owned code:
+- Completion marker / version ledger:
+- Restart-safety or idempotency strategy:
+- Validation before current runtime proceeds:
+- Backup / rollback / quarantine / operator-recovery strategy:
+- Concurrent old/new application access risk and cutover / maintenance / deployment-sequencing decision:
+- Historical migration retention decision:
+
+| Migration Step | Source Shape / Version | Target Shape / Version | Transformation Owner | Validation | Failure / Recovery Behavior |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+Rules:
+- Run or complete the migration before normal runtime code consumes the affected data.
+- Keep previous-schema knowledge inside migration-owned files.
+- Do not add dual reads, dual writes, compatibility fields, or fallback parsing to current business services or normal repositories.
+- If old and new application versions could access the same store concurrently, define a cutover, maintenance-window, or deployment sequence that preserves latest-schema-only runtime. Treat an unresolved mixed-version requirement as a design blocker.
+- Historical migration files may remain when required by the migration framework or version ledger, but they must not become runtime compatibility paths.
 
 ## Derived Layering (If Useful)
 

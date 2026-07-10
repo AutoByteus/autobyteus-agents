@@ -15,8 +15,21 @@ Use them to recognize the shape of a clear design.
 This file includes both good examples and bad-practice anti-examples.
 Folder layouts in these examples are illustrative projections of the design, not universal conventions.
 When mapping a design into code, follow the spine and ownership model, but also respect the established codebase style when it stays readable.
+The examples are intentionally detailed. Preserve them rather than shortening or removing them for concision, and add examples when new structural practices need concrete shape guidance.
 
-## Example 1: CRUD / Request Flow
+## Contents
+
+- [Example 1: CRUD Request Flow](#example-1-crud-request-flow)
+- [Example 2: Agent Run Runtime With Internal Event Loop](#example-2-agent-run-runtime-with-internal-event-loop)
+- [Example 3: Event-Driven Agent Runtime With Thin Facade And Internal Worker Loop](#example-3-event-driven-agent-runtime-with-thin-facade-and-internal-worker-loop)
+- [Example 4: Team Run Orchestration](#example-4-team-run-orchestration)
+- [Example 5: Workflow With State Machine](#example-5-workflow-with-state-machine)
+- [Example 6: Generic List Surface To Avoid](#example-6-generic-list-surface-to-avoid)
+- [Example 7: Latest-Schema Runtime With Isolated Data Migration](#example-7-latest-schema-runtime-with-isolated-data-migration)
+- [Common Bad-Practice Patterns](#common-bad-practice-patterns)
+- [How To Use These Examples](#how-to-use-these-examples)
+
+## Example 1: CRUD Request Flow
 
 ### Situation
 
@@ -562,6 +575,126 @@ Or require an explicit compound selector:
 
 The key rule is:
 do not let a generic list surface become a mixed-subject bag just because it is convenient today.
+
+## Example 7: Latest-Schema Runtime With Isolated Data Migration
+
+### Situation
+
+An application already stores version-1 workspace settings. A new design replaces that persisted shape with version 2.
+
+The existing user data must be preserved, but the current business logic must not carry version-1 branches, dual-shape repositories, or permanent fallback behavior.
+
+### Spine Inventory
+
+| Spine ID | Class | User / System Trigger | Success Outcome | Owning Boundary |
+|---|---|---|---|---|
+| DS-401 | Startup / maintenance | Application startup or an explicit deployment migration step finds schema version 1 | All eligible records are validated as schema version 2 and the migration ledger records completion | Migration subsystem |
+| DS-402 | Primary end-to-end | A current client reads or updates workspace settings | The request is processed and persisted using schema version 2 only | Settings domain |
+
+### Migration Spine
+
+```text
+AppBootstrap
+  -> SchemaVersionStore
+  -> MigrationRunner
+  -> V1ToV2SettingsMigration
+  -> CurrentSchemaValidator
+  -> MigrationLedger
+  -> StartCurrentRuntime
+```
+
+### Current Runtime Spine
+
+```text
+UI / API
+  -> SettingsService
+  -> CurrentSettingsRepository
+  -> SettingsSchemaV2Record
+```
+
+The two spines are deliberately separate. The migration spine may understand the historical source schema. The current runtime spine may not.
+
+### Deployment / Cutover Constraint
+
+This example assumes a controlled cutover: the old application version is stopped or otherwise prevented from accessing the settings store before the version-2 migration begins. The new application holds the migration/startup gate until validation and ledger completion succeed.
+
+If the deployment environment cannot prevent old and new binaries from accessing the same store concurrently, that is an unresolved deployment/design constraint. It must be surfaced and resolved; it must not be hidden behind dual-schema business logic.
+
+### Ownership
+
+| Component | Responsibility | Explicit Non-Responsibility |
+|---|---|---|
+| `AppBootstrap` | Prevent the current runtime from starting until required migrations complete | Does not transform records or contain schema-version branches |
+| `MigrationRunner` | Discover pending migrations, execute them in order, and coordinate checkpoints and recovery | Does not serve normal settings reads or writes |
+| `V1ToV2SettingsMigration` | Decode version-1 records and deterministically transform them into version 2 | Is not imported by the settings service or current repository |
+| `CurrentSchemaValidator` | Prove transformed records satisfy the current schema before completion is recorded | Does not accept version-1 records as valid current data |
+| `MigrationLedger` | Record ordered migration completion only after validation succeeds | Does not make an incomplete migration appear complete |
+| `SettingsService` | Implement current business behavior against version 2 | Does not detect, translate, or fall back to version 1 |
+| `CurrentSettingsRepository` | Read and write version-2 records only | Does not dual-read or dual-write historical formats |
+
+### Off-Spine Support
+
+- A backup or snapshot mechanism protects the pre-migration state when the migration risk requires it.
+- A quarantine path records malformed historical records that cannot be transformed automatically.
+- Structured logs and metrics report migration progress and failure without becoming an alternate execution path.
+- An operator recovery command may retry, restore, or resume the migration according to the approved recovery plan.
+
+### Folder Mapping
+
+```text
+bootstrap/
+  application-bootstrap.ts
+
+migrations/
+  migration-runner.ts
+  migration-ledger.ts
+  versions/
+    v1-to-v2-settings-migration.ts
+    v1-settings-record.ts
+
+settings/
+  current/
+    settings-service.ts
+    settings-repository.ts
+    settings-schema-v2.ts
+```
+
+Historical schema types live under the migration-owned boundary. Their continued presence there supports ordered upgrades, fresh-install replay, recovery, or audit needs; it does not authorize current business code to depend on them.
+
+### Completion And Failure Behavior
+
+1. The runner checks the migration ledger and source schema version.
+2. The migration reads version-1 records through its migration-owned decoder.
+3. It deterministically writes version-2 records using a restart-safe strategy.
+4. The current-schema validator verifies the migrated result.
+5. Only after successful verification does the ledger record completion.
+6. If transformation or validation fails, startup remains blocked and the documented restore, quarantine, retry, or operator-recovery path is used.
+7. After completion, normal reads and writes travel only through the current runtime spine.
+
+### Bad Practice
+
+```text
+SettingsService
+  -> if record is version 1, translate it inline
+  -> otherwise use version 2
+
+CurrentSettingsRepository
+  -> read version 1 or version 2
+  -> write both formats for compatibility
+```
+
+This is bad because:
+
+- historical data handling infects every current feature path,
+- two schemas become competing authorities,
+- failures can occur during arbitrary user requests rather than at a controlled boundary,
+- migration completion is impossible to prove,
+- compatibility branches become permanent and accumulate with each schema change,
+- tests must preserve obsolete behavior instead of protecting the current design.
+
+### Design Lesson
+
+Preserving existing data does not require preserving an obsolete runtime contract. Transform the data at an explicit, owned, testable migration boundary; then keep the business path structurally clean and current-schema-only.
 
 ## Common Bad-Practice Patterns
 
