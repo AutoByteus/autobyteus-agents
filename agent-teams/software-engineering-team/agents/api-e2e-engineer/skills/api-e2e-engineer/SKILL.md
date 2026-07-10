@@ -1,6 +1,6 @@
 ---
 name: api-e2e-engineer
-description: Investigate current API/E2E coverage, maintain durable tests, execute repository and realistic system checks, choose appropriate browser or other validation surfaces, and classify residual risks and failures truthfully.
+description: Investigate current API/E2E coverage, maintain durable tests, execute repository and realistic system checks, prefer browser validation for web-equivalent desktop behavior, reserve actual desktop execution for last-resort shell validation, and classify residual risks and failures truthfully.
 ---
 
 # API/E2E Coverage Engineer Skill
@@ -74,11 +74,11 @@ Do not begin with browser interaction merely because browser tools are available
 
 ## Desktop Application Validation Strategy
 
-- For Electron or another web-wrapped desktop application, distinguish web-equivalent renderer and client/server behavior from shell-specific behavior such as preload or IPC bridges, window management, native integration, packaging, and lifecycle behavior.
-- For web-equivalent UI behavior, browser validation is often the most practical choice. Read the project's README or relevant development instructions and use its documented server and frontend workflow when appropriate.
-- Choose setup and commands from the project rather than imposing a universal port, process, or harness convention. Use the evidence that most directly proves the changed requirement.
-- Browser interaction proves the web boundary it exercises, not Electron-shell behavior. When shell-specific behavior matters, use relevant repository coverage or a project-supported validation path; otherwise state the remaining uncertainty or blocker.
-- Do not disrupt the user's running desktop application. If the required behavior cannot be validated safely, record it as `Not Tested` or `Blocked` rather than claiming success.
+- When an Electron or other web-wrapped desktop application needs additional validation, first read its README and relevant development instructions to understand the architecture, supported test paths, and how its server and frontend are run.
+- Distinguish web-equivalent renderer and client/server behavior from shell-specific behavior such as preload or IPC bridges, window management, native integration, packaging, and lifecycle behavior.
+- Prefer the project's browser development path for web-equivalent behavior. After repository checks, decide whether browser execution can close the actual confidence gap, then formulate the setup from the project's instructions rather than imposing a universal port, process, or harness convention.
+- Browser interaction proves the web boundary it exercises, not Electron-shell behavior. When shell-specific behavior matters, first use relevant repository coverage or another project-supported focused validation path.
+- Treat execution of the actual desktop application as the last resort, used only when material shell-specific behavior cannot be proven another way and it can be tested without disrupting the user's running application. Otherwise state the remaining uncertainty or blocker instead of claiming success.
 
 ## Coverage Investigation Rules
 
@@ -146,7 +146,7 @@ Broader validation is normally required when material uncertainty remains around
 - user journeys, UI state transitions, routing, rendering, responsiveness, or accessibility
 - browser APIs, storage, cookies, authentication, sessions, permissions, uploads, downloads, streaming, or WebSockets
 - web-equivalent desktop renderer journeys that can be exercised independently in a browser
-- desktop-shell boundaries when the requirement depends on them and the project provides an appropriate validation path
+- desktop-shell boundaries that materially affect confidence and cannot be proven through browser or repository evidence
 - frontend/backend contract integration, bundling, environment injection, proxying, or runtime configuration
 - cross-process sequencing, workers, queues, external dependencies, migrations, restart, recovery, or platform lifecycle
 - behavior that repository tests cover only through mocks or that previously failed only in a realistic environment
@@ -170,7 +170,7 @@ Browser validation is normally unnecessary for a backend-local change when valid
 - When persisted data changes shape, validate representative supported source data through the explicit migration boundary, target-schema validation, completion gating, and required interruption/recovery behavior. Validate current runtime behavior against the latest schema only.
 - Reroute any compatibility wrapper, dual-path read/write, request-time schema-upgrade shim, retained legacy branch, or fallback in normal runtime code. Do not misclassify an approved isolated migration as backward-compatible runtime behavior.
 - Do not create or preserve durable coverage whose only purpose is to protect invalid compatibility behavior.
-- For desktop shell, installer, updater, restart, migration, recovery, or process-lifecycle cases, use the project's relevant coverage or validation path and record the evidence that matters to the changed behavior. Do not substitute browser-renderer evidence for these boundaries.
+- For desktop shell, installer, updater, restart, migration, recovery, or process-lifecycle cases, use the least disruptive project-supported evidence that proves the changed behavior. Do not substitute browser-renderer evidence for shell-specific boundaries, and execute the actual desktop application only as a last resort.
 - When behavior depends on workers, queues, multi-process or multi-node coordination, or external dependencies, stand up or emulate enough of the real environment to prove the material boundary when reasonable.
 - When a bug claim remains uncertain, create a focused probe or harness to reproduce or disprove it instead of guessing.
 
