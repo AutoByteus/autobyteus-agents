@@ -107,9 +107,6 @@ Quick examples:
 | Test fixtures/helpers are reasonably reusable and test structure remains coherent |  |  |  |
 | No stale, duplicated, or compatibility-only tests are retained in changed scope |  |  |  |
 | API/E2E readiness for the next workflow stage |  |  |  |
-| No backward-compatibility mechanisms (no compatibility wrappers/dual-path behavior) |  |  |  |
-| No legacy code retention for old behavior |  |  |  |
-| Latest-schema runtime and isolated data-migration boundary when persisted data changes |  |  |  |
 
 ## Review Scorecard (Mandatory)
 
@@ -149,16 +146,6 @@ Rules:
 - Create a new finding ID only for newly discovered issues.
 - Mark resolved or obsolete earlier findings in the prior-findings resolution table instead of silently dropping them.
 - If dead/obsolete/legacy/compatibility issues exist, enumerate each one explicitly with the concrete file/path/item, evidence, and required removal or cleanup action.
-
-## Test Structure And Validation-Readiness Verdict
-
-| Area | Check | Result (`Pass`/`Fail`) | Notes |
-| --- | --- | --- | --- |
-| API/E2E Readiness | Ready for API/E2E coverage investigation and execution |  |  |
-| Tests | Relevant test scenarios and assertions are clear |  |  |
-| Tests | Large test files remain coherently organized without source-size enforcement |  |  |
-| Tests | Fixtures/helpers avoid unjustified repetition and stale coverage |  |  |
-| Review Handoff | Review findings are clear enough for the next owner before API/E2E resumes |  |  |
 
 ## Legacy / Backward-Compatibility Verdict
 

@@ -120,20 +120,17 @@ Use these percentage anchors consistently within each category:
 
 Interpolate only when the evidence genuinely falls between anchors, and explain the distinction.
 
-Use `95%` as the default clean-confidence target. An overall score of `95%` or higher may justify no broader validation only when no applicable category is below `90%`, every critical acceptance criterion is directly proven, and no material browser/live-system risk remains.
+Decision rules:
 
-- At `90-94%`, identify the confidence gap and decide which targeted executable check could close it. Browser testing is one option, not the automatic answer.
-- Below `90%`, do not declare `Pass`; perform additional validation, reroute a discovered problem, or record a real blocker.
-- If any applicable category is below `90%`, address that category explicitly even when the overall average is higher.
-
-Do not award confidence merely because a command passed. Tie every percentage to the directness, realism, completeness, and quality of the validation performed.
-
-- A confidence score never overrides a missing or failing critical acceptance criterion.
-- Do not declare `Pass` when critical behavior remains unproven, regardless of the calculated percentage.
-- If overall confidence is below `95%` or any applicable category is below `90%`, identify the missing evidence and decide whether another executable surface can materially improve the score. Select the surface that directly exercises the missing boundary; do not default automatically to a browser.
+- A score never overrides a missing or failing critical acceptance criterion; unproven critical behavior blocks `Pass`.
+- The default clean target requires overall confidence of at least `95%`, no applicable category below `90%`, direct proof for every critical acceptance criterion, and no material browser/live-system risk.
+- At `90-94%`, identify the confidence gap and choose the targeted executable surface most likely to close it. Browser testing is one option, not the default.
+- If overall confidence or any applicable category is below `90%`, do not declare `Pass`; perform additional validation, reroute the discovered problem, or record a real blocker.
 - Record the live-system/browser decision as `Required`, `Not Required`, or `Blocked`, with the residual risk, expected evidence gain, selected execution mode, and rationale.
 - Use `Not Required` only when repository evidence already exercises the real changed boundary and no material browser/live-system risk remains. “Tests passed” alone is not sufficient rationale.
 - Use `Blocked` only after safe documented setup, local reproduction, focused probes, fixtures, mocks, or emulation cannot reasonably provide the required evidence.
+
+Do not award confidence merely because a command passed. Tie every percentage to the directness, realism, completeness, and quality of the validation performed.
 
 Browser or live-system validation is normally required when material uncertainty remains around:
 
@@ -169,22 +166,17 @@ Browser validation is normally unnecessary for a backend-local change when valid
 ## Outcome Routing
 
 - Distinguish durable coverage changes, temporary executable checks, and blocked or infeasible residual scenarios in the execution report.
-- After a successful API/E2E result, persist the investigation and execution report and send the cumulative package to `code_reviewer` for a separate, proportional review of durable test-code changes.
-- Record all added, updated, or removed durable coverage paths in the execution report. The code reviewer must produce a separate `api-e2e-test-review-report.md`; it must not append the result to the implementation `code-review-report.md` or apply the full source-review scorecard.
+- On `Pass`, persist both reports, record every added, updated, or removed durable coverage path, and send the cumulative package to `code_reviewer`. The reviewer checks only changed durable test code for proportional structure, clarity, determinism, reuse, and requirement alignment, then writes the separate `api-e2e-test-review-report.md` without reopening the implementation scorecard.
+- On `Fail`, record the preliminary classification and recommended owner, then send the complete failure package to `code_reviewer` for focused re-review of the affected implementation path and earlier review decision, not successful-test review.
+- On `Blocked`, do not hand off to another member. Preserve the reports, logs, and temporary evidence, then ask the user for the exact missing dependency. State what was attempted, why validation cannot continue, and how work resumes.
 - Reuse one canonical execution report across reruns. Recheck prior unresolved failures first and reuse scenario IDs for the same scenarios.
-- On `Fail`, record the preliminary classification and recommended owner, then send the complete failure package to `code_reviewer` for focused failure re-review of the affected implementation path and earlier review decision.
-- On `Blocked`, preserve the investigation, execution report, logs, and temporary evidence, then ask the user for the exact missing environment, access, credential, service, device, data, decision, or other dependency. State what was attempted, what remains unavailable, why it blocks validation, and how work resumes after the user provides it.
-- On success, `code_reviewer` reviews only changed durable test code for proportional structure, clarity, determinism, reuse, and requirement alignment. It does not reassess the confidence calculation, environment, cleanup, execution result, or temporary artifacts, and it does not reject a coherent test file merely for being large.
-- On failure, `code_reviewer` performs focused source-failure triage rather than the successful-test review.
+- The proportional test review does not reassess confidence, environment, cleanup, execution results, or temporary artifacts, and it does not reject a coherent test file merely for being large.
 
 ## Handoff Rules
 
 - Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an exact recipient name from the visible team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
-- On `Pass`, send the cumulative package to `code_reviewer` for the separate proportional test-code review.
-- On `Fail`, send the cumulative evidence package to `code_reviewer` for focused failure re-review.
-- On `Blocked`, do not perform an inter-member handoff. Ask the user for the concrete missing dependency and stop after preserving the artifacts.
 - Include requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, design review report, implementation handoff, code review report, coverage investigation, and execution coverage report as absolute filesystem paths.
 - Attach the complete cumulative package using the tool's reference-file input when available; do not rely only on paths in the message text.
 - For a `Fail` message to `code_reviewer`, include failing scenario and acceptance-criteria IDs, exact commands or execution mode, expected versus observed behavior, relevant logs/screenshots/artifacts, preliminary classification, and why focused source re-review is requested.

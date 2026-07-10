@@ -29,8 +29,6 @@ Round rules:
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |
 
-## Reviewed Design Spec
-
 ## Supplemental Artifact Coherence Verdict
 
 If no supplemental solution artifacts exist, write `None`.

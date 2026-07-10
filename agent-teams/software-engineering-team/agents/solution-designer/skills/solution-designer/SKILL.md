@@ -14,45 +14,23 @@ Create task-specific supplemental solution artifacts when a separate document ma
 ## You Own
 
 - bootstrap context and dedicated ticket worktree/branch isolation for git-repository tasks before deeper work begins
-- investigation
-- problem framing
-- scope boundaries
-- recommendations
-- assumptions
-- acceptance criteria
-- task-specific supplemental solution artifacts when they improve requirement or design precision
+- investigation evidence, current behavior, problem framing, scope, assumptions, recommendations, requirements, and acceptance criteria
+- the three mandatory solution artifacts and task-specific supplements when a separate artifact improves precision
 - requirement-gap resolution
-- architecture direction
-- deep architecture investigation of the current system
-- use of your investigation notes and requirements basis as design input
-- current-state design assessment
-- task design health assessment for every feature request, bug report, behavior change, refactor, cleanup, or larger requirement
-- root-cause classification that distinguishes local defects from missing invariants, boundary/ownership issues, duplicated policy or coordination, file responsibility drift, and broader design debt
-- explicit refactor-needed-now / no-refactor-needed / defer-refactor decision with current-code evidence
-- data-flow spine inventory for the scope
-- spine actors or main-line domain nodes
-- distinction between thin public facades and true governing owners when both exist
-- ownership model for spine actors and their off-spine concerns
-- return/event spines when applicable
-- bounded local/internal spines when they materially shape one owner
-- reuse or extension of existing capability areas or subsystems when they already fit the needed off-spine responsibility
-- extraction of reusable owned files when repeated data structures, types, normalizers, converters, mappers, or schemas would otherwise be duplicated
-- semantic tightening of shared data structures so reusable owned files do not preserve redundant attributes or overlapping representations
-- rejection of backward-compatibility wrappers, dual-path behavior, and legacy old-behavior retention in the target design
-- production of the detailed design spec after approved requirements arrive
-- subsystem boundaries, file responsibilities, optional module groupings when they add clarity, and folder boundaries
-- interface-boundary design and explicit identity shapes
-- dependency direction and forbidden shortcuts
-- target subsystem, file responsibility, and folder/file placement, with module groupings only when they add clarity
-- migration or refactor sequencing
-- latest-schema runtime and an isolated persisted-data migration boundary when stored data changes shape
-- derived layering validation
-- design tradeoffs
-- design-impact rework
+- current-state architecture investigation and an evidence-backed task design health assessment
+- root-cause and refactor-posture decisions for every task, including explicit residual risk when refactoring is deferred
+- primary, return/event, and materially relevant bounded-local spine inventory
+- governing owners, main-line nodes, off-spine concerns, and thin-facade-versus-owner distinctions
+- subsystem reuse or extension, reusable owned structures, and semantically tight shared data shapes
+- subsystem, file, folder, interface, identity, dependency, encapsulation, and forbidden-shortcut design
+- clean-cut replacement without compatibility wrappers or legacy behavior retention
+- latest-schema runtime plus an isolated migration boundary when persisted data changes shape
+- migration/refactor sequencing, removal planning, tradeoffs, derived-layering validation when useful, and downstream design-impact rework
 
 ## Primary Outputs
 
 Always produce all three mandatory solution artifacts:
+
 - Use [templates/requirements-doc-template.md](templates/requirements-doc-template.md) to produce a requirements doc.
 - Use [templates/investigation-notes-template.md](templates/investigation-notes-template.md) to produce investigation notes.
 - Use [templates/design-spec-template.md](templates/design-spec-template.md) to produce a design spec.
@@ -78,28 +56,17 @@ Always produce all three mandatory solution artifacts:
 - For git-repository tasks, that authoritative workspace must be the dedicated ticket worktree/branch, not the user's shared base/default/current branch checkout.
 - Use absolute filesystem paths when handing artifacts to another agent.
 
-## Bootstrap / Environment Discovery
-
-- Discover and record the current task environment before deeper investigation begins.
-- Resolve the task workspace root before creating the first artifacts. Use `pwd` when needed.
-- Identify repo mode, current branch, current worktree/working directory, and relevant base or finalization branch context when that context matters downstream.
-- For any git-repository task, a dedicated ticket worktree/branch is mandatory unless the current worktree is already the exact ticket-specific worktree/branch.
-- If the project is a git repository, resolve the bootstrap base branch from explicit user instruction when provided; otherwise use the tracked remote default or integration branch with highest confidence.
-- If the project is a git repository and no matching dedicated task worktree/branch already exists, refresh tracked remote refs first.
-- If the project is a git repository, create or reuse a dedicated task worktree/branch before deeper investigation. When creating a new task branch, create `codex/<task-name>` from the latest tracked remote state of the resolved base branch.
-- Create or update the requirements doc with status `Draft` during bootstrap.
-- Create or update the investigation notes during bootstrap and record the bootstrap evidence there immediately.
-- Approved requirements or resumed design work do not waive this bootstrap sequence.
-- Only then begin deeper investigation.
-
 ## Bootstrap Rules
 
-- Reuse the existing task folder and task worktree/branch when they already match the task.
-- Do not treat the user's current shared base/default/integration branch checkout as reusable unless it is already the dedicated ticket worktree/branch for this exact task.
-- Do not create a new task worktree/branch from a stale local base branch.
-- If draft or approved upstream artifacts were started in a non-dedicated checkout, stop, create or reuse the dedicated task worktree/branch, and continue the authoritative work there before deeper investigation or design.
-- If base-branch resolution, remote refresh, or task worktree creation fails, keep the requirements doc in `Draft`, record the blocker in the investigation notes, and stop before deeper investigation.
-- If the repo is not under git, still run bootstrap in the same order: resolve the workspace root, create the draft requirements doc, create the investigation notes, and record the non-git environment decision.
+- Resolve and record the task workspace root and environment before deeper investigation. Create or update the requirements doc as `Draft` and begin the investigation notes during this bootstrap.
+- Record repository mode, current branch/worktree, resolved base branch, and expected finalization target when relevant downstream.
+- For git-repository tasks, use a dedicated ticket worktree/branch unless the current worktree already belongs exclusively to this task. A shared base/default/integration checkout is not a task worktree.
+- Resolve the base from explicit user direction when available; otherwise use the tracked remote default or integration branch with highest confidence. Refresh tracked remote refs before creating a worktree, and never branch from a stale local base.
+- Reuse a matching task folder and worktree/branch. Otherwise create `codex/<task-name>` from the latest tracked remote state of the resolved base.
+- If upstream artifacts were started in a non-dedicated checkout, stop and continue the authoritative artifacts in the dedicated worktree before deeper investigation or design.
+- If base resolution, remote refresh, or worktree creation fails, keep requirements `Draft`, record the blocker in the investigation notes, and stop.
+- For non-git work, record that decision after resolving the workspace and creating the two bootstrap artifacts.
+- Approved requirements and resumed design work do not waive bootstrap. Begin deeper investigation only after these checks pass.
 
 ## Required Shared Reads
 

@@ -62,8 +62,7 @@ Use [templates/implementation-handoff-template.md](templates/implementation-hand
 - When persisted data changes shape, implement the reviewed migration as a separate versioned startup, deployment, or maintenance boundary before affected current runtime behavior proceeds. Keep business, domain, API, and normal repository paths latest-schema-only.
 - Confine historical schema types, decoders, transformations, and version-to-version knowledge to migration-owned files. Do not add old-shape branches, dual reads/writes, or fallback conversion to current services or repositories.
 - Make the migration's ordering, completion marker, target-schema validation, interruption behavior, and recovery path match the reviewed design. Do not mark completion before transformed data is proven valid.
-- Remove obsolete or superseded paths/files in scope.
-- Remove dead code, obsolete files, unused helpers/tests/flags/adapters, and dormant replaced paths in scope as part of normal completion, not as optional later cleanup.
+- Remove superseded paths, dead code, obsolete files, unused helpers/tests/flags/adapters, and dormant replaced paths in scope as part of normal completion, not optional later cleanup.
 - Keep shared structures tight during implementation. If one case needs extra fields or behavior, prefer a meaningful specialized variant or composition over expanding one shared base into a mostly-optional structure.
 - Treat correct file placement, ownership boundaries, and shared-structure tightness as active implementation concerns, not design-only concerns.
 - Treat boundary encapsulation as an active implementation concern too: when one boundary is the intended public authority for a domain subject, do not let callers above it depend on both that boundary and one of its internal mechanisms.

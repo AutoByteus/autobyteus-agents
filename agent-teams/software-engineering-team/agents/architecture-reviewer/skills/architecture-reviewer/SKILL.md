@@ -63,8 +63,5 @@ Use [templates/design-review-report-template.md](templates/design-review-report-
 - On pass, send the cumulative reviewed solution package to `implementation_engineer`: requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, and design review report.
 - Use absolute filesystem paths for all artifacts in that handoff.
 - On `Fail` or `Blocked`, choose `Design Impact`, `Requirement Gap`, or `Unclear` as the failure classification, route the complete solution package plus the design review report to `solution_designer`, and do not hand off to `implementation_engineer`.
-- On `Design Impact`, route to `solution_designer`.
-- On `Requirement Gap`, route to `solution_designer`.
-- On `Unclear`, route to `solution_designer`.
 - Expect iterative review rounds with `solution_designer` until the design passes.
 - On rerun rounds, update the prior-findings resolution section before declaring the new review decision.

@@ -24,9 +24,8 @@ Each specialist owns its stage, follows its role skill, and hands work to the ne
 - Primary pass path: `solution_designer` -> `architecture_reviewer` -> `implementation_engineer` -> `code_reviewer` (implementation source review) -> `api_e2e_engineer` -> `code_reviewer` (proportional test-code review) -> `delivery_engineer`.
 - `Design Impact`, `Requirement Gap`, and `Unclear` return to `solution_designer`; the revised solution package returns through `architecture_reviewer` before implementation resumes.
 - A bounded `Local Fix` returns to the specialist that owns it: `implementation_engineer` for implementation-owned source or packaging, and `api_e2e_engineer` for invalid/stale tests, fixtures, environment setup, execution, or reporting.
-- API/E2E failures first return to `code_reviewer` for focused failure-origin analysis. Implementation-owned fixes then return through source review and API/E2E again; API/E2E-owned fixes return to API/E2E execution.
-- Successful API/E2E results return to `code_reviewer` for the separate proportional test-code review report. Failed results return to the same reviewer for focused source-failure analysis. Blocked results preserve their artifacts and ask the user for the exact missing dependency instead of handing off to another member.
-- A successful test-code review sends the complete package to `delivery_engineer`. A failed test-code review returns to the classified owner, normally `api_e2e_engineer` for a bounded test-code correction.
+- API/E2E outcomes route as follows: `Pass` -> `code_reviewer` for the separate proportional test-code review, then `delivery_engineer`; `Fail` -> `code_reviewer` for focused failure-origin analysis and owner classification; `Blocked` -> the user with preserved evidence and the exact missing dependency.
+- After rework, implementation-owned fixes return through source review and API/E2E; API/E2E-owned fixes return through execution and, when durable tests changed, proportional test-code review.
 
 ## Team Handoff Authority
 
@@ -46,15 +45,5 @@ Each specialist owns its stage, follows its role skill, and hands work to the ne
 - `solution_designer` may add task-specific supplemental solution artifacts when a separate document materially improves requirement or design precision. Examples include a UI/UX specification, user-journey or interaction-state specification, protocol/API contract, or data-mapping specification.
 - Supplemental solution artifacts extend but never replace the three mandatory solution artifacts. Link each supplement from at least one mandatory artifact, record its scope and approval state, and include it in every downstream cumulative package while it remains relevant.
 - After architecture review, the mandatory solution package and its still-relevant supplements together form the reviewed solution package. The design review report records the gate decision and travels alongside that package.
-- Default cumulative package:
-  - `architecture_reviewer`: mandatory solution package, plus all still-relevant supplemental solution artifacts
-  - `implementation_engineer`: reviewed solution package, plus the design review report
-  - `code_reviewer` (implementation review): reviewed solution package, design review report, and implementation handoff
-  - `api_e2e_engineer`: reviewed solution package, design review report, implementation handoff, and code review report
-  - `code_reviewer` (successful API/E2E test-code review): API/E2E-passed cumulative package, coverage investigation, execution coverage report, and every added, updated, or removed durable test path
-  - `code_reviewer` (API/E2E failure re-review): cumulative failure package, coverage investigation, execution coverage report, failing scenario IDs, exact execution context, and failure evidence
-  - `delivery_engineer`: API/E2E-passed cumulative package, code review report, coverage investigation, execution coverage report, and separate API/E2E test review report
-- `api_e2e_engineer` must produce a coverage investigation artifact before final test execution, durable coverage edits, durable coverage removals, or failure rerouting. That artifact records whether existing API/E2E coverage is still valid, stale, needs update, should be removed, or must be replaced or expanded.
-- For successful API/E2E test-code review, `code_reviewer` writes the separate `api-e2e-test-review-report.md`, reviews only changed durable test code, applies test-specific structure and correctness rules, and does not repeat the source audit or architecture scorecard. Large coherent test files are acceptable; dirty, unclear, duplicated, brittle, or requirement-misaligned test code is not.
-- For API/E2E failure re-review, `code_reviewer` records failure context and updates only affected findings or score rationale in the existing `code-review-report.md`. It does not run the successful-test review path or repeat the full implementation scorecard.
-- When a reroute or rework artifact is produced, include that artifact too alongside the already-existing upstream package.
+- The package grows cumulatively in this order: requirements doc, investigation notes, design spec, relevant supplements, design review report, implementation handoff, code review report, coverage investigation, execution coverage report, and API/E2E test review report. Each stage appends its output without dropping still-relevant upstream artifacts.
+- Failure and rework handoffs include the applicable report and supporting evidence; API/E2E failures also include failing scenario IDs and exact execution context. The owning role skill and template define the detailed artifact schema.

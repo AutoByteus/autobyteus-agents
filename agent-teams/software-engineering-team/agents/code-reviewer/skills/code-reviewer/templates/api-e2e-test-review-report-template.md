@@ -6,14 +6,6 @@ This is a separate, proportional review of durable API/E2E test-code changes aft
 
 Keep one canonical report path across reruns. Reuse finding IDs for unresolved findings; the latest result is authoritative.
 
-## Contents
-
-- [Review Meta](#review-meta)
-- [Changed Durable Test Scope](#changed-durable-test-scope)
-- [Proportional Test-Code Checks](#proportional-test-code-checks)
-- [Findings](#findings)
-- [Latest Authoritative Result](#latest-authoritative-result)
-
 ## Review Meta
 
 - Review Round:

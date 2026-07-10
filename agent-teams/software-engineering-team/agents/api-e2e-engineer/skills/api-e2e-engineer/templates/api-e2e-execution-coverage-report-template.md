@@ -8,16 +8,6 @@ On round `>1`, recheck prior unresolved failures first, update the prior-failure
 The latest round is authoritative; earlier rounds remain history.
 Execution may cover API, browser UI, native desktop UI, CLI, process/lifecycle, integration, or distributed checks depending on the real boundaries being proven.
 
-## Contents
-
-- [Pre-Execution Coverage Investigation](#pre-execution-coverage-investigation)
-- [Project Execution Basis](#project-execution-basis)
-- [Repository Coverage Execution](#repository-coverage-execution)
-- [Validation Confidence Scorecard](#validation-confidence-scorecard-mandatory)
-- [Live-System / Browser Validation Decision And Execution](#live-system--browser-validation-decision-and-execution)
-- [Lifecycle / Upgrade / Restart / Migration Checks](#lifecycle--upgrade--restart--migration-checks)
-- [Latest Authoritative Result](#latest-authoritative-result)
-
 ## Execution Round Meta
 
 - Requirements Doc:
@@ -43,40 +33,18 @@ Round rules:
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |
 
-## Pre-Execution Coverage Investigation
+## Investigation And Execution Basis
 
 - Coverage investigation artifact:
-- Completed before final test execution, durable coverage edits, durable coverage removals, or failure rerouting: `No` / `Yes`
-- Existing durable coverage inventory reviewed: `No` / `Yes`
-- Existing tests treated as authority without current-requirement validity review: `No` / `Yes (invalid; explain)`
-- Stale or obsolete coverage found: `No` / `Yes`
-- New durable coverage needed: `No` / `Yes`
-- Reroute required from investigation: `No` / `Yes`
-- Notes:
-
-## Project Execution Basis
-
+- Investigation completed before durable coverage changes or final execution: `No` / `Yes`
 - Assigned task worktree / workspace:
 - Project type and runtime stack:
 - Required environment variables or secrets available: `Yes` / `No` / `N/A` (do not record secret values)
-
-| Instruction / Configuration Path | Commands, Setup, Or Constraints Applied |
-| --- | --- |
-|  |  |
-
-| Component / Dependency | Working Directory | Start / Setup Command | Isolated Port / Resource | Readiness Evidence | Stop / Cleanup Result |
-| --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |
-
-| Data / Fixture / Identity | Creation Or Setup Method | Isolation | Cleanup / Retention Result |
-| --- | --- | --- | --- |
-|  |  |  |  |
-
-## Existing Durable Coverage Decision Summary
-
-| Path / Scenario | Validity Decision (`Still Valid`/`Needs Update`/`Stale / Remove`/`Replace`/`Out Of Scope`/`Unclear`) | Action Taken | Evidence |
-| --- | --- | --- | --- |
-|  |  |  |  |
+- Authoritative instruction/configuration paths applied:
+- Changes from the investigation's coverage, environment, fixture, or execution plan:
+- Existing coverage decisions revised during execution, with evidence:
+- Reroute required before or during execution: `No` / `Yes`
+- Notes:
 
 ## Compatibility / Legacy Scope Check
 

@@ -6,16 +6,6 @@ Keep one canonical investigation path across reruns.
 Do not create versioned copies by default.
 Update this artifact whenever new evidence changes a test-validity or coverage decision.
 
-## Contents
-
-- [Project Execution Discovery](#project-execution-discovery)
-- [Current Requirement And Design Basis](#current-requirement-and-design-basis)
-- [Existing Durable Coverage Inventory](#existing-durable-coverage-inventory)
-- [Repository Coverage Execution Plan And Results](#repository-coverage-execution-plan-and-results)
-- [Post-Repository Confidence Scorecard](#post-repository-confidence-scorecard-mandatory)
-- [Live-System / Browser Validation Decision](#live-system--browser-validation-decision-mandatory)
-- [Investigation Decision](#investigation-decision)
-
 ## Investigation Meta
 
 - Requirements Doc:
@@ -199,17 +189,12 @@ Score each applicable category from `0%` to `100%`. Use `N/A` only with a concre
 | --- | --- | --- | --- |
 |  |  |  |  |
 
-## Execution Plan
-
-State the ordered plan for durable coverage changes, temporary probes, final command execution, and evidence collection.
-
 ## Investigation Decision
 
 - Proceed To API/E2E Execution: `Yes` / `No`
 - Repository-Resident Durable Coverage Will Be Added / Updated / Removed: `No` / `Yes`
 - Post-repository confidence:
 - Live-system / browser validation decision:
-- Required next recipient (`Pass` -> `code_reviewer` for proportional test-code review; `Fail` -> `code_reviewer` for focused source re-review; `Blocked` -> user request):
 - Reroute Required Before Validation Execution: `No` / `Yes`
 - Recommended Recipient If Reroute Required:
 - Notes:

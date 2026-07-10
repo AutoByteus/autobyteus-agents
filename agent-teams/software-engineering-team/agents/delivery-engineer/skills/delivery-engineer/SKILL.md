@@ -49,7 +49,6 @@ Update the ticket-local handoff summary before final handoff, then use [template
 
 ## Workflow Rules
 
-- Start delivery by refreshing the branch state against the latest tracked remote base, then continue within the same role into docs sync, final handoff, repository finalization, and any applicable release or deployment work.
 - Keep docs sync focused on the final integrated, reviewed, and validated implementation state. Use that integrated state as primary truth and use upstream artifacts as supporting context.
 - Update long-lived docs to match final implemented behavior, promote durable design/runtime knowledge into canonical project docs, and record removed or replaced components so the docs do not preserve obsolete understanding.
 - Use approved supplemental solution artifacts as supporting delivery context. Promote durable UI/UX, interaction, contract, or data-shape knowledge into long-lived docs when it should outlive the ticket.

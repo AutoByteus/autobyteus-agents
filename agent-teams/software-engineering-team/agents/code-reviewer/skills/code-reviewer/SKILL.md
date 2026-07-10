@@ -45,7 +45,6 @@ For implementation review:
 For successful API/E2E test-code review:
 
 - Accept the cumulative passed package from `api_e2e_engineer`: the full upstream chain, code review report, coverage investigation, execution coverage report, and every added, updated, or removed durable test path.
-- If no durable test file changed, record `Not Applicable` in the separate test-review report and forward the passed package without repeating implementation review.
 
 For API/E2E failure re-review:
 
@@ -67,8 +66,7 @@ For API/E2E failure re-review:
 ## Implementation Review Rules
 
 - Use the full implementation sections and mandatory scorecard in [templates/code-review-report-template.md](templates/code-review-report-template.md).
-- Review independently against the full artifact chain, canonical design guidance, and approved supplemental artifacts.
-- Write findings without implementing fixes.
+- Review against the full artifact chain, canonical design guidance, and approved supplemental artifacts.
 - Treat earlier design artifacts as context, not immunity from review. Classify an inadequate design as `Design Impact`.
 - Review design integrity, API/E2E readiness, cleanup completeness, and changed implementation-source size or structural pressure.
 - Apply `>500` and `>220` source thresholds only to changed implementation-source files, never to tests, fixtures, or generated coverage files.
