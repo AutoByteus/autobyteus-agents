@@ -8,6 +8,16 @@ On round `>1`, recheck prior unresolved failures first, update the prior-failure
 The latest round is authoritative; earlier rounds remain history.
 Execution may cover API, browser UI, native desktop UI, CLI, process/lifecycle, integration, or distributed checks depending on the real boundaries being proven.
 
+## Contents
+
+- [Pre-Execution Coverage Investigation](#pre-execution-coverage-investigation)
+- [Project Execution Basis](#project-execution-basis)
+- [Repository Coverage Execution](#repository-coverage-execution)
+- [Validation Confidence Scorecard](#validation-confidence-scorecard-mandatory)
+- [Live-System / Browser Validation Decision And Execution](#live-system--browser-validation-decision-and-execution)
+- [Lifecycle / Upgrade / Restart / Migration Checks](#lifecycle--upgrade--restart--migration-checks)
+- [Latest Authoritative Result](#latest-authoritative-result)
+
 ## Execution Round Meta
 
 - Requirements Doc:
@@ -33,8 +43,6 @@ Round rules:
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |
 
-## Execution Basis
-
 ## Pre-Execution Coverage Investigation
 
 - Coverage investigation artifact:
@@ -45,6 +53,24 @@ Round rules:
 - New durable coverage needed: `No` / `Yes`
 - Reroute required from investigation: `No` / `Yes`
 - Notes:
+
+## Project Execution Basis
+
+- Assigned task worktree / workspace:
+- Project type and runtime stack:
+- Required environment variables or secrets available: `Yes` / `No` / `N/A` (do not record secret values)
+
+| Instruction / Configuration Path | Commands, Setup, Or Constraints Applied |
+| --- | --- |
+|  |  |
+
+| Component / Dependency | Working Directory | Start / Setup Command | Isolated Port / Resource | Readiness Evidence | Stop / Cleanup Result |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+| Data / Fixture / Identity | Creation Or Setup Method | Isolation | Cleanup / Retention Result |
+| --- | --- | --- | --- |
+|  |  |  |  |
 
 ## Existing Durable Coverage Decision Summary
 
@@ -61,9 +87,64 @@ Round rules:
 - If compatibility-related invalid scope was observed, reroute classification used: `Local Fix` / `Design Impact` / `Requirement Gap` / `Unclear`
 - Upstream recipient notified:
 
-## Execution Surfaces / Modes
+## Changed Boundary And Evidence Matrix
+
+| Scenario ID | Requirement / Acceptance-Criteria IDs | Changed Boundary | Execution Surface / Mode | Evidence Type (`Durable`/`Temporary`/`Live`/`Browser`) | Result (`Pass`/`Fail`/`Blocked`/`Not Tested`) | Evidence / Artifact |
+| --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |
+
+## Repository Coverage Execution
+
+| Order | Command | Working Directory / Configuration | Boundary Or Scenario Proven | Result (`Pass`/`Fail`/`Blocked`) | Evidence / Output Path |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+## Validation Confidence Scorecard (Mandatory)
+
+Record the score after repository execution and the final score after broader validation. If broader validation did not run, repeat the post-repository score as final and explain why it was unnecessary.
+
+| Confidence Category | Post-Repository Score (`0-100%`/`N/A`) | Final Score (`0-100%`/`N/A`) | Change | Final Supporting Evidence | Residual Uncertainty |
+| --- | --- | --- | --- | --- | --- |
+| Requirement and acceptance-criteria proof |  |  |  |  |  |
+| Changed-boundary execution directness |  |  |  |  |  |
+| Cross-boundary integration realism and mock gap |  |  |  |  |  |
+| Environment, configuration, identity, and fixture fidelity |  |  |  |  |  |
+| Failure, edge-case, lifecycle, and recovery evidence |  |  |  |  |  |
+| User-surface and browser confidence |  |  |  |  |  |
+| Durable regression coverage quality and relevance |  |  |  |  |  |
+
+- Overall post-repository confidence:
+- Overall final confidence:
+- Calculation method:
+- Confidence change produced by broader validation:
+- Every critical acceptance criterion directly proven: `Yes` / `No`
+- Any final applicable category below `90%`: `No` / `Yes` — list:
+- Default final confidence target of `95%` met: `Yes` / `No`
+- Confidence-limiting residual risks:
+
+## Live-System / Browser Validation Decision And Execution
+
+- Decision after repository execution: `Required` / `Not Required` / `Blocked`
+- Selected execution mode (`Browser`/`Live API`/`Native`/`CLI`/`Lifecycle`/`Worker or Distributed`/`Other`/`None`):
+- Confidence gap or residual risk targeted:
+- Expected confidence after broader validation:
+- Browser-specific decision and rationale:
+- If `Not Required`, direct evidence that made broader validation unnecessary:
+- If `Blocked`, exact unavailable dependency or access and attempted alternatives:
+- Startup order, commands, and readiness results:
+- Worktree-specific ports, databases, storage, caches, and temporary paths:
+- Seed data, fixtures, identities, authentication, permissions, or session state:
+
+| Scenario / Journey Step | Expected Observable Result | Actual Observable Result | DOM / Screenshot / Log / API / Process Evidence | Result |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
 
 ## Platform / Runtime Targets
+
+- Operating system / platform:
+- Runtime and relevant framework versions:
+- Browser / engine and version, when applicable:
+- Device, viewport, locale, timezone, or accessibility settings, when applicable:
 
 ## Lifecycle / Upgrade / Restart / Migration Checks
 
@@ -78,13 +159,11 @@ Round rules:
 - Normal runtime old-shape path, dual read/write, or compatibility fallback observed: `No` / `Yes (reroute required)`
 - Residual untested migration risk:
 
-## Coverage Matrix
-
-## Test Scope
-
-## Execution Setup / Environment
-
 ## Tests Implemented Or Updated
+
+| Path / Scenario | Change (`Added`/`Updated`) | Requirement / Boundary | Execution Result | Notes |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
 
 ## Tests Removed As Stale Or Obsolete
 
@@ -102,9 +181,21 @@ Round rules:
 
 ## Other Execution Artifacts
 
+| Artifact Path | Type / Purpose | Retained Or Temporary | Notes |
+| --- | --- | --- | --- |
+|  |  |  |  |
+
 ## Temporary Execution Methods / Scaffolding
 
+| Path / Method | Why Needed | Result / Evidence | Cleanup Result |
+| --- | --- | --- | --- |
+|  |  |  |  |
+
 ## Dependencies Mocked Or Emulated
+
+| Dependency | Method | Why Real Dependency Was Not Used | Confidence Limitation |
+| --- | --- | --- | --- |
+|  |  |  |  |
 
 ## Prior Failure Resolution Check (Mandatory On Round >1)
 
@@ -112,24 +203,24 @@ Round rules:
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
 
-## Scenarios Checked
+## Result Summary
 
-## Passed
-
-## Failed
-
-## Not Tested / Out Of Scope
-
-## Blocked
+| Result (`Pass`/`Fail`/`Blocked`/`Not Tested`/`Out Of Scope`) | Scenario IDs | Summary / Reason |
+| --- | --- | --- |
+|  |  |  |
 
 ## Cleanup Performed
+
+| Resource / Process / Data | Ownership | Cleanup Action | Result |
+| --- | --- | --- | --- |
+|  |  |  |  |
 
 ## Classification
 
 - `Local Fix`: the main issue is a bounded implementation correction.
 - `Design Impact`: the main issue is a weakness or mismatch in the reviewed design.
 - `Requirement Gap`: intended behavior or acceptance criteria are missing or ambiguous.
-- `Unclear`: the issue is cross-cutting, low-confidence, or cannot yet be classified cleanly.
+- `Unclear`: the issue is cross-cutting or cannot yet be classified cleanly from the available evidence.
 
 ## Recommended Recipient
 
@@ -139,4 +230,9 @@ Round rules:
 
 - Result values: `Pass` / `Fail` / `Blocked`
 - Result:
+- Final validation confidence:
+- Default `95%` confidence target met: `Yes` / `No`
+- Any final applicable confidence category below `90%`: `No` / `Yes` — list:
+- Live-system / browser decision:
+- Critical acceptance criteria lacking direct proof:
 - Notes:
