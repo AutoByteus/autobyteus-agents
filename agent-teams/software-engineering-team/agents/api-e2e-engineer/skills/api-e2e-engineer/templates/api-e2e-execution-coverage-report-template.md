@@ -6,7 +6,7 @@ Keep one canonical execution coverage report path across reruns.
 Do not create versioned copies by default.
 On round `>1`, recheck prior unresolved failures first, update the prior-failure resolution section, and then record the new round result.
 The latest round is authoritative; earlier rounds remain history.
-Execution may cover API, browser UI, native desktop UI, CLI, process/lifecycle, integration, or distributed checks depending on the real boundaries being proven.
+Execution may cover API, browser UI, a web-equivalent desktop renderer served by independently started backend/frontend processes, a user-approved project-provided isolated desktop harness, CLI, process/lifecycle, integration, or distributed checks depending on the real boundaries being proven.
 
 ## Execution Round Meta
 
@@ -57,7 +57,7 @@ Round rules:
 
 ## Changed Boundary And Evidence Matrix
 
-| Scenario ID | Requirement / Acceptance-Criteria IDs | Changed Boundary | Execution Surface / Mode | Evidence Type (`Durable`/`Temporary`/`Live`/`Browser`) | Result (`Pass`/`Fail`/`Blocked`/`Not Tested`) | Evidence / Artifact |
+| Scenario ID | Requirement / Acceptance-Criteria IDs | Changed Boundary | Execution Surface / Mode | Evidence Type (`Durable`/`Temporary`/`Live`/`Browser`/`Desktop Harness`) | Result (`Pass`/`Fail`/`Blocked`/`Not Tested`) | Evidence / Artifact |
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |
 
@@ -78,7 +78,7 @@ Record the score after repository execution and the final score after broader va
 | Cross-boundary integration realism and mock gap |  |  |  |  |  |
 | Environment, configuration, identity, and fixture fidelity |  |  |  |  |  |
 | Failure, edge-case, lifecycle, and recovery evidence |  |  |  |  |  |
-| User-surface and browser confidence |  |  |  |  |  |
+| User-surface, browser, and desktop-shell confidence |  |  |  |  |  |
 | Durable regression coverage quality and relevance |  |  |  |  |  |
 
 - Overall post-repository confidence:
@@ -90,10 +90,10 @@ Record the score after repository execution and the final score after broader va
 - Default final confidence target of `95%` met: `Yes` / `No`
 - Confidence-limiting residual risks:
 
-## Live-System / Browser Validation Decision And Execution
+## Broader Validation Decision And Execution
 
 - Decision after repository execution: `Required` / `Not Required` / `Blocked`
-- Selected execution mode (`Browser`/`Live API`/`Native`/`CLI`/`Lifecycle`/`Worker or Distributed`/`Other`/`None`):
+- Selected execution mode (`Browser`/`Live API`/`User-Approved Project Desktop Harness`/`CLI`/`Lifecycle`/`Worker or Distributed`/`Other`/`None`):
 - Confidence gap or residual risk targeted:
 - Expected confidence after broader validation:
 - Browser-specific decision and rationale:
@@ -106,6 +106,26 @@ Record the score after repository execution and the final score after broader va
 | Scenario / Journey Step | Expected Observable Result | Actual Observable Result | DOM / Screenshot / Log / API / Process Evidence | Result |
 | --- | --- | --- | --- | --- |
 |  |  |  |  |  |
+
+## Desktop Application Validation (When Applicable)
+
+- Desktop framework / shell:
+- README / development instruction paths used:
+- Backend/server command, readiness result, and owned process:
+- Frontend/client command, readiness result, browser URL, and owned process:
+- Browser-tested web-equivalent behaviors and evidence:
+- Desktop shell relevant to the changed requirements: `No (Not Applicable)` / `Yes`
+- Desktop-shell behaviors intentionally excluded from browser claims:
+- Project-provided desktop harness used: `No` / `Yes`
+- Explicit user approval for desktop harness launch:
+- Harness command and isolation evidence:
+- Electron executable launched during browser validation: `No` / `Yes (invalid execution)`
+- Existing user-owned desktop processes observed: `No` / `Yes`
+- Existing user-owned desktop processes left untouched: `Yes` / `No (invalid execution)`
+- Process-name cleanup such as `pkill` or `killall` used: `No` / `Yes (invalid execution)`
+- Exact child process created and stopped by this run, when applicable:
+- Desktop-shell result: `Pass` / `Fail` / `Not Tested` / `Blocked` / `Not Applicable`
+- Remaining shell-specific risk and confidence consequence:
 
 ## Platform / Runtime Targets
 
@@ -201,7 +221,7 @@ Record the score after repository execution and the final score after broader va
 - Final validation confidence:
 - Default `95%` confidence target met: `Yes` / `No`
 - Any final applicable confidence category below `90%`: `No` / `Yes` — list:
-- Live-system / browser decision:
+- Broader validation decision:
 - Critical acceptance criteria lacking direct proof:
 - Required next recipient (`Pass` -> `code_reviewer` for proportional test-code review; `Fail` -> `code_reviewer` for focused source re-review; `Blocked` -> user request):
 - Notes:

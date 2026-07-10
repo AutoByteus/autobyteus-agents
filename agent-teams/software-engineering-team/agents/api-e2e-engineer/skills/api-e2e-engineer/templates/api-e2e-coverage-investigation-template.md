@@ -60,7 +60,9 @@ Identify behavior added, changed, removed, or intentionally preserved.
 | Frontend component / state |  |  |  |  |  |
 | Browser integration / user journey |  |  |  |  |  |
 | Authentication / session / permissions |  |  |  |  |  |
-| Native / lifecycle / process |  |  |  |  |  |
+| Desktop renderer / web-equivalent UI |  |  |  |  |  |
+| Desktop shell / Electron-specific integration |  |  |  |  |  |
+| Process / lifecycle |  |  |  |  |  |
 | Migration / persisted state |  |  |  |  |  |
 | Worker / queue / distributed coordination |  |  |  |  |  |
 | External integration |  |  |  |  |  |
@@ -126,7 +128,7 @@ Score each applicable category from `0%` to `100%`. Use `N/A` only with a concre
 | Cross-boundary integration realism and mock gap |  |  |  |  |
 | Environment, configuration, identity, and fixture fidelity |  |  |  |  |
 | Failure, edge-case, lifecycle, and recovery evidence |  |  |  |  |
-| User-surface and browser confidence |  |  |  |  |
+| User-surface, browser, and desktop-shell confidence |  |  |  |  |
 | Durable regression coverage quality and relevance |  |  |  |  |
 
 - Overall post-repository confidence:
@@ -136,16 +138,34 @@ Score each applicable category from `0%` to `100%`. Use `N/A` only with a concre
 - Default clean-confidence target of `95%` met: `Yes` / `No`
 - Material residual risks:
 
-## Live-System / Browser Validation Decision (Mandatory)
+## Broader Validation Decision (Mandatory)
 
 - Decision: `Required` / `Not Required` / `Blocked`
-- Selected execution mode (`Browser`/`Live API`/`Native`/`CLI`/`Lifecycle`/`Worker or Distributed`/`Other`/`None`):
+- Selected execution mode (`Browser`/`Live API`/`User-Approved Project Desktop Harness`/`CLI`/`Lifecycle`/`Worker or Distributed`/`Other`/`None`):
 - Specific confidence gap or residual risk addressed:
 - Why the selected mode can materially improve confidence:
 - Expected confidence after the selected validation:
 - Browser-specific decision and rationale:
 - If `Not Required`, evidence proving the real changed boundary without broader execution:
 - If `Blocked`, exact dependency or access that remains unavailable after safe setup/emulation attempts:
+
+## Desktop Application Validation Decision (When Applicable)
+
+- Desktop framework / shell:
+- README / development instruction paths consulted:
+- Renderer and supporting services can run independently in a browser: `Yes` / `No` / `Unknown`
+- Documented backend/server development command and readiness check:
+- Documented frontend/client development command, readiness check, and browser URL:
+- Web-equivalent behaviors selected for browser validation:
+- Desktop shell relevant to the changed requirements: `No (Not Applicable)` / `Yes`
+- Desktop-shell-specific behaviors not proven by browser validation:
+- Project-provided isolated desktop harness available: `Yes` / `No`
+- Explicit user approval to launch that harness: `No` / `Yes` / `Not Requested`
+- Harness isolation evidence (profile/data directory, single-instance identity, exact child-process ownership):
+- Electron executable will remain closed for browser validation: `Yes` / `No (invalid plan)`
+- Existing user-owned desktop processes will remain untouched: `Yes` / `No (invalid plan)`
+- Selected strategy (`Browser Renderer`/`Repository Tests`/`User-Approved Project Desktop Harness`/`Not Tested`/`Blocked`):
+- Confidence consequence and remaining shell risk:
 
 ## Live Environment And Fixture Plan (Required When Broader Validation Runs)
 
@@ -194,7 +214,7 @@ Score each applicable category from `0%` to `100%`. Use `N/A` only with a concre
 - Proceed To API/E2E Execution: `Yes` / `No`
 - Repository-Resident Durable Coverage Will Be Added / Updated / Removed: `No` / `Yes`
 - Post-repository confidence:
-- Live-system / browser validation decision:
+- Broader validation decision:
 - Reroute Required Before Validation Execution: `No` / `Yes`
 - Recommended Recipient If Reroute Required:
 - Notes:
