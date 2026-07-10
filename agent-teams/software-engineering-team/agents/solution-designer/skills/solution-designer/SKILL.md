@@ -24,8 +24,8 @@ Create task-specific supplemental solution artifacts when a separate document ma
 - subsystem reuse or extension, reusable owned structures, and semantically tight shared data shapes
 - subsystem, file, folder, interface, identity, dependency, encapsulation, and forbidden-shortcut design
 - clean-cut replacement without compatibility wrappers or legacy behavior retention
-- latest-schema runtime plus an isolated migration boundary when persisted data changes shape
-- migration/refactor sequencing, removal planning, tradeoffs, derived-layering validation when useful, and downstream design-impact rework
+- evidence-backed persisted-data transition decisions, with isolated migration boundaries only when transformation is required
+- change/refactor sequencing, removal planning, tradeoffs, derived-layering validation when useful, and downstream design-impact rework
 
 ## Primary Outputs
 
@@ -76,7 +76,7 @@ Always produce all three mandatory solution artifacts:
 ## Example Guidance
 
 - Read [references/design-examples.md](references/design-examples.md) whenever a concrete example would make the design easier to understand, teach, or review.
-- Use those examples to learn how a strong design spec can look across CRUD flow, runtime flow, bounded local loop flow, event-driven runtime flow, team orchestration, state-machine flow, interface-boundary design, and isolated data migration with a latest-schema-only runtime.
+- Use those examples to learn how a strong design spec can look across CRUD flow, runtime flow, bounded local loop flow, event-driven runtime flow, team orchestration, state-machine flow, interface-boundary design, justified isolated data migration, and schema contraction that needs no migration.
 - That file also includes explicit bad-practice anti-examples so the solution designer can recognize generic boundaries, fragmented coordinator chains, hidden local loops, overloaded main-line nodes, and historical-schema handling leaked into current business paths.
 - Pay attention to how those examples distinguish thin public facades from the deeper owners that actually govern lifecycle, sequencing, or runtime control.
 - Treat the examples as shape guidance, not copy-paste templates.
@@ -114,7 +114,7 @@ Always produce all three mandatory solution artifacts:
   - setup steps that materially affected reproduction or isolation
   - search queries used when material
 - Record current entrypoints, execution boundaries, owners, modules, folders, and likely file-placement concerns.
-- When persisted data may change, record the current stored shapes or versions, version-detection mechanism, active readers and writers, approximate migration scope when knowable, application startup/deployment lifecycle, and available backup or recovery mechanisms.
+- When persisted data may be affected, inspect representative stored data, normal reader and writer behavior, semantics and invariants, physical-store constraints, disposability, volume, and operational risk. Investigate migration mechanics only when the evidence indicates transformation may be necessary.
 - Record runtime or probe findings when reproductions, traces, scripts, focused tests, or setup work were used.
 - Record enough codebase, runtime, API, and external-reference detail that requirements clarification and design review do not need to rediscover the same facts from scratch.
 
@@ -128,7 +128,7 @@ Always produce all three mandatory solution artifacts:
 - Keep acceptance-criteria-to-scenario intent explicit.
 - Inventory every supplemental solution artifact in the requirements doc and state which requirements or acceptance criteria it clarifies.
 - For UI-facing behavior, make the user journey and observable UI state changes verifiable in the requirements doc or a linked UI/UX specification. Cover relevant interaction, loading, empty, error, disabled, permission, responsive, and accessibility states instead of describing only the happy-path screen.
-- When persisted data is affected, make the required data outcome explicit: which existing data must be preserved, transformed, discarded, or quarantined; what loss is unacceptable; and what availability or migration-window constraints apply. Keep the transformation mechanism in the design spec.
+- When persisted data is affected, choose `Directly Usable — No Migration`, `Discard or Rebuild`, `Migration Required`, or `Undetermined`. State what data must be preserved and what loss is unacceptable; keep transformation mechanics in the design spec only for `Migration Required`.
 - Acceptance criteria should give `api_e2e_engineer` enough current-behavior authority to decide whether existing durable coverage is still valid, stale, needs update, should be removed, or must be expanded. Do not make final test-suite edit decisions in the requirements doc; those belong in the downstream coverage investigation.
 - Do not move design forward until the requirements doc is `Design-ready` or `Refined`.
 
@@ -140,12 +140,12 @@ Always produce all three mandatory solution artifacts:
 - Keep the design actionable in the current codebase: implementation and review should not need to reconstruct the intended structure from scattered notes.
 - Include a task design health assessment in the design spec for every task, even when the answer is "no refactor needed".
 - A "no refactor needed" decision must explain why the current owner, boundary, API shape, file placement, and changed data structures remain healthy for this scope.
-- A "refactor needed now" decision must connect the required refactor to concrete task evidence and map it into the removal/decommission plan, file responsibilities, dependency rules, and migration/refactor sequence.
+- A "refactor needed now" decision must connect the required refactor to concrete task evidence and map it into the removal/decommission plan, file responsibilities, dependency rules, and change/refactor sequence.
 - A deferred refactor must name the residual risk, explain why it is outside this task, and avoid leaving the in-scope behavior dependent on a known-bad boundary.
-- Move from abstract to concrete in the design artifact: spine and ownership first, then subsystem allocation, then file responsibilities, then folder/path mapping.
-- Make removals, migration sequencing, dependency rules, and compatibility rejection explicit in the design spec instead of leaving them implicit.
-- When persisted data changes shape, keep business and runtime code on the latest canonical schema and design an explicit migration boundary that owns old-to-current transformation before normal runtime use.
-- If old and new application versions could share the affected store during rollout, make the cutover or deployment constraint explicit. Route an unresolved mixed-version requirement upstream rather than solving it with hidden compatibility branches.
+- After any applicable persisted-data transition decision, move from abstract to concrete: spine and ownership, subsystem allocation, file responsibilities, then folder/path mapping.
+- Make removals, change/refactor sequencing, dependency rules, compatibility rejection, and any persisted-data transition decision explicit in the design spec instead of leaving them implicit.
+- Treat a schema or model change as a reason to analyze existing data, not proof that migration is required. Record `Directly Usable — No Migration` when the normal version-agnostic reader preserves required meaning and invariants; do not rewrite data merely for representational cleanliness.
+- When transformation is required, keep business and runtime code on the current canonical schema and design an explicit migration boundary that owns old-to-current transformation before normal runtime use. Address mixed-version access and rollout only for the transition that actually applies.
 - Use short examples when the target shape would otherwise remain abstract or easy to misread.
 - Keep the requirements doc, investigation notes, design spec, and all still-relevant supplemental solution artifacts aligned. When one changes materially, update the others as needed before handoff.
 

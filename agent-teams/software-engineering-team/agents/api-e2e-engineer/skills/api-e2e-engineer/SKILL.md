@@ -59,7 +59,7 @@ Do not begin with browser interaction merely because browser tools are available
 
 - Accept the cumulative review-passed package from `code_reviewer`: requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, design review report, implementation handoff, and code review report.
 - Treat the full upstream package as active validation context, not just the latest implementation handoff or code review report.
-- Read the implementation handoff's `Legacy / Compatibility Removal Check` and `Persisted Data Migration Check` before finalizing coverage. Treat any non-clean answer, or any mismatch between those sections and the implementation, as an active validation signal.
+- Read the implementation handoff's `Legacy / Compatibility Removal Check` and `Persisted Data Transition Check` before finalizing coverage. Treat any non-clean answer, or any mismatch between those sections and the implementation, as an active validation signal.
 
 ## Project Execution Discovery Rules
 
@@ -85,7 +85,7 @@ Do not begin with browser interaction merely because browser tools are available
 - Before durable coverage edits, durable coverage removals, final execution, or failure rerouting, read the full upstream package and inspect the relevant repository-resident unit, integration, API, browser E2E, desktop-shell, lifecycle, CLI, or distributed coverage.
 - Write the initial investigation before changing the test suite. Keep it current as repository or runtime evidence changes the plan.
 - Map requirements, acceptance criteria, reviewed design behavior, supplemental solution artifacts, implementation-handoff notes, and code-review findings to the real changed boundaries and planned evidence.
-- Classify affected surfaces explicitly, such as domain/backend logic, API/transport, frontend component, browser integration, authentication/session, web-equivalent desktop renderer, desktop shell, process lifecycle, migration, worker/queue, distributed coordination, or external integration.
+- Classify affected surfaces explicitly, such as domain/backend logic, API/transport, frontend component, browser integration, authentication/session, web-equivalent desktop renderer, desktop shell, process lifecycle, persisted-data transition, worker/queue, distributed coordination, or external integration.
 - Treat existing tests as evidence, not authority. A test's existence does not prove that its assertion still represents approved behavior.
 - For every relevant existing durable scenario, decide `Still Valid`, `Needs Update`, `Stale / Remove`, `Replace`, `Out Of Scope`, or `Unclear`.
 - For every required behavior without adequate durable coverage, decide `Add Durable Coverage`, `Use Temporary Executable Probe Only`, `Not Testable In Scope`, or `Escalate`.
@@ -148,7 +148,7 @@ Broader validation is normally required when material uncertainty remains around
 - web-equivalent desktop renderer journeys that can be exercised independently in a browser
 - desktop-shell boundaries that materially affect confidence and cannot be proven through repository or other focused evidence
 - frontend/backend contract integration, bundling, environment injection, proxying, or runtime configuration
-- cross-process sequencing, workers, queues, external dependencies, migrations, restart, recovery, or platform lifecycle
+- cross-process sequencing, workers, queues, external dependencies, required persisted-data transitions, restart, recovery, or platform lifecycle
 - behavior that repository tests cover only through mocks or that previously failed only in a realistic environment
 
 Browser validation is normally unnecessary for a backend-local change when valid repository/API coverage directly exercises the real boundary and the change creates no browser-specific or live-integration risk. Record that reasoning explicitly.
@@ -167,8 +167,8 @@ Browser validation is normally unnecessary for a backend-local change when valid
 ## Special Validation Constraints
 
 - Treat the team's no-backward-compatibility and no-legacy-retention rule as an active constraint.
-- When persisted data changes shape, validate representative supported source data through the explicit migration boundary, target-schema validation, completion gating, and required interruption/recovery behavior. Validate current runtime behavior against the latest schema only.
-- Reroute any compatibility wrapper, dual-path read/write, request-time schema-upgrade shim, retained legacy branch, or fallback in normal runtime code. Do not misclassify an approved isolated migration as backward-compatible runtime behavior.
+- Validate the approved persisted-data transition outcome rather than assuming migration. For `Directly Usable — No Migration`, prove representative existing data works through the normal current reader; for `Discard or Rebuild`, prove the lifecycle; only for `Migration Required`, validate transformation, completion, and applicable recovery behavior.
+- Reroute any version-specific compatibility wrapper, dual-path read/write, request-time schema-upgrade shim, retained legacy branch, or fallback in normal runtime code. Do not misclassify an approved general reader policy or isolated required migration as backward-compatible runtime behavior.
 - Do not create or preserve durable coverage whose only purpose is to protect invalid compatibility behavior.
 - When behavior depends on workers, queues, multi-process or multi-node coordination, or external dependencies, stand up or emulate enough of the real environment to prove the material boundary when reasonable.
 - When a bug claim remains uncertain, create a focused probe or harness to reproduce or disprove it instead of guessing.

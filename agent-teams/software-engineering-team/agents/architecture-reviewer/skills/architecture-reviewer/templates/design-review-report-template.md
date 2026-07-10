@@ -120,25 +120,23 @@ If no supplemental solution artifacts exist, write `None`.
 
 ## Legacy / Backward-Compatibility Verdict
 
-Do not classify migration-owned historical schema files as runtime legacy retention when they are required by the approved version ledger and remain isolated from current business paths. Judge them in the latest-schema/data-migration section below.
+Do not classify a general version-agnostic reader as backward compatibility merely because it safely ignores irrelevant extra fields. When migration is approved, do not classify migration-owned historical schema files as runtime legacy retention when they remain isolated from current business paths.
 
 | Area | Compatibility Wrapper / Dual-Path / Legacy Retention Exists? (`Yes`/`No`) | Clean-Cut Removal Is Explicit? (`Pass`/`Fail`) | Verdict (`Pass`/`Fail`) | Notes |
 | --- | --- | --- | --- | --- |
 |  |  |  |  |  |
 
-## Latest-Schema / Data-Migration Verdict
+## Persisted-Data Transition Verdict (When Applicable)
 
-Complete this section whenever the change affects a persisted data shape. Use `N/A` only when no persisted schema or stored representation changes.
+Review the approved decision and its evidence. A schema or model change alone is not proof that migration is required.
 
-- Concurrent old/new application access risk:
-- Cutover, maintenance-window, or deployment-sequencing decision:
-- Unresolved mixed-version access exists: `No` / `Yes (Fail)` / `N/A`
+| Area / Stored Subject | Approved Decision | Representative Reader / Semantic / Invariant Evidence Is Sufficient? (`Pass`/`Fail`) | Direct Use, Rebuild, Or Migration Choice Is Proportionate? (`Pass`/`Fail`) | Migration Safety Is Complete If Required? (`Pass`/`Fail`/`N/A`) | Verdict (`Pass`/`Fail`) | Notes |
+| --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |
 
-| Area / Stored Subject | Current Runtime Uses Latest Schema Only? (`Pass`/`Fail`/`N/A`) | Historical Shape Knowledge Is Migration-Owned Only? (`Pass`/`Fail`/`N/A`) | Trigger / Owner / Ordering Is Clear? (`Pass`/`Fail`/`N/A`) | Validation / Completion Gate Is Clear? (`Pass`/`Fail`/`N/A`) | Restart / Recovery Is Safe? (`Pass`/`Fail`/`N/A`) | Verdict (`Pass`/`Fail`/`N/A`) | Notes |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |  |  |
+For `Migration Required`, verify isolated ownership, ordering, validation, completion gating, interruption/recovery, and applicable rollout constraints. For other decisions, do not demand migration machinery.
 
-## Migration / Refactor Safety Verdict
+## Change / Refactor Safety Verdict
 
 | Area | Sequence Is Realistic? (`Pass`/`Fail`) | Temporary Seams Are Explicit? (`Pass`/`Fail`) | Cleanup / Removal Is Explicit? (`Pass`/`Fail`) | Verdict (`Pass`/`Fail`) |
 | --- | --- | --- | --- | --- |

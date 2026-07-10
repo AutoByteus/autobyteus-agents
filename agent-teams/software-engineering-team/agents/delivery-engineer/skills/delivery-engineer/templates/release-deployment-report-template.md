@@ -97,17 +97,12 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 ## Deployment Steps
 
-## Environment Or Migration Notes
+## Environment Or Persisted-Data Transition Notes
 
-- Persisted data migration applicable: `No` / `Yes`
-- Source schema/version and target schema/version:
-- Migration method, trigger, owner, and ordering:
-- Migration result and completion evidence:
-- Target-schema validation result:
-- Post-migration current-runtime verification:
-- Backup, rollback, quarantine, or operator-recovery result:
-- Mixed-version access prevention and cutover / maintenance / deployment-sequencing result:
-- Evidence that normal runtime remains latest-schema-only:
+- Approved persisted-data decision:
+- Delivery action required: `None` / `Discard or Rebuild` / `Migration Required`
+- Result and evidence:
+- Migration completion, validation, recovery, and rollout evidence, only when `Migration Required`:
 
 ## Verification Checks
 

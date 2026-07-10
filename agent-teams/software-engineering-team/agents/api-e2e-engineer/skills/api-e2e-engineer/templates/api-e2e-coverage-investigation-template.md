@@ -44,7 +44,7 @@ Identify behavior added, changed, removed, or intentionally preserved.
 | Desktop renderer / web-equivalent UI |  |  |  |  |  |
 | Desktop shell / Electron-specific integration |  |  |  |  |  |
 | Process / lifecycle |  |  |  |  |  |
-| Migration / persisted state |  |  |  |  |  |
+| Persisted-data transition |  |  |  |  |  |
 | Worker / queue / distributed coordination |  |  |  |  |  |
 | External integration |  |  |  |  |  |
 
@@ -67,17 +67,13 @@ Identify behavior added, changed, removed, or intentionally preserved.
 | --- | --- | --- | --- |
 |  |  |  |  |
 
-## Persisted Data Migration Coverage Basis (When Applicable)
+## Persisted Data Transition Coverage Basis (When Applicable)
 
-- Persisted data shape changed: `No` / `Yes`
-- Supported source schema/version and target schema/version:
-- Approved migration trigger, owner, ordering, and completion gate:
-- Representative source-data fixtures or setup:
-- Target-schema validation scenario:
-- Post-migration latest-schema-only runtime scenario:
-- Interruption, restart-safety/idempotency, and recovery scenarios required by risk/design:
-- Mixed-version access prevention or cutover/deployment-sequencing scenario, when applicable:
-- Runtime compatibility scenarios intentionally excluded:
+- Approved decision (`Not Affected`/`Directly Usable — No Migration`/`Discard or Rebuild`/`Migration Required`/`Undetermined`):
+- Design-spec and implementation-handoff references:
+- Representative existing-data setup and required behavior:
+- Evidence planned for the approved direct-use, discard/rebuild, or migration outcome:
+- Migration-specific completion/recovery scenarios, only when `Migration Required`:
 - Upstream ambiguity or reroute required:
 
 ## Existing Durable Coverage Inventory

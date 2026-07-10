@@ -26,6 +26,7 @@ The examples are intentionally detailed. Preserve them rather than shortening or
 - [Example 5: Workflow With State Machine](#example-5-workflow-with-state-machine)
 - [Example 6: Generic List Surface To Avoid](#example-6-generic-list-surface-to-avoid)
 - [Example 7: Latest-Schema Runtime With Isolated Data Migration](#example-7-latest-schema-runtime-with-isolated-data-migration)
+- [Example 8: Schema Contraction With No Data Migration](#example-8-schema-contraction-with-no-data-migration)
 - [Common Bad-Practice Patterns](#common-bad-practice-patterns)
 - [How To Use These Examples](#how-to-use-these-examples)
 
@@ -584,6 +585,16 @@ An application already stores version-1 workspace settings. A new design replace
 
 The existing user data must be preserved, but the current business logic must not carry version-1 branches, dual-shape repositories, or permanent fallback behavior.
 
+### Transition Decision
+
+| Question | Evidence |
+|---|---|
+| Can current runtime use version-1 records directly? | No; required values changed representation and meaning, and the current reader rejects the old shape |
+| Can the data be discarded or rebuilt? | No; the records contain authoritative user settings |
+| What does transformation provide? | Required semantic conversion while preserving user data |
+
+Decision: `Migration Required`.
+
 ### Spine Inventory
 
 | Spine ID | Class | User / System Trigger | Success Outcome | Owning Boundary |
@@ -695,6 +706,81 @@ This is bad because:
 ### Design Lesson
 
 Preserving existing data does not require preserving an obsolete runtime contract. Transform the data at an explicit, owned, testable migration boundary; then keep the business path structurally clean and current-schema-only.
+
+## Example 8: Schema Contraction With No Data Migration
+
+### Situation
+
+An application stores several gigabytes of JSON workspace records. The current stored documents contain a superset of attributes:
+
+```json
+{
+  "workspaceId": "w-17",
+  "displayName": "Research",
+  "enabled": true,
+  "obsoleteThemeHint": "warm",
+  "deprecatedSortToken": "manual-v1"
+}
+```
+
+The new application model removes `obsoleteThemeHint` and `deprecatedSortToken`. The normal JSON reader is version-agnostic, projects recognized fields into the current model, and safely ignores unknown attributes. The removed fields no longer influence behavior, no invariant depends on them, and no privacy, storage, or physical-schema requirement demands immediate deletion.
+
+### Persisted-Data Transition Decision
+
+| Question | Evidence |
+|---|---|
+| Can the current reader consume representative existing records? | Yes; direct-read tests load stored supersets through the normal reader without version checks or fallback branches |
+| Are required semantics and invariants preserved? | Yes; all authoritative values remain present and the removed fields are behaviorally obsolete |
+| Is the data disposable or cheaply rebuildable? | No, but rebuilding is unnecessary because direct use is correct |
+| Does the physical store require modification? | No; JSON permits extra object attributes and the application does not require canonical byte-for-byte rewriting |
+| What would bulk migration add? | I/O, duration, corruption exposure, recovery work, and rollout risk without a functional benefit |
+
+Decision: `Directly Usable — No Migration`.
+
+### Current Runtime Spine
+
+```text
+WorkspaceJsonFile
+  -> CurrentWorkspaceReader
+  -> CurrentWorkspaceModel
+  -> WorkspaceService
+```
+
+`CurrentWorkspaceReader` has one general current-runtime contract: recognize current fields and ignore irrelevant extras. It does not inspect schema versions, branch on historical formats, dual-read, or translate old fields.
+
+### Ownership And File Consequence
+
+| Component | Responsibility | Explicit Non-Responsibility |
+|---|---|---|
+| `CurrentWorkspaceReader` | Project recognized JSON attributes into the current model | Does not contain a version-1 branch or migration transform |
+| `CurrentWorkspaceModel` | Define the fields and invariants used by current behavior | Does not retain obsolete attributes for compatibility |
+| `WorkspaceWriter` | Write the current representation on ordinary future updates | Does not scan and rewrite untouched files merely for cleanup |
+
+No migration subsystem, ledger, startup gate, maintenance command, or bulk rewrite is added.
+
+### Required Evidence
+
+- Load representative real or production-shaped superset records through the normal reader.
+- Prove current behavior and invariants use only the retained attributes.
+- Prove removed attributes are not required for derived values, identity, authorization, ordering, or recovery.
+- Confirm the storage/parser contract intentionally permits irrelevant extra attributes.
+- Record any separate privacy, compliance, disk-cost, or canonicalization requirement; such a requirement could change the decision.
+
+### Bad Practice
+
+```text
+ApplicationStartup
+  -> scan several gigabytes of workspace JSON
+  -> remove two ignored attributes from every record
+  -> rewrite every file
+  -> add checkpoints, rollback, recovery, and completion tracking
+```
+
+This is bad when no concrete requirement needs the rewrite. It converts a safe model contraction into a high-risk operational project, increases failure exposure, and creates migration machinery with no correctness benefit.
+
+### Design Lesson
+
+A stored representation does not need to be byte-for-byte identical to the current in-memory model. When the normal reader consumes the data correctly and required meaning is preserved, record the no-migration decision and its evidence instead of rewriting data for representational cleanliness.
 
 ## Common Bad-Practice Patterns
 
@@ -850,4 +936,5 @@ Better direction:
 - Keep off-spine concerns around the spine.
 - Keep interface boundaries singular and identity-explicit.
 - Distinguish thin public facades from deeper governing owners when both exist.
+- Decide whether persisted data needs direct use, discard/rebuild, or migration before designing migration machinery.
 - Let files and any optional module groupings appear after the design story is already clear.

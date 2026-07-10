@@ -46,9 +46,10 @@ List each item with a stable `acceptance_criteria_id`.
 ## Persisted Data Outcome (When Applicable)
 
 - Stored subject / location:
-- Existing data to preserve, transform, discard, or quarantine:
+- Required outcome (`Not Affected`/`Directly Usable — No Migration`/`Discard or Rebuild`/`Migration Required`/`Undetermined`):
+- Existing data to preserve, discard/rebuild, transform, or quarantine:
 - Unacceptable data loss or corruption:
-- Availability, maintenance-window, or rollout constraints:
+- Relevant availability, maintenance-window, or rollout constraints:
 - Related requirement and acceptance-criteria IDs:
 
 ## Assumptions

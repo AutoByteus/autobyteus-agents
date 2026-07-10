@@ -89,15 +89,16 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 ## Findings From Code / Docs / Data / Logs
 
-## Persisted Data / Schema Evidence (When Applicable)
+## Persisted Data Transition Evidence (When Applicable)
 
-- Current stored subject, location, and schema/version shapes:
-- Version-detection or migration-ledger mechanism:
-- Current readers and writers:
-- Approximate record/data volume and migration-duration evidence:
-- Startup, deployment, maintenance, or rollout lifecycle constraints:
-- Backup, restore, quarantine, retry, or operator-recovery capability:
-- Mixed-version application access risk:
+- Current stored subject, location, representative shape, and approximate volume:
+- Relevant code-model, serialization, semantic, or physical-store change:
+- Normal readers and writers, including unknown/extra-field behavior:
+- Representative direct-read or compatibility evidence:
+- Required semantics and invariants preserved by direct use: `Yes` / `No` / `Undetermined` — evidence:
+- Physical storage, privacy/security, disposal, rebuild, or operational constraints:
+- Concrete benefit, cost, and risk of migration if it remains a candidate:
+- Existing migration framework or lifecycle constraints, only if migration may be required:
 
 ## Constraints / Dependencies / Compatibility Facts
 

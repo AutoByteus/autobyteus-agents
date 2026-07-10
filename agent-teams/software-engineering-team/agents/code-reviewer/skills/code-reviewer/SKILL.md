@@ -70,7 +70,7 @@ For API/E2E failure-origin review:
 - Treat earlier design artifacts as context, not immunity from review. Classify an inadequate design as `Design Impact`.
 - Review design integrity, API/E2E readiness, cleanup completeness, and changed implementation-source size or structural pressure.
 - Apply `>500` and `>220` source thresholds only to changed implementation-source files, never to tests, fixtures, or generated coverage files.
-- When persisted data changes shape, verify latest-schema-only normal runtime, isolated migration ownership, ordering, validation, completion gating, restart safety, and recovery.
+- When persisted data may be affected, verify that implementation follows the reviewed transition decision and does not add an unnecessary migration or version-specific runtime fallback. Review migration mechanics only when the approved decision is `Migration Required`.
 - Keep one canonical report, recheck prior unresolved findings first, and reuse finding IDs across rounds.
 
 ## Successful API/E2E Test-Code Review Rules

@@ -149,17 +149,16 @@ Rules:
 
 ## Legacy / Backward-Compatibility Verdict
 
-Approved historical schema files confined to the migration subsystem are not current-runtime legacy behavior. Review their isolation and safety explicitly instead of failing them merely because they describe a historical source shape.
+A general version-agnostic reader is not backward compatibility merely because it safely ignores irrelevant extra fields. Approved historical schema files confined to a required migration subsystem are also not current-runtime legacy behavior.
 
 | Check | Result (`Pass`/`Fail`) | Notes |
 | --- | --- | --- |
 | No backward-compatibility mechanisms in changed scope |  |  |
 | No legacy old-behavior retention in changed scope |  |  |
 | Dead/obsolete code cleanup completeness in changed scope |  |  |
-| Normal business, API, domain, and repository paths use only the latest schema |  |  |
-| Historical schema knowledge is confined to migration-owned files |  |  |
-| No dual reads/writes or request-time old-shape fallback exists |  |  |
-| Migration ordering, validation, completion gating, restart behavior, and recovery match the reviewed design |  |  |
+| Approved persisted-data transition decision is followed without unnecessary migration work |  |  |
+| No version-specific dual reads/writes or request-time old-shape fallback exists |  |  |
+| Approved transition mechanics match the reviewed design, including migration safety only when required |  |  |
 
 ## Dead / Obsolete / Legacy Items Requiring Removal (Mandatory If Any Exist)
 
