@@ -97,7 +97,12 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 ## Deployment Steps
 
-## Environment Or Migration Notes
+## Environment Or Persisted-Data Transition Notes
+
+- Approved persisted-data decision:
+- Delivery action required: `None` / `Discard or Rebuild` / `Migration Required`
+- Result and evidence:
+- Migration completion, validation, recovery, and rollout evidence, only when `Migration Required`:
 
 ## Verification Checks
 

@@ -8,6 +8,14 @@ Describe the current execution path, current ownership boundaries, current coupl
 
 ## Intended Change
 
+## Supplemental Solution Artifacts
+
+List every still-relevant supplemental solution artifact and explain how it constrains or clarifies this design. If none exist, write `None`.
+
+| Artifact Path | Purpose | Related Requirement / Acceptance-Criteria IDs | Relationship To This Design | Status / Approval |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+
 ## Task Design Health Assessment (Mandatory)
 
 This section is required for every task: feature request, bug fix, behavior change, refactor, cleanup, performance issue, or larger requirement.
@@ -24,7 +32,7 @@ Do not fill it with ritual text. Tie the decision to current-state evidence from
 
 Rules:
 - `No refactor needed` is valid only when the existing owner, boundary, API shape, file placement, and changed data structures remain healthy for this scope.
-- `Refactor needed now` must be reflected in the removal/decommission plan, final file responsibilities, dependency rules, and migration/refactor sequence.
+- `Refactor needed now` must be reflected in the removal/decommission plan, final file responsibilities, dependency rules, and change/refactor sequence.
 - `Deferred` must name the residual risk and explain why the current task can still leave the in-scope behavior in a coherent state.
 
 ## Terminology
@@ -38,10 +46,11 @@ Rules:
 
 Read and write this design from abstract to concrete:
 
-1. data-flow spine
-2. subsystem / capability-area allocation
-3. draft file responsibilities -> extract reusable owned structures -> finalize file responsibilities
-4. folder/path mapping
+1. persisted-data transition decision when applicable
+2. data-flow spine
+3. subsystem / capability-area allocation
+4. draft file responsibilities -> extract reusable owned structures -> finalize file responsibilities
+5. folder/path mapping
 
 ## Legacy Removal Policy (Mandatory)
 
@@ -49,6 +58,48 @@ Read and write this design from abstract to concrete:
 - Required action: identify obsolete legacy paths/files included in this scope.
 - Treat removal as first-class design work: when clearer subsystem ownership, reusable owned structures, or tighter file responsibilities make fragmented or duplicated pieces unnecessary, name and remove/decommission them in scope.
 - Decision rule: the design is invalid if it depends on compatibility wrappers, dual-path behavior, or legacy fallback branches kept only for old behavior.
+- A schema or model change does not by itself require persisted-data migration. Record the approved transition decision; when transformation is required, use an explicit migration boundary rather than dual-shape business logic or normal repository fallbacks.
+
+## Persisted Data / State Transition Decision (Mandatory When Persisted Data May Be Affected)
+
+A code-model, serialization, or storage-schema change triggers this decision, not an automatic migration. If no persisted data is affected, write `Not Affected` with a brief reason.
+
+- Stored subject, location, representative shape, and approximate volume:
+- Relevant code-model, serialization, semantic, or physical-store change:
+- Normal reader/writer behavior and representative evidence:
+- Required semantics and invariants under direct use:
+- Physical-store, privacy/security, disposal/rebuild, and operational constraints:
+- Decision (`Not Affected`/`Directly Usable — No Migration`/`Discard or Rebuild`/`Migration Required`/`Undetermined`):
+- Decision rationale, including concrete benefit versus I/O, downtime, corruption, recovery, and rollout cost:
+- Acceptance criteria or design constraints supported by this decision:
+
+For `Directly Usable — No Migration`, explain why current version-agnostic runtime behavior is sufficient. A stored superset with obsolete extra fields may qualify when representative evidence proves those fields are ignored safely and required meaning remains intact.
+
+For `Discard or Rebuild`, identify the authoritative source or rebuild mechanism and why loss of the stored copy is acceptable.
+
+For `Undetermined`, identify the missing evidence and block dependent design decisions.
+
+### Migration Plan (Only When Decision Is `Migration Required`)
+
+- Current canonical schema / version:
+- Older persisted schema version(s) that require transformation:
+- Why direct use and discard/rebuild are insufficient:
+- Migration trigger (`Startup`/`Deployment`/`Maintenance Command`/`Other`):
+- Migration owner and file / subsystem location:
+- Normal business/runtime path that remains current-schema-only:
+- Historical-shape types or decoders confined to migration-owned code:
+- Completion marker / version ledger:
+- Restart-safety or idempotency strategy:
+- Validation before current runtime proceeds:
+- Backup / rollback / quarantine / operator-recovery strategy:
+- Concurrent old/new application access risk and cutover / maintenance / deployment-sequencing decision:
+- Historical migration retention decision:
+
+| Migration Step | Source Shape / Version | Target Shape / Version | Transformation Owner | Validation | Failure / Recovery Behavior |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+When migration is required, complete or gate it before affected current runtime behavior consumes incompatible data. Keep historical-schema knowledge inside migration-owned files and out of current business services and normal repositories.
 
 ## Data-Flow Spine Inventory
 
@@ -260,9 +311,9 @@ Hard block:
 
 Describe the layer shape only after the spine inventory, ownership model, and interface boundaries are clear.
 
-## Migration / Refactor Sequence
+## Change / Refactor Sequence
 
-Describe the order of change from current state to target state, including any temporary seams and what obsolete paths, compatibility-only boundaries, or legacy code must be removed at the end.
+Describe the order of change from current state to target state, including any temporary seams and what obsolete paths, compatibility-only boundaries, or legacy code must be removed at the end. Include migration sequencing only when the approved persisted-data decision is `Migration Required`.
 
 ## Key Tradeoffs
 

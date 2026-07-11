@@ -21,12 +21,5 @@
   ],
   "skillNames": [
     "api-e2e-engineer"
-  ],
-  "inputProcessorNames": [],
-  "llmResponseProcessorNames": [],
-  "systemPromptProcessorNames": [],
-  "toolExecutionResultProcessorNames": [],
-  "toolInvocationPreprocessorNames": [],
-  "lifecycleProcessorNames": [],
-  "avatarUrl": null
+  ]
 }

@@ -7,6 +7,7 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Requirements doc:
 - Investigation notes:
 - Design spec:
+- Supplemental solution artifacts:
 - Design review report:
 
 ## What Changed
@@ -35,6 +36,15 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Canonical shared design guidance was reapplied during implementation, and file-level design weaknesses were routed upstream when needed: `Yes` / `No (blocked)`
 - Changed source implementation files stayed within proactive size-pressure guardrails (`>500` avoided; `>220` assessed/acted on): `Yes` / `No (blocked)`
 - Notes:
+
+## Persisted Data Transition Check (When Applicable)
+
+- Approved decision (`Not Affected`/`Directly Usable — No Migration`/`Discard or Rebuild`/`Migration Required`):
+- Design-spec decision reference:
+- Implementation follows the approved decision without an unapproved migration or version-specific runtime fallback: `Yes` / `No (blocked)`
+- Direct-use evidence or discard/rebuild result, when applicable:
+- Migration implementation and focused checks, only when `Migration Required`:
+- Deviation from the reviewed transition decision: `None` / explain and reroute:
 
 ## Environment Or Dependency Notes
 

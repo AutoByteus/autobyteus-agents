@@ -6,31 +6,44 @@ category: software-engineering
 
 This team handles a software change from initial investigation through final handoff.
 
-This team definition is intentionally lightweight.
-`solution_designer` is the coordinator entry specialist for this team.
-There is no separate standalone orchestrator role beyond the listed specialists.
-Each specialist does its own work, follows its own bundled agent and skill definition, and hands work to the next relevant specialist when ready.
-Detailed operating rules, artifact standards, and send-back behavior belong in each member's bundled `SKILL.md` and local templates rather than being duplicated across `team.md` and `agent.md`.
-
-## Artifact Visibility Rule
-
-- Every `send_message_to` handoff should include absolute filesystem paths for all still-relevant upstream artifacts produced so far, not only the latest local artifact.
-- Downstream specialists should be able to read the cumulative artifact package without having to rediscover earlier work from scratch.
-- Default cumulative package:
-  - `architecture_reviewer`: requirements doc, investigation notes, design spec
-  - `implementation_engineer`: requirements doc, investigation notes, design spec, design review report
-  - `code_reviewer`: requirements doc, investigation notes, design spec, design review report, implementation handoff
-  - `api_e2e_engineer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, code review report
-  - `delivery_engineer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, code review report, coverage investigation, execution coverage report
-- `api_e2e_engineer` must produce a coverage investigation artifact before final test execution, durable coverage edits, durable coverage removals, or failure rerouting. That artifact records whether existing API/E2E coverage is still valid, stale, needs update, should be removed, or must be replaced or expanded.
-- If `api_e2e_engineer` adds, updates, or removes repository-resident durable coverage after the initial code review, route the cumulative package plus the coverage investigation and execution coverage report back through `code_reviewer` before `delivery_engineer`.
-- When a reroute or rework artifact is produced, include that artifact too alongside the already-existing upstream package.
+`solution_designer` is the entry specialist for this team.
+There is no separate orchestrator role beyond the specialists shown in the team roster.
+Each specialist owns its stage, follows its role skill, and hands work to the next relevant specialist when ready.
 
 ## Team Members
 
-- `solution_designer`: bootstraps the task context, investigates the request, defines scope, writes the requirements doc and investigation notes, produces the design spec, and acts as the reset point when downstream work exposes a requirement gap, design impact, or cross-cutting ambiguity.
-- `architecture_reviewer`: reviews the design spec and decides whether the design is ready for implementation.
+- `solution_designer`: bootstraps the task context, investigates the request, defines scope, writes the three mandatory solution artifacts, creates task-specific supplemental solution artifacts when they improve precision, and acts as the reset point when downstream work exposes a requirement gap, design impact, or cross-cutting ambiguity.
+- `architecture_reviewer`: reviews the complete solution package and decides whether the design is ready for implementation.
 - `implementation_engineer`: delivers the code changes from the reviewed design, runs implementation-scoped local checks, and prepares the implementation handoff without owning API/E2E coverage investigation, execution, or environment setup.
-- `code_reviewer`: performs the source and architecture review pass before API/E2E coverage investigation and execution proceeds, and re-reviews any repository-resident durable coverage code added, updated, or removed later during API/E2E before delivery begins.
-- `api_e2e_engineer`: owns API, end-to-end, and broader executable coverage investigation, existing-test validity decisions, coverage, environment setup, execution, and evidence after the implementation has passed code review; when it adds, updates, or removes repository-resident durable coverage, that updated state returns through `code_reviewer` before delivery.
-- `delivery_engineer`: first refreshes the ticket branch against the latest tracked remote state of the recorded base branch, records the integrated-state check result, then updates durable project documentation or records explicit no-impact against that integrated state, prepares the final handoff, waits for explicit user completion or verification before archival or repository finalization, and handles release or deployment work when it is in scope.
+- `code_reviewer`: performs the full source and architecture review before API/E2E, produces a separate lightweight report for durable test-code changes after successful API/E2E, and performs focused failure-origin review when API/E2E reports a failure.
+- `api_e2e_engineer`: owns API, end-to-end, and broader executable coverage investigation, existing-test validity decisions, durable test changes, project-specific environment discovery, repository execution, percentage confidence scoring, targeted browser/live-validation decisions, realistic execution setup, cleanup, and evidence after implementation review passes; both successful and failed results return to `code_reviewer`, but through distinct proportional test-review and focused failure-origin review paths.
+- `delivery_engineer`: accepts an API/E2E-passed and proportionally test-reviewed package from `code_reviewer`, then refreshes the ticket branch against the latest tracked remote state of the recorded base branch, records the integrated-state check result, updates durable project documentation or records explicit no-impact, prepares the final handoff, waits for explicit user completion or verification before archival or repository finalization, and handles release or deployment work when it is in scope.
+
+## Delivery Flow
+
+- Primary pass path: `solution_designer` -> `architecture_reviewer` -> `implementation_engineer` -> `code_reviewer` (implementation source review) -> `api_e2e_engineer` -> `code_reviewer` (proportional test-code review) -> `delivery_engineer`.
+- `Design Impact`, `Requirement Gap`, and `Unclear` return to `solution_designer`; the revised solution package returns through `architecture_reviewer` before implementation resumes.
+- A bounded `Local Fix` returns to the specialist that owns it: `implementation_engineer` for implementation-owned source or packaging, and `api_e2e_engineer` for invalid/stale tests, fixtures, environment setup, execution, or reporting.
+- API/E2E outcomes route as follows: `Pass` -> `code_reviewer` for the separate proportional test-code review, then `delivery_engineer`; `Fail` -> `code_reviewer` for focused failure-origin analysis and owner classification; `Blocked` -> the user with preserved evidence and the exact missing dependency.
+- After rework, implementation-owned fixes return through source review and API/E2E; API/E2E-owned fixes return through execution and, when durable tests changed, proportional test-code review.
+
+## Team Handoff Authority
+
+- The visible team roster defines the available specialists. The AutoByteus `send_message_to` tool is the only tool for inter-member workflow handoffs.
+- For every handoff, reroute, rework request, or stage transition, use AutoByteus `send_message_to` with the exact recipient name shown in the team roster.
+- Do not use Codex-native multi-agent or collaboration tools such as `spawn_agent`, `wait_agent`, `list_agents`, `send_message`, `followup_task`, `interrupt_agent`, or equivalents, even when those tools are available in the runtime.
+- Never create `/root/...` agents or other native subagents to stand in for specialists already present in the visible team roster.
+- `solution_designer` is the entry specialist; that responsibility does not authorize it to construct or supervise a parallel native-agent team.
+- After a successful `send_message_to` handoff, finish the current stage. If more work is required later, act on the next incoming team message; do not poll another agent with native wait or list tools.
+- If `send_message_to` is unavailable or a handoff cannot be completed after a bounded retry, preserve the artifacts and report the handoff blocker. Do not fall back to native subagent creation.
+
+## Artifact Package Rules
+
+- Every `send_message_to` handoff should include absolute filesystem paths for all still-relevant upstream artifacts produced so far, not only the latest local artifact, and attach those artifacts using the tool's reference-file input when available.
+- Downstream specialists should be able to read the cumulative artifact package without having to rediscover earlier work from scratch.
+- The mandatory solution package is always the requirements doc, investigation notes, and design spec.
+- `solution_designer` may add task-specific supplemental solution artifacts when a separate document materially improves requirement or design precision. Examples include a UI/UX specification, user-journey or interaction-state specification, protocol/API contract, or data-mapping specification.
+- Supplemental solution artifacts extend but never replace the three mandatory solution artifacts. Link each supplement from at least one mandatory artifact, record its scope and approval state, and include it in every downstream cumulative package while it remains relevant.
+- After architecture review, the mandatory solution package and its still-relevant supplements together form the reviewed solution package. The design review report records the gate decision and travels alongside that package.
+- The package grows cumulatively in this order: requirements doc, investigation notes, design spec, relevant supplements, design review report, implementation handoff, code review report, coverage investigation, execution coverage report, and API/E2E test review report. Each stage appends its output without dropping still-relevant upstream artifacts.
+- Failure and rework handoffs include the applicable report and supporting evidence; API/E2E failures also include failing scenario IDs and exact execution context. The owning role skill and template define the detailed artifact schema.

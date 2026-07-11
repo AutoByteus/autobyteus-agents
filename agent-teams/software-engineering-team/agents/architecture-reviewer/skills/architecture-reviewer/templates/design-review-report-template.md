@@ -12,6 +12,7 @@ The latest round is authoritative; earlier rounds remain history.
 - Upstream Requirements Doc:
 - Upstream Investigation Notes:
 - Reviewed Design Spec:
+- Supplemental Solution Artifacts Reviewed:
 - Current Review Round:
 - Trigger:
 - Prior Review Round Reviewed:
@@ -28,7 +29,13 @@ Round rules:
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |
 
-## Reviewed Design Spec
+## Supplemental Artifact Coherence Verdict
+
+If no supplemental solution artifacts exist, write `None`.
+
+| Artifact | Purpose And Scope Are Clear? (`Pass`/`Fail`) | Linked To Mandatory Artifacts? (`Pass`/`Fail`) | Internally Complete? (`Pass`/`Fail`) | Consistent With Requirements And Design? (`Pass`/`Fail`) | Approval State Is Clear? (`Pass`/`Fail`) | Required Action |
+| --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |
 
 ## Task Design Health Assessment Verdict
 
@@ -113,11 +120,23 @@ Round rules:
 
 ## Legacy / Backward-Compatibility Verdict
 
+Do not classify a general version-agnostic reader as backward compatibility merely because it safely ignores irrelevant extra fields. When migration is approved, do not classify migration-owned historical schema files as runtime legacy retention when they remain isolated from current business paths.
+
 | Area | Compatibility Wrapper / Dual-Path / Legacy Retention Exists? (`Yes`/`No`) | Clean-Cut Removal Is Explicit? (`Pass`/`Fail`) | Verdict (`Pass`/`Fail`) | Notes |
 | --- | --- | --- | --- | --- |
 |  |  |  |  |  |
 
-## Migration / Refactor Safety Verdict
+## Persisted-Data Transition Verdict (When Applicable)
+
+Review the approved decision and its evidence. A schema or model change alone is not proof that migration is required.
+
+| Area / Stored Subject | Approved Decision | Representative Reader / Semantic / Invariant Evidence Is Sufficient? (`Pass`/`Fail`) | Direct Use, Rebuild, Or Migration Choice Is Proportionate? (`Pass`/`Fail`) | Migration Safety Is Complete If Required? (`Pass`/`Fail`/`N/A`) | Verdict (`Pass`/`Fail`) | Notes |
+| --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |
+
+For `Migration Required`, verify isolated ownership, ordering, validation, completion gating, interruption/recovery, and applicable rollout constraints. For other decisions, do not demand migration machinery.
+
+## Change / Refactor Safety Verdict
 
 | Area | Sequence Is Realistic? (`Pass`/`Fail`) | Temporary Seams Are Explicit? (`Pass`/`Fail`) | Cleanup / Removal Is Explicit? (`Pass`/`Fail`) | Verdict (`Pass`/`Fail`) |
 | --- | --- | --- | --- | --- |
