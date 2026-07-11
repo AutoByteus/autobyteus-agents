@@ -1,0 +1,54 @@
+{
+  "coordinatorMemberName": "vp_marketing",
+  "avatarUrl": null,
+  "members": [
+    {
+      "memberName": "vp_marketing",
+      "ref": "vp-marketing",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "product_marketing_lead",
+      "ref": "product-marketing-lead",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "brand_content_lead",
+      "ref": "brand-content-lead",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "demand_generation_lead",
+      "ref": "demand-generation-lead",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "marketing_operations_analytics_lead",
+      "ref": "marketing-operations-analytics-lead",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "linkedin_marketer",
+      "ref": "linkedin-marketer",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "x_marketer",
+      "ref": "x-marketer",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "facebook_marketer",
+      "ref": "facebook-marketer",
+      "refType": "agent",
+      "refScope": "team_local"
+    }
+  ]
+}

@@ -27,6 +27,12 @@
       "refScope": "team_local"
     },
     {
+      "memberName": "cmo",
+      "ref": "cmo",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
       "memberName": "cro",
       "ref": "cro",
       "refType": "agent",
@@ -59,6 +65,12 @@
     {
       "memberName": "product_org",
       "ref": "product-org",
+      "refType": "agent_team",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "marketing_org",
+      "ref": "marketing-org",
       "refType": "agent_team",
       "refScope": "team_local"
     },
