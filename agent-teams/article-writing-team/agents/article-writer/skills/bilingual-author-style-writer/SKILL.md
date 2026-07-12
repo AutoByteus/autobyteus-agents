@@ -9,10 +9,31 @@ Use this skill to convert raw ideas into clear, publishable writing with explici
 This is the article-writing team's local bundled copy.
 It is intentionally local so the team can adapt style-profile, bilingual, and platform behavior without depending on a standalone skills repository.
 
-Within the article-writing team, this skill is a writer-side drafting and style capability.
-It does not own the full team workflow.
-The local `article-writer` skill owns investigation, understanding artifacts, outline handoff, reviewer routing, and revision packaging.
+Within the article-writing team, this skill is the authoritative writing and style workflow.
+It owns style-profile loading, platform rules, outline shaping, visual planning, drafting, reviewer handoff, and revision packaging.
+The local `article-researcher` skill owns investigation, understanding artifacts, source/evidence tracking, and reusable research handoff.
 The shared team writing principles remain the article quality authority for both writing and review.
+
+## Expected Research Inputs
+
+Before outlining or drafting, read the research package produced by `article-researcher` when the article requires factual grounding:
+
+- `brief.md`
+- `understanding-notes.md`
+- `source-index.md`
+- `claim-evidence-ledger.md` when present
+- `research-handoff.md`
+- `research-open-questions.md` when present
+
+Treat these files as the source of truth. Do not redo research. If the package has a clear gap, stale source, unsupported planned claim, or user/reviewer correction, return to `article-researcher` with the exact missing claim or source need.
+
+## Produced Writing Artifacts
+
+- `style-profile-notes.md` when an author/style profile, rhetorical mode, or platform style is part of the task
+- `outline.md`
+- `visual-plan.md` when visuals would improve comprehension
+- `visual-asset-index.md` when visual assets are sourced, generated, inserted, or intentionally omitted
+- `article.md` or bilingual draft set
 
 ## Workflow
 
@@ -43,7 +64,13 @@ The shared team writing principles remain the article quality authority for both
 - For `bootstrapping` status, require 2-5 sample articles before final drafting.
 - In the article-writing team, `style-profile-notes.md` must include the profile path, example paths, selected variant, rhetorical mode, hard constraints, and forbidden moves so `article_reviewer` can review style fit from durable artifacts.
 
-3. Build the argument skeleton first.
+3. Read and verify the research package before outlining.
+- Read `research-handoff.md` first, then `brief.md`, `understanding-notes.md`, `source-index.md`, and `claim-evidence-ledger.md` when present.
+- Preserve the mechanisms, chronology, source-backed claims, caveats, and user-supplied sequences from the research package.
+- If a planned claim, contrast, recommendation, root-cause statement, or production observation lacks an evidence anchor, return to `article-researcher` before drafting or narrow the claim.
+- Do not repeat research just because you are writing. Use the research artifacts; if they are insufficient, send a precise gap back to `article-researcher`.
+
+4. Build the argument skeleton first.
 - Produce title options.
 - Produce a section-by-section outline with section purpose.
 - For `essay`, state the thesis explicitly and list the evidence or examples each section will use.
@@ -64,7 +91,7 @@ The shared team writing principles remain the article quality authority for both
 - In standalone use, confirm this skeleton with the user before full drafting.
 - In the article-writing team, write the skeleton as `outline.md` and send it through `article_reviewer` unless the user explicitly requests a different approval path.
 
-4. Draft with native-language expression.
+5. Draft with native-language expression.
 - For `original-draft`, write fully in the chosen source language.
 - For `cross-language-conversion`, treat source article as the canonical logic and rewrite into target language with native flow.
 - Keep the same thesis and argument skeleton across languages.
@@ -75,7 +102,7 @@ The shared team writing principles remain the article quality authority for both
 - Keep the subject exact at sentence level. If the draft says `runtime`, `system`, `application`, or `interface`, make sure the reader can tell which one it means from local context; use the longer noun when precision matters.
 - For math-heavy content, define symbols on first use and keep notation stable.
 
-5. Run quality and style checks.
+6. Run quality and style checks.
 - Check logic continuity: each section must push the central claim, scope explanation, or bounded conclusion forward.
 - Check style alignment against the chosen profile constraints.
 - Check platform fit using `references/platform-output-rules.md`.
@@ -113,6 +140,9 @@ The shared team writing principles remain the article quality authority for both
   - `derivation-flow`: ensure each section follows from the previous one rather than jumping to a conclusion early
   - `transition-smoothing`: fix inter-sentence jumps where the referent or causal chain becomes hard to track
 - In the article-writing team, run these checks before sending the draft package to `article_reviewer`.
+- Send the outline package to `article_reviewer` before the full draft in the normal flow.
+- Include the cumulative package in reviewer handoff: brief, understanding notes, source index, claim/evidence ledger when present, style-profile notes when present, visual plan when present, visual asset index when present, outline, draft files, and any material style notes.
+- On revision rounds, read the review report fully, fix upstream understanding/evidence/structure issues before prose polish, and resend the cumulative package with review context.
 
 ## Rhetorical Modes
 
