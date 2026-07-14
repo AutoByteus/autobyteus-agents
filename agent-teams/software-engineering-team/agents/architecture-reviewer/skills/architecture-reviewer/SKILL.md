@@ -48,8 +48,7 @@ Use [templates/design-review-report-template.md](templates/design-review-report-
 
 1. Understand the approved requirements, relevant existing behavior, approved change, and behavior that must remain unchanged or outside scope. Do not reopen or redefine the business decision.
 2. Trace the complete relevant user, system, or operational journey and enough of its current or target-production path and lifecycle to judge the design correctly. Do not review a local technical fragment as though it were the whole behavior.
-3. Classify and record each material edge-case premise using the shared `Reachable` / `Not Reachable` / `Unclear` rule. Include rejected `Not Reachable` premises in the durable report so the journey, actual behavior, and reason for rejecting unnecessary complexity remain reviewable.
-4. Only then apply the remaining shared design principles and structural review template.
+3. Apply the remaining shared design principles and structural review template. Whenever a check raises a material edge-case premise that could affect a finding or justify additional machinery, classify and record it using the shared `Reachable` / `Not Reachable` / `Unclear` rule before accepting that conclusion. Include rejected `Not Reachable` premises in the durable report, and do not invent edge cases as a separate review stage.
 
 If approved behavior is materially ambiguous, route a `Requirement Gap`. If production reachability or lifecycle evidence is materially incomplete, investigate it or return `Unclear`/`Blocked`; do not fill the gap with a technically plausible invented journey.
 

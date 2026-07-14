@@ -47,7 +47,7 @@ Use stable journey IDs so edge-case decisions and downstream reviews can referen
 
 ## Material Edge-Case Reachability And Proportionality
 
-Record every material edge case or technical premise actually considered while deciding a finding or additional state, APIs, abstractions, coordination, or recovery behavior. Include scenarios rejected as `Not Reachable`; if none were considered, write `None`.
+Record every material edge case or technical premise that arises from the technical checks and is actually considered while deciding a finding or additional state, APIs, abstractions, coordination, or recovery behavior. Include scenarios rejected as `Not Reachable`; if none arise, write `None`. This section preserves check-driven reasoning; it is not a request to brainstorm edge cases before review.
 
 For each recorded premise, use this shape:
 

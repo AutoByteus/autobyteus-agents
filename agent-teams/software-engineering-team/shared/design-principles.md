@@ -37,7 +37,7 @@ The foundation is accurate understanding of approved behavior and relevant produ
 - Architecture review and code review are technical reviews, not a second business-approval process. Use the approved requirements as the intended-behavior authority; if they are materially ambiguous or inconsistent, return the gap instead of inventing behavior.
 - Before applying structural principles, establish the relevant behavioral baseline: existing behavior, the approved change, and behavior that must remain unchanged or outside scope.
 - Understand the complete relevant user, system, or operational journey from a supported trigger to its meaningful outcome. Trace enough of the production execution path and lifecycle boundaries to judge the change correctly; this does not require understanding unrelated parts of the product.
-- Classify any edge-case premise that would affect the design or review decision as `Reachable`, `Not Reachable`, or `Unclear`.
+- While applying any design principle or technical check, classify a material edge-case premise before it can affect the design or review decision. Do not brainstorm hypothetical edge cases as a separate completeness exercise.
   - `Reachable`: an approved journey, established system contract, or real supported operational condition provides a concrete current or target-production trigger and path.
   - `Not Reachable`: the relevant current or approved target journey and lifecycle do not produce the state. Do not require design or code for it in the current scope.
   - `Unclear`: material evidence is missing. Investigate or block the dependent decision instead of prescribing speculative machinery.

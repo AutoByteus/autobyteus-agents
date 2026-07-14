@@ -64,8 +64,7 @@ For API/E2E failure-origin review:
 1. Read the approved requirements and the design review report's approved-behavior, journey, and reachability record. Treat the requirements as intended-behavior authority and the design review as prior technical context, not immutable truth.
 2. Verify the relevant existing behavior, approved change, and behavior that must remain unchanged or outside scope. Do not reopen or redefine the business decision.
 3. Trace the complete relevant user, system, or operational journey and enough of its production path and lifecycle to understand how the changed code participates in that behavior. Do not review the diff or a local method in isolation.
-4. Check upstream reachability decisions against the implementation and record each checked ID and current status. Explicitly record changed evidence and any reclassification, then classify and record each new material edge-case premise that could produce a finding, lower a score, or justify additional machinery. Include rejected `Not Reachable` premises so the reason for rejecting unnecessary complexity remains reviewable.
-5. Only then apply the structural checks, source-quality standards, and scorecard.
+4. Apply the structural checks, source-quality standards, and scorecard. Whenever a check or score rationale depends on a material edge-case or lifecycle premise, first check any upstream reachability decision against the implementation, then confirm, reclassify, or record the premise before accepting the finding or score effect. Include rejected `Not Reachable` premises, and do not invent edge cases as a separate review stage.
 
 If approved behavior is materially ambiguous, classify a `Requirement Gap`. If production reachability or lifecycle evidence is materially incomplete, investigate it or return `Unclear`; do not invent a technically plausible journey and review the implementation against it.
 

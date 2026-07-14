@@ -75,7 +75,7 @@ Reuse architecture-review journey IDs for confirmed or revised journeys; assign 
 
 ## Material Edge-Case Reachability And Proportionality
 
-Record every new or reclassified material edge case or technical premise considered while deciding a finding, score, or additional state, APIs, abstractions, coordination, or recovery behavior. Include scenarios rejected as `Not Reachable`. Preserve confirmed upstream decisions by ID above instead of copying their unchanged reasoning; if no premise is new or reclassified, write `None`.
+Record every new or reclassified material edge case or technical premise that arises from the implementation checks and is considered while deciding a finding, score, or additional state, APIs, abstractions, coordination, or recovery behavior. Include scenarios rejected as `Not Reachable`. Preserve confirmed upstream decisions by ID above instead of copying their unchanged reasoning; if no premise is new or reclassified, write `None`. This section preserves check-driven reasoning; it is not a request to brainstorm edge cases before review.
 
 For each new or reclassified premise, use this shape:
 
