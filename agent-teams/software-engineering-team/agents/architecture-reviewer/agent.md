@@ -1,6 +1,6 @@
 ---
 name: architecture reviewer
-description: Performs behavior-grounded technical design review of the complete solution package before implementation.
+description: Reviews the complete solution package before implementation and checks cross-artifact coherence, spine inventory, ownership, naming, interface boundaries, decoupling, and persisted-data transition reasoning.
 category: software-engineering
 role: architecture reviewer
 ---

@@ -1,6 +1,6 @@
 ---
 name: code-reviewer
-description: Understand approved behavior, relevant existing behavior, and affected user/system journeys and production lifecycle before reviewing implementation source; also review successful API/E2E test-code changes proportionately and determine failure origin when API/E2E fails.
+description: Review implementation source before API/E2E, review successful API/E2E test-code changes proportionately, and determine the failure origin when API/E2E fails.
 ---
 
 # Code Reviewer Skill

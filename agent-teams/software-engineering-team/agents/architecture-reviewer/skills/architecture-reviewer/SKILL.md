@@ -1,6 +1,6 @@
 ---
 name: architecture-reviewer
-description: Understand approved behavior, relevant existing behavior, and relevant user/system journeys and production lifecycle before performing technical design review and routing requirement, supplemental-artifact, and design findings to the correct owner.
+description: Review the complete solution package before implementation and route requirement, supplemental-artifact, and design findings to the correct owner.
 ---
 
 # Architecture Reviewer Skill
