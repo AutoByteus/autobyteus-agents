@@ -5,7 +5,7 @@ This is the shared design reference for the software engineering team.
 Use these principles for design work and review work.
 They are the shared design language for this team.
 This is the canonical design guidance file for this team: principles, practical application guidance, local patterns, design questions, smells, and short example shapes all live here.
-One especially important law for this team is the `Authoritative Boundary Rule`: callers above a subject's authoritative boundary must depend on that boundary, not on that boundary and one of its internals at the same time.
+The foundation is accurate understanding of approved behavior and relevant production reality before technical design or review. Within the structural review that follows, the `Authoritative Boundary Rule` is especially important: callers above a subject's authoritative boundary must depend on that boundary, not on that boundary and one of its internals at the same time.
 
 ## Contents
 
@@ -32,7 +32,20 @@ One especially important law for this team is the `Authoritative Boundary Rule`:
 
 ## Core Principles
 
-### 1. Data-Flow Spine Inventory and Clarity
+### 1. Approved Behavior And Production Reality
+
+- Architecture review and code review are technical reviews, not a second business-approval process. Use the approved requirements as the intended-behavior authority; if they are materially ambiguous or inconsistent, return the gap instead of inventing behavior.
+- Before applying structural principles, establish the relevant behavioral baseline: existing behavior, the approved change, and behavior that must remain unchanged or outside scope.
+- Understand the complete relevant user, system, or operational journey from a supported trigger to its meaningful outcome. Trace enough of the production execution path and lifecycle boundaries to judge the change correctly; this does not require understanding unrelated parts of the product.
+- Classify any edge-case premise that would affect the design or review decision as `Reachable`, `Not Reachable`, or `Unclear`.
+  - `Reachable`: an approved journey, established system contract, or real supported operational condition provides a concrete current or target-production trigger and path.
+  - `Not Reachable`: the relevant current or approved target journey and lifecycle do not produce the state. Do not require design or code for it in the current scope.
+  - `Unclear`: material evidence is missing. Investigate or block the dependent decision instead of prescribing speculative machinery.
+- The existence of a method, state field, generic capability, test-only caller, or defensive mechanism is not by itself evidence that a scenario occurs in the relevant production journey.
+- Persist every material edge-case classification in the applicable review artifact, including scenarios rejected as `Not Reachable`. Record the complete relevant journey, actual system behavior and lifecycle, and evidence that makes the premise reachable, unreachable, or unclear.
+- Require additional state, APIs, abstractions, coordination, or recovery behavior only when they address a reachable material problem and are proportionate to its consequence. Technical completeness means correctness for supported behavior and real operational constraints, not handling every imaginable state.
+
+### 2. Data-Flow Spine Inventory and Clarity
 
 - Identify and inventory the relevant data-flow spines for each in-scope use case.
 - A practical spine inventory row should usually capture:
@@ -65,7 +78,7 @@ One especially important law for this team is the `Authoritative Boundary Rule`:
   - `Exposure Composer -> Browser Surface`
 - If the declared spine inventory is incomplete, or if the main line / secondary line / bounded local spines are hard to draw, the design is probably fragmented.
 
-### 2. Ownership Clarity and Boundary Encapsulation
+### 3. Ownership Clarity and Boundary Encapsulation
 
 - Each main-line node must own something concrete:
   - state
@@ -82,7 +95,7 @@ One especially important law for this team is the `Authoritative Boundary Rule`:
 - When one boundary intentionally encapsulates lower-level concerns, callers above it should depend on the authoritative outer boundary instead of bypassing it and mixing in the internals directly.
 - API/interface/query/command shape should be derived from this ownership and boundary model, not designed independently from it.
 
-### 3. Off-Spine Concerns Around The Spine
+### 4. Off-Spine Concerns Around The Spine
 
 - Off-spine concerns should serve a clear owner on the spine.
 - Keep off-spine concerns off the main line unless they truly own core sequencing.
@@ -91,7 +104,7 @@ One especially important law for this team is the `Authoritative Boundary Rule`:
 - `Spine`, `owner`, and `off-spine concern` are architecture relationship terms, not naming templates.
 - Do not name files, folders, services, classes, or types with vague labels like `Support`, `Supporting`, `OffSpine`, `SideConcern`, or `Helper` just because they sit off the main line. Name them by the concrete concern they own.
 
-### 4. Current-Schema Runtime And Proportionate Persisted-Data Transitions
+### 5. Current-Schema Runtime And Proportionate Persisted-Data Transitions
 
 - A code-model, serialization, or storage-schema change triggers persisted-data analysis, not an automatic migration.
 - Decide explicitly whether existing data is `Not Affected`, `Directly Usable — No Migration`, `Discard or Rebuild`, `Migration Required`, or `Undetermined`.
@@ -348,6 +361,7 @@ Do not introduce a pattern if it obscures the spine, blurs ownership, or creates
 
 ## Design Smells
 
+- A technical finding or new machinery is justified only by a hypothetical state, generic capability, or test-only path rather than approved behavior and current or target-production reachability
 - Many peer coordinators with no obvious main line
 - Important spines are left implicit instead of being named
 - The named spine stops at the local edited helper path and hides the real initiating surface, authoritative owner boundary, or downstream consequence

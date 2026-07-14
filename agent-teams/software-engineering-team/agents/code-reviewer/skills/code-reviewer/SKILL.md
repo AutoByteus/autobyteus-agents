@@ -1,13 +1,13 @@
 ---
 name: code-reviewer
-description: Review implementation source before API/E2E, review successful API/E2E test-code changes proportionately, and determine the failure origin when API/E2E fails.
+description: Understand approved behavior, relevant existing behavior, and affected user/system journeys and production lifecycle before reviewing implementation source; also review successful API/E2E test-code changes proportionately and determine failure origin when API/E2E fails.
 ---
 
 # Code Reviewer Skill
 
 ## Purpose
 
-Provide three proportionate review entry points in one role:
+Provide three proportionate, behavior-grounded technical review entry points in one role:
 
 1. full implementation source and architecture review before API/E2E
 2. lightweight test-code review after successful API/E2E
@@ -56,11 +56,23 @@ For API/E2E failure-origin review:
 - Start implementation review by reading [design-principles.md](design-principles.md).
 - Use it as the canonical design authority for source and structural review.
 - Consult [references/design-examples.md](references/design-examples.md) only when a concrete structural example is needed to judge the implementation or its alignment with the reviewed design.
+- When a review turns on edge-case reachability or proportionality, consult [Example 9](references/design-examples.md#example-9-rejecting-an-unreachable-edge-case-during-technical-review) before finalizing the premise, finding, or score rationale.
 - For the later entry points, reread only the requirements, design, changed tests, relevant source paths, and prior findings needed for the bounded review.
+
+## Implementation Review Basis And Sequence
+
+1. Read the approved requirements and the design review report's approved-behavior, journey, and reachability record. Treat the requirements as intended-behavior authority and the design review as prior technical context, not immutable truth.
+2. Verify the relevant existing behavior, approved change, and behavior that must remain unchanged or outside scope. Do not reopen or redefine the business decision.
+3. Trace the complete relevant user, system, or operational journey and enough of its production path and lifecycle to understand how the changed code participates in that behavior. Do not review the diff or a local method in isolation.
+4. Check upstream reachability decisions against the implementation and record each checked ID and current status. Explicitly record changed evidence and any reclassification, then classify and record each new material edge-case premise that could produce a finding, lower a score, or justify additional machinery. Include rejected `Not Reachable` premises so the reason for rejecting unnecessary complexity remains reviewable.
+5. Only then apply the structural checks, source-quality standards, and scorecard.
+
+If approved behavior is materially ambiguous, classify a `Requirement Gap`. If production reachability or lifecycle evidence is materially incomplete, investigate it or return `Unclear`; do not invent a technically plausible journey and review the implementation against it.
 
 ## General Review Rules
 
 - Review independently and record findings; do not implement source or test-code fixes while acting as reviewer.
+- Tie every implementation finding or score deduction to affected behavior or an established contract and, when applicable, its reachability evidence, material consequence, and proportionate response.
 - Keep the successful-test review and failure-origin review as mutually exclusive entry points. A passed execution triggers proportional test-code review; a failed execution triggers focused failure-origin review.
 - Preserve the complete cumulative artifact package through every reroute.
 
@@ -95,6 +107,7 @@ For API/E2E failure-origin review:
 
 - Use the failure context in the review meta and scope, affected findings or score rationale when needed, classification/routing, and latest-result fields. Do not repeat the full source audit or scorecard.
 - Confirm only that the failing scenario still represents approved behavior; do not generally review the test suite.
+- Confirm that the failing scenario is reachable through the relevant production journey or established contract before attributing a source defect.
 - Inspect the failure evidence and the smallest relevant test, environment, execution, or implementation path needed to classify the cause.
 - Decide whether the origin is an implementation defect, earlier review gap, runtime-only behavior, implementation change after review, invalid/stale test, fixture/environment/execution issue, design impact, requirement gap, or unclear.
 - When a real review gap exists, state the exact source evidence or invariant that should have been caught and update only the affected finding or score rationale.

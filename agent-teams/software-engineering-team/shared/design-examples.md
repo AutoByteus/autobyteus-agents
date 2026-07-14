@@ -8,6 +8,7 @@ Use them to learn how a good design spec can read when the architecture is organ
 - ownership
 - off-spine concerns around the spine
 - interface boundaries with explicit identity shape
+- approved behavior, production journeys, and edge-case reachability
 - derived subsystem, optional module grouping, folder, and file placement
 
 Do not copy these literally.
@@ -27,6 +28,7 @@ The examples are intentionally detailed. Preserve them rather than shortening or
 - [Example 6: Generic List Surface To Avoid](#example-6-generic-list-surface-to-avoid)
 - [Example 7: Current-Schema Runtime With Required Data Migration](#example-7-current-schema-runtime-with-required-data-migration)
 - [Example 8: Schema Contraction With No Data Migration](#example-8-schema-contraction-with-no-data-migration)
+- [Example 9: Rejecting An Unreachable Edge Case During Technical Review](#example-9-rejecting-an-unreachable-edge-case-during-technical-review)
 - [Common Bad-Practice Patterns](#common-bad-practice-patterns)
 - [How To Use These Examples](#how-to-use-these-examples)
 
@@ -782,6 +784,88 @@ This is bad when no concrete requirement needs the rewrite. It converts a safe m
 
 A stored representation does not need to be byte-for-byte identical to the current in-memory model. When the normal reader consumes the data correctly and required meaning is preserved, record the no-migration decision and its evidence instead of rewriting data for representational cleanliness.
 
+## Example 9: Rejecting An Unreachable Edge Case During Technical Review
+
+### Situation
+
+A desktop application manages settings for multiple server nodes. Selecting a node opens or focuses a separate node-specific window. During window bootstrap, the settings store is bound to that window's node and remains bound for the lifetime of the window.
+
+A settings card saves several values through an existing per-setting update action. Elsewhere in the codebase, a separate mobile-session flow can call `bindNodeContext(...)`, and the store contains a `bindingRevision` field.
+
+A reviewer notices that each setting update can resolve the current client. From those local facts alone, the reviewer imagines that the window could switch from node A to node B in the middle of one save and proposes:
+
+- a captured client for the whole save
+- revision fencing
+- rebinding state
+- partial-result types
+- new recovery behavior
+- additional localization and tests
+
+Those mechanisms are technically coherent, but the premise must be checked against the supported product journey before they become design requirements.
+
+### Approved Behavior And Relevant Journey
+
+The approved behavior is to edit settings for the node represented by the current node-specific window. No requirement introduces in-place node switching for that window.
+
+| Journey ID | Relevant Journey | Supported Trigger | Meaningful Outcome | Production Path And Lifecycle Boundary | Evidence To Inspect |
+| --- | --- | --- | --- | --- | --- |
+| `J-SETTINGS-001` | `Node Manager -> open/focus node-specific window -> bootstrap node context -> edit settings -> save through existing setting action` | User opens or focuses one node | Settings are applied to that window's node | Node identity is established during window bootstrap and remains stable for the window lifetime | Window creation/focus path, bootstrap binding call, production callers of `bindNodeContext(...)`, settings action call path |
+
+The reviewer must inspect the full path, not only the settings action and store fields. The relevant evidence shows:
+
+- ordinary desktop node selection opens or focuses a node-specific window
+- bootstrap binds the store once for that window
+- the settings card does not expose an in-window node-switch action
+- the only normal `bindNodeContext(...)` caller belongs to a separate mobile-session lifecycle
+- `bindingRevision` protects that separate lifecycle; its existence does not prove desktop rebinding
+
+### Material Edge-Case Record
+
+#### `EDGE-SETTINGS-001` — Node binding changes during one multi-setting save
+
+- Related approved requirement or established contract: settings apply to the node represented by the current node-specific window.
+- Relevant journey ID(s): `J-SETTINGS-001`.
+- Actual current / approved target system behavior and lifecycle at the claimed point: the window is already bound to one node before the settings card becomes interactive, and the supported desktop journey does not rebind that window during save.
+- Reachability reasoning and evidence: no supported trigger or production caller on `J-SETTINGS-001` can invoke node rebinding between the setting updates. A generic binding method, revision field, and separate mobile caller do not create such a desktop journey.
+- Reachability: `Not Reachable`.
+- Review consequence / proportionate response: do not require a revision-fenced save protocol. Reuse the existing setting action, preserve truthful partial-persistence behavior, and stop on the first actual same-node failure when that is the approved behavior.
+
+### Why The Initial Finding Is Invalid
+
+Bad finding shape:
+
+```text
+The store can rebind and exposes bindingRevision.
+Therefore a multi-setting save can cross nodes.
+Add revision fencing and rebinding recovery.
+```
+
+This finding proves only technical possibility at the level of isolated methods and fields. It does not identify a supported trigger, production caller, or lifecycle path that can produce the state.
+
+The correct review does not dismiss edge cases generally. It rejects this particular premise because the complete relevant journey cannot reach it.
+
+### When The Decision Would Change
+
+Reclassify the premise if evidence shows that the current or approved target product supports any of the following:
+
+- in-place node switching inside the settings window
+- a production event that rebinds the same window while save is active
+- concurrent lifecycle behavior that can replace the window's node context
+
+If such a path exists, record its trigger, lifecycle, material consequence, and evidence. Then evaluate whether fencing or recovery is proportionate. Until that evidence exists, classify missing material evidence as `Unclear` rather than assuming either reachability or safety.
+
+### Downstream Code-Review Use
+
+The code reviewer receives the design review report with `J-SETTINGS-001` and `EDGE-SETTINGS-001`.
+
+- If the implementation preserves the node-specific window lifecycle, mark the journey and edge-case decision `Confirmed` by ID without copying the full reasoning.
+- If the implementation introduces a real in-window rebinding path, reuse `EDGE-SETTINGS-001`, record the changed evidence, and reclassify it.
+- Do not recreate the rejected hypothetical merely because the implementation still contains `bindingRevision` or a generic binding method.
+
+### Design Lesson
+
+Technical review begins from approved behavior and the complete relevant production journey. Local capability is not proof of reachability. Persisting the journey, evidence, and decision makes the reasoning auditable, prevents unsupported complexity, and lets downstream reviewers confirm or revise the decision when later evidence changes.
+
 ## Common Bad-Practice Patterns
 
 ### 1. Generalist Boundary
@@ -936,5 +1020,6 @@ Better direction:
 - Keep off-spine concerns around the spine.
 - Keep interface boundaries singular and identity-explicit.
 - Distinguish thin public facades from deeper governing owners when both exist.
+- Validate edge-case findings against an approved journey, production trigger, and lifecycle; record unreachable or unclear premises instead of designing from isolated technical possibility.
 - Choose `Directly Usable — No Migration`, `Discard or Rebuild`, or `Migration Required` before designing migration machinery.
 - Let files and any optional module groupings appear after the design story is already clear.

@@ -1,13 +1,13 @@
 ---
 name: architecture-reviewer
-description: Review the complete solution package before implementation and route requirement, supplemental-artifact, and design findings to the correct owner.
+description: Understand approved behavior, relevant existing behavior, and relevant user/system journeys and production lifecycle before performing technical design review and routing requirement, supplemental-artifact, and design findings to the correct owner.
 ---
 
 # Architecture Reviewer Skill
 
 ## Purpose
 
-Perform the architecture review before implementation starts so design weaknesses are found while they are still cheap to fix.
+Perform a behavior-grounded technical architecture review before implementation, finding real design weaknesses without introducing complexity for unsupported scenarios.
 
 ## You Own
 
@@ -42,13 +42,25 @@ Use [templates/design-review-report-template.md](templates/design-review-report-
 
 - When judging whether a design is concrete enough, compare its shape against [references/design-examples.md](references/design-examples.md) whenever examples would clarify the target shape.
 - Use that file as a benchmark for what a clear design explanation can look like across different cases, and for what bad practice looks like when boundaries become generic or fragmented.
+- When a review turns on edge-case reachability or proportionality, consult [Example 9](references/design-examples.md#example-9-rejecting-an-unreachable-edge-case-during-technical-review) before finalizing the premise or finding.
+
+## Review Basis And Sequence
+
+1. Understand the approved requirements, relevant existing behavior, approved change, and behavior that must remain unchanged or outside scope. Do not reopen or redefine the business decision.
+2. Trace the complete relevant user, system, or operational journey and enough of its current or target-production path and lifecycle to judge the design correctly. Do not review a local technical fragment as though it were the whole behavior.
+3. Classify and record each material edge-case premise using the shared `Reachable` / `Not Reachable` / `Unclear` rule. Include rejected `Not Reachable` premises in the durable report so the journey, actual behavior, and reason for rejecting unnecessary complexity remain reviewable.
+4. Only then apply the remaining shared design principles and structural review template.
+
+If approved behavior is materially ambiguous, route a `Requirement Gap`. If production reachability or lifecycle evidence is materially incomplete, investigate it or return `Unclear`/`Blocked`; do not fill the gap with a technically plausible invented journey.
 
 ## Review Rules
 
 - Review the design independently against the canonical shared design guidance and the mandatory checklist in [templates/design-review-report-template.md](templates/design-review-report-template.md).
 - Use the template as the authoritative review shape; do not replace it with a smaller ad hoc checklist in the review artifact.
+- Apply the template proportionately. Mark a genuinely inapplicable section `N/A` with a short reason instead of inventing a concern merely to populate the report.
 - Write findings in the design review report and route them to `solution_designer`. Do not edit the solution artifacts to make them pass your own review.
-- Treat the requirements doc and investigation notes as supporting context only. Weak intended behavior should route as `Requirement Gap`; weak structure should route as `Design Impact`.
+- Every blocking finding must identify the affected behavior or established contract and, when applicable, its reachability evidence, material consequence, and proportionate response.
+- Use investigation notes as current-state evidence while retaining independent technical judgment; route weak structure as `Design Impact`.
 - Treat missing, internally incomplete, or cross-artifact-inconsistent supplemental behavior as `Requirement Gap`, `Design Impact`, or `Unclear` according to the underlying issue. Do not pass a UI-facing design when the required journeys or observable states remain ambiguous across the package.
 - When persisted data may be affected, verify that the design makes an evidence-backed transition decision rather than assuming migration from a schema change. Accept `Directly Usable — No Migration` or `Discard or Rebuild` when justified; for `Migration Required`, verify isolated ownership, ordering, validation, completion, interruption, and recovery behavior.
 - Do not pass a design that omits the task design health assessment, classifies the task without current-code evidence, says "no refactor needed" without explaining why the current design remains healthy, or says "refactor needed now" without reflecting that decision in concrete design sections.

@@ -2,8 +2,9 @@
 
 Write this artifact to `code-review-report.md` in the assigned task workspace before any handoff message.
 
-Use earlier design artifacts as context only.
-The review authority is the canonical shared design guidance and the review criteria in this report.
+Use the approved requirements as the intended-behavior authority.
+Use earlier technical design artifacts as context, not immunity from independent implementation review.
+The technical review authority is the canonical shared design guidance and the review criteria in this report.
 If the review shows that an earlier design artifact was weak, incomplete, or wrong, classify that as `Design Impact`.
 Keep one canonical code review report path across reruns.
 Do not create versioned copies by default.
@@ -46,6 +47,50 @@ Round rules:
 
 ## Review Scope
 
+- Changed implementation and behavior reviewed:
+- Files / areas reviewed:
+- Explicit exclusions:
+
+## Approved-Behavior And Current-Reality Basis
+
+Complete this foundation before the implementation structural checks. Start from the design review's recorded behavior and journeys, verify them against the implementation, and record status plus implementation evidence instead of restating unchanged content. This is not a second business-approval step. For a failure-origin-only round, update only the affected journey and reachability premise.
+
+- Approved requirements basis checked:
+- Design review report and round checked:
+- Behavior-basis status: `Confirmed` / `Revised` / `Unclear`
+- Changed or newly discovered behavior, if any:
+- Remaining material ambiguity, if any:
+
+| Journey ID | Current Status (`Confirmed`/`Revised`/`New`) | Current Implementation Path And Lifecycle Evidence | Revised / New Complete Journey (Only When Applicable) |
+| --- | --- | --- | --- |
+|  |  |  |  |
+
+Reuse architecture-review journey IDs for confirmed or revised journeys; assign a new stable ID only to a newly discovered journey.
+
+### Upstream Design-Review Reachability Decisions
+
+| Edge-Case ID | Current Status (`Confirmed`/`Reclassified`/`No Longer Relevant`) | Changed Evidence / Reason (Required For `Reclassified` Or `No Longer Relevant`) |
+| --- | --- | --- |
+|  |  |  |
+
+## Material Edge-Case Reachability And Proportionality
+
+Record every new or reclassified material edge case or technical premise considered while deciding a finding, score, or additional state, APIs, abstractions, coordination, or recovery behavior. Include scenarios rejected as `Not Reachable`. Preserve confirmed upstream decisions by ID above instead of copying their unchanged reasoning; if no premise is new or reclassified, write `None`.
+
+For each new or reclassified premise, use this shape:
+
+### `<edge-case-id>` — `<technical premise>`
+
+- Origin: `New` / `Reclassified from <architecture-edge-case-id>`
+- Related approved requirement or established contract:
+- Relevant journey ID(s):
+- Actual current / approved target system behavior and lifecycle at the claimed point:
+- Reachability reasoning and evidence:
+- Reachability: `Reachable` / `Not Reachable` / `Unclear`
+- Review consequence / proportionate response:
+
+Reuse the architecture review's edge-case ID when reclassifying an upstream premise; assign a new stable ID only to a newly considered premise. Apply the shared reachability rule. Keep a new or reclassified `Not Reachable` premise in this section with the evidence explaining why the referenced journey cannot produce it; it cannot produce a finding or score deduction. A materially `Unclear` premise requires investigation or routing rather than speculative machinery.
+
 ## Prior Findings Resolution Check (Mandatory On Round >1)
 
 | Prior Round | Finding ID | Previous Severity | Current Resolution | Evidence | Notes |
@@ -67,6 +112,7 @@ Do not apply the source-file hard limit to unit, integration, API, or E2E test f
 Required for implementation review only.
 Use the mandatory structural checks below on every implementation review. Do not replace them with a smaller ad hoc checklist.
 Treat the `Authoritative Boundary Rule` as one of the highest-signal structural checks in this section.
+Apply these checks only after establishing the approved behavior, relevant current behavior, affected production journey, and material edge-case reachability above.
 Review test structure proportionately when test files are relevant. Do not apply implementation-source size thresholds to tests, and do not fail a coherent test suite merely because its files are large.
 
 Quick examples:
@@ -128,7 +174,7 @@ Use the canonical priority order below. The order is the review reasoning order,
 | `5` | `Shared-Structure / Data-Model Tightness and Reusable Owned Structures` |  |  |  |  |
 | `6` | `Naming Quality and Local Readability` |  |  |  |  |
 | `7` | `API/E2E Readiness` |  |  |  |  |
-| `8` | `Runtime Correctness Under Edge Cases` |  |  |  |  |
+| `8` | `Runtime Correctness Under Reachable Edge Cases` |  |  |  |  |
 | `9` | `No Backward-Compatibility / No Legacy Retention` |  |  |  |  |
 | `10` | `Cleanup Completeness` |  |  |  |  |
 
@@ -136,6 +182,8 @@ Rules:
 - Do not record raw numbers without explanation.
 - Every row must include the reason for the score, the concrete weakness or drag, and the expected improvement.
 - Every category is mandatory. Clean pass target is `>= 9.0` in every category. Any category below `9.0` is a real gap and should normally fail the review.
+- Score only against approved behavior, verified relevant existing behavior, established engineering contracts, real supported operational constraints, and concrete maintainability defects. Do not lower a score for an unsupported or production-unreachable hypothetical path.
+- Any score rationale based on an edge case or lifecycle premise must cite its reachability record in the design review or current code review report; a documented `Not Reachable` premise cannot lower the score.
 - Do not let the overall summary override a weak category. The review still follows the actual findings and mandatory checks.
 - If the `Authoritative Boundary Rule` is broken, call it out explicitly in findings and in the relevant score rationale instead of hiding it under vague dependency wording.
 
@@ -145,6 +193,8 @@ Rules:
 - Reuse the same finding ID when the same issue persists across rounds.
 - Create a new finding ID only for newly discovered issues.
 - Mark resolved or obsolete earlier findings in the prior-findings resolution table instead of silently dropping them.
+- Tie every finding to affected approved behavior, relevant existing behavior, an established engineering contract, or a real supported operational constraint.
+- When a finding depends on an edge case or lifecycle premise, include its production trigger/path, reachability evidence, material consequence, and why the required action is proportionate.
 - If dead/obsolete/legacy/compatibility issues exist, enumerate each one explicitly with the concrete file/path/item, evidence, and required removal or cleanup action.
 
 ## Legacy / Backward-Compatibility Verdict

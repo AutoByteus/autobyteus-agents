@@ -29,6 +29,41 @@ Round rules:
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |
 
+## Approved-Behavior And Current-Reality Basis
+
+This is the basis for the technical review, not a second business-approval step. Understand the approved behavior and verify the relevant current production reality before applying the structural checks below.
+
+- Approved requirements / intended behavior summary:
+- Relevant existing behavior:
+- Approved behavior change:
+- Behavior explicitly preserved or outside scope:
+- Remaining material ambiguity, if any:
+
+| Journey ID | Relevant User / System / Operational Journey | Supported Trigger | Meaningful Outcome | Current / Target Production Path And Lifecycle Boundary | Evidence |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+Use stable journey IDs so edge-case decisions and downstream reviews can reference a complete journey without repeating it.
+
+## Material Edge-Case Reachability And Proportionality
+
+Record every material edge case or technical premise actually considered while deciding a finding or additional state, APIs, abstractions, coordination, or recovery behavior. Include scenarios rejected as `Not Reachable`; if none were considered, write `None`.
+
+For each recorded premise, use this shape:
+
+### `<edge-case-id>` — `<technical premise>`
+
+- Related approved requirement or established contract:
+- Relevant journey ID(s):
+- Actual current / approved target system behavior and lifecycle at the claimed point:
+- Reachability reasoning and evidence:
+- Reachability: `Reachable` / `Not Reachable` / `Unclear`
+- Review consequence / proportionate response:
+
+Use a stable edge-case ID so downstream roles can preserve or reclassify the decision by reference. Apply the shared reachability rule. Keep a `Not Reachable` premise in this section with the evidence explaining why the referenced journey cannot produce it; it cannot become a finding. A materially `Unclear` premise requires investigation or a blocked decision rather than speculative machinery.
+
+Apply the remaining technical sections proportionately. If a whole section is genuinely inapplicable, write `N/A` with a short reason; do not invent a design concern to populate the template.
+
 ## Supplemental Artifact Coherence Verdict
 
 If no supplemental solution artifacts exist, write `None`.
@@ -167,8 +202,11 @@ Otherwise list actionable findings with:
 - type
 - finding ID
 - severity
+- affected approved behavior, relevant existing behavior, journey, or established contract
 - evidence
+- current or target-production reachability evidence when the finding depends on an edge case or lifecycle premise
 - required update
+- why the required update is proportionate to the verified consequence
 - recommended recipient
 
 Rules:
