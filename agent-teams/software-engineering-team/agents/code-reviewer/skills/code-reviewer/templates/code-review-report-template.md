@@ -67,30 +67,6 @@ Complete this foundation before the implementation structural checks. Start from
 
 Reuse architecture-review journey IDs for confirmed or revised journeys; assign a new stable ID only to a newly discovered journey.
 
-### Upstream Design-Review Reachability Decisions
-
-| Edge-Case ID | Current Status (`Confirmed`/`Reclassified`/`No Longer Relevant`) | Changed Evidence / Reason (Required For `Reclassified` Or `No Longer Relevant`) |
-| --- | --- | --- |
-|  |  |  |
-
-## Material Edge-Case Reachability And Proportionality
-
-Record every new or reclassified material edge case or technical premise that arises from the implementation checks and is considered while deciding a finding, score, or additional state, APIs, abstractions, coordination, or recovery behavior. Include scenarios rejected as `Not Reachable`. Preserve confirmed upstream decisions by ID above instead of copying their unchanged reasoning; if no premise is new or reclassified, write `None`. This section preserves check-driven reasoning; it is not a request to brainstorm edge cases before review.
-
-For each new or reclassified premise, use this shape:
-
-### `<edge-case-id>` — `<technical premise>`
-
-- Origin: `New` / `Reclassified from <architecture-edge-case-id>`
-- Related approved requirement or established contract:
-- Relevant journey ID(s):
-- Actual current / approved target system behavior and lifecycle at the claimed point:
-- Reachability reasoning and evidence:
-- Reachability: `Reachable` / `Not Reachable` / `Unclear`
-- Review consequence / proportionate response:
-
-Reuse the architecture review's edge-case ID when reclassifying an upstream premise; assign a new stable ID only to a newly considered premise. Apply the shared reachability rule. Keep a new or reclassified `Not Reachable` premise in this section with the evidence explaining why the referenced journey cannot produce it; it cannot produce a finding or score deduction. A materially `Unclear` premise requires investigation or routing rather than speculative machinery.
-
 ## Prior Findings Resolution Check (Mandatory On Round >1)
 
 | Prior Round | Finding ID | Previous Severity | Current Resolution | Evidence | Notes |
@@ -186,6 +162,30 @@ Rules:
 - Any score rationale based on an edge case or lifecycle premise must cite its reachability record in the design review or current code review report; a documented `Not Reachable` premise cannot lower the score.
 - Do not let the overall summary override a weak category. The review still follows the actual findings and mandatory checks.
 - If the `Authoritative Boundary Rule` is broken, call it out explicitly in findings and in the relevant score rationale instead of hiding it under vague dependency wording.
+
+## Material Edge-Case Reachability And Proportionality
+
+### Upstream Design-Review Reachability Decisions
+
+| Edge-Case ID | Current Status (`Confirmed`/`Reclassified`/`No Longer Relevant`) | Changed Evidence / Reason (Required For `Reclassified` Or `No Longer Relevant`) |
+| --- | --- | --- |
+|  |  |  |
+
+Record every new or reclassified material edge case or technical premise that arises from the implementation checks and is considered while deciding a finding, score, or additional state, APIs, abstractions, coordination, or recovery behavior. Include scenarios rejected as `Not Reachable`. Preserve confirmed upstream decisions by ID above instead of copying their unchanged reasoning; if no premise is new or reclassified, write `None`. This section preserves check-driven reasoning; it is not a request to brainstorm edge cases before review.
+
+For each new or reclassified premise, use this shape:
+
+### `<edge-case-id>` — `<technical premise>`
+
+- Origin: `New` / `Reclassified from <architecture-edge-case-id>`
+- Related approved requirement or established contract:
+- Relevant journey ID(s):
+- Actual current / approved target system behavior and lifecycle at the claimed point:
+- Reachability reasoning and evidence:
+- Reachability: `Reachable` / `Not Reachable` / `Unclear`
+- Review consequence / proportionate response:
+
+Reuse the architecture review's edge-case ID when reclassifying an upstream premise; assign a new stable ID only to a newly considered premise. Apply the shared reachability rule. Keep a new or reclassified `Not Reachable` premise in this section with the evidence explaining why the referenced journey cannot produce it; it cannot produce a finding or score deduction. A materially `Unclear` premise requires investigation or routing rather than speculative machinery.
 
 ## Findings
 

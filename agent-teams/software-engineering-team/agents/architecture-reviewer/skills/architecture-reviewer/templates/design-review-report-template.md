@@ -45,23 +45,6 @@ This is the basis for the technical review, not a second business-approval step.
 
 Use stable journey IDs so edge-case decisions and downstream reviews can reference a complete journey without repeating it.
 
-## Material Edge-Case Reachability And Proportionality
-
-Record every material edge case or technical premise that arises from the technical checks and is actually considered while deciding a finding or additional state, APIs, abstractions, coordination, or recovery behavior. Include scenarios rejected as `Not Reachable`; if none arise, write `None`. This section preserves check-driven reasoning; it is not a request to brainstorm edge cases before review.
-
-For each recorded premise, use this shape:
-
-### `<edge-case-id>` — `<technical premise>`
-
-- Related approved requirement or established contract:
-- Relevant journey ID(s):
-- Actual current / approved target system behavior and lifecycle at the claimed point:
-- Reachability reasoning and evidence:
-- Reachability: `Reachable` / `Not Reachable` / `Unclear`
-- Review consequence / proportionate response:
-
-Use a stable edge-case ID so downstream roles can preserve or reclassify the decision by reference. Apply the shared reachability rule. Keep a `Not Reachable` premise in this section with the evidence explaining why the referenced journey cannot produce it; it cannot become a finding. A materially `Unclear` premise requires investigation or a blocked decision rather than speculative machinery.
-
 Apply the remaining technical sections proportionately. If a whole section is genuinely inapplicable, write `N/A` with a short reason; do not invent a design concern to populate the template.
 
 ## Supplemental Artifact Coherence Verdict
@@ -182,6 +165,23 @@ For `Migration Required`, verify isolated ownership, ordering, validation, compl
 | Topic / Area | Example Was Needed? (`Yes`/`No`) | Example Is Present And Clear? (`Pass`/`Fail`/`N/A`) | Bad / Avoided Shape Is Explained When Helpful? (`Pass`/`Fail`/`N/A`) | Verdict (`Pass`/`Fail`) | Notes |
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
+
+## Material Edge-Case Reachability And Proportionality
+
+Record every material edge case or technical premise that arises from the technical checks and is actually considered while deciding a finding or additional state, APIs, abstractions, coordination, or recovery behavior. Include scenarios rejected as `Not Reachable`; if none arise, write `None`. This section preserves check-driven reasoning; it is not a request to brainstorm edge cases before review.
+
+For each recorded premise, use this shape:
+
+### `<edge-case-id>` — `<technical premise>`
+
+- Related approved requirement or established contract:
+- Relevant journey ID(s):
+- Actual current / approved target system behavior and lifecycle at the claimed point:
+- Reachability reasoning and evidence:
+- Reachability: `Reachable` / `Not Reachable` / `Unclear`
+- Review consequence / proportionate response:
+
+Use a stable edge-case ID so downstream roles can preserve or reclassify the decision by reference. Apply the shared reachability rule. Keep a `Not Reachable` premise in this section with the evidence explaining why the referenced journey cannot produce it; it cannot become a finding. A materially `Unclear` premise requires investigation or a blocked decision rather than speculative machinery.
 
 ## Missing Use Cases / Open Unknowns
 
