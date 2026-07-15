@@ -64,7 +64,9 @@ For API/E2E failure-origin review:
 1. Read the approved requirements and the design review report's approved-behavior, journey, and reachability record. Treat the requirements as intended-behavior authority and the design review as prior technical context, not immutable truth.
 2. Verify the relevant existing behavior, approved change, and behavior that must remain unchanged or outside scope. Do not reopen or redefine the business decision.
 3. Trace the complete relevant user, system, or operational journey and enough of its production path and lifecycle to understand how the changed code participates in that behavior. Do not review the diff or a local method in isolation.
-4. Apply the structural checks, source-quality standards, and scorecard. Whenever a check or score rationale depends on a material edge-case or lifecycle premise, first check any upstream reachability decision against the implementation, then confirm, reclassify, or record the premise before accepting the finding or score effect. Include rejected `Not Reachable` premises, and do not invent edge cases as a separate review stage.
+4. Apply the structural checks, source-quality standards, and scorecard. Whenever a check or score rationale depends on a material edge-case or lifecycle premise, first check any upstream reachability decision against the implementation, then confirm, reclassify, or record the premise before accepting the finding or score effect. Apply the same gate to fallback, recovery, defensive, or lifecycle machinery introduced by the implementation. Include rejected `Not Reachable` premises, and do not invent edge cases as a separate review stage.
+
+For each new or reclassified material premise, require a complete witness from supported trigger or governing contract through the actual production path and lifecycle state to the claimed material consequence. Trace forward from that trigger; do not reason backward from a fallback branch, synthetic reproduction, or test and invent initiating causes. Classify distinct initiating conditions separately when their evidence differs; do not treat a list of mechanically possible causes as one supported journey.
 
 If approved behavior is materially ambiguous, classify a `Requirement Gap`. If production reachability or lifecycle evidence is materially incomplete, investigate it or return `Unclear`; do not invent a technically plausible journey and review the implementation against it.
 
@@ -72,6 +74,7 @@ If approved behavior is materially ambiguous, classify a `Requirement Gap`. If p
 
 - Review independently and record findings; do not implement source or test-code fixes while acting as reviewer.
 - Tie every implementation finding or score deduction to affected behavior or an established contract and, when applicable, its reachability evidence, material consequence, and proportionate response.
+- Do not pass implementation that adds fallback, recovery, defensive, or lifecycle machinery based on an unrecorded, `Not Reachable`, or materially `Unclear` premise. Classify unsupported reviewed machinery as `Design Impact`; classify implementation-only machinery through the normal owning route.
 - Keep the successful-test review and failure-origin review as mutually exclusive entry points. A passed execution triggers proportional test-code review; a failed execution triggers focused failure-origin review.
 - Preserve the complete cumulative artifact package through every reroute.
 

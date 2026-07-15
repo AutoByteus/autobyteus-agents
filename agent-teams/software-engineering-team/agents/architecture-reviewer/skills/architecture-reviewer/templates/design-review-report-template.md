@@ -168,7 +168,9 @@ For `Migration Required`, verify isolated ownership, ordering, validation, compl
 
 ## Material Edge-Case Reachability And Proportionality
 
-Record every material edge case or technical premise that arises from the technical checks and is actually considered while deciding a finding or additional state, APIs, abstractions, coordination, or recovery behavior. Include scenarios rejected as `Not Reachable`; if none arise, write `None`. This section preserves check-driven reasoning; it is not a request to brainstorm edge cases before review.
+Record every material edge case or technical premise that arises from the technical checks and is actually considered while deciding a finding or additional state, APIs, abstractions, coordination, or recovery behavior. Apply this to machinery already proposed in the design as well as reviewer-proposed changes. Include scenarios rejected as `Not Reachable`; if none arise, write `None`. This section preserves check-driven reasoning; it is not a request to brainstorm edge cases before review.
+
+Use one record per distinct initiating condition when evidence, path, or consequence differs. Do not combine unrelated causes into one `A or B or C` premise.
 
 For each recorded premise, use this shape:
 
@@ -176,12 +178,13 @@ For each recorded premise, use this shape:
 
 - Related approved requirement or established contract:
 - Relevant journey ID(s):
-- Actual current / approved target system behavior and lifecycle at the claimed point:
-- Reachability reasoning and evidence:
+- Supported initiating trigger or governing contract, with evidence:
+- Actual production caller/event path from that trigger to the claimed state:
+- Lifecycle preconditions and material consequence at the claimed point:
 - Reachability: `Reachable` / `Not Reachable` / `Unclear`
 - Review consequence / proportionate response:
 
-Use a stable edge-case ID so downstream roles can preserve or reclassify the decision by reference. Apply the shared reachability rule. Keep a `Not Reachable` premise in this section with the evidence explaining why the referenced journey cannot produce it; it cannot become a finding. A materially `Unclear` premise requires investigation or a blocked decision rather than speculative machinery.
+Use a stable edge-case ID so downstream roles can preserve or reclassify the decision by reference. Apply the shared reachability rule. A `Reachable` label without the complete trigger-to-consequence witness above is invalid. Keep a `Not Reachable` premise in this section with the evidence explaining why the referenced journey cannot produce it; it cannot become a finding or justify in-scope machinery. A materially `Unclear` premise requires investigation or a blocked decision rather than speculative machinery.
 
 ## Missing Use Cases / Open Unknowns
 
@@ -191,7 +194,7 @@ Use a stable edge-case ID so downstream roles can preserve or reclassify the dec
 
 ## Review Decision
 
-- `Pass`: the design is ready for implementation.
+- `Pass`: the design is ready for implementation, and no in-scope machinery or finding depends on an unrecorded, `Not Reachable`, or materially `Unclear` premise.
 - `Fail`: the design needs upstream rework before implementation should proceed.
 - `Blocked`: the review cannot finish because required input, evidence, or clarification is missing.
 
@@ -204,6 +207,7 @@ Otherwise list actionable findings with:
 - severity
 - affected approved behavior, relevant existing behavior, journey, or established contract
 - evidence
+- reachability record ID when the finding depends on an edge case or lifecycle premise
 - current or target-production reachability evidence when the finding depends on an edge case or lifecycle premise
 - required update
 - why the required update is proportionate to the verified consequence
@@ -227,4 +231,5 @@ Rules:
 ## Latest Authoritative Result
 
 - Review Decision:
+- Edge-Case Reachability Gate (`Pass`/`Fail`/`Blocked`):
 - Notes:

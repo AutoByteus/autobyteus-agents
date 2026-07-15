@@ -88,7 +88,7 @@ Do not apply the source-file hard limit to unit, integration, API, or E2E test f
 Required for implementation review only.
 Use the mandatory structural checks below on every implementation review. Do not replace them with a smaller ad hoc checklist.
 Treat the `Authoritative Boundary Rule` as one of the highest-signal structural checks in this section.
-Apply these checks only after establishing the approved behavior, relevant current behavior, affected production journey, and material edge-case reachability above.
+Apply these checks only after establishing the approved behavior, relevant current behavior, and affected production journey above. When a check raises a material edge-case premise, complete the reachability record below before using that premise in a finding or score.
 Review test structure proportionately when test files are relevant. Do not apply implementation-source size thresholds to tests, and do not fail a coherent test suite merely because its files are large.
 
 Quick examples:
@@ -171,7 +171,9 @@ Rules:
 | --- | --- | --- |
 |  |  |  |
 
-Record every new or reclassified material edge case or technical premise that arises from the implementation checks and is considered while deciding a finding, score, or additional state, APIs, abstractions, coordination, or recovery behavior. Include scenarios rejected as `Not Reachable`. Preserve confirmed upstream decisions by ID above instead of copying their unchanged reasoning; if no premise is new or reclassified, write `None`. This section preserves check-driven reasoning; it is not a request to brainstorm edge cases before review.
+Record every new or reclassified material edge case or technical premise that arises from the implementation checks and is considered while deciding a finding, score, or additional state, APIs, abstractions, coordination, or recovery behavior. Apply this to machinery introduced by the implementation as well as reviewer-proposed changes. Include scenarios rejected as `Not Reachable`. Preserve confirmed upstream decisions by ID above instead of copying their unchanged reasoning; if no premise is new or reclassified, write `None`. This section preserves check-driven reasoning; it is not a request to brainstorm edge cases before review.
+
+Use one record per distinct initiating condition when evidence, path, or consequence differs. Do not combine unrelated causes into one `A or B or C` premise.
 
 For each new or reclassified premise, use this shape:
 
@@ -180,12 +182,13 @@ For each new or reclassified premise, use this shape:
 - Origin: `New` / `Reclassified from <architecture-edge-case-id>`
 - Related approved requirement or established contract:
 - Relevant journey ID(s):
-- Actual current / approved target system behavior and lifecycle at the claimed point:
-- Reachability reasoning and evidence:
+- Supported initiating trigger or governing contract, with evidence:
+- Actual production caller/event path from that trigger to the claimed state:
+- Lifecycle preconditions and material consequence at the claimed point:
 - Reachability: `Reachable` / `Not Reachable` / `Unclear`
 - Review consequence / proportionate response:
 
-Reuse the architecture review's edge-case ID when reclassifying an upstream premise; assign a new stable ID only to a newly considered premise. Apply the shared reachability rule. Keep a new or reclassified `Not Reachable` premise in this section with the evidence explaining why the referenced journey cannot produce it; it cannot produce a finding or score deduction. A materially `Unclear` premise requires investigation or routing rather than speculative machinery.
+Reuse the architecture review's edge-case ID when reclassifying an upstream premise; assign a new stable ID only to a newly considered premise. Apply the shared reachability rule. A `Reachable` label without the complete trigger-to-consequence witness above is invalid. Keep a new or reclassified `Not Reachable` premise in this section with the evidence explaining why the referenced journey cannot produce it; it cannot produce a finding, score deduction, or in-scope machinery. A materially `Unclear` premise requires investigation or routing rather than speculative machinery.
 
 ## Findings
 
@@ -194,7 +197,7 @@ Rules:
 - Create a new finding ID only for newly discovered issues.
 - Mark resolved or obsolete earlier findings in the prior-findings resolution table instead of silently dropping them.
 - Tie every finding to affected approved behavior, relevant existing behavior, an established engineering contract, or a real supported operational constraint.
-- When a finding depends on an edge case or lifecycle premise, include its production trigger/path, reachability evidence, material consequence, and why the required action is proportionate.
+- When a finding depends on an edge case or lifecycle premise, cite its reachability record ID and include its production trigger/path, reachability evidence, material consequence, and why the required action is proportionate.
 - If dead/obsolete/legacy/compatibility issues exist, enumerate each one explicitly with the concrete file/path/item, evidence, and required removal or cleanup action.
 
 ## Legacy / Backward-Compatibility Verdict
@@ -249,6 +252,7 @@ Routing note:
 
 - Review Decision:
 - Review Entry Point:
+- Edge-Case Reachability Gate (`Pass`/`Fail`/`Blocked`):
 - Score Summary:
 - Failure Origin (when applicable):
 - Recommended Recipient (when applicable):

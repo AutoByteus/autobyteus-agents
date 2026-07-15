@@ -825,8 +825,9 @@ The reviewer must inspect the full path, not only the settings action and store 
 
 - Related approved requirement or established contract: settings apply to the node represented by the current node-specific window.
 - Relevant journey ID(s): `J-SETTINGS-001`.
-- Actual current / approved target system behavior and lifecycle at the claimed point: the window is already bound to one node before the settings card becomes interactive, and the supported desktop journey does not rebind that window during save.
-- Reachability reasoning and evidence: no supported trigger or production caller on `J-SETTINGS-001` can invoke node rebinding between the setting updates. A generic binding method, revision field, and separate mobile caller do not create such a desktop journey.
+- Supported initiating trigger or governing contract, with evidence: the user opens or focuses one node-specific window; the window creation and focus path establishes that supported trigger.
+- Actual production caller/event path from that trigger to the claimed state: `Node Manager -> node-specific window -> bootstrap binding -> settings card -> existing setting action`. No caller on that path invokes node rebinding during save.
+- Lifecycle preconditions and material consequence at the claimed point: the window is already bound before the card becomes interactive and remains bound for its lifetime, so the claimed cross-node save consequence cannot occur. A generic binding method, revision field, and separate mobile caller do not change this lifecycle.
 - Reachability: `Not Reachable`.
 - Review consequence / proportionate response: do not require a revision-fenced save protocol. Reuse the existing setting action, preserve truthful partial-persistence behavior, and stop on the first actual same-node failure when that is the approved behavior.
 
@@ -843,6 +844,20 @@ Add revision fencing and rebinding recovery.
 This finding proves only technical possibility at the level of isolated methods and fields. It does not identify a supported trigger, production caller, or lifecycle path that can produce the state.
 
 The correct review does not dismiss edge cases generally. It rejects this particular premise because the complete relevant journey cannot reach it.
+
+### Do Not Aggregate Plausible Failure Causes
+
+A reviewer evaluating snapshot recovery must not write:
+
+```text
+The snapshot can be absent after a new entity, manual deletion, schema reset,
+invalid schema, filesystem failure, or an interrupted write.
+Therefore archived history must enter recovery.
+```
+
+This combines conditions with different triggers, paths, and consequences without proving that any one of them reaches the claimed recovery behavior. Classify them separately. A new entity may be reachable but have no archive to recover; a real schema reset may not route archived history into continuation; malformed input may throw instead of entering the assumed fallback; manual deletion, corruption, infrastructure failure, or interrupted execution may have no supported in-scope journey or governing recovery contract. A synthetic reproduction that invokes the fallback proves only that the branch can run, not that a supported production journey reaches it.
+
+For any condition that is material, prove the complete witness: supported trigger or contract -> actual production path -> claimed lifecycle state -> material consequence. One real but irrelevant condition cannot validate the other conditions or the proposed recovery machinery.
 
 ### When The Decision Would Change
 
