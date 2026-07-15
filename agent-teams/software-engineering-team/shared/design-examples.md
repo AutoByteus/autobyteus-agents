@@ -827,7 +827,7 @@ The architecture reviewer validates this map against the approved requirements, 
 
 - Related approved requirement or established contract: settings apply to the node represented by the current node-specific window.
 - Relevant behavior ID(s): `BEH-SETTINGS-001`.
-- Supported initiating trigger or governing contract, with evidence: the user opens or focuses one node-specific window; the window creation and focus path establishes that supported trigger.
+- Product-supported initiating trigger or governing contract, with evidence: the user opens or focuses one node-specific window; the window creation and focus path establishes that supported trigger.
 - Actual production caller/event path from that trigger to the claimed state: `Node Manager -> node-specific window -> bootstrap binding -> settings card -> existing setting action`. No caller on that path invokes node rebinding during save.
 - Lifecycle preconditions and material consequence at the claimed point: the window is already bound before the card becomes interactive and remains bound for its lifetime, so the claimed cross-node save consequence cannot occur. A generic binding method, revision field, and separate mobile caller do not change this lifecycle.
 - Reachability: `Not Reachable`.

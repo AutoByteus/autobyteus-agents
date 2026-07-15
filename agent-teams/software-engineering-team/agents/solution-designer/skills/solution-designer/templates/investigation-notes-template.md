@@ -47,7 +47,7 @@ Maintain the canonical inventory of separate files that remain useful as investi
 
 ## Relevant Existing Behavior And Production Paths
 
-Record only behavior relevant to the task. A behavior may be user-initiated, system-initiated, operational, or an established contract; it does not require a UI journey. Use stable IDs and evidence from supported or observed production behavior, not a synthetic caller or mechanically possible state alone. For genuinely new behavior, record `No Current Path` with evidence; the design map will record the approved target trigger and path.
+Record only behavior relevant to the task. A behavior may be user-initiated, system-initiated, operational, or an established contract; it does not require a UI journey. Use stable IDs and evidence from supported or observed production behavior, not a synthetic caller or mechanically possible state alone. Reuse these IDs in the requirements' current-and-desired behavior summary and the design map. For genuinely new behavior, record `No Current Path` with evidence; the design map will record the approved target trigger and path.
 
 | Behavior ID | Kind (`User`/`System`/`Operational`/`Contract`) | Current Supported Trigger Or Governing Contract | Current Production Path And Lifecycle | Meaningful Current Outcome / Invariants | Evidence |
 | --- | --- | --- | --- | --- | --- |

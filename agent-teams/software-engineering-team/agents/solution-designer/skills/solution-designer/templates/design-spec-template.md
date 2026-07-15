@@ -10,7 +10,7 @@ Summarize the relevant current flow and lifecycle, ownership boundaries, verifie
 
 ## Relevant Behavior And Production-Path Map (Mandatory)
 
-Synthesize approved intent from the requirements and relevant existing behavior from the investigation notes before making structural design decisions. Use the stable behavior IDs from investigation. A small or backend-only change may need only one system, operational, or contract row; do not invent rows for unsupported technical possibilities.
+Synthesize the approved current-and-desired behavior from the requirements and the supporting existing-behavior evidence from the investigation notes before making structural design decisions. Use the stable behavior IDs from investigation. A small or backend-only change may need only one system, operational, or contract row; do not invent rows for unsupported technical possibilities.
 
 | Behavior ID | Kind (`User`/`System`/`Operational`/`Contract`) | Approved Requirement / Intent And Acceptance-Criteria IDs | Approved Trigger Or Governing Contract | Relevant Existing Behavior And Evidence Reference | Approved Change Or Preserved Outcome | Target Production Path / Lifecycle And Spine ID(s) |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -47,10 +47,7 @@ Rules:
 
 ## Terminology
 
-- `Subsystem` / `capability area`: a larger functional area that owns a broader category of work and may contain multiple files plus optional module groupings.
-- `Module`: an optional intermediate grouping inside a subsystem when the codebase benefits from it. Do not use `module` as a synonym for one file or as the default ownership term.
-- `Folder` / `directory`: a physical grouping used to organize files and any optional module groupings.
-- `File`: one concrete source file and the primary unit where one concrete concern should land.
+Define only task-specific terms needed to interpret this design. Do not repeat the shared design glossary unless this task requires a narrower meaning or an explicit deviation.
 
 ## Design Reading Order
 

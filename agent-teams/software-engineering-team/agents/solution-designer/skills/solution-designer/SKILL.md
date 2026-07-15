@@ -125,6 +125,7 @@ Always produce all three mandatory core artifacts:
 ## Requirements Quality
 
 - Requirements must describe verifiable behavior, not only narrative intent.
+- For each relevant behavior ID, summarize the evidence-backed current behavior, the desired behavior, and any behavior that must remain unchanged. Keep production-path evidence in the investigation notes and technical structure in the design spec. For genuinely new behavior, state `No current supported behavior`; for refactors or cleanups with no intended behavior change, make the preserved outcome explicit.
 - Each requirement must have a stable `requirement_id`.
 - Each acceptance criterion must have a stable `acceptance_criteria_id`.
 - Expected outcomes must be concrete enough to drive downstream API/E2E coverage investigation and execution.
@@ -141,7 +142,7 @@ Always produce all three mandatory core artifacts:
 - Use [templates/design-spec-template.md](templates/design-spec-template.md) as the mandatory structure for the design artifact.
 - Treat [design-principles.md](design-principles.md) as the canonical design authority instead of restating or overriding it locally.
 - Build the design from the approved requirements basis, investigation notes, all relevant supplemental task artifacts, current-state read, and current code reality.
-- Before structural design, synthesize the approved requirements and investigation evidence into the design spec's relevant behavior and production-path map. Preserve stable behavior IDs and state the approved change or preserved outcome for each row.
+- Before structural design, synthesize the requirements' approved current-and-desired behavior and the supporting investigation evidence into the design spec's relevant behavior and production-path map. Preserve stable behavior IDs and state the approved change or preserved outcome for each row.
 - Link each behavior ID to the target production path, lifecycle boundary, and applicable data-flow spine IDs. The behavior map defines what real behavior the design must serve; the spine sections define how the target structure carries it.
 - Keep the design actionable in the current codebase: implementation and review should not need to reconstruct the intended structure from scattered notes.
 - Include a task design health assessment in the design spec for every task, even when the answer is "no refactor needed".

@@ -37,21 +37,21 @@ Complete this before evaluating new-round content.
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
 
-## Upstream Behavior And Production-Path Basis Verdict
+## Upstream Behavior And Production-Path Basis Confirmation
 
-Complete this gate before applying the structural checks below. Validate the design spec's behavior map against the approved requirements, investigation evidence, and real current code. This is technical validation of the solution basis, not a second business-approval step and not an invitation to reconstruct behavior from isolated code.
+Complete this understanding and alignment gate before applying the structural checks below. Understand the approved business intent and relevant existing behavior, then confirm the design spec's behavior map against the approved requirements, investigation evidence, and real current code. This is technical validation of the solution basis, not a review or reapproval of the business decision and not an invitation to reconstruct behavior from isolated code.
 
-- Overall Basis Verdict (`Pass`/`Fail`/`Blocked`):
-- Approved requirements / intended behavior checked:
-- Relevant existing behavior and evidence checked:
-- Approved change, preserved behavior, and outside scope checked:
+- Overall Basis Status (`Confirmed`/`Contradicted`/`Blocked`):
+- Approved requirements / intended behavior understood:
+- Relevant existing behavior and evidence confirmed:
+- Approved change, preserved behavior, and outside scope understood:
 - Remaining material ambiguity, if any:
 
-| Behavior ID | Kind | Approved Intent Alignment (`Pass`/`Fail`) | Approved Trigger / Contract And Current-State Evidence (`Pass`/`Fail`/`Unclear`) | Target Outcome / Path / Spine Coherence (`Pass`/`Fail`/`Unclear`) | Status (`Confirmed`/`Needs Correction`/`Unclear`) | Required Action |
+| Behavior ID | Kind | Design Alignment With Approved Intent (`Pass`/`Fail`) | Approved Trigger / Contract And Current-State Evidence (`Pass`/`Fail`/`Unclear`) | Target Outcome / Path / Spine Coherence (`Pass`/`Fail`/`Unclear`) | Status (`Confirmed`/`Needs Correction`/`Unclear`) | Required Action |
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |
 
-Reuse the design spec's stable behavior IDs. Assign a provisional ID only when concrete evidence reveals a relevant supported behavior missing upstream; route it to `solution_designer` and do not pass until the upstream map is corrected. Do not create a behavior row from technical possibility alone. An overall `Pass` requires every relevant row to be `Confirmed`.
+Reuse the design spec's stable behavior IDs. Assign a provisional ID only when concrete evidence reveals a relevant supported behavior missing upstream; route it to `solution_designer` and do not pass until the upstream map is corrected. Do not create a behavior row from technical possibility alone. An overall `Confirmed` status requires every relevant row to be `Confirmed`.
 
 Apply the remaining technical sections proportionately. If a whole section is genuinely inapplicable, write `N/A` with a short reason; do not invent a design concern to populate the template.
 
@@ -170,7 +170,7 @@ For `Migration Required`, verify isolated ownership, ordering, validation, compl
 
 ## Material Premise Validation (Only When Needed)
 
-Complete this section only when a structural check, prospective finding, or proposed or existing mechanism depends on a material production, failure, or lifecycle scenario whose validity is not already established by the behavior basis. Include considered premises rejected as `Not Reachable`; otherwise write `None`. Do not use this section to search for edge cases or hypothetical failures.
+Complete this section only when a structural check, prospective finding, or proposed or existing mechanism depends on a material production, failure, or lifecycle scenario not already established by the behavior basis. Include premises rejected as `Not Reachable`; otherwise write `None`. Do not use this section to search for edge cases or other hypothetical scenarios.
 
 Use one record per distinct initiating condition when evidence, path, or consequence differs. Do not combine unrelated causes into one `A or B or C` premise.
 
@@ -180,13 +180,13 @@ For each recorded premise, use this shape:
 
 - Related approved requirement or established contract:
 - Relevant behavior ID(s):
-- Supported initiating trigger or governing contract, with evidence:
+- Product-supported initiating trigger or governing contract, with evidence:
 - Concrete current or approved target production caller/event path from that trigger to the claimed state:
 - Lifecycle preconditions and material consequence at the claimed point:
 - Reachability: `Reachable` / `Not Reachable` / `Unclear`
 - Review consequence / proportionate response:
 
-Use a stable premise ID so downstream roles can preserve or reclassify the decision by reference. Apply the shared reachability rule. A `Reachable` label without the complete trigger-to-consequence witness above is invalid. Keep a `Not Reachable` premise in this section with the evidence explaining why the referenced behavior and production path cannot produce it; it cannot become a finding or justify in-scope machinery. A materially `Unclear` premise requires investigation or a blocked decision rather than speculative machinery.
+Use a stable premise ID and apply the shared product-reachability rule. `Reachable` requires the completed witness above; `Not Reachable` cannot drive a finding or in-scope machinery; materially `Unclear` requires investigation or a blocked decision.
 
 ## Unresolved Approved-Behavior Or Current-State Gaps
 
@@ -198,7 +198,7 @@ Record only concrete gaps discovered while validating the approved behavior basi
 
 ## Review Decision
 
-- `Pass`: the upstream behavior basis passes, the design is ready for implementation, and no in-scope machinery or finding depends on an unsupported material premise.
+- `Pass`: the upstream behavior basis is confirmed, the design is ready for implementation, and no in-scope machinery or finding depends on an unsupported material premise.
 - `Fail`: the design needs upstream rework before implementation should proceed.
 - `Blocked`: the review cannot finish because required input, evidence, or clarification is missing.
 
@@ -211,8 +211,7 @@ Otherwise list actionable findings with:
 - severity
 - affected approved behavior, relevant existing behavior, journey, or established contract
 - evidence
-- material-premise validation ID when the finding depends on an assumed production, failure, or lifecycle scenario
-- current or target-production evidence for that scenario
+- material-premise validation ID and its supporting production trigger/path evidence when the finding depends on an assumed production, failure, or lifecycle scenario
 - required update
 - why the required update is proportionate to the verified consequence
 - recommended recipient
