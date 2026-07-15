@@ -19,7 +19,7 @@ Do not record successful API/E2E test-code review here. Use the separate `api-e2
 
 - Review Entry Point: `Implementation Review` / `API/E2E Failure-Origin Review`
 - Requirements Doc Reviewed As Context:
-- Supplemental Solution Artifacts Reviewed As Context:
+- Supplemental Task Artifacts Reviewed As Context:
 - Current Review Round:
 - Trigger:
 - Prior Review Round Reviewed:
@@ -106,7 +106,7 @@ Quick examples:
 | Check | Result (`Pass`/`Fail`) | Evidence | Required Action |
 | --- | --- | --- | --- |
 | Task design health assessment is present, evidence-backed, and preserved by the implementation |  |  |  |
-| Implementation matches approved supplemental solution artifacts that constrain observable behavior |  |  |  |
+| Implementation matches approved behavior-defining supplemental artifacts |  |  |  |
 | Data-flow spine inventory clarity and preservation under shared principles |  |  |  |
 | Ownership boundary preservation and clarity |  |  |  |
 | Off-spine concern clarity (off-spine concerns serve clear owners and stay off the main line) |  |  |  |

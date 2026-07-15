@@ -29,11 +29,13 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Bootstrap Blockers:
 - Notes For Downstream Agents:
 
-## Supplemental Solution Artifact Inventory
+## Supplemental Task Artifact Inventory
 
-| Artifact Path | Purpose | Evidence Or Decision Captured | Related Requirement / Acceptance-Criteria IDs | Status | Follow-Up Needed |
-| --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |
+Maintain the canonical inventory of separate files that remain useful as investigation evidence or as complementary requirement, design, or downstream context. Do not inventory disposable scratch files or generated intermediates unless they are intentionally promoted for continued use.
+
+| Artifact Path | Purpose And Scope | Evidence, Context, Or Decision Captured | Core Artifact(s) Supported | Related Requirement / Acceptance-Criteria IDs (When Applicable) | Status | Approval Applicability / State | Follow-Up Needed |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |  |
 
 ## Source Log
 

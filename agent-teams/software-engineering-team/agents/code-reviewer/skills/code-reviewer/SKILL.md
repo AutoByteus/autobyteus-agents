@@ -39,7 +39,7 @@ Keep their standards distinct. Implementation code receives the full structural 
 
 For implementation review:
 
-- Accept requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, design review report, and implementation handoff from `implementation_engineer`.
+- Accept requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, design review report, and implementation handoff from `implementation_engineer`.
 - Review against the complete implementation artifact chain, not only the handoff summary.
 
 For successful API/E2E test-code review:
@@ -78,7 +78,7 @@ If approved behavior is materially ambiguous, classify a `Requirement Gap`. If p
 ## Implementation Review Rules
 
 - Use the full implementation sections and mandatory scorecard in [templates/code-review-report-template.md](templates/code-review-report-template.md).
-- Review against the full artifact chain, canonical design guidance, and approved supplemental artifacts.
+- Review against the full artifact chain, canonical design guidance, and relevant supplemental task artifacts, applying approval constraints where applicable.
 - Treat earlier design artifacts as context, not immunity from review. Classify an inadequate design as `Design Impact`.
 - Review design integrity, API/E2E readiness, cleanup completeness, and changed implementation-source size or structural pressure.
 - Apply `>500` and `>220` source thresholds only to changed implementation-source files, never to tests, fixtures, or generated coverage files.

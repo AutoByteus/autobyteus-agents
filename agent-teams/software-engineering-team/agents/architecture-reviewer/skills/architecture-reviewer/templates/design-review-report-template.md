@@ -12,7 +12,7 @@ The latest round is authoritative; earlier rounds remain history.
 - Upstream Requirements Doc:
 - Upstream Investigation Notes:
 - Reviewed Design Spec:
-- Supplemental Solution Artifacts Reviewed:
+- Supplemental Task Artifacts Reviewed:
 - Current Review Round:
 - Trigger:
 - Prior Review Round Reviewed:
@@ -49,9 +49,9 @@ Apply the remaining technical sections proportionately. If a whole section is ge
 
 ## Supplemental Artifact Coherence Verdict
 
-If no supplemental solution artifacts exist, write `None`.
+If no supplemental task artifacts exist, write `None`.
 
-| Artifact | Purpose And Scope Are Clear? (`Pass`/`Fail`) | Linked To Mandatory Artifacts? (`Pass`/`Fail`) | Internally Complete? (`Pass`/`Fail`) | Consistent With Requirements And Design? (`Pass`/`Fail`) | Approval State Is Clear? (`Pass`/`Fail`) | Required Action |
+| Artifact | Purpose And Scope Are Clear? (`Pass`/`Fail`) | Linked To Relevant Core Artifacts? (`Pass`/`Fail`) | Internally Complete? (`Pass`/`Fail`) | Consistent With Related Core Artifacts? (`Pass`/`Fail`) | Status And Approval Applicability Are Clear? (`Pass`/`Fail`) | Required Action |
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |
 

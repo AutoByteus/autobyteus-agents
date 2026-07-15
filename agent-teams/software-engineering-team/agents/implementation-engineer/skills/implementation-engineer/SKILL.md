@@ -29,7 +29,7 @@ Use [templates/implementation-handoff-template.md](templates/implementation-hand
 
 ## Upstream Inputs
 
-- Accept the cumulative reviewed solution package from `architecture_reviewer`: requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, and design review report.
+- Accept the cumulative reviewed solution package from `architecture_reviewer`: requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, and design review report.
 - Treat the full reviewed solution package as active implementation context, not just the design spec in isolation.
 
 ## Required Shared Reads
@@ -42,7 +42,7 @@ Use [templates/implementation-handoff-template.md](templates/implementation-hand
 - Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an exact recipient name from the visible team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
-- Send the cumulative implementation package to `code_reviewer`: requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, design review report, and implementation handoff.
+- Send the cumulative implementation package to `code_reviewer`: requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, design review report, and implementation handoff.
 - Use absolute filesystem paths for every artifact in that handoff.
 - Route `Design Impact` to `solution_designer`.
 - Route `Requirement Gap` to `solution_designer`.
@@ -54,7 +54,7 @@ Use [templates/implementation-handoff-template.md](templates/implementation-hand
 ## Operating Rules
 
 - Use the reviewed design basis as the current target, but continue applying the shared references above during file-level implementation.
-- Implement user-visible behavior against approved supplemental UI/UX or interaction specifications when they exist. Route contradictions or missing states upstream instead of inventing the experience during implementation.
+- Implement user-visible behavior against approved behavior-defining supplemental UI/UX or interaction specifications when they exist. Use other relevant supplements as evidence or context according to their recorded purpose. Route contradictions or missing states upstream instead of inventing the experience during implementation.
 - Treat the reviewed task design health assessment as active implementation context. If the code path proves the root-cause classification, refactor-needed decision, or deferred-risk rationale wrong, route the issue back as `Design Impact` instead of patching around it.
 - Treat API test authoring, API test execution, E2E tests, broader executable coverage, API/E2E environment bring-up beyond normal implementation needs, and pass/fail classification as owned by `api_e2e_engineer`, not by you.
 - If you run local checks, keep them implementation-scoped and report them as local implementation checks, not as downstream API/E2E sign-off.

@@ -13,7 +13,7 @@ Execution may cover API, browser UI, a web-equivalent desktop renderer through t
 - Requirements Doc:
 - Investigation Notes:
 - Design Spec:
-- Supplemental Solution Artifacts:
+- Supplemental Task Artifacts:
 - Design Review Report:
 - Implementation Handoff:
 - Code Review Report:

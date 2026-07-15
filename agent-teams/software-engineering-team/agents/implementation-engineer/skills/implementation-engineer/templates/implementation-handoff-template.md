@@ -7,7 +7,7 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Requirements doc:
 - Investigation notes:
 - Design spec:
-- Supplemental solution artifacts:
+- Supplemental task artifacts:
 - Design review report:
 
 ## What Changed

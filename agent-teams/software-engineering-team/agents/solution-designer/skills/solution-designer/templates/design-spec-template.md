@@ -8,11 +8,11 @@ Describe the current execution path, current ownership boundaries, current coupl
 
 ## Intended Change
 
-## Supplemental Solution Artifacts
+## Relevant Supplemental Task Artifacts
 
-List every still-relevant supplemental solution artifact and explain how it constrains or clarifies this design. If none exist, write `None`.
+List every still-relevant supplement used as design evidence or context and explain its relationship to this design. Keep the complete canonical supplement inventory in the investigation notes. If none apply, write `None`.
 
-| Artifact Path | Purpose | Related Requirement / Acceptance-Criteria IDs | Relationship To This Design | Status / Approval |
+| Artifact Path | Purpose | Related Requirement / Acceptance-Criteria IDs (When Applicable) | Relationship To This Design | Status / Approval Applicability |
 | --- | --- | --- | --- | --- |
 |  |  |  |  |  |
 

@@ -8,11 +8,11 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 ## Investigation Findings
 
-## Supplemental Solution Artifacts
+## Relevant Supplemental Task Artifacts
 
-Use supplemental artifacts only when a separate document materially improves precision. If none are needed, write `None`.
+List only supplements that clarify or constrain requirements or acceptance criteria. Keep the complete canonical supplement inventory in the investigation notes. If none apply, write `None`.
 
-| Artifact Path | Type / Purpose | Related Requirement IDs | Related Acceptance-Criteria IDs | Status / Approval | Authoritative Relationship |
+| Artifact Path | Type / Purpose | Related Requirement IDs | Related Acceptance-Criteria IDs | Status / Approval | Relationship To Requirements |
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
 
