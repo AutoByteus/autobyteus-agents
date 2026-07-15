@@ -4,7 +4,7 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 ## Current-State Read
 
-Summarize current ownership boundaries, coupling or fragmentation problems, and constraints that the target design must respect. Reference investigation evidence and the behavior IDs below instead of duplicating their complete production paths here.
+Summarize the relevant current flow and lifecycle, ownership boundaries, verified coupling or fragmentation problems when any exist, and constraints that the target design must respect. Reference investigation evidence and the behavior IDs below instead of duplicating their complete production paths here. Do not imply that every task has a structural problem.
 
 ## Intended Change
 
@@ -54,14 +54,19 @@ Rules:
 
 ## Design Reading Order
 
-Read and write this design from abstract to concrete:
+Use the sections in this template in the following reasoning order, moving from verified context to concrete structure:
 
-1. relevant behavior and production-path map
-2. persisted-data transition decision when applicable
-3. data-flow spine
-4. subsystem / capability-area allocation
-5. draft file responsibilities -> extract reusable owned structures -> finalize file responsibilities
-6. folder/path mapping
+1. current-state read and intended change
+2. relevant behavior and production-path map plus applicable supplemental context
+3. task design-health, legacy-removal, and persisted-data decisions
+4. data-flow spines, ownership, and off-spine concerns
+5. ownership boundaries, dependency rules, and interfaces
+6. subsystem / capability-area allocation
+7. draft file responsibilities -> extract reusable owned structures -> finalize file responsibilities
+8. folder/path mapping
+9. change sequence, tradeoffs, risks, and implementation guidance
+
+Complete every mandatory section, but apply the detailed mappings proportionately to the actual change. For a genuinely inapplicable section, write `N/A` with a short reason. Do not invent spines, subsystems, interfaces, abstractions, or risks merely to populate the template.
 
 ## Legacy Removal Policy (Mandatory)
 
@@ -179,6 +184,44 @@ Do not repeat the same mapping again in another section.
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
 
+## Ownership Boundaries
+
+Explain where authority changes hands and what must stay encapsulated inside each owner.
+Name which boundaries are authoritative public entrypoints versus internal owned mechanisms that should stay behind them.
+
+## Boundary Encapsulation Map
+
+| Authoritative Boundary | Internal Owned Mechanism(s) It Encapsulates | Upstream Callers That Must Use The Boundary | Forbidden Bypass Shape | If Boundary API Is Too Thin, Fix By |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+
+## Dependency Rules
+
+State who may depend on, call, or emit to whom, and name the shortcuts or cross-boundary dependencies that are forbidden.
+Make boundary-bypass rules explicit when one public boundary is supposed to encapsulate a lower-level concern.
+
+## Interface Boundary Mapping
+
+| Interface / API / Query / Command / Method | Subject Owned | Responsibility | Accepted Identity Shape(s) | Notes |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+
+Rule:
+- Do not use one generic boundary when the subject or identity meaning differs.
+- Split boundaries by subject or require an explicit compound identity shape.
+
+## Interface Boundary Check
+
+| Interface | Responsibility Is Singular? (`Yes`/`No`) | Identity Shape Is Explicit? (`Yes`/`No`) | Ambiguous Selector Risk (`Low`/`Medium`/`High`) | Corrective Action |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+
+## Main Domain Subject Naming Check
+
+| Node / Subject | Current / Proposed Name | Name Is Natural And Self-Descriptive? (`Yes`/`No`) | Naming Drift Risk | Corrective Action |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+
 ## Existing Capability / Subsystem Reuse Check
 
 When an off-spine need appears, do not create a new helper immediately.
@@ -228,44 +271,6 @@ Re-tighten the file responsibilities after extracting reusable owned structures 
 | File | Owning Subsystem / Capability Area | Owner / Boundary | Concrete Concern | Why This Is One File | Reuses Shared Structure? |
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
-
-## Ownership Boundaries
-
-Explain where authority changes hands and what must stay encapsulated inside each owner.
-Name which boundaries are authoritative public entrypoints versus internal owned mechanisms that should stay behind them.
-
-## Boundary Encapsulation Map
-
-| Authoritative Boundary | Internal Owned Mechanism(s) It Encapsulates | Upstream Callers That Must Use The Boundary | Forbidden Bypass Shape | If Boundary API Is Too Thin, Fix By |
-| --- | --- | --- | --- | --- |
-|  |  |  |  |  |
-
-## Dependency Rules
-
-State who may depend on, call, or emit to whom, and name the shortcuts or cross-boundary dependencies that are forbidden.
-Make boundary-bypass rules explicit when one public boundary is supposed to encapsulate a lower-level concern.
-
-## Interface Boundary Mapping
-
-| Interface / API / Query / Command / Method | Subject Owned | Responsibility | Accepted Identity Shape(s) | Notes |
-| --- | --- | --- | --- | --- |
-|  |  |  |  |  |
-
-Rule:
-- Do not use one generic boundary when the subject or identity meaning differs.
-- Split boundaries by subject or require an explicit compound identity shape.
-
-## Interface Boundary Check
-
-| Interface | Responsibility Is Singular? (`Yes`/`No`) | Identity Shape Is Explicit? (`Yes`/`No`) | Ambiguous Selector Risk (`Low`/`Medium`/`High`) | Corrective Action |
-| --- | --- | --- | --- | --- |
-|  |  |  |  |  |
-
-## Main Domain Subject Naming Check
-
-| Node / Subject | Current / Proposed Name | Name Is Natural And Self-Descriptive? (`Yes`/`No`) | Naming Drift Risk | Corrective Action |
-| --- | --- | --- | --- | --- |
-|  |  |  |  |  |
 
 ## Applied Patterns (If Any)
 

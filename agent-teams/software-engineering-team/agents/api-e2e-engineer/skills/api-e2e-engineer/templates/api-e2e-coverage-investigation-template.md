@@ -28,7 +28,7 @@ Summarize the current behavior that must be proven from the approved requirement
 
 Identify behavior added, changed, removed, or intentionally preserved.
 
-| Behavior / Boundary | Change Type (`Added`/`Changed`/`Removed`/`Preserved`/`Unclear`) | Upstream Evidence | Coverage Consequence |
+| Behavior ID / Boundary | Change Type (`Added`/`Changed`/`Removed`/`Preserved`/`Unclear`) | Upstream Evidence | Coverage Consequence |
 | --- | --- | --- | --- |
 |  |  |  |  |
 

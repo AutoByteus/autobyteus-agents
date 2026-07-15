@@ -8,7 +8,6 @@ description: Review the complete solution package before implementation and rout
 ## Purpose
 
 Perform a behavior-grounded technical architecture review before implementation, finding real design weaknesses without introducing complexity for unsupported scenarios.
-Treat edge-case analysis as risk-based support for that review, not as an exhaustive search for hypothetical states.
 
 ## You Own
 
@@ -43,15 +42,15 @@ Use [templates/design-review-report-template.md](templates/design-review-report-
 
 - When judging whether a design is concrete enough, compare its shape against [references/design-examples.md](references/design-examples.md) whenever examples would clarify the target shape.
 - Use that file as a benchmark for what a clear design explanation can look like across different cases, and for what bad practice looks like when boundaries become generic or fragmented.
-- When a review turns on edge-case reachability or proportionality, consult [Example 9](references/design-examples.md#example-9-rejecting-an-unreachable-edge-case-during-technical-review) before finalizing the premise or finding.
+- When a prospective finding depends on an assumed production, failure, or lifecycle scenario, consult [Example 9](references/design-examples.md#example-9-rejecting-an-unreachable-edge-case-during-technical-review) before finalizing the premise or finding.
 
 ## Review Basis And Sequence
 
 1. Validate the design spec's relevant behavior and production-path map: approved requirements or intent, relevant existing behavior, approved change or preserved outcome, and behavior that remains outside scope. Do not reopen or redefine the business decision.
 2. For each behavior ID, trace enough of the complete current and target user, system, operational, or contract path and lifecycle to confirm the map and judge the design correctly. Do not review a local technical fragment as though it were the whole behavior.
-3. Apply the remaining shared design principles and structural review template. Whenever a check raises a material edge-case premise that could affect a finding or justify additional machinery, classify and record it using the shared `Reachable` / `Not Reachable` / `Unclear` rule before accepting that conclusion. Apply the same gate to fallback, recovery, defensive, or lifecycle machinery already proposed in the design. Include rejected `Not Reachable` premises in the durable report, and do not invent edge cases as a separate review stage.
+3. Apply the remaining shared design principles and structural review template. If a prospective finding or proposed or existing mechanism depends on a material scenario outside the established behavior basis, validate and record that premise using the shared `Reachable` / `Not Reachable` / `Unclear` rule before accepting the conclusion. Do not search for hypothetical scenarios as a separate review stage.
 
-For each material premise, require a complete witness from supported trigger or governing contract through the concrete current or approved target production path and lifecycle state to the claimed material consequence. Trace forward from that trigger; do not reason backward from a fallback branch, synthetic reproduction, or test and invent initiating causes. Classify distinct initiating conditions separately when their evidence differs; do not treat a list of mechanically possible causes as one supported behavior path.
+For each premise that could materially affect the verdict, require a complete witness from supported trigger or governing contract through the concrete current or approved target production path and lifecycle state to the claimed consequence. Trace forward from that trigger; do not reason backward from a fallback branch, synthetic reproduction, or test and invent initiating causes. Classify distinct initiating conditions separately when their evidence differs; do not treat a list of mechanically possible causes as one supported behavior path.
 
 Do not issue the structural verdict until the behavior basis is sufficiently established. Missing or ambiguous approved intent is a `Requirement Gap`; missing current-behavior or production-path evidence is `Unclear`/`Blocked`; an inconsistent target path or spine is `Design Impact`. A reviewer-invented premise is `Not Reachable` when the verified behavior map and lifecycle exclude a supported trigger; insufficient evidence is `Unclear`. Neither condition becomes a requirement gap merely because the reviewer imagined the premise.
 
@@ -61,8 +60,8 @@ Do not issue the structural verdict until the behavior basis is sufficiently est
 - Use the template as the authoritative review shape; do not replace it with a smaller ad hoc checklist in the review artifact.
 - Apply the template proportionately. Mark a genuinely inapplicable section `N/A` with a short reason instead of inventing a concern merely to populate the report.
 - Write findings in the design review report and route them to `solution_designer`. Do not edit the solution artifacts to make them pass your own review.
-- Every blocking finding must identify the affected behavior or established contract and, when applicable, its reachability evidence, material consequence, and proportionate response.
-- Do not pass a design when new in-scope fallback, recovery, defensive, or lifecycle machinery depends on an unrecorded, `Not Reachable`, or materially `Unclear` premise. Remove unsupported machinery, investigate the premise, or route the appropriate upstream gap.
+- Every blocking finding must identify the affected behavior or established contract and a proportionate response. When the finding depends on an assumed scenario, cite its material-premise validation and consequence.
+- Do not pass a design when new in-scope fallback, recovery, defensive, or lifecycle machinery depends on an unsupported material premise. Remove the machinery, establish the premise, or route the appropriate upstream gap.
 - Use investigation notes as current-state evidence while retaining independent technical judgment; route weak structure as `Design Impact`.
 - Treat missing, internally incomplete, or cross-artifact-inconsistent supplemental content as `Requirement Gap`, `Design Impact`, or `Unclear` according to the underlying issue. Do not pass a UI-facing design when the required journeys or observable states remain ambiguous across the package.
 - When persisted data may be affected, verify that the design makes an evidence-backed transition decision rather than assuming migration from a schema change. Accept `Directly Usable — No Migration` or `Discard or Rebuild` when justified; for `Migration Required`, verify isolated ownership, ordering, validation, completion, interruption, and recovery behavior.

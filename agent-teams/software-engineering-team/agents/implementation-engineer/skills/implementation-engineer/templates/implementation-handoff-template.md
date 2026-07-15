@@ -12,6 +12,14 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 ## What Changed
 
+## Reviewed Behavior Implementation Trace
+
+Reuse the design spec's stable behavior IDs. Record the actual implementation path and outcome without copying the full upstream behavior narrative.
+
+| Behavior ID | Approved Change / Preserved Outcome | Implemented Production Path / Key Files | Result / Notes |
+| --- | --- | --- | --- |
+|  |  |  |  |
+
 ## Key Files Or Areas
 
 ## Important Assumptions

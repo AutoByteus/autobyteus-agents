@@ -9,12 +9,11 @@ description: Review implementation source before API/E2E, review successful API/
 
 Provide three proportionate, behavior-grounded technical review entry points in one role:
 
-1. full implementation source and architecture review before API/E2E
+1. full implementation-source and structural review before API/E2E
 2. lightweight test-code review after successful API/E2E
 3. focused failure-origin review after failed API/E2E
 
 Keep their standards distinct. Implementation code receives the full structural review. Test code receives a fast structure-and-correctness review without source-file size thresholds. A runtime failure receives focused origin analysis and reopens source review only when the evidence points there.
-Treat edge-case analysis as risk-based support for implementation review, not as an exhaustive search for hypothetical states.
 
 ## You Own
 
@@ -57,25 +56,25 @@ For API/E2E failure-origin review:
 - Start implementation review by reading [design-principles.md](design-principles.md).
 - Use it as the canonical design authority for source and structural review.
 - Consult [references/design-examples.md](references/design-examples.md) only when a concrete structural example is needed to judge the implementation or its alignment with the reviewed design.
-- When a review turns on edge-case reachability or proportionality, consult [Example 9](references/design-examples.md#example-9-rejecting-an-unreachable-edge-case-during-technical-review) before finalizing the premise, finding, or score rationale.
+- When a prospective finding or score rationale depends on an assumed production, failure, or lifecycle scenario, consult [Example 9](references/design-examples.md#example-9-rejecting-an-unreachable-edge-case-during-technical-review) before finalizing it.
 - For the later entry points, reread only the requirements, design, changed tests, relevant source paths, and prior findings needed for the bounded review.
 
 ## Implementation Review Basis And Sequence
 
-1. Read the approved requirements, the design spec's relevant behavior and production-path map, and the architecture review's basis verdict and reachability records. Treat the requirements as intended-behavior authority and the reviewed map as prior technical context, not immutable truth.
+1. Read the approved requirements, the design spec's relevant behavior and production-path map, and the architecture review's basis verdict and material-premise records. Treat the requirements as intended-behavior authority and the reviewed map as prior technical context, not immutable truth.
 2. Verify the relevant existing behavior, approved change, and behavior that must remain unchanged or outside scope. Do not reopen or redefine the business decision.
-3. Trace the complete relevant user-initiated, system-initiated, operational, or contract-driven behavior and enough of its production path and lifecycle to understand how the changed code participates in it. Do not review the diff or a local method in isolation.
-4. Apply the structural checks, source-quality standards, and scorecard. Whenever a check or score rationale depends on a material edge-case or lifecycle premise, first check any upstream reachability decision against the implementation, then confirm, reclassify, or record the premise before accepting the finding or score effect. Apply the same gate to fallback, recovery, defensive, or lifecycle machinery introduced by the implementation. Include rejected `Not Reachable` premises, and do not invent edge cases as a separate review stage.
+3. Trace the complete relevant user-initiated, system-initiated, operational, or contract-driven behavior and enough of its production path and lifecycle to understand how the changed code participates in it. Compare the implementation handoff's behavior trace with the actual code; do not review the diff or a local method in isolation.
+4. Apply the structural checks, source-quality standards, and scorecard. If a prospective finding, score rationale, or implementation mechanism depends on a material scenario outside the established behavior basis, check any upstream decision against the implementation and confirm, reclassify, or record the premise before accepting the conclusion. Do not search for hypothetical scenarios as a separate review stage.
 
-For each new or reclassified material premise, require a complete witness from supported trigger or governing contract through the actual production path and lifecycle state to the claimed material consequence. Trace forward from that trigger; do not reason backward from a fallback branch, synthetic reproduction, or test and invent initiating causes. Classify distinct initiating conditions separately when their evidence differs; do not treat a list of mechanically possible causes as one supported behavior path.
+For each new or reclassified premise that could materially affect the verdict, require a complete witness from supported trigger or governing contract through the actual production path and lifecycle state to the claimed consequence. Trace forward from that trigger; do not reason backward from a fallback branch, synthetic reproduction, or test and invent initiating causes. Classify distinct initiating conditions separately when their evidence differs; do not treat a list of mechanically possible causes as one supported behavior path.
 
 If approved behavior is materially ambiguous, classify a `Requirement Gap`. If production reachability or lifecycle evidence is materially incomplete, investigate it or return `Unclear`; do not invent a technically plausible behavior path and review the implementation against it. Do not create a new behavior ID from a diff, fallback branch, or synthetic test. A concrete newly discovered supported behavior must be recorded provisionally and routed upstream; implementation review cannot pass until the solution basis is corrected.
 
 ## General Review Rules
 
 - Review independently and record findings; do not implement source or test-code fixes while acting as reviewer.
-- Tie every implementation finding or score deduction to affected behavior or an established contract and, when applicable, its reachability evidence, material consequence, and proportionate response.
-- Do not pass implementation that adds fallback, recovery, defensive, or lifecycle machinery based on an unrecorded, `Not Reachable`, or materially `Unclear` premise. Classify unsupported reviewed machinery as `Design Impact`; classify implementation-only machinery through the normal owning route.
+- Tie every implementation finding or score deduction to affected behavior or an established contract and a proportionate response. When it depends on an assumed scenario, cite its material-premise validation and consequence.
+- Do not pass implementation that adds fallback, recovery, defensive, or lifecycle machinery based on an unsupported material premise. Classify unsupported reviewed machinery as `Design Impact`; classify implementation-only machinery through the normal owning route.
 - Keep the successful-test review and failure-origin review as mutually exclusive entry points. A passed execution triggers proportional test-code review; a failed execution triggers focused failure-origin review.
 - Preserve the complete cumulative artifact package through every reroute.
 

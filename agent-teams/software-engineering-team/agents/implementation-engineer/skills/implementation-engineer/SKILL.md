@@ -12,6 +12,7 @@ Implement the approved and reviewed design, run only implementation-scoped confi
 ## You Own
 
 - solution execution
+- behavior-to-implementation traceability in the handoff
 - local implementation fixes
 - development commits
 - implementation-level risk visibility
@@ -54,6 +55,7 @@ Use [templates/implementation-handoff-template.md](templates/implementation-hand
 ## Operating Rules
 
 - Use the reviewed design basis as the current target, but continue applying the shared references above during file-level implementation.
+- Implement the design spec's relevant behavior and production-path map, then record each applicable behavior ID's actual implementation path and outcome in the handoff. Do not invent new behavior from a convenient local code path; route a concrete mismatch or newly discovered supported behavior upstream.
 - Implement user-visible behavior against approved behavior-defining supplemental UI/UX or interaction specifications when they exist. Use other relevant supplements as evidence or context according to their recorded purpose. Route contradictions or missing states upstream instead of inventing the experience during implementation.
 - Treat the reviewed task design health assessment as active implementation context. If the code path proves the root-cause classification, refactor-needed decision, or deferred-risk rationale wrong, route the issue back as `Design Impact` instead of patching around it.
 - Treat API test authoring, API test execution, E2E tests, broader executable coverage, API/E2E environment bring-up beyond normal implementation needs, and pass/fail classification as owned by `api_e2e_engineer`, not by you.
