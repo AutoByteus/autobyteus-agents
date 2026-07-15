@@ -4,9 +4,19 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 ## Current-State Read
 
-Describe the current execution path, current ownership boundaries, current coupling/fragmentation problems, and the constraints that the target design must respect.
+Summarize current ownership boundaries, coupling or fragmentation problems, and constraints that the target design must respect. Reference investigation evidence and the behavior IDs below instead of duplicating their complete production paths here.
 
 ## Intended Change
+
+## Relevant Behavior And Production-Path Map (Mandatory)
+
+Synthesize approved intent from the requirements and relevant existing behavior from the investigation notes before making structural design decisions. Use the stable behavior IDs from investigation. A small or backend-only change may need only one system, operational, or contract row; do not invent rows for unsupported technical possibilities.
+
+| Behavior ID | Kind (`User`/`System`/`Operational`/`Contract`) | Approved Requirement / Intent And Acceptance-Criteria IDs | Approved Trigger Or Governing Contract | Relevant Existing Behavior And Evidence Reference | Approved Change Or Preserved Outcome | Target Production Path / Lifecycle And Spine ID(s) |
+| --- | --- | --- | --- | --- | --- | --- |
+| BEH-001 |  |  |  |  |  |  |
+
+The behavior map defines what real behavior the design must serve. The later data-flow spine sections define how the target technical structure carries it; they complement this map rather than replace it.
 
 ## Relevant Supplemental Task Artifacts
 
@@ -46,11 +56,12 @@ Rules:
 
 Read and write this design from abstract to concrete:
 
-1. persisted-data transition decision when applicable
-2. data-flow spine
-3. subsystem / capability-area allocation
-4. draft file responsibilities -> extract reusable owned structures -> finalize file responsibilities
-5. folder/path mapping
+1. relevant behavior and production-path map
+2. persisted-data transition decision when applicable
+3. data-flow spine
+4. subsystem / capability-area allocation
+5. draft file responsibilities -> extract reusable owned structures -> finalize file responsibilities
+6. folder/path mapping
 
 ## Legacy Removal Policy (Mandatory)
 
@@ -105,9 +116,9 @@ When migration is required, complete or gate it before affected current runtime 
 
 List every relevant spine that matters to understanding the design.
 
-| Spine ID | Scope (`Primary End-to-End`/`Return-Event`/`Bounded Local`) | Start | End | Governing Owner | Why It Matters |
-| --- | --- | --- | --- | --- | --- |
-| DS-001 |  |  |  |  |  |
+| Spine ID | Scope (`Primary End-to-End`/`Return-Event`/`Bounded Local`) | Related Behavior ID(s) | Start | End | Governing Owner | Why It Matters |
+| --- | --- | --- | --- | --- | --- | --- |
+| DS-001 |  |  |  |  |  |  |
 
 ## Primary Execution Spine(s)
 

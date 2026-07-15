@@ -15,6 +15,7 @@ Create task-specific supplemental artifacts when a separate file materially impr
 
 - bootstrap context and dedicated ticket worktree/branch isolation for git-repository tasks before deeper work begins
 - investigation evidence, current behavior, problem framing, scope, assumptions, recommendations, requirements, and acceptance criteria
+- the stable relevant-behavior and production-path map that links approved intent and current evidence to the target design
 - the three mandatory core artifacts and task-specific supplements when a separate file materially improves evidence or context
 - requirement-gap resolution
 - current-state architecture investigation and an evidence-backed task design health assessment
@@ -36,7 +37,7 @@ Always produce all three mandatory core artifacts:
 - Use [templates/design-spec-template.md](templates/design-spec-template.md) to produce a design spec.
 - Create or update the requirements doc as `Draft` during bootstrap before deep investigation begins.
 - Refine that same requirements doc in place until it becomes `Design-ready` or `Refined`.
-- Keep the investigation notes as a durable evidence artifact: record exact sources, commands, observed behavior, runtime/probe findings, relevant external or upstream findings, reproduction/setup details, and open unknowns in enough detail that downstream review does not need to rediscover them from scratch.
+- Keep the investigation notes as a durable evidence artifact: record exact sources, commands, observed behavior, runtime/probe findings, relevant external or upstream findings, reproduction/setup details, and open unknowns in enough detail that downstream review does not need to rediscover them from scratch. Give each relevant user, system, operational, or contract behavior a stable behavior ID and record its evidence-backed current path or verified absence.
 - For git-repository tasks, always record the current branch/worktree and expected base or finalization branch in the investigation notes.
 - After the requirements basis is approved, produce the design spec and keep it aligned with the approved upstream artifacts.
 
@@ -116,6 +117,7 @@ Always produce all three mandatory core artifacts:
   - setup steps that materially affected reproduction or isolation
   - search queries used when material
 - Record current entrypoints, execution boundaries, owners, modules, folders, and likely file-placement concerns.
+- Distinguish supported user, system, operational, and contract behavior from states reachable only through synthetic calls, internal-file mutation, or other mechanical possibility.
 - When persisted data may be affected, inspect representative stored data, normal reader and writer behavior, semantics and invariants, physical-store constraints, disposability, volume, and operational risk. Investigate migration mechanics only when the evidence indicates transformation may be necessary.
 - Record runtime or probe findings when reproductions, traces, scripts, focused tests, or setup work were used.
 - Record enough codebase, runtime, API, and external-reference detail that requirements clarification and design review do not need to rediscover the same facts from scratch.
@@ -139,6 +141,8 @@ Always produce all three mandatory core artifacts:
 - Use [templates/design-spec-template.md](templates/design-spec-template.md) as the mandatory structure for the design artifact.
 - Treat [design-principles.md](design-principles.md) as the canonical design authority instead of restating or overriding it locally.
 - Build the design from the approved requirements basis, investigation notes, all relevant supplemental task artifacts, current-state read, and current code reality.
+- Before structural design, synthesize the approved requirements and investigation evidence into the design spec's relevant behavior and production-path map. Preserve stable behavior IDs and state the approved change or preserved outcome for each row.
+- Link each behavior ID to the target production path, lifecycle boundary, and applicable data-flow spine IDs. The behavior map defines what real behavior the design must serve; the spine sections define how the target structure carries it.
 - Keep the design actionable in the current codebase: implementation and review should not need to reconstruct the intended structure from scattered notes.
 - Include a task design health assessment in the design spec for every task, even when the answer is "no refactor needed".
 - A "no refactor needed" decision must explain why the current owner, boundary, API shape, file placement, and changed data structures remain healthy for this scope.

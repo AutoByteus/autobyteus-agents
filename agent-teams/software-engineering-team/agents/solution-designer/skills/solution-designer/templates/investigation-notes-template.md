@@ -45,12 +45,13 @@ Maintain the canonical inventory of separate files that remain useful as investi
 | YYYY-MM-DD | Repo | `https://github.com/example-org/example-sdk` @ `v1.4.2` | Check upstream integration behavior | Sample app shows the callback fires only after explicit session join | Yes |
 | YYYY-MM-DD | Command | `rg -n "example" src` | Find the affected path | Found one active handler and one stale helper | No |
 
-## Current Behavior / Current Flow
+## Relevant Existing Behavior And Production Paths
 
-- Current entrypoint or first observable boundary:
-- Current execution flow:
-- Ownership or boundary observations:
-- Current behavior summary:
+Record only behavior relevant to the task. A behavior may be user-initiated, system-initiated, operational, or an established contract; it does not require a UI journey. Use stable IDs and evidence from supported or observed production behavior, not a synthetic caller or mechanically possible state alone. For genuinely new behavior, record `No Current Path` with evidence; the design map will record the approved target trigger and path.
+
+| Behavior ID | Kind (`User`/`System`/`Operational`/`Contract`) | Current Supported Trigger Or Governing Contract | Current Production Path And Lifecycle | Meaningful Current Outcome / Invariants | Evidence |
+| --- | --- | --- | --- | --- | --- |
+| BEH-001 |  |  |  |  |  |
 
 ## Design Health Assessment Evidence
 

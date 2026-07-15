@@ -51,21 +51,22 @@ Round rules:
 - Files / areas reviewed:
 - Explicit exclusions:
 
-## Approved-Behavior And Current-Reality Basis
+## Upstream Behavior And Production-Path Basis Confirmation
 
-Complete this foundation before the implementation structural checks. Start from the design review's recorded behavior and journeys, verify them against the implementation, and record status plus implementation evidence instead of restating unchanged content. This is not a second business-approval step. For a failure-origin-only round, update only the affected journey and reachability premise.
+Complete this foundation before the implementation structural checks. Start from the design spec's behavior map and architecture review verdict, verify them against the implementation, and record status plus implementation evidence instead of restating unchanged content. This is not a second business-approval step. For a failure-origin-only round, update only the affected behavior and reachability premise.
 
 - Approved requirements basis checked:
+- Design-spec behavior map checked:
 - Design review report and round checked:
-- Behavior-basis status: `Confirmed` / `Revised` / `Unclear`
+- Behavior-basis status: `Confirmed` / `Contradicted` / `Unclear`
 - Changed or newly discovered behavior, if any:
 - Remaining material ambiguity, if any:
 
-| Journey ID | Current Status (`Confirmed`/`Revised`/`New`) | Current Implementation Path And Lifecycle Evidence | Revised / New Complete Journey (Only When Applicable) |
+| Behavior ID | Current Status (`Confirmed`/`Contradicted`/`Unclear`/`Newly Discovered`) | Current Implementation Path And Lifecycle Evidence | Contradicting Or Newly Discovered Supported Behavior Evidence (Only When Applicable) |
 | --- | --- | --- | --- |
 |  |  |  |  |
 
-Reuse architecture-review journey IDs for confirmed or revised journeys; assign a new stable ID only to a newly discovered journey.
+Reuse the design spec's behavior IDs. Assign a provisional ID only when concrete evidence reveals a relevant supported behavior missing upstream; route it to `solution_designer` and do not pass until the upstream map is corrected. Do not create a behavior from technical possibility alone. `Contradicted`, `Unclear`, or `Newly Discovered` behavior prevents an implementation-review pass.
 
 ## Prior Findings Resolution Check (Mandatory On Round >1)
 
@@ -88,7 +89,7 @@ Do not apply the source-file hard limit to unit, integration, API, or E2E test f
 Required for implementation review only.
 Use the mandatory structural checks below on every implementation review. Do not replace them with a smaller ad hoc checklist.
 Treat the `Authoritative Boundary Rule` as one of the highest-signal structural checks in this section.
-Apply these checks only after establishing the approved behavior, relevant current behavior, and affected production journey above. When a check raises a material edge-case premise, complete the reachability record below before using that premise in a finding or score.
+Apply these checks only after establishing the approved behavior and relevant current behavior and production path above. When a check raises a material edge-case premise, complete the reachability record below before using that premise in a finding or score.
 Review test structure proportionately when test files are relevant. Do not apply implementation-source size thresholds to tests, and do not fail a coherent test suite merely because its files are large.
 
 Quick examples:
@@ -150,7 +151,7 @@ Use the canonical priority order below. The order is the review reasoning order,
 | `5` | `Shared-Structure / Data-Model Tightness and Reusable Owned Structures` |  |  |  |  |
 | `6` | `Naming Quality and Local Readability` |  |  |  |  |
 | `7` | `API/E2E Readiness` |  |  |  |  |
-| `8` | `Runtime Correctness Under Reachable Edge Cases` |  |  |  |  |
+| `8` | `Runtime Correctness And Behavioral Fidelity` |  |  |  |  |
 | `9` | `No Backward-Compatibility / No Legacy Retention` |  |  |  |  |
 | `10` | `Cleanup Completeness` |  |  |  |  |
 
@@ -181,14 +182,14 @@ For each new or reclassified premise, use this shape:
 
 - Origin: `New` / `Reclassified from <architecture-edge-case-id>`
 - Related approved requirement or established contract:
-- Relevant journey ID(s):
+- Relevant behavior ID(s):
 - Supported initiating trigger or governing contract, with evidence:
 - Actual production caller/event path from that trigger to the claimed state:
 - Lifecycle preconditions and material consequence at the claimed point:
 - Reachability: `Reachable` / `Not Reachable` / `Unclear`
 - Review consequence / proportionate response:
 
-Reuse the architecture review's edge-case ID when reclassifying an upstream premise; assign a new stable ID only to a newly considered premise. Apply the shared reachability rule. A `Reachable` label without the complete trigger-to-consequence witness above is invalid. Keep a new or reclassified `Not Reachable` premise in this section with the evidence explaining why the referenced journey cannot produce it; it cannot produce a finding, score deduction, or in-scope machinery. A materially `Unclear` premise requires investigation or routing rather than speculative machinery.
+Reuse the architecture review's edge-case ID when reclassifying an upstream premise; assign a new stable ID only to a newly considered premise. Apply the shared reachability rule. A `Reachable` label without the complete trigger-to-consequence witness above is invalid. Keep a new or reclassified `Not Reachable` premise in this section with the evidence explaining why the referenced behavior and production path cannot produce it; it cannot produce a finding, score deduction, or in-scope machinery. A materially `Unclear` premise requires investigation or routing rather than speculative machinery.
 
 ## Findings
 

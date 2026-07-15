@@ -803,15 +803,17 @@ A reviewer notices that each setting update can resolve the current client. From
 
 Those mechanisms are technically coherent, but the premise must be checked against the supported product journey before they become design requirements.
 
-### Approved Behavior And Relevant Journey
+### Upstream Behavior And Production-Path Map
 
 The approved behavior is to edit settings for the node represented by the current node-specific window. No requirement introduces in-place node switching for that window.
 
-| Journey ID | Relevant Journey | Supported Trigger | Meaningful Outcome | Production Path And Lifecycle Boundary | Evidence To Inspect |
-| --- | --- | --- | --- | --- | --- |
-| `J-SETTINGS-001` | `Node Manager -> open/focus node-specific window -> bootstrap node context -> edit settings -> save through existing setting action` | User opens or focuses one node | Settings are applied to that window's node | Node identity is established during window bootstrap and remains stable for the window lifetime | Window creation/focus path, bootstrap binding call, production callers of `bindNodeContext(...)`, settings action call path |
+The solution designer records this basis before review:
 
-The reviewer must inspect the full path, not only the settings action and store fields. The relevant evidence shows:
+| Behavior ID | Kind | Approved Requirement / Intent | Approved Trigger / Contract | Relevant Existing Behavior And Evidence | Approved Change / Preserved Outcome | Target Production Path / Lifecycle And Spine ID(s) |
+| --- | --- | --- | --- | --- | --- | --- |
+| `BEH-SETTINGS-001` | User | Settings apply to the node represented by the current node-specific window | User opens or focuses one node-specific window | Window creation/focus, bootstrap binding, production callers of `bindNodeContext(...)`, and the settings action show that node identity remains stable for the window lifetime | Preserve node identity while saving the approved setting changes | `DS-SETTINGS-001`: `Node Manager -> node-specific window -> bootstrap binding -> settings card -> existing setting action` |
+
+The architecture reviewer validates this map against the approved requirements, investigation evidence, and current code before applying structural checks. The relevant evidence shows:
 
 - ordinary desktop node selection opens or focuses a node-specific window
 - bootstrap binds the store once for that window
@@ -824,7 +826,7 @@ The reviewer must inspect the full path, not only the settings action and store 
 #### `EDGE-SETTINGS-001` — Node binding changes during one multi-setting save
 
 - Related approved requirement or established contract: settings apply to the node represented by the current node-specific window.
-- Relevant journey ID(s): `J-SETTINGS-001`.
+- Relevant behavior ID(s): `BEH-SETTINGS-001`.
 - Supported initiating trigger or governing contract, with evidence: the user opens or focuses one node-specific window; the window creation and focus path establishes that supported trigger.
 - Actual production caller/event path from that trigger to the claimed state: `Node Manager -> node-specific window -> bootstrap binding -> settings card -> existing setting action`. No caller on that path invokes node rebinding during save.
 - Lifecycle preconditions and material consequence at the claimed point: the window is already bound before the card becomes interactive and remains bound for its lifetime, so the claimed cross-node save consequence cannot occur. A generic binding method, revision field, and separate mobile caller do not change this lifecycle.
@@ -871,15 +873,15 @@ If such a path exists, record its trigger, lifecycle, material consequence, and 
 
 ### Downstream Code-Review Use
 
-The code reviewer receives the design review report with `J-SETTINGS-001` and `EDGE-SETTINGS-001`.
+The code reviewer receives the design spec's `BEH-SETTINGS-001` map row and the design review report's `EDGE-SETTINGS-001` decision.
 
-- If the implementation preserves the node-specific window lifecycle, mark the journey and edge-case decision `Confirmed` by ID without copying the full reasoning.
+- If the implementation preserves the node-specific window lifecycle, mark the behavior and edge-case decision `Confirmed` by ID without copying the full reasoning.
 - If the implementation introduces a real in-window rebinding path, reuse `EDGE-SETTINGS-001`, record the changed evidence, and reclassify it.
 - Do not recreate the rejected hypothetical merely because the implementation still contains `bindingRevision` or a generic binding method.
 
 ### Design Lesson
 
-Technical review begins from approved behavior and the complete relevant production journey. Local capability is not proof of reachability. Persisting the journey, evidence, and decision makes the reasoning auditable, prevents unsupported complexity, and lets downstream reviewers confirm or revise the decision when later evidence changes.
+Technical review begins from approved behavior and the complete relevant production path. Local capability is not proof of reachability. Persisting the behavior, evidence, and decision makes the reasoning auditable, prevents unsupported complexity, and lets downstream reviewers confirm or challenge the decision when later evidence changes.
 
 ## Common Bad-Practice Patterns
 

@@ -14,6 +14,7 @@ Provide three proportionate, behavior-grounded technical review entry points in 
 3. focused failure-origin review after failed API/E2E
 
 Keep their standards distinct. Implementation code receives the full structural review. Test code receives a fast structure-and-correctness review without source-file size thresholds. A runtime failure receives focused origin analysis and reopens source review only when the evidence points there.
+Treat edge-case analysis as risk-based support for implementation review, not as an exhaustive search for hypothetical states.
 
 ## You Own
 
@@ -61,14 +62,14 @@ For API/E2E failure-origin review:
 
 ## Implementation Review Basis And Sequence
 
-1. Read the approved requirements and the design review report's approved-behavior, journey, and reachability record. Treat the requirements as intended-behavior authority and the design review as prior technical context, not immutable truth.
+1. Read the approved requirements, the design spec's relevant behavior and production-path map, and the architecture review's basis verdict and reachability records. Treat the requirements as intended-behavior authority and the reviewed map as prior technical context, not immutable truth.
 2. Verify the relevant existing behavior, approved change, and behavior that must remain unchanged or outside scope. Do not reopen or redefine the business decision.
-3. Trace the complete relevant user, system, or operational journey and enough of its production path and lifecycle to understand how the changed code participates in that behavior. Do not review the diff or a local method in isolation.
+3. Trace the complete relevant user-initiated, system-initiated, operational, or contract-driven behavior and enough of its production path and lifecycle to understand how the changed code participates in it. Do not review the diff or a local method in isolation.
 4. Apply the structural checks, source-quality standards, and scorecard. Whenever a check or score rationale depends on a material edge-case or lifecycle premise, first check any upstream reachability decision against the implementation, then confirm, reclassify, or record the premise before accepting the finding or score effect. Apply the same gate to fallback, recovery, defensive, or lifecycle machinery introduced by the implementation. Include rejected `Not Reachable` premises, and do not invent edge cases as a separate review stage.
 
-For each new or reclassified material premise, require a complete witness from supported trigger or governing contract through the actual production path and lifecycle state to the claimed material consequence. Trace forward from that trigger; do not reason backward from a fallback branch, synthetic reproduction, or test and invent initiating causes. Classify distinct initiating conditions separately when their evidence differs; do not treat a list of mechanically possible causes as one supported journey.
+For each new or reclassified material premise, require a complete witness from supported trigger or governing contract through the actual production path and lifecycle state to the claimed material consequence. Trace forward from that trigger; do not reason backward from a fallback branch, synthetic reproduction, or test and invent initiating causes. Classify distinct initiating conditions separately when their evidence differs; do not treat a list of mechanically possible causes as one supported behavior path.
 
-If approved behavior is materially ambiguous, classify a `Requirement Gap`. If production reachability or lifecycle evidence is materially incomplete, investigate it or return `Unclear`; do not invent a technically plausible journey and review the implementation against it.
+If approved behavior is materially ambiguous, classify a `Requirement Gap`. If production reachability or lifecycle evidence is materially incomplete, investigate it or return `Unclear`; do not invent a technically plausible behavior path and review the implementation against it. Do not create a new behavior ID from a diff, fallback branch, or synthetic test. A concrete newly discovered supported behavior must be recorded provisionally and routed upstream; implementation review cannot pass until the solution basis is corrected.
 
 ## General Review Rules
 

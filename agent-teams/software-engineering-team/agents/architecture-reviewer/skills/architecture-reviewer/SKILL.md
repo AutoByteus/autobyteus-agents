@@ -8,6 +8,7 @@ description: Review the complete solution package before implementation and rout
 ## Purpose
 
 Perform a behavior-grounded technical architecture review before implementation, finding real design weaknesses without introducing complexity for unsupported scenarios.
+Treat edge-case analysis as risk-based support for that review, not as an exhaustive search for hypothetical states.
 
 ## You Own
 
@@ -46,13 +47,13 @@ Use [templates/design-review-report-template.md](templates/design-review-report-
 
 ## Review Basis And Sequence
 
-1. Understand the approved requirements, relevant existing behavior, approved change, and behavior that must remain unchanged or outside scope. Do not reopen or redefine the business decision.
-2. Trace the complete relevant user, system, or operational journey and enough of its current or target-production path and lifecycle to judge the design correctly. Do not review a local technical fragment as though it were the whole behavior.
+1. Validate the design spec's relevant behavior and production-path map: approved requirements or intent, relevant existing behavior, approved change or preserved outcome, and behavior that remains outside scope. Do not reopen or redefine the business decision.
+2. For each behavior ID, trace enough of the complete current and target user, system, operational, or contract path and lifecycle to confirm the map and judge the design correctly. Do not review a local technical fragment as though it were the whole behavior.
 3. Apply the remaining shared design principles and structural review template. Whenever a check raises a material edge-case premise that could affect a finding or justify additional machinery, classify and record it using the shared `Reachable` / `Not Reachable` / `Unclear` rule before accepting that conclusion. Apply the same gate to fallback, recovery, defensive, or lifecycle machinery already proposed in the design. Include rejected `Not Reachable` premises in the durable report, and do not invent edge cases as a separate review stage.
 
-For each material premise, require a complete witness from supported trigger or governing contract through the actual production path and lifecycle state to the claimed material consequence. Trace forward from that trigger; do not reason backward from a fallback branch, synthetic reproduction, or test and invent initiating causes. Classify distinct initiating conditions separately when their evidence differs; do not treat a list of mechanically possible causes as one supported journey.
+For each material premise, require a complete witness from supported trigger or governing contract through the concrete current or approved target production path and lifecycle state to the claimed material consequence. Trace forward from that trigger; do not reason backward from a fallback branch, synthetic reproduction, or test and invent initiating causes. Classify distinct initiating conditions separately when their evidence differs; do not treat a list of mechanically possible causes as one supported behavior path.
 
-If approved behavior is materially ambiguous, route a `Requirement Gap`. If production reachability or lifecycle evidence is materially incomplete, investigate it or return `Unclear`/`Blocked`; do not fill the gap with a technically plausible invented journey.
+Do not issue the structural verdict until the behavior basis is sufficiently established. Missing or ambiguous approved intent is a `Requirement Gap`; missing current-behavior or production-path evidence is `Unclear`/`Blocked`; an inconsistent target path or spine is `Design Impact`. A reviewer-invented premise is `Not Reachable` when the verified behavior map and lifecycle exclude a supported trigger; insufficient evidence is `Unclear`. Neither condition becomes a requirement gap merely because the reviewer imagined the premise.
 
 ## Review Rules
 

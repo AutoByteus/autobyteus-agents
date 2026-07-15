@@ -29,21 +29,21 @@ Round rules:
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |
 
-## Approved-Behavior And Current-Reality Basis
+## Upstream Behavior And Production-Path Basis Verdict
 
-This is the basis for the technical review, not a second business-approval step. Understand the approved behavior and verify the relevant current production reality before applying the structural checks below.
+Complete this gate before applying the structural checks below. Validate the design spec's behavior map against the approved requirements, investigation evidence, and real current code. This is technical validation of the solution basis, not a second business-approval step and not an invitation to reconstruct behavior from isolated code.
 
-- Approved requirements / intended behavior summary:
-- Relevant existing behavior:
-- Approved behavior change:
-- Behavior explicitly preserved or outside scope:
+- Overall Basis Verdict (`Pass`/`Fail`/`Blocked`):
+- Approved requirements / intended behavior checked:
+- Relevant existing behavior and evidence checked:
+- Approved change, preserved behavior, and outside scope checked:
 - Remaining material ambiguity, if any:
 
-| Journey ID | Relevant User / System / Operational Journey | Supported Trigger | Meaningful Outcome | Current / Target Production Path And Lifecycle Boundary | Evidence |
-| --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |
+| Behavior ID | Kind | Approved Intent Alignment (`Pass`/`Fail`) | Approved Trigger / Contract And Current-State Evidence (`Pass`/`Fail`/`Unclear`) | Target Outcome / Path / Spine Coherence (`Pass`/`Fail`/`Unclear`) | Status (`Confirmed`/`Needs Correction`/`Unclear`) | Required Action |
+| --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |
 
-Use stable journey IDs so edge-case decisions and downstream reviews can reference a complete journey without repeating it.
+Reuse the design spec's stable behavior IDs. Assign a provisional ID only when concrete evidence reveals a relevant supported behavior missing upstream; route it to `solution_designer` and do not pass until the upstream map is corrected. Do not create a behavior row from technical possibility alone. An overall `Pass` requires every relevant row to be `Confirmed`.
 
 Apply the remaining technical sections proportionately. If a whole section is genuinely inapplicable, write `N/A` with a short reason; do not invent a design concern to populate the template.
 
@@ -177,14 +177,14 @@ For each recorded premise, use this shape:
 ### `<edge-case-id>` — `<technical premise>`
 
 - Related approved requirement or established contract:
-- Relevant journey ID(s):
+- Relevant behavior ID(s):
 - Supported initiating trigger or governing contract, with evidence:
-- Actual production caller/event path from that trigger to the claimed state:
+- Concrete current or approved target production caller/event path from that trigger to the claimed state:
 - Lifecycle preconditions and material consequence at the claimed point:
 - Reachability: `Reachable` / `Not Reachable` / `Unclear`
 - Review consequence / proportionate response:
 
-Use a stable edge-case ID so downstream roles can preserve or reclassify the decision by reference. Apply the shared reachability rule. A `Reachable` label without the complete trigger-to-consequence witness above is invalid. Keep a `Not Reachable` premise in this section with the evidence explaining why the referenced journey cannot produce it; it cannot become a finding or justify in-scope machinery. A materially `Unclear` premise requires investigation or a blocked decision rather than speculative machinery.
+Use a stable edge-case ID so downstream roles can preserve or reclassify the decision by reference. Apply the shared reachability rule. A `Reachable` label without the complete trigger-to-consequence witness above is invalid. Keep a `Not Reachable` premise in this section with the evidence explaining why the referenced behavior and production path cannot produce it; it cannot become a finding or justify in-scope machinery. A materially `Unclear` premise requires investigation or a blocked decision rather than speculative machinery.
 
 ## Missing Use Cases / Open Unknowns
 
@@ -194,7 +194,7 @@ Use a stable edge-case ID so downstream roles can preserve or reclassify the dec
 
 ## Review Decision
 
-- `Pass`: the design is ready for implementation, and no in-scope machinery or finding depends on an unrecorded, `Not Reachable`, or materially `Unclear` premise.
+- `Pass`: the upstream behavior basis passes, the design is ready for implementation, and no in-scope machinery or finding depends on an unrecorded, `Not Reachable`, or materially `Unclear` premise.
 - `Fail`: the design needs upstream rework before implementation should proceed.
 - `Blocked`: the review cannot finish because required input, evidence, or clarification is missing.
 
