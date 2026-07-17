@@ -7,9 +7,9 @@ description: Review implementation source before API/E2E, review successful API/
 
 ## Purpose
 
-Provide three proportionate review entry points in one role:
+Provide three proportionate, behavior-grounded technical review entry points in one role:
 
-1. full implementation source and architecture review before API/E2E
+1. full implementation-source and structural review before API/E2E
 2. lightweight test-code review after successful API/E2E
 3. focused failure-origin review after failed API/E2E
 
@@ -39,7 +39,7 @@ Keep their standards distinct. Implementation code receives the full structural 
 
 For implementation review:
 
-- Accept requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, design review report, and implementation handoff from `implementation_engineer`.
+- Accept requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, design review report, and implementation handoff from `implementation_engineer`.
 - Review against the complete implementation artifact chain, not only the handoff summary.
 
 For successful API/E2E test-code review:
@@ -56,18 +56,32 @@ For API/E2E failure-origin review:
 - Start implementation review by reading [design-principles.md](design-principles.md).
 - Use it as the canonical design authority for source and structural review.
 - Consult [references/design-examples.md](references/design-examples.md) only when a concrete structural example is needed to judge the implementation or its alignment with the reviewed design.
+- When a prospective finding or score rationale depends on an assumed production, failure, or lifecycle scenario, consult [Example 9](references/design-examples.md#example-9-rejecting-an-unreachable-edge-case-during-technical-review) before finalizing it.
 - For the later entry points, reread only the requirements, design, changed tests, relevant source paths, and prior findings needed for the bounded review.
+
+## Implementation Review Basis And Sequence
+
+1. Understand the approved requirements and business intent, the design spec's relevant behavior and production-path map, and the architecture review's basis confirmation and material-premise records. Treat the requirements as intended-behavior authority and the reviewed map as prior technical context, not immutable truth.
+2. Confirm the relevant existing behavior, approved change, and behavior that must remain unchanged or outside scope. Do not judge, reopen, or redefine the business decision.
+3. Trace the complete relevant user-initiated, system-initiated, operational, or contract-driven behavior and enough of its production path and lifecycle to understand how the changed code participates in it. Compare the implementation handoff's behavior trace with the actual code; do not review the diff or a local method in isolation.
+4. Apply the structural and design checks from macro structure toward detail: data-flow spine, ownership and boundaries, interfaces and dependencies, then subsystem, file-responsibility, local source, test-readiness, legacy, and cleanup checks.
+5. If a concrete check produces a prospective finding, score rationale, or implementation mechanism that depends on a material scenario outside the established behavior basis, check any upstream decision against the implementation and complete the report's confirmation or material-premise record using the shared product-reachability rule before accepting the conclusion. Do not search for hypothetical scenarios as a separate review stage.
+6. Complete the scorecard and findings only after every material premise that could affect them has been validated.
+
+If approved behavior is materially ambiguous, classify a `Requirement Gap`. If production reachability or lifecycle evidence is materially incomplete, investigate it or return `Unclear`; do not invent a technically plausible behavior path and review the implementation against it. Do not create a new behavior ID from a diff, fallback branch, or synthetic test. A concrete newly discovered supported behavior must be recorded provisionally and routed upstream; implementation review cannot pass until the solution basis is corrected.
 
 ## General Review Rules
 
 - Review independently and record findings; do not implement source or test-code fixes while acting as reviewer.
+- Tie every implementation finding or score deduction to affected behavior or an established contract and a proportionate response. When it depends on an assumed scenario, cite its material-premise validation and consequence.
+- Do not pass implementation that adds fallback, recovery, defensive, or lifecycle machinery based on an unsupported material premise. Classify unsupported reviewed machinery as `Design Impact`; classify implementation-only machinery through the normal owning route.
 - Keep the successful-test review and failure-origin review as mutually exclusive entry points. A passed execution triggers proportional test-code review; a failed execution triggers focused failure-origin review.
 - Preserve the complete cumulative artifact package through every reroute.
 
 ## Implementation Review Rules
 
 - Use the full implementation sections and mandatory scorecard in [templates/code-review-report-template.md](templates/code-review-report-template.md).
-- Review against the full artifact chain, canonical design guidance, and approved supplemental artifacts.
+- Review against the full artifact chain, canonical design guidance, and relevant supplemental task artifacts, applying approval constraints where applicable.
 - Treat earlier design artifacts as context, not immunity from review. Classify an inadequate design as `Design Impact`.
 - Review design integrity, API/E2E readiness, cleanup completeness, and changed implementation-source size or structural pressure.
 - Apply `>500` and `>220` source thresholds only to changed implementation-source files, never to tests, fixtures, or generated coverage files.
@@ -95,6 +109,7 @@ For API/E2E failure-origin review:
 
 - Use the failure context in the review meta and scope, affected findings or score rationale when needed, classification/routing, and latest-result fields. Do not repeat the full source audit or scorecard.
 - Confirm only that the failing scenario still represents approved behavior; do not generally review the test suite.
+- Confirm that the failing scenario is reachable through the relevant production journey or established contract before attributing a source defect.
 - Inspect the failure evidence and the smallest relevant test, environment, execution, or implementation path needed to classify the cause.
 - Decide whether the origin is an implementation defect, earlier review gap, runtime-only behavior, implementation change after review, invalid/stale test, fixture/environment/execution issue, design impact, requirement gap, or unclear.
 - When a real review gap exists, state the exact source evidence or invariant that should have been caught and update only the affected finding or score rationale.

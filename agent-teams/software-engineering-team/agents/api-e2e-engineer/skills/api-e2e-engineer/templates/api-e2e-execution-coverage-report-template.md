@@ -13,7 +13,7 @@ Execution may cover API, browser UI, a web-equivalent desktop renderer through t
 - Requirements Doc:
 - Investigation Notes:
 - Design Spec:
-- Supplemental Solution Artifacts:
+- Supplemental Task Artifacts:
 - Design Review Report:
 - Implementation Handoff:
 - Code Review Report:
@@ -53,7 +53,7 @@ Round rules:
 
 ## Changed Boundary And Evidence Matrix
 
-| Scenario ID | Requirement / Acceptance-Criteria IDs | Changed Boundary | Execution Surface / Mode | Evidence Type (`Durable`/`Temporary`/`Live`/`Browser`/`Desktop`) | Result (`Pass`/`Fail`/`Blocked`/`Not Tested`) | Evidence / Artifact |
+| Scenario ID | Behavior / Requirement / Acceptance-Criteria IDs | Changed Boundary | Execution Surface / Mode | Evidence Type (`Durable`/`Temporary`/`Live`/`Browser`/`Desktop`) | Result (`Pass`/`Fail`/`Blocked`/`Not Tested`) | Evidence / Artifact |
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |
 

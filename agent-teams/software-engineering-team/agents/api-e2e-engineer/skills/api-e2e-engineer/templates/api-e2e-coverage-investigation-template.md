@@ -11,7 +11,7 @@ Update this artifact whenever new evidence changes a test-validity or coverage d
 - Requirements Doc:
 - Investigation Notes:
 - Design Spec:
-- Supplemental Solution Artifacts:
+- Supplemental Task Artifacts:
 - Design Review Report:
 - Implementation Handoff:
 - Code Review Report:
@@ -22,13 +22,13 @@ Update this artifact whenever new evidence changes a test-validity or coverage d
 
 ## Current Requirement And Design Basis
 
-Summarize the current behavior that must be proven from the approved requirements, acceptance criteria, reviewed design, applicable supplemental solution artifacts, implementation handoff, and code review report.
+Summarize the current behavior that must be proven from the approved requirements, acceptance criteria, reviewed design, applicable supplemental task artifacts, implementation handoff, and code review report.
 
 ## Changed Behavior Summary
 
 Identify behavior added, changed, removed, or intentionally preserved.
 
-| Behavior / Boundary | Change Type (`Added`/`Changed`/`Removed`/`Preserved`/`Unclear`) | Upstream Evidence | Coverage Consequence |
+| Behavior ID / Boundary | Change Type (`Added`/`Changed`/`Removed`/`Preserved`/`Unclear`) | Upstream Evidence | Coverage Consequence |
 | --- | --- | --- | --- |
 |  |  |  |  |
 

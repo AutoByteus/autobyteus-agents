@@ -12,7 +12,7 @@ The latest round is authoritative; earlier rounds remain history.
 - Upstream Requirements Doc:
 - Upstream Investigation Notes:
 - Reviewed Design Spec:
-- Supplemental Solution Artifacts Reviewed:
+- Supplemental Task Artifacts Reviewed:
 - Current Review Round:
 - Trigger:
 - Prior Review Round Reviewed:
@@ -29,11 +29,37 @@ Round rules:
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |
 
+## Prior Findings Resolution Check (Mandatory On Round >1)
+
+Complete this before evaluating new-round content.
+
+| Prior Round | Finding ID | Previous Severity | Current Resolution | Evidence | Notes |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+## Upstream Behavior And Production-Path Basis Confirmation
+
+Complete this understanding and alignment gate before applying the structural checks below. Understand the approved business intent and relevant existing behavior, then confirm the design spec's behavior map against the approved requirements, investigation evidence, and real current code. This is technical validation of the solution basis, not a review or reapproval of the business decision and not an invitation to reconstruct behavior from isolated code.
+
+- Overall Basis Status (`Confirmed`/`Contradicted`/`Blocked`):
+- Approved requirements / intended behavior understood:
+- Relevant existing behavior and evidence confirmed:
+- Approved change, preserved behavior, and outside scope understood:
+- Remaining material ambiguity, if any:
+
+| Behavior ID | Kind | Design Alignment With Approved Intent (`Pass`/`Fail`) | Approved Trigger / Contract And Current-State Evidence (`Pass`/`Fail`/`Unclear`) | Target Outcome / Path / Spine Coherence (`Pass`/`Fail`/`Unclear`) | Status (`Confirmed`/`Needs Correction`/`Unclear`) | Required Action |
+| --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |
+
+Reuse the design spec's stable behavior IDs. Assign a provisional ID only when concrete evidence reveals a relevant supported behavior missing upstream; route it to `solution_designer` and do not pass until the upstream map is corrected. Do not create a behavior row from technical possibility alone. An overall `Confirmed` status requires every relevant row to be `Confirmed`.
+
+Apply the remaining technical sections proportionately. If a whole section is genuinely inapplicable, write `N/A` with a short reason; do not invent a design concern to populate the template.
+
 ## Supplemental Artifact Coherence Verdict
 
-If no supplemental solution artifacts exist, write `None`.
+If no supplemental task artifacts exist, write `None`.
 
-| Artifact | Purpose And Scope Are Clear? (`Pass`/`Fail`) | Linked To Mandatory Artifacts? (`Pass`/`Fail`) | Internally Complete? (`Pass`/`Fail`) | Consistent With Requirements And Design? (`Pass`/`Fail`) | Approval State Is Clear? (`Pass`/`Fail`) | Required Action |
+| Artifact | Purpose And Scope Are Clear? (`Pass`/`Fail`) | Linked To Relevant Core Artifacts? (`Pass`/`Fail`) | Internally Complete? (`Pass`/`Fail`) | Consistent With Related Core Artifacts? (`Pass`/`Fail`) | Status And Approval Applicability Are Clear? (`Pass`/`Fail`) | Required Action |
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |
 
@@ -46,17 +72,35 @@ If no supplemental solution artifacts exist, write `None`.
 | Refactor needed now / no refactor needed / deferred decision is explicit |  |  |  |
 | Refactor decision is supported by the concrete design sections or residual-risk rationale |  |  |  |
 
-## Prior Findings Resolution Check (Mandatory On Round >1)
-
-| Prior Round | Finding ID | Previous Severity | Current Resolution | Evidence | Notes |
-| --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |
-
 ## Spine Inventory Verdict
 
 | Spine ID | Scope | Spine Is Readable? (`Pass`/`Fail`) | Narrative Is Clear? (`Pass`/`Fail`) | Facade Vs Governing Owner Is Clear? (`Pass`/`Fail`/`N/A`) | Main Domain Subject Naming Is Clear? (`Pass`/`Fail`) | Ownership Is Clear? (`Pass`/`Fail`) | Off-Spine Concerns Stay Off Main Line? (`Pass`/`Fail`) | Verdict (`Pass`/`Fail`) |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |  |  |
+
+## Boundary Encapsulation Verdict
+
+| Boundary / Owner | Authoritative Public Entry Point Is Clear? (`Pass`/`Fail`) | Internal Owned Mechanisms Stay Internal? (`Pass`/`Fail`) | Caller Bypass Risk Is Controlled? (`Pass`/`Fail`) | Verdict (`Pass`/`Fail`) | Notes |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+## Dependency Direction / Forbidden Shortcut Verdict
+
+| Owner / Boundary | Allowed Dependencies Are Clear? (`Pass`/`Fail`) | Forbidden Shortcuts Are Explicit? (`Pass`/`Fail`) | Direction Is Coherent With Ownership? (`Pass`/`Fail`) | Verdict (`Pass`/`Fail`) | Notes |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+## Interface Boundary Verdict
+
+| Interface / API / Query / Command / Method | Subject Is Clear? (`Pass`/`Fail`) | Responsibility Is Singular? (`Pass`/`Fail`) | Identity Shape Is Explicit? (`Pass`/`Fail`) | Generic Boundary Risk (`Low`/`Medium`/`High`) | Verdict (`Pass`/`Fail`) |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+## Existing Capability / Subsystem Reuse Verdict
+
+| Need / Concern | Existing Capability Area Was Checked? (`Pass`/`Fail`) | Reuse / Extension Decision Is Sound? (`Pass`/`Fail`) | New Support Piece Is Justified? (`Pass`/`Fail`/`N/A`) | Verdict (`Pass`/`Fail`) | Notes |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
 
 ## Subsystem / Capability-Area Allocation Verdict
 
@@ -76,33 +120,9 @@ If no supplemental solution artifacts exist, write `None`.
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |
 
-## Removal / Decommission Completeness Verdict
-
-| Item / Area | Redundant / Obsolete Piece To Remove Is Named? (`Pass`/`Fail`) | Replacement Owner / Structure Is Clear? (`Pass`/`Fail`/`N/A`) | Removal / Decommission Scope Is Explicit? (`Pass`/`Fail`) | Verdict (`Pass`/`Fail`) | Notes |
-| --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |
-
 ## File Responsibility Mapping Verdict
 
 | File | Responsibility Is Singular And Clear? (`Pass`/`Fail`) | Responsibility Matches The Intended Owner/Boundary? (`Pass`/`Fail`) | Responsibilities Were Re-Tightened After Shared-Structure Extraction? (`Pass`/`Fail`/`N/A`) | Verdict (`Pass`/`Fail`) | Notes |
-| --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |
-
-## Dependency Direction / Forbidden Shortcut Verdict
-
-| Owner / Boundary | Allowed Dependencies Are Clear? (`Pass`/`Fail`) | Forbidden Shortcuts Are Explicit? (`Pass`/`Fail`) | Direction Is Coherent With Ownership? (`Pass`/`Fail`) | Verdict (`Pass`/`Fail`) | Notes |
-| --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |
-
-## Boundary Encapsulation Verdict
-
-| Boundary / Owner | Authoritative Public Entry Point Is Clear? (`Pass`/`Fail`) | Internal Owned Mechanisms Stay Internal? (`Pass`/`Fail`) | Caller Bypass Risk Is Controlled? (`Pass`/`Fail`) | Verdict (`Pass`/`Fail`) | Notes |
-| --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |
-
-## Interface Boundary Verdict
-
-| Interface / API / Query / Command / Method | Subject Is Clear? (`Pass`/`Fail`) | Responsibility Is Singular? (`Pass`/`Fail`) | Identity Shape Is Explicit? (`Pass`/`Fail`) | Generic Boundary Risk (`Low`/`Medium`/`High`) | Verdict (`Pass`/`Fail`) |
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
 
@@ -112,9 +132,9 @@ If no supplemental solution artifacts exist, write `None`.
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
 
-## Existing Capability / Subsystem Reuse Verdict
+## Removal / Decommission Completeness Verdict
 
-| Need / Concern | Existing Capability Area Was Checked? (`Pass`/`Fail`) | Reuse / Extension Decision Is Sound? (`Pass`/`Fail`) | New Support Piece Is Justified? (`Pass`/`Fail`/`N/A`) | Verdict (`Pass`/`Fail`) | Notes |
+| Item / Area | Redundant / Obsolete Piece To Remove Is Named? (`Pass`/`Fail`) | Replacement Owner / Structure Is Clear? (`Pass`/`Fail`/`N/A`) | Removal / Decommission Scope Is Explicit? (`Pass`/`Fail`) | Verdict (`Pass`/`Fail`) | Notes |
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
 
@@ -148,7 +168,29 @@ For `Migration Required`, verify isolated ownership, ordering, validation, compl
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
 
-## Missing Use Cases / Open Unknowns
+## Material Premise Validation (Only When Needed)
+
+Complete this section only when a structural check, prospective finding, or proposed or existing mechanism depends on a material production, failure, or lifecycle scenario not already established by the behavior basis. Include premises rejected as `Not Reachable`; otherwise write `None`. Do not use this section to search for edge cases or other hypothetical scenarios.
+
+Use one record per distinct initiating condition when evidence, path, or consequence differs. Do not combine unrelated causes into one `A or B or C` premise.
+
+For each recorded premise, use this shape:
+
+### `<premise-id>` — `<technical premise>`
+
+- Related approved requirement or established contract:
+- Relevant behavior ID(s):
+- Product-supported initiating trigger or governing contract, with evidence:
+- Concrete current or approved target production caller/event path from that trigger to the claimed state:
+- Lifecycle preconditions and material consequence at the claimed point:
+- Reachability: `Reachable` / `Not Reachable` / `Unclear`
+- Review consequence / proportionate response:
+
+Use a stable premise ID and apply the shared product-reachability rule. `Reachable` requires the completed witness above; `Not Reachable` cannot drive a finding or in-scope machinery; materially `Unclear` requires investigation or a blocked decision.
+
+## Unresolved Approved-Behavior Or Current-State Gaps
+
+Record only concrete gaps discovered while validating the approved behavior basis or performing the structural review. Do not brainstorm missing use cases. If none remain, write `None`.
 
 | Item | Why It Matters | Required Action | Status |
 | --- | --- | --- | --- |
@@ -156,7 +198,7 @@ For `Migration Required`, verify isolated ownership, ordering, validation, compl
 
 ## Review Decision
 
-- `Pass`: the design is ready for implementation.
+- `Pass`: the upstream behavior basis is confirmed, the design is ready for implementation, and no in-scope machinery or finding depends on an unsupported material premise.
 - `Fail`: the design needs upstream rework before implementation should proceed.
 - `Blocked`: the review cannot finish because required input, evidence, or clarification is missing.
 
@@ -167,8 +209,11 @@ Otherwise list actionable findings with:
 - type
 - finding ID
 - severity
+- affected approved behavior, relevant existing behavior, journey, or established contract
 - evidence
+- material-premise validation ID and its supporting production trigger/path evidence when the finding depends on an assumed production, failure, or lifecycle scenario
 - required update
+- why the required update is proportionate to the verified consequence
 - recommended recipient
 
 Rules:
@@ -189,4 +234,5 @@ Rules:
 ## Latest Authoritative Result
 
 - Review Decision:
+- Material-Premise Gate (`Pass`/`Fail`/`Blocked`):
 - Notes:

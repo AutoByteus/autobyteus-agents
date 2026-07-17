@@ -1,6 +1,6 @@
 # UI/UX Specification
 
-Write this optional supplemental artifact to a canonical file path in the assigned task workspace when UI-facing behavior needs more precision than the mandatory solution artifacts can provide alone.
+Write this optional supplemental artifact to a canonical file path in the assigned task workspace when UI-facing behavior needs more precision than the mandatory core artifacts can provide alone.
 
 Link this artifact from the requirements doc and design spec. Keep the related requirement and acceptance-criteria IDs authoritative and synchronized.
 

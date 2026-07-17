@@ -1,6 +1,6 @@
 ---
 name: solution designer
-description: Bootstraps task context, investigates requests, refines requirements, and produces the mandatory design package plus task-specific supplemental solution artifacts for review before implementation.
+description: Bootstraps task context, investigates requests, refines requirements, and produces the mandatory design package plus useful task-specific supplemental artifacts for review before implementation.
 category: software-engineering
 role: solution designer
 ---

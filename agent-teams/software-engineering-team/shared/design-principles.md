@@ -1,11 +1,6 @@
 # Design Principles
 
-This is the shared design reference for the software engineering team.
-
-Use these principles for design work and review work.
-They are the shared design language for this team.
-This is the canonical design guidance file for this team: principles, practical application guidance, local patterns, design questions, smells, and short example shapes all live here.
-One especially important law for this team is the `Authoritative Boundary Rule`: callers above a subject's authoritative boundary must depend on that boundary, not on that boundary and one of its internals at the same time.
+This is the canonical shared design reference for the software engineering team. Use it for design work and technical review; it contains the team's principles, practical guidance, local patterns, design questions, smells, and short example shapes.
 
 ## Contents
 
@@ -32,7 +27,15 @@ One especially important law for this team is the `Authoritative Boundary Rule`:
 
 ## Core Principles
 
-### 1. Data-Flow Spine Inventory and Clarity
+Apply these principles from behavioral foundation through macro structure before detailed checks. The product-reachability gate in Principle 6 is conditional: invoke it only when a concrete check produces a material premise, not as a separate edge-case discovery stage.
+
+### 1. Approved Behavior And Production Reality
+
+- Architecture review and code review are technical reviews, not a second business-approval process. Begin by understanding the approved business intent and use the approved requirements as the intended-behavior authority. If they are materially ambiguous or inconsistent, return the gap instead of judging, redefining, or inventing behavior.
+- Before applying structural principles, establish the relevant behavioral baseline: existing behavior, the approved change, and behavior that must remain unchanged or outside scope.
+- Understand the complete relevant behavior and production path from a supported trigger or governing contract to its meaningful outcome. The behavior may be user-initiated, system-initiated, operational, or contract-driven. Trace enough of its lifecycle boundaries to judge the change correctly; this does not require understanding unrelated parts of the product.
+
+### 2. Data-Flow Spine Inventory and Clarity
 
 - Identify and inventory the relevant data-flow spines for each in-scope use case.
 - A practical spine inventory row should usually capture:
@@ -65,7 +68,7 @@ One especially important law for this team is the `Authoritative Boundary Rule`:
   - `Exposure Composer -> Browser Surface`
 - If the declared spine inventory is incomplete, or if the main line / secondary line / bounded local spines are hard to draw, the design is probably fragmented.
 
-### 2. Ownership Clarity and Boundary Encapsulation
+### 3. Ownership Clarity and Boundary Encapsulation
 
 - Each main-line node must own something concrete:
   - state
@@ -79,10 +82,9 @@ One especially important law for this team is the `Authoritative Boundary Rule`:
 - When additional responsibilities are needed to make one node work, split them into clear off-spine concerns around that owner instead of creating hidden mixed-concern blobs.
 - If a concern has no clear owner, the boundary is wrong.
 - Authoritative Boundary Rule (mandatory): callers above a subject's authoritative boundary must depend on that boundary, not on that boundary and one of its internals at the same time. This is the `no boundary bypass / no mixed-level dependency` rule.
-- When one boundary intentionally encapsulates lower-level concerns, callers above it should depend on the authoritative outer boundary instead of bypassing it and mixing in the internals directly.
 - API/interface/query/command shape should be derived from this ownership and boundary model, not designed independently from it.
 
-### 3. Off-Spine Concerns Around The Spine
+### 4. Off-Spine Concerns Around The Spine
 
 - Off-spine concerns should serve a clear owner on the spine.
 - Keep off-spine concerns off the main line unless they truly own core sequencing.
@@ -91,7 +93,7 @@ One especially important law for this team is the `Authoritative Boundary Rule`:
 - `Spine`, `owner`, and `off-spine concern` are architecture relationship terms, not naming templates.
 - Do not name files, folders, services, classes, or types with vague labels like `Support`, `Supporting`, `OffSpine`, `SideConcern`, or `Helper` just because they sit off the main line. Name them by the concrete concern they own.
 
-### 4. Current-Schema Runtime And Proportionate Persisted-Data Transitions
+### 5. Current-Schema Runtime And Proportionate Persisted-Data Transitions
 
 - A code-model, serialization, or storage-schema change triggers persisted-data analysis, not an automatic migration.
 - Decide explicitly whether existing data is `Not Affected`, `Directly Usable — No Migration`, `Discard or Rebuild`, `Migration Required`, or `Undetermined`.
@@ -104,6 +106,23 @@ One especially important law for this team is the `Authoritative Boundary Rule`:
 - Do not rewrite large data sets merely for representational cleanliness. Weigh I/O, downtime, corruption exposure, recovery complexity, and rollout constraints against the migration's concrete benefit.
 - If the evidence is insufficient, choose `Undetermined` and investigate or block the design rather than assuming either migration or safety.
 
+### 6. Product-Reachability Gate For Material Premises (Only When Needed)
+
+- Apply this gate only when a concrete design or implementation check produces a prospective finding or proposed or existing mechanism that depends on a material production, failure, or lifecycle premise. Do not brainstorm hypothetical edge cases as a separate completeness exercise.
+- `Product Reachability Rule` (mandatory): a premise may affect design or review only when normal product execution, an explicitly supported user, system, or operational action, or an established product, security, or operational contract can produce it from a real supported state without manually mutating hidden state or relying on test-only or synthetic setup to create the initiating state.
+- Classify the premise before it can affect a design or review decision:
+  - `Reachable`: product-supported execution or a governing contract provides a concrete current or approved target-production trigger and path.
+  - `Not Reachable`: the relevant current or approved target behavior and lifecycle do not produce the state. Do not require design or code for it in the current scope.
+  - `Unclear`: material evidence is missing. Investigate or block the dependent decision instead of prescribing speculative machinery.
+- The existence of a method, state field, generic capability, fallback branch, defensive mechanism, or ability to mutate internal files is not by itself evidence that the product produces a scenario. An internal file is not a user-operated surface unless the product explicitly exposes it as one.
+- A test-only caller, synthetic reproduction, or artificially constructed state may reproduce an already established product path; it cannot establish that the path exists.
+- Reachability requires a complete witness: the product-supported initiating trigger or governing contract, the concrete current or approved target caller/event path, the claimed state at the relevant lifecycle point, and the material consequence. Trace forward from the supported trigger; do not reason backward from a fallback branch, synthetic reproduction, or test and invent an initiating cause. Mechanical possibility at any one link is insufficient.
+- Classify distinct initiating conditions separately when their evidence or consequence differs. Do not use an `A or B or C` list to create aggregate reachability; one real but irrelevant condition does not validate the speculative conditions or the claimed consequence.
+- Manual tampering, arbitrary deletion or corruption, unsupported data/schema versions, infrastructure failure, or interrupted execution are outside scope by default. Count one only when the product explicitly supports the relevant action or state, or an established product, security, or operational contract makes it relevant and evidence establishes the actual lifecycle path.
+- Without a product-supported or observed behavior path, or a governing contract with a concrete approved target path, the premise cannot drive a finding or new machinery.
+- Persist every material premise classification in the applicable review artifact, including scenarios rejected as `Not Reachable`. Record the complete relevant behavior and production path, actual system lifecycle, and evidence that makes the premise reachable, unreachable, or unclear.
+- Require additional state, APIs, abstractions, coordination, or recovery behavior only when they address a reachable material problem and are proportionate to its consequence. Technical completeness means correctness for supported behavior and real operational constraints, not handling every imaginable state.
+
 ## Derived Checks
 
 - Separation of concerns is still mandatory, and it should get stronger as the spine and ownership model become clearer. It is derived from the spine, main subject nodes, and ownership boundaries rather than treated as the starting point.
@@ -111,11 +130,10 @@ One especially important law for this team is the `Authoritative Boundary Rule`:
 - Give every affected persisted-data change an evidence-backed transition decision. Use an explicit migration boundary only when transformation is actually required; never compensate with version-specific compatibility behavior in normal business or runtime paths.
 - Removal is first-class architecture work, not optional cleanup. When clearer ownership, reusable owned structures, or better file responsibilities make redundant pieces unnecessary, name and remove/decommission those pieces explicitly in scope.
 - Dependency direction follows ownership; name allowed directions and forbidden shortcuts explicitly.
-- Authoritative Boundary Rule (mandatory): when one boundary or owner intentionally encapsulates another concern, callers above it should depend on the outer owner, not on both the outer owner and its internals at the same time.
-- This rule is about authority and encapsulation, not about specific labels like `service`, `manager`, `repository`, `controller`, or `facade`.
+- The Authoritative Boundary Rule is about authority and encapsulation, not about specific labels like `service`, `manager`, `repository`, `controller`, or `facade`.
 - If a caller needs both an outer boundary and one of that boundary's internal managers, repositories, helpers, or lower-level concerns, either the boundary is wrong or the caller is bypassing ownership. Resolve that by choosing one authoritative entrypoint, or by redesigning the boundary and responsibilities explicitly.
 - If callers only bypass an internal concern because the outer boundary does not expose enough usable API, fix that by strengthening the authoritative boundary or by reshaping ownership explicitly. Do not normalize the bypass as the steady-state design.
-- Draft file responsibilities first. Then extract reusable owned structures where repetition appears, re-tighten the file responsibilities, and only after that finalize folder/path mapping.
+- Finalize folder/path mapping only after drafting file responsibilities, extracting any reusable owned structures, and re-tightening those responsibilities.
 - Reusable owned structures must also be semantically tight: remove redundant attributes, avoid overlapping parallel representations for the same domain subject, and keep each field's meaning singular and explicit.
 - Shared cores and specialized variants are valid only when the shared base is truly coherent. Do not create one-for-all base structures that collect mostly-optional fields for unrelated cases; prefer meaningful specialization or composition under a clear subsystem owner.
 - File placement must follow ownership; move or split files when their paths no longer match their real concern. Optional module groupings may be used inside a subsystem only when they improve readability.
@@ -348,6 +366,7 @@ Do not introduce a pattern if it obscures the spine, blurs ownership, or creates
 
 ## Design Smells
 
+- A technical finding or new machinery is justified only by a hypothetical state, generic capability, or test-only path rather than approved behavior and current or target-production reachability
 - Many peer coordinators with no obvious main line
 - Important spines are left implicit instead of being named
 - The named spine stops at the local edited helper path and hides the real initiating surface, authoritative owner boundary, or downstream consequence

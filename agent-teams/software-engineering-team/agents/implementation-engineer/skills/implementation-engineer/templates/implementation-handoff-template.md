@@ -7,10 +7,18 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Requirements doc:
 - Investigation notes:
 - Design spec:
-- Supplemental solution artifacts:
+- Supplemental task artifacts:
 - Design review report:
 
 ## What Changed
+
+## Reviewed Behavior Implementation Trace
+
+Reuse the design spec's stable behavior IDs. Record the actual implementation path and outcome without copying the full upstream behavior narrative.
+
+| Behavior ID | Approved Change / Preserved Outcome | Implemented Production Path / Key Files | Result / Notes |
+| --- | --- | --- | --- |
+|  |  |  |  |
 
 ## Key Files Or Areas
 
@@ -50,9 +58,23 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 ## Local Implementation Checks Run
 
-Record only implementation-scoped checks here, such as build, typecheck, unit tests, and narrow integration checks around the changed code.
-Do not stand up API/E2E execution environments or treat that work as part of this section.
+Record only implementation-scoped checks here, such as build, typecheck, unit tests, narrow integration checks around the changed code, and the normal development or preview setup needed for frontend self-validation.
+Do not stand up broader downstream API/E2E execution environments or treat that work as part of this section.
 Do not report API, E2E, or broader executable checks as passed in this artifact.
+
+## Frontend Rendered-Result Check (When Applicable)
+
+For frontend-affecting work, summarize the implementation feedback loop without turning this into an API/E2E report:
+
+- Affected surfaces / journeys:
+- Approved UI/UX, interaction, requirement, or design references:
+- Existing design system, shared components, and adjacent product surfaces reviewed:
+- Project development / preview instructions and rendered surface used:
+- States, layouts, viewports, and interactions inspected:
+- Visual or interaction issues found and corrected:
+- Supporting evidence and remaining unverified states or limitations:
+
+If the change does not affect a rendered frontend, write `Not Applicable` with a short reason. This check records implementation self-validation and polish; it is not downstream API/E2E sign-off.
 
 ## Downstream Coverage Hints / Suggested Scenarios
 

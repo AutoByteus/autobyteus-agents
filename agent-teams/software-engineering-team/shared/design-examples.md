@@ -8,6 +8,7 @@ Use them to learn how a good design spec can read when the architecture is organ
 - ownership
 - off-spine concerns around the spine
 - interface boundaries with explicit identity shape
+- approved behavior, production journeys, and edge-case reachability
 - derived subsystem, optional module grouping, folder, and file placement
 
 Do not copy these literally.
@@ -27,6 +28,7 @@ The examples are intentionally detailed. Preserve them rather than shortening or
 - [Example 6: Generic List Surface To Avoid](#example-6-generic-list-surface-to-avoid)
 - [Example 7: Current-Schema Runtime With Required Data Migration](#example-7-current-schema-runtime-with-required-data-migration)
 - [Example 8: Schema Contraction With No Data Migration](#example-8-schema-contraction-with-no-data-migration)
+- [Example 9: Rejecting An Unreachable Edge Case During Technical Review](#example-9-rejecting-an-unreachable-edge-case-during-technical-review)
 - [Common Bad-Practice Patterns](#common-bad-practice-patterns)
 - [How To Use These Examples](#how-to-use-these-examples)
 
@@ -782,6 +784,105 @@ This is bad when no concrete requirement needs the rewrite. It converts a safe m
 
 A stored representation does not need to be byte-for-byte identical to the current in-memory model. When the normal reader consumes the data correctly and required meaning is preserved, record the no-migration decision and its evidence instead of rewriting data for representational cleanliness.
 
+## Example 9: Rejecting An Unreachable Edge Case During Technical Review
+
+### Situation
+
+A desktop application manages settings for multiple server nodes. Selecting a node opens or focuses a separate node-specific window. During window bootstrap, the settings store is bound to that window's node and remains bound for the lifetime of the window.
+
+A settings card saves several values through an existing per-setting update action. Elsewhere in the codebase, a separate mobile-session flow can call `bindNodeContext(...)`, and the store contains a `bindingRevision` field.
+
+A reviewer notices that each setting update can resolve the current client. From those local facts alone, the reviewer imagines that the window could switch from node A to node B in the middle of one save and proposes:
+
+- a captured client for the whole save
+- revision fencing
+- rebinding state
+- partial-result types
+- new recovery behavior
+- additional localization and tests
+
+Those mechanisms are technically coherent, but the premise must be checked against the supported product journey before they become design requirements.
+
+### Upstream Behavior And Production-Path Map
+
+The approved behavior is to edit settings for the node represented by the current node-specific window. No requirement introduces in-place node switching for that window.
+
+The solution designer records this basis before review:
+
+| Behavior ID | Kind | Approved Requirement / Intent | Approved Trigger / Contract | Relevant Existing Behavior And Evidence | Approved Change / Preserved Outcome | Target Production Path / Lifecycle And Spine ID(s) |
+| --- | --- | --- | --- | --- | --- | --- |
+| `BEH-SETTINGS-001` | User | Settings apply to the node represented by the current node-specific window | User opens or focuses one node-specific window | Window creation/focus, bootstrap binding, production callers of `bindNodeContext(...)`, and the settings action show that node identity remains stable for the window lifetime | Preserve node identity while saving the approved setting changes | `DS-SETTINGS-001`: `Node Manager -> node-specific window -> bootstrap binding -> settings card -> existing setting action` |
+
+The architecture reviewer validates this map against the approved requirements, investigation evidence, and current code before applying structural checks. The relevant evidence shows:
+
+- ordinary desktop node selection opens or focuses a node-specific window
+- bootstrap binds the store once for that window
+- the settings card does not expose an in-window node-switch action
+- the only normal `bindNodeContext(...)` caller belongs to a separate mobile-session lifecycle
+- `bindingRevision` protects that separate lifecycle; its existence does not prove desktop rebinding
+
+### Material Edge-Case Record
+
+#### `EDGE-SETTINGS-001` — Node binding changes during one multi-setting save
+
+- Related approved requirement or established contract: settings apply to the node represented by the current node-specific window.
+- Relevant behavior ID(s): `BEH-SETTINGS-001`.
+- Product-supported initiating trigger or governing contract, with evidence: the user opens or focuses one node-specific window; the window creation and focus path establishes that supported trigger.
+- Actual production caller/event path from that trigger to the claimed state: `Node Manager -> node-specific window -> bootstrap binding -> settings card -> existing setting action`. No caller on that path invokes node rebinding during save.
+- Lifecycle preconditions and material consequence at the claimed point: the window is already bound before the card becomes interactive and remains bound for its lifetime, so the claimed cross-node save consequence cannot occur. A generic binding method, revision field, and separate mobile caller do not change this lifecycle.
+- Reachability: `Not Reachable`.
+- Review consequence / proportionate response: do not require a revision-fenced save protocol. Reuse the existing setting action, preserve truthful partial-persistence behavior, and stop on the first actual same-node failure when that is the approved behavior.
+
+### Why The Initial Finding Is Invalid
+
+Bad finding shape:
+
+```text
+The store can rebind and exposes bindingRevision.
+Therefore a multi-setting save can cross nodes.
+Add revision fencing and rebinding recovery.
+```
+
+This finding proves only technical possibility at the level of isolated methods and fields. It does not identify a supported trigger, production caller, or lifecycle path that can produce the state.
+
+The correct review does not dismiss edge cases generally. It rejects this particular premise because the complete relevant journey cannot reach it.
+
+### Do Not Aggregate Plausible Failure Causes
+
+A reviewer evaluating snapshot recovery must not write:
+
+```text
+The snapshot can be absent after a new entity, manual deletion, schema reset,
+invalid schema, filesystem failure, or an interrupted write.
+Therefore archived history must enter recovery.
+```
+
+This combines conditions with different triggers, paths, and consequences without proving that any one of them reaches the claimed recovery behavior. Classify them separately. A new entity may be reachable but have no archive to recover; a real schema reset may not route archived history into continuation; malformed input may throw instead of entering the assumed fallback; manual deletion, corruption, infrastructure failure, or interrupted execution may have no supported in-scope journey or governing recovery contract. A synthetic reproduction that invokes the fallback proves only that the branch can run, not that a supported production journey reaches it.
+
+For any condition that is material, prove the complete witness: supported trigger or contract -> actual production path -> claimed lifecycle state -> material consequence. One real but irrelevant condition cannot validate the other conditions or the proposed recovery machinery.
+
+### When The Decision Would Change
+
+Reclassify the premise if evidence shows that the current or approved target product supports any of the following:
+
+- in-place node switching inside the settings window
+- a production event that rebinds the same window while save is active
+- concurrent lifecycle behavior that can replace the window's node context
+
+If such a path exists, record its trigger, lifecycle, material consequence, and evidence. Then evaluate whether fencing or recovery is proportionate. Until that evidence exists, classify missing material evidence as `Unclear` rather than assuming either reachability or safety.
+
+### Downstream Code-Review Use
+
+The code reviewer receives the design spec's `BEH-SETTINGS-001` map row and the design review report's `EDGE-SETTINGS-001` decision.
+
+- If the implementation preserves the node-specific window lifecycle, mark the behavior and edge-case decision `Confirmed` by ID without copying the full reasoning.
+- If the implementation introduces a real in-window rebinding path, reuse `EDGE-SETTINGS-001`, record the changed evidence, and reclassify it.
+- Do not recreate the rejected hypothetical merely because the implementation still contains `bindingRevision` or a generic binding method.
+
+### Design Lesson
+
+Technical review begins from approved behavior and the complete relevant production path. Local capability is not proof of reachability. Persisting the behavior, evidence, and decision makes the reasoning auditable, prevents unsupported complexity, and lets downstream reviewers confirm or challenge the decision when later evidence changes.
+
 ## Common Bad-Practice Patterns
 
 ### 1. Generalist Boundary
@@ -936,5 +1037,6 @@ Better direction:
 - Keep off-spine concerns around the spine.
 - Keep interface boundaries singular and identity-explicit.
 - Distinguish thin public facades from deeper governing owners when both exist.
+- Validate edge-case findings against an approved journey, production trigger, and lifecycle; record unreachable or unclear premises instead of designing from isolated technical possibility.
 - Choose `Directly Usable — No Migration`, `Discard or Rebuild`, or `Migration Required` before designing migration machinery.
 - Let files and any optional module groupings appear after the design story is already clear.

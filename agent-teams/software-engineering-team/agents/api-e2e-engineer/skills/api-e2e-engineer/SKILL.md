@@ -57,7 +57,7 @@ Do not begin with browser interaction merely because browser tools are available
 
 ## Upstream Inputs
 
-- Accept the cumulative review-passed package from `code_reviewer`: requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, design review report, implementation handoff, and code review report.
+- Accept the cumulative review-passed package from `code_reviewer`: requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, design review report, implementation handoff, and code review report.
 - Treat the full upstream package as active validation context, not just the latest implementation handoff or code review report.
 - Read the implementation handoff's `Legacy / Compatibility Removal Check` and `Persisted Data Transition Check` before finalizing coverage. Treat any non-clean answer, or any mismatch between those sections and the implementation, as an active validation signal.
 
@@ -84,7 +84,7 @@ Do not begin with browser interaction merely because browser tools are available
 
 - Before durable coverage edits, durable coverage removals, final execution, or failure rerouting, read the full upstream package and inspect the relevant repository-resident unit, integration, API, browser E2E, desktop-shell, lifecycle, CLI, or distributed coverage.
 - Write the initial investigation before changing the test suite. Keep it current as repository or runtime evidence changes the plan.
-- Map requirements, acceptance criteria, reviewed design behavior, supplemental solution artifacts, implementation-handoff notes, and code-review findings to the real changed boundaries and planned evidence.
+- Map requirements, acceptance criteria, reviewed design behavior, relevant supplemental task artifacts, implementation-handoff notes, and code-review findings to the real changed boundaries and planned evidence.
 - Classify affected surfaces explicitly, such as domain/backend logic, API/transport, frontend component, browser integration, authentication/session, web-equivalent desktop renderer, desktop shell, process lifecycle, persisted-data transition, worker/queue, distributed coordination, or external integration.
 - Treat existing tests as evidence, not authority. A test's existence does not prove that its assertion still represents approved behavior.
 - For every relevant existing durable scenario, decide `Still Valid`, `Needs Update`, `Stale / Remove`, `Replace`, `Out Of Scope`, or `Unclear`.
@@ -187,7 +187,7 @@ Browser validation is normally unnecessary for a backend-local change when valid
 - Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an exact recipient name from the visible team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
-- Include requirements doc, investigation notes, design spec, every still-relevant supplemental solution artifact, design review report, implementation handoff, code review report, coverage investigation, and execution coverage report as absolute filesystem paths.
+- Include requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, design review report, implementation handoff, code review report, coverage investigation, and execution coverage report as absolute filesystem paths.
 - Attach the complete cumulative package using the tool's reference-file input when available; do not rely only on paths in the message text.
 - For a `Fail` message to `code_reviewer`, include failing scenario and acceptance-criteria IDs, exact commands or execution mode, expected versus observed behavior, relevant logs/screenshots/artifacts, preliminary classification, and why focused failure-origin review is requested.
 - For a `Pass` message to `code_reviewer`, include the result, final confidence, broader-validation decision, residual risks, every added, updated, or removed durable coverage path, and an explicit request for proportional test-code review.

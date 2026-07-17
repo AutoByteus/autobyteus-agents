@@ -6,13 +6,23 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 ## Goal / Problem Statement
 
+## Current And Desired Behavior (Mandatory)
+
+Summarize how each relevant behavior works now and how it must work after the change. Use the stable behavior IDs from the investigation notes. State meaningful user, system, operational, or contract outcomes—not production-path detail or technical design—so this requirements doc remains precise and understandable on its own.
+
+For genuinely new behavior, write `No current supported behavior`. For a refactor or cleanup with no intended behavior change, make the preserved outcome explicit.
+
+| Behavior ID | Current Behavior | Desired Behavior | Preserved / Unchanged Behavior | Related Requirement / Acceptance-Criteria IDs |
+| --- | --- | --- | --- | --- |
+| BEH-001 |  |  |  |  |
+
 ## Investigation Findings
 
-## Supplemental Solution Artifacts
+## Relevant Supplemental Task Artifacts
 
-Use supplemental artifacts only when a separate document materially improves precision. If none are needed, write `None`.
+List only supplements that clarify or constrain requirements or acceptance criteria. Keep the complete canonical supplement inventory in the investigation notes. If none apply, write `None`.
 
-| Artifact Path | Type / Purpose | Related Requirement IDs | Related Acceptance-Criteria IDs | Status / Approval | Authoritative Relationship |
+| Artifact Path | Type / Purpose | Related Requirement IDs | Related Acceptance-Criteria IDs | Status / Approval | Relationship To Requirements |
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
 

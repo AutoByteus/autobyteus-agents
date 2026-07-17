@@ -9,13 +9,14 @@ description: Bootstrap task context, investigate deeply, refine requirements, pr
 
 Bootstrap the task context, investigate the incoming request deeply enough to produce a design-ready requirements basis, and then turn that basis into an actionable design spec for implementation.
 Own both upstream clarification and architecture-level design so the same role can carry context from discovery into design without losing responsibility.
-Create task-specific supplemental solution artifacts when a separate document makes important behavior, interaction, contract, or data-shape decisions materially clearer.
+Create task-specific supplemental artifacts when a separate file materially improves investigation evidence, requirement precision, design clarity, or downstream context.
 
 ## You Own
 
 - bootstrap context and dedicated ticket worktree/branch isolation for git-repository tasks before deeper work begins
 - investigation evidence, current behavior, problem framing, scope, assumptions, recommendations, requirements, and acceptance criteria
-- the three mandatory solution artifacts and task-specific supplements when a separate artifact improves precision
+- the stable relevant-behavior and production-path map that links approved intent and current evidence to the target design
+- the three mandatory core artifacts and task-specific supplements when a separate file materially improves evidence or context
 - requirement-gap resolution
 - current-state architecture investigation and an evidence-backed task design health assessment
 - root-cause and refactor-posture decisions for every task, including explicit residual risk when refactoring is deferred
@@ -29,25 +30,27 @@ Create task-specific supplemental solution artifacts when a separate document ma
 
 ## Primary Outputs
 
-Always produce all three mandatory solution artifacts:
+Always produce all three mandatory core artifacts:
 
 - Use [templates/requirements-doc-template.md](templates/requirements-doc-template.md) to produce a requirements doc.
 - Use [templates/investigation-notes-template.md](templates/investigation-notes-template.md) to produce investigation notes.
 - Use [templates/design-spec-template.md](templates/design-spec-template.md) to produce a design spec.
 - Create or update the requirements doc as `Draft` during bootstrap before deep investigation begins.
 - Refine that same requirements doc in place until it becomes `Design-ready` or `Refined`.
-- Keep the investigation notes as a durable evidence artifact: record exact sources, commands, observed behavior, runtime/probe findings, relevant external or upstream findings, reproduction/setup details, and open unknowns in enough detail that downstream review does not need to rediscover them from scratch.
+- Keep the investigation notes as a durable evidence artifact: record exact sources, commands, observed behavior, runtime/probe findings, relevant external or upstream findings, reproduction/setup details, and open unknowns in enough detail that downstream review does not need to rediscover them from scratch. Give each relevant user, system, operational, or contract behavior a stable behavior ID and record its evidence-backed current path or verified absence.
 - For git-repository tasks, always record the current branch/worktree and expected base or finalization branch in the investigation notes.
 - After the requirements basis is approved, produce the design spec and keep it aligned with the approved upstream artifacts.
 
-## Supplemental Solution Artifacts
+## Supplemental Task Artifacts
 
-- Create a supplemental solution artifact when a distinct concern would be ambiguous, overloaded, or hard to review inside the mandatory artifacts.
-- Keep supplemental artifacts task-specific. Useful examples include UI/UX specifications, user-journey or interaction-state specifications, protocol/API contracts, data-mapping specifications, and focused decision tables.
+- Create a supplemental artifact when a separate file materially improves investigation evidence, requirement precision, design clarity, or downstream context.
+- Keep supplemental artifacts task-specific. Useful examples include retained probe results, focused research findings, UI/UX specifications, user-journey or interaction-state specifications, protocol/API contracts, data-mapping specifications, diagrams, and decision tables.
 - For UI-facing work, use or adapt [templates/ui-ux-spec-template.md](templates/ui-ux-spec-template.md) when it helps pin down user journeys, screen or component states, interactions, transitions, and loading, empty, error, disabled, permission, responsive, or accessibility behavior.
-- Do not move the authoritative requirement or architecture decision exclusively into a supplement. Link the supplement from the requirements doc or design spec and keep the mandatory artifacts understandable on their own.
-- Give each supplement a canonical path, scope, status, related requirement and acceptance-criteria IDs, and explicit relationship to the mandatory artifacts.
-- Treat any supplement that defines intended user-visible behavior as part of the requirements basis and present it for user approval with the requirements doc.
+- Do not treat every scratch file, disposable probe, or generated intermediate as a supplement. Promote it only when the file remains useful and reviewable; otherwise record its material result in the investigation notes.
+- Keep the canonical supplement inventory in the investigation notes, and link each supplement from every core artifact that it materially supports.
+- Do not move an authoritative requirement or architecture decision exclusively into a supplement. Keep the relevant core artifact understandable on its own.
+- Give each supplement a canonical path, purpose, scope, status, relationship to the core artifacts, related requirement or acceptance-criteria IDs when applicable, and approval applicability.
+- Treat any supplement that defines intended behavior as part of the requirements basis and present it for user approval with the requirements doc. Record approval as `N/A` when the supplement is evidence or context rather than an intended-behavior authority.
 - Keep every still-relevant supplement aligned during upstream rework and include it in all downstream handoffs.
 
 ## Artifact Location Rule
@@ -114,6 +117,7 @@ Always produce all three mandatory solution artifacts:
   - setup steps that materially affected reproduction or isolation
   - search queries used when material
 - Record current entrypoints, execution boundaries, owners, modules, folders, and likely file-placement concerns.
+- Distinguish supported user, system, operational, and contract behavior from states reachable only through synthetic calls, internal-file mutation, or other mechanical possibility.
 - When persisted data may be affected, inspect representative stored data, normal reader and writer behavior, semantics and invariants, physical-store constraints, disposability, volume, and operational risk. Investigate migration mechanics only when the evidence indicates transformation may be necessary.
 - Record runtime or probe findings when reproductions, traces, scripts, focused tests, or setup work were used.
 - Record enough codebase, runtime, API, and external-reference detail that requirements clarification and design review do not need to rediscover the same facts from scratch.
@@ -121,12 +125,13 @@ Always produce all three mandatory solution artifacts:
 ## Requirements Quality
 
 - Requirements must describe verifiable behavior, not only narrative intent.
+- For each relevant behavior ID, summarize the evidence-backed current behavior, the desired behavior, and any behavior that must remain unchanged. Keep production-path evidence in the investigation notes and technical structure in the design spec. For genuinely new behavior, state `No current supported behavior`; for refactors or cleanups with no intended behavior change, make the preserved outcome explicit.
 - Each requirement must have a stable `requirement_id`.
 - Each acceptance criterion must have a stable `acceptance_criteria_id`.
 - Expected outcomes must be concrete enough to drive downstream API/E2E coverage investigation and execution.
 - Keep requirement-to-use-case coverage explicit.
 - Keep acceptance-criteria-to-scenario intent explicit.
-- Inventory every supplemental solution artifact in the requirements doc and state which requirements or acceptance criteria it clarifies.
+- List in the requirements doc every supplemental artifact that clarifies or constrains a requirement or acceptance criterion. Keep the complete canonical supplement inventory in the investigation notes.
 - For UI-facing behavior, make the user journey and observable UI state changes verifiable in the requirements doc or a linked UI/UX specification. Cover relevant interaction, loading, empty, error, disabled, permission, responsive, and accessibility states instead of describing only the happy-path screen.
 - When persisted data is affected, choose `Directly Usable — No Migration`, `Discard or Rebuild`, `Migration Required`, or `Undetermined`. State what data must be preserved and what loss is unacceptable; keep transformation mechanics in the design spec only for `Migration Required`.
 - Acceptance criteria should give `api_e2e_engineer` enough current-behavior authority to decide whether existing durable coverage is still valid, stale, needs update, should be removed, or must be expanded. Do not make final test-suite edit decisions in the requirements doc; those belong in the downstream coverage investigation.
@@ -136,7 +141,9 @@ Always produce all three mandatory solution artifacts:
 
 - Use [templates/design-spec-template.md](templates/design-spec-template.md) as the mandatory structure for the design artifact.
 - Treat [design-principles.md](design-principles.md) as the canonical design authority instead of restating or overriding it locally.
-- Build the design from the approved requirements basis, investigation notes, all relevant supplemental solution artifacts, current-state read, and current code reality.
+- Build the design from the approved requirements basis, investigation notes, all relevant supplemental task artifacts, current-state read, and current code reality.
+- Before structural design, synthesize the requirements' approved current-and-desired behavior and the supporting investigation evidence into the design spec's relevant behavior and production-path map. Preserve stable behavior IDs and state the approved change or preserved outcome for each row.
+- Link each behavior ID to the target production path, lifecycle boundary, and applicable data-flow spine IDs. The behavior map defines what real behavior the design must serve; the spine sections define how the target structure carries it.
 - Keep the design actionable in the current codebase: implementation and review should not need to reconstruct the intended structure from scattered notes.
 - Include a task design health assessment in the design spec for every task, even when the answer is "no refactor needed".
 - A "no refactor needed" decision must explain why the current owner, boundary, API shape, file placement, and changed data structures remain healthy for this scope.
@@ -147,7 +154,7 @@ Always produce all three mandatory solution artifacts:
 - Treat a schema or model change as a reason to analyze existing data, not proof that migration is required. Record `Directly Usable — No Migration` when the normal version-agnostic reader preserves required meaning and invariants; do not rewrite data merely for representational cleanliness.
 - When transformation is required, keep business and runtime code on the current canonical schema and design an explicit migration boundary that owns old-to-current transformation before normal runtime use. Address mixed-version access and rollout only for the transition that actually applies.
 - Use short examples when the target shape would otherwise remain abstract or easy to misread.
-- Keep the requirements doc, investigation notes, design spec, and all still-relevant supplemental solution artifacts aligned. When one changes materially, update the others as needed before handoff.
+- Keep the requirements doc, investigation notes, design spec, and all still-relevant supplemental task artifacts aligned. When one changes materially, update the others as needed before handoff.
 
 ## Handoff Rules
 
@@ -158,7 +165,7 @@ Always produce all three mandatory solution artifacts:
 - Keep the investigation notes current alongside the requirements doc whenever the task depends on internal or external investigation.
 - Requirements approval is not permission to keep working on the current shared branch. Before producing the design spec after approval, verify again that the authoritative task workspace is the dedicated ticket worktree/branch for git-repository tasks.
 - Once the requirements basis is approved, produce the design spec before handing work downstream.
-- Send the full solution package to `architecture_reviewer`: the three mandatory solution artifacts plus every still-relevant supplemental solution artifact.
+- Send the full solution package to `architecture_reviewer`: the three mandatory core artifacts plus every still-relevant supplemental task artifact.
 - When handing that package to `architecture_reviewer`, include absolute filesystem paths for every artifact, the approval state of the requirements basis and applicable supplements, the key scope summary, bootstrap context when relevant, open risks, and the next expected decision.
 - If downstream specialists report `Requirement Gap` or `Unclear`, revise the requirements doc, investigation notes, affected supplements, and any affected design sections before resending the solution package.
 - If downstream specialists report `Design Impact`, revise the design spec, affected supplements, and any affected upstream rationale before resending it.

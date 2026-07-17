@@ -11,7 +11,7 @@ Keep one canonical report path across reruns. Reuse finding IDs for unresolved f
 - Review Round:
 - Trigger:
 - Requirements Doc Reviewed As Context:
-- Supplemental Solution Artifacts Reviewed As Context:
+- Supplemental Task Artifacts Reviewed As Context:
 - Original Code Review Report:
 - Coverage Investigation:
 - Execution Coverage Report:
