@@ -1,0 +1,11 @@
+{
+  "toolNames": [
+    "edit_file",
+    "read_file",
+    "write_file",
+    "run_bash"
+  ],
+  "skillNames": [
+    "architecture-visualizer"
+  ]
+}
