@@ -163,13 +163,14 @@ For each new or reclassified premise, use this shape:
 - Origin: `New` / `Reclassified from <architecture-premise-id>`
 - Related approved requirement or established contract:
 - Relevant behavior ID(s):
-- Product-supported initiating trigger or governing contract, with evidence:
-- Actual production caller/event path from that trigger to the claimed state:
+- Product-supported initiating surface, action, event, or governing contract that exists independently of the premise or mechanism under review:
+- Evidence that the relevant user, system, operator, or governing contract can initiate this path in current or approved target behavior:
+- Forward current or approved target production caller/event path from that trigger to the claimed state:
 - Lifecycle preconditions and material consequence at the claimed point:
 - Reachability: `Reachable` / `Not Reachable` / `Unclear`
 - Review consequence / proportionate response:
 
-Reuse the architecture-review premise ID when reclassifying it; assign a new stable ID only to a new premise. Apply the shared product-reachability rule. `Reachable` requires the completed witness above; `Not Reachable` cannot drive a finding, score deduction, or machinery; materially `Unclear` requires investigation or routing.
+Reuse the architecture-review premise ID when reclassifying it; assign a new stable ID only to a new premise. Apply the shared product-reachability rule. A record is incomplete when its initiating evidence begins with the downstream client, SDK, endpoint, handler, middleware, generic infrastructure, diff, test, or proposed mechanism whose applicability is being assessed. `Reachable` requires the completed independent, forward-traced witness above; `Not Reachable` cannot drive a finding, score deduction, defect attribution, or machinery; materially `Unclear` requires investigation or routing.
 
 ## Review Scorecard (Mandatory)
 

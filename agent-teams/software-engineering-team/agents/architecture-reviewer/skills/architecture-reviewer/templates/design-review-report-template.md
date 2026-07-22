@@ -180,13 +180,14 @@ For each recorded premise, use this shape:
 
 - Related approved requirement or established contract:
 - Relevant behavior ID(s):
-- Product-supported initiating trigger or governing contract, with evidence:
-- Concrete current or approved target production caller/event path from that trigger to the claimed state:
+- Product-supported initiating surface, action, event, or governing contract that exists independently of the premise or mechanism under review:
+- Evidence that the relevant user, system, operator, or governing contract can initiate this path in current or approved target behavior:
+- Forward current or approved target production caller/event path from that trigger to the claimed state:
 - Lifecycle preconditions and material consequence at the claimed point:
 - Reachability: `Reachable` / `Not Reachable` / `Unclear`
 - Review consequence / proportionate response:
 
-Use a stable premise ID and apply the shared product-reachability rule. `Reachable` requires the completed witness above; `Not Reachable` cannot drive a finding or in-scope machinery; materially `Unclear` requires investigation or a blocked decision.
+Use a stable premise ID and apply the shared product-reachability rule. A record is incomplete when its initiating evidence begins with the downstream client, SDK, endpoint, handler, middleware, generic infrastructure, or proposed mechanism whose applicability is being assessed. `Reachable` requires the completed independent, forward-traced witness above; `Not Reachable` cannot drive a finding or in-scope machinery; materially `Unclear` requires investigation or a blocked decision.
 
 ## Unresolved Approved-Behavior Or Current-State Gaps
 
