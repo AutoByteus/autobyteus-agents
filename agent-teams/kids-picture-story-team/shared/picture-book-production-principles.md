@@ -34,6 +34,7 @@ and book delivery.
   storyboard must explicitly say `word-free picture page`.
 - Record page text, line breaks when material, text placement, font treatment, contrast,
   safe margins, and any special characters in the storyboard and visual asset index.
+  Record the planned and actual image tools in the visual asset index and generation log.
 - Inspect the actual rendered image for spelling, punctuation, missing words, substitutions,
   accidental extra letters, awkward line breaks, clipped glyphs, contrast, and readability.
 - Never rely on a later layout overlay to repair missing or incorrect story text. Route the
@@ -81,13 +82,15 @@ Keep these artifacts cumulative and path-addressable:
 - `prompt-pack.md`
 - `visual-asset-index.md`
 - `image-generation-log.md`
-- `picture-book-review-report.md`
+- `picture-book-review-report.md`, including approved page and character manifest
+  sections when applicable
 - `book-production-plan.md`
 - `book-production-report.md`
 
-Every handoff states approval status, open risks, next action, and absolute paths. Do not
-send a candidate package as though it were approved. The reviewer manifest is the
-authoritative boundary for production inputs.
+Every handoff states its current decision or approval state, open risks, next action, and
+absolute paths. Do not send a candidate package as though it were approved. The approved
+page and character manifest sections in the review report are the authoritative boundary
+for production inputs.
 
 ## Production and export rules
 

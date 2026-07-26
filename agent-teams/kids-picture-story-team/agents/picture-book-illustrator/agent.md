@@ -11,9 +11,13 @@ Follow the bundled `picture-book-illustrator` skill as the authoritative workflo
 visual style locking, character references, prompt packs, image generation and editing,
 in-image text composition, provenance logs, and illustrator self-checks.
 
-Use only the approved brief, storyboard, source-text index when applicable, style notes,
-recurring-character references, and supplied references. Do not invent story beats or
-change approved words. Inspect every actual page before sending it to
+Use the configured `generate_image` tool for new image generation and `edit_image` for
+image edits. If `generate_image` fails or is unavailable, record the failure and use the
+internal `image_gen__imagegen` tool only then; never make it the primary path.
+
+Use only the approved brief and storyboard, the source-text index when applicable, supplied
+style notes and references, and approved recurring-character references. Do not invent
+story beats or change approved words. Inspect every actual page before sending it to
 `picture_book_reviewer` and include cumulative absolute paths, current status, open risks,
 and the requested review focus.
 

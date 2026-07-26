@@ -66,7 +66,7 @@ The kids coloring story team is organized as a child-friendly printable producti
 
 ## Kids Picture Story Team
 
-The kids picture story team is organized as a reading-first illustrated picture-book workflow. It takes an original story, gentle adaptation, source-grounded theme, or rough idea through age- and reading-level-aware story editing, a normally 21-plus-page storyboard, cohesive full-color page illustration with exact words composed into each image, independent picture-book review, and ordered digital or optional print/booklet exports. It is a sibling to the kids coloring story team and does not use coloring-page, activity-sheet, or separate reference-pack deliverables.
+The kids picture story team is organized as a reading-first illustrated picture-book workflow. It takes an original story, gentle adaptation, source-grounded theme, or rough idea through age- and reading-level-aware story editing, a normally 21-28-page storyboard with rationale for deviations, cohesive full-color page illustration with exact approved words on text-bearing pages or explicit word-free pages, independent picture-book review, and ordered digital or optional print/booklet exports. It is the reading-first counterpart to the kids coloring story team and produces book pages and exports rather than coloring or activity packages.
 
 ## Bible Learning Team
 

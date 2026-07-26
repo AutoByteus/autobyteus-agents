@@ -12,13 +12,13 @@ source defects during packaging.
 
 - approved brief, storyboard, and source-text index when applicable;
 - visual style guide and provenance artifacts;
-- `picture-book-review-report.md` with overall status `Approved`;
-- approved character and page manifests;
-- actual page files named in the page manifest.
+- `picture-book-review-report.md` with overall status `Approved` and its approved page and
+  character manifest sections;
+- actual page files named in the report's approved page manifest.
 
-Before planning, confirm the manifests cover exactly the requested page ids, order, paths,
-text status, dimensions, and final-use decisions. Stop and route any missing, contradictory,
-or unapproved input upstream.
+Before planning, confirm the report's approved page manifest covers exactly the requested
+page ids, order, paths, text status, dimensions, and final-use decisions. Stop and route
+any missing, contradictory, or unapproved input upstream.
 
 ## Outputs
 
@@ -28,7 +28,7 @@ or unapproved input upstream.
 - optional print or booklet export under `exports/` when approved;
 - `book-production-report.md`.
 
-Use `templates/book-production-report-template.md`.
+Use [book-production-report-template.md](templates/book-production-report-template.md).
 
 ## Workflow
 
@@ -41,7 +41,7 @@ Use `templates/book-production-report-template.md`.
    overlay, caption, watermark, or production note entered the package.
 4. Write the report with pass, fix required, or blocked evidence before handoff.
 5. Send the final package to `story_picture_book_author` with absolute paths, approval
-   status, reports, exports, and open limitations.
+   status, reports, exports, open limitations, and the next action.
 
 ## Routing
 
