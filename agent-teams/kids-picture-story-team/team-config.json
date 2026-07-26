@@ -1,0 +1,29 @@
+{
+  "coordinatorMemberName": "story_picture_book_author",
+  "members": [
+    {
+      "memberName": "story_picture_book_author",
+      "ref": "story-picture-book-author",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "picture_book_illustrator",
+      "ref": "picture-book-illustrator",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "picture_book_reviewer",
+      "ref": "picture-book-reviewer",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "book_production_editor",
+      "ref": "book-production-editor",
+      "refType": "agent",
+      "refScope": "team_local"
+    }
+  ]
+}

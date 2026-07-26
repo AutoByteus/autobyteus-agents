@@ -60,6 +60,10 @@ The manga video studio team is organized as a story-first creative workflow that
 
 The kids coloring story team is organized as a child-friendly printable production workflow for short multi-page A4 coloring stories, coloring bookmarks, coloring sheets, mini coloring books, and activity pages. It takes a theme, Bible verse, value, rough story, or visual idea through age-aware story/activity planning, user-approved page sequence, cute black-and-white line-art asset production, independent child-experience review, and print-ready PDF/PNG packaging. By default, each story image gets its own A4 page; combined contact sheets are preview-only unless explicitly requested.
 
+## Kids Picture Story Team
+
+The kids picture story team is organized as a reading-first illustrated picture-book workflow. It takes an original story, gentle adaptation, source-grounded theme, or rough idea through age- and reading-level-aware story editing, a normally 21-plus-page storyboard, cohesive full-color page illustration with exact words composed into each image, independent picture-book review, and ordered digital or optional print/booklet exports. It is a sibling to the kids coloring story team and does not use coloring-page, activity-sheet, or separate reference-pack deliverables.
+
 ## Bible Learning Team
 
 The Bible learning team is organized as a context-first teaching workflow that takes a passage, topic, or question from deep background research through teaching preparation, critical review, and default slide-deck production unless the user explicitly wants a teaching-only result.
