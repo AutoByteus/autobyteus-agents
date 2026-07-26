@@ -1,6 +1,6 @@
 # David And Goliath A4 Landscape Dry Run
 
-This dry run validates the `kids-coloring-story-team` structure against a concrete Bible-story example.
+This dry run validates the `kids-coloring-story-team` structure against one concrete Bible-story example. It is a domain-specific example, not a limitation on the team's general story scope.
 It is not a final user artifact; it shows whether the team has enough role boundaries, handoffs, and guardrails to create the product.
 
 ## Test Request

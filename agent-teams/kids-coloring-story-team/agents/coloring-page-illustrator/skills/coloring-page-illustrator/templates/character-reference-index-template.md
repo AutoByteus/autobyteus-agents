@@ -8,13 +8,13 @@
 
 ## Character References
 
-| Character ID | Name / Role | Pages Used | Reference Asset Path | Reference Status | Identity Locks | Color Locks | Notes |
+| Character ID | Name / Role | Pages or Items Used | Reference Asset Path | Reference Status | Identity Locks | Color Locks | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | character-shepherd | shepherd / main character | page001, page003, page005 | assets/characters/character-shepherd-reference.png | planned / self-checked / needs edit / approved / blocked | face, hair/head covering, clothing, age/body shape, key accessory | clothing, skin/hair, accessory colors |  |
 
 ## Page Reference Usage
 
-| Page ID | Character IDs Present | Reference Asset Paths Used | Usage Status | Notes |
+| Page or Item ID | Character IDs Present | Reference Asset Paths Used | Usage Status | Notes |
 | --- | --- | --- | --- | --- |
 | page001 | character-shepherd | assets/characters/character-shepherd-reference.png | planned / used / missing / blocked |  |
 
