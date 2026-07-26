@@ -11,8 +11,9 @@ together before visual production.
 
 ## Read first
 
-Read the nearby `picture-book-production-principles.md` before planning. It is the shared
-authority for page count, text-in-image rules, child safety, references, and handoffs.
+Read the nearby [picture-book-production-principles.md](picture-book-production-principles.md)
+before planning. It is the shared authority for page count, text-in-image rules, child
+safety, references, and handoffs.
 
 ## Intake and defaults
 
@@ -24,7 +25,8 @@ When unspecified, use these defaults and record them in the brief:
 
 - target age: 4-8;
 - reading level: early independent read-aloud, with short sentences and concrete words;
-- story length: 21-28 illustrated pages, unless the story rationale supports another count;
+- story length: use the shared 21-28-page default unless the story rationale supports
+  another count;
 - format: portrait picture-book pages, 8 x 10 inches or the closest requested format;
 - one complete image per page;
 - digital reading export, with print/booklet export optional;
@@ -41,7 +43,9 @@ when exact source wording matters.
 - `source-text-index.md` when sourced, translated, quoted, protected, or factual wording
   is in scope
 
-Use the templates in `templates/`.
+Use [picture-book-brief-template.md](templates/picture-book-brief-template.md),
+[picture-book-storyboard-template.md](templates/picture-book-storyboard-template.md), and
+[source-text-index-template.md](templates/source-text-index-template.md).
 
 ## Workflow
 

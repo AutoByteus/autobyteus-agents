@@ -4,7 +4,7 @@
 - Project folder:
 - Production plan:
 - Review report and approval status:
-- Page manifest:
+- Approved page manifest from review report:
 - Digital export:
 - Print/booklet export: `not in scope` / path
 
@@ -23,5 +23,5 @@
 
 - Approved page paths:
 - Export paths:
-- Known limitations:
+- Known limitations / open risks:
 - Next action:

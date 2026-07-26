@@ -20,13 +20,15 @@ self-checks before independent review.
 ## Outputs
 
 - `visual-style-guide.md`;
-- `character-reference-index.md` and assets under `assets/characters/` when needed;
+- `character-reference-index.md` and assets under `assets/characters/` when recurring
+  characters are in scope;
 - `prompt-pack.md`;
 - `visual-asset-index.md`;
 - `image-generation-log.md`;
 - one complete page image per storyboard row under `assets/pages/`.
 
-Use the templates in `templates/` and the nearby shared principles.
+Use [visual-asset-index-template.md](templates/visual-asset-index-template.md) and the
+nearby [picture-book-production-principles.md](picture-book-production-principles.md).
 
 ## Workflow
 

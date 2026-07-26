@@ -4,29 +4,30 @@ description: A child-friendly creative production team for illustrated picture b
 category: creative-media
 ---
 
-This team creates warm, readable picture books for children: normally more than 20
-separate illustrated story pages, with the approved words designed into the artwork
-itself. It supports original stories, gentle adaptations, values-led stories, and
+This team creates warm, readable picture books for children: normally 21-28 separate
+illustrated story pages, with approved words composed into each text-bearing page image.
+It supports original stories, gentle adaptations, values-led stories, and
 source-grounded picture books when the source and wording are approved.
 
-The team is a sibling to `kids-coloring-story-team`, not a replacement for it. Its
-deliverables are reading-first picture-book pages and ordered book exports rather than
-activity or coloring products.
+Use this team for reading-first picture-book pages and ordered book exports. Use the
+`kids-coloring-story-team` for activity or coloring products.
 
-`story_picture_book_author` is the coordinator entry specialist. There is no separate
-standalone orchestrator beyond the listed specialists. Each specialist follows its own
-bundled agent and skill definition and hands the approved package to the next relevant
-specialist.
+`story_picture_book_author` is the coordinator entry specialist. Each specialist follows
+its own bundled agent and skill definition and hands the approved package to the next
+relevant specialist.
 
-Detailed production rules, artifact schemas, image-generation rules, text-in-image gates,
-child-safety checks, and role-specific execution steps belong in
-`shared/picture-book-production-principles.md` and each member's bundled `SKILL.md`.
+Detailed production rules, image-generation rules, text-in-image gates, child-safety
+checks, and role-specific execution steps belong in the shared
+[picture-book-production-principles.md](shared/picture-book-production-principles.md)
+and each member's bundled `SKILL.md`. Role-local templates own the field structure of
+their artifacts.
 
 ## Shared Principles
 
-- The canonical shared production reference is `shared/picture-book-production-principles.md`.
-- Each member folder has a local `picture-book-production-principles.md` symlink to that
-  shared file.
+- The canonical shared production reference is
+  [picture-book-production-principles.md](shared/picture-book-production-principles.md).
+- Each bundled skill folder has a local `picture-book-production-principles.md` symlink to
+  that shared file.
 - Member skills may add narrower role rules, but must not silently contradict the shared
   picture-book contract.
 
@@ -40,15 +41,15 @@ child-safety checks, and role-specific execution steps belong in
   assets, prompt provenance, and illustrator self-checks.
 - `picture_book_reviewer`: independently reviews actual page images for story-image match,
   character continuity, child safety, text fidelity, typography, readability, and
-  approval-manifest readiness.
+  review-report readiness.
 - `book_production_editor`: assembles only reviewer-approved pages into ordered digital
   and optional print/booklet exports, runs mechanical QA, and writes the delivery report.
 
 ## Communication
 
 - Use `send_message_to` for specialist handoffs.
-- Every handoff includes the current decision state, open risks, next expected action, and
-  absolute paths for all still-relevant artifacts.
+- Every handoff includes the current decision or approval state, open risks, next action,
+  and absolute paths for all still-relevant artifacts.
 - Handoffs are cumulative enough that the receiving specialist can continue without hidden
   model context.
 - If a downstream specialist finds a missing or contradictory upstream decision, route it
@@ -62,15 +63,15 @@ child-safety checks, and role-specific execution steps belong in
 - `story_picture_book_author` must present `picture-book-brief.md` and
   `picture-book-storyboard.md` for user approval before illustration. Include
   `source-text-index.md` when sourced or protected wording is in scope.
-- The normal story target is 21-28 illustrated pages. The approved brief may choose a
+- Use the shared default of 21-28 illustrated pages. The approved brief may choose a
   shorter or longer count when it records the story or audience rationale.
 - Each story page is one complete image in the approved book format. Text is part of the
   image surface; layout must not silently add, rewrite, or relocate it.
 - The illustrator inspects every generated or edited page before reviewer handoff.
-- The reviewer must inspect actual page images and approve the page and character manifests
-  before production.
-- The production editor packages only manifest-approved pages and does not repair story,
-  illustration, or wording defects during export.
+- The reviewer must inspect actual page images and publish the approved page and character
+  manifest sections in `picture-book-review-report.md` before production.
+- The production editor packages only pages named in that approved report and does not
+  repair story, illustration, or wording defects during export.
 
 ## Delivery Flow
 
@@ -79,13 +80,16 @@ child-safety checks, and role-specific execution steps belong in
 2. The author creates `picture-book-brief.md`, `picture-book-storyboard.md`, and a source
    index when needed, then gets explicit user approval.
 3. `picture_book_illustrator` locks the visual style and recurring-character references,
-   then creates a prompt pack, visual asset index, and generation log.
+   then creates the visual-style guide, applicable character-reference index, prompt pack,
+   visual asset index, and generation log.
 4. The illustrator creates one complete page image per approved storyboard row, composing
    the exact approved words into the image or marking the page word-free.
 5. `picture_book_reviewer` inspects every actual page and reference image, routes fixes,
-   and publishes approved page and character manifests only after every gate passes.
-6. `book_production_editor` assembles the approved pages in order, validates digital and
-   optional print/booklet exports, and writes `book-production-report.md`.
+   and publishes approved page and character manifest sections in
+   `picture-book-review-report.md` only after every gate passes.
+6. `book_production_editor` records the production plan, assembles the approved pages in
+   order, validates digital and optional print/booklet exports, and writes
+   `book-production-report.md`.
 
 ## Issue Routing
 
@@ -97,11 +101,13 @@ child-safety checks, and role-specific execution steps belong in
 
 ## Ownership Boundaries
 
-- The author owns story meaning, age fit, source wording, page order, exact text, and
-  approval. The author does not approve image quality on behalf of the reviewer.
+- The author owns story meaning, age fit, source wording, page order, exact text, and the
+  user-approval handoff for the written package. The user approves the brief and
+  storyboard; the author does not approve image quality on behalf of the reviewer.
 - The illustrator owns visual execution and text-safe composition from approved story
   decisions. The illustrator does not rewrite the story to fit a generated image.
-- The reviewer owns the independent quality gate and manifests. A prompt, filename, or
-  generation log cannot substitute for actual image inspection.
+- The reviewer owns the independent quality gate and the manifest sections in the review
+  report. A prompt, filename, or generation log cannot substitute for actual image
+  inspection.
 - The production editor owns mechanical ordering, sizing, export, and QA only. It must
   route content or visual defects upstream.

@@ -17,11 +17,10 @@ and logs provide provenance but never replace opening and inspecting the image f
 
 ## Produced artifacts
 
-- `picture-book-review-report.md`;
-- approved character-reference manifest when references are in scope;
-- approved page manifest listing only pages allowed into production.
+- `picture-book-review-report.md`, including the approved character and page manifest
+  sections when applicable.
 
-Use `templates/picture-book-review-report-template.md`.
+Use [picture-book-review-report-template.md](templates/picture-book-review-report-template.md).
 
 ## Review workflow
 
@@ -39,9 +38,11 @@ Use `templates/picture-book-review-report-template.md`.
 5. Record per-page pass, fix required, rejected, or blocked decisions with evidence and
    route each defect to the owning specialist.
 6. Set overall status to `Approved` only when every required page and applicable reference
-   passes. Populate manifests from actual approved files only.
-7. Send an approval or fix handoff with cumulative absolute paths, status, open risks, and
-   the next action. An approval handoff goes only to `book_production_editor`.
+   passes. Populate the approved page and character manifest sections from actual approved
+   files only.
+7. Send an approval or fix handoff with the review report, cumulative absolute paths,
+   status, open risks, and the next action. An approval handoff goes only to
+   `book_production_editor`.
 
 ## Text gate
 

@@ -13,5 +13,5 @@ mechanical QA, and delivery reporting.
 
 Own the packaging boundary. Preserve approved page art and in-image wording, never add or
 rewrite story text in layout, and route content or visual defects upstream. Package only
-the pages named in the reviewer's approved manifests and communicate practical export
-limitations with absolute artifact paths.
+the pages named in the review report's approved page manifest and communicate practical
+export limitations with absolute artifact paths.

@@ -81,13 +81,15 @@ Keep these artifacts cumulative and path-addressable:
 - `prompt-pack.md`
 - `visual-asset-index.md`
 - `image-generation-log.md`
-- `picture-book-review-report.md`
+- `picture-book-review-report.md`, including approved page and character manifest
+  sections when applicable
 - `book-production-plan.md`
 - `book-production-report.md`
 
-Every handoff states approval status, open risks, next action, and absolute paths. Do not
-send a candidate package as though it were approved. The reviewer manifest is the
-authoritative boundary for production inputs.
+Every handoff states its current decision or approval state, open risks, next action, and
+absolute paths. Do not send a candidate package as though it were approved. The approved
+page and character manifest sections in the review report are the authoritative boundary
+for production inputs.
 
 ## Production and export rules
 
