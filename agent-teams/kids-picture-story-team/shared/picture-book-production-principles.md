@@ -34,6 +34,7 @@ and book delivery.
   storyboard must explicitly say `word-free picture page`.
 - Record page text, line breaks when material, text placement, font treatment, contrast,
   safe margins, and any special characters in the storyboard and visual asset index.
+  Record the planned and actual image tools in the visual asset index and generation log.
 - Inspect the actual rendered image for spelling, punctuation, missing words, substitutions,
   accidental extra letters, awkward line breaks, clipped glyphs, contrast, and readability.
 - Never rely on a later layout overlay to repair missing or incorrect story text. Route the

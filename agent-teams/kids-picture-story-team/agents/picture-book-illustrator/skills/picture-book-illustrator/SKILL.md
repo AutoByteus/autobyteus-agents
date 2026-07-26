@@ -30,10 +30,29 @@ self-checks before independent review.
 Use [visual-asset-index-template.md](templates/visual-asset-index-template.md) and the
 nearby [picture-book-production-principles.md](picture-book-production-principles.md).
 
+## Required reads
+
+Read the approved `picture-book-brief.md` and `picture-book-storyboard.md` and the
+nearby shared principles before creating prompts, references, or page images. The
+storyboard is authoritative for page order, story beat, exact words or word-free status,
+characters, motifs, text placement, and page-turn intent.
+
+## Image tool policy
+
+- Use the configured `generate_image` tool for a new image that is not derived from an
+  existing image.
+- Use the configured `edit_image` tool when modifying an existing image or using an
+  approved character reference as the edit source.
+- If `generate_image` fails or is unavailable, record the failure and use the internal
+  `image_gen__imagegen` tool only then. Do not use it as the default path.
+
 ## Workflow
 
-1. Verify upstream approval, page count, format, language, exact text, page order, and
-   recurring-character requirements. Stop and route contradictions to the author.
+1. Verify the upstream approval state, target age, reading level, language, page count,
+   dimensions, orientation, exact text or word-free status, page order, and
+   recurring-character requirements. Confirm that any relevant source-text index and
+   supplied references are present. Stop and route missing or contradictory decisions to
+   the author.
 2. Lock the visual family: medium, palette, lighting, composition, texture, typography,
    safe margins, and age-appropriate detail density.
 3. Create or approve a reference sheet for every recurring main character unless an
@@ -41,15 +60,20 @@ nearby [picture-book-production-principles.md](picture-book-production-principle
    reference and record identity locks and affected page ids.
 4. Create stable prompt ids and register every page before generation. Each page prompt
    names exactly one storyboard row, exact words or word-free status, characters and
-   references, text placement, dimensions, and forbidden production text.
-5. Generate or edit one complete page image at a time. Use an approved character reference
-   as an image input/reference when a recurring character appears. Compose the exact
-   approved words into the image; never let a prompt invent captions.
-6. Inspect every actual output. Record passed, needs edit, rejected, or blocked status,
-   defects, source paths, and next action in the index and log. Rework failures from the
-   correct approved source.
-7. Handoff only inspected candidates to `picture_book_reviewer`, including cumulative
-   absolute paths and the explicit review focus.
+   references, text placement, dimensions, and forbidden production text. Record the
+   intended tool route and source path in the visual asset index.
+5. Create or edit one complete page image at a time using the image tool policy. Use an
+   approved character reference as an image input/reference when a recurring character
+   appears. Compose the exact approved words into the image; never let a prompt invent
+   captions.
+6. Inspect every actual output. Record the tool used, prompt id, source and candidate
+   paths, passed/needs-edit/rejected/blocked status, defects, and next action in the index
+   and log. Rework failures from the correct approved source.
+7. Handoff only inspected candidates to `picture_book_reviewer`, together with the
+   approved upstream brief and storyboard, the source-text index when relevant,
+   visual-style guide, applicable character references, prompt pack, visual asset index,
+   image-generation log, cumulative absolute paths, current status, open risks, and the
+   explicit review focus.
 
 ## Page checks
 

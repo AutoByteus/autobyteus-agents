@@ -1,6 +1,6 @@
 ---
 name: Kids Picture Story Team
-description: A child-friendly creative production team for illustrated picture books with story text composed directly into each page image.
+description: A child-friendly creative production team for illustrated picture books with approved text composed into each text-bearing page image.
 category: creative-media
 ---
 
@@ -19,8 +19,8 @@ relevant specialist.
 Detailed production rules, image-generation rules, text-in-image gates, child-safety
 checks, and role-specific execution steps belong in the shared
 [picture-book-production-principles.md](shared/picture-book-production-principles.md)
-and each member's bundled `SKILL.md`. Role-local templates own the field structure of
-their artifacts.
+and each member's bundled `SKILL.md`. Role-local templates define fields for artifacts
+that have templates; the role skills define requirements for the remaining artifacts.
 
 ## Shared Principles
 
