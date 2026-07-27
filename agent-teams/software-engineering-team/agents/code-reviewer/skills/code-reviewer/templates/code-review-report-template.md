@@ -163,13 +163,15 @@ For each new or reclassified premise, use this shape:
 - Origin: `New` / `Reclassified from <architecture-premise-id>`
 - Related approved requirement or established contract:
 - Relevant behavior ID(s):
-- Product-supported initiating trigger or governing contract, with evidence:
-- Actual production caller/event path from that trigger to the claimed state:
+- Initiating basis kind: `User` / `System` / `Operational` / `Contract`
+- Independent product-supported initiating trigger or applicable governing contract:
+- Support evidence: for `User`, name the exposed product surface and supported user action; for `System`, the supported runtime event; for `Operational`, the supported operator action; for `Contract`, why the governing contract applies:
+- Forward current or approved target production caller/event path that exercises the initiating basis and reaches the claimed state:
 - Lifecycle preconditions and material consequence at the claimed point:
 - Reachability: `Reachable` / `Not Reachable` / `Unclear`
 - Review consequence / proportionate response:
 
-Reuse the architecture-review premise ID when reclassifying it; assign a new stable ID only to a new premise. Apply the shared product-reachability rule. `Reachable` requires the completed witness above; `Not Reachable` cannot drive a finding, score deduction, or machinery; materially `Unclear` requires investigation or routing.
+Reuse the architecture-review premise ID when reclassifying it; assign a new stable ID only to a new premise. Apply the shared product-reachability rule. A record is incomplete when its initiating basis is only the downstream client, SDK, endpoint, handler, middleware, generic infrastructure, diff, test, or proposed mechanism whose applicability is being assessed. `Reachable` requires the complete independent, forward-traced witness above; `Not Reachable` cannot drive a finding, score deduction, defect attribution, or machinery; materially `Unclear` requires investigation or routing.
 
 ## Review Scorecard (Mandatory)
 

@@ -827,8 +827,10 @@ The architecture reviewer validates this map against the approved requirements, 
 
 - Related approved requirement or established contract: settings apply to the node represented by the current node-specific window.
 - Relevant behavior ID(s): `BEH-SETTINGS-001`.
-- Product-supported initiating trigger or governing contract, with evidence: the user opens or focuses one node-specific window; the window creation and focus path establishes that supported trigger.
-- Actual production caller/event path from that trigger to the claimed state: `Node Manager -> node-specific window -> bootstrap binding -> settings card -> existing setting action`. No caller on that path invokes node rebinding during save.
+- Initiating basis kind: `User`.
+- Independent product-supported initiating trigger or applicable governing contract: the user opens or focuses one node-specific window.
+- Support evidence: the Node Manager exposes that product surface and its window creation/focus path implements the supported user action.
+- Forward current or approved target production caller/event path that exercises the initiating basis and reaches the claimed state: `Node Manager -> node-specific window -> bootstrap binding -> settings card -> existing setting action`. No caller on that path invokes node rebinding during save.
 - Lifecycle preconditions and material consequence at the claimed point: the window is already bound before the card becomes interactive and remains bound for its lifetime, so the claimed cross-node save consequence cannot occur. A generic binding method, revision field, and separate mobile caller do not change this lifecycle.
 - Reachability: `Not Reachable`.
 - Review consequence / proportionate response: do not require a revision-fenced save protocol. Reuse the existing setting action, preserve truthful partial-persistence behavior, and stop on the first actual same-node failure when that is the approved behavior.
