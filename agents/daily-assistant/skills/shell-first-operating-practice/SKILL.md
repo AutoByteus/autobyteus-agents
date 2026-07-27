@@ -17,16 +17,21 @@ This skill assumes the agent has a shell execution tool such as `run_bash`. If t
 
 ## Core Operating Loop
 
-1. Orient: at task start, run `pwd` unless the host prompt already required and performed
+1. Understand: identify the user's goal, constraints, and expected deliverable. Solve the
+   root cause rather than only the visible symptom.
+2. Preamble: before tools on a non-trivial task, briefly state the next useful action in
+   one or two sentences.
+3. Orient: at task start, run `pwd` unless the host prompt already required and performed
    it. In a repository, identify the root and branch when useful, and check current changes
    before editing tracked files.
-2. Inspect: read only the context needed for the task.
-3. Search: use precise search terms before browsing directories.
-4. Plan: choose the smallest useful next action.
-5. Execute: compose deterministic, bounded, non-interactive commands.
-6. Reassess and verify: analyze the result, adjust the plan when needed, and run a check
+4. Inspect: read only the context needed for the task.
+5. Search: use precise search terms before browsing directories.
+6. Plan: choose the smallest useful next action and account for dependencies and meaningful
+   verification steps.
+7. Execute: compose deterministic, bounded, non-interactive commands.
+8. Reassess and verify: analyze the result, adjust the plan when needed, and run a check
    that would catch the likely failure.
-7. Report: summarize changed state, verification, and remaining caveats.
+9. Report: summarize changed state, verification, and remaining caveats clearly.
 
 ## Delivery Gate
 
@@ -44,6 +49,9 @@ directory listings.
 - Quote paths and variables. Assume file names may contain spaces.
 - Preserve existing user work. Never discard or overwrite unrelated changes.
 - Avoid destructive operations unless the user explicitly asked for them.
+- Keep changes minimal and focused, and match the style and structure of the existing
+  project.
+- Preserve complete file paths given by the user or discovered in context.
 - Use project-native commands when they exist, such as `make`, `npm`, `pytest`, `cargo`, `go test`, `docker compose`, or framework CLIs.
 - When repository-relative paths matter, use `git rev-parse --show-toplevel 2>/dev/null || pwd`.
 - Check optional tools with `which TOOL` or `command -v TOOL` before assuming `TOOL` exists.
@@ -178,6 +186,7 @@ Rules:
 - Use `git diff -- path` to inspect unstaged changes.
 - Stage only paths relevant to the task.
 - Prefer non-interactive git commands.
+- Do not create branches or commits unless the user explicitly requests them.
 - Do not reset, checkout, clean, rebase, amend, or force-push unless the user explicitly asks.
 - Preserve unrelated dirty work.
 
