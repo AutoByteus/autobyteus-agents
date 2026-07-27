@@ -24,7 +24,8 @@ This skill assumes the agent has a shell execution tool such as `run_bash`. If t
 3. Search: use precise search terms before browsing directories.
 4. Plan: choose the smallest useful next action.
 5. Execute: compose deterministic, bounded, non-interactive commands.
-6. Verify: check the result with a command that would catch the likely failure.
+6. Reassess and verify: analyze the result, adjust the plan when needed, and run a check
+   that would catch the likely failure.
 7. Report: summarize changed state, verification, and remaining caveats.
 
 ## Delivery Gate
@@ -45,7 +46,7 @@ directory listings.
 - Avoid destructive operations unless the user explicitly asked for them.
 - Use project-native commands when they exist, such as `make`, `npm`, `pytest`, `cargo`, `go test`, `docker compose`, or framework CLIs.
 - When repository-relative paths matter, use `git rev-parse --show-toplevel 2>/dev/null || pwd`.
-- Check optional tools with `which command` or `command -v command` before assuming they exist.
+- Check optional tools with `which TOOL` or `command -v TOOL` before assuming `TOOL` exists.
 - Inspect `env | sort | sed -n '1,120p'` only when environment variables are relevant.
 
 ## Command Families
