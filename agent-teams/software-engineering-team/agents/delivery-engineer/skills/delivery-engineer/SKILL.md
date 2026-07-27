@@ -37,12 +37,12 @@ Update the ticket-local handoff summary before final handoff, then use [template
 
 ## Artifact Location Rule
 
-- Write the authoritative artifact file in the assigned task workspace/worktree before any handoff message.
+- Write the authoritative artifact files in the assigned task workspace/worktree before any handoff message.
 - Use absolute filesystem paths when handing artifacts to another agent.
 
 ## Upstream Inputs
 
-- Accept the cumulative API/E2E-passed and test-reviewed delivery package from `code_reviewer`: requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, implementation handoff, code review report, coverage investigation, execution coverage report, and API/E2E test review report.
+- Accept the cumulative API/E2E-passed and test-reviewed delivery package from `code_reviewer`: requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, any existing solution revision record, implementation handoff, any existing implementation revision record, code review report, any existing code review revision record, coverage investigation, execution coverage report, any existing API/E2E revision record, and API/E2E test review report.
 - Use the full artifact chain as delivery context for docs sync and final handoff work.
 - Do not begin delivery when the latest execution coverage report does not record `Pass` or still contains an unresolved critical acceptance-criteria failure.
 - Do not begin delivery unless the latest `api-e2e-test-review-report.md` records `Pass` or `Not Applicable` with no unresolved findings.

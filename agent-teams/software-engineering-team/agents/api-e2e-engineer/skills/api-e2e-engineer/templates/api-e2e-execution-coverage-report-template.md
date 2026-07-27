@@ -4,8 +4,8 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 Keep one canonical execution coverage report path across reruns.
 Do not create versioned copies by default.
-On round `>1`, recheck prior unresolved failures first, update the prior-failure resolution section, and then record the new round result.
-The latest round is authoritative; earlier rounds remain history.
+After the initial API/E2E handoff, recheck prior unresolved failures first, update this report to the latest complete result, and record the delta in `api-e2e-revision-record.md`.
+The latest canonical report is authoritative; the revision record preserves later-round history.
 Execution may cover API, browser UI, a web-equivalent desktop renderer through the project's development workflow, project-supported desktop validation, CLI, process/lifecycle, integration, or distributed checks depending on the real boundaries being proven.
 
 ## Execution Round Meta
@@ -14,9 +14,14 @@ Execution may cover API, browser UI, a web-equivalent desktop renderer through t
 - Investigation Notes:
 - Design Spec:
 - Supplemental Task Artifacts:
+- Solution Revision Record, when present:
 - Implementation Handoff:
+- Implementation Revision Record, when present:
 - Code Review Report:
+- Code Review Revision Record, when present:
 - Coverage Investigation:
+- API/E2E Revision Record:
+- Current API/E2E Revision ID: `N/A` / `API-REV-*`
 - Current Execution Round:
 - Trigger:
 - Prior Round Reviewed:
@@ -25,12 +30,7 @@ Execution may cover API, browser UI, a web-equivalent desktop renderer through t
 Round rules:
 - Reuse the same scenario IDs across reruns for the same scenarios.
 - Create new scenario IDs only for newly discovered coverage.
-
-## Round History
-
-| Round | Trigger | Prior Unresolved Failures Rechecked | New Failures Found | Result | Latest Authoritative | Notes |
-| --- | --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |  |
+- After the initial API/E2E handoff, complete prior-failure resolution in `api-e2e-revision-record.md` before evaluating new failures.
 
 ## Investigation And Execution Basis
 
@@ -163,12 +163,6 @@ Carry forward the post-repository scores from the coverage investigation and rec
 | Dependency | Method | Why Real Dependency Was Not Used | Confidence Limitation |
 | --- | --- | --- | --- |
 |  |  |  |  |
-
-## Prior Failure Resolution Check (Mandatory On Round >1)
-
-| Prior Round | Scenario / Failure Reference | Previous Classification | Current Resolution | Evidence | Notes |
-| --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |
 
 ## Result Summary
 

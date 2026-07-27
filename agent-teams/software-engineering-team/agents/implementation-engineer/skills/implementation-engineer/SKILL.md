@@ -13,6 +13,7 @@ Implement the implementation-ready solution design, validate the changed impleme
 
 - solution execution
 - behavior-to-implementation traceability in the handoff
+- post-initial implementation-rework traceability
 - local implementation fixes
 - development commits
 - implementation-level risk visibility
@@ -23,15 +24,16 @@ Implement the implementation-ready solution design, validate the changed impleme
 ## Primary Output
 
 Use [templates/implementation-handoff-template.md](templates/implementation-handoff-template.md) to produce an implementation handoff.
+After downstream feedback causes implementation rework, use [templates/implementation-revision-record-template.md](templates/implementation-revision-record-template.md) to create or update `implementation-revision-record.md`.
 
 ## Artifact Location Rule
 
-- Write the authoritative artifact file in the assigned task workspace/worktree before any handoff message.
+- Write the authoritative artifact files in the assigned task workspace/worktree before any handoff message.
 - Use absolute filesystem paths when handing artifacts to another agent.
 
 ## Upstream Inputs
 
-- Accept the cumulative solution package directly from `solution_designer`: requirements doc, investigation notes, design spec, and every still-relevant supplemental task artifact.
+- Accept the cumulative solution package directly from `solution_designer`: requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, and—when solution rework has occurred—`solution-revision-record.md` plus still-relevant triggering downstream reports, revision records, or evidence.
 - On an implementation-owned `Local Fix` from `code_reviewer` or `delivery_engineer`, accept the cumulative package plus the targeted source or packaging evidence and preserve all still-relevant upstream artifacts.
 - Treat the full solution package as active implementation context, not just the design spec in isolation.
 - Confirm that the design spec records `Implementation Readiness: Implementation Ready`, with use-case/behavior coverage, production-path/data-flow-spine coverage, and shared-design-principles validation all passing and no blocking gaps. Otherwise route `Unclear` to `solution_designer` instead of reconstructing or inventing the missing design.
@@ -61,6 +63,14 @@ Use [templates/implementation-handoff-template.md](templates/implementation-hand
 - Route boundary-bypass implementation pressure back as `Design Impact`.
 - Route compatibility-shim-only paths back as `Design Impact` or `Requirement Gap`.
 
+## Implementation Rework Record
+
+- Do not create `implementation-revision-record.md` for the initial implementation. After the initial implementation handoff, create or update it for every implementation change made in response to `Local Fix`, `Design Impact`, `Requirement Gap`, `Unclear`, failure-origin, or delivery feedback.
+- Keep one canonical file across all later rounds and add one concise `IR-*` entry per implementation rework cycle.
+- Link each entry to the triggering role, report, round, and finding IDs. Reference applicable `SR-*`, `CRR-*`, and `API-REV-*` entries; use `N/A` for each revision type that does not apply.
+- Record why the implementation changed, the behavior or requirement IDs affected, the actual code delta and locations, focused validation, and remaining limitations.
+- Keep the current code and `implementation-handoff.md` as the authority. Use the revision record to help the reviewer locate and understand the delta, not as proof that the finding is resolved.
+
 ## Frontend Implementation Feedback Loop (When Applicable)
 
 - Apply this loop only when the change affects a rendered frontend or user interaction. For backend-only or otherwise non-visual work, record `Not Applicable` with a short reason in the handoff.
@@ -76,7 +86,8 @@ Use [templates/implementation-handoff-template.md](templates/implementation-hand
 - Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an exact recipient name from the visible team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
-- Send the cumulative implementation package to `code_reviewer`: requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, and implementation handoff.
+- Send the cumulative implementation package to `code_reviewer`: requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, any existing solution revision record, implementation handoff, any existing implementation revision record, and still-relevant triggering reports, revision records, or evidence.
+- On rework, include the triggering report or evidence and identify the current `IR-*` entry, applicable `SR-*`, `CRR-*`, and `API-REV-*` entries or `N/A`, and finding IDs in the message.
 - Use absolute filesystem paths for every artifact in that handoff.
 - Route `Design Impact` to `solution_designer`.
 - Route `Requirement Gap` to `solution_designer`.

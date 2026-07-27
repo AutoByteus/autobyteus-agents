@@ -55,9 +55,16 @@ Always produce all three mandatory core artifacts:
 - Treat any supplement that defines intended behavior as part of the requirements basis and present it for user approval with the requirements doc. Record approval as `N/A` when the supplement is evidence or context rather than an intended-behavior authority.
 - Keep every still-relevant supplement aligned during upstream rework and include it in all downstream handoffs.
 
+## Downstream Rework Record
+
+- When downstream feedback causes any requirements, investigation, design, or supplemental-artifact rework after the initial solution handoff, create or update the canonical `solution-revision-record.md` using [templates/solution-revision-record-template.md](templates/solution-revision-record-template.md).
+- Do not create this file for the initial solution round. Keep one file across all later rounds and add one concise `SR-*` entry per rework cycle.
+- Link each entry to the triggering role, report, round, and finding IDs; record what changed, why, the affected canonical artifacts or sections, implementation impact, repeated readiness checks, and remaining gaps.
+- Keep the revised core artifacts and supplements as the current authority. Use the revision record only as a durable delta and rationale index; do not duplicate the complete solution in it.
+
 ## Artifact Location Rule
 
-- Write the authoritative artifact files in the assigned task workspace/worktree before any handoff message.
+- Write the authoritative artifact files and any applicable revision record in the assigned task workspace/worktree before any handoff message.
 - For git-repository tasks, that authoritative workspace must be the dedicated ticket worktree/branch, not the user's shared base/default/current branch checkout.
 - Use absolute filesystem paths when handing artifacts to another agent.
 
@@ -176,6 +183,7 @@ Always produce all three mandatory core artifacts:
 - Requirements approval is not permission to keep working on the current shared branch. Before producing the design spec after approval, verify again that the authoritative task workspace is the dedicated ticket worktree/branch for git-repository tasks.
 - Once the requirements basis is approved, produce the design spec before handing work downstream.
 - Send the implementation-ready solution package directly to `implementation_engineer`: the three mandatory core artifacts plus every still-relevant supplemental task artifact.
+- On a rework handoff, also include `solution-revision-record.md` and the triggering downstream report, revision record, or evidence. Identify the current `SR-*` entry and finding IDs in the message.
 - Include absolute filesystem paths for every artifact, the approval state of the requirements basis and applicable supplements, the key scope summary, bootstrap context when relevant, open risks, and the expected implementation outcome.
 - If downstream specialists report `Requirement Gap` or `Unclear`, revise the requirements doc, investigation notes, affected supplements, and any affected design sections before resending the corrected package to `implementation_engineer`.
 - If downstream specialists report `Design Impact`, revise the design spec, affected supplements, and any affected upstream rationale, repeat the final design readiness check, and resend the corrected package to `implementation_engineer`.

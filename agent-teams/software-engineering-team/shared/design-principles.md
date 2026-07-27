@@ -31,7 +31,7 @@ Apply these principles from behavioral foundation through macro structure before
 
 ### 1. Approved Behavior And Production Reality
 
-- Architecture review and code review are technical reviews, not a second business-approval process. Begin by understanding the approved business intent and use the approved requirements as the intended-behavior authority. If they are materially ambiguous or inconsistent, return the gap instead of judging, redefining, or inventing behavior.
+- Design validation and code review are technical checks, not a second business-approval process. Begin by understanding the approved business intent and use the approved requirements as the intended-behavior authority. If they are materially ambiguous or inconsistent, return the gap instead of judging, redefining, or inventing behavior.
 - Before applying structural principles, establish the relevant behavioral baseline: existing behavior, the approved change, and behavior that must remain unchanged or outside scope.
 - Understand the complete relevant behavior and production path from a supported trigger or governing contract to its meaningful outcome. The behavior may be user-initiated, system-initiated, operational, or contract-driven. Trace enough of its lifecycle boundaries to judge the change correctly; this does not require understanding unrelated parts of the product.
 

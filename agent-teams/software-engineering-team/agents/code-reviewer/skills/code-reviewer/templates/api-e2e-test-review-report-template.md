@@ -4,7 +4,7 @@ Write this artifact to `api-e2e-test-review-report.md` in the assigned task work
 
 This is a separate, proportional review of durable API/E2E test-code changes after successful execution. It does not repeat implementation source review, source-file size auditing, the full implementation source-review scorecard, confidence scoring, or the API/E2E execution itself.
 
-Keep one canonical report path across reruns. Reuse finding IDs for unresolved findings; the latest result is authoritative.
+Keep one canonical report path across reruns. Reuse finding IDs for unresolved findings and keep the latest complete result authoritative. After its initial handoff, record later test-review deltas in `code-review-revision-record.md`.
 
 ## Review Meta
 
@@ -13,9 +13,14 @@ Keep one canonical report path across reruns. Reuse finding IDs for unresolved f
 - Requirements Doc Reviewed As Context:
 - Design Spec Reviewed As Context:
 - Supplemental Task Artifacts Reviewed As Context:
+- Solution Revision Record Reviewed As Context:
+- Implementation Revision Record Reviewed As Context:
 - Original Code Review Report:
+- Code Review Revision Record:
+- Current Code Review Revision ID: `N/A` / `CRR-*`
 - Coverage Investigation:
 - Execution Coverage Report:
+- API/E2E Revision Record Reviewed As Context:
 - API/E2E Result:
 - Final Validation Confidence:
 - Prior unresolved test-review findings rechecked:
