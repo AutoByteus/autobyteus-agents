@@ -23,6 +23,9 @@ Use these rules after style selection and before final delivery.
 - Keep argument or explanation progression explicit and skimmable.
 - Use bullets for criteria, principles, and outcomes when they improve inspection; do not force list-heavy formatting in factual technical prose.
 - Use tables when they clarify stages, role decomposition, or mechanism differences, but do not add a second summary table that repeats the same comparison.
+- Treat text-bearing diagrams and comparison graphics as mobile content, not desktop illustrations. A large source PNG does not remain readable merely because the platform scales it down.
+- Before delivery, render or resize each text-bearing visual to a representative narrow mobile article width, such as 360-390px, and inspect the result. Titles, card text, row labels, arrows, lifecycle annotations, and every accept/revision or success/failure path must be readable without zoom or horizontal scrolling.
+- If the mobile check fails, reduce text or split wide matrices into separate portrait cards and wide workflows into stacked portrait panels. Keep the reading order explicit and provide nearby prose that carries the same essential meaning.
 - Keep close alignment between heading and section content.
 - Keep equations compact and followed by plain-language interpretation.
 - Avoid sales, manifesto, or founder tone unless the user explicitly requests it.
