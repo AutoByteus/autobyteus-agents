@@ -8,11 +8,10 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Investigation notes:
 - Design spec:
 - Supplemental task artifacts:
-- Design review report:
 
 ## What Changed
 
-## Reviewed Behavior Implementation Trace
+## Approved Behavior Implementation Trace
 
 Reuse the design spec's stable behavior IDs. Record the actual implementation path and outcome without copying the full upstream behavior narrative.
 
@@ -28,10 +27,10 @@ Reuse the design spec's stable behavior IDs. Record the actual implementation pa
 
 ## Task Design Health Assessment Implementation Check
 
-- Reviewed change posture:
-- Reviewed root-cause classification:
-- Reviewed refactor decision (`Refactor Needed Now`/`No Refactor Needed`/`Deferred`):
-- Implementation matched the reviewed assessment (`Yes`/`No`):
+- Design change posture:
+- Design root-cause classification:
+- Design refactor decision (`Refactor Needed Now`/`No Refactor Needed`/`Deferred`):
+- Implementation matched the design assessment (`Yes`/`No`):
 - If challenged, routed as `Design Impact` (`Yes`/`No`/`N/A`):
 - Evidence / notes:
 
@@ -47,12 +46,12 @@ Reuse the design spec's stable behavior IDs. Record the actual implementation pa
 
 ## Persisted Data Transition Check (When Applicable)
 
-- Approved decision (`Not Affected`/`Directly Usable — No Migration`/`Discard or Rebuild`/`Migration Required`):
+- Design-spec decision (`Not Affected`/`Directly Usable — No Migration`/`Discard or Rebuild`/`Migration Required`):
 - Design-spec decision reference:
-- Implementation follows the approved decision without an unapproved migration or version-specific runtime fallback: `Yes` / `No (blocked)`
+- Implementation follows the design-spec decision without an unplanned migration or version-specific runtime fallback: `Yes` / `No (blocked)`
 - Direct-use evidence or discard/rebuild result, when applicable:
 - Migration implementation and focused checks, only when `Migration Required`:
-- Deviation from the reviewed transition decision: `None` / explain and reroute:
+- Deviation from the design-spec transition decision: `None` / explain and reroute:
 
 ## Environment Or Dependency Notes
 

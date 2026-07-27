@@ -14,7 +14,6 @@ Execution may cover API, browser UI, a web-equivalent desktop renderer through t
 - Investigation Notes:
 - Design Spec:
 - Supplemental Task Artifacts:
-- Design Review Report:
 - Implementation Handoff:
 - Code Review Report:
 - Coverage Investigation:
@@ -186,7 +185,7 @@ Carry forward the post-repository scores from the coverage investigation and rec
 ## Classification
 
 - `Local Fix`: the main issue is a bounded implementation, test, fixture, environment, execution, or report correction; identify the owning specialist.
-- `Design Impact`: the main issue is a weakness or mismatch in the reviewed design.
+- `Design Impact`: the main issue is a weakness or mismatch in the design.
 - `Requirement Gap`: intended behavior or acceptance criteria are missing or ambiguous.
 - `Unclear`: the issue is cross-cutting or cannot yet be classified cleanly from the available evidence.
 

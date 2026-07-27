@@ -17,15 +17,14 @@ Do not record successful API/E2E test-code review here. Use the separate `api-e2
 
 - Review Entry Point: `Implementation Review` / `API/E2E Failure-Origin Review`
 - Requirements Doc Reviewed As Context:
+- Investigation Notes Reviewed As Context:
+- Design Spec Reviewed As Context:
 - Supplemental Task Artifacts Reviewed As Context:
+- Implementation Handoff Reviewed As Context:
 - Current Review Round:
 - Trigger:
 - Prior Review Round Reviewed:
 - Latest Authoritative Round:
-- Investigation Notes Reviewed As Context:
-- Design Spec Reviewed As Context:
-- Design Review Report Reviewed As Context:
-- Implementation Handoff Reviewed As Context:
 - Coverage Investigation Reviewed (failure-origin entry point):
 - Execution Coverage Report Reviewed (failure-origin entry point):
 - Failing Scenario IDs:
@@ -59,11 +58,11 @@ Complete this before evaluating new-round content.
 
 ## Upstream Behavior And Production-Path Basis Confirmation
 
-Complete this understanding and alignment foundation before the implementation structural checks. Understand the approved business intent and relevant existing behavior, then start from the design spec's behavior map and architecture review confirmation, verify them against the implementation, and record status plus implementation evidence instead of restating unchanged content. This is not a review or reapproval of the business decision. For a failure-origin-only round, update only the affected behavior and material premise.
+Complete this understanding and alignment foundation before the implementation structural checks. Understand the approved business intent and relevant existing behavior, then start from the design spec's behavior and production-path map, verify it against the implementation, and record status plus implementation evidence instead of restating unchanged content. This is not a review or reapproval of the business decision. For a failure-origin-only round, update only the affected behavior and material premise.
 
 - Approved requirements basis understood:
 - Design-spec behavior map verified against the implementation:
-- Design review report and round confirmed:
+- Relevant design-spec material-premise decisions verified:
 - Behavior-basis status: `Confirmed` / `Contradicted` / `Unclear`
 - Changed or newly discovered behavior, if any:
 - Remaining material ambiguity, if any:
@@ -128,9 +127,9 @@ A general version-agnostic reader is not backward compatibility merely because i
 | No backward-compatibility mechanisms in changed scope |  |  |
 | No legacy old-behavior retention in changed scope |  |  |
 | Dead/obsolete code cleanup completeness in changed scope |  |  |
-| Approved persisted-data transition decision is followed without unnecessary migration work |  |  |
+| Design-spec persisted-data transition decision is followed without unnecessary migration work |  |  |
 | No version-specific dual reads/writes or request-time old-shape fallback exists |  |  |
-| Approved transition mechanics match the reviewed design, including migration safety only when required |  |  |
+| Implementation transition mechanics match the design spec, including migration safety only when required |  |  |
 
 ## Dead / Obsolete / Legacy Items Requiring Removal (Mandatory If Any Exist)
 
@@ -146,7 +145,9 @@ A general version-agnostic reader is not backward compatibility merely because i
 
 ## Material Premise Validation (Only When Needed)
 
-### Upstream Design-Review Material-Premise Decisions
+### Upstream Design Material-Premise Decisions
+
+If the design spec records no material premise decisions, write `None`.
 
 | Premise ID | Current Status (`Confirmed`/`Reclassified`/`No Longer Relevant`) | Changed Evidence / Reason (Required For `Reclassified` Or `No Longer Relevant`) |
 | --- | --- | --- |
@@ -160,7 +161,7 @@ For each new or reclassified premise, use this shape:
 
 ### `<premise-id>` — `<technical premise>`
 
-- Origin: `New` / `Reclassified from <architecture-premise-id>`
+- Origin: `New` / `Reclassified from <design-premise-id>`
 - Related approved requirement or established contract:
 - Relevant behavior ID(s):
 - Initiating basis kind: `User` / `System` / `Operational` / `Contract`
@@ -171,7 +172,7 @@ For each new or reclassified premise, use this shape:
 - Reachability: `Reachable` / `Not Reachable` / `Unclear`
 - Review consequence / proportionate response:
 
-Reuse the architecture-review premise ID when reclassifying it; assign a new stable ID only to a new premise. Apply the shared product-reachability rule. A record is incomplete when its initiating basis is only the downstream client, SDK, endpoint, handler, middleware, generic infrastructure, diff, test, or proposed mechanism whose applicability is being assessed. `Reachable` requires the complete independent, forward-traced witness above; `Not Reachable` cannot drive a finding, score deduction, defect attribution, or machinery; materially `Unclear` requires investigation or routing.
+Reuse the design-spec premise ID when reclassifying it; assign a new stable ID only to a new premise. Apply the shared product-reachability rule. A record is incomplete when its initiating basis is only the downstream client, SDK, endpoint, handler, middleware, generic infrastructure, diff, test, or proposed mechanism whose applicability is being assessed. `Reachable` requires the complete independent, forward-traced witness above; `Not Reachable` cannot drive a finding, score deduction, defect attribution, or machinery; materially `Unclear` requires investigation or routing.
 
 ## Review Scorecard (Mandatory)
 

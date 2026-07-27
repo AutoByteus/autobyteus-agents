@@ -1,6 +1,6 @@
 ---
 name: solution-designer
-description: Bootstrap task context, investigate deeply, refine requirements, produce the mandatory solution package and any useful task-specific supplemental artifacts, and iterate with the architecture reviewer until the design passes.
+description: Bootstrap task context, investigate deeply, refine requirements, produce and validate the mandatory solution package plus useful task-specific supplemental artifacts, and hand an implementation-ready design directly to implementation.
 ---
 
 # Solution Designer Skill
@@ -10,6 +10,7 @@ description: Bootstrap task context, investigate deeply, refine requirements, pr
 Bootstrap the task context, investigate the incoming request deeply enough to produce a design-ready requirements basis, and then turn that basis into an actionable design spec for implementation.
 Own both upstream clarification and architecture-level design so the same role can carry context from discovery into design without losing responsibility.
 Create task-specific supplemental artifacts when a separate file materially improves investigation evidence, requirement precision, design clarity, or downstream context.
+Own final design readiness before implementation.
 
 ## You Own
 
@@ -27,6 +28,7 @@ Create task-specific supplemental artifacts when a separate file materially impr
 - clean-cut replacement without compatibility wrappers or legacy behavior retention
 - evidence-backed persisted-data transition decisions, with isolated migration boundaries only when transformation is required
 - change/refactor sequencing, removal planning, tradeoffs, derived-layering validation when useful, and downstream design-impact rework
+- final implementation-readiness validation before implementation handoff
 
 ## Primary Outputs
 
@@ -120,11 +122,12 @@ Always produce all three mandatory core artifacts:
 - Distinguish supported user, system, operational, and contract behavior from states reachable only through synthetic calls, internal-file mutation, or other mechanical possibility.
 - When persisted data may be affected, inspect representative stored data, normal reader and writer behavior, semantics and invariants, physical-store constraints, disposability, volume, and operational risk. Investigate migration mechanics only when the evidence indicates transformation may be necessary.
 - Record runtime or probe findings when reproductions, traces, scripts, focused tests, or setup work were used.
-- Record enough codebase, runtime, API, and external-reference detail that requirements clarification and design review do not need to rediscover the same facts from scratch.
+- Record enough codebase, runtime, API, and external-reference detail that requirements clarification, implementation, and code review do not need to rediscover the same facts from scratch.
 
 ## Requirements Quality
 
 - Requirements must describe verifiable behavior, not only narrative intent.
+- List every approved in-scope use case explicitly. Include only behavior supported by the approved product, system, operational, or contract scope; do not add a use case merely because a technical call or synthetic setup can produce it.
 - For each relevant behavior ID, summarize the evidence-backed current behavior, the desired behavior, and any behavior that must remain unchanged. Keep production-path evidence in the investigation notes and technical structure in the design spec. For genuinely new behavior, state `No current supported behavior`; for refactors or cleanups with no intended behavior change, make the preserved outcome explicit.
 - Each requirement must have a stable `requirement_id`.
 - Each acceptance criterion must have a stable `acceptance_criteria_id`.
@@ -142,7 +145,7 @@ Always produce all three mandatory core artifacts:
 - Use [templates/design-spec-template.md](templates/design-spec-template.md) as the mandatory structure for the design artifact.
 - Treat [design-principles.md](design-principles.md) as the canonical design authority instead of restating or overriding it locally.
 - Build the design from the approved requirements basis, investigation notes, all relevant supplemental task artifacts, current-state read, and current code reality.
-- Before structural design, synthesize the requirements' approved current-and-desired behavior and the supporting investigation evidence into the design spec's relevant behavior and production-path map. Preserve stable behavior IDs and state the approved change or preserved outcome for each row.
+- Before structural design, synthesize every approved in-scope use case, the requirements' approved current-and-desired behavior, and the supporting investigation evidence into the design spec's relevant behavior and production-path map. Preserve stable behavior IDs and state the approved change or preserved outcome for each row.
 - Link each behavior ID to the target production path, lifecycle boundary, and applicable data-flow spine IDs. The behavior map defines what real behavior the design must serve; the spine sections define how the target structure carries it.
 - Keep the design actionable in the current codebase: implementation and review should not need to reconstruct the intended structure from scattered notes.
 - Include a task design health assessment in the design spec for every task, even when the answer is "no refactor needed".
@@ -155,18 +158,24 @@ Always produce all three mandatory core artifacts:
 - When transformation is required, keep business and runtime code on the current canonical schema and design an explicit migration boundary that owns old-to-current transformation before normal runtime use. Address mixed-version access and rollout only for the transition that actually applies.
 - Use short examples when the target shape would otherwise remain abstract or easy to misread.
 - Keep the requirements doc, investigation notes, design spec, and all still-relevant supplemental task artifacts aligned. When one changes materially, update the others as needed before handoff.
+- After completing the design spec, run the final implementation-readiness validation inside the existing artifact:
+  1. Verify that every approved in-scope use case is represented in the behavior map and that no unsupported or mechanically invented use case has been added.
+  2. Verify that every mapped use case and behavior has a complete target production path from its supported trigger or governing contract to its meaningful outcome and is covered by the necessary primary, return/event, or bounded-local data-flow spine IDs. Several use cases may share a spine, and one use case may require several spines; require complete coverage rather than an artificial one-to-one mapping.
+  3. Revalidate the complete target architecture against all applicable shared design principles and derived checks, proceeding from behavior and spine coverage through ownership, boundaries, dependencies, interfaces, subsystem and file responsibilities, transitions, removal, and proportionality.
+  4. Correct every blocking gap in the existing requirements, investigation notes, design spec, or supplements, then repeat the affected validation until all three checks pass.
+- Record the concise result in the design spec's `Implementation Readiness` section; do not create a separate review report or review stage.
+- Hand off only with status `Implementation Ready`. Keep any unresolved gap that blocks approved behavior or an in-scope design decision upstream and resolve it with the user when user input is required; record non-blocking residual risk without inventing work for it.
 
 ## Handoff Rules
 
 - Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an exact recipient name from the visible team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
-- Present the requirements doc and every supplement that defines intended user-visible behavior to the user for approval before treating them as locked design input.
+- Present the requirements doc and every supplement that defines intended behavior to the user for approval before treating them as locked design input.
 - Keep the investigation notes current alongside the requirements doc whenever the task depends on internal or external investigation.
 - Requirements approval is not permission to keep working on the current shared branch. Before producing the design spec after approval, verify again that the authoritative task workspace is the dedicated ticket worktree/branch for git-repository tasks.
 - Once the requirements basis is approved, produce the design spec before handing work downstream.
-- Send the full solution package to `architecture_reviewer`: the three mandatory core artifacts plus every still-relevant supplemental task artifact.
-- When handing that package to `architecture_reviewer`, include absolute filesystem paths for every artifact, the approval state of the requirements basis and applicable supplements, the key scope summary, bootstrap context when relevant, open risks, and the next expected decision.
-- If downstream specialists report `Requirement Gap` or `Unclear`, revise the requirements doc, investigation notes, affected supplements, and any affected design sections before resending the solution package.
-- If downstream specialists report `Design Impact`, revise the design spec, affected supplements, and any affected upstream rationale before resending it.
-- Expect iterative design-review rounds with `architecture_reviewer` until the design passes review.
+- Send the implementation-ready solution package directly to `implementation_engineer`: the three mandatory core artifacts plus every still-relevant supplemental task artifact.
+- Include absolute filesystem paths for every artifact, the approval state of the requirements basis and applicable supplements, the key scope summary, bootstrap context when relevant, open risks, and the expected implementation outcome.
+- If downstream specialists report `Requirement Gap` or `Unclear`, revise the requirements doc, investigation notes, affected supplements, and any affected design sections before resending the corrected package to `implementation_engineer`.
+- If downstream specialists report `Design Impact`, revise the design spec, affected supplements, and any affected upstream rationale, repeat the final design readiness check, and resend the corrected package to `implementation_engineer`.

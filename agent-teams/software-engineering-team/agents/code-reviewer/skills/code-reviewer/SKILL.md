@@ -39,7 +39,7 @@ Keep their standards distinct. Implementation code receives the full structural 
 
 For implementation review:
 
-- Accept requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, design review report, and implementation handoff from `implementation_engineer`.
+- Accept requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, and implementation handoff from `implementation_engineer`.
 - Review against the complete implementation artifact chain, not only the handoff summary.
 
 For successful API/E2E test-code review:
@@ -55,13 +55,13 @@ For API/E2E failure-origin review:
 
 - Start implementation review by reading [design-principles.md](design-principles.md).
 - Use it as the canonical design authority for source and structural review.
-- Consult [references/design-examples.md](references/design-examples.md) only when a concrete structural example is needed to judge the implementation or its alignment with the reviewed design.
+- Consult [references/design-examples.md](references/design-examples.md) only when a concrete structural example is needed to judge the implementation or its alignment with the design spec.
 - When a prospective finding or score rationale depends on an assumed production, failure, or lifecycle scenario, consult [Example 9](references/design-examples.md#example-9-rejecting-an-unreachable-edge-case-during-technical-review) before finalizing it.
 - For the later entry points, reread only the requirements, design, changed tests, relevant source paths, and prior findings needed for the bounded review.
 
 ## Implementation Review Basis And Sequence
 
-1. Understand the approved requirements and business intent, the design spec's relevant behavior and production-path map, and the architecture review's basis confirmation and material-premise records. Treat the requirements as intended-behavior authority and the reviewed map as prior technical context, not immutable truth.
+1. Understand the approved requirements and business intent plus the design spec's relevant behavior, production-path map, and material premise decisions. Treat the requirements as intended-behavior authority and the design map as prior technical context, not immutable truth.
 2. Confirm the relevant existing behavior, approved change, and behavior that must remain unchanged or outside scope. Do not judge, reopen, or redefine the business decision.
 3. Trace the complete relevant user-initiated, system-initiated, operational, or contract-driven behavior and enough of its production path and lifecycle to understand how the changed code participates in it. Compare the implementation handoff's behavior trace with the actual code; do not review the diff or a local method in isolation.
 4. Apply the structural and design checks from macro structure toward detail: data-flow spine, ownership and boundaries, interfaces and dependencies, then subsystem, file-responsibility, local source, test-readiness, legacy, and cleanup checks.
@@ -74,7 +74,7 @@ If approved behavior is materially ambiguous, classify a `Requirement Gap`. If p
 
 - Review independently and record findings; do not implement source or test-code fixes while acting as reviewer.
 - Tie every implementation finding or score deduction to affected behavior or an established contract and a proportionate response. When it depends on an assumed scenario, cite its material-premise validation and consequence.
-- Do not pass implementation that adds fallback, recovery, defensive, or lifecycle machinery based on an unsupported material premise. Classify unsupported reviewed machinery as `Design Impact`; classify implementation-only machinery through the normal owning route.
+- Do not pass implementation that adds fallback, recovery, defensive, or lifecycle machinery based on an unsupported material premise. Classify unsupported design machinery as `Design Impact`; classify implementation-only machinery through the normal owning route.
 - Keep the successful-test review and failure-origin review as mutually exclusive entry points. A passed execution triggers proportional test-code review; a failed execution triggers focused failure-origin review.
 - Preserve the complete cumulative artifact package through every reroute.
 
@@ -85,14 +85,14 @@ If approved behavior is materially ambiguous, classify a `Requirement Gap`. If p
 - Treat earlier design artifacts as context, not immunity from review. Classify an inadequate design as `Design Impact`.
 - Review design integrity, API/E2E readiness, cleanup completeness, and changed implementation-source size or structural pressure.
 - Apply `>500` and `>220` source thresholds only to changed implementation-source files, never to tests, fixtures, or generated coverage files.
-- When persisted data may be affected, verify that implementation follows the reviewed transition decision and does not add an unnecessary migration or version-specific runtime fallback. Review migration mechanics only when the approved decision is `Migration Required`.
+- When persisted data may be affected, verify that implementation follows the design-spec transition decision and does not add an unnecessary migration or version-specific runtime fallback. Review migration mechanics only when that decision is `Migration Required`.
 - Keep one canonical report, recheck prior unresolved findings first, and reuse finding IDs across rounds.
 
 ## Successful API/E2E Test-Code Review Rules
 
 - Use only [templates/api-e2e-test-review-report-template.md](templates/api-e2e-test-review-report-template.md). Do not reopen or append this result to `code-review-report.md`.
 - Review only durable test files added, updated, or removed during API/E2E. Do not review temporary probes or execution artifacts as production source code.
-- Do not apply implementation-source line limits, delta thresholds, architecture score categories, or forced file splitting to tests.
+- Do not apply implementation-source line limits, delta thresholds, full implementation source-review score categories, or forced file splitting to tests.
 - Accept large test files when they cover one coherent behavior/surface and remain navigable.
 - Check proportionately that:
   - scenario organization and names make intent clear
@@ -120,11 +120,11 @@ If approved behavior is materially ambiguous, classify a `Requirement Gap`. If p
 - `Pass` is a review outcome, not a failure classification.
 - `Local Fix` -> `implementation_engineer` for a bounded implementation or packaging defect.
 - `Local Fix` -> `api_e2e_engineer` for a test-code, stale-test, fixture, environment, execution, or report problem.
-- `Design Impact` -> `solution_designer` for a structural issue or inadequate reviewed design.
+- `Design Impact` -> `solution_designer` for a structural issue or inadequate design.
 - `Requirement Gap` -> `solution_designer` for missing or ambiguous intended behavior.
 - `Unclear` -> `solution_designer` for a cross-cutting issue that cannot be classified from available evidence.
 - After an implementation-owned fix, require source review and API/E2E again.
-- After an API/E2E-owned fix, require API/E2E execution and test-code review again when durable tests changed.
+- After an API/E2E-owned fix, require API/E2E execution and a proportional test-code review result; use `Not Applicable` when no durable test changed.
 
 ## Handoff Rules
 

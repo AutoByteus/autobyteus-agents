@@ -42,7 +42,7 @@ Update the ticket-local handoff summary before final handoff, then use [template
 
 ## Upstream Inputs
 
-- Accept the cumulative API/E2E-passed and test-reviewed delivery package from `code_reviewer`: requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, design review report, implementation handoff, code review report, coverage investigation, execution coverage report, and API/E2E test review report.
+- Accept the cumulative API/E2E-passed and test-reviewed delivery package from `code_reviewer`: requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, implementation handoff, code review report, coverage investigation, execution coverage report, and API/E2E test review report.
 - Use the full artifact chain as delivery context for docs sync and final handoff work.
 - Do not begin delivery when the latest execution coverage report does not record `Pass` or still contains an unresolved critical acceptance-criteria failure.
 - Do not begin delivery unless the latest `api-e2e-test-review-report.md` records `Pass` or `Not Applicable` with no unresolved findings.
@@ -78,6 +78,7 @@ Update the ticket-local handoff summary before final handoff, then use [template
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
 - Resolve documentation-local or deployment-local issues directly when possible.
 - Route code or packaging `Local Fix` issues to `implementation_engineer`.
+- Route test-code, fixture, environment, execution, or API/E2E reporting `Local Fix` issues to `api_e2e_engineer`.
 - Route `Design Impact` to `solution_designer`.
 - Route `Requirement Gap` to `solution_designer`.
 - Route `Unclear` to `solution_designer`.
