@@ -25,6 +25,8 @@ A handoff is writer-ready only when it answers, in durable files:
 - What is the article about?
 - What does the reader need to understand before the claim makes sense?
 - What exact mechanisms, chronology, definitions, or product sequence must be preserved?
+- For a product or system comparison, what first-class primitives does each product expose, how are they packaged, and which dimensions are orthogonal or composable rather than competing modes?
+- For a builder-owned design article, what user problem, interaction surface, and end-to-end scenario explain why each primitive exists?
 - Which claims are source-backed, and by which source IDs or paths?
 - Which claims are uncertain, too strong, stale, or unsupported?
 - Which contrast frames, recommendations, root-cause statements, or production observations are allowed or forbidden by evidence?
@@ -112,6 +114,27 @@ For product-builder or architecture articles, preserve practical sequences such 
 
 Do not compress these into generic article claims. The writing skill needs the actual sequence.
 
+For comparative product or architecture articles, also build a primitive inventory before proposing a taxonomy or article spine. Use the same neutral dimensions for every product when relevant, such as:
+
+- reusable definitions and organization
+- execution units and lifetime
+- communication and human interaction/UI
+- task or work state
+- result return, review, and acceptance
+- context and artifact transfer
+
+Keep product definition, live execution, work/task record, communication, and review state distinct. Explicitly mark whether the dimensions are alternatives, independent axes, or composable layers. Do not turn differently packaged primitives into mutually exclusive product categories.
+
+For a builder-owned design explanation, capture both mechanism and intent:
+
+- what user or organizational problem motivated the primitive
+- who initiates and who owns each transition
+- what a user can see, inspect, or interact with in the product surface
+- one continuous scenario that exercises the relevant primitives together
+- which design conclusions the scenario supports and which remain preferences or tradeoffs
+
+If these facts are not observable in supplied material, code, docs, or UI evidence, ask targeted questions such as `Why was this primitive created?` or `What can the user inspect or control here?` before declaring the research writer-ready.
+
 ### Step 4 - Build `source-index.md`
 
 Record every relevant source with:
@@ -127,6 +150,14 @@ Record every relevant source with:
 For workspace-source research, include exact file paths and commands inspected.
 For online-current research, include access dates or publication dates where recency matters.
 For paper/document research, include enough document detail to support the claims; do not infer specifics from title or abstract alone.
+
+Treat product-absence and limitation claims as high-risk current claims. Before writing `does not support`, `only returns`, `cannot`, or an equivalent comparison:
+
+- inspect current authoritative evidence, such as official documentation, pinned current source, or directly observed product/UI behavior, not only prior articles or memory
+- check adjacent, experimental, UI-specific, and differently named feature surfaces
+- record the version/commit and access date
+- distinguish `absent` from `available but packaged differently`, `optional`, `experimental`, or `not first-class`
+- if authoritative evidence is unavailable, qualify the result as `not observed in the checked sources` rather than claiming that the capability is absent
 
 ### Step 5 - Build `claim-evidence-ledger.md` when needed
 
@@ -164,6 +195,7 @@ Include:
 - terms and definitions that must stay precise
 - source IDs for load-bearing claims
 - recommended article spine based on the research, without doing style drafting
+- for comparisons, the neutral primitive inventory, composability classification, and one same-scenario walkthrough across products
 - allowed claims and allowed contrast frames
 - forbidden overclaims, unsupported claims, and wording traps
 - caveats, uncertainty, freshness limits, and open questions
@@ -180,6 +212,9 @@ Before switching to the writing skill, verify:
 - `claim-evidence-ledger.md` exists when explicit evidence tracking is needed
 - `research-handoff.md` gives a writer-ready summary with must-use claims, mechanisms, caveats, and forbidden overclaims
 - no planned contrast, common-belief claim, recommendation, root-cause claim, or production observation lacks an evidence anchor
+- comparative dimensions are neutral, consistent across products, and do not mislabel composable primitives as exclusive modes
+- negative capability claims were checked against current authoritative evidence and are qualified precisely, including `not observed in the checked sources` when evidence is incomplete
+- builder-owned design rationale, product interaction surface, and a representative end-to-end scenario are captured when they are central to the article
 - open questions are either resolved, narrowed, or explicitly listed
 - the writer should not need to open new sources, inspect code, or perform broad discovery before outlining
 

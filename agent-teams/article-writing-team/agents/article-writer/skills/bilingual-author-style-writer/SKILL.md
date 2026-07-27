@@ -87,6 +87,16 @@ Treat these files as the source of truth. Do not redo research. If the package h
   5. what the new structure is
   6. what was observed after the change
   7. bounded practical implication
+- For a comparative product or system-design article, choose the reader journey explicitly before drafting. When the goal is to explain available building blocks and why one design exists, prefer:
+  1. a concise product map
+  2. each product's primitives under the same neutral dimensions
+  3. one continuous, realistic scenario that composes those primitives
+  4. design rationale derived from the scenario
+  5. the same scenario mapped to the other products
+  6. conditional tradeoffs and a bounded conclusion
+- In this comparative structure, separate reusable definitions, live executions, work/task records, communication, UI interaction, result review, and artifact transfer. State whether concepts are alternatives, independent axes, or composable layers; do not present orthogonal primitives as mutually exclusive modes.
+- Use a scenario as a design derivation, not as a promotional example. Show which primitive handles each transition and preserve strengths, missing capabilities, and differently packaged equivalents for every product. Avoid predetermined `best fit`, universal `should`, or a comparison frame shaped only around the home product.
+- If the user asks for product-first orientation, do not lead with an abstract taxonomy. Record the requested reader path in the available brief or outline artifact, and make the outline follow it.
 - Do not force a contrastive hook such as `not X, but Y` unless the user explicitly wants argumentative prose or the source material already depends on that turn.
 - In standalone use, confirm this skeleton with the user before full drafting.
 - In the article-writing team, write the skeleton as `outline.md` and send it through `article_reviewer` unless the user explicitly requests a different approval path.
@@ -106,6 +116,7 @@ Treat these files as the source of truth. Do not redo research. If the package h
 - Check logic continuity: each section must push the central claim, scope explanation, or bounded conclusion forward.
 - Check style alignment against the chosen profile constraints.
 - Check platform fit using `references/platform-output-rules.md`.
+- When text-bearing visuals are present, apply the platform's mobile-legibility rules from `references/platform-output-rules.md` and verify the rendered result, not only the export resolution.
 - Check rhetorical fit:
   - no sales tone unless explicitly requested
   - no forced binary contrast
