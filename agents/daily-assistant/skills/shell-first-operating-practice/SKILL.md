@@ -13,7 +13,9 @@ This skill covers the Unix command-line style of working: orient yourself, inspe
 
 Filesystem operations are one category inside this practice. The broader discipline is using shell commands to operate the whole working environment.
 
-This skill assumes the agent has a shell execution tool such as `run_bash`. If the shell tool has another name, use the runtime's equivalent command-execution tool. If no shell execution tool is available, do not pretend to perform shell-based work.
+This skill assumes the agent has a shell or terminal execution tool. If the runtime names it
+differently, use its equivalent command-execution tool. If no shell execution tool is
+available, do not pretend to perform shell-based work.
 
 ## Core Operating Loop
 
@@ -54,7 +56,8 @@ directory listings.
 - Preserve complete file paths given by the user or discovered in context.
 - Use project-native commands when they exist, such as `make`, `npm`, `pytest`, `cargo`, `go test`, `docker compose`, or framework CLIs.
 - When repository-relative paths matter, use `git rev-parse --show-toplevel 2>/dev/null || pwd`.
-- Check optional tools with `which TOOL` or `command -v TOOL` before assuming `TOOL` exists.
+- Prefer `command -v TOOL` before assuming `TOOL` exists; use `which TOOL` only when the
+  environment provides it.
 - Inspect `env | sort | sed -n '1,120p'` only when environment variables are relevant.
 
 ## Command Families
@@ -64,7 +67,7 @@ Use the right command family for the job:
 | Need | Typical commands |
 | --- | --- |
 | Orientation | `pwd`, `env`, `which`, `uname`, `date`, `git status`, `git branch` |
-| Filesystem navigation | `find`, `rg --files`, `stat`, `file`, `mkdir`, `cp`, `mv`, `rm` |
+| Filesystem operations | `find`, `rg --files`, `stat`, `file`, `mkdir`, `cp`, `mv`, `rm` |
 | File inspection | `sed`, `nl`, `head`, `tail`, `wc`, `file`, `stat` |
 | Search and discovery | `rg`, `git grep`, `grep`, `find` |
 | Text processing | `sed`, `awk`, `cut`, `paste`, `sort`, `uniq`, `tr`, `xargs` |
