@@ -34,20 +34,24 @@ Take the implementation-review-passed, API/E2E-passed, and proportionally test-r
 
 Use [templates/docs-sync-report-template.md](templates/docs-sync-report-template.md) to produce a docs sync report.
 Update the ticket-local handoff summary before final handoff, then use [templates/release-deployment-report-template.md](templates/release-deployment-report-template.md) to produce a release/publication/deployment report.
+Use [templates/delivery-revision-record-template.md](templates/delivery-revision-record-template.md) to create or update `delivery-revision-record.md` before every completed delivery-stage handoff. Create `DR-001` for the initial baseline; append one entry for each later delivery round. Keep the docs sync, handoff summary, and release/deployment report as the current canonical truth.
 
 ## Artifact Location Rule
 
 - Write the authoritative artifact files in the assigned task workspace/worktree before any handoff message.
+- Before every completed delivery-stage handoff, write or update `delivery-revision-record.md`; use `DR-001` for the initial baseline and append later delivery results instead of creating round-specific copies. A missing prior record or result is `N/A`, never an assumed `Pass`.
 - Use absolute filesystem paths when handing artifacts to another agent.
 
 ## Upstream Inputs
 
-- Accept the cumulative API/E2E-passed and test-reviewed delivery package from `code_reviewer`: requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, any existing solution revision record, implementation handoff, any existing implementation revision record, code review report, any existing code review revision record, coverage investigation, execution coverage report, any existing API/E2E revision record, and API/E2E test review report.
+- Accept the cumulative API/E2E-passed and test-reviewed delivery package from `code_reviewer`: requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, solution revision record, implementation handoff, implementation revision record, code review report, code review revision record, coverage investigation, execution coverage report, API/E2E revision record, and API/E2E test review report.
 - Use the full artifact chain as delivery context for docs sync and final handoff work.
 - Do not begin delivery when the latest execution coverage report does not record `Pass` or still contains an unresolved critical acceptance-criteria failure.
 - Do not begin delivery unless the latest `api-e2e-test-review-report.md` records `Pass` or `Not Applicable` with no unresolved findings.
 
 ## Workflow Rules
+
+- Treat the first completed docs-sync/final-handoff or release/deployment result as delivery round 1 and record `DR-001` with prior result `N/A`. For later rounds, record the triggering verification, integration, documentation, release, deployment, or cleanup change and append the next `DR-*` entry. Do not infer a successful prior delivery from a missing record.
 
 - Keep docs sync focused on the final integrated, reviewed, and validated implementation state. Use that integrated state as primary truth and use upstream artifacts as supporting context.
 - Update long-lived docs to match final implemented behavior, promote durable design/runtime knowledge into canonical project docs, and record removed or replaced components so the docs do not preserve obsolete understanding.
@@ -76,6 +80,8 @@ Update the ticket-local handoff summary before final handoff, then use [template
 - Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an exact recipient name from the visible team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
+- For the terminal user handoff, provide the absolute paths to the current handoff summary, docs sync report, delivery revision record, and release/publication/deployment report when applicable. State the integrated revision, verification status, final result, remaining risks, and any explicit action requested from the user.
+- Do not archive, finalize, merge, tag, publish, or deploy before the required user verification recorded in the delivery report.
 - Resolve documentation-local or deployment-local issues directly when possible.
 - Route code or packaging `Local Fix` issues to `implementation_engineer`.
 - Route test-code, fixture, environment, execution, or API/E2E reporting `Local Fix` issues to `api_e2e_engineer`.

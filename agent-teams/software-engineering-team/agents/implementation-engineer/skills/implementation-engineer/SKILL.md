@@ -23,17 +23,17 @@ Implement the implementation-ready solution design, validate the changed impleme
 
 ## Primary Output
 
-Use [templates/implementation-handoff-template.md](templates/implementation-handoff-template.md) to produce an implementation handoff.
-After downstream feedback causes implementation rework, use [templates/implementation-revision-record-template.md](templates/implementation-revision-record-template.md) to create or update `implementation-revision-record.md`.
+Use [templates/implementation-handoff-template.md](templates/implementation-handoff-template.md) to produce the canonical implementation handoff on every implementation round.
+Use [templates/implementation-revision-record-template.md](templates/implementation-revision-record-template.md) to create `implementation-revision-record.md` before the initial handoff with an `IR-001` baseline, then append one entry per later implementation round.
 
 ## Artifact Location Rule
 
-- Write the authoritative artifact files in the assigned task workspace/worktree before any handoff message.
+- Write the authoritative artifact files and the current implementation revision record in the assigned task workspace/worktree before any handoff message.
 - Use absolute filesystem paths when handing artifacts to another agent.
 
 ## Upstream Inputs
 
-- Accept the cumulative solution package directly from `solution_designer`: requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, and—when solution rework has occurred—`solution-revision-record.md` plus still-relevant triggering downstream reports, revision records, or evidence.
+- Accept the cumulative solution package directly from `solution_designer`: requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, and `solution-revision-record.md`. On later solution rework, also accept the still-relevant triggering downstream reports, revision records, or evidence.
 - On an implementation-owned `Local Fix` from `code_reviewer` or `delivery_engineer`, accept the cumulative package plus the targeted source or packaging evidence and preserve all still-relevant upstream artifacts.
 - Treat the full solution package as active implementation context, not just the design spec in isolation.
 - Confirm that the design spec records `Implementation Readiness: Implementation Ready`, with use-case/behavior coverage, production-path/data-flow-spine coverage, and shared-design-principles validation all passing and no blocking gaps. Otherwise route `Unclear` to `solution_designer` instead of reconstructing or inventing the missing design.
@@ -63,12 +63,11 @@ After downstream feedback causes implementation rework, use [templates/implement
 - Route boundary-bypass implementation pressure back as `Design Impact`.
 - Route compatibility-shim-only paths back as `Design Impact` or `Requirement Gap`.
 
-## Implementation Rework Record
+## Implementation Revision Record
 
-- Do not create `implementation-revision-record.md` for the initial implementation. After the initial implementation handoff, create or update it for every implementation change made in response to `Local Fix`, `Design Impact`, `Requirement Gap`, `Unclear`, failure-origin, or delivery feedback.
-- Keep one canonical file across all later rounds and add one concise `IR-*` entry per implementation rework cycle.
+- Create `implementation-revision-record.md` before the initial implementation handoff with one concise `IR-001` baseline entry. For later feedback, append one `IR-*` entry per completed implementation round.
 - Link each entry to the triggering role, report, round, and finding IDs. Reference applicable `SR-*`, `CRR-*`, and `API-REV-*` entries; use `N/A` for each revision type that does not apply.
-- Record why the implementation changed, the behavior or requirement IDs affected, the actual code delta and locations, focused validation, and remaining limitations.
+- Record the prior result (`N/A` for the baseline), current result, why the baseline or implementation change is recorded, the behavior or requirement IDs affected, the actual code delta and locations, focused validation, and remaining limitations.
 - Keep the current code and `implementation-handoff.md` as the authority. Use the revision record to help the reviewer locate and understand the delta, not as proof that the finding is resolved.
 
 ## Frontend Implementation Feedback Loop (When Applicable)
@@ -86,7 +85,7 @@ After downstream feedback causes implementation rework, use [templates/implement
 - Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an exact recipient name from the visible team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
-- Send the cumulative implementation package to `code_reviewer`: requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, any existing solution revision record, implementation handoff, any existing implementation revision record, and still-relevant triggering reports, revision records, or evidence.
+- Send the cumulative implementation package to `code_reviewer`: requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, solution revision record, implementation handoff, implementation revision record, and still-relevant triggering reports, revision records, or evidence.
 - On rework, include the triggering report or evidence and identify the current `IR-*` entry, applicable `SR-*`, `CRR-*`, and `API-REV-*` entries or `N/A`, and finding IDs in the message.
 - Use absolute filesystem paths for every artifact in that handoff.
 - Route `Design Impact` to `solution_designer`.

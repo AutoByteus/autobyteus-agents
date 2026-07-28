@@ -1,8 +1,8 @@
 # API/E2E Revision Record
 
-Create `api-e2e-revision-record.md` only when API/E2E work is revised or rerun after the initial API/E2E handoff. Keep one canonical file across all later rounds; do not create round-specific copies.
+Create `api-e2e-revision-record.md` after the first completed API/E2E validation result and keep one canonical file across later rounds; do not create round-specific copies. The first entry is `API-REV-001`, a concise baseline with prior result `N/A`. Append one entry for every later validation round, including reruns after failures or rework.
 
-The latest coverage investigation and execution coverage report remain authoritative. Record only the coverage or execution delta and rationale needed to understand the rerun.
+The latest coverage investigation and execution coverage report remain authoritative. Record only the baseline or coverage/execution delta and rationale needed to understand the completed round.
 
 ## Revision Index
 
@@ -17,7 +17,7 @@ The latest coverage investigation and execution coverage report remain authorita
 - Triggering role, report path, and round:
 - Triggering finding or scenario IDs:
 - Related solution, implementation, or code-review revision IDs:
-- Why coverage or execution was revised:
+- Why this baseline or coverage/execution revision was recorded:
 - Coverage decisions or durable test paths changed:
 - Scenarios added, changed, removed, or rechecked:
 - Commands, environment, fixture, or broader-validation delta:
@@ -31,7 +31,7 @@ The latest coverage investigation and execution coverage report remain authorita
 If no prior failure applies to this API/E2E revision, write `None`.
 
 - Canonical artifacts and sections updated:
-- Prior result and confidence:
+- Prior result and confidence (`N/A` for `API-REV-001`):
 - Current result and confidence:
 - New or remaining failure IDs:
 - Recommended recipient:

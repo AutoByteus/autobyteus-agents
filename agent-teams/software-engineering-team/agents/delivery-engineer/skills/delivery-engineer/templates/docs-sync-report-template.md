@@ -47,7 +47,7 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 ## Delivery Continuation
 
 - Result: `Pass` / `Fail` / `Blocked`
-- Next owner: `delivery_engineer`
+- Next delivery action:
 - Notes:
 
 ## Blocked Or Escalated Follow-Up (Use Only If Docs Sync Cannot Complete)

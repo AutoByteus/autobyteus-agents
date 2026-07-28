@@ -4,8 +4,7 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 Keep one canonical execution coverage report path across reruns.
 Do not create versioned copies by default.
-After the initial API/E2E handoff, recheck prior unresolved failures first, update this report to the latest complete result, and record the delta in `api-e2e-revision-record.md`.
-The latest canonical report is authoritative; the revision record preserves later-round history.
+After every completed API/E2E validation round, update this report to the latest complete result and create or append the corresponding entry in `api-e2e-revision-record.md`. The first completed round creates `API-REV-001` with prior result `N/A`; later rounds recheck prior unresolved failures first. The latest canonical report is authoritative; the revision record preserves concise round history.
 Execution may cover API, browser UI, a web-equivalent desktop renderer through the project's development workflow, project-supported desktop validation, CLI, process/lifecycle, integration, or distributed checks depending on the real boundaries being proven.
 
 ## Execution Round Meta
@@ -14,11 +13,11 @@ Execution may cover API, browser UI, a web-equivalent desktop renderer through t
 - Investigation Notes:
 - Design Spec:
 - Supplemental Task Artifacts:
-- Solution Revision Record, when present:
+- Solution Revision Record:
 - Implementation Handoff:
-- Implementation Revision Record, when present:
+- Implementation Revision Record:
 - Code Review Report:
-- Code Review Revision Record, when present:
+- Code Review Revision Record:
 - Coverage Investigation:
 - API/E2E Revision Record:
 - Current API/E2E Revision ID: `N/A` / `API-REV-*`
@@ -30,7 +29,8 @@ Execution may cover API, browser UI, a web-equivalent desktop renderer through t
 Round rules:
 - Reuse the same scenario IDs across reruns for the same scenarios.
 - Create new scenario IDs only for newly discovered coverage.
-- After the initial API/E2E handoff, complete prior-failure resolution in `api-e2e-revision-record.md` before evaluating new failures.
+- If no prior completed API/E2E result exists, set `Current Execution Round` to `1`, create `API-REV-001`, and record prior result/confidence as `N/A`.
+- On later rounds, complete prior-failure resolution in `api-e2e-revision-record.md` before evaluating new failures. Never infer `Pass` or a confidence value from a missing prior record.
 
 ## Investigation And Execution Basis
 

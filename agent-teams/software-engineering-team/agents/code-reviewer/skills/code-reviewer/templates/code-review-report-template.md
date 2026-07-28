@@ -6,8 +6,8 @@ Use the approved requirements as the intended-behavior authority and the canonic
 If the review shows that an earlier design artifact was weak, incomplete, or wrong, classify that as `Design Impact`.
 Keep one canonical code review report path across reruns.
 Do not create versioned copies by default.
-After this report's initial handoff, first confirm the affected behavior and production-path basis, then recheck applicable prior unresolved findings, complete the current review, update this report to the latest complete result, and record the finished-round delta in `code-review-revision-record.md`.
-The latest canonical report is authoritative; the revision record preserves later-round history.
+For every completed review round, first confirm the affected behavior and production-path basis, then recheck applicable prior unresolved findings, complete the current review, update this report to the latest complete result, and create or append the corresponding entry in `code-review-revision-record.md`. The initial result receives `CRR-001` with prior result `N/A`.
+The latest canonical report is authoritative; the revision record is the concise chronological history for all rounds.
 
 Use the full report for `Implementation Review`. For `API/E2E Failure-Origin Review`, record the failure context in the review meta and scope, update only affected findings or score rationale when needed, classify the cause, and route it without repeating the full source audit or scorecard.
 
@@ -43,6 +43,7 @@ Round rules:
 - Reuse the same finding IDs across reruns for the same unresolved issues.
 - Create new finding IDs only for newly discovered review findings.
 - Keep the full scorecard current on every implementation-review round. Revalidate affected and previously failing checks, and preserve still-valid evidence for unaffected checks instead of repeating the review solely to rewrite unchanged content. Do not repeat the scorecard for a failure-origin-only round.
+- Set `Current Review Round` to `1` when no prior canonical result exists. If a prior report exists without a revision record, record that result as an unrecorded baseline and create `CRR-001`; never infer a prior `Pass` from missing history.
 
 ## Review Scope
 

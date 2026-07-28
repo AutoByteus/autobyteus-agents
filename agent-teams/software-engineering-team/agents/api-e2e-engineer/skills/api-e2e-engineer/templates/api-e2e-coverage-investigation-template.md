@@ -12,12 +12,12 @@ Update this artifact whenever new evidence changes a test-validity or coverage d
 - Investigation Notes:
 - Design Spec:
 - Supplemental Task Artifacts:
-- Solution Revision Record, when present:
+- Solution Revision Record:
 - Implementation Handoff:
-- Implementation Revision Record, when present:
+- Implementation Revision Record:
 - Code Review Report:
-- Code Review Revision Record, when present:
-- API/E2E Revision Record, when present:
+- Code Review Revision Record:
+- API/E2E Revision Record (created after the first completed result):
 - Current API/E2E Revision ID: `N/A` / `API-REV-*`
 - Current Investigation Round:
 - Trigger:

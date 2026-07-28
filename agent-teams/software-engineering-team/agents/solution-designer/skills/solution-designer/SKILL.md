@@ -42,6 +42,8 @@ Always produce all three mandatory core artifacts:
 - Keep the investigation notes as a durable evidence artifact: record exact sources, commands, observed behavior, runtime/probe findings, relevant external or upstream findings, reproduction/setup details, and open unknowns in enough detail that downstream review does not need to rediscover them from scratch. Give each relevant user, system, operational, or contract behavior a stable behavior ID and record its evidence-backed current path or verified absence.
 - For git-repository tasks, always record the current branch/worktree and expected base or finalization branch in the investigation notes.
 - After the requirements basis is approved, produce the design spec and keep it aligned with the approved upstream artifacts.
+- Before every completed solution handoff, create or update `solution-revision-record.md`; create `SR-001` as the concise initial baseline and append one entry for each later solution round. Keep the core artifacts and supplements authoritative; do not duplicate them in the revision record.
+- Do not create or update `implementation-handoff.md`; that artifact belongs to `implementation_engineer` and is produced only after implementation and implementation-scoped checks.
 
 ## Supplemental Task Artifacts
 
@@ -55,16 +57,15 @@ Always produce all three mandatory core artifacts:
 - Treat any supplement that defines intended behavior as part of the requirements basis and present it for user approval with the requirements doc. Record approval as `N/A` when the supplement is evidence or context rather than an intended-behavior authority.
 - Keep every still-relevant supplement aligned during upstream rework and include it in all downstream handoffs.
 
-## Downstream Rework Record
+## Solution Revision Record
 
-- When downstream feedback causes any requirements, investigation, design, or supplemental-artifact rework after the initial solution handoff, create or update the canonical `solution-revision-record.md` using [templates/solution-revision-record-template.md](templates/solution-revision-record-template.md).
-- Do not create this file for the initial solution round. Keep one file across all later rounds and add one concise `SR-*` entry per rework cycle.
-- Link each entry to the triggering role, report, round, and finding IDs; record what changed, why, the affected canonical artifacts or sections, implementation impact, repeated readiness checks, and remaining gaps.
-- Keep the revised core artifacts and supplements as the current authority. Use the revision record only as a durable delta and rationale index; do not duplicate the complete solution in it.
+- Before the initial implementation-ready solution handoff, create `solution-revision-record.md` with one concise `SR-001` baseline entry. For later downstream feedback, append one `SR-*` entry per completed solution round.
+- Link each entry to the triggering role, report, round, and finding IDs; record the prior result (`N/A` for the baseline), current result, what changed or what baseline was established, the affected canonical artifacts or sections, implementation impact, repeated readiness checks, and remaining gaps.
+- Keep the latest requirements, investigation notes, design spec, and supplements as the current authority. Use the revision record only as a durable round and rationale index; do not duplicate the complete solution in it.
 
 ## Artifact Location Rule
 
-- Write the authoritative artifact files and any applicable revision record in the assigned task workspace/worktree before any handoff message.
+- Write the authoritative artifact files and the current solution revision record in the assigned task workspace/worktree before any handoff message.
 - For git-repository tasks, that authoritative workspace must be the dedicated ticket worktree/branch, not the user's shared base/default/current branch checkout.
 - Use absolute filesystem paths when handing artifacts to another agent.
 
@@ -182,8 +183,8 @@ Always produce all three mandatory core artifacts:
 - Keep the investigation notes current alongside the requirements doc whenever the task depends on internal or external investigation.
 - Requirements approval is not permission to keep working on the current shared branch. Before producing the design spec after approval, verify again that the authoritative task workspace is the dedicated ticket worktree/branch for git-repository tasks.
 - Once the requirements basis is approved, produce the design spec before handing work downstream.
-- Send the implementation-ready solution package directly to `implementation_engineer`: the three mandatory core artifacts plus every still-relevant supplemental task artifact.
-- On a rework handoff, also include `solution-revision-record.md` and the triggering downstream report, revision record, or evidence. Identify the current `SR-*` entry and finding IDs in the message.
+- Send the implementation-ready solution package directly to `implementation_engineer`: the three mandatory core artifacts, every still-relevant supplemental task artifact, and `solution-revision-record.md`.
+- On a rework handoff, also include the triggering downstream report, revision record, or evidence. Identify the current `SR-*` entry and finding IDs in the message.
 - Include absolute filesystem paths for every artifact, the approval state of the requirements basis and applicable supplements, the key scope summary, bootstrap context when relevant, open risks, and the expected implementation outcome.
 - If downstream specialists report `Requirement Gap` or `Unclear`, revise the requirements doc, investigation notes, affected supplements, and any affected design sections before resending the corrected package to `implementation_engineer`.
 - If downstream specialists report `Design Impact`, revise the design spec, affected supplements, and any affected upstream rationale, repeat the final design readiness check, and resend the corrected package to `implementation_engineer`.

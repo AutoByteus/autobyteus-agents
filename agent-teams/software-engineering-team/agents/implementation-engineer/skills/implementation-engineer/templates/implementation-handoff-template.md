@@ -8,7 +8,7 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Investigation notes:
 - Design spec:
 - Supplemental task artifacts:
-- Solution revision record, when present:
+- Solution revision record:
 - Triggering rework report, revision record, or evidence, when applicable:
 
 ## Current Implementation Summary
@@ -16,7 +16,7 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 Summarize the complete current implementation. For a post-initial delta, reference the applicable `IR-*` entry instead of turning this section into a revision log.
 
 - Implementation cycle: `Initial` / `Rework`
-- Implementation revision record: `N/A` / absolute path
+- Implementation revision record: absolute path
 - Current implementation revision ID: `N/A` / `IR-*`
 - Related solution revision ID: `N/A` / `SR-*`
 - Related code review revision IDs: `N/A` / `CRR-*`

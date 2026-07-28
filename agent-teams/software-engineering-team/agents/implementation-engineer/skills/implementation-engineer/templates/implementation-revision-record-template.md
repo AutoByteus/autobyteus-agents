@@ -1,14 +1,14 @@
 # Implementation Revision Record
 
-Create `implementation-revision-record.md` only when implementation changes after the initial implementation handoff in response to downstream feedback. Keep one canonical file across all later rounds; do not create round-specific copies.
+Create `implementation-revision-record.md` before the initial implementation handoff. Add `IR-001` as the concise initial baseline, then append one entry for each later implementation round; do not create round-specific copies.
 
-The current code and `implementation-handoff.md` remain authoritative. Record only the implementation delta and rationale needed to locate and review the rework.
+The current code and `implementation-handoff.md` remain authoritative. Record only the initial baseline or later implementation delta and rationale needed to locate and review the current result.
 
 ## Revision Index
 
 | Revision ID | Triggering Role / Report / Round | Finding IDs | Classification | Related Revision IDs | Result |
 | --- | --- | --- | --- | --- | --- |
-| IR-001 |  |  | `Local Fix` / `Design Impact` / `Requirement Gap` / `Unclear` | `SR-*`, `CRR-*`, `API-REV-*`, or `N/A` |  |
+| IR-001 |  |  | `Initial Baseline` / `Local Fix` / `Design Impact` / `Requirement Gap` / `Unclear` | `SR-*`, `CRR-*`, `API-REV-*`, or `N/A` |  |
 
 ## Revision Entries
 
@@ -17,14 +17,17 @@ The current code and `implementation-handoff.md` remain authoritative. Record on
 - Triggering role, report path, and round:
 - Triggering finding IDs:
 - Classification:
+- Prior authoritative result: `N/A` / result
+- Current authoritative result:
 - Related solution revision ID: `SR-*` / `N/A`
 - Related code review revision IDs: `CRR-*` / `N/A`
 - Related API/E2E revision IDs: `API-REV-*` / `N/A`
-- Why implementation revision was required:
+- Why this baseline or implementation revision is recorded:
 - Approved behavior or requirement IDs affected:
 - Implementation delta:
 - Changed files or areas:
 - Local validation and result:
+- Next recipient or routing:
 - Remaining limitations or risks:
 
-Keep prior entries. Add a new entry for later rework instead of rewriting history, except to correct a factual error.
+For `IR-001`, record the initial implementation handoff baseline and use `N/A` for prior result and triggering findings. Keep prior entries. Add a new entry for later rework instead of rewriting history, except to correct a factual error.

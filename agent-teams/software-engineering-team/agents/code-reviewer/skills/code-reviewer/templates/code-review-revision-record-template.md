@@ -1,8 +1,8 @@
 # Code Review Revision Record
 
-Create `code-review-revision-record.md` only when the code reviewer updates a canonical review report after that report's initial handoff. Keep one role-level file across later implementation, failure-origin, and proportional test-review rounds; do not create round-specific copies.
+Create `code-review-revision-record.md` after the first completed code-review result. Add `CRR-001` as the concise initial baseline, then append one entry for each later implementation, failure-origin, or proportional test-review round; do not create round-specific copies.
 
-The latest `code-review-report.md` or `api-e2e-test-review-report.md` remains authoritative for its current result. Record only the review delta and rationale needed to understand the changed result.
+The latest `code-review-report.md` or `api-e2e-test-review-report.md` remains authoritative for its current result. Record only the initial baseline or later review delta and rationale needed to understand the current result.
 
 ## Revision Index
 
@@ -37,4 +37,4 @@ If no prior finding applies to this review revision, write `None`.
 - Recommended recipient:
 - Remaining risks or uncertainty:
 
-Keep prior entries. Add a new entry for later review rework instead of rewriting history, except to correct a factual error.
+For `CRR-001`, use `N/A` for prior result and write `None` in the prior-finding table. Keep prior entries. Add a new entry for later review work instead of rewriting history, except to correct a factual error.
