@@ -4,8 +4,8 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 Keep one canonical design-review report path across reruns.
 Do not create versioned copies by default.
-On round `>1`, recheck prior unresolved findings first, update the prior-findings resolution section, and then record the new round result.
-The latest round is authoritative; earlier rounds remain history.
+For every completed review round, first confirm the affected behavior and production-path basis, then recheck applicable prior unresolved findings, complete the current review, update this report to the latest complete result, and create or append the corresponding entry in `architecture-review-revision-record.md`. The initial result receives `ARCH-REV-001` with prior decision `N/A`.
+The latest canonical report is authoritative; the revision record is the concise chronological history for all rounds.
 
 ## Review Round Meta
 
@@ -13,6 +13,10 @@ The latest round is authoritative; earlier rounds remain history.
 - Upstream Investigation Notes:
 - Reviewed Design Spec:
 - Supplemental Task Artifacts Reviewed:
+- Solution Revision Record Reviewed:
+- Relevant Solution Revision IDs:
+- Architecture Review Revision Record:
+- Current Architecture Review Revision ID: `N/A` / `ARCH-REV-*`
 - Current Review Round:
 - Trigger:
 - Prior Review Round Reviewed:
@@ -22,20 +26,8 @@ The latest round is authoritative; earlier rounds remain history.
 Round rules:
 - Reuse the same finding IDs across reruns for the same unresolved design-review issues.
 - Create new finding IDs only for newly discovered issues.
-
-## Round History
-
-| Round | Trigger | Prior Unresolved Findings Rechecked | New Findings Found | Review Decision | Latest Authoritative | Notes |
-| --- | --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |  |
-
-## Prior Findings Resolution Check (Mandatory On Round >1)
-
-Complete this before evaluating new-round content.
-
-| Prior Round | Finding ID | Previous Severity | Current Resolution | Evidence | Notes |
-| --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |
+- Keep the current structural verdicts complete. Revalidate affected and previously failing checks, and preserve still-valid evidence for unaffected checks instead of repeating the review solely to rewrite unchanged content.
+- Set `Current Review Round` to `1` when no prior canonical result exists. If a prior report exists without a revision record, record that result as an unrecorded baseline and create `ARCH-REV-001`; never infer a prior `Pass` from missing history.
 
 ## Upstream Behavior And Production-Path Basis Confirmation
 
@@ -52,6 +44,8 @@ Complete this understanding and alignment gate before applying the structural ch
 |  |  |  |  |  |  |  |
 
 Reuse the design spec's stable behavior IDs. Assign a provisional ID only when concrete evidence reveals a relevant supported behavior missing upstream; route it to `solution_designer` and do not pass until the upstream map is corrected. Do not create a behavior row from technical possibility alone. An overall `Confirmed` status requires every relevant row to be `Confirmed`.
+
+After the initial review result, complete the applicable prior-finding resolution table in `architecture-review-revision-record.md` after confirming this behavior basis and before finalizing prospective new findings.
 
 Apply the remaining technical sections proportionately. If a whole section is genuinely inapplicable, write `N/A` with a short reason; do not invent a design concern to populate the template.
 
@@ -221,7 +215,7 @@ Otherwise list actionable findings with:
 Rules:
 - Reuse the same finding ID when the same issue persists across rounds.
 - Create a new finding ID only for newly discovered issues.
-- Mark resolved or obsolete earlier findings in the prior-findings resolution table instead of silently dropping them.
+- After the initial result, mark resolved or obsolete earlier findings in the current `ARCH-REV-*` entry's prior-finding resolution table instead of silently dropping them.
 
 ## Classification
 
