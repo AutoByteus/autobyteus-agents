@@ -40,6 +40,8 @@ Always produce all three mandatory core artifacts:
 - Keep the investigation notes as a durable evidence artifact: record exact sources, commands, observed behavior, runtime/probe findings, relevant external or upstream findings, reproduction/setup details, and open unknowns in enough detail that downstream review does not need to rediscover them from scratch. Give each relevant user, system, operational, or contract behavior a stable behavior ID and record its evidence-backed current path or verified absence.
 - For git-repository tasks, always record the current branch/worktree and expected base or finalization branch in the investigation notes.
 - After the requirements basis is approved, produce the design spec and keep it aligned with the approved upstream artifacts.
+- Before every completed solution handoff, use [templates/solution-revision-record-template.md](templates/solution-revision-record-template.md) to create or update `solution-revision-record.md`; create `SR-001` as the concise initial baseline and append one entry for each later solution round. Keep the core artifacts and supplements authoritative; do not duplicate them in the revision record.
+- Do not create or update `implementation-handoff.md`; that artifact belongs to `implementation_engineer` and is produced only after implementation and implementation-scoped checks.
 
 ## Supplemental Task Artifacts
 
@@ -53,9 +55,15 @@ Always produce all three mandatory core artifacts:
 - Treat any supplement that defines intended behavior as part of the requirements basis and present it for user approval with the requirements doc. Record approval as `N/A` when the supplement is evidence or context rather than an intended-behavior authority.
 - Keep every still-relevant supplement aligned during upstream rework and include it in all downstream handoffs.
 
+## Solution Revision Record
+
+- Before the initial architecture-review handoff, create `solution-revision-record.md` with one concise `SR-001` baseline entry. For later architecture-review or downstream feedback, append one `SR-*` entry per completed solution round.
+- Link each later entry to the triggering role, report, round, and finding IDs; record the prior result (`N/A` for the baseline), current result, what changed or what baseline was established, the affected canonical artifacts or sections, downstream and architecture-review impact, and remaining gaps.
+- Keep the latest requirements, investigation notes, design spec, and supplements as the current authority. Use the revision record only as a durable round and rationale index; do not duplicate the complete solution in it.
+
 ## Artifact Location Rule
 
-- Write the authoritative artifact files in the assigned task workspace/worktree before any handoff message.
+- Write the authoritative artifact files and the current solution revision record in the assigned task workspace/worktree before any handoff message.
 - For git-repository tasks, that authoritative workspace must be the dedicated ticket worktree/branch, not the user's shared base/default/current branch checkout.
 - Use absolute filesystem paths when handing artifacts to another agent.
 
@@ -161,12 +169,12 @@ Always produce all three mandatory core artifacts:
 - Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an exact recipient name from the visible team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
-- Present the requirements doc and every supplement that defines intended user-visible behavior to the user for approval before treating them as locked design input.
+- Present the requirements doc and every supplement that defines intended behavior to the user for approval before treating them as locked design input.
 - Keep the investigation notes current alongside the requirements doc whenever the task depends on internal or external investigation.
 - Requirements approval is not permission to keep working on the current shared branch. Before producing the design spec after approval, verify again that the authoritative task workspace is the dedicated ticket worktree/branch for git-repository tasks.
 - Once the requirements basis is approved, produce the design spec before handing work downstream.
-- Send the full solution package to `architecture_reviewer`: the three mandatory core artifacts plus every still-relevant supplemental task artifact.
-- When handing that package to `architecture_reviewer`, include absolute filesystem paths for every artifact, the approval state of the requirements basis and applicable supplements, the key scope summary, bootstrap context when relevant, open risks, and the next expected decision.
-- If downstream specialists report `Requirement Gap` or `Unclear`, revise the requirements doc, investigation notes, affected supplements, and any affected design sections before resending the solution package.
-- If downstream specialists report `Design Impact`, revise the design spec, affected supplements, and any affected upstream rationale before resending it.
+- Send the full solution package to `architecture_reviewer`: the three mandatory core artifacts, every still-relevant supplemental task artifact, and `solution-revision-record.md`.
+- When handing that package to `architecture_reviewer`, include absolute filesystem paths for every artifact, the current `SR-*` entry, the approval state of the requirements basis and applicable supplements, the key scope summary, bootstrap context when relevant, open risks, and the next expected decision.
+- If downstream specialists report `Requirement Gap` or `Unclear`, revise the requirements doc, investigation notes, affected supplements, and any affected design sections, append the next `SR-*` entry, and resend the solution package with the triggering report, revision record, or evidence.
+- If downstream specialists report `Design Impact`, revise the design spec, affected supplements, and any affected upstream rationale, append the next `SR-*` entry, and resend the package with the triggering report, revision record, or evidence.
 - Expect iterative design-review rounds with `architecture_reviewer` until the design passes review.

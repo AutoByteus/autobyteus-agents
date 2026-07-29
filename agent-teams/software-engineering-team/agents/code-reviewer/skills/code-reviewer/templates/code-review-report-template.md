@@ -6,8 +6,8 @@ Use the approved requirements as the intended-behavior authority and the canonic
 If the review shows that an earlier design artifact was weak, incomplete, or wrong, classify that as `Design Impact`.
 Keep one canonical code review report path across reruns.
 Do not create versioned copies by default.
-On round `>1`, recheck prior unresolved findings first, update the prior-findings resolution section, and then record the new round result.
-The latest round is authoritative; earlier rounds remain history.
+For every completed review round, first confirm the affected behavior and production-path basis, then recheck applicable prior unresolved findings, complete the current review, update this report to the latest complete result, and create or append the corresponding entry in `code-review-revision-record.md`. The initial result receives `CRR-001` with prior result `N/A`.
+The latest canonical report is authoritative; the revision record is the concise chronological history for all completed review results.
 
 Use the full report for `Implementation Review`. For `API/E2E Failure-Origin Review`, record the failure context in the review meta and scope, update only affected findings or score rationale when needed, classify the cause, and route it without repeating the full source audit or scorecard.
 
@@ -17,17 +17,29 @@ Do not record successful API/E2E test-code review here. Use the separate `api-e2
 
 - Review Entry Point: `Implementation Review` / `API/E2E Failure-Origin Review`
 - Requirements Doc Reviewed As Context:
+- Investigation Notes Reviewed As Context:
+- Design Spec Reviewed As Context:
 - Supplemental Task Artifacts Reviewed As Context:
+- Solution Revision Record Reviewed As Context:
+- Relevant Solution Revision IDs:
+- Design Review Report Reviewed As Context:
+- Architecture Review Revision Record Reviewed As Context:
+- Relevant Architecture Review Revision IDs:
+- Implementation Handoff Reviewed As Context:
+- Implementation Revision Record Reviewed As Context:
+- Relevant Implementation Revision IDs:
+- Code Review Revision Record:
+- Current Code Review Revision ID: `N/A` / `CRR-*`
 - Current Review Round:
 - Trigger:
 - Prior Review Round Reviewed:
 - Latest Authoritative Round:
-- Investigation Notes Reviewed As Context:
-- Design Spec Reviewed As Context:
-- Design Review Report Reviewed As Context:
-- Implementation Handoff Reviewed As Context:
 - Coverage Investigation Reviewed (failure-origin entry point):
 - Execution Coverage Report Reviewed (failure-origin entry point):
+- API/E2E Revision Record Reviewed (failure-origin entry point):
+- Relevant API/E2E Revision IDs:
+- Delivery Revision Record Reviewed (delivery re-entry only):
+- Relevant Delivery Revision IDs:
 - Failing Scenario IDs:
 - Exact Failing Commands / Execution Mode:
 - Failure Evidence Paths:
@@ -35,21 +47,8 @@ Do not record successful API/E2E test-code review here. Use the separate `api-e2
 Round rules:
 - Reuse the same finding IDs across reruns for the same unresolved issues.
 - Create new finding IDs only for newly discovered review findings.
-- Update the full scorecard on every implementation-review round. Do not repeat it for a failure-origin-only round.
-
-## Round History
-
-| Round | Trigger | Prior Unresolved Findings Rechecked | New Findings Found | Review Decision | Latest Authoritative | Notes |
-| --- | --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |  |
-
-## Prior Findings Resolution Check (Mandatory On Round >1)
-
-Complete this before evaluating new-round content.
-
-| Prior Round | Finding ID | Previous Severity | Current Resolution | Evidence | Notes |
-| --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |
+- Keep the full scorecard current on every implementation-review round. Revalidate affected and previously failing checks, and preserve still-valid evidence for unaffected checks instead of repeating the review solely to rewrite unchanged content. Do not repeat the scorecard for a failure-origin-only round.
+- Set `Current Review Round` to `1` when no prior canonical result exists. If a prior report exists without a revision record, record that result as an unrecorded baseline and create `CRR-001`; never infer a prior `Pass` from missing history.
 
 ## Review Scope
 
@@ -73,6 +72,8 @@ Complete this understanding and alignment foundation before the implementation s
 |  |  |  |  |
 
 Reuse the design spec's behavior IDs. Assign a provisional ID only when concrete evidence reveals a relevant supported behavior missing upstream; route it to `solution_designer` and do not pass until the upstream map is corrected. Do not create a behavior from technical possibility alone. `Contradicted`, `Unclear`, or `Newly Discovered` behavior prevents an implementation-review pass.
+
+After the initial review result, complete the applicable prior-finding resolution table in `code-review-revision-record.md` after confirming this behavior basis and before finalizing prospective new findings.
 
 ## Structural / Design Checks
 
@@ -210,7 +211,7 @@ Rules:
 Rules:
 - Reuse the same finding ID when the same issue persists across rounds.
 - Create a new finding ID only for newly discovered issues.
-- Mark resolved or obsolete earlier findings in the prior-findings resolution table instead of silently dropping them.
+- After the initial result, mark resolved or obsolete earlier findings in the current `CRR-*` entry's prior-finding resolution table instead of silently dropping them.
 - Tie every finding to affected approved behavior, relevant existing behavior, an established engineering contract, or a real supported operational constraint.
 - When a finding depends on an assumed production, failure, or lifecycle scenario, cite its material-premise validation ID and include the production trigger/path, evidence, material consequence, and why the required action is proportionate.
 - If dead/obsolete/legacy/compatibility issues exist, enumerate each one explicitly with the concrete file/path/item, evidence, and required removal or cleanup action.

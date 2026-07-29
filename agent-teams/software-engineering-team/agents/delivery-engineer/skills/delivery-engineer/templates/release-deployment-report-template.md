@@ -8,6 +8,8 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 - Handoff summary artifact:
 - Handoff summary status: `Updated` / `Blocked`
+- Delivery revision record:
+- Current delivery revision ID: `DR-*`
 - Notes:
 
 ## Initial Delivery Integration Refresh
