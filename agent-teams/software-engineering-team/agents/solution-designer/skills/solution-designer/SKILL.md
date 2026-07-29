@@ -27,6 +27,7 @@ Create task-specific supplemental artifacts when a separate file materially impr
 - clean-cut replacement without compatibility wrappers or legacy behavior retention
 - evidence-backed persisted-data transition decisions, with isolated migration boundaries only when transformation is required
 - change/refactor sequencing, removal planning, tradeoffs, derived-layering validation when useful, and downstream design-impact rework
+- opt-in architecture-visualization requests after the current solution package is ready
 
 ## Primary Outputs
 
@@ -44,7 +45,7 @@ Always produce all three mandatory core artifacts:
 ## Supplemental Task Artifacts
 
 - Create a supplemental artifact when a separate file materially improves investigation evidence, requirement precision, design clarity, or downstream context.
-- Keep supplemental artifacts task-specific. Useful examples include retained probe results, focused research findings, UI/UX specifications, user-journey or interaction-state specifications, protocol/API contracts, data-mapping specifications, diagrams, and decision tables.
+- Keep supplemental artifacts task-specific. Useful examples include retained probe results, focused research findings, UI/UX specifications, user-journey or interaction-state specifications, protocol/API contracts, data-mapping specifications, decision tables, and task-specific diagrams that carry authoritative evidence or design context. User-requested human-facing architecture visualization is the separate derived output described in the handoff rules.
 - For UI-facing work, use or adapt [templates/ui-ux-spec-template.md](templates/ui-ux-spec-template.md) when it helps pin down user journeys, screen or component states, interactions, transitions, and loading, empty, error, disabled, permission, responsive, or accessibility behavior.
 - Do not treat every scratch file, disposable probe, or generated intermediate as a supplement. Promote it only when the file remains useful and reviewable; otherwise record its material result in the investigation notes.
 - Keep the canonical supplement inventory in the investigation notes, and link each supplement from every core artifact that it materially supports.
@@ -160,13 +161,16 @@ Always produce all three mandatory core artifacts:
 
 - Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an exact recipient name from the visible team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
-- After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
+- After sending all messages required to leave the current stage, end the stage. Do not poll recipients; act on a later incoming team message if more work is required.
 - Present the requirements doc and every supplement that defines intended user-visible behavior to the user for approval before treating them as locked design input.
 - Keep the investigation notes current alongside the requirements doc whenever the task depends on internal or external investigation.
 - Requirements approval is not permission to keep working on the current shared branch. Before producing the design spec after approval, verify again that the authoritative task workspace is the dedicated ticket worktree/branch for git-repository tasks.
 - Once the requirements basis is approved, produce the design spec before handing work downstream.
+- If the user explicitly requests architecture diagrams or a visual explanation of the solution, send a non-blocking `architecture_visualization_request` to `architecture_visualizer` after the current full solution package is ready. Include the user's visualization question, the canonical `architecture-diagrams.md` path, and the same complete package of absolute artifact paths prepared for `architecture_reviewer`.
+- Do not activate `architecture_visualizer` merely because a task contains architectural work or is complex. A visualization request does not transfer stage ownership and does not delay architecture review.
 - Send the full solution package to `architecture_reviewer`: the three mandatory core artifacts plus every still-relevant supplemental task artifact.
 - When handing that package to `architecture_reviewer`, include absolute filesystem paths for every artifact, the approval state of the requirements basis and applicable supplements, the key scope summary, bootstrap context when relevant, open risks, and the next expected decision.
 - If downstream specialists report `Requirement Gap` or `Unclear`, revise the requirements doc, investigation notes, affected supplements, and any affected design sections before resending the solution package.
 - If downstream specialists report `Design Impact`, revise the design spec, affected supplements, and any affected upstream rationale before resending it.
+- When a material design revision occurs and architecture visualization is still requested, send `architecture_visualizer` a refresh request for the same canonical artifact with the revised full solution package. Do not wait for or poll the visualizer.
 - Expect iterative design-review rounds with `architecture_reviewer` until the design passes review.

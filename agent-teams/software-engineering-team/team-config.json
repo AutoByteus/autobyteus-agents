@@ -15,6 +15,12 @@
       "refScope": "team_local"
     },
     {
+      "memberName": "architecture_visualizer",
+      "ref": "architecture-visualizer",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
       "memberName": "implementation_engineer",
       "ref": "implementation-engineer",
       "refType": "agent",
