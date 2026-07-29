@@ -10,13 +10,23 @@ Summarize the relevant current flow and lifecycle, ownership boundaries, verifie
 
 ## Relevant Behavior And Production-Path Map (Mandatory)
 
-Synthesize the approved current-and-desired behavior from the requirements and the supporting existing-behavior evidence from the investigation notes before making structural design decisions. Use the stable behavior IDs from investigation. A small or backend-only change may need only one system, operational, or contract row; do not invent rows for unsupported technical possibilities.
+Synthesize every approved in-scope use case, the approved current-and-desired behavior from the requirements, and the supporting existing-behavior evidence from the investigation notes before making structural design decisions. Use the stable behavior IDs from investigation. Every approved in-scope use case must appear in at least one row, while one row may support multiple use cases when the behavior and production path are genuinely shared. A small or backend-only change may need only one system, operational, or contract row; do not invent rows for unsupported technical possibilities.
 
-| Behavior ID | Kind (`User`/`System`/`Operational`/`Contract`) | Approved Requirement / Intent And Acceptance-Criteria IDs | Approved Trigger Or Governing Contract | Relevant Existing Behavior And Evidence Reference | Approved Change Or Preserved Outcome | Target Production Path / Lifecycle And Spine ID(s) |
-| --- | --- | --- | --- | --- | --- | --- |
-| BEH-001 |  |  |  |  |  |  |
+| Behavior ID | Approved In-Scope Use Case(s) | Kind (`User`/`System`/`Operational`/`Contract`) | Approved Requirement / Intent And Acceptance-Criteria IDs | Approved Trigger Or Governing Contract | Relevant Existing Behavior And Evidence Reference | Approved Change Or Preserved Outcome | Target Production Path / Lifecycle And Spine ID(s) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| BEH-001 |  |  |  |  |  |  |  |
 
 The behavior map defines what real behavior the design must serve. The later data-flow spine sections define how the target technical structure carries it; they complement this map rather than replace it.
+
+## Material Design Premises (Only When Needed)
+
+Record only production, failure, or lifecycle premises that materially affect the target design. Do not search for hypothetical edge cases merely to populate this section. If none apply, write `None`.
+
+| Premise ID | Related Behavior ID(s) | Initiating Basis Kind (`User`/`System`/`Operational`/`Contract`) | Independent Product-Supported Trigger Or Applicable Contract And Support Evidence | Forward Production Path To Claimed State | Lifecycle Preconditions And Material Consequence | Reachability (`Reachable`/`Not Reachable`/`Unclear`) | Design Consequence |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |  |
+
+Apply the shared product-reachability rule. A downstream client, endpoint, handler, fallback, test, or proposed mechanism cannot establish its own reachability. `Not Reachable` cannot justify design machinery; materially `Unclear` evidence must be resolved before the dependent design decision is handed to implementation.
 
 ## Relevant Supplemental Task Artifacts
 
@@ -54,14 +64,14 @@ Define only task-specific terms needed to interpret this design. Do not repeat t
 Use the sections in this template in the following reasoning order, moving from verified context to concrete structure:
 
 1. current-state read and intended change
-2. relevant behavior and production-path map plus applicable supplemental context
+2. relevant behavior and production-path map, material design premises when any apply, and supplemental context
 3. task design-health, legacy-removal, and persisted-data decisions
 4. data-flow spines, ownership, and off-spine concerns
 5. ownership boundaries, dependency rules, and interfaces
 6. subsystem / capability-area allocation
 7. draft file responsibilities -> extract reusable owned structures -> finalize file responsibilities
 8. folder/path mapping
-9. change sequence, tradeoffs, risks, and implementation guidance
+9. change sequence, tradeoffs, risks, implementation readiness, and implementation guidance
 
 Complete every mandatory section, but apply the detailed mappings proportionately to the actual change. For a genuinely inapplicable section, write `N/A` with a short reason. Do not invent spines, subsystems, interfaces, abstractions, or risks merely to populate the template.
 
@@ -331,5 +341,19 @@ Describe the order of change from current state to target state, including any t
 ## Key Tradeoffs
 
 ## Risks
+
+## Implementation Readiness (Mandatory)
+
+This is the concise result of the solution designer's final in-place validation, not a separate review stage or report.
+
+- Status: `Implementation Ready` / `Not Implementation Ready`
+- Approved use-case and behavior-map coverage: `Pass` / `Fail` — evidence or remaining gap:
+- Production-path and data-flow-spine coverage for every mapped use case and behavior: `Pass` / `Fail` — evidence or remaining gap:
+- Complete shared-design-principles validation: `Pass` / `Fail` — evidence or remaining gap:
+- Corrections made and affected checks repeated:
+- Remaining non-blocking risks:
+- Blocking requirement, evidence, or design gaps: `None` / list
+
+Only `Implementation Ready`, with all three validations passing and no blocking gaps, may be handed to `implementation_engineer`.
 
 ## Guidance For Implementation

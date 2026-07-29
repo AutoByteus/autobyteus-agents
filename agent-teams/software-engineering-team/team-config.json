@@ -9,12 +9,6 @@
       "refScope": "team_local"
     },
     {
-      "memberName": "architecture_reviewer",
-      "ref": "architecture-reviewer",
-      "refType": "agent",
-      "refScope": "team_local"
-    },
-    {
       "memberName": "implementation_engineer",
       "ref": "implementation-engineer",
       "refType": "agent",

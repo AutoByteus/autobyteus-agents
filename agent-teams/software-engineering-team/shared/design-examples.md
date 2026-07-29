@@ -807,13 +807,13 @@ Those mechanisms are technically coherent, but the premise must be checked again
 
 The approved behavior is to edit settings for the node represented by the current node-specific window. No requirement introduces in-place node switching for that window.
 
-The solution designer records this basis before review:
+The solution designer records this basis before implementation handoff:
 
-| Behavior ID | Kind | Approved Requirement / Intent | Approved Trigger / Contract | Relevant Existing Behavior And Evidence | Approved Change / Preserved Outcome | Target Production Path / Lifecycle And Spine ID(s) |
-| --- | --- | --- | --- | --- | --- | --- |
-| `BEH-SETTINGS-001` | User | Settings apply to the node represented by the current node-specific window | User opens or focuses one node-specific window | Window creation/focus, bootstrap binding, production callers of `bindNodeContext(...)`, and the settings action show that node identity remains stable for the window lifetime | Preserve node identity while saving the approved setting changes | `DS-SETTINGS-001`: `Node Manager -> node-specific window -> bootstrap binding -> settings card -> existing setting action` |
+| Behavior ID | Approved In-Scope Use Case(s) | Kind | Approved Requirement / Intent | Approved Trigger / Contract | Relevant Existing Behavior And Evidence | Approved Change / Preserved Outcome | Target Production Path / Lifecycle And Spine ID(s) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `BEH-SETTINGS-001` | Edit settings for the node represented by the current node-specific window | User | Settings apply to the node represented by the current node-specific window | User opens or focuses one node-specific window | Window creation/focus, bootstrap binding, production callers of `bindNodeContext(...)`, and the settings action show that node identity remains stable for the window lifetime | Preserve node identity while saving the approved setting changes | `DS-SETTINGS-001`: `Node Manager -> node-specific window -> bootstrap binding -> settings card -> existing setting action` |
 
-The architecture reviewer validates this map against the approved requirements, investigation evidence, and current code before applying structural checks. The relevant evidence shows:
+The solution designer validates this map against the approved requirements, investigation evidence, and current code before implementation handoff. The code reviewer later verifies it against the implementation before applying structural checks. The relevant evidence shows:
 
 - ordinary desktop node selection opens or focuses a node-specific window
 - bootstrap binds the store once for that window
@@ -821,7 +821,7 @@ The architecture reviewer validates this map against the approved requirements, 
 - the only normal `bindNodeContext(...)` caller belongs to a separate mobile-session lifecycle
 - `bindingRevision` protects that separate lifecycle; its existence does not prove desktop rebinding
 
-### Material Edge-Case Record
+### Material Design Premise Record
 
 #### `EDGE-SETTINGS-001` — Node binding changes during one multi-setting save
 
@@ -833,7 +833,7 @@ The architecture reviewer validates this map against the approved requirements, 
 - Forward current or approved target production caller/event path that exercises the initiating basis and reaches the claimed state: `Node Manager -> node-specific window -> bootstrap binding -> settings card -> existing setting action`. No caller on that path invokes node rebinding during save.
 - Lifecycle preconditions and material consequence at the claimed point: the window is already bound before the card becomes interactive and remains bound for its lifetime, so the claimed cross-node save consequence cannot occur. A generic binding method, revision field, and separate mobile caller do not change this lifecycle.
 - Reachability: `Not Reachable`.
-- Review consequence / proportionate response: do not require a revision-fenced save protocol. Reuse the existing setting action, preserve truthful partial-persistence behavior, and stop on the first actual same-node failure when that is the approved behavior.
+- Design consequence / proportionate response: do not require a revision-fenced save protocol. Reuse the existing setting action, preserve truthful partial-persistence behavior, and stop on the first actual same-node failure when that is the approved behavior.
 
 ### Why The Initial Finding Is Invalid
 
@@ -847,11 +847,11 @@ Add revision fencing and rebinding recovery.
 
 This finding proves only technical possibility at the level of isolated methods and fields. It does not identify a supported trigger, production caller, or lifecycle path that can produce the state.
 
-The correct review does not dismiss edge cases generally. It rejects this particular premise because the complete relevant journey cannot reach it.
+Correct design reasoning and later review do not dismiss edge cases generally. They reject this particular premise because the complete relevant journey cannot reach it.
 
 ### Do Not Aggregate Plausible Failure Causes
 
-A reviewer evaluating snapshot recovery must not write:
+A designer or reviewer evaluating snapshot recovery must not write:
 
 ```text
 The snapshot can be absent after a new entity, manual deletion, schema reset,
@@ -875,15 +875,15 @@ If such a path exists, record its trigger, lifecycle, material consequence, and 
 
 ### Downstream Code-Review Use
 
-The code reviewer receives the design spec's `BEH-SETTINGS-001` map row and the design review report's `EDGE-SETTINGS-001` decision.
+The code reviewer receives the design spec's `BEH-SETTINGS-001` map row and `EDGE-SETTINGS-001` material premise decision.
 
-- If the implementation preserves the node-specific window lifecycle, mark the behavior and edge-case decision `Confirmed` by ID without copying the full reasoning.
+- If the implementation preserves the node-specific window lifecycle, mark the behavior and material premise decision `Confirmed` by ID without copying the full reasoning.
 - If the implementation introduces a real in-window rebinding path, reuse `EDGE-SETTINGS-001`, record the changed evidence, and reclassify it.
 - Do not recreate the rejected hypothetical merely because the implementation still contains `bindingRevision` or a generic binding method.
 
 ### Design Lesson
 
-Technical review begins from approved behavior and the complete relevant production path. Local capability is not proof of reachability. Persisting the behavior, evidence, and decision makes the reasoning auditable, prevents unsupported complexity, and lets downstream reviewers confirm or challenge the decision when later evidence changes.
+Technical design and review begin from approved behavior and the complete relevant production path. Local capability is not proof of reachability. Persisting the behavior, evidence, and decision makes the reasoning auditable, prevents unsupported complexity, and lets downstream reviewers confirm or challenge the decision when later evidence changes.
 
 ## Common Bad-Practice Patterns
 

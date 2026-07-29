@@ -12,9 +12,13 @@ Update this artifact whenever new evidence changes a test-validity or coverage d
 - Investigation Notes:
 - Design Spec:
 - Supplemental Task Artifacts:
-- Design Review Report:
+- Solution Revision Record:
 - Implementation Handoff:
+- Implementation Revision Record:
 - Code Review Report:
+- Code Review Revision Record:
+- API/E2E Revision Record (created after the first completed result):
+- Current API/E2E Revision ID: `N/A` / `API-REV-*`
 - Current Investigation Round:
 - Trigger:
 - Prior Investigation Reviewed:
@@ -22,7 +26,7 @@ Update this artifact whenever new evidence changes a test-validity or coverage d
 
 ## Current Requirement And Design Basis
 
-Summarize the current behavior that must be proven from the approved requirements, acceptance criteria, reviewed design, applicable supplemental task artifacts, implementation handoff, and code review report.
+Summarize the current behavior that must be proven from the approved requirements, acceptance criteria, design spec, applicable supplemental task artifacts, applicable revision records, implementation handoff, and code review report.
 
 ## Changed Behavior Summary
 
