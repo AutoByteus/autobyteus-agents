@@ -1,0 +1,123 @@
+# Requirements Investigation Notes
+
+Write this artifact to `investigation-notes.md` in the assigned task workspace.
+Keep evidence, sources, observations, and unknowns here rather than overloading the requirements document.
+
+## Investigation Meta
+
+- Request / ticket:
+- Workspace root:
+- Repository mode: `Git` / `Non-Git`
+- Task worktree / branch:
+- Base or reference revision:
+- Current requirements revision ID: `RER-*` / `N/A`
+- Investigation status:
+
+## Initial Request And Clarifications
+
+- Original request:
+- Clarifications received:
+- User-supplied facts and constraints:
+- Initial ambiguity:
+
+## Product And Domain Understanding
+
+- Product area:
+- Affected actors or systems:
+- Existing user or operational purpose:
+- Relevant terminology:
+
+## Source Log
+
+| Date | Source Type (`Code`/`Doc`/`Runtime`/`Data`/`Contract`/`Web`/`User`/`Command`/`Other`) | Exact Source / Command / Query | Why Consulted | Relevant Finding | Follow-Up |
+| --- | --- | --- | --- | --- | --- |
+| YYYY-MM-DD |  |  |  |  |  |
+
+## Relevant Existing Behavior And Production Paths
+
+Use stable behavior IDs and supported product or contract evidence. A behavior may be user, system, operational, or contract driven.
+
+| Behavior ID | Kind | Supported Trigger Or Governing Contract | Current Production Path / Lifecycle | Current Outcome / Invariants | Evidence | Confidence / Unknown |
+| --- | --- | --- | --- | --- | --- | --- |
+| BEH-001 |  |  |  |  |  |  |
+
+Record `No current supported behavior` for genuinely new behavior. Do not treat synthetic tests, direct internal calls, manual file manipulation, or corruption as a supported product path unless an explicit operational or governing contract makes them relevant.
+
+## Relevant Codebase And Technical Facts
+
+| Path / Component / Contract | Current Responsibility Or Behavior | Requirement Implication | Architecture Question Deferred Downstream |
+| --- | --- | --- | --- |
+|  |  |  |  |
+
+## Runtime, Probe, Or Reproduction Findings
+
+| Method / Command | Scenario | Observation | Requirement Implication | Artifact / Evidence Path |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+
+## Stakeholder And User Evidence
+
+| Source / Actor | Need, Problem, Or Constraint | Evidence Strength | Requirement Implication | Open Question |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+
+## External Contracts, Standards, And Dependencies
+
+| Contract / Dependency | Version / Authority | Relevant Behavior Or Constraint | Evidence | Unknown / Risk |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+
+## Persisted Data And State Facts
+
+- Affected stored or external subject:
+- Location and representative shape:
+- Approximate volume:
+- Current readers and writers:
+- Current unknown/extra-field behavior:
+- Required semantics or data that must be preserved:
+- Acceptable loss, reset, rebuild, or regeneration:
+- Privacy, retention, compliance, downtime, or operational constraints:
+- Remaining evidence gap:
+
+## Product Prototype Decision
+
+- Prototype needed: `Yes` / `No` / `Undetermined`
+- Decision rationale:
+- Requirement / behavior IDs involved:
+- Product decisions or uncertainties to resolve:
+- Critical journey and states:
+- Known constraints and non-goals:
+- Prototype request artifact / message reference:
+
+## Prototype Findings
+
+- Prototype package path:
+- Approved UI/UX specification path:
+- Review URL:
+- Explicit user-confirmation reference:
+- Journeys and scenarios validated:
+- Final visual-reference paths:
+- Product decisions supported by evidence:
+- Alternatives rejected or still open:
+- Mocked boundaries and production gaps:
+- Requirements sections affected:
+
+## Supplemental Artifact Inventory
+
+| Artifact Path | Owner | Purpose | Scope | Related Requirement / AC IDs | Status | Approval Applicability / State |
+| --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |
+
+## Assumptions, Unknowns, And Risks
+
+| ID | Type (`Assumption`/`Unknown`/`Risk`) | Description | Why It Matters | Resolution / Owner | Status |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+## Requirement Implications
+
+Summarize the evidence that materially shaped current behavior, desired behavior, scope, acceptance criteria, quality constraints, data-continuity requirements, or open decisions.
+
+## Notes For Downstream Architecture Design
+
+Record verified constraints, relevant current implementation facts, and technical questions that downstream architecture should address. Do not prescribe the target structure here.
