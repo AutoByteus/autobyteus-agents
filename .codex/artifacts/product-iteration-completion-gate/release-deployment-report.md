@@ -57,16 +57,16 @@ No version, tag, or release commit is applicable.
 
 - Bootstrap context source: local `codex/product-manager-loop` at `958ce7742aa53941145a5845cf59280008bad531`; finalization target remains the repository integration/default branch after acceptance.
 - Ticket branch: `codex/product-iteration-completion-gate`.
-- Ticket branch commit result: `Completed` — implementation checkpoint `feec935`, integration merge `3d32d63`, and artifact commit `d765663`.
+- Ticket branch commit result: `Completed` — implementation checkpoint `feec935`, integration merge `3d32d63`, and artifact commit `a956aa2`.
 - Ticket branch push result: `Completed` — `codex/product-iteration-completion-gate` pushed to `origin`.
 - Finalization target remote: `origin`.
 - Finalization target branch: `main` (integration/default target; exact target refresh is deferred until acceptance).
 - Target advanced after verification / acceptance: `No` — final refresh confirmed `origin/main` remains `51e2dd4`.
-- Delivery-owned edits protected before re-integration: `Completed` — all delivery artifacts are being committed on the ticket branch before target update.
+- Delivery-owned edits protected before re-integration: `Completed` — all delivery artifacts were committed on the ticket branch before target update.
 - Re-integration before final merge result: `Not needed` — ticket branch already contains latest `origin/main` `51e2dd4`.
-- Target branch update result: `Completed` — local `main` fast-forwarded to `d765663`.
+- Target branch update result: `Completed` — local `main` fast-forwarded to `a956aa2`.
 - Merge into target result: `Completed` — ticket branch merged into `main` by fast-forward.
-- Push target branch result: `Completed` — `origin/main` updated to `d765663`.
+- Push target branch result: `Completed` — `origin/main` updated to `a956aa2`.
 - Repository finalization status: `Completed`.
 - Blocker: `None`.
 
