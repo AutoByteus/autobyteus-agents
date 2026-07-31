@@ -32,12 +32,13 @@ Detailed operating rules, artifact standards, and send-back behavior belong in e
 ## Team Members
 
 - `solution_designer`: bootstraps the task context, investigates the request, defines scope, writes the requirements doc and investigation notes, produces the design spec, and acts as the reset point when downstream work exposes a requirement gap, design impact, or cross-cutting ambiguity.
-- `product_manager`: owns product opportunity selection, Product Iteration Plan/backlog/cursor, next-feature proposals, Product Feature Briefs, Product Acceptance Findings, and the outer delivery-to-product iteration loop; routes concrete briefs back to Engineering Intake / `solution_designer` without bypassing engineering gates.
 - `architecture_reviewer`: reviews the design spec and decides whether the design is ready for implementation.
 - `implementation_engineer`: delivers the code changes from the reviewed design, runs implementation-scoped local checks, and prepares the implementation handoff without owning API/E2E coverage investigation, execution, or environment setup.
 - `code_reviewer`: performs the source and architecture review pass before API/E2E coverage investigation and execution proceeds, and re-reviews any repository-resident durable coverage code added, updated, or removed later during API/E2E before delivery begins.
 - `api_e2e_engineer`: owns API, end-to-end, and broader executable coverage investigation, existing-test validity decisions, coverage, environment setup, execution, and evidence after the implementation has passed code review; when it adds, updates, or removes repository-resident durable coverage, that updated state returns through `code_reviewer` before delivery.
 - `delivery_engineer`: first refreshes the ticket branch against the latest tracked remote state of the recorded base branch, records the integrated-state check result, then updates durable project documentation or records explicit no-impact against that integrated state, prepares the final handoff, waits for explicit user completion/verification for one-off runs or Product Manager acceptance status `Accepted` for product-iteration runs before archival or repository finalization, and handles release or deployment work when it is in scope.
+
+The `product_manager` agent is not a member of this normal one-off engineering team. It is owned by the separate `Product Iteration Team` and is referenced here only as the product-loop acceptance/callback owner; its shared agent package remains under this directory for that team to reuse.
 
 ## Product Iteration Coordination
 

@@ -37,12 +37,6 @@
       "ref": "delivery-engineer",
       "refType": "agent",
       "refScope": "team_local"
-    },
-    {
-      "memberName": "product_manager",
-      "ref": "product-manager",
-      "refType": "agent",
-      "refScope": "team_local"
     }
   ]
 }
