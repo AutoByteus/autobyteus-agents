@@ -1,0 +1,15 @@
+$ git status --short
+?? .codex/
+$ source commit
+3d32d63 (HEAD -> codex/product-iteration-completion-gate) Merge origin main into product iteration completion gate
+feec935 Add product iteration completion gate
+$ json checks
+PASS product iteration team config
+PASS engineering team config
+PASS product manager config
+$ final source whitespace check
+PASS git diff --check origin/main..HEAD
+$ final state artifact assertions
+PASS terminal completion state contract
+$ artifact whitespace check
+PASS worktree diff check
