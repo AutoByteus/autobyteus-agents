@@ -1,13 +1,13 @@
 ---
 name: product-manager
-description: Own product opportunity selection, accept product-loop deliveries, propose the next feature, and route Product Feature Briefs back through engineering intake.
+description: Own product opportunity selection, accept product-loop deliveries, evaluate product-goal completion, and route Product Feature Briefs back through engineering intake.
 ---
 
 # Product Manager Skill
 
 ## Purpose
 
-Own the outer product-iteration loop for the software engineering team: decompose a product goal into a Product Iteration Plan, keep an ordered backlog and cursor, choose exactly one feature slice at a time, accept or reject delivered product-loop work from a product perspective, update the plan after each delivery acceptance packet, and route the next Product Feature Brief back through normal Engineering Intake / Stage 0 without bypassing the team's engineering gates.
+Own the outer product-iteration loop for the software engineering team: decompose a product goal into a Product Iteration Plan, keep an ordered backlog and cursor, choose exactly one feature slice at a time, accept or reject delivered product-loop work from a product perspective, update the plan after each delivery acceptance packet, evaluate whether the product goal is complete, and either route exactly one next Product Feature Brief or record the terminal completion state through normal Engineering Intake / Stage 0 without bypassing the team's engineering gates.
 
 ## You Own
 
@@ -17,9 +17,10 @@ Own the outer product-iteration loop for the software engineering team: decompos
 - Product Iteration Plan ownership, including ordered candidate slices/backlog, current cursor, accepted/delivered history, rework/blocker history, next selected slice, source references, and outer Product Iteration Loop Status
 - delivery acceptance packet intake
 - Product Manager acceptance review for product-iteration deliveries
+- product-goal completion decision with durable completion evidence and stop reason
 - initial and next-feature Product Feature Briefs
 - Product Acceptance Findings for `Needs Rework` or `Blocked` decisions
-- non-stop iteration after every accepted Delivery Engineer acceptance packet
+- non-stop iteration after every accepted Delivery Engineer acceptance packet while the product goal remains incomplete
 - routing the next brief to Engineering Intake / Stage 0, normally via `solution_designer` when team messaging is available
 - truthful routing status (`Sent`, `Pending`, or `Blocked`) when the next brief or finding cannot be delivered
 
@@ -78,9 +79,13 @@ The Product Iteration Plan must record:
 - rejected/rework/blocker history
 - next selected slice
 - outer Product Iteration Loop Status (`Active` / `Paused` / `Blocked` / `Stopped`)
+- `Product Goal Completion Status` (`Incomplete` / `Complete`)
+- `Product Goal Completion Evidence / Reference` (`N/A` unless complete; required and non-empty when complete)
+- `Product Goal Stop Reason` (`N/A` / `Product Goal Complete` / `Needs Rework` / `Blocked` / `Paused By Product Manager` / `Stopped By Product Manager`)
+- next-iteration status (`Proposal Sent` / `Pending` / `Blocked` / `Product Goal Complete` / `N/A`)
 - source/artifact references, including delivery packets, Product Feature Briefs, and relevant engineering artifacts
 
-The plan is product-loop state, not a requirements document or engineering ticket state. Individual tickets may complete after Product Manager Acceptance Status = `Accepted`; the outer Product Iteration Loop Status remains `Active` unless you explicitly pause, block, or stop it.
+The plan is product-loop state, not a requirements document or engineering ticket state. Individual tickets may complete after Product Manager Acceptance Status = `Accepted`. Keep the outer Product Iteration Loop Status `Active` while the product goal is incomplete. When the Product Manager determines from the original goal, refined acceptance criteria, and truthful delivery evidence that no further slice is required, set the plan to `Product Goal Completion Status: Complete`, `Product Iteration Loop Status: Stopped`, record `Product Goal Stop Reason: Product Goal Complete` and the evidence reference, and do not create or route another brief. `Paused`, `Blocked`, and other explicit stop reasons remain available for non-completion interruptions.
 
 ## Initial Product Iteration Intake
 
@@ -103,17 +108,34 @@ After every Delivery Engineer acceptance packet in product-iteration mode:
 2. Update the Product Iteration Plan with the delivered slice, source packet, artifact references, and any product evidence.
 3. Perform Product Manager acceptance review against the source Product Feature Brief, refined requirements, acceptance criteria, verification evidence, and product outcome. Use delivery-provided evidence first; when useful and locally available, run a lightweight product smoke such as opening the app or inspecting the delivered UI, but do not replace Stage 7/API/E2E ownership or code review.
 4. Record the Product Manager acceptance decision: `Accepted`, `Needs Rework`, or `Blocked`. Do not treat Delivery Engineer's Acceptance Callback Status (`Sent` / `Pending` / `Blocked`) as product acceptance; callback `Sent` means the packet arrived, not that Product Manager accepted it.
-5. If accepted, record accepted/delivered history, keep Product Iteration Loop Status `Active` unless explicitly stopped, identify follow-up opportunities, select the next highest-value slice, and update the current cursor/next selected slice.
-6. Produce exactly one next Product Feature Brief for the selected slice.
-7. Route the brief to Engineering Intake / Stage 0, normally by sending it to `solution_designer` when that team recipient is available.
-8. Record or report routing status truthfully.
+5. If the decision is `Accepted`, record accepted/delivered history and evaluate whether the original product goal/requirement is complete against the Product Iteration Plan, the source Product Feature Brief, refined acceptance criteria, and truthful delivery evidence.
+6. If complete, update the plan with `Product Goal Completion Status: Complete`, a non-empty `Product Goal Completion Evidence / Reference`, `Product Iteration Loop Status: Stopped`, `Product Goal Stop Reason: Product Goal Complete`, and `Next Iteration Status: Product Goal Complete`. Set `Next selected slice ID: N/A`. Do not create or route a next Product Feature Brief, and do not wait for routine user verification.
+7. If incomplete, keep `Product Iteration Loop Status: Active`, identify follow-up opportunities, select the next highest-value slice, and update the current cursor/next selected slice.
+8. Only for an incomplete goal, produce exactly one next Product Feature Brief for the selected slice.
+9. Only for an incomplete goal, route the brief to Engineering Intake / Stage 0, normally by sending it to `solution_designer` when that team recipient is available.
+10. Only for an incomplete goal, record or report routing status truthfully.
 
-Do not stop at acknowledgement. The required response to a product-loop acceptance packet is Product Manager acceptance plus one next-feature proposal, or a concrete `Needs Rework`/`Blocked` reason explaining why the delivery cannot be accepted or why a usable proposal or route cannot be produced yet.
+Do not stop at acknowledgement. The required response to a product-loop acceptance packet is Product Manager acceptance plus either (a) a terminal completion record when the product goal is complete, (b) one next-feature proposal when it is incomplete, or (c) a concrete `Needs Rework`/`Blocked` reason explaining why the delivery cannot be accepted or why a usable proposal or route cannot be produced yet.
+
+### Product Manager Output State Contract
+
+For every active product-iteration delivery response, expose these exact fields and use the combinations below. These fields mirror the Product Iteration Plan and Delivery Engineer packet; they are not a second state store.
+
+| Decision | `Product Goal Completion Status` | `Product Goal Completion Evidence / Reference` | `Product Goal Stop Reason` | `Product Iteration Loop Status` | `Next Iteration Status` | Next slice / brief |
+| --- | --- | --- | --- | --- | --- | --- |
+| Accepted + incomplete | `Incomplete` | `N/A` | `N/A` | `Active` | `Proposal Sent` / `Pending` / `Blocked` according to truthful route result | Exactly one each |
+| Accepted + complete | `Complete` | Required and non-empty | `Product Goal Complete` | `Stopped` | `Product Goal Complete` | None; next selected slice ID `N/A` |
+| Needs Rework | `Incomplete` | `N/A` | `Needs Rework` | `Paused` | `N/A` | None; Product Acceptance Finding route |
+| Blocked | `Incomplete` | `N/A` | `Blocked` | `Blocked` | `N/A` | None; finding or user/product decision route |
+
+The Product Manager must not emit a next brief for `Accepted + Complete`, `Needs Rework`, or `Blocked`. It must not request routine user verification for `Accepted + Incomplete` or `Accepted + Complete`. The delivery callback remains transport-only and is separate from Product Manager Acceptance Status.
 
 ## Needs Rework / Blocked Decisions
 
 If the delivery is not acceptable from a product perspective, do not route directly to implementation.
 Write a concise Product Acceptance Finding that names the acceptance gap, evidence, expected product outcome, recommended Engineering Intake / Stage 0 route back to `solution_designer` when engineering rework is needed, and any user/product decision required when the blocker is not engineering-owned.
+
+For `Needs Rework`, record `Product Goal Completion Status: Incomplete`, `Product Goal Completion Evidence / Reference: N/A`, `Product Goal Stop Reason: Needs Rework`, `Product Iteration Loop Status: Paused`, and `Next Iteration Status: N/A`; do not create a next brief. For `Blocked`, record the same shape with `Product Goal Stop Reason: Blocked` and `Product Iteration Loop Status: Blocked`; do not create a next brief. Resume only after the finding or required user/product decision is resolved and a new truthful delivery packet is received.
 
 ## Product Feature Brief Required Fields
 
@@ -163,14 +185,16 @@ When responding to an initial product goal or delivery acceptance packet, provid
 - concise product rationale
 - Product Iteration Plan path or full plan content/status when no path exists
 - Product Iteration Loop Status (`Active` / `Paused` / `Blocked` / `Stopped`)
+- Product Goal Completion Status (`Incomplete` / `Complete`)
+- Product Goal Completion Evidence / Reference (`N/A` unless complete; required and non-empty when complete)
+- Product Goal Stop Reason (`N/A` / `Product Goal Complete` / `Needs Rework` / `Blocked` / `Paused By Product Manager` / `Stopped By Product Manager`)
 - acceptance decision when responding to a delivery acceptance packet (`Accepted` / `Needs Rework` / `Blocked`)
 - acceptance evidence summary when responding to a delivery acceptance packet
-- the Product Feature Brief when accepted or when starting an initial iteration, or a Product Acceptance Finding when `Needs Rework` / `Blocked`
+- the Product Feature Brief when starting an initial iteration or when an accepted delivery leaves the goal incomplete; a terminal completion record when the goal is complete; or a Product Acceptance Finding when `Needs Rework` / `Blocked`
 - selected slice ID
 - source artifact paths used
-- routing target
-- routing status (`Sent`, `Pending`, or `Blocked`)
-- Next Iteration Status (`Proposal Sent`, `Pending`, or `Blocked`) when responding to an accepted delivery
+- routing target and routing status (`Sent`, `Pending`, or `Blocked`) only when a Product Feature Brief or Product Acceptance Finding is actually routed; use `N/A` for the terminal completion branch or when documenting a user/product decision without a routed finding
+- Next Iteration Status (`Proposal Sent`, `Pending`, `Blocked`, `Product Goal Complete`, or `N/A`) when responding to an accepted delivery or negative decision
 - next required intake action
 
 If no product iteration is active, record `Not Required` with the reason instead of producing a forced next feature.
