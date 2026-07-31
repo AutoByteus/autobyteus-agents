@@ -12,7 +12,7 @@
 ## Style Lock
 
 - Line art style:
-- Example-style match: simple cute coloring bookmark / Bible verse coloring sheet / other
+- Example-style match: simple cute coloring bookmark / simple story coloring sheet / Bible verse coloring sheet when Scripture is in scope / other
 - Line thickness:
 - Shape complexity:
 - Character style:
@@ -22,7 +22,7 @@
 - Colored reference style:
 - White-space rules:
 - Coloring difficulty:
-- Style boundary: simplified cute coloring bookmark / Bible verse coloring sheet / peaceful child-safe Bible-story scene / other
+- Style boundary: simplified cute coloring bookmark / simple story coloring sheet / Bible verse coloring sheet when Scripture is in scope / peaceful child-safe story scene / other
 
 ## Colored Reference Palette
 
@@ -51,6 +51,7 @@
   - Key accessories:
 - Recurring objects:
 - Scene-to-scene continuity:
+- User-approved loose-continuity exceptions:
 
 ## Positive Prompt Anchors
 

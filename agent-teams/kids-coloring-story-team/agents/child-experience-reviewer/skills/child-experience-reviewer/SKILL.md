@@ -1,166 +1,124 @@
 ---
 name: child-experience-reviewer
-description: Review character references, candidate kids coloring story assets, and colored references for story-image correspondence, recurring character consistency, approved-text-only surfaces, and printable readiness.
+description: Review character references, candidate kids coloring assets, and colored references for story or activity correspondence, recurring character consistency, approved-text-only surfaces, and printable readiness.
 ---
 
 # Child Experience Reviewer
 
-Use this skill to independently review actual character reference assets, candidate coloring assets, and paired colored references before packaging.
-This role is useful only when it performs visual inspection, not when it merely reads logs.
+Review actual character reference assets, candidate coloring assets, and paired colored references before packaging. Prompts, logs, and file names support provenance but never replace visual inspection.
 
 ## Expected Inputs
 
 - approved `coloring-story-brief.md`
-- `source-text-index.md` when present
+- `source-text-index.md` when source text or source-grounded visible wording is in scope
 - approved `coloring-storyboard.md`
 - `visual-style-guide.md`
-- `character-reference-index.md` and character reference assets when recurring main characters are in scope
+- `character-reference-index.md` and actual character reference assets when recurring main characters are in scope, unless the storyboard records a user-approved loose-continuity exception
 - `prompt-pack.md`
 - `visual-asset-index.md`
 - `image-generation-log.md`
 - candidate black-and-white image assets
-- paired colored reference assets when in scope
+- paired colored reference assets and their black-and-white sources when in scope
 
 ## Produced Artifacts
 
 - `child-experience-review-report.md`
-- approved character reference manifest, approved visual manifest, and approved colored reference manifest inside the review report
+- approved visual manifest, plus approved character-reference and colored-reference manifests when those asset types are in scope
 
-Use:
-- [child-experience-review-report-template.md](templates/child-experience-review-report-template.md)
+Use [child-experience-review-report-template.md](templates/child-experience-review-report-template.md).
 
-## Required Shared Reads
+## Required Shared Read
 
-- Start by reading [coloring-production-principles.md](coloring-production-principles.md).
-- Use it as the shared reference for the shared visual quality checklist, story-image correspondence, character consistency, child safety, source text review, coloring usability, colored reference review, and review handoffs.
+Start with [coloring-production-principles.md](coloring-production-principles.md). It is the authoritative source for the shared visual quality checklist, child-safety and non-scary adaptation rules, source-text boundaries, coloring usability, colored-reference preservation, and team handoffs.
 
 ## Workflow
 
-### Step 1 - Confirm the review package
+### 1. Verify the review package
 
-Confirm:
+Confirm the approval status and absolute path for each applicable input:
 
-- brief approval status
-- storyboard approval status
-- source text index path when text is in scope
-- visual style guide path
-- character reference index path and character reference asset paths when recurring main characters are in scope
-- prompt pack path
-- visual asset index path
-- image generation log path
-- candidate image paths
-- colored reference paths and their paired black-and-white source paths when in scope
+- brief and storyboard
+- source text index when source text or source-grounded visible wording is in scope
+- visual style guide
+- character reference index and actual reference assets when recurring main characters are in scope
+- prompt pack, visual asset index, and image-generation log
+- every candidate black-and-white page
+- every colored reference and its paired black-and-white source when in scope
 
-If the package is incomplete, route it back to `coloring_page_illustrator`.
-If recurring main characters appear in the storyboard but no character reference index or reference assets are provided, block the review and route it back to `coloring_page_illustrator`.
-If you cannot visually inspect the actual image files in the current runtime, write `child-experience-review-report.md` with status `Blocked` and route it back. Do not approve from prompt text, file names, or logs alone.
+Use actual image files throughout the review. If a required input is missing or contradictory, write a `Blocked` report, name the missing evidence and owning specialist, and route the package by ownership:
 
-### Step 2 - Review story-image correspondence
+- story, source text, age range, activity purpose, or storyboard decisions -> `story_activity_designer`
+- visual style, reference assets, visual indexes/logs, candidate pages, or colored references -> `coloring_page_illustrator`
 
-Inspect the actual image for every page.
-Compare it directly against the approved storyboard row for that page.
+If recurring main characters appear in the storyboard without an approved character-reference index and actual reference assets, block and route to `coloring_page_illustrator` unless the storyboard records a user-approved loose-continuity exception. Under that exception, record the exception and review page-to-page identity without treating the missing reference as an approval blocker. If the runtime cannot visually inspect the actual image files, write a `Blocked` report and route to `coloring_page_illustrator`; do not approve from prompts, file names, or logs.
 
-Check:
+### 2. Review page or item correspondence
 
-- the main scene matches the storyboard story beat
-- the visible action or emotion matches the approved child-facing intent
+Open every candidate black-and-white page or item and compare it side by side with its approved storyboard row, visual style guide, and visual asset index. Compare any visible words with the approved storyboard text. When source-grounded wording is in scope, also compare it with `source-text-index.md`; original approved captions do not require a source-text index.
+
+For each page, check and record:
+
+- the scene, action, emotion, or activity function matches the approved child-facing storyboard row
 - required characters, objects, and motifs are present
-- forbidden or risky elements from the storyboard notes are absent
-- the page does not accidentally show a different part of the story
-- the page is one full A4 page image for that story beat, not a collage of several beats
+- forbidden or risky elements from the storyboard and shared principles are absent
+- the page does not show a different story moment or activity
+- the asset follows the approved page or item layout and does not compress multiple storyboard rows unless the approved product format explicitly permits a multi-panel or contact-sheet layout
+- the orientation, safe margins, border, and page density match the approved format
 
-### Step 3 - Review character reference and motif consistency
+### 3. Review character and motif continuity
 
-Review the full sequence side by side.
-For every recurring main character, compare each page where it appears against the approved character reference sheet/model sheet first, then compare the pages to one another.
-For every recurring object or motif, compare the pages where it appears.
+When character references are in scope, inspect each actual approved character reference image side by side with every page where that character appears, then compare those pages with one another. If a user-approved loose-continuity exception is recorded, compare the full page sequence without treating the missing reference as a blocker. Review recurring animals, objects, and motifs across all relevant pages.
 
 Check:
 
-- same character identity as the approved character reference image
-- same character identity across pages
-- consistent age, body shape, face shape, hair/head covering, clothing style, and major accessories
-- page-level prompts and logs name the expected character reference path when a recurring character appears
-- consistent animal companions or recurring objects
-- consistent line-art style, line weight, page density, and motif language
-- no sudden style switch between pages
-- no character drift that would make a child think the character became someone else
+- the same character identity as the approved reference when one is in scope, and across pages in all cases
+- consistent age, body and face shape, hair or head covering, clothing, expression range, and major accessories
+- the expected character-reference path is named in page prompts and logs when a reference is in scope and a recurring character appears
+- recurring animals, objects, motif language, line weight, and page density remain consistent
+- no sudden style switch or character drift that could make a child think the character became someone else
+- character references themselves are warm, inclusive, non-scary, and free of stereotyping or unsafe visual cues
 
-For Bible-story examples, a recurring character such as David should stay recognizably the same across all pages where he appears.
+When consistency fails, prefer the approved character reference as the `base character reference`. If no approved reference exists and no user-approved loose-continuity exception is recorded, block approval. If the exception is recorded, identify the strongest available image only as a temporary base recommendation; do not treat it as approved. The fix instruction must name:
 
-When consistency fails, prefer the approved character reference image as the `base character reference`.
-If no approved reference exists, block the review and identify the strongest approved or closest-to-approved image only as a temporary base recommendation.
-The fix instruction should be concrete:
+- the base/reference asset id and absolute path
+- the inconsistent page asset ids and absolute paths
+- the exact drift, such as face shape, hair, head covering, clothing, body proportions, expression, or key accessory
+- whether to use `edit_image` from the reference when the composition is usable, or regenerate with the locked identity when it is not
+- the story beat or activity function that must remain unchanged
 
-- name the base/reference asset id and path
-- name the inconsistent page asset ids
-- describe exactly what drifted, such as face shape, hair, head covering, clothing, body proportions, expression, or key accessory
-- recommend using `edit_image` with the base/reference image to revise the inconsistent page when the page is otherwise compositionally correct
-- recommend regenerating with the locked character identity when the page is too far off or the composition is wrong
-- preserve the storyboard beat while restoring the character identity
+### 4. Apply the shared visual quality and text gates
 
-### Step 4 - Apply the shared visual quality checklist
+Inspect every black-and-white candidate and paired colored reference against every applicable item in the shared visual quality checklist. For each asset, record pass, fix required, reject, or blocked decisions for:
 
-Inspect every black-and-white candidate and paired colored reference against the shared visual quality checklist in `coloring-production-principles.md`.
-
-Record pass/fix/block decisions for:
-
-- black-and-white printable page quality
+- story or activity match, continuity, age fit, and child safety
+- coloring usability, black-and-white print suitability, and image integrity
 - approved-text-only image surfaces
-- colored reference pairing and source preservation when in scope
+- colored-reference pairing, source preservation, color direction, and reference-only status when in scope
 
-Treat any failed shared-checklist item as a blocking issue unless the storyboard records an explicit user-approved exception.
+When source text is in scope, verify its source, translation, citation, and exact approved wording against `source-text-index.md`. When visible text is required, verify its exact wording and placement against the storyboard and, when applicable, the source-text index. Do not approve invented, paraphrased-as-quoted, uncertain, missing, or altered source text. Route source wording, translation, citation, or approval defects to `story_activity_designer`; route missing approved text, stray letters, page labels, watermarks, signatures, or other unapproved image text to `coloring_page_illustrator`. Word-free pages must contain no text.
 
-### Step 5 - Write `child-experience-review-report.md`
+Treat any failed shared-checklist item as blocking unless the storyboard records an explicit user-approved exception.
 
-For each asset, record:
+### 5. Write `child-experience-review-report.md`
 
-- pass, fix required, reject, or route upstream
-- exact issue
-- expected correction
-- owning specialist
-- source artifact that supports the decision
-- whether the actual image contains only approved text or has stray unapproved text
+Use the linked template. Record the actual evidence used for each decision, including the relevant storyboard row, source-text entry when applicable, visual reference, asset index, or generation-log entry.
 
-Only put internally approved character references into the approved character reference manifest.
-Only put internally approved page assets into the approved visual manifest.
+Set the overall status as:
 
-### Step 6 - Route or approve
+- `Blocked` when required evidence, prerequisites, or visual inspection are unavailable
+- `Fix required` when the actual images were inspected and one or more assets fail a gate
+- `Approved` only when every required asset and applicable gate passes
 
-If any blocking issue remains, send a fix message with `send_message_to`.
+Only put internally approved character references into the approved character-reference manifest. When a loose-continuity exception applies, record the exception instead of promoting a temporary base image into that manifest. Only put internally approved black-and-white pages into the approved visual manifest. Only put internally approved colored references into the approved colored-reference manifest.
+
+### 6. Route or approve
+
+For every handoff, use `send_message_to`. State the report status, blocking issues when present, owning specialist, open risks, and next expected action. In the message body, explicitly name the review focus: story or activity match, character-reference consistency, exact approved text or word-free status, absence of unapproved text, child safety, print/coloring usability, and colored-reference preservation when applicable. Include absolute paths to the project folder, brief, storyboard, source-text index when in scope (otherwise state `not applicable`), visual style guide, prompt pack, visual asset index, image-generation log, review report, and all current image assets needed for that route. Include the character-reference index and reference assets when in scope; when a loose-continuity exception applies, include the artifact that records the exception. For a fix or blocked handoff, include the current candidate black-and-white pages and colored references with their paired black-and-white sources when in scope. For an approval handoff, include only the approved asset paths and manifests so the recipient cannot package withheld candidates.
 
 Route:
 
-- story, source text, age range, or activity-purpose defects to `story_activity_designer`
-- visual style, line-art, coloring usability, malformed image, print image defects, or character-consistency defects to `coloring_page_illustrator`
-- unapproved visible text, page labels, watermarks, signatures, or random generated letters to `coloring_page_illustrator`
+- story, source text, age range, activity purpose, or storyboard defects to `story_activity_designer`
+- visual style, character reference, line-art, coloring usability, malformed image, print-image, or character-consistency defects to `coloring_page_illustrator`
+- missing approved text or unapproved visible text to `coloring_page_illustrator`, unless the underlying wording or source approval is uncertain, which routes to `story_activity_designer`
 
-If all assets pass, send the approved package to `printable_pack_producer`.
-
-Include:
-
-- absolute path to `coloring-story-brief.md`
-- absolute path to `source-text-index.md` when present
-- absolute path to `coloring-storyboard.md`
-- absolute path to `visual-style-guide.md`
-- absolute path to `character-reference-index.md` when recurring main characters are in scope
-- absolute path to `prompt-pack.md`
-- absolute path to `visual-asset-index.md`
-- absolute path to `image-generation-log.md`
-- absolute path to `child-experience-review-report.md`
-- absolute paths to approved character reference assets when recurring main characters are in scope
-- absolute paths to approved visual assets
-- absolute paths to approved colored reference assets
-- approved character reference manifest when recurring main characters are in scope
-- approved visual manifest
-- open non-blocking risks
-- explicit notes on reviewed focus areas, including exact approved text, absence of unapproved text, story match, character-reference consistency, print usability, and colored-reference preservation
-
-## Routing Rules
-
-- Approval requires actual visual inspection.
-- Approval requires story-image correspondence and recurring character consistency.
-- Approval requires every applicable item in the shared visual quality checklist to pass.
-- Approval requires recurring main characters to have approved character reference assets unless the storyboard records a user-approved loose-continuity exception.
-- When consistency fails, include the approved character reference path, or a temporary base/reference image recommendation when the reference is missing, and whether the fix should use `edit_image` or regeneration.
-- Keep fixes with the owning specialist unless the defect reveals an upstream planning gap.
+If every required asset passes, set the report status to `Approved` and send the package to `printable_pack_producer`. Include the approved visual manifest, the approved character-reference manifest when recurring main characters are in scope, and the approved colored-reference manifest when colored references are in scope.

@@ -4,9 +4,27 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 ## Current-State Read
 
-Describe the current execution path, current ownership boundaries, current coupling/fragmentation problems, and the constraints that the target design must respect.
+Summarize the relevant current flow and lifecycle, ownership boundaries, verified coupling or fragmentation problems when any exist, and constraints that the target design must respect. Reference investigation evidence and the behavior IDs below instead of duplicating their complete production paths here. Do not imply that every task has a structural problem.
 
 ## Intended Change
+
+## Relevant Behavior And Production-Path Map (Mandatory)
+
+Synthesize the approved current-and-desired behavior from the requirements and the supporting existing-behavior evidence from the investigation notes before making structural design decisions. Use the stable behavior IDs from investigation. A small or backend-only change may need only one system, operational, or contract row; do not invent rows for unsupported technical possibilities.
+
+| Behavior ID | Kind (`User`/`System`/`Operational`/`Contract`) | Approved Requirement / Intent And Acceptance-Criteria IDs | Approved Trigger Or Governing Contract | Relevant Existing Behavior And Evidence Reference | Approved Change Or Preserved Outcome | Target Production Path / Lifecycle And Spine ID(s) |
+| --- | --- | --- | --- | --- | --- | --- |
+| BEH-001 |  |  |  |  |  |  |
+
+The behavior map defines what real behavior the design must serve. The later data-flow spine sections define how the target technical structure carries it; they complement this map rather than replace it.
+
+## Relevant Supplemental Task Artifacts
+
+List every still-relevant supplement used as design evidence or context and explain its relationship to this design. Keep the complete canonical supplement inventory in the investigation notes. If none apply, write `None`.
+
+| Artifact Path | Purpose | Related Requirement / Acceptance-Criteria IDs (When Applicable) | Relationship To This Design | Status / Approval Applicability |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
 
 ## Task Design Health Assessment (Mandatory)
 
@@ -24,24 +42,28 @@ Do not fill it with ritual text. Tie the decision to current-state evidence from
 
 Rules:
 - `No refactor needed` is valid only when the existing owner, boundary, API shape, file placement, and changed data structures remain healthy for this scope.
-- `Refactor needed now` must be reflected in the removal/decommission plan, final file responsibilities, dependency rules, and migration/refactor sequence.
+- `Refactor needed now` must be reflected in the removal/decommission plan, final file responsibilities, dependency rules, and change/refactor sequence.
 - `Deferred` must name the residual risk and explain why the current task can still leave the in-scope behavior in a coherent state.
 
 ## Terminology
 
-- `Subsystem` / `capability area`: a larger functional area that owns a broader category of work and may contain multiple files plus optional module groupings.
-- `Module`: an optional intermediate grouping inside a subsystem when the codebase benefits from it. Do not use `module` as a synonym for one file or as the default ownership term.
-- `Folder` / `directory`: a physical grouping used to organize files and any optional module groupings.
-- `File`: one concrete source file and the primary unit where one concrete concern should land.
+Define only task-specific terms needed to interpret this design. Do not repeat the shared design glossary unless this task requires a narrower meaning or an explicit deviation.
 
 ## Design Reading Order
 
-Read and write this design from abstract to concrete:
+Use the sections in this template in the following reasoning order, moving from verified context to concrete structure:
 
-1. data-flow spine
-2. subsystem / capability-area allocation
-3. draft file responsibilities -> extract reusable owned structures -> finalize file responsibilities
-4. folder/path mapping
+1. current-state read and intended change
+2. relevant behavior and production-path map plus applicable supplemental context
+3. task design-health, legacy-removal, and persisted-data decisions
+4. data-flow spines, ownership, and off-spine concerns
+5. ownership boundaries, dependency rules, and interfaces
+6. subsystem / capability-area allocation
+7. draft file responsibilities -> extract reusable owned structures -> finalize file responsibilities
+8. folder/path mapping
+9. change sequence, tradeoffs, risks, and implementation guidance
+
+Complete every mandatory section, but apply the detailed mappings proportionately to the actual change. For a genuinely inapplicable section, write `N/A` with a short reason. Do not invent spines, subsystems, interfaces, abstractions, or risks merely to populate the template.
 
 ## Legacy Removal Policy (Mandatory)
 
@@ -49,14 +71,56 @@ Read and write this design from abstract to concrete:
 - Required action: identify obsolete legacy paths/files included in this scope.
 - Treat removal as first-class design work: when clearer subsystem ownership, reusable owned structures, or tighter file responsibilities make fragmented or duplicated pieces unnecessary, name and remove/decommission them in scope.
 - Decision rule: the design is invalid if it depends on compatibility wrappers, dual-path behavior, or legacy fallback branches kept only for old behavior.
+- A schema or model change does not by itself require persisted-data migration. Record the approved transition decision; when transformation is required, use an explicit migration boundary rather than dual-shape business logic or normal repository fallbacks.
+
+## Persisted Data / State Transition Decision (Mandatory When Persisted Data May Be Affected)
+
+A code-model, serialization, or storage-schema change triggers this decision, not an automatic migration. If no persisted data is affected, write `Not Affected` with a brief reason.
+
+- Stored subject, location, representative shape, and approximate volume:
+- Relevant code-model, serialization, semantic, or physical-store change:
+- Normal reader/writer behavior and representative evidence:
+- Required semantics and invariants under direct use:
+- Physical-store, privacy/security, disposal/rebuild, and operational constraints:
+- Decision (`Not Affected`/`Directly Usable — No Migration`/`Discard or Rebuild`/`Migration Required`/`Undetermined`):
+- Decision rationale, including concrete benefit versus I/O, downtime, corruption, recovery, and rollout cost:
+- Acceptance criteria or design constraints supported by this decision:
+
+For `Directly Usable — No Migration`, explain why current version-agnostic runtime behavior is sufficient. A stored superset with obsolete extra fields may qualify when representative evidence proves those fields are ignored safely and required meaning remains intact.
+
+For `Discard or Rebuild`, identify the authoritative source or rebuild mechanism and why loss of the stored copy is acceptable.
+
+For `Undetermined`, identify the missing evidence and block dependent design decisions.
+
+### Migration Plan (Only When Decision Is `Migration Required`)
+
+- Current canonical schema / version:
+- Older persisted schema version(s) that require transformation:
+- Why direct use and discard/rebuild are insufficient:
+- Migration trigger (`Startup`/`Deployment`/`Maintenance Command`/`Other`):
+- Migration owner and file / subsystem location:
+- Normal business/runtime path that remains current-schema-only:
+- Historical-shape types or decoders confined to migration-owned code:
+- Completion marker / version ledger:
+- Restart-safety or idempotency strategy:
+- Validation before current runtime proceeds:
+- Backup / rollback / quarantine / operator-recovery strategy:
+- Concurrent old/new application access risk and cutover / maintenance / deployment-sequencing decision:
+- Historical migration retention decision:
+
+| Migration Step | Source Shape / Version | Target Shape / Version | Transformation Owner | Validation | Failure / Recovery Behavior |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+When migration is required, complete or gate it before affected current runtime behavior consumes incompatible data. Keep historical-schema knowledge inside migration-owned files and out of current business services and normal repositories.
 
 ## Data-Flow Spine Inventory
 
 List every relevant spine that matters to understanding the design.
 
-| Spine ID | Scope (`Primary End-to-End`/`Return-Event`/`Bounded Local`) | Start | End | Governing Owner | Why It Matters |
-| --- | --- | --- | --- | --- | --- |
-| DS-001 |  |  |  |  |  |
+| Spine ID | Scope (`Primary End-to-End`/`Return-Event`/`Bounded Local`) | Related Behavior ID(s) | Start | End | Governing Owner | Why It Matters |
+| --- | --- | --- | --- | --- | --- | --- |
+| DS-001 |  |  |  |  |  |  |
 
 ## Primary Execution Spine(s)
 
@@ -117,6 +181,44 @@ Do not repeat the same mapping again in another section.
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
 
+## Ownership Boundaries
+
+Explain where authority changes hands and what must stay encapsulated inside each owner.
+Name which boundaries are authoritative public entrypoints versus internal owned mechanisms that should stay behind them.
+
+## Boundary Encapsulation Map
+
+| Authoritative Boundary | Internal Owned Mechanism(s) It Encapsulates | Upstream Callers That Must Use The Boundary | Forbidden Bypass Shape | If Boundary API Is Too Thin, Fix By |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+
+## Dependency Rules
+
+State who may depend on, call, or emit to whom, and name the shortcuts or cross-boundary dependencies that are forbidden.
+Make boundary-bypass rules explicit when one public boundary is supposed to encapsulate a lower-level concern.
+
+## Interface Boundary Mapping
+
+| Interface / API / Query / Command / Method | Subject Owned | Responsibility | Accepted Identity Shape(s) | Notes |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+
+Rule:
+- Do not use one generic boundary when the subject or identity meaning differs.
+- Split boundaries by subject or require an explicit compound identity shape.
+
+## Interface Boundary Check
+
+| Interface | Responsibility Is Singular? (`Yes`/`No`) | Identity Shape Is Explicit? (`Yes`/`No`) | Ambiguous Selector Risk (`Low`/`Medium`/`High`) | Corrective Action |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+
+## Main Domain Subject Naming Check
+
+| Node / Subject | Current / Proposed Name | Name Is Natural And Self-Descriptive? (`Yes`/`No`) | Naming Drift Risk | Corrective Action |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+
 ## Existing Capability / Subsystem Reuse Check
 
 When an off-spine need appears, do not create a new helper immediately.
@@ -166,44 +268,6 @@ Re-tighten the file responsibilities after extracting reusable owned structures 
 | File | Owning Subsystem / Capability Area | Owner / Boundary | Concrete Concern | Why This Is One File | Reuses Shared Structure? |
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
-
-## Ownership Boundaries
-
-Explain where authority changes hands and what must stay encapsulated inside each owner.
-Name which boundaries are authoritative public entrypoints versus internal owned mechanisms that should stay behind them.
-
-## Boundary Encapsulation Map
-
-| Authoritative Boundary | Internal Owned Mechanism(s) It Encapsulates | Upstream Callers That Must Use The Boundary | Forbidden Bypass Shape | If Boundary API Is Too Thin, Fix By |
-| --- | --- | --- | --- | --- |
-|  |  |  |  |  |
-
-## Dependency Rules
-
-State who may depend on, call, or emit to whom, and name the shortcuts or cross-boundary dependencies that are forbidden.
-Make boundary-bypass rules explicit when one public boundary is supposed to encapsulate a lower-level concern.
-
-## Interface Boundary Mapping
-
-| Interface / API / Query / Command / Method | Subject Owned | Responsibility | Accepted Identity Shape(s) | Notes |
-| --- | --- | --- | --- | --- |
-|  |  |  |  |  |
-
-Rule:
-- Do not use one generic boundary when the subject or identity meaning differs.
-- Split boundaries by subject or require an explicit compound identity shape.
-
-## Interface Boundary Check
-
-| Interface | Responsibility Is Singular? (`Yes`/`No`) | Identity Shape Is Explicit? (`Yes`/`No`) | Ambiguous Selector Risk (`Low`/`Medium`/`High`) | Corrective Action |
-| --- | --- | --- | --- | --- |
-|  |  |  |  |  |
-
-## Main Domain Subject Naming Check
-
-| Node / Subject | Current / Proposed Name | Name Is Natural And Self-Descriptive? (`Yes`/`No`) | Naming Drift Risk | Corrective Action |
-| --- | --- | --- | --- | --- |
-|  |  |  |  |  |
 
 ## Applied Patterns (If Any)
 
@@ -260,9 +324,9 @@ Hard block:
 
 Describe the layer shape only after the spine inventory, ownership model, and interface boundaries are clear.
 
-## Migration / Refactor Sequence
+## Change / Refactor Sequence
 
-Describe the order of change from current state to target state, including any temporary seams and what obsolete paths, compatibility-only boundaries, or legacy code must be removed at the end.
+Describe the order of change from current state to target state, including any temporary seams and what obsolete paths, compatibility-only boundaries, or legacy code must be removed at the end. Include migration sequencing only when the approved persisted-data decision is `Migration Required`.
 
 ## Key Tradeoffs
 

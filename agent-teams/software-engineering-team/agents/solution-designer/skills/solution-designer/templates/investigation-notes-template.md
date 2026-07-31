@@ -29,6 +29,14 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Bootstrap Blockers:
 - Notes For Downstream Agents:
 
+## Supplemental Task Artifact Inventory
+
+Maintain the canonical inventory of separate files that remain useful as investigation evidence or as complementary requirement, design, or downstream context. Do not inventory disposable scratch files or generated intermediates unless they are intentionally promoted for continued use.
+
+| Artifact Path | Purpose And Scope | Evidence, Context, Or Decision Captured | Core Artifact(s) Supported | Related Requirement / Acceptance-Criteria IDs (When Applicable) | Status | Approval Applicability / State | Follow-Up Needed |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |  |
+
 ## Source Log
 
 | Date | Source Type (`Code`/`Doc`/`Spec`/`Web`/`Repo`/`Issue`/`Command`/`Trace`/`Log`/`Data`/`Setup`/`Other`) | Exact Source / Query / Command | Why Consulted | Relevant Findings | Follow-Up Needed |
@@ -37,12 +45,13 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 | YYYY-MM-DD | Repo | `https://github.com/example-org/example-sdk` @ `v1.4.2` | Check upstream integration behavior | Sample app shows the callback fires only after explicit session join | Yes |
 | YYYY-MM-DD | Command | `rg -n "example" src` | Find the affected path | Found one active handler and one stale helper | No |
 
-## Current Behavior / Current Flow
+## Relevant Existing Behavior And Production Paths
 
-- Current entrypoint or first observable boundary:
-- Current execution flow:
-- Ownership or boundary observations:
-- Current behavior summary:
+Record only behavior relevant to the task. A behavior may be user-initiated, system-initiated, operational, or an established contract; it does not require a UI journey. Use stable IDs and evidence from supported or observed production behavior, not a synthetic caller or mechanically possible state alone. Reuse these IDs in the requirements' current-and-desired behavior summary and the design map. For genuinely new behavior, record `No Current Path` with evidence; the design map will record the approved target trigger and path.
+
+| Behavior ID | Kind (`User`/`System`/`Operational`/`Contract`) | Current Supported Trigger Or Governing Contract | Current Production Path And Lifecycle | Meaningful Current Outcome / Invariants | Evidence |
+| --- | --- | --- | --- | --- | --- |
+| BEH-001 |  |  |  |  |  |
 
 ## Design Health Assessment Evidence
 
@@ -83,8 +92,19 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 ## Findings From Code / Docs / Data / Logs
 
+## Persisted Data Transition Evidence (When Applicable)
+
+- Current stored subject, location, representative shape, and approximate volume:
+- Relevant code-model, serialization, semantic, or physical-store change:
+- Normal readers and writers, including unknown/extra-field behavior:
+- Representative direct-read or compatibility evidence:
+- Required semantics and invariants preserved by direct use: `Yes` / `No` / `Undetermined` — evidence:
+- Physical storage, privacy/security, disposal, rebuild, or operational constraints:
+- Concrete benefit, cost, and risk of migration if it remains a candidate:
+- Existing migration framework or lifecycle constraints, only if migration may be required:
+
 ## Constraints / Dependencies / Compatibility Facts
 
 ## Open Unknowns / Risks
 
-## Notes For Architect Reviewer
+## Notes For Architecture Reviewer

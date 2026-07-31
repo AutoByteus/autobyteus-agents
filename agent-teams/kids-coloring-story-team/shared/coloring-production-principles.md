@@ -45,7 +45,9 @@ Choose the product format intentionally instead of treating every request as a g
 - Use inclusive, respectful character design. Avoid stereotypes, caricatures, or exclusionary assumptions.
 - Do not use copyrighted characters, trademarked mascots, or brand-like lookalikes unless the user owns or supplies the rights.
 
-## 5. Faith, Bible, And Values Content
+## 5. Optional Faith, Bible, And Values Content
+
+Apply this section only when the approved project includes faith, Bible, prayer, doctrine, or values-based teaching. Other stories use the same source-grounding and child-safety principles without being treated as Bible content.
 
 - If Bible verses, prayers, doctrine, or religious teaching are in scope, record the source, translation, exact wording, and citation in `source-text-index.md`.
 - Do not invent Bible wording or paraphrase as a quotation.
@@ -59,9 +61,9 @@ Choose the product format intentionally instead of treating every request as a g
 
 ## 6. Line-Art Style Rules
 
-- Default visual style: simple cute black-and-white printable line art like children's coloring bookmarks and Bible verse coloring sheets.
+- Default visual style: simple cute black-and-white printable line art like children's coloring bookmarks and simple story coloring sheets. Use Bible verse coloring-sheet conventions only when Scripture is in scope.
 - Match the example style family: clean doodle-style outlines, rounded forms, smiling or calm faces, simple decorative motifs, playful bubble-letter text when text is required, and generous white space.
-- The art should feel gentle, handmade, approachable, and easy for a child to color. It should not feel like realistic Bible illustration, dramatic comic art, manga, fantasy battle art, dense storybook engraving, or adult coloring-book detail.
+- The art should feel gentle, handmade, approachable, and easy for a child to color. It should not feel like realistic illustration, dramatic comic art, manga, fantasy battle art, dense storybook engraving, or adult coloring-book detail.
 - Use consistent characters, motifs, line thickness, and page density across the pack.
 - Prefer closed shapes that are easy to color.
 - Avoid heavy gray shading, painterly texture, realistic lighting, tiny hatching, crosshatching, complex perspective, dense backgrounds, dramatic shadows, and realistic anatomy that make the page feel serious or hard to color.
@@ -70,6 +72,8 @@ Choose the product format intentionally instead of treating every request as a g
 - If the final product is a page, keep enough margins for home printers.
 
 ## 6A. Non-Scary Bible Story Adaptation
+
+Apply this section only when Scripture or a Bible story is in scope.
 
 - Bible scenes should look peaceful and child-safe even when the source story contains conflict.
 - Use calm symbolic staging: distant silhouettes, before-and-after moments, prayer, helpers, nature motifs, celebration, and gentle facial expressions.
@@ -88,8 +92,8 @@ Choose the product format intentionally instead of treating every request as a g
 
 Positive prompt patterns:
 
-- `Create one A4 landscape black-and-white coloring page. The page contains a rounded border, a peaceful hillside scene with David and a sheep, and the exact bottom caption "David cared for the sheep." The caption is inside a simple bottom caption band within the border.`
-- `Create one A4 landscape word-free black-and-white coloring page. The page shows David choosing smooth stones by a stream, with large closed shapes, rounded doodle outlines, and generous white space.`
+- `Create one A4 landscape black-and-white coloring page. The page contains a rounded border, a peaceful hillside scene with a child and a sheep, and the exact bottom caption "The child cared for the sheep." The caption is inside a simple bottom caption band within the border.`
+- `Create one A4 landscape word-free black-and-white coloring page. The page shows a child choosing smooth stones by a stream, with large closed shapes, rounded doodle outlines, and generous white space.`
 
 ## 6C. Colored Reference Pack
 
@@ -99,7 +103,7 @@ Positive prompt patterns:
 - Keep colors natural, cheerful, and easy for children to understand. Use colors that support the story or real-world object recognition, such as green leaves, blue sky, warm sun, brown wood, or stable clothing colors for recurring characters.
 - Do not over-prescribe every area. The colored reference shows one possible finished interpretation while still leaving children free to choose their own colors.
 - Produce the colored reference only from the approved or self-checked black-and-white page image by using `edit_image` with the black-and-white page as the input image.
-- The colored reference must preserve the same composition, border, line art, character identity, page text, and page order. It should add color fills only, without changing the story beat, adding new objects, rewriting text, or removing open coloring shapes.
+- The colored reference must preserve the same composition, border, line art, character identity, page text, and page order. It should add color fills only, without changing the story beat or activity function, adding new objects, rewriting text, or removing open coloring shapes.
 - Store colored references separately, usually under `assets/colored/`, with stable paired names such as `page001-colored.png`.
 - If the black-and-white source page changes after review, regenerate or edit the paired colored reference from the corrected black-and-white page.
 - Review and deliver colored references as a separate reference-only package, clearly labeled so they are not mistaken for the black-and-white print sheets.
@@ -121,7 +125,7 @@ Positive prompt patterns:
 - Default printable coloring-story output is a multi-page black-and-white A4 PDF.
 - Each story image must occupy its own full A4 page with safe margins and large colorable areas.
 - A request for `6 pictures`, `7 pictures`, or a short picture sequence means 6, 7, or the approved number of separate A4 pages, not a collage, grid, storyboard contact sheet, or several small panels inside one generated image.
-- Write one image prompt per storyboard page, each prompt describing one complete A4 page image for one story beat.
+- Write one image prompt per storyboard page or activity item, each prompt describing one complete A4-safe page image for that approved storyboard row. Use a multi-panel or contact-sheet layout only when the approved product format explicitly permits it.
 - A combined overview/contact sheet is a preview artifact only when explicitly useful. The child-coloring assets remain separate full-page images.
 - The colored reference pack should mirror the same page count and order as the black-and-white pack unless the user explicitly asks for a smaller reference subset.
 - If a generated candidate compresses multiple story pages into one image, regenerate the affected pages as separate A4 assets.
@@ -135,7 +139,7 @@ Positive prompt patterns:
 - Default to A4 landscape for story pages unless the user asks otherwise.
 - Use A4 portrait only when the user requests a vertical page or the product format clearly needs it.
 - Individual bookmark designs should still be generated as separate A4-safe page assets unless the user explicitly asks for multiple cut-out bookmarks on one sheet.
-- Record orientation, page count, and whether the output is full-page sheets, bookmarks, half-pages, cards, or a mini booklet.
+- Record orientation, page or item count, and whether the output is full-page sheets, bookmarks, half-pages, cards, or a mini booklet.
 - Keep important art and text inside safe margins.
 - Final printable exports should normally include a black-and-white PDF plus source PNGs when available.
 - Final delivery should also include colored reference PNGs, and may include a colored reference PDF or contact sheet when useful for screen viewing or adult guidance.
@@ -147,7 +151,7 @@ Use this checklist in both illustrator self-check and child-experience review. T
 
 For every black-and-white printable page:
 
-- Story match: the image corresponds to the approved storyboard page id, shows one story beat, and does not compress multiple pages into one image unless explicitly approved.
+- Story or activity match: the image corresponds to the approved storyboard page or item id, shows the approved story beat or activity function, and does not compress multiple storyboard rows unless the approved product format explicitly permits it.
 - Character and motif continuity: recurring characters match the approved character reference sheet/model sheet when one is in scope; animals, objects, motif language, line weight, and page density stay consistent across the sequence.
 - Age fit and child safety: the tone is warm, calm, inclusive, non-scary, and appropriate for the target age.
 - Coloring usability: the page has clear outlines, closed shapes, generous white space, manageable detail density, and large colorable areas.
@@ -160,7 +164,7 @@ For every black-and-white printable page:
 For every colored reference page:
 
 - Source pairing: the reference clearly derives from the matching approved black-and-white page.
-- Source preservation: composition, line art, border, visible text, character identity, page order, and story beat are unchanged.
+- Source preservation: composition, line art, border, visible text, character identity, page order, and story beat or activity function are unchanged.
 - Color direction: colors follow the approved palette, recurring character colors, motif colors, and per-page color notes.
 - Reference-only status: the asset is stored, logged, reviewed, and delivered as a colored reference, not as a printable coloring sheet replacement.
 - No new text or objects: the edit does not add, remove, or rewrite page content.

@@ -12,8 +12,8 @@ The top-level team is intentionally modeled like a real leadership team: the CEO
 
 - `ceo` owns final company-level prioritization and executive decisions.
 - `chief_of_staff` owns synthesis, decision logs, meeting prep, follow-up tracking, and cross-functional coordination.
-- `cto`, `cpo`, `cro`, `coo`, `cfo`, and `chief_people_officer` represent executive-level department leadership.
-- `engineering_org`, `product_org`, `revenue_org`, `operations_org`, and `finance_people_org` are nested teams for department-level diagnosis, planning, and execution detail.
+- `cto`, `cpo`, `cmo`, `cro`, `coo`, `cfo`, and `chief_people_officer` represent executive-level department leadership.
+- `engineering_org`, `product_org`, `marketing_org`, `revenue_org`, `operations_org`, and `finance_people_org` are nested teams for department-level diagnosis, planning, and execution detail.
 
 ## Example Routing
 
@@ -21,11 +21,12 @@ The top-level team is intentionally modeled like a real leadership team: the CEO
 - Executive meeting prep, synthesis, operating rhythm, or follow-up -> `chief_of_staff`.
 - Technology strategy or architecture risk -> `cto`; engineering execution planning -> `engineering_org`.
 - Product strategy or roadmap tradeoffs -> `cpo`; discovery/design details -> `product_org`.
-- Revenue targets, pipeline, retention, or GTM alignment -> `cro`; campaign/sales/CS details -> `revenue_org`.
+- Positioning, brand, demand generation, campaigns, or social channels -> `cmo`; marketing execution detail -> `marketing_org`.
+- Revenue targets, sales pipeline, retention, or GTM alignment -> `cro`; sales/CS/partnership details -> `revenue_org`.
 - Process, systems, customer operations, or execution cadence -> `coo`; operating-detail work -> `operations_org`.
 - Budget, unit economics, runway, hiring plan economics, or compliance -> `cfo` / `chief_people_officer`; execution detail -> `finance_people_org`.
 
-Nested members can be addressed by route keys such as `engineering_org/platform_engineering_manager`, `product_org/ux_research_lead`, or `revenue_org/customer_success_lead`.
+Nested members can be addressed by route keys such as `engineering_org/platform_engineering_manager`, `product_org/ux_research_lead`, `marketing_org/linkedin_marketer`, or `revenue_org/customer_success_lead`.
 
 ## Simulation Rules
 

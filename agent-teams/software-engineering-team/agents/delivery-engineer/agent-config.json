@@ -13,12 +13,5 @@
   ],
   "skillNames": [
     "delivery-engineer"
-  ],
-  "inputProcessorNames": [],
-  "llmResponseProcessorNames": [],
-  "systemPromptProcessorNames": [],
-  "toolExecutionResultProcessorNames": [],
-  "toolInvocationPreprocessorNames": [],
-  "lifecycleProcessorNames": [],
-  "avatarUrl": null
+  ]
 }

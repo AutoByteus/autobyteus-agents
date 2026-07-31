@@ -8,6 +8,8 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 - Handoff summary artifact:
 - Handoff summary status: `Updated` / `Blocked`
+- Delivery revision record:
+- Current delivery revision ID: `DR-*`
 - Notes:
 
 ## Initial Delivery Integration Refresh
@@ -131,7 +133,12 @@ Acceptance Callback Status is transport-only and does not decide any field in th
 
 ## Deployment Steps
 
-## Environment Or Migration Notes
+## Environment Or Persisted-Data Transition Notes
+
+- Approved persisted-data decision:
+- Delivery action required: `None` / `Discard or Rebuild` / `Migration Required`
+- Result and evidence:
+- Migration completion, validation, recovery, and rollout evidence, only when `Migration Required`:
 
 ## Verification Checks
 

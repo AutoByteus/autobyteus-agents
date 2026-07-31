@@ -1,36 +1,38 @@
 # Coloring Story Brief
 
-- Status: Draft / User-approved / Needs revision
+- Artifact status: Draft / User-approved / Needs revision
 - Project folder:
 - Product format:
 - Target age range:
 - Language:
-- A4 page count:
+- Page or item count:
 - One image per A4 page: yes / explicit user-requested exception
 - Paper size and orientation: A4 landscape / A4 portrait / other
 - Intended use:
 - Colored reference pack: default paired reference pack / user declined / custom
+- Intake assumptions and explicit user exceptions:
 - Theme or story seed:
 - Emotional tone:
 - Imagination / activity goal:
 
 ## Source Text
 
-- Bible verse, quotation, fact, or supplied text in scope:
-- Source text index path:
-- Text approval status:
-- Text that must appear exactly:
-- Protected source wording:
-- Visible text plan: generated inside page images / word-free picture pages / explicit user-requested layout exception
+- Source text or externally grounded wording/claim in scope:
+- Source text index path: absolute path / not applicable
+- Source-check status: not needed / user-supplied / verified / needs verification
+- Source-text approval: not applicable / pending / user-approved / needs revision
+- Approved visible text (or proposed text marked pending):
+- Protected source wording or claims:
+- Visible text plan: exact approved text inside page images / word-free picture pages / explicit user-requested layout exception
 
 ## Creative Direction
 
-- Story promise:
+- Story or product promise:
 - Main characters or motifs:
 - Recurring character plan:
   - Character ID:
   - Role:
-  - Pages:
+  - Pages / items:
   - Reference sheet needed: yes / no / user-approved loose continuity
   - Identity notes:
 - Cute visual motifs:
@@ -52,7 +54,7 @@
 - Age-fit assumptions:
 - Child-safe staging:
 - Inclusivity notes:
-- Faith or values sensitivity notes:
+- Cultural, faith, or values sensitivity notes:
 
 ## Print Requirements
 
@@ -67,4 +69,5 @@
 
 ## User Approval Summary
 
--
+- Approval evidence or user response:
+- Approved scope or conditions:

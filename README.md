@@ -24,6 +24,10 @@ The research engineer is a standalone agent for dynamic research tasks: broad so
 
 The paper research assistant is a standalone agent for the common paper-reading workflow: search for relevant papers from a user question or topic, retrieve a supplied paper from a link, identifier, PDF, or local file, extract paper metadata and detailed content, and answer user questions grounded in the paper. It is intentionally narrower than the research engineer: it focuses on discovery, paper ingestion, paper dossiers, concise comparison, and evidence-aware paper QA rather than implementation, reproduction, training, or benchmarking.
 
+### Skill Optimizer
+
+The skill optimizer is a lightweight standalone agent that uses the shared `skill-optimizer` skill to review and improve existing skills for structure, grounding, clarity, consistency, and economy while preserving their intended behavior and quality gates.
+
 ## Software Engineering Team
 
 The software engineering team is the default one-off engineering entrypoint. It starts with `solution_designer` and takes a concrete feature, bug fix, refactor, or investigation through implementation, API and E2E validation, review, docs sync, final handoff, release, and deployment. Product iteration is inactive by default here unless the user explicitly asks for the loop or supplies a Product Manager feature brief.
@@ -63,6 +67,10 @@ The manga video studio team is organized as a story-first creative workflow that
 ## Kids Coloring Story Team
 
 The kids coloring story team is organized as a child-friendly printable production workflow for short multi-page A4 coloring stories, coloring bookmarks, coloring sheets, mini coloring books, and activity pages. It takes a theme, Bible verse, value, rough story, or visual idea through age-aware story/activity planning, user-approved page sequence, cute black-and-white line-art asset production, independent child-experience review, and print-ready PDF/PNG packaging. By default, each story image gets its own A4 page; combined contact sheets are preview-only unless explicitly requested.
+
+## Kids Picture Story Team
+
+The kids picture story team is organized as a reading-first illustrated picture-book workflow. It takes an original story, gentle adaptation, source-grounded theme, or rough idea through age- and reading-level-aware story editing, a normally 21-28-page storyboard with rationale for deviations, cohesive full-color page illustration with exact approved words on text-bearing pages or explicit word-free pages, independent picture-book review, and ordered digital or optional print/booklet exports. It is the reading-first counterpart to the kids coloring story team and produces book pages and exports rather than coloring or activity packages.
 
 ## Bible Learning Team
 
@@ -460,6 +468,6 @@ Before considering an agent package update complete, verify:
 If an `agent.md` starts reading like a second `SKILL.md`, the split is wrong and should be corrected.
 
 The team is intentionally modeled as direct specialist cooperation instead of a separate coordinator agent. Handoffs and rework paths are expressed through `team.md` and each specialist's routing rules.
-The software engineering team also includes a deployment specialist so release preparation, versioning, tagging, rollout, and deploy verification can be owned explicitly instead of being left implicit at the end.
+The software engineering team's `delivery_engineer` owns release preparation, versioning, tagging, rollout, deployment, and verification so those responsibilities are explicit instead of being left implicit at the end.
 
 The runtime configuration is intentionally lightweight. After importing these definitions into AutoByteus, users are expected to customize tools, processors, models, and other config details to match their own environment.

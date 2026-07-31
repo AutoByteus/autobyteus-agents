@@ -1,13 +1,13 @@
 ---
 name: architecture-reviewer
-description: Review the design spec before implementation and route design findings to the correct owner.
+description: Review the complete solution package before implementation and route requirement, supplemental-artifact, and design findings to the correct owner.
 ---
 
 # Architecture Reviewer Skill
 
 ## Purpose
 
-Perform the architecture review before implementation starts so design weaknesses are found while they are still cheap to fix.
+Perform a behavior-grounded technical architecture review before implementation, finding real design weaknesses without introducing complexity for unsupported scenarios.
 
 ## You Own
 
@@ -20,17 +20,21 @@ Perform the architecture review before implementation starts so design weaknesse
 
 ## Primary Output
 
-Use [templates/design-review-report-template.md](templates/design-review-report-template.md) to produce a design review report.
+Use [templates/design-review-report-template.md](templates/design-review-report-template.md) to produce and update the canonical `design-review-report.md`.
+Use [templates/architecture-review-revision-record-template.md](templates/architecture-review-revision-record-template.md) to create `architecture-review-revision-record.md` with an `ARCH-REV-001` baseline after the first completed review result, then append one entry for every later review round.
 
 ## Artifact Location Rule
 
-- Write the authoritative artifact file in the assigned task workspace/worktree before any handoff message.
+- Write the authoritative design review report and current architecture review revision record in the assigned task workspace/worktree before any handoff message.
+- Keep one canonical path for each artifact across reruns.
 - Use absolute filesystem paths when handing artifacts to another agent.
 
 ## Upstream Inputs
 
-- Accept the upstream design package from `solution_designer`: requirements doc, investigation notes, and design spec.
-- Treat the requirements doc and investigation notes as supporting context for review, not as substitutes for independent design judgment.
+- Accept the complete solution package from `solution_designer`: requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, and `solution-revision-record.md`.
+- On later review rounds, also accept the existing design review report, architecture review revision record, triggering solution revision entry, and any still-relevant downstream report, revision record, or evidence that caused the solution rework.
+- Treat the requirements doc, investigation notes, and supplemental task artifacts as active review context, not as substitutes for independent design judgment.
+- Verify that the investigation notes contain the canonical supplement inventory; each supplement is linked from the core artifact it materially supports; its purpose, scope, status, and approval applicability are clear; and it remains consistent with the related core artifacts.
 
 ## Required Shared Reads
 
@@ -39,25 +43,43 @@ Use [templates/design-review-report-template.md](templates/design-review-report-
 
 ## Example Guidance
 
-- When judging whether a design is concrete enough, compare its shape against [design-examples.md](../../../solution-designer/skills/solution-designer/references/design-examples.md) whenever examples would clarify the target shape.
+- When judging whether a design is concrete enough, compare its shape against [references/design-examples.md](references/design-examples.md) whenever examples would clarify the target shape.
 - Use that file as a benchmark for what a clear design explanation can look like across different cases, and for what bad practice looks like when boundaries become generic or fragmented.
+- When a prospective finding depends on an assumed production, failure, or lifecycle scenario, consult [Example 9](references/design-examples.md#example-9-rejecting-an-unreachable-edge-case-during-technical-review) before finalizing the premise or finding.
+
+## Review Basis And Sequence
+
+1. Understand the approved requirements and business intent, relevant existing behavior, approved change or preserved outcome, and behavior that remains unchanged or outside scope. This establishes the technical-review basis; do not judge, reopen, or redefine the business decision.
+2. Confirm that the design spec's relevant behavior and production-path map represents that basis accurately.
+3. For each behavior ID, trace enough of the complete current and target user, system, operational, or contract path and lifecycle to confirm the map and judge the design correctly. Do not review a local technical fragment as though it were the whole behavior.
+4. Apply the remaining shared design principles and structural review template from macro structure toward detail: data-flow spine, ownership and boundaries, interfaces and dependencies, then subsystem, file, transition, and cleanup decisions.
+5. If a concrete check produces a prospective finding or proposed or existing mechanism that depends on a material scenario outside the established behavior basis, first identify an independent product-supported initiating trigger or applicable governing contract and trace forward through normal production execution to the claimed lifecycle state and consequence. Then complete the report's material-premise record using the shared product-reachability rule before accepting the conclusion. Reject a circular witness that uses a downstream technical mechanism or proposed design to establish its own reachability. Do not search for hypothetical scenarios as a separate review stage.
+
+Do not issue the structural verdict until the behavior basis is sufficiently established. Missing or ambiguous approved intent is a `Requirement Gap`; missing current-behavior or production-path evidence is `Unclear`/`Blocked`; an inconsistent target path or spine is `Design Impact`. A reviewer-invented premise is `Not Reachable` when the verified behavior map and lifecycle exclude a supported trigger; insufficient evidence is `Unclear`. Neither condition becomes a requirement gap merely because the reviewer imagined the premise.
 
 ## Review Rules
 
 - Review the design independently against the canonical shared design guidance and the mandatory checklist in [templates/design-review-report-template.md](templates/design-review-report-template.md).
 - Use the template as the authoritative review shape; do not replace it with a smaller ad hoc checklist in the review artifact.
-- Treat the requirements doc and investigation notes as supporting context only. Weak intended behavior should route as `Requirement Gap`; weak structure should route as `Design Impact`.
+- Apply the template proportionately. Mark a genuinely inapplicable section `N/A` with a short reason instead of inventing a concern merely to populate the report.
+- Write findings in the design review report and route them to `solution_designer`. Do not edit the solution artifacts to make them pass your own review.
+- Every blocking finding must identify the affected behavior or established contract and a proportionate response. When the finding depends on an assumed scenario, cite its material-premise validation and consequence.
+- Do not pass a design when new in-scope fallback, recovery, defensive, or lifecycle machinery depends on an unsupported material premise. Remove the machinery, establish the premise, or route the appropriate upstream gap.
+- Use investigation notes as current-state evidence while retaining independent technical judgment; route weak structure as `Design Impact`.
+- Treat missing, internally incomplete, or cross-artifact-inconsistent supplemental content as `Requirement Gap`, `Design Impact`, or `Unclear` according to the underlying issue. Do not pass a UI-facing design when the required journeys or observable states remain ambiguous across the package.
+- When persisted data may be affected, verify that the design makes an evidence-backed transition decision rather than assuming migration from a schema change. Accept `Directly Usable — No Migration` or `Discard or Rebuild` when justified; for `Migration Required`, verify isolated ownership, ordering, validation, completion, interruption, and recovery behavior.
 - Do not pass a design that omits the task design health assessment, classifies the task without current-code evidence, says "no refactor needed" without explaining why the current design remains healthy, or says "refactor needed now" without reflecting that decision in concrete design sections.
-- Do not pass a design that is not actionable in the current codebase, hides the real flow behind scattered sections, stays too abstract when examples are needed, or leaves migration and removal too implicit for safe implementation.
-- Keep one canonical design-review report across reruns. Recheck prior unresolved findings first, reuse finding IDs for the same unresolved issues, and update the prior-findings resolution section before declaring the new result.
+- Do not pass a design that is not actionable in the current codebase, hides the real flow behind scattered sections, stays too abstract when examples are needed, or leaves a required persisted-data transition or removal too implicit for safe implementation.
+- Keep `design-review-report.md` focused on the latest complete result. On the first completed result, create `ARCH-REV-001` with prior decision `N/A`; on later rounds, confirm the affected behavior basis, recheck prior unresolved findings first, reuse finding IDs for the same unresolved issues, update the canonical report, and append the review delta and prior-finding resolution to `architecture-review-revision-record.md`.
+- Treat revision records as navigation and rationale, not proof that a finding is resolved. Verify every claimed solution update against the current canonical artifacts and evidence. A missing prior record or result never implies `Pass`.
 
 ## Handoff Rules
 
-- Accept the upstream package from `solution_designer` with absolute filesystem paths for the requirements doc, investigation notes, and design spec.
-- On pass, send the cumulative reviewed upstream package to `implementation_engineer`: requirements doc, investigation notes, design spec, and design review report.
+- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an exact recipient name from the visible team roster.
+- Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
+- After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
+- On pass, send the cumulative reviewed solution package to `implementation_engineer`: requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, solution revision record, design review report, architecture review revision record, and any still-relevant triggering downstream report, revision record, or evidence.
 - Use absolute filesystem paths for all artifacts in that handoff.
-- On `Design Impact`, route to `solution_designer`.
-- On `Requirement Gap`, route to `solution_designer`.
-- On `Unclear`, route to `solution_designer`.
+- On `Fail` or `Blocked`, choose `Design Impact`, `Requirement Gap`, or `Unclear` as the failure classification, route the complete solution package plus the design review report, architecture review revision record, and still-relevant triggering evidence to `solution_designer`, and do not hand off to `implementation_engineer`.
+- Identify the current `ARCH-REV-*` entry, applicable `SR-*` entries, and finding IDs in every handoff.
 - Expect iterative review rounds with `solution_designer` until the design passes.
-- On rerun rounds, update the prior-findings resolution section before declaring the new review decision.

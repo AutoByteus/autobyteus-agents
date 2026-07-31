@@ -9,12 +9,6 @@
       "refScope": "team_local"
     },
     {
-      "memberName": "demand_generation_lead",
-      "ref": "demand-generation-lead",
-      "refType": "agent",
-      "refScope": "team_local"
-    },
-    {
       "memberName": "account_executive_manager",
       "ref": "account-executive-manager",
       "refType": "agent",

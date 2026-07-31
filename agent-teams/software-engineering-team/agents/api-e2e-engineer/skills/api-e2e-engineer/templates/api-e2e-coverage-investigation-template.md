@@ -11,9 +11,18 @@ Update this artifact whenever new evidence changes a test-validity or coverage d
 - Requirements Doc:
 - Investigation Notes:
 - Design Spec:
+- Supplemental Task Artifacts:
+- Solution Revision Record:
 - Design Review Report:
+- Architecture Review Revision Record:
 - Implementation Handoff:
+- Implementation Revision Record:
 - Code Review Report:
+- Code Review Revision Record:
+- Delivery Revision Record (delivery re-entry only):
+- Relevant Delivery Revision IDs:
+- API/E2E Revision Record (created after the first completed result):
+- Current API/E2E Revision ID: `N/A` / `API-REV-*`
 - Current Investigation Round:
 - Trigger:
 - Prior Investigation Reviewed:
@@ -21,15 +30,59 @@ Update this artifact whenever new evidence changes a test-validity or coverage d
 
 ## Current Requirement And Design Basis
 
-Summarize the current behavior that must be proven from the approved requirements, acceptance criteria, reviewed design, implementation handoff, and code review report.
+Summarize the current behavior that must be proven from the approved requirements, acceptance criteria, reviewed design, applicable supplemental task artifacts and revision records, implementation handoff, and code review report.
 
 ## Changed Behavior Summary
 
 Identify behavior added, changed, removed, or intentionally preserved.
 
-| Behavior / Boundary | Change Type (`Added`/`Changed`/`Removed`/`Preserved`/`Unclear`) | Upstream Evidence | Coverage Consequence |
+| Behavior ID / Boundary | Change Type (`Added`/`Changed`/`Removed`/`Preserved`/`Unclear`) | Upstream Evidence | Coverage Consequence |
 | --- | --- | --- | --- |
 |  |  |  |  |
+
+## Changed Surface And Boundary Classification
+
+| Surface / Boundary | Affected? (`Yes`/`No`) | Actual Changed Boundary | Repository Evidence Available | Material Risk Not Exercised By That Evidence | Candidate Broader Validation Mode |
+| --- | --- | --- | --- | --- | --- |
+| Domain / backend logic |  |  |  |  |  |
+| API / transport / contract |  |  |  |  |  |
+| Frontend component / state |  |  |  |  |  |
+| Browser integration / user journey |  |  |  |  |  |
+| Authentication / session / permissions |  |  |  |  |  |
+| Desktop renderer / web-equivalent UI |  |  |  |  |  |
+| Desktop shell / Electron-specific integration |  |  |  |  |  |
+| Process / lifecycle |  |  |  |  |  |
+| Persisted-data transition |  |  |  |  |  |
+| Worker / queue / distributed coordination |  |  |  |  |  |
+| External integration |  |  |  |  |  |
+
+## Project Execution Discovery
+
+- Assigned task worktree / workspace:
+- Project type and runtime stack:
+- Conflicting, missing, or unclear project instructions:
+- Required environment variables or secrets available: `Yes` / `No` / `N/A` (do not record secret values)
+
+| Instruction / Configuration Path | Authority / Purpose | Commands, Setup, Or Constraints Learned |
+| --- | --- | --- |
+|  |  |  |
+
+| Component / Dependency | Working Directory | Start / Setup Command | Runtime / Resource Notes | Readiness Check | Stop / Cleanup Method |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+| Data / Fixture / Identity Need | Existing Project Mechanism Or Creation Method | Environment / Data-Safety Notes | Cleanup / Retention |
+| --- | --- | --- | --- |
+|  |  |  |  |
+
+## Persisted Data Transition Coverage Basis (When Applicable)
+
+- Approved decision (`Not Affected`/`Directly Usable — No Migration`/`Discard or Rebuild`/`Migration Required`/`Undetermined`):
+- Design-spec and implementation-handoff references:
+- Representative existing-data setup and required behavior:
+- Evidence planned for the approved direct-use, discard/rebuild, or migration outcome:
+- Migration-specific completion/recovery scenarios, only when `Migration Required`:
+- Upstream ambiguity or reroute required:
 
 ## Existing Durable Coverage Inventory
 
@@ -73,6 +126,68 @@ Use this section before deleting or disabling existing durable coverage.
 | --- | --- | --- | --- |
 |  |  |  |  |
 
+## Repository Coverage Execution Plan And Results
+
+Plan the narrowest relevant checks first and the broader affected suites afterward. Update this table with actual results before making the confidence decision.
+
+| Order | Command | Working Directory / Configuration | Boundary Or Scenario Proven | Result (`Planned`/`Pass`/`Fail`/`Blocked`) | Evidence / Output Path |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+## Post-Repository Confidence Scorecard (Mandatory)
+
+Score each applicable category from `0%` to `100%`. Use `N/A` only with a concrete inapplicability reason. Do not let the average hide a weak category or unproven critical behavior.
+
+| Confidence Category | Score (`0-100%`/`N/A`) | What Supports The Score | Remaining Uncertainty | Additional Validation That Could Improve It |
+| --- | --- | --- | --- | --- |
+| Requirement and acceptance-criteria proof |  |  |  |  |
+| Changed-boundary execution directness |  |  |  |  |
+| Cross-boundary integration realism and mock gap |  |  |  |  |
+| Environment, configuration, identity, and fixture fidelity |  |  |  |  |
+| Failure, edge-case, lifecycle, and recovery evidence |  |  |  |  |
+| User-surface, browser, and desktop-shell confidence |  |  |  |  |
+| Durable regression coverage quality and relevance |  |  |  |  |
+
+- Overall post-repository confidence:
+- Calculation method:
+- Every critical acceptance criterion directly proven: `Yes` / `No`
+- Any applicable category below `90%`: `No` / `Yes` — list:
+- Default clean-confidence target of `95%` met: `Yes` / `No`
+- Material residual risks:
+
+## Broader Validation Decision (Mandatory)
+
+- Decision: `Required` / `Not Required` / `Blocked`
+- Selected execution mode (`Browser`/`Live API`/`Project Desktop Validation`/`CLI`/`Lifecycle`/`Worker or Distributed`/`Other`/`None`):
+- Specific confidence gap or residual risk addressed:
+- Why the selected mode can materially improve confidence:
+- Expected confidence after the selected validation:
+- Browser-specific decision and rationale:
+- If `Not Required`, evidence proving the real changed boundary without broader execution:
+- If `Blocked`, exact dependency or access that remains unavailable after safe setup/emulation attempts:
+
+## Desktop Application Validation Decision (When Applicable)
+
+- Desktop framework / shell:
+- Relevant README or development instructions:
+- Web-equivalent behavior:
+- Shell-specific or lifecycle behavior:
+- Chosen validation approach and why it fits the project:
+- Server/frontend setup when browser validation is used:
+- Effect on any already-running desktop application: `None` / explain
+- Behavior not directly proven and confidence consequence:
+
+## Live Environment And Fixture Plan (Required When Broader Validation Runs)
+
+- Startup order and commands:
+- Environment choices that materially affect the run:
+- Health / readiness checks:
+- Seed data / fixtures:
+- Test identities, authentication, permissions, or session state:
+- Requirement-linked journeys or scenarios:
+- DOM, screenshot, log, API, process, or other evidence to capture:
+- Owned processes and temporary state to clean up:
+
 ## Temporary Executable Validation Plan
 
 | Scenario ID | Probe / Harness / Runtime Setup | Behavior Proven | Why This Should Not Remain As Durable Coverage |
@@ -91,14 +206,12 @@ Use this section before deleting or disabling existing durable coverage.
 | --- | --- | --- | --- |
 |  |  |  |  |
 
-## Execution Plan
-
-State the ordered plan for durable coverage changes, temporary probes, final command execution, and evidence collection.
-
 ## Investigation Decision
 
 - Proceed To API/E2E Execution: `Yes` / `No`
 - Repository-Resident Durable Coverage Will Be Added / Updated / Removed: `No` / `Yes`
+- Post-repository confidence:
+- Broader validation decision:
 - Reroute Required Before Validation Execution: `No` / `Yes`
 - Recommended Recipient If Reroute Required:
 - Notes:
