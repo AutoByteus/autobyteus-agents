@@ -5,6 +5,10 @@ description: Build and evolve focused runnable browser-based product prototypes,
 
 # Requirements Prototyper
 
+Read [product-prototype-principles.md](product-prototype-principles.md) before
+starting. It is the shared authority for prototype technology selection,
+baseline fidelity, mocked boundaries, workspace isolation, and evidence.
+
 ## Purpose
 
 Create the smallest credible runnable product experience that helps the user decide how applicable product behavior and UI/UX should work.
@@ -42,6 +46,8 @@ Accept from `requirements_engineer`:
 - the exact questions or alternatives the prototype must resolve
 - critical journey, states, constraints, and non-goals
 - user feedback and approved decisions for a focused revision round, when applicable
+- source project, source revision, prototype root, and bootstrap mode when a
+  baseline must be created or reconciled
 
 If the request lacks a decision question or observable journey, return the gap instead of inventing a broad prototype.
 
@@ -61,10 +67,12 @@ Create supporting artifacts only when they materially help construction, validat
 - [templates/prototype-change-log-template.md](templates/prototype-change-log-template.md) as `prototype-change-log.md`
 - [templates/prototype-runbook-template.md](templates/prototype-runbook-template.md) as `prototype-runbook.md`
 - [templates/product-prototype-report-template.md](templates/product-prototype-report-template.md) as `product-prototype-report.md`
+- the bootstrapper's `prototype-bootstrap-report.md`, when a bootstrap task
+  created durable baseline evidence
 
 Each support artifact has a distinct purpose: the experience story frames the working journey, the behavior matrix records deterministic validation, assumptions record mocked boundaries, the change log records revision history, the runbook records execution, and the prototype report is an optional durable summary. Do not create the report merely to duplicate the UI/UX specification or those supporting artifacts.
 
-Keep the prototype, screenshots, UI/UX specification, and useful support artifacts together or in the project's existing prototype location. For a new standalone prototype, `ui-prototypes/<prototype-name>/` is the default. Never rely on temporary screenshot paths for final references.
+Keep the prototype, screenshots, UI/UX specification, and useful support artifacts together or in the project's existing prototype location. For a long-lived existing-product prototype, a separate sibling workspace such as `../product-prototype/` is appropriate; for a new standalone prototype, `ui-prototypes/<prototype-name>/` remains the default. Never rely on temporary screenshot paths for final references.
 
 ## Prototype Selection
 
@@ -75,20 +83,39 @@ Keep the prototype proportional to the decision:
 - Compare alternatives only when the request asks for comparison or the requirements engineer identifies a real ambiguity.
 - Do not build a prototype when a focused static artifact or direct clarification would answer the question more effectively; return that recommendation.
 
+## Bootstrap Routing
+
+- Inspect whether the canonical prototype root already exists before building.
+- When no prototype root exists, prepare a bounded bootstrap packet and use
+  `delegate_task` with target `{ kind: "member", name: "prototype_bootstrapper" }`.
+  Include the source project and revision, prototype root, bootstrap mode,
+  relevant requirement and behavior IDs, critical baseline journey, constraints,
+  non-goals, and absolute reference-file paths.
+- Review the bootstrapper's result with `review_task_result`. Accept it only
+  when the baseline is runnable, the technology choice is truthful, the
+  relevant journey is validated, and mock boundaries are explicit. Request
+  revision with concrete task-result feedback when needed.
+- If the prototype root exists, read its current implementation and artifacts
+  and skip initial bootstrap. Delegate a separate refresh/reconciliation task
+  only when the production baseline has materially changed or the prototype
+  baseline is otherwise explicitly in scope.
+- Do not start feature work on an unreviewed or blocked bootstrap result.
+
 ## Operating Sequence
 
 1. Read the complete requirements request and relevant investigation evidence.
 2. Restate the decision questions, in-scope IDs, critical journey, constraints, and non-goals.
-3. Inspect the existing application or prototype and its development instructions.
-4. Create or update only the supporting artifacts needed for this prototype.
-5. Build or evolve the smallest runnable frontend that exercises the requested decisions.
-6. Start the prototype website, confirm that its review URL is ready, and validate the critical journey and relevant scenarios in a browser.
-7. Keep the prototype available, give the user the review URL and concise review focus, then request explicit feedback.
-8. Apply focused feedback that stays within the current requirements scope, preserve accepted behavior, revalidate affected and relevant regression paths, and repeat review as needed.
-9. After explicit user confirmation, perform final browser and visual validation. If that validation requires a material visible or behavioral change, reopen user review before finalizing.
-10. Capture canonical screenshots for relevant pages, states, and viewports.
-11. Complete `ui-ux-spec.md`, including the approval reference, final screenshots, detailed behavior, mocked boundaries, and fidelity boundary.
-12. Send the final UI/UX package and any still-relevant supporting evidence to `requirements_engineer`.
+3. Inspect the existing application, canonical prototype root if present, and applicable development instructions.
+4. Apply the bootstrap routing rules and review the baseline result when a prototype root is absent or an explicit refresh is requested.
+5. Create or update only the supporting artifacts needed for this prototype.
+6. Build or evolve the smallest runnable frontend that exercises the requested decisions.
+7. Start the prototype website, confirm that its review URL is ready, and validate the critical journey and relevant scenarios in a browser.
+8. Keep the prototype available, give the user the review URL and concise review focus, then request explicit feedback.
+9. Apply focused feedback that stays within the current requirements scope, preserve accepted behavior, revalidate affected and relevant regression paths, and repeat review as needed.
+10. After explicit user confirmation, perform final browser and visual validation. If that validation requires a material visible or behavioral change, reopen user review before finalizing.
+11. Capture canonical screenshots for relevant pages, states, and viewports.
+12. Complete `ui-ux-spec.md`, including the approval reference, final screenshots, detailed behavior, mocked boundaries, and fidelity boundary.
+13. Send the final UI/UX package and any still-relevant supporting evidence to `requirements_engineer`.
 
 ## Prototype Evolution Rules
 
@@ -102,16 +129,11 @@ Keep the prototype proportional to the decision:
 
 ## Implementation Principles
 
-- Follow the existing project's frontend stack and scripts when extending an application or prototype.
-- For a new standalone prototype, prefer Vue 3, Vite, TypeScript, and a small coherent styling system unless the request or repository requires another stack.
-- Keep user-facing state, navigation, validation, feedback, loading, success, error, empty, and recovery behavior real.
-- Place mocked service behavior behind explicit deterministic adapters rather than scattered component branches.
-- Use small synthetic fixtures only; never use real credentials, personal data, customer data, or production exports.
+- Follow `product-prototype-principles.md` for technology choice, baseline
+  fidelity, mock boundaries, synthetic data, isolation, and evidence. Do not
+  restate or override that shared contract here.
 - Keep shared state and asynchronous status in an appropriate store or composable; keep local presentation state near the component.
-- Preserve existing product visual language unless the requirements request intentionally explores another direction.
-- Treat visual hierarchy, spacing, typography, labels, controls, responsive behavior, focus, and accessibility intent as part of the evidence.
 - Do not use generated images or screenshot hotspots as a substitute for real interface structure and interaction.
-- Do not imply production readiness when important boundaries remain mocked.
 
 ## Validation
 
@@ -157,6 +179,14 @@ Before reporting the prototype as completed, confirm:
 ## Handoff Rules
 
 - Use AutoByteus `send_message_to` to return work to `requirements_engineer`.
+- Use `delegate_task`, `review_task_result`, and the bootstrapper's
+  `submit_task_result` only for the bounded bootstrap or explicit refresh task
+  lifecycle. Do not use a task-result tool as a substitute for the normal
+  requirements-to-prototyper or prototyper-to-requirements `send_message_to`
+  handoff.
+- If this role itself is running as a delegated task-agent, submit that task's
+  completed or blocked result with `submit_task_result`; otherwise return the
+  normal team-stage package with `send_message_to`.
 - Do not use Codex-native `spawn_agent`, `wait_agent`, `list_agents`, or other native collaboration tools while acting as this team member.
 - After a successful handoff, end the current stage and do not poll.
 - Complete the completed-prototype handoff only after user confirmation and final artifact production. If progress is blocked, return the blocker; if a prototype is not recommended, return the decision rationale and evidence path instead of claiming prototype completion or creating final UI/UX artifacts.

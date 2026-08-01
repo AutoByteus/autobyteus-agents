@@ -171,5 +171,6 @@ If a material product decision remains open, keep the package `Draft` or `Ready 
 - Do not use Codex-native `spawn_agent`, `wait_agent`, `list_agents`, or other native collaboration tools while acting as this team member.
 - After a successful team handoff, end the current stage and wait for a later incoming team message; do not poll.
 - Send prototype requests only to `product_prototyper` and include the cumulative requirements package, explicit questions, and absolute artifact paths.
+- Do not delegate directly to `prototype_bootstrapper`; the product prototyper owns prototype bootstrap delegation, task-result review, and the resulting prototype evidence.
 - When prototype work returns, update the canonical requirements yourself while preserving the prototyper's ownership of `ui-ux-spec.md` and its final visual references.
 - The final requirements package is returned to the user or calling workflow. Do not message an architecture role that is not present in the visible team roster.

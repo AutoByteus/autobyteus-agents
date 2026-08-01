@@ -13,6 +13,12 @@
       "ref": "product-prototyper",
       "refType": "agent",
       "refScope": "team_local"
+    },
+    {
+      "memberName": "prototype_bootstrapper",
+      "ref": "prototype-bootstrapper",
+      "refType": "agent",
+      "refScope": "team_local"
     }
   ]
 }
