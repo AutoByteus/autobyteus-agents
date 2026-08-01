@@ -1,28 +1,36 @@
 ---
-name: article-writer
-description: Produce a publication-ready article package from investigation-led understanding through outline, draft, and revision using the team's shared writing principles.
+name: article-writing
+description: Produce a publication-ready article package through source-grounded research, hierarchical structure, reader-continuous drafting, review, and revision.
 ---
 
-# Article Writer
+# Article Writing
 
 Use this skill to produce article packages for the article writing team.
-The writer owns the investigation and understanding stage as well as the article draft.
-Do not add a separate research specialist to this team by default.
+Use this as the single end-to-end writing workflow: coordinate the research phase, hierarchical article structure, style and language decisions, outline gate, article draft, and revision package.
+Use the separate bundled `article-researcher` skill for source investigation when the article needs it; do not add another research agent or another writing skill.
 The writer also owns visual planning because image placement is part of the article's structure and explanation flow.
 
-## Produced Artifacts
+## Package Artifacts
+
+Research phase, when needed:
 
 - `brief.md`
 - `understanding-notes.md`
 - `source-index.md`
 - `claim-evidence-ledger.md` when factual, technical, or interpretive claims need explicit support
+
+Writing phase:
+
 - `style-profile-notes.md` when an author/style profile, rhetorical mode, or platform style is part of the task
 - `outline.md`
 - `visual-plan.md` when the article would benefit from diagrams, screenshots, generated images, charts, or other content-bearing visuals
 - `visual-asset-index.md` when visual assets are sourced, generated, inserted, or intentionally omitted
 - `article.md` or bilingual draft set
 
+The reviewer owns `review-report.md`.
+
 Use [templates/style-profile-notes-template.md](templates/style-profile-notes-template.md) for `style-profile-notes.md`.
+Use [templates/outline-template.md](templates/outline-template.md) for `outline.md`.
 Use [templates/visual-plan-template.md](templates/visual-plan-template.md) for `visual-plan.md`.
 Use [templates/visual-asset-index-template.md](templates/visual-asset-index-template.md) for `visual-asset-index.md`.
 
@@ -31,12 +39,10 @@ Use [templates/visual-asset-index-template.md](templates/visual-asset-index-temp
 - Start by reading [writing-principles.md](writing-principles.md).
 - Use it as the canonical shared writing reference before outlining, drafting, or revising.
 
-## Required Local Skill
+## Style And Language Reference
 
-- Also use the team-local bundled `bilingual-author-style-writer` skill for style-profile loading, example loading, bilingual drafting behavior, and platform-output rules.
-- Apply that skill's separation between mode, platform, language, author/style profile, rhetorical mode, objective, audience, takeaway, and depth target.
-- Preserve its rule that author style controls voice and structural habits, while rhetorical mode controls pressure and article shape.
-- Treat that skill as local to this article team, not as an external shared skill source.
+When style profile, bilingual behavior, or platform packaging is in scope, read [references/style-workflow.md](references/style-workflow.md).
+That reference owns profile loading, example loading, bilingual expression, platform rules, and style-fit checks inside this workflow. The present `article-writing` skill remains the only owner of artifact order, hierarchical structure, outline approval, drafting, revision, and reviewer handoff.
 
 ## Workflow
 
@@ -71,9 +77,19 @@ Use one or more understanding modes:
 
 If no mode is explicit, infer the smallest mode that can support the requested article. Do not over-research a simple style rewrite, and do not under-research an article that makes technical, factual, or current-world claims.
 
-### Step 2 - Resolve the style package
+### Step 2 - Build the understanding package
 
-Use the team-local `bilingual-author-style-writer` skill when style profile, bilingual behavior, platform packaging, or author voice is in scope.
+When the article needs factual, technical, document, source-code, or supplied-material understanding, run the bundled `article-researcher` skill as this workflow's research phase.
+It owns the detailed research modes, source inspection, understanding notes, source index, claim/evidence ledger, research handoff, and research readiness gate.
+
+- Reuse an existing research package before starting new discovery.
+- Use the smallest research mode that can support the intended article; do not under-research load-bearing claims.
+- Do not outline from vague notes. The research phase must leave a writer-ready `research-handoff.md` with supported claims, mechanisms, chronology, caveats, and a candidate evidence-based spine.
+- If the source basis cannot support the intended article, narrow the claims or ask a targeted question before outlining.
+
+### Step 3 - Resolve the style package
+
+Use [references/style-workflow.md](references/style-workflow.md) when style profile, bilingual behavior, platform packaging, or author voice is in scope.
 
 Create or update `style-profile-notes.md`.
 Record:
@@ -92,61 +108,12 @@ Record:
 
 Do not leave style fit implicit in chat. The reviewer must be able to read `style-profile-notes.md` and understand what style standard the draft was trying to meet.
 
-### Step 3 - Build the understanding package
-
-Create or update `understanding-notes.md`.
-Record:
-
-- the question or article objective being understood
-- source-by-source notes
-- workspace files, code paths, commands, or observations that matter
-- online/documentation/paper findings when used
-- definitions, mechanisms, chronology, and distinctions the article must preserve
-- uncertainty, caveats, source limitations, and open questions
-- user-supplied corrections or constraints that override prior assumptions
-
-Create or update `source-index.md`.
-Record:
-
-- supplied materials with absolute paths or URLs
-- workspace files and source-code paths inspected
-- websites, documentation, papers, or PDFs read
-- what each source contributed
-- credibility, date, or limitation notes when relevant
-- status: `used`, `background`, `rejected`, or `open`
-
-Create `claim-evidence-ledger.md` when the article depends on factual, technical, source-backed, or interpretive claims.
-Record each load-bearing claim with:
-
-- evidence anchor
-- source IDs or paths
-- confidence
-- caveats
-- what would make the claim too strong
-
-Record style-sensitive claims explicitly when used:
-
-- contrastive frames such as `not X, but Y`
-- claims that a belief is common, shallow, wrong, or incomplete
-- `should` recommendations
-- root-cause claims such as `the deeper problem is`
-- production observations such as `we observed`, `we found`, or `this worked`
-
-If the source basis does not support the setup side of a contrast or recommendation, remove that framing and write the supported mechanism directly.
-
-For codebase or workspace articles, source investigation is not optional when mechanism claims are made. Inspect the relevant files or commands and record the exact path or command evidence.
-
-For online-current articles, use web research unless the user forbids it or the task can be safely answered from supplied sources. Record dates where recency matters.
-
-For document or paper articles, read enough of the actual document to support the claims. Do not infer specific methods, results, or conclusions from title or abstract alone.
-
-If the source basis cannot support the intended article, stop and ask a targeted question or narrow the article's claims before outlining.
-
 ### Step 4 - Pre-outline gate
 
 Before writing `outline.md`, verify:
 
 - `brief.md` records target, audience, mode, platform, language, and constraints
+- `research-handoff.md` has been read when the research skill produced it
 - `style-profile-notes.md` records profile, variant, rhetorical mode, and style constraints when style matching is in scope
 - `understanding-notes.md` and `source-index.md` support the intended article scope
 - `claim-evidence-ledger.md` exists when the article needs explicit evidence tracking
@@ -154,21 +121,41 @@ Before writing `outline.md`, verify:
 
 If a gate fails, update the relevant upstream artifact before outlining.
 
-### Step 5 - Write `outline.md`
+### Step 5 - Build the hierarchical structure in `outline.md`
 
-Include:
+Build the structure from large units to small units. Use the outline template and include:
 
 - title options
 - opening stance
-- thesis or main observation, depending on the selected stance
-- section purpose
-- planned evidence, mechanism, or examples for each section
+- central question or reader problem
+- thesis, promise, or bounded main observation, depending on the selected stance
+- scope and explicit non-goals when they prevent overreach
+- one primary logic spine, such as causal, chronological, problem-solution, question-answer, comparative, or derivational
+- reader starting point: what the reader likely knows, assumes, or needs before the article begins
+- reader progression: what the reader should understand after each major step
+- a reader question ladder: what question or need each step answers and what question, consequence, or decision it creates next
+- the section spine: one sentence per section in reading order, with each section's job, predecessor or question, evidence burden, and successor or implication
+- a reader bridge into and out of every section when the relationship is not self-evident
+- paragraph beats inside every section: one sentence per planned paragraph or equivalent short-note unit, with its job and evidence/mechanism/example
+- the expansion pattern for each major section, such as claim -> mechanism -> evidence/example -> implication
 - visual opportunities for sections where an image, diagram, screenshot, chart, or table would materially improve understanding
 - intended ending move
 
 If the user provides a practical sequence such as `we used X -> it worked in Y way -> it started to break at Z -> we changed to W -> we observed Q`, preserve that sequence as the section spine instead of rewriting it into a generic essay shape.
 
-Do not proceed to full drafting on a weak outline unless the user explicitly wants to skip that gate.
+Use the following structural checks before handoff:
+
+- The article can be summarized as one central promise or bounded answer.
+- Every section adds a new claim, mechanism, evidence, example, decision, or implication.
+- Each section follows from the preceding section and prepares the next one; the order is not merely topical.
+- The chosen logic spine remains stable; the article does not switch from chronology to taxonomy or from explanation to promotion without a signpost and reason.
+- The reader question ladder is continuous: each section answers a prepared question or need and creates a reason for the next section.
+- Every meaningful shift in topic, time, actor, abstraction level, scope, or evidence type has a bridge or an explicit signpost.
+- Each paragraph beat has one dominant job and can be compressed to one sentence.
+- The conclusion resolves or compresses the article's promise instead of introducing a new core idea.
+- The outline does not use style, visuals, or title polish to hide an unresolved structure.
+
+If the structure is weak, revise `outline.md` before writing detailed prose. Do not proceed to full drafting unless the reviewer passes the outline or the user explicitly wants to skip that gate.
 
 ### Step 6 - Create `visual-plan.md` when visuals would help
 
@@ -202,6 +189,10 @@ When using image generation, keep prompts constrained by the understanding packa
 Before writing the full draft, verify:
 
 - the outline has passed review or the user explicitly skipped the outline gate
+- `outline.md` contains the article promise, section spine, paragraph beats, evidence burden, and ending move
+- `outline.md` contains the chosen logic spine, reader question ladder, and section bridges where needed
+- the compressed section and paragraph maps form a coherent reader progression
+- a first-time-reader pass finds no unprepared topic, time, actor, abstraction, scope, or evidence shift
 - any review findings against understanding, evidence, style basis, or structure have been resolved in the corresponding artifact
 - the selected author style is constrained by the shared writing principles, especially `Style Never Creates Facts`
 - style-profile notes and the outline agree on opening stance, profile variant, rhetorical mode, and forbidden moves
@@ -212,6 +203,11 @@ If a gate fails, update the upstream package before drafting.
 
 ### Step 8 - Draft the article package
 
+- Expand the approved outline top-down: article promise -> section spine -> paragraph beats -> paragraph reasoning -> sentence polish.
+- Preserve the approved section order and paragraph jobs. If drafting reveals a structural problem, stop and revise `outline.md` rather than silently improvising a new article shape.
+- Expand paragraphs only as far as their beat requires. A useful default for explanatory prose is claim -> explanation or mechanism -> evidence/example -> implication or transition; omit a component when the article does not need it.
+- Draft with known-to-new movement: begin from an established referent or question, introduce one next concept, state its relation, and only then move to another concept.
+- Write or preserve a bridge whenever the article changes topic, time, actor, abstraction level, scope, or evidence type. Do not assume the reader will infer why the shift is relevant.
 - For single-language work, write `article.md`.
 - For bilingual or conversion work, write the full draft set needed for review.
 - Keep the draft aligned to the shared writing principles and the requested style profile.
@@ -229,7 +225,10 @@ If a gate fails, update the upstream package before drafting.
 ### Step 9 - Revise after review
 
 - Read the review report fully.
-- Fix structural issues before local polish.
+- Fix the highest-level failing unit first: article promise, section spine, paragraph beats, paragraph reasoning, then local polish.
+- Re-run the compression test after structural edits: summarize each section and paragraph in one sentence and compare that map with the revised `outline.md`.
+- Run a first-time-reader continuity pass after structural edits: read section endings and openings together, then paragraph openings and endings, and mark every `Where did this come from?`, `How does this follow?`, or `Why now?` moment. Repair the bridge, prerequisite, or order before polishing.
+- If the draft's local paragraphs are strong but the global map is weak, revise the structure instead of preserving polished prose.
 - If the reviewer reports `Understanding Gap`, `Source Gap`, or `Evidence Gap`, return to the understanding package before editing prose.
 - If the reviewer reports `Visual Plan Gap`, revise the outline, visual plan, captions, assets, or article placement before polishing prose.
 - Preserve the original audience and selected direction unless the review identifies that the direction itself is wrong.

@@ -1,10 +1,6 @@
 # Writing Principles
 
-This is the shared writing reference for the article writing team.
-
-Use these principles for draft creation and review work.
-They are the shared writing language for this team.
-This is the canonical shared guidance file for article quality: thesis shape, structure, evidence expectations, visual planning, style handling, bilingual fidelity, platform fit, and common failure patterns live here.
+Read this file before drafting or reviewing an article package. It is the canonical quality standard for thesis shape, structure, evidence, visual planning, style, bilingual fidelity, platform fit, and common failure patterns.
 
 ## Core Principles
 
@@ -50,7 +46,11 @@ This is the canonical shared guidance file for article quality: thesis shape, st
 - A strong outline should show:
   - working title options
   - the selected opening stance
+  - the article's central question, promise, thesis, or bounded main observation
+  - the reader's intended progression from what they know now to what they should understand at the end
   - section-by-section purpose
+  - one-sentence section claims or observations in reading order
+  - the paragraph beats inside each section, with one sentence per planned paragraph or equivalent short-note unit
   - the evidence, mechanism, examples, or reasoning burden of each section
   - the intended ending move
 - Do not compensate for a weak outline with polished paragraphs.
@@ -65,6 +65,34 @@ This is the canonical shared guidance file for article quality: thesis shape, st
 - For technical articles, prefer content-bearing visuals such as architecture diagrams, workflow diagrams, sequence diagrams, concept maps, comparison matrices, timelines, annotated screenshots, code-path maps, artifact maps, or evidence charts when the source basis supports them.
 - Use generated bitmap images only when they genuinely serve the article's explanation, metaphor, or platform presentation. If a structured diagram would be clearer and more truthful, use a diagram plan instead of a decorative generated image.
 - If an article would be clearer with visuals, the outline or visual plan should show where they belong and what each one teaches the reader.
+
+### 4B. Build And Review From Global Structure To Local Prose
+
+- Article work is hierarchical. Resolve the largest unit that can invalidate the work before expanding the next unit:
+  1. article promise, scope, and bounded answer
+  2. section spine and dependency order
+  3. paragraph beats inside each section
+  4. paragraph expansion: claim, explanation or mechanism, evidence or example, and implication when needed
+  5. sentence clarity, rhythm, and platform polish
+- The writer should not draft detailed prose while the article promise or section spine is still unstable.
+- A section is ready to expand only when its one-sentence job, predecessor or question, evidence basis, and successor or implication are clear.
+- A paragraph is ready to expand only when its beat has one dominant job. Split a paragraph beat when it tries to introduce a new claim, mechanism, and conclusion that deserve separate steps.
+- The reviewer should run the same hierarchy in reverse: verify the article-level promise first, then section progression, then paragraph beats, and only then sentence-level polish.
+- Use a compression test during both writing and review: compress each section to one sentence and each paragraph to one sentence, then compare that map with `outline.md`. If the compressed map cannot be explained as a coherent progression, route the issue back to structure rather than polishing prose.
+- Each section must change the reader's understanding by adding a new claim, mechanism, evidence, example, decision, or implication. A conclusion should compress the resolved argument, not introduce another central idea.
+
+### 4C. Protect Reader Continuity And Expectation
+
+- A readable article can introduce new ideas; it must not introduce them without preparation. Novelty should feel earned, not random.
+- Choose one primary logic spine for the article: causal, chronological, problem-solution, question-answer, comparative, derivational, or another explicitly named pattern. Do not make the reader infer a new organizing principle halfway through.
+- Give every section a reader contract:
+  - **entry:** what the reader already understands and what question or need brings them here
+  - **movement:** the one new claim, mechanism, example, or decision this section adds
+  - **exit:** what has now been resolved and why the next section follows
+- Preserve known-to-new movement inside paragraphs. Start from an established referent or question, introduce the next concept, and explain its relation before adding another concept.
+- Bridge every meaningful shift in topic, time, actor, abstraction level, scope, or evidence type. If a reader could ask `Why are we discussing this now?`, add the reason or change the order.
+- At each section and paragraph boundary, make the relationship explicit when it is not obvious: continuation, consequence, contrast, example, qualification, or return to the central question.
+- Audit the article as a first-time reader, not as its author. Mark every place where the reader may ask `Where did this come from?`, `How does this follow?`, or `What does this have to do with the promise?` and repair the bridge, missing prerequisite, or structure.
 
 ### 5. One Section, One Job
 
@@ -209,6 +237,9 @@ This is the canonical shared guidance file for article quality: thesis shape, st
 - paper/document claims inferred without deep reading
 - weak or delayed thesis when thesis-first framing is actually required
 - outline sections that do not build on one another
+- unprepared shifts in topic, time, actor, abstraction level, scope, or evidence type
+- transitions that rely on the author's private context instead of giving the reader a bridge
+- a logic spine that changes mid-article without an explicit signpost
 - repeated claims without new evidence
 - repeated summary sections or duplicated comparison tables
 - examples that do not actually prove the point
@@ -231,6 +262,11 @@ This is the canonical shared guidance file for article quality: thesis shape, st
 - What sources, files, code paths, documents, papers, websites, or user observations support the article?
 - Are any load-bearing claims unsupported or stronger than the evidence allows?
 - What opening stance does this article actually need?
+- What does the reader know, assume, or need at each major step?
+- What question or need does each section answer, and what does that answer make the reader ask next?
+- Why does each section or paragraph follow now rather than earlier or later?
+- Where might a first-time reader ask `Where did this come from?`, `How does this follow?`, or `Why now?`?
+- Did any new topic, time, actor, abstraction, scope, or evidence type appear without a bridge or signpost?
 - If the article is thesis-first, what is the thesis, and where does it appear?
 - What does each section contribute to the thesis?
 - What evidence or mechanism makes the central claim believable?

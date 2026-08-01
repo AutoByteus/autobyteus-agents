@@ -1,22 +1,19 @@
----
-name: bilingual-author-style-writer
-description: Write and revise publish-ready Chinese (WeChat) and English (Medium) articles or factual technical notes in configurable author styles. Use when the user provides ideas, rough notes, or sample articles and asks Codex to match an existing style profile or create a new profile for any author, then iterate drafts until final.
----
+# Style And Language Workflow
 
-# Bilingual Author Style Writer
+Use this reference inside the `article-writing` skill when the request includes author style, bilingual drafting, or platform-specific packaging.
 
-Use this skill to convert raw ideas into clear, publishable writing with explicit voice control.
-This is the article-writing team's local bundled copy.
-It is intentionally local so the team can adapt style-profile, bilingual, and platform behavior without depending on a standalone skills repository.
-
-Within the article-writing team, this skill is the authoritative writing and style workflow.
-It owns style-profile loading, platform rules, outline shaping, visual planning, drafting, reviewer handoff, and revision packaging.
+This reference owns style-profile loading, platform rules, bilingual expression, and style-fit checks. The parent `article-writing` skill owns article-level structure, outline shaping, visual planning, drafting order, reviewer handoff, and revision packaging.
 The local `article-researcher` skill owns investigation, understanding artifacts, source/evidence tracking, and reusable research handoff.
 The shared team writing principles remain the article quality authority for both writing and review.
 
+## Required Shared Read
+
+- Start by reading [writing-principles.md](writing-principles.md).
+- Use it for structure, evidence, style boundaries, bilingual fidelity, and revision precedence; do not let a profile override it.
+
 ## Expected Research Inputs
 
-Before outlining or drafting, read the research package produced by `article-researcher` when the article requires factual grounding:
+Before applying style decisions or drafting, read the research package produced by `article-researcher` when the article requires factual grounding:
 
 - `brief.md`
 - `understanding-notes.md`
@@ -30,10 +27,7 @@ Treat these files as the source of truth. Do not redo research. If the package h
 ## Produced Writing Artifacts
 
 - `style-profile-notes.md` when an author/style profile, rhetorical mode, or platform style is part of the task
-- `outline.md`
-- `visual-plan.md` when visuals would improve comprehension
-- `visual-asset-index.md` when visual assets are sourced, generated, inserted, or intentionally omitted
-- `article.md` or bilingual draft set
+- style-bound constraints applied to the current `outline.md` and draft set
 
 ## Workflow
 
@@ -58,7 +52,7 @@ Treat these files as the source of truth. Do not redo research. If the package h
 - Normalize profile id to lowercase hyphen-case (for example: `Ryan Zheng` -> `ryan-zheng`).
 - If profile exists in registry, read its mapped file under `references/profiles/`.
 - If example file exists for that profile in registry, load it before drafting.
-- If the selected profile defines internal variants or stance modes, choose one explicitly before outlining. Record it in `style-profile-notes.md` as `profile + variant + rhetorical mode`.
+- If the selected profile defines internal variants or stance modes, choose one explicitly before the article-writing skill finalizes the outline. Record it in `style-profile-notes.md` as `profile + variant + rhetorical mode`.
 - Prefer profile variants that answer the user's actual stance request, not the loudest version of the profile.
 - If profile does not exist, create `references/profiles/<profile-id>.md` from `references/profiles/profile-template.md`, add a row in `style-registry.md`, and set status to `bootstrapping`.
 - For `bootstrapping` status, require 2-5 sample articles before final drafting.
@@ -70,36 +64,18 @@ Treat these files as the source of truth. Do not redo research. If the package h
 - If a planned claim, contrast, recommendation, root-cause statement, or production observation lacks an evidence anchor, return to `article-researcher` before drafting or narrow the claim.
 - Do not repeat research just because you are writing. Use the research artifacts; if they are insufficient, send a precise gap back to `article-researcher`.
 
-4. Build the argument skeleton first.
-- Produce title options.
-- Produce a section-by-section outline with section purpose.
-- For `essay`, state the thesis explicitly and list the evidence or examples each section will use.
-- For `factual-technical` or `paper-like`, state the scope, system/object under discussion, evidence basis, and bounded conclusion path instead of forcing a debate frame.
-- For derivation-heavy architecture or system articles, preserve the user's reasoning chain instead of jumping straight to the conclusion. Prefer: prior system -> who or what did the work -> what changed -> new decomposition -> outputs and boundaries -> UI or workflow consequence -> bounded conclusion.
-- If the user provides a practical sequence such as `we used X -> it did Y -> we observed Z -> we changed to W -> we noticed Q`, preserve that sequence as the article spine instead of rewriting it into a generic essay structure.
-- If the user supplies a more exact runtime or product mechanism during revision, replace the earlier generic explanation with that mechanism. Do not keep the vague abstraction once a more concrete causal chain is available.
-- If the user distinguishes between `software as work surface`, `software as state holder`, `human as doer`, and `agent runtime as doer`, preserve those distinctions explicitly. Do not compress them into a cleaner but less accurate sentence.
-- For product-builder or architecture-migration topics, prefer this default section order unless the user asks otherwise:
-  1. prior system or workflow
-  2. what it already did well
-  3. where it started to break
-  4. why the redesign was made
-  5. what the new structure is
-  6. what was observed after the change
-  7. bounded practical implication
-- For a comparative product or system-design article, choose the reader journey explicitly before drafting. When the goal is to explain available building blocks and why one design exists, prefer:
-  1. a concise product map
-  2. each product's primitives under the same neutral dimensions
-  3. one continuous, realistic scenario that composes those primitives
-  4. design rationale derived from the scenario
-  5. the same scenario mapped to the other products
-  6. conditional tradeoffs and a bounded conclusion
-- In this comparative structure, separate reusable definitions, live executions, work/task records, communication, UI interaction, result review, and artifact transfer. State whether concepts are alternatives, independent axes, or composable layers; do not present orthogonal primitives as mutually exclusive modes.
-- Use a scenario as a design derivation, not as a promotional example. Show which primitive handles each transition and preserve strengths, missing capabilities, and differently packaged equivalents for every product. Avoid predetermined `best fit`, universal `should`, or a comparison frame shaped only around the home product.
-- If the user asks for product-first orientation, do not lead with an abstract taxonomy. Record the requested reader path in the available brief or outline artifact, and make the outline follow it.
-- Do not force a contrastive hook such as `not X, but Y` unless the user explicitly wants argumentative prose or the source material already depends on that turn.
-- In standalone use, confirm this skeleton with the user before full drafting.
-- In the article-writing team, write the skeleton as `outline.md` and send it through `article_reviewer` unless the user explicitly requests a different approval path.
+4. Bind style and language decisions to the approved structure.
+- Read the current `outline.md` and preserve its article promise, section order, paragraph beats, evidence burden, and ending move.
+- For `essay`, ensure the outline's thesis is expressed with the selected rhetorical pressure rather than replacing the outline with a more dramatic thesis.
+- For `factual-technical` or `paper-like`, preserve the outline's scope, mechanism, evidence basis, and bounded conclusion path; do not add a debate frame for style.
+- For derivation-heavy architecture or system articles, preserve a recorded reasoning chain such as prior system -> who or what did the work -> what changed -> new decomposition -> outputs and boundaries -> UI or workflow consequence -> bounded conclusion.
+- If the user provides a practical sequence such as `we used X -> it did Y -> we observed Z -> we changed to W -> we noticed Q`, keep that sequence in the outline and draft.
+- If the user supplies a more exact runtime or product mechanism during revision, replace the earlier generic explanation with that mechanism. Do not preserve a vague abstraction for stylistic continuity.
+- Preserve explicit distinctions such as `software as work surface`, `software as state holder`, `human as doer`, and `agent runtime as doer` when the article relies on them.
+- For comparative product or system-design articles, apply the reader journey already selected in `outline.md`. Keep reusable definitions, live executions, work/task records, communication, UI interaction, result review, and artifact transfer distinct; label them as alternatives, independent axes, or composable layers as appropriate.
+- Use a scenario as a design derivation rather than a promotional example. Avoid predetermined `best fit`, universal `should`, or a comparison frame shaped only around the home product.
+- Do not force a contrastive hook such as `not X, but Y` unless the outline and evidence support it.
+- The parent `article-writing` skill owns the outline gate and reviewer handoff. This reference may report a style or language problem, but it must not bypass or replace that gate.
 
 5. Draft with native-language expression.
 - For `original-draft`, write fully in the chosen source language.
@@ -113,7 +89,7 @@ Treat these files as the source of truth. Do not redo research. If the package h
 - For math-heavy content, define symbols on first use and keep notation stable.
 
 6. Run quality and style checks.
-- Check logic continuity: each section must push the central claim, scope explanation, or bounded conclusion forward.
+- Check that style and language edits preserve the approved article promise, section order, paragraph beats, and bounded conclusion. Return structural conflicts to `article-writing` instead of silently reshaping the article.
 - Check style alignment against the chosen profile constraints.
 - Check platform fit using `references/platform-output-rules.md`.
 - When text-bearing visuals are present, apply the platform's mobile-legibility rules from `references/platform-output-rules.md` and verify the rendered result, not only the export resolution.
@@ -127,7 +103,7 @@ Treat these files as the source of truth. Do not redo research. If the package h
   - factual accuracy from user-supplied corrections
   - mechanism accuracy
   - referent and terminology accuracy
-  - structure and logic flow
+  - approved structure and logic flow
   - voice/style matching
   - platform polish
 - Run a terminology-precision pass on technical drafts:
@@ -150,10 +126,7 @@ Treat these files as the source of truth. Do not redo research. If the package h
   - `subject-precision`: replace vague nouns with exact system components
   - `derivation-flow`: ensure each section follows from the previous one rather than jumping to a conclusion early
   - `transition-smoothing`: fix inter-sentence jumps where the referent or causal chain becomes hard to track
-- In the article-writing team, run these checks before sending the draft package to `article_reviewer`.
-- Send the outline package to `article_reviewer` before the full draft in the normal flow.
-- Include the cumulative package in reviewer handoff: brief, understanding notes, source index, claim/evidence ledger when present, style-profile notes when present, visual plan when present, visual asset index when present, outline, draft files, and any material style notes.
-- On revision rounds, read the review report fully, fix upstream understanding/evidence/structure issues before prose polish, and resend the cumulative package with review context.
+- Report style, language, platform, or fidelity findings to the parent `article-writing` workflow. It owns the outline gate, cumulative package, reviewer handoff, and revision routing.
 
 ## Rhetorical Modes
 

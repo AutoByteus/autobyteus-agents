@@ -7,17 +7,16 @@ category: writing-and-editing
 This team handles an article request from understanding and investigation through outline, draft, review, revision, and final publication-ready handoff.
 It is the default team for research-to-article, investigate-to-article, understand-to-article, source-code-to-article, documentation-to-article, paper-to-article, and bilingual author-style article work.
 
-This team definition is intentionally lightweight.
 There is no separate orchestrator for this team.
 Each specialist does its own work, follows its own agent definition, and hands work to the next relevant specialist when ready.
 Detailed operating rules, artifact standards, and send-back behavior belong in each member's own agent definition.
 
 ## Shared Principles Rule
 
-- `article_writer` and `article_reviewer` should both read `shared/writing-principles.md` before doing substantive drafting or review work.
-- That file is the team's shared writing language for opening stance, structure, evidence, visual planning, style fidelity, bilingual fidelity, platform fit, revision precedence, and common failure patterns.
+- `article_writer` and `article_reviewer` should both read [`shared/writing-principles.md`](shared/writing-principles.md) before doing substantive drafting or review work.
+- Use it as the canonical quality standard for opening stance, structure, evidence, visual planning, style fidelity, bilingual fidelity, platform fit, revision precedence, and common failure patterns.
 - Agent-specific skills may add role-specific rules, but they should not silently contradict the shared writing principles.
-- The author-style and bilingual drafting workflow used by `article_writer` should stay bundled as a team-local skill under the writer's `skills/` folder, not referenced from a sibling skills repository.
+- `article_writer` uses the bundled `article-writing` skill as its single end-to-end writing workflow. Its style and language reference is part of that skill package, not a second attached writer skill. `article-researcher` remains a separate research-phase skill because it owns source investigation and evidence artifacts rather than article expression.
 
 ## Artifact Visibility Rule
 
@@ -37,7 +36,7 @@ Detailed operating rules, artifact standards, and send-back behavior belong in e
 
 1. `article_writer` starts the run, creates one dedicated work folder, and records the article target in `brief.md`.
 2. `article_writer` builds the understanding and style package: `understanding-notes.md`, `source-index.md`, `claim-evidence-ledger.md` when needed, and `style-profile-notes.md`.
-3. `article_writer` writes `outline.md`, creates `visual-plan.md` when visuals would improve the article, and sends the cumulative package to `article_reviewer`.
+3. `article_writer` builds the hierarchical structure in `outline.md` (article promise, section spine, and paragraph beats), creates `visual-plan.md` when visuals would improve the article, and sends the cumulative package to `article_reviewer`.
 4. `article_reviewer` reviews the understanding basis, style basis, outline, and visual plan when applicable before full drafting can proceed.
 5. After outline and applicable visual-plan pass, `article_writer` writes the draft package, inserts planned visuals or explicit placeholders, creates `visual-asset-index.md` when assets are generated, sourced, inserted, or intentionally omitted, and sends the full cumulative package back to `article_reviewer`.
 6. `article_reviewer` writes `review-report.md` and either passes the article or routes a specific gap back to `article_writer`.
@@ -46,8 +45,10 @@ Detailed operating rules, artifact standards, and send-back behavior belong in e
 ## Working Agreement
 
 - Outline review happens before full drafting. Do not jump straight from brief to full article unless the user explicitly asks to skip the outline gate.
+- The outline gate is hierarchical: a title list or section list is not enough. The reviewer must be able to see the article's central promise, the one-sentence job of each section, and the one-sentence beat of each planned paragraph or equivalent short-note unit.
 - Understanding comes before outlining. Do not draft from a vague source basis when the request needs code, document, paper, website, or supplied-material investigation.
-- Review should prioritize factual accuracy, mechanism accuracy, understanding sufficiency, evidence support, opening stance, structure, style fit, fidelity, and platform fit before line-level polish.
+- Review should move from factual and mechanism accuracy to global structure, section flow, paragraph flow, evidence support, style fit, fidelity, platform fit, and only then line-level polish.
+- A draft is not ready when a first-time reader would reasonably ask `Where did this come from?`, `How does this follow?`, or `Why now?`; route the missing bridge, prerequisite, or reordering back to the writer.
 - Visual planning is part of article structure. Do not add a separate image agent by default; the writer plans images because the writer owns the article flow.
 - Use one dedicated work folder per request so brief, outline, drafts, and review artifacts stay together.
 - The reviewer should re-review the whole package after each revision rather than checking only the previously flagged lines.
