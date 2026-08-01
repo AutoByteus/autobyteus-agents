@@ -10,6 +10,8 @@ Keep evidence, sources, observations, and unknowns here rather than overloading 
 - Repository mode: `Git` / `Non-Git`
 - Task worktree / branch:
 - Base or reference revision:
+- Bootstrap result:
+- Bootstrap blocker:
 - Current requirements revision ID: `RER-*` / `N/A`
 - Investigation status:
 
@@ -87,6 +89,7 @@ Record `No current supported behavior` for genuinely new behavior. Do not treat 
 - Product decisions or uncertainties to resolve:
 - Critical journey and states:
 - Known constraints and non-goals:
+- Alternative evidence path / next action when no prototype is used:
 - Prototype request artifact / message reference:
 
 ## Prototype Findings

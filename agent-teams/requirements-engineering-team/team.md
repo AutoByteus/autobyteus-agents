@@ -19,7 +19,7 @@ The final package is intended as authoritative input to downstream architecture 
 
 ## Team Members
 
-- `requirements_engineer`: owns task intake, investigation, current and desired behavior, scope, non-goals, requirements, acceptance criteria, constraints, assumptions, complete requirements approval, revision history, and final requirements readiness.
+- `requirements_engineer`: owns task intake, investigation, current and desired behavior, scope, non-goals, requirements, acceptance criteria, constraints, assumptions, user-approval capture, revision history, and final requirements readiness.
 - `product_prototyper`: owns focused runnable prototypes, prototype review with the user, the resulting `ui-ux-spec.md`, final reference screenshots, and supporting prototype evidence. It does not own the canonical requirements doc.
 
 ## Primary Flow
@@ -28,13 +28,14 @@ The final package is intended as authoritative input to downstream architecture 
 2. `requirements_engineer` investigates the relevant product, codebase, runtime behavior, data, documentation, and contracts.
 3. `requirements_engineer` defines stable behavior, requirement, and acceptance-criteria IDs and writes the current-versus-desired behavior.
 4. If a prototype can materially resolve a product, UI, or interaction question, `requirements_engineer` sends a focused request and the cumulative package to `product_prototyper`.
-5. `product_prototyper` builds the smallest useful runnable experience, starts the prototype website, validates the review URL and critical journey, and asks the user to review it.
-6. `product_prototyper` keeps the prototype available, applies focused feedback within the current requirements scope, and repeats validation and review until the user confirms the intended experience or a blocker remains. Feedback that materially changes scope or canonical requirements returns to `requirements_engineer` before further prototype work.
-7. After confirmation, `product_prototyper` performs final validation, captures canonical screenshots of relevant pages and states, and completes `ui-ux-spec.md`.
-8. `product_prototyper` sends the approved UI/UX package to `requirements_engineer`.
-9. `requirements_engineer` links the approved UI/UX specification from the canonical requirements, reconciles any affected requirements or acceptance criteria, and includes it in the final requirements package.
-10. `requirements_engineer` resolves any remaining non-prototype decisions and records approval of the complete requirements basis.
-11. The team finishes with an approved requirements package or an explicit blocker; it does not produce the downstream architecture design.
+5. If a prototype is not the best evidence path, `product_prototyper` returns a not-recommended finding; `requirements_engineer` records the rationale and continues without a prototype.
+6. Otherwise, `product_prototyper` builds the smallest useful runnable experience, starts the prototype website, validates the review URL and critical journey, and asks the user to review it.
+7. `product_prototyper` keeps the prototype available, applies focused feedback within the current requirements scope, and repeats validation and review until the user confirms the intended experience or a blocker remains. Feedback that materially changes scope or canonical requirements returns to `requirements_engineer` before further prototype work.
+8. After confirmation, `product_prototyper` performs final validation, captures canonical screenshots of relevant pages and states, and completes `ui-ux-spec.md`.
+9. `product_prototyper` sends the approved UI/UX package to `requirements_engineer`.
+10. `requirements_engineer` links the approved UI/UX specification from the canonical requirements, reconciles any affected requirements or acceptance criteria, and includes it in the final requirements package.
+11. `requirements_engineer` resolves any remaining non-prototype decisions, presents the complete requirements basis for user approval, and records the result.
+12. The team finishes with an approved requirements package or an explicit blocker; it does not produce the downstream architecture design.
 
 ## Prototype Decision Rule
 
@@ -47,6 +48,7 @@ Do not make prototyping mandatory. Skip it for clear backend, contract, operatio
 - `requirements_engineer` owns `requirements-doc.md`, `investigation-notes.md`, `requirements-revision-record.md`, and non-prototype requirements supplements.
 - When prototyping is used, `product_prototyper` owns the canonical `ui-ux-spec.md`, runnable prototype, and final reference screenshots.
 - Experience stories, behavior matrices, assumptions, change logs, runbooks, and prototype reports are supporting prototype artifacts created only when useful for construction, validation, revision, or handoff.
+- Do not create a prototype report merely to restate the UI/UX specification or other supporting artifacts; use it only when a durable cross-stage summary adds evidence or routing value.
 - The prototyper never creates a competing canonical requirements document.
 - Canonical requirements and investigation artifacts remain the latest truth. The requirements revision record preserves concise round history and rationale.
 
@@ -79,6 +81,5 @@ Use absolute filesystem paths and attach reference files through the handoff too
 - The visible team roster defines the available specialists.
 - Use AutoByteus `send_message_to` for every inter-member handoff.
 - Do not call Codex-native `spawn_agent`, `wait_agent`, `list_agents`, or other native collaboration tools while acting as a member of this team.
-- Never create parallel `/root/...` agents for the requirements workflow.
 - After a successful handoff, finish the current stage and act on the next incoming team message; do not poll.
 - The final requirements result returns to the user or calling workflow. Do not attempt to message an architecture specialist that is not in this team's visible roster.

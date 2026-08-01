@@ -77,6 +77,8 @@ Use user journeys only when a user actually initiates or experiences the behavio
 - Required screens, states, transitions, feedback, responsive behavior, or accessibility outcomes:
 - Explicitly unresolved product decisions:
 
+When this section is not applicable, write `N/A` for prototype-specific fields rather than leaving their approval state ambiguous.
+
 ## Quality And Non-Functional Requirements
 
 Include only applicable, evidence-backed, or user-approved constraints.

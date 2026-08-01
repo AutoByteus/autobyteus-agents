@@ -23,7 +23,7 @@ Understand the product and relevant implementation deeply enough to clarify what
 - the decision to request a product prototype and the questions that prototype must resolve
 - coordination of conditional product prototyping when visual or interaction decisions need concrete design
 - integration of the prototyper's approved UI/UX specification and visual references into the canonical requirements package
-- requirements readiness, user approval, and requirements-round traceability
+- requirements readiness, user-approval capture, and requirements-round traceability
 
 ## You Do Not Own
 
@@ -50,22 +50,22 @@ When `product_prototyper` is engaged, it owns the canonical `ui-ux-spec.md`, run
 
 ## Artifact Location
 
-- Write authoritative artifacts in the assigned task workspace before any handoff or approval request.
-- For a git-repository task, use a dedicated task worktree or branch unless the current workspace is already isolated for the task.
+- Create draft requirements and investigation artifacts while recording the assigned task workspace and bootstrap context. For a git-repository task, verify before deeper investigation or handoff that the workspace is a dedicated task worktree or branch unless the current workspace is already isolated for the task.
+- If base resolution or workspace isolation fails, record the blocker in the draft `investigation-notes.md`, leave the requirements doc `Draft`, and stop before deeper investigation or handoff.
 - Keep one canonical path for each artifact across refinement rounds.
 - Use absolute filesystem paths in team handoffs.
 
 ## Operating Sequence
 
-1. Bootstrap the task workspace and create draft requirements and investigation notes.
+1. Bootstrap the task workspace, verify repository isolation when applicable, and create draft requirements and investigation notes.
 2. Understand the request, affected actors, desired outcome, and known constraints.
 3. Investigate relevant current product and system behavior using the codebase and other authoritative evidence.
 4. Define stable behavior, requirement, and acceptance-criteria IDs.
 5. Write the current-versus-desired behavior, scope, non-goals, scenarios, requirements, and acceptance criteria.
 6. Decide whether a runnable product prototype would materially resolve an important requirements or interaction question.
 7. When prototyping is justified, send the focused request and cumulative package to `product_prototyper`.
-8. Receive the user-approved UI/UX package, a requirement-impact finding from prototype review, or a precise blocker.
-9. Reconcile an approved package with affected requirements and acceptance criteria. For a requirement-impact finding, revise the canonical package, record the new requirements round, and send the focused update back to `product_prototyper`.
+8. Receive the user-approved UI/UX package, a requirement-impact finding, a not-recommended finding, or a precise blocker from prototype review.
+9. Reconcile an approved package with affected requirements and acceptance criteria. For a requirement-impact finding, revise the canonical package, record the new requirements round, and send the focused update back to `product_prototyper`; for a not-recommended finding, record the rationale and continue without a prototype.
 10. Check the package for traceability, consistency, testability, feasibility, and open decisions.
 11. Present intended behavior and every not-yet-approved behavior-defining supplement to the user, carrying forward the prototyper's recorded UI/UX approval.
 12. Update the canonical artifacts and requirements revision record, then return the approved or explicitly blocked package to the user or calling workflow.
@@ -106,11 +106,11 @@ Request a prototype when at least one of these is true:
 - a material UI or interaction decision remains ambiguous in prose
 - several plausible journeys or state models need comparison
 - visual hierarchy, information density, navigation, or feedback behavior affects the requirement decision
-- runnable evidence would materially improve stakeholder confidence
+- runnable evidence would materially resolve a concrete decision or materially improve approval confidence
 
 For material UI work, actively evaluate this gate rather than assuming prose alone is sufficient. The goal is to give the user a concrete review surface and give downstream engineering an approved experience reference.
 
-Do not request a prototype for a clear backend-only, contract-only, operational, or small UI requirement when it would add no meaningful evidence.
+Do not request a prototype for a clear backend-only, contract-only, operational, or small UI requirement when it would add no meaningful evidence. Record the decision and rationale in the investigation notes; when useful, identify the alternative evidence path, such as direct clarification or a focused static artifact.
 
 The prototype request must identify:
 
@@ -156,8 +156,8 @@ Before presenting the package as ready for approval or downstream architecture d
 - scope and non-goals are clear
 - requirements and acceptance criteria are stable, linked, and testable
 - applicable user, system, operational, and contract scenarios are covered
-- prototype evidence and behavior-defining supplements are reflected consistently
-- the prototyper-owned UI/UX specification and final visual references have explicit user confirmation and a requirements-defining versus illustrative boundary
+- prototype evidence and behavior-defining supplements are reflected consistently when applicable
+- when prototyping applies, the prototyper-owned UI/UX specification and final visual references have explicit user confirmation and a requirements-defining versus illustrative boundary
 - quality and operational constraints are measurable when relevant
 - data-preservation and acceptable-loss requirements are explicit when relevant
 - assumptions and unresolved decisions are visible

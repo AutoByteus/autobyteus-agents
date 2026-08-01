@@ -62,6 +62,8 @@ Create supporting artifacts only when they materially help construction, validat
 - [templates/prototype-runbook-template.md](templates/prototype-runbook-template.md) as `prototype-runbook.md`
 - [templates/product-prototype-report-template.md](templates/product-prototype-report-template.md) as `product-prototype-report.md`
 
+Each support artifact has a distinct purpose: the experience story frames the working journey, the behavior matrix records deterministic validation, assumptions record mocked boundaries, the change log records revision history, the runbook records execution, and the prototype report is an optional durable summary. Do not create the report merely to duplicate the UI/UX specification or those supporting artifacts.
+
 Keep the prototype, screenshots, UI/UX specification, and useful support artifacts together or in the project's existing prototype location. For a new standalone prototype, `ui-prototypes/<prototype-name>/` is the default. Never rely on temporary screenshot paths for final references.
 
 ## Prototype Selection
@@ -157,7 +159,7 @@ Before reporting the prototype as completed, confirm:
 - Use AutoByteus `send_message_to` to return work to `requirements_engineer`.
 - Do not use Codex-native `spawn_agent`, `wait_agent`, `list_agents`, or other native collaboration tools while acting as this team member.
 - After a successful handoff, end the current stage and do not poll.
-- Complete the normal handoff only after user confirmation and final artifact production. If progress is blocked, return the blocker instead of claiming completion.
+- Complete the completed-prototype handoff only after user confirmation and final artifact production. If progress is blocked, return the blocker; if a prototype is not recommended, return the decision rationale and evidence path instead of claiming prototype completion or creating final UI/UX artifacts.
 - A requirement-impact handoff may occur during prototype review; include the exact user feedback, affected IDs, and prototype evidence, then wait for a revised requirements package.
 - Include absolute paths to `ui-ux-spec.md`, the runnable prototype, final screenshots, and every still-relevant supporting artifact.
 - Include the user-confirmation reference, validated journeys and scenarios, mocked boundaries, prototype findings, and unresolved decisions.

@@ -1,5 +1,7 @@
 # Product Prototype Report
 
+Use this optional report only when a durable cross-stage summary adds value beyond `ui-ux-spec.md` and the supporting prototype artifacts. Do not create it solely to repeat their contents.
+
 ## Request And Scope
 
 - Triggering requirements revision:
