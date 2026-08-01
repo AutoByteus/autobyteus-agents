@@ -1,13 +1,15 @@
 ---
 name: article-reviewer
-description: Review investigation-led article packages for understanding sufficiency, evidence support, thesis strength, structure, style fit, fidelity, platform fit, and publication readiness.
+description: Review investigation-led article packages for understanding sufficiency, evidence support, reader continuity, structure, style fit, fidelity, platform fit, and publication readiness.
 ---
 
 # Article Reviewer
 
 Use this skill to critically review article packages produced by `article_writer`.
-The writer owns investigation and drafting; the reviewer owns the gate that decides whether the understanding basis, outline, and draft are publication-ready.
+The writer owns investigation, hierarchical structure, and drafting; the reviewer owns the gate that decides whether the understanding basis, article structure, and draft are publication-ready.
 The writer owns visual planning and asset insertion; the reviewer owns the gate that decides whether those visuals improve the article without inventing facts.
+
+Review structure from the largest unit to the smallest. Do not let polished local prose compensate for an unresolved article promise, weak section progression, or paragraphs with multiple competing jobs.
 
 ## Expected Inputs
 
@@ -126,8 +128,18 @@ Do not ask the writer to fix missing understanding only through prose edits.
 Check whether the outline has:
 
 - the correct opening stance for the request
-- a clear thesis or main observation appropriate to that stance
-- section-level logic progression
+- a clear central question, promise, thesis, or main observation appropriate to that stance
+- an explicit scope and bounded conclusion path
+- one named primary logic spine: causal, chronological, problem-solution, question-answer, comparative, derivational, or another justified pattern
+- the reader's starting point: what the reader likely knows, assumes, or needs before the article begins
+- a reader progression that explains how understanding changes from section to section
+- a continuous reader question ladder: what each step answers and what question, consequence, or decision it creates next
+- a section spine with one-sentence section claims or observations in reading order
+- a paragraph beat map inside each section, with one dominant job per beat
+- evidence, mechanism, example, or source burden attached to each section and relevant paragraph beat
+- section dependencies: what each section answers, inherits, and prepares
+- reader bridges into and out of sections when the relationship is not self-evident
+- a completed compression test showing that the section and paragraph maps form one coherent progression
 - an appropriate scope for the requested audience and platform
 - enough planned evidence, mechanism, examples, or support
 - a visible relationship to the understanding package
@@ -135,6 +147,18 @@ Check whether the outline has:
 - a style direction that matches the requested profile
 - visible alignment with `style-profile-notes.md` when style matching is in scope
 - visible visual opportunities when the article is technical, architectural, process-heavy, comparative, data-backed, or long enough to need visual pacing
+
+Use these structural tests:
+
+- **Article test:** Can the whole article be stated as one bounded promise or answer?
+- **Section test:** Does each section add a new claim, mechanism, evidence, example, decision, or implication rather than restating a prior section?
+- **Order test:** Does each section follow from the previous section and create the need for the next one?
+- **Continuity test:** Does the article keep one logic spine, and does each section answer a prepared question or need?
+- **Bridge test:** Does every meaningful shift in topic, time, actor, abstraction level, scope, or evidence type have a reason and a bridge?
+- **Paragraph test:** Can each paragraph beat be summarized in one sentence with one dominant job?
+- **Ending test:** Does the conclusion resolve or compress the promise without introducing a new core idea?
+
+If the outline has only titles or section topics without this hierarchy, return `Outline Revision`. Do not advance a structurally underspecified outline because its topic coverage looks complete.
 
 If the outline is not strong enough, return `Outline Revision`.
 
@@ -165,6 +189,13 @@ Return `Visual Plan Gap` when visual planning is missing, visuals are decorative
 
 ### Step 6 - Review the full draft package
 
+Review in this order and record the highest failing level first:
+
+1. **Article level:** promise, scope, opening stance, thesis or main observation, bounded conclusion, and reader transformation.
+2. **Section level:** section order, dependency chain, section jobs, contribution to the article promise, reader question ladder, and repetition across sections.
+3. **Paragraph level:** alignment with the approved paragraph beats, one dominant job per paragraph, known-to-new movement, claim-to-mechanism-to-evidence continuity, and transitions between beats.
+4. **Sentence level:** referents, terminology, rhythm, clarity, and platform polish.
+
 For single-language articles, check:
 
 - title quality
@@ -174,6 +205,7 @@ For single-language articles, check:
 - factual accuracy
 - mechanism accuracy
 - understanding fidelity
+- global structure, section progression, and paragraph progression
 - structure and transitions
 - section usefulness
 - evidence quality
@@ -197,6 +229,17 @@ For bilingual or conversion work, also check:
 
 Apply the shared writing principles before using narrower review taste or local preferences.
 
+Run the compression test on the draft itself: write one sentence for each section and each paragraph, then compare that map with `outline.md`. If the draft's compressed map cannot be explained as a coherent progression, classify the problem as `Draft Revision` or `Outline Revision` according to whether the outline or the draft first diverged. Do not solve a macro failure with line edits.
+
+Run a first-time-reader continuity audit during the macro pass. Read each section ending with the next section opening, then do the same for paragraph boundaries. Mark every moment that invites `Where did this come from?`, `How does this follow?`, or `Why now?`; require a bridge, missing prerequisite, explicit signpost, or structural reorder. Do not treat an unprepared topic, time, actor, abstraction, scope, or evidence shift as a mere transition-polish issue.
+
+Complete two review passes:
+
+1. **Macro pass:** source and mechanism fidelity, article promise, scope, opening stance, section spine, paragraph-beat alignment, reader progression, evidence placement, and ending.
+2. **Micro pass:** terminology, transitions, rhythm, style variant, bilingual fidelity, platform packaging, captions, and line-level clarity.
+
+Run the micro pass only after the macro pass is coherent. `Pass` requires both passes to be complete with no unresolved high-priority finding; a polished draft with a weak global map is not publication-ready.
+
 If the draft is using the wrong Ryan variant, the wrong rhetorical mode, or the wrong ownership stance, treat that as a real structural problem rather than a cosmetic style note.
 If the draft introduces claims, mechanisms, chronology, or comparisons that are not present in the understanding package or supplied user constraints, treat that as an evidence or fidelity problem.
 If the draft uses `not X, but Y`, `common explanation`, `should`, or `the deeper problem is`, verify that the setup side is grounded. If it is not grounded, classify it as `Evidence Gap`, not merely a tone issue.
@@ -209,13 +252,15 @@ Prioritize in this order:
 1. factual or mechanism inaccuracy
 2. insufficient understanding or missing source investigation
 3. unsupported load-bearing claims
-4. opening stance or argument failure
-5. structural or outline weakness
-6. source fidelity or evidence weakness
-7. visual factuality, usefulness, placement, or caption failure
-8. style-fit or ownership-stance failure
-9. platform-fit failure
-10. local clarity or line-edit issues
+4. article-level promise or opening-stance failure
+5. global structural or outline weakness
+6. section-order, reader-continuity, or section-contribution failure
+7. paragraph-flow, missing-bridge, or transition failure
+8. source fidelity or evidence weakness
+9. visual factuality, usefulness, placement, or caption failure
+10. style-fit or ownership-stance failure
+11. platform-fit failure
+12. local clarity or line-edit issues
 
 Do not overload the report with line edits when the real problem is structural.
 
@@ -254,6 +299,7 @@ Use one of these decisions:
 - If the writer changes the investigation notes, source index, or claim/evidence ledger, re-check the outline and draft against the updated understanding package.
 - If the writer changes `visual-plan.md`, `visual-asset-index.md`, captions, or inserted images, re-check the visual plan against the understanding package and the surrounding article flow.
 - If a prior round flagged sales tone, detachment, repetition, or a too-generic mechanism, verify that the failure mode was actually removed.
+- If the draft changes the article promise, section order, or paragraph jobs, require `outline.md` to be updated and review the revised structure before passing the prose.
 
 ## Reviewer Standards
 

@@ -38,6 +38,22 @@
 - Style-created claims, opponents, or contrasts:
 - Open source or investigation gaps:
 
+## Hierarchical Structure Check
+
+- Article promise, scope, and bounded answer:
+- Primary logic spine:
+- Reader starting point:
+- Opening stance and reader progression:
+- Reader question ladder:
+- Section spine and section dependencies:
+- One-sentence contribution of each section:
+- Section entry/exit bridges:
+- Paragraph beat map and one-job-per-paragraph check:
+- Known-to-new movement and continuity audit:
+- Compression test: section and paragraph summaries compared with `outline.md`:
+- First failing level: `article` / `section` / `paragraph` / `sentence`:
+- Structure decision: `pass` / `outline revision` / `draft revision`:
+
 ## Visual Plan Check
 
 - Visual strategy:
