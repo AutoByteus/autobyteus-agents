@@ -1,0 +1,18 @@
+{
+  "coordinatorMemberName": "requirements_engineer",
+  "avatarUrl": null,
+  "members": [
+    {
+      "memberName": "requirements_engineer",
+      "ref": "requirements-engineer",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "product_prototyper",
+      "ref": "product-prototyper",
+      "refType": "agent",
+      "refScope": "team_local"
+    }
+  ]
+}
