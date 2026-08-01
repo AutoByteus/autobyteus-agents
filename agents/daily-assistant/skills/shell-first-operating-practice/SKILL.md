@@ -13,36 +13,52 @@ This skill covers the Unix command-line style of working: orient yourself, inspe
 
 Filesystem operations are one category inside this practice. The broader discipline is using shell commands to operate the whole working environment.
 
-This skill assumes the agent has a shell execution tool such as `run_bash`. If the shell tool has another name, use the runtime's equivalent command-execution tool. If no shell execution tool is available, do not pretend to perform shell-based work.
+This skill assumes the agent has a shell or terminal execution tool. If the runtime names it
+differently, use its equivalent command-execution tool. If no shell execution tool is
+available, do not pretend to perform shell-based work.
 
 ## Core Operating Loop
 
-1. Orient: confirm workspace, repository root, branch, and relevant environment.
-2. Inspect: read only the context needed for the task.
-3. Search: use precise search terms before browsing directories.
-4. Plan: choose the smallest useful next action.
-5. Execute: compose deterministic, bounded, non-interactive commands.
-6. Verify: check the result with a command that would catch the likely failure.
-7. Report: summarize changed state, verification, and remaining caveats.
+1. Understand: identify the user's goal, constraints, and expected deliverable. Solve the
+   root cause rather than only the visible symptom.
+2. Preamble: before tools on a non-trivial task, briefly state the next useful action in
+   one or two sentences.
+3. Orient: at task start, run `pwd` unless the host prompt already required and performed
+   it. In a repository, identify the root and branch when useful, and check current changes
+   before editing tracked files.
+4. Inspect: read only the context needed for the task.
+5. Search: use precise search terms before browsing directories.
+6. Plan: choose the smallest useful next action and account for dependencies and meaningful
+   verification steps.
+7. Execute: compose deterministic, bounded, non-interactive commands.
+8. Reassess and verify: analyze the result, adjust the plan when needed, and run a check
+   that would catch the likely failure.
+9. Report: summarize changed state, verification, and remaining caveats clearly.
 
-## Entry Procedure
+## Delivery Gate
 
-- At the start of a new task, establish the active workspace with `pwd` unless the host agent prompt has already required and performed it.
-- When working in a repository, identify the repo root when useful: `git rev-parse --show-toplevel 2>/dev/null || pwd`.
-- Before editing repository files, check current changes with `git status --short`.
-- For non-trivial work, decide the smallest useful action before changing files or starting processes.
+When a task produces a durable artifact, do not stop after orientation, inspection, or a
+plan. Write or edit the artifact, or explicitly decide to reuse an inspected existing one,
+then verify its path and relevant contents before reporting completion. In a noisy workspace,
+search for the requested filename or content with `rg --files` or `rg -n` before using broad
+directory listings.
 
-## Operating Rules
+## Operating Boundaries
 
-- Inspect first, make the smallest useful change, then verify.
-- Navigate by intent, not by dumping directories. Derive likely names, symbols, strings, file extensions, and business terms from the user's request, then search for those directly.
 - Prefer deterministic non-interactive commands. Do not rely on interactive editors such as `vi`, `vim`, `nano`, or pagers that wait for input.
 - Compose small commands instead of hiding work in large opaque one-liners.
 - Keep command output bounded. Pipe discovery output through `sed -n '1,120p'`, `head`, or a more specific filter when a command could print too much.
 - Quote paths and variables. Assume file names may contain spaces.
 - Preserve existing user work. Never discard or overwrite unrelated changes.
 - Avoid destructive operations unless the user explicitly asked for them.
+- Keep changes minimal and focused, and match the style and structure of the existing
+  project.
+- Preserve complete file paths given by the user or discovered in context.
 - Use project-native commands when they exist, such as `make`, `npm`, `pytest`, `cargo`, `go test`, `docker compose`, or framework CLIs.
+- When repository-relative paths matter, use `git rev-parse --show-toplevel 2>/dev/null || pwd`.
+- Prefer `command -v TOOL` before assuming `TOOL` exists; use `which TOOL` only when the
+  environment provides it.
+- Inspect `env | sort | sed -n '1,120p'` only when environment variables are relevant.
 
 ## Command Families
 
@@ -51,7 +67,7 @@ Use the right command family for the job:
 | Need | Typical commands |
 | --- | --- |
 | Orientation | `pwd`, `env`, `which`, `uname`, `date`, `git status`, `git branch` |
-| Filesystem navigation | `find`, `rg --files`, `stat`, `file`, `mkdir`, `cp`, `mv`, `rm` |
+| Filesystem operations | `find`, `rg --files`, `stat`, `file`, `mkdir`, `cp`, `mv`, `rm` |
 | File inspection | `sed`, `nl`, `head`, `tail`, `wc`, `file`, `stat` |
 | Search and discovery | `rg`, `git grep`, `grep`, `find` |
 | Text processing | `sed`, `awk`, `cut`, `paste`, `sort`, `uniq`, `tr`, `xargs` |
@@ -64,14 +80,6 @@ Use the right command family for the job:
 | Git and repository work | `git status`, `git diff`, `git add`, `git commit`, `git log`, `git show` |
 | Project runtimes | `make`, `npm`, `pnpm`, `pytest`, `python3`, `docker`, `docker compose` |
 | Verification | `diff`, `git diff`, tests, linters, parsers, compilers, smoke commands |
-
-## Orientation
-
-- Use `pwd` to confirm the active directory.
-- Use `git rev-parse --show-toplevel` when repository-relative paths matter.
-- Use `git status --short` before editing tracked files.
-- Use `which command` or `command -v command` before assuming optional tools exist.
-- Use `env | sort | sed -n '1,120p'` only when environment variables are relevant.
 
 ## Search And Discovery
 
@@ -137,6 +145,12 @@ Rules:
 - Avoid broad regex replacements when an exact anchor or parser is available.
 - Keep inspection, edit, and verification as separate commands when a failure would need diagnosis.
 - Write through a temp file when replacing important files.
+- For large generated text or HTML, use a quoted heredoc or a Python writer through a temp
+  file; keep the content out of nested shell or JSON quoting. If generation fails before
+  writing, switch editing methods instead of retrying the same escaped command.
+- When adapting an existing artifact with scripted substitutions, assert that each required
+  replacement matched the expected count before writing, then search the result for the new
+  identifying hooks.
 
 ## Filesystem Operations
 
@@ -175,6 +189,7 @@ Rules:
 - Use `git diff -- path` to inspect unstaged changes.
 - Stage only paths relevant to the task.
 - Prefer non-interactive git commands.
+- Do not create branches or commits unless the user explicitly requests them.
 - Do not reset, checkout, clean, rebase, amend, or force-push unless the user explicitly asks.
 - Preserve unrelated dirty work.
 
