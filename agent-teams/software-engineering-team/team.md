@@ -4,12 +4,10 @@ description: A lightweight self-operating software engineering team for upstream
 category: software-engineering
 ---
 
-This team handles a one-off software change from initial investigation through final handoff.
-It is the normal engineering entrypoint: product iteration is inactive by default here unless the user explicitly asks for the loop or supplies a Product Manager feature brief.
-For PM-first continuous iteration, use the separate `Product Iteration Team`, where `product_manager` is the coordinator and each proposed feature routes back into this same engineering workflow.
+This team handles a software change from initial investigation through final handoff.
 
 This team definition is intentionally lightweight.
-`solution_designer` is the coordinator entry specialist for this one-off engineering team.
+`solution_designer` is the coordinator entry specialist for this team.
 There is no separate standalone orchestrator role beyond the listed specialists.
 Each specialist does its own work, follows its own bundled agent and skill definition, and hands work to the next relevant specialist when ready.
 Detailed operating rules, artifact standards, and send-back behavior belong in each member's bundled `SKILL.md` and local templates rather than being duplicated across `team.md` and `agent.md`.
@@ -24,7 +22,6 @@ Detailed operating rules, artifact standards, and send-back behavior belong in e
   - `code_reviewer`: requirements doc, investigation notes, design spec, design review report, implementation handoff
   - `api_e2e_engineer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, code review report
   - `delivery_engineer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, code review report, coverage investigation, execution coverage report
-  - `product_manager` (product-iteration acceptance callback): requirements doc, investigation notes, design spec, design review report, implementation handoff, code review report, coverage investigation, execution coverage report, docs sync report, final handoff summary or delivery/release/deployment report
 - `api_e2e_engineer` must produce a coverage investigation artifact before final test execution, durable coverage edits, durable coverage removals, or failure rerouting. That artifact records whether existing API/E2E coverage is still valid, stale, needs update, should be removed, or must be replaced or expanded.
 - If `api_e2e_engineer` adds, updates, or removes repository-resident durable coverage after the initial code review, route the cumulative package plus the coverage investigation and execution coverage report back through `code_reviewer` before `delivery_engineer`.
 - When a reroute or rework artifact is produced, include that artifact too alongside the already-existing upstream package.
@@ -36,19 +33,4 @@ Detailed operating rules, artifact standards, and send-back behavior belong in e
 - `implementation_engineer`: delivers the code changes from the reviewed design, runs implementation-scoped local checks, and prepares the implementation handoff without owning API/E2E coverage investigation, execution, or environment setup.
 - `code_reviewer`: performs the source and architecture review pass before API/E2E coverage investigation and execution proceeds, and re-reviews any repository-resident durable coverage code added, updated, or removed later during API/E2E before delivery begins.
 - `api_e2e_engineer`: owns API, end-to-end, and broader executable coverage investigation, existing-test validity decisions, coverage, environment setup, execution, and evidence after the implementation has passed code review; when it adds, updates, or removes repository-resident durable coverage, that updated state returns through `code_reviewer` before delivery.
-- `delivery_engineer`: first refreshes the ticket branch against the latest tracked remote state of the recorded base branch, records the integrated-state check result, then updates durable project documentation or records explicit no-impact against that integrated state, prepares the final handoff, waits for explicit user completion/verification for one-off runs or Product Manager acceptance status `Accepted` for product-iteration runs before archival or repository finalization, and handles release or deployment work when it is in scope.
-
-The `product_manager` agent is not a member of this normal one-off engineering team. It is owned by the separate `Product Iteration Team` and is referenced here only as the product-loop acceptance/callback owner; its shared agent package remains under this directory for that team to reuse.
-
-## Product Iteration Coordination
-
-- Product iteration is active when the run starts in the separate Product Iteration Team, when a task starts from a Product Manager brief, or when the user explicitly asks for continuous product improvement. Unrelated one-off work in this team records the Product Manager acceptance callback as `Not Required`.
-- In active product iteration, do not wait for routine user verification at Stage 10; Product Manager acceptance status `Accepted` replaces that verification gate for the loop.
-- Product Manager owns the Product Iteration Plan, ordered backlog/cursor, accepted history, rework/blocker history, next selected slice, product-goal completion decision/evidence, and outer Product Iteration Loop Status. The plan is file-backed in the assigned workspace/artifact area when file access exists; otherwise the message body must carry the same state truthfully.
-- `product_manager` routes exactly one concrete Product Feature Brief at a time; `solution_designer` remains the engineering intake/coordinator for refining that concrete brief into requirements and design.
-- After Delivery Engineer has truthful delivery evidence and handoff status for an active product-iteration task, `delivery_engineer` sends a self-contained Product Manager acceptance packet to `product_manager` with relevant artifact paths using `send_message_to`.
-- If `product_manager` cannot be messaged, Delivery Engineer records the packet path and Acceptance Callback Status as `Pending` or `Blocked`; only a successful `send_message_to(product_manager)` counts as callback `Sent`. Callback `Sent` is not Product Manager `Accepted`; ticket archival/finalization in product-iteration mode waits for Product Manager Acceptance Status = `Accepted`.
-- Product Manager `Needs Rework` or `Blocked` produces a concise Product Acceptance Finding and routes engineering rework back through Engineering Intake / `solution_designer`, or records the missing user/product decision when the blocker is not engineering-owned.
-- After Product Manager Acceptance Status `Accepted`, Product Manager keeps the outer loop `Active` and routes exactly one next brief only when the product goal is incomplete. When the Product Manager determines the goal is complete, the PM records `Product Goal Complete` with evidence and sets the outer loop to `Stopped`; routine user verification is not required.
-- Product-loop state fields are exact across team guidance and artifacts: `Product Goal Completion Status`, `Product Goal Completion Evidence / Reference`, `Product Goal Stop Reason`, `Product Iteration Loop Status`, and `Next Iteration Status`. Accepted/incomplete requires `Active` plus exactly one next brief and truthful route status; accepted/complete requires evidence, `Stopped`, `Product Goal Complete`, terminal next status, and no next brief; `Needs Rework`/`Blocked` require no silent continuation and `Next Iteration Status: N/A`.
-- Delivery Engineer must not choose the next feature. Product Manager must not start source edits or route directly to implementation; the next feature returns to Engineering Intake / `solution_designer`.
+- `delivery_engineer`: first refreshes the ticket branch against the latest tracked remote state of the recorded base branch, records the integrated-state check result, then updates durable project documentation or records explicit no-impact against that integrated state, prepares the final handoff, waits for explicit user completion or verification before archival or repository finalization, and handles release or deployment work when it is in scope.
