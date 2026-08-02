@@ -19,24 +19,5 @@
   ],
   "skillNames": [
     "resume-designer"
-  ],
-  "inputProcessorNames": [
-    "UserInputPersistenceProcessor",
-    "UserInputContextBuildingProcessor"
-  ],
-  "llmResponseProcessorNames": [
-    "ProviderAwareToolUsageProcessor",
-    "MediaUrlTransformerProcessor",
-    "AssistantResponsePersistenceProcessor",
-    "TokenUsagePersistenceProcessor"
-  ],
-  "systemPromptProcessorNames": [
-    "ToolManifestInjector"
-  ],
-  "toolExecutionResultProcessorNames": [
-    "MediaToolResultDownloadProcessor"
-  ],
-  "toolInvocationPreprocessorNames": [],
-  "lifecycleProcessorNames": [],
-  "avatarUrl": null
+  ]
 }

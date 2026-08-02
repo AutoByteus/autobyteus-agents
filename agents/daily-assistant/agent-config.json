@@ -23,20 +23,5 @@
   "skillNames": [
     "shell-first-operating-practice"
   ],
-  "inputProcessorNames": [
-    "UserInputPersistenceProcessor"
-  ],
-  "llmResponseProcessorNames": [
-    "ProviderAwareToolUsageProcessor",
-    "AssistantResponsePersistenceProcessor",
-    "TokenUsagePersistenceProcessor"
-  ],
-  "systemPromptProcessorNames": [],
-  "toolExecutionResultProcessorNames": [
-    "MediaUrlToolResultTransformerProcessor"
-  ],
-  "toolInvocationPreprocessorNames": [],
-  "lifecycleProcessorNames": [],
-  "avatarUrl": null,
   "defaultLaunchConfig": null
 }
