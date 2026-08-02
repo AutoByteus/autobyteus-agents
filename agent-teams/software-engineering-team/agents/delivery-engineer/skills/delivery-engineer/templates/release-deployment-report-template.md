@@ -28,14 +28,12 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Handoff state current with latest tracked remote base: `Yes` / `No`
 - Blocker (if applicable):
 
-## Verification / Acceptance
+## User Verification
 
-- Verification owner: `User` / `Product Manager`
-- Initial explicit user completion/verification received: `Yes` / `No` / `N/A - Product Manager acceptance`
-- Product Manager acceptance status: `N/A` / `Requested` / `Accepted` / `Needs Rework` / `Blocked` (`Requested` is pre-decision only; only `Accepted` unlocks product-iteration ticket archival/finalization)
+- Initial explicit user completion/verification received: `Yes` / `No`
 - Initial verification / acceptance reference:
 - Renewed verification required after later re-integration: `Yes` / `No`
-- Renewed verification received: `Yes` / `No` / `Not needed` / `Product Manager accepted`
+- Renewed verification received: `Yes` / `No` / `Not needed`
 - Renewed verification / acceptance reference:
 
 ## Docs Sync Result
@@ -87,37 +85,6 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Remote branch cleanup result: `Not required` / `Completed` / `Blocked`
 - Blocker (if applicable):
 
-## Product Manager Iteration Acceptance Callback
-
-- Product iteration mode: `Active` / `Inactive`
-- Product Iteration Loop Status: `Inactive` / `Active` / `Paused` / `Blocked` / `Stopped`
-- Product Manager recipient: `product_manager` / `N/A`
-- Acceptance callback status: `Not Required` / `Not Started` / `Sent` / `Pending` / `Blocked`
-- Acceptance packet source / payload path:
-- `send_message_to(product_manager)` sent timestamp:
-- Pending / blocker reason:
-- Required packet fields confirmed (`ticket name`, `delivered scope`, `source brief/requirements reference`, `verification summary`, `docs sync result`, `finalization/release/deployment state or explicit not-yet-finalized status`, `residual risks/deferred items`, `relevant artifact paths`, `product implications/follow-up context`, `request for Product Manager acceptance plus one next feature only if the goal is incomplete, otherwise a completion decision, or a finding/decision route when not accepted`): `Yes` / `No`
-- Relevant artifact paths:
-- Product implications / follow-up context:
-- Product Manager acceptance status: `N/A` / `Requested` / `Accepted` / `Needs Rework` / `Blocked` (`Requested` is pre-decision only; only `Accepted` unlocks product-iteration ticket archival/finalization)
-- Product Goal Completion Status: `N/A` / `Incomplete` / `Complete`
-- Product Goal Completion Evidence / Reference:
-- Product Goal Stop Reason: `N/A` / `Product Goal Complete` / `Needs Rework` / `Blocked` / `Paused By Product Manager` / `Stopped By Product Manager`
-- Next iteration owner: `product_manager` only when `Next Iteration Status` is `Proposal Sent` / `Pending` / `Blocked`; `N/A` when `Next Iteration Status` is `Product Goal Complete` or `N/A`
-- Next Iteration Status: `N/A` / `Proposal Sent` / `Pending` / `Blocked` / `Product Goal Complete`
-- Next Product Feature Brief path / message reference: required for `Proposal Sent` / `Pending` / `Blocked`; `N/A` when `Next Iteration Status` is `Product Goal Complete` or `N/A`
-- Notes:
-
-Use the Product Iteration state contract exactly:
-
-| Product Manager decision | Product Goal Completion Status | Product Goal Completion Evidence / Reference | Product Goal Stop Reason | Product Iteration Loop Status | Next Iteration Status | Next Product Feature Brief |
-| --- | --- | --- | --- | --- | --- | --- |
-| `Accepted` + incomplete goal | `Incomplete` | `N/A` | `N/A` | `Active` | `Proposal Sent` / `Pending` / `Blocked` according to truthful route result | Exactly one |
-| `Accepted` + complete goal | `Complete` | Required and non-empty | `Product Goal Complete` | `Stopped` | `Product Goal Complete` | `N/A` |
-| `Needs Rework` | `Incomplete` | `N/A` | `Needs Rework` | `Paused` | `N/A` | `N/A`; Product Acceptance Finding route |
-| `Blocked` | `Incomplete` | `N/A` | `Blocked` | `Blocked` | `N/A` | `N/A`; finding or user/product decision route |
-
-Acceptance Callback Status is transport-only and does not decide any field in this table. Routine user verification is not requested for accepted active product-iteration work.
 
 ## Escalation / Reroute (Use Only If Final Handoff Cannot Complete)
 
