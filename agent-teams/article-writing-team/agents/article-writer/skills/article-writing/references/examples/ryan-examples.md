@@ -2,6 +2,12 @@
 
 Use these examples to imitate structure and rhetorical motion, not to copy sentences.
 
+## Example Scope
+
+- Examples A, B, C, and F demonstrate essay-thesis or explicit correction patterns. They are not default openings.
+- For `builder-direct`, `factual-technical`, and `paper-report` work, prefer the positive-first examples later in this file, especially H, H2, I, J, and K.
+- A grounded contrast is still subordinate to the selected rhetorical mode. Do not turn `we used X` into `we did not use Y` merely to create a sharper hook.
+
 ## Example A: English Thesis-First Opening
 
 ### Prompt Shape

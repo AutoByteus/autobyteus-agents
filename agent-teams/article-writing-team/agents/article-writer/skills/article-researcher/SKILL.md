@@ -9,7 +9,7 @@ Use this skill before outlining or drafting an article when the topic requires u
 Use this skill as the article-writing agent's research phase when the article needs source investigation or evidence grounding.
 It owns the research and investigation phase; the `article-writing` skill owns hierarchical structure, style and language decisions, outline shaping, drafting, and revision.
 
-Start by reading `writing-principles.md` and use it as the quality standard for evidence, clarity, and the rule that style never creates facts.
+Start by reading [the team writing principles](../../../../shared/writing-principles.md) and use them as the quality standard for evidence, clarity, and the rule that style never creates facts.
 
 ## Core Principle
 

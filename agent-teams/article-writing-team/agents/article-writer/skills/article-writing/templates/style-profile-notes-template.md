@@ -12,6 +12,8 @@
 - Language:
 - Rhetorical mode:
 - Opening stance:
+- Opening progression:
+- Justified opening exception, if any:
 - Audience:
 - One-sentence takeaway:
 - Depth target:

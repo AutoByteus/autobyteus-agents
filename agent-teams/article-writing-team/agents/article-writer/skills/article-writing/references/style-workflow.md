@@ -8,7 +8,7 @@ The shared team writing principles remain the article quality authority for both
 
 ## Required Shared Read
 
-- Start by reading [writing-principles.md](writing-principles.md).
+- Start by reading [the team writing principles](../../../../../shared/writing-principles.md).
 - Use it for structure, evidence, style boundaries, bilingual fidelity, and revision precedence; do not let a profile override it.
 
 ## Expected Research Inputs
@@ -38,6 +38,7 @@ Treat these files as the source of truth. Do not redo research. If the package h
 - In `cross-language-conversion`, resolve explicit `source language` and `target language`.
 - Resolve author/style profile name.
 - Resolve rhetorical mode: `essay`, `factual-technical`, `paper-like`, or `hybrid`.
+- Resolve the opening progression, not only the opening stance. For `builder-direct`, `factual-technical`, and `paper-like` work, default to positive subject/system -> capability/current use -> observed pressure/question -> change, explanation, or proposal.
 - Resolve objective, audience, and one-sentence takeaway.
 - Resolve expected technical depth (math rigor, engineering detail, examples, references).
 - Ask the user only when the missing target detail materially changes the article direction and cannot be inferred from the article brief.
@@ -68,6 +69,7 @@ Treat these files as the source of truth. Do not redo research. If the package h
 - Read the current `outline.md` and preserve its article promise, section order, paragraph beats, evidence burden, and ending move.
 - For `essay`, ensure the outline's thesis is expressed with the selected rhetorical pressure rather than replacing the outline with a more dramatic thesis.
 - For `factual-technical` or `paper-like`, preserve the outline's scope, mechanism, evidence basis, and bounded conclusion path; do not add a debate frame for style.
+- For `builder-direct`, `factual-technical`, and `paper-like` work, the first paragraph must orient the reader positively in the real subject or system before discussing absence, rejection, limitation, or an alternative. Use a negative or contrastive first move only when the user requests it or the outline records an essential source-grounded correction.
 - For derivation-heavy architecture or system articles, preserve a recorded reasoning chain such as prior system -> who or what did the work -> what changed -> new decomposition -> outputs and boundaries -> UI or workflow consequence -> bounded conclusion.
 - If the user provides a practical sequence such as `we used X -> it did Y -> we observed Z -> we changed to W -> we noticed Q`, keep that sequence in the outline and draft.
 - If the user supplies a more exact runtime or product mechanism during revision, replace the earlier generic explanation with that mechanism. Do not preserve a vague abstraction for stylistic continuity.
@@ -97,6 +99,7 @@ Treat these files as the source of truth. Do not redo research. If the package h
   - no sales tone unless explicitly requested
   - no forced binary contrast
   - no inflated claims beyond the provided evidence
+- Check the opening move: in non-essay modes, the first paragraph introduces the subject/system and its current use or behavior before any negative or contrastive framing. If it does not, revise the opening progression rather than merely softening a phrase.
 - In `factual-technical` or `paper-like` mode, verify that observations or system description appear before strong conclusions and that causal claims stay bounded.
 - If the chosen profile has variants, verify the draft stayed inside the selected variant instead of drifting into a louder neighboring variant.
 - Check standards precedence in this order:
@@ -152,6 +155,8 @@ Map common user cues to writing direction explicitly:
 | `this feels vague` | run a terminology-precision pass and replace blurred nouns with explicit system components |
 
 When multiple cues appear, obey them in this order: accuracy -> directness/ownership -> rhetoric reduction -> redundancy reduction -> polish.
+
+For builder-direct openings, treat `start with what we used`, `start with what we have`, and `explain the current system first` as positive-first instructions. Do not translate them into `we did not start with...` or `not X...` unless the user explicitly asks for that contrast.
 
 ## Output Modes
 

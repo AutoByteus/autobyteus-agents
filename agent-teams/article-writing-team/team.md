@@ -36,7 +36,7 @@ Detailed operating rules, artifact standards, and send-back behavior belong in e
 
 1. `article_writer` starts the run, creates one dedicated work folder, and records the article target in `brief.md`.
 2. `article_writer` builds the understanding and style package: `understanding-notes.md`, `source-index.md`, `claim-evidence-ledger.md` when needed, and `style-profile-notes.md`.
-3. `article_writer` builds the hierarchical structure in `outline.md` (article promise, section spine, and paragraph beats), creates `visual-plan.md` when visuals would improve the article, and sends the cumulative package to `article_reviewer`.
+3. `article_writer` builds the hierarchical structure in `outline.md` (article promise, idea spine, representation decisions, section spine, and paragraph beats), derives `visual-plan.md` from those decisions when visuals would improve the article, and sends the cumulative package to `article_reviewer`.
 4. `article_reviewer` reviews the understanding basis, style basis, outline, and visual plan when applicable before full drafting can proceed.
 5. After outline and applicable visual-plan pass, `article_writer` writes the draft package, inserts planned visuals or explicit placeholders, creates `visual-asset-index.md` when assets are generated, sourced, inserted, or intentionally omitted, and sends the full cumulative package back to `article_reviewer`.
 6. `article_reviewer` writes `review-report.md` and either passes the article or routes a specific gap back to `article_writer`.
@@ -45,11 +45,11 @@ Detailed operating rules, artifact standards, and send-back behavior belong in e
 ## Working Agreement
 
 - Outline review happens before full drafting. Do not jump straight from brief to full article unless the user explicitly asks to skip the outline gate.
-- The outline gate is hierarchical: a title list or section list is not enough. The reviewer must be able to see the article's central promise, the one-sentence job of each section, and the one-sentence beat of each planned paragraph or equivalent short-note unit.
+- The outline gate is hierarchical: a title list or section list is not enough. The reviewer must be able to see the article's central promise, the idea-to-idea progression, the one-sentence job of each section, and the one-sentence beat of each planned paragraph or equivalent short-note unit.
 - Understanding comes before outlining. Do not draft from a vague source basis when the request needs code, document, paper, website, or supplied-material investigation.
 - Review should move from factual and mechanism accuracy to global structure, section flow, paragraph flow, evidence support, style fit, fidelity, platform fit, and only then line-level polish.
 - A draft is not ready when a first-time reader would reasonably ask `Where did this come from?`, `How does this follow?`, or `Why now?`; route the missing bridge, prerequisite, or reordering back to the writer.
-- Visual planning is part of article structure. Do not add a separate image agent by default; the writer plans images because the writer owns the article flow.
+- Representation planning is part of article structure. The writer chooses prose, image, or both for each major idea; the visual plan executes that choice. Do not add a separate image agent by default; the writer owns the article flow.
 - Use one dedicated work folder per request so brief, outline, drafts, and review artifacts stay together.
 - The reviewer should re-review the whole package after each revision rather than checking only the previously flagged lines.
 - The writer should keep the chosen style profile, profile files, example basis, selected variant, rhetorical mode, and hard style constraints visible in `style-profile-notes.md`.
@@ -72,8 +72,8 @@ Detailed operating rules, artifact standards, and send-back behavior belong in e
 
 ## Ownership
 
-- `article_writer` owns brief completeness, investigation choices, understanding sufficiency, source indexing, evidence mapping, style intent, outline quality, visual planning, visual insertion, draft production, bilingual adaptation, and revision execution.
-- `article_reviewer` owns the review bar, review findings, visual quality gate, decision state, and final publication-readiness gate.
+- `article_writer` owns brief completeness, investigation choices, understanding sufficiency, source indexing, evidence mapping, style intent, outline quality, representation decisions, visual planning, visual insertion, draft production, bilingual adaptation, and revision execution.
+- `article_reviewer` owns the review bar, review findings, representation and visual quality gates, decision state, and final publication-readiness gate.
 
 ## Send-Back Rules
 

@@ -15,15 +15,40 @@
 - Central question or reader problem:
 - Promise, thesis, or bounded main observation:
 - Opening stance:
+- Opening progression: positive subject/system -> capability/current use -> observed pressure/question -> change, explanation, or proposal:
+- Justified opening exception, if the first move is intentionally negative or contrastive:
 - Primary logic spine: `causal` / `chronological` / `problem-solution` / `question-answer` / `comparative` / `derivational` / other:
 - Reader starting point: what the reader likely knows, assumes, or needs before the article begins:
 - Scope:
 - Explicit non-goals or claims intentionally excluded:
 - Intended ending move:
 
+## Idea Spine / Enrichment Chain
+
+Use one line per major step. This is the article's macro logic map; the question ladder and section spine expand it rather than replace it.
+
+1. Established idea:  -> Next idea:  -> Why it follows now:  -> What it enables or makes the reader ask next:
+   - Representation mode: `prose-only` / `image-led` / `prose-and-image`:
+   - Prose responsibility:
+   - Image responsibility, if any:
+   - Combined reader takeaway:
+   - Visual ID or `none`:
+2. Established idea:  -> Next idea:  -> Why it follows now:  -> What it enables or makes the reader ask next:
+   - Representation mode: `prose-only` / `image-led` / `prose-and-image`:
+   - Prose responsibility:
+   - Image responsibility, if any:
+   - Combined reader takeaway:
+   - Visual ID or `none`:
+3. Established idea:  -> Next idea:  -> Why it follows now:  -> What it enables or makes the reader ask next:
+   - Representation mode: `prose-only` / `image-led` / `prose-and-image`:
+   - Prose responsibility:
+   - Image responsibility, if any:
+   - Combined reader takeaway:
+   - Visual ID or `none`:
+
 ## Reader Progression
 
-Describe what the reader should understand after each major step. Do not list topics without stating the change in understanding.
+Describe what the reader should understand after each major step. Expand the idea spine; do not list topics without stating the change in understanding.
 
 1.
 2.
@@ -83,6 +108,10 @@ Each section must have one dominant job and one sentence that states its contrib
 ## Structural Gate
 
 - Article promise can be stated in one sentence:
+- Opening progression matches the selected stance:
+- Any negative or contrastive first move has a justified exception recorded:
+- Idea spine is continuous: every major step follows from the previous understanding and creates the next question or capability:
+- Every major idea has an intentional representation mode, with distinct prose/image responsibilities and a combined takeaway:
 - One primary logic spine is named and used consistently:
 - Reader question ladder is continuous:
 - Each section adds a new contribution:

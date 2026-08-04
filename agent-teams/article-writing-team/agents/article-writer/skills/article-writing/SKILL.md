@@ -36,7 +36,7 @@ Use [templates/visual-asset-index-template.md](templates/visual-asset-index-temp
 
 ## Required Shared Reads
 
-- Start by reading [writing-principles.md](writing-principles.md).
+- Start by reading [the team writing principles](../../../../shared/writing-principles.md).
 - Use it as the canonical shared writing reference before outlining, drafting, or revising.
 
 ## Style And Language Reference
@@ -100,6 +100,8 @@ Record:
 - selected profile variant or stance mode
 - rhetorical mode
 - platform and language rules that materially affect the article
+- opening progression: the positive subject/system orientation and the next observed pressure or question
+- justified opening exception, if the first move is intentionally negative or contrastive
 - voice, structure, rhythm, terminology, and ending constraints
 - forbidden style moves for this request
 - active user corrections such as `too salesy`, `too detached`, `too repetitive`, `too indirect`, or `not accurate`
@@ -115,6 +117,7 @@ Before writing `outline.md`, verify:
 - `brief.md` records target, audience, mode, platform, language, and constraints
 - `research-handoff.md` has been read when the research skill produced it
 - `style-profile-notes.md` records profile, variant, rhetorical mode, and style constraints when style matching is in scope
+- the opening progression matches the selected stance; non-essay modes do not plan a negative-first opening without a recorded exception
 - `understanding-notes.md` and `source-index.md` support the intended article scope
 - `claim-evidence-ledger.md` exists when the article needs explicit evidence tracking
 - no planned contrast, common-belief claim, recommendation, root-cause claim, or production observation lacks an evidence anchor
@@ -132,7 +135,12 @@ Build the structure from large units to small units. Use the outline template an
 - scope and explicit non-goals when they prevent overreach
 - one primary logic spine, such as causal, chronological, problem-solution, question-answer, comparative, or derivational
 - reader starting point: what the reader likely knows, assumes, or needs before the article begins
-- reader progression: what the reader should understand after each major step
+- opening progression: positive subject/system -> capability or current use -> observed pressure/question -> change, explanation, or proposal
+- justified opening exception, if the first move is intentionally negative or contrastive
+- idea spine / enrichment chain: for each major step, record the established idea, next idea, why it follows now, and the reader capability or question it creates
+- representation mode for each major idea: `prose-only`, `image-led`, or `prose-and-image`
+- prose responsibility, image responsibility, combined reader takeaway, and visual ID or `none` for each representation decision
+- reader progression: what the reader should understand after each major step, expanding the idea spine rather than listing topics
 - a reader question ladder: what question or need each step answers and what question, consequence, or decision it creates next
 - the section spine: one sentence per section in reading order, with each section's job, predecessor or question, evidence burden, and successor or implication
 - a reader bridge into and out of every section when the relationship is not self-evident
@@ -146,6 +154,10 @@ If the user provides a practical sequence such as `we used X -> it worked in Y w
 Use the following structural checks before handoff:
 
 - The article can be summarized as one central promise or bounded answer.
+- For non-essay modes, the first paragraph positively introduces the real subject/system before discussing what was not used, missing, rejected, or proposed instead.
+- Any negative or contrastive first move is explicitly justified by the request or source-grounded correction and recorded in the outline.
+- The idea spine is continuous: every major step follows from the established idea, adds a necessary contribution, and creates the next question or capability.
+- Every major idea has an intentional representation mode. If it uses both prose and image, their responsibilities are distinct and their combined takeaway is explicit; if it is prose-only, the outline explains why an image adds no information.
 - Every section adds a new claim, mechanism, evidence, example, decision, or implication.
 - Each section follows from the preceding section and prepares the next one; the order is not merely topical.
 - The chosen logic spine remains stable; the article does not switch from chronology to taxonomy or from explanation to promotion without a signpost and reason.
@@ -171,18 +183,31 @@ Do not create visuals merely to decorate the article. If the article should rema
 For each planned visual, record:
 
 - visual ID
+- idea-spine or section-beat reference
+- representation mode: `image-led` or `prose-and-image`
 - target section and exact placement intent
 - reader problem the visual solves
+- visual proposition: the one nearby idea the image must make concrete
+- prose responsibility: what the surrounding text carries
+- image responsibility: what this visual adds
+- combined reader takeaway: what the reader should understand from both
+- concrete entities that must be visible
+- relationships, direction, state, or lifecycle that must be visible
+- minimum reader takeaway without reading the caption or body prose
 - visual type: architecture diagram, workflow diagram, sequence diagram, concept map, comparison matrix, timeline, annotated screenshot, code-path map, artifact map, evidence chart, generated illustration, or other
 - content that must appear
 - content that must not be invented
+- required labels or text, if any
 - source or evidence anchor from the understanding package
 - caption draft
-- production method: generate, diagram, source existing asset, screenshot, table, or placeholder
+- why the selected production method is clearer than a generic alternative
+- production method: built-in `image_gen__imagegen` first when available in the active runtime; image-to-image when a concrete reference improves fidelity; configured `generate_image` second if the preferred tool is unavailable or fails; high-quality HTML/raster diagram only as an explicit exception; or placeholder
 - asset path when already available
 - status: `planned`, `generated`, `inserted`, `omitted`, or `needs user input`
 
-When using image generation, keep prompts constrained by the understanding package. Do not ask the image model to invent real interfaces, metrics, architecture, people, logos, or source evidence. Prefer structured diagrams or annotated screenshots when truthfulness matters more than illustration.
+When using image generation, keep prompts constrained by the understanding package. Name the article-specific entities, relationships, action or state, and one visual proposition. Do not ask the image model to invent real interfaces, metrics, architecture, people, logos, or source evidence. Short exact labels are allowed when they materially improve comprehension, but inspect the final raster and regenerate or revise incorrect or unreadable text. Do not use an ordinary low-quality SVG diagram as the default; use a high-quality HTML-rendered or rasterized diagram only when explicitly justified.
+
+Reject or redesign a visual when a generic illustration could replace it without changing what the reader learns. A caption may expand the image's meaning, but it must not be the only place where the article-specific mechanism exists. If the image repeats the prose without adding its recorded responsibility, revise the representation decision or omit the image.
 
 ### Step 7 - Pre-draft gate
 
@@ -190,20 +215,22 @@ Before writing the full draft, verify:
 
 - the outline has passed review or the user explicitly skipped the outline gate
 - `outline.md` contains the article promise, section spine, paragraph beats, evidence burden, and ending move
-- `outline.md` contains the chosen logic spine, reader question ladder, and section bridges where needed
+- the first-paragraph progression is explicit and follows the selected opening stance
+- `outline.md` contains the chosen logic spine, idea spine, representation decisions, reader question ladder, and section bridges where needed
 - the compressed section and paragraph maps form a coherent reader progression
 - a first-time-reader pass finds no unprepared topic, time, actor, abstraction, scope, or evidence shift
 - any review findings against understanding, evidence, style basis, or structure have been resolved in the corresponding artifact
 - the selected author style is constrained by the shared writing principles, especially `Style Never Creates Facts`
 - style-profile notes and the outline agree on opening stance, profile variant, rhetorical mode, and forbidden moves
 - `visual-plan.md` exists when visuals are requested or clearly needed by the article shape
-- each planned visual is anchored to the understanding package and has a clear explanatory purpose
+- each planned visual is linked to an idea-spine representation decision, has a clear visual proposition, and passes the self-contained takeaway test
 
 If a gate fails, update the upstream package before drafting.
 
 ### Step 8 - Draft the article package
 
 - Expand the approved outline top-down: article promise -> section spine -> paragraph beats -> paragraph reasoning -> sentence polish.
+- Compose prose and planned visuals as one explanatory unit: the prose carries its recorded responsibility, the image carries its recorded responsibility, and the pair delivers the combined takeaway without accidental duplication.
 - Preserve the approved section order and paragraph jobs. If drafting reveals a structural problem, stop and revise `outline.md` rather than silently improvising a new article shape.
 - Expand paragraphs only as far as their beat requires. A useful default for explanatory prose is claim -> explanation or mechanism -> evidence/example -> implication or transition; omit a component when the article does not need it.
 - Draft with known-to-new movement: begin from an established referent or question, introduce one next concept, state its relation, and only then move to another concept.
@@ -213,6 +240,8 @@ If a gate fails, update the upstream package before drafting.
 - Keep the draft aligned to the shared writing principles and the requested style profile.
 - Keep the draft inside the selected profile variant and rhetorical mode.
 - If the article is about the user's own product or workflow, use builder ownership language unless the user explicitly wants detached report prose.
+- In non-essay modes, draft the first paragraph positively: name the subject or system, state what it does or how we use it, then introduce the observed pressure, question, or proposed change. Do not use a negative or contrastive opener merely to create a hook.
+- If a negative or contrastive opening is explicitly justified, preserve the recorded exception and make the reason legible before expanding the rest of the article.
 - Use the understanding package as the source of truth. Do not introduce claims that are absent from the notes, source index, user brief, or ledger unless they are clearly marked as assumptions and accepted by the user.
 - Treat author style as expression, not evidence. Do not add an opponent, common belief, industry claim, prior failure, or production observation only because it fits the selected profile.
 - Preserve exact mechanisms, terminology, and source-code boundaries when those distinctions matter to the article.
@@ -226,6 +255,7 @@ If a gate fails, update the upstream package before drafting.
 
 - Read the review report fully.
 - Fix the highest-level failing unit first: article promise, section spine, paragraph beats, paragraph reasoning, then local polish.
+- If the article feels like a sequence of topics, rebuild the idea spine before editing transitions: established idea -> next idea -> reason it follows -> reader capability or next question.
 - Re-run the compression test after structural edits: summarize each section and paragraph in one sentence and compare that map with the revised `outline.md`.
 - Run a first-time-reader continuity pass after structural edits: read section endings and openings together, then paragraph openings and endings, and mark every `Where did this come from?`, `How does this follow?`, or `Why now?` moment. Repair the bridge, prerequisite, or order before polishing.
 - If the draft's local paragraphs are strong but the global map is weak, revise the structure instead of preserving polished prose.

@@ -32,17 +32,24 @@ Read this file before drafting or reviewing an article package. It is the canoni
 ### 3. Opening Stance Must Match The Request
 
 - Every article needs a strong opening, but not every article needs the same kind of opening.
-- The opening stance should be chosen explicitly:
-  - `thesis-first`: for argumentative Medium-style essays
-  - `scope-first`: for factual technical explanation
-  - `builder-direct`: for firsthand product or workflow narration
-  - `paper-report`: for more formal or report-like prose
+- Choose the opening stance and the opening progression explicitly:
+  - `thesis-first`: for argumentative Medium-style essays; a grounded contrast may appear immediately when the user wants argument pressure or the article must correct an established claim.
+  - `scope-first`: for factual technical explanation; introduce the system, scope, or main observation directly.
+  - `builder-direct`: for firsthand product or workflow narration; begin from what we used, what it did, and what we observed.
+  - `paper-report`: for more formal or report-like prose; begin from scope, method, system boundary, or observed behavior.
 - A strong opening should tell the reader what kind of article they are reading within the first section.
+- For non-essay modes—especially `builder-direct`, `scope-first`, and `paper-report`—use a positive-first progression:
+  `real subject or system -> what it does or how we use it -> observed pressure or question -> change, explanation, or proposal`.
+- In these modes, do not begin the first sentence or paragraph with `we did not`, `not X`, `unlike`, `rather than`, or another negative/contrastive frame when it only sets up the subject. Introduce the supported subject directly, then explain the limitation or alternative after the reader has an anchor.
+- A grounded contrast is not automatically the right opening. Use a negative or contrastive first move only when the user explicitly requests it, the article is intentionally `thesis-first`, or the contrast is essential to a source-grounded correction and the outline records that reason.
 - Do not force `not X, but Y` or a compressed thesis hook when the request is better served by a direct system description or builder-owned sequence.
 
 ### 4. Outline Before Full Draft
 
 - The outline is not a formality. It is the structural contract for the article.
+- Keep one explicit idea spine in `outline.md`: `established reader understanding -> next idea -> why it follows now -> what it enables or makes the reader ask next`.
+- Treat `Reader Progression`, `Reader Question Ladder`, and `Section Spine` as expansions of that same spine, not independent lists. If they disagree, resolve the disagreement in the outline before drafting.
+- For each major idea, choose its representation mode: `prose-only`, `image-led`, or `prose-and-image`. Record what the prose carries, what the image carries, and the combined reader takeaway. This is a content decision, not an image-production decision.
 - A strong outline should show:
   - working title options
   - the selected opening stance
@@ -59,11 +66,14 @@ Read this file before drafting or reviewing an article package. It is the canoni
 
 - Visuals should be planned from the article's reasoning flow, not appended after the prose is finished.
 - A useful visual explains, structures, compares, evidences, or summarizes a nearby section claim, mechanism, sequence, boundary, or decision.
+- Define the visual proposition before its art direction: state the one nearby idea the image must make concrete, the entities and relationships that must be visible, and the reader takeaway that should survive without the caption.
+- Derive each visual plan from a representation decision in the idea spine. Image generation executes the approved representation; it does not decide which idea deserves an image.
 - Decorative images, generic stock-like illustrations, and images that merely make the article look longer should be omitted.
 - Visuals obey the same factual standard as prose. Do not create fake UI states, fake charts, fake architecture, fake screenshots, fake benchmarks, or fake source material.
 - Captions are claims. Every caption should be supported by the understanding package and should not smuggle in new facts.
-- For technical articles, prefer content-bearing visuals such as architecture diagrams, workflow diagrams, sequence diagrams, concept maps, comparison matrices, timelines, annotated screenshots, code-path maps, artifact maps, or evidence charts when the source basis supports them.
-- Use generated bitmap images only when they genuinely serve the article's explanation, metaphor, or platform presentation. If a structured diagram would be clearer and more truthful, use a diagram plan instead of a decorative generated image.
+- For this workflow, prioritize high-quality raster images: when the built-in `image_gen__imagegen` tool is available in the active runtime, use it first; use image-to-image editing when a concrete reference improves fidelity; use configured `generate_image` second when the preferred tool is unavailable or fails.
+- Short exact labels, role names, state names, or action names may appear inside an explanatory image when they materially improve comprehension. Inspect the final raster and regenerate or revise any incorrect, invented, or unreadable text.
+- Ordinary low-quality SVG diagrams are not the default publication medium. Use an HTML-rendered or rasterized diagram only as an explicit high-quality exception when it is clearly more truthful and useful than an image; do not let a generic generated image replace a required explanation either.
 - If an article would be clearer with visuals, the outline or visual plan should show where they belong and what each one teaches the reader.
 
 ### 4B. Build And Review From Global Structure To Local Prose
@@ -78,6 +88,8 @@ Read this file before drafting or reviewing an article package. It is the canoni
 - A section is ready to expand only when its one-sentence job, predecessor or question, evidence basis, and successor or implication are clear.
 - A paragraph is ready to expand only when its beat has one dominant job. Split a paragraph beat when it tries to introduce a new claim, mechanism, and conclusion that deserve separate steps.
 - The reviewer should run the same hierarchy in reverse: verify the article-level promise first, then section progression, then paragraph beats, and only then sentence-level polish.
+- Before expanding paragraphs, run the idea-chain test for every major step: identify the established idea, the next idea, why the next idea follows now, and the capability or question it creates. A list of related topics is not a coherent spine.
+- Before creating visuals, run the representation test: if the mode is `prose-and-image`, state what understanding would be lost if either medium were removed; if the mode is `prose-only`, explain why an image would add no information.
 - Use a compression test during both writing and review: compress each section to one sentence and each paragraph to one sentence, then compare that map with `outline.md`. If the compressed map cannot be explained as a coherent progression, route the issue back to structure rather than polishing prose.
 - Each section must change the reader's understanding by adding a new claim, mechanism, evidence, example, decision, or implication. A conclusion should compress the resolved argument, not introduce another central idea.
 
@@ -90,6 +102,7 @@ Read this file before drafting or reviewing an article package. It is the canoni
   - **movement:** the one new claim, mechanism, example, or decision this section adds
   - **exit:** what has now been resolved and why the next section follows
 - Preserve known-to-new movement inside paragraphs. Start from an established referent or question, introduce the next concept, and explain its relation before adding another concept.
+- Enrich rather than accumulate: each paragraph should advance its approved beat and make the next paragraph or section more possible. Name the relation—continuation, consequence, contrast, example, qualification, or return to the central question—when the reader cannot infer it.
 - Bridge every meaningful shift in topic, time, actor, abstraction level, scope, or evidence type. If a reader could ask `Why are we discussing this now?`, add the reason or change the order.
 - At each section and paragraph boundary, make the relationship explicit when it is not obvious: continuation, consequence, contrast, example, qualification, or return to the central question.
 - Audit the article as a first-time reader, not as its author. Mark every place where the reader may ask `Where did this come from?`, `How does this follow?`, or `What does this have to do with the promise?` and repair the bridge, missing prerequisite, or structure.

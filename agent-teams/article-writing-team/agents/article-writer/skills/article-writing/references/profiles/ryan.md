@@ -8,6 +8,7 @@ Example file: `references/examples/ryan-examples.md`
 
 - Write with high conviction, but keep the conviction earned through explicit reasoning rather than rhetoric.
 - Start from an engineering observation, then compress it into a thesis.
+- In `builder-direct`, `factual-technical`, and `paper-report` variants, make that observation a positive subject/system orientation first: what we used, what it did, or what we observed. Do not begin with a negative contrast merely because the contrast is grounded.
 - Treat structure, ownership, and reviewability as higher-signal concerns than tooling novelty.
 - Prefer calm technical confidence over emotional persuasion or visionary hype.
 - Keep claims sharp, but tie them back to workflow behavior, architectural signals, or repeated failure patterns.
@@ -46,6 +47,8 @@ Default selection:
 - if the user asks for scientific/report-like prose, choose `paper-report`
 - use `essay-thesis` only when the user clearly wants argument pressure
 
+Opening priority: the selected variant controls the first move. Essay-thesis examples and contrast markers do not override the positive-first opening required by `builder-direct`, `factual-technical`, or `paper-report`.
+
 ## Direction Cues And Override Rules
 
 Use the user's revision language as a hard routing signal:
@@ -73,11 +76,11 @@ Revision precedence inside Ryan:
 - Titles are usually declarative and argument-bearing, not curiosity-bait.
 - A common title shape is `X and Y are the core of Z` or `Why X matters more than Y`.
 - The thesis normally appears in the first paragraph or within the first two short paragraphs.
-- Ryan often states the thesis in contrast form:
+- In the `essay-thesis` variant, Ryan often states the thesis in contrast form:
   - `The core work is not X. It is Y.`
   - `That is true. But it is not the root cause.`
   - `The deeper problem is...`
-- These contrast forms are valid only when the `X` side is real and evidenced: a source claim, a common pattern the article has documented, a prior implementation, a user-provided observation, or an inspected failure mode.
+- These contrast forms are valid only when the `X` side is real and evidenced: a source claim, a common pattern the article has documented, a prior implementation, a user-provided observation, or an inspected failure mode. Grounding makes the contrast permissible; it does not make it the default opening for other variants.
 - In factual technical mode, titles may be descriptive rather than argumentative.
 - In factual technical mode, the opening may begin with scope, implementation context, or observed behavior instead of a contrastive thesis.
 - In builder-report mode, the opening may begin directly from the prior system state: what was used, what it was supposed to do, and where it started to break.
@@ -224,6 +227,7 @@ When the user wants paper-like or report-like prose:
 Avoid these common Ryan failure modes:
 
 - inventing an opposing belief or negative side because a contrastive Ryan sentence would sound sharp
+- opening a builder-direct or factual-technical article with `we did not...`, `not X...`, or another negative frame when a positive subject-first opening is available
 - opening with detached meta-lines like `This article explains...` when builder-direct voice is clearly better
 - using `not X, but Y` multiple times in the same draft when one direct sentence would be clearer
 - sounding like an outside analyst when the article is about the author's own system
