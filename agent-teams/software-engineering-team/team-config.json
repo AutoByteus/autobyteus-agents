@@ -1,10 +1,10 @@
 {
-  "coordinatorMemberName": "solution_designer",
+  "coordinatorMemberName": "architecture_designer",
   "avatarUrl": null,
   "members": [
     {
-      "memberName": "solution_designer",
-      "ref": "solution-designer",
+      "memberName": "architecture_designer",
+      "ref": "architecture-designer",
       "refType": "agent",
       "refScope": "team_local"
     },

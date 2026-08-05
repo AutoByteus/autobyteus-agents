@@ -34,6 +34,7 @@ Take the review-passed and API/E2E-passed implementation state through an initia
 
 Use [templates/docs-sync-report-template.md](templates/docs-sync-report-template.md) to produce a docs sync report.
 Update the ticket-local handoff summary before final handoff, then use [templates/release-deployment-report-template.md](templates/release-deployment-report-template.md) to produce a release/publication/deployment report.
+Use [templates/delivery-revision-record-template.md](templates/delivery-revision-record-template.md) to create `delivery-revision-record.md` with `DR-001` for the first completed delivery-stage result and append one entry for each later delivery round.
 
 ## Artifact Location Rule
 
@@ -42,7 +43,7 @@ Update the ticket-local handoff summary before final handoff, then use [template
 
 ## Upstream Inputs
 
-- Accept the cumulative delivery package from `api_e2e_engineer` by default, or from `code_reviewer` when repository-resident durable coverage was re-reviewed after API/E2E: requirements doc, investigation notes, design spec, design review report, implementation handoff, code review report, coverage investigation, and execution coverage report.
+- Accept the cumulative delivery package from `code_reviewer` after proportional post-API/E2E test-code review: approved requirements doc, requirements investigation notes, requirements revision record, design spec, architecture-design revision record, design review report, architecture-review revision record, implementation handoff, implementation revision record, code review report, code-review revision record, coverage investigation, execution coverage report, API/E2E revision record, and API/E2E test-code review report.
 - Use the full artifact chain as delivery context for docs sync and final handoff work.
 
 ## Workflow Rules
@@ -67,12 +68,22 @@ Update the ticket-local handoff summary before final handoff, then use [template
 - When release notes are required, create or update `tickets/in-progress/<ticket-name>/release-notes.md` before user verification, then pass the archived `tickets/done/<ticket-name>/release-notes.md` artifact into the release/publication path when that path is applicable.
 - After repository finalization and any applicable release/publication/deployment work, clean up ticket worktrees and branches when they were created for this task and when the recorded finalization target makes that cleanup safe.
 - If any finalization, release, deployment, or cleanup step fails, keep final handoff blocked and record the blocker explicitly. Do not undo already-completed repository finalization.
+- Send a successful terminal message to `architecture_designer` only after explicit user testing/verification, repository finalization, and every applicable release, deployment, rollout, and safe cleanup step is `Completed` or truthfully `Not required`.
+- The terminal message must include the complete cumulative package, final validation evidence, user-verification reference, delivery and finalization reports, final branch/commit/merge/push state, release/deployment outcome when applicable, and durable final artifact paths.
+- Do not send the successful terminal message while waiting for user verification or while any finalization blocker remains.
 
 ## Routing Rules
 
 - Resolve documentation-local or deployment-local issues directly when possible.
 - Route code or packaging `Local Fix` issues to `implementation_engineer`.
-- Route `Design Impact` to `solution_designer`.
-- Route `Requirement Gap` to `solution_designer`.
-- Route `Unclear` to `solution_designer`.
+- Route `Design Impact` to `architecture_designer`.
+- Route `Requirement Gap` to `architecture_designer`.
+- Route `Unclear` to `architecture_designer`.
 - If final handoff is blocked by a non-deployment issue, record the classification and recommended recipient explicitly in the release/publication/deployment report instead of leaving only a generic blocker note.
+
+## Terminal Return To The Team Coordinator
+
+- Use `send_message_to` to return the successfully finalized package to `architecture_designer`; Delivery Engineer does not call `submit_task_result`.
+- State that this is the authoritative terminal completion package and that Architecture Designer may submit the delegated team result only after checking it.
+- If user verification is missing or finalization is blocked, continue the applicable verification, recovery, or reroute flow. Do not send a successful completion message.
+- After the terminal message succeeds, end the delivery stage and do not poll. Act only on a later explicit rework message.

@@ -11,9 +11,10 @@ Execution may cover API, browser UI, a web-equivalent desktop renderer through t
 
 - Requirements Doc:
 - Investigation Notes:
+- Requirements Revision Record:
 - Design Spec:
 - Supplemental Task Artifacts:
-- Solution Revision Record:
+- Architecture Design Revision Record:
 - Design Review Report:
 - Architecture Review Revision Record:
 - Implementation Handoff:

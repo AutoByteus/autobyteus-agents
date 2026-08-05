@@ -6,9 +6,10 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 - Requirements doc:
 - Investigation notes:
+- Requirements revision record:
 - Design spec:
 - Supplemental task artifacts:
-- Solution revision record:
+- Architecture design revision record:
 - Design review report:
 - Architecture review revision record:
 - Triggering rework report, revision record, or evidence, when applicable:
@@ -20,7 +21,7 @@ Summarize the complete current implementation. For a post-initial delta, referen
 - Implementation cycle: `Initial` / `Rework`
 - Implementation revision record:
 - Current implementation revision ID: `IR-*`
-- Related solution revision IDs: `SR-*` / `N/A`
+- Related architecture design revision IDs: `AD-REV-*` / `N/A`
 - Related architecture-review revision IDs: `ARCH-REV-*` / `N/A`
 - Related code-review revision IDs: `CRR-*` / `N/A`
 - Related API/E2E revision IDs: `API-REV-*` / `N/A`

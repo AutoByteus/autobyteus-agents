@@ -18,10 +18,11 @@ Do not record successful API/E2E test-code review here. Use the separate `api-e2
 - Review Entry Point: `Implementation Review` / `API/E2E Failure-Origin Review`
 - Requirements Doc Reviewed As Context:
 - Investigation Notes Reviewed As Context:
+- Requirements Revision Record Reviewed As Context:
 - Design Spec Reviewed As Context:
 - Supplemental Task Artifacts Reviewed As Context:
-- Solution Revision Record Reviewed As Context:
-- Relevant Solution Revision IDs:
+- Architecture Design Revision Record Reviewed As Context:
+- Relevant Architecture Design Revision IDs:
 - Design Review Report Reviewed As Context:
 - Architecture Review Revision Record Reviewed As Context:
 - Relevant Architecture Review Revision IDs:
@@ -71,7 +72,7 @@ Complete this understanding and alignment foundation before the implementation s
 | --- | --- | --- | --- |
 |  |  |  |  |
 
-Reuse the design spec's behavior IDs. Assign a provisional ID only when concrete evidence reveals a relevant supported behavior missing upstream; route it to `solution_designer` and do not pass until the upstream map is corrected. Do not create a behavior from technical possibility alone. `Contradicted`, `Unclear`, or `Newly Discovered` behavior prevents an implementation-review pass.
+Reuse the design spec's behavior IDs. Assign a provisional ID only when concrete evidence reveals a relevant supported behavior missing upstream; route it to `architecture_designer` and do not pass until the owning upstream artifact is corrected. Do not create a behavior from technical possibility alone. `Contradicted`, `Unclear`, or `Newly Discovered` behavior prevents an implementation-review pass.
 
 After the initial review result, complete the applicable prior-finding resolution table in `code-review-revision-record.md` after confirming this behavior basis and before finalizing prospective new findings.
 
@@ -229,9 +230,9 @@ Rules:
 
 - `Local Fix` -> `implementation_engineer` when the bounded fix is in implementation-owned source or packaging
 - `Local Fix` -> `api_e2e_engineer` when the bounded fix is an invalid/stale test, fixture, environment, execution, or report problem
-- `Design Impact` -> `solution_designer`
-- `Requirement Gap` -> `solution_designer`
-- `Unclear` -> `solution_designer`
+- `Design Impact` -> `architecture_designer`
+- `Requirement Gap` -> `architecture_designer`
+- `Unclear` -> `architecture_designer`
 
 Routing note:
 - Implementation-owned fixes return through implementation review and API/E2E again.

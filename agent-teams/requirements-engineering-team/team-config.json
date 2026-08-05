@@ -19,6 +19,12 @@
       "ref": "prototype-bootstrapper",
       "refType": "agent",
       "refScope": "team_local"
+    },
+    {
+      "memberName": "software_engineering_team",
+      "ref": "software-engineering-team",
+      "refType": "agent_team",
+      "refScope": "shared"
     }
   ]
 }

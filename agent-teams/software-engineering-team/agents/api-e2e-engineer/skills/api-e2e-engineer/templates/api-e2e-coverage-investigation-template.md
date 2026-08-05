@@ -10,9 +10,10 @@ Update this artifact whenever new evidence changes a test-validity or coverage d
 
 - Requirements Doc:
 - Investigation Notes:
+- Requirements Revision Record:
 - Design Spec:
 - Supplemental Task Artifacts:
-- Solution Revision Record:
+- Architecture Design Revision Record:
 - Design Review Report:
 - Architecture Review Revision Record:
 - Implementation Handoff:

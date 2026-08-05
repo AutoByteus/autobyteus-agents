@@ -11,9 +11,11 @@ Keep one canonical report path across reruns. Reuse finding IDs for unresolved f
 - Review Round:
 - Trigger:
 - Requirements Doc Reviewed As Context:
+- Requirements Investigation Notes Reviewed As Context:
+- Requirements Revision Record Reviewed As Context:
 - Design Spec Reviewed As Context:
 - Supplemental Task Artifacts Reviewed As Context:
-- Solution Revision Record Reviewed As Context:
+- Architecture Design Revision Record Reviewed As Context:
 - Architecture Review Revision Record Reviewed As Context:
 - Implementation Revision Record Reviewed As Context:
 - Original Code Review Report:
@@ -63,9 +65,9 @@ Record only actionable test-code quality or correctness findings. Do not inflate
 Classification:
 
 - `Local Fix`: bounded test-code, fixture, setup, helper, or reporting correction; normally owned by `api_e2e_engineer`
-- `Design Impact`: test review exposes a structural weakness or mismatch in the reviewed design; owned by `solution_designer`
-- `Requirement Gap`: intended behavior is missing or ambiguous; owned by `solution_designer`
-- `Unclear`: the issue cannot be classified from the available package; owned by `solution_designer`
+- `Design Impact`: test review exposes a structural weakness or mismatch in the reviewed design; owned by `architecture_designer`
+- `Requirement Gap`: intended behavior is missing or ambiguous; routed through `architecture_designer` to the requirements owner
+- `Unclear`: the issue cannot be classified from the available package; owned by `architecture_designer` for routing
 
 Do not rerun the full API/E2E workflow by default. If a changed assertion cannot be judged from the diff and existing execution evidence, record the focused command, result, and evidence in the relevant finding.
 

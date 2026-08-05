@@ -6,6 +6,14 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 Summarize the relevant current flow and lifecycle, ownership boundaries, verified coupling or fragmentation problems when any exist, and constraints that the target design must respect. Reference investigation evidence and the behavior IDs below instead of duplicating their complete production paths here. Do not imply that every task has a structural problem.
 
+## Architecture Investigation Evidence
+
+Record the architecture-level evidence gathered after receiving the approved requirements package. Requirements investigation notes remain the upstream behavior evidence authority; this section owns the additional current-code and runtime evidence needed to justify technical design decisions.
+
+| Source / Command / Probe | Exact Path / Reference | Observation | Design Decision Supported | Remaining Uncertainty |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+
 ## Intended Change
 
 ## Relevant Behavior And Production-Path Map (Mandatory)
@@ -53,7 +61,7 @@ Define only task-specific terms needed to interpret this design. Do not repeat t
 
 Use the sections in this template in the following reasoning order, moving from verified context to concrete structure:
 
-1. current-state read and intended change
+1. current-state read, architecture investigation evidence, and intended change
 2. relevant behavior and production-path map plus applicable supplemental context
 3. task design-health, legacy-removal, and persisted-data decisions
 4. data-flow spines, ownership, and off-spine concerns

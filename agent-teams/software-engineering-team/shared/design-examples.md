@@ -807,7 +807,7 @@ Those mechanisms are technically coherent, but the premise must be checked again
 
 The approved behavior is to edit settings for the node represented by the current node-specific window. No requirement introduces in-place node switching for that window.
 
-The solution designer records this basis before review:
+The architecture designer records this basis before review:
 
 | Behavior ID | Kind | Approved Requirement / Intent | Approved Trigger / Contract | Relevant Existing Behavior And Evidence | Approved Change / Preserved Outcome | Target Production Path / Lifecycle And Spine ID(s) |
 | --- | --- | --- | --- | --- | --- | --- |

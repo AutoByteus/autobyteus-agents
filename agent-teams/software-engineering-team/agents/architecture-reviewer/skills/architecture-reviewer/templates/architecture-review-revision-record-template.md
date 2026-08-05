@@ -6,7 +6,7 @@ The latest `design-review-report.md` remains authoritative. Record only the init
 
 ## Revision Index
 
-| Revision ID | Review Round / Trigger | Related Solution Revision IDs | Prior Decision | Current Decision | Affected Finding IDs |
+| Revision ID | Review Round / Trigger | Related Architecture Design Revision IDs | Prior Decision | Current Decision | Affected Finding IDs |
 | --- | --- | --- | --- | --- | --- |
 | ARCH-REV-001 |  |  | N/A |  |  |
 
@@ -17,7 +17,7 @@ The latest `design-review-report.md` remains authoritative. Record only the init
 - Canonical design review report:
 - Review round and trigger:
 - Triggering role, report path, and finding IDs:
-- Relevant solution revision IDs: `SR-*` / `N/A`
+- Relevant architecture design revision IDs: `AD-REV-*` / `N/A`
 - Prior authoritative decision:
 - Current authoritative decision:
 - What changed in the review result or what baseline was established:

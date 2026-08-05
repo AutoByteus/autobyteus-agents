@@ -41,7 +41,7 @@ Keep their standards distinct. Implementation code receives the full structural 
 
 For implementation review:
 
-- Accept requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, solution revision record, design review report, architecture review revision record, implementation handoff, and implementation revision record from `implementation_engineer`.
+- Accept approved requirements doc, requirements investigation notes, requirements revision record, design spec, every still-relevant supplemental task artifact, architecture-design revision record, design review report, architecture review revision record, implementation handoff, and implementation revision record from `implementation_engineer`.
 - When implementation returns after a delivery-stage local fix, also accept the delivery revision record and triggering delivery evidence.
 - On later review rounds, also accept the current code review revision record and still-relevant triggering reports, revision records, or evidence.
 - Review against the complete implementation artifact chain, not only the handoff summary.
@@ -73,7 +73,7 @@ For API/E2E failure-origin review:
 6. If a concrete check produces a prospective finding, score rationale, or implementation mechanism that depends on a material scenario outside the established behavior basis, first identify an independent product-supported initiating trigger or applicable governing contract and trace forward through normal production execution to the claimed lifecycle state and consequence. Check any upstream decision against the implementation, then complete the report's confirmation or material-premise record using the shared product-reachability rule before accepting the conclusion. Reject a circular witness that uses a downstream technical mechanism, diff, or test to establish its own reachability. Do not search for hypothetical scenarios as a separate review stage.
 7. Complete the scorecard and findings only after every material premise that could affect them has been validated. Then update the applicable canonical report to the latest complete result and append the concise `CRR-*` entry for the finished review result, including `CRR-001` for the initial result.
 
-If approved behavior is materially ambiguous, classify a `Requirement Gap`. If production reachability or lifecycle evidence is materially incomplete, investigate it or return `Unclear`; do not invent a technically plausible behavior path and review the implementation against it. Do not create a new behavior ID from a diff, fallback branch, or synthetic test. A concrete newly discovered supported behavior must be recorded provisionally and routed upstream; implementation review cannot pass until the solution basis is corrected.
+If approved behavior is materially ambiguous, classify a `Requirement Gap`. If production reachability or lifecycle evidence is materially incomplete, investigate it or return `Unclear`; do not invent a technically plausible behavior path and review the implementation against it. Do not create a new behavior ID from a diff, fallback branch, or synthetic test. A concrete newly discovered supported behavior must be recorded provisionally and routed upstream; implementation review cannot pass until the approved requirements or architecture basis is corrected by its owner.
 
 ## General Review Rules
 
@@ -92,7 +92,7 @@ If approved behavior is materially ambiguous, classify a `Requirement Gap`. If p
 - Apply `>500` and `>220` source thresholds only to changed implementation-source files, never to tests, fixtures, or generated coverage files.
 - When persisted data may be affected, verify that implementation follows the reviewed transition decision and does not add an unnecessary migration or version-specific runtime fallback. Review migration mechanics only when the approved decision is `Migration Required`.
 - Keep each canonical report focused on its latest complete result. Revalidate affected and previously failing checks, preserve still-valid evidence for unaffected checks, and reuse finding IDs across rounds.
-- Keep every completed review result's history and prior-finding resolution in `code-review-revision-record.md`. Link each entry to relevant solution, architecture-review, implementation, API/E2E, and delivery revision IDs when they exist; use `N/A` when a revision type does not apply.
+- Keep every completed review result's history and prior-finding resolution in `code-review-revision-record.md`. Link each entry to relevant architecture-design, architecture-review, implementation, API/E2E, and delivery revision IDs when they exist; use `N/A` when a revision type does not apply.
 
 ## Successful API/E2E Test-Code Review Rules
 
@@ -127,9 +127,9 @@ If approved behavior is materially ambiguous, classify a `Requirement Gap`. If p
 - `Pass` is a review outcome, not a failure classification.
 - `Local Fix` -> `implementation_engineer` for a bounded implementation or packaging defect.
 - `Local Fix` -> `api_e2e_engineer` for a test-code, stale-test, fixture, environment, execution, or report problem.
-- `Design Impact` -> `solution_designer` for a structural issue or inadequate reviewed design.
-- `Requirement Gap` -> `solution_designer` for missing or ambiguous intended behavior.
-- `Unclear` -> `solution_designer` for a cross-cutting issue that cannot be classified from available evidence.
+- `Design Impact` -> `architecture_designer` for a structural issue or inadequate reviewed design.
+- `Requirement Gap` -> `architecture_designer` for missing or ambiguous intended behavior that must cross the task boundary.
+- `Unclear` -> `architecture_designer` for a cross-cutting issue that cannot be classified from available evidence.
 - After an implementation-owned fix, require source review and API/E2E again.
 - After an API/E2E-owned fix, require API/E2E execution and a proportional test-code review result; use `Not Applicable` when no durable test changed.
 
@@ -137,8 +137,9 @@ If approved behavior is materially ambiguous, classify a `Requirement Gap`. If p
 
 - Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an exact recipient name from the visible team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
-- After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
-- On implementation-review pass, send the cumulative package, code review report, and code review revision record to `api_e2e_engineer`.
+- On implementation-review pass, first send the cumulative package, code review report, and code review revision record to `api_e2e_engineer`.
+- After that primary handoff succeeds, send `implementation_engineer` a short notification containing `Pass`, the current `CRR-*`, the code-review report path, `api_e2e_engineer` as the next recipient, and `Informational — no action required`.
+- End an implementation-review pass only after both required messages succeed. For every other completed handoff, end after its required message succeeds. Do not poll recipients; act on a later incoming team message if more work is required.
 - On implementation-review `Fail` or `Blocked`, send the complete package, code review report, and code review revision record to the classified owner; do not advance to API/E2E.
 - On successful post-API/E2E test-code review, send the complete passed package, including `api-e2e-test-review-report.md` and the current code review revision record, to `delivery_engineer`.
 - On failed post-API/E2E test-code review, send the complete package, test-review report, and current code review revision record to the confirmed owner; normally this is `api_e2e_engineer` for a bounded test-code correction.

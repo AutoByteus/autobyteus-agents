@@ -28,9 +28,13 @@ The paper research assistant is a standalone agent for the common paper-reading 
 
 The skill optimizer is a lightweight standalone agent that uses the shared `skill-optimizer` skill to review and improve existing skills for structure, grounding, clarity, consistency, and economy while preserving their intended behavior and quality gates.
 
+## Requirements Engineering Team
+
+The requirements engineering team turns an initial product or technical request into an evidence-grounded, explicitly user-approved requirements package. `requirements_engineer` owns current and desired behavior, scope, acceptance criteria, conditional prototype coordination, and requirement revision history. For each independent architecture-ready package, it delegates one tracked task to `software_engineering_team` and reviews the returned result.
+
 ## Software Engineering Team
 
-The software engineering team is the default one-off engineering entrypoint. It starts with `solution_designer` and takes a concrete feature, bug fix, refactor, or investigation through implementation, API and E2E validation, review, docs sync, final handoff, release, and deployment. Product iteration is inactive by default here unless the user explicitly asks for the loop or supplies a Product Manager feature brief.
+The software engineering team starts with `architecture_designer` and consumes an approved requirements package. It preserves the full technical design workflow, then proceeds through independent architecture review, implementation, source review, API/E2E validation, proportional test-code review, and delivery. After the user verifies the result and `delivery_engineer` completes finalization, Delivery Engineer returns the terminal package to Architecture Designer, which submits the delegated team result to Requirements Engineer when running as a task-scoped team.
 
 ## Research Engineering Team
 

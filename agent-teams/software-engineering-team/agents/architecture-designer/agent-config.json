@@ -17,9 +17,10 @@
     "open_tab",
     "read_page",
     "run_script",
-    "screenshot"
+    "screenshot",
+    "submit_task_result"
   ],
   "skillNames": [
-    "solution-designer"
+    "architecture-designer"
   ]
 }
