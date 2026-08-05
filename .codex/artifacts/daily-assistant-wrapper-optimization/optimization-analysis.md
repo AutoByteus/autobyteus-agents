@@ -297,6 +297,13 @@ None blocking. A future change may move this agent-bundled foundational skill in
 - `agents/daily-assistant/agent.md`
 - `agents/daily-assistant/skills/shell-first-operating-practice/SKILL.md`
 
+## Post-implementation wording refinement
+
+- Updated the skill description to say `for agents` rather than `for general-purpose agents`.
+- Rationale: this is a foundational operating capability beneath both general-purpose agents and task-specific agents such as Skill Optimizer; the prior qualifier was unnecessarily narrow.
+- Macro pass: package ownership, skill identifier, wrapper routing, and behavior are unchanged.
+- Micro pass: the description now matches the intended reusable scope without changing the shell-first operating procedure.
+
 ## Analysis artifact
 
 `.codex/artifacts/daily-assistant-wrapper-optimization/optimization-analysis.md`

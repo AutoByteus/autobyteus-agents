@@ -1,6 +1,6 @@
 ---
 name: shell-first-operating-practice
-description: Foundational shell-first operating practice for general-purpose agents. Use it to orient, inspect, search, edit, generate, transform, automate, verify, debug, manage processes, work with repositories, inspect network resources, or operate project runtimes with Unix-style system tools.
+description: Foundational shell-first operating practice for agents. Use it to orient, inspect, search, edit, generate, transform, automate, verify, debug, manage processes, work with repositories, inspect network resources, or operate project runtimes with Unix-style system tools.
 ---
 
 # Shell-First Operating Practice
