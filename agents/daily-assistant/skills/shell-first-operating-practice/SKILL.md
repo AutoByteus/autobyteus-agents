@@ -1,21 +1,83 @@
 ---
 name: shell-first-operating-practice
-description: Reusable shell-first operating practice for shell-capable agents. Use when an agent should use Unix-style terminal commands to inspect, search, read, edit, generate, transform, automate, verify, debug, manage processes, work with repositories, inspect network resources, or operate project runtimes.
+description: Foundational shell-first operating practice for general-purpose agents. Use it to orient, inspect, search, edit, generate, transform, automate, verify, debug, manage processes, work with repositories, inspect network resources, or operate project runtimes with Unix-style system tools.
 ---
 
 # Shell-First Operating Practice
 
 ## Purpose
 
-Use the shell as a primary operating interface, not only as a file manager.
+This skill is the authoritative operating practice for task execution when shell and system tools are available. It provides the reusable task loop and the shell-first methods for operating the workspace, repositories, processes, network resources, and project runtimes.
+
+Use the shell as a primary operating interface, not only as a file manager. Shell-first does not mean shell-only: use the runtime's specialized browser, media, or other tools when they are the correct interface for that part of the task.
 
 This skill covers the Unix command-line style of working: orient yourself, inspect state, search precisely, compose small tools, transform streams, edit files, manage processes, inspect network resources, run project commands, and verify results.
 
 Filesystem operations are one category inside this practice. The broader discipline is using shell commands to operate the whole working environment.
 
-This skill assumes the agent has a shell execution tool such as `run_bash`. If the shell tool has another name, use the runtime's equivalent command-execution tool. If no shell execution tool is available, do not pretend to perform shell-based work.
+This skill assumes the agent has a shell execution tool such as `run_bash`. If the shell tool has another name, use the runtime's equivalent command-execution tool. If no shell execution tool is available, use the best available workspace-inspection method and do not pretend to perform shell-based work.
 
-## Core Operating Loop
+## Entry Procedure
+
+- At the start of each task, establish the active workspace. When a shell or command-execution tool is available, the first tool action must run `pwd`.
+- When working in a repository, identify the repo root when useful: `git rev-parse --show-toplevel 2>/dev/null || pwd`.
+- Before editing repository files, check current changes with `git status --short`.
+- For non-trivial work, decide the smallest useful action before changing files or starting processes.
+
+## Core Task Loop
+
+After entry orientation, work iteratively:
+
+1. Understand the user's goal.
+2. Inspect the relevant context with the appropriate tool.
+3. Create a concise plan for non-trivial work.
+4. Execute the next useful action.
+5. Analyze the result.
+6. Adjust the plan when needed.
+7. Verify the final result.
+8. Report the outcome clearly.
+
+## Preamble Messages
+
+Before using tools, briefly tell the user what you are about to do. Keep preambles to 1-2 sentences and group related actions together.
+
+Examples:
+
+- “I’ll first confirm the workspace with `pwd`, then inspect the relevant files.”
+- “I’ve found the likely config; now I’ll patch it and verify the result.”
+- “Next I’ll run the local checks to confirm the change behaves correctly.”
+
+## Communication
+
+- Use a concise, direct, and friendly tone.
+- Keep the user informed of meaningful actions without unnecessary detail.
+- Prioritize actionable guidance, clear assumptions, environment requirements, and next steps.
+
+## Planning
+
+For non-trivial tasks, maintain a clear plan. A good plan has meaningful, verifiable steps and changes as new information appears.
+
+Use a plan when:
+
+- The task has multiple phases.
+- The work may take several actions.
+- There are dependencies or uncertainty.
+- Verification matters.
+
+## General Operating Rules
+
+- Use the tools provided by the runtime and choose the interface that fits the operation.
+- For shell-capable work, prefer the shell-first procedure in this skill.
+- For repository and text-file work, prefer the shell tool over dedicated file tools when both are available; use specialized tools for browser, media, or other domains when they are the correct interface.
+- When modifying files or system state, preserve unrelated user changes and complete paths discovered in context.
+- Solve the root cause, not only the surface symptom.
+- Keep changes minimal and focused.
+- Match the style and structure of the existing project.
+- Avoid destructive actions unless the user explicitly asks for them.
+- Do not commit changes or create branches unless explicitly requested.
+- Verify work with relevant checks whenever feasible. Report the verification performed, or clearly say when no automated check was available.
+
+## Shell-First Operating Loop
 
 1. Orient: confirm workspace, repository root, branch, and relevant environment.
 2. Inspect: read only the context needed for the task.
@@ -25,13 +87,6 @@ This skill assumes the agent has a shell execution tool such as `run_bash`. If t
 6. Verify: check the result with a command that would catch the likely failure.
 7. Report: summarize changed state, verification, and remaining caveats.
 
-## Entry Procedure
-
-- At the start of a new task, establish the active workspace with `pwd` unless the host agent prompt has already required and performed it.
-- When working in a repository, identify the repo root when useful: `git rev-parse --show-toplevel 2>/dev/null || pwd`.
-- Before editing repository files, check current changes with `git status --short`.
-- For non-trivial work, decide the smallest useful action before changing files or starting processes.
-
 ## Operating Rules
 
 - Inspect first, make the smallest useful change, then verify.
@@ -40,8 +95,6 @@ This skill assumes the agent has a shell execution tool such as `run_bash`. If t
 - Compose small commands instead of hiding work in large opaque one-liners.
 - Keep command output bounded. Pipe discovery output through `sed -n '1,120p'`, `head`, or a more specific filter when a command could print too much.
 - Quote paths and variables. Assume file names may contain spaces.
-- Preserve existing user work. Never discard or overwrite unrelated changes.
-- Avoid destructive operations unless the user explicitly asked for them.
 - Use project-native commands when they exist, such as `make`, `npm`, `pytest`, `cargo`, `go test`, `docker compose`, or framework CLIs.
 
 ## Command Families
@@ -67,7 +120,7 @@ Use the right command family for the job:
 
 ## Orientation
 
-- Use `pwd` to confirm the active directory.
+- Use `pwd` to confirm the active directory after the general entry procedure.
 - Use `git rev-parse --show-toplevel` when repository-relative paths matter.
 - Use `git status --short` before editing tracked files.
 - Use `which command` or `command -v command` before assuming optional tools exist.
