@@ -8,7 +8,6 @@
     "list_tabs",
     "navigate_to",
     "open_tab",
-    "read_page",
     "run_script",
     "screenshot",
     "get_process_output",
