@@ -14,7 +14,7 @@ Detailed operating rules, artifacts, validation, and recovery belong in each mem
 
 - Requirements Engineering owns intended behavior, acceptance criteria, supporting requirement evidence, and user approval.
 - Software Engineering owns target architecture, architecture review, implementation, source review, executable validation, delivery, and finalization.
-- The team consumes approved upstream artifacts and does not silently rewrite them. A material requirement gap returns through `architecture_designer` to the delegating Requirements Engineer or standalone caller.
+- The team consumes approved upstream artifacts and does not silently rewrite them. A material requirement gap returns through `architecture_designer` to the delegating task owner or standalone caller.
 - The coordinator rename preserves the full existing architecture-design capability.
 
 ## Entry Contract
@@ -82,7 +82,7 @@ Pass notifications complement rather than replace the primary forward handoff.
 ## Recovery And Task Boundary
 
 - Internal `Local Fix`, `Design Impact`, and test/review reroutes continue through `send_message_to` under the owning skills.
-- Requirement gaps route to `architecture_designer`, which does not edit approved requirements. In a delegated run it submits the precise gap through the task-result lifecycle so the Requirements Engineer can update and re-approve requirements before requesting revision on the same task.
+- Requirement gaps route to `architecture_designer`, which does not edit approved requirements. In a delegated run it submits the precise gap through the task-result lifecycle so the review owner can coordinate an updated and re-approved requirements package before requesting revision on the same software task.
 - Parent revision instructions return to the task-scoped `architecture_designer`, which routes them to the correct specialist without creating a duplicate task.
 - `delivery_engineer` must not send a successful terminal message before explicit user testing/verification and successful finalization.
 - `architecture_designer` must not submit a successful task result before receiving and checking that terminal delivery package.

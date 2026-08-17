@@ -28,13 +28,17 @@ The paper research assistant is a standalone agent for the common paper-reading 
 
 The skill optimizer is a lightweight standalone agent that uses the shared `skill-optimizer` skill to review and improve existing skills for structure, grounding, clarity, consistency, and economy while preserving their intended behavior and quality gates.
 
+## Software Development Department
+
+The software development department is the end-to-end software entrypoint. `head_of_software_development` coordinates the separately defined Requirements Engineering and Software Engineering teams through tracked task delegation and result review. The department references both teams as shared peer definitions; their folders, agents, skills, and specialist ownership remain independent.
+
 ## Requirements Engineering Team
 
-The requirements engineering team turns an initial product or technical request into an evidence-grounded, explicitly user-approved requirements package. `requirements_engineer` owns current and desired behavior, scope, acceptance criteria, conditional prototype coordination, and requirement revision history. For each independent architecture-ready package, it delegates one tracked task to `software_engineering_team` and reviews the returned result.
+The requirements engineering team turns an initial product or technical request into an evidence-grounded, explicitly user-approved, architecture-ready requirements package. `requirements_engineer` owns current and desired behavior, scope, acceptance criteria, conditional prototype coordination, and requirement revision history. The team returns that package directly in standalone use or submits it to its delegating review owner when running as a task-scoped team.
 
 ## Software Engineering Team
 
-The software engineering team starts with `architecture_designer` and consumes an approved requirements package. It preserves the full technical design workflow, then proceeds through independent architecture review, implementation, source review, API/E2E validation, proportional test-code review, and delivery. After the user verifies the result and `delivery_engineer` completes finalization, Delivery Engineer returns the terminal package to Architecture Designer, which submits the delegated team result to Requirements Engineer when running as a task-scoped team.
+The software engineering team starts with `architecture_designer` and consumes an approved requirements package. It preserves the full technical design workflow, then proceeds through independent architecture review, implementation, source review, API/E2E validation, proportional test-code review, and delivery. After the user verifies the result and `delivery_engineer` completes finalization, Delivery Engineer returns the terminal package to Architecture Designer, which submits the delegated team result to the delegating review owner when running as a task-scoped team.
 
 ## Research Engineering Team
 

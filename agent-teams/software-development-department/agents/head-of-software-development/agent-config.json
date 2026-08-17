@@ -1,0 +1,12 @@
+{
+  "toolNames": [
+    "read_file",
+    "run_bash",
+    "delegate_task",
+    "review_task_result",
+    "submit_task_result"
+  ],
+  "skillNames": [
+    "head-of-software-development"
+  ]
+}

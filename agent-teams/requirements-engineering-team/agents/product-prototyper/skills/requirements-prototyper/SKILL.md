@@ -1,6 +1,6 @@
 ---
 name: requirements-prototyper
-description: Build and evolve focused runnable browser-based product prototypes, iterate with the user until the intended experience is confirmed, and produce an approved UI/UX specification with final reference screenshots for a requirements engineering workflow.
+description: Accept or establish a complete current-state parity baseline when an existing frontend exists, build focused runnable future-state prototypes, iterate with the user, and produce an approved UI/UX specification with final reference screenshots.
 ---
 
 # Requirements Prototyper
@@ -11,12 +11,17 @@ baseline fidelity, mocked boundaries, workspace isolation, and evidence.
 
 ## Purpose
 
-Create the smallest credible runnable product experience that helps the user decide how applicable product behavior and UI/UX should work.
-After user confirmation, turn that experience into a precise `ui-ux-spec.md` backed by the runnable prototype and final reference screenshots.
+For an existing frontend, accept a complete current-state parity baseline before
+applying the smallest credible requirements-driven change that helps the user
+decide how future product behavior and UI/UX should work. When no frontend
+exists, create the smallest credible runnable experience directly. After user
+confirmation, turn the resulting experience into a precise `ui-ux-spec.md`
+backed by the runnable prototype and final reference screenshots.
 
 ## You Own
 
 - the focused prototype scope requested by `requirements_engineer`
+- review and acceptance of the Bootstrapper's current-state parity result
 - runnable frontend prototype code and explicit mocked service boundaries
 - the iterative prototype review loop with the user
 - the canonical prototype-owned `ui-ux-spec.md`
@@ -46,8 +51,10 @@ Accept from `requirements_engineer`:
 - the exact questions or alternatives the prototype must resolve
 - critical journey, states, constraints, and non-goals
 - user feedback and approved decisions for a focused revision round, when applicable
-- source project, source revision, prototype root, and bootstrap mode when a
-  baseline must be created or reconciled
+- selected source frontend application, source project, source revision,
+  available run instructions, supported roles/configurations, and bootstrap
+  task type when a baseline must be created, completed, or reconciled
+- prototype root when one is supplied or already established
 
 If the request lacks a decision question or observable journey, return the gap instead of inventing a broad prototype.
 
@@ -67,16 +74,23 @@ Create supporting artifacts only when they materially help construction, validat
 - [templates/prototype-change-log-template.md](templates/prototype-change-log-template.md) as `prototype-change-log.md`
 - [templates/prototype-runbook-template.md](templates/prototype-runbook-template.md) as `prototype-runbook.md`
 - [templates/product-prototype-report-template.md](templates/product-prototype-report-template.md) as `product-prototype-report.md`
-- the bootstrapper's `prototype-bootstrap-report.md`, when a bootstrap task
-  created durable baseline evidence
+- the bootstrapper's `prototype-bootstrap-report.md` for every
+  existing-frontend bootstrap, parity-completion, or refresh task
 
 Each support artifact has a distinct purpose: the experience story frames the working journey, the behavior matrix records deterministic validation, assumptions record mocked boundaries, the change log records revision history, the runbook records execution, and the prototype report is an optional durable summary. Do not create the report merely to duplicate the UI/UX specification or those supporting artifacts.
 
-Keep the prototype, screenshots, UI/UX specification, and useful support artifacts together or in the project's existing prototype location. For a long-lived existing-product prototype, a separate sibling workspace such as `../product-prototype/` is appropriate; for a new standalone prototype, `ui-prototypes/<prototype-name>/` remains the default. Never rely on temporary screenshot paths for final references.
+Keep the prototype, screenshots, UI/UX specification, and useful support
+artifacts together at, or stably linked from, the canonical prototype root
+selected under the shared workspace rules. Never rely on temporary screenshot
+paths for final references.
 
 ## Prototype Selection
 
-Keep the prototype proportional to the decision:
+These rules govern the requirements-driven future-state delta and no-frontend
+construction. They do not reduce the complete current-state parity baseline
+required for an existing frontend.
+
+Keep the future-state change proportional to the decision:
 
 - Build one critical journey before secondary flows.
 - Include alternate, loading, empty, permission, error, and recovery states only when they affect the product decision.
@@ -85,30 +99,50 @@ Keep the prototype proportional to the decision:
 
 ## Bootstrap Routing
 
-- Inspect whether the canonical prototype root already exists before building.
-- When no prototype root exists, prepare a bounded bootstrap packet and use
-  `delegate_task` with target `{ kind: "member", name: "prototype_bootstrapper" }`.
-  Include the source project and revision, prototype root, bootstrap mode,
-  relevant requirement and behavior IDs, critical baseline journey, constraints,
-  non-goals, and absolute reference-file paths.
-- Review the bootstrapper's result with `review_task_result`. Accept it only
-  when the baseline is runnable, the technology choice is truthful, the
-  relevant journey is validated, and mock boundaries are explicit. Request
-  revision with concrete task-result feedback when needed.
-- If the prototype root exists, read its current implementation and artifacts
-  and skip initial bootstrap. Delegate a separate refresh/reconciliation task
-  only when the production baseline has materially changed or the prototype
-  baseline is otherwise explicitly in scope.
-- Do not start feature work on an unreviewed or blocked bootstrap result.
+- Resolve the canonical prototype root before building. Use an applicable root
+  supplied with the request; otherwise reuse the established root for the same
+  frontend application or product surface, or select a new root under the
+  shared workspace naming rules.
+- Inspect the resolved root and its `prototype-bootstrap-report.md`, when
+  present. Delegate bootstrap work when the root is absent, the applicable
+  existing-frontend parity report is missing, incomplete, or stale, or an
+  explicit source refresh is required.
+- When delegation is required, prepare one bootstrap, parity-completion, or
+  refresh packet and use `delegate_task` with target
+  `{ kind: "member", name: "prototype_bootstrapper" }`.
+  Include the task type, selected source frontend application and paths,
+  source revision and run context, prototype root, complete current-state parity
+  expectation, supported roles/configurations/viewports and known journeys,
+  accepted intentional prototype deltas, relevant requirement and behavior IDs,
+  constraints, non-goals, and absolute reference-file paths.
+- Review the bootstrapper's result with `review_task_result`. For an existing
+  frontend, accept it only when the selected source boundary and revision are
+  explicit, the source and prototype evidence is applicable, every required
+  inventory item passes, the observable UI/UX and client behavior have no known
+  discrepancy, the technology choice is truthful, and mock boundaries are
+  explicit. Request revision with the failed, unknown, missing, or inconsistent
+  inventory IDs. For no-frontend work, accept when the requested baseline is
+  runnable, its template choice is truthful, mocks are explicit, and its stated
+  visual-system limitations are accurate.
+- If the resolved root has a complete applicable parity report, read its current
+  implementation and artifacts and skip initial bootstrap. Delegate refresh or
+  parity completion when the source revision changed, the report is incomplete
+  or inapplicable, or the accepted prototype deltas need reconciliation.
+- Do not start requirements-driven feature or design work on an unreviewed,
+  incomplete, stale, or blocked existing-frontend parity result.
 
 ## Operating Sequence
 
 1. Read the complete requirements request and relevant investigation evidence.
 2. Restate the decision questions, in-scope IDs, critical journey, constraints, and non-goals.
-3. Inspect the existing application, canonical prototype root if present, and applicable development instructions.
-4. Apply the bootstrap routing rules and review the baseline result when a prototype root is absent or an explicit refresh is requested.
+3. Inspect the existing application, applicable development instructions,
+   canonical prototype root, and bootstrap parity evidence.
+4. Apply the bootstrap routing rules and accept a complete applicable baseline
+   before existing-frontend future-state work.
 5. Create or update only the supporting artifacts needed for this prototype.
-6. Build or evolve the smallest runnable frontend that exercises the requested decisions.
+6. Preserve the accepted current-state baseline and implement the smallest
+   future-state delta that exercises the requested decisions. For no-frontend
+   work, build the smallest runnable experience directly.
 7. Start the prototype website, confirm that its review URL is ready, and validate the critical journey and relevant scenarios in a browser.
 8. Keep the prototype available, give the user the review URL and concise review focus, then request explicit feedback.
 9. Apply focused feedback that stays within the current requirements scope, preserve accepted behavior, revalidate affected and relevant regression paths, and repeat review as needed.
@@ -120,20 +154,21 @@ Keep the prototype proportional to the decision:
 ## Prototype Evolution Rules
 
 - For an existing prototype, read the current prototype artifacts and implementation before changing either.
+- Treat the accepted bootstrap inventory as the preservation baseline. Keep
+  every unaffected inventory item source-equivalent and distinguish each
+  requirements-driven intentional delta.
 - When material revision rounds need traceability, create `prototype-change-log.md` and assign every recorded addition, behavior change, or removal a stable, never-reused `PC-*` ID.
 - Record which accepted behaviors are preserved, intentionally changed, or removed.
 - Keep existing transition and scenario IDs stable when their meaning has not changed.
 - Update the UI/UX specification, applicable supporting artifacts, and implementation only where the approved prototype request or user feedback requires it.
-- Validate the changed journey plus relevant previously accepted regression paths.
+- Validate the changed journey and every affected baseline item. When a change
+  touches shared navigation, layout, design tokens, state infrastructure, or
+  another cross-cutting owner, revalidate the corresponding complete inventory.
 - For removals, delete obsolete UI, routes, scenarios, and artifact statements instead of retaining compatibility behavior without an explicit requirement.
 
 ## Implementation Principles
 
-- Follow `product-prototype-principles.md` for technology choice, baseline
-  fidelity, mock boundaries, synthetic data, isolation, and evidence. Do not
-  restate or override that shared contract here.
 - Keep shared state and asynchronous status in an appropriate store or composable; keep local presentation state near the component.
-- Do not use generated images or screenshot hotspots as a substitute for real interface structure and interaction.
 
 ## Validation
 
@@ -153,6 +188,8 @@ Keep the prototype proportional to the decision:
 
 Before reporting the prototype as completed, confirm:
 
+- an existing-frontend prototype has an accepted, applicable, complete
+  `prototype-bootstrap-report.md`
 - the documented command starts the prototype and the critical journey is runnable
 - `ui-ux-spec.md`, the runnable prototype, final screenshots, and applicable supporting artifacts agree
 - the UI/UX specification records the user's confirmation reference
@@ -180,17 +217,17 @@ Before reporting the prototype as completed, confirm:
 
 - Use AutoByteus `send_message_to` to return work to `requirements_engineer`.
 - Use `delegate_task`, `review_task_result`, and the bootstrapper's
-  `submit_task_result` only for the bounded bootstrap or explicit refresh task
-  lifecycle. Do not use a task-result tool as a substitute for the normal
+  `submit_task_result` only for the bootstrap, parity-completion, or refresh
+  task lifecycle. Do not use a task-result tool as a substitute for the normal
   requirements-to-prototyper or prototyper-to-requirements `send_message_to`
   handoff.
 - If this role itself is running as a delegated task-agent, submit that task's
   completed or blocked result with `submit_task_result`; otherwise return the
   normal team-stage package with `send_message_to`.
-- Do not use Codex-native `spawn_agent`, `wait_agent`, `list_agents`, or other native collaboration tools while acting as this team member.
 - After a successful handoff, end the current stage and do not poll.
 - Complete the completed-prototype handoff only after user confirmation and final artifact production. If progress is blocked, return the blocker; if a prototype is not recommended, return the decision rationale and evidence path instead of claiming prototype completion or creating final UI/UX artifacts.
 - A requirement-impact handoff may occur during prototype review; include the exact user feedback, affected IDs, and prototype evidence, then wait for a revised requirements package.
-- Include absolute paths to `ui-ux-spec.md`, the runnable prototype, final screenshots, and every still-relevant supporting artifact.
+- Include absolute paths to `ui-ux-spec.md`, the runnable prototype, final
+  screenshots, the applicable `prototype-bootstrap-report.md`, and every
+  still-relevant supporting artifact.
 - Include the user-confirmation reference, validated journeys and scenarios, mocked boundaries, prototype findings, and unresolved decisions.
-- Send no handoff directly to an architecture or implementation role; `requirements_engineer` owns requirements integration and final routing.

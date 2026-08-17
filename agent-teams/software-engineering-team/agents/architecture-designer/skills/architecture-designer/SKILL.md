@@ -133,7 +133,7 @@ Do not create or update `implementation-handoff.md`; `implementation_engineer` o
 ## Routing And Recovery
 
 - `Design Impact`: update the design spec and affected architecture supplements, append the next `AD-REV-*`, and return the complete package to `architecture_reviewer`.
-- `Requirement Gap`: do not modify the approved requirements. When running as a delegated task-team ingress coordinator, submit a precise blocked result with the conflicting or missing IDs, evidence, and paths so `requirements_engineer` can review it. In standalone use, return the blocker to the user or calling workflow.
+- `Requirement Gap`: do not modify the approved requirements. When running as a delegated task-team ingress coordinator, submit a precise blocked result with the conflicting or missing IDs, evidence, and paths so the delegating review owner can coordinate an approved requirements revision. In standalone use, return the blocker to the user or calling workflow.
 - `Unclear`: investigate enough to classify it. If the unresolved decision belongs to product intent, handle it as a requirement gap; otherwise resolve or record the architecture-owned blocker.
 - On a parent `request_revision`, read the revision instruction and updated references, then route the work to the correct specialist. Continue the same task-team execution; do not create a duplicate parent task.
 

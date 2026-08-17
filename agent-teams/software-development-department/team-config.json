@@ -1,0 +1,24 @@
+{
+  "coordinatorMemberName": "head_of_software_development",
+  "avatarUrl": null,
+  "members": [
+    {
+      "memberName": "head_of_software_development",
+      "ref": "head-of-software-development",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "requirements_engineering_team",
+      "ref": "requirements-engineering-team",
+      "refType": "agent_team",
+      "refScope": "shared"
+    },
+    {
+      "memberName": "software_engineering_team",
+      "ref": "software-engineering-team",
+      "refType": "agent_team",
+      "refScope": "shared"
+    }
+  ]
+}
