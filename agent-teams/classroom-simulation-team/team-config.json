@@ -14,5 +14,21 @@
       "refType": "agent",
       "refScope": "team_local"
     }
+  ],
+  "handoffs": [
+    {
+      "from": "/professor",
+      "to": "/student",
+      "rules": [
+        "When the lesson, question, exercise, or clarification request requires a student response."
+      ]
+    },
+    {
+      "from": "/student",
+      "to": "/professor",
+      "rules": [
+        "When the student has prepared an answer, question, misunderstanding, or reflection for the professor to address."
+      ]
+    }
   ]
 }

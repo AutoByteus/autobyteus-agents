@@ -25,5 +25,42 @@
       "refType": "agent",
       "refScope": "team_local"
     }
+  ],
+  "handoffs": [
+    {
+      "from": "/promo_director",
+      "to": "/visual_director",
+      "rules": [
+        "When product positioning, script, voiceover timing, storyboard, CTA, and visual requirements are approved for asset production."
+      ]
+    },
+    {
+      "from": "/visual_director",
+      "to": "/visual_reviewer",
+      "rules": [
+        "When the truthful promo visuals and their source or edit records are complete and ready for independent review."
+      ]
+    },
+    {
+      "from": "/visual_reviewer",
+      "to": "/visual_director",
+      "rules": [
+        "When visuals need correction for truthfulness, UI readability, callout accuracy, aspect ratio, sensitive data, or no-added-text compliance."
+      ]
+    },
+    {
+      "from": "/visual_reviewer",
+      "to": "/promo_video_producer",
+      "rules": [
+        "When the visual package passes review and is ready for audio, captions, motion assembly, and final export."
+      ]
+    },
+    {
+      "from": "/promo_video_producer",
+      "to": "/promo_director",
+      "rules": [
+        "When final assembly, optional captions or audio-led segments, export, and QA are complete and the coordinator needs delivery status."
+      ]
+    }
   ]
 }
