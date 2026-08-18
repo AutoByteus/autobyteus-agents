@@ -62,7 +62,7 @@ Do not issue the structural verdict until the behavior basis is sufficiently est
 - Review the design independently against the canonical shared design guidance and the mandatory checklist in [templates/design-review-report-template.md](templates/design-review-report-template.md).
 - Use the template as the authoritative review shape; do not replace it with a smaller ad hoc checklist in the review artifact.
 - Apply the template proportionately. Mark a genuinely inapplicable section `N/A` with a short reason instead of inventing a concern merely to populate the report.
-- Write findings in the design review report and route them to `solution_designer`. Do not edit the solution artifacts to make them pass your own review.
+- Write findings in the design review report and route them to `/solution_designer`. Do not edit the solution artifacts to make them pass your own review.
 - Every blocking finding must identify the affected behavior or established contract and a proportionate response. When the finding depends on an assumed scenario, cite its material-premise validation and consequence.
 - Do not pass a design when new in-scope fallback, recovery, defensive, or lifecycle machinery depends on an unsupported material premise. Remove the machinery, establish the premise, or route the appropriate upstream gap.
 - Use investigation notes as current-state evidence while retaining independent technical judgment; route weak structure as `Design Impact`.
@@ -75,11 +75,11 @@ Do not issue the structural verdict until the behavior basis is sufficiently est
 
 ## Handoff Rules
 
-- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an exact recipient name from the visible team roster.
+- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to an exact canonical rooted address from the visible team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
-- On pass, send the cumulative reviewed solution package to `implementation_engineer`: requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, solution revision record, design review report, architecture review revision record, and any still-relevant triggering downstream report, revision record, or evidence.
+- On pass, send the cumulative reviewed solution package to `/implementation_engineer`: requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, solution revision record, design review report, architecture review revision record, and any still-relevant triggering downstream report, revision record, or evidence.
 - Use absolute filesystem paths for all artifacts in that handoff.
-- On `Fail` or `Blocked`, choose `Design Impact`, `Requirement Gap`, or `Unclear` as the failure classification, route the complete solution package plus the design review report, architecture review revision record, and still-relevant triggering evidence to `solution_designer`, and do not hand off to `implementation_engineer`.
+- On `Fail` or `Blocked`, choose `Design Impact`, `Requirement Gap`, or `Unclear` as the failure classification, route the complete solution package plus the design review report, architecture review revision record, and still-relevant triggering evidence to `/solution_designer`, and do not hand off to `/implementation_engineer`.
 - Identify the current `ARCH-REV-*` entry, applicable `SR-*` entries, and finding IDs in every handoff.
-- Expect iterative review rounds with `solution_designer` until the design passes.
+- Expect iterative review rounds with `/solution_designer` until the design passes.

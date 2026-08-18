@@ -166,15 +166,15 @@ Always produce all three mandatory core artifacts:
 
 ## Handoff Rules
 
-- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an exact recipient name from the visible team roster.
+- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to an exact canonical rooted address from the visible team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
 - Present the requirements doc and every supplement that defines intended behavior to the user for approval before treating them as locked design input.
 - Keep the investigation notes current alongside the requirements doc whenever the task depends on internal or external investigation.
 - Requirements approval is not permission to keep working on the current shared branch. Before producing the design spec after approval, verify again that the authoritative task workspace is the dedicated ticket worktree/branch for git-repository tasks.
 - Once the requirements basis is approved, produce the design spec before handing work downstream.
-- Send the full solution package to `architecture_reviewer`: the three mandatory core artifacts, every still-relevant supplemental task artifact, and `solution-revision-record.md`.
-- When handing that package to `architecture_reviewer`, include absolute filesystem paths for every artifact, the current `SR-*` entry, the approval state of the requirements basis and applicable supplements, the key scope summary, bootstrap context when relevant, open risks, and the next expected decision.
+- Send the full solution package to `/architecture_reviewer`: the three mandatory core artifacts, every still-relevant supplemental task artifact, and `solution-revision-record.md`.
+- When handing that package to `/architecture_reviewer`, include absolute filesystem paths for every artifact, the current `SR-*` entry, the approval state of the requirements basis and applicable supplements, the key scope summary, bootstrap context when relevant, open risks, and the next expected decision.
 - If downstream specialists report `Requirement Gap` or `Unclear`, revise the requirements doc, investigation notes, affected supplements, and any affected design sections, append the next `SR-*` entry, and resend the solution package with the triggering report, revision record, or evidence.
 - If downstream specialists report `Design Impact`, revise the design spec, affected supplements, and any affected upstream rationale, append the next `SR-*` entry, and resend the package with the triggering report, revision record, or evidence.
 - Expect iterative design-review rounds with `architecture_reviewer` until the design passes review.
