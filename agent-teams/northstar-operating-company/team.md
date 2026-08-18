@@ -14,6 +14,14 @@ The top-level team is intentionally modeled like a real leadership team: the CEO
 - `chief_of_staff` owns synthesis, decision logs, meeting prep, follow-up tracking, and cross-functional coordination.
 - `cto`, `cpo`, `cmo`, `cro`, `coo`, `cfo`, and `chief_people_officer` represent executive-level department leadership.
 - `engineering_org`, `product_org`, `marketing_org`, `revenue_org`, `operations_org`, and `finance_people_org` are nested teams for department-level diagnosis, planning, and execution detail.
+- `finance_people_org` is an intentionally lean shared-services group: the CFO and Chief People Officer remain the executive owners, while `vp_finance` coordinates operational finance, people, talent, and legal/compliance work.
+
+## Handoff Protocol
+
+- Each member owns the responsibility listed in its role definition; do not silently absorb a downstream specialist's work.
+- When the responsibility is complete or blocked, call `get_handoff_rules` and use the returned conditional rules as the routing table.
+- Send the result with `send_message_to` to the exact returned `recipient_address`, including status, decision or artifact, assumptions, open risks, and the next action.
+- Do not invent a recipient from memory or hard-code a downstream route. If no returned rule applies, finish with a clear result and leave the next decision to the coordinator.
 
 ## Example Routing
 

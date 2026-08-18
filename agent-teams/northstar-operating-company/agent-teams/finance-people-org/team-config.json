@@ -57,6 +57,27 @@
       "rules": [
         "When legal or compliance findings, practical guardrails, and unresolved risks are documented."
       ]
+    },
+    {
+      "from": "/controller",
+      "to": "/legal_compliance_lead",
+      "rules": [
+        "When a control, reporting, accounting, or financial-policy question has a material compliance implication."
+      ]
+    },
+    {
+      "from": "/people_ops_lead",
+      "to": "/legal_compliance_lead",
+      "rules": [
+        "When an employee policy, compensation process, privacy issue, or people-risk question needs legal/compliance guardrails."
+      ]
+    },
+    {
+      "from": "/talent_acquisition_lead",
+      "to": "/legal_compliance_lead",
+      "rules": [
+        "When hiring terms, worker classification, candidate data, or recruiting policy needs legal/compliance review."
+      ]
     }
   ],
   "members": [

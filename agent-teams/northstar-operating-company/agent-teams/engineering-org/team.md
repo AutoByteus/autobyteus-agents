@@ -15,6 +15,12 @@ This nested team simulates Northstar's engineering department.
 - Technical risk assessment and mitigation plans.
 - Translating product/company priorities into concrete engineering execution.
 
+## Handoff Protocol
+
+- Each member stays within its engineering ownership and returns a decision-ready package rather than taking over another specialist's responsibility.
+- On completion or blockage, call `get_handoff_rules`, choose the matching condition, and use `send_message_to` with the exact returned `recipient_address`.
+- Include the implementation or risk status, evidence, assumptions, open risks, and next action in every handoff; do not invent a downstream recipient.
+
 ## Working Agreement
 
 - Prefer specific plans over generic engineering advice.
