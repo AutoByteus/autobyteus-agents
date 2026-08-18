@@ -1,6 +1,64 @@
 {
   "coordinatorMemberName": "vp_product",
   "avatarUrl": null,
+  "handoffs": [
+    {
+      "from": "/vp_product",
+      "to": "/growth_product_manager",
+      "rules": [
+        "When growth problems, funnel hypotheses, experiments, or adoption work need specialist ownership."
+      ]
+    },
+    {
+      "from": "/vp_product",
+      "to": "/platform_product_manager",
+      "rules": [
+        "When platform-product investments, integrations, administration, or sequencing tradeoffs need specialist ownership."
+      ]
+    },
+    {
+      "from": "/vp_product",
+      "to": "/product_design_lead",
+      "rules": [
+        "When product flows, interaction design, or design-system work needs specialist ownership."
+      ]
+    },
+    {
+      "from": "/vp_product",
+      "to": "/ux_research_lead",
+      "rules": [
+        "When discovery questions, customer evidence, or research synthesis needs specialist ownership."
+      ]
+    },
+    {
+      "from": "/growth_product_manager",
+      "to": "/vp_product",
+      "rules": [
+        "When the growth hypothesis, experiment design, evidence, and learning plan are complete."
+      ]
+    },
+    {
+      "from": "/platform_product_manager",
+      "to": "/vp_product",
+      "rules": [
+        "When the platform-product recommendation, customer value case, dependencies, and sequencing tradeoffs are complete."
+      ]
+    },
+    {
+      "from": "/product_design_lead",
+      "to": "/vp_product",
+      "rules": [
+        "When the product-flow, interaction-design, or design-system package is complete."
+      ]
+    },
+    {
+      "from": "/ux_research_lead",
+      "to": "/vp_product",
+      "rules": [
+        "When the research plan, evidence synthesis, confidence level, and unresolved questions are complete."
+      ]
+    }
+  ],
   "members": [
     {
       "memberName": "vp_product",

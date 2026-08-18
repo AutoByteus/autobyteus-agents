@@ -5,7 +5,8 @@
     "edit_file",
     "search_web",
     "read_url",
-    "send_message_to"
+    "send_message_to",
+    "get_handoff_rules"
   ],
   "skillNames": [],
   "inputProcessorNames": [],

@@ -1,6 +1,71 @@
 {
   "coordinatorMemberName": "vp_engineering",
   "avatarUrl": null,
+  "handoffs": [
+    {
+      "from": "/vp_engineering",
+      "to": "/platform_engineering_manager",
+      "rules": [
+        "When platform, reliability, or internal engineering enablement work needs specialist execution."
+      ]
+    },
+    {
+      "from": "/vp_engineering",
+      "to": "/product_engineering_manager",
+      "rules": [
+        "When product engineering delivery planning, sequencing, or staffing work needs specialist execution."
+      ]
+    },
+    {
+      "from": "/vp_engineering",
+      "to": "/infrastructure_security_lead",
+      "rules": [
+        "When infrastructure, security, resilience, or operational risk needs specialist assessment."
+      ]
+    },
+    {
+      "from": "/vp_engineering",
+      "to": "/qa_release_manager",
+      "rules": [
+        "When release readiness, test strategy, or quality risk needs specialist assessment."
+      ]
+    },
+    {
+      "from": "/platform_engineering_manager",
+      "to": "/vp_engineering",
+      "rules": [
+        "When the platform or reliability assessment and recommended execution plan are complete."
+      ]
+    },
+    {
+      "from": "/product_engineering_manager",
+      "to": "/vp_engineering",
+      "rules": [
+        "When the product engineering delivery plan, staffing view, and implementation risks are complete."
+      ]
+    },
+    {
+      "from": "/product_engineering_manager",
+      "to": "/qa_release_manager",
+      "rules": [
+        "When an implementation plan or build is ready for release validation and quality review."
+      ]
+    },
+    {
+      "from": "/infrastructure_security_lead",
+      "to": "/vp_engineering",
+      "rules": [
+        "When infrastructure, security, resilience, or operational-risk findings and mitigations are complete."
+      ]
+    },
+    {
+      "from": "/qa_release_manager",
+      "to": "/vp_engineering",
+      "rules": [
+        "When release validation, test evidence, and residual quality risks are complete."
+      ]
+    }
+  ],
   "members": [
     {
       "memberName": "vp_engineering",

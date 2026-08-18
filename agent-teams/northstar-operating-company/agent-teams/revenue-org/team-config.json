@@ -1,6 +1,50 @@
 {
   "coordinatorMemberName": "vp_sales",
   "avatarUrl": null,
+  "handoffs": [
+    {
+      "from": "/vp_sales",
+      "to": "/account_executive_manager",
+      "rules": [
+        "When sales execution, pipeline generation, forecast quality, or account coaching needs specialist ownership."
+      ]
+    },
+    {
+      "from": "/vp_sales",
+      "to": "/customer_success_lead",
+      "rules": [
+        "When onboarding, retention, expansion, or customer-success risk needs specialist ownership."
+      ]
+    },
+    {
+      "from": "/vp_sales",
+      "to": "/partnerships_lead",
+      "rules": [
+        "When ecosystem, partner-fit, mutual-value, or partnership execution needs specialist ownership."
+      ]
+    },
+    {
+      "from": "/account_executive_manager",
+      "to": "/vp_sales",
+      "rules": [
+        "When the sales-motion, pipeline, forecast, account-coaching, and conversion-risk analysis is complete."
+      ]
+    },
+    {
+      "from": "/customer_success_lead",
+      "to": "/vp_sales",
+      "rules": [
+        "When the onboarding, retention, expansion, customer-health, or success-risk plan is complete."
+      ]
+    },
+    {
+      "from": "/partnerships_lead",
+      "to": "/vp_sales",
+      "rules": [
+        "When the partnership-fit, mutual-value, execution-cost, and success-metric recommendation is complete."
+      ]
+    }
+  ],
   "members": [
     {
       "memberName": "vp_sales",
