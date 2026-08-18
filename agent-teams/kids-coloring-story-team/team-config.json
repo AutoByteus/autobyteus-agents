@@ -25,42 +25,5 @@
       "refType": "agent",
       "refScope": "team_local"
     }
-  ],
-  "handoffs": [
-    {
-      "from": "/story_activity_designer",
-      "to": "/coloring_page_illustrator",
-      "rules": [
-        "When the age-appropriate story, activity sequence, exact source text, and visual direction are approved for asset production."
-      ]
-    },
-    {
-      "from": "/coloring_page_illustrator",
-      "to": "/child_experience_reviewer",
-      "rules": [
-        "When the black-and-white line art and colored reference assets are generated, inspected, and ready for independent review."
-      ]
-    },
-    {
-      "from": "/child_experience_reviewer",
-      "to": "/coloring_page_illustrator",
-      "rules": [
-        "When story correspondence, character consistency, child safety, or printable visual quality requires illustration fixes."
-      ]
-    },
-    {
-      "from": "/child_experience_reviewer",
-      "to": "/printable_pack_producer",
-      "rules": [
-        "When the coloring assets and colored references pass review and are ready for print-package assembly."
-      ]
-    },
-    {
-      "from": "/printable_pack_producer",
-      "to": "/story_activity_designer",
-      "rules": [
-        "When the ordered black-and-white and colored-reference packages pass final mechanical QA and the coordinator needs the final delivery status."
-      ]
-    }
   ]
 }

@@ -13,21 +13,5 @@
       "refType": "agent",
       "refScope": "team_local"
     }
-  ],
-  "handoffs": [
-    {
-      "from": "/article_writer",
-      "to": "/article_reviewer",
-      "rules": [
-        "When the investigation, outline, draft, and supporting evidence are ready for critical review."
-      ]
-    },
-    {
-      "from": "/article_reviewer",
-      "to": "/article_writer",
-      "rules": [
-        "When review is complete and the writer must receive approval, required revisions, or publication-readiness risks."
-      ]
-    }
   ]
 }

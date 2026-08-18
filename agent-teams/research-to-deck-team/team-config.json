@@ -19,42 +19,5 @@
       "refType": "agent",
       "refScope": "team_local"
     }
-  ],
-  "handoffs": [
-    {
-      "from": "/deep_researcher",
-      "to": "/infographic_powerpoint_designer",
-      "rules": [
-        "When the evidence-backed research package, reasoning artifact, source index, and research limitations are ready for deck planning."
-      ]
-    },
-    {
-      "from": "/infographic_powerpoint_designer",
-      "to": "/deep_researcher",
-      "rules": [
-        "When deck production exposes a material evidence gap or unsupported claim that requires research clarification."
-      ]
-    },
-    {
-      "from": "/infographic_powerpoint_designer",
-      "to": "/deck_reviewer",
-      "rules": [
-        "When the slide plan, generated slide images, and images-only PowerPoint package are ready for fidelity and readability review."
-      ]
-    },
-    {
-      "from": "/deck_reviewer",
-      "to": "/infographic_powerpoint_designer",
-      "rules": [
-        "When slides need corrections to research fidelity, readability, visual quality, or prompt-output accuracy."
-      ]
-    },
-    {
-      "from": "/deck_reviewer",
-      "to": "/deep_researcher",
-      "rules": [
-        "When the deck passes review and the coordinator needs the final package status, evidence limits, and residual risks."
-      ]
-    }
   ]
 }

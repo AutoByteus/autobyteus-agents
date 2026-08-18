@@ -19,35 +19,5 @@
       "refType": "agent",
       "refScope": "team_local"
     }
-  ],
-  "handoffs": [
-    {
-      "from": "/presentation_director",
-      "to": "/narration_script_reviewer",
-      "rules": [
-        "When research, explanation structure, narration script, and slide storyboard are complete enough for independent review."
-      ]
-    },
-    {
-      "from": "/narration_script_reviewer",
-      "to": "/presentation_director",
-      "rules": [
-        "When the script or storyboard needs corrections to logic, evidence support, spoken clarity, pacing, or redundancy."
-      ]
-    },
-    {
-      "from": "/narration_script_reviewer",
-      "to": "/slide_video_producer",
-      "rules": [
-        "When the narration and slide storyboard pass review and are ready for visual, audio, subtitle, and video production."
-      ]
-    },
-    {
-      "from": "/slide_video_producer",
-      "to": "/presentation_director",
-      "rules": [
-        "When the narrated video exports and final QA are complete and the coordinator needs the final explanation-coherence status."
-      ]
-    }
   ]
 }

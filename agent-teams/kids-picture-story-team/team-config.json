@@ -25,42 +25,5 @@
       "refType": "agent",
       "refScope": "team_local"
     }
-  ],
-  "handoffs": [
-    {
-      "from": "/story_picture_book_author",
-      "to": "/picture_book_illustrator",
-      "rules": [
-        "When the child-safe story arc, exact page text, character direction, and approval state are locked for illustration."
-      ]
-    },
-    {
-      "from": "/picture_book_illustrator",
-      "to": "/picture_book_reviewer",
-      "rules": [
-        "When all requested picture-book pages are produced, visually inspected, and ready for continuity and safety review."
-      ]
-    },
-    {
-      "from": "/picture_book_reviewer",
-      "to": "/picture_book_illustrator",
-      "rules": [
-        "When a page needs visual, continuity, readability, safety, or exact-text correction before production."
-      ]
-    },
-    {
-      "from": "/picture_book_reviewer",
-      "to": "/book_production_editor",
-      "rules": [
-        "When every page passes review and the approved page set is ready for ordered digital or print assembly."
-      ]
-    },
-    {
-      "from": "/book_production_editor",
-      "to": "/story_picture_book_author",
-      "rules": [
-        "When exports and mechanical QA are complete and the coordinator needs the final package status and any residual risks."
-      ]
-    }
   ]
 }
