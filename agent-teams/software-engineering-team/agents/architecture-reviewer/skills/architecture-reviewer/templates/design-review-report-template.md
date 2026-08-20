@@ -36,14 +36,16 @@ Complete this understanding and alignment gate before applying the structural ch
 - Overall Basis Status (`Confirmed`/`Contradicted`/`Blocked`):
 - Approved requirements / intended behavior understood:
 - Relevant existing behavior and evidence confirmed:
+- Scope guardrail confirmed (`In-Scope Use Cases` / `Out of Scope` / `Preserved Behavior Boundary` / `Review Authority`):
 - Approved change, preserved behavior, and outside scope understood:
+- Every prospective blocking `Design Impact` finding is traceable to an approved requirement, acceptance criterion, or preserved-behavior ID (`Yes`/`No`):
 - Remaining material ambiguity, if any:
 
 | Behavior ID | Kind | Design Alignment With Approved Intent (`Pass`/`Fail`) | Approved Trigger / Contract And Current-State Evidence (`Pass`/`Fail`/`Unclear`) | Target Outcome / Path / Spine Coherence (`Pass`/`Fail`/`Unclear`) | Status (`Confirmed`/`Needs Correction`/`Unclear`) | Required Action |
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |
 
-Reuse the design spec's stable behavior IDs. Assign a provisional ID only when concrete evidence reveals a relevant supported behavior missing upstream; route it to `solution_designer` and do not pass until the upstream map is corrected. Do not create a behavior row from technical possibility alone. An overall `Confirmed` status requires every relevant row to be `Confirmed`.
+Reuse the design spec's stable behavior IDs. Assign a provisional ID only when concrete evidence reveals a relevant supported behavior missing upstream; classify that as a `Requirement Gap`, route it to `solution_designer`, and do not treat the proposed behavior as authoritative until the requirements basis receives any required user approval. Do not create a behavior row from technical possibility alone. An overall `Confirmed` status requires every relevant row to be `Confirmed` and every prospective `Design Impact` blocker to pass scope traceability.
 
 After the initial review result, complete the applicable prior-finding resolution table in `architecture-review-revision-record.md` after confirming this behavior basis and before finalizing prospective new findings.
 
@@ -205,6 +207,9 @@ Otherwise list actionable findings with:
 - type
 - finding ID
 - severity
+- approved requirement, acceptance criterion, or preserved-behavior ID protected
+- scope status (`Within Approved Scope` / `Requirement Gap — User Approval Required` / `Out-of-Scope Recommendation`)
+- whether the required update changes approved behavior (`Yes`/`No`); if `Yes`, record user-approval status
 - affected approved behavior, relevant existing behavior, journey, or established contract
 - evidence
 - material-premise validation ID and its supporting production trigger/path evidence when the finding depends on an assumed production, failure, or lifecycle scenario
@@ -213,6 +218,9 @@ Otherwise list actionable findings with:
 - recommended recipient
 
 Rules:
+- A blocking `Design Impact` finding must have scope status `Within Approved Scope` and cite its approved authority. A `Requirement Gap — User Approval Required` may block progression while clarification is unresolved, but it must not prescribe the proposed new behavior as a mandatory design correction before approval.
+- An `Out-of-Scope Recommendation` is non-blocking and belongs under residual risks, recommendations, or a separate-ticket note.
+- A reachable technical premise proves that a state can occur; it does not prove that the ticket authorizes changing that behavior.
 - Reuse the same finding ID when the same issue persists across rounds.
 - Create a new finding ID only for newly discovered issues.
 - After the initial result, mark resolved or obsolete earlier findings in the current `ARCH-REV-*` entry's prior-finding resolution table instead of silently dropping them.

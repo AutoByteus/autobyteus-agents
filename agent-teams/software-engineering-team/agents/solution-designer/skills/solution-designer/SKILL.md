@@ -134,6 +134,10 @@ Always produce all three mandatory core artifacts:
 
 - Requirements must describe verifiable behavior, not only narrative intent.
 - For each relevant behavior ID, summarize the evidence-backed current behavior, the desired behavior, and any behavior that must remain unchanged. Keep production-path evidence in the investigation notes and technical structure in the design spec. For genuinely new behavior, state `No current supported behavior`; for refactors or cleanups with no intended behavior change, make the preserved outcome explicit.
+- Complete the mandatory `Scope Guardrail` as the canonical change boundary. Keep `In-Scope Use Cases`, `Out of Scope`, `Preserved Behavior Boundary`, and `Review Authority` as its subsections rather than duplicating them as peer sections.
+- Avoid scope-text duplication: keep detailed outcomes in the behavior table, requirements, and acceptance criteria; use stable IDs plus concise cross-cutting statements in the scope guardrail.
+- Require every blocking downstream `Design Impact` or implementation-correction finding to trace to an approved requirement, acceptance criterion, or preserved-behavior ID. Treat a proposed new product behavior, policy, threat model, migration obligation, or operational contract as a `Requirement Gap`, not as an automatic design correction.
+- Do not incorporate a scope-changing reviewer proposal into a previously approved requirements basis without explicit user approval. Until approved, retain it only as a non-authoritative question, risk, recommendation, or separate-ticket candidate and keep implementation blocked if the unresolved decision is material.
 - Each requirement must have a stable `requirement_id`.
 - Each acceptance criterion must have a stable `acceptance_criteria_id`.
 - Expected outcomes must be concrete enough to drive downstream API/E2E coverage investigation and execution.
