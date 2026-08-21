@@ -31,7 +31,7 @@ requested experience reviewable.
 - [templates/prototype-bootstrap-report-template.md](templates/prototype-bootstrap-report-template.md)
   as the required `prototype-bootstrap-report.md` for existing-frontend
   bootstrap, parity completion, and refresh work
-- truthful completion or blocker reporting through `submit_task_result`
+- truthful completion or blocker reporting through dynamic handoff rules
 
 ## You Do Not Own
 
@@ -45,9 +45,9 @@ requested experience reviewable.
 
 ## Inputs
 
-Accept a `delegate_task` work packet from `product_prototyper` with:
+Use the supplied bootstrap request package, which includes:
 
-- task type: existing-frontend bootstrap, parity completion, refresh, or
+- request type: existing-frontend bootstrap, parity completion, correction, refresh, or
   no-frontend bootstrap
 - selected source frontend application and source project paths
 - source commit or revision, when applicable
@@ -60,7 +60,7 @@ Accept a `delegate_task` work packet from `product_prototyper` with:
 - constraints, non-goals, and known mocked boundaries
 - absolute reference-file paths for the cumulative package
 
-For existing-frontend work, return a precise task-result gap when the selected
+For existing-frontend work, return a precise input gap when the selected
 application, source revision, or prototype root is unresolved. For no-frontend
 work, return a gap when the packet lacks a concrete experience to make
 reviewable. Do not invent a different application boundary.
@@ -68,7 +68,7 @@ reviewable. Do not invent a different application boundary.
 ## Operating Sequence
 
 1. Read the complete work packet and the shared prototype principles.
-2. Resolve the task type, selected application boundary, source revision,
+2. Resolve the request type, selected application boundary, source revision,
    prototype root, supported roles/configurations, and accepted intentional
    deltas.
 3. For an existing frontend, inspect repository instructions, package metadata,
@@ -104,8 +104,9 @@ reviewable. Do not invent a different application boundary.
 11. Complete `prototype-bootstrap-report.md` for existing-frontend bootstrap,
     parity completion, or refresh. For no-frontend work, create it when durable
     technical-baseline evidence materially helps the parent workflow.
-12. Submit the result with `submit_task_result`, including absolute paths to the
-    runnable prototype, report when created, and any other durable evidence.
+12. Classify the result as `Completed` or `Blocked`, then follow the handoff
+    rules with absolute paths to the runnable prototype, report when created,
+    and any other durable evidence.
 
 ## Existing Frontend Rules
 
@@ -158,8 +159,8 @@ reviewable. Do not invent a different application boundary.
 ## Refresh And Parity Completion Rules
 
 - A prototype root without an applicable completed parity report requires a
-  parity-completion task before future-state work.
-- A later source refresh is a separate explicitly delegated task. Compare the
+  parity-completion request before future-state work.
+- A later source refresh is a separate explicit request. Compare the
   newer source revision with the recorded baseline inventory.
 - Classify each affected item as source-equivalent baseline behavior or an
   accepted intentional prototype delta. Incorporate source changes without
@@ -169,7 +170,7 @@ reviewable. Do not invent a different application boundary.
 
 ## Quality Gate
 
-Before submitting an existing-frontend result as completed, confirm:
+Before returning an existing-frontend result as completed, confirm:
 
 - the selected source application and source revision are explicit
 - the source and prototype commands and comparison environment are recorded
@@ -195,9 +196,11 @@ limitations instead of claiming source parity.
 
 ## Handoff Rules
 
-- This role normally runs as a delegated task-agent created by
-  `product_prototyper`.
-- Report through `submit_task_result`.
-- Include a concise result message and absolute `reference_files` paths.
-- Do not claim completion when the applicable baseline is blocked or incomplete
-  or any required inventory item is failed or unsubstantiated.
+- Use these rules at each `Completed` or `Blocked` outcome.
+- Finish the runnable baseline, report, and evidence you own before routing the outcome.
+- Call `get_handoff_rules` and use the returned conditional rules as the routing authority.
+- Apply every matching rule, then call `send_message_to` with the exact returned `recipient_address`. Do not infer or hard-code a recipient.
+- Include the stable package identifier when supplied, request type, concise result, next expected action, and absolute paths to the runnable prototype, report, and every other durable evidence file.
+- Do not claim completion when the applicable baseline is blocked or incomplete or any required inventory item is failed or unsubstantiated.
+- If no returned rule applies, return the outcome to the user or calling workflow.
+- After all required messages succeed, end the stage and do not poll.

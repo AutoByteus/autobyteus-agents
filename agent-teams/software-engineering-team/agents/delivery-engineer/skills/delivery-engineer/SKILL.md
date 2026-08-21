@@ -89,7 +89,7 @@ Use [templates/delivery-revision-record-template.md](templates/delivery-revision
 
 ## Terminal Return To The Team Coordinator
 
-- Use `send_message_to` to return the successfully finalized package to `/architecture_designer`; Delivery Engineer does not call `submit_task_result`.
-- State that this is the authoritative terminal completion package and that Architecture Designer may submit the delegated team result only after checking it.
+- Use `send_message_to` to return the successfully finalized package to `/architecture_designer`.
+- State that this is the authoritative terminal completion package and that Architecture Designer may route the terminal outcome only after checking it.
 - If user verification is missing or finalization is blocked, continue the applicable verification, recovery, or reroute flow. Do not send a successful completion message.
 - After the terminal message succeeds, end the delivery stage and do not poll. Act only on a later explicit rework message.

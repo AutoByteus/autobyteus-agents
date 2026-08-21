@@ -26,28 +26,29 @@
       "from": "/requirements_engineer",
       "to": "/product_prototyper",
       "rules": [
-        "When the requirements basis and prototype goals are ready for focused interactive product exploration with the user."
+        "When Requirements Engineer classifies the outcome as Prototype Needed because a material product, UI, interaction, state, or journey decision requires a focused runnable prototype for user review."
       ]
     },
     {
       "from": "/product_prototyper",
       "to": "/prototype_bootstrapper",
       "rules": [
-        "When a new, incomplete, or stale prototype baseline requires a bounded bootstrap, parity-completion, or refresh task before future-state prototype work."
+        "When Product Prototyper classifies the outcome as Baseline Needed because the canonical prototype root is missing, current-state parity is incomplete or unsubstantiated, a correction is required, or an explicit source refresh is needed before future-state work."
       ]
     },
     {
       "from": "/prototype_bootstrapper",
       "to": "/product_prototyper",
       "rules": [
-        "When the delegated prototype baseline task is complete or blocked and its runnable result and bootstrap evidence are ready for task-result review."
+        "When Prototype Bootstrapper classifies the requested bootstrap, parity-completion, correction, or refresh outcome as Completed or Blocked and its runnable prototype, report, and evidence are ready for direct review."
       ]
     },
     {
       "from": "/product_prototyper",
       "to": "/requirements_engineer",
       "rules": [
-        "When the interactive prototype, approved UI/UX specification, visual references, requirement-impact finding, not-recommended decision, or blocker is ready for requirements integration."
+        "When Product Prototyper classifies the outcome as Prototype Completed because the user-approved prototype and UI/UX package are ready for requirements integration.",
+        "When Product Prototyper classifies the outcome as Requirement Impact, Not Recommended, or Blocked and Requirements Engineer must revise or decide the requirements path."
       ]
     }
   ]

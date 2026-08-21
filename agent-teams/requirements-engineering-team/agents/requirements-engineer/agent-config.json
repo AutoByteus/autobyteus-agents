@@ -10,7 +10,6 @@
     "search_web",
     "read_url",
     "send_message_to",
-    "submit_task_result",
     "close_tab",
     "dom_snapshot",
     "list_tabs",
@@ -18,7 +17,8 @@
     "open_tab",
     "read_page",
     "run_script",
-    "screenshot"
+    "screenshot",
+    "get_handoff_rules"
   ],
   "skillNames": [
     "requirements-engineer"

@@ -1,7 +1,7 @@
 # Prototype Bootstrap Report
 
 Create this report for every existing-frontend bootstrap, parity-completion, or
-refresh task. For a no-frontend bootstrap, create it when durable technical
+refresh request. For a no-frontend bootstrap, create it when durable technical
 baseline evidence materially helps the parent workflow. This report proves the
 technical baseline; it does not replace `requirements-doc.md` or
 `ui-ux-spec.md`.
@@ -9,9 +9,9 @@ technical baseline; it does not replace `requirements-doc.md` or
 ## Bootstrap Status
 
 - Status: `Completed` / `Blocked` / `Refresh Required`
-- Task type: `Existing-Frontend Bootstrap` / `Parity Completion` / `Refresh` / `No-Frontend Bootstrap`
+- Request type: `Existing-Frontend Bootstrap` / `Parity Completion` / `Correction` / `Refresh` / `No-Frontend Bootstrap`
 - Existing-frontend parity result: `Complete` / `Blocked` / `N/A`
-- Delegated task ID:
+- Bootstrap request or package ID:
 
 ## Source Baseline Identity
 

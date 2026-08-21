@@ -30,15 +30,15 @@ The skill optimizer is a lightweight standalone agent that uses the shared `skil
 
 ## Software Development Department
 
-The software development department is the end-to-end software entrypoint. `head_of_software_development` coordinates the separately defined Requirements Engineering and Software Engineering teams through tracked task delegation and result review. The department references both teams as shared peer definitions; their folders, agents, skills, and specialist ownership remain independent.
+The software development department is the end-to-end software entrypoint. `head_of_software_development` starts each independent package through Requirements Engineering and returns the verified terminal result. Requirements Engineer hands an explicitly approved, architecture-ready package directly to Architecture Designer through message-based handoff rules; the two team definitions and their specialist ownership remain independent.
 
 ## Requirements Engineering Team
 
-The requirements engineering team turns an initial product or technical request into an evidence-grounded, explicitly user-approved, architecture-ready requirements package. `requirements_engineer` owns current and desired behavior, scope, acceptance criteria, conditional prototype coordination, and requirement revision history. The team returns that package directly in standalone use or submits it to its delegating review owner when running as a task-scoped team.
+The requirements engineering team turns an initial product or technical request into an evidence-grounded, explicitly user-approved, architecture-ready requirements package. `requirements_engineer` owns current and desired behavior, scope, acceptance criteria, conditional prototype coordination, and requirement revision history. Requirements Engineer, Product Prototyper, and Prototype Bootstrapper use dynamic handoff rules plus `send_message_to` for completed and blocked outcomes.
 
 ## Software Engineering Team
 
-The software engineering team starts with `architecture_designer` and consumes an approved requirements package. It preserves the full technical design workflow, then proceeds through independent architecture review, implementation, source review, API/E2E validation, proportional test-code review, and delivery. After the user verifies the result and `delivery_engineer` completes finalization, Delivery Engineer returns the terminal package to Architecture Designer, which submits the delegated team result to the delegating review owner when running as a task-scoped team.
+The software engineering team starts with `architecture_designer` and consumes an approved requirements package. It preserves the full technical design workflow, then proceeds through independent architecture review, implementation, source review, API/E2E validation, proportional test-code review, and delivery. After the user verifies the result and `delivery_engineer` completes finalization, Delivery Engineer returns the terminal package to Architecture Designer, which verifies and routes the outcome through the applicable message-based handoff rule or returns it to the caller.
 
 ## Research Engineering Team
 

@@ -2,9 +2,8 @@
   "toolNames": [
     "read_file",
     "run_bash",
-    "delegate_task",
-    "review_task_result",
-    "submit_task_result"
+    "get_handoff_rules",
+    "send_message_to"
   ],
   "skillNames": [
     "head-of-software-development"

@@ -6,7 +6,7 @@ category: software-engineering
 
 This team begins with approved, architecture-ready requirements and carries them through technical design, implementation, review, API/E2E validation, and finalized delivery.
 
-`architecture_designer` is the coordinator and task-team ingress specialist. There is no separate orchestrator role. Each specialist owns its stage and sends the cumulative package to the next accountable specialist.
+`architecture_designer` is the coordinator and ingress specialist. There is no separate orchestrator role. Each specialist owns its stage and sends the cumulative package to the next accountable specialist.
 
 Detailed operating rules, artifacts, validation, and recovery belong in each member's bundled `SKILL.md` and templates.
 
@@ -14,7 +14,7 @@ Detailed operating rules, artifacts, validation, and recovery belong in each mem
 
 - Requirements Engineering owns intended behavior, acceptance criteria, supporting requirement evidence, and user approval.
 - Software Engineering owns target architecture, architecture review, implementation, source review, executable validation, delivery, and finalization.
-- The team consumes approved upstream artifacts and does not silently rewrite them. A material requirement gap returns through `architecture_designer` to the delegating task owner or standalone caller.
+- The team consumes approved upstream artifacts and does not silently rewrite them. A material requirement gap returns through `architecture_designer` under the applicable handoff rules.
 - The coordinator rename preserves the full existing architecture-design capability.
 
 ## Entry Contract
@@ -33,7 +33,7 @@ The default input is the cumulative approved requirements package:
 
 ## Team Members
 
-- `architecture_designer`: investigates current architecture, creates the complete technical design, coordinates architecture-owned recovery, receives terminal delivery evidence, and submits the delegated team result.
+- `architecture_designer`: investigates current architecture, creates the complete technical design, coordinates architecture-owned recovery, receives terminal delivery evidence, and routes the terminal outcome.
 - `architecture_reviewer`: independently reviews the design and decides whether it is ready for implementation.
 - `implementation_engineer`: implements the reviewed design, performs implementation-scoped checks, and prepares the implementation handoff.
 - `code_reviewer`: independently reviews implementation source and later performs proportional review of API/E2E test-code changes or records `Not Applicable`.
@@ -51,7 +51,7 @@ The default input is the cumulative approved requirements package:
 7. On successful proportional review, `code_reviewer` sends the complete passed package to `delivery_engineer`.
 8. `delivery_engineer` performs the latest-base integration and delivery workflow, obtains explicit user testing/verification, and completes all applicable finalization, release/deployment, and safe cleanup steps.
 9. Only after successful finalization, `delivery_engineer` sends the terminal cumulative package to `architecture_designer`.
-10. When this is a delegated task-team run, `architecture_designer` submits the final result with `submit_task_result`; otherwise it returns the result through the standalone caller path.
+10. `architecture_designer` verifies the terminal package, applies the available handoff rules, and returns the result to the user or calling workflow when no rule applies.
 
 ## Artifact Visibility Rule
 
@@ -66,7 +66,7 @@ Every primary handoff carries absolute paths for all still-relevant artifacts pr
 7. proportional API/E2E test-code review result
 8. delivery, docs-sync, handoff, release/deployment, and finalization evidence
 
-When a reroute or rework artifact is produced, retain it alongside the upstream chain. Internal specialists continue using this artifact-driven model; they do not need parent task-lifecycle metadata.
+When a reroute or rework artifact is produced, retain it alongside the upstream chain. Internal specialists continue using this artifact-driven model and stable package identity.
 
 ## Review Pass Notifications
 
@@ -79,17 +79,17 @@ Pass notifications complement rather than replace the primary forward handoff.
 - Include `Pass`, the applicable review/revision ID, review-report path, next recipient, and `Informational — no action required`.
 - The notified originator records the status and does not repeat the primary handoff or restart work.
 
-## Recovery And Task Boundary
+## Recovery Boundary
 
 - Internal `Local Fix`, `Design Impact`, and test/review reroutes continue through `send_message_to` under the owning skills.
-- Requirement gaps route to `architecture_designer`, which does not edit approved requirements. In a delegated run it submits the precise gap through the task-result lifecycle so the review owner can coordinate an updated and re-approved requirements package before requesting revision on the same software task.
-- Parent revision instructions return to the task-scoped `architecture_designer`, which routes them to the correct specialist without creating a duplicate task.
+- Requirement gaps route to `architecture_designer`, which does not edit approved requirements. It completes the precise gap evidence and applies the handoff rules so Requirements Engineering can produce an updated and re-approved package.
+- Revision instructions return to `architecture_designer`, which routes them to the correct specialist while preserving the package identifier and artifact history.
 - `delivery_engineer` must not send a successful terminal message before explicit user testing/verification and successful finalization.
-- `architecture_designer` must not submit a successful task result before receiving and checking that terminal delivery package.
+- `architecture_designer` must not send a successful terminal outcome before receiving and checking that terminal delivery package.
 
 ## Communication Authority
 
-- Use `send_message_to` for ordinary internal team handoffs, acknowledgements, and reroutes.
-- Use `submit_task_result` only from `architecture_designer` when it has the bound delegated task-team ingress context.
+- Use `send_message_to` for internal team handoffs, acknowledgements, reroutes, and terminal outcomes.
+- `architecture_designer` calls `get_handoff_rules` before its owned handoffs and uses each matching returned recipient exactly.
 - Do not use Codex-native collaboration tools for this team's internal workflow.
 - After completing all required messages for a stage, end the stage and do not poll.

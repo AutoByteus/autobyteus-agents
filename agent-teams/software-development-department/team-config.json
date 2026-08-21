@@ -24,32 +24,38 @@
   "handoffs": [
     {
       "from": "/head_of_software_development",
-      "to": "/requirements_engineering_team",
+      "to": "/requirements_engineering_team/requirements_engineer",
       "rules": [
-        "When an incoming software-development request requires evidence-grounded requirements, applicable prototype decisions, and explicit user approval before architecture design.",
-        "When review of a returned requirements result finds a concrete requirements-owned revision that must continue on the same delegated task lifecycle."
+        "When the Head classifies a new or resumed independent software-development package as Ready for Requirements because its request, context, constraints, workspace, and references are sufficient for requirements investigation."
+      ]
+    },
+    {
+      "from": "/requirements_engineering_team/requirements_engineer",
+      "to": "/software_engineering_team/architecture_designer",
+      "rules": [
+        "When Requirements Engineer classifies the cumulative package as Approved Architecture-Ready because every behavior-defining supplement is consistent, architecture readiness has passed, and the user has explicitly approved the intended behavior."
       ]
     },
     {
       "from": "/requirements_engineering_team/requirements_engineer",
       "to": "/head_of_software_development",
       "rules": [
-        "When the delegated Requirements Engineering Team result is complete or blocked and ready for department-level task-result review."
+        "When Requirements Engineer classifies the outcome as Blocked before architecture because a user decision, evidence source, safe workspace, or other prerequisite remains unresolved."
       ]
     },
     {
-      "from": "/head_of_software_development",
-      "to": "/software_engineering_team",
+      "from": "/software_engineering_team/architecture_designer",
+      "to": "/requirements_engineering_team/requirements_engineer",
       "rules": [
-        "When the approved architecture-ready requirements package has passed department review and is ready for architecture, implementation, validation, and delivery.",
-        "When review of a returned software result finds a concrete software-owned revision that must continue on the same delegated task lifecycle."
+        "When Architecture Designer classifies a missing or conflicting intended-behavior decision found during package validation, architecture review, or downstream engineering as Requirement Gap because the canonical requirements require revision and any intended-behavior change requires renewed user approval."
       ]
     },
     {
       "from": "/software_engineering_team/architecture_designer",
       "to": "/head_of_software_development",
       "rules": [
-        "When the delegated Software Engineering Team result is successfully finalized or blocked by a requirement gap and is ready for department-level task-result review."
+        "When Architecture Designer classifies the outcome as Terminal after Delivery Engineer reports explicit user verification and successful finalization and Architecture Designer verifies the cumulative package.",
+        "When Architecture Designer classifies the outcome as Non-Requirement Blocked because an external dependency, unsafe workspace, or other terminal condition must be returned by the department coordinator."
       ]
     }
   ]

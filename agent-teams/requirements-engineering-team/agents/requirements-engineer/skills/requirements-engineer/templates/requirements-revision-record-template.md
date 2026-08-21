@@ -1,6 +1,6 @@
 # Requirements Revision Record
 
-Create `requirements-revision-record.md` for the first coherent requirements baseline used for product review, prototype delegation, or approval. Keep one canonical file and append later materially completed requirements rounds.
+Create `requirements-revision-record.md` for the first coherent requirements baseline used for product review, prototype handoff, or approval. Keep one canonical file and append later materially completed requirements rounds.
 
 The latest `requirements-doc.md` and `investigation-notes.md` remain authoritative.
 

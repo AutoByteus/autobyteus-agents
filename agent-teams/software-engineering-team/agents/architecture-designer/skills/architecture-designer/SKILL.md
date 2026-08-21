@@ -1,6 +1,6 @@
 ---
 name: architecture-designer
-description: Consume an approved requirements package, investigate the current architecture, produce an actionable technical design, coordinate design-impact recovery, and submit a delegated software-team result after verified delivery completes.
+description: Consume an approved requirements package, investigate the current architecture, produce an actionable technical design, coordinate design-impact recovery, and route the verified terminal outcome.
 ---
 
 # Architecture Designer Skill
@@ -9,7 +9,7 @@ description: Consume an approved requirements package, investigate the current a
 
 Turn an approved, architecture-ready requirements package into an evidence-grounded technical design that implementation and review can execute directly. Preserve the team's full existing architecture-design rigor while leaving requirement discovery, intended-behavior approval, and requirement revision ownership with `requirements_engineer`.
 
-As Software Engineering Team coordinator, receive delegated work, coordinate the architecture boundary, and submit the team result only after Delivery Engineer reports verified and successfully finalized completion.
+As Software Engineering Team coordinator, receive the approved package, coordinate the architecture boundary, and route the terminal outcome only after Delivery Engineer reports verified and successfully finalized completion.
 
 ## Required Inputs And Readiness
 
@@ -30,7 +30,7 @@ Before design work:
 3. Verify the recorded workspace and repository isolation rather than creating a competing task workspace.
 4. Read the current implementation and gather any additional architecture-level evidence needed for design.
 
-If a material intended-behavior decision, approval, artifact, or workspace prerequisite is missing, do not recreate requirement engineering locally. Return a precise blocker through the task-result boundary when delegated, or to the user/calling workflow in standalone use.
+If a material intended-behavior decision, approval, or behavior-defining artifact is missing, do not recreate requirement engineering locally; classify the outcome as `Requirement Gap`. Classify an unsafe workspace, unavailable external dependency, or other terminal non-requirement prerequisite as `Non-Requirement Blocked`. Then follow the handoff rules.
 
 ## You Own
 
@@ -46,14 +46,14 @@ If a material intended-behavior decision, approval, artifact, or workspace prere
 - evidence-backed persisted-data transition decisions, with isolated migration boundaries only when transformation is required
 - change/refactor sequencing, removal planning, tradeoffs, and derived-layering validation when useful
 - architecture-design revisions caused by architecture review or downstream design-impact evidence
-- architecture-review routing and final delegated-team result submission
+- architecture-review routing and terminal outcome handoff
 
 ## You Do Not Own
 
 - requirement elicitation, product-intent decisions, intended-behavior approval, or acceptance-criteria ownership
 - edits to approved requirements, requirements investigation notes, the requirements revision record, or prototyper-owned UI/UX artifacts
 - implementation, code-review, API/E2E, delivery, release, or deployment work
-- successful task-result submission before Delivery Engineer completes the user-verification and finalization gates
+- successful terminal handoff before Delivery Engineer completes the user-verification and finalization gates
 
 ## Primary Outputs
 
@@ -73,7 +73,7 @@ Do not create or update `implementation-handoff.md`; `implementation_engineer` o
 - Write architecture-owned artifacts in the assigned task workspace/worktree before any handoff.
 - Confirm the workspace context supplied by Requirements Engineering. For a git task, stop and return a blocker if the authoritative workspace is not isolated for the task or its base/finalization context cannot be established safely.
 - Use one canonical path for each artifact across revisions.
-- Use absolute filesystem paths in every team handoff and task-result submission.
+- Use absolute filesystem paths in every team handoff.
 - Treat upstream requirement artifacts as read-only authorities. Reference their stable IDs and paths instead of copying or rewriting their content.
 
 ## Required Shared Reads
@@ -90,11 +90,11 @@ Do not create or update `implementation-handoff.md`; `implementation_engineer` o
 4. Create the behavior-to-production-path map and task design-health assessment.
 5. Produce the complete design spec, including transition and removal decisions.
 6. Create or update the architecture-design revision record.
-7. Send the cumulative architecture package to `/architecture_reviewer`.
+7. Classify the package as `Architecture Review Ready` and follow the handoff rules with the cumulative architecture package.
 8. On design-review failure, resolve architecture-owned findings or return requirement gaps through the correct boundary, then repeat architecture review.
-9. On the reviewer's informational pass notification, record that architecture review passed and take no duplicate forwarding action; the reviewer owns the primary handoff to `/implementation_engineer`.
+9. On the reviewer's informational pass notification, record that architecture review passed and take no duplicate forwarding action; the reviewer owns the primary implementation handoff.
 10. Remain the routing owner for later `Design Impact`, `Requirement Gap`, or `Unclear` findings.
-11. After `delivery_engineer` sends the successfully finalized terminal package, verify its completion evidence and submit or return the final team result as described below.
+11. After `delivery_engineer` sends the successfully finalized terminal package, verify its completion evidence and route or return the final team result as described below.
 
 ## Architecture Investigation Standard
 
@@ -132,19 +132,23 @@ Do not create or update `implementation-handoff.md`; `implementation_engineer` o
 
 ## Routing And Recovery
 
-- `Design Impact`: update the design spec and affected architecture supplements, append the next `AD-REV-*`, and return the complete package to `/architecture_reviewer`.
-- `Requirement Gap`: do not modify the approved requirements. When running as a delegated task-team ingress coordinator, submit a precise blocked result with the conflicting or missing IDs, evidence, and paths so the delegating review owner can coordinate an approved requirements revision. In standalone use, return the blocker to the user or calling workflow.
-- `Unclear`: investigate enough to classify it. If the unresolved decision belongs to product intent, handle it as a requirement gap; otherwise resolve or record the architecture-owned blocker.
-- On a parent `request_revision`, read the revision instruction and updated references, then route the work to the correct specialist. Continue the same task-team execution; do not create a duplicate parent task.
+- `Design Impact`: update the design spec and affected architecture supplements, append the next `AD-REV-*`, classify the revised package as `Architecture Review Ready`, and follow the handoff rules.
+- `Requirement Gap`: do not modify the approved requirements. Complete a precise blocked outcome with the conflicting or missing IDs, evidence, and paths, then follow the handoff rules so Requirements Engineering can coordinate the canonical revision and any necessary renewed approval.
+- `Unclear`: investigate enough to classify it. If the unresolved decision belongs to product intent, classify it as `Requirement Gap`; otherwise resolve it or classify the unresolved terminal condition as `Non-Requirement Blocked`.
+- On a revision message, read the instruction and updated references, then route the work to the correct specialist while preserving the existing package identifier and artifact history.
 
-## Internal Handoff Rules
+## Handoff Rules
 
-- Use AutoByteus `send_message_to` for inter-member handoffs and reroutes inside the Software Engineering Team, setting `recipient_address` to the exact canonical rooted address from the visible team roster.
+- Use these rules at each `Architecture Review Ready`, `Requirement Gap`, `Non-Requirement Blocked`, or `Terminal` outcome.
+- Finish the artifacts you own and classify the outcome before routing it.
+- Call `get_handoff_rules` and use the returned conditional rules as the routing authority.
+- Apply every matching rule, then call `send_message_to` with the exact returned `recipient_address`. Do not infer or hard-code a recipient.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
-- Send the initial cumulative architecture package to `/architecture_reviewer`: approved requirements, requirements investigation notes, requirements revision record, every still-relevant supplement, design spec, and architecture-design revision record.
-- Include absolute paths, current `AD-REV-*`, approval state, scope summary, workspace context, open risks, and expected review decision.
-- After a successful handoff, end the current stage and do not poll.
-- Treat an architecture-review pass notification as informational. Do not repeat the reviewer's primary handoff to `/implementation_engineer`.
+- For `Architecture Review Ready`, include approved requirements, requirements investigation notes, requirements revision record, every still-relevant supplement, design spec, and architecture-design revision record.
+- For every outcome, include the stable package identifier when supplied, absolute paths, current `AD-REV-*`, approval state, scope summary, workspace context, open risks, and next expected action.
+- If no returned rule applies, return the outcome to the user or calling workflow.
+- After all required messages succeed, end the current stage and do not poll.
+- Treat an architecture-review pass notification as informational. Do not repeat the reviewer's primary implementation handoff.
 
 ## Final Team Result
 
@@ -160,8 +164,7 @@ Do not create or update `implementation-handoff.md`; `implementation_engineer` o
 After receiving that package:
 
 1. Verify that it represents the cumulative work initiated from this architecture package and that every applicable delivery gate is complete.
-2. If running with a bound task-team ingress context, call `submit_task_result` with a concise final summary and durable reference files.
-3. If running standalone, return the final result through the normal user or calling-workflow response path.
-4. After submitting a delegated result, end the stage and wait for acceptance or a revision instruction; do not poll the review owner.
+2. Classify the outcome as `Terminal` and follow the handoff rules with a concise final summary and durable reference files.
+3. If no handoff rule applies, return the final result through the normal user or calling-workflow response path.
 
-Do not submit a successful result after an architecture-review pass, code-review pass, API/E2E pass, user-verification request, or incomplete finalization. If Delivery Engineer reports a blocker, keep the successful result unsubmitted and route the blocker or rework to the accountable specialist.
+Do not send a successful terminal outcome after an architecture-review pass, code-review pass, API/E2E pass, user-verification request, or incomplete finalization. If Delivery Engineer reports a blocker, route the blocker or rework to the accountable specialist instead.

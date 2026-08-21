@@ -31,10 +31,10 @@ Use one explicit mode for each prototype workspace:
 - **Existing prototype evolution:** read and preserve the existing prototype
   before applying the approved new request.
 - **Explicit refresh/reconciliation:** compare a prototype against a newer
-  production frontend revision only when the task specifically requires it;
+  production frontend revision only when the request specifically requires it;
   never overwrite accepted prototype behavior silently.
 
-Initial bootstrap is normally a one-time delegated task for a prototype
+Initial bootstrap is normally a one-time handoff stage for a prototype
 workspace. Later work normally belongs to `product_prototyper`.
 
 ## 3. Technology Selection
@@ -146,7 +146,8 @@ workspace. Later work normally belongs to `product_prototyper`.
 ## 8. Responsibility Boundary
 
 - `prototype_bootstrapper` establishes, completes, or explicitly refreshes the
-  current-state parity baseline and submits its evidence to the delegator.
+  current-state parity baseline and returns its evidence through the applicable
+  handoff rules to `product_prototyper`.
 - `product_prototyper` accepts the baseline, then owns focused requested
   experience changes, user review, final validation, screenshots, and
   `ui-ux-spec.md`.

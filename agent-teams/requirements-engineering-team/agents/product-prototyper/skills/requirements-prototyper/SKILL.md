@@ -53,7 +53,7 @@ Accept from `requirements_engineer`:
 - user feedback and approved decisions for a focused revision round, when applicable
 - selected source frontend application, source project, source revision,
   available run instructions, supported roles/configurations, and bootstrap
-  task type when a baseline must be created, completed, or reconciled
+  request type when a baseline must be created, completed, or reconciled
 - prototype root when one is supplied or already established
 
 If the request lacks a decision question or observable journey, return the gap instead of inventing a broad prototype.
@@ -75,7 +75,7 @@ Create supporting artifacts only when they materially help construction, validat
 - [templates/prototype-runbook-template.md](templates/prototype-runbook-template.md) as `prototype-runbook.md`
 - [templates/product-prototype-report-template.md](templates/product-prototype-report-template.md) as `product-prototype-report.md`
 - the bootstrapper's `prototype-bootstrap-report.md` for every
-  existing-frontend bootstrap, parity-completion, or refresh task
+  existing-frontend bootstrap, parity-completion, correction, or refresh request
 
 Each support artifact has a distinct purpose: the experience story frames the working journey, the behavior matrix records deterministic validation, assumptions record mocked boundaries, the change log records revision history, the runbook records execution, and the prototype report is an optional durable summary. Do not create the report merely to duplicate the UI/UX specification or those supporting artifacts.
 
@@ -104,28 +104,29 @@ Keep the future-state change proportional to the decision:
   frontend application or product surface, or select a new root under the
   shared workspace naming rules.
 - Inspect the resolved root and its `prototype-bootstrap-report.md`, when
-  present. Delegate bootstrap work when the root is absent, the applicable
+  present. Request bootstrap work when the root is absent, the applicable
   existing-frontend parity report is missing, incomplete, or stale, or an
   explicit source refresh is required.
-- When delegation is required, prepare one bootstrap, parity-completion, or
-  refresh packet and use `delegate_task` with target
-  `{ kind: "member", name: "prototype_bootstrapper" }`.
-  Include the task type, selected source frontend application and paths,
+- When bootstrap work is required, prepare one bootstrap, parity-completion, or
+  refresh packet, classify the outcome as `Baseline Needed`, and follow the
+  handoff rules. Include the request type, selected source frontend application and paths,
   source revision and run context, prototype root, complete current-state parity
   expectation, supported roles/configurations/viewports and known journeys,
   accepted intentional prototype deltas, relevant requirement and behavior IDs,
   constraints, non-goals, and absolute reference-file paths.
-- Review the bootstrapper's result with `review_task_result`. For an existing
+- When the Bootstrapper returns, read and review the runnable prototype,
+  `prototype-bootstrap-report.md`, and referenced evidence directly. For an existing
   frontend, accept it only when the selected source boundary and revision are
   explicit, the source and prototype evidence is applicable, every required
   inventory item passes, the observable UI/UX and client behavior have no known
   discrepancy, the technology choice is truthful, and mock boundaries are
-  explicit. Request revision with the failed, unknown, missing, or inconsistent
-  inventory IDs. For no-frontend work, accept when the requested baseline is
+  explicit. If correction is required, classify the outcome as `Baseline Needed`
+  again and send the failed, unknown, missing, or inconsistent inventory IDs
+  through the handoff rules. For no-frontend work, accept when the requested baseline is
   runnable, its template choice is truthful, mocks are explicit, and its stated
   visual-system limitations are accurate.
 - If the resolved root has a complete applicable parity report, read its current
-  implementation and artifacts and skip initial bootstrap. Delegate refresh or
+  implementation and artifacts and skip initial bootstrap. Request refresh or
   parity completion when the source revision changed, the report is incomplete
   or inapplicable, or the accepted prototype deltas need reconciliation.
 - Do not start requirements-driven feature or design work on an unreviewed,
@@ -149,7 +150,7 @@ Keep the future-state change proportional to the decision:
 10. After explicit user confirmation, perform final browser and visual validation. If that validation requires a material visible or behavioral change, reopen user review before finalizing.
 11. Capture canonical screenshots for relevant pages, states, and viewports.
 12. Complete `ui-ux-spec.md`, including the approval reference, final screenshots, detailed behavior, mocked boundaries, and fidelity boundary.
-13. Send the final UI/UX package and any still-relevant supporting evidence to `requirements_engineer`.
+13. Classify the final package as `Prototype Completed` and follow the handoff rules with the final UI/UX package and every still-relevant supporting artifact.
 
 ## Prototype Evolution Rules
 
@@ -215,16 +216,13 @@ Before reporting the prototype as completed, confirm:
 
 ## Handoff Rules
 
-- Use AutoByteus `send_message_to` to return work to `/requirements_engineer`, using the exact canonical rooted address from the visible team roster.
-- Use `delegate_task`, `review_task_result`, and the bootstrapper's
-  `submit_task_result` only for the bootstrap, parity-completion, or refresh
-  task lifecycle. Do not use a task-result tool as a substitute for the normal
-  requirements-to-prototyper or prototyper-to-requirements `send_message_to`
-  handoff.
-- If this role itself is running as a delegated task-agent, submit that task's
-  completed or blocked result with `submit_task_result`; otherwise return the
-  normal team-stage package with `send_message_to`.
-- After a successful handoff, end the current stage and do not poll.
+- Use these rules at each `Baseline Needed`, `Prototype Completed`, `Requirement Impact`, `Not Recommended`, or `Blocked` outcome.
+- Finish the artifacts you own and classify the outcome before routing it.
+- Call `get_handoff_rules` and use the returned conditional rules as the routing authority.
+- Apply every matching rule, then call `send_message_to` with the exact returned `recipient_address`. Do not infer or hard-code a recipient.
+- Include the stable package identifier when supplied, outcome, next expected action, and absolute paths to every still-relevant artifact.
+- If no returned rule applies, return the outcome to the user or calling workflow.
+- After all required messages succeed, end the current stage and do not poll.
 - Complete the completed-prototype handoff only after user confirmation and final artifact production. If progress is blocked, return the blocker; if a prototype is not recommended, return the decision rationale and evidence path instead of claiming prototype completion or creating final UI/UX artifacts.
 - A requirement-impact handoff may occur during prototype review; include the exact user feedback, affected IDs, and prototype evidence, then wait for a revised requirements package.
 - Include absolute paths to `ui-ux-spec.md`, the runnable prototype, final

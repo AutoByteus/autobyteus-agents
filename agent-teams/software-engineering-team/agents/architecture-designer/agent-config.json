@@ -18,7 +18,7 @@
     "read_page",
     "run_script",
     "screenshot",
-    "submit_task_result"
+    "get_handoff_rules"
   ],
   "skillNames": [
     "architecture-designer"
