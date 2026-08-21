@@ -28,7 +28,7 @@ The current code and `implementation-handoff.md` remain authoritative. Record on
 - Implementation delta:
 - Changed files or areas:
 - Local validation and result:
-- Next recipient or routing:
+- Next recipient/address or routing from `get_handoff_rules`:
 - Remaining limitations or risks:
 
 For `IR-001`, record the initial implementation handoff baseline and use `N/A` for prior result and triggering findings. Keep prior entries. Add a new entry for later rework instead of rewriting history, except to correct a factual error.

@@ -78,8 +78,6 @@ Update the ticket-local handoff summary before final handoff, then use [template
 ## Routing Rules
 
 - Resolve documentation-local or deployment-local issues directly when possible.
-- Route code or packaging `Local Fix` issues to `/implementation_engineer`.
-- Route `Design Impact` to `/solution_designer`.
-- Route `Requirement Gap` to `/solution_designer`.
-- Route `Unclear` to `/solution_designer`.
+- Route code or packaging `Local Fix` issues through the applicable implementation-owner handoff returned by `get_handoff_rules`.
+- Route `Design Impact`, `Requirement Gap`, and `Unclear` through the applicable upstream handoff returned by `get_handoff_rules`.
 - If final handoff is blocked by a non-deployment issue, record the classification and recommended recipient explicitly in the release/publication/deployment report instead of leaving only a generic blocker note.

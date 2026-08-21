@@ -125,11 +125,11 @@ If approved behavior is materially ambiguous, classify a `Requirement Gap`. If p
 ## Classification Rules
 
 - `Pass` is a review outcome, not a failure classification.
-- `Local Fix` -> `/implementation_engineer` for a bounded implementation or packaging defect.
-- `Local Fix` -> `/api_e2e_engineer` for a test-code, stale-test, fixture, environment, execution, or report problem.
-- `Design Impact` -> `/solution_designer` for a structural issue or inadequate design.
-- `Requirement Gap` -> `/solution_designer` for missing or ambiguous intended behavior.
-- `Unclear` -> `/solution_designer` for a cross-cutting issue that cannot be classified from available evidence.
+- `Local Fix` for a bounded implementation or packaging defect -> the applicable implementation-owner handoff returned by `get_handoff_rules`.
+- `Local Fix` for a test-code, stale-test, fixture, environment, execution, or report problem -> the applicable API/E2E-owner handoff returned by `get_handoff_rules`.
+- `Design Impact` for a structural issue or inadequate design -> the applicable upstream handoff returned by `get_handoff_rules`.
+- `Requirement Gap` for missing or ambiguous intended behavior -> the applicable upstream handoff returned by `get_handoff_rules`.
+- `Unclear` for a cross-cutting issue that cannot be classified from available evidence -> the applicable upstream handoff returned by `get_handoff_rules`.
 - After an implementation-owned fix, require source review and API/E2E again.
 - After an API/E2E-owned fix, require API/E2E execution and a proportional test-code review result; use `Not Applicable` when no durable test changed.
 
@@ -139,10 +139,10 @@ If approved behavior is materially ambiguous, classify a `Requirement Gap`. If p
 - Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to the exact canonical rooted address returned by `get_handoff_rules`.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
-- On implementation-review pass, send the cumulative package, code review report, and code review revision record to `/api_e2e_engineer`.
-- On implementation-review `Fail` or `Blocked`, send the complete package, code review report, and code review revision record to the classified owner; do not advance to API/E2E.
-- On successful post-API/E2E test-code review, send the complete passed package, including `api-e2e-test-review-report.md` and the current code review revision record, to `/delivery_engineer`.
-- On failed post-API/E2E test-code review, send the complete package, test-review report, and current code review revision record to the confirmed owner; normally this is `/api_e2e_engineer` for a bounded test-code correction.
-- After API/E2E failure-origin review, send the complete failure package, updated code review report, and current code review revision record to the confirmed owning specialist.
+- On implementation-review pass, send the cumulative package, code review report, and code review revision record through the applicable pass handoff returned by `get_handoff_rules`.
+- On implementation-review `Fail` or `Blocked`, send the complete package, code review report, and code review revision record through the applicable handoff returned by `get_handoff_rules` for the classified owner; do not advance to API/E2E.
+- On successful post-API/E2E test-code review, send the complete passed package, including `api-e2e-test-review-report.md` and the current code review revision record, through the applicable pass handoff returned by `get_handoff_rules`.
+- On failed post-API/E2E test-code review, send the complete package, test-review report, and current code review revision record through the returned handoff for the confirmed owner.
+- After API/E2E failure-origin review, send the complete failure package, updated code review report, and current code review revision record through the returned handoff for the confirmed owning specialist.
 - Use absolute filesystem paths and attach all relevant artifacts using the tool's reference-file input when available.
 - For successful test-code review, attach every added or updated durable test file and include diff or repository evidence for removed test paths when available.

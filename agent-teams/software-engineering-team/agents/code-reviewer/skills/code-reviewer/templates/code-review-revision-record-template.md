@@ -35,7 +35,7 @@ If no prior finding applies to this review revision, write `None`.
 
 - New or remaining finding IDs:
 - Material score or classification changes:
-- Recommended recipient:
+- Recommended recipient/address from `get_handoff_rules`:
 - Remaining risks or uncertainty:
 
 For `CRR-001`, use `N/A` for the prior result and write `None` in the prior-finding table. Keep prior entries. Add a new entry for later review work instead of rewriting history, except to correct a factual error.

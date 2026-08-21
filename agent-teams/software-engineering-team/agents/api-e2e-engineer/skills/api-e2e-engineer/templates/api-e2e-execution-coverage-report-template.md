@@ -185,7 +185,7 @@ Carry forward the post-repository scores from the coverage investigation and rec
 - `Requirement Gap`: intended behavior or acceptance criteria are missing or ambiguous.
 - `Unclear`: the issue is cross-cutting or cannot yet be classified cleanly from the available evidence.
 
-This is the API/E2E engineer's evidence-based recommendation. On `Fail`, `code_reviewer` confirms the failure origin and final owner before rework begins.
+This is the API/E2E engineer's evidence-based recommendation. On `Fail`, the configured failure-origin review stage confirms the failure origin and final owner before rework begins.
 
 ## Recommended Recipient
 
@@ -200,5 +200,5 @@ This is the API/E2E engineer's evidence-based recommendation. On `Fail`, `code_r
 - Any final applicable confidence category below `90%`: `No` / `Yes` — list:
 - Broader validation decision:
 - Critical acceptance criteria lacking direct proof:
-- Required next recipient (`Pass` -> `code_reviewer` for proportional test-code review; `Fail` -> `code_reviewer` for focused failure-origin review; `Blocked` -> user request):
+- Required next recipient/address (record the exact `recipient_address` returned by `get_handoff_rules` for `Pass` or `Fail`; for `Blocked`, record the user request):
 - Notes:

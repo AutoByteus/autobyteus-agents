@@ -68,7 +68,7 @@ Complete this understanding and alignment foundation before the implementation s
 | --- | --- | --- | --- |
 |  |  |  |  |
 
-Reuse the design spec's behavior IDs. Assign a provisional ID only when concrete evidence reveals a relevant supported behavior missing upstream; route it to `solution_designer` and do not pass until the upstream map is corrected. Do not create a behavior from technical possibility alone. `Contradicted`, `Unclear`, or `Newly Discovered` behavior prevents an implementation-review pass.
+Reuse the design spec's behavior IDs. Assign a provisional ID only when concrete evidence reveals a relevant supported behavior missing upstream; classify it as a requirements/design finding, use the applicable handoff returned by `get_handoff_rules`, and do not pass until the upstream map is corrected. Do not create a behavior from technical possibility alone. `Contradicted`, `Unclear`, or `Newly Discovered` behavior prevents an implementation-review pass.
 
 After the initial review result, complete the applicable prior-finding resolution table in `code-review-revision-record.md` after confirming this behavior basis and before finalizing prospective new findings.
 
@@ -224,11 +224,11 @@ Rules:
 
 ## Recommended Recipient
 
-- `Local Fix` -> `implementation_engineer` when the bounded fix is in implementation-owned source or packaging
-- `Local Fix` -> `api_e2e_engineer` when the bounded fix is an invalid/stale test, fixture, environment, execution, or report problem
-- `Design Impact` -> `solution_designer`
-- `Requirement Gap` -> `solution_designer`
-- `Unclear` -> `solution_designer`
+- `Local Fix` for implementation-owned source or packaging: use the applicable implementation-owner handoff returned by `get_handoff_rules`
+- `Local Fix` for an invalid/stale test, fixture, environment, execution, or report problem: use the applicable API/E2E-owner handoff returned by `get_handoff_rules`
+- `Design Impact`: use the applicable upstream handoff returned by `get_handoff_rules`
+- `Requirement Gap`: use the applicable upstream handoff returned by `get_handoff_rules`
+- `Unclear`: use the applicable upstream handoff returned by `get_handoff_rules`
 
 Routing note:
 - Implementation-owned fixes return through implementation review and API/E2E again.
@@ -243,5 +243,5 @@ Routing note:
 - Material-Premise Gate (`Pass`/`Fail`/`Blocked`):
 - Score Summary:
 - Failure Origin (when applicable):
-- Recommended Recipient (when applicable):
+- Recommended recipient/address from `get_handoff_rules` (when applicable):
 - Notes:

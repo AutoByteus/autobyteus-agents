@@ -34,7 +34,7 @@ If no prior failure applies to this API/E2E revision, write `None`.
 - Prior result and confidence (`N/A` for `API-REV-001`):
 - Current result and confidence:
 - New or remaining failure IDs:
-- Recommended recipient:
+- Recommended recipient/address from `get_handoff_rules`:
 - Remaining risks, blocked evidence, or untested scope:
 
 Keep prior entries. Add a new entry for later rework instead of rewriting history, except to correct a factual error.

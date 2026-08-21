@@ -85,11 +85,9 @@ Use [templates/implementation-revision-record-template.md](templates/implementat
 - Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to the exact canonical rooted address returned by `get_handoff_rules`.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
-- Send the cumulative implementation package to `/code_reviewer`: requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, solution revision record, implementation handoff, implementation revision record, and still-relevant triggering reports or evidence.
+- Send the cumulative implementation package through the applicable handoff returned by `get_handoff_rules`: requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, solution revision record, implementation handoff, implementation revision record, and still-relevant triggering reports or evidence.
 - On rework, identify the current `IR-*` entry, applicable upstream/downstream revision entries or `N/A`, and triggering finding IDs in the message.
 - Use absolute filesystem paths for every artifact in that handoff.
-- Route `Design Impact` to `/solution_designer`.
-- Route `Requirement Gap` to `/solution_designer`.
-- Route `Unclear` to `/solution_designer`.
-- If `/code_reviewer` or `/delivery_engineer` sends an implementation-owned `Local Fix`, update the implementation and resend the handoff to `/code_reviewer`; source review must pass before API/E2E resumes.
-- Do not route implementation changes directly back to `/api_e2e_engineer`; code review must pass first.
+- For `Design Impact`, `Requirement Gap`, or `Unclear`, send the finding package through the applicable upstream handoff returned by `get_handoff_rules`.
+- If a downstream handoff identifies an implementation-owned `Local Fix`, update the implementation and resend the package through the applicable returned handoff; source review must pass before API/E2E resumes.
+- Do not bypass the configured source-review stage; implementation changes must pass source review before API/E2E resumes.

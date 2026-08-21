@@ -73,5 +73,5 @@ Do not rerun the full API/E2E workflow by default. If a changed assertion cannot
 - Result: `Pass` / `Fail` / `Not Applicable`
 - Changed durable test paths reviewed:
 - Unresolved finding IDs:
-- Recommended Recipient: `delivery_engineer` on `Pass` or `Not Applicable`; otherwise the classified owner
+- Recommended recipient/address: record the exact `recipient_address` returned by `get_handoff_rules` for the result; otherwise record `N/A` when no handoff applies
 - Notes:

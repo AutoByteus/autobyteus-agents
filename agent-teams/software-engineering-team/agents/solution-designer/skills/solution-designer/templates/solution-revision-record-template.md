@@ -24,7 +24,7 @@ The latest requirements, investigation notes, design spec, and supplements remai
 - Canonical artifacts and sections updated:
 - Supplemental artifacts updated, added, or removed:
 - Downstream implementation and review impact:
-- Next recipient or routing:
+- Next recipient/address or routing from `get_handoff_rules`:
 - Remaining gaps or risks:
 
 For `SR-001`, record the initial solution baseline and use `N/A` for prior result and triggering findings. Keep prior entries. Add a new entry for later rework instead of rewriting history, except to correct a factual error.
