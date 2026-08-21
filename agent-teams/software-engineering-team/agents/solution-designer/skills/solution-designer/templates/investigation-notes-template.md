@@ -107,4 +107,4 @@ Record only behavior relevant to the task. A behavior may be user-initiated, sys
 
 ## Open Unknowns / Risks
 
-## Notes For Implementation And Code Review
+## Notes For Architecture Reviewer

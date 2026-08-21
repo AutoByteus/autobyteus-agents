@@ -4,7 +4,7 @@ Write this artifact to `api-e2e-test-review-report.md` in the assigned task work
 
 This is a separate, proportional review of durable API/E2E test-code changes after successful execution. It does not repeat implementation source review, source-file size auditing, the full implementation source-review scorecard, confidence scoring, or the API/E2E execution itself.
 
-Keep one canonical report path across reruns. Reuse finding IDs for unresolved findings and keep the latest complete result authoritative. Every completed API/E2E test review creates or appends the corresponding entry in `code-review-revision-record.md`; the first completed test review is a concise `CRR-*` baseline with prior result `N/A`.
+Keep one canonical report path across reruns. Reuse finding IDs for unresolved findings and keep the latest complete result authoritative. Every completed proportional test review appends the corresponding entry in `code-review-revision-record.md`.
 
 ## Review Meta
 
@@ -14,13 +14,15 @@ Keep one canonical report path across reruns. Reuse finding IDs for unresolved f
 - Design Spec Reviewed As Context:
 - Supplemental Task Artifacts Reviewed As Context:
 - Solution Revision Record Reviewed As Context:
+- Architecture Review Revision Record Reviewed As Context:
 - Implementation Revision Record Reviewed As Context:
 - Original Code Review Report:
 - Code Review Revision Record:
-- Current Code Review Revision ID: `N/A` / `CRR-*`
+- Current Code Review Revision ID: `CRR-*`
 - Coverage Investigation:
 - Execution Coverage Report:
 - API/E2E Revision Record Reviewed As Context:
+- Delivery Revision Record Reviewed As Context (delivery re-entry only):
 - API/E2E Result:
 - Final Validation Confidence:
 - Prior unresolved test-review findings rechecked:
@@ -61,7 +63,7 @@ Record only actionable test-code quality or correctness findings. Do not inflate
 Classification:
 
 - `Local Fix`: bounded test-code, fixture, setup, helper, or reporting correction; normally owned by `api_e2e_engineer`
-- `Design Impact`: test review exposes a structural weakness or mismatch in the design; owned by `solution_designer`
+- `Design Impact`: test review exposes a structural weakness or mismatch in the reviewed design; owned by `solution_designer`
 - `Requirement Gap`: intended behavior is missing or ambiguous; owned by `solution_designer`
 - `Unclear`: the issue cannot be classified from the available package; owned by `solution_designer`
 

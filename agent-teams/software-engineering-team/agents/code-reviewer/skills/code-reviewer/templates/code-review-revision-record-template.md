@@ -8,7 +8,7 @@ The latest `code-review-report.md` or `api-e2e-test-review-report.md` remains au
 
 | Revision ID | Canonical Review Report | Entry Point / Trigger | Prior Result | Current Result | Affected Finding IDs |
 | --- | --- | --- | --- | --- | --- |
-| CRR-001 |  |  |  |  |  |
+| CRR-001 |  |  | N/A |  |  |
 
 ## Revision Entries
 
@@ -18,8 +18,10 @@ The latest `code-review-report.md` or `api-e2e-test-review-report.md` remains au
 - Review entry point and round:
 - Triggering role, report path, and finding or scenario IDs:
 - Relevant solution revision IDs: `SR-*` / `N/A`
+- Relevant architecture-review revision IDs: `ARCH-REV-*` / `N/A`
 - Relevant implementation revision IDs: `IR-*` / `N/A`
 - Relevant API/E2E revision IDs: `API-REV-*` / `N/A`
+- Relevant delivery revision IDs: `DR-*` / `N/A`
 - Prior authoritative result:
 - Current authoritative result:
 - What changed in the review result and why:
@@ -37,4 +39,4 @@ If no prior finding applies to this review revision, write `None`.
 - Recommended recipient:
 - Remaining risks or uncertainty:
 
-For `CRR-001`, use `N/A` for prior result and write `None` in the prior-finding table. Keep prior entries. Add a new entry for later review work instead of rewriting history, except to correct a factual error.
+For `CRR-001`, use `N/A` for the prior result and write `None` in the prior-finding table. Keep prior entries. Add a new entry for later review work instead of rewriting history, except to correct a factual error.

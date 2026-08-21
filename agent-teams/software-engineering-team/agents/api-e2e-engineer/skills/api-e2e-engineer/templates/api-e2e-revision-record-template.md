@@ -8,7 +8,7 @@ The latest coverage investigation and execution coverage report remain authorita
 
 | Revision ID | Triggering Role / Report / Round | Related Upstream Revision IDs | Prior Result / Confidence | Current Result / Confidence |
 | --- | --- | --- | --- | --- |
-| API-REV-001 |  |  |  |  |
+| API-REV-001 |  |  | N/A |  |
 
 ## Revision Entries
 
@@ -16,7 +16,7 @@ The latest coverage investigation and execution coverage report remain authorita
 
 - Triggering role, report path, and round:
 - Triggering finding or scenario IDs:
-- Related solution, implementation, or code-review revision IDs:
+- Related solution, architecture-review, implementation, code-review, or delivery revision IDs:
 - Why this baseline or coverage/execution revision was recorded:
 - Coverage decisions or durable test paths changed:
 - Scenarios added, changed, removed, or rechecked:

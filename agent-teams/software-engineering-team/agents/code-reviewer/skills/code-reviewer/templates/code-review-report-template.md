@@ -7,7 +7,7 @@ If the review shows that an earlier design artifact was weak, incomplete, or wro
 Keep one canonical code review report path across reruns.
 Do not create versioned copies by default.
 For every completed review round, first confirm the affected behavior and production-path basis, then recheck applicable prior unresolved findings, complete the current review, update this report to the latest complete result, and create or append the corresponding entry in `code-review-revision-record.md`. The initial result receives `CRR-001` with prior result `N/A`.
-The latest canonical report is authoritative; the revision record is the concise chronological history for all rounds.
+The latest canonical report is authoritative; the revision record is the concise chronological history for all completed review results.
 
 Use the full report for `Implementation Review`. For `API/E2E Failure-Origin Review`, record the failure context in the review meta and scope, update only affected findings or score rationale when needed, classify the cause, and route it without repeating the full source audit or scorecard.
 
@@ -22,6 +22,9 @@ Do not record successful API/E2E test-code review here. Use the separate `api-e2
 - Supplemental Task Artifacts Reviewed As Context:
 - Solution Revision Record Reviewed As Context:
 - Relevant Solution Revision IDs:
+- Design Review Report Reviewed As Context:
+- Architecture Review Revision Record Reviewed As Context:
+- Relevant Architecture Review Revision IDs:
 - Implementation Handoff Reviewed As Context:
 - Implementation Revision Record Reviewed As Context:
 - Relevant Implementation Revision IDs:
@@ -35,6 +38,8 @@ Do not record successful API/E2E test-code review here. Use the separate `api-e2
 - Execution Coverage Report Reviewed (failure-origin entry point):
 - API/E2E Revision Record Reviewed (failure-origin entry point):
 - Relevant API/E2E Revision IDs:
+- Delivery Revision Record Reviewed (delivery re-entry only):
+- Relevant Delivery Revision IDs:
 - Failing Scenario IDs:
 - Exact Failing Commands / Execution Mode:
 - Failure Evidence Paths:
@@ -53,11 +58,11 @@ Round rules:
 
 ## Upstream Behavior And Production-Path Basis Confirmation
 
-Complete this understanding and alignment foundation before the implementation structural checks. Understand the approved business intent and relevant existing behavior, then start from the design spec's behavior and production-path map, verify it against the implementation, and record status plus implementation evidence instead of restating unchanged content. This is not a review or reapproval of the business decision. For a failure-origin-only round, update only the affected behavior and material premise.
+Complete this understanding and alignment foundation before the implementation structural checks. Understand the approved business intent and relevant existing behavior, then start from the design spec's behavior map and architecture review confirmation, verify them against the implementation, and record status plus implementation evidence instead of restating unchanged content. This is not a review or reapproval of the business decision. For a failure-origin-only round, update only the affected behavior and material premise.
 
 - Approved requirements basis understood:
 - Design-spec behavior map verified against the implementation:
-- Relevant design-spec material-premise decisions verified:
+- Design review report and round confirmed:
 - Behavior-basis status: `Confirmed` / `Contradicted` / `Unclear`
 - Changed or newly discovered behavior, if any:
 - Remaining material ambiguity, if any:
@@ -68,7 +73,7 @@ Complete this understanding and alignment foundation before the implementation s
 
 Reuse the design spec's behavior IDs. Assign a provisional ID only when concrete evidence reveals a relevant supported behavior missing upstream; route it to `solution_designer` and do not pass until the upstream map is corrected. Do not create a behavior from technical possibility alone. `Contradicted`, `Unclear`, or `Newly Discovered` behavior prevents an implementation-review pass.
 
-After the initial handoff, complete the applicable prior-finding resolution table in `code-review-revision-record.md` after confirming this behavior basis and before finalizing prospective new findings.
+After the initial review result, complete the applicable prior-finding resolution table in `code-review-revision-record.md` after confirming this behavior basis and before finalizing prospective new findings.
 
 ## Structural / Design Checks
 
@@ -124,9 +129,9 @@ A general version-agnostic reader is not backward compatibility merely because i
 | No backward-compatibility mechanisms in changed scope |  |  |
 | No legacy old-behavior retention in changed scope |  |  |
 | Dead/obsolete code cleanup completeness in changed scope |  |  |
-| Design-spec persisted-data transition decision is followed without unnecessary migration work |  |  |
+| Approved persisted-data transition decision is followed without unnecessary migration work |  |  |
 | No version-specific dual reads/writes or request-time old-shape fallback exists |  |  |
-| Implementation transition mechanics match the design spec, including migration safety only when required |  |  |
+| Approved transition mechanics match the reviewed design, including migration safety only when required |  |  |
 
 ## Dead / Obsolete / Legacy Items Requiring Removal (Mandatory If Any Exist)
 
@@ -142,9 +147,7 @@ A general version-agnostic reader is not backward compatibility merely because i
 
 ## Material Premise Validation (Only When Needed)
 
-### Upstream Design Material-Premise Decisions
-
-If the design spec records no material premise decisions, write `None`.
+### Upstream Design-Review Material-Premise Decisions
 
 | Premise ID | Current Status (`Confirmed`/`Reclassified`/`No Longer Relevant`) | Changed Evidence / Reason (Required For `Reclassified` Or `No Longer Relevant`) |
 | --- | --- | --- |
@@ -158,7 +161,7 @@ For each new or reclassified premise, use this shape:
 
 ### `<premise-id>` — `<technical premise>`
 
-- Origin: `New` / `Reclassified from <design-premise-id>`
+- Origin: `New` / `Reclassified from <architecture-premise-id>`
 - Related approved requirement or established contract:
 - Relevant behavior ID(s):
 - Initiating basis kind: `User` / `System` / `Operational` / `Contract`
@@ -169,7 +172,7 @@ For each new or reclassified premise, use this shape:
 - Reachability: `Reachable` / `Not Reachable` / `Unclear`
 - Review consequence / proportionate response:
 
-Reuse the design-spec premise ID when reclassifying it; assign a new stable ID only to a new premise. Apply the shared product-reachability rule. A record is incomplete when its initiating basis is only the downstream client, SDK, endpoint, handler, middleware, generic infrastructure, diff, test, or proposed mechanism whose applicability is being assessed. `Reachable` requires the complete independent, forward-traced witness above; `Not Reachable` cannot drive a finding, score deduction, defect attribution, or machinery; materially `Unclear` requires investigation or routing.
+Reuse the architecture-review premise ID when reclassifying it; assign a new stable ID only to a new premise. Apply the shared product-reachability rule. A record is incomplete when its initiating basis is only the downstream client, SDK, endpoint, handler, middleware, generic infrastructure, diff, test, or proposed mechanism whose applicability is being assessed. `Reachable` requires the complete independent, forward-traced witness above; `Not Reachable` cannot drive a finding, score deduction, defect attribution, or machinery; materially `Unclear` requires investigation or routing.
 
 ## Review Scorecard (Mandatory)
 
@@ -208,7 +211,7 @@ Rules:
 Rules:
 - Reuse the same finding ID when the same issue persists across rounds.
 - Create a new finding ID only for newly discovered issues.
-- After the initial handoff, mark resolved or obsolete earlier findings in the current `CRR-*` entry's prior-finding resolution table instead of silently dropping them.
+- After the initial result, mark resolved or obsolete earlier findings in the current `CRR-*` entry's prior-finding resolution table instead of silently dropping them.
 - Tie every finding to affected approved behavior, relevant existing behavior, an established engineering contract, or a real supported operational constraint.
 - When a finding depends on an assumed production, failure, or lifecycle scenario, cite its material-premise validation ID and include the production trigger/path, evidence, material consequence, and why the required action is proportionate.
 - If dead/obsolete/legacy/compatibility issues exist, enumerate each one explicitly with the concrete file/path/item, evidence, and required removal or cleanup action.

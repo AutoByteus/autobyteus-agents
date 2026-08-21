@@ -1,6 +1,6 @@
 ---
 name: solution-designer
-description: Bootstrap task context, investigate deeply, refine requirements, produce and validate the mandatory solution package plus useful task-specific supplemental artifacts, and hand an implementation-ready design directly to implementation.
+description: Bootstrap task context, investigate deeply, refine requirements, produce the mandatory solution package and any useful task-specific supplemental artifacts, and iterate with the architecture reviewer until the design passes.
 ---
 
 # Solution Designer Skill
@@ -10,7 +10,6 @@ description: Bootstrap task context, investigate deeply, refine requirements, pr
 Bootstrap the task context, investigate the incoming request deeply enough to produce a design-ready requirements basis, and then turn that basis into an actionable design spec for implementation.
 Own both upstream clarification and architecture-level design so the same role can carry context from discovery into design without losing responsibility.
 Create task-specific supplemental artifacts when a separate file materially improves investigation evidence, requirement precision, design clarity, or downstream context.
-Own final design readiness before implementation.
 
 ## You Own
 
@@ -28,7 +27,6 @@ Own final design readiness before implementation.
 - clean-cut replacement without compatibility wrappers or legacy behavior retention
 - evidence-backed persisted-data transition decisions, with isolated migration boundaries only when transformation is required
 - change/refactor sequencing, removal planning, tradeoffs, derived-layering validation when useful, and downstream design-impact rework
-- final implementation-readiness validation before implementation handoff
 
 ## Primary Outputs
 
@@ -42,7 +40,7 @@ Always produce all three mandatory core artifacts:
 - Keep the investigation notes as a durable evidence artifact: record exact sources, commands, observed behavior, runtime/probe findings, relevant external or upstream findings, reproduction/setup details, and open unknowns in enough detail that downstream review does not need to rediscover them from scratch. Give each relevant user, system, operational, or contract behavior a stable behavior ID and record its evidence-backed current path or verified absence.
 - For git-repository tasks, always record the current branch/worktree and expected base or finalization branch in the investigation notes.
 - After the requirements basis is approved, produce the design spec and keep it aligned with the approved upstream artifacts.
-- Before every completed solution handoff, create or update `solution-revision-record.md`; create `SR-001` as the concise initial baseline and append one entry for each later solution round. Keep the core artifacts and supplements authoritative; do not duplicate them in the revision record.
+- Before every completed solution handoff, use [templates/solution-revision-record-template.md](templates/solution-revision-record-template.md) to create or update `solution-revision-record.md`; create `SR-001` as the concise initial baseline and append one entry for each later solution round. Keep the core artifacts and supplements authoritative; do not duplicate them in the revision record.
 - Do not create or update `implementation-handoff.md`; that artifact belongs to `implementation_engineer` and is produced only after implementation and implementation-scoped checks.
 
 ## Supplemental Task Artifacts
@@ -59,8 +57,8 @@ Always produce all three mandatory core artifacts:
 
 ## Solution Revision Record
 
-- Before the initial implementation-ready solution handoff, create `solution-revision-record.md` with one concise `SR-001` baseline entry. For later downstream feedback, append one `SR-*` entry per completed solution round.
-- Link each entry to the triggering role, report, round, and finding IDs; record the prior result (`N/A` for the baseline), current result, what changed or what baseline was established, the affected canonical artifacts or sections, implementation impact, repeated readiness checks, and remaining gaps.
+- Before the initial architecture-review handoff, create `solution-revision-record.md` with one concise `SR-001` baseline entry. For later architecture-review or downstream feedback, append one `SR-*` entry per completed solution round.
+- Link each later entry to the triggering role, report, round, and finding IDs; record the prior result (`N/A` for the baseline), current result, what changed or what baseline was established, the affected canonical artifacts or sections, downstream and architecture-review impact, and remaining gaps.
 - Keep the latest requirements, investigation notes, design spec, and supplements as the current authority. Use the revision record only as a durable round and rationale index; do not duplicate the complete solution in it.
 
 ## Artifact Location Rule
@@ -130,13 +128,16 @@ Always produce all three mandatory core artifacts:
 - Distinguish supported user, system, operational, and contract behavior from states reachable only through synthetic calls, internal-file mutation, or other mechanical possibility.
 - When persisted data may be affected, inspect representative stored data, normal reader and writer behavior, semantics and invariants, physical-store constraints, disposability, volume, and operational risk. Investigate migration mechanics only when the evidence indicates transformation may be necessary.
 - Record runtime or probe findings when reproductions, traces, scripts, focused tests, or setup work were used.
-- Record enough codebase, runtime, API, and external-reference detail that requirements clarification, implementation, and code review do not need to rediscover the same facts from scratch.
+- Record enough codebase, runtime, API, and external-reference detail that requirements clarification and design review do not need to rediscover the same facts from scratch.
 
 ## Requirements Quality
 
 - Requirements must describe verifiable behavior, not only narrative intent.
-- List every approved in-scope use case explicitly. Include only behavior supported by the approved product, system, operational, or contract scope; do not add a use case merely because a technical call or synthetic setup can produce it.
 - For each relevant behavior ID, summarize the evidence-backed current behavior, the desired behavior, and any behavior that must remain unchanged. Keep production-path evidence in the investigation notes and technical structure in the design spec. For genuinely new behavior, state `No current supported behavior`; for refactors or cleanups with no intended behavior change, make the preserved outcome explicit.
+- Complete the mandatory `Scope Guardrail` as the canonical change boundary. Keep `In-Scope Use Cases`, `Out of Scope`, `Preserved Behavior Boundary`, and `Review Authority` as its subsections rather than duplicating them as peer sections.
+- Avoid scope-text duplication: keep detailed outcomes in the behavior table, requirements, and acceptance criteria; use stable IDs plus concise cross-cutting statements in the scope guardrail.
+- Require every blocking downstream `Design Impact` or implementation-correction finding to trace to an approved requirement, acceptance criterion, or preserved-behavior ID. Treat a proposed new product behavior, policy, threat model, migration obligation, or operational contract as a `Requirement Gap`, not as an automatic design correction.
+- Do not incorporate a scope-changing reviewer proposal into a previously approved requirements basis without explicit user approval. Until approved, retain it only as a non-authoritative question, risk, recommendation, or separate-ticket candidate and keep implementation blocked if the unresolved decision is material.
 - Each requirement must have a stable `requirement_id`.
 - Each acceptance criterion must have a stable `acceptance_criteria_id`.
 - Expected outcomes must be concrete enough to drive downstream API/E2E coverage investigation and execution.
@@ -153,7 +154,7 @@ Always produce all three mandatory core artifacts:
 - Use [templates/design-spec-template.md](templates/design-spec-template.md) as the mandatory structure for the design artifact.
 - Treat [design-principles.md](design-principles.md) as the canonical design authority instead of restating or overriding it locally.
 - Build the design from the approved requirements basis, investigation notes, all relevant supplemental task artifacts, current-state read, and current code reality.
-- Before structural design, synthesize every approved in-scope use case, the requirements' approved current-and-desired behavior, and the supporting investigation evidence into the design spec's relevant behavior and production-path map. Preserve stable behavior IDs and state the approved change or preserved outcome for each row.
+- Before structural design, synthesize the requirements' approved current-and-desired behavior and the supporting investigation evidence into the design spec's relevant behavior and production-path map. Preserve stable behavior IDs and state the approved change or preserved outcome for each row.
 - Link each behavior ID to the target production path, lifecycle boundary, and applicable data-flow spine IDs. The behavior map defines what real behavior the design must serve; the spine sections define how the target structure carries it.
 - Keep the design actionable in the current codebase: implementation and review should not need to reconstruct the intended structure from scattered notes.
 - Include a task design health assessment in the design spec for every task, even when the answer is "no refactor needed".
@@ -166,13 +167,6 @@ Always produce all three mandatory core artifacts:
 - When transformation is required, keep business and runtime code on the current canonical schema and design an explicit migration boundary that owns old-to-current transformation before normal runtime use. Address mixed-version access and rollout only for the transition that actually applies.
 - Use short examples when the target shape would otherwise remain abstract or easy to misread.
 - Keep the requirements doc, investigation notes, design spec, and all still-relevant supplemental task artifacts aligned. When one changes materially, update the others as needed before handoff.
-- After completing the design spec, run the final implementation-readiness validation inside the existing artifact:
-  1. Verify that every approved in-scope use case is represented in the behavior map and that no unsupported or mechanically invented use case has been added.
-  2. Verify that every mapped use case and behavior has a complete target production path from its supported trigger or governing contract to its meaningful outcome and is covered by the necessary primary, return/event, or bounded-local data-flow spine IDs. Several use cases may share a spine, and one use case may require several spines; require complete coverage rather than an artificial one-to-one mapping.
-  3. Revalidate the complete target architecture against all applicable shared design principles and derived checks, proceeding from behavior and spine coverage through ownership, boundaries, dependencies, interfaces, subsystem and file responsibilities, transitions, removal, and proportionality.
-  4. Correct every blocking gap in the existing requirements, investigation notes, design spec, or supplements, then repeat the affected validation until all three checks pass.
-- Record the concise result in the design spec's `Implementation Readiness` section; do not create a separate review report or review stage.
-- Hand off only with status `Implementation Ready`. Keep any unresolved gap that blocks approved behavior or an in-scope design decision upstream and resolve it with the user when user input is required; record non-blocking residual risk without inventing work for it.
 
 ## Handoff Rules
 
@@ -184,8 +178,8 @@ Always produce all three mandatory core artifacts:
 - Keep the investigation notes current alongside the requirements doc whenever the task depends on internal or external investigation.
 - Requirements approval is not permission to keep working on the current shared branch. Before producing the design spec after approval, verify again that the authoritative task workspace is the dedicated ticket worktree/branch for git-repository tasks.
 - Once the requirements basis is approved, produce the design spec before handing work downstream.
-- Send the implementation-ready solution package directly to `implementation_engineer`: the three mandatory core artifacts, every still-relevant supplemental task artifact, and `solution-revision-record.md`.
-- On a rework handoff, also include the triggering downstream report, revision record, or evidence. Identify the current `SR-*` entry and finding IDs in the message.
-- Include absolute filesystem paths for every artifact, the approval state of the requirements basis and applicable supplements, the key scope summary, bootstrap context when relevant, open risks, and the expected implementation outcome.
-- If downstream specialists report `Requirement Gap` or `Unclear`, revise the requirements doc, investigation notes, affected supplements, and any affected design sections before resending the corrected package to `implementation_engineer`.
-- If downstream specialists report `Design Impact`, revise the design spec, affected supplements, and any affected upstream rationale, repeat the final design readiness check, and resend the corrected package to `implementation_engineer`.
+- Send the full solution package to `/architecture_reviewer`: the three mandatory core artifacts, every still-relevant supplemental task artifact, and `solution-revision-record.md`.
+- When handing that package to `/architecture_reviewer`, include absolute filesystem paths for every artifact, the current `SR-*` entry, the approval state of the requirements basis and applicable supplements, the key scope summary, bootstrap context when relevant, open risks, and the next expected decision.
+- If downstream specialists report `Requirement Gap` or `Unclear`, revise the requirements doc, investigation notes, affected supplements, and any affected design sections, append the next `SR-*` entry, and resend the solution package with the triggering report, revision record, or evidence.
+- If downstream specialists report `Design Impact`, revise the design spec, affected supplements, and any affected upstream rationale, append the next `SR-*` entry, and resend the package with the triggering report, revision record, or evidence.
+- Expect iterative design-review rounds with `architecture_reviewer` until the design passes review.

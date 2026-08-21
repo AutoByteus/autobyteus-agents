@@ -9,6 +9,8 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Design spec:
 - Supplemental task artifacts:
 - Solution revision record:
+- Design review report:
+- Architecture review revision record:
 - Triggering rework report, revision record, or evidence, when applicable:
 
 ## Current Implementation Summary
@@ -16,14 +18,16 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 Summarize the complete current implementation. For a post-initial delta, reference the applicable `IR-*` entry instead of turning this section into a revision log.
 
 - Implementation cycle: `Initial` / `Rework`
-- Implementation revision record: absolute path
-- Current implementation revision ID: `N/A` / `IR-*`
-- Related solution revision ID: `N/A` / `SR-*`
-- Related code review revision IDs: `N/A` / `CRR-*`
-- Related API/E2E revision IDs: `N/A` / `API-REV-*`
+- Implementation revision record:
+- Current implementation revision ID: `IR-*`
+- Related solution revision IDs: `SR-*` / `N/A`
+- Related architecture-review revision IDs: `ARCH-REV-*` / `N/A`
+- Related code-review revision IDs: `CRR-*` / `N/A`
+- Related API/E2E revision IDs: `API-REV-*` / `N/A`
+- Related delivery revision IDs: `DR-*` / `N/A`
 - Triggering finding IDs: `N/A` / list
 
-## Approved Behavior Implementation Trace
+## Reviewed Behavior Implementation Trace
 
 Reuse the design spec's stable behavior IDs. Record the actual implementation path and outcome without copying the full upstream behavior narrative.
 
@@ -39,10 +43,10 @@ Reuse the design spec's stable behavior IDs. Record the actual implementation pa
 
 ## Task Design Health Assessment Implementation Check
 
-- Design change posture:
-- Design root-cause classification:
-- Design refactor decision (`Refactor Needed Now`/`No Refactor Needed`/`Deferred`):
-- Implementation matched the design assessment (`Yes`/`No`):
+- Reviewed change posture:
+- Reviewed root-cause classification:
+- Reviewed refactor decision (`Refactor Needed Now`/`No Refactor Needed`/`Deferred`):
+- Implementation matched the reviewed assessment (`Yes`/`No`):
 - If challenged, routed as `Design Impact` (`Yes`/`No`/`N/A`):
 - Evidence / notes:
 
@@ -58,12 +62,12 @@ Reuse the design spec's stable behavior IDs. Record the actual implementation pa
 
 ## Persisted Data Transition Check (When Applicable)
 
-- Design-spec decision (`Not Affected`/`Directly Usable — No Migration`/`Discard or Rebuild`/`Migration Required`):
+- Approved decision (`Not Affected`/`Directly Usable — No Migration`/`Discard or Rebuild`/`Migration Required`):
 - Design-spec decision reference:
-- Implementation follows the design-spec decision without an unplanned migration or version-specific runtime fallback: `Yes` / `No (blocked)`
+- Implementation follows the approved decision without an unapproved migration or version-specific runtime fallback: `Yes` / `No (blocked)`
 - Direct-use evidence or discard/rebuild result, when applicable:
 - Migration implementation and focused checks, only when `Migration Required`:
-- Deviation from the design-spec transition decision: `None` / explain and reroute:
+- Deviation from the reviewed transition decision: `None` / explain and reroute:
 
 ## Environment Or Dependency Notes
 

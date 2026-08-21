@@ -9,7 +9,7 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Handoff summary artifact:
 - Handoff summary status: `Updated` / `Blocked`
 - Delivery revision record:
-- Current delivery revision ID: `N/A` / `DR-*`
+- Current delivery revision ID: `DR-*`
 - Notes:
 
 ## Initial Delivery Integration Refresh
@@ -31,10 +31,10 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 ## User Verification
 
 - Initial explicit user completion/verification received: `Yes` / `No`
-- Initial verification reference:
+- Initial verification / acceptance reference:
 - Renewed verification required after later re-integration: `Yes` / `No`
 - Renewed verification received: `Yes` / `No` / `Not needed`
-- Renewed verification reference:
+- Renewed verification / acceptance reference:
 
 ## Docs Sync Result
 
@@ -58,7 +58,7 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Ticket branch push result:
 - Finalization target remote:
 - Finalization target branch:
-- Target advanced after user verification: `Yes` / `No`
+- Target advanced after verification / acceptance: `Yes` / `No`
 - Delivery-owned edits protected before re-integration: `Completed` / `Not needed` / `Blocked`
 - Re-integration before final merge result: `Completed` / `Not needed` / `Blocked`
 - Target branch update result:
@@ -85,6 +85,7 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Remote branch cleanup result: `Not required` / `Completed` / `Blocked`
 - Blocker (if applicable):
 
+
 ## Escalation / Reroute (Use Only If Final Handoff Cannot Complete)
 
 - Classification: `Local Fix` / `Design Impact` / `Requirement Gap` / `Unclear`
@@ -93,7 +94,7 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 ## Release Notes Summary
 
-- Release notes artifact created before verification:
+- Release notes artifact created before verification / acceptance:
 - Archived release notes artifact used for release/publication:
 - Release notes status: `Updated` / `Not required` / `Blocked`
 

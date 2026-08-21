@@ -27,6 +27,6 @@ The latest docs sync report, handoff summary, and release/publication/deployment
 - Next recipient/action:
 - Remaining blockers, rollback concerns, or untested scope:
 
-For `DR-001`, write `N/A` for prior result and describe the initial integrated delivery state. For later rounds, append a new entry and identify the changed canonical artifacts and the prior entry being revisited.
+For `DR-001`, write `N/A` for the prior result and describe the initial integrated delivery state. For later rounds, append a new entry and identify the changed canonical artifacts and the prior entry being revisited.
 
 Keep prior entries. Add a new entry for later work instead of rewriting history, except to correct a factual error.
