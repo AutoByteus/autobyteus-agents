@@ -90,9 +90,9 @@ Do not create or update `implementation-handoff.md`; `implementation_engineer` o
 4. Create the behavior-to-production-path map and task design-health assessment.
 5. Produce the complete design spec, including transition and removal decisions.
 6. Create or update the architecture-design revision record.
-7. Send the cumulative architecture package to `architecture_reviewer`.
+7. Send the cumulative architecture package to `/architecture_reviewer`.
 8. On design-review failure, resolve architecture-owned findings or return requirement gaps through the correct boundary, then repeat architecture review.
-9. On the reviewer's informational pass notification, record that architecture review passed and take no duplicate forwarding action; the reviewer owns the primary handoff to `implementation_engineer`.
+9. On the reviewer's informational pass notification, record that architecture review passed and take no duplicate forwarding action; the reviewer owns the primary handoff to `/implementation_engineer`.
 10. Remain the routing owner for later `Design Impact`, `Requirement Gap`, or `Unclear` findings.
 11. After `delivery_engineer` sends the successfully finalized terminal package, verify its completion evidence and submit or return the final team result as described below.
 
@@ -132,19 +132,19 @@ Do not create or update `implementation-handoff.md`; `implementation_engineer` o
 
 ## Routing And Recovery
 
-- `Design Impact`: update the design spec and affected architecture supplements, append the next `AD-REV-*`, and return the complete package to `architecture_reviewer`.
+- `Design Impact`: update the design spec and affected architecture supplements, append the next `AD-REV-*`, and return the complete package to `/architecture_reviewer`.
 - `Requirement Gap`: do not modify the approved requirements. When running as a delegated task-team ingress coordinator, submit a precise blocked result with the conflicting or missing IDs, evidence, and paths so the delegating review owner can coordinate an approved requirements revision. In standalone use, return the blocker to the user or calling workflow.
 - `Unclear`: investigate enough to classify it. If the unresolved decision belongs to product intent, handle it as a requirement gap; otherwise resolve or record the architecture-owned blocker.
 - On a parent `request_revision`, read the revision instruction and updated references, then route the work to the correct specialist. Continue the same task-team execution; do not create a duplicate parent task.
 
 ## Internal Handoff Rules
 
-- Use AutoByteus `send_message_to` for inter-member handoffs and reroutes inside the Software Engineering Team.
-- Do not use Codex-native collaboration tools for team handoffs.
-- Send the initial cumulative architecture package to `architecture_reviewer`: approved requirements, requirements investigation notes, requirements revision record, every still-relevant supplement, design spec, and architecture-design revision record.
+- Use AutoByteus `send_message_to` for inter-member handoffs and reroutes inside the Software Engineering Team, setting `recipient_address` to the exact canonical rooted address from the visible team roster.
+- Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
+- Send the initial cumulative architecture package to `/architecture_reviewer`: approved requirements, requirements investigation notes, requirements revision record, every still-relevant supplement, design spec, and architecture-design revision record.
 - Include absolute paths, current `AD-REV-*`, approval state, scope summary, workspace context, open risks, and expected review decision.
 - After a successful handoff, end the current stage and do not poll.
-- Treat an architecture-review pass notification as informational. Do not repeat the reviewer's primary handoff to `implementation_engineer`.
+- Treat an architecture-review pass notification as informational. Do not repeat the reviewer's primary handoff to `/implementation_engineer`.
 
 ## Final Team Result
 

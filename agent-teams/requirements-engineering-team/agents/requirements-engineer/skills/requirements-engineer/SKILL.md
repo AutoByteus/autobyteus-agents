@@ -91,6 +91,9 @@ When `product_prototyper` is engaged, it owns the canonical `ui-ux-spec.md`, run
 - State the problem and desired outcome precisely before listing detailed requirements.
 - For every relevant behavior, describe current behavior, desired behavior, and intentionally preserved behavior.
 - A behavior may be user-initiated, system-initiated, operational, or contract-driven; do not invent a UI journey for backend or infrastructure work.
+- Use the mandatory scope guardrail as the canonical change boundary. Keep in-scope use cases, out-of-scope concerns, non-goals, preserved behavior, and review authority explicit without duplicating the full behavior table or acceptance criteria.
+- Require every blocking downstream `Design Impact` or implementation-correction finding to trace to an approved requirement, acceptance criterion, or preserved-behavior ID. A proposed new product behavior, policy, threat model, migration obligation, compatibility promise, or operational contract is a `Requirement Gap`, not an automatic design correction.
+- Do not incorporate a scope-changing downstream proposal into the approved requirements basis without explicit user approval. Until approved, retain it only as a non-authoritative question, risk, recommendation, or separate-ticket candidate and keep downstream work blocked when the unresolved decision is material.
 - Give each requirement a stable `REQ-*` ID and each acceptance criterion a stable `AC-*` ID.
 - Write acceptance criteria as observable, verifiable outcomes. Include important alternate, error, empty, permission, lifecycle, and recovery behavior only when it is supported and relevant.
 - Separate scope, non-goals, assumptions, constraints, and unresolved decisions.
@@ -190,7 +193,7 @@ In standalone use, return the same approved package or blocker directly to the u
 
 ## Handoff Rules
 
-- Use AutoByteus `send_message_to` for normal requirements/prototype inter-member handoffs, targeting the exact visible member name.
+- Use AutoByteus `send_message_to` for normal requirements/prototype inter-member handoffs, setting `recipient_address` to the exact canonical rooted address from the visible team roster.
 - After a successful team handoff, end the current stage and wait for a later incoming team message; do not poll.
-- Send prototype requests only to `product_prototyper` and include the cumulative requirements package, explicit questions, and absolute artifact paths.
+- Send prototype requests only to `/product_prototyper` and include the cumulative requirements package, explicit questions, and absolute artifact paths.
 - When prototype work returns, update the canonical requirements yourself while preserving the prototyper's ownership of `ui-ux-spec.md` and its final visual references.

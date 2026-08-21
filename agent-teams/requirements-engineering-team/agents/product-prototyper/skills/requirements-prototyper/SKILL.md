@@ -215,7 +215,7 @@ Before reporting the prototype as completed, confirm:
 
 ## Handoff Rules
 
-- Use AutoByteus `send_message_to` to return work to `requirements_engineer`.
+- Use AutoByteus `send_message_to` to return work to `/requirements_engineer`, using the exact canonical rooted address from the visible team roster.
 - Use `delegate_task`, `review_task_result`, and the bootstrapper's
   `submit_task_result` only for the bootstrap, parity-completion, or refresh
   task lifecycle. Do not use a task-result tool as a substitute for the normal

@@ -68,22 +68,28 @@ Use [templates/delivery-revision-record-template.md](templates/delivery-revision
 - When release notes are required, create or update `tickets/in-progress/<ticket-name>/release-notes.md` before user verification, then pass the archived `tickets/done/<ticket-name>/release-notes.md` artifact into the release/publication path when that path is applicable.
 - After repository finalization and any applicable release/publication/deployment work, clean up ticket worktrees and branches when they were created for this task and when the recorded finalization target makes that cleanup safe.
 - If any finalization, release, deployment, or cleanup step fails, keep final handoff blocked and record the blocker explicitly. Do not undo already-completed repository finalization.
-- Send a successful terminal message to `architecture_designer` only after explicit user testing/verification, repository finalization, and every applicable release, deployment, rollout, and safe cleanup step is `Completed` or truthfully `Not required`.
+- Send a successful terminal message to `/architecture_designer` only after explicit user testing/verification, repository finalization, and every applicable release, deployment, rollout, and safe cleanup step is `Completed` or truthfully `Not required`.
 - The terminal message must include the complete cumulative package, final validation evidence, user-verification reference, delivery and finalization reports, final branch/commit/merge/push state, release/deployment outcome when applicable, and durable final artifact paths.
 - Do not send the successful terminal message while waiting for user verification or while any finalization blocker remains.
+
+## Handoff Rules
+
+- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to an exact canonical rooted address from the visible team roster.
+- Use absolute filesystem paths for every artifact included in a handoff.
+- After a successful `send_message_to` handoff, end the current delivery action and wait for a later incoming team message if more work is required.
 
 ## Routing Rules
 
 - Resolve documentation-local or deployment-local issues directly when possible.
-- Route code or packaging `Local Fix` issues to `implementation_engineer`.
-- Route `Design Impact` to `architecture_designer`.
-- Route `Requirement Gap` to `architecture_designer`.
-- Route `Unclear` to `architecture_designer`.
+- Route code or packaging `Local Fix` issues to `/implementation_engineer`.
+- Route `Design Impact` to `/architecture_designer`.
+- Route `Requirement Gap` to `/architecture_designer`.
+- Route `Unclear` to `/architecture_designer`.
 - If final handoff is blocked by a non-deployment issue, record the classification and recommended recipient explicitly in the release/publication/deployment report instead of leaving only a generic blocker note.
 
 ## Terminal Return To The Team Coordinator
 
-- Use `send_message_to` to return the successfully finalized package to `architecture_designer`; Delivery Engineer does not call `submit_task_result`.
+- Use `send_message_to` to return the successfully finalized package to `/architecture_designer`; Delivery Engineer does not call `submit_task_result`.
 - State that this is the authoritative terminal completion package and that Architecture Designer may submit the delegated team result only after checking it.
 - If user verification is missing or finalization is blocked, continue the applicable verification, recovery, or reroute flow. Do not send a successful completion message.
 - After the terminal message succeeds, end the delivery stage and do not poll. Act only on a later explicit rework message.

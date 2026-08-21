@@ -1,6 +1,610 @@
 {
   "coordinatorMemberName": "ceo",
   "avatarUrl": null,
+  "handoffs": [
+    {
+      "from": "/ceo",
+      "to": "/chief_of_staff",
+      "rules": [
+        "When executive synthesis, meeting preparation, decision logging, or follow-up tracking is needed."
+      ]
+    },
+    {
+      "from": "/ceo",
+      "to": "/cto",
+      "rules": [
+        "When technology strategy, architecture risk, or a company-level technical tradeoff needs an executive owner."
+      ]
+    },
+    {
+      "from": "/ceo",
+      "to": "/cpo",
+      "rules": [
+        "When product strategy, roadmap prioritization, or product tradeoffs need an executive owner."
+      ]
+    },
+    {
+      "from": "/ceo",
+      "to": "/cmo",
+      "rules": [
+        "When positioning, brand, demand generation, or marketing investment decisions need an executive owner."
+      ]
+    },
+    {
+      "from": "/ceo",
+      "to": "/cro",
+      "rules": [
+        "When revenue targets, pipeline, retention, expansion, or GTM alignment need an executive owner."
+      ]
+    },
+    {
+      "from": "/ceo",
+      "to": "/coo",
+      "rules": [
+        "When process, systems, customer operations, or execution cadence need an executive owner."
+      ]
+    },
+    {
+      "from": "/ceo",
+      "to": "/cfo",
+      "rules": [
+        "When budget, unit economics, runway, or capital allocation need a finance decision."
+      ]
+    },
+    {
+      "from": "/ceo",
+      "to": "/chief_people_officer",
+      "rules": [
+        "When hiring plans, organizational health, or people strategy need an executive owner."
+      ]
+    },
+    {
+      "from": "/ceo",
+      "to": "/engineering_org",
+      "rules": [
+        "When a company request needs engineering execution detail rather than only executive strategy."
+      ]
+    },
+    {
+      "from": "/ceo",
+      "to": "/product_org",
+      "rules": [
+        "When a company request needs product discovery, design, or roadmap detail."
+      ]
+    },
+    {
+      "from": "/ceo",
+      "to": "/marketing_org",
+      "rules": [
+        "When a company request needs marketing execution detail, campaign planning, or channel work."
+      ]
+    },
+    {
+      "from": "/ceo",
+      "to": "/revenue_org",
+      "rules": [
+        "When a company request needs sales, customer-success, partnership, pipeline, or expansion detail."
+      ]
+    },
+    {
+      "from": "/ceo",
+      "to": "/operations_org",
+      "rules": [
+        "When a company request needs operating-process, customer-operations, vendor, or analytics detail."
+      ]
+    },
+    {
+      "from": "/ceo",
+      "to": "/finance_people_org",
+      "rules": [
+        "When a company request needs budget execution, people operations, talent, or compliance detail."
+      ]
+    },
+    {
+      "from": "/chief_of_staff",
+      "to": "/ceo",
+      "rules": [
+        "When an executive brief, decision log, meeting synthesis, or follow-up plan is ready for company-level action."
+      ]
+    },
+    {
+      "from": "/cto",
+      "to": "/engineering_org",
+      "rules": [
+        "When technology strategy is ready to be translated into engineering execution, delivery, infrastructure, or release work."
+      ]
+    },
+    {
+      "from": "/cto",
+      "to": "/ceo",
+      "rules": [
+        "When a technical risk or architecture recommendation requires a company-level prioritization or tradeoff decision."
+      ]
+    },
+    {
+      "from": "/cpo",
+      "to": "/product_org",
+      "rules": [
+        "When product strategy is ready for discovery, research, design, or roadmap execution detail."
+      ]
+    },
+    {
+      "from": "/cpo",
+      "to": "/ceo",
+      "rules": [
+        "When a product roadmap or product-market tradeoff requires company-level prioritization."
+      ]
+    },
+    {
+      "from": "/cpo",
+      "to": "/cmo",
+      "rules": [
+        "When a product launch or product truth requires positioning, audience, or enablement input."
+      ]
+    },
+    {
+      "from": "/cmo",
+      "to": "/marketing_org",
+      "rules": [
+        "When marketing strategy is ready for integrated department planning and specialist execution."
+      ]
+    },
+    {
+      "from": "/cmo",
+      "to": "/ceo",
+      "rules": [
+        "When positioning, brand investment, or a material marketing budget tradeoff requires company-level approval."
+      ]
+    },
+    {
+      "from": "/cmo",
+      "to": "/cpo",
+      "rules": [
+        "When marketing positioning or launch work requires verified product capabilities, roadmap context, or product readiness."
+      ]
+    },
+    {
+      "from": "/cmo",
+      "to": "/cro",
+      "rules": [
+        "When a marketing plan requires sales enablement, lead-stage agreement, or revenue follow-up."
+      ]
+    },
+    {
+      "from": "/cro",
+      "to": "/revenue_org",
+      "rules": [
+        "When revenue strategy is ready for sales, customer-success, partnership, pipeline, retention, or expansion execution."
+      ]
+    },
+    {
+      "from": "/cro",
+      "to": "/ceo",
+      "rules": [
+        "When pricing, revenue strategy, or a company-resource tradeoff requires company-level prioritization."
+      ]
+    },
+    {
+      "from": "/cro",
+      "to": "/cmo",
+      "rules": [
+        "When sales or customer feedback requires positioning, campaign, or demand-generation changes."
+      ]
+    },
+    {
+      "from": "/coo",
+      "to": "/operations_org",
+      "rules": [
+        "When an operations strategy is ready for process, systems, customer-operations, vendor, or analytics execution."
+      ]
+    },
+    {
+      "from": "/coo",
+      "to": "/ceo",
+      "rules": [
+        "When an operating-model or resource-allocation decision requires company-level prioritization."
+      ]
+    },
+    {
+      "from": "/cfo",
+      "to": "/finance_people_org",
+      "rules": [
+        "When finance strategy is ready for budgeting, controls, reporting, hiring-plan economics, or compliance execution."
+      ]
+    },
+    {
+      "from": "/cfo",
+      "to": "/ceo",
+      "rules": [
+        "When runway, capital allocation, unit economics, or a material budget decision requires company-level action."
+      ]
+    },
+    {
+      "from": "/chief_people_officer",
+      "to": "/finance_people_org",
+      "rules": [
+        "When people strategy is ready for hiring, people operations, compensation, talent, or compliance execution through the shared-services group."
+      ]
+    },
+    {
+      "from": "/chief_people_officer",
+      "to": "/ceo",
+      "rules": [
+        "When an organizational, headcount, or people-risk decision requires company-level action."
+      ]
+    },
+    {
+      "from": "/chief_people_officer",
+      "to": "/cfo",
+      "rules": [
+        "When a hiring plan or people investment requires finance validation and budget alignment."
+      ]
+    },
+    {
+      "from": "/engineering_org/vp_engineering",
+      "to": "/cto",
+      "rules": [
+        "When an engineering execution plan, technical risk assessment, or release recommendation is ready for executive technology review."
+      ]
+    },
+    {
+      "from": "/product_org/vp_product",
+      "to": "/cpo",
+      "rules": [
+        "When a product discovery synthesis, roadmap recommendation, or design decision is ready for executive product review."
+      ]
+    },
+    {
+      "from": "/product_org/vp_product",
+      "to": "/cmo",
+      "rules": [
+        "When product discovery or launch readiness produces positioning, audience, or enablement dependencies."
+      ]
+    },
+    {
+      "from": "/marketing_org/vp_marketing",
+      "to": "/cmo",
+      "rules": [
+        "When an integrated marketing plan, campaign portfolio, or performance recommendation is ready for executive review."
+      ]
+    },
+    {
+      "from": "/marketing_org/vp_marketing",
+      "to": "/cpo",
+      "rules": [
+        "When the integrated marketing work requires product truth, launch readiness, or roadmap alignment."
+      ]
+    },
+    {
+      "from": "/marketing_org/vp_marketing",
+      "to": "/cro",
+      "rules": [
+        "When the integrated marketing work requires lead-quality agreement, sales enablement, or revenue follow-up."
+      ]
+    },
+    {
+      "from": "/revenue_org/vp_sales",
+      "to": "/cro",
+      "rules": [
+        "When a sales, customer-success, partnership, pipeline, retention, or expansion recommendation is ready for executive revenue review."
+      ]
+    },
+    {
+      "from": "/revenue_org/vp_sales",
+      "to": "/cmo",
+      "rules": [
+        "When revenue execution produces market feedback or lead-quality findings that require marketing action."
+      ]
+    },
+    {
+      "from": "/operations_org/vp_operations",
+      "to": "/coo",
+      "rules": [
+        "When an operating-process, customer-operations, vendor, or analytics recommendation is ready for executive operations review."
+      ]
+    },
+    {
+      "from": "/finance_people_org/vp_finance",
+      "to": "/cfo",
+      "rules": [
+        "When a finance, controls, reporting, or budget recommendation is ready for executive finance review."
+      ]
+    },
+    {
+      "from": "/finance_people_org/vp_finance",
+      "to": "/chief_people_officer",
+      "rules": [
+        "When people-cost, hiring-plan, compensation, or organizational-health findings require people-strategy review."
+      ]
+    },
+    {
+      "from": "/chief_of_staff",
+      "to": "/cto",
+      "rules": [
+        "When a synthesized action item needs technical strategy, architecture, or engineering-risk ownership."
+      ]
+    },
+    {
+      "from": "/chief_of_staff",
+      "to": "/cpo",
+      "rules": [
+        "When a synthesized action item needs product strategy, roadmap, or customer-problem ownership."
+      ]
+    },
+    {
+      "from": "/chief_of_staff",
+      "to": "/cmo",
+      "rules": [
+        "When a synthesized action item needs positioning, brand, demand, or marketing-investment ownership."
+      ]
+    },
+    {
+      "from": "/chief_of_staff",
+      "to": "/cro",
+      "rules": [
+        "When a synthesized action item needs revenue, pipeline, retention, expansion, or GTM ownership."
+      ]
+    },
+    {
+      "from": "/chief_of_staff",
+      "to": "/coo",
+      "rules": [
+        "When a synthesized action item needs operating-model, process, customer-operations, or execution ownership."
+      ]
+    },
+    {
+      "from": "/chief_of_staff",
+      "to": "/cfo",
+      "rules": [
+        "When a synthesized action item needs budget, runway, unit-economics, or capital-allocation ownership."
+      ]
+    },
+    {
+      "from": "/chief_of_staff",
+      "to": "/chief_people_officer",
+      "rules": [
+        "When a synthesized action item needs organization, hiring, compensation, or people-risk ownership."
+      ]
+    },
+    {
+      "from": "/cto",
+      "to": "/chief_of_staff",
+      "rules": [
+        "When a technical recommendation, risk decision, or architecture brief is ready for executive cadence and follow-up tracking."
+      ]
+    },
+    {
+      "from": "/cpo",
+      "to": "/chief_of_staff",
+      "rules": [
+        "When a product recommendation, roadmap decision, or product-market evidence package is ready for executive cadence and follow-up tracking."
+      ]
+    },
+    {
+      "from": "/cmo",
+      "to": "/chief_of_staff",
+      "rules": [
+        "When a positioning, brand, demand, or marketing-investment recommendation is ready for executive cadence and follow-up tracking."
+      ]
+    },
+    {
+      "from": "/cro",
+      "to": "/chief_of_staff",
+      "rules": [
+        "When a revenue, pricing, pipeline, retention, or expansion recommendation is ready for executive cadence and follow-up tracking."
+      ]
+    },
+    {
+      "from": "/coo",
+      "to": "/chief_of_staff",
+      "rules": [
+        "When an operating-model, process, customer-operations, or execution recommendation is ready for executive cadence and follow-up tracking."
+      ]
+    },
+    {
+      "from": "/cfo",
+      "to": "/chief_of_staff",
+      "rules": [
+        "When a budget, runway, unit-economics, or capital-allocation recommendation is ready for executive cadence and follow-up tracking."
+      ]
+    },
+    {
+      "from": "/chief_people_officer",
+      "to": "/chief_of_staff",
+      "rules": [
+        "When an organization, hiring, compensation, or people-risk recommendation is ready for executive cadence and follow-up tracking."
+      ]
+    },
+    {
+      "from": "/cto",
+      "to": "/cpo",
+      "rules": [
+        "When technical feasibility, platform capacity, security, or architecture constraints materially affect the product roadmap."
+      ]
+    },
+    {
+      "from": "/cpo",
+      "to": "/cto",
+      "rules": [
+        "When a product bet or roadmap commitment needs architecture, capacity, security, or technical-feasibility assessment."
+      ]
+    },
+    {
+      "from": "/cpo",
+      "to": "/cro",
+      "rules": [
+        "When product launch, adoption, packaging, or expansion decisions require revenue and customer-facing validation."
+      ]
+    },
+    {
+      "from": "/cro",
+      "to": "/cpo",
+      "rules": [
+        "When customer, win-loss, retention, or expansion evidence requires product investment or roadmap action."
+      ]
+    },
+    {
+      "from": "/cpo",
+      "to": "/cfo",
+      "rules": [
+        "When a product investment, roadmap commitment, or product operating plan needs financial validation."
+      ]
+    },
+    {
+      "from": "/cfo",
+      "to": "/cpo",
+      "rules": [
+        "When financial planning or investment constraints materially affect product portfolio or roadmap choices."
+      ]
+    },
+    {
+      "from": "/coo",
+      "to": "/cfo",
+      "rules": [
+        "When an operating-model, process, or capacity decision requires budget, cost, or resource validation."
+      ]
+    },
+    {
+      "from": "/cfo",
+      "to": "/coo",
+      "rules": [
+        "When a financial control, budget decision, or resource constraint requires operating-process implementation."
+      ]
+    },
+    {
+      "from": "/chief_people_officer",
+      "to": "/coo",
+      "rules": [
+        "When organization design, workforce capacity, or people-process changes require operating-model implementation."
+      ]
+    },
+    {
+      "from": "/cro",
+      "to": "/coo",
+      "rules": [
+        "When customer delivery, onboarding, retention, or expansion signals require operating-process changes."
+      ]
+    },
+    {
+      "from": "/coo",
+      "to": "/cro",
+      "rules": [
+        "When customer-operations or service-quality findings require revenue, retention, or customer-success action."
+      ]
+    },
+    {
+      "from": "/engineering_org/infrastructure_security_lead",
+      "to": "/finance_people_org/legal_compliance_lead",
+      "rules": [
+        "When a security, privacy, regulatory, or customer-commitment finding needs legal/compliance guardrails."
+      ]
+    },
+    {
+      "from": "/product_org/platform_product_manager",
+      "to": "/finance_people_org/legal_compliance_lead",
+      "rules": [
+        "When an integration, privacy, permissions, data-use, or platform-policy decision needs legal/compliance review."
+      ]
+    },
+    {
+      "from": "/marketing_org/product_marketing_lead",
+      "to": "/finance_people_org/legal_compliance_lead",
+      "rules": [
+        "When product claims, competitive claims, launch language, or sales-enablement material needs legal/compliance review."
+      ]
+    },
+    {
+      "from": "/marketing_org/brand_content_lead",
+      "to": "/finance_people_org/legal_compliance_lead",
+      "rules": [
+        "When public claims, privacy-sensitive content, licensing, or policy risk needs legal/compliance review."
+      ]
+    },
+    {
+      "from": "/revenue_org/account_executive_manager",
+      "to": "/finance_people_org/legal_compliance_lead",
+      "rules": [
+        "When non-standard deal terms, security commitments, data terms, or commercial risk needs legal/compliance review."
+      ]
+    },
+    {
+      "from": "/revenue_org/customer_success_lead",
+      "to": "/finance_people_org/legal_compliance_lead",
+      "rules": [
+        "When customer commitments, data handling, renewal terms, or service-risk obligations need legal/compliance review."
+      ]
+    },
+    {
+      "from": "/revenue_org/partnerships_lead",
+      "to": "/finance_people_org/legal_compliance_lead",
+      "rules": [
+        "When a partner agreement, data-sharing term, co-marketing commitment, or ecosystem risk needs legal/compliance review."
+      ]
+    },
+    {
+      "from": "/operations_org/vendor_operations_lead",
+      "to": "/finance_people_org/legal_compliance_lead",
+      "rules": [
+        "When vendor contracts, third-party risk, procurement terms, or operational obligations need legal/compliance review."
+      ]
+    },
+    {
+      "from": "/finance_people_org/legal_compliance_lead",
+      "to": "/engineering_org/infrastructure_security_lead",
+      "rules": [
+        "When the legal/compliance assessment for a security, privacy, or regulatory risk is complete and the infrastructure owner needs the guardrails."
+      ]
+    },
+    {
+      "from": "/finance_people_org/legal_compliance_lead",
+      "to": "/product_org/platform_product_manager",
+      "rules": [
+        "When the legal/compliance assessment for an integration, privacy, permissions, or data-use issue is complete and the platform-product owner needs the decision."
+      ]
+    },
+    {
+      "from": "/finance_people_org/legal_compliance_lead",
+      "to": "/marketing_org/product_marketing_lead",
+      "rules": [
+        "When the legal/compliance assessment for claims, launch language, or enablement material is complete and product marketing needs the decision."
+      ]
+    },
+    {
+      "from": "/finance_people_org/legal_compliance_lead",
+      "to": "/marketing_org/brand_content_lead",
+      "rules": [
+        "When the legal/compliance assessment for public content, licensing, or policy risk is complete and Brand & Content needs the guardrails."
+      ]
+    },
+    {
+      "from": "/finance_people_org/legal_compliance_lead",
+      "to": "/revenue_org/account_executive_manager",
+      "rules": [
+        "When the legal/compliance assessment for commercial terms or customer commitments is complete and the AE owner needs the decision."
+      ]
+    },
+    {
+      "from": "/finance_people_org/legal_compliance_lead",
+      "to": "/revenue_org/customer_success_lead",
+      "rules": [
+        "When the legal/compliance assessment for customer obligations or service risk is complete and Customer Success needs the guardrails."
+      ]
+    },
+    {
+      "from": "/finance_people_org/legal_compliance_lead",
+      "to": "/revenue_org/partnerships_lead",
+      "rules": [
+        "When the legal/compliance assessment for partner terms or data sharing is complete and Partnerships needs the decision."
+      ]
+    },
+    {
+      "from": "/finance_people_org/legal_compliance_lead",
+      "to": "/operations_org/vendor_operations_lead",
+      "rules": [
+        "When the legal/compliance assessment for vendor terms or third-party risk is complete and Vendor Operations needs the guardrails."
+      ]
+    }
+  ],
   "members": [
     {
       "memberName": "ceo",

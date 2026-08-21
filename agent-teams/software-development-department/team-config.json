@@ -20,5 +20,37 @@
       "refType": "agent_team",
       "refScope": "shared"
     }
+  ],
+  "handoffs": [
+    {
+      "from": "/head_of_software_development",
+      "to": "/requirements_engineering_team",
+      "rules": [
+        "When an incoming software-development request requires evidence-grounded requirements, applicable prototype decisions, and explicit user approval before architecture design.",
+        "When review of a returned requirements result finds a concrete requirements-owned revision that must continue on the same delegated task lifecycle."
+      ]
+    },
+    {
+      "from": "/requirements_engineering_team/requirements_engineer",
+      "to": "/head_of_software_development",
+      "rules": [
+        "When the delegated Requirements Engineering Team result is complete or blocked and ready for department-level task-result review."
+      ]
+    },
+    {
+      "from": "/head_of_software_development",
+      "to": "/software_engineering_team",
+      "rules": [
+        "When the approved architecture-ready requirements package has passed department review and is ready for architecture, implementation, validation, and delivery.",
+        "When review of a returned software result finds a concrete software-owned revision that must continue on the same delegated task lifecycle."
+      ]
+    },
+    {
+      "from": "/software_engineering_team/architecture_designer",
+      "to": "/head_of_software_development",
+      "rules": [
+        "When the delegated Software Engineering Team result is successfully finalized or blocked by a requirement gap and is ready for department-level task-result review."
+      ]
+    }
   ]
 }

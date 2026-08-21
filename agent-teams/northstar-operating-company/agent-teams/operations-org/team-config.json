@@ -1,6 +1,64 @@
 {
   "coordinatorMemberName": "vp_operations",
   "avatarUrl": null,
+  "handoffs": [
+    {
+      "from": "/vp_operations",
+      "to": "/business_operations_lead",
+      "rules": [
+        "When operating rhythms, planning processes, dashboards, or follow-up systems need specialist design."
+      ]
+    },
+    {
+      "from": "/vp_operations",
+      "to": "/customer_operations_lead",
+      "rules": [
+        "When support, implementation, customer handoffs, or service-level risks need specialist ownership."
+      ]
+    },
+    {
+      "from": "/vp_operations",
+      "to": "/vendor_operations_lead",
+      "rules": [
+        "When vendor evaluation, third-party risk, or implementation overhead needs specialist ownership."
+      ]
+    },
+    {
+      "from": "/vp_operations",
+      "to": "/data_analytics_lead",
+      "rules": [
+        "When metrics definitions, reporting, or business-analytics work needs specialist ownership."
+      ]
+    },
+    {
+      "from": "/business_operations_lead",
+      "to": "/vp_operations",
+      "rules": [
+        "When the operating-rhythm, planning-process, dashboard, or follow-up-system recommendation is complete."
+      ]
+    },
+    {
+      "from": "/customer_operations_lead",
+      "to": "/vp_operations",
+      "rules": [
+        "When the customer-operations workflow, handoff design, service-level assessment, or mitigation plan is complete."
+      ]
+    },
+    {
+      "from": "/vendor_operations_lead",
+      "to": "/vp_operations",
+      "rules": [
+        "When the vendor evaluation, risk assessment, cost view, and implementation recommendation are complete."
+      ]
+    },
+    {
+      "from": "/data_analytics_lead",
+      "to": "/vp_operations",
+      "rules": [
+        "When the metric definitions, reporting analysis, data-quality findings, and verification plan are complete."
+      ]
+    }
+  ],
   "members": [
     {
       "memberName": "vp_operations",

@@ -25,5 +25,49 @@
       "refType": "agent",
       "refScope": "team_local"
     }
+  ],
+  "handoffs": [
+    {
+      "from": "/manga_showrunner",
+      "to": "/storyboard_director",
+      "rules": [
+        "When the canonical story, character, world, and chapter package is approved for production planning."
+      ]
+    },
+    {
+      "from": "/storyboard_director",
+      "to": "/manga_illustrator",
+      "rules": [
+        "When the storyboard, shot timing, continuity ledger, and visual requirements are ready for image production."
+      ]
+    },
+    {
+      "from": "/storyboard_director",
+      "to": "/manga_showrunner",
+      "rules": [
+        "When storyboard work reveals a canon, pacing, or continuity decision that requires showrunner resolution."
+      ]
+    },
+    {
+      "from": "/manga_illustrator",
+      "to": "/storyboard_director",
+      "rules": [
+        "When visual feasibility, continuity, or frame coverage requires a storyboard adjustment before final assembly."
+      ]
+    },
+    {
+      "from": "/manga_illustrator",
+      "to": "/voice_video_producer",
+      "rules": [
+        "When the approved visual frame package, character references, and continuity notes are complete for voice and motion assembly."
+      ]
+    },
+    {
+      "from": "/voice_video_producer",
+      "to": "/manga_showrunner",
+      "rules": [
+        "When speech assets, subtitles, motion assembly, and final video QA are complete and the coordinator needs the delivery package."
+      ]
+    }
   ]
 }

@@ -125,24 +125,24 @@ If approved behavior is materially ambiguous, classify a `Requirement Gap`. If p
 ## Classification Rules
 
 - `Pass` is a review outcome, not a failure classification.
-- `Local Fix` -> `implementation_engineer` for a bounded implementation or packaging defect.
-- `Local Fix` -> `api_e2e_engineer` for a test-code, stale-test, fixture, environment, execution, or report problem.
-- `Design Impact` -> `architecture_designer` for a structural issue or inadequate reviewed design.
-- `Requirement Gap` -> `architecture_designer` for missing or ambiguous intended behavior that must cross the task boundary.
-- `Unclear` -> `architecture_designer` for a cross-cutting issue that cannot be classified from available evidence.
+- `Local Fix` -> `/implementation_engineer` for a bounded implementation or packaging defect.
+- `Local Fix` -> `/api_e2e_engineer` for a test-code, stale-test, fixture, environment, execution, or report problem.
+- `Design Impact` -> `/architecture_designer` for a structural issue or inadequate reviewed design.
+- `Requirement Gap` -> `/architecture_designer` for missing or ambiguous intended behavior that must cross the task boundary.
+- `Unclear` -> `/architecture_designer` for a cross-cutting issue that cannot be classified from available evidence.
 - After an implementation-owned fix, require source review and API/E2E again.
 - After an API/E2E-owned fix, require API/E2E execution and a proportional test-code review result; use `Not Applicable` when no durable test changed.
 
 ## Handoff Rules
 
-- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an exact recipient name from the visible team roster.
+- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to an exact canonical rooted address from the visible team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
-- On implementation-review pass, first send the cumulative package, code review report, and code review revision record to `api_e2e_engineer`.
-- After that primary handoff succeeds, send `implementation_engineer` a short notification containing `Pass`, the current `CRR-*`, the code-review report path, `api_e2e_engineer` as the next recipient, and `Informational — no action required`.
+- On implementation-review pass, first send the cumulative package, code review report, and code review revision record to `/api_e2e_engineer`.
+- After that primary handoff succeeds, send `/implementation_engineer` a short notification containing `Pass`, the current `CRR-*`, the code-review report path, `/api_e2e_engineer` as the next recipient, and `Informational — no action required`.
 - End an implementation-review pass only after both required messages succeed. For every other completed handoff, end after its required message succeeds. Do not poll recipients; act on a later incoming team message if more work is required.
 - On implementation-review `Fail` or `Blocked`, send the complete package, code review report, and code review revision record to the classified owner; do not advance to API/E2E.
-- On successful post-API/E2E test-code review, send the complete passed package, including `api-e2e-test-review-report.md` and the current code review revision record, to `delivery_engineer`.
-- On failed post-API/E2E test-code review, send the complete package, test-review report, and current code review revision record to the confirmed owner; normally this is `api_e2e_engineer` for a bounded test-code correction.
+- On successful post-API/E2E test-code review, send the complete passed package, including `api-e2e-test-review-report.md` and the current code review revision record, to `/delivery_engineer`.
+- On failed post-API/E2E test-code review, send the complete package, test-review report, and current code review revision record to the confirmed owner; normally this is `/api_e2e_engineer` for a bounded test-code correction.
 - After API/E2E failure-origin review, send the complete failure package, updated code review report, and current code review revision record to the confirmed owning specialist.
 - Use absolute filesystem paths and attach all relevant artifacts using the tool's reference-file input when available.
 - For successful test-code review, attach every added or updated durable test file and include diff or repository evidence for removed test paths when available.

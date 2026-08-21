@@ -81,15 +81,15 @@ Use [templates/implementation-revision-record-template.md](templates/implementat
 
 ## Handoff Rules
 
-- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an exact recipient name from the visible team roster.
+- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to an exact canonical rooted address from the visible team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
-- Send the cumulative implementation package to `code_reviewer`: approved requirements doc, requirements investigation notes, requirements revision record, design spec, every still-relevant supplemental task artifact, architecture-design revision record, design review report, architecture review revision record, implementation handoff, implementation revision record, and still-relevant triggering reports or evidence.
+- Send the cumulative implementation package to `/code_reviewer`: approved requirements doc, requirements investigation notes, requirements revision record, design spec, every still-relevant supplemental task artifact, architecture-design revision record, design review report, architecture review revision record, implementation handoff, implementation revision record, and still-relevant triggering reports or evidence.
 - On rework, identify the current `IR-*` entry, applicable upstream/downstream revision entries or `N/A`, and triggering finding IDs in the message.
 - Use absolute filesystem paths for every artifact in that handoff.
-- Route `Design Impact` to `architecture_designer`.
-- Route `Requirement Gap` to `architecture_designer`.
-- Route `Unclear` to `architecture_designer`.
-- Treat an implementation-review pass notification from `code_reviewer` as informational. Record the `Pass` and report/revision reference, take no action, and do not repeat the reviewer's primary handoff to `api_e2e_engineer`.
-- If `code_reviewer` or `delivery_engineer` sends an implementation-owned `Local Fix`, update the implementation and resend the handoff to `code_reviewer`; source review must pass before API/E2E resumes.
-- Do not route implementation changes directly back to `api_e2e_engineer`; code review must pass first.
+- Route `Design Impact` to `/architecture_designer`.
+- Route `Requirement Gap` to `/architecture_designer`.
+- Route `Unclear` to `/architecture_designer`.
+- Treat an implementation-review pass notification from `/code_reviewer` as informational. Record the `Pass` and report/revision reference, take no action, and do not repeat the reviewer's primary handoff to `/api_e2e_engineer`.
+- If `/code_reviewer` or `/delivery_engineer` sends an implementation-owned `Local Fix`, update the implementation and resend the handoff to `/code_reviewer`; source review must pass before API/E2E resumes.
+- Do not route implementation changes directly back to `/api_e2e_engineer`; code review must pass first.

@@ -16,6 +16,12 @@ This nested team simulates Northstar's marketing department.
 - Marketing planning operations, attribution, measurement, automation requirements, and performance reviews.
 - LinkedIn, X, and Facebook organic and paid channel strategy, execution plans, community interaction, and learning loops.
 
+## Handoff Protocol
+
+- Each member owns its marketing or channel responsibility and returns a coherent package rather than taking over Product, Revenue, Legal, or Operations work.
+- On completion or blockage, call `get_handoff_rules`, choose the matching condition, and use `send_message_to` with the exact returned `recipient_address`.
+- Include the audience, objective, evidence, approval state, open risks, and next action in every handoff; do not invent a downstream recipient.
+
 ## Operating Model
 
 - `vp_marketing` sets priorities, integrates plans, allocates resources, resolves channel conflicts, and owns the department result.
