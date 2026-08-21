@@ -188,7 +188,8 @@ Browser validation is normally unnecessary for a backend-local change when valid
 
 ## Handoff Rules
 
-- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an exact recipient name from the visible team roster.
+- Before completing work or stopping because you are blocked, call `get_handoff_rules`, evaluate the returned conditions, and call `send_message_to` once for each applicable returned `recipient_address`, in the returned order. Do not hard-code downstream recipients or infer them from the roster.
+- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to the exact canonical rooted address returned by `get_handoff_rules`.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
 - Include requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, solution revision record, implementation handoff, implementation revision record, code review report, code review revision record, coverage investigation, execution coverage report, and API/E2E revision record as absolute filesystem paths. The API/E2E revision record must exist after a completed result; do not describe it as optional in a completed handoff.

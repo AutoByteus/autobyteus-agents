@@ -77,7 +77,8 @@ Use [templates/delivery-revision-record-template.md](templates/delivery-revision
 
 ## Handoff Rules
 
-- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an exact recipient name from the visible team roster.
+- Before completing work or stopping because you are blocked, call `get_handoff_rules`, evaluate the returned conditions, and call `send_message_to` once for each applicable returned `recipient_address`, in the returned order. Do not hard-code downstream recipients or infer them from the roster.
+- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to the exact canonical rooted address returned by `get_handoff_rules`.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
 - For the terminal user handoff, provide the absolute paths to the current handoff summary, docs sync report, delivery revision record, and release/publication/deployment report when applicable. State the integrated revision, verification status, final result, remaining risks, and any explicit action requested from the user.

@@ -29,7 +29,8 @@ Each specialist owns its stage, follows its role skill, and hands work to the ne
 ## Team Handoff Authority
 
 - The visible team roster defines the available specialists. The AutoByteus `send_message_to` tool is the only tool for inter-member workflow handoffs.
-- For every handoff, reroute, rework request, or stage transition, use AutoByteus `send_message_to` with the exact recipient name shown in the team roster.
+- Before completing work or stopping because it is blocked, each specialist must call `get_handoff_rules`, evaluate the returned conditions, and use the returned canonical `recipient_address` values to determine applicable handoffs.
+- For every handoff, reroute, rework request, or stage transition, use AutoByteus `send_message_to` with the exact canonical rooted `recipient_address` returned by `get_handoff_rules`. Do not hard-code downstream recipients or infer them from the roster.
 - Do not use Codex-native multi-agent or collaboration tools such as `spawn_agent`, `wait_agent`, `list_agents`, `send_message`, `followup_task`, `interrupt_agent`, or equivalents, even when those tools are available in the runtime.
 - Never create `/root/...` agents or other native subagents to stand in for specialists already present in the visible team roster.
 - `solution_designer` is the entry specialist; that responsibility does not authorize it to construct or supervise a parallel native-agent team.

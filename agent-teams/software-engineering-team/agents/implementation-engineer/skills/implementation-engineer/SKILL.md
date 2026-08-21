@@ -82,7 +82,8 @@ Use [templates/implementation-revision-record-template.md](templates/implementat
 
 ## Handoff Rules
 
-- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, targeting an exact recipient name from the visible team roster.
+- Before completing work or stopping because you are blocked, call `get_handoff_rules`, evaluate the returned conditions, and call `send_message_to` once for each applicable returned `recipient_address`, in the returned order. Do not hard-code downstream recipients or infer them from the roster.
+- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to the exact canonical rooted address returned by `get_handoff_rules`.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
 - Send the cumulative implementation package to `code_reviewer`: requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, solution revision record, implementation handoff, implementation revision record, and still-relevant triggering reports, revision records, or evidence.
