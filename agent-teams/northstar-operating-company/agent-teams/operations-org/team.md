@@ -15,6 +15,12 @@ This nested team simulates Northstar's operations department.
 - Vendor evaluation and third-party operational risk.
 - Metrics definitions, reporting, and business analytics.
 
+## Handoff Protocol
+
+- Each member owns its operating, customer, vendor, or analytics responsibility and returns an actionable package rather than taking over another function's work.
+- On completion or blockage, call `get_handoff_rules`, choose the matching condition, and use `send_message_to` with the exact returned `recipient_address`.
+- Include the owner, input, output, SLA or metric, evidence, open risks, and next action in every handoff; do not invent a downstream recipient.
+
 ## Working Agreement
 
 - Treat ambiguity as an operations design problem: define owner, input, output, SLA, and feedback loop.

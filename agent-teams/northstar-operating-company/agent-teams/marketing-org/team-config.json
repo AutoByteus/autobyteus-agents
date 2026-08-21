@@ -1,6 +1,190 @@
 {
   "coordinatorMemberName": "vp_marketing",
   "avatarUrl": null,
+  "handoffs": [
+    {
+      "from": "/vp_marketing",
+      "to": "/product_marketing_lead",
+      "rules": [
+        "When positioning, audience, messaging, launch, or sales-enablement work needs specialist ownership."
+      ]
+    },
+    {
+      "from": "/vp_marketing",
+      "to": "/brand_content_lead",
+      "rules": [
+        "When brand direction, editorial planning, content systems, or creative consistency needs specialist ownership."
+      ]
+    },
+    {
+      "from": "/vp_marketing",
+      "to": "/demand_generation_lead",
+      "rules": [
+        "When acquisition campaigns, offers, conversion paths, or funnel quality need specialist ownership."
+      ]
+    },
+    {
+      "from": "/vp_marketing",
+      "to": "/marketing_operations_analytics_lead",
+      "rules": [
+        "When campaign operations, taxonomy, attribution, dashboards, or data quality need specialist ownership."
+      ]
+    },
+    {
+      "from": "/vp_marketing",
+      "to": "/linkedin_marketer",
+      "rules": [
+        "When an integrated plan requires professional-audience or LinkedIn channel execution."
+      ]
+    },
+    {
+      "from": "/vp_marketing",
+      "to": "/x_marketer",
+      "rules": [
+        "When an integrated plan requires real-time conversation, thought leadership, or X channel execution."
+      ]
+    },
+    {
+      "from": "/vp_marketing",
+      "to": "/facebook_marketer",
+      "rules": [
+        "When an integrated plan requires community, paid audience, retargeting, or Facebook channel execution."
+      ]
+    },
+    {
+      "from": "/product_marketing_lead",
+      "to": "/vp_marketing",
+      "rules": [
+        "When the positioning, audience, launch, enablement, or competitive-narrative package is complete."
+      ]
+    },
+    {
+      "from": "/product_marketing_lead",
+      "to": "/linkedin_marketer",
+      "rules": [
+        "When approved product positioning and launch messaging are ready for LinkedIn adaptation."
+      ]
+    },
+    {
+      "from": "/product_marketing_lead",
+      "to": "/x_marketer",
+      "rules": [
+        "When approved product positioning and launch messaging are ready for X adaptation."
+      ]
+    },
+    {
+      "from": "/product_marketing_lead",
+      "to": "/facebook_marketer",
+      "rules": [
+        "When approved product positioning and launch messaging are ready for Facebook adaptation."
+      ]
+    },
+    {
+      "from": "/brand_content_lead",
+      "to": "/vp_marketing",
+      "rules": [
+        "When the brand, editorial, source-content, or creative-brief package is complete."
+      ]
+    },
+    {
+      "from": "/brand_content_lead",
+      "to": "/linkedin_marketer",
+      "rules": [
+        "When approved source content and voice guardrails are ready for LinkedIn adaptation."
+      ]
+    },
+    {
+      "from": "/brand_content_lead",
+      "to": "/x_marketer",
+      "rules": [
+        "When approved source content and voice guardrails are ready for X adaptation."
+      ]
+    },
+    {
+      "from": "/brand_content_lead",
+      "to": "/facebook_marketer",
+      "rules": [
+        "When approved source content and voice guardrails are ready for Facebook adaptation."
+      ]
+    },
+    {
+      "from": "/demand_generation_lead",
+      "to": "/vp_marketing",
+      "rules": [
+        "When the campaign, audience, offer, conversion path, metrics, and follow-up loop are complete."
+      ]
+    },
+    {
+      "from": "/demand_generation_lead",
+      "to": "/linkedin_marketer",
+      "rules": [
+        "When campaign goals, target segment, offer, and success measures are ready for LinkedIn execution."
+      ]
+    },
+    {
+      "from": "/demand_generation_lead",
+      "to": "/x_marketer",
+      "rules": [
+        "When campaign goals, target segment, offer, and success measures are ready for X execution."
+      ]
+    },
+    {
+      "from": "/demand_generation_lead",
+      "to": "/facebook_marketer",
+      "rules": [
+        "When campaign goals, target segment, offer, and success measures are ready for Facebook execution."
+      ]
+    },
+    {
+      "from": "/marketing_operations_analytics_lead",
+      "to": "/vp_marketing",
+      "rules": [
+        "When the measurement design, tracking requirements, attribution limits, and verification plan are complete."
+      ]
+    },
+    {
+      "from": "/marketing_operations_analytics_lead",
+      "to": "/linkedin_marketer",
+      "rules": [
+        "When channel measurement, attribution, and experiment requirements are ready for LinkedIn execution."
+      ]
+    },
+    {
+      "from": "/marketing_operations_analytics_lead",
+      "to": "/x_marketer",
+      "rules": [
+        "When channel measurement, attribution, and experiment requirements are ready for X execution."
+      ]
+    },
+    {
+      "from": "/marketing_operations_analytics_lead",
+      "to": "/facebook_marketer",
+      "rules": [
+        "When channel measurement, attribution, and experiment requirements are ready for Facebook execution."
+      ]
+    },
+    {
+      "from": "/linkedin_marketer",
+      "to": "/vp_marketing",
+      "rules": [
+        "When the LinkedIn channel plan, drafts or campaign brief, approval state, and learning package are complete."
+      ]
+    },
+    {
+      "from": "/x_marketer",
+      "to": "/vp_marketing",
+      "rules": [
+        "When the X channel plan, conversation or launch package, approval state, and learning package are complete."
+      ]
+    },
+    {
+      "from": "/facebook_marketer",
+      "to": "/vp_marketing",
+      "rules": [
+        "When the Facebook channel plan, community or paid-campaign package, approval state, and learning package are complete."
+      ]
+    }
+  ],
   "members": [
     {
       "memberName": "vp_marketing",

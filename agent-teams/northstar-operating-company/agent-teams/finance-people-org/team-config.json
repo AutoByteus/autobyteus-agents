@@ -1,6 +1,85 @@
 {
   "coordinatorMemberName": "vp_finance",
   "avatarUrl": null,
+  "handoffs": [
+    {
+      "from": "/vp_finance",
+      "to": "/controller",
+      "rules": [
+        "When budgeting, forecasting, controls, or financial-reporting detail needs controller review."
+      ]
+    },
+    {
+      "from": "/vp_finance",
+      "to": "/people_ops_lead",
+      "rules": [
+        "When people-process, compensation-operation, or performance-system detail needs people-operations review."
+      ]
+    },
+    {
+      "from": "/vp_finance",
+      "to": "/talent_acquisition_lead",
+      "rules": [
+        "When hiring-plan execution, recruiting operations, or talent-pipeline detail needs specialist work."
+      ]
+    },
+    {
+      "from": "/vp_finance",
+      "to": "/legal_compliance_lead",
+      "rules": [
+        "When a business decision needs legal or compliance risk triage and practical guardrails."
+      ]
+    },
+    {
+      "from": "/controller",
+      "to": "/vp_finance",
+      "rules": [
+        "When the budget, forecast, control, or reporting analysis and recommendations are complete."
+      ]
+    },
+    {
+      "from": "/people_ops_lead",
+      "to": "/vp_finance",
+      "rules": [
+        "When the people-operations analysis, process recommendation, or organizational-health findings are complete."
+      ]
+    },
+    {
+      "from": "/talent_acquisition_lead",
+      "to": "/vp_finance",
+      "rules": [
+        "When the hiring-plan execution analysis, pipeline findings, and recruiting recommendations are complete."
+      ]
+    },
+    {
+      "from": "/legal_compliance_lead",
+      "to": "/vp_finance",
+      "rules": [
+        "When legal or compliance findings, practical guardrails, and unresolved risks are documented."
+      ]
+    },
+    {
+      "from": "/controller",
+      "to": "/legal_compliance_lead",
+      "rules": [
+        "When a control, reporting, accounting, or financial-policy question has a material compliance implication."
+      ]
+    },
+    {
+      "from": "/people_ops_lead",
+      "to": "/legal_compliance_lead",
+      "rules": [
+        "When an employee policy, compensation process, privacy issue, or people-risk question needs legal/compliance guardrails."
+      ]
+    },
+    {
+      "from": "/talent_acquisition_lead",
+      "to": "/legal_compliance_lead",
+      "rules": [
+        "When hiring terms, worker classification, candidate data, or recruiting policy needs legal/compliance review."
+      ]
+    }
+  ],
   "members": [
     {
       "memberName": "vp_finance",

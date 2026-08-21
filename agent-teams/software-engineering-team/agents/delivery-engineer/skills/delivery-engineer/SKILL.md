@@ -68,11 +68,17 @@ Update the ticket-local handoff summary before final handoff, then use [template
 - After repository finalization and any applicable release/publication/deployment work, clean up ticket worktrees and branches when they were created for this task and when the recorded finalization target makes that cleanup safe.
 - If any finalization, release, deployment, or cleanup step fails, keep final handoff blocked and record the blocker explicitly. Do not undo already-completed repository finalization.
 
+## Handoff Rules
+
+- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to an exact canonical rooted address from the visible team roster.
+- Use absolute filesystem paths for every artifact included in a handoff.
+- After a successful `send_message_to` handoff, end the current delivery action and wait for a later incoming team message if more work is required.
+
 ## Routing Rules
 
 - Resolve documentation-local or deployment-local issues directly when possible.
-- Route code or packaging `Local Fix` issues to `implementation_engineer`.
-- Route `Design Impact` to `solution_designer`.
-- Route `Requirement Gap` to `solution_designer`.
-- Route `Unclear` to `solution_designer`.
+- Route code or packaging `Local Fix` issues to `/implementation_engineer`.
+- Route `Design Impact` to `/solution_designer`.
+- Route `Requirement Gap` to `/solution_designer`.
+- Route `Unclear` to `/solution_designer`.
 - If final handoff is blocked by a non-deployment issue, record the classification and recommended recipient explicitly in the release/publication/deployment report instead of leaving only a generic blocker note.

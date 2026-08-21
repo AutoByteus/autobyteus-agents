@@ -20,5 +20,42 @@
       "refType": "agent",
       "refScope": "team_local"
     }
+  ],
+  "handoffs": [
+    {
+      "from": "/requirements_engineer",
+      "to": "/prototype_bootstrapper",
+      "rules": [
+        "When requirements work needs a new or refreshed runnable prototype baseline before user-facing validation."
+      ]
+    },
+    {
+      "from": "/requirements_engineer",
+      "to": "/product_prototyper",
+      "rules": [
+        "When the requirements basis and prototype goals are ready for focused interactive product exploration with the user."
+      ]
+    },
+    {
+      "from": "/prototype_bootstrapper",
+      "to": "/product_prototyper",
+      "rules": [
+        "When the deterministic prototype baseline and bootstrap evidence are ready for UX iteration."
+      ]
+    },
+    {
+      "from": "/prototype_bootstrapper",
+      "to": "/requirements_engineer",
+      "rules": [
+        "When the baseline cannot be created or a source-technology constraint changes the requirements decision."
+      ]
+    },
+    {
+      "from": "/product_prototyper",
+      "to": "/requirements_engineer",
+      "rules": [
+        "When the interactive prototype, approved UI/UX specification, visual references, and unresolved product questions are ready for requirements finalization."
+      ]
+    }
   ]
 }
