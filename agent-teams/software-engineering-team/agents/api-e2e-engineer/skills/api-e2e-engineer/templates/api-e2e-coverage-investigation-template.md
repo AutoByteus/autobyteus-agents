@@ -13,8 +13,6 @@ Update this artifact whenever new evidence changes a test-validity or coverage d
 - Design Spec:
 - Supplemental Task Artifacts:
 - Solution Revision Record:
-- Design Review Report:
-- Architecture Review Revision Record:
 - Implementation Handoff:
 - Implementation Revision Record:
 - Code Review Report:

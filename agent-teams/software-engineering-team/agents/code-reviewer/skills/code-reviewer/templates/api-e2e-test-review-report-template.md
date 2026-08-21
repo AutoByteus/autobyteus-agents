@@ -14,7 +14,6 @@ Keep one canonical report path across reruns. Reuse finding IDs for unresolved f
 - Design Spec Reviewed As Context:
 - Supplemental Task Artifacts Reviewed As Context:
 - Solution Revision Record Reviewed As Context:
-- Architecture Review Revision Record Reviewed As Context:
 - Implementation Revision Record Reviewed As Context:
 - Original Code Review Report:
 - Code Review Revision Record:

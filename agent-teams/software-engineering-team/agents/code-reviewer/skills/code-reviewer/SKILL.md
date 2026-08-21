@@ -41,7 +41,7 @@ Keep their standards distinct. Implementation code receives the full structural 
 
 For implementation review:
 
-- Accept requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, solution revision record, design review report, architecture review revision record, implementation handoff, and implementation revision record from `implementation_engineer`.
+- Accept requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, solution revision record, implementation handoff, and implementation revision record from `implementation_engineer`.
 - When implementation returns after a delivery-stage local fix, also accept the delivery revision record and triggering delivery evidence.
 - On later review rounds, also accept the current code review revision record and still-relevant triggering reports, revision records, or evidence.
 - Review against the complete implementation artifact chain, not only the handoff summary.
@@ -65,7 +65,7 @@ For API/E2E failure-origin review:
 
 ## Implementation Review Basis And Sequence
 
-1. Understand the approved requirements and business intent, the design spec's relevant behavior and production-path map, and the architecture review's basis confirmation and material-premise records. Treat the requirements as intended-behavior authority and the reviewed map as prior technical context, not immutable truth.
+1. Understand the approved requirements and business intent and the design spec's relevant behavior and production-path map. Treat the requirements as intended-behavior authority and the design map as prior technical context, not immutable truth.
 2. Confirm the relevant existing behavior, approved change, and behavior that must remain unchanged or outside scope. Do not judge, reopen, or redefine the business decision.
 3. Trace the complete relevant user-initiated, system-initiated, operational, or contract-driven behavior and enough of its production path and lifecycle to understand how the changed code participates in it. Compare the implementation handoff's behavior trace with the actual code; do not review the diff or a local method in isolation.
 4. On implementation-review round `>1`, use the prior canonical report, existing code review revision record, applicable upstream revision entries, and triggering evidence to locate what changed and why. Recheck prior unresolved findings first and verify every claimed resolution against the latest canonical artifacts, current code, diff, and evidence. Revision records are navigation, not proof.
@@ -92,7 +92,7 @@ If approved behavior is materially ambiguous, classify a `Requirement Gap`. If p
 - Apply `>500` and `>220` source thresholds only to changed implementation-source files, never to tests, fixtures, or generated coverage files.
 - When persisted data may be affected, verify that implementation follows the reviewed transition decision and does not add an unnecessary migration or version-specific runtime fallback. Review migration mechanics only when the approved decision is `Migration Required`.
 - Keep each canonical report focused on its latest complete result. Revalidate affected and previously failing checks, preserve still-valid evidence for unaffected checks, and reuse finding IDs across rounds.
-- Keep every completed review result's history and prior-finding resolution in `code-review-revision-record.md`. Link each entry to relevant solution, architecture-review, implementation, API/E2E, and delivery revision IDs when they exist; use `N/A` when a revision type does not apply.
+- Keep every completed review result's history and prior-finding resolution in `code-review-revision-record.md`. Link each entry to relevant solution, implementation, API/E2E, and delivery revision IDs when they exist; use `N/A` when a revision type does not apply.
 
 ## Successful API/E2E Test-Code Review Rules
 
@@ -127,7 +127,7 @@ If approved behavior is materially ambiguous, classify a `Requirement Gap`. If p
 - `Pass` is a review outcome, not a failure classification.
 - `Local Fix` -> `/implementation_engineer` for a bounded implementation or packaging defect.
 - `Local Fix` -> `/api_e2e_engineer` for a test-code, stale-test, fixture, environment, execution, or report problem.
-- `Design Impact` -> `/solution_designer` for a structural issue or inadequate reviewed design.
+- `Design Impact` -> `/solution_designer` for a structural issue or inadequate design.
 - `Requirement Gap` -> `/solution_designer` for missing or ambiguous intended behavior.
 - `Unclear` -> `/solution_designer` for a cross-cutting issue that cannot be classified from available evidence.
 - After an implementation-owned fix, require source review and API/E2E again.

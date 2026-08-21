@@ -8,7 +8,7 @@ The current code and `implementation-handoff.md` remain authoritative. Record on
 
 | Revision ID | Triggering Role / Report / Round | Finding IDs | Classification | Related Revision IDs | Result |
 | --- | --- | --- | --- | --- | --- |
-| IR-001 |  |  | `Initial Baseline` / `Local Fix` / `Design Impact` / `Requirement Gap` / `Unclear` | `SR-*`, `ARCH-REV-*`, `CRR-*`, `API-REV-*`, `DR-*`, or `N/A` |  |
+| IR-001 |  |  | `Initial Baseline` / `Local Fix` / `Design Impact` / `Requirement Gap` / `Unclear` | `SR-*`, `CRR-*`, `API-REV-*`, `DR-*`, or `N/A` |  |
 
 ## Revision Entries
 
@@ -20,7 +20,6 @@ The current code and `implementation-handoff.md` remain authoritative. Record on
 - Prior authoritative result: `N/A` / result
 - Current authoritative result:
 - Related solution revision IDs: `SR-*` / `N/A`
-- Related architecture-review revision IDs: `ARCH-REV-*` / `N/A`
 - Related code-review revision IDs: `CRR-*` / `N/A`
 - Related API/E2E revision IDs: `API-REV-*` / `N/A`
 - Related delivery revision IDs: `DR-*` / `N/A`

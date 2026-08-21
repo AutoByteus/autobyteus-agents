@@ -1,6 +1,6 @@
 # Solution Revision Record
 
-Create `solution-revision-record.md` before the initial architecture-review handoff. Add `SR-001` as the concise initial baseline, then append one entry for each later solution round; do not create round-specific copies.
+Create `solution-revision-record.md` before the initial implementation handoff. Add `SR-001` as the concise initial baseline, then append one entry for each later solution round; do not create round-specific copies.
 
 The latest requirements, investigation notes, design spec, and supplements remain authoritative. Record only the initial baseline or later rework delta and rationale needed to navigate those artifacts.
 
@@ -23,7 +23,7 @@ The latest requirements, investigation notes, design spec, and supplements remai
 - Approved behavior or requirement IDs affected:
 - Canonical artifacts and sections updated:
 - Supplemental artifacts updated, added, or removed:
-- Downstream and architecture-review impact:
+- Downstream implementation and review impact:
 - Next recipient or routing:
 - Remaining gaps or risks:
 

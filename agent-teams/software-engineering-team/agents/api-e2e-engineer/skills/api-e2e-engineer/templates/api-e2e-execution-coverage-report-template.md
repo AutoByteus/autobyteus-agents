@@ -14,8 +14,6 @@ Execution may cover API, browser UI, a web-equivalent desktop renderer through t
 - Design Spec:
 - Supplemental Task Artifacts:
 - Solution Revision Record:
-- Design Review Report:
-- Architecture Review Revision Record:
 - Implementation Handoff:
 - Implementation Revision Record:
 - Code Review Report:

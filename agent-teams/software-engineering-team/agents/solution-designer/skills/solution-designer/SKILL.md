@@ -1,6 +1,6 @@
 ---
 name: solution-designer
-description: Bootstrap task context, investigate deeply, refine requirements, produce the mandatory solution package and any useful task-specific supplemental artifacts, and iterate with the architecture reviewer until the design passes.
+description: Bootstrap task context, investigate deeply, refine requirements, produce the mandatory solution package and any useful task-specific supplemental artifacts, and iterate on downstream feedback until the design is implementation-ready.
 ---
 
 # Solution Designer Skill
@@ -57,8 +57,8 @@ Always produce all three mandatory core artifacts:
 
 ## Solution Revision Record
 
-- Before the initial architecture-review handoff, create `solution-revision-record.md` with one concise `SR-001` baseline entry. For later architecture-review or downstream feedback, append one `SR-*` entry per completed solution round.
-- Link each later entry to the triggering role, report, round, and finding IDs; record the prior result (`N/A` for the baseline), current result, what changed or what baseline was established, the affected canonical artifacts or sections, downstream and architecture-review impact, and remaining gaps.
+- Before the initial implementation handoff, create `solution-revision-record.md` with one concise `SR-001` baseline entry. For later downstream feedback, append one `SR-*` entry per completed solution round.
+- Link each later entry to the triggering role, report, round, and finding IDs; record the prior result (`N/A` for the baseline), current result, what changed or what baseline was established, the affected canonical artifacts or sections, downstream impact, and remaining gaps.
 - Keep the latest requirements, investigation notes, design spec, and supplements as the current authority. Use the revision record only as a durable round and rationale index; do not duplicate the complete solution in it.
 
 ## Artifact Location Rule
@@ -128,7 +128,7 @@ Always produce all three mandatory core artifacts:
 - Distinguish supported user, system, operational, and contract behavior from states reachable only through synthetic calls, internal-file mutation, or other mechanical possibility.
 - When persisted data may be affected, inspect representative stored data, normal reader and writer behavior, semantics and invariants, physical-store constraints, disposability, volume, and operational risk. Investigate migration mechanics only when the evidence indicates transformation may be necessary.
 - Record runtime or probe findings when reproductions, traces, scripts, focused tests, or setup work were used.
-- Record enough codebase, runtime, API, and external-reference detail that requirements clarification and design review do not need to rediscover the same facts from scratch.
+- Record enough codebase, runtime, API, and external-reference detail that requirements clarification and downstream implementation or code review do not need to rediscover the same facts from scratch.
 
 ## Requirements Quality
 
@@ -178,8 +178,8 @@ Always produce all three mandatory core artifacts:
 - Keep the investigation notes current alongside the requirements doc whenever the task depends on internal or external investigation.
 - Requirements approval is not permission to keep working on the current shared branch. Before producing the design spec after approval, verify again that the authoritative task workspace is the dedicated ticket worktree/branch for git-repository tasks.
 - Once the requirements basis is approved, produce the design spec before handing work downstream.
-- Send the full solution package to `/architecture_reviewer`: the three mandatory core artifacts, every still-relevant supplemental task artifact, and `solution-revision-record.md`.
-- When handing that package to `/architecture_reviewer`, include absolute filesystem paths for every artifact, the current `SR-*` entry, the approval state of the requirements basis and applicable supplements, the key scope summary, bootstrap context when relevant, open risks, and the next expected decision.
+- Send the full implementation-ready solution package directly to `/implementation_engineer`: the three mandatory core artifacts, every still-relevant supplemental task artifact, and `solution-revision-record.md`.
+- When handing that package to `/implementation_engineer`, include absolute filesystem paths for every artifact, the current `SR-*` entry, the approval state of the requirements basis and applicable supplements, the key scope summary, bootstrap context when relevant, open risks, and the expected implementation outcome.
 - If downstream specialists report `Requirement Gap` or `Unclear`, revise the requirements doc, investigation notes, affected supplements, and any affected design sections, append the next `SR-*` entry, and resend the solution package with the triggering report, revision record, or evidence.
 - If downstream specialists report `Design Impact`, revise the design spec, affected supplements, and any affected upstream rationale, append the next `SR-*` entry, and resend the package with the triggering report, revision record, or evidence.
-- Expect iterative design-review rounds with `architecture_reviewer` until the design passes review.
+- Expect iterative downstream rework rounds until the design is implementation-ready; route `Design Impact`, `Requirement Gap`, and `Unclear` findings through the configured handoff rules rather than hard-coding a reviewer.
