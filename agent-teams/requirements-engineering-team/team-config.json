@@ -33,14 +33,14 @@
       "from": "/product_prototyper",
       "to": "/prototype_bootstrapper",
       "rules": [
-        "When Product Prototyper classifies the outcome as Baseline Needed because the canonical prototype root is missing, current-state parity is incomplete or unsubstantiated, a correction is required, or an explicit source refresh is needed before future-state work."
+        "When a selected existing frontend supplies the current experience and Product Prototyper classifies the outcome as Baseline Needed because an applicable accepted baseline is absent, a correction is required, or an explicit source refresh is needed; invoke Prototype Bootstrapper with the fixed minimal mode-specific trigger defined in Product Prototyper's skill, including the reserved prototype repository/root and stable work-item identifier."
       ]
     },
     {
       "from": "/prototype_bootstrapper",
       "to": "/product_prototyper",
       "rules": [
-        "When Prototype Bootstrapper classifies the requested bootstrap, parity-completion, correction, or refresh outcome as Completed or Blocked and its runnable prototype, report, and evidence are ready for direct review."
+        "When a current-experience bootstrap, correction, or refresh request originated from Product Prototyper and Prototype Bootstrapper classifies it as Completed or Blocked with its runnable prototype, reproducible checkpoint commit, report, and exact source-versus-prototype UI/UX evidence ready for Product Prototyper acceptance testing."
       ]
     },
     {

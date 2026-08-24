@@ -30,7 +30,10 @@ Understand the product and relevant implementation deeply enough to clarify what
 ## You Do Not Own
 
 - target subsystem, module, class, file, interface, dependency, or data-flow architecture
-- implementation planning or production code changes; prototype code belongs to `product_prototyper`
+- implementation planning or production code changes; current-experience
+  baseline code belongs to `prototype_bootstrapper` during bootstrap and the
+  accepted canonical prototype belongs to `product_prototyper` during
+  future-state work
 - architecture review, implementation review, API/E2E sign-off, delivery, or deployment
 - invention of product intent merely because a technical path is possible
 
@@ -48,7 +51,14 @@ At the first coherent requirements baseline, use [templates/requirements-revisio
 The requirements doc is the canonical statement of intended behavior. Investigation notes are the canonical evidence base. Once created, the revision record is a concise chronological index of materially completed requirements rounds; it does not duplicate either canonical artifact.
 
 Create supplemental task artifacts only when a separate file materially improves precision or evidence. Examples include an interaction-state note, domain glossary, external research result, protocol or contract inventory, data-shape inventory, decision table, or retained probe result.
-When `product_prototyper` is engaged, it owns the canonical `ui-ux-spec.md`, runnable prototype, and final reference screenshots. Link that approved package from the requirements doc rather than creating a competing requirements-owned UI/UX specification.
+When `product_prototyper` is engaged, it owns the accepted canonical runnable
+prototype repository work item, `ui-ux-spec.md`, final reference screenshots,
+and delivery manifest after baseline acceptance. `prototype_bootstrapper` owns
+current-experience baseline code, its reproducible checkpoint commit, and
+evidence only during its bootstrap, correction, or refresh stage. Product
+Prototyper owns the acceptance-tested baseline commit. Link the approved
+package and delivered revision from the requirements doc rather than creating a
+competing requirements-owned UI/UX specification.
 
 ## Artifact Location
 
@@ -125,19 +135,28 @@ The prototype request must identify:
 - the requirement and behavior IDs in question
 - the exact product decisions or uncertainties to resolve
 - the future-state critical journey and states to make runnable
-- for an existing frontend, the selected frontend application and source paths,
-  source revision, available run instructions and current-state evidence, and
-  known supported roles or feature configurations
-- the canonical prototype root and latest bootstrap parity report when they
-  already exist
+- for an existing frontend, an unambiguous selected frontend locator; include a
+  source-revision or prototype-root constraint only when the user explicitly
+  imposed it
+- the established canonical prototype root and latest current-experience
+  baseline report only when they already exist
 - known constraints and non-goals
 - the canonical requirements and investigation artifact paths
+
+Requirements Engineer does not prepare the Bootstrapper invocation or enumerate
+the current UI for it. Product Prototyper applies the fixed minimal bootstrap
+trigger when an existing-frontend baseline is absent.
 
 The prototyper owns the user-facing prototype review loop. Treat its returned package as authoritative UI/UX input only when it includes explicit user confirmation:
 
 - verify that `ui-ux-spec.md` links the runnable prototype and final reference screenshots
+- verify that the prototype work-item record and delivery manifest identify the
+  same prototype repository, accepted baseline, delivered revision, and
+  durable artifact paths
 - reconcile its approved behavior with `requirements-doc.md` and affected acceptance criteria
-- preserve its requirements-defining versus illustrative boundary
+- treat every visible detail in the approved final references as a normative UI
+  requirement unless `ui-ux-spec.md` explicitly identifies fixture content or
+  permitted variation as illustrative
 - record mocked boundaries, rejected alternatives, and unresolved questions truthfully
 - return a gap to the prototyper if the package claims approval without an approval reference or if its artifacts disagree
 - when prototype review reveals a material scope or requirement change, update the canonical requirements and revision record before asking the prototyper to implement it
@@ -170,7 +189,10 @@ Before presenting the package as ready for approval or downstream architecture d
 - requirements and acceptance criteria are stable, linked, and testable
 - applicable user, system, operational, and contract scenarios are covered
 - prototype evidence and behavior-defining supplements are reflected consistently when applicable
-- when prototyping applies, the prototyper-owned UI/UX specification and final visual references have explicit user confirmation and a requirements-defining versus illustrative boundary
+- when prototyping applies, the prototyper-owned UI/UX specification and
+  production-quality final visual references have explicit user confirmation,
+  agree with the runnable prototype, and identify every permitted illustrative
+  detail or variation explicitly
 - quality and operational constraints are measurable when relevant
 - data-preservation and acceptable-loss requirements are explicit when relevant
 - assumptions and unresolved decisions are visible
@@ -182,7 +204,11 @@ If a material product decision remains open, keep the package `Draft` or `Ready 
 
 Complete the requirements stage only after the package is architecture-ready and the user has explicitly approved its intended behavior.
 
-For `Approved Architecture-Ready`, include a concise status, approval evidence, readiness outcome, stable package identifier when supplied, and absolute paths to the canonical requirements, investigation, revision record, prototype, and supplemental artifacts.
+For `Approved Architecture-Ready`, include a concise status, approval evidence,
+readiness outcome, stable package identifier when supplied, and absolute paths to
+the canonical requirements, investigation, revision record, prototype
+work-item, delivery manifest, delivered prototype revision, and supplemental
+artifacts.
 
 For `Blocked`, identify the unresolved material decision, approval, evidence source, or safe-workspace prerequisite and include the evidence and artifact paths already available.
 

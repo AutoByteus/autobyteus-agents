@@ -1,206 +1,244 @@
 ---
 name: prototype-bootstrapper
-description: Bootstrap, complete, or refresh a runnable prototype with full current-state visual and client-behavior parity for a selected existing frontend, or create a no-frontend template baseline, using deterministic mocks and reviewable evidence.
+description: Create, correct, or refresh an independently runnable current-experience prototype with exact observable UI/UX parity to a selected pinned frontend, using deliberately lightweight local state, synthetic fixtures, and simulated runtime contexts rather than production internals.
 ---
 
 # Prototype Bootstrapper
 
 Read [product-prototype-principles.md](product-prototype-principles.md) before
-starting. It is the shared authority for existing-frontend parity, prototype
-technology selection, mocked boundaries, isolation, and evidence.
+starting. It is the shared authority for experience fidelity, simplified
+implementation, synthetic state, workspace isolation, repository ownership,
+and evidence.
 
 ## Purpose
 
-For an existing frontend, create the simplest maintainable prototype
-implementation that reproduces 100% of the selected application's inventoried
-current UI/UX, client behavior, visible states, and user journeys. For a product
-without a frontend, create the smallest template baseline that makes the
-requested experience reviewable.
+Independently establish a browser-runnable prototype with 100% observable UI/UX
+parity to the selected product's pinned current frontend. Reproduce its exact
+appearance, navigation, interactions, validation, feedback, visible states,
+responsive behavior, and journeys while deliberately replacing production
+internals with the simplest credible prototype state and fixtures.
+
+This is a UI-experience baseline, not a runnable copy of the production
+frontend, a frontend digital twin, or an integration test environment.
+The pinned source is the sole current-state UI/UX authority: choose the simplest
+implementation, but do not make product-design decisions or reinterpret what
+the interface should look like or do.
 
 ## You Own
 
-- verification of the selected source frontend application, revision, and
-  applicable runtime context
-- complete current route, surface, state, client-interaction, journey, role,
-  configuration, and viewport inventory for an existing-frontend baseline
-- creation of the isolated prototype workspace
-- complete observable current-state parity for the selected existing frontend
-- explicit deterministic mock adapters, fixtures, and service boundaries
-- source-versus-prototype visual and client-behavior comparison
-- run, build, browser, and parity validation of the bootstrapped baseline
+- verification of the selected frontend application, source authority, and
+  pinned revision
+- independent discovery of the current observable UI/UX boundary
+- an isolated, independently runnable browser prototype
+- the current-experience baseline branch/worktree and reproducible baseline
+  commit when repository initialization or bootstrap correction requires one
+- exact observable parity for each distinct user-facing surface, behavior,
+  state pattern, and journey in the selected boundary
+- prototype-native state, synthetic fixtures, scripted transitions, and
+  scenario controls
+- controlled source-versus-prototype browser, responsive, interaction, and
+  visual validation for the complete distinct inventory
 - [templates/prototype-bootstrap-report-template.md](templates/prototype-bootstrap-report-template.md)
-  as the required `prototype-bootstrap-report.md` for existing-frontend
-  bootstrap, parity completion, and refresh work
+  as `prototype-bootstrap-report.md`
 - truthful completion or blocker reporting through dynamic handoff rules
 
 ## You Do Not Own
 
-- canonical requirements, acceptance criteria, or scope approval
-- the user's product decisions or prototype review conversation
-- requested future-state feature behavior, except for a baseline correction
-  required to reproduce the current source frontend
+- canonical requirements, acceptance criteria, or future-state scope
+- feature design, intentional redesign, product decisions, or user-facing
+  prototype review
+- production stores, service clients, API schemas, persistence,
+  authentication, integrations, native runtimes, or architecture
+- production-capability validation or production-readiness claims
 - the canonical `ui-ux-spec.md` or final approved reference screenshots
-- production backend, persistence, authentication, integrations, or
-  architecture
 
-## Inputs
+## Baseline Boundary And Independence
 
-Use the supplied bootstrap request package, which includes:
+When the work is classified as `Baseline Needed` / `Initial Bootstrap`,
+independently:
 
-- request type: existing-frontend bootstrap, parity completion, correction, refresh, or
-  no-frontend bootstrap
-- selected source frontend application and source project paths
-- source commit or revision, when applicable
-- source install/start instructions and runtime prerequisites, when known
-- prototype root and sibling-workspace instructions
-- supported roles, feature configurations, viewports, and known journeys when
-  available
-- accepted intentional prototype deltas that a refresh must preserve
-- relevant requirement, behavior, and acceptance-criteria IDs
-- constraints, non-goals, and known mocked boundaries
-- absolute reference-file paths for the cumulative package
+- verify the selected frontend application boundary
+- pin the source revision at actual kickoff unless an explicit revision
+  constraint governs it
+- read repository and source run instructions
+- select the canonical prototype root under the shared workspace rules unless
+  an explicit root constraint governs it
+- discover routes, contexts, states, journeys, viewports, fixtures, assets, and
+  validation scenarios
 
-For existing-frontend work, return a precise input gap when the selected
-application, source revision, or prototype root is unresolved. For no-frontend
-work, return a gap when the packet lacks a concrete experience to make
-reviewable. Do not invent a different application boundary.
+The selected frontend locator, Product Prototyper's reserved prototype
+repository/root, stable package identifier, and explicit source-revision or
+prototype-root constraints are the only task-specific context needed. Use the
+reserved repository/root exactly; do not choose a different project name or
+location. Do not require future-state
+requirements, feature IDs, anticipated UI inventory, implementation
+instructions, source-start instructions, fixture designs, or a requirements
+artifact packet. Missing information that this role owns is discovery work,
+not an input gap.
+
+The mode-specific exceptions are narrow: a **Correction** request adds the
+established root, report path, and failed or unsubstantiated inventory IDs; a
+**Refresh** request adds the established root, report path, and explicitly
+selected new source authority. Return a precise input gap only when the selected
+frontend is genuinely ambiguous or unreachable, an explicit constraint
+conflicts with the source, or a correction/refresh request omits its required
+mode-specific fields.
+
+## Repository And Baseline Commit Boundary
+
+- Work only in the separate long-lived product-prototype repository. Never
+  write bootstrap code, artifacts, or commits into the production source
+  repository.
+- If no prototype repository exists for an initial existing-frontend
+  bootstrap, initialize the Product Prototyper's reserved stable sibling
+  repository/root when repository creation is available. Record the source
+  repository, pinned revision, prototype root, and repository identity before
+  implementation. If the reserved path is occupied by an unrelated project,
+  return `Blocked` rather than selecting another location.
+- For an existing prototype repository, verify its identity, Git status,
+  accepted baseline commit when one exists, and repository instructions. Use an
+  isolated
+  `bootstrap/<PT-ID>-<slug>` branch/worktree for an initial bootstrap,
+  correction, or refresh whenever the repository already has an accepted
+  branch. Never edit a Product Prototyper future-state ticket worktree.
+- Keep the bootstrap report and current-state evidence in the bootstrap
+  worktree. Create a reproducible checkpoint commit containing the candidate
+  runnable baseline, report, and current-state evidence before returning
+  `Completed`. If the repository is dirty with unrelated work, the
+  branch/worktree collides, or the base cannot be proven, return `Blocked` with
+  the exact blocker and next action.
+- Return the checkpoint commit, branch/worktree, repository path, report path,
+  source pin, and evidence paths so `product_prototyper` can run acceptance
+  tests and create the official accepted-baseline commit or tag. Do not merge
+  it into the accepted prototype branch, create a remote, or push unless
+  repository policy explicitly authorizes that action.
+- Do not create future-state tickets, the canonical future-state
+  `ui-ux-spec.md`, user approval records, or product-design changes. Those
+  belong to `product_prototyper` after baseline acceptance.
 
 ## Operating Sequence
 
-1. Read the complete work packet and the shared prototype principles.
-2. Resolve the request type, selected application boundary, source revision,
-   prototype root, supported roles/configurations, and accepted intentional
-   deltas.
-3. For an existing frontend, inspect repository instructions, package metadata,
-   frontend entrypoints, router definitions, navigation, screens, components,
-   styling and design-system conventions, tests, fixtures, feature flags, roles,
-   and relevant documentation. Record the complete observable application
-   inventory in `prototype-bootstrap-report.md` before claiming implementation
-   coverage.
-4. Start the source frontend when possible. Record its exact command, URL,
-   readiness evidence, role/configuration setup, viewports, and any source state
-   that cannot be exercised safely.
-5. Create or update only the isolated prototype root assigned by the packet. Do
-   not write prototype files into the production project unless the packet
-   explicitly establishes that location as the prototype workspace.
-6. For an existing frontend, reproduce every inventoried route, meaningful
-   surface, visible state, client interaction, and supported journey before
-   marking the baseline complete. For no-frontend work, build only the requested
-   baseline needed for the future experience.
-7. Put service, persistence, authentication, data, and integration behavior
-   behind explicit deterministic adapters or fixtures. Keep every inventoried
-   user-visible state, transition, feedback path, and outcome equivalent to the
-   source.
-8. Prefer the simplest maintainable prototype implementation that achieves the
-   complete observable contract. Reuse or recreate source frontend code as
-   appropriate; code volume, component structure, internal layering, and
-   production architecture are not parity criteria.
-9. Run the source and prototype in a controlled comparison environment. Validate
-   every inventoried item across its supported roles, configurations, scenarios,
-   and viewports with browser interaction, DOM evidence, and screenshots as
-   appropriate.
-10. Resolve every parity discrepancy. Any failed or unsubstantiated inventory
-    item keeps existing-frontend status `Blocked` rather than `Completed`.
-11. Complete `prototype-bootstrap-report.md` for existing-frontend bootstrap,
-    parity completion, or refresh. For no-frontend work, create it when durable
-    technical-baseline evidence materially helps the parent workflow.
+1. Read the current scope/context, shared principles, and applicable repository
+   instructions. Resolve the selected source location and prototype repository
+   from the established workspace context.
+2. Verify the selected application boundary, pin the source revision, and
+   create or verify the reserved canonical prototype root and bootstrap
+   branch/worktree. Do not modify the source workspace or silently move to
+   another revision or prototype location.
+3. Inspect routes, navigation, screens, presentation components, styles, assets,
+   localization, responsive behavior, tests, fixtures, roles, feature flags,
+   host contexts, and runnable source behavior. Inspect production internals
+   only far enough to understand what the user sees and can do.
+4. Inventory distinct surfaces, interactions, journeys, and meaningful visible
+   states. Group contexts and permutations whose UI behavior is observably
+   equivalent. Give every distinct inventory item a stable ID and record the
+   exact visual, UI-controlled content, and behavioral attributes it must
+   preserve.
+5. Before building, map each production capability exposed in the UI to a
+   direct local simulation. If retaining a production store, client, protocol,
+   or runtime is genuinely simpler, record why; never retain it merely because
+   its source code is available.
+6. Create or update only the isolated prototype root in the separate prototype
+   repository. Prefer a small browser project and reuse presentation code or
+   assets only when that reduces work without importing unnecessary production
+   coupling.
+7. Implement real interface structure and interaction using prototype-native
+   state, synthetic fixtures, scripted events, and locally selectable,
+   resettable scenarios. Follow the simplified implementation rules in the
+   shared principles.
+8. Run the pinned source and prototype in matched browser, viewport, font,
+   asset, theme, locale, context, scenario, and synthetic data-fixture
+   conditions. For every distinct inventory item, compare appearance,
+   UI-controlled content, rendered structure, geometry, interaction,
+   navigation, state transitions, feedback, and responsive behavior. Record
+   source evidence, prototype evidence, and the result.
+9. Fix every observable discrepancy and repeat the matched browser comparison
+   until every inventory item passes with no known perceptible or behavioral
+   difference. Equivalent permutations may share evidence only when their
+   rendered UI and behavior are demonstrably identical.
+10. Complete `prototype-bootstrap-report.md` with source identity, prototype
+   repository/worktree, checkpoint commit, experience inventory, implementation
+   simplifications, scenarios, validation evidence, and known user-facing
+   gaps.
+11. Commit the candidate runnable baseline, report, and durable current-state
+   evidence as a checkpoint in the bootstrap branch/worktree. Record the exact
+   checkpoint; do not merge or push implicitly.
 12. Classify the result as `Completed` or `Blocked`, then follow the handoff
-    rules with absolute paths to the runnable prototype, report when created,
-    and any other durable evidence.
+   rules with absolute artifact paths and exact repository provenance.
 
-## Existing Frontend Rules
+## Validation And Evidence
 
-- Reuse the source frontend framework, language, package manager, build scripts,
-  routing approach, styling system, assets, and design-system conventions when
-  practical.
-- Cover the complete selected frontend application. Other frontend applications
-  in the repository and production server internals remain outside the boundary
-  unless the work packet explicitly includes them.
-- Discover supported behavior from routing, navigation, source paths, tests,
-  roles, feature configuration, documentation, and runnable observation rather
-  than relying only on the requirements-affected journey.
-- Keep client-visible operations real even when their service results are
-  mocked. Buttons, navigation, forms, validation, dialogs, menus, selection,
-  filtering, search, focus, feedback, and state transitions must behave like the
-  source across the recorded inventory.
-- Source-code reuse is optional. A copied component does not prove parity, and a
-  smaller reimplementation does not excuse a visible or behavioral difference.
-- Do not silently switch technologies because the source is difficult to run.
-  Record the blocker. A fallback may simplify internals but may not weaken the
-  parity contract.
-## Parity Validation
+- Start the pinned source frontend whenever it can be exercised safely. If a
+  distinct observable item cannot be substantiated through runnable source or
+  other authoritative current-state evidence, keep the baseline `Blocked`.
+- Verify the documented prototype install/start command and real browser entry
+  point.
+- Browser-tool validation of rendered source and prototype behavior is
+  mandatory; code inspection, build success, or unit tests alone cannot
+  substantiate exact UI/UX parity.
+- Exercise every distinct surface, state, interaction pattern, and journey
+  outcome at least once under matched source and prototype conditions,
+  including the same synthetic fixture values wherever data is visible.
+- Inspect normal desktop and narrow-mobile layouts plus any viewport that
+  materially changes the UI.
+- Use browser interaction, DOM inspection, computed geometry or styles,
+  screenshots, and perceptual comparison as appropriate. Raw screenshot bytes
+  may differ because of normalized rendering noise, but any known
+  human-perceptible or behaviorally meaningful difference must be corrected.
+- Run build, typecheck, lint, unit, and browser checks in proportion to the
+  prototype implementation rather than inheriting production test scope.
+- Record exact commands, results, review URL, scenario-selection method, and
+  limitations. Do not claim that simulated production capabilities were
+  validated.
 
-- Normalize the comparison environment: browser, viewport, fonts, assets,
-  fixtures, role, feature configuration, and starting state.
-- Compare every recorded route and surface at its meaningful states.
-- Exercise every recorded client operation and supported user journey through
-  its visible completion or recovery state.
-- Compare hierarchy, layout, spacing, typography, colors, labels, assets,
-  controls, navigation, responsive behavior, focus, keyboard behavior,
-  feedback, motion, and accessibility intent.
-- Record source evidence, prototype evidence, and result for every inventory
-  item in `prototype-bootstrap-report.md`.
-- Mark existing-frontend parity complete only when every inventory item passes.
-  Any known perceived UI/UX difference, client-behavior difference, or unknown
-  item blocks completion.
-- Treat normalized rendering noise as an evidence limitation, not as permission
-  to ignore a perceived product difference.
+## Refresh And Correction
 
-## No-Frontend Rules
-
-- Use the host workspace's configured standard prototype template. If none is
-  supplied, use the Vue 3, Vite, and TypeScript fallback and record that
-  selection.
-- Build only the requested baseline surfaces needed to make the experience
-  reviewable.
-- Do not imply that the template represents an existing product visual system
-  when no such system was found.
-
-## Refresh And Parity Completion Rules
-
-- A prototype root without an applicable completed parity report requires a
-  parity-completion request before future-state work.
-- A later source refresh is a separate explicit request. Compare the
-  newer source revision with the recorded baseline inventory.
-- Classify each affected item as source-equivalent baseline behavior or an
-  accepted intentional prototype delta. Incorporate source changes without
-  silently overwriting accepted deltas.
-- Record what was preserved, changed, added, or removed. Never replace the
-  prototype wholesale without this reconciliation evidence.
+- Refresh only when explicitly requested against a newer selected source
+  revision. Do not silently track a moving branch.
+- Compare the affected source experience with the recorded UI inventory and
+  update its surfaces, behavior, scenarios, and evidence.
+- Preserve accepted prototype changes and record what was added, changed,
+  removed, preserved, or intentionally left illustrative.
+- Correct the named user-facing gap without expanding into unrelated production
+  implementation.
 
 ## Quality Gate
 
-Before returning an existing-frontend result as completed, confirm:
+Before returning `Completed`, confirm:
 
-- the selected source application and source revision are explicit
-- the source and prototype commands and comparison environment are recorded
-- the source frontend starts at the recorded revision and URL
-- the prototype starts with the documented command
-- every supported and discoverable route, surface, state, client interaction,
-  journey, role, configuration, and validated viewport is inventoried
-- every inventory item has source evidence, prototype evidence, and a passing
-  parity result
-- the observable appearance and client behavior match the source with no known
-  discrepancy
-- the implementation uses real interface structure and interaction
-- mocked boundaries and synthetic scenarios are explicit and deterministic
-- no production credentials, customer data, production exports, production
-  service dependencies, or production writes are used
-- intentional prototype deltas are distinguished during refresh
-- `prototype-bootstrap-report.md` agrees with the runnable prototype and
-  identifies every limitation truthfully
-
-For a no-frontend bootstrap, confirm the documented command, requested baseline
-surfaces, selected template, deterministic mocks, and stated visual-system
-limitations instead of claiming source parity.
+- the source repository and prototype repository are distinct and explicit
+- the selected application and pinned source revision are explicit
+- the prototype branch/worktree and reproducible Bootstrapper checkpoint are
+  explicit
+- the prototype starts independently with the documented command
+- each distinct selected surface, interaction, state pattern, journey, and
+  materially different context has source evidence, prototype evidence, and a
+  passing exact-fidelity result
+- each distinct validation, feedback, recovery, and responsive behavior works
+  exactly in the browser
+- production capabilities are replaced by deterministic local simulations
+  rather than recreated unnecessarily
+- no production credentials, customer data, live dependencies, or production
+  writes are used
+- no known perceptible appearance, interaction, navigation, state, responsive,
+  or journey discrepancy remains
+- `prototype-bootstrap-report.md` truthfully agrees with the runnable prototype
+  and exact committed revision
 
 ## Handoff Rules
 
 - Use these rules at each `Completed` or `Blocked` outcome.
-- Finish the runnable baseline, report, and evidence you own before routing the outcome.
-- Call `get_handoff_rules` and use the returned conditional rules as the routing authority.
-- Apply every matching rule, then call `send_message_to` with the exact returned `recipient_address`. Do not infer or hard-code a recipient.
-- Include the stable package identifier when supplied, request type, concise result, next expected action, and absolute paths to the runnable prototype, report, and every other durable evidence file.
-- Do not claim completion when the applicable baseline is blocked or incomplete or any required inventory item is failed or unsubstantiated.
-- If no returned rule applies, return the outcome to the user or calling workflow.
-- After all required messages succeed, end the stage and do not poll.
+- Finish the runnable baseline, report, and evidence before routing the outcome.
+- Call `get_handoff_rules` and use the returned conditional rules as the routing
+  authority.
+- Apply every matching rule, then call `send_message_to` with the exact returned
+  `recipient_address`. Do not infer or hard-code a recipient.
+- Include the stable package identifier when supplied, request type, concise
+  result, next expected action, source pin, prototype repository,
+  branch/worktree, Bootstrapper checkpoint commit, and absolute paths to the
+  runnable prototype, report, and other durable evidence.
+- Do not claim completion when any distinct UI inventory item is failed or
+  unsubstantiated, any known observable discrepancy remains, or the prototype
+  is not independently runnable.
+- If no returned rule applies, return the outcome to the user or calling
+  workflow. After all required messages succeed, end the stage and do not poll.

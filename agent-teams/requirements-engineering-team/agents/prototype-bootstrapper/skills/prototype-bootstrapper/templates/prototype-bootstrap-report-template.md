@@ -1,131 +1,153 @@
 # Prototype Bootstrap Report
 
-Create this report for every existing-frontend bootstrap, parity-completion, or
-refresh request. For a no-frontend bootstrap, create it when durable technical
-baseline evidence materially helps the parent workflow. This report proves the
-technical baseline; it does not replace `requirements-doc.md` or
-`ui-ux-spec.md`.
+Create this report for every current-experience bootstrap, correction, or
+refresh. It substantiates 100% observable UI/UX parity between the pinned source
+and independently runnable baseline while recording deliberate implementation
+simplifications. It does not prove production integration or replace
+`requirements-doc.md` or `ui-ux-spec.md`.
 
-## Bootstrap Status
+## Status
 
-- Status: `Completed` / `Blocked` / `Refresh Required`
-- Request type: `Existing-Frontend Bootstrap` / `Parity Completion` / `Correction` / `Refresh` / `No-Frontend Bootstrap`
-- Existing-frontend parity result: `Complete` / `Blocked` / `N/A`
-- Bootstrap request or package ID:
+- Status: `Completed` / `Blocked`
+- Request type: `Current-Experience Bootstrap` / `Correction` / `Refresh`
+- Package identifier:
+- Next expected action:
 
-## Source Baseline Identity
+## Source Identity
 
 - Source project:
-- Selected source frontend application:
-- Source application root:
-- Source commit or revision:
-- Source install/start command:
-- Source URL and readiness evidence:
-- Supported roles and feature configurations:
+- Selected frontend application or product surface:
+- Source root:
+- Governing branch or revision authority:
+- Pinned source commit or revision:
 - Applicable repository instructions:
+- Source observation command and URL, or other authoritative evidence:
 
 ## Prototype Identity
 
+- Source repository and prototype repository are separate: `Yes` / `No`
+- Prototype work-item ID:
+- Prototype repository:
+- Reserved prototype repository/root:
 - Prototype root:
-- Prototype install/start command:
-- Prototype URL and readiness evidence:
-- Framework, language, package manager, and build tooling:
-- Router, styling, assets, and design-system conventions:
+- Bootstrap branch:
+- Bootstrap worktree:
+- Base accepted prototype commit, or `N/A — repository initialized`:
+- Bootstrap checkpoint commit:
+- Product Prototyper accepted-baseline commit, when integrated:
+- Product-prototyper delivery manifest, when integrated:
+- Install command:
+- Start command:
+- Review URL:
+- Framework, language, and styling system:
+- Scenario-selection and reset method:
 
-## Prototype Implementation Strategy
+## Experience Boundary
 
-- Source code or assets reused:
-- UI code recreated:
-- Internal simplifications:
-- Why the simpler implementation preserves the same observable frontend:
-- Deliberate technology deviations and reasons:
+- Included UI boundary:
+- Distinct navigation destinations and surfaces:
+- Distinct interaction and feedback patterns:
+- Meaningful visible-state patterns:
+- Materially different roles, features, locales, host contexts, or viewports:
+- Visibly equivalent contexts represented by shared scenarios:
+- Excluded product surfaces and rationale:
 
-Code volume, component structure, internal layering, and production
-architecture are not parity criteria. Every applicable observable inventory
-item below must still pass.
+## UI Experience Inventory
 
-## Route, Surface, And State Inventory
+Group equivalent contexts rather than creating a Cartesian matrix. Each row
+should identify a distinct user-facing surface or behavior, not an internal API
+operation. `Pass` requires applicable source evidence, prototype evidence, and
+no known perceptible or behavioral difference.
 
-| Inventory ID | Source Route / Surface | Roles / Configurations | Meaningful States | Client Operations | Related Journeys | Prototype Route / Scenario | Source Evidence | Prototype Evidence | Result |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| BP-UI-001 |  |  |  |  |  |  |  |  | `Pass` / `Fail` / `Unknown` |
-
-## User Journey Inventory
-
-| Journey ID | Actor / Starting State | Source Steps And Visible Outcomes | Prototype Steps And Visible Outcomes | Alternate / Failure / Recovery Paths | Evidence | Result |
-| --- | --- | --- | --- | --- | --- | --- |
-| BP-J-001 |  |  |  |  |  | `Pass` / `Fail` / `Unknown` |
-
-## Client-Behavior Parity
-
-| Behavior ID | Route / Surface | Trigger | Source State Transition And Feedback | Prototype State Transition And Feedback | Mock Scenario | Evidence | Result |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| BP-CB-001 |  |  |  |  |  |  | `Pass` / `Fail` / `Unknown` |
-
-## Visual And Responsive Parity
-
-| Visual ID | Route / Surface / State | Viewport | Source Evidence | Prototype Evidence | Hierarchy / Layout / Spacing | Typography / Color / Assets / Controls | Responsive / Focus / Motion | Result |
+| ID | Route / Surface | Exact Visual And UI-Controlled Content Obligations | States / Operations / Outcomes | Material Contexts | Prototype Scenario / Synthetic Fixture | Source Evidence | Prototype Evidence | Fidelity Result |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| BP-VIS-001 |  |  |  |  |  |  |  | `Pass` / `Fail` / `Unknown` |
+| UXB-001 |  |  |  |  |  |  |  | `Pass` / `Fail` / `Unknown` |
 
-Bootstrap comparison screenshots are current-state validation evidence, not the
-final user-approved future-state references owned by `product_prototyper`.
+## Journey Inventory
 
-## Mock Boundaries And Fixtures
+| Journey ID | Starting Scenario | Source Steps And Visible Outcomes | Prototype Steps And Visible Outcomes | Alternate / Recovery Path | Evidence | Result |
+| --- | --- | --- | --- | --- | --- | --- |
+| UXJ-001 |  |  |  |  |  | `Pass` / `Fail` / `Unknown` |
 
-| Boundary / Data | Source Client-Visible States And Outcomes | Prototype Adapter Or Fixture | Deterministic Scenarios | Production Capability Not Implemented | Result |
-| --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  | `Pass` / `Fail` / `Unknown` |
+## Exact Visual Fidelity Comparison
 
-## Intentional Prototype Deltas
+Validate each distinct rendered surface and state under matched conditions.
+Raw screenshot bytes may differ only because of normalized rendering noise; a
+known perceptible difference is a failure.
 
-Use this section for refresh or parity-completion work. A listed delta must have
-an accepted requirements or user-decision basis; otherwise treat the difference
-as a parity discrepancy.
+| Visual ID | Surface / State / Context | Matched Browser / Viewport / Font / Asset / Theme / Locale / Scenario / Synthetic Fixture | Source Screenshot | Prototype Screenshot | DOM / Geometry / Style / Perceptual Method | Remaining Difference | Result |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| UXV-001 |  |  |  |  |  | `None` / details | `Pass` / `Fail` / `Unknown` |
 
-| Delta ID | Affected Inventory IDs | Source-Equivalent Baseline | Accepted Prototype Difference | Approval / Requirements Basis | Preservation Result |
-| --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |
+## Implementation Simplifications
 
-## Validation Environment And Commands
+Record how the prototype preserves visible experience without reproducing
+production mechanisms.
+
+| Production Capability Visible In The UI | Visible Experience Preserved | Prototype Simulation | Production Mechanism Intentionally Absent |
+| --- | --- | --- | --- |
+|  |  |  |  |
+
+- Presentation code, styles, tokens, or assets reused:
+- UI code recreated:
+- Prototype-specific state model:
+- Hard-coded or fixture-backed synthetic data:
+- Scripted asynchronous behavior:
+- Browser simulation of mobile, desktop-host, Electron, role, permission, or
+  feature contexts:
+- Why any retained production store, client, protocol, or runtime is simpler
+  than replacing it, or `None`:
+
+## Validation
 
 - Browser and version:
-- Viewports:
-- Fonts and assets:
-- Fixtures and starting data:
-- Role and feature configuration:
-- Source commands:
-- Prototype commands:
-- Build, typecheck, lint, unit, or browser commands:
-- Comparison method:
-- Rendering noise or environment limitations:
+- Validated viewports:
+- Source-observation method:
+- Prototype commands and results:
+- Build, typecheck, lint, unit, or browser checks run in proportion to the
+  prototype:
+- Complete navigation and journey checks:
+- DOM, computed-style, geometry, screenshot, perceptual, or manual evidence
+  paths:
+- Scenario reset and isolation result:
+- Known validation limitations:
 
-## Completeness Gate
+## Completion Check
 
-- Selected source frontend boundary is explicit: `Yes` / `No`
-- Source revision is explicit: `Yes` / `No`
-- Source and prototype are runnable in the recorded environment: `Yes` / `No`
-- Every supported and discoverable route and surface is inventoried: `Yes` / `No`
-- Every meaningful visible state is inventoried: `Yes` / `No`
-- Every supported client interaction and user journey is inventoried: `Yes` / `No`
-- Applicable roles, feature configurations, and viewports are covered: `Yes` / `No`
-- Every inventory row is `Pass`: `Yes` / `No`
-- Mock boundaries are explicit and deterministic: `Yes` / `No`
-- No production credentials, production/customer data, live production dependencies, or production writes are used: `Yes` / `No`
-- Every accepted intentional delta is distinguished from source parity: `Yes` / `No` / `N/A`
-- Known UI/UX or client-behavior discrepancies remaining: `None` / details
-- Unsubstantiated inventory items remaining: `None` / details
-- Existing-frontend parity complete: `Yes` / `No` / `N/A`
+- Selected source boundary and pinned revision are explicit: `Yes` / `No`
+- Prototype starts independently at the documented URL: `Yes` / `No`
+- Every distinct selected navigation destination and surface has exact source
+  and prototype evidence: `Yes` / `No`
+- Every distinct interaction, feedback, and meaningful state pattern is
+  demonstrated at least once: `Yes` / `No`
+- Every context that materially changes the UI is represented: `Yes` / `No`
+- Every distinct supported journey and relevant recovery path is runnable with
+  matching visible outcomes: `Yes` / `No`
+- Desktop and narrow-mobile behavior are validated when applicable: `Yes` /
+  `No` / `N/A`
+- Interface structure and interactions are real rather than screenshot or
+  hotspot substitutes: `Yes` / `No`
+- Production capabilities are simulated locally and deterministically: `Yes` /
+  `No`
+- Production credentials, customer data, live dependencies, and production
+  writes are absent: `Yes` / `No`
+- Perceptible appearance or client-behavior discrepancies remaining: `None` /
+  details
+- Unsubstantiated distinct UI inventory items remaining: `None` / details
+- 100% observable UI/UX parity achieved for the recorded distinct inventory:
+  `Yes` / `No`
 
-An existing-frontend result is `Completed` only when every applicable
-completeness item is satisfied, every inventory row passes, and no known or
-unsubstantiated parity discrepancy remains.
+`Completed` means every distinct recorded UI/UX inventory item has passing
+source-versus-prototype evidence and no known perceptible or behavioral
+difference remains. It does not mean production stores, protocols, native
+runtimes, integrations, or architecture were reproduced or validated.
 
 ## Known Gaps And Next Action
 
-- Blocked or incomplete inventory IDs:
+- Blocked or incomplete UI inventory IDs:
+- User-facing differences or omissions:
+- Illustrative fixture content or production mechanisms intentionally
+  simplified without changing presentation:
 - Source reachability or evidence limitations:
-- Baseline limitations:
-- Unresolved production assumptions:
-- Required correction or evidence:
+- Required correction:
 - Recommended next action for `product_prototyper`:

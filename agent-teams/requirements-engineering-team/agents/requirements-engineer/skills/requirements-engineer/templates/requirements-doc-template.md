@@ -86,11 +86,15 @@ Use user journeys only when a user actually initiates or experiences the behavio
 
 - Applicable: `Yes` / `No`
 - Linked UI/UX or interaction supplement:
-- Linked runnable prototype and applicable support artifacts:
+- Linked prototype work-item, delivery manifest, runnable prototype, and
+  applicable support artifacts:
+- Delivered prototype commit or tag:
 - UI/UX user-confirmation reference:
 - Approved visual-reference baseline:
-- Requirements-defining visual or interaction details:
-- Illustrative details left to downstream design and implementation:
+- Normative visual and interaction details, including the approved final
+  references:
+- Explicitly illustrative fixture content or permitted implementation
+  variation:
 - Required screens, states, transitions, feedback, responsive behavior, or accessibility outcomes:
 - Explicitly unresolved product decisions:
 

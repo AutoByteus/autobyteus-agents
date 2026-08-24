@@ -1,16 +1,43 @@
 # UI/UX Specification
 
-Produce this canonical prototype-owned supplement after the user confirms the runnable experience.
-Keep it synchronized with the approved prototype, final screenshots, and related behavior, requirement, and acceptance-criteria IDs.
+Produce this canonical prototype-owned supplement after the user confirms the
+runnable experience. Keep it synchronized with the approved prototype, final
+screenshots, and related behavior, requirement, and acceptance-criteria IDs.
+The final screenshots are normative visual implementation references: every
+visible detail is requirements-defining unless this specification explicitly
+identifies it as illustrative fixture content or permitted variation.
 
 ## Status And User Confirmation
 
 - Status: `Draft` / `Ready for User Review` / `Approved` / `Blocked`
+- Prototype work-item ID:
+- Prototype work-item title / slug:
 - Related requirements revision ID:
+- Related requirement, behavior, acceptance-criteria, and decision IDs:
 - Runnable prototype root:
 - Review URL:
 - Explicit user-confirmation reference:
 - Final validation date:
+
+## Repository And Baseline Provenance
+
+- Source repository:
+- Selected frontend application or product surface:
+- Pinned source commit or revision:
+- Prototype repository:
+- Reserved prototype repository/root:
+- Prototype branch:
+- Prototype worktree:
+- Accepted prototype baseline commit:
+- Bootstrapper checkpoint commit, when applicable:
+- Product Prototyper accepted-baseline commit:
+- Delivered prototype commit or tag:
+- Work-item package root:
+- Bootstrap report path, or `N/A — no existing frontend`:
+
+Do not treat a prototype repository as the production source repository. These
+fields identify the exact source authority and runnable prototype revision that
+the specification describes.
 
 ## Scope And Experience Goal
 
@@ -27,16 +54,18 @@ Keep it synchronized with the approved prototype, final screenshots, and related
 | --- | --- | --- |
 |  |  |  |
 
-## Experience And Visual Direction
+## Production-Quality Experience And Visual Specification
 
 - Existing product language to preserve:
 - Information hierarchy:
 - Navigation and orientation:
-- Layout, spacing, and density:
-- Typography:
-- Color and semantic roles:
-- Surfaces, controls, icons, and media:
-- Feedback and motion:
+- Grid, dimensions, layout, spacing, and density:
+- Typography, font assets, sizes, weights, line heights, and wrapping:
+- Color values and semantic roles:
+- Surfaces, borders, radii, shadows, and elevation:
+- Controls, icons, imagery, and media assets:
+- Hover, active, focus, selected, disabled, validation, and feedback treatment:
+- Motion, easing, duration, and reduced-motion behavior:
 
 ## Journey Inventory
 
@@ -88,14 +117,23 @@ For each journey, describe:
 ## Final Visual Reference Inventory
 
 Capture these images only after explicit user confirmation and final validation.
+Together with the corresponding behavior specification, they define the exact
+approved appearance for their recorded surface, state, and viewport.
 
-| Visual ID | Journey / Surface / State | Viewport | Image Path | Requirements-Defining Details | Illustrative Details |
+Store final references under the work item's `visual-references/` directory.
+Use a stable `VIS-*` ID and a descriptive filename. Use “screenshot” for an
+actual captured browser image; use “visual reference” as the broader package
+term for captured or annotated visual evidence.
+
+| Visual ID | Journey / Surface / State | Viewport | Image Path | Requirements-Defining Visible Details | Explicitly Illustrative Fixture Content Or Permitted Variation |
 | --- | --- | --- | --- | --- | --- |
 | VIS-001 |  |  |  |  |  |
 
 ## Linked Prototype Evidence
 
 - Runnable prototype:
+- Prototype delivery manifest:
+- Prototype work-item record:
 - Run instructions:
 - Relevant supporting prototype artifacts:
 - Relevant journey, transition, or scenario IDs:
@@ -103,8 +141,10 @@ Capture these images only after explicit user confirmation and final validation.
 
 ## Implementation Fidelity Boundary
 
-- Behavior and visual details implementation must preserve:
-- Details that are illustrative and may vary:
+- Exact behavior and visible design implementation must preserve:
+- Prototype-only state, fixtures, and simulated mechanisms that do not prescribe
+  production architecture:
+- Fixture content or visible details explicitly allowed to vary:
 - Permitted responsive or platform variation:
 - Existing design-system constraints:
 
@@ -115,8 +155,16 @@ Capture these images only after explicit user confirmation and final validation.
 ## Final Consistency Check
 
 - User confirmation is recorded: `Yes` / `No`
+- Work-item, source pin, accepted baseline commit, and delivered prototype
+  revision are recorded: `Yes` / `No`
 - Every in-scope journey is specified: `Yes` / `No`
-- Important surfaces and states have final visual references where useful: `Yes` / `No` / `N/A`
+- Every surface and state needed to define the approved experience has an
+  applicable final visual reference: `Yes` / `No`
 - Prototype, screenshots, and this specification agree: `Yes` / `No`
-- Requirements-defining and illustrative details are distinguished: `Yes` / `No`
+- Final visuals are production-quality and contain no unintended placeholders,
+  generic starter styling, clipping, overlap, or visual drift: `Yes` / `No`
+- Every visible detail is requirements-defining unless an explicit illustrative
+  or permitted-variation entry says otherwise: `Yes` / `No`
 - Mocked boundaries and unresolved production behavior are explicit: `Yes` / `No`
+- Delivery manifest and visual-reference paths agree with this specification:
+  `Yes` / `No`
