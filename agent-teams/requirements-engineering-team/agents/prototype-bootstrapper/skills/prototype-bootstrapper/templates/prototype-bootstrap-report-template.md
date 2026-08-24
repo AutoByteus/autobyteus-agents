@@ -10,7 +10,6 @@ simplifications. It does not prove production integration or replace
 
 - Status: `Completed` / `Blocked`
 - Request type: `Current-Experience Bootstrap` / `Correction` / `Refresh`
-- Package identifier:
 - Next expected action:
 
 ## Source Identity
@@ -25,17 +24,8 @@ simplifications. It does not prove production integration or replace
 
 ## Prototype Identity
 
-- Source repository and prototype repository are separate: `Yes` / `No`
-- Prototype work-item ID:
-- Prototype repository:
-- Reserved prototype repository/root:
-- Prototype root:
-- Bootstrap branch:
-- Bootstrap worktree:
-- Base accepted prototype commit, or `N/A — repository initialized`:
-- Bootstrap checkpoint commit:
-- Product Prototyper accepted-baseline commit, when integrated:
-- Product-prototyper delivery manifest, when integrated:
+- Prototype project root:
+- Prototype revision or commit, when available:
 - Install command:
 - Start command:
 - Review URL:

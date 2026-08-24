@@ -10,8 +10,7 @@ identifies it as illustrative fixture content or permitted variation.
 ## Status And User Confirmation
 
 - Status: `Draft` / `Ready for User Review` / `Approved` / `Blocked`
-- Prototype work-item ID:
-- Prototype work-item title / slug:
+- Request / ticket:
 - Related requirements revision ID:
 - Related requirement, behavior, acceptance-criteria, and decision IDs:
 - Runnable prototype root:
@@ -24,20 +23,19 @@ identifies it as illustrative fixture content or permitted variation.
 - Source repository:
 - Selected frontend application or product surface:
 - Pinned source commit or revision:
-- Prototype repository:
-- Reserved prototype repository/root:
-- Prototype branch:
-- Prototype worktree:
-- Accepted prototype baseline commit:
-- Bootstrapper checkpoint commit, when applicable:
-- Product Prototyper accepted-baseline commit:
-- Delivered prototype commit or tag:
-- Work-item package root:
+- Prototype project root:
+- Prototype revision or commit:
+- Ticket folder:
 - Bootstrap report path, or `N/A — no existing frontend`:
 
-Do not treat a prototype repository as the production source repository. These
-fields identify the exact source authority and runnable prototype revision that
-the specification describes.
+These fields identify the exact source authority and runnable prototype project
+revision that the specification describes. When an existing frontend is
+selected, the prototype project is a sibling project directory of that
+frontend inside the parent/source repository; for no-frontend construction, it
+is a direct child of that repository. For no-frontend construction, record
+`N/A — no existing frontend` for the selected frontend, pinned source revision,
+and bootstrap report. This specification is stored in the prototype ticket
+folder.
 
 ## Scope And Experience Goal
 
@@ -120,7 +118,8 @@ Capture these images only after explicit user confirmation and final validation.
 Together with the corresponding behavior specification, they define the exact
 approved appearance for their recorded surface, state, and viewport.
 
-Store final references under the work item's `visual-references/` directory.
+Store final references under the current ticket folder's
+`visual-references/` directory.
 Use a stable `VIS-*` ID and a descriptive filename. Use “screenshot” for an
 actual captured browser image; use “visual reference” as the broader package
 term for captured or annotated visual evidence.
@@ -132,8 +131,7 @@ term for captured or annotated visual evidence.
 ## Linked Prototype Evidence
 
 - Runnable prototype:
-- Prototype delivery manifest:
-- Prototype work-item record:
+- Prototype ticket record:
 - Run instructions:
 - Relevant supporting prototype artifacts:
 - Relevant journey, transition, or scenario IDs:
@@ -155,8 +153,10 @@ term for captured or annotated visual evidence.
 ## Final Consistency Check
 
 - User confirmation is recorded: `Yes` / `No`
-- Work-item, source pin, accepted baseline commit, and delivered prototype
-  revision are recorded: `Yes` / `No`
+- Prototype project root, source pin, and prototype revision are recorded:
+  `Yes` / `No`
+- Ticket record, ticket folder, and linked artifacts agree:
+  `Yes` / `No`
 - Every in-scope journey is specified: `Yes` / `No`
 - Every surface and state needed to define the approved experience has an
   applicable final visual reference: `Yes` / `No`
@@ -166,5 +166,5 @@ term for captured or annotated visual evidence.
 - Every visible detail is requirements-defining unless an explicit illustrative
   or permitted-variation entry says otherwise: `Yes` / `No`
 - Mocked boundaries and unresolved production behavior are explicit: `Yes` / `No`
-- Delivery manifest and visual-reference paths agree with this specification:
-  `Yes` / `No`
+- Prototype-project artifact and visual-reference paths agree with this
+  specification: `Yes` / `No`

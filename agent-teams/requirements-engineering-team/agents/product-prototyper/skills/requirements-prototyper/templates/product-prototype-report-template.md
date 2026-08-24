@@ -2,37 +2,28 @@
 
 Use this optional report only when a durable cross-stage summary adds value beyond `ui-ux-spec.md` and the supporting prototype artifacts. Do not create it solely to repeat their contents.
 
-## Work Item And Scope
+## Request And Scope
 
-- Prototype work-item ID:
-- Prototype work-item title / slug:
-- Work-item status:
+- Request / ticket:
 - Triggering requirements revision:
 - Related behavior, requirement, acceptance-criteria, and decision IDs:
 - Questions the prototype was asked to resolve:
 - In-scope critical journey:
 - Non-goals:
 
-## Repository Provenance
+## Project Provenance
 
 - Source repository:
 - Selected frontend application or product surface:
 - Pinned source commit or revision:
-- Prototype repository:
-- Reserved prototype repository/root:
-- Prototype branch:
-- Prototype worktree:
-- Accepted prototype baseline commit:
-- Bootstrapper checkpoint commit, when applicable:
-- Product Prototyper accepted-baseline commit:
-- Delivered prototype commit or tag:
-- Work-item package root:
+- Prototype project root:
+- Prototype revision or commit:
+- Ticket folder:
 - Bootstrap report:
 
 ## Prototype Package
 
-- Prototype work-item record:
-- Prototype delivery manifest:
+- Prototype ticket record:
 - UI/UX specification:
 - Runnable prototype root:
 - Experience story:
@@ -62,8 +53,8 @@ canonical production-quality visual references belong in `ui-ux-spec.md` and
 serve as normative implementation references subject only to explicitly
 recorded illustrative content or permitted variation.
 
-Store captured images under the work item's `visual-references/` directory and
-use stable `VIS-*` IDs. “Screenshot” means an actual captured browser image;
+Store captured images under the current ticket folder's `visual-references/`
+directory and use stable `VIS-*` IDs. “Screenshot” means an actual captured browser image;
 “visual reference” is the broader evidence term.
 
 | Visual ID | Journey / Surface / State | Viewport | Image Path | Behavior Or Visual Decision Demonstrated | Validation Result |
@@ -91,6 +82,7 @@ use stable `VIS-*` IDs. “Screenshot” means an actual captured browser image;
 ## Latest Result
 
 - Prototype result: `Completed` / `Blocked` / `Not Recommended`
+- Ticket status: `In Progress` / `Awaiting User Review` / `Completed` / `Blocked` / `Not Recommended`
 - Critical journey runnable: `Yes` / `No`
 - Requirements questions resolved:
 - Remaining product decisions:

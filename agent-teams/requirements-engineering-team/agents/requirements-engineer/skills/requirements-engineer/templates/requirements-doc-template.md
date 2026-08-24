@@ -86,9 +86,10 @@ Use user journeys only when a user actually initiates or experiences the behavio
 
 - Applicable: `Yes` / `No`
 - Linked UI/UX or interaction supplement:
-- Linked prototype work-item, delivery manifest, runnable prototype, and
+- Linked runnable prototype, prototype project root, UI/UX specification, and
   applicable support artifacts:
-- Delivered prototype commit or tag:
+- Prototype ticket record and folder:
+- Prototype revision or commit:
 - UI/UX user-confirmation reference:
 - Approved visual-reference baseline:
 - Normative visual and interaction details, including the approved final
@@ -98,7 +99,8 @@ Use user journeys only when a user actually initiates or experiences the behavio
 - Required screens, states, transitions, feedback, responsive behavior, or accessibility outcomes:
 - Explicitly unresolved product decisions:
 
-When this section is not applicable, write `N/A` for prototype-specific fields rather than leaving their approval state ambiguous.
+When this section is not applicable, write `N/A — not applicable` for
+prototype-specific fields rather than leaving their approval state ambiguous.
 
 ## Quality And Non-Functional Requirements
 

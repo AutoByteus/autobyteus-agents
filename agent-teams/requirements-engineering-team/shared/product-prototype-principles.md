@@ -67,9 +67,10 @@ for a prototype workspace. Later requirements-driven work normally belongs to
 
 ## 3. Source And Technology Selection
 
-- Identify the selected frontend application and pin the source revision used
-  as the current-experience authority. Do not silently change the source
-  boundary or revision.
+- When an existing frontend is selected, identify that application and pin the
+  source revision used as the current-experience authority. Do not silently
+  change the source boundary or revision. For no-frontend construction, record
+  the selected product surface and template instead.
 - Prefer the source frontend's framework, language, styling system, assets, and
   design-system conventions when they make visual reuse and maintenance easier.
   Matching production package layout, build topology, routing internals, state
@@ -181,9 +182,15 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   name is generic; the repository name when it represents one relevant
   frontend; or a stable product/experience name when no frontend exists.
   Normalize it to the workspace's naming conventions and use
-  `<prototype-subject>-prototype` as the default repository directory name.
-- Keep a long-lived existing-product prototype in a separate stable workspace,
-  commonly as a sibling of the source repository.
+  `<prototype-subject>-prototype` as the default prototype-project directory
+  name.
+- Keep a long-lived existing-product prototype as a sibling project directory
+  of the selected frontend inside the same parent/source repository. If the
+  frontend is a direct child of the repository root, the prototype is also a
+  direct child; if the frontend is nested, place the prototype beside it at
+  the same parent level. When no frontend exists, place the prototype as a
+  direct child of the parent/source repository. Name it
+  `<prototype-subject>-prototype`; do not add a generic `prototypes/` container.
 - Record the source project, pinned source revision, prototype root, run command,
   scenario-selection method, and major implementation simplifications.
 - Do not let prototype runs write to production services or depend on
@@ -207,100 +214,101 @@ for a prototype workspace. Later requirements-driven work normally belongs to
 - No prototype role owns the target production architecture or production
   implementation.
 
-## 9. Repository Boundary And Ownership
+## 9. Prototype Project Boundary And Ownership
 
-- Treat the production source repository and the product-prototype repository
-  as separate projects. The prototype repository is a long-lived sibling
-  workspace for the selected product surface, not a feature branch or worktree
-  inside the production implementation repository.
-- The source repository is read-only from prototype work. Prototype code,
-  synthetic fixtures, visual evidence, UI/UX specifications, and prototype
-  commits belong only to the prototype repository.
-- Reuse an existing prototype repository when its product surface and source
-  boundary match. Otherwise establish one stable repository using the shared
-  workspace naming rule, normally `<prototype-subject>-prototype` beside the
-  source repository.
-- `product_prototyper` owns selecting and reserving the stable prototype
-  repository path before an existing-frontend baseline is delegated. Record the
-  absolute path in the prototype work item and the fixed bootstrap trigger.
-- `prototype_bootstrapper` may initialize the repository and project files at
-  that exact reserved path. It must block on a path collision, ambiguous
-  repository identity, or unsafe existing contents rather than silently
-  choosing another project name or location.
-- Record both repository identities in durable artifacts: source repository and
-  pinned revision, plus prototype repository, prototype root, branch/worktree,
-  and delivered commit or tag.
-- If the prototype repository cannot be identified, initialized, or isolated
-  safely, stop and report the exact blocker. Do not fall back to editing the
-  production repository.
-- Creating a remote repository or pushing changes is an explicit repository
-  policy or user-authorized action. It is not an automatic consequence of
-  completing a prototype task.
+- Treat the production frontend, when one exists, and the product prototype as
+  separate project roots inside the same parent/source Git repository. Keep the
+  prototype as a clearly named sibling project directory of the selected
+  frontend, using `<prototype-subject>-prototype` at the same parent level. If
+  no frontend exists, make it a direct child of the parent/source repository.
+  Do not add a generic `prototypes/` container, place prototype files inside
+  the production frontend application directory, or let production build,
+  release, or runtime paths consume them accidentally.
+- Project ownership is directory-scoped: Product Prototyper manages the
+  prototype project root, its ticket folders, and the commits that change those
+  files. The parent repository remains the shared Git repository; this role
+  does not manage the production frontend, the Requirements Engineer's task
+  workspace, or unrelated repository files.
+- Reuse an existing canonical prototype root when its product surface and
+  source boundary match. Otherwise derive the stable root using the naming
+  rule in Section 7. The Product Prototyper resolves the root; Bootstrapper
+  creates or updates the project at that root when baseline work is needed.
+- Prototype work may modify only the prototype project root. Production source
+  paths, production services, and production credentials remain outside the
+  prototype boundary.
+- Record the source project and pinned revision, prototype project root, run
+  command, prototype revision, and major implementation simplifications in
+  durable prototype evidence.
+- If the prototype project cannot be identified, initialized, or isolated
+  safely, stop and report the exact blocker rather than silently creating
+  another project root.
 
-## 10. Prototype Work Items, Branches, And Worktrees
+## 10. Prototype Project Lifecycle
 
-- Manage each cohesive experience or use-case change as one prototype work
-  item. A work item may trace to multiple requirements, behavior, and
-  acceptance-criteria IDs when they form one reviewable experience change; do
-  not force one prototype ticket per low-level requirement.
-- Use a stable prototype work-item identifier, normally `PT-*`, and a concise
-  slug. Keep the work-item record, runnable changes, evidence, and delivery
-  manifest linked by that identifier.
-- Keep the accepted prototype baseline on the prototype repository's accepted
-  branch, normally `main`. Create a dedicated ticket branch and worktree from
-  the accepted baseline for concurrent or isolated work. Do not mix two
-  work-item changes in one worktree.
-- Before editing, verify repository identity, current branch, base accepted
-  commit, clean or intentionally owned worktree state, and the absence of a
-  conflicting work-item branch or package. Never reuse an unrelated dirty
-  worktree or overwrite another work item's evidence.
-- Put active artifacts under a stable `tickets/in-progress/<PT-ID>-<slug>/`
-  package. After approval and final validation, move or rename the package to
-  `tickets/done/<PT-ID>-<slug>/` in the delivered prototype revision. The
-  package must retain the work-item ID and exact revision provenance.
-- A completed work item is not complete merely because files changed. It needs
-  a reproducible commit, validation evidence, user approval where future-state
-  behavior changed, and a delivery manifest that indexes the final artifacts.
-- If the source pin, accepted prototype baseline, worktree isolation, or prior
-  work-item state is ambiguous, block rather than silently reconcile it.
+- Maintain one stable prototype project for the selected frontend or product
+  surface. Manage each requirements-driven request as a ticket inside that
+  project, using the caller's existing ticket or request identifier when one is
+  supplied. If none exists, create the ticket using the surrounding project's
+  normal ticket convention before editing. Do not invent a second
+  prototype-specific ticket ID.
+- Keep ticket folders such as `tickets/in-progress/<ticket-id>/` and
+  `tickets/done/<ticket-id>/` inside the prototype project. They contain the
+  ticket record, UI/UX specification, visual references, and supporting
+  evidence; they are ordinary project folders, not repositories, branches, or
+  worktrees.
+- The prototype source remains at the project root. Product Prototyper works
+  in that stable project root and updates the ticket folder alongside the
+  implementation. A dedicated ticket worktree is not required.
+- The Product Prototyper reads the current prototype project and its accepted
+  baseline before making a focused change. Keep revision history in the
+  existing change log and ticket record when a material evolution needs
+  traceability.
+- For an existing frontend with no accepted baseline, Product Prototyper
+  delegates the fixed bootstrap request with the selected frontend and
+  canonical prototype root. Bootstrapper establishes current UI/UX parity in
+  that project and returns the runnable result, bootstrap report, and evidence.
+- Product Prototyper performs acceptance and regression validation, commits the
+  accepted baseline and later future-state changes in the prototype project,
+  keeps the ticket status and UI/UX specification synchronized with that
+  committed state, and moves the completed ticket folder to `tickets/done/`
+  when the ticket is finished.
+- Multiple tickets may exist in the same project, but overlapping changes must
+  be handled deliberately. Do not overwrite another ticket's uncommitted
+  changes; serialize the work or report the exact conflict.
+- Do not create a dedicated ticket branch or task worktree; keep the prototype
+  in the parent/source repository. If the canonical project is in an unsafe or
+  ambiguous state, stop and report the exact blocker rather than inventing
+  another root.
 
 ## 11. Bootstrapper And Product-Prototyper Boundary
 
 - `prototype_bootstrapper` owns only the current-experience baseline: source
   verification and pinning, observable-surface discovery, prototype-native
   parity implementation, matched validation, and the bootstrap report.
-- For an initial existing-frontend bootstrap, the Bootstrapper may initialize
-  the prototype repository at the reserved path and create a reproducible
-  checkpoint commit/report in an isolated bootstrap branch or worktree. For a
-  correction or refresh, it works from the accepted prototype baseline in an
-  isolated bootstrap branch or worktree.
-- The Bootstrapper returns the runnable candidate baseline, checkpoint commit,
-  report, and evidence. It does not implement future-state requirements, create
-  the canonical future-state `ui-ux-spec.md`, conduct the user design review,
-  or approve a product decision.
-- `product_prototyper` reviews and tests the Bootstrapper's result, then owns
-  the official accepted-baseline commit or tag in the prototype repository's
-  accepted branch. It may squash or cherry-pick the Bootstrapper checkpoint
-  into its owned acceptance worktree before committing the accepted baseline.
-  It also owns all subsequent future-state work items, user review, final
-  UI/UX artifacts, and delivery commits.
+- Bootstrapper may create or update the prototype project at the canonical root,
+  but does not implement future-state requirements, create the canonical
+  future-state `ui-ux-spec.md`, conduct the user design review, or approve a
+  product decision.
+- `product_prototyper` reviews and tests the Bootstrapper's result, commits the
+  accepted baseline in the prototype project, and owns all subsequent
+  future-state changes, user review, final UI/UX artifacts, and prototype
+  commits.
 - The Product Prototyper must not begin future-state work on an unreviewed or
-  uncommitted bootstrap result. The Bootstrapper must not alter a Product
-  Prototyper future-state ticket or add design changes while correcting parity.
-- A no-frontend prototype does not need a Bootstrapper baseline; the Product
-  Prototyper establishes the prototype repository and initial runnable baseline
-  directly, then follows the same work-item and delivery rules.
+  failed bootstrap result. Bootstrapper must not add design changes while
+  correcting current-state parity.
+- A no-frontend prototype does not need a Bootstrapper baseline; Product
+  Prototyper establishes the project and initial runnable baseline directly.
 
 ## 12. Delivery Artifacts And Visual References
 
-- The canonical completed work-item package contains, as applicable, the
-  runnable prototype revision, `prototype-work-item.md`, `ui-ux-spec.md`,
-  `prototype-delivery-manifest.md`, the behavior matrix, runbook, change log,
-  assumptions, prototype report, and `visual-references/`.
-- `ui-ux-spec.md` is the canonical detailed experience contract. The delivery
-  manifest is the canonical index of what was delivered and from which exact
-  revision. The prototype report records findings and cross-stage implications
-  without duplicating either document.
+- The canonical prototype project contains the runnable prototype, project-wide
+  change history, and current-experience bootstrap evidence. Each ticket folder
+  under `tickets/` contains its `prototype-ticket.md`, `ui-ux-spec.md`, final
+  `visual-references/`, behavior matrix, runbook, prototype report, assumptions,
+  and other ticket-specific supporting delivery artifacts as needed.
+- `ui-ux-spec.md` is the canonical detailed experience contract for its ticket.
+  The prototype report is an optional cross-stage summary and must not
+  duplicate the UI/UX specification or supporting evidence.
 - Use `visual-references/` as the umbrella directory. Call an actual captured
   browser image a screenshot, and identify it with a stable `VIS-*` ID and a
   descriptive filename such as
@@ -309,7 +317,6 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   references captured after explicit user approval are normative for the
   approved surface, state, and viewport unless the UI/UX specification marks
   content or variation as illustrative/permitted.
-- Every delivered artifact must link back to the work-item ID, source pin,
-  Product Prototyper accepted-baseline commit, final prototype commit or tag,
-  and relevant requirements/behavior/acceptance IDs when those references
-  exist. Record the Bootstrapper checkpoint separately when one exists.
+- Every durable artifact must link back to the source pin, prototype project
+  root/revision, and relevant requirements, behavior, and acceptance IDs when
+  those references exist.

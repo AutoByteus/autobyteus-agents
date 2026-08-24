@@ -1,15 +1,16 @@
 # Product Prototyper Repository-Management Review
 
-Review Status: Implementation complete - validated
+Review Status: Follow-up naming refinement implemented; validated
 
 ## Requested outcome
 
-Make the product-prototyper operate independently according to its skill. It should use the current request and available context, without describing or branching on how that context arrived. It should manage a long-lived sibling prototype repository, process each cohesive prototype change as a ticket/work item, use isolated worktrees when appropriate, preserve and validate the current baseline, create detailed UI/UX specifications and visual evidence, commit its own work, and finish through the configured dynamic handoff rules.
+Make the product-prototyper operate independently according to its skill. It should use the current request and available context, without describing or branching on how that context arrived. It should manage one stable prototype project root, preserve and validate the current baseline, create detailed UI/UX specifications and visual evidence, commit its own accepted project state, and finish through the configured dynamic handoff rules. The prototype stays inside the same source repository as a named sibling project of the selected frontend, and the workflow must not invent a second per-request ticket/work-item system.
 
 The prototype-bootstrapper should remain an independent specialist for
-establishing or refreshing the current-experience baseline. It may initialize
-the reserved prototype repository and create a candidate checkpoint, but it
-should not absorb the product-prototyper's future-state design ownership.
+establishing or refreshing the current-experience baseline in that canonical
+project root. It may initialize or update the project and return a bootstrap
+report, but it should not absorb the product-prototyper's future-state design,
+acceptance, or normal project-commit ownership.
 
 ## Review scope and baseline
 
@@ -27,7 +28,49 @@ Reviewed the current topology and content of:
 - `agent-teams/requirements-engineering-team/agents/requirements-engineer/skills/requirements-engineer/SKILL.md`
 - Requirements-engineer worktree and requirements templates, as the repository/work-item reference pattern
 
-No authoritative runtime files were changed during this analysis.
+The earlier review was implemented in the preceding change set. This
+follow-up compares that design with the earlier stable project-root workflow
+and removes the extra prototype-specific task-management layer while keeping
+the useful baseline, evidence, ownership, and handoff safeguards.
+
+## Follow-up comparison and simplification
+
+The earlier workflow already supplied the key identity rule: derive a stable
+`<prototype-subject>-prototype` root from the selected frontend or product
+surface, reuse it for later work, and place it beside the source frontend at
+the same parent level. The prototype remains a project inside the same source
+repository rather than introducing another repository or task system. Ticket
+folders remain part of the normal project artifacts.
+
+The later repository-management revision was over-specified. It introduced
+`PT-*` work items, `tickets/in-progress` and `tickets/done` packages, ticket
+branches/worktrees, a mandatory delivery manifest, and a Bootstrapper
+checkpoint commit. Those concepts duplicated normal project history and the
+canonical UI/UX/report artifacts without improving the stable prototype
+identity.
+
+The simplified contract is now:
+
+1. Keep one canonical prototype project root for a frontend/product surface.
+2. Keep that project as a sibling project directory of the selected frontend
+   inside the same source repository. If the frontend is nested, use the same
+   parent level; if it is a direct child of the repository root, the prototype
+   is also a direct child. When no frontend exists, use a direct child of the
+   source repository. Name it `<prototype-subject>-prototype`; do not add a
+   generic `prototypes/` container.
+3. Never write prototype files inside the production frontend directory.
+4. Let Bootstrapper establish or refresh the current-experience baseline and
+   return a runnable result, report, and exact comparison evidence.
+5. Let Product Prototyper acceptance-test the result, create the accepted
+   baseline commit, implement future-state changes, and commit normal project
+   history and final UI/UX evidence.
+6. Manage each request through its supplied ticket or request identifier in a
+   `tickets/in-progress/<ticket-id>/` or `tickets/done/<ticket-id>/` folder.
+   These folders are ordinary project artifacts; do not create a ticket branch,
+   task worktree, prototype-specific ID, or delivery-manifest package.
+
+This preserves repository safety and reproducibility without turning the
+prototype into a second ticket-management system.
 
 ## Preserved invariants
 
@@ -41,10 +84,12 @@ The update must preserve these existing responsibilities and safeguards:
 6. A current baseline must be accepted before a future-state change is layered onto an existing frontend.
 7. The user is the final approver of intended future-state experience decisions.
 8. Handoff remains dynamic: the agent calls `get_handoff_rules`, sends messages only to exact configured recipients using the configured messaging tool, and returns to the user or calling workflow when no team rule applies.
-9. The prototype repository must remain separate from production implementation repositories; bootstrapping must not write production changes.
+9. The prototype project root must remain separate from the production frontend
+   directory within the selected workspace, and bootstrapping must not write
+   production changes.
 10. Final UI/UX artifacts must agree with the runnable prototype and the approved visual evidence.
 
-## Macro analysis
+## Historical macro analysis
 
 ### M1 — Missing prototype repository and worktree lifecycle (Critical)
 
@@ -133,7 +178,7 @@ The requirements engineer has explicit dedicated-worktree and isolation checks. 
 
 **Proposed action:** Add deterministic recovery rules: never reuse a dirty/unrelated worktree, never overwrite another ticket package, block on missing source or baseline provenance, and report the exact blocker and next action through the normal handoff mechanism.
 
-## Micro/content architecture analysis
+## Historical micro/content architecture analysis
 
 1. **Keep the shared principles authoritative for cross-agent invariants.** Repository boundary, fidelity model, source pinning, work-item naming, visual-reference terminology, and commit/tag semantics belong there.
 2. **Keep the product-prototyper skill as the executable workflow.** Reorder it into request scope/context, repository/work-item setup, baseline routing, experience design, validation, delivery, and dynamic handoff. Avoid copying the complete repository rules into `agent.md`.
@@ -144,7 +189,7 @@ The requirements engineer has explicit dedicated-worktree and isolation checks. 
 7. **Preserve the current dynamic handoff wording.** Team configuration describes available internal routes; skills describe how to query and apply them. The agent should return to the calling context when no configured team rule applies, without fabricating a recipient.
 8. **Remove stale universal language.** In particular, replace “required recipient: requirements_engineer” and requirements-only intake wording with the request/context-driven skill flow.
 
-## Proposed update set
+## Historical proposed update set
 
 The following is the proposed implementation set. “Update” means edit an existing authoritative file; “Add” means introduce a new template or artifact.
 
@@ -164,7 +209,7 @@ The following is the proposed implementation set. “Update” means edit an exi
 | Review only | `team.md`, `team-config.json` | Preserve the existing internal topology and dynamic handoffs unless validation finds stale wording. Do not add a fake user member or hardcode a user route. |
 | Review only | Requirements-engineer skill/templates | Reuse their worktree/ticket concepts and align cross-references, but do not change requirements ownership or duplicate its artifacts. |
 
-## Proposed package model
+## Historical package model (superseded)
 
 The implementation should document a model such as:
 
@@ -188,7 +233,7 @@ The implementation should document a model such as:
 
 The exact root may be supplied by the user or workspace configuration, but the concepts and provenance fields should remain stable. A ticket may link to multiple requirements when it represents one cohesive experience change. A separate branch/worktree is used for concurrent or isolated work; the accepted result is committed in the prototype repository and linked from the manifest. Push/remote creation is explicit, not automatic.
 
-## Assumptions and open questions
+## Historical assumptions and open questions
 
 1. **Prototype ticket prefix:** This analysis assumes a prototype-specific `PT-*` ID, while preserving `REQ-*`, `AC-*`, `BEH-*`, `TR-*`, `VIS-*`, and `PC-*` IDs. If the project already has a ticket namespace, the templates should parameterize the prefix rather than invent a collision.
 2. **Remote hosting:** The recommended default is a separate local/remote prototype repository per long-lived product prototype, but the agent should not create a GitHub repository or push without explicit authorization or an established policy.
@@ -200,18 +245,20 @@ The exact root may be supplied by the user or workspace configuration, but the c
    action.
 5. **Optional requirements traceability:** Requirements and acceptance-criteria references are used when available in the working context. When absent, the artifacts record `N/A — not supplied` or `N/A — not applicable`; the work must still define an observable objective, scope boundary, and user approval state.
 
-## Validation plan after approval
+## Current validation plan
 
-After explicit approval, I will:
+Before committing this follow-up, I will:
 
-1. Apply the update set without discarding unrelated pre-existing working-tree changes.
+1. Review the applied update set without discarding unrelated pre-existing working-tree changes.
 2. Check that all referenced templates and paths exist and that each file has one clear owner and purpose.
 3. Parse `team-config.json` and inspect all handoff recipients against the configured team members.
 4. Search for stale invocation-source or requirements-only language, especially fixed report recipients and duplicated intake modes.
-5. Verify that repository/work-item/source provenance fields use consistent names across principles, skills, and templates.
+5. Verify that project-root/source provenance fields use consistent names across principles, skills, and templates.
 6. Verify that product-prototyper and bootstrapper responsibilities do not overlap in future-state design or requirements ownership.
 7. Run `git diff --check` and a content-order/redundancy review; report any validation limitation.
 
-## Approval gate
-
-This document is the analysis artifact required before modifying the authoritative skill and agent files. No authoritative runtime files were changed during analysis. Please explicitly approve this proposed update set before implementation.
+The current authoritative files are the updated team contract, Product
+Prototyper and Bootstrapper skills, their project-level templates, and the
+Requirements Engineer cross-references. The deleted work-item and delivery
+manifest templates are intentional because the simplified workflow has no
+consumer for them.

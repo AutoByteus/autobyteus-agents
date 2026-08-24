@@ -2,19 +2,13 @@
 
 ## Location And Stack
 
-- Prototype work-item ID:
+- Request / ticket:
 - Source repository:
 - Selected frontend application or product surface:
 - Pinned source commit or revision:
-- Prototype repository:
-- Prototype root:
-- Prototype branch:
-- Prototype worktree:
-- Accepted prototype baseline commit:
-- Bootstrapper checkpoint commit, when applicable:
-- Product Prototyper accepted-baseline commit:
-- Delivered prototype commit or tag:
-- Work-item package root:
+- Prototype project root:
+- Prototype revision or commit:
+- Ticket folder:
 - Package manager:
 - Framework / stack:
 - Entry route:
@@ -27,12 +21,11 @@
 - Readiness signal:
 - Stop / cleanup:
 
-## Reproducibility And Repository State
+## Reproducibility And Project State
 
-- Repository status at validation:
+- Prototype project status at validation:
 - Scenario reset/isolation method:
 - Required environment variables or credentials: synthetic/local only, or `None`
-- Delivery manifest:
 
 ## Critical Journeys To Review
 

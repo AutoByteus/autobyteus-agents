@@ -51,18 +51,23 @@ At the first coherent requirements baseline, use [templates/requirements-revisio
 The requirements doc is the canonical statement of intended behavior. Investigation notes are the canonical evidence base. Once created, the revision record is a concise chronological index of materially completed requirements rounds; it does not duplicate either canonical artifact.
 
 Create supplemental task artifacts only when a separate file materially improves precision or evidence. Examples include an interaction-state note, domain glossary, external research result, protocol or contract inventory, data-shape inventory, decision table, or retained probe result.
-When `product_prototyper` is engaged, it owns the accepted canonical runnable
-prototype repository work item, `ui-ux-spec.md`, final reference screenshots,
-and delivery manifest after baseline acceptance. `prototype_bootstrapper` owns
-current-experience baseline code, its reproducible checkpoint commit, and
-evidence only during its bootstrap, correction, or refresh stage. Product
-Prototyper owns the acceptance-tested baseline commit. Link the approved
-package and delivered revision from the requirements doc rather than creating a
-competing requirements-owned UI/UX specification.
+When `product_prototyper` is engaged, treat its ticket record, stable prototype
+project revision, `ui-ux-spec.md`, final visual references, and supporting
+artifacts as externally owned deliverables. Requirements Engineer supplies the
+requirements context and later links the approved package and delivered
+revision from the requirements doc; it does not manage Product Prototyper's
+ticket or project lifecycle and does not create a competing requirements-owned
+UI/UX specification. `prototype_bootstrapper` owns current-experience baseline
+code and comparison evidence only during its bootstrap, correction, or refresh
+stage; Product Prototyper accepts that result and commits the project.
 
 ## Artifact Location
 
 - Create draft requirements and investigation artifacts while recording the assigned task workspace and bootstrap context. For a git-repository task, verify before deeper investigation or handoff that the workspace is a dedicated task worktree or branch unless the current workspace is already isolated for the task.
+- Keep this requirements task workspace separate from the sibling prototype
+  project root and its ticket folders. Product Prototyper manages those
+  prototype artifacts in the parent/source repository; do not place them in
+  the Requirements Engineer's task workspace.
 - If base resolution or workspace isolation fails, record the blocker in the draft `investigation-notes.md`, leave the requirements doc `Draft`, and stop before deeper investigation or handoff.
 - Keep one canonical path for each artifact across refinement rounds.
 - Use absolute filesystem paths in team handoffs.
@@ -150,8 +155,8 @@ trigger when an existing-frontend baseline is absent.
 The prototyper owns the user-facing prototype review loop. Treat its returned package as authoritative UI/UX input only when it includes explicit user confirmation:
 
 - verify that `ui-ux-spec.md` links the runnable prototype and final reference screenshots
-- verify that the prototype work-item record and delivery manifest identify the
-  same prototype repository, accepted baseline, delivered revision, and
+- verify that the UI/UX specification and any prototype report identify the
+  same prototype project root, ticket, accepted revision, source pin, and
   durable artifact paths
 - reconcile its approved behavior with `requirements-doc.md` and affected acceptance criteria
 - treat every visible detail in the approved final references as a normative UI
@@ -206,9 +211,11 @@ Complete the requirements stage only after the package is architecture-ready and
 
 For `Approved Architecture-Ready`, include a concise status, approval evidence,
 readiness outcome, stable package identifier when supplied, and absolute paths to
-the canonical requirements, investigation, revision record, prototype
-work-item, delivery manifest, delivered prototype revision, and supplemental
-artifacts.
+the canonical requirements, investigation, revision record, and supplemental
+artifacts. When a prototype was used, also include the prototype ticket record
+and folder, prototype project root and revision, UI/UX/supporting artifacts,
+and bootstrap evidence. When no prototype applies, record those prototype
+paths as `N/A — not applicable`.
 
 For `Blocked`, identify the unresolved material decision, approval, evidence source, or safe-workspace prerequisite and include the evidence and artifact paths already available.
 
