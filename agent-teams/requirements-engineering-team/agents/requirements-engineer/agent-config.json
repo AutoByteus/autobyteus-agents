@@ -17,7 +17,8 @@
     "open_tab",
     "read_page",
     "run_script",
-    "screenshot"
+    "screenshot",
+    "get_handoff_rules"
   ],
   "skillNames": [
     "requirements-engineer"

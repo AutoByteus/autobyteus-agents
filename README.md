@@ -28,9 +28,21 @@ The paper research assistant is a standalone agent for the common paper-reading 
 
 The skill optimizer is a lightweight standalone agent that uses the shared `skill-optimizer` skill to review and improve existing skills for structure, grounding, clarity, consistency, and economy while preserving their intended behavior and quality gates.
 
+## Software Development Department
+
+The software development department is the end-to-end software entrypoint. `head_of_software_development` starts each independent package through Requirements Engineering and returns the verified terminal result. It contains three independent specialist teams: Requirements Engineering, Product Design & Prototyping, and Software Engineering. Requirements Engineer requests Product Prototyper only when a runnable experience would clarify a requirements decision, then hands an explicitly approved, architecture-ready package directly to Architecture Designer.
+
+## Requirements Engineering Team
+
+The requirements engineering team turns an initial product or technical request into an evidence-grounded, explicitly user-approved, architecture-ready requirements package. `requirements_engineer` owns current and desired behavior, scope, acceptance criteria, conditional prototype requests, and requirement revision history. Product Design & Prototyping is an external specialist team: Requirements Engineer consumes its delivered UI/UX evidence but does not manage its repository, tickets, commits, or internal workflow.
+
+## Product Design & Prototyping Team
+
+The product design and prototyping team independently maintains the prototype repository for each product surface. `product_prototyper` owns prototype intake, tickets, commits, user review, and final UI/UX specifications. `prototype_bootstrapper` owns only current-experience baseline discovery, parity implementation, and bootstrap evidence. The team uses dynamic handoff rules plus `send_message_to` for baseline routing and cross-team results.
+
 ## Software Engineering Team
 
-The software engineering team is the default one-off engineering entrypoint. It starts with `solution_designer` and takes a concrete feature, bug fix, refactor, or investigation through implementation, API and E2E validation, review, docs sync, final handoff, release, and deployment. Product iteration is inactive by default here unless the user explicitly asks for the loop or supplies a Product Manager feature brief.
+The software engineering team starts with `architecture_designer` and consumes an approved requirements package. It preserves the full technical design workflow, then proceeds through independent architecture review, implementation, source review, API/E2E validation, proportional test-code review, and delivery. After the user verifies the result and `delivery_engineer` completes finalization, Delivery Engineer returns the terminal package to Architecture Designer, which verifies and routes the outcome through the applicable message-based handoff rule or returns it to the caller.
 
 ## Research Engineering Team
 
@@ -249,6 +261,42 @@ For reliable agent-team handoffs, use file-backed handoffs by default:
 7. When reporting back, write a result/status file first, then send a short message that mentions and attaches that file.
 
 This pattern is intentionally more explicit than putting all details in the message body. It pushes each specialist to materialize its handoff, gives the receiver a stable artifact to read, reduces context loss, and makes multi-step team workflows easier to audit and resume.
+
+## Specialist Ownership And Outcome-Based Handoffs
+
+Model an agent team as a group of independent specialists rather than as one
+agent that manages every other specialist's internal workflow. Each agent
+should use its own `SKILL.md` to complete the responsibility it owns and
+should not manage another agent's private repository, ticket lifecycle,
+branches, worktrees, commits, or implementation details. A receiving agent
+should care about the delivered result and its evidence, not how the producing
+agent created or stored that result.
+
+When an agent reaches a meaningful stopping point, it should make the outcome
+explicit—such as `Completed`, `Blocked`, `Requirement Gap`, or another status
+defined by its workflow—before deciding what happens next. It should then:
+
+1. finish and persist the artifacts owned by its stage;
+2. call `get_handoff_rules` to retrieve the current conditional routing rules;
+3. apply every rule whose condition matches the actual outcome;
+4. call `send_message_to` with each exact returned `recipient_address`, carrying
+   the concise result, next expected action, and durable artifact references;
+5. return the outcome to the user or calling workflow when no rule applies; and
+6. stop after the required handoffs succeed instead of polling or continuing
+   work owned by the next specialist.
+
+Handoff rules—not hardcoded recipient assumptions—are the source of truth for
+workflow progression. The message recipient is selected from the completed
+task result, so the same agent can work independently when invoked by a user,
+another agent, or a resumed workflow. `delegate_task` is a separate mechanism
+for intentionally starting a fresh delegated execution; it is not a substitute
+for the normal result-based handoff protocol.
+
+This separation mirrors effective human teams: a specialist performs its own
+work, reports an evidence-backed result, and uses the agreed routing rules to
+contact the responsible next person. Team definitions should therefore make
+ownership boundaries, terminal outcomes, and handoff conditions explicit while
+leaving specialist execution details in the owning skills.
 
 ## Recommended Practice For Agent Packages
 

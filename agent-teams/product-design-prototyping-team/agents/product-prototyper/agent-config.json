@@ -8,9 +8,6 @@
     "get_process_output",
     "stop_background_process",
     "send_message_to",
-    "delegate_task",
-    "submit_task_result",
-    "review_task_result",
     "close_tab",
     "dom_snapshot",
     "list_tabs",
@@ -19,7 +16,8 @@
     "read_page",
     "run_script",
     "screenshot",
-    "set_device_emulation"
+    "set_device_emulation",
+    "get_handoff_rules"
   ],
   "skillNames": [
     "requirements-prototyper"

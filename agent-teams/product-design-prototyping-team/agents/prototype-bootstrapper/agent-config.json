@@ -16,7 +16,8 @@
     "run_script",
     "screenshot",
     "set_device_emulation",
-    "submit_task_result"
+    "get_handoff_rules",
+    "send_message_to"
   ],
   "skillNames": [
     "prototype-bootstrapper"

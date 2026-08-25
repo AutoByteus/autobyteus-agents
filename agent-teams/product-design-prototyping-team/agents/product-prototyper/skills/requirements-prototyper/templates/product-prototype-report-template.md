@@ -4,16 +4,28 @@ Use this optional report only when a durable cross-stage summary adds value beyo
 
 ## Request And Scope
 
+- Request / ticket:
 - Triggering requirements revision:
 - Related behavior, requirement, acceptance-criteria, and decision IDs:
 - Questions the prototype was asked to resolve:
 - In-scope critical journey:
 - Non-goals:
 
+## Repository Provenance
+
+- Source repository:
+- Selected frontend application or product surface:
+- Pinned source commit or revision:
+- Prototype repository/root (separate Git repository):
+- Prototype revision or commit:
+- Ticket folder:
+- Bootstrap report:
+
 ## Prototype Package
 
+- Prototype ticket record:
 - UI/UX specification:
-- Runnable prototype root:
+- Runnable prototype repository/root:
 - Experience story:
 - UI behavior test matrix:
 - Prototype assumptions:
@@ -36,7 +48,14 @@ Use this optional report only when a durable cross-stage summary adds value beyo
 
 ## Visual References
 
-Use this section for working validation evidence. After user confirmation, the canonical final references belong in `ui-ux-spec.md`.
+Use this section for working validation evidence. After user confirmation, the
+canonical production-quality visual references belong in `ui-ux-spec.md` and
+serve as normative implementation references subject only to explicitly
+recorded illustrative content or permitted variation.
+
+Store captured images under the current ticket folder's `visual-references/`
+directory and use stable `VIS-*` IDs. “Screenshot” means an actual captured browser image;
+“visual reference” is the broader evidence term.
 
 | Visual ID | Journey / Surface / State | Viewport | Image Path | Behavior Or Visual Decision Demonstrated | Validation Result |
 | --- | --- | --- | --- | --- | --- |
@@ -54,17 +73,20 @@ Use this section for working validation evidence. After user confirmation, the c
 | --- | --- | --- | --- |
 |  |  |  |  |
 
-## Findings For Requirements Engineer
+## Cross-Stage Findings
 
-| Finding ID | Related Requirement / Behavior / Decision IDs | Finding | Evidence | Recommended Requirements Action |
+| Finding ID | Related Requirement / Behavior / Decision IDs | Finding | Evidence | Recommended Downstream Action |
 | --- | --- | --- | --- | --- |
 | PF-001 |  |  |  |  |
 
 ## Latest Result
 
 - Prototype result: `Completed` / `Blocked` / `Not Recommended`
+- Ticket status: `In Progress` / `Awaiting User Review` / `Completed` / `Blocked` / `Not Recommended`
 - Critical journey runnable: `Yes` / `No`
 - Requirements questions resolved:
 - Remaining product decisions:
 - Remaining limitations:
-- Required recipient: `requirements_engineer`
+- Handoff outcome after `get_handoff_rules`:
+- Matched recipient address, when a rule applies:
+- Return context when no matching rule applies:

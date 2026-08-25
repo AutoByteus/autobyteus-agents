@@ -1,94 +1,76 @@
 ---
 name: Requirements Engineering Team
-description: A focused team for codebase-informed product and technical requirements engineering, conditional product prototyping, user approval, and architecture-ready requirements handoff.
+description: A focused team for codebase-informed requirements engineering, explicit product decisions, user approval, and an architecture-ready requirements result.
 category: software-engineering
 ---
 
-This team turns an initial software request into a precise, approved requirements package.
+This team turns an initial software request into a precise, explicitly
+approved, architecture-ready requirements package. `requirements_engineer` is
+the coordinator and canonical requirements owner.
 
-`requirements_engineer` is the coordinator and canonical requirements owner.
-`product_prototyper` is a conditional product/UX specialist used when a runnable experience and an approved UI/UX specification materially improve a requirements decision.
-`prototype_bootstrapper` is a task-delegation specialist for creating or explicitly refreshing the technical prototype baseline. It is a visible team member because member-target `delegate_task` calls resolve only against the current team roster.
+Product Design & Prototyping is a separate specialist team. It owns its own
+prototype repository, project root, ticket folders, commits, and UI/UX
+deliverables. Requirements Engineering does not own those artifacts and does
+not define or manage Product Prototyper's tickets. It only decides whether a
+prototype would resolve a requirements question and sends the focused request
+through the parent department's cross-team handoff rule.
 
-The shared prototype contract is [shared/product-prototype-principles.md](shared/product-prototype-principles.md). It defines technology selection, baseline fidelity, mocked boundaries, workspace isolation, and evidence rules shared by both prototype roles. Role-specific workflow remains in each role's bundled skill.
+## Members And Responsibilities
 
-## Responsibility Boundary
+- `requirements_engineer` owns investigation, current and desired behavior,
+  scope, requirements, acceptance criteria, supporting evidence, requirement
+  revisions, explicit user approval, architecture readiness, and the
+  Requirements Engineering Team result.
 
-The team determines what the product or system must do, what currently happens, what must remain unchanged, and how success can be verified.
-It may investigate implementation details deeply enough to define accurate product and technical requirements.
-It does not design the target subsystem, module, class, file, interface, dependency, or data-flow architecture.
+Requirements Engineering defines intended behavior and measurable
+constraints. Target software architecture belongs to downstream engineering.
+The team may investigate source code deeply enough to establish current
+behavior, but it does not implement production code or design the target
+architecture.
 
-The final package is intended as authoritative input to downstream architecture design.
+## Collaboration Flow
 
-## Team Members
+1. `requirements_engineer` bootstraps its isolated task workspace and
+   investigates the request, source product, constraints, current behavior,
+   and desired behavior.
+2. It decides whether runnable evidence would materially resolve a product,
+   UI, interaction, state, or journey question. If not, it continues its
+   direct evidence and approval path.
+3. If a prototype is needed, it classifies the outcome as `Prototype Needed`
+   and sends a focused cross-team message to
+   `/product_design_prototyping_team/product_prototyper` using the parent
+   department's dynamic handoff rule. The message carries the requirements
+   context and source locator, but Requirements Engineering does not create or
+   manage the Product team's repository or ticket.
+4. Product Design & Prototyping returns an approved UI/UX package,
+   requirement-impact finding, not-recommended finding, or precise blocker.
+   Requirements Engineer integrates the returned evidence into the canonical
+   requirements package while preserving Product Prototyper ownership of its
+   repository, ticket, `ui-ux-spec.md`, and final visual references.
+5. Requirements Engineer obtains explicit user approval for intended behavior,
+   verifies architecture readiness, and sends the cumulative approved package
+   directly to `architecture_designer` under the parent department's handoff
+   rule. A pre-architecture blocker returns to the department coordinator.
 
-- `requirements_engineer`: owns task intake, investigation, current and desired behavior, scope, non-goals, requirements, acceptance criteria, constraints, assumptions, user-approval capture, revision history, and final requirements readiness.
-- `product_prototyper`: owns focused runnable prototypes, prototype review with the user, the resulting `ui-ux-spec.md`, final reference screenshots, and supporting prototype evidence. It does not own the canonical requirements doc.
-- `prototype_bootstrapper`: owns delegated initial or explicitly requested refresh bootstrap work: frontend-technology detection, isolated prototype setup, relevant baseline replication, deterministic mock boundaries, baseline validation, and bootstrap evidence. It does not own requirements, user review, the canonical `ui-ux-spec.md`, or production architecture.
+The Requirements Engineer task workspace remains separate from the Product
+team's prototype repository. The prototype repository may be a sibling of the
+source repository in the workspace, but it is never a Requirements Engineer
+worktree or a Requirements Engineering ticket folder.
 
-## Primary Flow
+## Handoff Protocol
 
-1. `requirements_engineer` creates draft `requirements-doc.md` and `investigation-notes.md`.
-2. `requirements_engineer` investigates the relevant product, codebase, runtime behavior, data, documentation, and contracts.
-3. `requirements_engineer` defines stable behavior, requirement, and acceptance-criteria IDs and writes the current-versus-desired behavior.
-4. If a prototype can materially resolve a product, UI, or interaction question, `requirements_engineer` sends a focused request and the cumulative package to `product_prototyper`.
-5. If a prototype is not the best evidence path, `product_prototyper` returns a not-recommended finding; `requirements_engineer` records the rationale and continues without a prototype.
-6. If the prototype workspace does not exist, `product_prototyper` delegates one bounded bootstrap task to `prototype_bootstrapper` with `delegate_task`. The bootstrapper creates or validates the baseline, then submits its result with `submit_task_result`; `product_prototyper` reviews it with `review_task_result` and requests revision when needed.
-7. If the prototype workspace already exists, `product_prototyper` reads and preserves it; the bootstrapper is skipped unless an explicit refresh or reconciliation task is required.
-8. `product_prototyper` builds the smallest useful runnable experience on the accepted baseline, starts the prototype website, validates the review URL and critical journey, and asks the user to review it.
-9. `product_prototyper` keeps the prototype available, applies focused feedback within the current requirements scope, and repeats validation and review until the user confirms the intended experience or a blocker remains. Feedback that materially changes scope or canonical requirements returns to `requirements_engineer` before further prototype work.
-10. After confirmation, `product_prototyper` performs final validation, captures canonical screenshots of relevant pages and states, and completes `ui-ux-spec.md`.
-11. `product_prototyper` sends the approved UI/UX package to `requirements_engineer` with `send_message_to`.
-12. `requirements_engineer` links the approved UI/UX specification from the canonical requirements, reconciles any affected requirements or acceptance criteria, and includes it in the final requirements package.
-13. `requirements_engineer` resolves any remaining non-prototype decisions, presents the complete requirements basis for user approval, and records the result.
-14. The team finishes with an approved requirements package or an explicit blocker; it does not produce the downstream architecture design.
+- At every completed or blocked outcome, call `get_handoff_rules` and use the
+  returned conditional rules as the routing authority.
+- Apply every matching rule and call `send_message_to` with the exact returned
+  `recipient_address`; do not infer a recipient from memory.
+- Cross-team prototype requests and results use the parent department's
+  rooted routes. The Requirements Engineering team has no local Product
+  Prototyper or Bootstrapper members and no local cross-team product routes.
+- Include the stable package identifier when supplied, status, next expected
+  action, and absolute paths to every still-relevant requirements artifact and
+  external prototype artifact.
+- If no returned rule applies, return the outcome to the user or calling
+  workflow. After all required messages succeed, end the stage and do not poll.
 
-## Prototype Decision Rule
-
-Use `product_prototyper` when the user asks for a prototype or when material UI, interaction, navigation, state, visual-hierarchy, or journey ambiguity is difficult to resolve reliably in prose. For UI work, actively consider whether a runnable prototype and approved UI/UX specification are needed to make the requirement implementation-ready.
-
-Do not make prototyping mandatory. Skip it for clear backend, contract, operational, small, or already-well-specified requirements when executable UI evidence would not change the decision.
-
-## Artifact Ownership
-
-- `requirements_engineer` owns `requirements-doc.md`, `investigation-notes.md`, `requirements-revision-record.md`, and non-prototype requirements supplements.
-- When prototyping is used, `product_prototyper` owns the canonical `ui-ux-spec.md`, runnable prototype, and final reference screenshots.
-- Experience stories, behavior matrices, assumptions, change logs, runbooks, and prototype reports are supporting prototype artifacts created only when useful for construction, validation, revision, or handoff.
-- `prototype-bootstrap-report.md`, when created, is owned by `prototype_bootstrapper` and carried forward by `product_prototyper` as supporting baseline evidence.
-- Do not create a prototype report merely to restate the UI/UX specification or other supporting artifacts; use it only when a durable cross-stage summary adds evidence or routing value.
-- The prototyper never creates a competing canonical requirements document.
-- Canonical requirements and investigation artifacts remain the latest truth. The requirements revision record preserves concise round history and rationale.
-
-## Cumulative Package
-
-Every team handoff carries all still-relevant artifacts produced so far:
-
-1. requirements doc
-2. investigation notes
-3. requirements revision record, when created
-4. requirements-owned supplemental artifacts
-5. prototype request context, when applicable
-6. approved UI/UX specification, runnable prototype, and final reference screenshots, when applicable
-7. still-relevant supporting prototype artifacts, when applicable
-
-Use absolute filesystem paths and attach reference files through the handoff tool when available.
-
-A normal requirements-to-prototyper or prototyper-to-requirements stage handoff uses `send_message_to`, with the cumulative artifact package and absolute paths. A delegated bootstrap task is different: its lifecycle uses `delegate_task`, `submit_task_result`, and `review_task_result`.
-
-## Approval And Readiness
-
-- Only the user can approve intended behavior.
-- Draft prototype behavior and interim images are evidence, not automatic approval.
-- The prototyper records explicit user confirmation before marking `ui-ux-spec.md` approved or capturing its final reference screenshots.
-- The requirements engineer carries the approved UI/UX specification, runnable prototype, and final reference screenshots downstream without silently rewriting their meaning.
-- A requirements package is architecture-ready only when its relevant current behavior, desired behavior, scope, non-goals, requirements, acceptance criteria, constraints, and open decisions are explicit and consistent.
-- Technical requirements should express behavior or measurable constraints. Target technical structure belongs downstream.
-- If a material decision remains unresolved, return a precise blocker or approval question instead of guessing.
-
-## Team Handoff Authority
-
-- The visible team roster defines the available specialists.
-- Use AutoByteus `send_message_to` for every normal inter-member handoff. Use the server-managed task-delegation tools only for bounded delegated work and its result/review lifecycle.
-- Do not call Codex-native `spawn_agent`, `wait_agent`, `list_agents`, or other native collaboration tools while acting as a member of this team.
-- After a successful handoff, finish the current stage and act on the next incoming team message; do not poll.
-- The final requirements result returns to the user or calling workflow. Do not attempt to message an architecture specialist that is not in this team's visible roster.
+Detailed investigation, requirements, prototype-gate, approval, artifact, and
+recovery rules belong to the `requirements_engineer` skill.

@@ -91,10 +91,11 @@ Record `No current supported behavior` for genuinely new behavior. Do not treat 
 - Known constraints and non-goals:
 - Alternative evidence path / next action when no prototype is used:
 - Prototype request artifact / message reference:
+- Established separate prototype repository/root and ticket reference, when applicable:
 
 ## Prototype Findings
 
-- Prototype package path:
+- Prototype package path (external Product Design & Prototyping repository):
 - Approved UI/UX specification path:
 - Review URL:
 - Explicit user-confirmation reference:

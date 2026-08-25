@@ -35,13 +35,30 @@ For genuinely new behavior, write `No current supported behavior` and identify t
 | --- | --- | --- | --- |
 |  |  |  |  |
 
-## Scope
+## Scope Guardrail (Mandatory)
 
-### In Scope
+This is the canonical change boundary for requirements, architecture design, implementation, and technical review. Do not duplicate the full behavior table, requirements, or acceptance criteria here. Reference their stable IDs and add only the minimum boundary statements needed to prevent scope drift.
+
+### In-Scope Use Cases
+
+List the supported user, system, operational, or contract use cases this task is authorized to change. Give each use case a stable ID for requirement-to-use-case coverage.
 
 ### Out Of Scope
 
+List adjacent behaviors, policies, systems, migrations, or quality improvements this task does not authorize. State explicitly when a plausible security, reliability, compatibility, or operational concern belongs to a separate requirement.
+
 ### Non-Goals
+
+### Preserved Behavior Boundary
+
+Reference the applicable `BEH-*`, requirement, and acceptance-criteria IDs whose outcomes must remain unchanged. Do not repeat their complete text. Add a concise cross-cutting invariant only when the behavior table's preserved-behavior column is insufficient.
+
+### Review Authority
+
+- Every blocking `Design Impact` or implementation-correction finding must cite an approved requirement, acceptance criterion, or preserved-behavior ID that it protects.
+- A finding that would introduce new product behavior, policy, threat model, migration obligation, compatibility promise, or operational contract is a `Requirement Gap`; it requires explicit user approval before becoming authoritative.
+- An adjacent concern outside the approved boundary may be recorded as a non-blocking risk, recommendation, or separate-ticket candidate. It is not a required design correction.
+- A downstream reviewer comment does not amend this requirements basis. The Requirements Engineer must update the canonical requirements and obtain renewed user approval before a scope-changing proposal can govern design or implementation.
 
 ## Requirements
 
@@ -69,15 +86,21 @@ Use user journeys only when a user actually initiates or experiences the behavio
 
 - Applicable: `Yes` / `No`
 - Linked UI/UX or interaction supplement:
-- Linked runnable prototype and applicable support artifacts:
+- Linked runnable prototype, separate prototype repository/root, UI/UX specification, and
+  applicable support artifacts:
+- Product prototype ticket record and folder (externally owned):
+- Prototype revision or commit:
 - UI/UX user-confirmation reference:
 - Approved visual-reference baseline:
-- Requirements-defining visual or interaction details:
-- Illustrative details left to downstream design and implementation:
+- Normative visual and interaction details, including the approved final
+  references:
+- Explicitly illustrative fixture content or permitted implementation
+  variation:
 - Required screens, states, transitions, feedback, responsive behavior, or accessibility outcomes:
 - Explicitly unresolved product decisions:
 
-When this section is not applicable, write `N/A` for prototype-specific fields rather than leaving their approval state ambiguous.
+When this section is not applicable, write `N/A — not applicable` for
+prototype-specific fields rather than leaving their approval state ambiguous.
 
 ## Quality And Non-Functional Requirements
 
