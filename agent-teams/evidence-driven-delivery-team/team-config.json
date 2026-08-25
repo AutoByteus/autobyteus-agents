@@ -1,0 +1,112 @@
+{
+  "coordinatorMemberName": "iteration_coordinator",
+  "avatarUrl": null,
+  "members": [
+    {
+      "memberName": "investigator",
+      "ref": "investigator",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "planner",
+      "ref": "planner",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "implementer",
+      "ref": "implementer",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "validator",
+      "ref": "validator",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "iteration_coordinator",
+      "ref": "iteration-coordinator",
+      "refType": "agent",
+      "refScope": "team_local"
+    }
+  ],
+  "handoffs": [
+    {
+      "from": "/investigator",
+      "to": "/planner",
+      "rules": [
+        "When the current-state investigation is complete, evidence-backed, and sufficient for planning, with unknowns and constraints explicitly recorded."
+      ]
+    },
+    {
+      "from": "/investigator",
+      "to": "/iteration_coordinator",
+      "rules": [
+        "When investigation is blocked or a newly discovered issue requires the iteration owner to decide whether to re-scope, re-plan, or return a blocked result."
+      ]
+    },
+    {
+      "from": "/planner",
+      "to": "/iteration_coordinator",
+      "rules": [
+        "When the plan is Active, the plan package is complete enough for execution, contains dependency-ordered tasks with explicit expectations and validation conditions, and identifies the first ready task for Iteration Coordinator to dispatch.",
+        "When a replan request has been resolved and the revised plan is Active, with the task ledger, dependencies, expectations, and next ready task ready for another execution iteration."
+      ]
+    },
+    {
+      "from": "/planner",
+      "to": "/investigator",
+      "rules": [
+        "When planning reveals a material unknown or missing current-state evidence that must be investigated before a safe micro-task can be defined."
+      ]
+    },
+    {
+      "from": "/implementer",
+      "to": "/validator",
+      "rules": [
+        "When the assigned micro-task is implemented, implementation evidence is persisted, implementation-scoped checks are complete, and the result is ready for comparison with the planner's expectation."
+      ]
+    },
+    {
+      "from": "/implementer",
+      "to": "/iteration_coordinator",
+      "rules": [
+        "When implementation proves that the current micro-task cannot be completed within the approved plan, its dependencies are invalid, or a blocker requires an iteration decision before validation can continue."
+      ]
+    },
+    {
+      "from": "/validator",
+      "to": "/iteration_coordinator",
+      "rules": [
+        "When validation is complete with an observed-versus-expected comparison, evidence, and a Pass, Fail, or Blocked result, and the iteration owner must decide the next step."
+      ]
+    },
+    {
+      "from": "/iteration_coordinator",
+      "to": "/implementer",
+      "rules": [
+        "When a complete Active plan package is received from Planner, its first dependency-ready micro-task is identified, and no new investigation or plan revision is required.",
+        "When validation feedback is accepted, the remaining plan contains another ready micro-task, and no new investigation or plan revision is required.",
+        "When validation fails but the current task expectation and plan remain valid, and the implementer should correct the task within the existing scope before validation is repeated."
+      ]
+    },
+    {
+      "from": "/iteration_coordinator",
+      "to": "/planner",
+      "rules": [
+        "When validation feedback or implementation evidence requires a revised task breakdown, dependency update, expectation change, or new micro-task before execution can continue.",
+        "When every planned task has been validated successfully, no remaining task is pending, and the complete task ledger and validation evidence are ready for Planner to close the plan and produce the terminal plan result."
+      ]
+    },
+    {
+      "from": "/iteration_coordinator",
+      "to": "/investigator",
+      "rules": [
+        "When validation feedback or implementation evidence exposes a material unknown that must be investigated before the next plan revision or execution step."
+      ]
+    }
+  ]
+}

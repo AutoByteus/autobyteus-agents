@@ -1,0 +1,13 @@
+{
+  "toolNames": [
+    "edit_file",
+    "read_file",
+    "write_file",
+    "run_bash",
+    "send_message_to",
+    "get_handoff_rules"
+  ],
+  "skillNames": [
+    "planner"
+  ]
+}
