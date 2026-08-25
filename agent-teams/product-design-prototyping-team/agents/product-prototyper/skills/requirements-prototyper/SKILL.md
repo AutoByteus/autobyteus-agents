@@ -8,7 +8,7 @@ description: Accept an exact existing-frontend current-experience baseline or cr
 Read [product-prototype-principles.md](product-prototype-principles.md) before
 starting. It is the shared authority for prototype technology selection,
 current-experience fidelity, lightweight implementation, synthetic state,
-workspace/project isolation, project ownership, and evidence.
+workspace/repository isolation, project ownership, and evidence.
 
 ## Purpose
 
@@ -35,16 +35,16 @@ a visual or behavioral product decision.
   linked requirements, ticket folder, validation, approval, and handoff
 - review and acceptance of the Bootstrapper's exact current-experience baseline
 - authoring the concrete, focused future-state UI/UX proposal for user review
-- the long-lived product-prototype project from request intake, including its
+- the long-lived separate prototype repository from request intake, including its
   ticket folders; for an existing frontend, future-state work begins only
   after baseline acceptance
-- normal prototype-project commits and the final UI/UX evidence package
-- the accepted canonical prototype workspace during focused future-state work,
+- normal prototype-repository commits and the final UI/UX evidence package
+- the accepted canonical prototype repository during focused future-state work,
   including explicit prototype-state and simulation boundaries
 - the iterative prototype review loop with the user
 - the canonical prototype-owned `ui-ux-spec.md`
 - the per-ticket record and durable artifact folder under the canonical
-  prototype project's `tickets/` directory
+  prototype repository's `tickets/` directory
 - normative final reference screenshots and their mapping to pages, states,
   journeys, and requirements
 - browser validation of the critical journey and important states
@@ -83,7 +83,7 @@ inventing them:
 - an unambiguous selected existing-frontend locator when an existing product UI
   supplies the current experience
 - any explicit user-imposed source-revision or prototype-root constraint
-- an established prototype root and bootstrap-report path when they already
+- an established prototype repository/root and bootstrap-report path when they already
   exist
 
 If the current request lacks a decision question or observable journey, return
@@ -119,58 +119,56 @@ runbook records execution, and the prototype report is an optional cross-stage
 summary. Do not create the report merely to duplicate the UI/UX specification or
 those supporting artifacts.
 
-Keep the runnable prototype source at the canonical prototype root. Keep the
+Keep the runnable prototype source at the canonical prototype repository root. Keep the
 ticket record, UI/UX specification, final visual references, and ticket-specific
 support artifacts together under that ticket's folder. Never rely on temporary
 screenshot paths for final references.
 
-## Prototype Project Lifecycle
+## Prototype Repository Lifecycle
 
-The product prototype is one stable project root for the selected frontend or
-product surface inside the parent/source repository. Keep it as a sibling
-project directory of the selected frontend at the same parent level. If the
-frontend is a direct child of the repository root, the prototype is also a
-direct child; if the frontend is nested, place it beside the frontend; when no
-frontend exists, make it a direct child of the parent/source repository. Name
-it `<prototype-subject>-prototype`; do not add a generic `prototypes/`
-container. Manage the current request through a ticket folder inside that
-project, not through a dedicated worktree.
+The product prototype is one stable, separate Git repository for the selected
+frontend or product surface. Keep it normally as a sibling directory of the
+source repository in the workspace, using `<prototype-subject>-prototype` as
+its repository name. It is not a directory inside the source repository, a
+production frontend path, or a Requirements Engineer task worktree. Manage the
+current request through a ticket folder inside this prototype repository, not
+through a dedicated per-ticket worktree.
 
 1. Resolve the ticket or request identifier from the current context, then
    resolve the selected source application and reuse its established canonical
-   prototype root when one exists. Otherwise derive a stable
-   `<prototype-subject>-prototype` root using the shared naming rule. Keep the
-   project as a sibling of the selected frontend at the same parent level, or
-   as a direct child of the parent/source repository when no frontend exists.
-   Never place it inside the production frontend application directory or a
-   generic `prototypes/` container. Reuse the ticket's existing folder when it
-   exists;
-   if a completed ticket is being reopened, move it back to
-   `tickets/in-progress/<ticket-id>/` while preserving its history; otherwise
-   create that folder using the supplied identifier or the surrounding
-   project's normal ticket convention. Do not invent a second
-   prototype-specific ticket ID.
-2. Verify the prototype project's identity, instructions, status, source pin,
-   current baseline, and ticket status. Do not overwrite unrelated uncommitted
-   prototype or ticket changes or silently create a second root.
+   prototype repository when one exists. Otherwise derive a stable
+   `<prototype-subject>-prototype` repository using the shared naming rule.
+   Record both the absolute source repository/frontend path and the absolute
+   prototype repository/root path. Never place prototype files inside the
+   production source repository or a generic `prototypes/` container. Reuse
+   the ticket's existing folder when it exists; if a completed ticket is being
+   reopened, move it back to `tickets/in-progress/<ticket-id>/` while
+   preserving its history; otherwise create that folder using the supplied
+   identifier or the Product team's normal ticket convention. Do not invent a
+   second prototype-specific ticket ID.
+2. Verify the prototype repository's identity, Git remote/status, instructions,
+   source pin, current baseline, and ticket status. Do not overwrite unrelated
+   uncommitted prototype or ticket changes or silently create a second root.
 3. If an existing frontend has no accepted baseline, send the fixed bootstrap
-   request with the selected frontend and canonical prototype root. The
-   Bootstrapper establishes current-experience parity and returns the runnable
-   result, bootstrap report, and evidence.
+   request with the selected frontend and canonical separate prototype
+   repository/root. The Bootstrapper establishes current-experience parity and
+   returns the runnable result, bootstrap report, and evidence.
 4. Run acceptance and regression validation yourself, then commit the accepted
-   baseline in the prototype project. For later work, read the current project,
-   preserve accepted behavior, implement the smallest focused change, update
-   the ticket record and change log, and keep the ticket status current.
+   baseline in the prototype repository. For later work, read the current
+   repository, preserve accepted behavior, implement the smallest focused
+   change, update the ticket record and change log, and keep the ticket status
+   current.
 5. After user confirmation and final validation, complete the ticket record,
-   `ui-ux-spec.md`, final visual references, and any useful supporting
-   artifacts under the ticket folder. Commit the runnable prototype and
-   durable evidence in the prototype project, then move the ticket folder from
+   `ui-ux-spec.md`, final visual references, and useful supporting artifacts
+   under the ticket folder. Commit the runnable prototype and durable evidence
+   in the prototype repository, then move the ticket folder from
    `tickets/in-progress/` to `tickets/done/`. Push changes only under the
-   existing repository policy or explicit authorization.
+   existing prototype-repository policy or explicit authorization.
 
-For a no-frontend prototype, Product Prototyper establishes the project and
-initial runnable baseline directly, then manages the request through the same
-ticket-folder lifecycle.
+For a no-frontend prototype, Product Prototyper creates or initializes the
+separate prototype repository and establishes the project and initial runnable
+baseline directly, then manages the request through the same ticket-folder and
+commit lifecycle.
 
 ## Prototype Selection
 
@@ -183,12 +181,13 @@ Keep the future-state change proportional to the decision:
 
 ## Bootstrap Routing
 
-- For an existing frontend, check only whether an established canonical root
-  has an applicable accepted `prototype-bootstrap-report.md`. Do not inspect or
-  inventory the current source UI merely to prepare a Bootstrapper request. If
-  no root is established, treat the initial baseline as absent and derive the
-  stable root under the shared naming rules; Bootstrapper creates it there when
-  needed.
+- For an existing frontend, check only whether an established canonical
+  prototype repository/root has an applicable accepted
+  `prototype-bootstrap-report.md`. Do not inspect or inventory the current
+  source UI merely to prepare a Bootstrapper request. If no repository/root is
+  established, treat the initial baseline as absent and derive the stable
+  prototype repository/root under the shared naming rules; Bootstrapper creates
+  it there when needed.
 - Request bootstrap work when the baseline is absent, any distinct UI inventory
   item is failed or unsubstantiated, or an explicit correction or source
   refresh is required. Do not infer a refresh from a moving branch. For
@@ -201,7 +200,7 @@ Keep the future-state change proportional to the decision:
   Outcome: Baseline Needed
   Mode: Initial Bootstrap
   Selected frontend: <absolute source path>
-  Prototype root: <absolute canonical prototype path>
+  Prototype repository/root: <absolute canonical separate prototype path>
   Explicit source constraint: <verbatim source-revision/root constraint or None>
   Action: Independently establish the exact current-experience prototype baseline and return Completed or Blocked.
   ```
@@ -209,14 +208,14 @@ Keep the future-state change proportional to the decision:
   Do not attach the requirements package or add discovered routes, contexts,
   expected states, implementation guidance, run instructions, fixtures, or
   requirement IDs. They are not inputs to the independent current-experience
-  bootstrap. The prototype root is a target location, not a request to
+  bootstrap. The prototype repository/root is a target location, not a request to
   pre-inventory or prescribe the implementation.
 - For `Mode: Correction`, reuse the fixed schema, change `Action` to correct the
-  named baseline gaps, and add only the established prototype root,
+  named baseline gaps, and add only the established prototype repository/root,
   bootstrap-report path, and failed or unsubstantiated inventory IDs. For
   `Mode: Refresh`, change `Action` to refresh the established baseline and add
-  only the established root, report path, and explicitly selected new source
-  authority. Preserve the stable package identifier in all modes.
+  only the established prototype repository/root, report path, and explicitly
+  selected new source authority. Preserve the stable package identifier in all modes.
 - When the Bootstrapper returns, read and review the runnable prototype,
   `prototype-bootstrap-report.md`, and referenced evidence directly. Accept an
   existing-frontend baseline only when its selected source and revision are
@@ -226,9 +225,9 @@ Keep the future-state change proportional to the decision:
   are replaced by documented local simulations. If correction is required,
   classify the outcome as `Baseline Needed` again and send the failed or
   unsubstantiated UI inventory IDs through the handoff rules.
-- If the established root has an applicable accepted baseline report, read its
-  current implementation and artifacts and skip initial bootstrap. Request a
-  refresh when an explicitly selected new source authority differs from the
+- If the established prototype repository/root has an applicable accepted
+  baseline report, read its current implementation and artifacts and skip
+  initial bootstrap. Request a refresh when an explicitly selected new source authority differs from the
   report. Request a correction when any known perceptible or behavioral
   difference or unsubstantiated distinct UI item remains.
 - Do not start requirements-driven feature or design work on an unreviewed,
@@ -243,12 +242,12 @@ Keep the future-state change proportional to the decision:
 2. When an existing frontend is selected, resolve its locator and source
    revision authority. For no-frontend work, resolve the selected product
    surface and configured template instead. In both cases, resolve the stable
-   prototype project root, then create or reopen the ticket folder under
+   prototype repository/root, then create or reopen the ticket folder under
    `tickets/in-progress/<ticket-id>/` using the supplied ticket or request
-   identifier. Verify project identity, ticket status, instructions, and
+   identifier. Verify prototype-repository identity, ticket status, instructions, and
    accepted baseline provenance before editing. Block on unrelated dirty state,
    an unavailable required source, or an unproven established baseline.
-3. Inspect the established canonical prototype root and current-experience
+3. Inspect the established canonical separate prototype repository/root and current-experience
    bootstrap evidence. Do not pre-investigate the source UI merely to prepare
    an initial bootstrap trigger.
 4. Apply the bootstrap routing rules and accept an applicable baseline before
@@ -279,10 +278,10 @@ Keep the future-state change proportional to the decision:
     IDs.
 11. Complete the ticket record, `ui-ux-spec.md`, and any useful supporting
     artifacts, including the approval reference, final screenshots, detailed
-    behavior, mocked boundaries, source pin, prototype root, and prototype
+    behavior, mocked boundaries, source pin, prototype repository/root, and prototype
     revision. Keep them under the ticket folder.
 12. Commit the runnable prototype and durable ticket evidence in the prototype
-    project. Move the completed ticket folder from `tickets/in-progress/` to
+    repository. Move the completed ticket folder from `tickets/in-progress/` to
     `tickets/done/` in the same commit sequence. Do not claim completion before
     the committed state is reproducible.
 13. Classify the final package as `Prototype Completed` and follow the handoff
@@ -341,7 +340,7 @@ Keep the future-state change proportional to the decision:
 
 Before reporting the prototype as completed, confirm:
 
-- the prototype project root is distinct from production frontend paths and
+- the prototype repository/root is distinct from production frontend paths and
   its source pin and committed prototype revision are recorded
 - the ticket identifier, ticket status, ticket folder, and linked artifacts are
   recorded and agree
@@ -399,7 +398,7 @@ Before reporting the prototype as completed, confirm:
 - For `Prototype Completed`, include absolute paths to `ui-ux-spec.md`, the
   runnable prototype, final screenshots, the applicable
   `prototype-bootstrap-report.md`, and every still-relevant supporting
-  artifact. Include the ticket record and folder, prototype project root,
+  artifact. Include the ticket record and folder, prototype repository/root,
   prototype revision, source pin, user-confirmation reference, validated
   journeys and scenarios, mocked boundaries, prototype findings, and unresolved
   decisions.

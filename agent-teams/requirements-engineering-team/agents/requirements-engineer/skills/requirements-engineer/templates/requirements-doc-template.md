@@ -86,9 +86,9 @@ Use user journeys only when a user actually initiates or experiences the behavio
 
 - Applicable: `Yes` / `No`
 - Linked UI/UX or interaction supplement:
-- Linked runnable prototype, prototype project root, UI/UX specification, and
+- Linked runnable prototype, separate prototype repository/root, UI/UX specification, and
   applicable support artifacts:
-- Prototype ticket record and folder:
+- Product prototype ticket record and folder (externally owned):
 - Prototype revision or commit:
 - UI/UX user-confirmation reference:
 - Approved visual-reference baseline:

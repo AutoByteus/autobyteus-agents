@@ -7,49 +7,7 @@
       "ref": "requirements-engineer",
       "refType": "agent",
       "refScope": "team_local"
-    },
-    {
-      "memberName": "product_prototyper",
-      "ref": "product-prototyper",
-      "refType": "agent",
-      "refScope": "team_local"
-    },
-    {
-      "memberName": "prototype_bootstrapper",
-      "ref": "prototype-bootstrapper",
-      "refType": "agent",
-      "refScope": "team_local"
     }
   ],
-  "handoffs": [
-    {
-      "from": "/requirements_engineer",
-      "to": "/product_prototyper",
-      "rules": [
-        "When Requirements Engineer classifies the outcome as Prototype Needed because a material product, UI, interaction, state, or journey decision requires a focused runnable prototype for user review."
-      ]
-    },
-    {
-      "from": "/product_prototyper",
-      "to": "/prototype_bootstrapper",
-      "rules": [
-        "When a selected existing frontend supplies the current experience and Product Prototyper classifies the outcome as Baseline Needed because an applicable accepted baseline is absent, a correction is required, or an explicit source refresh is needed; invoke Prototype Bootstrapper with the fixed minimal mode-specific trigger defined in Product Prototyper's skill, including the selected frontend and canonical prototype project root. Product Prototyper retains its ticket context locally; do not append the future-state ticket package to the fixed Bootstrapper trigger."
-      ]
-    },
-    {
-      "from": "/prototype_bootstrapper",
-      "to": "/product_prototyper",
-      "rules": [
-        "When a current-experience bootstrap, correction, or refresh request originated from Product Prototyper and Prototype Bootstrapper classifies it as Completed or Blocked with its runnable prototype, bootstrap report, and exact source-versus-prototype UI/UX evidence ready for Product Prototyper acceptance testing."
-      ]
-    },
-    {
-      "from": "/product_prototyper",
-      "to": "/requirements_engineer",
-      "rules": [
-        "When Product Prototyper classifies the outcome as Prototype Completed because the user-approved prototype and UI/UX package are ready for requirements integration.",
-        "When Product Prototyper classifies the outcome as Requirement Impact, Not Recommended, or Blocked and Requirements Engineer must revise or decide the requirements path."
-      ]
-    }
-  ]
+  "handoffs": []
 }

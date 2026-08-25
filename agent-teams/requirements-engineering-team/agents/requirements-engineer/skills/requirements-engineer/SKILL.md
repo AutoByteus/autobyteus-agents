@@ -51,23 +51,24 @@ At the first coherent requirements baseline, use [templates/requirements-revisio
 The requirements doc is the canonical statement of intended behavior. Investigation notes are the canonical evidence base. Once created, the revision record is a concise chronological index of materially completed requirements rounds; it does not duplicate either canonical artifact.
 
 Create supplemental task artifacts only when a separate file materially improves precision or evidence. Examples include an interaction-state note, domain glossary, external research result, protocol or contract inventory, data-shape inventory, decision table, or retained probe result.
-When `product_prototyper` is engaged, treat its ticket record, stable prototype
-project revision, `ui-ux-spec.md`, final visual references, and supporting
-artifacts as externally owned deliverables. Requirements Engineer supplies the
-requirements context and later links the approved package and delivered
-revision from the requirements doc; it does not manage Product Prototyper's
-ticket or project lifecycle and does not create a competing requirements-owned
-UI/UX specification. `prototype_bootstrapper` owns current-experience baseline
-code and comparison evidence only during its bootstrap, correction, or refresh
-stage; Product Prototyper accepts that result and commits the project.
+When `product_prototyper` is engaged, treat its ticket record, separate
+prototype repository/revision, `ui-ux-spec.md`, final visual references, and
+supporting artifacts as externally owned deliverables. Requirements Engineer
+supplies the requirements context and later links the approved package and
+delivered revision from the requirements doc; it does not create, manage, or
+commit the Product team's repository or ticket lifecycle and does not create a
+competing requirements-owned UI/UX specification. `prototype_bootstrapper`
+owns current-experience baseline code and comparison evidence only during its
+bootstrap, correction, or refresh stage; Product Prototyper accepts that result
+and commits the separate prototype repository.
 
 ## Artifact Location
 
 - Create draft requirements and investigation artifacts while recording the assigned task workspace and bootstrap context. For a git-repository task, verify before deeper investigation or handoff that the workspace is a dedicated task worktree or branch unless the current workspace is already isolated for the task.
-- Keep this requirements task workspace separate from the sibling prototype
-  project root and its ticket folders. Product Prototyper manages those
-  prototype artifacts in the parent/source repository; do not place them in
-  the Requirements Engineer's task workspace.
+- Keep this requirements task workspace separate from the Product team's
+  separate prototype repository and its ticket folders. Product Prototyper
+  manages those external prototype artifacts; do not place them in the
+  Requirements Engineer's task workspace or claim ownership of their commits.
 - If base resolution or workspace isolation fails, record the blocker in the draft `investigation-notes.md`, leave the requirements doc `Draft`, and stop before deeper investigation or handoff.
 - Keep one canonical path for each artifact across refinement rounds.
 - Use absolute filesystem paths in team handoffs.
@@ -135,20 +136,20 @@ For material UI work, actively evaluate this gate rather than assuming prose alo
 
 For a clear backend-only, contract-only, operational, or small UI requirement where a prototype would add no meaningful evidence, record that decision and rationale in the investigation notes and use the appropriate evidence path, such as direct clarification or a focused static artifact.
 
-The prototype request must identify:
+The cross-team prototype request must identify:
 
 - the requirement and behavior IDs in question
 - the exact product decisions or uncertainties to resolve
 - the future-state critical journey and states to make runnable
 - for an existing frontend, an unambiguous selected frontend locator; include a
-  source-revision or prototype-root constraint only when the user explicitly
+  source-revision or prototype-repository/root constraint only when the user explicitly
   imposed it
-- the established canonical prototype root and latest current-experience
+- the established separate prototype repository/root and latest current-experience
   baseline report only when they already exist
 - known constraints and non-goals
 - the canonical requirements and investigation artifact paths
 
-Requirements Engineer does not prepare the Bootstrapper invocation or enumerate
+Requirements Engineer does not prepare the Bootstrapper invocation or manage the Product repository or enumerate
 the current UI for it. Product Prototyper applies the fixed minimal bootstrap
 trigger when an existing-frontend baseline is absent.
 
@@ -156,7 +157,7 @@ The prototyper owns the user-facing prototype review loop. Treat its returned pa
 
 - verify that `ui-ux-spec.md` links the runnable prototype and final reference screenshots
 - verify that the UI/UX specification and any prototype report identify the
-  same prototype project root, ticket, accepted revision, source pin, and
+  same separate prototype repository/root, ticket, accepted revision, source pin, and
   durable artifact paths
 - reconcile its approved behavior with `requirements-doc.md` and affected acceptance criteria
 - treat every visible detail in the approved final references as a normative UI
@@ -213,7 +214,7 @@ For `Approved Architecture-Ready`, include a concise status, approval evidence,
 readiness outcome, stable package identifier when supplied, and absolute paths to
 the canonical requirements, investigation, revision record, and supplemental
 artifacts. When a prototype was used, also include the prototype ticket record
-and folder, prototype project root and revision, UI/UX/supporting artifacts,
+and folder, separate prototype repository/root and revision, UI/UX/supporting artifacts,
 and bootstrap evidence. When no prototype applies, record those prototype
 paths as `N/A — not applicable`.
 

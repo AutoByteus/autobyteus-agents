@@ -11,12 +11,12 @@ Use this optional report only when a durable cross-stage summary adds value beyo
 - In-scope critical journey:
 - Non-goals:
 
-## Project Provenance
+## Repository Provenance
 
 - Source repository:
 - Selected frontend application or product surface:
 - Pinned source commit or revision:
-- Prototype project root:
+- Prototype repository/root (separate Git repository):
 - Prototype revision or commit:
 - Ticket folder:
 - Bootstrap report:
@@ -25,7 +25,7 @@ Use this optional report only when a durable cross-stage summary adds value beyo
 
 - Prototype ticket record:
 - UI/UX specification:
-- Runnable prototype root:
+- Runnable prototype repository/root:
 - Experience story:
 - UI behavior test matrix:
 - Prototype assumptions:

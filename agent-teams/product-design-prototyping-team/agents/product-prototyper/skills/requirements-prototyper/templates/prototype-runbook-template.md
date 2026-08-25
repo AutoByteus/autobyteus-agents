@@ -6,7 +6,7 @@
 - Source repository:
 - Selected frontend application or product surface:
 - Pinned source commit or revision:
-- Prototype project root:
+- Prototype repository/root (separate Git repository):
 - Prototype revision or commit:
 - Ticket folder:
 - Package manager:
@@ -23,7 +23,7 @@
 
 ## Reproducibility And Project State
 
-- Prototype project status at validation:
+- Prototype repository status at validation:
 - Scenario reset/isolation method:
 - Required environment variables or credentials: synthetic/local only, or `None`
 

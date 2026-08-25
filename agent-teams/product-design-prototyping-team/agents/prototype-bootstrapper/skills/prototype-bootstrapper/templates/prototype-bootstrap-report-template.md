@@ -24,7 +24,7 @@ simplifications. It does not prove production integration or replace
 
 ## Prototype Identity
 
-- Prototype project root:
+- Prototype repository/root (separate Git repository):
 - Prototype revision or commit, when available:
 - Install command:
 - Start command:
