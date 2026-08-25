@@ -45,6 +45,14 @@ Do not record successful API/E2E test-code review here. Use the separate `api-e2
 - Exact Failing Commands / Execution Mode:
 - Failure Evidence Paths:
 
+## Routing Classification Review
+
+- Task size (`Small`/`Medium`/`Large`):
+- Architectural risk (`Low`/`High`):
+- Selected route (`Implementation Review`/`API/E2E Failure-Origin Review`):
+- Independent source review required by the classification: `Yes` / `No` / `Failure-origin exception`
+- Classification evidence or correction required:
+
 Round rules:
 - Reuse the same finding IDs across reruns for the same unresolved issues.
 - Create new finding IDs only for newly discovered review findings.

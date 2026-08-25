@@ -42,7 +42,7 @@ The product design and prototyping team independently maintains the prototype re
 
 ## Software Engineering Team
 
-The software engineering team starts with `architecture_designer` and consumes an approved requirements package. It preserves the full technical design workflow, then proceeds through independent architecture review, implementation, source review, API/E2E validation, proportional test-code review, and delivery. After the user verifies the result and `delivery_engineer` completes finalization, Delivery Engineer returns the terminal package to Architecture Designer, which verifies and routes the outcome through the applicable message-based handoff rule or returns it to the caller.
+The software engineering team starts with `architecture_designer` and consumes an approved requirements package. Architecture Designer completes the technical design and classifies `task_size` as Small, Medium, or Large plus `architectural_risk` as Low or High. Small/Medium low-risk work can proceed directly through implementation and API/E2E validation; Large or High-risk work uses independent architecture and source-review gates before validation. After the user verifies the result and `delivery_engineer` completes finalization, Delivery Engineer returns the terminal package to Architecture Designer, which verifies and routes the outcome through the applicable message-based handoff rule or returns it to the caller.
 
 ## Research Engineering Team
 

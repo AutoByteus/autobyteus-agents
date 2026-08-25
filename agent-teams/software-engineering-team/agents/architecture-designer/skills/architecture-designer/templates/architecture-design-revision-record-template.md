@@ -1,6 +1,6 @@
 # Architecture Design Revision Record
 
-Create `architecture-design-revision-record.md` before the initial architecture-review handoff. Add `AD-REV-001` as the concise initial architecture baseline, then append one entry for each later completed architecture-design round; do not create round-specific copies.
+Create `architecture-design-revision-record.md` before the first forward handoff. Add `AD-REV-001` as the concise initial architecture baseline, then append one entry for each later completed architecture-design round; do not create round-specific copies.
 
 The approved requirements package and latest design spec remain authoritative. Record only the initial design baseline or later architecture rework delta and rationale needed to navigate those artifacts. Do not reinterpret or revise approved requirements here.
 

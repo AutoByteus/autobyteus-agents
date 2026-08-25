@@ -31,6 +31,14 @@ Execution may cover API, browser UI, a web-equivalent desktop renderer through t
 - Prior Round Reviewed:
 - Latest Authoritative Round:
 
+## Routing Classification
+
+- Task size (`Small`/`Medium`/`Large`):
+- Architectural risk (`Low`/`High`):
+- Input route (`Reviewed`/`Direct Low-Risk`):
+- Successful-output route (`Code Review`/`Delivery`):
+- Proportional test-code review decision: `Required` / `Not Required — direct low-risk route` / `Not Applicable`
+
 Round rules:
 - Reuse the same scenario IDs across reruns for the same scenarios.
 - Create new scenario IDs only for newly discovered coverage.

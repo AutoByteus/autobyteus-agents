@@ -1,6 +1,6 @@
 ---
 name: code-reviewer
-description: Review implementation source before API/E2E, review successful API/E2E test-code changes proportionately, and determine the failure origin when API/E2E fails.
+description: Review selected large or high-risk implementation source before API/E2E, review successful API/E2E test-code changes proportionately, and determine failure origin when API/E2E fails.
 ---
 
 # Code Reviewer Skill
@@ -42,6 +42,7 @@ Keep their standards distinct. Implementation code receives the full structural 
 For implementation review:
 
 - Accept approved requirements doc, requirements investigation notes, requirements revision record, design spec, every still-relevant supplemental task artifact, architecture-design revision record, design review report, architecture review revision record, implementation handoff, and implementation revision record from `implementation_engineer`.
+- The implementation package must include `task_size` (`Small`/`Medium`/`Large`), `architectural_risk` (`Low`/`High`), and the selected route. Normal implementation source review is selected for `Large` or `High` work. A direct-route API/E2E failure may still arrive here for focused failure-origin review without design-review or source-review artifacts; record those artifacts as `Not Applicable` rather than inventing a prior review.
 - When implementation returns after a delivery-stage local fix, also accept the delivery revision record and triggering delivery evidence.
 - On later review rounds, also accept the current code review revision record and still-relevant triggering reports, revision records, or evidence.
 - Review against the complete implementation artifact chain, not only the handoff summary.
@@ -132,13 +133,15 @@ If approved behavior is materially ambiguous, classify a `Requirement Gap`. If p
 - `Unclear` -> `/architecture_designer` for a cross-cutting issue that cannot be classified from available evidence.
 - After an implementation-owned fix, require source review and API/E2E again.
 - After an API/E2E-owned fix, require API/E2E execution and a proportional test-code review result; use `Not Applicable` when no durable test changed.
+- Preserve the task-size and architectural-risk classification in every review result. If review evidence shows the classification is wrong, route `Design Impact` to Architecture Designer rather than silently changing the route locally.
 
 ## Handoff Rules
 
 - Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to an exact canonical rooted address from the visible team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
-- On implementation-review pass, first send the cumulative package, code review report, and code review revision record to `/api_e2e_engineer`.
-- After that primary handoff succeeds, send `/implementation_engineer` a short notification containing `Pass`, the current `CRR-*`, the code-review report path, `/api_e2e_engineer` as the next recipient, and `Informational — no action required`.
+- Finish the applicable review result, classify the outcome, call `get_handoff_rules`, and use the returned conditional rules as the routing authority before sending any handoff or notification.
+- On implementation-review pass, first send the cumulative package, code review report, and code review revision record to the exact returned recipient for the primary pass rule (normally `/api_e2e_engineer`).
+- After that primary handoff succeeds, send the exact returned recipient for the informational pass rule (normally `/implementation_engineer`) a short notification containing `Pass`, the current `CRR-*`, the code-review report path, the primary returned recipient as the next recipient, and `Informational — no action required`.
 - End an implementation-review pass only after both required messages succeed. For every other completed handoff, end after its required message succeeds. Do not poll recipients; act on a later incoming team message if more work is required.
 - On implementation-review `Fail` or `Blocked`, send the complete package, code review report, and code review revision record to the classified owner; do not advance to API/E2E.
 - On successful post-API/E2E test-code review, send the complete passed package, including `api-e2e-test-review-report.md` and the current code review revision record, to `/delivery_engineer`.

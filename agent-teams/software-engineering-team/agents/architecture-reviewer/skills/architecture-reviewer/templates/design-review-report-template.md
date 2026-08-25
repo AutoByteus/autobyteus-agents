@@ -24,6 +24,14 @@ The latest canonical report is authoritative; the revision record is the concise
 - Latest Authoritative Round:
 - Current-State Evidence Basis:
 
+## Routing Classification Review
+
+- Task size (`Small`/`Medium`/`Large`):
+- Architectural risk (`Low`/`High`):
+- Classification rationale reviewed:
+- Independent Architecture Review required by the classification: `Yes` / `No` / `Routing inconsistency`
+- Classification evidence or correction required:
+
 Round rules:
 - Reuse the same finding IDs across reruns for the same unresolved design-review issues.
 - Create new finding IDs only for newly discovered issues.

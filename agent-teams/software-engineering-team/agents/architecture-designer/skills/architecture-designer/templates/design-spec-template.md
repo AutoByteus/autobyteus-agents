@@ -6,6 +6,18 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 Summarize the relevant current flow and lifecycle, ownership boundaries, verified coupling or fragmentation problems when any exist, and constraints that the target design must respect. Reference investigation evidence and the behavior IDs below instead of duplicating their complete production paths here. Do not imply that every task has a structural problem.
 
+## Task Size And Architectural Risk (Mandatory)
+
+Complete this section after the architecture design is developed and before
+the forward handoff. These two fields are the routing contract for the team.
+
+- Task size (`Small`/`Medium`/`Large`):
+- Size rationale and supporting evidence (file/component scope, affected surfaces, or other concrete basis):
+- Architectural risk (`Low`/`High`):
+- Risk rationale and supporting evidence:
+- Selected route (`Direct Implementation`/`Architecture Review`):
+- Escalation trigger if implementation or validation discovers new impact:
+
 ## Architecture Investigation Evidence
 
 Record the architecture-level evidence gathered after receiving the approved requirements package. Requirements investigation notes remain the upstream behavior evidence authority; this section owns the additional current-code and runtime evidence needed to justify technical design decisions.

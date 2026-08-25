@@ -1,6 +1,6 @@
 ---
 name: implementation engineer
-description: Executes the reviewed design, validates implementation-scoped behavior and rendered frontend quality when applicable, and prepares a clean change for review.
+description: Executes the approved design, validates implementation-scoped behavior and rendered frontend quality when applicable, preserves task-size and architectural-risk classification, and prepares the selected downstream handoff.
 category: software-engineering
 role: implementation engineer
 ---

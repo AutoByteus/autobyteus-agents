@@ -29,9 +29,17 @@ Update this artifact whenever new evidence changes a test-validity or coverage d
 - Prior Investigation Reviewed:
 - Latest Authoritative Investigation:
 
+## Routing Classification
+
+- Task size (`Small`/`Medium`/`Large`):
+- Architectural risk (`Low`/`High`):
+- Input route (`Reviewed`/`Direct Low-Risk`):
+- Successful-output route (`Code Review`/`Delivery`):
+- Proportional test-code review decision: `Required` / `Not Required — direct low-risk route` / `Not Applicable`
+
 ## Current Requirement And Design Basis
 
-Summarize the current behavior that must be proven from the approved requirements, acceptance criteria, reviewed design, applicable supplemental task artifacts and revision records, implementation handoff, and code review report.
+Summarize the current behavior that must be proven from the approved requirements, acceptance criteria, reviewed design or direct low-risk architecture package, applicable supplemental task artifacts and revision records, implementation handoff, and applicable review artifacts. Record `Not Applicable` for architecture or source-review artifacts omitted by the direct route.
 
 ## Changed Behavior Summary
 

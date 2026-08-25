@@ -1,6 +1,6 @@
 ---
 name: architecture-designer
-description: Consume an approved requirements package, investigate the current architecture, produce an actionable technical design, coordinate design-impact recovery, and route the verified terminal outcome.
+description: Consume an approved requirements package, investigate the current architecture, produce an actionable technical design, classify task size and architectural risk, coordinate design-impact recovery, and route the verified terminal outcome.
 ---
 
 # Architecture Designer Skill
@@ -45,6 +45,7 @@ If a material intended-behavior decision, approval, or behavior-defining artifac
 - clean-cut replacement without compatibility wrappers or legacy-behavior retention
 - evidence-backed persisted-data transition decisions, with isolated migration boundaries only when transformation is required
 - change/refactor sequencing, removal planning, tradeoffs, and derived-layering validation when useful
+- post-design `task_size` and `architectural_risk` classification with evidence and route rationale
 - architecture-design revisions caused by architecture review or downstream design-impact evidence
 - architecture-review routing and terminal outcome handoff
 
@@ -62,7 +63,7 @@ Always produce:
 - [templates/design-spec-template.md](templates/design-spec-template.md) as `design-spec.md`
 - [templates/architecture-design-revision-record-template.md](templates/architecture-design-revision-record-template.md) as `architecture-design-revision-record.md`
 
-Create `AD-REV-001` before the initial architecture-review handoff. Append one `AD-REV-*` entry for each later completed architecture-design revision round. The approved requirements package and current design spec remain authoritative; the revision record is a concise navigation and rationale index.
+Create `AD-REV-001` before the first forward handoff, whether the result goes directly to implementation or to Architecture Reviewer. Append one `AD-REV-*` entry for each later completed architecture-design revision round. The approved requirements package and current design spec remain authoritative; the revision record is a concise navigation and rationale index.
 
 Create an architecture-specific supplemental artifact only when a separate diagram, contract map, data map, decision table, or retained technical probe materially improves implementation or review. Do not create competing requirement, investigation, or UI/UX artifacts.
 
@@ -90,8 +91,8 @@ Do not create or update `implementation-handoff.md`; `implementation_engineer` o
 4. Create the behavior-to-production-path map and task design-health assessment.
 5. Produce the complete design spec, including transition and removal decisions.
 6. Create or update the architecture-design revision record.
-7. Classify the package as `Architecture Review Ready` and follow the handoff rules with the cumulative architecture package.
-8. On design-review failure, resolve architecture-owned findings or return requirement gaps through the correct boundary, then repeat architecture review.
+7. Determine `task_size` and `architectural_risk`, record both classifications and their evidence in `design-spec.md`, classify the result as `Architecture Design Complete`, and follow the handoff rules with the cumulative architecture package.
+8. On design-review failure, resolve architecture-owned findings or return requirement gaps through the correct boundary, then repeat the classification and routing decision before the next forward handoff.
 9. On the reviewer's informational pass notification, record that architecture review passed and take no duplicate forwarding action; the reviewer owns the primary implementation handoff.
 10. Remain the routing owner for later `Design Impact`, `Requirement Gap`, or `Unclear` findings.
 11. After `delivery_engineer` sends the successfully finalized terminal package, verify its completion evidence and route or return the final team result as described below.
@@ -122,9 +123,36 @@ Do not create or update `implementation-handoff.md`; `implementation_engineer` o
 - Use short examples when a target shape would otherwise remain abstract or easy to misread.
 - Keep architecture-owned artifacts aligned with the approved upstream package. If upstream artifacts conflict, return the gap instead of changing them.
 
+## Task Size And Architectural Risk
+
+After the architecture design is complete, classify the task using only these
+two fields. Do not route before this classification exists.
+
+- `task_size`: `Small`, `Medium`, or `Large`.
+  - `Small`: a narrow local change with limited implementation scope.
+  - `Medium`: several files or components within existing ownership and
+    architectural boundaries.
+  - `Large`: a broad feature, major refactor, or change spanning substantial
+    implementation scope or multiple subsystems.
+- `architectural_risk`: `Low` or `High`.
+  - `Low`: the current architecture absorbs the change with bounded impact,
+    low uncertainty, and no material new or changed contract, persistence,
+    security, concurrency, deployment, or ownership-boundary behavior.
+  - `High`: any material contract, persistence, security, concurrency,
+    deployment, ownership-boundary, blast-radius, or unresolved-uncertainty
+    impact is present.
+
+File count is supporting evidence, not a hard threshold. `Large` or `High`
+selects independent architecture review. `Small` or `Medium` with `Low` risk
+may go directly to Implementation Engineer. Record the values, rationale,
+affected surfaces, and selected route in the design spec. If later evidence
+changes the classification, update the design artifact and route the revised
+result rather than silently downgrading risk.
+
 ## Architecture Design Revision Record
 
-- Create `AD-REV-001` for the initial architecture design sent to review.
+- Create `AD-REV-001` for the initial architecture design sent to the selected
+  forward route.
 - Append one entry for each completed architecture-design revision caused by review or downstream evidence.
 - Link the triggering role, report, review round, finding IDs, affected approved behavior IDs, design sections changed, downstream impact, and remaining risks.
 - Keep earlier entries unchanged except to correct factual errors.
@@ -132,20 +160,20 @@ Do not create or update `implementation-handoff.md`; `implementation_engineer` o
 
 ## Routing And Recovery
 
-- `Design Impact`: update the design spec and affected architecture supplements, append the next `AD-REV-*`, classify the revised package as `Architecture Review Ready`, and follow the handoff rules.
+- `Design Impact`: update the design spec and affected architecture supplements, append the next `AD-REV-*`, recalculate `task_size` and `architectural_risk`, classify the revised package as `Architecture Design Complete`, and follow the handoff rules.
 - `Requirement Gap`: do not modify the approved requirements. Complete a precise blocked outcome with the conflicting or missing IDs, evidence, and paths, then follow the handoff rules so Requirements Engineering can coordinate the canonical revision and any necessary renewed approval.
 - `Unclear`: investigate enough to classify it. If the unresolved decision belongs to product intent, classify it as `Requirement Gap`; otherwise resolve it or classify the unresolved terminal condition as `Non-Requirement Blocked`.
 - On a revision message, read the instruction and updated references, then route the work to the correct specialist while preserving the existing package identifier and artifact history.
 
 ## Handoff Rules
 
-- Use these rules at each `Architecture Review Ready`, `Requirement Gap`, `Non-Requirement Blocked`, or `Terminal` outcome.
+- Use these rules at each `Architecture Design Complete`, `Requirement Gap`, `Non-Requirement Blocked`, or `Terminal` outcome.
 - Finish the artifacts you own and classify the outcome before routing it.
 - Call `get_handoff_rules` and use the returned conditional rules as the routing authority.
 - Apply every matching rule, then call `send_message_to` with the exact returned `recipient_address`. Do not infer or hard-code a recipient.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
-- For `Architecture Review Ready`, include approved requirements, requirements investigation notes, requirements revision record, every still-relevant supplement, design spec, and architecture-design revision record.
-- For every outcome, include the stable package identifier when supplied, absolute paths, current `AD-REV-*`, approval state, scope summary, workspace context, open risks, and next expected action.
+- For `Architecture Design Complete`, include approved requirements, requirements investigation notes, requirements revision record, every still-relevant supplement, design spec, and architecture-design revision record. Include `task_size`, `architectural_risk`, the classification rationale, and the selected route. Include architecture-review artifacts only when the package has already passed that selected review.
+- For every outcome, include the stable package identifier when supplied, absolute paths, current `AD-REV-*`, approval state, scope summary, workspace context, open risks, classification, and next expected action.
 - If no returned rule applies, return the outcome to the user or calling workflow.
 - After all required messages succeed, end the current stage and do not poll.
 - Treat an architecture-review pass notification as informational. Do not repeat the reviewer's primary implementation handoff.

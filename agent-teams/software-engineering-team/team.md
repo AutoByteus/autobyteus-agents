@@ -4,7 +4,7 @@ description: A self-operating software engineering team that turns an approved r
 category: software-engineering
 ---
 
-This team begins with approved, architecture-ready requirements and carries them through technical design, implementation, review, API/E2E validation, and finalized delivery.
+This team begins with approved, architecture-ready requirements and carries them through technical design, implementation, executable validation, and finalized delivery. Independent architecture and source-review gates are selected from the completed work result rather than applied unconditionally.
 
 `architecture_designer` is the coordinator and ingress specialist. There is no separate orchestrator role. Each specialist owns its stage and sends the cumulative package to the next accountable specialist.
 
@@ -33,25 +33,34 @@ The default input is the cumulative approved requirements package:
 
 ## Team Members
 
-- `architecture_designer`: investigates current architecture, creates the complete technical design, coordinates architecture-owned recovery, receives terminal delivery evidence, and routes the terminal outcome.
-- `architecture_reviewer`: independently reviews the design and decides whether it is ready for implementation.
-- `implementation_engineer`: implements the reviewed design, performs implementation-scoped checks, and prepares the implementation handoff.
-- `code_reviewer`: independently reviews implementation source and later performs proportional review of API/E2E test-code changes or records `Not Applicable`.
-- `api_e2e_engineer`: investigates coverage validity, executes API/E2E and broader validation, maintains applicable durable coverage, and produces evidence.
+- `architecture_designer`: investigates current architecture, creates the complete technical design, determines `task_size` and `architectural_risk`, coordinates architecture-owned recovery, receives terminal delivery evidence, and routes the terminal outcome.
+- `architecture_reviewer`: independently reviews designs selected for review by the completed task classification and decides whether they are ready for implementation.
+- `implementation_engineer`: implements the design, confirms or updates the carried classification when evidence requires it, performs implementation-scoped checks and a lightweight self-review on the direct route, and prepares the implementation handoff.
+- `code_reviewer`: independently reviews implementation source for selected large/high-risk work and later performs proportional review of API/E2E test-code changes or records `Not Applicable`.
+- `api_e2e_engineer`: accepts either a reviewed or direct implementation package, investigates coverage validity, executes API/E2E and broader validation, maintains applicable durable coverage, and produces evidence.
 - `delivery_engineer`: integrates the latest base, synchronizes durable documentation, prepares user verification, waits for explicit user confirmation, completes finalization and applicable release/deployment/cleanup, and returns the terminal package to `architecture_designer`.
 
 ## Primary Flow
 
-1. `architecture_designer` validates the approved input package, performs architecture-level investigation, writes `design-spec.md`, and creates `architecture-design-revision-record.md`.
-2. `architecture_designer` sends the cumulative architecture package to `architecture_reviewer`.
-3. On architecture-review pass, `architecture_reviewer` sends the full package to `implementation_engineer`, then sends a short informational pass notification to `architecture_designer`.
-4. `implementation_engineer` implements and validates the design, then sends the cumulative implementation package to `code_reviewer`.
-5. On implementation-review pass, `code_reviewer` sends the full package to `api_e2e_engineer`, then sends a short informational pass notification to `implementation_engineer`.
-6. `api_e2e_engineer` investigates and executes coverage, then returns the complete result to `code_reviewer` for proportional test-code review, including `Not Applicable` when no durable test file changed.
-7. On successful proportional review, `code_reviewer` sends the complete passed package to `delivery_engineer`.
+1. `architecture_designer` validates the approved input package, performs architecture-level investigation, writes `design-spec.md`, creates `architecture-design-revision-record.md`, and records `task_size` as `Small`, `Medium`, or `Large` plus `architectural_risk` as `Low` or `High`.
+2. After the design is complete, `architecture_designer` calls `get_handoff_rules`. `Large` or `High` work goes to `architecture_reviewer`; `Small` or `Medium` plus `Low` goes directly to `implementation_engineer`.
+3. When selected, `architecture_reviewer` independently reviews the design, then sends the cumulative reviewed package to `implementation_engineer` and the informational pass notification to `architecture_designer`.
+4. `implementation_engineer` implements the design, runs implementation-scoped validation, carries the two classification fields into `implementation-handoff.md`, records any evidence-based change, and calls `get_handoff_rules`. `Large` or `High` work goes to `code_reviewer`; `Small` or `Medium` plus `Low` goes directly to `api_e2e_engineer`.
+5. When selected, `code_reviewer` independently reviews implementation source, then sends the package to `api_e2e_engineer` and the informational pass notification to `implementation_engineer`.
+6. `api_e2e_engineer` investigates and executes coverage. A successful reviewed-route result goes to `code_reviewer` for proportional test-code review, including `Not Applicable` when no durable test file changed. A successful direct low-risk result goes directly to `delivery_engineer`. A failure may still go to `code_reviewer` for focused failure-origin review.
+7. On successful proportional test-code review, `code_reviewer` sends the complete passed package to `delivery_engineer`.
 8. `delivery_engineer` performs the latest-base integration and delivery workflow, obtains explicit user testing/verification, and completes all applicable finalization, release/deployment, and safe cleanup steps.
 9. Only after successful finalization, `delivery_engineer` sends the terminal cumulative package to `architecture_designer`.
 10. `architecture_designer` verifies the terminal package, applies the available handoff rules, and returns the result to the user or calling workflow when no rule applies.
+
+## Routing Classification
+
+The two routing fields are intentionally simple and are assigned after the Architecture Designer completes the design:
+
+- `task_size`: `Small`, `Medium`, or `Large`. This is the expected implementation scope; file count is supporting evidence, not a hard threshold.
+- `architectural_risk`: `Low` or `High`. `High` applies when the design has material contract, persistence, security, concurrency, deployment, ownership-boundary, blast-radius, or unresolved-uncertainty impact.
+
+`Large` or `High` always selects the independent Architecture Reviewer and Code Reviewer gates. `Small` or `Medium` with `Low` risk uses the direct implementation and API/E2E path. Implementation Engineer may correct either field when new evidence requires it, but must not silently downgrade risk; a newly discovered design impact returns to Architecture Designer.
 
 ## Artifact Visibility Rule
 
@@ -90,6 +99,6 @@ Pass notifications complement rather than replace the primary forward handoff.
 ## Communication Authority
 
 - Use `send_message_to` for internal team handoffs, acknowledgements, reroutes, and terminal outcomes.
-- `architecture_designer` calls `get_handoff_rules` before its owned handoffs and uses each matching returned recipient exactly.
+- Every specialist calls `get_handoff_rules` after completing its own result and uses each matching returned recipient exactly. Skills define the classification and handoff procedure; `team-config.json` defines the conditional recipients.
 - Do not use Codex-native collaboration tools for this team's internal workflow.
 - After completing all required messages for a stage, end the stage and do not poll.

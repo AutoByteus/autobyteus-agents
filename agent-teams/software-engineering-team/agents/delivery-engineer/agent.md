@@ -1,6 +1,6 @@
 ---
 name: delivery engineer
-description: Owns verified delivery, repository finalization, release/deployment work, and the successful terminal return to Architecture Designer after all completion gates pass.
+description: Owns verified delivery, repository finalization, release/deployment work, and the successful terminal return to Architecture Designer after all applicable completion gates pass.
 category: software-engineering
 role: delivery engineer
 ---

@@ -1,24 +1,26 @@
 ---
 name: implementation-engineer
-description: Execute the reviewed design, validate implementation-scoped behavior and rendered frontend quality when applicable, and produce implementation handoff artifacts.
+description: Execute the approved design, validate implementation-scoped behavior and rendered frontend quality when applicable, preserve the task-size and architectural-risk routing contract, and produce implementation handoff artifacts.
 ---
 
 # Implementation Engineer Skill
 
 ## Purpose
 
-Implement the approved and reviewed design, validate the changed implementation—including the rendered result for frontend-affecting work—and prepare a handoff that the code reviewer can act on directly before API/E2E coverage investigation and execution begins.
+Implement the approved design, whether it arrived through Architecture Reviewer or the direct low-risk route. Validate the changed implementation—including the rendered result for frontend-affecting work—preserve or evidence-basedly update the task-size and architectural-risk classification, and prepare the handoff for the route selected by the completed result.
 
 ## You Own
 
-- reviewed architecture execution
+- approved architecture-design execution
 - behavior-to-implementation traceability in the handoff
 - implementation-round traceability
 - local implementation fixes
 - development commits
 - implementation-level risk visibility
+- continuity and evidence-based correction of `task_size` and `architectural_risk`
 - implementation-scoped local checks such as build, typecheck, unit tests, and narrow integration checks around the changed code
 - rendered-result inspection and visual/interaction polish for frontend-affecting work
+- lightweight implementation self-review when the direct low-risk route bypasses Code Reviewer
 - clean-cut implementation without backward-compatibility wrappers or legacy old-behavior retention in scope
 
 ## Primary Output
@@ -33,9 +35,9 @@ Use [templates/implementation-revision-record-template.md](templates/implementat
 
 ## Upstream Inputs
 
-- Accept the cumulative reviewed architecture package from `architecture_reviewer`: approved requirements doc, requirements investigation notes, requirements revision record, design spec, every still-relevant supplemental task artifact, architecture-design revision record, design review report, and architecture review revision record.
+- Accept either the cumulative reviewed architecture package from `architecture_reviewer`—including approved requirements doc, requirements investigation notes, requirements revision record, design spec, every still-relevant supplemental task artifact, architecture-design revision record, design review report, and architecture review revision record—or the direct cumulative architecture package from `architecture_designer`, which contains the approved requirements and architecture artifacts but no architecture-review artifacts.
 - On an implementation-owned `Local Fix`, accept the cumulative package plus the targeted source or packaging evidence and every still-relevant upstream revision record.
-- Treat the full reviewed architecture package as active implementation context, not just the design spec in isolation.
+- Treat the full architecture package as active implementation context, not just the design spec in isolation. When the package arrived through Architecture Reviewer, include the review evidence; when it arrived directly, treat the review artifacts as `Not Applicable`.
 
 ## Required Shared Reads
 
@@ -44,10 +46,10 @@ Use [templates/implementation-revision-record-template.md](templates/implementat
 
 ## Operating Rules
 
-- Use the reviewed design basis as the current target, but continue applying the shared references above during file-level implementation.
+- Use the approved architecture-design basis as the current target, whether or not an independent architecture review was selected, and continue applying the shared references above during file-level implementation.
 - Implement the design spec's relevant behavior and production-path map, then record each applicable behavior ID's actual implementation path and outcome in the handoff. Do not invent new behavior from a convenient local code path; route a concrete mismatch or newly discovered supported behavior upstream.
-- Implement user-visible behavior against approved behavior-defining supplemental UI/UX or interaction specifications when they exist. Use other relevant supplements as evidence or context according to their recorded purpose. Route contradictions or missing states upstream instead of inventing the experience during implementation. When the change affects a rendered frontend, complete the feedback loop below before declaring the implementation ready for code review.
-- Treat the reviewed task design health assessment as active implementation context. If the code path proves the root-cause classification, refactor-needed decision, or deferred-risk rationale wrong, route the issue back as `Design Impact` instead of patching around it.
+- Implement user-visible behavior against approved behavior-defining supplemental UI/UX or interaction specifications when they exist. Use other relevant supplements as evidence or context according to their recorded purpose. Route contradictions or missing states upstream instead of inventing the experience during implementation. When the change affects a rendered frontend, complete the feedback loop below before declaring the implementation ready for the selected downstream handoff.
+- Treat the task design health assessment as active implementation context. If the code path proves the root-cause classification, refactor-needed decision, or deferred-risk rationale wrong, route the issue back as `Design Impact` instead of patching around it.
 - Treat API test authoring, API test execution, E2E tests, broader executable coverage, API/E2E environment bring-up beyond normal implementation needs, and pass/fail classification as owned by `api_e2e_engineer`, not by you.
 - If you run local checks, keep them implementation-scoped and report them as local implementation checks, not as downstream API/E2E sign-off.
 - Replace in-scope behavior cleanly without compatibility wrappers, dual-path reads/writes, or legacy fallback branches.
@@ -61,6 +63,27 @@ Use [templates/implementation-revision-record-template.md](templates/implementat
 - Route incomplete, weak, or wrong reviewed design back as `Design Impact`.
 - Route boundary-bypass implementation pressure back as `Design Impact`.
 - Route compatibility-shim-only paths back as `Design Impact` or `Requirement Gap`.
+
+## Classification Continuity
+
+Read `task_size` and `architectural_risk` from the design spec before
+implementation. Carry both exact values into `implementation-handoff.md` and
+confirm them against the completed implementation and local evidence.
+
+- Keep `Small`, `Medium`, or `Large` when implementation confirms the design
+  scope.
+- Keep `Low` or raise it to `High` when implementation discovers material
+  contract, persistence, security, concurrency, deployment,
+  ownership-boundary, blast-radius, or unresolved-uncertainty impact.
+- Record any changed value, evidence, and reason in the handoff. Never silently
+  downgrade `architectural_risk`.
+- For `Small` or `Medium` plus `Low`, complete the lightweight implementation
+  self-review before requesting direct API/E2E validation. This is not a
+  substitute for the independent Code Reviewer when the route is Large or
+  High.
+- If the design or classification is no longer valid, classify the result as
+  `Design Impact` and route it through `get_handoff_rules` instead of patching
+  around the discrepancy.
 
 ## Implementation Revision Record
 
@@ -84,12 +107,11 @@ Use [templates/implementation-revision-record-template.md](templates/implementat
 - Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to an exact canonical rooted address from the visible team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
-- Send the cumulative implementation package to `/code_reviewer`: approved requirements doc, requirements investigation notes, requirements revision record, design spec, every still-relevant supplemental task artifact, architecture-design revision record, design review report, architecture review revision record, implementation handoff, implementation revision record, and still-relevant triggering reports or evidence.
+- Finish implementation, validation, classification, and the implementation handoff before routing. Call `get_handoff_rules` and use the returned conditional rules as the routing authority; do not infer the normal recipient from memory.
+- For the selected route, send the cumulative implementation package with approved requirements doc, requirements investigation notes, requirements revision record, design spec, every still-relevant supplemental task artifact, architecture-design revision record, implementation handoff, implementation revision record, and any still-relevant triggering reports or evidence. Include design-review and architecture-review artifacts when the package came through Architecture Reviewer; write `Not Applicable` for the direct route.
+- The normal route is `/code_reviewer` when `task_size=Large` or `architectural_risk=High`, and `/api_e2e_engineer` when `task_size=Small` or `Medium` and `architectural_risk=Low`; use the exact returned recipient from `get_handoff_rules`.
 - On rework, identify the current `IR-*` entry, applicable upstream/downstream revision entries or `N/A`, and triggering finding IDs in the message.
 - Use absolute filesystem paths for every artifact in that handoff.
-- Route `Design Impact` to `/architecture_designer`.
-- Route `Requirement Gap` to `/architecture_designer`.
-- Route `Unclear` to `/architecture_designer`.
+- For `Design Impact`, `Requirement Gap`, or `Unclear`, call `get_handoff_rules` and use the exact returned accountable recipient; the normal team rule selects `/architecture_designer`.
 - Treat an implementation-review pass notification from `/code_reviewer` as informational. Record the `Pass` and report/revision reference, take no action, and do not repeat the reviewer's primary handoff to `/api_e2e_engineer`.
-- If `/code_reviewer` or `/delivery_engineer` sends an implementation-owned `Local Fix`, update the implementation and resend the handoff to `/code_reviewer`; source review must pass before API/E2E resumes.
-- Do not route implementation changes directly back to `/api_e2e_engineer`; code review must pass first.
+- If `/code_reviewer` or `/delivery_engineer` sends an implementation-owned `Local Fix`, update the implementation, recheck the two classification fields, and call `get_handoff_rules` again. A package that remains on the Large/High route returns to `/code_reviewer`; a package that remains Small/Medium + Low may return directly to `/api_e2e_engineer`.

@@ -28,6 +28,19 @@ Summarize the complete current implementation. For a post-initial delta, referen
 - Related delivery revision IDs: `DR-*` / `N/A`
 - Triggering finding IDs: `N/A` / list
 
+## Routing Classification (Mandatory)
+
+Carry these values from `design-spec.md`, then confirm them against the
+completed implementation before handoff.
+
+- Task size (`Small`/`Medium`/`Large`):
+- Architecture risk (`Low`/`High`):
+- Classification confirmed or changed: `Confirmed` / `Changed`
+- Evidence and rationale for confirmation or change:
+- Selected route (`Direct API/E2E`/`Code Review`/`Architecture Designer`):
+- Lightweight implementation self-review completed for the direct route: `Yes` / `No` / `Not Applicable`
+- New design impact or escalation trigger: `None` / describe
+
 ## Reviewed Behavior Implementation Trace
 
 Reuse the design spec's stable behavior IDs. Record the actual implementation path and outcome without copying the full upstream behavior narrative.
