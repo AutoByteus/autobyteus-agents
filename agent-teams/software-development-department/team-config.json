@@ -1,0 +1,87 @@
+{
+  "coordinatorMemberName": "head_of_software_development",
+  "avatarUrl": null,
+  "members": [
+    {
+      "memberName": "head_of_software_development",
+      "ref": "head-of-software-development",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "requirements_engineering_team",
+      "ref": "requirements-engineering-team",
+      "refType": "agent_team",
+      "refScope": "shared"
+    },
+    {
+      "memberName": "product_design_prototyping_team",
+      "ref": "product-design-prototyping-team",
+      "refType": "agent_team",
+      "refScope": "shared"
+    },
+    {
+      "memberName": "software_engineering_team",
+      "ref": "software-engineering-team",
+      "refType": "agent_team",
+      "refScope": "shared"
+    }
+  ],
+  "handoffs": [
+    {
+      "from": "/head_of_software_development",
+      "to": "/requirements_engineering_team/requirements_engineer",
+      "rules": [
+        "When the Head classifies a new or resumed independent software-development package as Ready for Requirements because its request, context, constraints, workspace, and references are sufficient for requirements investigation."
+      ]
+    },
+    {
+      "from": "/requirements_engineering_team/requirements_engineer",
+      "to": "/product_design_prototyping_team/product_prototyper",
+      "rules": [
+        "When Requirements Engineer classifies the outcome as Requirements Visualization Needed because a material product, UI, interaction, state, or journey decision requires an exploratory interactive visualizer before the user can understand or clarify it. Send Mode: Requirements Visualization plus only the focused decision, relevant requirement and behavior IDs, selected source frontend/revision context, constraints, non-goals, canonical requirements paths, and any already-established prototype repository/root or ticket references. Requirements Engineering does not create or own the Product team's repository or ticket.",
+        "When Requirements Engineer classifies the outcome as Prototype Needed because the approved or sufficiently understood future-state behavior requires a final runnable product prototype and UI/UX specification. Send Mode: Final Prototype plus the focused product decision, relevant requirement and behavior IDs, selected source frontend/revision context, constraints, non-goals, canonical requirements paths, and any already-established prototype repository/root or ticket references. Requirements Engineering does not create or own the Product team's repository or ticket."
+      ]
+    },
+    {
+      "from": "/product_design_prototyping_team/product_prototyper",
+      "to": "/requirements_engineering_team/requirements_engineer",
+      "rules": [
+        "When Product Prototyper classifies the outcome as Requirements Visualization Ready because the interactive visualizer revision, review URL, evidence, and open clarification questions are ready for Requirements Engineering and user review.",
+        "When Product Prototyper classifies the outcome as Prototype Completed because the user-approved prototype and UI/UX package are ready for requirements integration.",
+        "When Product Prototyper classifies the outcome as Requirement Impact because user feedback or prototype evidence requires a material requirements revision.",
+        "When Product Prototyper classifies the outcome as Not Recommended because a prototype would not materially improve the decision and the rationale/evidence are ready.",
+        "When Product Prototyper classifies the outcome as Blocked because prototype work cannot safely or accurately continue and Requirements Engineer must decide the next requirements path."
+      ]
+    },
+    {
+      "from": "/requirements_engineering_team/requirements_engineer",
+      "to": "/software_engineering_team/architecture_designer",
+      "rules": [
+        "When Requirements Engineer classifies the cumulative package as Approved Architecture-Ready because every behavior-defining supplement is consistent, architecture readiness has passed, and the user has explicitly approved the intended behavior."
+      ]
+    },
+    {
+      "from": "/requirements_engineering_team/requirements_engineer",
+      "to": "/head_of_software_development",
+      "rules": [
+        "When Requirements Engineer classifies the outcome as Blocked before architecture because a user decision, evidence source, safe workspace, or other prerequisite remains unresolved."
+      ]
+    },
+    {
+      "from": "/software_engineering_team/architecture_designer",
+      "to": "/requirements_engineering_team/requirements_engineer",
+      "rules": [
+        "When Architecture Designer classifies a missing or conflicting intended-behavior decision found during package validation, architecture review, or downstream engineering as Requirement Gap because the canonical requirements require revision and any intended-behavior change requires renewed user approval."
+      ]
+    },
+    {
+      "from": "/software_engineering_team/architecture_designer",
+      "to": "/head_of_software_development",
+      "rules": [
+        "When Architecture Designer classifies the outcome as Terminal after Delivery Engineer reports explicit user verification and successful finalization and Architecture Designer verifies the cumulative package.",
+        "When Architecture Designer classifies the outcome as Non-Requirement Blocked because an external dependency, unsafe workspace, or other terminal condition must be returned by the department coordinator."
+      ]
+    }
+  ]
+}

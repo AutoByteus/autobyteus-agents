@@ -22,6 +22,15 @@ After user confirmation, turn the production-quality visual and interaction
 design into a precise `ui-ux-spec.md` backed by the runnable prototype and
 normative final reference screenshots.
 
+## Mode Boundary
+
+This skill is the final-prototype workflow. Use it when the future-state
+behavior is sufficiently understood for a product prototype and UI/UX
+specification. For an unresolved requirements question where the user first
+needs an exploratory animated or interactive explanation, use the sibling
+`interactive-requirements-visualizer` skill instead. Do not turn an unresolved
+requirements question into an unapproved final product behavior.
+
 You author the concrete future-state UI/UX proposal within the current request,
 available requirements context, and review feedback. The proposal becomes
 authoritative only through explicit user approval; the role never self-approves

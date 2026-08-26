@@ -30,7 +30,7 @@ The skill optimizer is a lightweight standalone agent that uses the shared `skil
 
 ## Software Development Department
 
-The software development department is the end-to-end software entrypoint. `head_of_software_development` starts each independent package through Requirements Engineering and returns the verified terminal result. It contains three independent specialist teams: Requirements Engineering, Product Design & Prototyping, and Software Engineering. Requirements Engineer requests Product Prototyper only when a runnable experience would clarify a requirements decision, then hands an explicitly approved, architecture-ready package directly to Architecture Designer.
+The software development department is the end-to-end software entrypoint. `head_of_software_development` starts each independent package through Requirements Engineering and returns the verified terminal result. It contains three independent specialist teams: Requirements Engineering, Product Design & Prototyping, and Software Engineering. Requirements Engineer requests Product Prototyper for an interactive requirements visualizer when the user needs help understanding an unclear decision, or for a final runnable prototype when the behavior is sufficiently understood, then hands an explicitly approved, architecture-ready package directly to Architecture Designer.
 
 ## Requirements Engineering Team
 
@@ -38,11 +38,11 @@ The requirements engineering team turns an initial product or technical request 
 
 ## Product Design & Prototyping Team
 
-The product design and prototyping team independently maintains the prototype repository for each product surface. `product_prototyper` owns prototype intake, tickets, commits, user review, and final UI/UX specifications. `prototype_bootstrapper` owns only current-experience baseline discovery, parity implementation, and bootstrap evidence. The team uses dynamic handoff rules plus `send_message_to` for baseline routing and cross-team results.
+The product design and prototyping team independently maintains the prototype repository for each product surface. `product_prototyper` owns prototype intake, tickets, commits, and two modes: interactive requirements visualization for exploratory clarification, and final prototype production with user review and UI/UX specifications. `prototype_bootstrapper` owns only current-experience baseline discovery, parity implementation, and bootstrap evidence. The team uses dynamic handoff rules plus `send_message_to` for baseline routing and cross-team results.
 
 ## Software Engineering Team
 
-The software engineering team starts with `architecture_designer` and consumes an approved requirements package. It preserves the full technical design workflow, then proceeds through independent architecture review, implementation, source review, API/E2E validation, proportional test-code review, and delivery. After the user verifies the result and `delivery_engineer` completes finalization, Delivery Engineer returns the terminal package to Architecture Designer, which verifies and routes the outcome through the applicable message-based handoff rule or returns it to the caller.
+The software engineering team starts with `architecture_designer` and consumes an approved requirements package. Architecture Designer completes the technical design and classifies `task_size` as Small, Medium, or Large plus `architectural_risk` as Low or High. Small/Medium low-risk work can proceed directly through implementation and API/E2E validation; Large or High-risk work uses independent architecture and source-review gates before validation. After the user verifies the result and `delivery_engineer` completes finalization, Delivery Engineer returns the terminal package to Architecture Designer, which verifies and routes the outcome through the applicable message-based handoff rule or returns it to the caller.
 
 ## Research Engineering Team
 

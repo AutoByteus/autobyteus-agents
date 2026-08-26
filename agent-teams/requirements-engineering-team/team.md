@@ -11,9 +11,10 @@ the coordinator and canonical requirements owner.
 Product Design & Prototyping is a separate specialist team. It owns its own
 prototype repository, project root, ticket folders, commits, and UI/UX
 deliverables. Requirements Engineering does not own those artifacts and does
-not define or manage Product Prototyper's tickets. It only decides whether a
-prototype would resolve a requirements question and sends the focused request
-through the parent department's cross-team handoff rule.
+not define or manage Product Prototyper's tickets. It only decides whether an
+interactive visualizer or final prototype would resolve a requirements
+question and sends the focused request through the parent department's
+cross-team handoff rule.
 
 ## Members And Responsibilities
 
@@ -33,21 +34,33 @@ architecture.
 1. `requirements_engineer` bootstraps its isolated task workspace and
    investigates the request, source product, constraints, current behavior,
    and desired behavior.
-2. It decides whether runnable evidence would materially resolve a product,
-   UI, interaction, state, or journey question. If not, it continues its
-   direct evidence and approval path.
-3. If a prototype is needed, it classifies the outcome as `Prototype Needed`
-   and sends a focused cross-team message to
+2. It decides whether an interactive requirements visualizer or a final
+   product prototype would materially resolve a product, UI, interaction,
+   state, or journey question. If not, it continues its direct evidence and
+   approval path.
+3. If the user first needs an interactive explanation, it classifies the
+   outcome as `Requirements Visualization Needed` and sends a focused
+   cross-team message to
    `/product_design_prototyping_team/product_prototyper` using the parent
    department's dynamic handoff rule. The message carries the requirements
    context and source locator, but Requirements Engineering does not create or
-   manage the Product team's repository or ticket.
-4. Product Design & Prototyping returns an approved UI/UX package,
-   requirement-impact finding, not-recommended finding, or precise blocker.
-   Requirements Engineer integrates the returned evidence into the canonical
-   requirements package while preserving Product Prototyper ownership of its
-   repository, ticket, `ui-ux-spec.md`, and final visual references.
-5. Requirements Engineer obtains explicit user approval for intended behavior,
+   manage the Product team's repository or ticket. It may send another focused
+   visualization request after user feedback until the decision is understood.
+4. Product Design & Prototyping returns a review-ready requirements
+   visualizer, approved UI/UX package, `Requirement Impact`, `Not Recommended`,
+   or `Blocked` result. Requirements Engineer uses the
+   visualizer to engage the user, records the feedback, and integrates only
+   approved decisions into the canonical requirements package while preserving
+   Product Prototyper ownership of its repository, ticket, visualizer source,
+   `ui-ux-spec.md`, and final visual references. A
+   `Requirements Visualization Ready` result is review evidence, not user
+   approval; Requirements Engineer records the user's decision and requests a
+   focused revision when the question remains open.
+5. When final UI/UX production is needed after the behavior is sufficiently
+   understood, Requirements Engineer classifies the outcome as `Prototype
+   Needed` and sends the approved context through the parent department's
+   dynamic handoff rule.
+6. Requirements Engineer obtains explicit user approval for intended behavior,
    verifies architecture readiness, and sends the cumulative approved package
    directly to `architecture_designer` under the parent department's handoff
    rule. A pre-architecture blocker returns to the department coordinator.
