@@ -174,6 +174,29 @@ in scope. If implementation discovers that a content-only change requires
 material architecture changes, return a Design Impact and reclassify rather
 than broadening the direct route silently.
 
+Use this structural-versus-payload check before routing:
+
+1. **Payload surfaces:** content packages, Markdown/JSON bodies, catalogs,
+   fixtures, generated indexes, provenance, and content-only documentation.
+2. **Structural surfaces:** runtime modules, shared types/interfaces, ownership
+   boundaries, dependency direction, routes/APIs, persistence readers/writers,
+   migrations, security/concurrency controls, and deployment configuration.
+3. **House test:** if the existing structural surfaces can consume the changed
+   payload through their current contract and no structural surface changes
+   meaningfully, do not select an architecture-review route solely because the
+   payload inventory is large.
+4. **Target-versus-delta test:** distinguish the architecture the requirements
+   describe as a long-term target from the code and payload surfaces actually
+   requested in this implementation round. Do not turn an entire repository
+   inventory or a future clean-cut target into current implementation scope
+   without evidence that those structural changes are part of the delta.
+
+Typical sizing examples: one content package or local validation adjustment is
+usually `Small`; a bulk package conversion with catalog/generator/verifier,
+test, and documentation updates but no runtime-owner change is usually
+`Medium`/`Low`; a runtime-boundary refactor, shared-contract change, route/API
+rewrite, or persistence migration is `Large` and/or `High`.
+
 `Large` or `High` selects independent architecture review. `Small` or `Medium`
 with `Low` risk may go directly to Implementation Engineer. Record the values,
 rationale, affected surfaces, and selected route in the design spec. If later
