@@ -4,8 +4,10 @@
 - Visualization revision:
 - Review URL:
 - Source path:
+- Design plan path:
 - Requirements / behavior IDs:
 - Decision question:
+- Design gate status: Ready to Build / Rework Needed / Not Applicable
 - Review status: Ready for Review / Revision Requested / Clarification Complete / Blocked
 - Reviewer / feedback source:
 
@@ -17,6 +19,7 @@
 - Animation or 3D behavior:
 - Mocked boundaries:
 - Accessibility or non-motion fallback:
+- Plan fidelity or intentional deviations:
 
 ## Validation Evidence
 
@@ -24,6 +27,8 @@
 - Scenarios exercised:
 - Responsive checks:
 - Reset / replay checks:
+- First-view simplicity check:
+- Comprehension evidence:
 - Known limitations:
 - Visual reference paths:
 

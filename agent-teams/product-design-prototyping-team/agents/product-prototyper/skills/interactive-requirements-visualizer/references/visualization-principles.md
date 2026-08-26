@@ -5,6 +5,39 @@ understandable. It is a design-principles document, not an execution workflow.
 The `interactive-requirements-visualizer/SKILL.md` owns activation, inputs,
 implementation steps, artifacts, validation, results, and handoff.
 
+## Cognitive Foundations
+
+These principles are grounded in human cognition and cognitive accessibility,
+not in one person's philosophy alone. Novel information places a high demand
+on limited working memory, especially when it must be learned from multiple
+media at once. The visualizer should therefore reserve the user's attention
+for the relationship under review and keep unrelated interface detail out of
+the first view. See the [cognitive-load implications for multimedia
+learning](https://www.cambridge.org/core/books/abs/cambridge-handbook-of-multimedia-learning/implications-of-cognitive-load-theory-for-multimedia-learning/F5F9582CB12C6781FA9C61F6B459D7FC).
+
+This is also an accessibility concern. W3C guidance recommends simplified
+presentations, hiding nonessential options, and progressive disclosure when
+complexity makes it difficult to focus. See [Support
+Simplification](https://www.w3.org/WAI/WCAG2/supplemental/patterns/o8p03-complexity/)
+and the [Cognitive Accessibility User
+Research](https://www.w3.org/TR/coga-user-research/).
+
+Translate those findings into design decisions:
+
+| Cognitive risk | Visualizer response |
+| --- | --- |
+| Too many unfamiliar elements compete for attention | Show one decision question and a small set of relevant states or objects. |
+| Decorative chrome and secondary options distract from the relationship | Remove nonessential panels and use progressive disclosure for detail. |
+| The user must remember a prior state or mentally simulate causality | Keep the actors, state labels, action, and visible consequence together. |
+| Motion, depth, or sensory differences make animation hard to follow | Make motion pauseable, replayable, and resettable; provide the same meaning through readable non-motion state. |
+| Text repeats every visual detail and increases clutter | Use short text to name the model and its boundary; let the visual interaction carry the concrete example. |
+
+These are grounding principles, not a license to simplify away meaning. Keep
+the decision-relevant state, distinction, and consequence intact; simplify
+only the representation and unrelated system surface. The later simplicity,
+causality, truthful-simplification, technology, and comprehension sections
+turn these foundations into concrete checks.
+
 ## 1. Make The Concept Learnable By Doing
 
 Alan Kay's interface work is a useful design anchor: represent an idea as a
