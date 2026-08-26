@@ -352,3 +352,260 @@ journey, artifact capture, browser validation, and routing remain owned by
   terminology inconsistency.
 
 Review Status: Implemented; expanded-example macro and micro review passed
+
+## Follow-up review: cognition and HCI foundations
+
+### User-approved outcome
+
+Ground the visualizer principles in broader research on human cognition and
+human-computer interaction rather than attributing the whole approach to Alan
+Kay. The reference should explain why simplification, visible causality,
+progressive disclosure, and learn-by-doing reduce the user's need to mentally
+simulate a complex system.
+
+### Research findings
+
+- The Cambridge Handbook of Multimedia Learning summarizes cognitive-load
+  implications for multimedia design, including the limited capacity of
+  working memory for novel information. This supports limiting simultaneous
+  novel elements and keeping attention on the relationship under review.
+- W3C Cognitive Accessibility guidance recommends simplified presentations,
+  hiding nonessential options, and progressive disclosure when complexity
+  makes it difficult to focus. This supports the existing simplicity budget
+  and the requirement to remove distracting product chrome.
+- W3C cognitive accessibility research identifies attention, memory,
+  perception, language, and executive-function differences as relevant to
+  interaction design. This supports a readable non-motion path and visible
+  state labels rather than relying on animation or recall alone.
+
+### Proposed change
+
+Add a concise, unnumbered `Cognitive Foundations` section before the Alan Kay
+anchor in `visualization-principles.md`. It will connect the research to
+practical visualizer rules without presenting a hard numeric law about human
+memory or duplicating the later simplicity and accessibility sections.
+
+The section will map common cognitive risks to design responses:
+
+- too many novel elements -> one decision question and a small visible state
+  set;
+- distraction and extraneous detail -> remove nonessential chrome and use
+  progressive disclosure;
+- recall and mental simulation -> keep labels, state, and causal consequence
+  visible;
+- motion or spatial access needs -> provide pause, replay/reset, and a
+  readable non-motion path;
+- confusing visual/text duplication -> use short text that names the model,
+  rather than repeating every visual detail.
+
+### Preserved boundaries
+
+- `visualization-principles.md` remains the single owner of reusable visual
+  design guidance.
+- `SKILL.md` remains the owner of activation, execution, artifacts,
+  validation, and handoff; it only points to the reference.
+- Alan Kay remains a useful historical design anchor, not the sole authority
+  for the principles.
+
+### Validation plan
+
+- Verify the new section is concise and does not duplicate the detailed rules
+  below it.
+- Check source links and attribution wording.
+- Re-read the reference in order, validate Markdown links and whitespace, and
+  confirm the skill/reference ownership boundary remains clear.
+
+### Final implementation review
+
+- Added the unnumbered `Cognitive Foundations` section before the Alan Kay
+  anchor, preserving the existing numbered principle flow.
+- Grounded the section in cognitive-load/multimedia-learning research and W3C
+  cognitive-accessibility guidance, with direct source links and no hard
+  numeric memory claims.
+- Mapped cognitive risks to concrete responses without replacing or duplicating
+  the later simplicity, causality, truthful-simplification, technology, and
+  comprehension sections.
+- Updated the single `SKILL.md` pointer so the workflow explicitly names the
+  cognitive foundations while leaving execution and handoff ownership there.
+- Local Markdown links, cognitive-foundation assertions, external link checks,
+  and `git diff --check` passed.
+
+Review Status: Implemented; cognition-foundation macro and micro review passed
+
+## Follow-up review: cognition-first visualization design pass
+
+### User-approved outcome
+
+The current visualizer at `http://127.0.0.1:4179` still presents too much
+navigation, explanatory text, identifier detail, and system surface before
+the user has understood the central distinction. The skill must require a
+short design-thinking phase before any frontend is created. The agent should
+first decide how the concept can be demonstrated with the smallest cognitive
+load, then implement that chosen model.
+
+### Current gap
+
+- The brief records the decision question, journey, states, and technology,
+  but it does not require an explicit representation choice or causal
+  storyboard.
+- The operating sequence moves from brief directly to copying the scaffold
+  and building the frontend.
+- There is no durable record of which objects, states, interaction, and
+  progressive-disclosure choices were deliberately selected or rejected.
+- The existing running visualizer demonstrates the risk: its chapter
+  navigation, target switch, identity details, tool calls, and implementation
+  terminology compete with the first conceptual lesson.
+
+### Proposed change
+
+Add a ticket-scoped `requirements-visualization-design-plan.md` template and
+make it a required pre-implementation artifact. The plan will capture:
+
+- the one question and one-sentence user takeaway;
+- the chosen visual representation and why it is simpler than alternatives;
+- the small object/state model;
+- the `show -> act -> consequence -> boundary` storyboard;
+- progressive-disclosure decisions and details intentionally omitted;
+- mock boundaries, accessibility/non-motion fallback, and a comprehension
+  check.
+
+Update the skill so the agent must complete and self-check this plan against
+the cognitive foundations and simplicity budget before copying or modifying
+the frontend scaffold. A plan that fails the check must be simplified or
+reworked; it must not proceed directly to implementation. The plan is a
+design hypothesis, not a requirements approval artifact or a production
+UI/UX specification.
+
+### Preserved boundaries
+
+- `SKILL.md` owns the workflow gate and implementation sequence.
+- `visualization-principles.md` remains the authoritative source for the
+  cognitive and visual design rules.
+- The brief explains why the visualizer is needed; the design plan explains
+  how the concept will be demonstrated; the review record proves what was
+  actually implemented and tested.
+- The Product Prototyper still owns the visual representation, while the user
+  and Requirements Engineering retain requirements approval responsibility.
+
+### Validation plan
+
+- Verify the new template has no duplicated ownership with the brief or review
+  template.
+- Confirm the operating sequence blocks implementation until a design plan is
+  complete and applies the existing principles reference.
+- Confirm the result contract and artifact rules include the design-plan path.
+- Re-read the skill, templates, and principles in execution order for clear
+  brief -> design plan -> implementation -> review flow.
+
+### Final implementation review
+
+- Inspected the running `send-message-delegate-task-semantics` visualizer at
+  `http://127.0.0.1:4179` and confirmed the reported failure mode: the first
+  experience exposes chapter navigation, multiple controls, identity details,
+  implementation terminology, and long explanatory surfaces before the core
+  distinction is learned.
+- Added the required cognition-first design pass to `SKILL.md`, including a
+  representation choice, visible model, causal storyboard, simplicity gate,
+  progressive-disclosure boundary, and comprehension evidence.
+- Added `requirements-visualization-design-plan-template.md` and made the
+  design plan a ticket artifact and result-contract requirement.
+- Preserved separation of concerns: the brief owns why/scope, the design plan
+  owns how the concept is demonstrated, the frontend owns implementation, and
+  the review record owns validation evidence.
+- Updated the operating sequence so frontend implementation cannot begin
+  until the design plan passes the cognitive-foundation and simplicity checks.
+- Verified the new local template link, required headings, skill/template
+  references, and `git diff --check`.
+
+Review Status: Implemented; cognition-first design-pass macro and micro review passed
+
+## Follow-up review: full consistency and cognitive-load audit
+
+### User-approved outcome
+
+Re-audit the complete skill package rather than relying only on link and
+heading checks. The package must have a clear content workflow—brief -> design
+plan -> implementation -> review -> handoff—and the design gate must be
+strong enough to prevent another information-dense visualizer like the one at
+`http://127.0.0.1:4179`.
+
+### Audit findings
+
+The overall direction is correct, but four issues weaken consistency:
+
+1. The artifact rules say to copy the frontend template before the design
+   pass, while the operating sequence and cognition-first section say the
+   design plan must come first. This is a content-order contradiction.
+2. The design pass chooses a visual representation, while Technology Selection
+   later chooses an implementation technology, but the distinction is not
+   explicit. An agent could treat the framework choice as the design decision.
+3. The gate says the plan must pass “comprehension and simplicity checks,” but
+   neither the skill nor the plan template defines a compact pass/fail set.
+   “Ready to Build” could therefore be marked without proving that the first
+   view is cognitively light.
+4. The review template records implementation validation but not the design
+   plan, plan fidelity, or actual comprehension evidence. The final artifact
+   flow therefore loses the link between the planned simple model and the
+   delivered visualizer.
+
+The existing brief/design-plan overlap is intentional and manageable: the
+brief owns why and scope, while the design plan owns how the concept will be
+demonstrated. The review record should own evidence of what was actually
+delivered, rather than repeating the full plan.
+
+### Required repairs
+
+- State explicitly that representation is the conceptual visual form and
+  technology selection is the later implementation mapping.
+- Change the repository rule to copy the scaffold only after the design gate.
+- Add a compact mandatory design-gate checklist: one question, one focused
+  first view, small visible model, one primary causal journey, no long
+  explanation required, progressive disclosure for secondary detail, and an
+  equivalent non-motion path.
+- Add design-plan path, fidelity/deviation, and comprehension evidence to the
+  review template and result flow.
+- Permit later progressive steps only when the first view is independently
+  understandable; do not prohibit every multi-step visualizer, but prohibit a
+  chapter shell from carrying the initial explanation burden.
+
+### Preserved boundaries
+
+- The brief remains the scope and intent artifact.
+- The design plan remains the visual representation and implementation gate.
+- The visualizer source remains the implementation artifact.
+- The review record remains validation and user-feedback evidence.
+- The principles reference remains the authoritative cognitive and visual
+  guidance; the skill owns sequencing and gate enforcement.
+
+### Validation plan
+
+- Re-read all five package documents in execution order after the repairs.
+- Search for contradictory “copy/build before design” wording and ambiguous
+  uses of “design” versus “technology.”
+- Check that every design-gate field is represented in the design plan and
+  that review evidence connects back to it.
+- Validate all local links, Markdown formatting, required gate phrases, and
+  `git diff --check`.
+
+### Final macro and micro review
+
+- Re-read the skill, principles reference, brief template, design-plan
+  template, and review template in execution order.
+- Repaired the copy-before-design wording contradiction in the skill and
+  scaffold instructions.
+- Separated conceptual visual-form selection from later frontend technology
+  selection; removed the premature technology field from the brief and kept
+  it in the design plan after the gate.
+- Added five explicit Ready-to-Build checks to both the skill and design-plan
+  template, including first-view focus, simplicity budget, progressive
+  disclosure, and a non-motion equivalent.
+- Extended revision handling so changes to the visual form, visible model,
+  journey, or cognitive budget require the design gate again.
+- Connected the review template and result contract to the design plan,
+  intentional deviations, first-view simplicity evidence, and comprehension
+  evidence, while allowing Not Applicable artifacts for early exits.
+- Confirmed the brief -> design plan -> implementation -> validation ->
+  handoff order, local links, ownership pointer, gate completeness, and
+  `git diff --check` all pass.
+
+Review Status: Implemented; full consistency and cognitive-load macro/micro review passed

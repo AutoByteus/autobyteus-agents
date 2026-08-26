@@ -15,15 +15,20 @@ This is an exploratory clarification skill. It is not the final product
 prototype skill and it does not produce the canonical requirements or the
 final implementation-oriented ui-ux-spec.md.
 
+Do not begin by building a frontend. First decide how the concept should be
+demonstrated with the smallest useful visual model, record that design
+hypothesis, and only then implement it.
+
 Read [product-prototype-principles.md](../requirements-prototyper/product-prototype-principles.md)
 before choosing the technology or changing the prototype repository.
 
 The skill includes a reusable project scaffold at
-[templates/visualizer-project/](templates/visualizer-project/). Copy that
-scaffold for a new visualization ticket instead of rebuilding the development
-setup from scratch. The scaffold makes animation and spatial-rendering
-capabilities available, but its starter experience is intentionally simple;
-installed capability is not a reason to use every library.
+[templates/visualizer-project/](templates/visualizer-project/). After the
+design gate passes, copy that scaffold for a new visualization ticket instead
+of rebuilding the development setup from scratch. The scaffold makes
+animation and spatial-rendering capabilities available, but its starter
+experience is intentionally simple; installed capability is not a reason to
+use every library.
 
 ## Activation And Inputs
 
@@ -79,16 +84,72 @@ requirement.
 
 ## Visualization Principles
 
-Before implementation and review, read and apply
+Before design, implementation, and review, read and apply
 [visualization-principles.md](references/visualization-principles.md). It
-defines the visualizer's complexity budget, truthful simplification rules,
-causal-animation guidance, accessibility expectations, comprehension gate, and
-concrete examples.
+defines the visualizer's cognitive foundations, complexity budget, truthful
+simplification rules, causal-animation guidance, accessibility expectations,
+comprehension gate, and concrete examples.
+
+## Cognition-First Design Pass
+
+Before copying the frontend scaffold or writing visualizer code, complete a
+short design-thinking pass and record it in
+`requirements-visualization-design-plan.md`. Keep it short enough to support
+thinking, not another large specification.
+
+1. **Name the one thing to understand.** Restate the decision question and
+   write the one-sentence takeaway the user should be able to explain after
+   using the visualizer.
+2. **Choose the smallest visual form.** Consider conceptual forms such as a
+   state transition, actor relationship, comparison, or spatial model. Choose
+   one because it makes the target relationship easier to see. Reject a more
+   elaborate form when it adds visual complexity without improving
+   understanding. Select HTML/CSS, SVG/canvas, React, or 3D technology only
+   after this conceptual choice passes the design gate.
+3. **Define the visible model.** List only the actors or objects, states, and
+   relationships required for the question. Define the initial state and the
+   decision-relevant consequence. Do not start with routes, identifiers,
+   dashboards, metadata, or internal terminology.
+4. **Storyboard the interaction.** Describe the smallest sequence as
+   `show -> user action -> visible consequence -> simplified boundary`. The
+   first view must be understandable before the user opens details or reads a
+   long explanation.
+5. **Apply the cognitive foundation.** Check the model against the
+   simplicity budget, progressive disclosure, visible causality, truthful
+   simplification, and non-motion accessibility rules. If the plan needs a
+   chapter navigator, several explanatory panels, or extensive terminology in
+   the first view, redesign the model before coding. A later progressive step
+   may expose additional detail only after the first view is independently
+   understandable.
+6. **Record omissions and comprehension evidence.** State what is mocked or
+   omitted, why the omission is safe for this question, how the user can
+   pause/bypass motion, and what observable behavior will show that the model
+   was understood.
+
+Mark the design plan `Ready to Build` only when all of these are true:
+
+- the first view presents one decision question and one focused journey;
+- the visible model fits the simplicity budget and has no unnecessary
+  dashboard, navigation, identifier, or implementation surface;
+- the user can identify the action and its consequence without reading a long
+  explanation or remembering a hidden prior state;
+- secondary detail is deferred behind intentional progressive disclosure;
+- the same decision-relevant meaning is available without motion or 3D.
+
+The design plan is a representation decision and implementation gate. It is
+not a requirements approval, final UI/UX specification, or promise that the
+visualizer's simplified model is the complete product behavior. If the plan
+cannot express the concept with a focused first view and a short causal
+journey, return to design rather than compensating with more UI or text.
+
+The chosen representation is the conceptual visual form, not the frontend
+framework. After the plan passes, Technology Selection maps that form to the
+smallest implementation technology and active dependency subset.
 
 ## Technology Selection
 
 Choose the smallest technology that can express the required interaction. For
-a new ticket, copy
+an approved design plan, copy
 [templates/visualizer-project/](templates/visualizer-project/) into a
 ticket-scoped temporary project such as `visualizers/<ticket-id>/`, then use
 the smallest active subset of its dependencies:
@@ -118,13 +179,16 @@ code, and free of production backend or integration work.
 
 - Reuse the canonical Product Prototype repository/root and the supplied
   ticket; do not create a second product-prototype repository.
-- For a new visualizer, copy `templates/visualizer-project/` into the
-  ticket-scoped visualizer project. Never edit the skill template in place.
+- Complete the cognition-first design pass and keep its design plan in the
+  ticket folder before creating or substantially revising frontend code.
+- After the design plan is `Ready to Build`, copy
+  `templates/visualizer-project/` into the ticket-scoped visualizer project.
+  Never edit the skill template in place.
 - Record the template revision, active dependencies, and any omitted optional
   capability in the visualization brief or review record.
 - Keep visualizer source and run instructions in the prototype project, and
-  keep the brief, revision record, review evidence, and visual references in
-  the ticket folder.
+  keep the brief, design plan, revision record, review evidence, and visual
+  references in the ticket folder.
 - Keep the ticket under tickets/in-progress/<ticket-id>/ while Requirements
   Engineering is still collecting understanding or feedback. Close it only
   after the clarification loop is confirmed complete and no final-prototype
@@ -139,8 +203,10 @@ code, and free of production backend or integration work.
   is available.
 
 Use [templates/requirements-visualization-brief-template.md](templates/requirements-visualization-brief-template.md)
-as requirements-visualization-brief.md and
-[templates/requirements-visualization-review-template.md](templates/requirements-visualization-review-template.md)
+as requirements-visualization-brief.md.
+Use [templates/requirements-visualization-design-plan-template.md](templates/requirements-visualization-design-plan-template.md)
+as requirements-visualization-design-plan.md.
+Use [templates/requirements-visualization-review-template.md](templates/requirements-visualization-review-template.md)
 as requirements-visualization-review.md.
 
 ## Operating Sequence
@@ -151,33 +217,41 @@ as requirements-visualization-review.md.
    safety, the visualizer template, and any required accepted baseline.
 3. Write or update the visualization brief. State the single decision
    question, user journey, states, non-goals, and success signal.
-4. Copy the template into the ticket-scoped visualizer project, remove or
+4. Complete the cognition-first design pass and write or update the design
+   plan. Choose the representation, visible model, causal storyboard,
+   progressive-disclosure boundary, and non-motion path. Do not write
+   frontend code until the plan passes its comprehension and simplicity
+   checks.
+5. Copy the template into the ticket-scoped visualizer project, remove or
    replace its example content, select the smallest active technology subset,
-   and build the visualizer with mocked boundaries. Do not invent product
-   behavior outside the question.
-5. Start the visualizer and validate the critical interaction, state changes,
+   and implement the design hypothesis with mocked boundaries. Do not invent
+   product behavior outside the question or add interface surface merely
+   because the scaffold supports it.
+6. Start the visualizer and validate the critical interaction, state changes,
    reset/replay behavior, responsive layout, accessibility fallback,
    comprehension gate, and documented limitations in a browser.
-6. Record the implementation revision, review URL, visual references, known
+7. Record the implementation revision, review URL, visual references, known
    questions, and evidence in the ticket artifacts.
-7. Classify the result as Requirements Visualization Ready and send the
+8. Classify the result as Requirements Visualization Ready and send the
    review-ready package through the applicable handoff rule. Do not claim
    requirement approval; the user owns approval, while Requirements
    Engineering records the decision when it owns the canonical requirements
    context.
-8. On a focused revision request, preserve the accepted visual behavior,
-   update only the requested scope, revalidate the affected journey, and
-   return another review-ready revision.
-9. If the visualizer or user feedback exposes a contradiction or material
+9. On a focused revision request, preserve the accepted visual behavior,
+   update only the requested scope, and revalidate the affected journey. If
+   the revision changes the visual form, visible model, journey, or cognitive
+   budget, update the design plan and pass the design gate again before
+   changing frontend code. Return another review-ready revision afterward.
+10. If the visualizer or user feedback exposes a contradiction or material
    scope change in the canonical requirements, classify a `Requirement Impact`
    finding and return the evidence to Requirements Engineering instead of
    changing the requirement locally.
-10. When Requirements Engineering confirms that the clarification loop is
-    complete, commit the durable visualizer evidence and return the final
-    visualization package. If no final-prototype work follows, close the
-    visualization ticket under the prototype repository policy; otherwise
-    keep or reopen it in progress for the separate
-    `requirements-prototyper` invocation.
+11. When Requirements Engineering confirms that the clarification loop is
+   complete, commit the durable visualizer evidence and return the final
+   visualization package. If no final-prototype work follows, close the
+   visualization ticket under the prototype repository policy; otherwise
+   keep or reopen it in progress for the separate
+   `requirements-prototyper` invocation.
 
 ## Result Contract
 
@@ -187,13 +261,20 @@ Every completed result must include:
   Baseline Needed, Blocked, or a precise request-gap classification;
 - the stable package and ticket identifiers;
 - the decision question and covered requirement/behavior IDs;
-- absolute paths to the visualizer source, brief, review record, ticket folder,
-  and visual references;
-- the review URL and exact browser validation performed;
+- applicable absolute paths to the visualizer source, brief, design plan,
+  review record, ticket folder, and visual references; explicitly state when
+  an artifact was not created because the result was a request gap, Not
+  Recommended, Baseline Needed, or Blocked;
+- the design-gate status, or Not Applicable when no design pass occurred, and
+  any intentional deviation between the plan and the delivered visualizer;
+- the review URL when a visualizer exists and the exact browser validation
+  performed;
 - the technology and revision used;
 - the visualizer template revision and active/omitted capabilities;
 - modeled states, mock boundaries, limitations, unresolved questions, and the
   next expected action;
+- first-view simplicity evidence and the observed comprehension result when a
+  visualizer was implemented;
 - whether the visualizer is ready for another user review or the clarification
   loop is complete.
 

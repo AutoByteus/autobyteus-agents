@@ -12,7 +12,6 @@
 - Constraints:
 - Non-goals:
 - Existing frontend / prototype repository context:
-- Technology decision and rationale:
 - Success signal:
 - Known unknowns:
 
