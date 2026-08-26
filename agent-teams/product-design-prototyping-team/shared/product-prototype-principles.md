@@ -206,6 +206,12 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   The prototype repository is not a subdirectory of the source repository,
   even when the selected frontend is nested inside that source repository. Do
   not add a generic `prototypes/` container.
+- Final-prototype source remains at the prototype repository root. Requirements
+  Visualization may use a ticket-scoped temporary project inside that same
+  canonical repository, such as `visualizers/<ticket-id>/`, when a focused
+  interactive visual explanation needs its own frontend entry point. This is a
+  mode-specific subproject, not a second Git repository, a permanent product
+  source root, or a generic `prototypes/` container.
 - When no frontend exists, derive the prototype subject from the product or
   experience name and create the separate prototype repository at the
   workspace location selected by the Product Prototyper. Record the choice.
@@ -290,7 +296,21 @@ for a prototype workspace. Later requirements-driven work normally belongs to
 - Product Prototyper performs acceptance and regression validation, commits
   the accepted baseline and later durable changes in the prototype repository,
   and keeps mode-appropriate ticket evidence synchronized with that committed
-  state. A requirements-visualization ticket remains in
+  state. Use the following status transitions for the common
+  `prototype-ticket.md` record; the outcome classification and ticket status
+  must agree:
+
+  ```text
+  ticket opened / active work -> In Progress
+  existing frontend has no accepted baseline -> Baseline Needed
+  review URL or review package sent -> Awaiting User Review
+  feedback or revision received -> In Progress
+  explicit final approval and final artifacts committed -> Completed
+  missing decision, required input, or other unresolved prerequisite -> Blocked
+  interactive visualization is not useful for the decision -> Not Recommended
+  ```
+
+  A requirements-visualization ticket remains in
   `tickets/in-progress/` while clarification is open. When clarification
   closes without final-prototype work, complete its evidence and close the
   ticket under repository policy; if final-prototype work follows, keep or
@@ -332,9 +352,11 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   mode-appropriate supporting evidence. A final-prototype ticket adds
   `ui-ux-spec.md`, final `visual-references/`, behavior matrix, runbook,
   prototype report, assumptions, and other delivery artifacts as needed. A
-  requirements-visualization ticket adds its visualization brief, review
-  record, review URL, interaction evidence, and unresolved-question record as
-  needed; it does not create a final `ui-ux-spec.md` merely for exploration.
+  requirements-visualization ticket adds its visualization brief,
+  cognition-first design plan, review record, review URL, visualizer source or
+  entry-point evidence, motion/comprehension evidence, visual references, and
+  unresolved-question record as needed; it does not create a final
+  `ui-ux-spec.md` merely for exploration.
 - `ui-ux-spec.md` is the canonical detailed experience contract only for a
   final-prototype ticket. The prototype report is an optional cross-stage
   summary and must not duplicate the UI/UX specification or supporting

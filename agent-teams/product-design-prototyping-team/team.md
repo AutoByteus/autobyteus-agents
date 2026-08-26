@@ -6,10 +6,12 @@ category: product-development
 
 This team turns a product or requirements request into either an interactive
 requirements visualizer or a reviewed, runnable product experience and a
-precise UI/UX specification. `product_prototyper` is the coordinator and owner
-of the prototype repository, its tickets, commits, and delivered experience
-artifacts. `prototype_bootstrapper` is a focused specialist for establishing
-current-experience parity when an existing frontend needs a baseline.
+precise UI/UX specification. The shared product-prototype principles are the
+authority for repository, ticket, fidelity, evidence, and approval invariants.
+`product_prototyper` is the coordinator and owner of the prototype repository,
+its tickets, commits, and delivered experience artifacts. `prototype_bootstrapper`
+is a focused specialist for establishing current-experience parity when an
+existing frontend needs a baseline.
 
 The team is intentionally independent from Requirements Engineering and
 Software Engineering. It maintains one separate prototype Git repository per
@@ -50,12 +52,13 @@ implementation.
    future-state behavior is ready for product prototyping. A direct user
    request and a Requirements Engineering request use the same mode contract.
 2. In `Requirements Visualization` mode, Product Prototyper creates the
-   smallest interactive HTML-based visualizer that answers the focused
-   question, validates it in a browser, and returns a review-ready revision
-   through the applicable handoff rule. When the request came through
-   Requirements Engineering, that result returns to Requirements Engineering.
-   It does not claim requirements approval or produce the final UI/UX
-   specification in this mode.
+   smallest interactive browser visualizer that answers the focused question.
+   The visualizer skill chooses the representation and technology after its
+   cognition-first design gate, then validates the result in a browser and
+   returns a review-ready revision through the applicable handoff rule. When
+   the request came through Requirements Engineering, that result returns to
+   Requirements Engineering. It does not claim requirements approval or
+   produce the final UI/UX specification in this mode.
 3. When an existing frontend has no accepted current-experience baseline,
    Product Prototyper sends the fixed minimal `Initial Bootstrap` message to
    Prototype Bootstrapper. The message identifies the source frontend and the
@@ -72,7 +75,10 @@ implementation.
    prototype repository and moves the ticket folder from
    `tickets/in-progress/<ticket-id>/` to `tickets/done/<ticket-id>/`. In
    `Requirements Visualization` mode, it commits each durable revision but
-   keeps the ticket in progress while clarification remains open. If the
+   follows the shared ticket-status transitions, marking the ticket
+   `Awaiting User Review` when a review package is sent and returning it to
+   `In Progress` when feedback arrives. It keeps the ticket in progress while
+   clarification remains open. If the
    clarification loop closes without final-prototype work, it completes the
    visualization evidence and closes the ticket under the repository policy;
    if final-prototype work follows, it keeps or reopens the ticket in progress.

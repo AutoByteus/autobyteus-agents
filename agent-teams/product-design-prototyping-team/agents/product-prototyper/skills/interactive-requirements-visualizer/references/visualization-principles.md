@@ -32,6 +32,53 @@ Translate those findings into design decisions:
 | Motion, depth, or sensory differences make animation hard to follow | Make motion pauseable, replayable, and resettable; provide the same meaning through readable non-motion state. |
 | Text repeats every visual detail and increases clutter | Use short text to name the model and its boundary; let the visual interaction carry the concrete example. |
 
+### Motion For Understanding
+
+For a requirements visualizer, animation is a temporary diagram in time. It
+should help a first-time observer perceive the causal sequence, not merely
+make the interface feel alive. Use a **teaching pace**, which is normally
+slower than production-interface feedback when the user must learn a new
+relationship:
+
+```text
+initial state -> initiating action -> visible movement or transition
+-> arrival or changed state -> consequence held long enough to inspect
+```
+
+Do not use an instantaneous state swap when the departure, path, arrival, or
+consequence is the thing the user must understand. Show one causal event at a
+time, avoid unrelated background motion, and hold the result before resetting
+or starting another event. A simple path taking roughly **1.5–3 seconds** is a
+useful starting heuristic for an exploratory visualizer, not a universal law;
+increase or decrease it after checking whether a first-time observer can
+follow the sequence.
+
+Make the pace controllable. Provide pause, replay, and reset; add step-through,
+slow mode, or a speed choice when the sequence is difficult to follow. A
+reduced-motion mode must preserve the meaning with stable states and labels,
+not merely delete the transition. These controls also follow the accessibility
+concern behind [W3C Pause, Stop,
+Hide](https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html) and
+[Animation from
+Interactions](https://www.w3.org/WAI/WCAG21/Understanding/animation-from-interactions.html).
+Apple's [Motion guidance](https://developer.apple.com/design/human-interface-guidelines/motion)
+likewise treats motion as purposeful feedback and instruction, not decoration.
+
+#### Motion examples
+
+- **`send_message_to`:** Keep Planner and Reviewer visible. After the user
+  activates Send, show the packet at Planner, move it visibly along the route
+  over the teaching interval, highlight Reviewer on arrival, and hold the
+  received state. Do not replace the scene with an instant “sent” label.
+- **`delegate_task`:** Show the parent action first, then the task packet
+  leaving, the new worker appearing, the packet arriving, and the new worker's
+  active state. The new worker should not already be present, and the entire
+  sequence should not happen in one frame.
+- **Form validation:** Keep the form stable while Submit is activated, then
+  reveal the invalid field with a deliberate transition and hold the error
+  state until the user can inspect it. The message should name the rule, but
+  the timing and location of the change should demonstrate it.
+
 These are grounding principles, not a license to simplify away meaning. Keep
 the decision-relevant state, distinction, and consequence intact; simplify
 only the representation and unrelated system surface. The later simplicity,

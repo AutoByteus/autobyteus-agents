@@ -22,6 +22,15 @@ only the concise decision anchor here and focus on how it will be demonstrated.
 - Relationship or causal distinction:
 - Details intentionally hidden or deferred:
 
+## Motion Design
+
+- Motion purpose, or why motion is not needed:
+- Motion phases and order:
+- Teaching pace and consequence dwell:
+- Pause, replay, reset, step-through, slow, or skip controls:
+- Reduced-motion and stable-state equivalent:
+- Which changes must not happen instantaneously:
+
 ## Interaction Storyboard
 
 1. **Show:**
@@ -37,6 +46,8 @@ only the concise decision anchor here and focus on how it will be demonstrated.
 - What text is necessary to name the model without repeating it?
 - How can the user pause, replay, reset, or understand the result without
   motion?
+- Can a first-time observer follow the full motion sequence at the chosen
+  teaching pace?
 - What will demonstrate that the user understood the intended relationship?
 
 ## Truthful Boundaries
@@ -54,6 +65,8 @@ only the concise decision anchor here and focus on how it will be demonstrated.
 - [ ] The user can identify the action and consequence without a long
       explanation or hidden prior state.
 - [ ] Secondary detail is deferred behind intentional progressive disclosure.
+- [ ] Decision-relevant motion is slow enough to follow, holds the consequence,
+      and avoids unrelated simultaneous movement.
 - [ ] The same decision-relevant meaning is available without motion or 3D.
 - Status: Ready to Build / Rework Needed
 - Remaining design concern:

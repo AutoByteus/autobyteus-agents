@@ -17,6 +17,8 @@
 - States:
 - Interactions:
 - Animation or 3D behavior:
+- Motion pacing and consequence dwell:
+- Pause / replay / reset / step / slow controls exercised:
 - Mocked boundaries:
 - Accessibility or non-motion fallback:
 - Plan fidelity or intentional deviations:
