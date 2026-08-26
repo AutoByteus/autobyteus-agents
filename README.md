@@ -507,8 +507,9 @@ This example demonstrates why the handoff is a separate post-work phase. Each
 specialist focuses on its own work and result; after completion, it calls
 `get_handoff_rules`, applies every matching rule, sends the required messages,
 and stops. Planner coordinates the next step without implementing or
-validating, Validator does not fix, and Investigator does not plan. The team
-config changes the loop without changing the specialists' core work contracts.
+validating, Validator does not fix, and Investigator does not plan. All
+handoffs in this example use `send_message_to`; the team config changes the
+loop without changing the specialists' core work contracts.
 
 ## Recommended Practice For Agent Packages
 
