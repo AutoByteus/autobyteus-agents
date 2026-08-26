@@ -9,6 +9,8 @@ Read [product-prototype-principles.md](product-prototype-principles.md) before
 starting. It is the shared authority for prototype technology selection,
 current-experience fidelity, lightweight implementation, synthetic state,
 workspace/repository isolation, project ownership, and evidence.
+This skill adds the final-prototype workflow and artifacts; it does not replace
+the shared cross-mode invariants with a second policy.
 
 ## Purpose
 
@@ -143,6 +145,10 @@ production frontend path, or a Requirements Engineer task worktree. Manage the
 current request through a ticket folder inside this prototype repository, not
 through a dedicated per-ticket worktree.
 
+Use the status transitions in the shared product-prototype principles for the
+common `prototype-ticket.md` record. This skill owns the final-prototype
+transitions; it does not redefine the shared status vocabulary.
+
 1. Resolve the ticket or request identifier from the current context, then
    resolve the selected source application and reuse its established canonical
    prototype repository when one exists. Otherwise derive a stable
@@ -255,13 +261,17 @@ Keep the future-state change proportional to the decision:
    `tickets/in-progress/<ticket-id>/` using the supplied ticket or request
    identifier. Verify prototype-repository identity, ticket status, instructions, and
    accepted baseline provenance before editing. Block on unrelated dirty state,
-   an unavailable required source, or an unproven established baseline.
+   an unavailable required source, or an unproven established baseline. Set
+   the ticket status to `In Progress` once active work begins.
 3. Inspect the established canonical separate prototype repository/root and current-experience
    bootstrap evidence. Do not pre-investigate the source UI merely to prepare
    an initial bootstrap trigger.
 4. Apply the bootstrap routing rules and accept an applicable baseline before
    existing-frontend future-state work. For an absent existing-frontend
-   baseline, review the Bootstrapper's report/evidence, run the
+   baseline, set the ticket status to `Baseline Needed`, send the fixed
+   Bootstrapper request, and stop until the result returns. After Product
+   Prototyper accepts the baseline, set the ticket status to `In Progress`,
+   review the Bootstrapper's report/evidence, run the
    Product Prototyper's acceptance and regression checks, then create the
    official accepted-baseline commit; block the work if the result is not exact
    or reproducible.
@@ -275,10 +285,11 @@ Keep the future-state change proportional to the decision:
    in a browser. Correct every observed visual or interaction discrepancy and
    repeat validation before presenting the review URL.
 7. Keep the prototype available, give the user the review URL and concise
-   review focus, then request explicit feedback.
+   review focus, set the ticket status to `Awaiting User Review`, and then
+   request explicit feedback.
 8. Apply focused feedback that stays within the current scope, preserve
-   accepted behavior, revalidate affected and relevant regression paths, and
-   repeat review as needed.
+   accepted behavior, set the ticket status back to `In Progress`, revalidate
+   affected and relevant regression paths, and repeat review as needed.
 9. After explicit user confirmation, perform final browser and visual
     validation. If that validation requires a material visible or behavioral
     change, reopen user review before finalizing.
@@ -288,7 +299,9 @@ Keep the future-state change proportional to the decision:
 11. Complete the ticket record, `ui-ux-spec.md`, and any useful supporting
     artifacts, including the approval reference, final screenshots, detailed
     behavior, mocked boundaries, source pin, prototype repository/root, and prototype
-    revision. Keep them under the ticket folder.
+    revision. Keep them under the ticket folder. Set the ticket status to
+    `Completed` only after explicit user confirmation and the final artifacts
+    are complete.
 12. Commit the runnable prototype and durable ticket evidence in the prototype
     repository. Move the completed ticket folder from `tickets/in-progress/` to
     `tickets/done/` in the same commit sequence. Do not claim completion before

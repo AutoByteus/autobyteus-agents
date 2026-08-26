@@ -14,6 +14,10 @@
 
 ## Deliberate Simplifications And Non-Goals
 
+| Simplification / Non-Goal ID | Simplification or Non-Goal | Why Safe For This Decision | Product Decision Still Required |
+| --- | --- | --- | --- |
+| PS-001 |  |  |  |
+
 ## Production Readiness Gaps
 
 - Security:

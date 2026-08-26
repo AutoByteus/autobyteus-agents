@@ -12,8 +12,12 @@ packages for:
 The presence of a package does not mean the visualizer should use it. Start
 with the simplest representation that answers the decision question. The
 starter example demonstrates two existing people communicating versus one
-person creating a new delegated worker instance. Replace the example model and
-copy only the relevant interaction pattern into the ticket-scoped project.
+person creating a new delegated worker instance. It uses a finite,
+user-triggered sequence with visible departure, travel, arrival, consequence
+dwell, pause, replay, slow, skip, reset, and reduced-motion behavior. Replace
+the example model and copy only the relevant interaction pattern into the
+ticket-scoped project; do not retain controls or motion that the new question
+does not need.
 
 ## Use
 
@@ -21,9 +25,12 @@ copy only the relevant interaction pattern into the ticket-scoped project.
    `visualizers/<ticket-id>/`.
 2. Replace the example question, model, labels, and states with the focused
    requirements question.
-3. Remove unused imports and keep the visible experience within the
+3. Rework the design plan before changing the visual model or motion. Keep
+   decision-relevant animation finite, teaching-paced, and understandable
+   without motion.
+4. Remove unused imports and keep the visible experience within the
    visualizer's simplicity budget.
-4. Run `npm install`, `npm run dev`, and `npm run build`.
+5. Run `npm install`, `npm run dev`, and `npm run build`.
 
 Do not add production APIs, authentication, persistence, customer data, or
 production source paths to this temporary project.

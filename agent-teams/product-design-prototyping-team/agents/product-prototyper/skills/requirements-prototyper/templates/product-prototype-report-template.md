@@ -82,7 +82,7 @@ directory and use stable `VIS-*` IDs. “Screenshot” means an actual captured 
 ## Latest Result
 
 - Prototype result: `Completed` / `Blocked` / `Not Recommended`
-- Ticket status: `In Progress` / `Awaiting User Review` / `Completed` / `Blocked` / `Not Recommended`
+- Ticket status: `In Progress` / `Awaiting User Review` / `Completed` / `Baseline Needed` / `Blocked` / `Not Recommended`
 - Critical journey runnable: `Yes` / `No`
 - Requirements questions resolved:
 - Remaining product decisions:

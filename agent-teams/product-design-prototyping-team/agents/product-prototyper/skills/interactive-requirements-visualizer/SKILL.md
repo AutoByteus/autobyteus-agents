@@ -19,8 +19,11 @@ Do not begin by building a frontend. First decide how the concept should be
 demonstrated with the smallest useful visual model, record that design
 hypothesis, and only then implement it.
 
-Read [product-prototype-principles.md](../requirements-prototyper/product-prototype-principles.md)
+Read [product-prototype-principles.md](product-prototype-principles.md)
 before choosing the technology or changing the prototype repository.
+That shared reference owns cross-mode repository, fidelity, safety, evidence,
+and approval invariants; this skill owns only the visualization-specific
+workflow, artifacts, validation, and routing.
 
 The skill includes a reusable project scaffold at
 [templates/visualizer-project/](templates/visualizer-project/). After the
@@ -113,7 +116,9 @@ thinking, not another large specification.
 4. **Storyboard the interaction.** Describe the smallest sequence as
    `show -> user action -> visible consequence -> simplified boundary`. The
    first view must be understandable before the user opens details or reads a
-   long explanation.
+   long explanation. If motion carries meaning, storyboard its phases,
+   teaching pace, consequence dwell, and reset point; do not collapse a
+   decision-relevant transition into an instant state swap.
 5. **Apply the cognitive foundation.** Check the model against the
    simplicity budget, progressive disclosure, visible causality, truthful
    simplification, and non-motion accessibility rules. If the plan needs a
@@ -123,8 +128,8 @@ thinking, not another large specification.
    understandable.
 6. **Record omissions and comprehension evidence.** State what is mocked or
    omitted, why the omission is safe for this question, how the user can
-   pause/bypass motion, and what observable behavior will show that the model
-   was understood.
+   pause, replay, step through, slow, or bypass motion, and what observable
+   behavior will show that the model was understood.
 
 Mark the design plan `Ready to Build` only when all of these are true:
 
@@ -134,6 +139,8 @@ Mark the design plan `Ready to Build` only when all of these are true:
 - the user can identify the action and its consequence without reading a long
   explanation or remembering a hidden prior state;
 - secondary detail is deferred behind intentional progressive disclosure;
+- decision-relevant motion is slow enough to follow, holds the consequence,
+  and does not depend on unrelated simultaneous movement;
 - the same decision-relevant meaning is available without motion or 3D.
 
 The design plan is a representation decision and implementation gate. It is
@@ -149,7 +156,7 @@ smallest implementation technology and active dependency subset.
 ## Technology Selection
 
 Choose the smallest technology that can express the required interaction. For
-an approved design plan, copy
+a design plan marked `Ready to Build`, copy
 [templates/visualizer-project/](templates/visualizer-project/) into a
 ticket-scoped temporary project such as `visualizers/<ticket-id>/`, then use
 the smallest active subset of its dependencies:
@@ -179,6 +186,12 @@ code, and free of production backend or integration work.
 
 - Reuse the canonical Product Prototype repository/root and the supplied
   ticket; do not create a second product-prototype repository.
+- Create or update the shared `prototype-ticket.md` record in the ticket
+  folder for every supplied or newly created visualization ticket, including
+  request-gap, `Baseline Needed`, `Not Recommended`, and `Blocked` outcomes.
+  Use the shared status transitions; keep mode-specific brief, design-plan,
+  and review fields in their own artifacts instead of duplicating them in the
+  ticket record.
 - Complete the cognition-first design pass and keep its design plan in the
   ticket folder before creating or substantially revising frontend code.
 - After the design plan is `Ready to Build`, copy
@@ -187,8 +200,9 @@ code, and free of production backend or integration work.
 - Record the template revision, active dependencies, and any omitted optional
   capability in the visualization brief or review record.
 - Keep visualizer source and run instructions in the prototype project, and
-  keep the brief, design plan, revision record, review evidence, and visual
-  references in the ticket folder.
+  keep `prototype-ticket.md`, the brief, design plan, revision record, review
+  evidence, motion/comprehension evidence, and visual references in the ticket
+  folder.
 - Keep the ticket under tickets/in-progress/<ticket-id>/ while Requirements
   Engineering is still collecting understanding or feedback. Close it only
   after the clarification loop is confirmed complete and no final-prototype
@@ -208,49 +222,78 @@ Use [templates/requirements-visualization-design-plan-template.md](templates/req
 as requirements-visualization-design-plan.md.
 Use [templates/requirements-visualization-review-template.md](templates/requirements-visualization-review-template.md)
 as requirements-visualization-review.md.
+Use the sibling final-prototype template
+[../requirements-prototyper/templates/prototype-ticket-template.md](../requirements-prototyper/templates/prototype-ticket-template.md)
+as the shared ticket record `prototype-ticket.md`.
 
 ## Operating Sequence
 
 1. Read the focused visualization request, requirements context, current
    ticket, repository instructions, prior revision, and open user questions.
 2. Verify the canonical prototype repository/root, ticket identity, workspace
-   safety, the visualizer template, and any required accepted baseline.
-3. Write or update the visualization brief. State the single decision
+   safety, the visualizer template, and any required accepted baseline. Create
+   or update `prototype-ticket.md` and set its status to `In Progress` once
+   active work begins.
+3. Resolve the baseline branch before creating mode-specific visualizer
+   artifacts:
+   - If an existing frontend is relevant and an accepted baseline is present,
+     continue.
+   - If an existing frontend is relevant and the accepted baseline is absent,
+     set the ticket status to `Baseline Needed`, send the fixed minimal
+     Bootstrapper message through the matching handoff rule, and stop. Do not
+     write a brief, design plan, or visualizer source for future-state work.
+     Resume at this baseline check only after Product Prototyper accepts the
+     Bootstrapper result.
+   - If no frontend exists, record that no current-experience baseline is
+     required and continue.
+4. Write or update the visualization brief. State the single decision
    question, user journey, states, non-goals, and success signal.
-4. Complete the cognition-first design pass and write or update the design
+5. Complete the cognition-first design pass and write or update the design
    plan. Choose the representation, visible model, causal storyboard,
    progressive-disclosure boundary, and non-motion path. Do not write
    frontend code until the plan passes its comprehension and simplicity
    checks.
-5. Copy the template into the ticket-scoped visualizer project, remove or
+6. Copy the template into the ticket-scoped visualizer project, remove or
    replace its example content, select the smallest active technology subset,
    and implement the design hypothesis with mocked boundaries. Do not invent
    product behavior outside the question or add interface surface merely
    because the scaffold supports it.
-6. Start the visualizer and validate the critical interaction, state changes,
+7. Start the visualizer and validate the critical interaction, state changes,
    reset/replay behavior, responsive layout, accessibility fallback,
-   comprehension gate, and documented limitations in a browser.
-7. Record the implementation revision, review URL, visual references, known
-   questions, and evidence in the ticket artifacts.
-8. Classify the result as Requirements Visualization Ready and send the
-   review-ready package through the applicable handoff rule. Do not claim
-   requirement approval; the user owns approval, while Requirements
-   Engineering records the decision when it owns the canonical requirements
-   context.
-9. On a focused revision request, preserve the accepted visual behavior,
+   motion pacing and consequence dwell when motion is used, pause/step/slow
+   controls specified by the design plan when motion is used, the
+   comprehension gate, and documented limitations in a browser. If
+   decision-relevant motion is used, exercise at least pause and replay/reset
+   or skip, and record the reduced-motion/stable-state result.
+8. Record the implementation revision, review URL, visual references, known
+   questions, motion/comprehension evidence, and evidence in the ticket
+   artifacts when a visualizer exists. Set the ticket status to
+   `Awaiting User Review` only for a review-ready package.
+9. Classify the result as Requirements Visualization Ready, Requirement
+   Impact, Not Recommended, Blocked, or a request gap. For a review-ready
+   package, set the ticket status to `Awaiting User Review` and route it through
+   the applicable handoff rule. For `Not Recommended`, `Requirement Impact`,
+   `Blocked`, or a request gap, set the ticket status to the corresponding
+   shared status before routing: `Not Recommended` maps to `Not Recommended`,
+   while `Requirement Impact`, `Blocked`, and request-gap outcomes map to
+   `Blocked`. Do not claim requirement approval; the user owns approval, while
+   Requirements Engineering records the decision when it owns the canonical
+   requirements context.
+10. On a focused revision request, set the ticket status back to `In Progress`,
+   preserve the accepted visual behavior,
    update only the requested scope, and revalidate the affected journey. If
    the revision changes the visual form, visible model, journey, or cognitive
    budget, update the design plan and pass the design gate again before
    changing frontend code. Return another review-ready revision afterward.
-10. If the visualizer or user feedback exposes a contradiction or material
+11. If the visualizer or user feedback exposes a contradiction or material
    scope change in the canonical requirements, classify a `Requirement Impact`
    finding and return the evidence to Requirements Engineering instead of
    changing the requirement locally.
-11. When Requirements Engineering confirms that the clarification loop is
+12. When Requirements Engineering confirms that the clarification loop is
    complete, commit the durable visualizer evidence and return the final
-   visualization package. If no final-prototype work follows, close the
-   visualization ticket under the prototype repository policy; otherwise
-   keep or reopen it in progress for the separate
+   visualization package. If no final-prototype work follows, set the ticket
+   status to `Completed` and close it under the prototype repository policy;
+   otherwise keep or reopen it `In Progress` for the separate
    `requirements-prototyper` invocation.
 
 ## Result Contract
@@ -261,10 +304,12 @@ Every completed result must include:
   Baseline Needed, Blocked, or a precise request-gap classification;
 - the stable package and ticket identifiers;
 - the decision question and covered requirement/behavior IDs;
+- the applicable absolute path to the common `prototype-ticket.md` record;
 - applicable absolute paths to the visualizer source, brief, design plan,
   review record, ticket folder, and visual references; explicitly state when
   an artifact was not created because the result was a request gap, Not
   Recommended, Baseline Needed, or Blocked;
+- the current ticket status, using the shared status transitions;
 - the design-gate status, or Not Applicable when no design pass occurred, and
   any intentional deviation between the plan and the delivered visualizer;
 - the review URL when a visualizer exists and the exact browser validation
@@ -275,6 +320,8 @@ Every completed result must include:
   next expected action;
 - first-view simplicity evidence and the observed comprehension result when a
   visualizer was implemented;
+- motion pacing, consequence dwell, and motion-control evidence when motion is
+  part of the explanation;
 - whether the visualizer is ready for another user review or the clarification
   loop is complete.
 

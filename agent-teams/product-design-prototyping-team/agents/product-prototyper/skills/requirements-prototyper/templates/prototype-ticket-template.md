@@ -8,7 +8,7 @@ branch or worktree.
 
 - Ticket / request ID:
 - Title:
-- Status: `In Progress` / `Awaiting User Review` / `Completed` / `Blocked` / `Not Recommended`
+- Status: `In Progress` / `Awaiting User Review` / `Completed` / `Baseline Needed` / `Blocked` / `Not Recommended`
 - Related requirements revision:
 - Related requirement, behavior, acceptance-criteria, and decision IDs:
 - Critical journey or product decision:
