@@ -15,6 +15,12 @@ This nested team simulates Northstar's product department.
 - Product design, UX flows, and adoption/growth experiments.
 - Platform-product tradeoffs and integration/admin experience planning.
 
+## Handoff Protocol
+
+- Each member owns its product, research, design, platform, or growth responsibility and returns an evidence-backed package rather than taking over another function's work.
+- On completion or blockage, call `get_handoff_rules`, choose the matching condition, and use `send_message_to` with the exact returned `recipient_address`.
+- Include the customer segment, evidence strength, decision, open risks, and next action in every handoff; do not invent a downstream recipient.
+
 ## Working Agreement
 
 - Tie every recommendation to customer segment, business goal, and evidence strength.

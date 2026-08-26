@@ -6,10 +6,10 @@ description: Build and maintain durable article research artifacts before drafti
 # Article Researcher
 
 Use this skill before outlining or drafting an article when the topic requires understanding, evidence, source inspection, or factual grounding.
-This is an agent-private skill for the article writer agent.
-It owns the research and investigation phase; the `bilingual-author-style-writer` skill owns style-profile loading, platform rules, outline shaping, drafting, and revision.
+Use this skill as the article-writing agent's research phase when the article needs source investigation or evidence grounding.
+It owns the research and investigation phase; the `article-writing` skill owns hierarchical structure, style and language decisions, outline shaping, drafting, and revision.
 
-Start by reading `writing-principles.md` and use it as the quality standard for evidence, clarity, and the rule that style never creates facts.
+Start by reading [the team writing principles](../../../../shared/writing-principles.md) and use them as the quality standard for evidence, clarity, and the rule that style never creates facts.
 
 ## Core Principle
 
@@ -24,6 +24,7 @@ A handoff is writer-ready only when it answers, in durable files:
 
 - What is the article about?
 - What does the reader need to understand before the claim makes sense?
+- What does the reader likely know, assume, or need at the start, and what questions must be answered in sequence?
 - What exact mechanisms, chronology, definitions, or product sequence must be preserved?
 - For a product or system comparison, what first-class primitives does each product expose, how are they packaged, and which dimensions are orthogonal or composable rather than competing modes?
 - For a builder-owned design article, what user problem, interaction surface, and end-to-end scenario explain why each primitive exists?
@@ -194,7 +195,10 @@ Include:
 - exact chronology, product sequence, or causal chain to preserve
 - terms and definitions that must stay precise
 - source IDs for load-bearing claims
-- recommended article spine based on the research, without doing style drafting
+- central question or reader problem and the bounded answer the evidence can support
+- reader starting point and a candidate question ladder: what each major step answers and what it makes possible to ask next
+- recommended article spine based on the research, with one sentence per candidate section and the dependency or reader question connecting them, without doing style drafting
+- evidence or mechanism burden for each candidate section; do not invent paragraph prose here
 - for comparisons, the neutral primitive inventory, composability classification, and one same-scenario walkthrough across products
 - allowed claims and allowed contrast frames
 - forbidden overclaims, unsupported claims, and wording traps
@@ -215,6 +219,7 @@ Before switching to the writing skill, verify:
 - comparative dimensions are neutral, consistent across products, and do not mislabel composable primitives as exclusive modes
 - negative capability claims were checked against current authoritative evidence and are qualified precisely, including `not observed in the checked sources` when evidence is incomplete
 - builder-owned design rationale, product interaction surface, and a representative end-to-end scenario are captured when they are central to the article
+- the reader starting point and candidate question ladder are explicit enough for the writing phase to turn into a coherent reader journey
 - open questions are either resolved, narrowed, or explicitly listed
 - the writer should not need to open new sources, inspect code, or perform broad discovery before outlining
 
@@ -222,7 +227,7 @@ If the gate fails, update the research package or ask a targeted question before
 
 ## Handoff To Writing Skill
 
-After research, hand off to `bilingual-author-style-writer` with:
+After research, hand off to `article-writing` with:
 
 - `research-handoff.md` first
 - research artifact paths
@@ -231,5 +236,5 @@ After research, hand off to `bilingual-author-style-writer` with:
 - caveats and forbidden overclaims
 - open questions or intentionally narrowed scope
 
-The writing skill should treat the research package as the source of truth and should not redo research.
+The article-writing skill should treat the research package as the source of truth and should not redo research.
 If the writing skill finds a gap, it should return to this skill with the exact missing claim or source need instead of doing independent research.

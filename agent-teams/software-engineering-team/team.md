@@ -6,9 +6,25 @@ category: software-engineering
 
 This team handles a software change from initial investigation through final handoff.
 
-`solution_designer` is the entry specialist for this team.
-There is no separate orchestrator role beyond the specialists shown in the team roster.
-Each specialist owns its stage, follows its role skill, and hands work to the next relevant specialist when ready.
+This team definition is intentionally lightweight.
+`solution_designer` is the coordinator entry specialist for this team.
+There is no separate standalone orchestrator role beyond the listed specialists.
+Each specialist does its own work, follows its own bundled agent and skill definition, and hands work to the next relevant specialist when ready.
+Detailed operating rules, artifact standards, and send-back behavior belong in each member's bundled `SKILL.md` and local templates rather than being duplicated across `team.md` and `agent.md`.
+
+## Artifact Visibility Rule
+
+- Every `send_message_to` handoff should include absolute filesystem paths for all still-relevant upstream artifacts produced so far, not only the latest local artifact.
+- Downstream specialists should be able to read the cumulative artifact package without having to rediscover earlier work from scratch.
+- Default cumulative package:
+  - `architecture_reviewer`: requirements doc, investigation notes, design spec
+  - `implementation_engineer`: requirements doc, investigation notes, design spec, design review report
+  - `code_reviewer`: requirements doc, investigation notes, design spec, design review report, implementation handoff
+  - `api_e2e_engineer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, code review report
+  - `delivery_engineer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, code review report, coverage investigation, execution coverage report
+- `api_e2e_engineer` must produce a coverage investigation artifact before final test execution, durable coverage edits, durable coverage removals, or failure rerouting. That artifact records whether existing API/E2E coverage is still valid, stale, needs update, should be removed, or must be replaced or expanded.
+- If `api_e2e_engineer` adds, updates, or removes repository-resident durable coverage after the initial code review, route the cumulative package plus the coverage investigation and execution coverage report back through `code_reviewer` before `delivery_engineer`.
+- When a reroute or rework artifact is produced, include that artifact too alongside the already-existing upstream package.
 
 ## Team Members
 

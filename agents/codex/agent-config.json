@@ -19,12 +19,5 @@
   "skillNames": [
     "software-engineering-workflow-skill"
   ],
-  "inputProcessorNames": [],
-  "llmResponseProcessorNames": [],
-  "systemPromptProcessorNames": [],
-  "toolExecutionResultProcessorNames": [],
-  "toolInvocationPreprocessorNames": [],
-  "lifecycleProcessorNames": [],
-  "avatarUrl": null,
   "defaultLaunchConfig": null
 }

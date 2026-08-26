@@ -28,9 +28,21 @@ The paper research assistant is a standalone agent for the common paper-reading 
 
 The skill optimizer is a lightweight standalone agent that uses the shared `skill-optimizer` skill to review and improve existing skills for structure, grounding, clarity, consistency, and economy while preserving their intended behavior and quality gates.
 
+## Software Development Department
+
+The software development department is the end-to-end software entrypoint. `head_of_software_development` starts each independent package through Requirements Engineering and returns the verified terminal result. It contains three independent specialist teams: Requirements Engineering, Product Design & Prototyping, and Software Engineering. Requirements Engineer requests Product Prototyper for an interactive requirements visualizer when the user needs help understanding an unclear decision, or for a final runnable prototype when the behavior is sufficiently understood, then hands an explicitly approved, architecture-ready package directly to Architecture Designer.
+
+## Requirements Engineering Team
+
+The requirements engineering team turns an initial product or technical request into an evidence-grounded, explicitly user-approved, architecture-ready requirements package. `requirements_engineer` owns current and desired behavior, scope, acceptance criteria, conditional prototype requests, and requirement revision history. Product Design & Prototyping is an external specialist team: Requirements Engineer consumes its delivered UI/UX evidence but does not manage its repository, tickets, commits, or internal workflow.
+
+## Product Design & Prototyping Team
+
+The product design and prototyping team independently maintains the prototype repository for each product surface. `product_prototyper` owns prototype intake, tickets, commits, and two modes: interactive requirements visualization for exploratory clarification, and final prototype production with user review and UI/UX specifications. `prototype_bootstrapper` owns only current-experience baseline discovery, parity implementation, and bootstrap evidence. The team uses dynamic handoff rules plus `send_message_to` for baseline routing and cross-team results.
+
 ## Software Engineering Team
 
-The software engineering team is organized as a practical delivery group that can take work from upstream solution design through implementation, API and E2E validation, review, docs sync, final handoff, release, and deployment.
+The software engineering team starts with `architecture_designer` and consumes an approved requirements package. Architecture Designer completes the technical design and classifies `task_size` as Small, Medium, or Large plus `architectural_risk` as Low or High. Small/Medium low-risk work can proceed directly through implementation and API/E2E validation; Large or High-risk work uses independent architecture and source-review gates before validation. After the user verifies the result and `delivery_engineer` completes finalization, Delivery Engineer returns the terminal package to Architecture Designer, which verifies and routes the outcome through the applicable message-based handoff rule or returns it to the caller.
 
 ## Research Engineering Team
 
@@ -197,6 +209,11 @@ Rules:
 
 Treat `team.md` as the team's coordination contract, not as a second copy of each specialist's skill.
 
+The more complete file-by-file contract is defined in
+[`Separation Of Concerns And Agent Package Content Contract`](#separation-of-concerns-and-agent-package-content-contract)
+below. Use that contract when a rule could plausibly fit in more than one
+file: every rule should have one canonical owner.
+
 ### Put In `team.md`
 
 - short team purpose and entry specialist
@@ -228,8 +245,12 @@ Treat `team.md` as the team's coordination contract, not as a second copy of eac
 - putting tool invocation details, media-generation settings, prompt rules, or validation procedures in `team.md`
 - duplicating the same operating rule in both `team.md` and a shared reference file
 
-If a rule applies to all team members, put it in a team-shared reference and point members to it.
-If a rule applies to one specialist, put it in that specialist's `SKILL.md`.
+If a reusable principle, quality bar, or schema applies to all team members,
+put its detailed definition in a team-shared reference and point members to it
+from `team.md` or their skills. If a rule defines how the team coordinates,
+keep its summary in `team.md` and its executable conditions in
+`team-config.json`. If a rule applies to one specialist, put it in that
+specialist's `SKILL.md`.
 Keep `team.md` focused on how the specialists work together.
 
 ## Multi-Agent Communication Best Practice
@@ -249,6 +270,328 @@ For reliable agent-team handoffs, use file-backed handoffs by default:
 7. When reporting back, write a result/status file first, then send a short message that mentions and attaches that file.
 
 This pattern is intentionally more explicit than putting all details in the message body. It pushes each specialist to materialize its handoff, gives the receiver a stable artifact to read, reduces context loss, and makes multi-step team workflows easier to audit and resume.
+
+## Specialist Ownership And Outcome-Based Handoffs
+
+Model an agent team as a group of independent specialists rather than as one
+agent that manages every other specialist's internal workflow. Each agent
+should use its own `SKILL.md` to complete the responsibility it owns and
+should not manage another agent's private repository, ticket lifecycle,
+branches, worktrees, commits, or implementation details. A receiving agent
+should care about the delivered result and its evidence, not how the producing
+agent created or stored that result.
+
+When an agent reaches a meaningful stopping point, it should make the outcome
+explicit—such as `Completed`, `Blocked`, `Requirement Gap`, or another status
+defined by its workflow—before deciding what happens next. It should then:
+
+1. finish and persist the artifacts owned by its stage;
+2. call `get_handoff_rules` to retrieve the current conditional routing rules;
+3. apply every rule whose condition matches the actual outcome;
+4. call `send_message_to` with each exact returned `recipient_address`, carrying
+   the concise result, next expected action, and durable artifact references;
+5. return the outcome to the user or calling workflow when no rule applies; and
+6. stop after the required handoffs succeed instead of polling or continuing
+   work owned by the next specialist.
+
+Handoff rules—not hardcoded recipient assumptions—are the source of truth for
+workflow progression. The message recipient is selected from the completed
+task result, so the same agent can work independently when invoked by a user,
+another agent, or a resumed workflow. `delegate_task` is a separate mechanism
+for intentionally starting a fresh delegated execution; it is not a substitute
+for the normal result-based handoff protocol.
+
+This separation mirrors effective human teams: a specialist performs its own
+work, reports an evidence-backed result, and uses the agreed routing rules to
+contact the responsible next person. Team definitions should therefore make
+ownership boundaries, terminal outcomes, and handoff conditions explicit while
+leaving specialist execution details in the owning skills.
+
+### Conditional Result-Based Routing
+
+Use this four-layer ownership model when designing an agent team:
+
+- `SKILL.md` owns the agent's responsibility, operating procedure, required
+  artifacts, result classification, validation, recovery, and handoff procedure.
+- `team-config.json` owns the conditional routing rules and canonical recipient
+  addresses. It is the routing policy, not the agent's implementation guide.
+- `team.md` owns the team identity, responsibility boundaries, entry contract,
+  and concise summary of the possible workflow paths.
+- `agent-config.json` exposes the runtime tools required by the skill, including
+  `get_handoff_rules` and `send_message_to` when the agent participates in
+  result-based handoffs.
+
+The normal result-based loop is:
+
+1. complete only the responsibility owned by the current agent;
+2. persist the required artifacts and validation evidence;
+3. produce an explicit result envelope containing status, route-relevant
+   classification fields, artifact paths, open risks, and the next expected
+   action;
+4. call `get_handoff_rules` after the result exists;
+5. apply every matching rule from `team-config.json` and send the result to
+   each exact returned `recipient_address` with `send_message_to`;
+6. return the result to the caller when no rule applies, then stop rather than
+   polling or performing the next specialist's work.
+
+This makes routing flexible without making agent responsibilities ambiguous:
+the same specialist can be invoked by a user, another agent, or a resumed
+workflow, and the completed result—not a hardcoded linear sequence—determines
+what happens next. Review gates, specialist escalation, and terminal delivery
+are therefore conditional workflow rules rather than universal stages. Keep
+normal success rules, recovery rules, and terminal rules mutually clear so a
+result cannot be routed both forward and backward accidentally.
+
+## Separation Of Concerns And Agent Package Content Contract
+
+Use the following content contract when creating or reviewing an agent team.
+The files have different responsibilities; do not spread one workflow across
+several competing prompts.
+
+### One Canonical Owner Per Kind Of Guidance
+
+Treat the package as layered configuration rather than as several prompts that
+all describe the same workflow:
+
+| File | Owns | Must not own |
+| --- | --- | --- |
+| `agent.md` | Runtime identity, role, team context, authoritative skill reminder, runtime-only stance, and the team's universal post-work communication convention. | Detailed work procedure, artifact schemas, another specialist's responsibilities, or the conditional routing table. |
+| `team.md` | Team purpose, member boundaries, entry contract, concise workflow paths, team-wide communication policy, and recovery/terminal expectations. | A specialist's checklist, full artifact schema, tool-specific work procedure, or duplicated route conditions. |
+| `SKILL.md` | One specialist's reusable responsibility: inputs, work sequence, decisions, artifacts, validation, result classification, recovery, and the post-work handoff procedure. | Canonical recipient addresses, team-wide policy, or a duplicate of the team's complete routing matrix. |
+| `team-config.json` | Runtime roster, coordinator, rooted member addresses, and conditional handoff rules. | Specialist implementation instructions, long workflow prose, or duplicated skill checklists. |
+| `agent-config.json` | Explicit skill attachment and runtime wiring such as tools, processors, and lifecycle settings. | Behavioral workflow, artifact requirements, or routing logic. |
+| `templates/` and shared references | Durable artifact structure, reusable schemas, and principles shared by the owners that use them. | Runtime recipient selection or agent-specific identity. |
+
+The practical ownership rule is:
+
+- If the guidance is reusable whenever the skill is attached to another agent,
+  it belongs in `SKILL.md`.
+- If it defines how several members cooperate, it belongs in `team.md` or
+  `team-config.json`: prose and boundaries in `team.md`, executable routing in
+  `team-config.json`.
+- If it is only about this runtime agent's identity, tone, or attached-skill
+  selection, it belongs in `agent.md`.
+- If it only wires definitions into the runtime, it belongs in
+  `agent-config.json`.
+
+### The Work-to-Handoff Boundary
+
+Handoff is a short phase after the specialist's work, not a second work
+workflow. For a result-based team, the intended lifecycle is:
+
+```text
+receive input -> use the attached skill -> persist artifacts and result
+-> classify the outcome -> call get_handoff_rules
+-> apply every matching rule -> use the team's declared handoff tool
+-> send to every exact returned recipient -> stop
+```
+
+The layers divide this lifecycle as follows:
+
+- `SKILL.md` defines the work, the evidence and artifacts that must exist, the
+  result fields used for routing, and when the work is complete.
+- `agent.md` or `team.md` states the universal communication convention. In a
+  `send_message_to`-based team, it must explicitly say to use
+  `send_message_to` for every required handoff and not to mix it with
+  `delegate_task` for the same workflow.
+- `team-config.json` decides which conditions match and supplies the canonical
+  `recipient_address` values. Agents must not infer or hard-code those
+  recipients.
+- The agent applies **all** matching rules, because one result may require a
+  primary handoff and an informational notification. It returns the result to
+  the caller when no rule matches and stops after required handoffs succeed.
+
+`delegate_task` is a separate mechanism for starting a delegated execution. It
+is not the normal replacement for a completed-result handoff. A team may use
+it deliberately, but that choice must be explicit in the team/agent contract
+and must not leave the agent with conflicting instructions to use both
+mechanisms for the same transition.
+
+### Separation Review Questions
+
+Before merging a package, ask:
+
+1. Can a reader identify the single file that owns each rule?
+2. Can the skill be reused without inheriting stale team member names or
+   recipient addresses?
+3. Can routing conditions or recipients change in `team-config.json` without
+   rewriting the specialist's work procedure?
+4. Can a specialist finish its work and hand off without implementing the next
+   specialist's responsibility?
+5. Are team-wide rules stated once and referenced elsewhere rather than copied
+   into every agent and skill prompt?
+
+### `agent.md` — Fixed Agent Shell
+
+Keep `agent.md` short and structurally consistent. It should contain:
+
+1. frontmatter with `name`, `description`, `category`, and `role`;
+2. one sentence identifying the agent and team;
+3. one instruction naming the bundled skill as the authority for the agent's
+   work;
+4. the standard post-work handoff transition;
+5. only role-specific durable-artifact obligations that are not already owned
+   by the skill.
+
+Use this shape for the standard transition:
+
+```text
+You are the <role> for the <team>.
+
+Follow the bundled `<skill-name>` skill as the authoritative workflow for your
+responsibility, inputs, outputs, validation, and recovery.
+
+After the skill-defined work is complete, persist the result and artifacts,
+call `get_handoff_rules`, apply every matching rule, send the result to each
+exact returned `recipient_address` with `send_message_to`, and stop. If no rule
+matches, return the result to the user or calling workflow.
+```
+
+`agent.md` should not contain the team's detailed routing matrix, another
+agent's workflow, or a second copy of the skill. Its purpose is identity, skill
+binding, and the transition from work to handoff.
+
+### `SKILL.md` — Specialist Work Contract
+
+The skill is the authoritative guide for the agent's own work. It should
+contain, in execution order:
+
+- purpose and responsibility boundary;
+- required inputs and readiness checks;
+- owned work and explicit non-ownership;
+- operating sequence and decision points;
+- required artifacts and artifact templates;
+- validation, quality bars, and user-approval boundaries;
+- recovery and escalation conditions;
+- the definition of a complete result;
+- the result fields needed by the team's handoff rules.
+
+The skill should explain **what outcome to produce**, but should not duplicate
+the complete team routing matrix. It may state that the agent must call
+`get_handoff_rules` after the result exists; `team-config.json` remains the
+authority for the actual conditional recipients.
+
+### `team.md` — Team Contract
+
+`team.md` should contain the team's identity and shared operating model:
+
+- team purpose and entry specialist;
+- member responsibilities and ownership boundaries;
+- entry contract and required upstream package;
+- concise high-level workflow paths, including conditional paths;
+- cumulative artifact visibility and communication expectations;
+- recovery boundaries and terminal completion conditions.
+
+Keep detailed specialist procedures, checklists, and classification definitions
+in the owning skills. Keep the summary accurate when the team has both direct
+and review-gated paths.
+
+### `team-config.json` — Routing Policy
+
+`team-config.json` should contain the runtime team roster and conditional
+handoff policy:
+
+- member names and agent references;
+- coordinator, when the team has one;
+- canonical rooted `from` and `to` addresses;
+- explicit natural-language rules describing when each handoff applies.
+
+Rules must be based on the completed result, not on an assumed fixed sequence.
+They should cover normal success, recovery, informational notifications when
+needed, and terminal return. Make mutually exclusive success routes clear;
+allow multiple matching rules when one result intentionally requires multiple
+messages, such as a primary handoff plus an informational notification.
+
+### `agent-config.json` — Runtime Wiring
+
+`agent-config.json` should explicitly bind the agent's skill and expose every
+tool required by that skill. A result-based team member normally needs both
+`send_message_to` and `get_handoff_rules`. The configured skill name, skill
+folder, and `SKILL.md` frontmatter name must match.
+
+### Result Envelope And Handoff Wording
+
+Before calling `get_handoff_rules`, an agent should persist a concise result
+that includes, as applicable:
+
+- status or outcome classification, such as `Completed`, `Blocked`, `Pass`,
+  `Fail`, `Requirement Gap`, or `Design Impact`;
+- route-relevant classification fields, using the team's exact field names and
+  values;
+- absolute paths to the durable artifacts and evidence;
+- approval state, validation result, assumptions, and open risks;
+- the next expected action and any recovery context.
+
+Use this wording pattern in skills and team rules:
+
+```text
+After the owned work and required artifacts are complete, classify the result
+and call `get_handoff_rules`. Apply every matching rule and send the appropriate
+result to each exact returned `recipient_address` using `send_message_to`. If no
+rule applies, return the result to the user or calling workflow. After all
+required handoffs succeed, stop and do not poll.
+```
+
+Do not write “send the result to the recipient” when multiple rules may match.
+Use “each exact returned recipient,” and make zero-match behavior explicit.
+Do not hardcode normal recipients in the agent shell. `delegate_task` is for
+starting a separate delegated execution; it is not a replacement for this
+post-work, result-based handoff protocol.
+
+## Canonical Example Team: Evidence-Driven Delivery
+
+For a complete working example, refer to
+[`agent-teams/evidence-driven-delivery-team/`](agent-teams/evidence-driven-delivery-team/).
+It models a normal human delivery loop with four independent specialists:
+
+```text
+/user -> /planner -> /implementer -> /validator
+           |              ^              |
+           +-> /investigator ------------+
+                   |                      |
+                   +------> /planner <---+
+```
+
+The canonical edges are:
+
+- The runtime entry is `/planner` because `coordinatorMemberName` is
+  `planner`; the user or calling workflow sends the request there first.
+- `/investigator -> /planner`: initial or task-focused evidence, including
+  blocked investigation evidence.
+- `/planner -> /implementer`: one ready task or in-scope rework.
+- `/planner -> /investigator`: a material unknown prevents defining the next
+  task safely.
+- `/implementer -> /validator`: implementation and local checks are complete.
+- `/implementer -> /planner`: implementation reveals a blocker, invalid
+  dependency, or scope mismatch.
+- `/validator -> /planner`: validation produces `Pass`, `Fail`, or `Blocked`
+  feedback.
+
+Implementer and Validator do not contact Investigator directly. They send
+evidence or feedback to Planner, which owns the decision to request focused
+investigation or continue implementation.
+
+- **Investigator** establishes evidence for the overall request or the next
+  focused task.
+- **Planner** is the coordinator and entry specialist. It chooses direct,
+  incremental-slice, or discovery-led planning and defines only the next
+  smallest valuable task or focused investigation question. Each step has
+  explicit scope, expectation, dependencies, and validation conditions.
+- **Implementer** executes one ready micro-task and records the actual result.
+- **Validator** compares the actual result with the planner's expectation and
+  produces evidence-backed `Pass`, `Fail`, or `Blocked` feedback.
+- **Planner** consumes the feedback and chooses in-scope rework, the next
+  small task, focused investigation, a blocker result, or completion. For a
+  large unclear objective, it investigates only enough to make the next step
+  safe rather than planning the whole product in advance.
+
+This example demonstrates why the handoff is a separate post-work phase. Each
+specialist focuses on its own work and result; after completion, it calls
+`get_handoff_rules`, applies every matching rule, sends the required messages,
+and stops. Planner coordinates the next step without implementing or
+validating, Validator does not fix, and Investigator does not plan. All
+handoffs in this example use `send_message_to`; the team config changes the
+loop without changing the specialists' core work contracts.
 
 ## Recommended Practice For Agent Packages
 
@@ -283,12 +626,15 @@ Put the real behavior here:
 
 - workflow stages and ordering
 - artifact schemas and output expectations
-- handoff rules
+- result classification and the post-work handoff procedure
 - validation rules
 - blocking rules
 - quality bars
-- routing rules
 - reusable heuristics
+
+The skill may define the result fields and explain when to call
+`get_handoff_rules`, but the team's `team-config.json` owns the actual route
+conditions and recipient addresses.
 
 ### `agent-config.json`
 
@@ -374,8 +720,8 @@ This teaches the agent which output fails and why, while the positive prompt sti
 ### Put In `SKILL.md`
 
 - reusable workflow steps and stage order
-- artifact order, artifact expectations, and handoff rules
-- routing rules, blocking rules, and send-back behavior
+- artifact order, artifact expectations, and the post-work handoff procedure
+- result classification, blocking rules, and send-back behavior
 - checklists, operating heuristics, and collaboration guidance
 - reusable policy or quality bars that should still apply if the skill is attached somewhere else later
 
@@ -444,9 +790,12 @@ Teams are intentionally modeled as direct specialist cooperation.
 In practice:
 
 - `team.md` gives the team identity
-- `team-config.json` defines the member list and references
-- each specialist owns its own workflow in `SKILL.md`
-- handoffs should be expressed by the specialist packages, not hidden in a large team-level prompt
+- `team-config.json` defines the member list, references, conditional handoff
+  rules, and canonical recipient addresses
+- each specialist owns its own workflow and result contract in `SKILL.md`
+- `agent-config.json` exposes the tools that workflow requires
+- `team.md` summarizes the team-level paths without duplicating specialist
+  procedures
 
 Keep the team description simple and let the real operating detail live with the roles that own it.
 
@@ -459,11 +808,13 @@ Before considering an agent package update complete, verify:
 - `agent-config.json.skillNames` is explicit
 - tools in `agent-config.json` match what the workflow actually requires
 - team-local handoff names match `team-config.json`
+- the team/agent contract declares one handoff mechanism for each workflow
+- route conditions and recipient addresses are not duplicated in skills
 - reusable schemas and checklists are not duplicated across prompt files
 
 If an `agent.md` starts reading like a second `SKILL.md`, the split is wrong and should be corrected.
 
-The team is intentionally modeled as direct specialist cooperation instead of a separate coordinator agent. Handoffs and rework paths are expressed through `team.md` and each specialist's routing rules.
+The team is intentionally modeled as direct specialist cooperation instead of a separate coordinator agent. Handoffs and rework paths are expressed through `team.md` and `team-config.json`; each specialist's skill defines only the result and post-work handoff procedure needed to participate.
 The software engineering team's `delivery_engineer` owns release preparation, versioning, tagging, rollout, deployment, and verification so those responsibilities are explicit instead of being left implicit at the end.
 
 The runtime configuration is intentionally lightweight. After importing these definitions into AutoByteus, users are expected to customize tools, processors, models, and other config details to match their own environment.

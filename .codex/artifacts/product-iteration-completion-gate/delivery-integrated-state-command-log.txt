@@ -1,0 +1,19 @@
+$ git fetch origin --prune
+PASS: tracked refs refreshed.
+$ git rev-parse codex/product-manager-loop
+958ce7742aa53941145a5845cf59280008bad531
+$ git rev-parse origin/main
+51e2dd413eaedd482a0c7beb41fd49f006f441cf
+$ git merge --no-ff origin/main -m "Refresh product iteration completion gate against origin/main"
+PASS: merge completed as 3d32d6322cd6aeb3a6261d647091944ca15474ed.
+Conflict resolution: preserved task-specific Product Manager and product-iteration contract surfaces while retaining the non-conflicting origin/main changes.
+$ python3 -m json.tool agent-teams/software-engineering-team/team-config.json
+PASS
+$ python3 -m json.tool agent-teams/software-product-iteration-team/team-config.json
+PASS
+$ python3 -m json.tool agent-teams/software-engineering-team/agents/product-manager/agent-config.json
+PASS
+$ git diff --check 51e2dd4..HEAD
+PASS
+$ focused product-iteration contract probe
+PASS: exact state fields, completion-before-routing, terminal no-next-brief, callback separation, and one-off/product-loop boundary remain present after integration.

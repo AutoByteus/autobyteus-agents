@@ -7,21 +7,5 @@
   ],
   "skillNames": [
     "skill-optimizer"
-  ],
-  "inputProcessorNames": [
-    "UserInputPersistenceProcessor",
-    "UserInputContextBuildingProcessor"
-  ],
-  "llmResponseProcessorNames": [
-    "ProviderAwareToolUsageProcessor",
-    "AssistantResponsePersistenceProcessor",
-    "TokenUsagePersistenceProcessor"
-  ],
-  "systemPromptProcessorNames": [
-    "ToolManifestInjector"
-  ],
-  "toolExecutionResultProcessorNames": [],
-  "toolInvocationPreprocessorNames": [],
-  "lifecycleProcessorNames": [],
-  "avatarUrl": null
+  ]
 }

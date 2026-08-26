@@ -72,6 +72,8 @@ Reuse the design spec's behavior IDs. Assign a provisional ID only when concrete
 
 After the initial review result, complete the applicable prior-finding resolution table in `code-review-revision-record.md` after confirming this behavior basis and before finalizing prospective new findings.
 
+After the initial review result, complete the applicable prior-finding resolution table in `code-review-revision-record.md` after confirming this behavior basis and before finalizing prospective new findings.
+
 ## Structural / Design Checks
 
 Required for implementation review only.

@@ -1,1 +1,0 @@
-../../../../shared/writing-principles.md

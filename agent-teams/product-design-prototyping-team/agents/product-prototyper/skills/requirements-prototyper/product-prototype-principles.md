@@ -1,0 +1,1 @@
+../../../../shared/product-prototype-principles.md

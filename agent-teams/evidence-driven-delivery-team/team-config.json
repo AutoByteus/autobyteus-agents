@@ -1,0 +1,77 @@
+{
+  "coordinatorMemberName": "planner",
+  "avatarUrl": null,
+  "members": [
+    {
+      "memberName": "investigator",
+      "ref": "investigator",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "planner",
+      "ref": "planner",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "implementer",
+      "ref": "implementer",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "validator",
+      "ref": "validator",
+      "refType": "agent",
+      "refScope": "team_local"
+    }
+  ],
+  "handoffs": [
+    {
+      "from": "/investigator",
+      "to": "/planner",
+      "rules": [
+        "When the initial or task-focused investigation is complete, evidence-backed, and sufficient for Planner to define the next small step, with unknowns and constraints explicitly recorded.",
+        "When investigation is blocked or an evidence gap requires Planner to decide whether to narrow the next step, request a different investigation, or return a blocked result."
+      ]
+    },
+    {
+      "from": "/planner",
+      "to": "/implementer",
+      "rules": [
+        "When the next micro-task is small enough to execute, its dependencies are resolved, its expected outcome and validation conditions are explicit, and no material unknown requires investigation first.",
+        "When validation feedback has been incorporated into an in-scope rework task or the next small task, and the revised execution package is ready."
+      ]
+    },
+    {
+      "from": "/planner",
+      "to": "/investigator",
+      "rules": [
+        "When the coordinator receives a new broad or unclear request and initial evidence is needed before the first small task can be defined.",
+        "When the next small step cannot be defined safely because a material unknown or missing task-specific evidence must be investigated first."
+      ]
+    },
+    {
+      "from": "/implementer",
+      "to": "/validator",
+      "rules": [
+        "When the assigned micro-task is implemented, implementation evidence is persisted, implementation-scoped checks are complete, and the result is ready for comparison with Planner's expectation."
+      ]
+    },
+    {
+      "from": "/implementer",
+      "to": "/planner",
+      "rules": [
+        "When implementation proves that the current micro-task cannot be completed within its approved scope, its dependencies are invalid, or a blocker requires Planner to revise the next step before validation can continue. Do not route directly to Investigator; Planner owns that decision."
+      ]
+    },
+    {
+      "from": "/validator",
+      "to": "/planner",
+      "rules": [
+        "When validation is complete with an observed-versus-expected comparison, evidence, and a Pass, Fail, or Blocked result, and Planner must decide the next small step, rework, investigation, or terminal outcome. Validator does not select the next specialist."
+      ]
+    }
+  ]
+}

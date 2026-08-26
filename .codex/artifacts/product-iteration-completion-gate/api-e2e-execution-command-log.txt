@@ -1,0 +1,10 @@
+$ python3 -m json.tool ...
+Product Iteration Team config: PASS
+Software Engineering Team config: PASS
+Product Manager agent config: PASS
+$ focused state-contract probe
+state-contract assertions: PASS
+$ source forbidden-phrase scan
+unconditional next-feature scan: PASS
+$ git diff --check
+git diff --check: PASS
