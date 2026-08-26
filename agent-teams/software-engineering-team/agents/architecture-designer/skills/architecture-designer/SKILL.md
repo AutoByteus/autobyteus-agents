@@ -142,12 +142,43 @@ two fields. Do not route before this classification exists.
     deployment, ownership-boundary, blast-radius, or unresolved-uncertainty
     impact is present.
 
-File count is supporting evidence, not a hard threshold. `Large` or `High`
-selects independent architecture review. `Small` or `Medium` with `Low` risk
-may go directly to Implementation Engineer. Record the values, rationale,
-affected surfaces, and selected route in the design spec. If later evidence
-changes the classification, update the design artifact and route the revised
-result rather than silently downgrading risk.
+### Content-Heavy Work Classification Guardrail
+
+Separate **content volume** from **code-architecture impact** before assigning
+these fields. A large number of Markdown/JSON/content packages, source files,
+catalog entries, generated records, or schema conversions does not by itself
+make work `Large` or `High`. Classify the implementation surface and production
+path, not the number of content records.
+
+When the bounded delta is a deterministic content/projection conversion plus
+catalog, generator, verifier, focused test, or documentation updates within
+existing ownership and contracts, it is normally `Small` or `Medium` with
+`architectural_risk=Low`, even when the content inventory is large. Confirm
+that the existing readers/contracts can consume the result and that no new
+runtime owner, API, persistence migration, route behavior, security boundary,
+concurrency behavior, deployment concern, or normative availability/scoring
+semantics is introduced.
+
+Use `Large` or `High` only when the implementation itself materially changes
+code architecture or another listed risk surface—for example, introducing or
+moving runtime owners, changing shared contracts, migrating learner state,
+rewiring routes/APIs, removing duplicate readers, or reconciling multiple
+subsystems. Do not inflate risk merely because the current repository contains
+legacy architecture that is explicitly out of scope for the requested delta.
+Conversely, a small amount of content can still be `High` when its integration
+changes a shared contract or persistence/ownership boundary.
+
+Record the distinction explicitly in `design-spec.md`: list content inventory
+as evidence, then separately list the code/runtime/persistence surfaces actually
+in scope. If implementation discovers that a content-only change requires
+material architecture changes, return a Design Impact and reclassify rather
+than broadening the direct route silently.
+
+`Large` or `High` selects independent architecture review. `Small` or `Medium`
+with `Low` risk may go directly to Implementation Engineer. Record the values,
+rationale, affected surfaces, and selected route in the design spec. If later
+evidence changes the classification, update the design artifact and route the
+revised result rather than silently downgrading risk.
 
 ## Architecture Design Revision Record
 
