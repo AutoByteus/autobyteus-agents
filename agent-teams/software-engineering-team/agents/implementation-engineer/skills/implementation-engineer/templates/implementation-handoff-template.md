@@ -4,14 +4,16 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 ## Upstream Artifact Package
 
+- Upstream route: `Direct Requirements-to-Implementation` / `Architecture Design`
 - Requirements doc:
 - Investigation notes:
 - Requirements revision record:
-- Design spec:
+- Requirements routing assessment:
+- Design spec: `N/A — not applicable` for the direct route
 - Supplemental task artifacts:
-- Architecture design revision record:
-- Design review report:
-- Architecture review revision record:
+- Architecture design revision record: `N/A — not applicable` for the direct route
+- Design review report: `N/A — not applicable` for the direct route
+- Architecture review revision record: `N/A — not applicable` for the direct route
 - Triggering rework report, revision record, or evidence, when applicable:
 
 ## Current Implementation Summary
@@ -30,11 +32,14 @@ Summarize the complete current implementation. For a post-initial delta, referen
 
 ## Routing Classification (Mandatory)
 
-Carry these values from `design-spec.md`, then confirm them against the
-completed implementation before handoff.
+For `Architecture Design`, carry these values from `design-spec.md`. For
+`Direct Requirements-to-Implementation`, carry the preliminary values from the
+requirements routing assessment. Confirm them against the completed
+implementation before handoff.
 
 - Task size (`Small`/`Medium`/`Large`):
 - Architecture risk (`Low`/`High`):
+- Requirements routing assessment path:
 - Classification confirmed or changed: `Confirmed` / `Changed`
 - Evidence and rationale for confirmation or change:
 - Selected route (`Direct API/E2E`/`Code Review`/`Architecture Designer`):
@@ -43,7 +48,10 @@ completed implementation before handoff.
 
 ## Reviewed Behavior Implementation Trace
 
-Reuse the design spec's stable behavior IDs. Record the actual implementation path and outcome without copying the full upstream behavior narrative.
+Reuse stable behavior IDs from the design spec on an architecture route or
+from the requirements document on a direct route. Record the actual
+implementation path and outcome without copying the full upstream behavior
+narrative.
 
 | Behavior ID | Approved Change / Preserved Outcome | Implemented Production Path / Key Files | Result / Notes |
 | --- | --- | --- | --- |

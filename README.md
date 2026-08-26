@@ -30,11 +30,11 @@ The skill optimizer is a lightweight standalone agent that uses the shared `skil
 
 ## Software Development Department
 
-The software development department is the end-to-end software entrypoint. `head_of_software_development` starts each independent package through Requirements Engineering and returns the verified terminal result. It contains three independent specialist teams: Requirements Engineering, Product Design & Prototyping, and Software Engineering. Requirements Engineer requests Product Prototyper for an interactive requirements visualizer when the user needs help understanding an unclear decision, or for a final runnable prototype when the behavior is sufficiently understood, then hands an explicitly approved, architecture-ready package directly to Architecture Designer.
+The software development department is the end-to-end software entrypoint. `head_of_software_development` starts each independent package through Requirements Engineering and returns the verified terminal result. It contains three independent specialist teams: Requirements Engineering, Product Design & Prototyping, and Software Engineering. Requirements Engineer requests Product Prototyper for an interactive requirements visualizer when the user needs help understanding an unclear decision, or for a final runnable prototype when the behavior is sufficiently understood. After explicit approval, it records a preliminary architecture-design routing assessment and sends either a bounded direct-implementation package to Implementation Engineer or an architecture-design-needed/unclear package to Architecture Designer.
 
 ## Requirements Engineering Team
 
-The requirements engineering team turns an initial product or technical request into an evidence-grounded, explicitly user-approved, architecture-ready requirements package. `requirements_engineer` owns current and desired behavior, scope, acceptance criteria, conditional prototype requests, and requirement revision history. Product Design & Prototyping is an external specialist team: Requirements Engineer consumes its delivered UI/UX evidence but does not manage its repository, tickets, commits, or internal workflow.
+The requirements engineering team turns an initial product or technical request into an evidence-grounded, explicitly user-approved requirements package, then assesses whether architecture design is needed. `requirements_engineer` owns current and desired behavior, scope, acceptance criteria, conditional prototype requests, requirement revision history, and the preliminary routing assessment. Product Design & Prototyping is an external specialist team: Requirements Engineer consumes its delivered UI/UX evidence but does not manage its repository, tickets, commits, or internal workflow.
 
 ## Product Design & Prototyping Team
 
@@ -42,7 +42,7 @@ The product design and prototyping team independently maintains the prototype re
 
 ## Software Engineering Team
 
-The software engineering team starts with `architecture_designer` and consumes an approved requirements package. Architecture Designer completes the technical design and classifies `task_size` as Small, Medium, or Large plus `architectural_risk` as Low or High. Small/Medium low-risk work can proceed directly through implementation and API/E2E validation; Large or High-risk work uses independent architecture and source-review gates before validation. After the user verifies the result and `delivery_engineer` completes finalization, Delivery Engineer returns the terminal package to Architecture Designer, which verifies and routes the outcome through the applicable message-based handoff rule or returns it to the caller.
+The software engineering team consumes either an approved requirements package routed directly for bounded implementation or an architecture-design-needed package. Architecture Designer completes technical design when selected and classifies `task_size` as Small, Medium, or Large plus `architectural_risk` as Low or High. Small/Medium low-risk work can proceed directly through implementation and API/E2E validation; Large or High-risk work uses independent architecture and source-review gates before validation. After the user verifies the result and `delivery_engineer` completes finalization, Delivery Engineer returns the terminal package to Architecture Designer, which verifies and routes the outcome through the applicable message-based handoff rule or returns it to the caller.
 
 ## Research Engineering Team
 

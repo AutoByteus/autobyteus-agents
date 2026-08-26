@@ -59,7 +59,16 @@ Do not begin with browser interaction merely because browser tools are available
 
 ## Upstream Inputs
 
-- Accept either the cumulative review-passed package from `code_reviewer`—including approved requirements doc, requirements investigation notes, requirements revision record, design spec, every still-relevant supplemental task artifact, architecture-design revision record, design review report, architecture review revision record, implementation handoff, implementation revision record, code review report, and code review revision record—or the direct cumulative package from `implementation_engineer` for `task_size=Small` or `Medium` and `architectural_risk=Low`. The direct package has no architecture-review or code-review artifacts; record those as `Not Applicable`.
+- Accept either the cumulative review-passed package—including approved
+  requirements doc, requirements investigation notes, requirements revision
+  record, design spec, every still-relevant supplemental task artifact,
+  architecture-design revision record, design review report, architecture
+  review revision record, implementation handoff, implementation revision
+  record, code review report, and code review revision record—or the direct
+  cumulative package for `task_size=Small` or `Medium` and
+  `architectural_risk=Low`. The direct package carries the requirements
+  routing assessment and has no architecture-design, architecture-review, or
+  code-review artifacts; record those as `N/A — not applicable`.
 - On a rerun after a prior execution, also accept the existing coverage investigation, execution coverage report, and API/E2E revision record. Use them to locate prior decisions and results, then update the canonical artifacts and append the next revision entry rather than creating copies.
 - On an API/E2E-owned `Local Fix` from `code_reviewer` or `delivery_engineer`, also accept the specific test, fixture, environment, execution, or reporting issue and its evidence. When delivery discovered the issue, accept the delivery revision record and relevant `DR-*` entry. Resume the affected API/E2E work, preserve the classification, and use `get_handoff_rules` for the completed result: a reviewed route may return through Code Reviewer, while a direct low-risk route may return directly to Delivery after successful validation.
 - Treat the full upstream package as active validation context, not just the latest implementation handoff or code review report.
@@ -192,7 +201,16 @@ Browser validation is normally unnecessary for a backend-local change when valid
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
 - Finish validation, persist the reports, preserve the classification and selected route, call `get_handoff_rules`, and use the returned conditional rules as the routing authority before sending a handoff.
-- Include approved requirements doc, requirements investigation notes, requirements revision record, design spec, every still-relevant supplemental task artifact, architecture-design revision record, implementation handoff, implementation revision record, coverage investigation, execution coverage report, API/E2E revision record, and any still-relevant triggering test-review or delivery report, delivery revision record, or rework evidence as absolute filesystem paths. Include architecture-review and code-review artifacts when they exist; record them as `Not Applicable` for a direct route. The API/E2E revision record must exist after a completed result.
+- Include approved requirements doc, requirements investigation notes,
+  requirements revision record, the requirements routing assessment, every
+  still-relevant supplemental task artifact, implementation handoff,
+  implementation revision record, coverage investigation, execution coverage
+  report, API/E2E revision record, and any still-relevant triggering test-review
+  or delivery report, delivery revision record, or rework evidence as absolute
+  filesystem paths. Include design and architecture-review artifacts when the
+  architecture route produced them; record architecture-owned and source-review
+  artifacts as `N/A — not applicable` for a direct route. The API/E2E revision
+  record must exist after a completed result.
 - Attach the complete cumulative package using the tool's reference-file input when available; do not rely only on paths in the message text.
 - For a `Fail` message to the returned accountable recipient (normally `/code_reviewer`), include failing scenario and acceptance-criteria IDs, exact commands or execution mode, expected versus observed behavior, relevant logs/screenshots/artifacts, preliminary classification, and why focused failure-origin review is requested.
 - For a reviewed-route `Pass` message to the returned recipient (normally `/code_reviewer`), include the result, final confidence, broader-validation decision, residual risks, every added, updated, or removed durable coverage path, and an explicit request for proportional test-code review.

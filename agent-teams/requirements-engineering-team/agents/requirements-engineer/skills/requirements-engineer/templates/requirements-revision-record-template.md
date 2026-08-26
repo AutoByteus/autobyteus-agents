@@ -23,7 +23,7 @@ The latest `requirements-doc.md` and `investigation-notes.md` remain authoritati
 - Supplemental artifacts added, changed, or removed:
 - Prototype evidence or product decisions incorporated:
 - User approval impact:
-- Downstream architecture impact:
+- Downstream architecture or direct-implementation route impact:
 - Remaining gaps, assumptions, or blocked decisions:
 - Next action or recipient:
 

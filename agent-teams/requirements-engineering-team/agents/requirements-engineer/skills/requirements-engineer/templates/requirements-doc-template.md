@@ -170,5 +170,26 @@ This section transfers constraints and open technical questions. It does not def
 - Applicable UI/UX approval and final visual-reference basis are recorded: `Yes` / `No` / `N/A`
 - Material assumptions and open decisions are visible: `Yes` / `No`
 - User approval received: `Yes` / `No`
-- Architecture-ready: `Yes` / `No`
+- Requirements package ready for downstream route: `Yes` / `No`
 - Remaining blocker:
+
+## Architecture Design Routing Assessment
+
+Complete this section only after `Status` is `Approved` and the Readiness Check
+passes. This is a Requirements Engineer routing assessment, not target
+architecture and not the final architecture-owned risk classification.
+
+- Assessment status: `Complete` / `Unclear` / `Blocked`
+- Assessment owner and date:
+- Preliminary task size: `Small` / `Medium` / `Large` / `N/A — insufficient evidence`
+- Preliminary architectural risk: `Low` / `High` / `N/A — insufficient evidence`
+- Structural surfaces reviewed:
+- Payload/content surfaces reviewed:
+- Structural-impact triggers: `None` / `Present` / `Unknown`
+- Evidence paths:
+- Decision rationale:
+- Selected route: `Architecture Designer` / `Implementation Engineer` / `Department Coordinator`
+- Outcome classification: `Approved Architecture-Ready` / `Approved Direct-Implementation` / `Architecture Design Unclear` / `Blocked`
+- Direct-route conditions all satisfied: `Yes` / `No` / `N/A — not applicable`
+- Architecture design, review, and design-revision artifacts: `N/A — not applicable` for a direct route
+- Downstream re-entry trigger:

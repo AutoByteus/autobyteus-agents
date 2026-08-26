@@ -58,7 +58,15 @@
       "from": "/requirements_engineering_team/requirements_engineer",
       "to": "/software_engineering_team/architecture_designer",
       "rules": [
-        "When Requirements Engineer classifies the cumulative package as Approved Architecture-Ready because every behavior-defining supplement is consistent, architecture readiness has passed, and the user has explicitly approved the intended behavior."
+        "When Requirements Engineer classifies the cumulative package as Approved Architecture-Ready because every behavior-defining supplement is consistent, requirements readiness has passed, the user has explicitly approved the intended behavior, and the Architecture Design Routing Assessment selects Architecture Designer with the evidence and rationale for architecture design. Include the assessment path and preliminary task-size/risk values; Architecture Designer owns the final classification.",
+        "When Requirements Engineer classifies the cumulative package as Architecture Design Unclear because the approved requirements are ready but the available evidence cannot establish a safe direct-implementation route. Include the unresolved assessment fields, evidence paths, and conservative rationale."
+      ]
+    },
+    {
+      "from": "/requirements_engineering_team/requirements_engineer",
+      "to": "/software_engineering_team/implementation_engineer",
+      "rules": [
+        "When Requirements Engineer classifies the cumulative package as Approved Direct-Implementation because the approved requirements passed readiness, the Architecture Design Routing Assessment selects Implementation Engineer with preliminary task_size=Small or Medium, preliminary architectural_risk=Low, and structural-impact checks that found no API or contract, persistence or schema, security or privacy, concurrency or lifecycle, deployment, ownership or subsystem-boundary, migration, architectural-pattern, or structural-refactoring change. Include the assessment path, evidence, rationale, and direct-implementation re-entry trigger; design and architecture-review artifacts are N/A — not applicable."
       ]
     },
     {

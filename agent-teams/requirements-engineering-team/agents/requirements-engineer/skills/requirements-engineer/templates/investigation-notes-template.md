@@ -51,6 +51,35 @@ Record `No current supported behavior` for genuinely new behavior. Do not treat 
 | --- | --- | --- | --- |
 |  |  |  |  |
 
+## Structural And Payload Surface Inventory
+
+Use this inventory to support the later Architecture Design Routing
+Assessment. Keep the evidence factual; do not design the target architecture.
+
+### Payload Or Content Surfaces
+
+- Files, records, documents, catalogs, fixtures, or generated payloads:
+- Existing readers, writers, or contracts that consume them:
+- Evidence paths:
+
+### Structural Surfaces
+
+- Runtime modules, shared interfaces, routes, APIs, persistence boundaries,
+  security/concurrency controls, deployment configuration, or ownership
+  boundaries:
+- Existing structural surfaces that can support the approved behavior:
+- Evidence paths:
+
+### Potential Architecture-Design Triggers
+
+- API or external-contract change:
+- Persistence schema or invariant change:
+- Security or privacy boundary change:
+- Concurrency or lifecycle change:
+- Deployment, migration, ownership-boundary, architectural-pattern, or
+  structural-refactoring change:
+- Confirmed absent, present, or unknown:
+
 ## Runtime, Probe, Or Reproduction Findings
 
 | Method / Command | Scenario | Observation | Requirement Implication | Artifact / Evidence Path |
@@ -122,6 +151,10 @@ Record `No current supported behavior` for genuinely new behavior. Do not treat 
 
 Summarize the evidence that materially shaped current behavior, desired behavior, scope, acceptance criteria, quality constraints, data-continuity requirements, or open decisions.
 
-## Notes For Downstream Architecture Design
+## Notes For Downstream Architecture Design Or Direct Implementation
 
-Record verified constraints, relevant current implementation facts, and technical questions that downstream architecture should address. Do not prescribe the target structure here.
+Record verified constraints, relevant current implementation facts, and
+technical questions that the downstream route should address. Direct
+implementation may use this evidence without inventing target architecture;
+Architecture Designer uses it for architecture-owned decisions. Do not
+prescribe the target structure here.

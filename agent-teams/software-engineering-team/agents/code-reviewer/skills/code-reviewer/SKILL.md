@@ -41,8 +41,19 @@ Keep their standards distinct. Implementation code receives the full structural 
 
 For implementation review:
 
-- Accept approved requirements doc, requirements investigation notes, requirements revision record, design spec, every still-relevant supplemental task artifact, architecture-design revision record, design review report, architecture review revision record, implementation handoff, and implementation revision record from `implementation_engineer`.
-- The implementation package must include `task_size` (`Small`/`Medium`/`Large`), `architectural_risk` (`Low`/`High`), and the selected route. Normal implementation source review is selected for `Large` or `High` work. A direct-route API/E2E failure may still arrive here for focused failure-origin review without design-review or source-review artifacts; record those artifacts as `Not Applicable` rather than inventing a prior review.
+- Accept the approved requirements doc, requirements investigation notes,
+  requirements revision record, design spec, every still-relevant supplemental
+  task artifact, architecture-design revision record, design review report,
+  architecture review revision record, implementation handoff, and
+  implementation revision record when the architecture route selected normal
+  implementation source review.
+- The implementation package must include `task_size`
+  (`Small`/`Medium`/`Large`), `architectural_risk` (`Low`/`High`), and the
+  selected route. Normal implementation source review is selected for `Large`
+  or `High` work. A direct-route API/E2E failure may still arrive here for
+  focused failure-origin review without design or source-review artifacts;
+  record those artifacts as `N/A — not applicable` rather than inventing a
+  prior review.
 - When implementation returns after a delivery-stage local fix, also accept the delivery revision record and triggering delivery evidence.
 - On later review rounds, also accept the current code review revision record and still-relevant triggering reports, revision records, or evidence.
 - Review against the complete implementation artifact chain, not only the handoff summary.
@@ -53,7 +64,13 @@ For successful API/E2E test-code review:
 
 For API/E2E failure-origin review:
 
-- Accept the cumulative failure package from `api_e2e_engineer`: the full upstream chain, code review report, code review revision record, coverage investigation, execution coverage report, API/E2E revision record, failing scenario IDs, exact commands, expected/observed behavior, and failure evidence.
+- Accept the cumulative failure package from `api_e2e_engineer`: the approved
+  requirements and implementation context, the coverage investigation,
+  execution coverage report, API/E2E revision record, failing scenario IDs,
+  exact commands, expected/observed behavior, and failure evidence. Existing
+  design or source-review artifacts are included when present; they are
+  `N/A — not applicable` for a direct route. Do not require a code-review
+  report or revision record before creating this failure-origin review.
 - Treat a failing test as evidence to classify, not automatic proof that the implementation is wrong.
 
 ## Required Shared Reads
@@ -66,7 +83,14 @@ For API/E2E failure-origin review:
 
 ## Implementation Review Basis And Sequence
 
-1. Understand the approved requirements and business intent, the design spec's relevant behavior and production-path map, and the architecture review's basis confirmation and material-premise records. Treat the requirements as intended-behavior authority and the reviewed map as prior technical context, not immutable truth.
+1. For normal implementation review, understand the approved requirements and
+   business intent, the design spec's relevant behavior and production-path
+   map, and the architecture review's basis confirmation and material-premise
+   records. For API/E2E failure-origin review, use the approved requirements,
+   implementation handoff, coverage reports, and observed failure evidence
+   instead; a direct route does not require a design spec. Treat the
+   requirements as intended-behavior authority and any reviewed map as prior
+   technical context, not immutable truth.
 2. Confirm the relevant existing behavior, approved change, and behavior that must remain unchanged or outside scope. Do not judge, reopen, or redefine the business decision.
 3. Trace the complete relevant user-initiated, system-initiated, operational, or contract-driven behavior and enough of its production path and lifecycle to understand how the changed code participates in it. Compare the implementation handoff's behavior trace with the actual code; do not review the diff or a local method in isolation.
 4. On implementation-review round `>1`, use the prior canonical report, existing code review revision record, applicable upstream revision entries, and triggering evidence to locate what changed and why. Recheck prior unresolved findings first and verify every claimed resolution against the latest canonical artifacts, current code, diff, and evidence. Revision records are navigation, not proof.

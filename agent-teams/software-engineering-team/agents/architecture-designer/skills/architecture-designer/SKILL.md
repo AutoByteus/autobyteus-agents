@@ -7,13 +7,18 @@ description: Consume an approved requirements package, investigate the current a
 
 ## Purpose
 
-Turn an approved, architecture-ready requirements package into an evidence-grounded technical design that implementation and review can execute directly. Preserve the team's full existing architecture-design rigor while leaving requirement discovery, intended-behavior approval, and requirement revision ownership with `requirements_engineer`.
+Turn an approved requirements package routed for architecture design into an
+evidence-grounded technical design that implementation and review can execute
+directly. Preserve the team's full existing architecture-design rigor while
+leaving requirement discovery, intended-behavior approval, and requirement
+revision ownership with `requirements_engineer`.
 
 As Software Engineering Team coordinator, receive the approved package, coordinate the architecture boundary, and route the terminal outcome only after Delivery Engineer reports verified and successfully finalized completion.
 
 ## Required Inputs And Readiness
 
-Require the cumulative requirements package:
+Work from the cumulative requirements package selected for architecture
+design:
 
 - `requirements-doc.md` with explicit user approval
 - `investigation-notes.md`
@@ -25,7 +30,11 @@ Require the cumulative requirements package:
 
 Before design work:
 
-1. Confirm that the package is internally consistent and architecture-ready.
+1. Confirm that the package is internally consistent, approved for the
+   architecture-design route, and includes the Requirements Engineer's
+   preliminary routing assessment. An `Architecture Design Unclear` outcome
+   is an intentional conservative entry to resolve, not permission to skip
+   requirements validation.
 2. Confirm that behavior-defining supplements have the required approval state.
 3. Verify the recorded workspace and repository isolation rather than creating a competing task workspace.
 4. Read the current implementation and gather any additional architecture-level evidence needed for design.

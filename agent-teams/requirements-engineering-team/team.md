@@ -1,89 +1,47 @@
 ---
 name: Requirements Engineering Team
-description: A focused team for codebase-informed requirements engineering, explicit product decisions, user approval, and an architecture-ready requirements result.
+description: A focused requirements team that turns incoming requests or requirements packages into approved requirements and a result-based downstream route.
 category: software-engineering
 ---
 
-This team turns an initial software request into a precise, explicitly
-approved, architecture-ready requirements package. `requirements_engineer` is
-the coordinator and canonical requirements owner.
+This team owns requirements work, not the implementation that follows it.
+`requirements_engineer` is the local coordinator and canonical owner of the
+requirements result.
 
-Product Design & Prototyping is a separate specialist team. It owns its own
-prototype repository, project root, ticket folders, commits, and UI/UX
-deliverables. Requirements Engineering does not own those artifacts and does
-not define or manage Product Prototyper's tickets. It only decides whether an
-interactive visualizer or final prototype would resolve a requirements
-question and sends the focused request through the parent department's
-cross-team handoff rule.
+## Ownership Boundaries
 
-## Members And Responsibilities
+- `requirements_engineer` owns investigation, intended behavior, scope,
+  requirements, acceptance criteria, supporting evidence, user approval,
+  requirements readiness, the routing assessment, and its own artifacts.
+- Product Design & Prototyping is a separate team. Requirements Engineering
+  may request its visualizer or final prototype, but does not own its project,
+  repository, tickets, commits, or UI/UX artifacts.
+- Target architecture and implementation belong to downstream Software
+  Engineering specialists.
 
-- `requirements_engineer` owns investigation, current and desired behavior,
-  scope, requirements, acceptance criteria, supporting evidence, requirement
-  revisions, explicit user approval, architecture readiness, and the
-  Requirements Engineering Team result.
+## Team Contract
 
-Requirements Engineering defines intended behavior and measurable
-constraints. Target software architecture belongs to downstream engineering.
-The team may investigate source code deeply enough to establish current
-behavior, but it does not implement production code or design the target
-architecture.
+The Requirements Engineer uses its bundled skill to process the available
+request or requirements package. After the requirements work, approval, and
+routing assessment are complete, its classified result follows the parent
+department's conditional handoff rules: prototype clarification may go to
+Product Design & Prototyping, a bounded direct-implementation result may go
+to Implementation Engineer, an architecture-routed or unclear result may go
+to Architecture Designer, and a blocker may return to the department
+coordinator.
 
-## Collaboration Flow
+The detailed work sequence, artifact schemas, assessment criteria, and
+recovery rules belong to the Requirements Engineer skill and its templates.
+The parent department `team-config.json` owns cross-team recipient addresses
+and conditions; this local team has no competing cross-team routing table.
 
-1. `requirements_engineer` bootstraps its isolated task workspace and
-   investigates the request, source product, constraints, current behavior,
-   and desired behavior.
-2. It decides whether an interactive requirements visualizer or a final
-   product prototype would materially resolve a product, UI, interaction,
-   state, or journey question. If not, it continues its direct evidence and
-   approval path.
-3. If the user first needs an interactive explanation, it classifies the
-   outcome as `Requirements Visualization Needed` and sends a focused
-   cross-team message to
-   `/product_design_prototyping_team/product_prototyper` using the parent
-   department's dynamic handoff rule. The message carries the requirements
-   context and source locator, but Requirements Engineering does not create or
-   manage the Product team's repository or ticket. It may send another focused
-   visualization request after user feedback until the decision is understood.
-4. Product Design & Prototyping returns a review-ready requirements
-   visualizer, approved UI/UX package, `Requirement Impact`, `Not Recommended`,
-   or `Blocked` result. Requirements Engineer uses the
-   visualizer to engage the user, records the feedback, and integrates only
-   approved decisions into the canonical requirements package while preserving
-   Product Prototyper ownership of its repository, ticket, visualizer source,
-   `ui-ux-spec.md`, and final visual references. A
-   `Requirements Visualization Ready` result is review evidence, not user
-   approval; Requirements Engineer records the user's decision and requests a
-   focused revision when the question remains open.
-5. When final UI/UX production is needed after the behavior is sufficiently
-   understood, Requirements Engineer classifies the outcome as `Prototype
-   Needed` and sends the approved context through the parent department's
-   dynamic handoff rule.
-6. Requirements Engineer obtains explicit user approval for intended behavior,
-   verifies architecture readiness, and sends the cumulative approved package
-   directly to `architecture_designer` under the parent department's handoff
-   rule. A pre-architecture blocker returns to the department coordinator.
+## Communication Convention
 
-The Requirements Engineer task workspace remains separate from the Product
-team's prototype repository. The prototype repository may be a sibling of the
-source repository in the workspace, but it is never a Requirements Engineer
-worktree or a Requirements Engineering ticket folder.
+Every team member completes its own work, persists its result and artifacts,
+calls `get_handoff_rules`, applies every matching rule, sends the result with
+`send_message_to` to each exact returned `recipient_address`, and stops. If no
+rule matches, it returns the result to the user or calling workflow.
 
-## Handoff Protocol
-
-- At every completed or blocked outcome, call `get_handoff_rules` and use the
-  returned conditional rules as the routing authority.
-- Apply every matching rule and call `send_message_to` with the exact returned
-  `recipient_address`; do not infer a recipient from memory.
-- Cross-team prototype requests and results use the parent department's
-  rooted routes. The Requirements Engineering team has no local Product
-  Prototyper or Bootstrapper members and no local cross-team product routes.
-- Include the stable package identifier when supplied, status, next expected
-  action, and absolute paths to every still-relevant requirements artifact and
-  external prototype artifact.
-- If no returned rule applies, return the outcome to the user or calling
-  workflow. After all required messages succeed, end the stage and do not poll.
-
-Detailed investigation, requirements, prototype-gate, approval, artifact, and
-recovery rules belong to the `requirements_engineer` skill.
+Handoffs carry the stable package identifier, next expected action, and
+absolute paths to all still-relevant artifacts. Product-team artifacts remain
+externally owned and are referenced rather than recreated.
