@@ -97,8 +97,9 @@ For every planning invocation, follow this loop:
    is outside its scope.
 4. **Make executable:** define the expected outcome, dependencies, evidence
    to preserve, validation conditions, and completion signal.
-5. **Route:** send the task to Implementer, or send one focused question to
-   Investigator when the step is not yet safe to define.
+5. **Prepare the handoff:** make the next task or focused question executable
+   and record the result fields needed by the team's routing policy. The
+   post-work handoff determines the recipient; do not infer it in the skill.
 6. **Re-enter:** after feedback arrives, do not reuse the old plan blindly;
    update the plan revision and choose the next step from the new evidence.
 
@@ -121,9 +122,10 @@ current step.
    observable expected outcome, and explicit validation conditions.
 5. Persist the updated `plan.md`, current task result, evidence references,
    assumptions, and route rationale.
-6. Use the result-based handoff rules to send the task to Implementer, request
-   focused investigation from Investigator, or return a terminal or blocked
-   result to the caller.
+6. Classify the result, call `get_handoff_rules`, apply every matching rule,
+   and use the team's declared handoff tool with each exact returned
+   recipient. If no rule applies, return a terminal or blocked result to the
+   caller.
 
 ## Small-Step Standard
 

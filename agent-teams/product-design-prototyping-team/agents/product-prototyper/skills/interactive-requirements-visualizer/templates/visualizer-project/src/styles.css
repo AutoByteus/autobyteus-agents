@@ -1,0 +1,51 @@
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  color: #142233;
+  background: #f4f8f8;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+button { font: inherit; }
+
+.visualizer {
+  display: grid;
+  gap: 1.5rem;
+  margin: 0 auto;
+  max-width: 900px;
+  padding: clamp(1.5rem, 5vw, 4rem) 1.25rem;
+}
+
+.question { max-width: 650px; }
+.eyebrow { color: #087c78; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
+h1 { font-size: clamp(2rem, 6vw, 4rem); line-height: 0.98; margin: 0.6rem 0 1rem; }
+.question p:not(.eyebrow), .scene p { color: #587082; font-size: 1.05rem; line-height: 1.6; }
+
+.choices { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.choice { background: #fff; border: 1px solid #c9d9dc; border-radius: 999px; color: #385563; cursor: pointer; padding: 0.7rem 1rem; }
+.choice:hover, .choice:focus-visible, .choice.is-active { background: #0b8079; border-color: #0b8079; color: #fff; }
+
+.canvas { background: #fff; border: 1px solid #d4e2e3; border-radius: 1.5rem; min-height: 340px; padding: clamp(1.25rem, 5vw, 3rem); }
+.scene { display: grid; gap: 1.25rem; min-height: 280px; place-content: center; text-align: center; }
+.scene h2 { font-size: clamp(1.35rem, 3vw, 2rem); margin: 0; }
+.scene p { margin: 0 auto; max-width: 460px; }
+.actors { align-items: center; display: flex; gap: clamp(1rem, 7vw, 4.5rem); justify-content: center; }
+.person { align-items: center; display: grid; gap: 0.55rem; justify-items: center; font-weight: 750; }
+.person-head { background: currentColor; border-radius: 50%; display: block; height: 2.5rem; position: relative; width: 2.5rem; }
+.person-head::after { background: currentColor; border-radius: 1.5rem 1.5rem 0.5rem 0.5rem; bottom: -0.6rem; content: ""; height: 1.7rem; position: absolute; width: 3.5rem; left: 50%; transform: translateX(-50%); }
+.person-dark { color: #1b2f42; }
+.person-teal { color: #0b8079; }
+.person-purple { color: #7958b8; }
+.connection { align-items: center; display: flex; flex-direction: column; font-size: 0.7rem; font-weight: 800; gap: 0.35rem; min-width: 7rem; text-transform: uppercase; }
+.connection::before { content: "→"; font-size: 2rem; line-height: 1; }
+.message-line { color: #0b8079; }
+.task-line { color: #7958b8; }
+.boundary { color: #748b93; font-size: 0.8rem; margin: 0; text-align: center; }
+
+@media (max-width: 620px) {
+  .actors { gap: 1.15rem; }
+  .connection { min-width: 4.5rem; }
+  .connection span { font-size: 0.6rem; }
+}
