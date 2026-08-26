@@ -9,9 +9,10 @@ only the principles that must remain consistent across prototype roles.
 
 ## 1. Purpose And Fidelity Boundary
 
-- A product prototype is an evidence and approval instrument for product
-  behavior, UI, interaction, state, navigation, visual hierarchy, and journey
-  decisions.
+- A product prototype is an evidence instrument for product behavior, UI,
+  interaction, state, navigation, visual hierarchy, and journey decisions.
+  An exploratory visualizer helps clarify a decision; only a final prototype
+  becomes an approval instrument after explicit user confirmation.
 - Optimize for **high experience fidelity and low implementation fidelity**.
   The reviewer should see and exercise the intended interface behavior, while
   the implementation underneath may be deliberately small and synthetic.
@@ -40,8 +41,10 @@ only the principles that must remain consistent across prototype roles.
 - Prototype code exists to remove ambiguity about the user experience. Its
   stores, data model, service shape, and runtime structure do not prescribe the
   eventual implementation.
-- Keep production requirements canonical in `requirements-doc.md` and keep the
-  prototype-owned UI/UX supplement canonical in `ui-ux-spec.md`.
+- Keep production requirements canonical in `requirements-doc.md`. Keep the
+  final prototype-owned UI/UX supplement canonical in `ui-ux-spec.md`; an
+  exploratory visualizer brief and review record are supporting clarification
+  evidence, not a replacement for either canonical artifact.
 - Never use prototype convenience as proof of a product requirement without
   recording the decision and its evidence.
 
@@ -60,6 +63,11 @@ Use one explicit mode for each prototype workspace:
 - **Explicit refresh/reconciliation:** compare an established prototype with a
   newer selected frontend revision only when requested; preserve accepted
   prototype changes and record the reconciliation.
+- **Requirements visualization:** build the smallest interactive or animated
+  experience needed to clarify one unresolved product decision. It is
+  review-ready exploratory evidence, not an approved future-state design or a
+  final UI/UX specification. Keep its ticket in progress while clarification
+  continues.
 
 Initial current-experience bootstrap is normally a one-time independent stage
 for a prototype workspace. Later requirements-driven work normally belongs to
@@ -169,6 +177,9 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   corresponding `ui-ux-spec.md` are normative implementation references. Treat
   all visible design details as requirements-defining by default; identify any
   illustrative fixture content or permitted variation explicitly.
+- For an exploratory requirements visualizer, browser captures and interaction
+  evidence explain the question under review but are not normative final
+  references. Record modeled states, mock boundaries, and unresolved questions.
 - Capture final reference screenshots only after explicit user confirmation.
   Bootstrap screenshots are current-experience evidence, not approved
   future-state references.
@@ -215,6 +226,10 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   feedback. After baseline acceptance, it owns the canonical runnable
   experience, review loop, final validation, screenshots, and `ui-ux-spec.md`,
   but it does not approve its own proposal.
+- In requirements-visualization mode, `product_prototyper` owns only the
+  visual representation and review evidence. Requirements Engineering owns the
+  canonical requirements clarification loop when it is present, and the user
+  remains the approval authority.
 - The user is the sole approval authority for intentional future-state UI/UX
   and behavior. `requirements_engineer` preserves that approval, owns canonical
   requirements and acceptance criteria, and integrates the approved UI/UX
@@ -273,11 +288,15 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   that repository and returns the runnable result, bootstrap report, and
   evidence.
 - Product Prototyper performs acceptance and regression validation, commits
-  the accepted baseline and later future-state changes in the prototype
-  repository, keeps the ticket status and UI/UX specification synchronized
-  with that committed state, and moves the completed ticket folder to
-  `tickets/done/` when the ticket is finished. Push only under existing
-  repository policy or explicit authorization.
+  the accepted baseline and later durable changes in the prototype repository,
+  and keeps mode-appropriate ticket evidence synchronized with that committed
+  state. A requirements-visualization ticket remains in
+  `tickets/in-progress/` while clarification is open. When clarification
+  closes without final-prototype work, complete its evidence and close the
+  ticket under repository policy; if final-prototype work follows, keep or
+  reopen it in progress. Move a completed final-prototype ticket folder to
+  `tickets/done/`.
+  Push only under existing repository policy or explicit authorization.
 - Multiple tickets may exist in the same repository, but overlapping changes
   must be handled deliberately. Do not overwrite another ticket's uncommitted
   changes; serialize the work or report the exact conflict.
@@ -295,9 +314,10 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   future-state `ui-ux-spec.md`, conduct the user design review, or approve a
   product decision.
 - `product_prototyper` reviews and tests the Bootstrapper's result, commits the
-  accepted baseline in the prototype repository, and owns all subsequent
+  accepted baseline in the prototype repository, and owns final-prototype
   future-state changes, user review, final UI/UX artifacts, and prototype
-  commits.
+  commits. In requirements-visualization mode, it owns the exploratory
+  visualizer revisions and review evidence instead.
 - The Product Prototyper must not begin future-state work on an unreviewed or
   failed bootstrap result. Bootstrapper must not add design changes while
   correcting current-state parity.
@@ -306,14 +326,19 @@ for a prototype workspace. Later requirements-driven work normally belongs to
 
 ## 12. Delivery Artifacts And Visual References
 
-- The canonical prototype repository contains the runnable prototype, project-wide
-  change history, and current-experience bootstrap evidence. Each ticket folder
-  under `tickets/` contains its `prototype-ticket.md`, `ui-ux-spec.md`, final
-  `visual-references/`, behavior matrix, runbook, prototype report, assumptions,
-  and other ticket-specific supporting delivery artifacts as needed.
-- `ui-ux-spec.md` is the canonical detailed experience contract for its ticket.
-  The prototype report is an optional cross-stage summary and must not
-  duplicate the UI/UX specification or supporting evidence.
+- The canonical prototype repository contains the runnable prototype,
+  project-wide change history, and current-experience bootstrap evidence. Each
+  ticket folder under `tickets/` contains `prototype-ticket.md` and the
+  mode-appropriate supporting evidence. A final-prototype ticket adds
+  `ui-ux-spec.md`, final `visual-references/`, behavior matrix, runbook,
+  prototype report, assumptions, and other delivery artifacts as needed. A
+  requirements-visualization ticket adds its visualization brief, review
+  record, review URL, interaction evidence, and unresolved-question record as
+  needed; it does not create a final `ui-ux-spec.md` merely for exploration.
+- `ui-ux-spec.md` is the canonical detailed experience contract only for a
+  final-prototype ticket. The prototype report is an optional cross-stage
+  summary and must not duplicate the UI/UX specification or supporting
+  evidence.
 - Use `visual-references/` as the umbrella directory. Call an actual captured
   browser image a screenshot, and identify it with a stable `VIS-*` ID and a
   descriptive filename such as

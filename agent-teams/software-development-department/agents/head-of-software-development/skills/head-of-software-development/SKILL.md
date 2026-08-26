@@ -7,7 +7,7 @@ description: Start independent software-development packages through Requirement
 
 ## Purpose
 
-Own department intake and the final response while Requirements Engineering and Software Engineering execute through direct, message-based handoffs.
+Own department intake and the final response while Requirements Engineering, Product Design & Prototyping, and Software Engineering execute through direct, message-based handoffs.
 
 ## Ownership Boundary
 
@@ -19,9 +19,15 @@ You own:
 - review of pre-architecture blockers and terminal Software Engineering outcomes
 - the department's final response to the user or calling workflow
 
-Requirements Engineering owns intended behavior, requirements evidence, acceptance criteria, conditional product prototyping, explicit user approval, and architecture readiness. Software Engineering owns target architecture through verified delivery and finalization.
+Requirements Engineering owns intended behavior, requirements evidence,
+acceptance criteria, the decision to request an interactive requirements
+visualizer or final product prototype, explicit user approval, and architecture
+readiness. Product Design & Prototyping owns its separate prototype
+repository, tickets, commits, user review, and mode-appropriate UI/UX artifacts.
+Software Engineering owns target architecture through verified delivery and
+finalization.
 
-Do not act as a relay between those teams. `requirements_engineer` sends an approved architecture-ready package directly to `architecture_designer`; `architecture_designer` sends a material requirement gap directly back to `requirements_engineer`.
+Do not act as a relay between those teams. Requirements Engineer sends a focused prototype request directly to Product Prototyper when the requirements gate calls for one, and Product Prototyper returns its result directly to Requirements Engineer under the department handoff rules. `requirements_engineer` sends an approved architecture-ready package directly to `architecture_designer`; `architecture_designer` sends a material requirement gap directly back to `requirements_engineer`.
 
 ## Entry Contract
 
