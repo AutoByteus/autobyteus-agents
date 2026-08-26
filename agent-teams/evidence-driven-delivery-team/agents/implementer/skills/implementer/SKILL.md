@@ -42,4 +42,6 @@ actual result, local checks, deviations, remaining risks, and the expected
 Validator comparison.
 
 If implementation invalidates the task breakdown or dependencies, return a
-planning result rather than forcing an implementation-only workaround.
+planning result to Planner rather than forcing an implementation-only
+workaround or contacting Investigator directly. Planner decides whether a
+focused investigation is required.

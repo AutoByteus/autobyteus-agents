@@ -460,51 +460,55 @@ post-work, result-based handoff protocol.
 
 For a complete working example, refer to
 [`agent-teams/evidence-driven-delivery-team/`](agent-teams/evidence-driven-delivery-team/).
-It models a normal human delivery loop with five independent specialists:
+It models a normal human delivery loop with four independent specialists:
 
 ```text
-Investigator -> Planner -> Iteration Coordinator -> Implementer -> Validator
-                              ^                    ^             |
-                              |                    |             |
-                  replan / close +----------------+-------------+
-                              |
-                         new unknown -> Investigator
+/user -> /planner -> /implementer -> /validator
+           |              ^              |
+           +-> /investigator ------------+
+                   |                      |
+                   +------> /planner <---+
 ```
 
-The arrows mean:
+The canonical edges are:
 
-- Planner sends the complete plan package to Iteration Coordinator.
-- Iteration Coordinator sends one ready task or in-scope rework to
-  Implementer.
-- Validator sends each task result back to Iteration Coordinator.
-- Iteration Coordinator sends a replan or complete validated ledger to
-  Planner, or a newly discovered unknown to Investigator.
+- The runtime entry is `/planner` because `coordinatorMemberName` is
+  `planner`; the user or calling workflow sends the request there first.
+- `/investigator -> /planner`: initial or task-focused evidence, including
+  blocked investigation evidence.
+- `/planner -> /implementer`: one ready task or in-scope rework.
+- `/planner -> /investigator`: a material unknown prevents defining the next
+  task safely.
+- `/implementer -> /validator`: implementation and local checks are complete.
+- `/implementer -> /planner`: implementation reveals a blocker, invalid
+  dependency, or scope mismatch.
+- `/validator -> /planner`: validation produces `Pass`, `Fail`, or `Blocked`
+  feedback.
 
-- **Investigator** establishes current-state evidence, constraints, and
-  unknowns.
-- **Planner** decomposes the work into dependency-ordered micro-tasks, defines
-  the expected outcome and validation conditions for each task, and sends the
-  complete plan package to the Iteration Coordinator.
-- **Iteration Coordinator** dispatches one dependency-ready micro-task at a
-  time and owns the next-step decision.
-- **Implementer** executes the dispatched micro-task and records the actual
-  result.
+Implementer and Validator do not contact Investigator directly. They send
+evidence or feedback to Planner, which owns the decision to request focused
+investigation or continue implementation.
+
+- **Investigator** establishes evidence for the overall request or the next
+  focused task.
+- **Planner** is the coordinator and entry specialist. It chooses direct,
+  incremental-slice, or discovery-led planning and defines only the next
+  smallest valuable task or focused investigation question. Each step has
+  explicit scope, expectation, dependencies, and validation conditions.
+- **Implementer** executes one ready micro-task and records the actual result.
 - **Validator** compares the actual result with the planner's expectation and
   produces evidence-backed `Pass`, `Fail`, or `Blocked` feedback.
-- **Iteration Coordinator** routes the validation result to the next ready
-  task, in-scope rework, Planner for replan, or Investigator for a newly
-  discovered unknown. When every task passes, it sends the complete task ledger
-  and validation evidence back to Planner.
-- **Planner** closes the plan from that complete ledger and produces the
-  terminal plan result for the caller. A one-task plan uses the same loop.
+- **Planner** consumes the feedback and chooses in-scope rework, the next
+  small task, focused investigation, a blocker result, or completion. For a
+  large unclear objective, it investigates only enough to make the next step
+  safe rather than planning the whole product in advance.
 
 This example demonstrates why the handoff is a separate post-work phase. Each
 specialist focuses on its own work and result; after completion, it calls
 `get_handoff_rules`, applies every matching rule, sends the required messages,
-and stops. The Iteration Coordinator does not implement, Validator does not
-fix, and Planner does not validate or dispatch implementation directly. The
-team config changes the loop without changing the specialists' core work
-contracts.
+and stops. Planner coordinates the next step without implementing or
+validating, Validator does not fix, and Investigator does not plan. The team
+config changes the loop without changing the specialists' core work contracts.
 
 ## Recommended Practice For Agent Packages
 

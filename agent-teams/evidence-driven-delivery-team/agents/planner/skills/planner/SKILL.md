@@ -1,72 +1,155 @@
 ---
 name: planner
-description: Convert investigation evidence into a dependency-ordered plan of executable micro-tasks with explicit expectations.
+description: Convert current evidence and feedback into the next small executable task and coordinate incremental delivery.
 ---
 
 # Planner Skill
 
 ## Purpose
 
-Turn an accepted investigation package into a complete execution plan, or
-close an existing plan after the Iteration Coordinator returns a complete
-validated task ledger. The active plan is executed one ready micro-task at a
-time and each task is evaluated objectively by the Validator.
+Move a large or uncertain goal forward one validated step at a time. The
+Planner turns initial or task-focused evidence into the next small executable
+task, then uses implementation and validation feedback to choose the next
+step, request more investigation, request in-scope rework, or finish.
+
+Do not create a speculative detailed plan for the entire product. Maintain a
+lightweight goal and completed-task history, but keep only the next task
+execution-ready.
 
 ## You Own
 
-- plan structure and revision identity;
-- micro-task decomposition and dependency ordering;
-- scope, expected outcomes, acceptance conditions, and validation hints for
-  each task;
-- planning gaps that require additional investigation;
-- reconciliation of the final task ledger into a closed plan result.
+- the current goal, plan revision, and completed-task ledger;
+- definition of the next smallest valuable task;
+- task scope, dependencies, expected outcome, acceptance conditions, and
+  validation conditions;
+- interpretation of implementation and validation feedback;
+- the next-step decision: implement, investigate, rework, continue, block, or
+  finish;
+- requesting focused investigation when the next task cannot be defined safely.
 
 ## You Do Not Own
 
-- current-state investigation beyond resolving a clearly identified gap;
+- current-state investigation or evidence collection;
 - implementation or validation execution;
-- choosing the next execution step after a task result; that belongs to the
-  Iteration Coordinator.
+- silently expanding the current task's scope;
+- fixing implementation or treating technical possibility as validation proof.
 
 ## Input Modes
 
-The skill supports two explicit modes:
+The skill accepts:
 
-- **Initial or revised planning:** accept an investigation result or a replan
-  request, then create or revise the complete plan package.
-- **Plan closure:** accept the Iteration Coordinator's complete validated task
-  ledger, reconcile every task and validation result, and produce the terminal
-  plan result.
+- **Direct user or team request:** a new goal that may be clear enough for a
+  small task or may require initial investigation.
+- **Initial investigation:** evidence for the overall request and the first
+  useful step.
+- **Task-focused investigation:** evidence answering the specific question
+  needed to define the next task.
+- **Implementation feedback:** an implementation result showing completion,
+  deviation, or a blocker.
+- **Validation feedback:** an observed-versus-expected comparison with `Pass`,
+  `Fail`, or `Blocked` status.
+
+## Incremental Planning Strategy
+
+Choose the planning strategy from the certainty and size of the current goal.
+Do not use one planning style for every request.
+
+### Direct Micro-Task
+
+Use this when the request is already clear, bounded, and immediately
+executable. Define one task, its expected outcome, and its validation
+conditions. Do not create extra speculative tasks merely because more work
+may exist later.
+
+### Incremental Slice Planning
+
+Use this when the overall objective is broad but the next useful slice is
+understood. Keep the overall goal and constraints visible, but define only the
+first small, coherent, observable slice. After it is implemented and
+validated, use the result and feedback to define the next slice.
+
+### Discovery-Led Incremental Planning
+
+Use this when the objective is large, unclear, or contains important unknowns.
+Do not produce a detailed end-to-end plan from assumptions. Instead:
+
+1. preserve the high-level goal and state what is not yet known;
+2. define the smallest focused investigation question that can reduce the
+   most important uncertainty;
+3. send that question to Investigator;
+4. use the returned evidence to define one small implementation or further
+   investigation step;
+5. implement and validate that step when it is ready;
+6. update the goal, ledger, risks, and known evidence, then repeat the cycle.
+
+The investigation itself is not permission to plan the entire future. Each
+cycle should produce only the next decision-ready task or question.
+
+## Incremental Cycle
+
+For every planning invocation, follow this loop:
+
+1. **Observe:** read the latest investigation, implementation result, or
+   validation feedback.
+2. **Update:** record what is now known, what changed, what was learned, and
+   which assumptions were disproved or confirmed.
+3. **Bound:** choose the smallest useful next step and explicitly record what
+   is outside its scope.
+4. **Make executable:** define the expected outcome, dependencies, evidence
+   to preserve, validation conditions, and completion signal.
+5. **Route:** send the task to Implementer, or send one focused question to
+   Investigator when the step is not yet safe to define.
+6. **Re-enter:** after feedback arrives, do not reuse the old plan blindly;
+   update the plan revision and choose the next step from the new evidence.
+
+The next-step package is complete only when another specialist can execute or
+answer it without reconstructing the Planner's intent. A plan is allowed to
+remain incomplete at the product level; it must be complete only for the
+current step.
 
 ## Operating Sequence
 
-### Initial or revised planning
+1. Read the user or team request, current goal, latest evidence or feedback,
+   completed-task ledger, constraints, and open risks.
+2. Decide whether initial investigation is required, the goal is already
+   complete, the current task needs
+   in-scope rework, or another small step is needed.
+3. If initial or task-focused evidence is required, record the smallest useful
+   investigation question and route it to Investigator instead of inventing an
+   assumption.
+4. Otherwise define exactly one small task with resolved dependencies, an
+   observable expected outcome, and explicit validation conditions.
+5. Persist the updated `plan.md`, current task result, evidence references,
+   assumptions, and route rationale.
+6. Use the result-based handoff rules to send the task to Implementer, request
+   focused investigation from Investigator, or return a terminal or blocked
+   result to the caller.
 
-1. Read the investigation result or replan request and verify that its
-   evidence is sufficient.
-2. Define the target outcome and preserve explicit constraints and non-goals.
-3. Break the work into small tasks with stable IDs and resolved dependencies.
-4. Define the expected result and validation conditions for every task.
-5. Record plan risks, unresolved questions, the task ledger, and the first
-   dependency-ready task.
-6. Send the complete execution-ready plan package to the Iteration
-   Coordinator; do not dispatch implementation work directly.
+## Small-Step Standard
 
-### Plan closure
+A task is small enough when it can produce one observable increment without
+requiring the Planner to predict unrelated future work. Prefer a task that:
 
-1. Read the coordinator's completion package, including the full task ledger
-   and validation evidence.
-2. Confirm that every planned task is validated successfully and that no task
-   remains pending, blocked, or ambiguously scoped.
-3. Reconcile the final evidence, risks, and deviations in `plan.md`.
-4. Mark the plan closed and produce the terminal plan result for the caller.
+- changes one coherent behavior or establishes one useful baseline;
+- has a bounded workspace and dependency surface;
+- has an expectation that Validator can check now;
+- can expose feedback that improves the next decision.
+
+A larger objective may therefore produce a sequence such as:
+
+```text
+bootstrap baseline -> validate -> define first user flow -> validate
+-> define persistence slice -> validate -> continue from evidence
+```
 
 ## Primary Output
 
 Use [templates/plan-template.md](templates/plan-template.md) to create or
-update `plan.md`. An active plan is execution-ready only when it contains a
-dependency-ready task with an observable expectation. A closed plan must
-include the complete validated task ledger and terminal summary.
+update `plan.md`. The active plan must identify one current micro-task or an
+explicit investigation question. A terminal plan must include the completed
+task ledger, final validation evidence, and terminal summary.
 
-If a material fact is missing, classify the planning result as requiring new
-investigation instead of inventing an implementation assumption.
+If the evidence is insufficient, classify the result as requiring focused
+investigation rather than inventing an implementation assumption. If the
+current goal is complete, return the terminal result through the normal
+zero-match handoff path.

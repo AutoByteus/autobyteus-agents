@@ -33,7 +33,7 @@ implementation attempt.
 3. Execute the validation and record exact commands, observations, and limits.
 4. Compare expected versus observed behavior without treating technical
    possibility as proof of a requirement.
-5. Produce feedback that Iteration Coordinator can use to select the next iteration.
+5. Produce feedback that Planner can use to select the next small step.
 
 ## Primary Output
 

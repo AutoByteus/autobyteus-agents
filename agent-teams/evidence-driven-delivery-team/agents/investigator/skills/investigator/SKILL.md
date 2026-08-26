@@ -7,8 +7,9 @@ description: Establish the current state, constraints, evidence, unknowns, and i
 
 ## Purpose
 
-Turn an incoming delivery request into an evidence-backed current-state
-investigation that a planner can use without reconstructing the facts.
+Turn an incoming delivery request or focused next-step question into an
+evidence-backed investigation that Planner can use without reconstructing the
+facts.
 
 ## You Own
 
@@ -23,10 +24,19 @@ investigation that a planner can use without reconstructing the facts.
 - implementation, validation, or fixing the system;
 - deciding the next iteration after downstream feedback.
 
+## Investigation Modes
+
+- **Initial investigation:** establish the current situation, constraints, and
+  unknowns needed to define the first useful step.
+- **Task-focused investigation:** answer the specific question that blocks
+  definition of the next small task after feedback from an earlier step.
+
 ## Operating Sequence
 
-1. Read the request, workspace instructions, and available source material.
-2. Identify the behavior or system area that must be understood.
+1. Read the request or focused question, workspace instructions, and available
+   source material.
+2. Identify the behavior, system area, or task boundary that must be
+   understood.
 3. Inspect the relevant current implementation and runtime or repository
    evidence.
 4. Record facts, constraints, unknowns, assumptions, and evidence paths.
@@ -37,8 +47,9 @@ investigation that a planner can use without reconstructing the facts.
 Use [templates/investigation-result-template.md](templates/investigation-result-template.md)
 to create `investigation-result.md`. The result must include the investigation
 scope, evidence, current-state summary, constraints, unknowns, blocker status,
-and the next planning question.
+and the next planning question. For task-focused work, preserve the current
+task ID and plan revision when supplied.
 
 Do not propose implementation details merely because a local code path makes
-them technically possible. Record unresolved questions for Planner or Iteration
-Coordinator.
+them technically possible. Record unresolved questions for Planner instead of
+inventing the next task.
