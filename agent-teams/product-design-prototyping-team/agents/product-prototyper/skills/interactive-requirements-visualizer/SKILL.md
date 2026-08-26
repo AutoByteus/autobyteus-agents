@@ -18,6 +18,13 @@ final implementation-oriented ui-ux-spec.md.
 Read [product-prototype-principles.md](../requirements-prototyper/product-prototype-principles.md)
 before choosing the technology or changing the prototype repository.
 
+The skill includes a reusable project scaffold at
+[templates/visualizer-project/](templates/visualizer-project/). Copy that
+scaffold for a new visualization ticket instead of rebuilding the development
+setup from scratch. The scaffold makes animation and spatial-rendering
+capabilities available, but its starter experience is intentionally simple;
+installed capability is not a reason to use every library.
+
 ## Activation And Inputs
 
 Use this skill when the request is explicitly or implicitly in Requirements
@@ -45,7 +52,7 @@ return a precise request gap instead of building a generic showcase.
 ### You Own
 
 - the interactive visualizer's focused scope and technology choice;
-- a small runnable HTML-based experience that explains the selected behavior;
+- a small runnable browser experience that explains the selected behavior;
 - purposeful animation, state transitions, mock data, and direct interaction;
 - the visualizer ticket artifacts, revision history, browser validation, and
   review URL;
@@ -70,46 +77,51 @@ user request with no such route, return the review package to the user or
 calling workflow. Do not silently convert user feedback into an approved
 requirement.
 
-## Visualization Design Rules
+## Visualization Principles
 
-1. Start from one concrete decision question and one critical journey.
-2. Prefer direct manipulation, visible state changes, step-by-step playback,
-   and progressive disclosure over dense explanatory prose.
-3. Use motion to explain causality, sequence, feedback, or state transition.
-   Effects that do not improve understanding are out of scope.
-4. Provide pause, replay, reset, and clear controls. Do not make meaning
-   depend on an animation that users cannot control.
-5. Use realistic mocked data and meaningful labels. Make simulation boundaries
-   visible rather than implying production behavior.
-6. Include alternate, empty, loading, error, permission, or recovery states
-   only when they resolve the decision question.
-7. Use 3D or spatial rendering only when spatial relationships materially
-   improve understanding. Do not add Three.js merely to make the page look
-   impressive.
-8. Preserve an accessible, readable path for users who cannot rely on motion,
-   sound, or 3D.
+Before implementation and review, read and apply
+[visualization-principles.md](references/visualization-principles.md). It
+defines the visualizer's complexity budget, truthful simplification rules,
+causal-animation guidance, accessibility expectations, comprehension gate, and
+concrete examples.
 
 ## Technology Selection
 
-Choose the smallest technology that can express the required interaction:
+Choose the smallest technology that can express the required interaction. For
+a new ticket, copy
+[templates/visualizer-project/](templates/visualizer-project/) into a
+ticket-scoped temporary project such as `visualizers/<ticket-id>/`, then use
+the smallest active subset of its dependencies:
 
 - plain HTML/CSS/JavaScript for a small linear or stateful visualizer;
+- the scaffold's React/Vite/TypeScript setup when component state or repeated
+  interaction makes a single file unclear;
 - the existing prototype frontend technology when the visualizer must extend
   an established prototype or preserve its interaction language;
-- a lightweight React/Vite or equivalent project when component state,
-  routing, or repeated interaction makes a single file unclear;
-- Three.js or another 3D library only for a decision that genuinely depends on
-  spatial structure, depth, movement, or physical relationships.
+- `motion` or CSS transitions when animation clarifies causality or state;
+- `three`, `@react-three/fiber`, and `@react-three/drei` only when the decision
+  genuinely depends on spatial structure, depth, movement, or physical
+  relationships.
+
+The visualizer does not need to use the product's frontend technology merely
+because it will inform the product requirements. Technology parity is required
+only when the question itself depends on existing UI behavior, component
+constraints, or interaction language. Final Product Prototype mode has a
+different technology and fidelity contract.
 
 The visualizer may be a small project or route inside the canonical Product
 Prototype repository. Do not create a new Git repository for each visualizer.
-Keep the visualizer separate from production code and avoid production backend
-or integration work.
+Keep the copied project temporary and ticket-scoped, separate from production
+code, and free of production backend or integration work.
 
 ## Artifact And Repository Rules
 
 - Reuse the canonical Product Prototype repository/root and the supplied
   ticket; do not create a second product-prototype repository.
+- For a new visualizer, copy `templates/visualizer-project/` into the
+  ticket-scoped visualizer project. Never edit the skill template in place.
+- Record the template revision, active dependencies, and any omitted optional
+  capability in the visualization brief or review record.
 - Keep visualizer source and run instructions in the prototype project, and
   keep the brief, revision record, review evidence, and visual references in
   the ticket folder.
@@ -136,14 +148,16 @@ as requirements-visualization-review.md.
 1. Read the focused visualization request, requirements context, current
    ticket, repository instructions, prior revision, and open user questions.
 2. Verify the canonical prototype repository/root, ticket identity, workspace
-   safety, and any required accepted baseline.
+   safety, the visualizer template, and any required accepted baseline.
 3. Write or update the visualization brief. State the single decision
    question, user journey, states, non-goals, and success signal.
-4. Select the smallest suitable technology and build the visualizer with
-   mocked boundaries. Do not invent product behavior outside the question.
+4. Copy the template into the ticket-scoped visualizer project, remove or
+   replace its example content, select the smallest active technology subset,
+   and build the visualizer with mocked boundaries. Do not invent product
+   behavior outside the question.
 5. Start the visualizer and validate the critical interaction, state changes,
-   reset/replay behavior, responsive layout, accessibility fallback, and
-   documented limitations in a browser.
+   reset/replay behavior, responsive layout, accessibility fallback,
+   comprehension gate, and documented limitations in a browser.
 6. Record the implementation revision, review URL, visual references, known
    questions, and evidence in the ticket artifacts.
 7. Classify the result as Requirements Visualization Ready and send the
@@ -177,6 +191,7 @@ Every completed result must include:
   and visual references;
 - the review URL and exact browser validation performed;
 - the technology and revision used;
+- the visualizer template revision and active/omitted capabilities;
 - modeled states, mock boundaries, limitations, unresolved questions, and the
   next expected action;
 - whether the visualizer is ready for another user review or the clarification
