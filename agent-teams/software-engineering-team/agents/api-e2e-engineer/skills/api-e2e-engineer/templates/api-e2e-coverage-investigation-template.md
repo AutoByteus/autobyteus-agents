@@ -13,8 +13,6 @@ Update this artifact whenever new evidence changes a test-validity or coverage d
 - Design Spec:
 - Supplemental Task Artifacts:
 - Solution Revision Record:
-- Design Review Report:
-- Architecture Review Revision Record:
 - Implementation Handoff:
 - Implementation Revision Record:
 - Code Review Report:
@@ -202,7 +200,7 @@ Score each applicable category from `0%` to `100%`. Use `N/A` only with a concre
 
 ## Ambiguities Or Reroute Triggers
 
-| Issue | Classification (`Requirement Gap`/`Design Impact`/`Unclear`/`Local Fix`) | Evidence | Recommended Recipient |
+| Issue | Classification (`Requirement Gap`/`Design Impact`/`Unclear`/`Local Fix`) | Evidence | Recommended recipient/address from `get_handoff_rules` |
 | --- | --- | --- | --- |
 |  |  |  |  |
 
@@ -213,5 +211,5 @@ Score each applicable category from `0%` to `100%`. Use `N/A` only with a concre
 - Post-repository confidence:
 - Broader validation decision:
 - Reroute Required Before Validation Execution: `No` / `Yes`
-- Recommended Recipient If Reroute Required:
+- Recommended recipient/address if reroute required (from `get_handoff_rules`):
 - Notes:

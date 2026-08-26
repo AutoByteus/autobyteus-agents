@@ -9,12 +9,6 @@
       "refScope": "team_local"
     },
     {
-      "memberName": "architecture_reviewer",
-      "ref": "architecture-reviewer",
-      "refType": "agent",
-      "refScope": "team_local"
-    },
-    {
       "memberName": "implementation_engineer",
       "ref": "implementation-engineer",
       "refType": "agent",
@@ -42,31 +36,17 @@
   "handoffs": [
     {
       "from": "/solution_designer",
-      "to": "/architecture_reviewer",
-      "rules": [
-        "When the approved requirements basis and complete solution package are ready for the initial architecture review.",
-        "When a Requirement Gap, Design Impact, or Unclear finding has been resolved in the updated solution artifacts and the revised package is ready for another architecture review."
-      ]
-    },
-    {
-      "from": "/architecture_reviewer",
       "to": "/implementation_engineer",
       "rules": [
-        "When the architecture review passes and the cumulative reviewed solution package is ready for implementation."
-      ]
-    },
-    {
-      "from": "/architecture_reviewer",
-      "to": "/solution_designer",
-      "rules": [
-        "When the architecture review is Fail or Blocked with a Design Impact, Requirement Gap, or Unclear finding that requires solution revision before implementation."
+        "When the requirements basis is approved, the complete solution package is implementation-ready, and the solution designer has completed the final design-readiness check.",
+        "When a Requirement Gap, Design Impact, or Unclear finding has been resolved in the updated solution artifacts and the revised package is ready for implementation."
       ]
     },
     {
       "from": "/implementation_engineer",
       "to": "/code_reviewer",
       "rules": [
-        "When the reviewed design is implemented, implementation-scoped validation is complete, and the cumulative implementation package is ready for source review.",
+        "When the implementation is complete, implementation-scoped validation has passed, and the cumulative implementation package is ready for source review.",
         "When an implementation-owned Local Fix requested by the code reviewer or delivery engineer is complete and the updated implementation must return for source review."
       ]
     },

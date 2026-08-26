@@ -24,7 +24,7 @@ The latest docs sync report, handoff summary, and release/publication/deployment
 - Integration and post-integration verification:
 - User verification/finalization state:
 - Why this baseline or delivery revision was recorded:
-- Next recipient/action:
+- Next recipient/address or action from `get_handoff_rules`:
 - Remaining blockers, rollback concerns, or untested scope:
 
 For `DR-001`, write `N/A` for the prior result and describe the initial integrated delivery state. For later rounds, append a new entry and identify the changed canonical artifacts and the prior entry being revisited.

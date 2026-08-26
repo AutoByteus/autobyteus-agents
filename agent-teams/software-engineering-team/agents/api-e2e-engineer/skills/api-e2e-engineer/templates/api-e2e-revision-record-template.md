@@ -16,7 +16,7 @@ The latest coverage investigation and execution coverage report remain authorita
 
 - Triggering role, report path, and round:
 - Triggering finding or scenario IDs:
-- Related solution, architecture-review, implementation, code-review, or delivery revision IDs:
+- Related solution, implementation, code-review, or delivery revision IDs:
 - Why this baseline or coverage/execution revision was recorded:
 - Coverage decisions or durable test paths changed:
 - Scenarios added, changed, removed, or rechecked:
@@ -34,7 +34,7 @@ If no prior failure applies to this API/E2E revision, write `None`.
 - Prior result and confidence (`N/A` for `API-REV-001`):
 - Current result and confidence:
 - New or remaining failure IDs:
-- Recommended recipient:
+- Recommended recipient/address from `get_handoff_rules`:
 - Remaining risks, blocked evidence, or untested scope:
 
 Keep prior entries. Add a new entry for later rework instead of rewriting history, except to correct a factual error.

@@ -9,8 +9,6 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Design spec:
 - Supplemental task artifacts:
 - Solution revision record:
-- Design review report:
-- Architecture review revision record:
 - Triggering rework report, revision record, or evidence, when applicable:
 
 ## Current Implementation Summary
@@ -21,7 +19,6 @@ Summarize the complete current implementation. For a post-initial delta, referen
 - Implementation revision record:
 - Current implementation revision ID: `IR-*`
 - Related solution revision IDs: `SR-*` / `N/A`
-- Related architecture-review revision IDs: `ARCH-REV-*` / `N/A`
 - Related code-review revision IDs: `CRR-*` / `N/A`
 - Related API/E2E revision IDs: `API-REV-*` / `N/A`
 - Related delivery revision IDs: `DR-*` / `N/A`
@@ -46,7 +43,7 @@ Reuse the design spec's stable behavior IDs. Record the actual implementation pa
 - Reviewed change posture:
 - Reviewed root-cause classification:
 - Reviewed refactor decision (`Refactor Needed Now`/`No Refactor Needed`/`Deferred`):
-- Implementation matched the reviewed assessment (`Yes`/`No`):
+- Implementation matched the approved assessment (`Yes`/`No`):
 - If challenged, routed as `Design Impact` (`Yes`/`No`/`N/A`):
 - Evidence / notes:
 
@@ -67,7 +64,7 @@ Reuse the design spec's stable behavior IDs. Record the actual implementation pa
 - Implementation follows the approved decision without an unapproved migration or version-specific runtime fallback: `Yes` / `No (blocked)`
 - Direct-use evidence or discard/rebuild result, when applicable:
 - Migration implementation and focused checks, only when `Migration Required`:
-- Deviation from the reviewed transition decision: `None` / explain and reroute:
+- Deviation from the approved transition decision: `None` / explain and reroute:
 
 ## Environment Or Dependency Notes
 

@@ -89,7 +89,7 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 ## Escalation / Reroute (Use Only If Final Handoff Cannot Complete)
 
 - Classification: `Local Fix` / `Design Impact` / `Requirement Gap` / `Unclear`
-- Recommended recipient:
+- Recommended recipient/address from `get_handoff_rules`:
 - Why final handoff could not complete:
 
 ## Release Notes Summary

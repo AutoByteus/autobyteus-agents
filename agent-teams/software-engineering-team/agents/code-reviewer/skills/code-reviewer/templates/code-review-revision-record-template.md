@@ -18,7 +18,6 @@ The latest `code-review-report.md` or `api-e2e-test-review-report.md` remains au
 - Review entry point and round:
 - Triggering role, report path, and finding or scenario IDs:
 - Relevant solution revision IDs: `SR-*` / `N/A`
-- Relevant architecture-review revision IDs: `ARCH-REV-*` / `N/A`
 - Relevant implementation revision IDs: `IR-*` / `N/A`
 - Relevant API/E2E revision IDs: `API-REV-*` / `N/A`
 - Relevant delivery revision IDs: `DR-*` / `N/A`
@@ -36,7 +35,7 @@ If no prior finding applies to this review revision, write `None`.
 
 - New or remaining finding IDs:
 - Material score or classification changes:
-- Recommended recipient:
+- Recommended recipient/address from `get_handoff_rules`:
 - Remaining risks or uncertainty:
 
 For `CRR-001`, use `N/A` for the prior result and write `None` in the prior-finding table. Keep prior entries. Add a new entry for later review work instead of rewriting history, except to correct a factual error.

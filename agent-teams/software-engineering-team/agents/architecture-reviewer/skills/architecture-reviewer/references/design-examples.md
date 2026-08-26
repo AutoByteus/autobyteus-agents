@@ -1,1 +1,0 @@
-../../../../../shared/design-examples.md
