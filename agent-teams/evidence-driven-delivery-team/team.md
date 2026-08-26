@@ -108,4 +108,4 @@ Each member completes its own skill-defined work, persists its result, and uses
 `get_handoff_rules` to retrieve the applicable rules. It sends every required
 handoff to the exact returned recipient with `send_message_to`, then stops. The
 team config is the routing authority; the skills own the work and result
-contracts.
+contracts. All team handoffs use the `send_message_to` tool.
