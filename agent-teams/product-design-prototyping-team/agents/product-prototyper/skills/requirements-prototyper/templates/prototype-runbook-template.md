@@ -7,6 +7,9 @@
 - Selected frontend application or product surface:
 - Pinned source commit or revision:
 - Prototype repository/root (separate Git repository):
+- Prototype ticket worktree:
+- Prototype ticket branch:
+- Accepted prototype base revision:
 - Prototype revision or commit:
 - Ticket folder:
 - Package manager:
@@ -20,6 +23,7 @@
 - Review URL:
 - Readiness signal:
 - Stop / cleanup:
+- Runtime port / process / temporary-state ownership:
 
 ## Reproducibility And Project State
 

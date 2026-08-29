@@ -20,6 +20,7 @@
     "get_handoff_rules"
   ],
   "skillNames": [
+    "product-prototype-repository-management",
     "requirements-prototyper",
     "interactive-requirements-visualizer"
   ]

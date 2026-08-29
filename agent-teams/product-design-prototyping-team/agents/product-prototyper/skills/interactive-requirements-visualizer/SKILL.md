@@ -25,6 +25,15 @@ That shared reference owns cross-mode repository, fidelity, safety, evidence,
 and approval invariants; this skill owns only the visualization-specific
 workflow, artifacts, validation, and routing.
 
+Before this mode begins, apply
+[product-prototype-repository-management](../product-prototype-repository-management/SKILL.md)
+to establish or resume the Product ticket, dedicated ticket branch, active
+worktree, accepted base revision, and runtime isolation. Apply it again after
+visualizer validation and review to finalize the ticket, commit the durable
+visualizer result, integrate it under repository policy, and clean up safely.
+This skill owns only the requirements-visualization experience and its
+mode-specific evidence.
+
 The skill includes a reusable project scaffold at
 [templates/visualizer-project/](templates/visualizer-project/). After the
 design gate passes, copy that scaffold for a new visualization ticket instead
@@ -62,8 +71,8 @@ return a precise request gap instead of building a generic showcase.
 - the interactive visualizer's focused scope and technology choice;
 - a small runnable browser experience that explains the selected behavior;
 - purposeful animation, state transitions, mock data, and direct interaction;
-- the visualizer ticket artifacts, revision history, browser validation, and
-  review URL;
+- the visualizer-specific ticket artifacts, revision history, browser validation,
+  and review URL;
 - incorporating focused revision requests from Requirements Engineering;
 - honest documentation of simulation boundaries and unresolved visual questions.
 
@@ -158,7 +167,8 @@ smallest implementation technology and active dependency subset.
 Choose the smallest technology that can express the required interaction. For
 a design plan marked `Ready to Build`, copy
 [templates/visualizer-project/](templates/visualizer-project/) into a
-ticket-scoped temporary project such as `visualizers/<ticket-id>/`, then use
+  ticket-scoped temporary project such as
+  `visualizers/<ticket-id>/` inside the active Product ticket worktree, then use
 the smallest active subset of its dependencies:
 
 - plain HTML/CSS/JavaScript for a small linear or stateful visualizer;
@@ -177,15 +187,18 @@ only when the question itself depends on existing UI behavior, component
 constraints, or interaction language. Final Product Prototype mode has a
 different technology and fidelity contract.
 
-The visualizer may be a small project or route inside the canonical Product
-Prototype repository. Do not create a new Git repository for each visualizer.
-Keep the copied project temporary and ticket-scoped, separate from production
-code, and free of production backend or integration work.
+The visualizer may be a small project or route inside the active Product ticket
+worktree of the canonical Product Prototype repository. Do not create a new Git
+repository or worktree for each visualizer; the management skill already
+created the isolated ticket worktree. Keep the copied project temporary and
+ticket-scoped, separate from production code, and free of production backend or
+integration work.
 
 ## Artifact And Repository Rules
 
-- Reuse the canonical Product Prototype repository/root and the supplied
-  ticket; do not create a second product-prototype repository.
+- Use the canonical Product Prototype repository, the supplied Product ticket,
+  and the active ticket worktree established by the management skill. Do not
+  create a second product-prototype repository or ticket worktree.
 - Create or update the shared `prototype-ticket.md` record in the ticket
   folder for every supplied or newly created visualization ticket, including
   request-gap, `Baseline Needed`, `Not Recommended`, and `Blocked` outcomes.
@@ -199,7 +212,8 @@ code, and free of production backend or integration work.
   Never edit the skill template in place.
 - Record the template revision, active dependencies, and any omitted optional
   capability in the visualization brief or review record.
-- Keep visualizer source and run instructions in the prototype project, and
+- Keep visualizer source and run instructions in the temporary prototype project
+  inside the active worktree, and
   keep `prototype-ticket.md`, the brief, design plan, revision record, review
   evidence, motion/comprehension evidence, and visual references in the ticket
   folder.
@@ -207,12 +221,14 @@ code, and free of production backend or integration work.
   Engineering is still collecting understanding or feedback. Close it only
   after the clarification loop is confirmed complete and no final-prototype
   work follows.
-- Commit durable visualizer source and ticket evidence in the Product
-  Prototype repository according to its normal repository policy.
+- Return durable visualizer source and ticket evidence to the management skill
+  for commit on the Product ticket branch and integration according to the
+  normal repository policy. This mode does not commit, integrate, or clean up
+  the worktree independently.
 - If an existing frontend is relevant, rely on an accepted current-experience
   baseline when the visualizer extends that experience. If the baseline is
-  absent, use the existing minimal Bootstrapper handoff and resume only after
-  Product Prototyper accepts the baseline.
+  absent, use the fixed Bootstrapper payload in the repository-management skill
+  and resume only after Product Prototyper accepts the baseline.
 - Use absolute paths in all handoffs and record the live review URL when one
   is available.
 
@@ -228,22 +244,25 @@ as the shared ticket record `prototype-ticket.md`.
 
 ## Operating Sequence
 
-1. Read the focused visualization request, requirements context, current
+1. Read the focused visualization request, requirements context, active Product
    ticket, repository instructions, prior revision, and open user questions.
-2. Verify the canonical prototype repository/root, ticket identity, workspace
-   safety, the visualizer template, and any required accepted baseline. Create
-   or update `prototype-ticket.md` and set its status to `In Progress` once
-   active work begins.
-3. Resolve the baseline branch before creating mode-specific visualizer
-   artifacts:
+2. Use the management skill's canonical repository, ticket branch, active
+   worktree, accepted base revision, runtime-isolation record, and visualizer
+   template. Create or update the mode-specific fields in `prototype-ticket.md`
+   and provide the evidence management needs to set its status to `In Progress`
+   once active work begins. Do not create another ticket worktree or edit the
+   canonical checkout directly.
+3. Resolve the accepted baseline in the management-established active worktree
+   before creating mode-specific visualizer artifacts:
    - If an existing frontend is relevant and an accepted baseline is present,
      continue.
    - If an existing frontend is relevant and the accepted baseline is absent,
-     set the ticket status to `Baseline Needed`, send the fixed minimal
-     Bootstrapper message through the matching handoff rule, and stop. Do not
-     write a brief, design plan, or visualizer source for future-state work.
-     Resume at this baseline check only after Product Prototyper accepts the
-     Bootstrapper result.
+     provide the evidence for management to set the ticket status to
+     `Baseline Needed`, send the fixed minimal Bootstrapper message through the
+     matching handoff rule, and stop. Do not write a brief, design plan, or
+     visualizer source for future-state work. Resume at this baseline check only
+     after Product Prototyper accepts the Bootstrapper result in the same
+     management-established worktree.
    - If no frontend exists, record that no current-experience baseline is
      required and continue.
 4. Write or update the visualization brief. State the single decision
@@ -267,18 +286,19 @@ as the shared ticket record `prototype-ticket.md`.
    or skip, and record the reduced-motion/stable-state result.
 8. Record the implementation revision, review URL, visual references, known
    questions, motion/comprehension evidence, and evidence in the ticket
-   artifacts when a visualizer exists. Set the ticket status to
-   `Awaiting User Review` only for a review-ready package.
+   artifacts when a visualizer exists. Provide the review-ready evidence for
+   management to set the ticket status to `Awaiting User Review`.
 9. Classify the result as Requirements Visualization Ready, Requirement
    Impact, Not Recommended, Blocked, or a request gap. For a review-ready
-   package, set the ticket status to `Awaiting User Review` and route it through
-   the applicable handoff rule. For `Not Recommended`, `Requirement Impact`,
-   `Blocked`, or a request gap, set the ticket status to the corresponding
-   shared status before routing: `Not Recommended` maps to `Not Recommended`,
-   while `Requirement Impact`, `Blocked`, and request-gap outcomes map to
-   `Blocked`. Do not claim requirement approval; the user owns approval, while
-   Requirements Engineering records the decision when it owns the canonical
-   requirements context.
+   package, provide the evidence for management to set the ticket status to
+   `Awaiting User Review` and preserve the active worktree before routing. For
+   `Not Recommended`, `Requirement Impact`, `Blocked`, or a request gap, provide
+   the corresponding outcome and evidence for management to apply the shared
+   status before routing: `Not Recommended` maps to `Not Recommended`, while
+   `Requirement Impact`, `Blocked`, and request-gap outcomes map to `Blocked`.
+   Do not claim requirement approval; the user owns approval, while Requirements
+   Engineering records the decision when it owns the canonical requirements
+   context.
 10. On a focused revision request, set the ticket status back to `In Progress`,
    preserve the accepted visual behavior,
    update only the requested scope, and revalidate the affected journey. If
@@ -290,11 +310,14 @@ as the shared ticket record `prototype-ticket.md`.
    finding and return the evidence to Requirements Engineering instead of
    changing the requirement locally.
 12. When Requirements Engineering confirms that the clarification loop is
-   complete, commit the durable visualizer evidence and return the final
-   visualization package. If no final-prototype work follows, set the ticket
-   status to `Completed` and close it under the prototype repository policy;
-   otherwise keep or reopen it `In Progress` for the separate
-   `requirements-prototyper` invocation.
+   complete, return the durable visualizer evidence and final visualization
+   package to the management skill. Management commits the result on the
+   Product ticket branch, integrates it under repository policy, moves a closed
+   ticket to `tickets/done/`, and performs safe runtime/worktree cleanup. If no
+   final-prototype work follows, provide the evidence for management to mark the
+   ticket `Completed`; otherwise keep or reopen it `In Progress` for the
+   separate `requirements-prototyper` invocation. Do not claim completion before
+   repository finalization is durable.
 
 ## Result Contract
 
@@ -315,6 +338,9 @@ Every completed result must include:
 - the review URL when a visualizer exists and the exact browser validation
   performed;
 - the technology and revision used;
+- the canonical prototype repository/root, active ticket branch/worktree,
+  accepted prototype base, ticket revision, integration result, and cleanup
+  result as recorded by repository management;
 - the visualizer template revision and active/omitted capabilities;
 - modeled states, mock boundaries, limitations, unresolved questions, and the
   next expected action;
@@ -327,7 +353,11 @@ Every completed result must include:
 
 ## Handoff Rules
 
-- Finish the visualizer artifacts and classify the outcome before routing.
+- Finish the visualizer artifacts. For an interim result such as `Baseline
+  Needed` or `Awaiting User Review`, have repository management record the
+  current status and preserve the active worktree before routing. For a terminal
+  result, have it finalize the repository state before routing. A mode result is
+  not complete merely because its files exist in a worktree.
 - Call get_handoff_rules and use the returned conditional rules as the
   routing authority.
 - Apply every matching rule and call send_message_to with the exact returned
@@ -344,7 +374,8 @@ Every completed result must include:
   rule applies, return it to the user or calling workflow.
 - For Not Recommended, send the evidence explaining why an interactive
   visualizer would not materially improve the current decision.
-- For Baseline Needed, use the existing fixed Bootstrapper message instead
-  of sending future-state requirements or a visualizer design.
+- For Baseline Needed, use the fixed Bootstrapper payload in the
+  repository-management skill instead of sending future-state requirements or
+  a visualizer design.
 - If no returned rule applies, return the result to the user or calling
   workflow. After all required messages succeed, end the stage and do not poll.

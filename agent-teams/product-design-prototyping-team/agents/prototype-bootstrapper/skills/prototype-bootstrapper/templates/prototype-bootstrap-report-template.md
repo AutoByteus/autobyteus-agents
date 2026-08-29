@@ -25,7 +25,11 @@ simplifications. It does not prove production integration or replace
 ## Prototype Identity
 
 - Prototype repository/root (separate Git repository):
-- Prototype revision or commit, when available:
+- Product ticket:
+- Product ticket branch:
+- Product-owned target worktree:
+- Accepted prototype base revision:
+- Bootstrap candidate revision or commit, when available:
 - Install command:
 - Start command:
 - Review URL:

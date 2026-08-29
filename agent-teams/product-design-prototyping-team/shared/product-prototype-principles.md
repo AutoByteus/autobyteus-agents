@@ -201,22 +201,33 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   workspace/
     source-repository/
     <prototype-subject>-prototype/
+    <prototype-subject>-prototype-worktrees/
   ```
 
   The prototype repository is not a subdirectory of the source repository,
   even when the selected frontend is nested inside that source repository. Do
   not add a generic `prototypes/` container.
-- Final-prototype source remains at the prototype repository root. Requirements
-  Visualization may use a ticket-scoped temporary project inside that same
-  canonical repository, such as `visualizers/<ticket-id>/`, when a focused
-  interactive visual explanation needs its own frontend entry point. This is a
-  mode-specific subproject, not a second Git repository, a permanent product
-  source root, or a generic `prototypes/` container.
+- The canonical prototype repository is the stable project identity and
+  integration base. Active requirements-driven work uses a dedicated Git
+  worktree and branch under the sibling worktree directory, for example:
+
+  ```text
+  <prototype-subject>-prototype-worktrees/
+    <ticket-id>/
+  ```
+
+  Final-prototype source remains at the prototype repository root within the
+  integrated base, while the active ticket edits its own worktree. Requirements
+  Visualization may use a ticket-scoped temporary project such as
+  `visualizers/<ticket-id>/` inside that worktree. This is a mode-specific
+  subproject, not a second Git repository or a generic `prototypes/` container.
 - When no frontend exists, derive the prototype subject from the product or
-  experience name and create the separate prototype repository at the
-  workspace location selected by the Product Prototyper. Record the choice.
+  experience name and use the selected repository policy to create or reserve
+  the separate prototype repository. Create its initial baseline worktree
+  before editing and record the choice.
 - Record the source repository and selected frontend, pinned source revision,
-  prototype repository/root, run command, scenario-selection method, and major
+  canonical prototype repository/root, active ticket worktree and branch,
+  accepted base revision, run command, scenario-selection method, and major
   implementation simplifications.
 - Do not let prototype runs write to production services or depend on
   production credentials.
@@ -252,51 +263,55 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   frontend directory, Requirements Engineer worktree, or generic
   `prototypes/` directory.
 - Product Prototyper resolves, creates when necessary, and owns the prototype
-  repository from request intake. Ownership includes its project files,
-  ordinary ticket folders, prototype-specific commits, and durable UI/UX
-  evidence. Requirements Engineering may link those artifacts but does not
-  manage them.
-- Prototype work may modify only the prototype repository. Production source
-  paths, production services, and production credentials remain outside the
-  prototype boundary. Bootstrapping may read the pinned source repository but
-  must write only to the prototype repository.
+  repository and each Product ticket worktree from request intake. Ownership
+  includes project files, ticket folders, ticket branches/worktrees,
+  prototype-specific commits, integration state, and durable UI/UX evidence.
+  Requirements Engineering may link those artifacts but does not manage them.
+- Prototype work may modify only the prototype repository through its assigned
+  ticket worktree. Production source paths, production services, and production
+  credentials remain outside the prototype boundary. Bootstrapping may read the
+  pinned source repository but must write only to the Product-owned active
+  prototype worktree.
 - Reuse an existing canonical prototype repository when its product surface
   and source boundary match. Otherwise derive the stable repository name using
   Section 7. If the repository cannot be identified, initialized, or isolated
   safely, stop and report the exact blocker rather than silently creating a
   second project.
-- Record source repository and revision, selected frontend, prototype
-  repository/root and revision, run command, and major implementation
-  simplifications in durable prototype evidence.
+- Record source repository and revision, selected frontend, canonical prototype
+  repository/root, active ticket worktree and branch, accepted base revision,
+  ticket revision, run command, and major implementation simplifications in
+  durable prototype evidence.
 
 ## 10. Prototype Repository Lifecycle
 
 - Maintain one stable prototype repository for the selected frontend or
-  product surface. Manage each requirements-driven request as a ticket inside
-  that repository, using the caller's existing ticket or request identifier
-  when one is supplied. If none exists, create the ticket using the Product
-  team's normal ticket convention before editing. Do not invent a second
-  prototype-specific ticket ID.
+  product surface. Manage each requirements-driven request as a ticket with a
+  dedicated branch and worktree, using the caller's existing ticket or request
+  identifier when one is supplied. If none exists, create the ticket using the
+  Product team's normal ticket convention before editing. Do not invent a
+  second prototype-specific ticket ID.
 - Keep ticket folders such as `tickets/in-progress/<ticket-id>/` and
-  `tickets/done/<ticket-id>/` inside the prototype repository. They contain the
-  ticket record, UI/UX specification, visual references, and supporting
-  evidence; they are ordinary folders, not branches or worktrees.
-- The prototype source remains at the repository root. Product Prototyper
-  works in that stable repository and updates the ticket folder alongside the
-  implementation. A dedicated per-ticket branch or worktree is not required.
-- The Product Prototyper reads the current prototype repository and its
-  accepted baseline before making a focused change. Keep revision history in
-  the existing change log and ticket record when a material evolution needs
-  traceability.
+  `tickets/done/<ticket-id>/` inside the active ticket worktree. They contain
+  the ticket record, UI/UX specification, visual references, and supporting
+  evidence; the folder records the ticket, while the Git worktree provides
+  source and index isolation.
+- Product Prototyper creates or resumes the ticket branch/worktree from the
+  latest accepted prototype revision and performs ticket edits there. Record
+  the canonical repository separately from the active worktree, branch, base
+  revision, and ticket revision.
+- The Product Prototyper reads the accepted baseline before making a focused
+  change. Keep revision history in the branch commits, existing change log,
+  and ticket record when a material evolution needs traceability.
 - For an existing frontend with no accepted baseline, Product Prototyper sends
-  the fixed bootstrap request with the selected frontend and canonical
-  prototype repository/root. Bootstrapper establishes current UI/UX parity in
-  that repository and returns the runnable result, bootstrap report, and
-  evidence.
+  the fixed bootstrap request with the selected frontend, canonical prototype
+  repository/root, target baseline worktree, branch, and source/base
+  constraints. Bootstrapper establishes current UI/UX parity in that worktree
+  and returns the runnable result, bootstrap report, and evidence.
 - Product Prototyper performs acceptance and regression validation, commits
-  the accepted baseline and later durable changes in the prototype repository,
-  and keeps mode-appropriate ticket evidence synchronized with that committed
-  state. Use the following status transitions for the common
+  the accepted baseline and later durable changes on the Product-owned ticket
+  branch, and integrates them into the canonical prototype base under
+  repository policy. Keep mode-appropriate ticket evidence synchronized with
+  the committed state. Use the following status transitions for the common
   `prototype-ticket.md` record; the outcome classification and ticket status
   must agree:
 
@@ -315,22 +330,26 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   closes without final-prototype work, complete its evidence and close the
   ticket under repository policy; if final-prototype work follows, keep or
   reopen it in progress. Move a completed final-prototype ticket folder to
-  `tickets/done/`.
+  `tickets/done/` in the ticket branch and preserve the integration result.
   Push only under existing repository policy or explicit authorization.
 - Multiple tickets may exist in the same repository, but overlapping changes
-  must be handled deliberately. Do not overwrite another ticket's uncommitted
-  changes; serialize the work or report the exact conflict.
-- Do not create a dedicated ticket branch or task worktree. If the canonical
-  prototype repository is in an unsafe or ambiguous state, stop and report the
-  exact blocker rather than inventing another root.
+  may use separate worktrees and must still be integrated deliberately. Do not
+  overwrite another ticket's uncommitted changes. Before integration, reconcile
+  an advanced base and report merge conflicts or changed behavior instead of
+  silently resetting a ticket.
+- If the canonical repository, accepted base, ticket branch, or worktree is in
+  an unsafe or ambiguous state, stop and report the exact blocker rather than
+  inventing another root or sharing a checkout.
 
 ## 11. Bootstrapper And Product-Prototyper Boundary
 
 - `prototype_bootstrapper` owns only the current-experience baseline: source
   verification and pinning, observable-surface discovery, prototype-native
   parity implementation, matched validation, and the bootstrap report.
-- Bootstrapper may create or update the prototype repository at the canonical root,
-  but does not implement future-state requirements, create the canonical
+- Bootstrapper may create or update baseline files only in the Product
+  Prototyper's assigned baseline or ticket worktree. It does not create a
+  second worktree, write to the canonical integration checkout during active
+  ticket work, implement future-state requirements, create the canonical
   future-state `ui-ux-spec.md`, conduct the user design review, or approve a
   product decision.
 - `product_prototyper` reviews and tests the Bootstrapper's result, commits the

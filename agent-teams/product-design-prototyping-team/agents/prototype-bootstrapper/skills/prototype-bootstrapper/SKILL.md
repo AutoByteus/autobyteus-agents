@@ -28,8 +28,8 @@ the interface should look like or do.
 - verification of the selected frontend application, source authority, and
   pinned revision
 - independent discovery of the current observable UI/UX boundary
-- an isolated, independently runnable browser prototype
-- the current-experience baseline in the canonical prototype repository
+- an independently runnable current-experience baseline in the Product
+  Prototyper's assigned ticket worktree
 - exact observable parity for each distinct user-facing surface, behavior,
   state pattern, and journey in the selected boundary
 - prototype-native state, synthetic fixtures, scripted transitions, and
@@ -59,58 +59,59 @@ independently:
 - pin the source revision at actual kickoff unless an explicit revision
   constraint governs it
 - read repository and source run instructions
-- select the canonical separate prototype repository/root under the shared
-  workspace rules unless an explicit root constraint governs it
+- use the canonical prototype repository/root, Product ticket branch, and
+  Product-owned target worktree supplied by Product Prototyper; do not choose a
+  different repository, branch, or worktree
 - discover routes, contexts, states, journeys, viewports, fixtures, assets, and
   validation scenarios
 
-The selected frontend locator, canonical separate prototype repository/root,
-and explicit source-revision or prototype-repository/root constraints are the
-only task-specific context needed. Use the canonical prototype repository/root exactly; do not choose a different
-repository name or location. Do not require future-state
-requirements, feature IDs, anticipated UI inventory, implementation
-instructions, source-start instructions, fixture designs, or a requirements
-artifact packet. Missing information that this role owns is discovery work,
-not an input gap.
+The selected frontend locator, canonical prototype repository/root, Product
+ticket, target worktree and branch, and explicit source-revision constraints are
+the task-specific context needed. Do not require future-state requirements,
+feature IDs, anticipated UI inventory, implementation instructions,
+source-start instructions, fixture designs, or a requirements artifact packet.
+Missing information that this role owns is discovery work, not an input gap.
 
 The mode-specific exceptions are narrow: a **Correction** request adds the
-established prototype repository/root, report path, and failed or
-unsubstantiated inventory IDs; a **Refresh** request adds the established
-prototype repository/root, report path, and explicitly selected new source
-authority. Return a precise input gap only when the selected
-frontend is genuinely ambiguous or unreachable, an explicit constraint
-conflicts with the source, or a correction/refresh request omits its required
-mode-specific fields.
+established prototype repository/root, target worktree/branch, report path, and
+failed or unsubstantiated inventory IDs; a **Refresh** request adds the
+established prototype repository/root, target worktree/branch, report path, and
+explicitly selected new source authority. Return a precise input gap only when
+the selected frontend is genuinely ambiguous or unreachable, an explicit
+constraint conflicts with the source, or a correction/refresh request omits its
+required mode-specific fields.
 
 ## Prototype Repository Boundary
 
-- Work only in the canonical separate prototype repository/root. Never write
-  bootstrap code, artifacts, or commits into production frontend paths or the
-  source repository.
-- If the canonical prototype repository does not exist, create or initialize
-  it at the root selected under the shared naming rules. It must be a separate
-  Git repository, normally a sibling directory of the source repository in the
-  workspace, named `<prototype-subject>-prototype`. Do not put it inside the
-  source repository, inside the frontend, or under a generic `prototypes/`
-  container, and do not silently choose another name or location.
-- Verify the prototype repository identity, remote, applicable instructions,
-  source pin, and current prototype state when one exists. If the root is
-  occupied by an unrelated project or contains unsafe changes, return `Blocked`
-  with the exact blocker.
+- Write only in the Product Prototyper's assigned worktree, which is a linked
+  checkout of the canonical separate prototype repository. Never write
+  bootstrap code, artifacts, or commits into production frontend paths, the
+  source repository, the canonical integration checkout, or another ticket's
+  worktree.
+- Product Prototyper owns repository, branch, worktree, ticket, integration,
+  and cleanup management. If the canonical prototype repository or assigned
+  worktree does not exist, is ambiguous, or is unsafe, return `Blocked` rather
+  than creating one yourself.
+- Verify the supplied repository identity, branch, worktree, applicable
+  instructions, source pin, and current prototype state. The worktree must be
+  dedicated to this Product ticket and must not contain another ticket's dirty
+  work.
 - Do not create future-state task packages, Product ticket status changes,
   user approval records, or the canonical future-state `ui-ux-spec.md`. Those
-  belong to Product Prototyper's repository workflow. Bootstrapper may update
-  baseline evidence in the prototype repository and return it to Product
+  belong to Product Prototyper's mode and management workflows. Bootstrapper may
+  update baseline evidence in the assigned worktree and return it to Product
   Prototyper, but Product Prototyper creates the accepted baseline commit.
 
 ## Operating Sequence
 
 1. Read the current scope/context, shared principles, and applicable repository
-   instructions. Resolve the selected source location and canonical prototype
-   root from the established workspace context.
+   instructions. Resolve the selected source location, canonical prototype
+   repository, Product ticket, target branch, and assigned worktree from the
+   Product Prototyper handoff.
 2. Verify the selected application boundary, pin the source revision, and
-   create or verify the canonical separate prototype repository/root. Do not modify production
-   frontend paths or silently move to another revision or prototype location.
+   verify the supplied repository/worktree identity. Do not create a repository
+   or worktree, modify production frontend paths, or silently move to another
+   revision, branch, or prototype location.
 3. Inspect routes, navigation, screens, presentation components, styles, assets,
    localization, responsive behavior, tests, fixtures, roles, feature flags,
    host contexts, and runnable source behavior. Inspect production internals
@@ -124,9 +125,9 @@ mode-specific fields.
    direct local simulation. If retaining a production store, client, protocol,
    or runtime is genuinely simpler, record why; never retain it merely because
    its source code is available.
-6. Create or update only the canonical separate prototype repository/root. Prefer a small browser
-   project and reuse presentation code or assets only when that reduces work
-   without importing unnecessary production coupling.
+6. Create or update only the assigned Product-owned worktree. Prefer a small
+   browser project and reuse presentation code or assets only when that reduces
+   work without importing unnecessary production coupling.
 7. Implement real interface structure and interaction using prototype-native
    state, synthetic fixtures, scripted events, and locally selectable,
    resettable scenarios. Follow the simplified implementation rules in the
@@ -142,12 +143,14 @@ mode-specific fields.
    difference. Equivalent permutations may share evidence only when their
    rendered UI and behavior are demonstrably identical.
 10. Complete `prototype-bootstrap-report.md` with source identity, prototype
-   repository/root, experience inventory, implementation simplifications,
-   scenarios, validation evidence, and known user-facing gaps.
+   repository/root, ticket branch and target worktree, accepted base revision,
+   any bootstrap candidate revision, experience inventory, implementation
+   simplifications, scenarios, validation evidence, and known user-facing gaps.
 11. Return the runnable baseline, report, and durable current-state evidence to
    Product Prototyper. Product Prototyper performs acceptance tests, updates
-   the ticket record, and owns the accepted prototype-repository commit; Bootstrapper does
-   not finalize the ticket or create that accepted prototype-repository commit.
+   the ticket record, and owns the accepted prototype-repository commit.
+   Bootstrapper does not finalize the ticket, integrate the branch, or create
+   that accepted prototype-repository commit.
 12. Classify the result as `Completed` or `Blocked`, then follow the handoff
    rules with absolute artifact paths and exact project provenance.
 
@@ -192,7 +195,9 @@ mode-specific fields.
 Before returning `Completed`, confirm:
 
 - the prototype repository/root is explicit and does not overlap production
-  frontend paths
+  frontend paths, and the assigned Product ticket worktree is explicit
+- the supplied Product ticket branch/worktree is dedicated to this baseline and
+  the canonical integration checkout was not modified
 - the selected application and pinned source revision are explicit
 - the prototype starts independently with the documented command
 - each distinct selected surface, interaction, state pattern, journey, and
@@ -218,8 +223,10 @@ Before returning `Completed`, confirm:
 - Apply every matching rule, then call `send_message_to` with the exact returned
   `recipient_address`. Do not infer or hard-code a recipient.
 - Include the stable package identifier when supplied, request type, concise
-  result, next expected action, source pin, prototype repository/root, and
-  absolute paths to the runnable prototype, report, and other durable evidence.
+  result, next expected action, source pin, prototype repository/root, Product
+  ticket branch and target worktree, and absolute paths to the runnable
+  prototype, report, and other durable evidence. Identify any bootstrap
+  candidate revision separately from Product Prototyper's accepted commit.
 - Do not claim completion when any distinct UI inventory item is failed or
   unsubstantiated, any known observable discrepancy remains, or the prototype
   is not independently runnable.
