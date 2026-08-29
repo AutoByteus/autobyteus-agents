@@ -21,8 +21,9 @@ does not need.
 
 ## Use
 
-1. Copy this directory into the Product Prototype repository, normally under
-   `visualizers/<ticket-id>/`.
+1. Copy this directory into the active Product ticket worktree, normally under
+   `visualizers/<ticket-id>/`. The repository-management skill establishes that
+   worktree before this template is used.
 2. Replace the example question, model, labels, and states with the focused
    requirements question.
 3. Rework the design plan before changing the visual model or motion. Keep
