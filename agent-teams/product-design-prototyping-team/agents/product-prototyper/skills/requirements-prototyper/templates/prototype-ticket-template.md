@@ -1,8 +1,8 @@
 # Prototype Ticket
 
-Keep one record for the request being prototyped. This ticket is an ordinary
-artifact folder inside the canonical separate prototype repository; it is not a
-branch or worktree.
+Keep one record for the request being prototyped. The ticket folder is the
+durable artifact/status location inside the Product-owned ticket branch and
+worktree; it does not replace that branch/worktree isolation.
 
 ## Identity And Scope
 
@@ -18,12 +18,17 @@ branch or worktree.
 ## Prototype Context
 
 - Prototype repository/root (separate from source repository):
+- Prototype ticket worktree:
+- Prototype ticket branch:
 - Source repository and selected frontend:
 - Pinned source revision:
 - Accepted baseline revision:
 - Bootstrap report:
 - Product acceptance result and date:
 - Prototype revision for this ticket:
+- Integration target and result:
+- Runtime isolation record (port / process / temporary state):
+- Cleanup result or blocker:
 - Ticket folder:
 
 ## Delivery And Validation

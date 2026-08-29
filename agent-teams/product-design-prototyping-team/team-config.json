@@ -20,14 +20,14 @@
       "from": "/product_prototyper",
       "to": "/prototype_bootstrapper",
       "rules": [
-        "When Product Prototyper classifies the outcome as Baseline Needed because an existing frontend has no applicable accepted baseline, has a named current-experience gap, or has an explicitly requested source refresh, send the fixed mode-specific bootstrap message defined in the Product Prototyper skill. It must identify the selected source frontend and the separate prototype repository/root and must not include future-state requirements or the Product ticket package."
+        "When Product Prototyper classifies the outcome as Baseline Needed because an existing frontend has no applicable accepted baseline, has a named current-experience gap, or has an explicitly requested source refresh, send the fixed bootstrap payload defined in the product-prototype-repository-management skill. It must identify the selected source frontend, separate prototype repository/root, Product-owned target worktree, ticket branch, and accepted source/base revision, and must not include future-state requirements or the Product ticket package."
       ]
     },
     {
       "from": "/prototype_bootstrapper",
       "to": "/product_prototyper",
       "rules": [
-        "When Prototype Bootstrapper classifies a current-experience bootstrap, correction, or refresh as Completed or Blocked, return the runnable baseline or precise blocker, bootstrap report, source pin, separate prototype repository/root, and exact comparison evidence to Product Prototyper for acceptance or recovery. Bootstrapper does not finalize the ticket or create Product Prototyper's accepted commit."
+        "When Prototype Bootstrapper classifies a current-experience bootstrap, correction, or refresh as Completed or Blocked, return the runnable baseline or precise blocker, bootstrap report, source pin, separate prototype repository/root, Product ticket branch and target worktree, and exact comparison evidence to Product Prototyper for acceptance or recovery. Bootstrapper does not finalize the ticket, integrate the branch, or create Product Prototyper's accepted commit."
       ]
     }
   ]

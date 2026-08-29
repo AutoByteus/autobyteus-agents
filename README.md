@@ -38,7 +38,7 @@ The requirements engineering team turns an initial product or technical request 
 
 ## Product Design & Prototyping Team
 
-The product design and prototyping team independently maintains the prototype repository for each product surface. `product_prototyper` owns prototype intake, tickets, commits, and two modes: interactive requirements visualization for exploratory clarification, and final prototype production with user review and UI/UX specifications. `prototype_bootstrapper` owns only current-experience baseline discovery, parity implementation, and bootstrap evidence. The team uses dynamic handoff rules plus `send_message_to` for baseline routing and cross-team results.
+The product design and prototyping team independently maintains the prototype repository for each product surface. `product_prototyper` owns prototype intake, tickets, per-ticket branches/worktrees, commits, integration, and two modes: interactive requirements visualization for exploratory clarification, and final prototype production with user review and UI/UX specifications. Its repository-management skill handles isolation and lifecycle; the selected mode skill handles the experience work. `prototype_bootstrapper` owns only current-experience baseline discovery, parity implementation, and bootstrap evidence in the Product-assigned worktree. The team uses dynamic handoff rules plus `send_message_to` for baseline routing and cross-team results.
 
 ## Software Engineering Team
 

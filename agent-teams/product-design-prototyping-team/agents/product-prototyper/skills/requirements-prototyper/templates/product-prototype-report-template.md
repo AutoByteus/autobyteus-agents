@@ -17,7 +17,12 @@ Use this optional report only when a durable cross-stage summary adds value beyo
 - Selected frontend application or product surface:
 - Pinned source commit or revision:
 - Prototype repository/root (separate Git repository):
+- Prototype ticket worktree:
+- Prototype ticket branch:
+- Accepted prototype base revision:
 - Prototype revision or commit:
+- Integration target and result:
+- Runtime isolation and cleanup result:
 - Ticket folder:
 - Bootstrap report:
 
