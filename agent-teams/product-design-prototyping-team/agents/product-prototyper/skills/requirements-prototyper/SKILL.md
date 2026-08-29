@@ -376,11 +376,11 @@ Before reporting the prototype as completed, confirm:
 - After all required messages succeed, end the current stage and do not poll.
 - Complete the completed-prototype handoff only after user confirmation and final artifact production. If progress is blocked, return the blocker; if a prototype is not recommended, return the decision rationale and evidence path instead of claiming prototype completion or creating final UI/UX artifacts.
 - A requirement-impact handoff may occur during prototype review; include the exact user feedback, affected IDs, and prototype evidence, then wait for a revised requirements package.
-- For `Baseline Needed`, the applicable fixed mode-specific message in
-  **Bootstrap Routing** is the complete request; do not append the requirements
-  package or the Product Prototyper ticket package under the general artifact
-  rule. Keep the ticket status and bootstrap result in the Product Prototyper's
-  ticket folder.
+- For `Baseline Needed`, the applicable fixed Bootstrapper payload in the
+  [repository-management skill](../product-prototype-repository-management/SKILL.md)
+  is the complete request; do not append the requirements package or the
+  Product Prototyper ticket package under the general artifact rule. Keep the
+  ticket status and bootstrap result in the Product Prototyper's ticket folder.
 - For `Prototype Completed`, include absolute paths to `ui-ux-spec.md`, the
   runnable prototype, final screenshots, the applicable
   `prototype-bootstrap-report.md`, and every still-relevant supporting
