@@ -513,3 +513,84 @@ Validation completed:
   checked, no broken links;
 - shared-principles symlink validation: passed;
 - `git diff --check`: passed.
+
+## Follow-up: explicit mode naming and baseline relationship
+
+The next review found that `requirements-prototyper` is misleadingly named and
+that the visualizer mode's relationship to an existing product surface is not
+explicit enough. The intended boundary is:
+
+- `product-experience-prototyper`: evolve an applicable accepted product
+  experience incrementally and produce the implementation-oriented UI/UX
+  specification; retain its no-frontend initial-experience fallback.
+- `exploratory-requirements-visualizer`: clarify abstract, independent, or
+  otherwise product-surface-unattached concepts. It may use a lightweight
+  standalone visualizer project and must not be selected for a concrete change
+  to an existing route, component, or preserved interaction.
+
+Approved changes:
+
+| File/boundary | Action | Intended result |
+| --- | --- | --- |
+| Product mode skill directory, frontmatter, and links | Rename/update | Replace `requirements-prototyper` with `product-experience-prototyper`. |
+| Exploratory mode skill directory, frontmatter, and links | Rename/update | Replace `interactive-requirements-visualizer` with `exploratory-requirements-visualizer`. |
+| Product Prototyper `agent.md` and `agent-config.json` | Update | Make mode selection and attached skill names explicit. |
+| Exploratory visualizer skill | Update | Add an applicability gate: route existing-product-surface changes to the Product Experience Prototyper and do not require or imitate an unrelated baseline. |
+| Shared principles, team contract, and root README | Update | Describe the two modes by responsibility and preserve one shared repository/worktree lifecycle. |
+| Skill references and templates | Update | Remove stale names and ensure each instruction matches the renamed owner and scope. |
+
+The repository-management skill remains shared infrastructure. Its ticket,
+worktree, runtime, commit, integration, and cleanup ownership is unchanged.
+The existing product mode remains the baseline-native path whenever an
+existing product surface is in scope; the exploratory mode is not a fallback
+for that case.
+
+## Follow-up: Requirements Engineer ownership correction
+
+The first implementation of the mode-name change placed too much Product
+Design routing logic in the Requirements Engineer skill. That conflicted with
+the team principle that each agent owns its work and uses its outcome-based
+handoff rules after completing that work.
+
+Corrected boundary:
+
+- Requirements Engineer owns requirements investigation, the canonical
+  requirements package, user approval, and any Product Design request context
+  present in the input.
+- Requirements Engineer may forward a generic `Product Design Requested`
+  outcome when the user's stated or clarified intent calls for that team's
+  help. This label routes the request; it does not select a Product Prototyper
+  mode.
+- Product Prototyper owns reasoning about the received request, choosing
+  `product-experience-prototyper` versus
+  `exploratory-requirements-visualizer`, and all Product repository, ticket,
+  worktree, bootstrap, validation, and handoff operations.
+- Product Design results return through the handoff rules; Requirements
+  Engineer records user decisions and integrates only approved evidence into
+  the canonical requirements package.
+
+Implemented correction:
+
+- `Update` Requirements Engineer's skill, investigation-notes template, team
+  summary, department routing rule, department summary, and department
+  coordinator skill to remove mode selection from Requirements Engineering.
+- `Keep` the Product Prototyper's mode-selection authority and the renamed
+  skill identifiers.
+- `Keep` the Requirements Engineer's architecture-design routing assessment,
+  which is a distinct requirements-owned responsibility already established by
+  the workflow.
+
+Review result: the Requirements Engineer no longer contains a visualizer-versus-
+product-prototype decision gate. It records and forwards the user's Product
+Design intent, while the Product Prototyper chooses its own mode after
+receiving the request.
+
+Validation completed after the correction:
+
+- Requirements Engineer, Product Prototyper, repository-management, and Head
+  skills passed `quick_validate.py`.
+- The exploratory visualizer template `npm run build` passed.
+- Changed JSON files parsed successfully.
+- Authored Markdown links in the affected packages all resolved.
+- Configured agent skills resolved with matching frontmatter names.
+- `git diff --check` passed.

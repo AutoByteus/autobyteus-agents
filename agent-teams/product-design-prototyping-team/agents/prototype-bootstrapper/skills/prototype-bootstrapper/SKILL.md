@@ -76,10 +76,11 @@ The mode-specific exceptions are narrow: a **Correction** request adds the
 established prototype repository/root, target worktree/branch, report path, and
 failed or unsubstantiated inventory IDs; a **Refresh** request adds the
 established prototype repository/root, target worktree/branch, report path, and
-explicitly selected new source authority. Return a precise input gap only when
-the selected frontend is genuinely ambiguous or unreachable, an explicit
-constraint conflicts with the source, or a correction/refresh request omits its
-required mode-specific fields.
+explicitly selected new source authority. Classify the result as `Blocked` and
+record a precise input gap only when the selected frontend is genuinely
+ambiguous or unreachable, an explicit constraint conflicts with the source, or
+a correction/refresh request omits its required mode-specific fields. The input
+gap is a reason for `Blocked`, not a separate handoff outcome.
 
 ## Prototype Repository Boundary
 
@@ -217,6 +218,8 @@ Before returning `Completed`, confirm:
 ## Handoff Rules
 
 - Use these rules at each `Completed` or `Blocked` outcome.
+- A precise input gap is always reported as a `Blocked` result; do not emit an
+  unconfigured input-gap outcome.
 - Finish the runnable baseline, report, and evidence before routing the outcome.
 - Call `get_handoff_rules` and use the returned conditional rules as the routing
   authority.

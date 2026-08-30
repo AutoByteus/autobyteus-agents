@@ -1,19 +1,24 @@
 ---
-name: interactive-requirements-visualizer
-description: Build and iteratively revise a small interactive visual experience that helps users understand and clarify requirements before final prototype production.
+name: exploratory-requirements-visualizer
+description: Build and iteratively revise a small interactive visual explanation for abstract or product-independent requirements that are not yet tied to an existing product surface.
 ---
 
-# Interactive Requirements Visualizer
+# Exploratory Requirements Visualizer
 
 ## Purpose
 
-Turn an ambiguous requirement question into the smallest useful interactive
-visual experience so the user can understand the proposed scope and behavior
-without mentally simulating a long text description or static diagram.
+Turn an abstract, ambiguous, or product-independent requirement question into
+the smallest useful interactive visual experience so the user can understand
+the proposed scope and behavior without mentally simulating a long text
+description or static diagram.
 
-This is an exploratory clarification skill. It is not the final product
-prototype skill and it does not produce the canonical requirements or the
-final implementation-oriented ui-ux-spec.md.
+This is an exploratory clarification skill for a concept that has no
+applicable existing product surface. It is not the product-experience
+prototyper, must not replace or imitate an existing product route or component,
+and does not produce the canonical requirements or the final
+implementation-oriented ui-ux-spec.md. When a request changes an existing
+route, component, screenshot-backed surface, or preserved interaction, use
+`product-experience-prototyper` instead.
 
 Do not begin by building a frontend. First decide how the concept should be
 demonstrated with the smallest useful visual model, record that design
@@ -31,24 +36,29 @@ to establish or resume the Product ticket, dedicated ticket branch, active
 worktree, accepted base revision, and runtime isolation. Apply it again after
 visualizer validation and review to finalize the ticket, commit the durable
 visualizer result, integrate it under repository policy, and clean up safely.
-This skill owns only the requirements-visualization experience and its
+This skill owns only the exploratory visualization experience and its
 mode-specific evidence.
 
-The skill includes a reusable project scaffold at
+The skill includes a reusable project scaffold for independent explorations at
 [templates/visualizer-project/](templates/visualizer-project/). After the
-design gate passes, copy that scaffold for a new visualization ticket instead
-of rebuilding the development setup from scratch. The scaffold makes
-animation and spatial-rendering capabilities available, but its starter
+design gate passes, copy that scaffold for a new exploratory visualization
+ticket instead of rebuilding the development setup from scratch. The scaffold
+makes animation and spatial-rendering capabilities available, but its starter
 experience is intentionally simple; installed capability is not a reason to
-use every library.
+use every library. Do not use the scaffold as a replacement shell for an
+existing product experience.
 
 ## Activation And Inputs
 
-Use this skill when the request is explicitly or implicitly in Requirements
-Visualization mode. A direct user request and a request from Requirements
-Engineering follow the same workflow; determine the mode from the request
-content, not from the sender. The request should identify:
+Use this skill when the request is explicitly or implicitly in Exploratory
+Requirements Visualization mode and has no applicable existing product
+surface. A direct user request and a request from Requirements Engineering
+follow the same workflow; determine the mode from the request content, not
+from the sender. The request should identify:
 
+- why the question is independent of an existing product surface, such as an
+  abstract concept, backend-only behavior, a new product with no frontend, or
+  an explicit request for an independent explanation;
 - the user or product decision the visualizer must clarify;
 - the requirement, behavior, or acceptance-criteria IDs in scope when they
   exist;
@@ -56,13 +66,18 @@ content, not from the sender. The request should identify:
 - constraints, non-goals, and known alternatives;
 - the canonical requirements artifact paths when canonical requirements
   context exists;
-- the selected source frontend and established prototype repository/root when
-  an existing product experience is relevant;
+- the product surface or concept subject and the prototype repository/root when
+  an independent exploratory package already exists;
 - the ticket or request identifier and any prior visualizer revision or user
   feedback when available.
 
+If the request concerns an existing product route, component, screenshot-backed
+surface, or preserved interaction, return a routing gap naming
+`product-experience-prototyper` instead of building a standalone visualizer.
 If there is no concrete decision question or observable experience to show,
-return a precise request gap instead of building a generic showcase.
+classify the result as `Blocked` with a precise request-gap reason instead of
+building a generic showcase. A request gap is a reason for `Blocked`, not a
+separate handoff outcome.
 
 ## Responsibility Boundary
 
@@ -83,16 +98,16 @@ return a precise request gap instead of building a generic showcase.
 - deciding that the user understood or approved a requirement;
 - production backend, architecture, persistence, security, or integration
   behavior;
-- the final product prototype or normative ui-ux-spec.md;
+- the product-experience prototype or normative ui-ux-spec.md;
 - the Requirements Engineer's task workspace or ticket lifecycle.
 
 When canonical requirements context exists, Requirements Engineering owns the
 question and clarification loop. The user remains the approval authority.
-Product Prototyper owns the visual representation and sends each review-ready
-revision to the Requirements Engineer when that route exists; for a direct
-user request with no such route, return the review package to the user or
-calling workflow. Do not silently convert user feedback into an approved
-requirement.
+Product Prototyper owns the independent visual representation and sends each
+review-ready revision to Requirements Engineering when that route exists; for
+a direct user request with no such route, return the review package to the
+user or calling workflow. Do not silently convert user feedback into an
+approved requirement.
 
 ## Visualization Principles
 
@@ -174,17 +189,19 @@ the smallest active subset of its dependencies:
 - plain HTML/CSS/JavaScript for a small linear or stateful visualizer;
 - the scaffold's React/Vite/TypeScript setup when component state or repeated
   interaction makes a single file unclear;
-- the existing prototype frontend technology when the visualizer must extend
-  an established prototype or preserve its interaction language;
+- the existing prototype frontend technology only when the independent
+  explanation explicitly needs a supplied design-system or technical context;
+  this does not authorize changing an existing product surface in this mode;
 - `motion` or CSS transitions when animation clarifies causality or state;
 - `three`, `@react-three/fiber`, and `@react-three/drei` only when the decision
   genuinely depends on spatial structure, depth, movement, or physical
   relationships.
 
-The visualizer does not need to use the product's frontend technology merely
-because it will inform the product requirements. Technology parity is required
-only when the question itself depends on existing UI behavior, component
-constraints, or interaction language. Final Product Prototype mode has a
+The visualizer normally does not use a product's frontend technology because
+its purpose is to explain a concept independently of the product surface.
+When the question depends on existing UI behavior, component constraints, or
+interaction language, it is a product-experience prototyping request rather
+than an exploratory visualizer request. Product Experience Prototyping has a
 different technology and fidelity contract.
 
 The visualizer may be a small project or route inside the active Product ticket
@@ -199,9 +216,15 @@ integration work.
 - Use the canonical Product Prototype repository, the supplied Product ticket,
   and the active ticket worktree established by the management skill. Do not
   create a second product-prototype repository or ticket worktree.
+- Confirm before design that the question is abstract, product-independent,
+  or explicitly requested as an independent explanation. If it concerns an
+  existing product route, component, screenshot-backed surface, or preserved
+  interaction, stop and return a routing gap for
+  `product-experience-prototyper`; do not create visualizer artifacts.
 - Create or update the shared `prototype-ticket.md` record in the ticket
-  folder for every supplied or newly created visualization ticket, including
-  request-gap, `Baseline Needed`, `Not Recommended`, and `Blocked` outcomes.
+  folder for every supplied or newly created exploratory visualization ticket,
+  including request-gap cases recorded as `Blocked`, `Not Recommended`, and
+  other `Blocked` outcomes.
   Use the shared status transitions; keep mode-specific brief, design-plan,
   and review fields in their own artifacts instead of duplicating them in the
   ticket record.
@@ -219,16 +242,12 @@ integration work.
   folder.
 - Keep the ticket under tickets/in-progress/<ticket-id>/ while Requirements
   Engineering is still collecting understanding or feedback. Close it only
-  after the clarification loop is confirmed complete and no final-prototype
+  after the clarification loop is confirmed complete and no product-experience
   work follows.
 - Return durable visualizer source and ticket evidence to the management skill
   for commit on the Product ticket branch and integration according to the
   normal repository policy. This mode does not commit, integrate, or clean up
   the worktree independently.
-- If an existing frontend is relevant, rely on an accepted current-experience
-  baseline when the visualizer extends that experience. If the baseline is
-  absent, use the fixed Bootstrapper payload in the repository-management skill
-  and resume only after Product Prototyper accepts the baseline.
 - Use absolute paths in all handoffs and record the live review URL when one
   is available.
 
@@ -238,33 +257,28 @@ Use [templates/requirements-visualization-design-plan-template.md](templates/req
 as requirements-visualization-design-plan.md.
 Use [templates/requirements-visualization-review-template.md](templates/requirements-visualization-review-template.md)
 as requirements-visualization-review.md.
-Use the sibling final-prototype template
-[../requirements-prototyper/templates/prototype-ticket-template.md](../requirements-prototyper/templates/prototype-ticket-template.md)
+Use the Product team shared template
+[shared/templates/prototype-ticket-template.md](../../../../shared/templates/prototype-ticket-template.md)
 as the shared ticket record `prototype-ticket.md`.
 
 ## Operating Sequence
 
-1. Read the focused visualization request, requirements context, active Product
-   ticket, repository instructions, prior revision, and open user questions.
+1. Read the focused exploratory visualization request, requirements context,
+   active Product ticket, repository instructions, prior revision, and open
+   user questions. Confirm that the question has no applicable existing
+   product surface; if it does, return a routing gap for
+   `product-experience-prototyper` and stop.
 2. Use the management skill's canonical repository, ticket branch, active
    worktree, accepted base revision, runtime-isolation record, and visualizer
    template. Create or update the mode-specific fields in `prototype-ticket.md`
    and provide the evidence management needs to set its status to `In Progress`
    once active work begins. Do not create another ticket worktree or edit the
    canonical checkout directly.
-3. Resolve the accepted baseline in the management-established active worktree
-   before creating mode-specific visualizer artifacts:
-   - If an existing frontend is relevant and an accepted baseline is present,
-     continue.
-   - If an existing frontend is relevant and the accepted baseline is absent,
-     provide the evidence for management to set the ticket status to
-     `Baseline Needed`, send the fixed minimal Bootstrapper message through the
-     matching handoff rule, and stop. Do not write a brief, design plan, or
-     visualizer source for future-state work. Resume at this baseline check only
-     after Product Prototyper accepts the Bootstrapper result in the same
-     management-established worktree.
-   - If no frontend exists, record that no current-experience baseline is
-     required and continue.
+3. Confirm the independent scope in the management-established active
+   worktree. A source repository may exist in the workspace, but no accepted
+   current-experience baseline is required when the question has no applicable
+   product surface. Record the concept subject and why a standalone
+   exploratory model is safer or clearer than modifying product UI.
 4. Write or update the visualization brief. State the single decision
    question, user journey, states, non-goals, and success signal.
 5. Complete the cognition-first design pass and write or update the design
@@ -289,16 +303,17 @@ as the shared ticket record `prototype-ticket.md`.
    artifacts when a visualizer exists. Provide the review-ready evidence for
    management to set the ticket status to `Awaiting User Review`.
 9. Classify the result as Requirements Visualization Ready, Requirement
-   Impact, Not Recommended, Blocked, or a request gap. For a review-ready
-   package, provide the evidence for management to set the ticket status to
-   `Awaiting User Review` and preserve the active worktree before routing. For
-   `Not Recommended`, `Requirement Impact`, `Blocked`, or a request gap, provide
-   the corresponding outcome and evidence for management to apply the shared
-   status before routing: `Not Recommended` maps to `Not Recommended`, while
-   `Requirement Impact`, `Blocked`, and request-gap outcomes map to `Blocked`.
-   Do not claim requirement approval; the user owns approval, while Requirements
-   Engineering records the decision when it owns the canonical requirements
-   context.
+   Impact, Not Recommended, or `Blocked`. When the result is blocked because a
+   decision question or observable experience is missing, record the precise
+   request-gap reason. For a review-ready package, provide the evidence for
+   management to set the ticket status to `Awaiting User Review` and preserve
+   the active worktree before routing. For `Not Recommended`, `Requirement
+   Impact`, or `Blocked`, provide the corresponding outcome and evidence for
+   management to apply the shared status before routing: `Not Recommended`
+   maps to `Not Recommended`, while `Requirement Impact` and `Blocked` map to
+   `Blocked`. Do not claim requirement approval; the user owns approval, while
+   Requirements Engineering records the decision when it owns the canonical
+   requirements context.
 10. On a focused revision request, set the ticket status back to `In Progress`,
    preserve the accepted visual behavior,
    update only the requested scope, and revalidate the affected journey. If
@@ -314,24 +329,24 @@ as the shared ticket record `prototype-ticket.md`.
    package to the management skill. Management commits the result on the
    Product ticket branch, integrates it under repository policy, moves a closed
    ticket to `tickets/done/`, and performs safe runtime/worktree cleanup. If no
-   final-prototype work follows, provide the evidence for management to mark the
+   product-experience work follows, provide the evidence for management to mark the
    ticket `Completed`; otherwise keep or reopen it `In Progress` for the
-   separate `requirements-prototyper` invocation. Do not claim completion before
+   separate `product-experience-prototyper` invocation. Do not claim completion before
    repository finalization is durable.
 
 ## Result Contract
 
 Every completed result must include:
 
-- Requirements Visualization Ready, Requirement Impact, Not Recommended,
-  Baseline Needed, Blocked, or a precise request-gap classification;
+- Requirements Visualization Ready, Requirement Impact, Not Recommended, or
+  `Blocked` with a precise request-gap classification;
 - the stable package and ticket identifiers;
 - the decision question and covered requirement/behavior IDs;
 - the applicable absolute path to the common `prototype-ticket.md` record;
 - applicable absolute paths to the visualizer source, brief, design plan,
   review record, ticket folder, and visual references; explicitly state when
-  an artifact was not created because the result was a request gap, Not
-  Recommended, Baseline Needed, or Blocked;
+  an artifact was not created because the result was `Blocked` due to a
+  request gap, `Not Recommended`, or another `Blocked` condition;
 - the current ticket status, using the shared status transitions;
 - the design-gate status, or Not Applicable when no design pass occurred, and
   any intentional deviation between the plan and the delivered visualizer;
@@ -353,11 +368,11 @@ Every completed result must include:
 
 ## Handoff Rules
 
-- Finish the visualizer artifacts. For an interim result such as `Baseline
-  Needed` or `Awaiting User Review`, have repository management record the
-  current status and preserve the active worktree before routing. For a terminal
-  result, have it finalize the repository state before routing. A mode result is
-  not complete merely because its files exist in a worktree.
+- Finish the visualizer artifacts. For an interim result such as `Awaiting User
+  Review`, have repository management record the current status and preserve
+  the active worktree before routing. For a terminal result, have it finalize
+  the repository state before routing. A mode result is not complete merely
+  because its files exist in a worktree.
 - Call get_handoff_rules and use the returned conditional rules as the
   routing authority.
 - Apply every matching rule and call send_message_to with the exact returned
@@ -365,17 +380,14 @@ Every completed result must include:
 - For Requirements Visualization Ready, send the review-ready package to the
   recipient returned by the matching rule, or return it to the user/calling
   workflow when no handoff rule applies. Do not claim user approval.
-- For `Blocked` or a request gap, send the precise
-  blocker, evidence, and recovery question through the matching rule; when no
-  rule applies, return it to the user or calling workflow.
+- For `Blocked`, including a request-gap case, send the precise blocker,
+  evidence, and recovery question through the matching rule; when no rule
+  applies, return it to the user or calling workflow.
 - For Requirement Impact, send the exact conflicting feedback, affected
   requirement or behavior IDs, visualizer evidence, and the decision that
   Requirements Engineering must resolve through the matching rule; when no
   rule applies, return it to the user or calling workflow.
 - For Not Recommended, send the evidence explaining why an interactive
   visualizer would not materially improve the current decision.
-- For Baseline Needed, use the fixed Bootstrapper payload in the
-  repository-management skill instead of sending future-state requirements or
-  a visualizer design.
 - If no returned rule applies, return the result to the user or calling
   workflow. After all required messages succeed, end the stage and do not poll.

@@ -1,45 +1,49 @@
 ---
-name: requirements-prototyper
-description: Accept an exact existing-frontend current-experience baseline or create a no-frontend starting experience, build production-quality focused future-state prototypes, iterate with the user, and produce an approved UI/UX specification with normative final reference screenshots.
+name: product-experience-prototyper
+description: Evolve an accepted product experience into a production-quality focused prototype, or establish a new product experience when no frontend exists, and produce an approved UI/UX specification with normative final reference screenshots.
 ---
 
-# Requirements Prototyper
+# Product Experience Prototyper
 
 Read [product-prototype-principles.md](product-prototype-principles.md) before
 starting. It is the shared authority for prototype technology selection,
 current-experience fidelity, lightweight implementation, synthetic state,
 workspace/repository isolation, project ownership, and evidence.
-This skill adds the final-prototype workflow and artifacts; it does not replace
-the shared cross-mode invariants with a second policy.
+This skill adds the product-experience workflow and artifacts; it does not
+replace the shared cross-mode invariants with a second policy.
 
 Before this mode begins, apply
 [product-prototype-repository-management](../product-prototype-repository-management/SKILL.md)
 to establish or resume the canonical repository, Product ticket, ticket branch,
 active worktree, accepted base revision, and runtime isolation. Apply it again
 after this mode's validation and user-review work for commit, integration,
-ticket closure, and cleanup. This skill owns only the final-prototype
-experience work.
+ticket closure, and cleanup. This skill owns only the product-experience work.
 
 ## Purpose
 
-For an existing frontend, accept an independently runnable current-experience
-baseline with 100% observable UI/UX parity before applying the smallest credible
-requirements-driven change that helps the user decide how future product
-behavior and UI/UX should work. The baseline remains exact at the interface
-while using lightweight prototype state instead of production internals. When
-no frontend exists, create the smallest credible runnable experience directly.
+For an existing product surface, accept an independently runnable
+current-experience baseline with 100% observable UI/UX parity, then evolve that
+baseline with the smallest credible requirements-driven change. The preserved
+product shell, layout, styling language, controls, and unaffected behavior are
+part of the experience being evolved; the proposed result must remain
+recognizably connected to the existing product. The implementation may still
+use lightweight prototype state instead of production internals. When no
+frontend exists, create the smallest credible new product experience directly.
 After user confirmation, turn the production-quality visual and interaction
 design into a precise `ui-ux-spec.md` backed by the runnable prototype and
 normative final reference screenshots.
 
 ## Mode Boundary
 
-This skill is the final-prototype workflow. Use it when the future-state
-behavior is sufficiently understood for a product prototype and UI/UX
-specification. For an unresolved requirements question where the user first
-needs an exploratory animated or interactive explanation, use the sibling
-`interactive-requirements-visualizer` skill instead. Do not turn an unresolved
-requirements question into an unapproved final product behavior.
+This skill is the product-facing evolution workflow. Use it when the request
+concerns an existing product surface or when a new product experience must be
+created and the user needs a product-facing prototype and UI/UX
+specification. For an abstract or product-independent question with no
+applicable existing product surface, use the sibling
+`exploratory-requirements-visualizer` skill instead. Requirement uncertainty
+does not by itself justify switching an existing-product change to an
+independent visualizer. Do not turn an unresolved requirements question into
+an unapproved final product behavior.
 
 You author the concrete future-state UI/UX proposal within the current request,
 available requirements context, and review feedback. The proposal becomes
@@ -50,14 +54,14 @@ a visual or behavioral product decision.
 
 - the focused prototype scope represented by the current request and available
   requirements context
-- the final-prototype content of the current Product ticket, including its
+- the product-experience content of the current Product ticket, including its
   scope, linked requirements, mode-specific artifacts, validation, approval,
   and handoff result
 - review and acceptance of the Bootstrapper's exact current-experience baseline
 - authoring the concrete, focused future-state UI/UX proposal for user review
 - the mode-specific source and artifacts created in the active Product ticket
-  worktree; for an existing frontend, future-state work begins only after
-  baseline acceptance
+  worktree; for an existing product surface, future-state work begins only
+  after baseline acceptance and remains an incremental baseline evolution
 - the iterative prototype review loop with the user
 - the canonical prototype-owned `ui-ux-spec.md`
 - mode-specific fields and evidence in the Product ticket's durable artifact
@@ -103,8 +107,10 @@ inventing them:
 - an established prototype repository/root and bootstrap-report path when they already
   exist
 
-If the current request lacks a decision question or observable journey, return
-the gap instead of inventing a broad prototype.
+If the current request lacks a decision question or observable journey, classify
+the result as `Blocked`, record the precise missing input and recovery question
+in the Product ticket, and stop instead of inventing a broad prototype. The
+input gap is a reason for the `Blocked` result, not a separate handoff outcome.
 
 ## Final Outputs
 
@@ -122,7 +128,7 @@ Create supporting artifacts only when they materially help construction, validat
 - [templates/prototype-change-log-template.md](templates/prototype-change-log-template.md) as `prototype-change-log.md`
 - [templates/prototype-runbook-template.md](templates/prototype-runbook-template.md) as `prototype-runbook.md`
 - [templates/product-prototype-report-template.md](templates/product-prototype-report-template.md) as `product-prototype-report.md`
-- [templates/prototype-ticket-template.md](templates/prototype-ticket-template.md) as the per-ticket `prototype-ticket.md`
+- [shared/templates/prototype-ticket-template.md](../../../../shared/templates/prototype-ticket-template.md) as the shared per-ticket `prototype-ticket.md`
 - `<ticket-folder>/visual-references/` containing the final `VIS-*` references
   and captured screenshots
 - the bootstrapper's `prototype-bootstrap-report.md` for every
@@ -141,11 +147,11 @@ the ticket is in progress. Keep the ticket record, UI/UX specification, final
 visual references, and ticket-specific support artifacts together under that
 worktree's ticket folder. The repository-management skill owns the canonical
 repository, branch, worktree, ticket status, commit, integration, and cleanup
-lifecycle; this mode owns only the final-prototype artifacts and behavior.
+lifecycle; this mode owns only the product-experience artifacts and behavior.
 
 ## Repository-Management Boundary
 
-Before following the final-prototype sequence, use
+Before following the product-experience sequence, use
 [product-prototype-repository-management](../product-prototype-repository-management/SKILL.md)
 to establish or resume the active Product ticket worktree and its accepted
 prototype base. Do not switch the canonical prototype checkout, create a
@@ -153,13 +159,17 @@ second ticket worktree, or edit a production/source path from this mode.
 
 Use the status transitions in the shared Product Prototype Principles for the
 common `prototype-ticket.md` record. The management skill owns the transition
-and repository state; this skill supplies the final-prototype result and the
+and repository state; this skill supplies the product-experience result and the
 mode-specific evidence required for each transition.
 
 ## Prototype Selection
 
 Keep the future-state change proportional to the decision:
 
+- For an existing product surface, start from the accepted baseline and make
+  the smallest localized change that answers the request. Do not replace the
+  product shell with a disconnected demo application or move the affected
+  behavior into an unrelated standalone visualizer.
 - Build one critical journey before secondary flows.
 - Include alternate, loading, empty, permission, error, and recovery states only when they affect the product decision.
 - Compare alternatives only when the request asks for comparison or the requirements engineer identifies a real ambiguity.
@@ -361,6 +371,9 @@ Before reporting the prototype as completed, confirm:
 ## Handoff Rules
 
 - Use these rules at each `Baseline Needed`, `Prototype Completed`, `Requirement Impact`, `Not Recommended`, or `Blocked` outcome.
+- A missing decision question or observable journey is a `Blocked` input-gap
+  outcome. Include the missing input, evidence, and recovery question; do not
+  emit an unconfigured gap outcome.
 - Finish the artifacts you own. For an interim result such as `Baseline Needed`
   or `Awaiting User Review`, have repository management record the current
   status and preserve the active worktree before routing. For a terminal result,

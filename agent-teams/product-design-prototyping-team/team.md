@@ -1,6 +1,6 @@
 ---
 name: Product Design & Prototyping Team
-description: An independent product-design team that maintains prototype projects, clarifies requirements visually, and delivers implementation-oriented experience specifications.
+description: An independent product-design team that explores abstract requirements visually, evolves product experiences, and delivers implementation-oriented experience specifications.
 category: product-development
 ---
 
@@ -29,14 +29,17 @@ worktree.
 
 ## Team Contract
 
-The team maintains one separate prototype project per product surface,
-normally as a sibling of the source repository. The project is not a
-production repository or a Requirements Engineering worktree. For each active
-request, Product Prototyper's repository-management skill creates or resumes a
-dedicated ticket branch/worktree from the latest accepted prototype revision.
-The `product_prototyper` agent then selects either exploratory Requirements
-Visualization or final Final Prototype work. The bootstrapper is used only for
-an existing-frontend baseline and writes only in the Product-assigned worktree;
+The team maintains one separate prototype project per product surface or
+independent concept package, normally as a sibling of the source repository.
+The project is not a production repository or a Requirements Engineering
+worktree. For each active request, Product Prototyper's repository-management
+skill creates or resumes a dedicated ticket branch/worktree from the latest
+accepted prototype revision. The `product_prototyper` agent selects
+`exploratory-requirements-visualizer` for an abstract or product-independent
+question with no applicable existing product surface, or
+`product-experience-prototyper` for an existing-product change or a new
+product-facing experience. The bootstrapper is used only for an
+existing-frontend baseline and writes only in the Product-assigned worktree;
 Product Prototyper accepts, commits, integrates, and cleans up the result.
 
 The detailed mode workflows, repository and ticket rules, cognitive-design

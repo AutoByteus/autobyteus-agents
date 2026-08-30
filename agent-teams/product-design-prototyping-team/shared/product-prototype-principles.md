@@ -11,8 +11,10 @@ only the principles that must remain consistent across prototype roles.
 
 - A product prototype is an evidence instrument for product behavior, UI,
   interaction, state, navigation, visual hierarchy, and journey decisions.
-  An exploratory visualizer helps clarify a decision; only a final prototype
-  becomes an approval instrument after explicit user confirmation.
+  An exploratory requirements visualizer helps clarify an abstract or
+  product-independent decision; a product-experience prototype evolves or
+  establishes the product-facing experience and becomes an approval instrument
+  only after explicit user confirmation.
 - Optimize for **high experience fidelity and low implementation fidelity**.
   The reviewer should see and exercise the intended interface behavior, while
   the implementation underneath may be deliberately small and synthetic.
@@ -58,16 +60,21 @@ Use one explicit mode for each prototype workspace:
   not its production runtime or internal implementation.
 - **No-frontend construction:** create the smallest useful experience baseline
   from the team's standard frontend template.
-- **Existing prototype evolution:** read and preserve the accepted prototype
-  before applying a focused requirements-driven change.
+- **Product experience evolution:** read and preserve the accepted prototype
+  before applying a focused requirements-driven change. Use this mode for a
+  request that changes an existing product route, component, screenshot-backed
+  surface, or preserved interaction; the result must remain connected to that
+  product experience.
 - **Explicit refresh/reconciliation:** compare an established prototype with a
   newer selected frontend revision only when requested; preserve accepted
   prototype changes and record the reconciliation.
-- **Requirements visualization:** build the smallest interactive or animated
-  experience needed to clarify one unresolved product decision. It is
+- **Exploratory requirements visualization:** build the smallest interactive
+  or animated experience needed to clarify one abstract or product-independent
+  decision for which there is no applicable existing product surface. It is
   review-ready exploratory evidence, not an approved future-state design or a
-  final UI/UX specification. Keep its ticket in progress while clarification
-  continues.
+  final UI/UX specification. Do not use it to replace or imitate an existing
+  product route or component; use Product Experience Prototyping for that
+  change. Keep its ticket in progress while clarification continues.
 
 Initial current-experience bootstrap is normally a one-time independent stage
 for a prototype workspace. Later requirements-driven work normally belongs to
@@ -79,13 +86,23 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   source revision used as the current-experience authority. Do not silently
   change the source boundary or revision. For no-frontend construction, record
   the selected product surface and template instead.
+- When a request changes an existing product surface, Product Experience
+  Prototyping is the baseline-native path: inspect the accepted product
+  experience and preserve unaffected shell, styling, controls, and behavior.
+  Exploratory Requirements Visualization is independent by default and must
+  not be selected merely because the existing-product requirement is unclear.
 - Prefer the source frontend's framework, language, styling system, assets, and
   design-system conventions when they make visual reuse and maintenance easier.
   Matching production package layout, build topology, routing internals, state
   architecture, or service clients is not required.
-- Reuse presentation components, styles, tokens, or assets when doing so
-  reduces work without importing unnecessary production coupling. Creating a
-  smaller prototype-native project is equally valid.
+- For Product Experience Prototyping on an existing product surface, evolve the
+  accepted baseline in place within the Product prototype worktree. Reuse its
+  presentation components, styles, tokens, assets, shell, and interaction
+  language unless the approved change intentionally replaces one of them. Do
+  not create a disconnected replacement application merely to simplify the
+  prototype. A smaller prototype-native project is appropriate for
+  no-frontend construction or Exploratory Requirements Visualization when no
+  applicable existing product surface is in scope.
 - Do not copy a complete production frontend merely to claim fidelity. Choose the
   smallest implementation that can express the complete observable UI
   experience within the selected boundary.
@@ -216,11 +233,12 @@ for a prototype workspace. Later requirements-driven work normally belongs to
     <ticket-id>/
   ```
 
-  Final-prototype source remains at the prototype repository root within the
+  Product-experience source remains at the prototype repository root within the
   integrated base, while the active ticket edits its own worktree. Requirements
   Visualization may use a ticket-scoped temporary project such as
-  `visualizers/<ticket-id>/` inside that worktree. This is a mode-specific
-  subproject, not a second Git repository or a generic `prototypes/` container.
+  `visualizers/<ticket-id>/` inside that worktree when the concept is
+  product-independent. This is a mode-specific subproject, not a second Git
+  repository or a generic `prototypes/` container.
 - When no frontend exists, derive the prototype subject from the product or
   experience name and use the selected repository policy to create or reserve
   the separate prototype repository. Create its initial baseline worktree
@@ -243,10 +261,11 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   feedback. After baseline acceptance, it owns the canonical runnable
   experience, review loop, final validation, screenshots, and `ui-ux-spec.md`,
   but it does not approve its own proposal.
-- In requirements-visualization mode, `product_prototyper` owns only the
-  visual representation and review evidence. Requirements Engineering owns the
-  canonical requirements clarification loop when it is present, and the user
-  remains the approval authority.
+- In exploratory requirements-visualization mode, `product_prototyper` owns
+  only the independent visual representation and review evidence. Requirements
+  Engineering owns the canonical requirements clarification loop when it is
+  present, and the user remains the approval authority. A concrete change to
+  an existing product surface belongs to Product Experience Prototyping.
 - The user is the sole approval authority for intentional future-state UI/UX
   and behavior. `requirements_engineer` preserves that approval, owns canonical
   requirements and acceptance criteria, and integrates the approved UI/UX
@@ -325,11 +344,11 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   interactive visualization is not useful for the decision -> Not Recommended
   ```
 
-  A requirements-visualization ticket remains in
+  An exploratory-visualization ticket remains in
   `tickets/in-progress/` while clarification is open. When clarification
-  closes without final-prototype work, complete its evidence and close the
-  ticket under repository policy; if final-prototype work follows, keep or
-  reopen it in progress. Move a completed final-prototype ticket folder to
+  closes without product-experience work, complete its evidence and close the
+  ticket under repository policy; if product-experience work follows, keep or
+  reopen it in progress. Move a completed product-experience ticket folder to
   `tickets/done/` in the ticket branch and preserve the integration result.
   Push only under existing repository policy or explicit authorization.
 - Multiple tickets may exist in the same repository, but overlapping changes
@@ -353,10 +372,10 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   future-state `ui-ux-spec.md`, conduct the user design review, or approve a
   product decision.
 - `product_prototyper` reviews and tests the Bootstrapper's result, commits the
-  accepted baseline in the prototype repository, and owns final-prototype
+  accepted baseline in the prototype repository, and owns product-experience
   future-state changes, user review, final UI/UX artifacts, and prototype
-  commits. In requirements-visualization mode, it owns the exploratory
-  visualizer revisions and review evidence instead.
+  commits. In exploratory requirements-visualization mode, it owns the
+  exploratory visualizer revisions and review evidence instead.
 - The Product Prototyper must not begin future-state work on an unreviewed or
   failed bootstrap result. Bootstrapper must not add design changes while
   correcting current-state parity.
@@ -368,16 +387,16 @@ for a prototype workspace. Later requirements-driven work normally belongs to
 - The canonical prototype repository contains the runnable prototype,
   project-wide change history, and current-experience bootstrap evidence. Each
   ticket folder under `tickets/` contains `prototype-ticket.md` and the
-  mode-appropriate supporting evidence. A final-prototype ticket adds
+  mode-appropriate supporting evidence. A product-experience ticket adds
   `ui-ux-spec.md`, final `visual-references/`, behavior matrix, runbook,
   prototype report, assumptions, and other delivery artifacts as needed. A
-  requirements-visualization ticket adds its visualization brief,
+  exploratory-visualization ticket adds its visualization brief,
   cognition-first design plan, review record, review URL, visualizer source or
   entry-point evidence, motion/comprehension evidence, visual references, and
   unresolved-question record as needed; it does not create a final
   `ui-ux-spec.md` merely for exploration.
 - `ui-ux-spec.md` is the canonical detailed experience contract only for a
-  final-prototype ticket. The prototype report is an optional cross-stage
+  product-experience ticket. The prototype report is an optional cross-stage
   summary and must not duplicate the UI/UX specification or supporting
   evidence.
 - Use `visual-references/` as the umbrella directory. Call an actual captured
