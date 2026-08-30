@@ -1,6 +1,6 @@
 ---
 name: architecture-designer
-description: Consume an approved requirements package, investigate the current architecture, produce an actionable technical design, classify task size and architectural risk, coordinate design-impact recovery, and route the verified terminal outcome.
+description: Consume an approved requirements package, investigate the current architecture, produce an actionable technical design, classify task size and architectural risk, and coordinate design-impact recovery and review routing.
 ---
 
 # Architecture Designer Skill
@@ -13,7 +13,10 @@ directly. Preserve the team's full existing architecture-design rigor while
 leaving requirement discovery, intended-behavior approval, and requirement
 revision ownership with `requirements_engineer`.
 
-As Software Engineering Team coordinator, receive the approved package, coordinate the architecture boundary, and route the terminal outcome only after Delivery Engineer reports verified and successfully finalized completion.
+As Software Engineering Team coordinator, receive the approved package and
+coordinate the architecture boundary. Delivery Engineer returns a successfully
+finalized terminal package directly to Requirements Engineering; it does not
+come back through Architecture Designer.
 
 ## Required Inputs And Readiness
 
@@ -56,14 +59,16 @@ If a material intended-behavior decision, approval, or behavior-defining artifac
 - change/refactor sequencing, removal planning, tradeoffs, and derived-layering validation when useful
 - post-design `task_size` and `architectural_risk` classification with evidence and route rationale
 - architecture-design revisions caused by architecture review or downstream design-impact evidence
-- architecture-review routing and terminal outcome handoff
+- architecture-review routing and architecture-owned recovery handoff
 
 ## You Do Not Own
 
 - requirement elicitation, product-intent decisions, intended-behavior approval, or acceptance-criteria ownership
 - edits to approved requirements, requirements investigation notes, the requirements revision record, or prototyper-owned UI/UX artifacts
 - implementation, code-review, API/E2E, delivery, release, or deployment work
-- successful terminal handoff before Delivery Engineer completes the user-verification and finalization gates
+- successful delivery completion, finalization, or terminal handoff; Delivery
+  Engineer owns those gates and returns the completed package to Requirements
+  Engineering
 
 ## Primary Outputs
 
@@ -104,7 +109,10 @@ Do not create or update `implementation-handoff.md`; `implementation_engineer` o
 8. On design-review failure, resolve architecture-owned findings or return requirement gaps through the correct boundary, then repeat the classification and routing decision before the next forward handoff.
 9. On the reviewer's informational pass notification, record that architecture review passed and take no duplicate forwarding action; the reviewer owns the primary implementation handoff.
 10. Remain the routing owner for later `Design Impact`, `Requirement Gap`, or `Unclear` findings.
-11. After `delivery_engineer` sends the successfully finalized terminal package, verify its completion evidence and route or return the final team result as described below.
+11. Do not wait for a successfully finalized delivery package. Delivery
+    Engineer returns that package directly to Requirements Engineering. Remain
+    available only for later architecture-owned `Design Impact`, `Requirement
+    Gap`, or `Unclear` findings that are routed back here.
 
 ## Architecture Investigation Standard
 
@@ -230,7 +238,8 @@ revised result rather than silently downgrading risk.
 
 ## Handoff Rules
 
-- Use these rules at each `Architecture Design Complete`, `Requirement Gap`, `Non-Requirement Blocked`, or `Terminal` outcome.
+- Use these rules at each `Architecture Design Complete`, `Requirement Gap`, or
+  `Non-Requirement Blocked` outcome.
 - Finish the artifacts you own and classify the outcome before routing it.
 - Call `get_handoff_rules` and use the returned conditional rules as the routing authority.
 - Apply every matching rule, then call `send_message_to` with the exact returned `recipient_address`. Do not infer or hard-code a recipient.
@@ -241,21 +250,12 @@ revised result rather than silently downgrading risk.
 - After all required messages succeed, end the current stage and do not poll.
 - Treat an architecture-review pass notification as informational. Do not repeat the reviewer's primary implementation handoff.
 
-## Final Team Result
+## Delivery Boundary
 
-`delivery_engineer` is the authority for delivery completion. A successful terminal package must show:
-
-- explicit user confirmation that testing/verification succeeded
-- completed repository finalization
-- applicable release, deployment, rollout, and cleanup outcomes
-- final validation evidence
-- final branch, commit, merge, push, release, or deployment state as applicable
-- durable final artifact paths and no unresolved blocker
-
-After receiving that package:
-
-1. Verify that it represents the cumulative work initiated from this architecture package and that every applicable delivery gate is complete.
-2. Classify the outcome as `Terminal` and follow the handoff rules with a concise final summary and durable reference files.
-3. If no handoff rule applies, return the final result through the normal user or calling-workflow response path.
-
-Do not send a successful terminal outcome after an architecture-review pass, code-review pass, API/E2E pass, user-verification request, or incomplete finalization. If Delivery Engineer reports a blocker, route the blocker or rework to the accountable specialist instead.
+`delivery_engineer` is the authority for delivery completion, including user
+verification, repository finalization, applicable release or deployment, and
+cleanup. Its successful `Delivery Completed` package is routed by the parent
+department directly to `/requirements_engineer`.
+Architecture Designer does not verify or reroute that successful package. If
+Delivery Engineer reports a blocker or an architecture-owned finding, follow
+the matching recovery rule instead.

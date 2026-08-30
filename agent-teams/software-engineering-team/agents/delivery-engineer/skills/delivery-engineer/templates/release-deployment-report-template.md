@@ -119,5 +119,5 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Applicable safe cleanup complete or not required: `Yes` / `No`
 - Unresolved blocker: `None` / blocker
 - Successful terminal package eligible for return: `Yes` / `No`
-- Terminal package sent to `/architecture_designer`: `Yes` / `No`
+- Terminal package sent to `/requirements_engineer`: `Yes` / `No`
 - Terminal message/reference:

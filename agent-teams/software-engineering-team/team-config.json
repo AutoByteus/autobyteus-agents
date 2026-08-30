@@ -152,8 +152,7 @@
       "from": "/delivery_engineer",
       "to": "/architecture_designer",
       "rules": [
-        "When delivery discovers a Design Impact, Requirement Gap, or Unclear issue, or final handoff is blocked by a non-deployment issue that requires upstream classification.",
-        "When user verification and delivery finalization succeed and the terminal cumulative package is ready for Architecture Designer to verify and route the terminal outcome."
+        "When delivery discovers a Design Impact, Requirement Gap, or Unclear issue, or final handoff is blocked by a non-deployment issue that requires upstream classification."
       ]
     }
   ]

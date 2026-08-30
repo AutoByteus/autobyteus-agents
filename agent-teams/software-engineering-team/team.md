@@ -1,6 +1,6 @@
 ---
 name: Software Engineering Team
-description: A self-operating software engineering team that turns an approved requirements package into bounded implementation or reviewed architecture, then validation, delivery, and a returned team result.
+description: A self-operating software engineering team that turns an approved requirements package into bounded implementation or reviewed architecture, then validation and delivery before returning the completed package to Requirements Engineer.
 category: software-engineering
 ---
 
@@ -10,11 +10,11 @@ enters at `architecture_designer`. The team has no separate orchestrator.
 
 ## Ownership Boundaries
 
-- Requirements Engineering owns intended behavior, requirements evidence,
+- Requirements Engineer owns intended behavior, requirements evidence,
   acceptance criteria, and approval; this team treats those artifacts as
   upstream authority.
-- `architecture_designer` owns architecture design when selected and terminal
-  package verification.
+- `architecture_designer` owns architecture design when selected and
+  architecture-owned recovery.
 - `architecture_reviewer` independently reviews only the selected
   architecture-review route.
 - `implementation_engineer` owns implementation and implementation-scoped
@@ -23,7 +23,8 @@ enters at `architecture_designer`. The team has no separate orchestrator.
   failure-origin review at its boundary.
 - `api_e2e_engineer` owns executable coverage and validation.
 - `delivery_engineer` owns integration, documentation sync, user verification,
-  finalization, and applicable release or deployment work.
+  finalization, applicable release or deployment work, and the successful
+  terminal package handoff to Requirements Engineer.
 
 ## Route Contract
 
@@ -32,7 +33,9 @@ implementation, conditional source review, executable validation, and
 delivery. The direct route starts at implementation and uses the same
 downstream validation and delivery ownership boundaries. The final route at
 each stage is determined by that stage's completed result and the team's
-`team-config.json`; no specialist assumes a fixed recipient.
+`team-config.json`; no specialist assumes a fixed recipient. A successfully
+finalized delivery package returns directly to Requirements Engineer under
+the parent department's cross-team routing rules.
 
 Direct packages carry the approved requirements, investigation evidence,
 requirements revision history, routing assessment, and applicable supplements.

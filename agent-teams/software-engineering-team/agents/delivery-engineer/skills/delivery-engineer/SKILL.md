@@ -69,7 +69,7 @@ Use [templates/delivery-revision-record-template.md](templates/delivery-revision
 - When release notes are required, create or update `tickets/in-progress/<ticket-name>/release-notes.md` before user verification, then pass the archived `tickets/done/<ticket-name>/release-notes.md` artifact into the release/publication path when that path is applicable.
 - After repository finalization and any applicable release/publication/deployment work, clean up ticket worktrees and branches when they were created for this task and when the recorded finalization target makes that cleanup safe.
 - If any finalization, release, deployment, or cleanup step fails, keep final handoff blocked and record the blocker explicitly. Do not undo already-completed repository finalization.
-- Send a successful terminal message to `/architecture_designer` only after explicit user testing/verification, repository finalization, and every applicable release, deployment, rollout, and safe cleanup step is `Completed` or truthfully `Not required`.
+- Send a successful terminal message to `/requirements_engineer` only after explicit user testing/verification, repository finalization, and every applicable release, deployment, rollout, and safe cleanup step is `Completed` or truthfully `Not required`.
 - The terminal message must include the complete cumulative package, `task_size`, `architectural_risk`, selected route, final validation evidence, user-verification reference, delivery and finalization reports, final branch/commit/merge/push state, release/deployment outcome when applicable, and durable final artifact paths.
 - Do not send the successful terminal message while waiting for user verification or while any finalization blocker remains.
 
@@ -77,7 +77,11 @@ Use [templates/delivery-revision-record-template.md](templates/delivery-revision
 
 - Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to an exact canonical rooted address from the visible team roster.
 - Use absolute filesystem paths for every artifact included in a handoff.
-- Finish the delivery result, classify it as terminal or blocked, call `get_handoff_rules`, and use the returned conditional rules as the routing authority before sending any handoff. Do not infer or hard-code the terminal recipient.
+- Finish the delivery result, classify a successful result as `Delivery
+  Completed` or an unsuccessful result as `Blocked`, call
+  `get_handoff_rules`, and use the returned conditional rules as the routing
+  authority before sending any handoff. Do not infer or hard-code the terminal
+  recipient.
 - After a successful `send_message_to` handoff, end the current delivery action and wait for a later incoming team message if more work is required.
 
 ## Routing Rules
@@ -86,9 +90,9 @@ Use [templates/delivery-revision-record-template.md](templates/delivery-revision
 - For code or packaging `Local Fix`, `Design Impact`, `Requirement Gap`, or `Unclear`, call `get_handoff_rules` and use the exact returned accountable recipient; normal team rules select `/implementation_engineer` for implementation fixes and `/architecture_designer` for upstream issues.
 - If final handoff is blocked by a non-deployment issue, record the classification and recommended recipient explicitly in the release/publication/deployment report instead of leaving only a generic blocker note.
 
-## Terminal Return To The Team Coordinator
+## Terminal Return To Requirements Engineering
 
-- Use `get_handoff_rules` and the exact returned recipient to return the successfully finalized package. The normal terminal rule selects `/architecture_designer`.
-- State that this is the authoritative terminal completion package and that Architecture Designer may route the terminal outcome only after checking it.
+- Use `get_handoff_rules` and the exact returned recipient to return the successfully finalized package. The normal terminal rule selects `/requirements_engineer`.
+- State that this is the authoritative terminal completion package and that Requirements Engineer may verify the package and return the department result only after checking it.
 - If user verification is missing or finalization is blocked, continue the applicable verification, recovery, or reroute flow. Do not send a successful completion message.
 - After the terminal message succeeds, end the delivery stage and do not poll. Act only on a later explicit rework message.
