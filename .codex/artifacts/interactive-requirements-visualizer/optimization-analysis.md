@@ -609,3 +609,85 @@ delivered, rather than repeating the full plan.
   `git diff --check` all pass.
 
 Review Status: Implemented; full consistency and cognitive-load macro/micro review passed
+
+## Follow-up review: motion pacing for comprehension
+
+### User-approved outcome
+
+The current requirements visualizer at `http://127.0.0.1:4179` changes the
+send-message state so quickly that the user cannot perceive the message's
+departure, travel, arrival, and consequence. The cognitive foundations must
+explicitly treat motion as part of the explanation: a requirements visualizer
+should use deliberate teaching pace rather than instantaneous state swaps.
+
+### Research and design findings
+
+- The existing principles already require purposeful, pauseable, replayable,
+  resettable motion and a non-motion path, but they do not define pacing or a
+  visible sequence that the user must be able to follow.
+- W3C accessibility guidance emphasizes controlling moving content and
+  allowing users to pause, stop, or hide it; WCAG also requires that
+  interaction-triggered motion not be the only way to convey essential
+  information.
+- Apple's interaction guidance similarly treats motion as feedback and
+  instruction, while warning against gratuitous motion and recommending that
+  people can cancel it. This supports purposeful, controllable motion rather
+  than fast decoration.
+- “Slow” is not a universal duration law. The appropriate rule for this skill
+  is: use a teaching pace slow enough for a first-time observer to identify
+  the causal sequence; expose pause/replay/step or a slower mode when the
+  sequence is easy to miss; use instant changes only when immediacy itself is
+  the concept or the change is not decision-relevant.
+
+### Proposed changes
+
+1. Add `Motion For Understanding` inside the Cognitive Foundations section of
+   `visualization-principles.md`. Define teaching pace, staged causal motion,
+   dwell time at the consequence, no simultaneous unrelated movement, and
+   pause/replay/step/skip controls. Include a practical example with a
+   1.5–3 second simple path as a starting heuristic, explicitly not a law.
+2. Add a motion storyboard to the design-plan template: purpose, phases,
+   pacing, pause points, controls, reduced-motion behavior, and the meaning of
+   instant versus animated changes.
+3. Require the skill's design pass and browser validation to verify that the
+   motion is perceptible and that the user can explain the sequence afterward.
+4. Add examples for message delivery, delegation, and state validation so the
+   principles map directly to implementation choices.
+
+### Preserved boundaries
+
+- Motion remains a design aid, not a substitute for stable labels or a
+  non-motion equivalent.
+- The brief still owns requirement intent; the design plan owns the motion
+  sequence; the review record owns observed pacing and comprehension evidence.
+- The user remains the approval authority; the Product Prototyper only models
+  the concept honestly.
+
+### Validation plan
+
+- Re-read the Cognitive Foundations, causality, examples, design-pass,
+  template, and browser-validation sections in order.
+- Check that “slow” is framed as perceptible teaching pace rather than a rigid
+  universal timing requirement.
+- Confirm motion controls, reduced-motion behavior, non-motion equivalence,
+  and comprehension evidence are represented consistently across files.
+- Validate links, whitespace, and `git diff --check`.
+
+### Final implementation review
+
+- Added `Motion For Understanding` under `Cognitive Foundations`, treating
+  animation as a temporary diagram that explains a causal sequence rather
+  than as decorative polish.
+- Added teaching-pace guidance: staged initial state, action, movement,
+  arrival, and consequence dwell; no instant decision-relevant swaps; no
+  unrelated simultaneous motion; and a 1.5–3 second starting heuristic that
+  is explicitly not a universal law.
+- Added pause, replay, reset, step/slow options, reduced-motion equivalence,
+  and direct examples for messaging, delegation, and form validation.
+- Mapped the principle into the design plan, Ready-to-Build gate, review
+  template, result contract, and browser-validation sequence.
+- Verified the three new external guidance links returned HTTP 200, local
+  Markdown links passed, motion fields were present across all owners, the
+  workflow order remained intact, and `git diff --check` passed.
+
+Review Status: Implemented; motion-pacing macro and micro review passed

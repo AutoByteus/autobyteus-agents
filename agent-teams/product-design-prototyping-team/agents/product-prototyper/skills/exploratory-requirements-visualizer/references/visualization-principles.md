@@ -1,8 +1,9 @@
 # Requirements Visualization Principles
 
 This reference defines how to make an exploratory requirements visualizer
-understandable. It is a design-principles document, not an execution workflow.
-The `interactive-requirements-visualizer/SKILL.md` owns activation, inputs,
+understandable for an abstract or product-independent question. It is a
+design-principles document, not an execution workflow.
+The `exploratory-requirements-visualizer/SKILL.md` owns activation, inputs,
 implementation steps, artifacts, validation, results, and handoff.
 
 ## Cognitive Foundations

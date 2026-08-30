@@ -20,10 +20,12 @@ final response; the three nested teams remain independent specialists.
 ## Department Contract
 
 The Head starts or resumes a stable package through Requirements Engineering.
-Requirements Engineering may request Product Design & Prototyping when visual
-evidence is needed. Once its approved result and routing assessment exist, the
-parent handoff configuration routes the package either to bounded direct
-implementation or to architecture design; it also handles prototype and
+Requirements Engineering forwards the user's explicit or clarified Product
+Design request when present; Product Prototyper selects its mode after
+receiving the request and returns its result to Requirements Engineering.
+Once requirements approval and the routing assessment exist, the parent
+handoff configuration routes the package either to bounded direct
+implementation or to architecture design; it also handles Product Design and
 blocked outcomes. The Software Engineering team carries the selected route
 through validation and delivery, then returns the terminal result for Head
 verification.

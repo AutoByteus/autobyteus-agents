@@ -1,6 +1,13 @@
 # Product Prototyper Repository-Management Review
 
-Review Status: Follow-up naming refinement implemented; validated
+Review Status: Superseded by Product Design & Prototyping Team separation review
+
+> **Superseded baseline:** This earlier review describes the temporary
+> same-source-repository design. The current authoritative contract restores a
+> separate prototype Git repository and moves both prototype roles into the
+> Product Design & Prototyping Team. See
+> `.codex/artifacts/product-design-prototyping-team-separation/optimization-analysis.md`.
+> Historical statements below are retained as comparison evidence.
 
 ## Requested outcome
 

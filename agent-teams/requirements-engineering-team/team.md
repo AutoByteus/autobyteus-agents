@@ -14,21 +14,25 @@ requirements result.
   requirements, acceptance criteria, supporting evidence, user approval,
   requirements readiness, the routing assessment, and its own artifacts.
 - Product Design & Prototyping is a separate team. Requirements Engineering
-  may request its visualizer or final prototype, but does not own its project,
-  repository, tickets, commits, or UI/UX artifacts.
+  forwards the user's explicit or clarified Product Design request together
+  with its requirements context. Product Prototyper selects the appropriate
+  mode after receiving that request; Requirements Engineering does not choose
+  the mode or own the Product team's project, repository, tickets, commits, or
+  UI/UX artifacts.
 - Target architecture and implementation belong to downstream Software
   Engineering specialists.
 
 ## Team Contract
 
 The Requirements Engineer uses its bundled skill to process the available
-request or requirements package. After the requirements work, approval, and
-routing assessment are complete, its classified result follows the parent
-department's conditional handoff rules: prototype clarification may go to
-Product Design & Prototyping, a bounded direct-implementation result may go
-to Implementation Engineer, an architecture-routed or unclear result may go
-to Architecture Designer, and a blocker may return to the department
-coordinator.
+request or requirements package. During requirements work, an explicit or
+clarified Product Design request may follow the parent department's
+conditional handoff rule to Product Design & Prototyping; returned evidence
+comes back to Requirements Engineering for user decision and requirements
+integration. After requirements approval and the routing assessment are
+complete, a bounded direct-implementation result may go to Implementation
+Engineer, an architecture-routed or unclear result may go to Architecture
+Designer, and a blocker may return to the department coordinator.
 
 The detailed work sequence, artifact schemas, assessment criteria, and
 recovery rules belong to the Requirements Engineer skill and its templates.

@@ -20,7 +20,7 @@
       "from": "/product_prototyper",
       "to": "/prototype_bootstrapper",
       "rules": [
-        "When Product Prototyper classifies the outcome as Baseline Needed because an existing frontend has no applicable accepted baseline, has a named current-experience gap, or has an explicitly requested source refresh, send the fixed bootstrap payload defined in the product-prototype-repository-management skill. It must identify the selected source frontend, separate prototype repository/root, Product-owned target worktree, ticket branch, and accepted source/base revision, and must not include future-state requirements or the Product ticket package."
+        "When Product Prototyper, in Product Experience Prototyping mode, classifies the outcome as Baseline Needed because an existing frontend has no applicable accepted baseline, has a named current-experience gap, or has an explicitly requested source refresh, send the fixed bootstrap payload defined in the product-prototype-repository-management skill. It must identify the selected source frontend, separate prototype repository/root, Product-owned target worktree, ticket branch, and accepted source/base revision, and must not include future-state requirements or the Product ticket package."
       ]
     },
     {

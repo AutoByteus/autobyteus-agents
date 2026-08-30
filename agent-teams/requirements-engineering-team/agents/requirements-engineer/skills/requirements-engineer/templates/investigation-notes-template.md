@@ -110,22 +110,27 @@ Assessment. Keep the evidence factual; do not design the target architecture.
 - Privacy, retention, compliance, downtime, or operational constraints:
 - Remaining evidence gap:
 
-## Product Prototype Decision
+## Product Design Request Context
 
-- Prototype needed: `Yes` / `No` / `Undetermined`
-- Decision rationale:
+- Product Design request in the current input: `Present` / `Not stated` / `Needs clarification`
+- User's requested outcome, in the user's own terms:
 - Requirement / behavior IDs involved:
-- Product decisions or uncertainties to resolve:
+- Product decision, uncertainty, or experience to understand or evolve:
 - Critical journey and states:
 - Known constraints and non-goals:
-- Alternative evidence path / next action when no prototype is used:
-- Prototype request artifact / message reference:
+- Relevant existing-product or frontend context supplied or established:
+- Product Design request artifact / message reference:
 - Established separate prototype repository/root and ticket reference, when applicable:
 
-## Prototype Findings
+Do not select a Product Prototyper mode or prescribe repository/bootstrap work in
+this section. Product Prototyper makes those decisions after receiving the
+request.
 
-- Prototype package path (external Product Design & Prototyping repository):
-- Approved UI/UX specification path:
+## Product Design Findings
+
+- Product Design package path (external Product Design & Prototyping repository):
+- Visualizer or prototype source path:
+- Approved UI/UX specification path, when applicable:
 - Review URL:
 - Explicit user-confirmation reference:
 - Journeys and scenarios validated:

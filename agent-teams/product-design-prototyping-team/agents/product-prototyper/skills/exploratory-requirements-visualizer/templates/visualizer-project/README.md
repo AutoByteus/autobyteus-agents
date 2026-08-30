@@ -1,7 +1,8 @@
-# Requirements Visualizer Project Template
+# Exploratory Requirements Visualizer Project Template
 
-This is a deliberately small React/Vite/TypeScript starter for one focused
-requirements visualizer. Before replacing the example, read the source skill's
+This is a deliberately small React/Vite/TypeScript starter for one focused,
+product-independent requirements visualizer. Before replacing the example,
+read the source skill's
 `references/visualization-principles.md`. It includes optional capability
 packages for:
 
@@ -18,6 +19,11 @@ dwell, pause, replay, slow, skip, reset, and reduced-motion behavior. Replace
 the example model and copy only the relevant interaction pattern into the
 ticket-scoped project; do not retain controls or motion that the new question
 does not need.
+
+This scaffold is not a replacement for an existing product route, component,
+or visual surface. If the requirement changes an existing product experience,
+use the `product-experience-prototyper` skill and evolve its accepted baseline
+instead.
 
 ## Use
 

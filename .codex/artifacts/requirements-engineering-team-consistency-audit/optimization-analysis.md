@@ -1,6 +1,13 @@
 # Requirements Engineering Team Consistency Audit
 
-Review Status: Ownership/no-frontend consistency update implemented; fourth consistency review passed
+Review Status: Superseded by Product Design & Prototyping Team separation review
+
+> **Superseded baseline:** This artifact records the earlier co-located-team
+> review. The current authoritative topology is documented in
+> `.codex/artifacts/product-design-prototyping-team-separation/optimization-analysis.md`
+> and the live `agent-teams/product-design-prototyping-team/` definitions.
+> Historical same-repository statements below are retained only as review
+> history.
 
 ## User request and scope
 

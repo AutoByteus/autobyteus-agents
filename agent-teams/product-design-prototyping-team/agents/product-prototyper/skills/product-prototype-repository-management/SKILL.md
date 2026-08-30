@@ -6,8 +6,8 @@ description: Manage the Product Prototyper's canonical prototype repository, tic
 # Product Prototype Repository Management
 
 This is the Product Prototyper's shared repository-lifecycle skill. Apply it
-before and after exactly one mode skill: `requirements-prototyper` or
-`interactive-requirements-visualizer`. It owns repository and ticket-worktree
+before and after exactly one mode skill: `product-experience-prototyper` or
+`exploratory-requirements-visualizer`. It owns repository and ticket-worktree
 isolation; it does not design the prototype or decide product behavior.
 
 ## Ownership
@@ -45,7 +45,7 @@ commit an accepted product baseline. The baseline or mode skill's accepted
 result remains the first accepted prototype revision.
 
 Use one dedicated branch and Git worktree for every active requirements-driven
-prototype request, including final-prototype and requirements-visualization
+prototype request, including product-experience and exploratory-visualization
 requests. A ticket folder is an artifact/status location; it is not a
 substitute for a branch or worktree.
 
@@ -85,8 +85,10 @@ At the beginning of every Product Prototyper request:
    instead of creating a duplicate.
 5. Otherwise create a fresh ticket branch/worktree from the recorded latest
    accepted prototype revision. Create `tickets/in-progress/<ticket-id>/` in
-   that worktree and initialize or update `prototype-ticket.md` with the
-   repository, worktree, branch, base revision, and current status.
+   that worktree and initialize or update `prototype-ticket.md` from the
+   Product team's shared [prototype-ticket template](../../../../shared/templates/prototype-ticket-template.md),
+   recording the repository, worktree, branch, base revision, and current
+   status.
 6. Stop with a precise `Blocked` result when the repository, base revision,
    branch, worktree, ticket identity, or workspace ownership is ambiguous or
    unsafe. Record the blocker before routing it through the selected mode
