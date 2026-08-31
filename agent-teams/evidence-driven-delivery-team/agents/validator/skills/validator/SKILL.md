@@ -35,6 +35,22 @@ implementation attempt.
    possibility as proof of a requirement.
 5. Produce feedback that Planner can use to select the next small step.
 
+## Gate-Based Validation (When Applicable)
+
+- For an experiment, validate the cheapest sufficient surface for the current
+  gate before adding broader or more expensive checks.
+- Record a gate disposition: `Stop`, `Rework`, `Investigate`, `Next Gate
+  Unlocked`, or `Complete`. Use `N/A` for ordinary non-experiment tasks.
+- A failed prerequisite gate does not unlock a larger experiment. Use `Stop`
+  when the practical hypothesis is falsified; use `Investigate` when the
+  result may be explained by measurement, environment, or route validity.
+- Mark `Next Gate Unlocked` only when the current gate's explicit threshold and
+  completion conditions pass. Do not infer permission to escalate merely from
+  having produced a result.
+- Preserve the observed-versus-expected evidence and the reason for the
+  disposition so Planner can make the next-step decision without rerunning the
+  same work.
+
 ## Primary Output
 
 Use [templates/validation-result-template.md](templates/validation-result-template.md)

@@ -22,6 +22,24 @@
 - Implementation result / evidence:
 - Validation result / evidence:
 
+## Experiment Controls (When Applicable)
+
+Use this section only when the current task is hypothesis-driven, benchmarked,
+resource-intensive, irreversible, or otherwise benefits from staged evidence.
+For ordinary tasks, record `N/A`.
+
+- Task shape: `Question` / `Probe` / `Implementation` / `Experiment` / `Validation` / `Decision` / `N/A`
+- Decision or hypothesis:
+- Current experiment gate:
+- Cheapest discriminating test:
+- Why this test is sufficient for the current decision:
+- Pass threshold:
+- Time/resource budget:
+- Checkpoint:
+- Stop condition:
+- Next-gate unlock condition:
+- Gate disposition: `Stop` / `Rework` / `Investigate` / `Next Gate Unlocked` / `Complete` / `N/A`
+
 ## Focused Investigation (When Needed)
 
 - Investigation required: `Yes` / `No`
@@ -33,11 +51,11 @@
 
 | Task ID | Objective | Result | Evidence | Follow-up Learned |
 | --- | --- | --- | --- | --- |
-| TASK-001 |  | `Pass` / `Fail` / `Blocked` |  |  |
+| TASK-001 |  | `Pass` / `Fail` / `Blocked` / `Stopped` |  |  |
 
 ## Next-Step Decision
 
-- Decision: `Implement` / `Investigate` / `Rework` / `Continue` / `Blocked` / `Complete`
+- Decision: `Implement` / `Investigate` / `Rework` / `Continue` / `Stop` / `Blocked` / `Complete`
 - Decision rationale:
 - Next expected action:
 
