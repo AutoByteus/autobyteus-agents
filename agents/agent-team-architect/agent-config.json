@@ -1,0 +1,13 @@
+{
+  "toolNames": [
+    "edit_file",
+    "read_file",
+    "write_file",
+    "run_bash",
+    "get_handoff_rules",
+    "send_message_to"
+  ],
+  "skillNames": [
+    "agent-team-architecture"
+  ]
+}

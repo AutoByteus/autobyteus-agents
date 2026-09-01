@@ -28,6 +28,10 @@ The paper research assistant is a standalone agent for the common paper-reading 
 
 The skill optimizer is a lightweight standalone agent that uses the shared `skill-optimizer` skill to review and improve existing skills for structure, grounding, clarity, consistency, and economy while preserving their intended behavior and quality gates.
 
+### Agent Team Architect
+
+The [Agent Team Architect](agents/agent-team-architect/agent.md) creates new agent-team packages and updates existing packages while preserving clear ownership, durable artifacts, cross-file consistency, and result-based handoffs. Its bundled [`agent-team-architecture`](agents/agent-team-architect/skills/agent-team-architecture/SKILL.md) skill exposes two modes only: `create` and `update`; optimization, repair, and consistency correction are update intents rather than separate agents or modes.
+
 ## Software Development Department
 
 The software development department is the end-to-end software entrypoint. `head_of_software_development` starts each independent package through Requirements Engineering and returns the verified terminal result. It contains three independent specialist teams: Requirements Engineering, Product Design & Prototyping, and Software Engineering. Requirements Engineer forwards the user's explicit or clarified Product Design request and requirements context to Product Prototyper when present; Product Prototyper selects its own mode and owns its product-design workflow. After explicit approval, Requirements Engineer records a preliminary architecture-design routing assessment and sends either a bounded direct-implementation package to Implementation Engineer or an architecture-design-needed/unclear package to Architecture Designer.
