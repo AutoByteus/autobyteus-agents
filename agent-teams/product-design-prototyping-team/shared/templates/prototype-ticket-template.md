@@ -26,6 +26,8 @@ worktree; it does not replace that branch/worktree isolation.
 - Bootstrap report:
 - Product acceptance result and date:
 - Prototype revision for this ticket:
+- Promoted default baseline revision, when applicable:
+- Default-entry-point promotion validation:
 - Integration target and result:
 - Runtime isolation record (port / process / temporary state):
 - Cleanup result or blocker:

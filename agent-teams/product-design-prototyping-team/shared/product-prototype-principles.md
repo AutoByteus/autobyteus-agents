@@ -334,6 +334,16 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   `prototype-ticket.md` record; the outcome classification and ticket status
   must agree:
 
+  Integration and baseline promotion are separate. A preview or review URL is
+  a candidate entry point; after the user explicitly approves a candidate as
+  the product experience, promote that candidate into the default prototype
+  baseline before reporting the ticket as completed. Promotion means the
+  approved experience is reachable through the normal/default entry point
+  without depending on preview-only state. Review URLs may remain available as
+  evidence or for comparison, but they must not be the only route to the
+  approved baseline. Record the promoted baseline revision and its validation
+  separately from the integration revision when they differ.
+
   ```text
   ticket opened / active work -> In Progress
   existing frontend has no accepted baseline -> Baseline Needed

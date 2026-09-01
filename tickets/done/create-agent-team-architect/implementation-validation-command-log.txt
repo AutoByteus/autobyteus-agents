@@ -1,0 +1,14 @@
+$ python JSON/frontmatter/package validation
+PASS JSON: agents/agent-team-architect/agent-config.json
+PASS frontmatter/config/name alignment
+PASS two-mode and handoff contract checks
+PASS new-package and ticket Markdown links/paths: 13 files checked
+PASS README links to new package
+$ grep mode/routing assertions
+README.md:31:### Agent Team Architect
+README.md:33:The [Agent Team Architect](agents/agent-team-architect/agent.md) creates new agent-team packages and updates existing packages while preserving clear ownership, durable artifacts, cross-file consistency, and result-based handoffs. Its bundled [`agent-team-architecture`](agents/agent-team-architect/skills/agent-team-architecture/SKILL.md) skill exposes two modes only: `create` and `update`; optimization, repair, and consistency correction are update intents rather than separate agents or modes.
+agents/agent-team-architect/agent.md:2:name: Agent Team Architect
+agents/agent-team-architect/agent.md:8:You are the Agent Team Architect.
+PASS stale-name and README discoverability checks
+$ git diff --check
+PASS whitespace check

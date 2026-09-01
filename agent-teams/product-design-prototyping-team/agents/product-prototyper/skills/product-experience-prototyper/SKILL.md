@@ -255,8 +255,10 @@ Keep the future-state change proportional to the decision:
    ticket back to `In Progress`. Revalidate affected and relevant regression
    paths, and repeat review as needed.
 8. After explicit user confirmation, perform final browser and visual
-   validation. If that validation requires a material visible or behavioral
-   change, reopen user review before finalizing.
+   validation, including the approved experience through its normal/default
+   entry point rather than relying only on a preview URL. If that validation
+   requires a material visible or behavioral change, reopen user review before
+   finalizing.
 9. Capture canonical screenshots for relevant pages, states, and viewports in
    the current ticket's `visual-references/` directory using stable `VIS-*`
    IDs.
@@ -268,10 +270,12 @@ Keep the future-state change proportional to the decision:
     recording provenance.
 11. Return the completed mode artifacts and final validation evidence to the
     management skill. It records the final ticket state, commits the accepted
-    baseline or prototype result on the Product ticket branch, integrates it
-    according to repository policy, moves an accepted ticket to `tickets/done/`,
-    and performs safe runtime/worktree cleanup. Do not claim completion before
-    that repository finalization is durable.
+    baseline or prototype result on the Product ticket branch, integrates and,
+    when an approved preview candidate is the intended product baseline,
+    promotes it according to repository policy, moves an accepted ticket to
+    `tickets/done/`, and performs safe runtime/worktree cleanup. Do not claim
+    completion before integration and any required baseline promotion are
+    durable.
 12. Classify the final package as `Prototype Completed` only after management
     finalization succeeds, then follow the handoff rules with the ticket record,
     final UI/UX package, repository state, and every still-relevant supporting
@@ -323,6 +327,8 @@ Keep the future-state change proportional to the decision:
 - Reconfirm with the user after any post-confirmation change that materially alters visible or interactive behavior.
 - Run the available build, typecheck, lint, unit, or browser checks that are proportionate to the prototype.
 - Record exact commands, results, review URL, and any limitation.
+- For an explicitly approved preview candidate, validate the normal/default
+  entry point as well; a review URL alone does not prove baseline promotion.
 - Keep the prototype process available during active user review. Clean it up after the review stage ends or the user no longer needs the live URL, without disrupting unrelated user processes.
 
 ## Quality Gate
@@ -332,6 +338,9 @@ Before reporting the prototype as completed, confirm:
 - the prototype repository/root is distinct from production frontend paths and
   its source pin, accepted base, ticket branch/worktree, and committed prototype
   revision are recorded
+- an explicitly approved preview candidate, when present, is promoted so the
+  approved experience is reachable through the normal/default entry point
+  without preview-only state, and the promotion evidence is recorded
 - the ticket identifier, ticket status, ticket folder, and linked artifacts are
   recorded and agree
 - repository management has recorded the integration result and safe cleanup
