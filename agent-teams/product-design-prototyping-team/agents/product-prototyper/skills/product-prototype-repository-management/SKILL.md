@@ -19,7 +19,8 @@ You own the Product Prototype repository lifecycle:
 - create, verify, resume, and safely clean up one ticket branch/worktree per
   active requirements-driven request;
 - record the canonical repository, active worktree, branch, base revision,
-  ticket revision, runtime resources, and integration state;
+  ticket revision, promoted default baseline revision, runtime resources, and
+  integration/promotion state;
 - protect unrelated changes and prevent two executions from using the same
   ticket worktree;
 - commit accepted baseline and ticket changes in the Product prototype
@@ -187,9 +188,16 @@ are complete. Then Product Prototyper performs this repository sequence:
    that belongs with that result.
 4. Integrate the ticket branch into the canonical prototype branch only when
    the repository's documented policy or explicit authorization permits it.
-   Revalidate after integration. Record `Completed`, `Not required`, or
-   `Blocked`; do not imply that an unintegrated branch is present on the
-   canonical base.
+   Revalidate after integration. When the ticket contains an approved preview
+   candidate for the product experience, promote that candidate into the
+   default baseline before terminal completion: the approved experience must be
+   reachable through the normal/default entry point without preview-only state.
+   Record the integration revision and promoted baseline revision separately
+   when needed. A merged candidate that still requires a preview URL is not a
+   completed baseline promotion; preserve the ticket and report the promotion
+   as incomplete or blocked. Record `Completed`, `Not required`, or `Blocked`,
+   and do not imply that an unintegrated branch is present on the canonical
+   base.
 5. Move an accepted completed ticket from
    `tickets/in-progress/<ticket-id>/` to `tickets/done/<ticket-id>/` in the
    same repository-finalization sequence, when the ticket policy defines that
@@ -213,6 +221,8 @@ Before returning control to the selected mode skill, provide or record:
 - source repository/frontend and pinned source revision when applicable;
 - accepted prototype base revision;
 - ticket commit/revision when one exists;
+- promoted default baseline revision when an approved candidate is promoted;
+- default-entry-point promotion validation evidence or exact blocker;
 - runtime port/process/temp-state ownership;
 - baseline status and Bootstrapper report path when applicable;
 - integration target and current result (`Pending` until finalization when
