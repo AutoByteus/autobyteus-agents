@@ -112,3 +112,12 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 ## Rollback Criteria
 
 ## Final Status
+
+- Explicit user testing/verification complete: `Yes` / `No`
+- Repository finalization complete: `Yes` / `No`
+- Applicable release/deployment/rollout complete or not required: `Yes` / `No`
+- Applicable safe cleanup complete or not required: `Yes` / `No`
+- Unresolved blocker: `None` / blocker
+- Successful terminal package eligible for return: `Yes` / `No`
+- Terminal package sent to `/requirements_engineer`: `Yes` / `No`
+- Terminal message/reference:

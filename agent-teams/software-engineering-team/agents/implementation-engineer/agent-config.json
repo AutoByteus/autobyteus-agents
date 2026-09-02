@@ -20,7 +20,8 @@
     "screenshot",
     "edit_image",
     "generate_image",
-    "generate_speech"
+    "generate_speech",
+    "get_handoff_rules"
   ],
   "skillNames": [
     "implementation-engineer"

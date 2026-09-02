@@ -4,13 +4,16 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 ## Upstream Artifact Package
 
+- Upstream route: `Direct Requirements-to-Implementation` / `Architecture Design`
 - Requirements doc:
 - Investigation notes:
-- Design spec:
+- Requirements revision record:
+- Requirements routing assessment:
+- Design spec: `N/A — not applicable` for the direct route
 - Supplemental task artifacts:
-- Solution revision record:
-- Design review report:
-- Architecture review revision record:
+- Architecture design revision record: `N/A — not applicable` for the direct route
+- Design review report: `N/A — not applicable` for the direct route
+- Architecture review revision record: `N/A — not applicable` for the direct route
 - Triggering rework report, revision record, or evidence, when applicable:
 
 ## Current Implementation Summary
@@ -20,16 +23,35 @@ Summarize the complete current implementation. For a post-initial delta, referen
 - Implementation cycle: `Initial` / `Rework`
 - Implementation revision record:
 - Current implementation revision ID: `IR-*`
-- Related solution revision IDs: `SR-*` / `N/A`
+- Related architecture design revision IDs: `AD-REV-*` / `N/A`
 - Related architecture-review revision IDs: `ARCH-REV-*` / `N/A`
 - Related code-review revision IDs: `CRR-*` / `N/A`
 - Related API/E2E revision IDs: `API-REV-*` / `N/A`
 - Related delivery revision IDs: `DR-*` / `N/A`
 - Triggering finding IDs: `N/A` / list
 
+## Routing Classification (Mandatory)
+
+For `Architecture Design`, carry these values from `design-spec.md`. For
+`Direct Requirements-to-Implementation`, carry the preliminary values from the
+requirements routing assessment. Confirm them against the completed
+implementation before handoff.
+
+- Task size (`Small`/`Medium`/`Large`):
+- Architecture risk (`Low`/`High`):
+- Requirements routing assessment path:
+- Classification confirmed or changed: `Confirmed` / `Changed`
+- Evidence and rationale for confirmation or change:
+- Selected route (`Direct API/E2E`/`Code Review`/`Architecture Designer`):
+- Lightweight implementation self-review completed for the direct route: `Yes` / `No` / `Not Applicable`
+- New design impact or escalation trigger: `None` / describe
+
 ## Reviewed Behavior Implementation Trace
 
-Reuse the design spec's stable behavior IDs. Record the actual implementation path and outcome without copying the full upstream behavior narrative.
+Reuse stable behavior IDs from the design spec on an architecture route or
+from the requirements document on a direct route. Record the actual
+implementation path and outcome without copying the full upstream behavior
+narrative.
 
 | Behavior ID | Approved Change / Preserved Outcome | Implemented Production Path / Key Files | Result / Notes |
 | --- | --- | --- | --- |

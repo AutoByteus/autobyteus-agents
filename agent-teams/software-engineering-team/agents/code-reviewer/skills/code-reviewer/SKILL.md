@@ -1,6 +1,6 @@
 ---
 name: code-reviewer
-description: Review implementation source before API/E2E, review successful API/E2E test-code changes proportionately, and determine the failure origin when API/E2E fails.
+description: Review selected large or high-risk implementation source before API/E2E, review successful API/E2E test-code changes proportionately, and determine failure origin when API/E2E fails.
 ---
 
 # Code Reviewer Skill
@@ -41,7 +41,19 @@ Keep their standards distinct. Implementation code receives the full structural 
 
 For implementation review:
 
-- Accept requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, solution revision record, design review report, architecture review revision record, implementation handoff, and implementation revision record from `implementation_engineer`.
+- Accept the approved requirements doc, requirements investigation notes,
+  requirements revision record, design spec, every still-relevant supplemental
+  task artifact, architecture-design revision record, design review report,
+  architecture review revision record, implementation handoff, and
+  implementation revision record when the architecture route selected normal
+  implementation source review.
+- The implementation package must include `task_size`
+  (`Small`/`Medium`/`Large`), `architectural_risk` (`Low`/`High`), and the
+  selected route. Normal implementation source review is selected for `Large`
+  or `High` work. A direct-route API/E2E failure may still arrive here for
+  focused failure-origin review without design or source-review artifacts;
+  record those artifacts as `N/A — not applicable` rather than inventing a
+  prior review.
 - When implementation returns after a delivery-stage local fix, also accept the delivery revision record and triggering delivery evidence.
 - On later review rounds, also accept the current code review revision record and still-relevant triggering reports, revision records, or evidence.
 - Review against the complete implementation artifact chain, not only the handoff summary.
@@ -52,7 +64,13 @@ For successful API/E2E test-code review:
 
 For API/E2E failure-origin review:
 
-- Accept the cumulative failure package from `api_e2e_engineer`: the full upstream chain, code review report, code review revision record, coverage investigation, execution coverage report, API/E2E revision record, failing scenario IDs, exact commands, expected/observed behavior, and failure evidence.
+- Accept the cumulative failure package from `api_e2e_engineer`: the approved
+  requirements and implementation context, the coverage investigation,
+  execution coverage report, API/E2E revision record, failing scenario IDs,
+  exact commands, expected/observed behavior, and failure evidence. Existing
+  design or source-review artifacts are included when present; they are
+  `N/A — not applicable` for a direct route. Do not require a code-review
+  report or revision record before creating this failure-origin review.
 - Treat a failing test as evidence to classify, not automatic proof that the implementation is wrong.
 
 ## Required Shared Reads
@@ -65,7 +83,14 @@ For API/E2E failure-origin review:
 
 ## Implementation Review Basis And Sequence
 
-1. Understand the approved requirements and business intent, the design spec's relevant behavior and production-path map, and the architecture review's basis confirmation and material-premise records. Treat the requirements as intended-behavior authority and the reviewed map as prior technical context, not immutable truth.
+1. For normal implementation review, understand the approved requirements and
+   business intent, the design spec's relevant behavior and production-path
+   map, and the architecture review's basis confirmation and material-premise
+   records. For API/E2E failure-origin review, use the approved requirements,
+   implementation handoff, coverage reports, and observed failure evidence
+   instead; a direct route does not require a design spec. Treat the
+   requirements as intended-behavior authority and any reviewed map as prior
+   technical context, not immutable truth.
 2. Confirm the relevant existing behavior, approved change, and behavior that must remain unchanged or outside scope. Do not judge, reopen, or redefine the business decision.
 3. Trace the complete relevant user-initiated, system-initiated, operational, or contract-driven behavior and enough of its production path and lifecycle to understand how the changed code participates in it. Compare the implementation handoff's behavior trace with the actual code; do not review the diff or a local method in isolation.
 4. On implementation-review round `>1`, use the prior canonical report, existing code review revision record, applicable upstream revision entries, and triggering evidence to locate what changed and why. Recheck prior unresolved findings first and verify every claimed resolution against the latest canonical artifacts, current code, diff, and evidence. Revision records are navigation, not proof.
@@ -73,7 +98,7 @@ For API/E2E failure-origin review:
 6. If a concrete check produces a prospective finding, score rationale, or implementation mechanism that depends on a material scenario outside the established behavior basis, first identify an independent product-supported initiating trigger or applicable governing contract and trace forward through normal production execution to the claimed lifecycle state and consequence. Check any upstream decision against the implementation, then complete the report's confirmation or material-premise record using the shared product-reachability rule before accepting the conclusion. Reject a circular witness that uses a downstream technical mechanism, diff, or test to establish its own reachability. Do not search for hypothetical scenarios as a separate review stage.
 7. Complete the scorecard and findings only after every material premise that could affect them has been validated. Then update the applicable canonical report to the latest complete result and append the concise `CRR-*` entry for the finished review result, including `CRR-001` for the initial result.
 
-If approved behavior is materially ambiguous, classify a `Requirement Gap`. If production reachability or lifecycle evidence is materially incomplete, investigate it or return `Unclear`; do not invent a technically plausible behavior path and review the implementation against it. Do not create a new behavior ID from a diff, fallback branch, or synthetic test. A concrete newly discovered supported behavior must be recorded provisionally and routed upstream; implementation review cannot pass until the solution basis is corrected.
+If approved behavior is materially ambiguous, classify a `Requirement Gap`. If production reachability or lifecycle evidence is materially incomplete, investigate it or return `Unclear`; do not invent a technically plausible behavior path and review the implementation against it. Do not create a new behavior ID from a diff, fallback branch, or synthetic test. A concrete newly discovered supported behavior must be recorded provisionally and routed upstream; implementation review cannot pass until the approved requirements or architecture basis is corrected by its owner.
 
 ## General Review Rules
 
@@ -92,7 +117,7 @@ If approved behavior is materially ambiguous, classify a `Requirement Gap`. If p
 - Apply `>500` and `>220` source thresholds only to changed implementation-source files, never to tests, fixtures, or generated coverage files.
 - When persisted data may be affected, verify that implementation follows the reviewed transition decision and does not add an unnecessary migration or version-specific runtime fallback. Review migration mechanics only when the approved decision is `Migration Required`.
 - Keep each canonical report focused on its latest complete result. Revalidate affected and previously failing checks, preserve still-valid evidence for unaffected checks, and reuse finding IDs across rounds.
-- Keep every completed review result's history and prior-finding resolution in `code-review-revision-record.md`. Link each entry to relevant solution, architecture-review, implementation, API/E2E, and delivery revision IDs when they exist; use `N/A` when a revision type does not apply.
+- Keep every completed review result's history and prior-finding resolution in `code-review-revision-record.md`. Link each entry to relevant architecture-design, architecture-review, implementation, API/E2E, and delivery revision IDs when they exist; use `N/A` when a revision type does not apply.
 
 ## Successful API/E2E Test-Code Review Rules
 
@@ -127,18 +152,21 @@ If approved behavior is materially ambiguous, classify a `Requirement Gap`. If p
 - `Pass` is a review outcome, not a failure classification.
 - `Local Fix` -> `/implementation_engineer` for a bounded implementation or packaging defect.
 - `Local Fix` -> `/api_e2e_engineer` for a test-code, stale-test, fixture, environment, execution, or report problem.
-- `Design Impact` -> `/solution_designer` for a structural issue or inadequate reviewed design.
-- `Requirement Gap` -> `/solution_designer` for missing or ambiguous intended behavior.
-- `Unclear` -> `/solution_designer` for a cross-cutting issue that cannot be classified from available evidence.
+- `Design Impact` -> `/architecture_designer` for a structural issue or inadequate reviewed design.
+- `Requirement Gap` -> `/architecture_designer` for missing or ambiguous intended behavior that must cross the task boundary.
+- `Unclear` -> `/architecture_designer` for a cross-cutting issue that cannot be classified from available evidence.
 - After an implementation-owned fix, require source review and API/E2E again.
 - After an API/E2E-owned fix, require API/E2E execution and a proportional test-code review result; use `Not Applicable` when no durable test changed.
+- Preserve the task-size and architectural-risk classification in every review result. If review evidence shows the classification is wrong, route `Design Impact` to Architecture Designer rather than silently changing the route locally.
 
 ## Handoff Rules
 
 - Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to an exact canonical rooted address from the visible team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
-- After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
-- On implementation-review pass, send the cumulative package, code review report, and code review revision record to `/api_e2e_engineer`.
+- Finish the applicable review result, classify the outcome, call `get_handoff_rules`, and use the returned conditional rules as the routing authority before sending any handoff or notification.
+- On implementation-review pass, first send the cumulative package, code review report, and code review revision record to the exact returned recipient for the primary pass rule (normally `/api_e2e_engineer`).
+- After that primary handoff succeeds, send the exact returned recipient for the informational pass rule (normally `/implementation_engineer`) a short notification containing `Pass`, the current `CRR-*`, the code-review report path, the primary returned recipient as the next recipient, and `Informational — no action required`.
+- End an implementation-review pass only after both required messages succeed. For every other completed handoff, end after its required message succeeds. Do not poll recipients; act on a later incoming team message if more work is required.
 - On implementation-review `Fail` or `Blocked`, send the complete package, code review report, and code review revision record to the classified owner; do not advance to API/E2E.
 - On successful post-API/E2E test-code review, send the complete passed package, including `api-e2e-test-review-report.md` and the current code review revision record, to `/delivery_engineer`.
 - On failed post-API/E2E test-code review, send the complete package, test-review report, and current code review revision record to the confirmed owner; normally this is `/api_e2e_engineer` for a bounded test-code correction.

@@ -1,6 +1,6 @@
 ---
 name: api-e2e-engineer
-description: Investigate current API/E2E coverage, maintain durable tests, execute repository and realistic system checks, prefer browser validation for web-equivalent desktop behavior, reserve actual desktop execution for last-resort shell validation, and classify residual risks and failures truthfully.
+description: Investigate current API/E2E coverage, validate reviewed or direct low-risk implementation packages, maintain durable tests, execute repository and realistic system checks, prefer browser validation for web-equivalent desktop behavior, reserve actual desktop execution for last-resort shell validation, and classify residual risks and failures truthfully.
 ---
 
 # API/E2E Coverage Engineer Skill
@@ -26,6 +26,7 @@ First establish what the project expects and how it is run, then evaluate and ma
 - post-repository-test confidence and residual-risk assessment
 - broader-validation selection and confidence decisions
 - temporary execution scripts, harnesses, or probes when needed
+- case-level execution checkpointing for multi-case or long-running validation
 - observed pass, fail, blocked, and not-tested status
 - preliminary failure classification, execution evidence, and cleanup
 
@@ -33,6 +34,7 @@ First establish what the project expects and how it is run, then evaluate and ma
 
 Use [templates/api-e2e-coverage-investigation-template.md](templates/api-e2e-coverage-investigation-template.md) to produce and maintain the coverage investigation before durable coverage changes, final execution, or failure rerouting.
 Use [templates/api-e2e-execution-coverage-report-template.md](templates/api-e2e-execution-coverage-report-template.md) to record the executed plan, confidence decisions, evidence, cleanup, and result.
+When execution contains multiple independently meaningful cases, a long-running case, or a credible interruption or context-compression risk, use [templates/api-e2e-test-case-ledger-template.md](templates/api-e2e-test-case-ledger-template.md) to create one canonical `api-e2e-test-case-ledger.md`. Initialize it before execution, record each completed case immediately before proceeding to the next case, and record meaningful checkpoints during a long-running case. The ledger is an execution checkpoint; the execution coverage report remains the authoritative round-level result.
 After every completed API/E2E validation result, use [templates/api-e2e-revision-record-template.md](templates/api-e2e-revision-record-template.md) to create or update one `api-e2e-revision-record.md`. Create `API-REV-001` as the concise initial baseline; append one entry for each later validation round. The canonical investigation and execution reports remain the current truth.
 
 ## Operating Sequence
@@ -43,10 +45,11 @@ Follow this order:
 2. Classify the changed runtime surfaces and boundaries.
 3. Discover the project's authoritative run, test, environment, and fixture instructions, inventory relevant existing coverage, and write the initial coverage investigation.
 4. Decide which durable tests remain valid and which must be added, updated, replaced, or removed.
-5. Implement the approved durable coverage changes and execute the relevant repository checks from narrowest to broader scope.
-6. Update the investigation with the repository evidence, confidence percentage, residual risks, and explicit broader-validation decision.
-7. When broader validation is required, follow the project's development instructions, prepare the needed environment and data, execute the selected journeys, capture evidence, and clean up resources created for the run.
-8. Reassess final confidence, write the execution coverage report, and hand off or reroute the cumulative package.
+5. When the execution plan has multiple independently meaningful cases, a long-running case, or a credible interruption or context-compression risk, initialize one canonical test-case ledger and list the planned case IDs before execution.
+6. Implement the approved durable coverage changes and execute the relevant repository checks from narrowest to broader scope. After each completed case, record its expected and observed result and evidence in the ledger before proceeding. During a long-running case, append meaningful progress checkpoints and evidence rather than waiting only for final completion.
+7. Update the investigation with the repository evidence, confidence percentage, residual risks, and explicit broader-validation decision.
+8. When broader validation is required, follow the project's development instructions, prepare the needed environment and data, execute the selected journeys, capture evidence in the ledger when applicable, and clean up resources created for the run.
+9. Reassess final confidence, reconcile the ledger with the execution coverage report, write the report, and hand off or reroute the cumulative package.
 
 Do not begin with browser interaction merely because browser tools are available. Do not stop at repository tests merely because they pass. Let the changed boundary, evidence directness, and residual risk determine the next validation surface.
 
@@ -54,14 +57,24 @@ Do not begin with browser interaction merely because browser tools are available
 
 - Write the authoritative artifacts in the assigned task workspace/worktree before any handoff message.
 - Keep one canonical path for each artifact across reruns.
+- Keep one canonical test-case ledger path when a ledger is required; update it in place rather than creating per-case or versioned copies.
 - Keep one canonical API/E2E revision record across all completed rounds, starting with the initial baseline.
 - Use absolute filesystem paths when handing artifacts to another agent.
 
 ## Upstream Inputs
 
-- Accept the cumulative review-passed package from `code_reviewer`: requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, solution revision record, design review report, architecture review revision record, implementation handoff, implementation revision record, code review report, and code review revision record.
+- Accept either the cumulative review-passed package—including approved
+  requirements doc, requirements investigation notes, requirements revision
+  record, design spec, every still-relevant supplemental task artifact,
+  architecture-design revision record, design review report, architecture
+  review revision record, implementation handoff, implementation revision
+  record, code review report, and code review revision record—or the direct
+  cumulative package for `task_size=Small` or `Medium` and
+  `architectural_risk=Low`. The direct package carries the requirements
+  routing assessment and has no architecture-design, architecture-review, or
+  code-review artifacts; record those as `N/A — not applicable`.
 - On a rerun after a prior execution, also accept the existing coverage investigation, execution coverage report, and API/E2E revision record. Use them to locate prior decisions and results, then update the canonical artifacts and append the next revision entry rather than creating copies.
-- On an API/E2E-owned `Local Fix` from `code_reviewer` or `delivery_engineer`, also accept the specific test, fixture, environment, execution, or reporting issue and its evidence. When delivery discovered the issue, accept the delivery revision record and relevant `DR-*` entry. Resume the affected API/E2E work and return the completed result through `code_reviewer`.
+- On an API/E2E-owned `Local Fix` from `code_reviewer` or `delivery_engineer`, also accept the specific test, fixture, environment, execution, or reporting issue and its evidence. When delivery discovered the issue, accept the delivery revision record and relevant `DR-*` entry. Resume the affected API/E2E work, preserve the classification, and use `get_handoff_rules` for the completed result: a reviewed route may return through Code Reviewer, while a direct low-risk route may return directly to Delivery after successful validation.
 - Treat the full upstream package as active validation context, not just the latest implementation handoff or code review report.
 - Read the implementation handoff's `Legacy / Compatibility Removal Check` and `Persisted Data Transition Check` before finalizing coverage. Treat any non-clean answer, or any mismatch between those sections and the implementation, as an active validation signal.
 
@@ -95,13 +108,15 @@ Do not begin with browser interaction merely because browser tools are available
 - For every required behavior without adequate durable coverage, decide `Add Durable Coverage`, `Use Temporary Executable Probe Only`, `Not Testable In Scope`, or `Escalate`.
 - Do not classify a failing existing test as an implementation defect until its assertion has been validated against the approved current behavior.
 - Before removing stale coverage, record the obsolete assertion, upstream evidence, replacement coverage, or explicit no-replacement rationale.
-- If test validity cannot be decided from the approved artifacts, route a `Requirement Gap`, `Design Impact`, or `Unclear` finding to `/solution_designer` before deleting tests or forcing implementation changes.
+- If test validity cannot be decided from the approved artifacts, route a `Requirement Gap`, `Design Impact`, or `Unclear` finding to `/architecture_designer` before deleting tests or forcing implementation changes.
 
 ## Repository Coverage Execution Rules
 
 - Execute the smallest directly relevant valid checks first, then the broader affected suites needed to detect integration or regression failures. Follow the project's documented command order when it defines one.
 - Distinguish the evidence provided by unit, integration, API, repository-resident browser E2E, contract, lifecycle, and other suites. A passing mocked test does not prove a boundary the mock bypasses.
 - Record exact commands, working directories, important configuration, results, failure output locations, and coverage artifacts.
+- When a ledger is active, treat each independently meaningful API scenario, E2E journey, lifecycle check, or temporary probe as a case; do not create a separate ledger entry for every assertion or internal step. Record the case's observed result (`Pass`, `Fail`, `Blocked`, or `Not Tested` when it was not run) immediately after its execution attempt and before starting the next case. If a case is interrupted or has only partial evidence, record the checkpoint and leave the final result unresolved rather than inferring success.
+- Reconcile the ledger's completed, failed, blocked, and unstarted cases into the execution coverage report. The ledger preserves in-flight continuity; it does not override the report's confidence gate or latest authoritative result.
 - If new evidence changes a test-validity or coverage decision, update the investigation before continuing.
 - Keep durable coverage changes narrow, requirement-linked, boundary-appropriate, and maintainable. Do not use this stage to introduce unrelated test or source architecture changes.
 
@@ -180,8 +195,8 @@ Browser validation is normally unnecessary for a backend-local change when valid
 ## Outcome Routing
 
 - Distinguish durable coverage changes, temporary executable checks, and blocked or infeasible residual scenarios in the execution report.
-- On `Pass`, persist both reports, record every added, updated, or removed durable coverage path, and send the cumulative package to `/code_reviewer`. The reviewer checks only changed durable test code for proportional structure, clarity, determinism, reuse, and requirement alignment, or records `Not Applicable` when no durable test changed. The reviewer then writes the separate `api-e2e-test-review-report.md` without reopening the implementation scorecard.
-- On `Fail`, record the preliminary classification and recommended owner, then send the complete failure package to `/code_reviewer` for focused failure-origin review, not successful-test review.
+- On `Pass`, persist both reports, record every added, updated, or removed durable coverage path, and preserve the carried classification. For a direct `Small` or `Medium` + `Low` package, record that proportional test-code review is `Not Required — direct low-risk route` and route the complete validated package to Delivery. For a reviewed `Large` or `High` package, send the cumulative package to Code Reviewer; the reviewer checks only changed durable test code for proportional structure, clarity, determinism, reuse, and requirement alignment, or records `Not Applicable` when no durable test changed. The reviewer then writes the separate `api-e2e-test-review-report.md` without reopening the implementation scorecard.
+- On `Fail`, record the preliminary classification and recommended owner, call `get_handoff_rules`, then send the complete failure package to the exact returned accountable recipient (normally `/code_reviewer`) for focused failure-origin review, not successful-test review.
 - On `Blocked`, do not hand off to another member. Preserve the reports, logs, and temporary evidence, then ask the user for the exact missing dependency. State what was attempted, why validation cannot continue, and how work resumes.
 - Keep the coverage investigation and execution report focused on their latest complete state. On the first completed result, record `API-REV-001` with prior result and confidence `N/A`; on later rounds, recheck prior unresolved failures first, reuse scenario IDs, and record the rerun delta and prior-failure resolution in `api-e2e-revision-record.md`. A missing prior record or result is never an implied `Pass` or confidence value.
 - The proportional test review does not reassess confidence, environment, cleanup, execution results, or temporary artifacts, and it does not reject a coherent test file merely for being large.
@@ -191,8 +206,20 @@ Browser validation is normally unnecessary for a backend-local change when valid
 - Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to an exact canonical rooted address from the visible team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
-- Include requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, solution revision record, design review report, architecture review revision record, implementation handoff, implementation revision record, code review report, code review revision record, coverage investigation, execution coverage report, API/E2E revision record, and any still-relevant triggering test-review or delivery report, delivery revision record, or rework evidence as absolute filesystem paths. The API/E2E revision record must exist after a completed result.
+- Finish validation, persist the reports, preserve the classification and selected route, call `get_handoff_rules`, and use the returned conditional rules as the routing authority before sending a handoff.
+- Include approved requirements doc, requirements investigation notes,
+  requirements revision record, the requirements routing assessment, every
+  still-relevant supplemental task artifact, implementation handoff,
+  implementation revision record, coverage investigation, execution coverage
+  report, API/E2E revision record, and any still-relevant triggering test-review
+  or delivery report, delivery revision record, or rework evidence as absolute
+  filesystem paths. Include design and architecture-review artifacts when the
+  architecture route produced them; record architecture-owned and source-review
+  artifacts as `N/A — not applicable` for a direct route. The API/E2E revision
+  record must exist after a completed result. Include the canonical test-case
+  ledger path when a ledger was used.
 - Attach the complete cumulative package using the tool's reference-file input when available; do not rely only on paths in the message text.
-- For a `Fail` message to `/code_reviewer`, include failing scenario and acceptance-criteria IDs, exact commands or execution mode, expected versus observed behavior, relevant logs/screenshots/artifacts, preliminary classification, and why focused failure-origin review is requested.
-- For a `Pass` message to `/code_reviewer`, include the result, final confidence, broader-validation decision, residual risks, every added, updated, or removed durable coverage path, and an explicit request for proportional test-code review.
+- For a `Fail` message to the returned accountable recipient (normally `/code_reviewer`), include failing scenario and acceptance-criteria IDs, exact commands or execution mode, expected versus observed behavior, relevant logs/screenshots/artifacts, preliminary classification, and why focused failure-origin review is requested.
+- For a reviewed-route `Pass` message to the returned recipient (normally `/code_reviewer`), include the result, final confidence, broader-validation decision, residual risks, every added, updated, or removed durable coverage path, and an explicit request for proportional test-code review.
+- For a direct-route `Pass` message to the returned recipient (normally `/delivery_engineer`), include the result, final confidence, broader-validation decision, residual risks, every added, updated, or removed durable coverage path, the `Not Required — direct low-risk route` test-review decision, and the two classification fields.
 - Attach added or updated durable test files using the tool's reference-file input when available. Removed paths cannot be attached, so identify them explicitly and provide the relevant diff or repository evidence.

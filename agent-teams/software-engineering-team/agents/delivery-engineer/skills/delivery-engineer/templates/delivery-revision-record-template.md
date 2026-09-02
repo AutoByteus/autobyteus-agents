@@ -23,6 +23,8 @@ The latest docs sync report, handoff summary, and release/publication/deployment
 - Release/publication/deployment report:
 - Integration and post-integration verification:
 - User verification/finalization state:
+- Terminal return to `/requirements_engineer`: `Sent` / `Not yet eligible` / `Blocked`
+- Terminal return message/reference:
 - Why this baseline or delivery revision was recorded:
 - Next recipient/action:
 - Remaining blockers, rollback concerns, or untested scope:

@@ -18,10 +18,11 @@ Do not record successful API/E2E test-code review here. Use the separate `api-e2
 - Review Entry Point: `Implementation Review` / `API/E2E Failure-Origin Review`
 - Requirements Doc Reviewed As Context:
 - Investigation Notes Reviewed As Context:
-- Design Spec Reviewed As Context:
+- Requirements Revision Record Reviewed As Context:
+- Design Spec Reviewed As Context: `N/A — not applicable` for direct failure-origin review
 - Supplemental Task Artifacts Reviewed As Context:
-- Solution Revision Record Reviewed As Context:
-- Relevant Solution Revision IDs:
+- Architecture Design Revision Record Reviewed As Context:
+- Relevant Architecture Design Revision IDs:
 - Design Review Report Reviewed As Context:
 - Architecture Review Revision Record Reviewed As Context:
 - Relevant Architecture Review Revision IDs:
@@ -44,6 +45,14 @@ Do not record successful API/E2E test-code review here. Use the separate `api-e2
 - Exact Failing Commands / Execution Mode:
 - Failure Evidence Paths:
 
+## Routing Classification Review
+
+- Task size (`Small`/`Medium`/`Large`):
+- Architectural risk (`Low`/`High`):
+- Selected route (`Implementation Review`/`API/E2E Failure-Origin Review`):
+- Independent source review required by the classification: `Yes` / `No` / `Failure-origin exception`
+- Classification evidence or correction required:
+
 Round rules:
 - Reuse the same finding IDs across reruns for the same unresolved issues.
 - Create new finding IDs only for newly discovered review findings.
@@ -58,7 +67,7 @@ Round rules:
 
 ## Upstream Behavior And Production-Path Basis Confirmation
 
-Complete this understanding and alignment foundation before the implementation structural checks. Understand the approved business intent and relevant existing behavior, then start from the design spec's behavior map and architecture review confirmation, verify them against the implementation, and record status plus implementation evidence instead of restating unchanged content. This is not a review or reapproval of the business decision. For a failure-origin-only round, update only the affected behavior and material premise.
+Complete this understanding and alignment foundation before the implementation structural checks. For normal implementation review, understand the approved business intent and relevant existing behavior, then start from the design spec's behavior map and architecture review confirmation, verify them against the implementation, and record status plus implementation evidence instead of restating unchanged content. For a failure-origin-only round, use the approved requirements, implementation handoff, coverage reports, and observed failure evidence; do not reconstruct a missing design spec. This is not a review or reapproval of the business decision. Update only the affected behavior and material premise.
 
 - Approved requirements basis understood:
 - Design-spec behavior map verified against the implementation:
@@ -71,7 +80,13 @@ Complete this understanding and alignment foundation before the implementation s
 | --- | --- | --- | --- |
 |  |  |  |  |
 
-Reuse the design spec's behavior IDs. Assign a provisional ID only when concrete evidence reveals a relevant supported behavior missing upstream; route it to `solution_designer` and do not pass until the upstream map is corrected. Do not create a behavior from technical possibility alone. `Contradicted`, `Unclear`, or `Newly Discovered` behavior prevents an implementation-review pass.
+Reuse behavior IDs from the design spec for normal implementation review or
+from the requirements document for failure-origin review on a direct route.
+Assign a provisional ID only when concrete evidence reveals a relevant
+supported behavior missing upstream; route it through the handoff rules and do
+not pass until the owning upstream artifact is corrected. Do not create a
+behavior from technical possibility alone. `Contradicted`, `Unclear`, or
+`Newly Discovered` behavior prevents an implementation-review pass.
 
 After the initial review result, complete the applicable prior-finding resolution table in `code-review-revision-record.md` after confirming this behavior basis and before finalizing prospective new findings.
 
@@ -229,9 +244,9 @@ Rules:
 
 - `Local Fix` -> `implementation_engineer` when the bounded fix is in implementation-owned source or packaging
 - `Local Fix` -> `api_e2e_engineer` when the bounded fix is an invalid/stale test, fixture, environment, execution, or report problem
-- `Design Impact` -> `solution_designer`
-- `Requirement Gap` -> `solution_designer`
-- `Unclear` -> `solution_designer`
+- `Design Impact` -> `architecture_designer`
+- `Requirement Gap` -> `architecture_designer`
+- `Unclear` -> `architecture_designer`
 
 Routing note:
 - Implementation-owned fixes return through implementation review and API/E2E again.

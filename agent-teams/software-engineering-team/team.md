@@ -1,36 +1,52 @@
 ---
 name: Software Engineering Team
-description: A lightweight self-operating software engineering team for upstream solution design, implementation, API/E2E coverage investigation and execution, review, documentation sync, and final handoff.
+description: A self-operating software engineering team that turns an approved requirements package into bounded implementation or reviewed architecture, then validation and delivery before returning the completed package to Requirements Engineer.
 category: software-engineering
 ---
 
-This team handles a software change from initial investigation through final handoff.
+This team consumes an approved requirements result. A bounded direct route may
+enter at `implementation_engineer`; an architecture-routed or unclear result
+enters at `architecture_designer`. The team has no separate orchestrator.
 
-This team definition is intentionally lightweight.
-`solution_designer` is the coordinator entry specialist for this team.
-There is no separate standalone orchestrator role beyond the listed specialists.
-Each specialist does its own work, follows its own bundled agent and skill definition, and hands work to the next relevant specialist when ready.
-Detailed operating rules, artifact standards, and send-back behavior belong in each member's bundled `SKILL.md` and local templates rather than being duplicated across `team.md` and `agent.md`.
+## Ownership Boundaries
 
-## Artifact Visibility Rule
+- Requirements Engineer owns intended behavior, requirements evidence,
+  acceptance criteria, and approval; this team treats those artifacts as
+  upstream authority.
+- `architecture_designer` owns architecture design when selected and
+  architecture-owned recovery.
+- `architecture_reviewer` independently reviews only the selected
+  architecture-review route.
+- `implementation_engineer` owns implementation and implementation-scoped
+  validation.
+- `code_reviewer` independently reviews selected source-review work and owns
+  failure-origin review at its boundary.
+- `api_e2e_engineer` owns executable coverage and validation.
+- `delivery_engineer` owns integration, documentation sync, user verification,
+  finalization, applicable release or deployment work, and the successful
+  terminal package handoff to Requirements Engineer.
 
-- Every `send_message_to` handoff should include absolute filesystem paths for all still-relevant upstream artifacts produced so far, not only the latest local artifact.
-- Downstream specialists should be able to read the cumulative artifact package without having to rediscover earlier work from scratch.
-- Default cumulative package:
-  - `architecture_reviewer`: requirements doc, investigation notes, design spec
-  - `implementation_engineer`: requirements doc, investigation notes, design spec, design review report
-  - `code_reviewer`: requirements doc, investigation notes, design spec, design review report, implementation handoff
-  - `api_e2e_engineer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, code review report
-  - `delivery_engineer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, code review report, coverage investigation, execution coverage report
-- `api_e2e_engineer` must produce a coverage investigation artifact before final test execution, durable coverage edits, durable coverage removals, or failure rerouting. That artifact records whether existing API/E2E coverage is still valid, stale, needs update, should be removed, or must be replaced or expanded.
-- If `api_e2e_engineer` adds, updates, or removes repository-resident durable coverage after the initial code review, route the cumulative package plus the coverage investigation and execution coverage report back through `code_reviewer` before `delivery_engineer`.
-- When a reroute or rework artifact is produced, include that artifact too alongside the already-existing upstream package.
+## Route Contract
 
-## Team Members
+The architecture route is architecture design, conditional architecture review,
+implementation, conditional source review, executable validation, and
+delivery. The direct route starts at implementation and uses the same
+downstream validation and delivery ownership boundaries. The final route at
+each stage is determined by that stage's completed result and the team's
+`team-config.json`; no specialist assumes a fixed recipient. A successfully
+finalized delivery package returns directly to Requirements Engineer under
+the parent department's cross-team routing rules.
 
-- `solution_designer`: bootstraps the task context, investigates the request, defines scope, writes the requirements doc and investigation notes, produces the design spec, and acts as the reset point when downstream work exposes a requirement gap, design impact, or cross-cutting ambiguity.
-- `architecture_reviewer`: reviews the design spec and decides whether the design is ready for implementation.
-- `implementation_engineer`: delivers the code changes from the reviewed design, runs implementation-scoped local checks, and prepares the implementation handoff without owning API/E2E coverage investigation, execution, or environment setup.
-- `code_reviewer`: performs the source and architecture review pass before API/E2E coverage investigation and execution proceeds, and re-reviews any repository-resident durable coverage code added, updated, or removed later during API/E2E before delivery begins.
-- `api_e2e_engineer`: owns API, end-to-end, and broader executable coverage investigation, existing-test validity decisions, coverage, environment setup, execution, and evidence after the implementation has passed code review; when it adds, updates, or removes repository-resident durable coverage, that updated state returns through `code_reviewer` before delivery.
-- `delivery_engineer`: first refreshes the ticket branch against the latest tracked remote state of the recorded base branch, records the integrated-state check result, then updates durable project documentation or records explicit no-impact against that integrated state, prepares the final handoff, waits for explicit user completion or verification before archival or repository finalization, and handles release or deployment work when it is in scope.
+Direct packages carry the approved requirements, investigation evidence,
+requirements revision history, routing assessment, and applicable supplements.
+Architecture packages additionally carry architecture-owned design artifacts.
+Omitted route-specific artifacts are recorded as `N/A — not applicable`.
+
+## Communication Convention
+
+Every specialist uses its own bundled skill to complete its responsibility,
+persists the result and artifacts, calls `get_handoff_rules`, applies every
+matching rule, sends the result with `send_message_to` to each exact returned
+`recipient_address`, and stops. Skills define work and result fields;
+`team-config.json` defines conditional recipients. Do not use
+`delegate_task` as a substitute for this result-based handoff protocol.

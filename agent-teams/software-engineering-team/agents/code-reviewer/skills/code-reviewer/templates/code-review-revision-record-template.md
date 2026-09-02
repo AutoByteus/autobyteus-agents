@@ -17,7 +17,7 @@ The latest `code-review-report.md` or `api-e2e-test-review-report.md` remains au
 - Canonical review report updated:
 - Review entry point and round:
 - Triggering role, report path, and finding or scenario IDs:
-- Relevant solution revision IDs: `SR-*` / `N/A`
+- Relevant architecture design revision IDs: `AD-REV-*` / `N/A`
 - Relevant architecture-review revision IDs: `ARCH-REV-*` / `N/A`
 - Relevant implementation revision IDs: `IR-*` / `N/A`
 - Relevant API/E2E revision IDs: `API-REV-*` / `N/A`
