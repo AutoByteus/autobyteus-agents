@@ -24,6 +24,7 @@ Execution may cover API, browser UI, a web-equivalent desktop renderer through t
 - Delivery Revision Record (delivery re-entry only):
 - Relevant Delivery Revision IDs:
 - Coverage Investigation:
+- API/E2E Test-Case Ledger (when used):
 - API/E2E Revision Record:
 - Current API/E2E Revision ID: `N/A` / `API-REV-*`
 - Current Execution Round:
@@ -53,6 +54,23 @@ Round rules:
 - Existing coverage decisions revised during execution, with evidence:
 - Reroute required before or during execution: `No` / `Yes`
 - Notes:
+
+## Test-Case Ledger Reconciliation (When Applicable)
+
+Use the canonical ledger as the in-flight execution checkpoint. Record each completed case immediately before proceeding to the next case; for a long-running case, record meaningful checkpoints. Reconcile the ledger here without duplicating its full event log. The execution coverage report remains the authoritative latest round-level result.
+
+- Ledger path:
+- Ledger initialized before execution: `No` / `Yes`
+- Every completed case recorded immediately: `No` / `Yes` / `N/A`
+- Long-running case checkpoints recorded when needed: `No` / `Yes` / `N/A`
+- Ledger reconciled into this report: `No` / `Yes`
+- Last durably recorded event:
+- Cases still running, interrupted, or not started:
+- Interruption, context-compression, or rerun note:
+
+| Case ID | Final Result (`Pass`/`Fail`/`Blocked`/`Not Tested`/`N/A`) | Last Event | Evidence / Artifact Path | Reconciled Result / Follow-Up |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
 
 ## Compatibility / Legacy Scope Check
 

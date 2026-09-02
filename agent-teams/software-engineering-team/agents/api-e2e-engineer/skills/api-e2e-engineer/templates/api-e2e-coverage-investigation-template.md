@@ -24,6 +24,7 @@ Update this artifact whenever new evidence changes a test-validity or coverage d
 - Relevant Delivery Revision IDs:
 - API/E2E Revision Record (created after the first completed result):
 - Current API/E2E Revision ID: `N/A` / `API-REV-*`
+- API/E2E Test-Case Ledger (when multi-case, long-running, or interruption-prone execution is planned):
 - Current Investigation Round:
 - Trigger:
 - Prior Investigation Reviewed:
@@ -142,6 +143,19 @@ Plan the narrowest relevant checks first and the broader affected suites afterwa
 | Order | Command | Working Directory / Configuration | Boundary Or Scenario Proven | Result (`Planned`/`Pass`/`Fail`/`Blocked`) | Evidence / Output Path |
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
+
+## Test-Case Ledger Plan (When Applicable)
+
+Use one canonical `api-e2e-test-case-ledger.md` when execution contains multiple independently meaningful cases, a long-running case, or a credible interruption or context-compression risk. Initialize it before execution and update it immediately after each completed case. Do not create one file per case.
+
+- Ledger required: `Yes` / `No` — explain the execution shape and risk:
+- Canonical ledger path:
+- Ledger initialized before execution: `No` / `Yes`
+- Case granularity: independently meaningful scenario, journey, lifecycle check, or temporary probe; not every assertion or internal step
+
+| Case ID | Case / Journey | Requirement / Acceptance-Criteria IDs | Boundary / Execution Surface | Planned Command Or Entry Point | Planned Order | Evidence Expected |
+| --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |
 
 ## Post-Repository Confidence Scorecard (Mandatory)
 
