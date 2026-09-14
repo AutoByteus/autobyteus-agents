@@ -11,12 +11,11 @@ Execution may cover API, browser UI, a web-equivalent desktop renderer through t
 
 - Requirements Doc:
 - Investigation Notes:
-- Requirements Revision Record:
-- Design Spec: `N/A — not applicable` for the direct route
+- Solution Revision Record:
+- Design Spec (required on every route):
 - Supplemental Task Artifacts:
-- Architecture Design Revision Record: `N/A — not applicable` for the direct route
-- Design Review Report: `N/A — not applicable` for the direct route
-- Architecture Review Revision Record: `N/A — not applicable` for the direct route
+- Design Review Report: `N/A — not applicable` when architecture review was not selected
+- Architecture Review Revision Record: `N/A — not applicable` when architecture review was not selected
 - Implementation Handoff:
 - Implementation Revision Record:
 - Code Review Report:

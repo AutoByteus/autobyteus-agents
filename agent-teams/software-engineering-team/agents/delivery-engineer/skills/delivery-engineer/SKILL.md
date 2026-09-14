@@ -43,10 +43,18 @@ Use [templates/delivery-revision-record-template.md](templates/delivery-revision
 
 ## Upstream Inputs
 
-- Accept either the cumulative delivery package from `code_reviewer` after proportional post-API/E2E test-code review—including approved requirements doc, requirements investigation notes, requirements revision record, design spec, architecture-design revision record, design review report, architecture-review revision record, implementation handoff, implementation revision record, code review report, code-review revision record, coverage investigation, execution coverage report, API/E2E revision record, and API/E2E test-code review report—or the direct validated package from `api_e2e_engineer` for `task_size=Small` or `Medium` and `architectural_risk=Low`, where architecture-review, source-review, and test-code-review artifacts are recorded as `Not Applicable`.
+- Accept either the cumulative delivery package from `code_reviewer` after proportional post-API/E2E test-code review—including approved requirements doc, investigation notes, solution revision record, design spec, design review report, architecture-review revision record, implementation handoff, implementation revision record, code review report, code-review revision record, coverage investigation, execution coverage report, API/E2E revision record, and API/E2E test-code review report—or the direct validated package from `api_e2e_engineer` for `task_size=Small` or `Medium` and `architectural_risk=Low`, where architecture-review, source-review, and test-code-review artifacts are recorded as `Not Applicable`. The solution revision record and completed design spec are required on every route; only inapplicable independent review artifacts may be omitted.
 - Use the full artifact chain as delivery context for docs sync and final handoff work.
+- On a Solution Designer delivery-receipt correction request, verify and correct
+  the named evidence gap using the existing completion records. Do not replay
+  already-completed commits, merges, releases or cleanup merely to resend a
+  receipt. If the gap reveals unfinished work, resume only that owning gate;
+  keep completion blocked until it is truthful.
 
 ## Workflow Rules
+
+The sequence below applies to initial delivery and genuinely unfinished gates,
+not a receipt-only evidence correction.
 
 - Start delivery by refreshing the branch state against the latest tracked remote base, then continue within the same role into docs sync, final handoff, repository finalization, and any applicable release or deployment work.
 - Keep docs sync focused on the final integrated and validated implementation state. Include independent review evidence when the selected route produced it; record review gates as `Not Applicable` for the direct route. Use the integrated state as primary truth and upstream artifacts as supporting context.
@@ -69,7 +77,7 @@ Use [templates/delivery-revision-record-template.md](templates/delivery-revision
 - When release notes are required, create or update `tickets/in-progress/<ticket-name>/release-notes.md` before user verification, then pass the archived `tickets/done/<ticket-name>/release-notes.md` artifact into the release/publication path when that path is applicable.
 - After repository finalization and any applicable release/publication/deployment work, clean up ticket worktrees and branches when they were created for this task and when the recorded finalization target makes that cleanup safe.
 - If any finalization, release, deployment, or cleanup step fails, keep final handoff blocked and record the blocker explicitly. Do not undo already-completed repository finalization.
-- Send a successful terminal message to `/requirements_engineer` only after explicit user testing/verification, repository finalization, and every applicable release, deployment, rollout, and safe cleanup step is `Completed` or truthfully `Not required`.
+- Send a successful terminal message to `/solution_designer` only after explicit user testing/verification, repository finalization, and every applicable release, deployment, rollout, and safe cleanup step is `Completed` or truthfully `Not required`.
 - The terminal message must include the complete cumulative package, `task_size`, `architectural_risk`, selected route, final validation evidence, user-verification reference, delivery and finalization reports, final branch/commit/merge/push state, release/deployment outcome when applicable, and durable final artifact paths.
 - Do not send the successful terminal message while waiting for user verification or while any finalization blocker remains.
 
@@ -87,12 +95,12 @@ Use [templates/delivery-revision-record-template.md](templates/delivery-revision
 ## Routing Rules
 
 - Resolve documentation-local or deployment-local issues directly when possible.
-- For code or packaging `Local Fix`, `Design Impact`, `Requirement Gap`, or `Unclear`, call `get_handoff_rules` and use the exact returned accountable recipient; normal team rules select `/implementation_engineer` for implementation fixes and `/architecture_designer` for upstream issues.
+- For code or packaging `Local Fix`, `Design Impact`, `Requirement Gap`, or `Unclear`, call `get_handoff_rules` and use the exact returned accountable recipient; normal team rules select `/implementation_engineer` for implementation fixes and `/solution_designer` for upstream issues.
 - If final handoff is blocked by a non-deployment issue, record the classification and recommended recipient explicitly in the release/publication/deployment report instead of leaving only a generic blocker note.
 
-## Terminal Return To Requirements Engineering
+## Terminal Return To Solution Designer
 
-- Use `get_handoff_rules` and the exact returned recipient to return the successfully finalized package. The normal terminal rule selects `/requirements_engineer`.
-- State that this is the authoritative terminal completion package and that Requirements Engineer may verify the package and return the department result only after checking it.
+- Use `get_handoff_rules` and the exact returned recipient to return the successfully finalized package. The normal terminal rule selects `/solution_designer`.
+- State that this is the authoritative terminal completion package and that Solution Designer may verify the package and return the verified engineering result through the applicable parent handoff or to the standalone caller only after checking it.
 - If user verification is missing or finalization is blocked, continue the applicable verification, recovery, or reroute flow. Do not send a successful completion message.
 - After the terminal message succeeds, end the delivery stage and do not poll. Act only on a later explicit rework message.

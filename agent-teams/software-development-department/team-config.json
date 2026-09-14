@@ -1,10 +1,10 @@
 {
-  "coordinatorMemberName": "requirements_engineer",
+  "coordinatorMemberName": "department_head",
   "avatarUrl": null,
   "members": [
     {
-      "memberName": "requirements_engineer",
-      "ref": "requirements-engineer",
+      "memberName": "department_head",
+      "ref": "department-head",
       "refType": "agent",
       "refScope": "team_local"
     },
@@ -23,51 +23,36 @@
   ],
   "handoffs": [
     {
-      "from": "/requirements_engineer",
+      "from": "/department_head",
+      "to": "/software_engineering_team/solution_designer",
+      "rules": [
+        "When Department Head classifies a new user request or an explicit user-directed continuation as Work Requested. Preserve the original request, constraints, package identifier and existing artifact paths; Solution Designer owns investigation, requirements, approval and design. Do not forward a Terminal or Blocked result receipt as new work."
+      ]
+    },
+    {
+      "from": "/software_engineering_team/solution_designer",
       "to": "/product_design_prototyping_team/product_prototyper",
       "rules": [
-        "When Requirements Engineer classifies the outcome as Product Design Requested because the user explicitly or after clarification asks Product Design & Prototyping to help understand or evolve an experience. Send the user's requested outcome in the user's own terms, the focused decision, relevant requirement and behavior IDs, established constraints, non-goals, canonical requirements paths, and supplied existing-product context when applicable. Do not prescribe a Product Prototyper mode, Bootstrapper payload, repository, ticket, or implementation procedure; Product Prototyper selects and owns those."
+        "When Solution Designer classifies the outcome as Product Design Requested because the user explicitly or after clarification asks Product Design & Prototyping to help understand or evolve an experience. This also applies to purpose Result Correction for missing or inconsistent evidence in a returned package from the same user-requested engagement; include the original user-request reference and precise gap without expanding scope. Send the user's requested outcome in the user's own terms, the focused decision, relevant requirement and behavior IDs, established constraints, non-goals, canonical requirements paths, and supplied existing-product context when applicable. Do not prescribe a Product Prototyper mode, Bootstrapper payload, repository, ticket, or implementation procedure; Product Prototyper selects and owns those."
       ]
     },
     {
       "from": "/product_design_prototyping_team/product_prototyper",
-      "to": "/requirements_engineer",
+      "to": "/software_engineering_team/solution_designer",
       "rules": [
-        "When Product Prototyper classifies the outcome as Requirements Visualization Ready because the interactive visualizer revision, review URL, evidence, and open clarification questions are ready for Requirements Engineering and user review.",
+        "When Product Prototyper classifies the outcome as Requirements Visualization Ready because the interactive visualizer revision, review URL, evidence, and open clarification questions are ready for Solution Designer and user review.",
         "When Product Prototyper classifies the outcome as Prototype Completed because the user-approved prototype and UI/UX package are ready for requirements integration.",
         "When Product Prototyper classifies the outcome as Requirement Impact because user feedback or prototype evidence requires a material requirements revision.",
         "When Product Prototyper classifies the outcome as Not Recommended because a prototype would not materially improve the decision and the rationale/evidence are ready.",
-        "When Product Prototyper classifies the outcome as Blocked because prototype work cannot safely or accurately continue and Requirements Engineer must decide the next requirements path."
+        "When Product Prototyper classifies the outcome as Blocked because prototype work cannot safely or accurately continue and Solution Designer must decide the next requirements path."
       ]
     },
     {
-      "from": "/requirements_engineer",
-      "to": "/software_engineering_team/architecture_designer",
+      "from": "/software_engineering_team/solution_designer",
+      "to": "/department_head",
       "rules": [
-        "When Requirements Engineer classifies the cumulative package as Approved Architecture-Ready because every behavior-defining supplement is consistent, requirements readiness has passed, the user has explicitly approved the intended behavior, and the Architecture Design Routing Assessment selects Architecture Designer with the evidence and rationale for architecture design. Include the assessment path and preliminary task-size/risk values; Architecture Designer owns the final classification.",
-        "When Requirements Engineer classifies the cumulative package as Architecture Design Unclear because the approved requirements are ready but the available evidence cannot establish a safe direct-implementation route. Include the unresolved assessment fields, evidence paths, and conservative rationale."
-      ]
-    },
-    {
-      "from": "/requirements_engineer",
-      "to": "/software_engineering_team/implementation_engineer",
-      "rules": [
-        "When Requirements Engineer classifies the cumulative package as Approved Direct-Implementation because the approved requirements passed readiness, the Architecture Design Routing Assessment selects Implementation Engineer with preliminary task_size=Small or Medium, preliminary architectural_risk=Low, and structural-impact checks that found no API or contract, persistence or schema, security or privacy, concurrency or lifecycle, deployment, ownership or subsystem-boundary, migration, architectural-pattern, or structural-refactoring change. Include the assessment path, evidence, rationale, and direct-implementation re-entry trigger; design and architecture-review artifacts are N/A — not applicable."
-      ]
-    },
-    {
-      "from": "/software_engineering_team/delivery_engineer",
-      "to": "/requirements_engineer",
-      "rules": [
-        "When Delivery Engineer classifies the outcome as Delivery Completed after explicit user verification, repository finalization, and every applicable release, publication, deployment, rollout, and safe-cleanup step is Completed or truthfully Not required. Include the complete cumulative package, final validation evidence, delivery and finalization artifacts, user-verification reference, final branch/commit/merge/push state, release or deployment outcome, and durable artifact paths for Requirements Engineer to verify and return."
-      ]
-    },
-    {
-      "from": "/software_engineering_team/architecture_designer",
-      "to": "/requirements_engineer",
-      "rules": [
-        "When Architecture Designer classifies a missing or conflicting intended-behavior decision found during package validation, architecture review, or downstream engineering as Requirement Gap because the canonical requirements require revision and any intended-behavior change requires renewed user approval.",
-        "When Architecture Designer classifies the outcome as Non-Requirement Blocked because an external dependency, unsafe workspace, or other terminal condition must be returned to the department coordinator for user-facing resolution."
+        "When Solution Designer classifies the same package as Terminal after verifying the Delivery Completed receipt and its completion evidence. Return the verified cumulative result for the final department response; Department Head does not repeat technical or finalization gates.",
+        "When Solution Designer classifies an unresolved user/external prerequisite as Blocked and cannot make further progress within its responsibility. Return the precise blocker and evidence for a user-facing response; routine clarification and requirements approval remain with Solution Designer."
       ]
     }
   ]

@@ -6,11 +6,14 @@ Keep one canonical path across refinement rounds.
 ## Document Status
 
 - Status: `Draft` / `Ready for Approval` / `Approved` / `Blocked`
-- Current requirements revision ID: `RER-*` / `N/A`
+- Current solution revision ID: `SR-*` / `N/A`
+- Package identifier:
 - Request / ticket:
 - Requirements owner:
 - Date:
 - Approval state and reference:
+- Exact approved requirements baseline / solution revision:
+- Behavior-defining supplements and their approved versions:
 
 ## Problem And Desired Outcome
 
@@ -23,11 +26,11 @@ Keep one canonical path across refinement rounds.
 
 Use stable behavior IDs. Record only behavior relevant to this request.
 
-| Behavior ID | Kind (`User`/`System`/`Operational`/`Contract`) | Evidence-Backed Current Behavior | Desired Behavior | Intentionally Preserved Behavior | Investigation Evidence |
-| --- | --- | --- | --- | --- | --- |
-| BEH-001 |  |  |  |  |  |
+| Behavior ID | Kind (`User`/`System`/`Operational`/`Contract`) | Related Scenario IDs | Evidence-Backed Current Behavior | Desired Behavior | Intentionally Preserved Behavior | Investigation Evidence |
+| --- | --- | --- | --- | --- | --- | --- |
+| BEH-001 |  |  |  |  |  |  |
 
-For genuinely new behavior, write `No current supported behavior` and identify the approved target trigger. Do not create behavior from a synthetic caller, manual internal-state manipulation, or mechanical possibility.
+For genuinely new behavior, write `No current supported behavior` and identify the proposed target trigger; record its approval reference once approved. Do not create behavior from a synthetic caller, manual internal-state manipulation, or mechanical possibility.
 
 ## Stakeholders, Actors, And Outcomes
 
@@ -58,7 +61,7 @@ Reference the applicable `BEH-*`, requirement, and acceptance-criteria IDs whose
 - Every blocking `Design Impact` or implementation-correction finding must cite an approved requirement, acceptance criterion, or preserved-behavior ID that it protects.
 - A finding that would introduce new product behavior, policy, threat model, migration obligation, compatibility promise, or operational contract is a `Requirement Gap`; it requires explicit user approval before becoming authoritative.
 - An adjacent concern outside the approved boundary may be recorded as a non-blocking risk, recommendation, or separate-ticket candidate. It is not a required design correction.
-- A downstream reviewer comment does not amend this requirements basis. The Requirements Engineer must update the canonical requirements and obtain renewed user approval before a scope-changing proposal can govern design or implementation.
+- A downstream reviewer comment does not amend this requirements basis. The Solution Designer must update the canonical requirements and obtain renewed user approval before a scope-changing proposal can govern design or implementation.
 
 ## Requirements
 
@@ -70,17 +73,30 @@ Requirements state behavior or measurable constraints. Do not prescribe target m
 
 ## Acceptance Criteria
 
-| Acceptance-Criteria ID | Related Requirement IDs | Preconditions / Trigger | Observable Expected Outcome | Important Alternate Or Failure Outcome | Verification Intent |
-| --- | --- | --- | --- | --- | --- |
-| AC-001 |  |  |  |  |  |
+| Acceptance-Criteria ID | Related Requirement IDs | Related Behavior / Scenario IDs | Preconditions / Trigger | Observable Expected Outcome | Important Alternate Or Failure Outcome | Verification Intent |
+| --- | --- | --- | --- | --- | --- | --- |
+| AC-001 |  |  |  |  |  |  |
 
 ## Relevant Scenarios And Journeys
 
-Use user journeys only when a user actually initiates or experiences the behavior. Backend and infrastructure requirements may instead use system, operational, or contract scenarios.
+Record the proposed product-level scenario basis and its approval state, not the internal technical
+production path. Use user journeys only when a user actually initiates or
+experiences the behavior. Backend and infrastructure requirements may instead
+use system, operational, or contract scenarios.
 
-| Scenario ID | Kind (`User`/`System`/`Operational`/`Contract`) | Actor / Initiator / Governing Contract | Starting Condition | Steps Or Event Sequence | Expected Outcome | Related Requirement / AC IDs |
-| --- | --- | --- | --- | --- | --- | --- |
-| SCN-001 |  |  |  |  |  |  |
+Each relevant scenario should identify its coherent goal or governing event,
+supported trigger or entry surface, starting condition, product-level steps or
+event sequence, expected outcome, relevant supported alternate/error behavior,
+scenario validity, and independent evidence. Use `Supported Normal Scenario`
+for an ordinary supported workflow and `Supported Explicit Edge Scenario` only
+when an unusual workflow is explicitly supported by product, security,
+operational, or governing contract. Use `Technically Possible but
+Unsupported/Contrived` only to document a rejected premise that could otherwise
+be confused with approved scope; use `Unclear` when evidence is missing.
+
+| Scenario ID | Kind (`User`/`System`/`Operational`/`Contract`) | Actor / Initiator / Governing Contract | Coherent Goal Or Governing Event | Supported Trigger / Entry Surface | Starting Condition | Product-Level Steps Or Event Sequence | Expected Outcome | Supported Alternate / Error Behavior | Scenario Validity | Independent Evidence / Decision Reference | Related Requirement / AC IDs |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| SCN-001 |  |  |  |  |  |  |  |  |  |  |  |
 
 ## UI, Interaction, And Experience Requirements
 
@@ -104,11 +120,13 @@ prototype-specific fields rather than leaving their approval state ambiguous.
 
 ## Quality And Non-Functional Requirements
 
-Include only applicable, evidence-backed, or user-approved constraints.
+Include only applicable, evidence-backed, or user-approved constraints. Link each
+quality row to its canonical REQ/AC entries rather than creating a competing
+normative requirement; use this section for quality-specific conditions and evidence.
 
-| Quality ID | Area (`Performance`/`Reliability`/`Security`/`Privacy`/`Accessibility`/`Compliance`/`Operability`/`Compatibility`/`Other`) | Measurable Requirement Or Constraint | Conditions / Scope | Verification Intent |
-| --- | --- | --- | --- | --- |
-| QR-001 |  |  |  |  |
+| Quality ID | Related Requirement / AC IDs | Area (`Performance`/`Reliability`/`Security`/`Privacy`/`Accessibility`/`Compliance`/`Operability`/`Compatibility`/`Other`) | Measurable Requirement Or Constraint | Conditions / Scope | Verification Intent |
+| --- | --- | --- | --- | --- | --- |
+| QR-001 |  |  |  |  |  |
 
 ## Data Continuity And Acceptable Loss
 
@@ -118,7 +136,7 @@ Include only applicable, evidence-backed, or user-approved constraints.
 - Retention, privacy, compliance, volume, downtime, or operational constraints:
 - Unknowns requiring downstream investigation:
 
-State the required outcome and constraints. Do not prescribe a migration merely because a schema changes; downstream architecture determines the transition mechanism.
+State the required outcome and constraints. Do not prescribe a migration merely because a schema changes; the architecture phase determines the transition mechanism.
 
 ## External Contracts And Dependencies
 
@@ -146,12 +164,16 @@ State the required outcome and constraints. Do not prescribe a migration merely 
 
 ## Traceability
 
-| Requirement ID | Behavior IDs | Acceptance-Criteria IDs | Scenario IDs | Supplemental / Prototype Evidence |
-| --- | --- | --- | --- | --- |
-| REQ-001 |  |  |  |  |
+| Requirement ID | Use-Case IDs | Behavior IDs | Acceptance-Criteria IDs | Scenario IDs | Supplemental / Prototype Evidence |
+| --- | --- | --- | --- | --- | --- |
+| REQ-001 |  |  |  |  |  |
 
-## Downstream Architecture Input
+## Architecture Phase Input
 
+Prepare these inputs during requirements work; confirm their approved basis
+before beginning architecture design.
+
+- Approved scenario IDs and product-level behavior paths architecture must map:
 - Product and system constraints architecture must preserve:
 - Decisions intentionally deferred to architecture design:
 - Technical facts architecture should verify:
@@ -161,35 +183,22 @@ This section transfers constraints and open technical questions. It does not def
 
 ## Readiness Check
 
+### Content Ready For Approval
+
 - Relevant current behavior is evidence-backed: `Yes` / `No`
 - Desired and preserved behavior are explicit: `Yes` / `No`
 - Scope and non-goals are clear: `Yes` / `No`
 - Requirements and acceptance criteria are testable and traceable: `Yes` / `No`
-- Applicable scenarios are covered: `Yes` / `No`
+- Applicable scenarios are covered with validity and evidence: `Yes` / `No`
 - Prototype and supplemental evidence is integrated consistently: `Yes` / `No` / `N/A`
 - Applicable UI/UX approval and final visual-reference basis are recorded: `Yes` / `No` / `N/A`
 - Material assumptions and open decisions are visible: `Yes` / `No`
+- Content ready for user approval: `Yes` / `No`
+- Remaining content blocker:
+
+### Approved Basis Ready For Design
+
 - User approval received: `Yes` / `No`
-- Requirements package ready for downstream route: `Yes` / `No`
+- Exact requirements and supplement approval basis recorded: `Yes` / `No`
+- Approved requirements package ready for architecture design: `Yes` / `No`
 - Remaining blocker:
-
-## Architecture Design Routing Assessment
-
-Complete this section only after `Status` is `Approved` and the Readiness Check
-passes. This is a Requirements Engineer routing assessment, not target
-architecture and not the final architecture-owned risk classification.
-
-- Assessment status: `Complete` / `Unclear` / `Blocked`
-- Assessment owner and date:
-- Preliminary task size: `Small` / `Medium` / `Large` / `N/A — insufficient evidence`
-- Preliminary architectural risk: `Low` / `High` / `N/A — insufficient evidence`
-- Structural surfaces reviewed:
-- Payload/content surfaces reviewed:
-- Structural-impact triggers: `None` / `Present` / `Unknown`
-- Evidence paths:
-- Decision rationale:
-- Selected route: `Architecture Designer` / `Implementation Engineer` / `Department Coordinator`
-- Outcome classification: `Approved Architecture-Ready` / `Approved Direct-Implementation` / `Architecture Design Unclear` / `Blocked`
-- Direct-route conditions all satisfied: `Yes` / `No` / `N/A — not applicable`
-- Architecture design, review, and design-revision artifacts: `N/A — not applicable` for a direct route
-- Downstream re-entry trigger:

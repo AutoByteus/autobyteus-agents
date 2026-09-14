@@ -10,12 +10,11 @@ Update this artifact whenever new evidence changes a test-validity or coverage d
 
 - Requirements Doc:
 - Investigation Notes:
-- Requirements Revision Record:
-- Design Spec: `N/A — not applicable` for the direct route
+- Solution Revision Record:
+- Design Spec (required on every route):
 - Supplemental Task Artifacts:
-- Architecture Design Revision Record: `N/A — not applicable` for the direct route
-- Design Review Report: `N/A — not applicable` for the direct route
-- Architecture Review Revision Record: `N/A — not applicable` for the direct route
+- Design Review Report: `N/A — not applicable` when architecture review was not selected
+- Architecture Review Revision Record: `N/A — not applicable` when architecture review was not selected
 - Implementation Handoff:
 - Implementation Revision Record:
 - Code Review Report:
@@ -40,7 +39,7 @@ Update this artifact whenever new evidence changes a test-validity or coverage d
 
 ## Current Requirement And Design Basis
 
-Summarize the current behavior that must be proven from the approved requirements, acceptance criteria, reviewed design or direct low-risk requirements package, applicable supplemental task artifacts and revision records, implementation handoff, and applicable review artifacts. Record `N/A — not applicable` for architecture or source-review artifacts omitted by the direct route.
+Summarize the current behavior that must be proven from the approved requirements, acceptance criteria, completed design spec with applicable review evidence, applicable supplemental task artifacts and revision records, implementation handoff, and applicable review artifacts. Record `N/A — not applicable` for independent architecture-review or source-review artifacts omitted by the direct route; the design spec remains required.
 
 ## Changed Behavior Summary
 

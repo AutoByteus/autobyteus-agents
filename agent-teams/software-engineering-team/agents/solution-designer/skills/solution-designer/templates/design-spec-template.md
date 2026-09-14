@@ -2,6 +2,16 @@
 
 Write this artifact to a canonical file path in the assigned task workspace before any handoff message.
 
+## Solution And Approval Basis
+
+- Current solution revision ID: `SR-*`
+- Approved requirements baseline / revision and user-approval reference:
+- Behavior-defining supplements and their approval references:
+- Design status: `Draft` / `Ready` / `Needs Revision` / `Blocked`
+- Canonical investigation-notes path:
+
+Changed intended behavior requires renewed user approval before affected design is authoritative. An evidence-only or technical-design revision does not itself invalidate unchanged requirements approval.
+
 ## Current-State Read
 
 Summarize the relevant current flow and lifecycle, ownership boundaries, verified coupling or fragmentation problems when any exist, and constraints that the target design must respect. Reference investigation evidence and the behavior IDs below instead of duplicating their complete production paths here. Do not imply that every task has a structural problem.
@@ -9,18 +19,18 @@ Summarize the relevant current flow and lifecycle, ownership boundaries, verifie
 ## Task Size And Architectural Risk (Mandatory)
 
 Complete this section after the architecture design is developed and before
-the forward handoff. These two fields are the routing contract for the team.
+the forward handoff. These fields describe the completed solution and provide
+inputs to the configured handoff rules; they do not select recipients.
 
 - Task size (`Small`/`Medium`/`Large`):
 - Size rationale and supporting evidence (file/component scope, affected surfaces, or other concrete basis):
 - Architectural risk (`Low`/`High`):
 - Risk rationale and supporting evidence:
-- Selected route (`Direct Implementation`/`Architecture Review`):
 - Escalation trigger if implementation or validation discovers new impact:
 
 ## Architecture Investigation Evidence
 
-Record the architecture-level evidence gathered after receiving the approved requirements package. Requirements investigation notes remain the upstream behavior evidence authority; this section owns the additional current-code and runtime evidence needed to justify technical design decisions.
+Link the architecture-level evidence gathered after requirements approval from the canonical investigation notes. Those notes own both product and technical observations; this section maps evidence to design decisions without duplicating the raw log.
 
 | Source / Command / Probe | Exact Path / Reference | Observation | Design Decision Supported | Remaining Uncertainty |
 | --- | --- | --- | --- | --- |

@@ -18,11 +18,10 @@ Do not record successful API/E2E test-code review here. Use the separate `api-e2
 - Review Entry Point: `Implementation Review` / `API/E2E Failure-Origin Review`
 - Requirements Doc Reviewed As Context:
 - Investigation Notes Reviewed As Context:
-- Requirements Revision Record Reviewed As Context:
-- Design Spec Reviewed As Context: `N/A — not applicable` for direct failure-origin review
+- Solution Revision Record Reviewed As Context:
+- Design Spec Reviewed As Context: `N/A — not applicable` when no design was produced for the package
 - Supplemental Task Artifacts Reviewed As Context:
-- Architecture Design Revision Record Reviewed As Context:
-- Relevant Architecture Design Revision IDs:
+- Relevant Solution Revision IDs:
 - Design Review Report Reviewed As Context:
 - Architecture Review Revision Record Reviewed As Context:
 - Relevant Architecture Review Revision IDs:
@@ -90,11 +89,66 @@ behavior from technical possibility alone. `Contradicted`, `Unclear`, or
 
 After the initial review result, complete the applicable prior-finding resolution table in `code-review-revision-record.md` after confirming this behavior basis and before finalizing prospective new findings.
 
+## Supported Product Scenario And Reachability Gate (Mandatory)
+
+Complete this gate after the upstream behavior basis and before structural
+checks, score deductions, findings, classifications, or prescribed machinery.
+Technical observations may be collected provisionally, but they cannot affect
+the review result until the candidate gate below promotes them. Do not search
+for hypothetical edge cases as a separate completeness exercise.
+
+Record the supported scenarios or contracts that the review actually relies
+on. `Product reachability` is only one part of this basis: a callable product
+surface does not prove that every combination of its actions is a coherent or
+supported workflow.
+
+| Scenario ID | Related Behavior / Contract IDs | Kind (`User`/`System`/`Operational`/`Contract`) | Actor / Initiator | Coherent Goal Or Governing Event | Supported Entry Surface / Event | Scenario Shape (`Normal`/`Explicit Edge`) | Forward Production Path / Lifecycle | Expected Outcome / Consequence | Independent Evidence | Scenario Validity (`Supported Normal Scenario`/`Supported Explicit Edge Scenario`/`Technically Possible but Unsupported/Contrived`/`Unclear`) | Review Use (`Use`/`Investigate`/`Reject`) |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |  |  |  |  |  |
+
+Use `Supported Normal Scenario` or `Supported Explicit Edge Scenario` only
+when the scenario has a coherent product goal or governing event and an
+evidence-backed supported path. Use
+`Technically Possible but Unsupported/Contrived` when it is merely callable or
+constructible, requires contradictory intent or artificial timing, or lacks an
+independent product, security, operational, or contractual basis. Use `Unclear`
+when material evidence is missing. A scenario that is unsupported or unclear
+cannot support a finding, score deduction, or required mechanism.
+
+### Candidate Finding And Mechanism Gate
+
+Every observation that could become a finding, score rationale,
+classification, defect attribution, or required implementation/recovery
+mechanism must be recorded here or linked to a stable record with the same
+fields. Pure structural, ownership, naming, or maintainability observations
+may link to an approved design or engineering contract instead of a user
+scenario; do not invent a user journey for them.
+
+| Candidate ID | Observation Or Mechanism | Scenario / Contract ID | Independent Trigger | Forward Path / Lifecycle / Consequence | Evidence | Disposition (`Promote`/`Hold for Evidence`/`Reject`) | Reason / Proportionate Response |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |  |
+
+- `Promote`: the scenario or contract is supported and the technical
+  consequence is evidenced and proportionate; the candidate may become a
+  finding or required mechanism.
+- `Hold for Evidence`: material scenario or consequence evidence is missing;
+  do not score, route, or prescribe machinery.
+- `Reject`: the premise is technically possible but unsupported/contrived or
+  not reachable; remove it from findings and do not deduct from the score.
+- Two individually supported actions do not establish a supported concurrent
+  workflow. Multi-tab, cross-session, race, or contradictory-action findings
+  require an independent product goal or explicit contract.
+- Tests, diffs, endpoints, callbacks, internal methods, and proposed
+  mechanisms can confirm an already established path but cannot establish the
+  product scenario by themselves.
+- Apply the same gate to existing as well as newly introduced fallback,
+  recovery, defensive, concurrency, lifecycle, and compatibility machinery.
+
 ## Structural / Design Checks
 
 Required for implementation review only.
 Use the mandatory structural checks below on every implementation review. Do not replace them with a smaller ad hoc checklist.
-Treat the `Authoritative Boundary Rule` as one of the highest-signal structural checks in this section. Apply these checks only after establishing the behavior basis above; validate any material assumed scenario before using it in a finding or score.
+Treat the `Authoritative Boundary Rule` as one of the highest-signal structural checks in this section. Apply these checks only after establishing the behavior basis and Supported Product Scenario Gate above; use only promoted candidates in findings or score rationale.
 Work from macro structure toward detail: data-flow spine, ownership and boundaries, interfaces and dependencies, subsystem and file responsibilities, then local implementation and test readiness.
 Review test structure proportionately when test files are relevant. Do not apply implementation-source size thresholds to tests, and do not fail a coherent test suite merely because its files are large.
 
@@ -160,7 +214,7 @@ A general version-agnostic reader is not backward compatibility merely because i
 - Why:
 - Files or areas likely affected:
 
-## Material Premise Validation (Only When Needed)
+## Additional Material Premise Validation (When Required)
 
 ### Upstream Design-Review Material-Premise Decisions
 
@@ -168,7 +222,11 @@ A general version-agnostic reader is not backward compatibility merely because i
 | --- | --- | --- |
 |  |  |  |
 
-Complete a detailed record only when an implementation check, prospective finding, score rationale, or introduced mechanism depends on a new or reclassified material production, failure, or lifecycle scenario. Include `Not Reachable` decisions, but preserve unchanged upstream decisions by ID instead of copying their reasoning. If none are new or reclassified, write `None`; do not search for edge cases or other hypothetical scenarios.
+Use this section only for additional or reclassified material premises that are
+not already fully captured in the Supported Product Scenario Gate. Preserve
+unchanged upstream decisions by ID instead of copying their reasoning. If none
+are new or reclassified, write `None`; do not search for edge cases or other
+hypothetical scenarios.
 
 Use one record per distinct initiating condition when evidence, path, or consequence differs. Do not combine unrelated causes into one `A or B or C` premise.
 
@@ -179,6 +237,8 @@ For each new or reclassified premise, use this shape:
 - Origin: `New` / `Reclassified from <architecture-premise-id>`
 - Related approved requirement or established contract:
 - Relevant behavior ID(s):
+- Coherent product goal or governing event:
+- Scenario validity: `Supported Normal Scenario` / `Supported Explicit Edge Scenario` / `Technically Possible but Unsupported/Contrived` / `Unclear`
 - Initiating basis kind: `User` / `System` / `Operational` / `Contract`
 - Independent product-supported initiating trigger or applicable governing contract:
 - Support evidence: for `User`, name the exposed product surface and supported user action; for `System`, the supported runtime event; for `Operational`, the supported operator action; for `Contract`, why the governing contract applies:
@@ -187,11 +247,22 @@ For each new or reclassified premise, use this shape:
 - Reachability: `Reachable` / `Not Reachable` / `Unclear`
 - Review consequence / proportionate response:
 
-Reuse the architecture-review premise ID when reclassifying it; assign a new stable ID only to a new premise. Apply the shared product-reachability rule. A record is incomplete when its initiating basis is only the downstream client, SDK, endpoint, handler, middleware, generic infrastructure, diff, test, or proposed mechanism whose applicability is being assessed. `Reachable` requires the complete independent, forward-traced witness above; `Not Reachable` cannot drive a finding, score deduction, defect attribution, or machinery; materially `Unclear` requires investigation or routing.
+Reuse the architecture-review premise ID when reclassifying it; assign a new
+stable ID only to a new premise. Apply the shared Supported Product Scenario
+and Reachability Gate. A record is incomplete when its initiating basis is only
+the downstream client, SDK, endpoint, handler, middleware, generic
+infrastructure, diff, test, or proposed mechanism whose applicability is being
+assessed. A `Reachable` premise must also be a supported normal or explicitly
+supported edge scenario; unsupported/contrived or `Not Reachable` premises
+cannot drive a finding, score deduction, defect attribution, or machinery;
+materially `Unclear` evidence requires investigation or routing.
 
 ## Review Scorecard (Mandatory)
 
-Complete this summary only after the structural, local-source, legacy, cleanup, and material-premise checks above. It is mandatory for implementation-review rounds; do not repeat it for a failure-origin-only round.
+Complete this summary only after the structural, local-source, legacy, cleanup,
+Supported Product Scenario Gate, and additional material-premise checks above.
+It is mandatory for implementation-review rounds; do not repeat it for a
+failure-origin-only round.
 Record the scorecard even when the review fails.
 The scorecard explains the current quality level; it does not override the review decision.
 Use the canonical priority order below. The order is the review reasoning order, not an equal-weight category list.
@@ -217,7 +288,7 @@ Rules:
 - Do not record raw numbers without explanation.
 - Every row must include the reason for the score, the concrete weakness or drag, and the expected improvement.
 - Every category is mandatory. Clean pass target is `>= 9.0` in every category. Any category below `9.0` is a real gap and should normally fail the review.
-- Score only against approved or verified behavior, established contracts, supported operational constraints, and concrete maintainability defects. Cite the applicable premise-validation record for any material assumed scenario; `Not Reachable` cannot lower a score.
+- Score only against approved or verified behavior, promoted supported product scenarios, established contracts, supported operational constraints, and concrete maintainability defects. Cite the candidate-gate and applicable premise-validation records for any material assumed scenario; rejected or `Not Reachable` candidates cannot lower a score.
 - Do not let the overall summary override a weak category. The review still follows the actual findings and mandatory checks.
 - If the `Authoritative Boundary Rule` is broken, call it out explicitly in findings and in the relevant score rationale instead of hiding it under vague dependency wording.
 
@@ -228,7 +299,8 @@ Rules:
 - Create a new finding ID only for newly discovered issues.
 - After the initial result, mark resolved or obsolete earlier findings in the current `CRR-*` entry's prior-finding resolution table instead of silently dropping them.
 - Tie every finding to affected approved behavior, relevant existing behavior, an established engineering contract, or a real supported operational constraint.
-- When a finding depends on an assumed production, failure, or lifecycle scenario, cite its material-premise validation ID and include the production trigger/path, evidence, material consequence, and why the required action is proportionate.
+- Every finding must link to a promoted candidate in the Supported Product Scenario Gate or to an approved engineering contract. When it depends on an additional production, failure, or lifecycle premise, cite its material-premise validation ID and include the independent trigger/path, evidence, material consequence, and why the required action is proportionate.
+- Do not include a candidate marked `Hold for Evidence`, `Reject`, `Unclear`, or `Technically Possible but Unsupported/Contrived` as an actionable finding or score deduction.
 - If dead/obsolete/legacy/compatibility issues exist, enumerate each one explicitly with the concrete file/path/item, evidence, and required removal or cleanup action.
 
 ## Classification
@@ -244,9 +316,9 @@ Rules:
 
 - `Local Fix` -> `implementation_engineer` when the bounded fix is in implementation-owned source or packaging
 - `Local Fix` -> `api_e2e_engineer` when the bounded fix is an invalid/stale test, fixture, environment, execution, or report problem
-- `Design Impact` -> `architecture_designer`
-- `Requirement Gap` -> `architecture_designer`
-- `Unclear` -> `architecture_designer`
+- `Design Impact` -> `solution_designer`
+- `Requirement Gap` -> `solution_designer`
+- `Unclear` -> `solution_designer`
 
 Routing note:
 - Implementation-owned fixes return through implementation review and API/E2E again.
@@ -258,6 +330,7 @@ Routing note:
 
 - Review Decision:
 - Review Entry Point:
+- Supported Product Scenario Gate (`Pass`/`Fail`/`Blocked`):
 - Material-Premise Gate (`Pass`/`Fail`/`Blocked`):
 - Score Summary:
 - Failure Origin (when applicable):

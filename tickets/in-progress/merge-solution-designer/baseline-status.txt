@@ -1,0 +1,16 @@
+ M agent-teams/software-development-department/agents/requirements-engineer/agent.md
+ M agent-teams/software-development-department/agents/requirements-engineer/skills/requirements-engineer/SKILL.md
+ M agent-teams/software-development-department/agents/requirements-engineer/skills/requirements-engineer/templates/investigation-notes-template.md
+ M agent-teams/software-development-department/agents/requirements-engineer/skills/requirements-engineer/templates/requirements-doc-template.md
+ M agent-teams/software-development-department/agents/requirements-engineer/skills/requirements-engineer/templates/requirements-revision-record-template.md
+ M agent-teams/software-development-department/team.md
+ M agent-teams/software-engineering-team/agents/code-reviewer/agent.md
+ M agent-teams/software-engineering-team/agents/code-reviewer/skills/code-reviewer/SKILL.md
+ M agent-teams/software-engineering-team/agents/code-reviewer/skills/code-reviewer/templates/api-e2e-test-review-report-template.md
+ M agent-teams/software-engineering-team/agents/code-reviewer/skills/code-reviewer/templates/code-review-report-template.md
+ M agent-teams/software-engineering-team/agents/code-reviewer/skills/code-reviewer/templates/code-review-revision-record-template.md
+ M agent-teams/software-engineering-team/shared/design-examples.md
+ M agent-teams/software-engineering-team/shared/design-principles.md
+?? .codex/artifacts/code-reviewer-supported-scenario-gate/
+?? .codex/artifacts/requirements-engineer-scenario-basis/
+?? tickets/in-progress/merge-solution-designer/

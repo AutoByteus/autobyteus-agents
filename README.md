@@ -34,11 +34,49 @@ The [Agent Team Architect](agents/agent-team-architect/agent.md) creates new age
 
 ## Software Development Department
 
-The software development department is the end-to-end software entrypoint. `requirements_engineer` starts each independent package, coordinates the requirements boundary, and returns the verified terminal result. It connects the independent Product Design & Prototyping and Software Engineering teams. Requirements Engineer forwards the user's explicit or clarified Product Design request and requirements context to Product Prototyper when present; Product Prototyper selects its own mode and owns its product-design workflow. After explicit approval, Requirements Engineer records a preliminary architecture-design routing assessment and sends either a bounded direct-implementation package to Implementation Engineer or an architecture-design-needed/unclear package to Architecture Designer.
+The [Software Development Department](agent-teams/software-development-department/team.md)
+uses a thin placeholder `department_head` as its entrypoint. It forwards raw
+requests and existing context to the Software Engineering Team's
+`solution_designer`, then returns the verified terminal result or unresolved
+blocker. It does not investigate, own requirements/design, repeat approval or
+delivery gates, or relay specialist conversations.
 
-## Requirements Engineer
+```text
+Software Development Department — Department Head
+├── Software Engineering Team — Solution Designer
+│   ├── Architecture Reviewer
+│   ├── Implementation Engineer
+│   ├── Code Reviewer
+│   ├── API/E2E Engineer
+│   └── Delivery Engineer
+└── Product Design & Prototyping Team — Product Prototyper
+    └── Prototype Bootstrapper
+```
 
-Requirements Engineer turns an initial product or technical request into an evidence-grounded, explicitly user-approved requirements package, then assesses whether architecture design is needed. It owns current and desired behavior, scope, acceptance criteria, user-stated Product Design requests, requirement revision history, preliminary downstream routing, and department-level terminal result coordination. Product Design & Prototyping is an independent specialist team: Requirements Engineer consumes its delivered UI/UX evidence but does not select its mode or manage its repository, tickets, commits, or internal workflow.
+## Solution Designer
+
+[Solution Designer](agent-teams/software-engineering-team/agents/solution-designer/agent.md)
+is the Software Engineering Team coordinator and owns the complete
+investigation–requirements–architecture loop. It establishes supported product
+or system scenarios, current/desired/preserved behavior, scope and acceptance
+criteria, obtains explicit user approval, then performs additional architecture
+investigation and a proportionate design for every solution. Design conversations can revise evidence
+and requirements through the same owner; changed intended behavior requires
+renewed approval before affected design or implementation proceeds.
+
+The [solution-designer skill](agent-teams/software-engineering-team/agents/solution-designer/skills/solution-designer/SKILL.md)
+keeps requirements and design as separate phases with linked detailed standards.
+One canonical `investigation-notes.md` holds evidence from both phases;
+`requirements-doc.md` owns approved intent; `design-spec.md` owns technical
+structure after requirements approval. One cumulative `solution-revision-record.md` (`SR-*`)
+indexes requirements, investigation and design rounds, starting with the first
+coherent requirements baseline and remaining required on the direct route.
+This combined role replaces the split requirements/design ownership without
+reverting the improved scenario, evidence, approval or architecture practices.
+
+Solution Designer exchanges user-requested Product assistance and returned
+UI/UX evidence directly with Product Prototyper. Product Prototyper selects its
+own mode and owns its separate repository, tickets, commits and artifacts.
 
 ## Product Design & Prototyping Team
 
@@ -46,7 +84,26 @@ The product design and prototyping team independently maintains the prototype re
 
 ## Software Engineering Team
 
-The software engineering team consumes either an approved requirements package routed directly for bounded implementation or an architecture-design-needed package. Architecture Designer completes technical design when selected and classifies `task_size` as Small, Medium, or Large plus `architectural_risk` as Low or High. Small/Medium low-risk work can proceed directly through implementation and API/E2E validation; Large or High-risk work uses independent architecture and source-review gates before validation. After the user verifies the result and `delivery_engineer` completes finalization, Delivery Engineer returns the `Delivery Completed` package directly to Requirements Engineer, which verifies the final evidence and returns the department result through the applicable message-based handoff rule.
+The [Software Engineering Team](agent-teams/software-engineering-team/team.md)
+can accept raw requests through its `solution_designer` coordinator, either
+standalone or within the department. After requirements approval, Solution
+Designer completes architecture investigation and a proportionate design spec,
+then classifies the finished solution before using the handoff rules. Small
+tasks receive a lightweight design; they do not skip design entirely.
+
+Completed designs carry `task_size` (Small, Medium or Large) and
+`architectural_risk` (Low or High). Large or High-risk work uses independent
+Architecture Reviewer and Code Reviewer gates; Small/Medium Low-risk work can
+proceed through implementation and API/E2E validation without those reviews.
+The design spec is required on both routes; only independent reviews are skipped.
+
+Downstream requirement/design findings return to Solution Designer. After user
+verification and all applicable finalization gates, Delivery Engineer returns
+`Delivery Completed` to Solution Designer, which verifies the receipt and returns
+`Terminal` to Department Head or the standalone caller. Department Head simply
+presents that result. Conditional rules in each team's `team-config.json` and
+`get_handoff_rules` determine the actual recipients, including direct Product
+exchanges and informational review-pass notifications.
 
 ## Research Engineering Team
 

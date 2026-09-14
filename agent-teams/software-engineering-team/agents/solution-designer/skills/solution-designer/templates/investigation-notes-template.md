@@ -1,18 +1,20 @@
-# Requirements Investigation Notes
+# Investigation Notes
 
 Write this artifact to `investigation-notes.md` in the assigned task workspace.
 Keep evidence, sources, observations, and unknowns here rather than overloading the requirements document.
 
 ## Investigation Meta
 
+- Package identifier:
 - Request / ticket:
 - Workspace root:
 - Repository mode: `Git` / `Non-Git`
 - Task worktree / branch:
-- Base or reference revision:
+- Resolved base remote / branch / revision (`N/A` for non-git):
+- Finalization target remote / branch (`N/A` for non-git):
 - Bootstrap result:
 - Bootstrap blocker:
-- Current requirements revision ID: `RER-*` / `N/A`
+- Current solution revision ID: `SR-*` / `N/A`
 - Investigation status:
 
 ## Initial Request And Clarifications
@@ -35,26 +37,36 @@ Keep evidence, sources, observations, and unknowns here rather than overloading 
 | --- | --- | --- | --- | --- | --- |
 | YYYY-MM-DD |  |  |  |  |  |
 
-## Relevant Existing Behavior And Production Paths
+## Relevant Existing Behavior And Supported Product Paths
 
-Use stable behavior IDs and supported product or contract evidence. A behavior may be user, system, operational, or contract driven.
+Use stable behavior IDs and supported product or contract evidence. A behavior
+may be user, system, operational, or contract driven. This section records the
+current product-level behavior path and lifecycle: the supported trigger or
+governing event, observable sequence, and outcome. Technical caller/component
+paths may be recorded in `Relevant Codebase And Technical Facts` as evidence;
+Solution Designer records the target technical production-path map in `design-spec.md` after requirements approval.
 
-| Behavior ID | Kind | Supported Trigger Or Governing Contract | Current Production Path / Lifecycle | Current Outcome / Invariants | Evidence | Confidence / Unknown |
+| Behavior ID | Kind | Supported Trigger Or Governing Contract | Current Supported Product Behavior Path / Lifecycle | Current Outcome / Invariants | Evidence | Confidence / Unknown |
 | --- | --- | --- | --- | --- | --- | --- |
 | BEH-001 |  |  |  |  |  |  |
 
-Record `No current supported behavior` for genuinely new behavior. Do not treat synthetic tests, direct internal calls, manual file manipulation, or corruption as a supported product path unless an explicit operational or governing contract makes them relevant.
+Record `No current supported behavior` for genuinely new behavior. Do not
+treat synthetic tests, direct internal calls, manual file manipulation, or
+corruption as a supported product path unless an explicit operational or
+governing contract makes them relevant. If a scenario is technically possible
+but not supported, record that classification and why it is excluded rather
+than promoting it into a requirement.
 
 ## Relevant Codebase And Technical Facts
 
-| Path / Component / Contract | Current Responsibility Or Behavior | Requirement Implication | Architecture Question Deferred Downstream |
+| Path / Component / Contract | Current Responsibility Or Behavior | Requirement Implication | Architecture Question / Design Implication |
 | --- | --- | --- | --- |
 |  |  |  |  |
 
 ## Structural And Payload Surface Inventory
 
-Use this inventory to support the later Architecture Design Routing
-Assessment. Keep the evidence factual; do not design the target architecture.
+Use this factual inventory as input to architecture design and its later
+size/risk classification. Keep target architecture decisions in the design spec.
 
 ### Payload Or Content Surfaces
 
@@ -70,7 +82,7 @@ Assessment. Keep the evidence factual; do not design the target architecture.
 - Existing structural surfaces that can support the approved behavior:
 - Evidence paths:
 
-### Potential Architecture-Design Triggers
+### Potential Structural Impacts To Investigate
 
 - API or external-contract change:
 - Persistence schema or invariant change:
@@ -152,14 +164,21 @@ request.
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
 
+## Architecture Investigation Findings
+
+Extend these same notes during architecture work; do not create a separate
+architecture evidence authority. Record current entrypoints, execution/lifecycle
+boundaries, owners, coupling, root-cause evidence, transition constraints, exact
+source paths/commands and unresolved technical questions. Keep target decisions
+in the design spec and link them back to these observations.
+
 ## Requirement Implications
 
 Summarize the evidence that materially shaped current behavior, desired behavior, scope, acceptance criteria, quality constraints, data-continuity requirements, or open decisions.
 
-## Notes For Downstream Architecture Design Or Direct Implementation
+## Notes For Architecture Design
 
-Record verified constraints, relevant current implementation facts, and
-technical questions that the downstream route should address. Direct
-implementation may use this evidence without inventing target architecture;
-Architecture Designer uses it for architecture-owned decisions. Do not
-prescribe the target structure here.
+Record verified constraints, relevant current implementation facts and technical
+questions for architecture design. Include the approved scenario IDs and
+product-level behavior paths that the technical design must realize. Keep target
+structure in the design spec.

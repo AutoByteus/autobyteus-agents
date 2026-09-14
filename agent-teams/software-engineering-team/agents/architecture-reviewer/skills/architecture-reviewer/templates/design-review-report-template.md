@@ -11,11 +11,10 @@ The latest canonical report is authoritative; the revision record is the concise
 
 - Upstream Requirements Doc:
 - Upstream Investigation Notes:
-- Upstream Requirements Revision Record:
+- Upstream Solution Revision Record:
 - Reviewed Design Spec:
 - Supplemental Task Artifacts Reviewed:
-- Architecture Design Revision Record Reviewed:
-- Relevant Architecture Design Revision IDs:
+- Relevant Solution Revision IDs:
 - Architecture Review Revision Record:
 - Current Architecture Review Revision ID: `N/A` / `ARCH-REV-*`
 - Current Review Round:
@@ -54,7 +53,7 @@ Complete this understanding and alignment gate before applying the structural ch
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |
 
-Reuse the design spec's stable behavior IDs. Assign a provisional ID only when concrete evidence reveals a relevant supported behavior missing upstream; classify that as a `Requirement Gap`, route it to `/architecture_designer`, and do not treat the proposed behavior as authoritative until the requirements basis receives any required user approval. Do not create a behavior row from technical possibility alone. An overall `Confirmed` status requires every relevant row to be `Confirmed` and every prospective `Design Impact` blocker to pass scope traceability.
+Reuse the design spec's stable behavior IDs. Assign a provisional ID only when concrete evidence reveals a relevant supported behavior missing upstream; classify that as a `Requirement Gap`, route it to `/solution_designer`, and do not treat the proposed behavior as authoritative until the requirements basis receives any required user approval. Do not create a behavior row from technical possibility alone. An overall `Confirmed` status requires every relevant row to be `Confirmed` and every prospective `Design Impact` blocker to pass scope traceability.
 
 After the initial review result, complete the applicable prior-finding resolution table in `architecture-review-revision-record.md` after confirming this behavior basis and before finalizing prospective new findings.
 

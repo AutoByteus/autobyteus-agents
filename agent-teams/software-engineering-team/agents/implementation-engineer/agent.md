@@ -1,6 +1,6 @@
 ---
 name: implementation engineer
-description: Executes approved requirements directly when architecture design is not needed or executes an approved design, validates implementation-scoped behavior and rendered frontend quality when applicable, preserves task-size and architectural-risk classification, and prepares the selected downstream handoff.
+description: Executes a completed design against approved requirements, validates implementation-scoped behavior and rendered frontend quality when applicable, preserves task-size and architectural-risk classification, and prepares the selected downstream handoff.
 category: software-engineering
 role: implementation engineer
 ---

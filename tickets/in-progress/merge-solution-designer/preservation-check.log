@@ -1,0 +1,56 @@
+Audit rerun: normalize all intentional role renames; initial expected-text normalizer omitted Requirements Engineer and lower-case architecture designer.
+PASS: Pre-existing shared design principles byte-preserved
+PASS: Shared examples preserved except role names
+PASS: Requirements template: Relevant Scenarios And Journeys
+PASS: Requirements template: Relevant Current And Desired Behavior
+PASS: Requirements template: Requirements
+PASS: Requirements template: Acceptance Criteria
+PASS: Requirements template: UI, Interaction, And Experience Requirements
+PASS: Requirements template: Traceability
+PASS: Reviewer safeguard: Supported Product Scenario And Reachability Gate
+PASS: Reviewer safeguard: Candidate Finding And Mechanism Gate
+PASS: Reviewer safeguard: Implementation Review Rules
+PASS: Reviewer safeguard: Successful API/E2E Test-Code Review Rules
+PASS: Reviewer safeguard: API/E2E Failure-Origin Review Rules
+PASS: Architecture template: Current-State Read
+PASS: Architecture template: Task Size And Architectural Risk (Mandatory)
+PASS: Architecture template: Intended Change
+PASS: Architecture template: Relevant Behavior And Production-Path Map (Mandatory)
+PASS: Architecture template: Relevant Supplemental Task Artifacts
+PASS: Architecture template: Task Design Health Assessment (Mandatory)
+PASS: Architecture template: Terminology
+PASS: Architecture template: Design Reading Order
+PASS: Architecture template: Legacy Removal Policy (Mandatory)
+PASS: Architecture template: Persisted Data / State Transition Decision (Mandatory When Persisted Data May Be Affected)
+PASS: Architecture template: Data-Flow Spine Inventory
+PASS: Architecture template: Primary Execution Spine(s)
+PASS: Architecture template: Spine Narratives (Mandatory)
+PASS: Architecture template: Spine Actors / Main-Line Nodes
+PASS: Architecture template: Ownership Map
+PASS: Architecture template: Thin Entry Facades / Public Wrappers (If Applicable)
+PASS: Architecture template: Removal / Decommission Plan (Mandatory)
+PASS: Architecture template: Return Or Event Spine(s) (If Applicable)
+PASS: Architecture template: Bounded Local / Internal Spines (If Applicable)
+PASS: Architecture template: Off-Spine Concerns Around The Spine
+PASS: Architecture template: Ownership Boundaries
+PASS: Architecture template: Boundary Encapsulation Map
+PASS: Architecture template: Dependency Rules
+PASS: Architecture template: Interface Boundary Mapping
+PASS: Architecture template: Interface Boundary Check
+PASS: Architecture template: Main Domain Subject Naming Check
+PASS: Architecture template: Existing Capability / Subsystem Reuse Check
+PASS: Architecture template: Subsystem / Capability-Area Allocation
+PASS: Architecture template: Draft File Responsibility Mapping
+PASS: Architecture template: Reusable Owned Structures Check
+PASS: Architecture template: Shared Structure / Data Model Tightness Check
+PASS: Architecture template: Final File Responsibility Mapping
+PASS: Architecture template: Applied Patterns (If Any)
+PASS: Architecture template: Target Subsystem / Folder / File Mapping
+PASS: Architecture template: Folder Boundary Check
+PASS: Architecture template: Concrete Examples / Shape Guidance (Mandatory When Needed)
+PASS: Architecture template: Backward-Compatibility Rejection Log (Mandatory)
+PASS: Architecture template: Derived Layering (If Useful)
+PASS: Architecture template: Change / Refactor Sequence
+PASS: Architecture template: Key Tradeoffs
+PASS: Architecture template: Risks
+PASS: Architecture template: Guidance For Implementation

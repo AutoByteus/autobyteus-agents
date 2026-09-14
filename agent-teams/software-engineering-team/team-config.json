@@ -1,10 +1,10 @@
 {
-  "coordinatorMemberName": "architecture_designer",
+  "coordinatorMemberName": "solution_designer",
   "avatarUrl": null,
   "members": [
     {
-      "memberName": "architecture_designer",
-      "ref": "architecture-designer",
+      "memberName": "solution_designer",
+      "ref": "solution-designer",
       "refType": "agent",
       "refScope": "team_local"
     },
@@ -41,18 +41,17 @@
   ],
   "handoffs": [
     {
-      "from": "/architecture_designer",
+      "from": "/solution_designer",
       "to": "/architecture_reviewer",
       "rules": [
-        "When Architecture Designer has completed the architecture design and classifies the result as task_size=Large or architectural_risk=High, and the cumulative architecture package is ready for independent architecture review.",
-        "When a Requirement Gap, Design Impact, or Unclear finding has been resolved in the updated architecture artifacts, the result remains task_size=Large or architectural_risk=High, and the revised package is ready for another architecture review."
+        "When Solution Designer classifies a completed or revised architecture package as Architecture Design Complete with task_size=Large or architectural_risk=High, and the aligned cumulative solution package is ready for independent architecture review. Requirements and behavior-defining supplements must have current explicit user approval."
       ]
     },
     {
-      "from": "/architecture_designer",
+      "from": "/solution_designer",
       "to": "/implementation_engineer",
       "rules": [
-        "When Architecture Designer has completed the architecture design, classifies the result as task_size=Small or Medium and architectural_risk=Low, and the cumulative architecture package is ready for direct implementation without Architecture Reviewer. Include the classification, rationale, and route decision in the handoff."
+        "When Solution Designer classifies the completed architecture package as Architecture Design Complete with task_size=Small or Medium and architectural_risk=Low. Include the approved requirements, investigation notes, design spec, solution revision record, classification rationale and selected direct implementation route."
       ]
     },
     {
@@ -64,10 +63,10 @@
     },
     {
       "from": "/architecture_reviewer",
-      "to": "/architecture_designer",
+      "to": "/solution_designer",
       "rules": [
         "When the architecture review is Fail or Blocked with a Design Impact, Requirement Gap, or Unclear finding that requires architecture revision or upstream requirements clarification before implementation.",
-        "When architecture review passes and Architecture Designer needs the informational pass notification after the primary implementation handoff succeeds."
+        "When architecture review passes and Solution Designer needs the informational pass notification after the primary implementation handoff succeeds."
       ]
     },
     {
@@ -88,7 +87,7 @@
     },
     {
       "from": "/implementation_engineer",
-      "to": "/architecture_designer",
+      "to": "/solution_designer",
       "rules": [
         "When implementation identifies a Design Impact, Requirement Gap, or Unclear issue that must be resolved in the requirements or design before implementation continues."
       ]
@@ -114,7 +113,7 @@
     },
     {
       "from": "/code_reviewer",
-      "to": "/architecture_designer",
+      "to": "/solution_designer",
       "rules": [
         "When review identifies a Design Impact, Requirement Gap, or Unclear issue that requires upstream requirements or design revision."
       ]
@@ -150,9 +149,24 @@
     },
     {
       "from": "/delivery_engineer",
-      "to": "/architecture_designer",
+      "to": "/solution_designer",
       "rules": [
-        "When delivery discovers a Design Impact, Requirement Gap, or Unclear issue, or final handoff is blocked by a non-deployment issue that requires upstream classification."
+        "When delivery discovers a Design Impact, Requirement Gap, or Unclear issue, or final handoff is blocked by a non-deployment issue that requires upstream classification.",
+        "When Delivery Engineer classifies the result as Delivery Completed after explicit user verification, repository finalization, and all applicable release, deployment and safe-cleanup gates are Completed or truthfully Not required. Include the same package identifier, complete cumulative artifacts and final evidence for Solution Designer to verify the terminal receipt."
+      ]
+    },
+    {
+      "from": "/api_e2e_engineer",
+      "to": "/solution_designer",
+      "rules": [
+        "When coverage investigation or test-validity analysis establishes a Requirement Gap, Design Impact or Unclear upstream issue before executable validation can proceed. Include the supported scenario basis and concrete evidence. Execution failures still follow the Code Reviewer failure-origin route."
+      ]
+    },
+    {
+      "from": "/solution_designer",
+      "to": "/delivery_engineer",
+      "rules": [
+        "When Solution Designer checks a Delivery Completed receipt and finds missing or inconsistent delivery-owned completion evidence. Send only the specific receipt gap and cumulative package for correction; do not claim Terminal, reopen unchanged requirements or redo delivery work."
       ]
     }
   ]

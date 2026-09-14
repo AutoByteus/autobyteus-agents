@@ -93,7 +93,7 @@ inventing them:
 
 - `requirements-doc.md`
 - `investigation-notes.md`
-- `requirements-revision-record.md` when it exists
+- `solution-revision-record.md` when it exists
 - every relevant supplemental artifact
 - requirement, behavior, and acceptance-criteria IDs in scope
 - the exact questions or alternatives the prototype must resolve
@@ -172,7 +172,7 @@ Keep the future-state change proportional to the decision:
   behavior into an unrelated standalone visualizer.
 - Build one critical journey before secondary flows.
 - Include alternate, loading, empty, permission, error, and recovery states only when they affect the product decision.
-- Compare alternatives only when the request asks for comparison or the requirements engineer identifies a real ambiguity.
+- Compare alternatives only when the request asks for comparison or the solution designer identifies a real ambiguity.
 - Do not build a prototype when a focused static artifact or direct clarification would answer the question more effectively; return that recommendation.
 
 ## Bootstrap Routing
@@ -374,7 +374,7 @@ Before reporting the prototype as completed, confirm:
 - Distinguish observed prototype behavior from recommended requirement changes.
 - Record which alternatives were explored, what evidence differentiates them, and what decision remains with the user.
 - Do not silently convert a prototype convenience into a product requirement.
-- Treat user feedback that materially changes scope, requirements, acceptance criteria, or governing constraints as a requirement-impact finding; return it to `requirements_engineer` before implementing it.
+- Treat user feedback that materially changes scope, requirements, acceptance criteria, or governing constraints as a requirement-impact finding; return it to `solution_designer` before implementing it.
 - If codebase or contract evidence contradicts the draft requirement, report the contradiction with its source; do not rewrite canonical requirements.
 
 ## Handoff Rules
