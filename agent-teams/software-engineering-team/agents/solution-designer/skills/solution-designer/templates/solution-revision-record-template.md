@@ -1,30 +1,44 @@
 # Solution Revision Record
 
-Create `solution-revision-record.md` before the initial architecture-review handoff. Add `SR-001` as the concise initial baseline, then append one entry for each later solution round; do not create round-specific copies.
-
-The latest requirements, investigation notes, design spec, and supplements remain authoritative. Record only the initial baseline or later rework delta and rationale needed to navigate those artifacts.
+Create `solution-revision-record.md` at the first coherent requirements baseline
+used for user/Product review or approval. Keep one cumulative index across
+requirements, investigation and architecture rounds, including direct-route work.
+The current requirements, investigation, design when applicable and supplements
+remain authoritative; this record indexes their changes and approval impact.
 
 ## Revision Index
 
-| Revision ID | Triggering Role / Report / Round | Finding IDs | Classification | Result |
-| --- | --- | --- | --- | --- |
-| SR-001 |  |  | `Initial Baseline` / `Design Impact` / `Requirement Gap` / `Unclear` |  |
+| Revision ID | Phase (`Requirements`/`Evidence`/`Design`/`Mixed`) | Trigger / Report / Round | Finding IDs | Prior Status | Current Status | Affected Behavior / Requirement IDs | Result |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| SR-001 | Requirements | Initial coherent baseline | N/A | N/A | Draft / Ready for Approval |  |  |
 
 ## Revision Entries
 
-### SR-001 — `<concise revision title>`
+### SR-001 — `<concise baseline or revision title>`
 
-- Triggering role, report path, and round:
+- Phase and classification (`Initial Baseline`/`Refinement`/`Design Impact`/`Requirement Gap`/`Unclear`):
+- Triggering user feedback, Product package, investigation evidence, or role/report/round:
 - Triggering finding IDs:
-- Prior authoritative result: `N/A` / result
-- Current authoritative result:
-- Why this baseline or revision entry is recorded:
-- Resolution:
-- Approved behavior or requirement IDs affected:
-- Canonical artifacts and sections updated:
-- Supplemental artifacts updated, added, or removed:
+- Prior authoritative requirements/design status (`N/A` for baseline or not-yet-created design):
+- Current authoritative requirements/design status:
+- Requirement, behavior, acceptance-criteria, scenario or decision IDs affected:
+- Scenario-basis or scenario-validity changes:
+- Why this baseline or revision was recorded:
+- Canonical requirements, investigation and design sections changed:
+- Supplemental artifacts added, changed or removed:
+- Prototype evidence or product decisions incorporated:
+- Intended behavior changed: `Yes` / `No`
+- Approval impact, exact approved requirements baseline and user-approval reference:
+- Behavior-defining supplement versions and approval references:
+- Affected design/review basis invalidated or rebuilt:
+- Post-design task-size/risk classification and rationale changes (`N/A` before design completion):
+- Applied handoff-rule outcome / result-file reference, when a handoff occurred:
 - Downstream and architecture-review impact:
-- Next recipient or routing:
-- Remaining gaps or risks:
+- Remaining gaps, assumptions or blocked decisions:
+- Next action:
 
-For `SR-001`, record the initial solution baseline and use `N/A` for prior result and triggering findings. Keep prior entries. Add a new entry for later rework instead of rewriting history, except to correct a factual error.
+For SR-001 describe the requirements baseline, not a fictional architecture
+baseline. Use N/A for prior results, missing triggering findings and design
+artifacts that do not yet apply. Append subsequent completed solution rounds;
+keep prior entries unchanged except to correct factual errors. On resumed work,
+link existing historical records without inventing approval or renumbering them.

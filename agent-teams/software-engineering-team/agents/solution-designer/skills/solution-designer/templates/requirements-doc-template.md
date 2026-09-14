@@ -1,92 +1,204 @@
-# Requirements Doc
+# Requirements Document
 
-Write this artifact to a canonical file path in the assigned task workspace before any handoff message.
+Write this artifact to `requirements-doc.md` in the assigned task workspace.
+Keep one canonical path across refinement rounds.
 
-## Status (`Draft`/`Design-ready`/`Refined`)
+## Document Status
 
-## Goal / Problem Statement
+- Status: `Draft` / `Ready for Approval` / `Approved` / `Blocked`
+- Current solution revision ID: `SR-*` / `N/A`
+- Package identifier:
+- Request / ticket:
+- Requirements owner:
+- Date:
+- Approval state and reference:
+- Exact approved requirements baseline / solution revision:
+- Behavior-defining supplements and their approved versions:
 
-## Current And Desired Behavior (Mandatory)
+## Problem And Desired Outcome
 
-Summarize how each relevant behavior works now and how it must work after the change. Use the stable behavior IDs from the investigation notes. State meaningful user, system, operational, or contract outcomes—not production-path detail or technical design—so this requirements doc remains precise and understandable on its own.
+- Problem:
+- Affected actors or systems:
+- Desired outcome:
+- Observable definition of success:
 
-For genuinely new behavior, write `No current supported behavior`. For a refactor or cleanup with no intended behavior change, make the preserved outcome explicit.
+## Relevant Current And Desired Behavior
 
-| Behavior ID | Current Behavior | Desired Behavior | Preserved / Unchanged Behavior | Related Requirement / Acceptance-Criteria IDs |
-| --- | --- | --- | --- | --- |
-| BEH-001 |  |  |  |  |
+Use stable behavior IDs. Record only behavior relevant to this request.
 
-## Investigation Findings
+| Behavior ID | Kind (`User`/`System`/`Operational`/`Contract`) | Related Scenario IDs | Evidence-Backed Current Behavior | Desired Behavior | Intentionally Preserved Behavior | Investigation Evidence |
+| --- | --- | --- | --- | --- | --- | --- |
+| BEH-001 |  |  |  |  |  |  |
 
-## Relevant Supplemental Task Artifacts
+For genuinely new behavior, write `No current supported behavior` and identify the proposed target trigger; record its approval reference once approved. Do not create behavior from a synthetic caller, manual internal-state manipulation, or mechanical possibility.
 
-List only supplements that clarify or constrain requirements or acceptance criteria. Keep the complete canonical supplement inventory in the investigation notes. If none apply, write `None`.
+## Stakeholders, Actors, And Outcomes
 
-| Artifact Path | Type / Purpose | Related Requirement IDs | Related Acceptance-Criteria IDs | Status / Approval | Relationship To Requirements |
-| --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |
-
-## Design Health Assessment (Mandatory)
-
-- Change posture (`Feature`/`Bug Fix`/`Behavior Change`/`Refactor`/`Cleanup`/`Performance`/`Larger Requirement`):
-- Initial design issue signal (`Yes`/`No`/`Unclear`):
-- Root cause classification (`Local Implementation Defect`/`Missing Invariant`/`Boundary Or Ownership Issue`/`Duplicated Policy Or Coordination`/`File Placement Or Responsibility Drift`/`Shared Structure Looseness`/`Legacy Or Compatibility Pressure`/`No Design Issue Found`/`Unclear`):
-- Refactor posture (`Likely Needed`/`Likely Not Needed`/`Deferred`/`Unclear`):
-- Evidence basis:
-- Requirement or scope impact:
-
-## Recommendations
-
-## Scope Classification (`Small`/`Medium`/`Large`)
+| Actor / Stakeholder | Goal Or Responsibility | Required Outcome | Important Constraint |
+| --- | --- | --- | --- |
+|  |  |  |  |
 
 ## Scope Guardrail (Mandatory)
 
-This is the canonical change boundary for solution design and technical review. Do not duplicate the full behavior table, functional requirements, or acceptance criteria here. Reference their stable IDs and add only the minimum boundary statement needed to prevent scope drift.
+This is the canonical change boundary for requirements, architecture design, implementation, and technical review. Do not duplicate the full behavior table, requirements, or acceptance criteria here. Reference their stable IDs and add only the minimum boundary statements needed to prevent scope drift.
 
 ### In-Scope Use Cases
 
-List the supported user, system, operational, or contract use cases this ticket is authorized to change. Give each use case a stable ID for requirement-to-use-case coverage.
+List the supported user, system, operational, or contract use cases this task is authorized to change. Give each use case a stable ID for requirement-to-use-case coverage.
 
-### Out of Scope
+### Out Of Scope
 
-List adjacent behaviors, policies, systems, migrations, or quality improvements this ticket does not authorize. State explicitly when a plausible security, reliability, compatibility, or operational concern belongs to a separate requirement rather than this change.
+List adjacent behaviors, policies, systems, migrations, or quality improvements this task does not authorize. State explicitly when a plausible security, reliability, compatibility, or operational concern belongs to a separate requirement.
+
+### Non-Goals
 
 ### Preserved Behavior Boundary
 
-Reference the applicable `BEH-*`, requirement, and acceptance-criteria IDs whose outcomes must remain unchanged. Do not repeat their complete text. Add a concise cross-cutting invariant only when the behavior table's `Preserved / Unchanged Behavior` column is insufficient by itself.
+Reference the applicable `BEH-*`, requirement, and acceptance-criteria IDs whose outcomes must remain unchanged. Do not repeat their complete text. Add a concise cross-cutting invariant only when the behavior table's preserved-behavior column is insufficient.
 
 ### Review Authority
 
 - Every blocking `Design Impact` or implementation-correction finding must cite an approved requirement, acceptance criterion, or preserved-behavior ID that it protects.
-- A finding that would introduce new product behavior, policy, threat model, migration obligation, or operational contract is a `Requirement Gap`; it must return for explicit user approval before becoming authoritative.
-- An adjacent concern outside the approved boundary may be recorded as a non-blocking risk, recommendation, or separate-ticket candidate. It must not be treated as a required design correction.
-- A downstream reviewer comment does not amend this requirements basis. The solution designer must update the canonical requirements and obtain renewed user approval before a scope-changing proposal can govern design or implementation.
+- A finding that would introduce new product behavior, policy, threat model, migration obligation, compatibility promise, or operational contract is a `Requirement Gap`; it requires explicit user approval before becoming authoritative.
+- An adjacent concern outside the approved boundary may be recorded as a non-blocking risk, recommendation, or separate-ticket candidate. It is not a required design correction.
+- A downstream reviewer comment does not amend this requirements basis. The Solution Designer must update the canonical requirements and obtain renewed user approval before a scope-changing proposal can govern design or implementation.
 
-## Functional Requirements
+## Requirements
 
-List each item with a stable `requirement_id`.
+| Requirement ID | Requirement | Related Behavior IDs | Priority / Criticality | Rationale | Source / Decision Reference |
+| --- | --- | --- | --- | --- | --- |
+| REQ-001 |  |  |  |  |  |
+
+Requirements state behavior or measurable constraints. Do not prescribe target modules, files, classes, services, or data-flow structure unless the user explicitly requires a concrete implementation constraint.
 
 ## Acceptance Criteria
 
-List each item with a stable `acceptance_criteria_id`.
+| Acceptance-Criteria ID | Related Requirement IDs | Related Behavior / Scenario IDs | Preconditions / Trigger | Observable Expected Outcome | Important Alternate Or Failure Outcome | Verification Intent |
+| --- | --- | --- | --- | --- | --- | --- |
+| AC-001 |  |  |  |  |  |  |
 
-## Constraints / Dependencies
+## Relevant Scenarios And Journeys
 
-## Persisted Data Outcome (When Applicable)
+Record the proposed product-level scenario basis and its approval state, not the internal technical
+production path. Use user journeys only when a user actually initiates or
+experiences the behavior. Backend and infrastructure requirements may instead
+use system, operational, or contract scenarios.
 
-- Stored subject / location:
-- Required outcome (`Not Affected`/`Directly Usable — No Migration`/`Discard or Rebuild`/`Migration Required`/`Undetermined`):
-- Existing data to preserve, discard/rebuild, transform, or quarantine:
-- Unacceptable data loss or corruption:
-- Relevant availability, maintenance-window, or rollout constraints:
-- Related requirement and acceptance-criteria IDs:
+Each relevant scenario should identify its coherent goal or governing event,
+supported trigger or entry surface, starting condition, product-level steps or
+event sequence, expected outcome, relevant supported alternate/error behavior,
+scenario validity, and independent evidence. Use `Supported Normal Scenario`
+for an ordinary supported workflow and `Supported Explicit Edge Scenario` only
+when an unusual workflow is explicitly supported by product, security,
+operational, or governing contract. Use `Technically Possible but
+Unsupported/Contrived` only to document a rejected premise that could otherwise
+be confused with approved scope; use `Unclear` when evidence is missing.
+
+| Scenario ID | Kind (`User`/`System`/`Operational`/`Contract`) | Actor / Initiator / Governing Contract | Coherent Goal Or Governing Event | Supported Trigger / Entry Surface | Starting Condition | Product-Level Steps Or Event Sequence | Expected Outcome | Supported Alternate / Error Behavior | Scenario Validity | Independent Evidence / Decision Reference | Related Requirement / AC IDs |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| SCN-001 |  |  |  |  |  |  |  |  |  |  |  |
+
+## UI, Interaction, And Experience Requirements
+
+- Applicable: `Yes` / `No`
+- Linked UI/UX or interaction supplement:
+- Linked runnable prototype, separate prototype repository/root, UI/UX specification, and
+  applicable support artifacts:
+- Product prototype ticket record and folder (externally owned):
+- Prototype revision or commit:
+- UI/UX user-confirmation reference:
+- Approved visual-reference baseline:
+- Normative visual and interaction details, including the approved final
+  references:
+- Explicitly illustrative fixture content or permitted implementation
+  variation:
+- Required screens, states, transitions, feedback, responsive behavior, or accessibility outcomes:
+- Explicitly unresolved product decisions:
+
+When this section is not applicable, write `N/A — not applicable` for
+prototype-specific fields rather than leaving their approval state ambiguous.
+
+## Quality And Non-Functional Requirements
+
+Include only applicable, evidence-backed, or user-approved constraints. Link each
+quality row to its canonical REQ/AC entries rather than creating a competing
+normative requirement; use this section for quality-specific conditions and evidence.
+
+| Quality ID | Related Requirement / AC IDs | Area (`Performance`/`Reliability`/`Security`/`Privacy`/`Accessibility`/`Compliance`/`Operability`/`Compatibility`/`Other`) | Measurable Requirement Or Constraint | Conditions / Scope | Verification Intent |
+| --- | --- | --- | --- | --- | --- |
+| QR-001 |  |  |  |  |  |
+
+## Data Continuity And Acceptable Loss
+
+- Persisted or external data affected: `No` / `Yes` / `Unknown`
+- Data or state that must be preserved:
+- Loss, reset, rebuild, or regeneration that is acceptable:
+- Retention, privacy, compliance, volume, downtime, or operational constraints:
+- Unknowns requiring downstream investigation:
+
+State the required outcome and constraints. Do not prescribe a migration merely because a schema changes; the architecture phase determines the transition mechanism.
+
+## External Contracts And Dependencies
+
+| Contract / Dependency | Required Behavior Or Constraint | Evidence / Authority | Uncertainty Or Risk |
+| --- | --- | --- | --- |
+|  |  |  |  |
+
+## Supplemental Artifacts
+
+| Artifact Path | Purpose | Related Requirement / AC IDs | Status | Approval Applicability / State |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
 
 ## Assumptions
 
-## Risks / Open Questions
+| Assumption ID | Assumption | Why It Is Necessary | Validation Plan / Owner | Status |
+| --- | --- | --- | --- | --- |
+| ASM-001 |  |  |  |  |
 
-## Requirement-To-Use-Case Coverage
+## Open Decisions And Questions
 
-## Acceptance-Criteria-To-Scenario Intent
+| Decision / Question ID | Question | Why It Matters | Options / Evidence | Decision Owner | Status |
+| --- | --- | --- | --- | --- | --- |
+| DEC-001 |  |  |  |  |  |
 
-## Approval Status
+## Traceability
+
+| Requirement ID | Use-Case IDs | Behavior IDs | Acceptance-Criteria IDs | Scenario IDs | Supplemental / Prototype Evidence |
+| --- | --- | --- | --- | --- | --- |
+| REQ-001 |  |  |  |  |  |
+
+## Architecture Phase Input
+
+Prepare these inputs during requirements work; confirm their approved basis
+before beginning architecture design.
+
+- Approved scenario IDs and product-level behavior paths architecture must map:
+- Product and system constraints architecture must preserve:
+- Decisions intentionally deferred to architecture design:
+- Technical facts architecture should verify:
+- Known feasibility or integration risks:
+
+This section transfers constraints and open technical questions. It does not define the target architecture.
+
+## Readiness Check
+
+### Content Ready For Approval
+
+- Relevant current behavior is evidence-backed: `Yes` / `No`
+- Desired and preserved behavior are explicit: `Yes` / `No`
+- Scope and non-goals are clear: `Yes` / `No`
+- Requirements and acceptance criteria are testable and traceable: `Yes` / `No`
+- Applicable scenarios are covered with validity and evidence: `Yes` / `No`
+- Prototype and supplemental evidence is integrated consistently: `Yes` / `No` / `N/A`
+- Applicable UI/UX approval and final visual-reference basis are recorded: `Yes` / `No` / `N/A`
+- Material assumptions and open decisions are visible: `Yes` / `No`
+- Content ready for user approval: `Yes` / `No`
+- Remaining content blocker:
+
+### Approved Basis Ready For Design
+
+- User approval received: `Yes` / `No`
+- Exact requirements and supplement approval basis recorded: `Yes` / `No`
+- Approved requirements package ready for architecture design: `Yes` / `No`
+- Remaining blocker:

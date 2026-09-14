@@ -1,36 +1,59 @@
 ---
 name: Software Engineering Team
-description: A lightweight self-operating software engineering team for upstream solution design, implementation, API/E2E coverage investigation and execution, review, documentation sync, and final handoff.
+description: A Solution Designer-led team that investigates requests, engineers approved requirements, produces proportionate architecture designs, then implements, reviews, validates and delivers the solution.
 category: software-engineering
 ---
 
-This team handles a software change from initial investigation through final handoff.
+Solution Designer is the coordinator and software-work entrypoint. It accepts
+raw requests, approved packages or solution-revision feedback, owning both
+requirements engineering and architecture design with explicit user approval
+between those phases. The team can run standalone or within the Software
+Development Department; no separate requirements owner is required.
 
-This team definition is intentionally lightweight.
-`solution_designer` is the coordinator entry specialist for this team.
-There is no separate standalone orchestrator role beyond the listed specialists.
-Each specialist does its own work, follows its own bundled agent and skill definition, and hands work to the next relevant specialist when ready.
-Detailed operating rules, artifact standards, and send-back behavior belong in each member's bundled `SKILL.md` and local templates rather than being duplicated across `team.md` and `agent.md`.
+## Ownership Boundaries
 
-## Artifact Visibility Rule
+- `solution_designer` owns intake, investigation, supported product scenarios,
+  requirements, acceptance criteria, approval capture, architecture design,
+  Product Design coordination, solution revisions and requirement/design recovery.
+- `architecture_reviewer` independently reviews selected architecture packages.
+- `implementation_engineer` owns implementation and implementation-scoped checks.
+- `code_reviewer` independently reviews selected source/test work and owns
+  failure-origin review at its boundary.
+- `api_e2e_engineer` owns executable coverage and validation.
+- `delivery_engineer` owns integrated delivery, documentation sync, explicit
+  user verification, finalization and applicable release/deployment/cleanup.
 
-- Every `send_message_to` handoff should include absolute filesystem paths for all still-relevant upstream artifacts produced so far, not only the latest local artifact.
-- Downstream specialists should be able to read the cumulative artifact package without having to rediscover earlier work from scratch.
-- Default cumulative package:
-  - `architecture_reviewer`: requirements doc, investigation notes, design spec
-  - `implementation_engineer`: requirements doc, investigation notes, design spec, design review report
-  - `code_reviewer`: requirements doc, investigation notes, design spec, design review report, implementation handoff
-  - `api_e2e_engineer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, code review report
-  - `delivery_engineer`: requirements doc, investigation notes, design spec, design review report, implementation handoff, code review report, coverage investigation, execution coverage report
-- `api_e2e_engineer` must produce a coverage investigation artifact before final test execution, durable coverage edits, durable coverage removals, or failure rerouting. That artifact records whether existing API/E2E coverage is still valid, stale, needs update, should be removed, or must be replaced or expanded.
-- If `api_e2e_engineer` adds, updates, or removes repository-resident durable coverage after the initial code review, route the cumulative package plus the coverage investigation and execution coverage report back through `code_reviewer` before `delivery_engineer`.
-- When a reroute or rework artifact is produced, include that artifact too alongside the already-existing upstream package.
+## Route Contract
 
-## Team Members
+Solution Designer investigates and refines requirements, obtains explicit user
+approval, and completes architecture investigation and a proportionate design
+spec. It then classifies the completed solution's size and architectural risk.
+The configured rules determine independent review or direct implementation;
+see [team-config.json](team-config.json) for the conditions. Direct here means
+skipping independent review, not skipping design. Implementation self-checks
+and executable validation still apply.
 
-- `solution_designer`: bootstraps the task context, investigates the request, defines scope, writes the requirements doc and investigation notes, produces the design spec, and acts as the reset point when downstream work exposes a requirement gap, design impact, or cross-cutting ambiguity.
-- `architecture_reviewer`: reviews the design spec and decides whether the design is ready for implementation.
-- `implementation_engineer`: delivers the code changes from the reviewed design, runs implementation-scoped local checks, and prepares the implementation handoff without owning API/E2E coverage investigation, execution, or environment setup.
-- `code_reviewer`: performs the source and architecture review pass before API/E2E coverage investigation and execution proceeds, and re-reviews any repository-resident durable coverage code added, updated, or removed later during API/E2E before delivery begins.
-- `api_e2e_engineer`: owns API, end-to-end, and broader executable coverage investigation, existing-test validity decisions, coverage, environment setup, execution, and evidence after the implementation has passed code review; when it adds, updates, or removes repository-resident durable coverage, that updated state returns through `code_reviewer` before delivery.
-- `delivery_engineer`: first refreshes the ticket branch against the latest tracked remote state of the recorded base branch, records the integrated-state check result, then updates durable project documentation or records explicit no-impact against that integrated state, prepares the final handoff, waits for explicit user completion or verification before archival or repository finalization, and handles release or deployment work when it is in scope.
+Requirements and design stay distinct authorities despite their shared owner.
+The same canonical investigation notes support both phases; one cumulative
+`solution-revision-record.md` indexes their evolution. Every implementation-ready
+package carries approved requirements, investigation, design, solution history
+and relevant supplements. Include independent review artifacts when applicable;
+omitted review artifacts are explicitly `N/A — not applicable`.
+
+Requirement/design/unclear findings return to Solution Designer, which obtains
+renewed approval for changed intended behavior before revising the affected
+authoritative design. Reviewer pass notifications do not trigger duplicate
+forwarding. Delivery Engineer returns `Delivery Completed` to Solution Designer
+only after its completion gates pass. Solution Designer verifies the receipt
+and returns `Terminal` through the applicable parent rule or directly to the
+user/caller when standalone. Department Head does not repeat these gates.
+
+## Communication Convention
+
+Each specialist completes its skill-defined responsibility, persists artifacts,
+classifies its result, calls `get_handoff_rules`, applies every matching rule
+and uses `send_message_to` with each exact returned `recipient_address`.
+[team-config.json](team-config.json) owns internal conditional recipients;
+parent rules own cross-team Product and department handoffs. Return the result
+to the caller if no rule matches and stop after required handoffs. Do not use
+`delegate_task` as a substitute for this result-based protocol.

@@ -2,9 +2,39 @@
 
 Write this artifact to a canonical file path in the assigned task workspace before any handoff message.
 
+## Solution And Approval Basis
+
+- Current solution revision ID: `SR-*`
+- Approved requirements baseline / revision and user-approval reference:
+- Behavior-defining supplements and their approval references:
+- Design status: `Draft` / `Ready` / `Needs Revision` / `Blocked`
+- Canonical investigation-notes path:
+
+Changed intended behavior requires renewed user approval before affected design is authoritative. An evidence-only or technical-design revision does not itself invalidate unchanged requirements approval.
+
 ## Current-State Read
 
 Summarize the relevant current flow and lifecycle, ownership boundaries, verified coupling or fragmentation problems when any exist, and constraints that the target design must respect. Reference investigation evidence and the behavior IDs below instead of duplicating their complete production paths here. Do not imply that every task has a structural problem.
+
+## Task Size And Architectural Risk (Mandatory)
+
+Complete this section after the architecture design is developed and before
+the forward handoff. These fields describe the completed solution and provide
+inputs to the configured handoff rules; they do not select recipients.
+
+- Task size (`Small`/`Medium`/`Large`):
+- Size rationale and supporting evidence (file/component scope, affected surfaces, or other concrete basis):
+- Architectural risk (`Low`/`High`):
+- Risk rationale and supporting evidence:
+- Escalation trigger if implementation or validation discovers new impact:
+
+## Architecture Investigation Evidence
+
+Link the architecture-level evidence gathered after requirements approval from the canonical investigation notes. Those notes own both product and technical observations; this section maps evidence to design decisions without duplicating the raw log.
+
+| Source / Command / Probe | Exact Path / Reference | Observation | Design Decision Supported | Remaining Uncertainty |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
 
 ## Intended Change
 
@@ -53,7 +83,7 @@ Define only task-specific terms needed to interpret this design. Do not repeat t
 
 Use the sections in this template in the following reasoning order, moving from verified context to concrete structure:
 
-1. current-state read and intended change
+1. current-state read, architecture investigation evidence, and intended change
 2. relevant behavior and production-path map plus applicable supplemental context
 3. task design-health, legacy-removal, and persisted-data decisions
 4. data-flow spines, ownership, and off-spine concerns

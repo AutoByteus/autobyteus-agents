@@ -1,0 +1,13 @@
+Scope: configuration/schema/link checks, not live model execution.
+test_expanded_roster_and_single_owner (__main__.PackageValidation.test_expanded_roster_and_single_owner) ... ok
+test_forward_and_recovery_paths (__main__.PackageValidation.test_forward_and_recovery_paths) ... ok
+test_links_symlinks_and_obsolete_artifacts (__main__.PackageValidation.test_links_symlinks_and_obsolete_artifacts) ... ok
+test_metadata_wiring_and_json (__main__.PackageValidation.test_metadata_wiring_and_json) ... ok
+test_product_and_department_boundaries (__main__.PackageValidation.test_product_and_department_boundaries) ... ok
+test_revision_schema_is_not_duplicated (__main__.PackageValidation.test_revision_schema_is_not_duplicated) ... ok
+test_validator_rejects_invalid_routes (__main__.PackageValidation.test_validator_rejects_invalid_routes) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.122s
+
+OK

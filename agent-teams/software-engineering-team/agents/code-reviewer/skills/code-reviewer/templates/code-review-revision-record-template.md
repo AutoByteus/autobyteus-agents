@@ -25,6 +25,7 @@ The latest `code-review-report.md` or `api-e2e-test-review-report.md` remains au
 - Prior authoritative result:
 - Current authoritative result:
 - What changed in the review result and why:
+- Supported product scenario / material-premise basis changes:
 
 #### Prior Finding Resolution
 
