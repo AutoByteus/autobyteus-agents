@@ -1,8 +1,4 @@
 {
-  "toolNames": [
-    "read_file",
-    "get_handoff_rules",
-    "send_message_to"
-  ],
+  "toolNames": [],
   "skillNames": []
 }

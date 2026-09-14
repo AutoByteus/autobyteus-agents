@@ -23,13 +23,6 @@
   ],
   "handoffs": [
     {
-      "from": "/department_head",
-      "to": "/software_engineering_team/solution_designer",
-      "rules": [
-        "When Department Head classifies a new user request or an explicit user-directed continuation as Work Requested. Preserve the original request, constraints, package identifier and existing artifact paths; Solution Designer owns investigation, requirements, approval and design. Do not forward a Terminal or Blocked result receipt as new work."
-      ]
-    },
-    {
       "from": "/software_engineering_team/solution_designer",
       "to": "/product_design_prototyping_team/product_prototyper",
       "rules": [
@@ -45,14 +38,6 @@
         "When Product Prototyper classifies the outcome as Requirement Impact because user feedback or prototype evidence requires a material requirements revision.",
         "When Product Prototyper classifies the outcome as Not Recommended because a prototype would not materially improve the decision and the rationale/evidence are ready.",
         "When Product Prototyper classifies the outcome as Blocked because prototype work cannot safely or accurately continue and Solution Designer must decide the next requirements path."
-      ]
-    },
-    {
-      "from": "/software_engineering_team/solution_designer",
-      "to": "/department_head",
-      "rules": [
-        "When Solution Designer classifies the same package as Terminal after verifying the Delivery Completed receipt and its completion evidence. Return the verified cumulative result for the final department response; Department Head does not repeat technical or finalization gates.",
-        "When Solution Designer classifies an unresolved user/external prerequisite as Blocked and cannot make further progress within its responsibility. Return the precise blocker and evidence for a user-facing response; routine clarification and requirements approval remain with Solution Designer."
       ]
     }
   ]

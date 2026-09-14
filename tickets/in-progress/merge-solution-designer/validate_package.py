@@ -88,7 +88,7 @@ class PackageValidation(unittest.TestCase):
 
     def test_forward_and_recovery_paths(self):
         base = '/software_engineering_team/'
-        expected = {('/department_head', self.sd), (self.sd, '/department_head')}
+        expected = set()
         for name in ('architecture_reviewer', 'implementation_engineer', 'delivery_engineer'):
             expected.add((self.sd, base + name))
         for name in ('architecture_reviewer', 'implementation_engineer', 'code_reviewer',
@@ -104,20 +104,21 @@ class PackageValidation(unittest.TestCase):
         self.assertIn((self.sd, product), self.routes)
         self.assertIn((product, self.sd), self.routes)
         head_edges = {(a, b) for a, b in self.routes if '/department_head' in (a, b)}
-        self.assertEqual(head_edges, {('/department_head', self.sd), (self.sd, '/department_head')})
+        self.assertEqual(head_edges, set())
         head = json.loads((self.agents['/department_head'] / 'agent-config.json').read_text())
-        self.assertEqual(set(head['toolNames']), {'read_file', 'get_handoff_rules', 'send_message_to'})
+        self.assertEqual(head['toolNames'], [])
         self.assertEqual(head['skillNames'], [])
 
     def test_metadata_wiring_and_json(self):
         for folder in SCOPES:
             for p in folder.rglob('*.json'):
                 json.loads(p.read_text())
-        for agent in self.agents.values():
+        for address, agent in self.agents.items():
             for key in ('name', 'description', 'category', 'role'):
                 self.assertTrue(frontmatter(agent / 'agent.md')[key])
             cfg = json.loads((agent / 'agent-config.json').read_text())
-            self.assertTrue({'get_handoff_rules', 'send_message_to'} <= set(cfg['toolNames']))
+            if any(address in (source, target) for source, target in self.routes):
+                self.assertTrue({'get_handoff_rules', 'send_message_to'} <= set(cfg['toolNames']))
             for skill in cfg['skillNames']:
                 path = agent / 'skills' / skill / 'SKILL.md'
                 self.assertTrue(path.exists(), path)

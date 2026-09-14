@@ -45,8 +45,7 @@ renewed approval for changed intended behavior before revising the affected
 authoritative design. Reviewer pass notifications do not trigger duplicate
 forwarding. Delivery Engineer returns `Delivery Completed` to Solution Designer
 only after its completion gates pass. Solution Designer verifies the receipt
-and returns `Terminal` through the applicable parent rule or directly to the
-user/caller when standalone. Department Head does not repeat these gates.
+and returns `Terminal` to the user/caller when no handoff rule matches.
 
 ## Communication Convention
 
@@ -54,6 +53,6 @@ Each specialist completes its skill-defined responsibility, persists artifacts,
 classifies its result, calls `get_handoff_rules`, applies every matching rule
 and uses `send_message_to` with each exact returned `recipient_address`.
 [team-config.json](team-config.json) owns internal conditional recipients;
-parent rules own cross-team Product and department handoffs. Return the result
+parent rules own cross-team Product handoffs. Return the result
 to the caller if no rule matches and stop after required handoffs. Do not use
 `delegate_task` as a substitute for this result-based protocol.
