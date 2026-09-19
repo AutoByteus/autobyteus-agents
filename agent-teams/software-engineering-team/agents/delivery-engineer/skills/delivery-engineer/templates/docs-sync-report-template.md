@@ -53,5 +53,5 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 ## Blocked Or Escalated Follow-Up (Use Only If Docs Sync Cannot Complete)
 
 - Classification: `Local Fix` / `Design Impact` / `Requirement Gap` / `Unclear`
-- Recommended recipient:
+- Recommended recipient/address from `get_handoff_rules`:
 - Why docs could not be finalized truthfully:

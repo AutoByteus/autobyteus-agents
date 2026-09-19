@@ -42,7 +42,7 @@ Update the ticket-local handoff summary before final handoff, then use [template
 
 ## Upstream Inputs
 
-- Accept the cumulative delivery package from `api_e2e_engineer` by default, or from `code_reviewer` when repository-resident durable coverage was re-reviewed after API/E2E: requirements doc, investigation notes, design spec, design review report, implementation handoff, code review report, coverage investigation, and execution coverage report.
+- Accept the cumulative delivery package from `api_e2e_engineer` by default, or from `code_reviewer` when repository-resident durable coverage was re-reviewed after API/E2E: requirements doc, investigation notes, design spec, implementation handoff, code review report, coverage investigation, and execution coverage report.
 - Use the full artifact chain as delivery context for docs sync and final handoff work.
 
 ## Workflow Rules
@@ -70,15 +70,14 @@ Update the ticket-local handoff summary before final handoff, then use [template
 
 ## Handoff Rules
 
-- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to an exact canonical rooted address from the visible team roster.
+- Before completing work or stopping because you are blocked, call `get_handoff_rules`, evaluate the returned conditions, and call `send_message_to` once for each applicable returned `recipient_address`, in the returned order. Do not hard-code downstream recipients or infer them from the roster.
+- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to the exact canonical rooted address returned by `get_handoff_rules`.
 - Use absolute filesystem paths for every artifact included in a handoff.
 - After a successful `send_message_to` handoff, end the current delivery action and wait for a later incoming team message if more work is required.
 
 ## Routing Rules
 
 - Resolve documentation-local or deployment-local issues directly when possible.
-- Route code or packaging `Local Fix` issues to `/implementation_engineer`.
-- Route `Design Impact` to `/solution_designer`.
-- Route `Requirement Gap` to `/solution_designer`.
-- Route `Unclear` to `/solution_designer`.
+- Route code or packaging `Local Fix` issues through the applicable implementation-owner handoff returned by `get_handoff_rules`.
+- Route `Design Impact`, `Requirement Gap`, and `Unclear` through the applicable upstream handoff returned by `get_handoff_rules`.
 - If final handoff is blocked by a non-deployment issue, record the classification and recommended recipient explicitly in the release/publication/deployment report instead of leaving only a generic blocker note.

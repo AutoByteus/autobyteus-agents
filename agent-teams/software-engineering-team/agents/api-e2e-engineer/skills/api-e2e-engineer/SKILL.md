@@ -59,9 +59,9 @@ Do not begin with browser interaction merely because browser tools are available
 
 ## Upstream Inputs
 
-- Accept the cumulative review-passed package from `code_reviewer`: requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, solution revision record, design review report, architecture review revision record, implementation handoff, implementation revision record, code review report, and code review revision record.
+- Accept the cumulative review-passed package from `code_reviewer`: requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, solution revision record, implementation handoff, implementation revision record, code review report, and code review revision record.
 - On a rerun after a prior execution, also accept the existing coverage investigation, execution coverage report, and API/E2E revision record. Use them to locate prior decisions and results, then update the canonical artifacts and append the next revision entry rather than creating copies.
-- On an API/E2E-owned `Local Fix` from `code_reviewer` or `delivery_engineer`, also accept the specific test, fixture, environment, execution, or reporting issue and its evidence. When delivery discovered the issue, accept the delivery revision record and relevant `DR-*` entry. Resume the affected API/E2E work and return the completed result through `code_reviewer`.
+- On an API/E2E-owned `Local Fix` from a configured downstream handoff, also accept the specific test, fixture, environment, execution, or reporting issue and its evidence. When delivery discovered the issue, accept the delivery revision record and relevant `DR-*` entry. Resume the affected API/E2E work and return the completed result through the applicable handoff returned by `get_handoff_rules`.
 - Treat the full upstream package as active validation context, not just the latest implementation handoff or code review report.
 - Read the implementation handoff's `Legacy / Compatibility Removal Check` and `Persisted Data Transition Check` before finalizing coverage. Treat any non-clean answer, or any mismatch between those sections and the implementation, as an active validation signal.
 
@@ -95,7 +95,7 @@ Do not begin with browser interaction merely because browser tools are available
 - For every required behavior without adequate durable coverage, decide `Add Durable Coverage`, `Use Temporary Executable Probe Only`, `Not Testable In Scope`, or `Escalate`.
 - Do not classify a failing existing test as an implementation defect until its assertion has been validated against the approved current behavior.
 - Before removing stale coverage, record the obsolete assertion, upstream evidence, replacement coverage, or explicit no-replacement rationale.
-- If test validity cannot be decided from the approved artifacts, route a `Requirement Gap`, `Design Impact`, or `Unclear` finding to `/solution_designer` before deleting tests or forcing implementation changes.
+- If test validity cannot be decided from the approved artifacts, classify a `Requirement Gap`, `Design Impact`, or `Unclear` finding and route it through the applicable upstream handoff returned by `get_handoff_rules` before deleting tests or forcing implementation changes.
 
 ## Repository Coverage Execution Rules
 
@@ -180,19 +180,20 @@ Browser validation is normally unnecessary for a backend-local change when valid
 ## Outcome Routing
 
 - Distinguish durable coverage changes, temporary executable checks, and blocked or infeasible residual scenarios in the execution report.
-- On `Pass`, persist both reports, record every added, updated, or removed durable coverage path, and send the cumulative package to `/code_reviewer`. The reviewer checks only changed durable test code for proportional structure, clarity, determinism, reuse, and requirement alignment, or records `Not Applicable` when no durable test changed. The reviewer then writes the separate `api-e2e-test-review-report.md` without reopening the implementation scorecard.
-- On `Fail`, record the preliminary classification and recommended owner, then send the complete failure package to `/code_reviewer` for focused failure-origin review, not successful-test review.
+- On `Pass`, persist both reports, record every added, updated, or removed durable coverage path, and send the cumulative package through the applicable pass handoff returned by `get_handoff_rules`. The reviewer checks only changed durable test code for proportional structure, clarity, determinism, reuse, and requirement alignment, or records `Not Applicable` when no durable test changed. The reviewer then writes the separate `api-e2e-test-review-report.md` without reopening the implementation scorecard.
+- On `Fail`, record the preliminary classification and recommended owner, then send the complete failure package through the applicable failure-origin handoff returned by `get_handoff_rules`, not successful-test review.
 - On `Blocked`, do not hand off to another member. Preserve the reports, logs, and temporary evidence, then ask the user for the exact missing dependency. State what was attempted, why validation cannot continue, and how work resumes.
 - Keep the coverage investigation and execution report focused on their latest complete state. On the first completed result, record `API-REV-001` with prior result and confidence `N/A`; on later rounds, recheck prior unresolved failures first, reuse scenario IDs, and record the rerun delta and prior-failure resolution in `api-e2e-revision-record.md`. A missing prior record or result is never an implied `Pass` or confidence value.
 - The proportional test review does not reassess confidence, environment, cleanup, execution results, or temporary artifacts, and it does not reject a coherent test file merely for being large.
 
 ## Handoff Rules
 
-- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to an exact canonical rooted address from the visible team roster.
+- Before completing work or stopping because you are blocked, call `get_handoff_rules`, evaluate the returned conditions, and call `send_message_to` once for each applicable returned `recipient_address`, in the returned order. Do not hard-code downstream recipients or infer them from the roster.
+- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to the exact canonical rooted address returned by `get_handoff_rules`.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
-- Include requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, solution revision record, design review report, architecture review revision record, implementation handoff, implementation revision record, code review report, code review revision record, coverage investigation, execution coverage report, API/E2E revision record, and any still-relevant triggering test-review or delivery report, delivery revision record, or rework evidence as absolute filesystem paths. The API/E2E revision record must exist after a completed result.
+- Include requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, solution revision record, implementation handoff, implementation revision record, code review report, code review revision record, coverage investigation, execution coverage report, API/E2E revision record, and any still-relevant triggering test-review or delivery report, delivery revision record, or rework evidence as absolute filesystem paths. The API/E2E revision record must exist after a completed result.
 - Attach the complete cumulative package using the tool's reference-file input when available; do not rely only on paths in the message text.
-- For a `Fail` message to `/code_reviewer`, include failing scenario and acceptance-criteria IDs, exact commands or execution mode, expected versus observed behavior, relevant logs/screenshots/artifacts, preliminary classification, and why focused failure-origin review is requested.
-- For a `Pass` message to `/code_reviewer`, include the result, final confidence, broader-validation decision, residual risks, every added, updated, or removed durable coverage path, and an explicit request for proportional test-code review.
+- For a `Fail` handoff, include failing scenario and acceptance-criteria IDs, exact commands or execution mode, expected versus observed behavior, relevant logs/screenshots/artifacts, preliminary classification, and why focused failure-origin review is requested.
+- For a `Pass` handoff, include the result, final confidence, broader-validation decision, residual risks, every added, updated, or removed durable coverage path, and an explicit request for proportional test-code review.
 - Attach added or updated durable test files using the tool's reference-file input when available. Removed paths cannot be attached, so identify them explicitly and provide the relevant diff or repository evidence.

@@ -31,7 +31,7 @@ Apply these principles from behavioral foundation through macro structure before
 
 ### 1. Approved Behavior And Production Reality
 
-- Architecture review and code review are technical reviews, not a second business-approval process. Begin by understanding the approved business intent and use the approved requirements as the intended-behavior authority. If they are materially ambiguous or inconsistent, return the gap instead of judging, redefining, or inventing behavior.
+- Design validation and code review are technical checks, not a second business-approval process. Begin by understanding the approved business intent and use the approved requirements as the intended-behavior authority. If they are materially ambiguous or inconsistent, return the gap instead of judging, redefining, or inventing behavior.
 - Before applying structural principles, establish the relevant behavioral baseline: existing behavior, the approved change, and behavior that must remain unchanged or outside scope.
 - Understand the complete relevant behavior and production path from a supported trigger or governing contract to its meaningful outcome. The behavior may be user-initiated, system-initiated, operational, or contract-driven. Trace enough of its lifecycle boundaries to judge the change correctly; this does not require understanding unrelated parts of the product.
 
@@ -123,7 +123,7 @@ Apply these principles from behavioral foundation through macro structure before
 - Classify distinct initiating conditions separately when their evidence or consequence differs. Do not use an `A or B or C` list to create aggregate reachability; one real but irrelevant condition does not validate the speculative conditions or the claimed consequence.
 - Manual tampering, arbitrary deletion or corruption, unsupported data/schema versions, infrastructure failure, or interrupted execution are outside scope by default. Count one only when the product explicitly supports the relevant action or state, or an established product, security, or operational contract makes it relevant and evidence establishes the actual lifecycle path.
 - Without a product-supported or observed behavior path, or a governing contract with a concrete approved target path, the premise cannot drive a finding or new machinery.
-- Persist every material premise classification in the applicable review artifact, including scenarios rejected as `Not Reachable`. Record the complete relevant behavior and production path, actual system lifecycle, and evidence that makes the premise reachable, unreachable, or unclear.
+- Persist every material premise classification in the applicable design or review artifact, including scenarios rejected as `Not Reachable`. Record the complete relevant behavior and production path, actual system lifecycle, and evidence that makes the premise reachable, unreachable, or unclear.
 - Require additional state, APIs, abstractions, coordination, or recovery behavior only when they address a reachable material problem and are proportionate to its consequence. Technical completeness means correctness for supported behavior and real operational constraints, not handling every imaginable state.
 
 ## Derived Checks

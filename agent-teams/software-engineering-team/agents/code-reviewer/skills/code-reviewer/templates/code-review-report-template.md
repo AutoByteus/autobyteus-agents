@@ -22,9 +22,6 @@ Do not record successful API/E2E test-code review here. Use the separate `api-e2
 - Supplemental Task Artifacts Reviewed As Context:
 - Solution Revision Record Reviewed As Context:
 - Relevant Solution Revision IDs:
-- Design Review Report Reviewed As Context:
-- Architecture Review Revision Record Reviewed As Context:
-- Relevant Architecture Review Revision IDs:
 - Implementation Handoff Reviewed As Context:
 - Implementation Revision Record Reviewed As Context:
 - Relevant Implementation Revision IDs:
@@ -58,11 +55,11 @@ Round rules:
 
 ## Upstream Behavior And Production-Path Basis Confirmation
 
-Complete this understanding and alignment foundation before the implementation structural checks. Understand the approved business intent and relevant existing behavior, then start from the design spec's behavior map and architecture review confirmation, verify them against the implementation, and record status plus implementation evidence instead of restating unchanged content. This is not a review or reapproval of the business decision. For a failure-origin-only round, update only the affected behavior and material premise.
+Complete this understanding and alignment foundation before the implementation structural checks. Understand the approved business intent and relevant existing behavior, then start from the design spec's behavior map, verify it against the implementation, and record status plus implementation evidence instead of restating unchanged content. This is not a review or reapproval of the business decision. For a failure-origin-only round, update only the affected behavior and material premise.
 
 - Approved requirements basis understood:
 - Design-spec behavior map verified against the implementation:
-- Design review report and round confirmed:
+- Design basis and round confirmed:
 - Behavior-basis status: `Confirmed` / `Contradicted` / `Unclear`
 - Changed or newly discovered behavior, if any:
 - Remaining material ambiguity, if any:
@@ -71,7 +68,9 @@ Complete this understanding and alignment foundation before the implementation s
 | --- | --- | --- | --- |
 |  |  |  |  |
 
-Reuse the design spec's behavior IDs. Assign a provisional ID only when concrete evidence reveals a relevant supported behavior missing upstream; route it to `solution_designer` and do not pass until the upstream map is corrected. Do not create a behavior from technical possibility alone. `Contradicted`, `Unclear`, or `Newly Discovered` behavior prevents an implementation-review pass.
+Reuse the design spec's behavior IDs. Assign a provisional ID only when concrete evidence reveals a relevant supported behavior missing upstream; classify it as a requirements/design finding, use the applicable handoff returned by `get_handoff_rules`, and do not pass until the upstream map is corrected. Do not create a behavior from technical possibility alone. `Contradicted`, `Unclear`, or `Newly Discovered` behavior prevents an implementation-review pass.
+
+After the initial review result, complete the applicable prior-finding resolution table in `code-review-revision-record.md` after confirming this behavior basis and before finalizing prospective new findings.
 
 After the initial review result, complete the applicable prior-finding resolution table in `code-review-revision-record.md` after confirming this behavior basis and before finalizing prospective new findings.
 
@@ -161,7 +160,7 @@ For each new or reclassified premise, use this shape:
 
 ### `<premise-id>` — `<technical premise>`
 
-- Origin: `New` / `Reclassified from <architecture-premise-id>`
+- Origin: `New` / `Reclassified from <prior-premise-id>`
 - Related approved requirement or established contract:
 - Relevant behavior ID(s):
 - Initiating basis kind: `User` / `System` / `Operational` / `Contract`
@@ -172,7 +171,7 @@ For each new or reclassified premise, use this shape:
 - Reachability: `Reachable` / `Not Reachable` / `Unclear`
 - Review consequence / proportionate response:
 
-Reuse the architecture-review premise ID when reclassifying it; assign a new stable ID only to a new premise. Apply the shared product-reachability rule. A record is incomplete when its initiating basis is only the downstream client, SDK, endpoint, handler, middleware, generic infrastructure, diff, test, or proposed mechanism whose applicability is being assessed. `Reachable` requires the complete independent, forward-traced witness above; `Not Reachable` cannot drive a finding, score deduction, defect attribution, or machinery; materially `Unclear` requires investigation or routing.
+Reuse the prior premise ID when reclassifying it; assign a new stable ID only to a new premise. Apply the shared product-reachability rule. A record is incomplete when its initiating basis is only the downstream client, SDK, endpoint, handler, middleware, generic infrastructure, diff, test, or proposed mechanism whose applicability is being assessed. `Reachable` requires the complete independent, forward-traced witness above; `Not Reachable` cannot drive a finding, score deduction, defect attribution, or machinery; materially `Unclear` requires investigation or routing.
 
 ## Review Scorecard (Mandatory)
 
@@ -227,11 +226,11 @@ Rules:
 
 ## Recommended Recipient
 
-- `Local Fix` -> `implementation_engineer` when the bounded fix is in implementation-owned source or packaging
-- `Local Fix` -> `api_e2e_engineer` when the bounded fix is an invalid/stale test, fixture, environment, execution, or report problem
-- `Design Impact` -> `solution_designer`
-- `Requirement Gap` -> `solution_designer`
-- `Unclear` -> `solution_designer`
+- `Local Fix` for implementation-owned source or packaging: use the applicable implementation-owner handoff returned by `get_handoff_rules`
+- `Local Fix` for an invalid/stale test, fixture, environment, execution, or report problem: use the applicable API/E2E-owner handoff returned by `get_handoff_rules`
+- `Design Impact`: use the applicable upstream handoff returned by `get_handoff_rules`
+- `Requirement Gap`: use the applicable upstream handoff returned by `get_handoff_rules`
+- `Unclear`: use the applicable upstream handoff returned by `get_handoff_rules`
 
 Routing note:
 - Implementation-owned fixes return through implementation review and API/E2E again.
@@ -246,5 +245,5 @@ Routing note:
 - Material-Premise Gate (`Pass`/`Fail`/`Blocked`):
 - Score Summary:
 - Failure Origin (when applicable):
-- Recommended Recipient (when applicable):
+- Recommended recipient/address from `get_handoff_rules` (when applicable):
 - Notes:
