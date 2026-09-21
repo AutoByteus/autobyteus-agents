@@ -17,10 +17,18 @@
     "edit_image",
     "generate_image",
     "generate_speech",
-    "read_media_file"
+    "read_media_file",
+    "download_audio",
+    "download_video"
   ],
   "skillNames": [
     "shell-first-operating-practice"
   ],
-  "defaultLaunchConfig": null
+  "defaultLaunchConfig": null,
+  "inputProcessorNames": [],
+  "llmResponseProcessorNames": [],
+  "toolExecutionResultProcessorNames": [],
+  "toolInvocationPreprocessorNames": [],
+  "lifecycleProcessorNames": [],
+  "avatarUrl": null
 }

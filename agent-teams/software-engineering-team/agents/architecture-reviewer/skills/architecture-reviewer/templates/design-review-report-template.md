@@ -11,9 +11,9 @@ The latest canonical report is authoritative; the revision record is the concise
 
 - Upstream Requirements Doc:
 - Upstream Investigation Notes:
+- Upstream Solution Revision Record:
 - Reviewed Design Spec:
 - Supplemental Task Artifacts Reviewed:
-- Solution Revision Record Reviewed:
 - Relevant Solution Revision IDs:
 - Architecture Review Revision Record:
 - Current Architecture Review Revision ID: `N/A` / `ARCH-REV-*`
@@ -23,6 +23,14 @@ The latest canonical report is authoritative; the revision record is the concise
 - Latest Authoritative Round:
 - Current-State Evidence Basis:
 
+## Routing Classification Review
+
+- Task size (`Small`/`Medium`/`Large`):
+- Architectural risk (`Low`/`High`):
+- Classification rationale reviewed:
+- Independent Architecture Review required by the classification: `Yes` / `No` / `Routing inconsistency`
+- Classification evidence or correction required:
+
 Round rules:
 - Reuse the same finding IDs across reruns for the same unresolved design-review issues.
 - Create new finding IDs only for newly discovered issues.
@@ -31,7 +39,7 @@ Round rules:
 
 ## Upstream Behavior And Production-Path Basis Confirmation
 
-Complete this understanding and alignment gate before applying the structural checks below. Understand the approved business intent and relevant existing behavior, then confirm the design spec's behavior map against the approved requirements, investigation evidence, and real current code. This is technical validation of the solution basis, not a review or reapproval of the business decision and not an invitation to reconstruct behavior from isolated code.
+Complete this understanding and alignment gate before applying the structural checks below. Understand the approved business intent and relevant existing behavior, then confirm the design spec's behavior map against the approved requirements, investigation evidence, and real current code. This is technical validation of the architecture basis, not a review or reapproval of the business decision and not an invitation to reconstruct behavior from isolated code.
 
 - Overall Basis Status (`Confirmed`/`Contradicted`/`Blocked`):
 - Approved requirements / intended behavior understood:
@@ -45,7 +53,7 @@ Complete this understanding and alignment gate before applying the structural ch
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |
 
-Reuse the design spec's stable behavior IDs. Assign a provisional ID only when concrete evidence reveals a relevant supported behavior missing upstream; classify that as a `Requirement Gap`, route it to `solution_designer`, and do not treat the proposed behavior as authoritative until the requirements basis receives any required user approval. Do not create a behavior row from technical possibility alone. An overall `Confirmed` status requires every relevant row to be `Confirmed` and every prospective `Design Impact` blocker to pass scope traceability.
+Reuse the design spec's stable behavior IDs. Assign a provisional ID only when concrete evidence reveals a relevant supported behavior missing upstream; classify that as a `Requirement Gap`, route it to `/solution_designer`, and do not treat the proposed behavior as authoritative until the requirements basis receives any required user approval. Do not create a behavior row from technical possibility alone. An overall `Confirmed` status requires every relevant row to be `Confirmed` and every prospective `Design Impact` blocker to pass scope traceability.
 
 After the initial review result, complete the applicable prior-finding resolution table in `architecture-review-revision-record.md` after confirming this behavior basis and before finalizing prospective new findings.
 

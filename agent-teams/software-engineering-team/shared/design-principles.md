@@ -24,10 +24,12 @@ This is the canonical shared design reference for the software engineering team.
 - `Primary spine`: the main top-level business-relevant spine for one in-scope use case. There can be multiple primary spines in one design when multiple use cases or major business paths are in scope.
 - `Return/Event spine`: a meaningful return path, callback path, or event-propagation path that matters to the behavior. It may move outward, upward, or back across boundaries; direction is not the deciding factor, business relevance is.
 - `Bounded local spine`: an internal flow inside one owner, such as an event loop, worker cycle, state machine, queue dispatcher, or callback dispatch path. It is attached to a parent owner and adds local detail; it does not replace the longer primary spine.
+- `Supported product scenario`: a task-relevant behavior initiated by a real actor, supported system or operational event, or governing contract, with a coherent goal or event, a supported entry surface, an expected outcome, and an evidence-backed path through the relevant lifecycle.
+- `Scenario validity`: whether a scenario represents a supported normal workflow or an explicitly supported edge workflow, rather than merely a mechanically possible sequence.
 
 ## Core Principles
 
-Apply these principles from behavioral foundation through macro structure before detailed checks. The product-reachability gate in Principle 6 is conditional: invoke it only when a concrete check produces a material premise, not as a separate edge-case discovery stage.
+Apply these principles from behavioral foundation through macro structure before detailed checks. Every design and technical review must establish the supported product-scenario basis for the behavior it serves. The detailed premise gate in Principle 6 is conditional only for an additional material scenario or mechanism not already established by that basis; it is not a separate edge-case discovery stage.
 
 ### 1. Approved Behavior And Production Reality
 
@@ -106,25 +108,28 @@ Apply these principles from behavioral foundation through macro structure before
 - Do not rewrite large data sets merely for representational cleanliness. Weigh I/O, downtime, corruption exposure, recovery complexity, and rollout constraints against the migration's concrete benefit.
 - If the evidence is insufficient, choose `Undetermined` and investigate or block the design rather than assuming either migration or safety.
 
-### 6. Product-Reachability Gate For Material Premises (Only When Needed)
+### 6. Supported Product Scenario And Reachability Gate
 
-- Apply this gate only when a concrete design or implementation check produces a prospective finding or proposed or existing mechanism that depends on a material production, failure, or lifecycle premise. Do not brainstorm hypothetical edge cases as a separate completeness exercise.
-- `Product Reachability Rule` (mandatory): a premise may affect design or review only when normal product execution, an explicitly supported user, system, or operational action, or an established product, security, or operational contract can produce it from a real supported state without manually mutating hidden state or relying on test-only or synthetic setup to create the initiating state.
-- Classify the premise before it can affect a design or review decision:
-  - `Reachable`: product-supported execution or a governing contract provides a concrete current or approved target-production trigger and path.
-  - `Not Reachable`: the relevant current or approved target behavior and lifecycle do not produce the state. Do not require design or code for it in the current scope.
-  - `Unclear`: material evidence is missing. Investigate or block the dependent decision instead of prescribing speculative machinery.
+- Every in-scope behavior and every design decision that claims to serve a behavior must have a supported product-scenario basis before detailed design or review conclusions are accepted. The basis identifies the actor, supported system or operational event, or governing contract; the coherent goal or event; the supported entry surface; the expected outcome; and the relevant lifecycle path.
+- `Scenario validity` is distinct from technical reachability. A scenario may be mechanically reachable through exposed endpoints yet still be unsupported or contrived when it has no coherent product goal, requires contradictory user intent, depends on artificial timing, or lacks an explicit product, security, operational, or contractual reason.
+- Classify each scenario before it can affect a design or review decision:
+  - `Supported Normal Scenario`: an ordinary supported workflow with a coherent goal or system outcome.
+  - `Supported Explicit Edge Scenario`: an unusual workflow or state that is explicitly supported by the product, security posture, operational contract, or governing contract.
+  - `Technically Possible but Unsupported/Contrived`: mechanically callable or constructible, but not supported by a coherent workflow, explicit contract, or independent product evidence. Do not require design or code for it in the current scope.
+  - `Unclear`: material scenario evidence is missing. Investigate or block the dependent decision instead of prescribing speculative machinery.
+- `Product Reachability` is a necessary path property, not the complete scenario judgment. For a supported scenario, normal product execution, an explicitly supported user, system, or operational action, or an established product, security, or operational contract must produce it from a real supported state without manually mutating hidden state or relying on test-only or synthetic setup to create the initiating state.
 - The existence of a method, state field, generic capability, fallback branch, defensive mechanism, or ability to mutate internal files is not by itself evidence that the product produces a scenario. An internal file is not a user-operated surface unless the product explicitly exposes it as one.
 - A test-only caller, synthetic reproduction, or artificially constructed state may reproduce an already established product path; it cannot establish that the path exists.
-- Reachability requires a complete witness: the product-supported initiating trigger or applicable governing contract, the concrete current or approved target caller/event path, the claimed state at the relevant lifecycle point, and the material consequence.
+- A complete scenario witness includes the coherent actor goal or governing event, the product-supported initiating trigger, the concrete current or approved target caller/event path, the claimed state at the relevant lifecycle point, and the material consequence.
 - `Independent Origin Rule` (mandatory): the initiating trigger or governing contract must exist independently of the premise or mechanism under review. For a user-facing premise, name both the exposed product surface and supported user action. For a non-user premise, name the supported system event, operational action, or applicable governing contract.
 - A client, SDK, endpoint, handler, middleware, generic infrastructure, or proposed target mechanism may appear only after the initiating basis in the witness; it cannot prove that the product exposes its own path.
 - Trace the normal production path forward from the supported trigger. When the initiating basis is a governing contract, name the concrete caller or event that exercises it. Do not reason backward from a fallback branch, synthetic reproduction, or test and invent an initiating cause. Mechanical possibility at any one link is insufficient.
 - Classify distinct initiating conditions separately when their evidence or consequence differs. Do not use an `A or B or C` list to create aggregate reachability; one real but irrelevant condition does not validate the speculative conditions or the claimed consequence.
 - Manual tampering, arbitrary deletion or corruption, unsupported data/schema versions, infrastructure failure, or interrupted execution are outside scope by default. Count one only when the product explicitly supports the relevant action or state, or an established product, security, or operational contract makes it relevant and evidence establishes the actual lifecycle path.
-- Without a product-supported or observed behavior path, or a governing contract with a concrete approved target path, the premise cannot drive a finding or new machinery.
-- Persist every material premise classification in the applicable review artifact, including scenarios rejected as `Not Reachable`. Record the complete relevant behavior and production path, actual system lifecycle, and evidence that makes the premise reachable, unreachable, or unclear.
-- Require additional state, APIs, abstractions, coordination, or recovery behavior only when they address a reachable material problem and are proportionate to its consequence. Technical completeness means correctness for supported behavior and real operational constraints, not handling every imaginable state.
+- Without a supported product scenario and its observed or governing production path, the premise cannot drive a finding or new machinery. A scenario that is `Technically Possible but Unsupported/Contrived` is not promoted merely because its code path can be reached.
+- Persist the supported scenario basis and every additional material-premise classification in the applicable design or review artifact, including scenarios rejected as unsupported or `Not Reachable`. Record the complete relevant behavior and production path, actual system lifecycle, and evidence that makes the scenario supported, unsupported, reachable, unreachable, or unclear.
+- Require additional state, APIs, abstractions, coordination, or recovery behavior only when they address a supported reachable material problem and are proportionate to its consequence. Technical completeness means correctness for supported behavior and real operational constraints, not handling every imaginable state.
+- See [Example 10: Supported Product Scenario Versus Technical Possibility](design-examples.md#example-10-supported-product-scenario-versus-technical-possibility) for positive normal and explicit-edge examples, rejected technical-only scenarios, and the downstream review treatment.
 
 ## Derived Checks
 

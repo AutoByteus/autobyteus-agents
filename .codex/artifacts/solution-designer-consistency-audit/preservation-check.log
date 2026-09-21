@@ -1,0 +1,27 @@
+PASS: shared design principles/examples unchanged.
+PASS: Product team unchanged.
+PASS: engineering roster and every other rule unchanged; removed only requirements-only bypass.
+Changed pre-existing source paths:
+agent-teams/software-engineering-team/team-config.json
+agent-teams/software-engineering-team/team.md
+agent-teams/software-engineering-team/agents/implementation-engineer/agent.md
+agent-teams/software-engineering-team/agents/solution-designer/agent.md
+agent-teams/software-engineering-team/agents/code-reviewer/skills/code-reviewer/SKILL.md
+agent-teams/software-engineering-team/agents/solution-designer/skills/solution-designer/SKILL.md
+agent-teams/software-engineering-team/agents/solution-designer/skills/solution-designer/references/design-examples.md
+agent-teams/software-engineering-team/agents/solution-designer/skills/solution-designer/references/requirements-engineering.md
+agent-teams/software-engineering-team/agents/solution-designer/skills/solution-designer/references/architecture-design.md
+agent-teams/software-engineering-team/agents/solution-designer/skills/solution-designer/templates/investigation-notes-template.md
+agent-teams/software-engineering-team/agents/solution-designer/skills/solution-designer/templates/solution-revision-record-template.md
+agent-teams/software-engineering-team/agents/solution-designer/skills/solution-designer/templates/design-spec-template.md
+agent-teams/software-engineering-team/agents/solution-designer/skills/solution-designer/templates/requirements-doc-template.md
+agent-teams/software-engineering-team/agents/delivery-engineer/skills/delivery-engineer/SKILL.md
+agent-teams/software-engineering-team/agents/implementation-engineer/skills/implementation-engineer/SKILL.md
+agent-teams/software-engineering-team/agents/implementation-engineer/skills/implementation-engineer/templates/implementation-handoff-template.md
+agent-teams/software-engineering-team/agents/api-e2e-engineer/skills/api-e2e-engineer/SKILL.md
+agent-teams/software-engineering-team/agents/api-e2e-engineer/skills/api-e2e-engineer/templates/api-e2e-execution-coverage-report-template.md
+agent-teams/software-engineering-team/agents/api-e2e-engineer/skills/api-e2e-engineer/templates/api-e2e-coverage-investigation-template.md
+agent-teams/software-development-department/team-config.json
+agent-teams/software-development-department/team.md
+Added: solution-designer/skills/solution-designer/design-examples.md (moved symlink)
+README.md synchronized separately.

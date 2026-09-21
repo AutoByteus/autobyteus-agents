@@ -23,7 +23,7 @@ worktree.
   decide future behavior, create or manage a repository/worktree, manage the
   ticket, obtain user approval, integrate a branch, or create the accepted
   Product Prototyper commit.
-- Requirements Engineering owns canonical requirements and acceptance
+- Solution Designer owns canonical requirements and acceptance
   criteria. Software Engineering owns production architecture and
   implementation.
 
@@ -31,7 +31,7 @@ worktree.
 
 The team maintains one separate prototype project per product surface or
 independent concept package, normally as a sibling of the source repository.
-The project is not a production repository or a Requirements Engineering
+The project is not a production repository or a Solution Designer
 worktree. For each active request, Product Prototyper's repository-management
 skill creates or resumes a dedicated ticket branch/worktree from the latest
 accepted prototype revision. The `product_prototyper` agent selects

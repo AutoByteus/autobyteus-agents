@@ -1,0 +1,17 @@
+AgentFactory (Singleton) initialized.
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Missing Agent team-local-agent:agent-org-owned-team%3Anorthstar-operating-company%3Aengineering-org:vp-engineering
+    at getAgentById (file:///Users/normy/autobyteus_org/autobyteus-agents/.codex/artifacts/northstar-operating-company-agent-org/validate.mjs:42:78)
+    at async file:///Users/normy/autobyteus_org/autobyteus-agents/.codex/artifacts/northstar-operating-company-agent-org/validate.mjs:53:36 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: null,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v22.23.1

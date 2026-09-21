@@ -1,0 +1,11 @@
+{
+  "packageStructure": "PASS",
+  "rootMembers": 15,
+  "agents": 41,
+  "ownedTeams": 6,
+  "rootHandoffsUnchanged": 86,
+  "totalCompiledHandoffs": 154,
+  "oldTopLevelTeamAbsent": true,
+  "sharedPackagesCreated": false,
+  "limits": "Filesystem-backed lookup used for topology/compiled-rule validation. Existing real file-provider limitation resolving local Agents inside Org-owned Teams remains; this is not live admission/runtime validation."
+}

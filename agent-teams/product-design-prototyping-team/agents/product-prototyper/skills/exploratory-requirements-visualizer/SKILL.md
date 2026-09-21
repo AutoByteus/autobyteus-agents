@@ -52,7 +52,7 @@ existing product experience.
 
 Use this skill when the request is explicitly or implicitly in Exploratory
 Requirements Visualization mode and has no applicable existing product
-surface. A direct user request and a request from Requirements Engineering
+surface. A direct user request and a request from Solution Designer
 follow the same workflow; determine the mode from the request content, not
 from the sender. The request should identify:
 
@@ -88,7 +88,7 @@ separate handoff outcome.
 - purposeful animation, state transitions, mock data, and direct interaction;
 - the visualizer-specific ticket artifacts, revision history, browser validation,
   and review URL;
-- incorporating focused revision requests from Requirements Engineering;
+- incorporating focused revision requests from Solution Designer;
 - honest documentation of simulation boundaries and unresolved visual questions.
 
 ### You Do Not Own
@@ -99,12 +99,12 @@ separate handoff outcome.
 - production backend, architecture, persistence, security, or integration
   behavior;
 - the product-experience prototype or normative ui-ux-spec.md;
-- the Requirements Engineer's task workspace or ticket lifecycle.
+- the Solution Designer's task workspace or ticket lifecycle.
 
-When canonical requirements context exists, Requirements Engineering owns the
+When canonical requirements context exists, Solution Designer owns the
 question and clarification loop. The user remains the approval authority.
 Product Prototyper owns the independent visual representation and sends each
-review-ready revision to Requirements Engineering when that route exists; for
+review-ready revision to Solution Designer when that route exists; for
 a direct user request with no such route, return the review package to the
 user or calling workflow. Do not silently convert user feedback into an
 approved requirement.
@@ -240,8 +240,8 @@ integration work.
   keep `prototype-ticket.md`, the brief, design plan, revision record, review
   evidence, motion/comprehension evidence, and visual references in the ticket
   folder.
-- Keep the ticket under tickets/in-progress/<ticket-id>/ while Requirements
-  Engineering is still collecting understanding or feedback. Close it only
+- Keep the ticket under tickets/in-progress/<ticket-id>/ while
+  Solution Designer is still collecting understanding or feedback. Close it only
   after the clarification loop is confirmed complete and no product-experience
   work follows.
 - Return durable visualizer source and ticket evidence to the management skill
@@ -312,7 +312,7 @@ as the shared ticket record `prototype-ticket.md`.
    management to apply the shared status before routing: `Not Recommended`
    maps to `Not Recommended`, while `Requirement Impact` and `Blocked` map to
    `Blocked`. Do not claim requirement approval; the user owns approval, while
-   Requirements Engineering records the decision when it owns the canonical
+   Solution Designer records the decision when it owns the canonical
    requirements context.
 10. On a focused revision request, set the ticket status back to `In Progress`,
    preserve the accepted visual behavior,
@@ -322,9 +322,9 @@ as the shared ticket record `prototype-ticket.md`.
    changing frontend code. Return another review-ready revision afterward.
 11. If the visualizer or user feedback exposes a contradiction or material
    scope change in the canonical requirements, classify a `Requirement Impact`
-   finding and return the evidence to Requirements Engineering instead of
+   finding and return the evidence to Solution Designer instead of
    changing the requirement locally.
-12. When Requirements Engineering confirms that the clarification loop is
+12. When Solution Designer confirms that the clarification loop is
    complete, return the durable visualizer evidence and final visualization
    package to the management skill. Management commits the result on the
    Product ticket branch, integrates it under repository policy, moves a closed
@@ -385,7 +385,7 @@ Every completed result must include:
   applies, return it to the user or calling workflow.
 - For Requirement Impact, send the exact conflicting feedback, affected
   requirement or behavior IDs, visualizer evidence, and the decision that
-  Requirements Engineering must resolve through the matching rule; when no
+  Solution Designer must resolve through the matching rule; when no
   rule applies, return it to the user or calling workflow.
 - For Not Recommended, send the evidence explaining why an interactive
   visualizer would not materially improve the current decision.

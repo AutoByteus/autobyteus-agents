@@ -262,12 +262,12 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   experience, review loop, final validation, screenshots, and `ui-ux-spec.md`,
   but it does not approve its own proposal.
 - In exploratory requirements-visualization mode, `product_prototyper` owns
-  only the independent visual representation and review evidence. Requirements
-  Engineering owns the canonical requirements clarification loop when it is
+  only the independent visual representation and review evidence. Solution
+  Designer owns the canonical requirements clarification loop when it is
   present, and the user remains the approval authority. A concrete change to
   an existing product surface belongs to Product Experience Prototyping.
 - The user is the sole approval authority for intentional future-state UI/UX
-  and behavior. `requirements_engineer` preserves that approval, owns canonical
+  and behavior. `solution_designer` preserves that approval, owns canonical
   requirements and acceptance criteria, and integrates the approved UI/UX
   package for downstream implementation.
 - No prototype role owns the target production architecture or production
@@ -279,13 +279,13 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   repositories and separate project roots. The prototype repository normally
   sits beside the source repository in the workspace and uses the stable name
   `<prototype-subject>-prototype`. It is not a nested project, production
-  frontend directory, Requirements Engineer worktree, or generic
+  frontend directory, Solution Designer worktree, or generic
   `prototypes/` directory.
 - Product Prototyper resolves, creates when necessary, and owns the prototype
   repository and each Product ticket worktree from request intake. Ownership
   includes project files, ticket folders, ticket branches/worktrees,
   prototype-specific commits, integration state, and durable UI/UX evidence.
-  Requirements Engineering may link those artifacts but does not manage them.
+  Solution Designer may link those artifacts but does not manage them.
 - Prototype work may modify only the prototype repository through its assigned
   ticket worktree. Production source paths, production services, and production
   credentials remain outside the prototype boundary. Bootstrapping may read the

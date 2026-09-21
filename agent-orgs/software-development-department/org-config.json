@@ -1,0 +1,38 @@
+{
+  "avatarUrl": null,
+  "members": [
+    {
+      "memberName": "product_design_prototyping_team",
+      "ref": "product-design-prototyping-team",
+      "refType": "agent_team",
+      "refScope": "shared"
+    },
+    {
+      "memberName": "software_engineering_team",
+      "ref": "software-engineering-team",
+      "refType": "agent_team",
+      "refScope": "shared"
+    }
+  ],
+  "handoffs": [
+    {
+      "from": "/software_engineering_team/solution_designer",
+      "to": "/product_design_prototyping_team/product_prototyper",
+      "rules": [
+        "When Solution Designer classifies the outcome as Product Design Requested because the user explicitly or after clarification asks Product Design & Prototyping to help understand or evolve an experience. This also applies to purpose Result Correction for missing or inconsistent evidence in a returned package from the same user-requested engagement; include the original user-request reference and precise gap without expanding scope. Send the user's requested outcome in the user's own terms, the focused decision, relevant requirement and behavior IDs, established constraints, non-goals, canonical requirements paths, and supplied existing-product context when applicable. Do not prescribe a Product Prototyper mode, Bootstrapper payload, repository, ticket, or implementation procedure; Product Prototyper selects and owns those."
+      ]
+    },
+    {
+      "from": "/product_design_prototyping_team/product_prototyper",
+      "to": "/software_engineering_team/solution_designer",
+      "rules": [
+        "When Product Prototyper classifies the outcome as Requirements Visualization Ready because the interactive visualizer revision, review URL, evidence, and open clarification questions are ready for Solution Designer and user review.",
+        "When Product Prototyper classifies the outcome as Prototype Completed because the user-approved prototype and UI/UX package are ready for requirements integration.",
+        "When Product Prototyper classifies the outcome as Requirement Impact because user feedback or prototype evidence requires a material requirements revision.",
+        "When Product Prototyper classifies the outcome as Not Recommended because a prototype would not materially improve the decision and the rationale/evidence are ready.",
+        "When Product Prototyper classifies the outcome as Blocked because prototype work cannot safely or accurately continue and Solution Designer must decide the next requirements path."
+      ]
+    }
+  ],
+  "defaultLaunchConfig": null
+}

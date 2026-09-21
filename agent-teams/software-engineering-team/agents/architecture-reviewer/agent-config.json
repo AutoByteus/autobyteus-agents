@@ -9,7 +9,8 @@
     "stop_background_process",
     "search_web",
     "read_url",
-    "send_message_to"
+    "send_message_to",
+    "get_handoff_rules"
   ],
   "skillNames": [
     "architecture-reviewer"

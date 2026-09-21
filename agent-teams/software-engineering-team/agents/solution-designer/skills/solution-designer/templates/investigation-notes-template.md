@@ -1,110 +1,184 @@
 # Investigation Notes
 
-Write this artifact to a canonical file path in the assigned task workspace before any handoff message.
+Write this artifact to `investigation-notes.md` in the assigned task workspace.
+Keep evidence, sources, observations, and unknowns here rather than overloading the requirements document.
 
-## Investigation Status
+## Investigation Meta
 
-- Bootstrap Status:
-- Current Status:
-- Investigation Goal:
-- Scope Classification (`Small`/`Medium`/`Large`):
-- Scope Classification Rationale:
-- Scope Summary:
-- Primary Questions To Resolve:
+- Package identifier:
+- Request / ticket:
+- Workspace root:
+- Repository mode: `Git` / `Non-Git`
+- Task worktree / branch:
+- Resolved base remote / branch / revision (`N/A` for non-git):
+- Finalization target remote / branch (`N/A` for non-git):
+- Bootstrap result:
+- Bootstrap blocker:
+- Current solution revision ID: `SR-*` / `N/A`
+- Investigation status:
 
-## Request Context
+## Initial Request And Clarifications
 
-## Environment Discovery / Bootstrap Context
+- Original request:
+- Clarifications received:
+- User-supplied facts and constraints:
+- Initial ambiguity:
 
-- Project Type (`Git`/`Non-Git`):
-- Task Workspace Root:
-- Task Artifact Folder:
-- Current Branch:
-- Current Worktree / Working Directory:
-- Bootstrap Base Branch:
-- Remote Refresh Result:
-- Task Branch:
-- Expected Base Branch (if known):
-- Expected Finalization Target (if known):
-- Bootstrap Blockers:
-- Notes For Downstream Agents:
+## Product And Domain Understanding
 
-## Supplemental Task Artifact Inventory
-
-Maintain the canonical inventory of separate files that remain useful as investigation evidence or as complementary requirement, design, or downstream context. Do not inventory disposable scratch files or generated intermediates unless they are intentionally promoted for continued use.
-
-| Artifact Path | Purpose And Scope | Evidence, Context, Or Decision Captured | Core Artifact(s) Supported | Related Requirement / Acceptance-Criteria IDs (When Applicable) | Status | Approval Applicability / State | Follow-Up Needed |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |  |  |
+- Product area:
+- Affected actors or systems:
+- Existing user or operational purpose:
+- Relevant terminology:
 
 ## Source Log
 
-| Date | Source Type (`Code`/`Doc`/`Spec`/`Web`/`Repo`/`Issue`/`Command`/`Trace`/`Log`/`Data`/`Setup`/`Other`) | Exact Source / Query / Command | Why Consulted | Relevant Findings | Follow-Up Needed |
+| Date | Source Type (`Code`/`Doc`/`Runtime`/`Data`/`Contract`/`Web`/`User`/`Command`/`Other`) | Exact Source / Command / Query | Why Consulted | Relevant Finding | Follow-Up |
 | --- | --- | --- | --- | --- | --- |
-| YYYY-MM-DD | Code | `src/example/file.ts` | Verify the current owner and entrypoint | `ExampleController` still owns the request entrypoint | No |
-| YYYY-MM-DD | Repo | `https://github.com/example-org/example-sdk` @ `v1.4.2` | Check upstream integration behavior | Sample app shows the callback fires only after explicit session join | Yes |
-| YYYY-MM-DD | Command | `rg -n "example" src` | Find the affected path | Found one active handler and one stale helper | No |
+| YYYY-MM-DD |  |  |  |  |  |
 
-## Relevant Existing Behavior And Production Paths
+## Relevant Existing Behavior And Supported Product Paths
 
-Record only behavior relevant to the task. A behavior may be user-initiated, system-initiated, operational, or an established contract; it does not require a UI journey. Use stable IDs and evidence from supported or observed production behavior, not a synthetic caller or mechanically possible state alone. Reuse these IDs in the requirements' current-and-desired behavior summary and the design map. For genuinely new behavior, record `No Current Path` with evidence; the design map will record the approved target trigger and path.
+Use stable behavior IDs and supported product or contract evidence. A behavior
+may be user, system, operational, or contract driven. This section records the
+current product-level behavior path and lifecycle: the supported trigger or
+governing event, observable sequence, and outcome. Technical caller/component
+paths may be recorded in `Relevant Codebase And Technical Facts` as evidence;
+Solution Designer records the target technical production-path map in `design-spec.md` after requirements approval.
 
-| Behavior ID | Kind (`User`/`System`/`Operational`/`Contract`) | Current Supported Trigger Or Governing Contract | Current Production Path And Lifecycle | Meaningful Current Outcome / Invariants | Evidence |
-| --- | --- | --- | --- | --- | --- |
-| BEH-001 |  |  |  |  |  |
+| Behavior ID | Kind | Supported Trigger Or Governing Contract | Current Supported Product Behavior Path / Lifecycle | Current Outcome / Invariants | Evidence | Confidence / Unknown |
+| --- | --- | --- | --- | --- | --- | --- |
+| BEH-001 |  |  |  |  |  |  |
 
-## Design Health Assessment Evidence
+Record `No current supported behavior` for genuinely new behavior. Do not
+treat synthetic tests, direct internal calls, manual file manipulation, or
+corruption as a supported product path unless an explicit operational or
+governing contract makes them relevant. If a scenario is technically possible
+but not supported, record that classification and why it is excluded rather
+than promoting it into a requirement.
 
-- Change posture (`Feature`/`Bug Fix`/`Behavior Change`/`Refactor`/`Cleanup`/`Performance`/`Larger Requirement`):
-- Candidate root cause classification (`Local Implementation Defect`/`Missing Invariant`/`Boundary Or Ownership Issue`/`Duplicated Policy Or Coordination`/`File Placement Or Responsibility Drift`/`Shared Structure Looseness`/`Legacy Or Compatibility Pressure`/`No Design Issue Found`/`Unclear`):
-- Refactor posture evidence summary:
+## Relevant Codebase And Technical Facts
 
-| Evidence Source | Observation | Design Health Implication | Follow-Up Needed |
+| Path / Component / Contract | Current Responsibility Or Behavior | Requirement Implication | Architecture Question / Design Implication |
 | --- | --- | --- | --- |
 |  |  |  |  |
 
-## Relevant Files / Components
+## Structural And Payload Surface Inventory
 
-| Path / Component | Current Responsibility | Finding / Observation | Design / Ownership Implication |
-| --- | --- | --- | --- |
-| `src/example/file.ts` | Request entrypoint | Delegates to stale helper before routing to service | Controller still looks like the correct owner; stale helper may be removable |
+Use this factual inventory as input to architecture design and its later
+size/risk classification. Keep target architecture decisions in the design spec.
 
-## Runtime / Probe Findings
+### Payload Or Content Surfaces
 
-| Date | Method (`Repro`/`Trace`/`Probe`/`Script`/`Test`/`Setup`) | Exact Command / Method | Observation | Implication |
+- Files, records, documents, catalogs, fixtures, or generated payloads:
+- Existing readers, writers, or contracts that consume them:
+- Evidence paths:
+
+### Structural Surfaces
+
+- Runtime modules, shared interfaces, routes, APIs, persistence boundaries,
+  security/concurrency controls, deployment configuration, or ownership
+  boundaries:
+- Existing structural surfaces that can support the approved behavior:
+- Evidence paths:
+
+### Potential Structural Impacts To Investigate
+
+- API or external-contract change:
+- Persistence schema or invariant change:
+- Security or privacy boundary change:
+- Concurrency or lifecycle change:
+- Deployment, migration, ownership-boundary, architectural-pattern, or
+  structural-refactoring change:
+- Confirmed absent, present, or unknown:
+
+## Runtime, Probe, Or Reproduction Findings
+
+| Method / Command | Scenario | Observation | Requirement Implication | Artifact / Evidence Path |
 | --- | --- | --- | --- | --- |
-| YYYY-MM-DD | Trace | `npm test -- example.spec.ts` | Failure appears only on one branch | Investigation should focus on that branch first |
+|  |  |  |  |  |
 
-## External / Public Source Findings
+## Stakeholder And User Evidence
 
-- Public API / spec / issue / upstream source:
-- Version / tag / commit / freshness:
-- Relevant contract, behavior, or constraint learned:
-- Why it matters:
+| Source / Actor | Need, Problem, Or Constraint | Evidence Strength | Requirement Implication | Open Question |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
 
-## Reproduction / Environment Setup
+## External Contracts, Standards, And Dependencies
 
-- Required services, mocks, emulators, or fixtures:
-- Required config, feature flags, env vars, or accounts:
-- External repos, samples, or artifacts cloned/downloaded for investigation:
-- Setup commands that materially affected the investigation:
-- Cleanup notes for temporary investigation-only setup:
+| Contract / Dependency | Version / Authority | Relevant Behavior Or Constraint | Evidence | Unknown / Risk |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
 
-## Findings From Code / Docs / Data / Logs
+## Persisted Data And State Facts
 
-## Persisted Data Transition Evidence (When Applicable)
+- Affected stored or external subject:
+- Location and representative shape:
+- Approximate volume:
+- Current readers and writers:
+- Current unknown/extra-field behavior:
+- Required semantics or data that must be preserved:
+- Acceptable loss, reset, rebuild, or regeneration:
+- Privacy, retention, compliance, downtime, or operational constraints:
+- Remaining evidence gap:
 
-- Current stored subject, location, representative shape, and approximate volume:
-- Relevant code-model, serialization, semantic, or physical-store change:
-- Normal readers and writers, including unknown/extra-field behavior:
-- Representative direct-read or compatibility evidence:
-- Required semantics and invariants preserved by direct use: `Yes` / `No` / `Undetermined` — evidence:
-- Physical storage, privacy/security, disposal, rebuild, or operational constraints:
-- Concrete benefit, cost, and risk of migration if it remains a candidate:
-- Existing migration framework or lifecycle constraints, only if migration may be required:
+## Product Design Request Context
 
-## Constraints / Dependencies / Compatibility Facts
+- Product Design request in the current input: `Present` / `Not stated` / `Needs clarification`
+- User's requested outcome, in the user's own terms:
+- Requirement / behavior IDs involved:
+- Product decision, uncertainty, or experience to understand or evolve:
+- Critical journey and states:
+- Known constraints and non-goals:
+- Relevant existing-product or frontend context supplied or established:
+- Product Design request artifact / message reference:
+- Established separate prototype repository/root and ticket reference, when applicable:
 
-## Open Unknowns / Risks
+Do not select a Product Prototyper mode or prescribe repository/bootstrap work in
+this section. Product Prototyper makes those decisions after receiving the
+request.
 
-## Notes For Architecture Reviewer
+## Product Design Findings
+
+- Product Design package path (external Product Design & Prototyping repository):
+- Visualizer or prototype source path:
+- Approved UI/UX specification path, when applicable:
+- Review URL:
+- Explicit user-confirmation reference:
+- Journeys and scenarios validated:
+- Final visual-reference paths:
+- Product decisions supported by evidence:
+- Alternatives rejected or still open:
+- Mocked boundaries and production gaps:
+- Requirements sections affected:
+
+## Supplemental Artifact Inventory
+
+| Artifact Path | Owner | Purpose | Scope | Related Requirement / AC IDs | Status | Approval Applicability / State |
+| --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |
+
+## Assumptions, Unknowns, And Risks
+
+| ID | Type (`Assumption`/`Unknown`/`Risk`) | Description | Why It Matters | Resolution / Owner | Status |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+## Architecture Investigation Findings
+
+Extend these same notes during architecture work; do not create a separate
+architecture evidence authority. Record current entrypoints, execution/lifecycle
+boundaries, owners, coupling, root-cause evidence, transition constraints, exact
+source paths/commands and unresolved technical questions. Keep target decisions
+in the design spec and link them back to these observations.
+
+## Requirement Implications
+
+Summarize the evidence that materially shaped current behavior, desired behavior, scope, acceptance criteria, quality constraints, data-continuity requirements, or open decisions.
+
+## Notes For Architecture Design
+
+Record verified constraints, relevant current implementation facts and technical
+questions for architecture design. Include the approved scenario IDs and
+product-level behavior paths that the technical design must realize. Keep target
+structure in the design spec.

@@ -29,6 +29,7 @@ The examples are intentionally detailed. Preserve them rather than shortening or
 - [Example 7: Current-Schema Runtime With Required Data Migration](#example-7-current-schema-runtime-with-required-data-migration)
 - [Example 8: Schema Contraction With No Data Migration](#example-8-schema-contraction-with-no-data-migration)
 - [Example 9: Rejecting An Unreachable Edge Case During Technical Review](#example-9-rejecting-an-unreachable-edge-case-during-technical-review)
+- [Example 10: Supported Product Scenario Versus Technical Possibility](#example-10-supported-product-scenario-versus-technical-possibility)
 - [Common Bad-Practice Patterns](#common-bad-practice-patterns)
 - [How To Use These Examples](#how-to-use-these-examples)
 
@@ -832,6 +833,7 @@ The architecture reviewer validates this map against the approved requirements, 
 - Support evidence: the Node Manager exposes that product surface and its window creation/focus path implements the supported user action.
 - Forward current or approved target production caller/event path that exercises the initiating basis and reaches the claimed state: `Node Manager -> node-specific window -> bootstrap binding -> settings card -> existing setting action`. No caller on that path invokes node rebinding during save.
 - Lifecycle preconditions and material consequence at the claimed point: the window is already bound before the card becomes interactive and remains bound for its lifetime, so the claimed cross-node save consequence cannot occur. A generic binding method, revision field, and separate mobile caller do not change this lifecycle.
+- Scenario validity: `Technically Possible but Unsupported/Contrived`; the exposed setting action and unrelated mobile binding capability do not establish a coherent cross-node save workflow or an explicitly supported concurrent product behavior.
 - Reachability: `Not Reachable`.
 - Review consequence / proportionate response: do not require a revision-fenced save protocol. Reuse the existing setting action, preserve truthful partial-persistence behavior, and stop on the first actual same-node failure when that is the approved behavior.
 
@@ -883,7 +885,170 @@ The code reviewer receives the design spec's `BEH-SETTINGS-001` map row and the 
 
 ### Design Lesson
 
-Technical review begins from approved behavior and the complete relevant production path. Local capability is not proof of reachability. Persisting the behavior, evidence, and decision makes the reasoning auditable, prevents unsupported complexity, and lets downstream reviewers confirm or challenge the decision when later evidence changes.
+Technical review begins from approved behavior, a supported product scenario, and the complete relevant production path. Local capability is not proof of scenario validity or reachability. Persisting the behavior, evidence, and decision makes the reasoning auditable, prevents unsupported complexity, and lets downstream reviewers confirm or challenge the decision when later evidence changes.
+
+## Example 10: Supported Product Scenario Versus Technical Possibility
+
+### Situation
+
+A product manages a hierarchy of Teams and Agent Packages. Users can edit the
+active hierarchy in the Studio and can remove a package from Settings. The
+implementation also contains lower-level package loaders, fallback branches,
+and test helpers that can construct states not normally created by the product.
+
+The technical reviewer must decide whether an observed implementation behavior
+is a review-relevant product scenario. The key question is not only “can some
+code path be reached?” It is:
+
+```text
+coherent actor goal or supported event
+-> supported entry surface or contract
+-> forward production path
+-> lifecycle state
+-> material consequence
+```
+
+### Supported Normal Scenario: Edit The Active Team Hierarchy
+
+The user wants to rename a Team and save the change through the Studio.
+
+| Field | Evidence-backed basis |
+| --- | --- |
+| Scenario ID | `SCN-TEAM-EDIT-001` |
+| Actor and coherent goal | A user edits the active Team hierarchy and wants the saved name to appear on the next load |
+| Supported entry surface | Studio Team editor and its Save action |
+| Forward production path | `Studio editor -> Team API -> authoritative hierarchy manager -> persisted Team definition -> reload/published hierarchy` |
+| Lifecycle and consequence | The edit is claimed, persisted, and visible after reload; failure to preserve the name is material |
+| Independent evidence | Approved requirement, Studio route, normal API caller, persistence code, and an end-to-end journey |
+| Scenario validity | `Supported Normal Scenario` |
+
+This scenario can support an implementation finding. For example, if the API
+returns success but the authoritative hierarchy manager discards the renamed
+field before persistence, the reviewer can promote that observation because the
+actor, goal, entry surface, path, lifecycle, consequence, and evidence are all
+independently established.
+
+### Supported Explicit Edge Scenario: Retain A Detached Definition
+
+The product explicitly supports temporarily removing a Team from the active
+root hierarchy while retaining its authored Team definition for later reuse.
+
+| Field | Evidence-backed basis |
+| --- | --- |
+| Scenario ID | `SCN-TEAM-DETACH-001` |
+| Actor and coherent goal | A user temporarily detaches a Team from the active topology without deleting its authored definition |
+| Supported entry surface | The documented topology-management action in the Studio |
+| Forward production path | `Studio detach action -> topology manager -> active-root manifest -> definition library remains addressable -> later checkout/re-attach` |
+| Lifecycle and consequence | The Team is inactive in the current topology but remains available for later reuse |
+| Independent evidence | Approved product behavior and a normal save/reload or checkout journey that demonstrates retention |
+| Scenario validity | `Supported Explicit Edge Scenario` |
+
+This is an unusual workflow, but it is reviewable because the product
+explicitly supports it. A code reviewer must not demand physical deletion of
+the detached Team directory merely because the active manifest no longer lists
+it. The topology and definition-library responsibilities are different.
+
+### Negative Example: Two Exposed Actions Do Not Prove A Concurrent Workflow
+
+Suppose a reviewer observes that:
+
+1. Studio can save a Team definition; and
+2. Settings can remove the Agent Package that supplied that Team.
+
+The reviewer then imagines that a user opens two browser tabs, starts saving in
+one tab, and deliberately removes the supplying package in the other tab during
+the narrow interval before the save claims its ownership. The reviewer proposes
+revision fencing, re-resolution, partial-admission behavior, and recovery
+machinery.
+
+| Field | Correct assessment |
+| --- | --- |
+| Scenario ID | `SCN-TEAM-RACE-001` |
+| Observed technical facts | Both actions are individually callable |
+| Missing product basis | No coherent user goal, collaboration requirement, or explicit concurrent-edit contract explains the contradictory timing |
+| Missing independent path | The two action endpoints do not prove that this ordering is a supported workflow |
+| Scenario validity | `Technically Possible but Unsupported/Contrived` |
+| Review use | `Reject`; do not score, route, or prescribe machinery from it |
+
+The fact that both actions exist in production is insufficient. If the product
+later adds multi-user collaboration or explicitly documents concurrent package
+removal during saves, record that contract and re-evaluate the scenario as a
+supported edge case. Until then, the reviewer must not turn a mechanically
+constructible race into a product defect.
+
+### Negative Example: A Test Or Internal Method Cannot Create Product Validity
+
+A unit test directly invokes a fallback method with a fabricated missing
+snapshot and observes an exception. Or a reviewer finds an internal method that
+can rebind a context and reasons backward from it to an imagined user journey.
+
+These observations may show that the method or branch behaves a certain way,
+but they do not establish:
+
+- who has a supported goal that initiates the state;
+- which product surface or independent system event creates it;
+- that the normal production path reaches the state; or
+- that the product promises the claimed recovery behavior.
+
+| Scenario validity | Correct review treatment |
+| --- | --- |
+| `Technically Possible but Unsupported/Contrived` | Reject as a product finding; do not add recovery machinery |
+| `Unclear` because the product contract or caller evidence is missing | Hold for investigation or route to the authority; do not score or prescribe machinery yet |
+| Supported scenario already established, and the test reproduces it | Use the test as confirming evidence, not as the scenario's origin |
+
+The test, endpoint, callback, internal method, diff, and proposed fix can be
+evidence about a scenario. They cannot be the independent reason that the
+scenario exists.
+
+### Negative Example: A Compatibility Rule Must Be Checked Against Normal Data
+
+An implementation rejects every symbolic link because symbolic links are
+considered difficult to reason about. A reviewer verifies that the rejection
+branch works and treats the rule as correct.
+
+That is incomplete. If the normal installed Agent Packages contain legitimate
+internal symbolic links, the rule breaks an established installation journey:
+
+```text
+normal installation -> package discovery -> package import -> Team publication
+```
+
+The reviewer must inspect representative normal package data before accepting
+the restriction. The relevant scenario may be a supported system installation
+event rather than a user clicking a button. A technically clean restriction is
+not automatically a valid product rule when it rejects normal supported data.
+
+### Decision Table
+
+| Scenario classification | May affect finding, score, routing, or machinery? | Required action |
+| --- | --- | --- |
+| `Supported Normal Scenario` | Yes | Trace the path, lifecycle, consequence, and evidence; then review proportionately |
+| `Supported Explicit Edge Scenario` | Yes | Cite the explicit product, security, operational, or contractual basis |
+| `Technically Possible but Unsupported/Contrived` | No | Reject and keep it out of findings, deductions, routing, and prescriptions |
+| `Unclear` | Not yet | Investigate or block the dependent conclusion; do not guess |
+
+### How The Roles Use This Example
+
+- The Solution Designer records the user's goal and approved behavior; it
+  does not invent a technical race merely because an implementation detail is
+  visible.
+- The Solution Designer maps each approved scenario to its production
+  path, ownership boundaries, and lifecycle, and records any explicit edge
+  contract.
+- The Architecture Reviewer checks whether the proposed design serves those
+  supported scenarios without adding unsupported complexity.
+- The Code Reviewer starts with the established scenario and path, treats code
+  observations as provisional, and promotes only candidates that pass the
+  scenario-and-mechanism gate.
+
+### Design Lesson
+
+Product scenario validity and technical reachability are related but different.
+Reachability asks whether supported execution can produce the state; scenario
+validity asks whether the state belongs to a coherent, supported product or
+contractual workflow. Good design and review require both. This prevents
+bottom-up reasoning from endpoints, fields, tests, or callbacks from creating
+false defects and unnecessary architecture.
 
 ## Common Bad-Practice Patterns
 
