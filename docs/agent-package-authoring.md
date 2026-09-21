@@ -30,6 +30,8 @@ skill, references, templates, or scripts only when the role needs them.
 | `agent-config.json` | Explicit `skillNames`, `toolNames`, processors, and lifecycle/runtime settings. |
 | `SKILL.md` | The specialist's inputs, work sequence, decisions, artifacts, quality checks, approval boundaries, recovery, result classification, and completion criteria. |
 | `team.md` | Team purpose, member boundaries, entry contract, concise cooperation paths, and team-wide communication expectations. |
+| `org.md` | Org purpose, member Team boundaries, and cross-team cooperation contract. |
+| `org-config.json` | Agent/Team placements (`ref`, `refType`, `refScope`), cross-member handoffs, `avatarUrl`, and `defaultLaunchConfig`; no coordinator field. |
 | `team-config.json` | `coordinatorMemberName`, member names and references (`ref`, `refType`, `refScope`), rooted addresses, and conditional handoff rules. |
 | `templates/` | Artifact schemas, required sections, tables, and report skeletons. |
 | `references/` or team `shared/` | Detailed principles, examples, and reusable standards linked by their consumers. |
@@ -67,14 +69,21 @@ actual responsibilities in the owning role's work contract and summarize the
 team relationship in `team.md`; the agent shell and skill need not announce
 that the role is the team's coordinator or entrypoint.
 
-A working coordinator can own a real specialist responsibility, as Solution
-Designer does. A framework-required placeholder can instead have no workflow
-duties, attached skills, or handoff tools. Do not create routes to or from it
-merely because it fills the coordinator slot. The
-[Software Development Department](../agent-teams/software-development-department/team.md)
-uses this placeholder pattern; it is not a requirement for every team.
+A working Team coordinator can own a real specialist responsibility, as
+Solution Designer does. Agent Orgs do not require a coordinator. The
+[Software Development Department](../agent-orgs/software-development-department/org.md)
+contains two shared Teams directly, without a placeholder Agent. Its
+`org-config.json` owns cross-team routes; each Team retains its own coordinator
+and internal routing.
 
 ## Supported Layouts
+
+An Agent Org lives in `agent-orgs/<org-id>/` with `org.md` and
+`org-config.json`. A shared Team member uses `refType: "agent_team"`,
+`refScope: "shared"`, and the existing Team ID as `ref`; the Team remains
+in `agent-teams/<team-id>/` rather than being copied. Org configuration has
+`members`, `handoffs`, `avatarUrl` and `defaultLaunchConfig` (use `null` when
+no launch defaults are authored), without `coordinatorMemberName`.
 
 AutoByteus currently supports two skill packaging patterns.
 

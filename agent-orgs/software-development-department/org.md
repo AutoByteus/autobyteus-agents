@@ -1,14 +1,14 @@
 ---
 name: Software Development Department
-description: A software delivery department with a placeholder Department Head coordinator, a Solution Designer-led Software Engineering Team, and an independent Product Design & Prototyping Team.
+description: A coordinator-free Agent Org containing a Solution Designer-led Software Engineering Team and an independent Product Design & Prototyping Team.
 category: software-engineering
 ---
 
-Department Head is the placeholder department coordinator.
+The department is an Agent Org containing two shared Agent Teams. It has no
+Org-level coordinator; each Team retains its own coordinator and workflow.
 
 ## Ownership Boundaries
 
-- `department_head` fills the required coordinator slot without workflow duties.
 - `software_engineering_team/solution_designer` owns investigation, supported
   product scenarios, requirements, user-approval capture, architecture design,
   solution revisions and upstream recovery. It coordinates the engineering
@@ -32,7 +32,7 @@ delivery to Solution Designer, which verifies the receipt before returning
 `Terminal` to the user or caller when no handoff rule matches.
 
 Detailed work belongs to the member skills. The department's
-[team-config.json](team-config.json) owns cross-team recipient addresses and
+[org-config.json](org-config.json) owns cross-team recipient addresses and
 conditional rules; child teams own their internal routing policies.
 
 ## Communication Convention

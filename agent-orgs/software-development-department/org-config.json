@@ -1,13 +1,6 @@
 {
-  "coordinatorMemberName": "department_head",
   "avatarUrl": null,
   "members": [
-    {
-      "memberName": "department_head",
-      "ref": "department-head",
-      "refType": "agent",
-      "refScope": "team_local"
-    },
     {
       "memberName": "product_design_prototyping_team",
       "ref": "product-design-prototyping-team",
@@ -40,5 +33,6 @@
         "When Product Prototyper classifies the outcome as Blocked because prototype work cannot safely or accurately continue and Solution Designer must decide the next requirements path."
       ]
     }
-  ]
+  ],
+  "defaultLaunchConfig": null
 }

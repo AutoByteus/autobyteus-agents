@@ -1,0 +1,3 @@
+PASS: strict Org config and Markdown parsing; two actual shared Team configs; eight filesystem-backed scoped Agents; attached bundled skills; exact original Org rules and placements; all Team/Org handoff endpoints; production topology resolver; child packages unchanged; old container removed; local Markdown links.
+Read-only package validation using feature backend compiled modules: /Users/normy/autobyteus_org/autobyteus-worktrees/flat-agent-organization-model-base/autobyteus-server-ts/dist
+No server, provider, live import, UI or history migration exercised.

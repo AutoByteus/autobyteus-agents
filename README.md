@@ -1,6 +1,6 @@
 # AutoByteus Agents
 
-This repository contains reusable AutoByteus agent and agent-team definitions.
+This repository contains reusable AutoByteus agent, agent-team, and agent-org definitions.
 
 ## Designing And Updating Agents
 
@@ -43,11 +43,13 @@ The [Agent Team Architect](agents/agent-team-architect/agent.md) creates new age
 
 ## Software Development Department
 
-The [Software Development Department](agent-teams/software-development-department/team.md)
-uses a placeholder `department_head` as its required coordinator.
+The [Software Development Department](agent-orgs/software-development-department/org.md)
+is a coordinator-free Agent Org containing the two shared teams below. Each
+Team keeps its own coordinator; cross-team routing lives in the department
+[org-config.json](agent-orgs/software-development-department/org-config.json).
 
 ```text
-Software Development Department — Department Head
+Software Development Department — Agent Org (no coordinator)
 ├── Software Engineering Team — Solution Designer
 │   ├── Architecture Reviewer
 │   ├── Implementation Engineer

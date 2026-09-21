@@ -1,0 +1,14 @@
+node:internal/fs/promises:606
+  return await PromisePrototypeThen(
+         ^
+
+Error: ENOENT: no such file or directory, access '/Users/normy/autobyteus_org/autobyteus-agents/docs/design-principles.md'
+    at async Object.access (node:internal/fs/promises:606:10)
+    at async file:///Users/normy/autobyteus_org/autobyteus-agents/.codex/artifacts/software-development-department-agent-org/validate.mjs:68:5 {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'access',
+  path: '/Users/normy/autobyteus_org/autobyteus-agents/docs/design-principles.md'
+}
+
+Node.js v22.23.1

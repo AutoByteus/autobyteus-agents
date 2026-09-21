@@ -1,0 +1,10 @@
+ M .codex/skills/software-engineering-workflow-skill
+ M README.md
+ D agent-teams/software-development-department/agents/department-head/agent-config.json
+ D agent-teams/software-development-department/agents/department-head/agent.md
+ D agent-teams/software-development-department/team-config.json
+ D agent-teams/software-development-department/team.md
+ M docs/agent-package-authoring.md
+?? .codex/artifacts/northstar-operating-company-agent-org/
+?? .codex/artifacts/software-development-department-agent-org/
+?? agent-orgs/
