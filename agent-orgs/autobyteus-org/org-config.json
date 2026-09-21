@@ -1,0 +1,72 @@
+{
+  "avatarUrl": null,
+  "members": [
+    {
+      "memberName": "product_design_prototyping_team",
+      "ref": "product-design-prototyping-team",
+      "refType": "agent_team",
+      "refScope": "shared"
+    },
+    {
+      "memberName": "software_engineering_team",
+      "ref": "software-engineering-team",
+      "refType": "agent_team",
+      "refScope": "shared"
+    },
+    {
+      "memberName": "marketing_team",
+      "ref": "marketing-team",
+      "refType": "agent_team",
+      "refScope": "shared"
+    }
+  ],
+  "handoffs": [
+    {
+      "from": "/software_engineering_team/solution_designer",
+      "to": "/product_design_prototyping_team/product_prototyper",
+      "rules": [
+        "When Solution Designer classifies the outcome as Product Design Requested because the user explicitly or after clarification asks Product Design & Prototyping to help understand or evolve an experience. Include the focused decision, relevant requirement and behavior IDs, established constraints, non-goals, canonical requirements paths, and supplied existing-product context when applicable."
+      ]
+    },
+    {
+      "from": "/product_design_prototyping_team/product_prototyper",
+      "to": "/software_engineering_team/solution_designer",
+      "rules": [
+        "When Product Prototyper classifies the outcome as Requirements Visualization Ready because the interactive visualizer revision, review URL, evidence, and open clarification questions are ready for Solution Designer and user review.",
+        "When Product Prototyper classifies the outcome as Prototype Completed because the user-approved prototype and UI/UX package are ready for requirements integration.",
+        "When Product Prototyper classifies the outcome as Requirement Impact because user feedback or prototype evidence requires a material requirements revision.",
+        "When Product Prototyper classifies the outcome as Not Recommended because a prototype would not materially improve the decision and the rationale/evidence are ready.",
+        "When Product Prototyper classifies the outcome as Blocked because prototype work cannot safely or accurately continue and Solution Designer must decide the next requirements path."
+      ]
+    },
+    {
+      "from": "/software_engineering_team/solution_designer",
+      "to": "/marketing_team/marketing_coordinator",
+      "rules": [
+        "When an approved product or delivery package requires product positioning, launch messaging, campaign planning, channel adaptation, or other marketing execution. Include verified product facts, supported scenarios, constraints, non-goals, approval state, relevant artifact paths, and any claims that still require confirmation."
+      ]
+    },
+    {
+      "from": "/marketing_team/marketing_coordinator",
+      "to": "/software_engineering_team/solution_designer",
+      "rules": [
+        "When marketing work requires verified product behavior, technical feasibility, release status, architecture constraints, or claim review before a draft or campaign can be finalized. Include the exact claim or decision, source material, open question, approval state, and the relevant campaign or draft artifact path."
+      ]
+    },
+    {
+      "from": "/product_design_prototyping_team/product_prototyper",
+      "to": "/marketing_team/marketing_coordinator",
+      "rules": [
+        "When the user-approved product experience package, visual evidence, or launch-ready experience narrative is ready for marketing adaptation. Include the approved experience scope, supported user problem, visual or prototype artifact paths, constraints, and any wording that must remain accurate."
+      ]
+    },
+    {
+      "from": "/marketing_team/marketing_coordinator",
+      "to": "/product_design_prototyping_team/product_prototyper",
+      "rules": [
+        "When marketing needs product-experience clarification, a user-facing interaction concept, or visual product evidence before platform-native content can be finalized. Include the campaign or draft context, exact experience question, source material, audience, approval state, and relevant artifact paths."
+      ]
+    }
+  ],
+  "defaultLaunchConfig": null
+}

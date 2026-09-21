@@ -80,10 +80,12 @@ and internal routing.
 
 An Agent Org lives in `agent-orgs/<org-id>/` with `org.md` and
 `org-config.json`. A shared Team member uses `refType: "agent_team"`,
-`refScope: "shared"`, and the existing Team ID as `ref`; the Team remains
-in `agent-teams/<team-id>/` rather than being copied. Org configuration has
-`members`, `handoffs`, `avatarUrl` and `defaultLaunchConfig` (use `null` when
-no launch defaults are authored), without `coordinatorMemberName`.
+`refScope: "shared"`, and the existing Team ID as `ref`; the Team is not
+copied into the Org. The shared Team may live in this repository or in another
+imported shared agent-definition package, but the runtime catalog must contain
+that Team ID before the Org can be resolved. Org configuration has `members`,
+`handoffs`, `avatarUrl` and `defaultLaunchConfig` (use `null` when no launch
+defaults are authored), without `coordinatorMemberName`.
 
 AutoByteus currently supports two skill packaging patterns.
 
