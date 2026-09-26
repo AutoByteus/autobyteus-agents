@@ -15,7 +15,7 @@ configuration owns conditional routing. Start with:
 
 ### Codex
 
-The Codex wrapper agent is a lightweight standalone agent that mirrors the Codex-style general assistant shown in the app: it keeps the runtime prompt intentionally thin, attaches the global `software-engineering-workflow-skill`, and exposes browser, media, image, speech, and device-emulation tools without adding repository shell/file tools.
+The Codex wrapper agent is a lightweight standalone agent that mirrors the Codex-style general assistant shown in the app: it keeps the runtime prompt intentionally thin, bundles the portable `software-engineering-workflow-skill` under `agents/codex/skills`, and exposes browser, media, image, speech, and device-emulation tools without adding repository shell/file tools. On Antigravity CLI runs, a genuinely missing configured skill logs a backend warning and is omitted rather than blocking the first turn; an invalid or changed skill source still fails preparation.
 
 ### Pitch Practice Investor
 
