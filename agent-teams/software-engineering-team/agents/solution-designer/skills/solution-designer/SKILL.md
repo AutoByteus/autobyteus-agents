@@ -129,6 +129,10 @@ Read [architecture-design.md](references/architecture-design.md) and
 Use the examples as guidance, not mechanical templates.
 
 - Reconfirm workspace isolation and requirements/supplement approval.
+- Before any persisted-data migration design, follow the mandatory repository
+  migration-conventions investigation in [architecture-design.md](references/architecture-design.md).
+  Record the governing convention and predecessor source dispositions before
+  choosing migration success semantics or an application-startup gate.
 - Produce a design spec for every solution before implementation handoff.
   For a narrow local change, keep the design concise: explain the existing
   owner/path, intended delta, affected files, evidence and design-health decision.

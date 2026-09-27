@@ -12,6 +12,30 @@ Read after requirements approval for architecture design, and during design-impa
 - When persisted data may be affected, inspect representative data, current readers and writers, semantics, invariants, physical-store constraints, disposability, volume, and operational risk before choosing a transition.
 - Do not write a greenfield target for a change that must safely transform an existing production path.
 
+## Mandatory Production Migration Convention Check
+
+When persisted data may require transformation, locate and read the target
+repository's authoritative migration conventions before designing that
+transformation or its admission gate. For AutoByteus server work this is
+`autobyteus-server-ts/docs/design/data_migration_guideline.md`
+(relative to the software workspace), the single canonical **Data Migration
+Guideline** with worked production examples, not a copy in the skill repository.
+If that authority is absent or insufficient, record the gap and update the
+canonical document within authorized scope; do not invent contradictory local
+policy. Link its reviewed version in investigation notes and the design.
+
+Inspect at least the relevant released predecessor migrations and current
+admission owner. Record retained/skipped/warning source dispositions, real
+installed-data evidence where available, and which current operations depend
+on each target. Directory enumeration is not current-package validation.
+Choose global, capability or run admission from actual invariant ownership;
+never equate non-`SUCCEEDED` aggregate status with global startup failure.
+Warning success requires independently valid admitted results and bounded
+explicit nonfatal dispositions, not a majority threshold. Include cross-root
+reference effects and representative valid/invalid coexistence in upgrade
+verification. Apply the repository's proportionate recovery rule rather than
+adding parallel journals/backups for speculative failures.
+
 ## Design Production Rules
 
 - Use [design-spec-template.md](../templates/design-spec-template.md) as the mandatory design structure and [design-principles.md](../design-principles.md) as the canonical design authority.
