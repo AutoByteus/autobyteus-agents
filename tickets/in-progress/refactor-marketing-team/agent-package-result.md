@@ -101,6 +101,22 @@ Website knowledge moved to `<marketing-workspace>/web-ui-sites/<host>/` for six 
 - Grounding: this record's changed paths were updated to the site-knowledge format and the template rename.
 - No findings: Operator skill, template, and shell; team config and summary; voice, positioning, and channel guides; playbooks; site knowledge files.
 
+## Native input helpers (2026-09-28, user-approved)
+
+- Added `website-knowledge-automation/scripts/`:
+  - `native_click.py`: viewport rectangle to a native click, with a point fraction and scale.
+  - `paste_file.py`: exact file paste through a live `xclip` owner and Ctrl+V; plain text or HTML.
+  - `choose_file.py`: native chooser with Ctrl+L, absolute path, confirm key, and a wait for close.
+- The skill lists them in Execute, with a rule to confirm the browser is the active top window before clicking.
+- Tests passed:
+  - compile
+  - click math (center, 0.6/0.55 point, scale 2)
+  - empty-rectangle rejection
+  - byte-exact UTF-8/CJK/emoji clipboard round trip on the secondary selection
+  - chooser path validation and no-window failure
+  - empty-file rejection
+- Incident: an early live test on shared display `:99` opened a zenity window behind the user's Chromium. The test click (755,366) landed on the text of the user's open X post. Test keys (Ctrl+V, Ctrl+Tab, Tab, Return) were reported by xdotool as going to the zenity window. A read-only DevTools check afterwards showed the post was not liked, reposted, or bookmarked, no dialog was open, and the reply box was empty; the tab URLs were normal. No isolated display (Xvfb/Xephyr) is available, so live click and paste were not re-tested; the first supervised site run will exercise them.
+
 ## Risks, questions, and blockers
 
 - Native input has not been verified on LinkedIn, X, Xiaohongshu, or Weixin Official Account text insertion. The first publish on each site should be supervised. Weixin Channels video was already native-verified.
