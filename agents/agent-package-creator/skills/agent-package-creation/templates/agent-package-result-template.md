@@ -1,7 +1,10 @@
-# Agent Team Architecture Result
+# Agent Package Creation Result
+
+Use [result-and-handoff-contract.md](../references/result-and-handoff-contract.md) for field meanings and classification.
 
 - Status: `Completed` / `Blocked` / `Requirement Gap` / `Design Impact`
 - Operation: `create` / `update`
+- Package type: `skill` / `agent` / `team` / `org`
 - Update intent: `new-package` / `<reason for update>`
 - Target package: `<name and absolute or repository-relative path>`
 - Scope included: `<what was in scope>`
@@ -10,7 +13,7 @@
 
 ## Summary
 
-<Short description of the architecture decision and observed outcome.>
+<Short description of what was created or updated and the observed outcome.>
 
 ## Ownership and design decisions
 
@@ -51,10 +54,14 @@
 
 | Check | Observed result | Evidence or limitation |
 | --- | --- | --- |
-| Changed JSON parses | `Pass` / `Fail` / `N/A` | `<command/path>` |
+| Changed JSON parses | `Pass` / `Fail` / `N/A` | `<command/path; N/A for a skill-only change with no JSON>` |
 | Frontmatter and names align | `Pass` / `Fail` | `<evidence>` |
-| Skill names and paths resolve | `Pass` / `Fail` / `N/A` | `<evidence>` |
+| Skill folder/frontmatter align | `Pass` / `Fail` / `N/A` | `<N/A when no skill is affected>` |
+| Configured `skillNames` resolve | `Pass` / `Fail` / `N/A` | `<N/A for a standalone skill with no Agent binding>` |
 | Markdown links and references resolve | `Pass` / `Fail` | `<evidence>` |
+| Skill validator and changed scripts | `Pass` / `Fail` / `Not available` / `N/A` | `<observed result or limitation>` |
+| Member refs, coordinator, and rooted routes | `Pass` / `Fail` / `N/A` | `<Team/Org evidence>` |
+| Imported shared dependencies | `Pass` / `Fail` / `Not checked` / `N/A` | `<catalog evidence or limitation>` |
 | Ownership and cross-file consistency | `Pass` / `Fail` | `<evidence>` |
 | Scope/diff review | `Pass` / `Fail` | `<evidence>` |
 

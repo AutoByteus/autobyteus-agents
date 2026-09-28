@@ -2,8 +2,10 @@
 
 Practical file formats, packaging conventions, and authoring checks for this
 repository. For ownership and topology decisions, start with
-[Agent Team Design Principles](../agents/agent-team-architect/skills/agent-team-architecture/references/agent-team-design-principles.md).
-The [Agent Team Architecture skill](../agents/agent-team-architect/skills/agent-team-architecture/SKILL.md)
+[Agent Package Design Principles](../agents/agent-package-creator/skills/agent-package-creation/references/package-design-principles.md).
+For standalone or bundled skills, use the Creator's
+[Skill Authoring Principles](../agents/agent-package-creator/skills/agent-package-creation/references/skill-authoring-principles.md).
+The [Agent Package Creation skill](../agents/agent-package-creator/skills/agent-package-creation/SKILL.md)
 owns the create/update procedure; this guide explains how to express a package
 in repository files, not how a specialist performs its domain work.
 
@@ -30,7 +32,7 @@ skill, references, templates, or scripts only when the role needs them.
 | `agent-config.json` | Explicit `skillNames`, `toolNames`, processors, and lifecycle/runtime settings. |
 | `SKILL.md` | The specialist's inputs, work sequence, decisions, artifacts, quality checks, approval boundaries, recovery, result classification, and completion criteria. |
 | `team.md` | Team purpose, member boundaries, entry contract, concise cooperation paths, and team-wide communication expectations. |
-| `org.md` | Org purpose, member Team boundaries, and cross-team cooperation contract. |
+| `org.md` | Org purpose, Agent/Team member boundaries, and cross-member cooperation contract. |
 | `org-config.json` | Agent/Team placements (`ref`, `refType`, `refScope`), cross-member handoffs, `avatarUrl`, and `defaultLaunchConfig`; no coordinator field. |
 | `team-config.json` | `coordinatorMemberName`, member names and references (`ref`, `refType`, `refScope`), rooted addresses, and conditional handoff rules. |
 | `templates/` | Artifact schemas, required sections, tables, and report skeletons. |
@@ -38,8 +40,9 @@ skill, references, templates, or scripts only when the role needs them.
 | `README.md` | Human-facing package overview and navigation. |
 
 Keep a specialist's procedure in its skill, not in the agent shell or team
-summary. Team configuration owns route conditions and recipient addresses;
-skills produce the evidence and result fields those conditions inspect.
+summary. Team and Org configuration own route conditions and recipient addresses
+at their respective boundaries, while skills produce the evidence and result
+fields those conditions inspect.
 A skill can remind its user to retrieve handoff rules without copying them.
 
 A working specialist's agent shell can use this shape:
@@ -86,6 +89,14 @@ imported shared agent-definition package, but the runtime catalog must contain
 that Team ID before the Org can be resolved. Org configuration has `members`,
 `handoffs`, `avatarUrl` and `defaultLaunchConfig` (use `null` when no launch
 defaults are authored), without `coordinatorMemberName`.
+
+An Org can also contain local Agents under `agents/<agent-id>/` and local
+Teams under `agent-teams/<team-id>/`, as in
+[Northstar Operating Company](../agent-orgs/northstar-operating-company/org.md).
+Those members use `refScope: "org_local"` with the matching `refType`; their
+`ref` must resolve to the local definition. Local Teams still own their
+internal coordinators and routes in `team-config.json`; the Org owns routes
+between its direct members and nested Team members.
 
 AutoByteus currently supports two skill packaging patterns.
 
@@ -185,21 +196,10 @@ repository, ticket lifecycle, branches, worktrees, or commits. The receiving
 specialist depends on the delivered result and evidence, not the producer's
 implementation details.
 
-```text
-receive input -> use own skill -> persist artifacts and result
--> classify outcome -> get_handoff_rules -> apply every matching rule
--> send to each exact returned recipient -> stop
-```
-
-Before routing, persist a file-backed result with, as applicable:
-
-- user request, goals, constraints, and approval state;
-- source material, relevant links, and still-relevant upstream artifact paths;
-- status such as `Completed`, `Blocked`, `Pass`, `Fail`, `Requirement Gap`, or
-  `Design Impact`;
-- route-relevant classification fields using the team's exact names and values;
-- validation evidence, assumptions, risks, blockers, and recovery context;
-- expected output or next action.
+For Creator-produced package results, the Creator's
+[result and handoff contract](../agents/agent-package-creator/skills/agent-package-creation/references/result-and-handoff-contract.md)
+owns result fields, classification, and routing. Other specialists' skills own
+their own result fields. This guide covers the shared packaging convention.
 
 Treat communication as email with attachments: `send_message_to` carries a
 short outcome and next-action summary, while durable files carry the complete
@@ -208,12 +208,8 @@ with relevant supporting files, through the tool's reference-files field.
 The receiver reads those files before acting; replies use the same file-backed
 pattern.
 
-`team-config.json` supplies conditional recipients through `get_handoff_rules`.
-Apply **every** matching rule: a result may require both a primary handoff and
-an informational notification. Use each exact returned `recipient_address`,
-not an address inferred from memory. When no rule matches, return the result
-to the user or caller. Stop after required handoffs succeed rather than polling
-or doing the next specialist's work.
+The containing `team-config.json` or `org-config.json` supplies conditional
+recipients through `get_handoff_rules` when that routing boundary exists.
 
 Rules should distinguish normal success, recovery, informational notifications,
 and terminal outcomes. Make mutually exclusive routes clear so a result does

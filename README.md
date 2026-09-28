@@ -2,14 +2,15 @@
 
 This repository contains reusable AutoByteus agent, agent-team, and agent-org definitions.
 
-## Designing And Updating Agents
+## Designing And Updating Agent Packages
 
-Each agent owns its work, its skill defines how to do that work, and team
-configuration owns conditional routing. Start with:
+A Skill owns reusable task procedure; an Agent owns a role and its attachments;
+Team and Org configuration own their respective routing boundaries. Start with:
 
-- [Agent Team Design Principles](agents/agent-team-architect/skills/agent-team-architecture/references/agent-team-design-principles.md): ownership, topology, and design checks.
+- [Agent Package Design Principles](agents/agent-package-creator/skills/agent-package-creation/references/package-design-principles.md): Skill, Agent, Team, and Org boundaries, role ownership, and handoff examples.
+- [Skill Authoring Principles](agents/agent-package-creator/skills/agent-package-creation/references/skill-authoring-principles.md): standalone and bundled skill design and validation.
 - [Agent Package Authoring](docs/agent-package-authoring.md): file responsibilities, packaging, coordinator roles, handoff conventions, examples, and validation.
-- [Agent Team Architecture skill](agents/agent-team-architect/skills/agent-team-architecture/SKILL.md): the create/update workflow used by Agent Team Architect.
+- [Agent Package Creation skill](agents/agent-package-creator/skills/agent-package-creation/SKILL.md): the create/update workflow used by Agent Package Creator.
 
 ## Standalone Agents
 
@@ -37,9 +38,9 @@ The paper research assistant is a standalone agent for the common paper-reading 
 
 The skill optimizer is a lightweight standalone agent that uses the shared `skill-optimizer` skill to review and improve existing skills for structure, grounding, clarity, consistency, and economy while preserving their intended behavior and quality gates.
 
-### Agent Team Architect
+### Agent Package Creator
 
-The [Agent Team Architect](agents/agent-team-architect/agent.md) creates new agent-team packages and updates existing packages while preserving clear ownership, durable artifacts, cross-file consistency, and result-based handoffs. Its bundled [`agent-team-architecture`](agents/agent-team-architect/skills/agent-team-architecture/SKILL.md) skill exposes two modes only: `create` and `update`; optimization, repair, and consistency correction are update intents rather than separate agents or modes.
+The [Agent Package Creator](agents/agent-package-creator/agent.md) creates and updates standalone skills, individual Agents, Agent Teams, and Agent Orgs, including skills bundled with new roles when needed. Its bundled [`agent-package-creation`](agents/agent-package-creator/skills/agent-package-creation/SKILL.md) skill owns the two operation modes (`create` and `update`) and links the practical principles and examples.
 
 ## Software Development Department
 
