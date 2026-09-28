@@ -1,0 +1,22 @@
+{
+  "toolNames": [
+    "read_file",
+    "write_file",
+    "edit_file",
+    "run_bash",
+    "list_tabs",
+    "open_tab",
+    "navigate_to",
+    "close_tab",
+    "dom_snapshot",
+    "read_page",
+    "run_script",
+    "screenshot"
+  ],
+  "skillNames": [
+    "web-ui-automation",
+    "website-knowledge-automation"
+  ],
+  "defaultLaunchConfig": null,
+  "avatarUrl": null
+}

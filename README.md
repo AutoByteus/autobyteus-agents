@@ -38,6 +38,10 @@ The paper research assistant is a standalone agent for the common paper-reading 
 
 The [Agent Package Creator](agents/agent-package-creator/agent.md) creates and updates standalone skills, individual Agents, Agent Teams, and Agent Orgs, including skills bundled with new roles when needed. Its bundled [`agent-package-creation`](agents/agent-package-creator/skills/agent-package-creation/SKILL.md) skill owns the two operation modes (`create` and `update`) and links the practical principles and examples.
 
+### Web UI Operator
+
+The [Web UI Operator](agents/web-ui-operator/agent.md) completes user tasks on any website through the visible browser UI, using the shared `web-ui-automation` skill. Its bundled [`website-knowledge-automation`](agents/web-ui-operator/skills/website-knowledge-automation/SKILL.md) skill keeps a per-website knowledge folder (`web-ui-sites/<site>/`) in the current workspace, so later tasks on the same site reuse verified locators and procedures.
+
 ## Software Development Department
 
 The [Software Development Department](agent-orgs/software-development-department/org.md)
