@@ -34,10 +34,6 @@ The research engineer is a standalone agent for dynamic research tasks: broad so
 
 The paper research assistant is a standalone agent for the common paper-reading workflow: search for relevant papers from a user question or topic, retrieve a supplied paper from a link, identifier, PDF, or local file, extract paper metadata and detailed content, and answer user questions grounded in the paper. It is intentionally narrower than the research engineer: it focuses on discovery, paper ingestion, paper dossiers, concise comparison, and evidence-aware paper QA rather than implementation, reproduction, training, or benchmarking.
 
-### Skill Optimizer
-
-The skill optimizer is a lightweight standalone agent that uses the shared `skill-optimizer` skill to review and improve existing skills for structure, grounding, clarity, consistency, and economy while preserving their intended behavior and quality gates.
-
 ### Agent Package Creator
 
 The [Agent Package Creator](agents/agent-package-creator/agent.md) creates and updates standalone skills, individual Agents, Agent Teams, and Agent Orgs, including skills bundled with new roles when needed. Its bundled [`agent-package-creation`](agents/agent-package-creator/skills/agent-package-creation/SKILL.md) skill owns the two operation modes (`create` and `update`) and links the practical principles and examples.

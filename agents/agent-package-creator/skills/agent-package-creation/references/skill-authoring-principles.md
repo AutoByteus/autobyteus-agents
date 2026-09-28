@@ -25,9 +25,9 @@ A skill used by a Team member may classify the result needed by handoff rules, b
 
 ## Ground and prioritize instructions
 
-Apply the shared standard's structure-and-flow decisions before local wording or shortening. For each material instruction, know the prerequisite, action, expected result, authoritative owner, and basis in the request, repository contract, observed capability, or approved behavior. Keep source evidence or a clear assumption for claims about files, tools, defaults, guarantees, and runtime effects. If a condition is unresolved and changes the skill's behavior, surface it rather than writing a plausible-sounding rule.
+Resolve structure and flow before local wording. For each material instruction, identify its condition, action, result, owner, and evidence. Distinguish actions, constraints, exceptions, and validation gates from explanation that changes no decision, output, or safeguard. Ground claims about files, tools, defaults, guarantees, and runtime effects in the request, approvals, repository contract, observed capability, or trusted sources; label assumptions and surface behavior-changing gaps.
 
-Make each retained instruction serve a normal action, meaningful decision, output, validation, recovery, or authority boundary.
+For a prohibition, identify the positive route, a plausible normal-path mistake, and the distinct boundary it protects; otherwise remove it or move package context to docs. Use domain terms by default. Name a platform, product, company, or project only when it changes the trigger, file format, tool integration, or behavior.
 
 ## Use supporting resources deliberately
 

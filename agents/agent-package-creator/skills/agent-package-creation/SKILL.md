@@ -26,9 +26,9 @@ When material scope, behavior, ownership, or removal is unresolved, surface a re
 
 ### 1. Map the target and ownership spine
 
-Map the target kind and root, each role's responsibility, skill ownership and attachment, coordinator or intake owner where applicable, artifacts, routes and addresses, dependencies, and links. For an update, identify the smallest coherent delta.
+Map the target kind and root, each role's responsibility, skill ownership and attachment, coordinator or intake owner where applicable, artifacts, routes and addresses, dependencies, and links.
 
-For `create`, establish the intended behavior and required outputs from the request and confirmed repository conventions. For `update`, distinguish the approved change from existing behavior that must remain intact.
+For `create`, establish the intended behavior and required outputs from the request and confirmed repository conventions. For `update`, distinguish the approved change from existing behavior that must remain intact. When optimizing, diagnose observed defects and their owners before choosing edits. For any update, identify the smallest coherent delta.
 
 Describe the path from request to completion and recovery. For a role, specify input, owned work, output, quality gate, and handoff. For a skill, specify trigger, inputs, work, outputs, validation, and stopping condition. Give each rule one owner. Team coordinator registration does not create duties by itself; an Org has no coordinator field.
 

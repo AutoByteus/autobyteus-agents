@@ -100,7 +100,11 @@ The same task may need several kinds: creating a Team can include new Agents and
 
 ## 9. Preserve evidence and update safely
 
-For `create`, inspect repository instructions and analogous packages, then select the smallest coherent topology. For `update`, read the full affected package and record the baseline, requested delta, affected owners, and preserved behavior before editing. Change the canonical owner of each affected rule and reconcile configured names, member references, routes, links, and human docs. Remove obsolete paths when an approved replacement makes them stale; keep a compatibility path only when its consumer and lifecycle are justified.
+For `create`, inspect repository instructions and analogous packages, then select the smallest coherent topology. For `update`, read the full affected package and record the baseline, requested delta, affected owners, and preserved behavior before editing.
+
+When optimizing, compare the observed package with intended and preserved behavior. Diagnose structure and ownership, flow, grounding, then wording; repeated text may signal a wrong owner or broken flow. Choose whether to add, move, merge, remove, or update a rule before trimming sentences.
+
+Apply the change at its owner and reconcile configured names, member references, routes, links, and human docs. Remove obsolete paths when an approved replacement makes them stale; keep a compatibility path only when its consumer and lifecycle are justified.
 
 Before declaring completion, validate what the actual package needs: JSON syntax, frontmatter, configured skill resolution, links and templates, tool/role fit, member refs, routed addresses, shared dependencies, cross-file ownership, and diff scope. Capture observed results and limitations in the durable result. If intent, approval, or package identity is material and ambiguous, return a precise gap rather than inventing a role, tool, recipient, capability, or permission.
 
