@@ -1,0 +1,30 @@
+{
+  "skillNames": [
+    "marketing-content-creation"
+  ],
+  "toolNames": [
+    "read_file",
+    "write_file",
+    "edit_file",
+    "run_bash",
+    "read_url",
+    "read_media_file",
+    "generate_image",
+    "edit_image",
+    "generate_speech",
+    "video_editing_create_video_from_image_and_audio",
+    "video_editing_concatenate_videos",
+    "video_editing_add_subtitles",
+    "video_editing_add_text_overlay",
+    "get_handoff_rules",
+    "send_message_to"
+  ],
+  "inputProcessorNames": [],
+  "llmResponseProcessorNames": [],
+  "systemPromptProcessorNames": [],
+  "toolExecutionResultProcessorNames": [],
+  "toolInvocationPreprocessorNames": [],
+  "lifecycleProcessorNames": [],
+  "avatarUrl": null,
+  "defaultLaunchConfig": null
+}

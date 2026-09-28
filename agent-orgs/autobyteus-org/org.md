@@ -18,11 +18,9 @@ internal handoff rules.
 - `marketing_team` owns channel-native marketing content and its publication.
   Its Marketing Content Creator is the Team's entry point.
 
-`marketing_team` is intentionally referenced as a shared Team. Its definition
-is supplied by the shared runtime catalog, including deployments that mount the
-private marketing package. This public Org package does not duplicate or
-expose that Team's account-specific files, learning records, or private
-workspace data.
+All three Teams are shared definitions in this repository. Account-specific
+marketing data (voice, channel guides, website knowledge, and content) lives in
+the workspace the Marketing Team runs in, not in these packages.
 
 ## Operating Contract
 

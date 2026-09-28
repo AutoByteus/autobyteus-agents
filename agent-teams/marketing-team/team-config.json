@@ -1,0 +1,35 @@
+{
+  "coordinatorMemberName": "marketing_content_creator",
+  "avatarUrl": null,
+  "members": [
+    {
+      "memberName": "marketing_content_creator",
+      "ref": "marketing-content-creator",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "web_ui_operator",
+      "ref": "web-ui-operator",
+      "refType": "agent",
+      "refScope": "shared"
+    }
+  ],
+  "handoffs": [
+    {
+      "from": "/marketing_content_creator",
+      "to": "/web_ui_operator",
+      "rules": [
+        "When a publish-request.md for a user-approved channel package is saved and ready for publishing.",
+        "When a collection-request.md for website data, research, reply candidates, or source capture is saved and ready."
+      ]
+    },
+    {
+      "from": "/web_ui_operator",
+      "to": "/marketing_content_creator",
+      "rules": [
+        "When task-result.md for a Marketing Content Creator request is saved with outcome Completed, Blocked, or Needs Decision."
+      ]
+    }
+  ]
+}

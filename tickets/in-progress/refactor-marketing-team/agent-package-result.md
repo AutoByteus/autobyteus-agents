@@ -134,6 +134,14 @@ Website knowledge moved to `<marketing-workspace>/web-ui-sites/<host>/` for six 
 - Restored verbatim in the LinkedIn guide, next to the rules they illustrate: the example cadence; the before/after pairs for redundant emphasis, contrast, and direct product evidence; the blocked overlong reply with its rewrite. The voice avoid-list regained "novel-like transitions".
 - The workspace commit excluded live team work present at the time: new conversations and the `reddit` channel, and Operator knowledge edits.
 
+## Team moved to the public repository (2026-09-28, user-requested)
+
+- Reason: all private data (voice, positioning, channel guides, website knowledge, content) is in the workspace. The team package contained only two personal references.
+- Moved from `autobyteus-private-agents/agent-teams/marketing-team` to `autobyteus-agents/agent-teams/marketing-team` with the same ID, so the Org's shared `marketing-team` reference resolves in this repository.
+- Generalized: the default voice is now the voice the user or guide names, or the library's only voice; with no voice, the creator drafts from the user's samples and creates `voices/<name>.md` after the first approved piece. The example data path is `data/social-analysis/…`.
+- `autobyteus-org/org.md` and the README no longer describe the team as private; the README gains a Marketing Team entry. The workspace's local skill link now points to the public path.
+- Checks: JSON parses; skill valid; shared member `web-ui-operator` exists here; no personal references remain in the team package.
+
 ## Risks, questions, and blockers
 
 - Native input has not been verified on LinkedIn, X, Xiaohongshu, or Weixin Official Account text insertion. The first publish on each site should be supervised. Weixin Channels video was already native-verified.
