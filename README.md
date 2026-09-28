@@ -40,7 +40,7 @@ The [Agent Package Creator](agents/agent-package-creator/agent.md) creates and u
 
 ### Web UI Operator
 
-The [Web UI Operator](agents/web-ui-operator/agent.md) completes user tasks on any website through the visible browser UI, using the shared `web-ui-automation` skill. Its bundled [`website-knowledge-automation`](agents/web-ui-operator/skills/website-knowledge-automation/SKILL.md) skill keeps a per-website knowledge folder (`web-ui-sites/<site>/`) in the current workspace, so later tasks on the same site reuse verified locators and procedures.
+The [Web UI Operator](agents/web-ui-operator/agent.md) completes user tasks on any website through the visible browser UI, using the shared `web-ui-automation` skill. Its bundled [`website-knowledge-automation`](agents/web-ui-operator/skills/website-knowledge-automation/SKILL.md) skill keeps one knowledge file per website (`web-ui-sites/<site>/site-knowledge.md`: elements, locate scripts, operation SOPs, pitfalls) in the current workspace, so later tasks on the same site are fast.
 
 ## Software Development Department
 

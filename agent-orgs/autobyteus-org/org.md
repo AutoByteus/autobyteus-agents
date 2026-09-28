@@ -15,8 +15,8 @@ internal handoff rules.
   prototypes, and UI/UX evidence.
 - `software_engineering_team` owns requirements integration, solution design,
   implementation, review, executable validation, and delivery.
-- `marketing_team` owns platform-native marketing work across LinkedIn, X,
-  Xiaohongshu, Weixin Official Account, and Weixin Channels.
+- `marketing_team` owns channel-native marketing content and its publication.
+  Its Marketing Content Creator is the Team's entry point.
 
 `marketing_team` is intentionally referenced as a shared Team. Its definition
 is supplied by the shared runtime catalog, including deployments that mount the
@@ -43,7 +43,7 @@ workspace data.
 - Product experience questions and prototype evidence stay with Product Team until the relevant product decision or package is ready.
 - Requirements, technical feasibility, implementation, review, validation, and
   delivery remain with Software Engineering.
-- Marketing owns channel-native drafting and publishing workflows, but must
+- Marketing owns channel-native content and publishing, but must
   obtain verified product facts and explicit approval before making claims or
   publishing live content.
 - The Org owns only these cross-Team routes; each Team's `team-config.json`
