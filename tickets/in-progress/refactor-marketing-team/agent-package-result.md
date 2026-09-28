@@ -117,6 +117,23 @@ Website knowledge moved to `<marketing-workspace>/web-ui-sites/<host>/` for six 
   - empty-file rejection
 - Incident: an early live test on shared display `:99` opened a zenity window behind the user's Chromium. The test click (755,366) landed on the text of the user's open X post. Test keys (Ctrl+V, Ctrl+Tab, Tab, Return) were reported by xdotool as going to the zenity window. A read-only DevTools check afterwards showed the post was not liked, reposted, or bookmarked, no dialog was open, and the reply box was empty; the tab URLs were normal. No isolated display (Xvfb/Xephyr) is available, so live click and paste were not re-tested; the first supervised site run will exercise them.
 
+## Per-platform conversation folders (2026-09-28, user-requested)
+
+- Final layout at the workspace root: `<channel>/<YYYY-MM-DD-slug>/`, one folder per conversation (`linkedin/`, `x/`, `xiaohongshu/`, `weixin-gongzhonghao/`, `weixin-channel/`), next to `marketing-style/`, `web-ui-sites/`, and `data/`. The conversation folder holds the user's first piece: their post, or their comment on someone else's post, with that post in `source-post.md`. Later replies go in `replies/<date>-<author>/`. A cross-post uses the same folder name under the other channel.
+- An intermediate `marketing-content/` layout (conversations with `post/<channel>/`) was replaced at the user's request because it hid the platforms and added a redundant root level.
+- Content Creator skill: the `Content folders` section owns this layout and the search-before-create rules; channel guides keep only `Channel files`; `team.md` names the platform folders; the LinkedIn guide's examples point to `linkedin/…`.
+- Principles review of this change: clarified the conversation-root file list; outreach logs and collection requests that do not serve one piece go under `data/`; removed the duplicated "research under `data/research/`" rule from two guides; skill valid.
+- Workspace migration:
+  - 142 original folders moved with `git mv` into 81 platform conversations: linkedin 49, x 26, xiaohongshu 2, weixin-gongzhonghao 3, weixin-channel 1.
+  - 1,023 exact data-mirror duplicates removed; 44 unique files kept under `data-mirror/`.
+  - The mapping (original to final path, all 103 targets verified) is kept privately at `autobyteus-marketing-workspace/data/audits/2026-09-28-content-migration-mapping.md`.
+
+## Writing-style completeness (2026-09-28, user-requested)
+
+- The style files were checked against the retired `writing-style.md` and `x-writing-style.md`. The X style was fully carried over; the LinkedIn worked examples had been reduced to summaries.
+- Restored verbatim in the LinkedIn guide, next to the rules they illustrate: the example cadence; the before/after pairs for redundant emphasis, contrast, and direct product evidence; the blocked overlong reply with its rewrite. The voice avoid-list regained "novel-like transitions".
+- The workspace commit excluded live team work present at the time: new conversations and the `reddit` channel, and Operator knowledge edits.
+
 ## Risks, questions, and blockers
 
 - Native input has not been verified on LinkedIn, X, Xiaohongshu, or Weixin Official Account text insertion. The first publish on each site should be supervised. Weixin Channels video was already native-verified.
