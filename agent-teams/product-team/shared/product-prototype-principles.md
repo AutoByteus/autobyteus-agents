@@ -1,7 +1,6 @@
 # Product Prototype Principles
 
-This is the canonical shared reference for the Product Design & Prototyping
-Team. Read it before creating, bootstrapping, evolving, or reviewing a
+This is the canonical shared reference for the Product Team. Read it before creating, bootstrapping, evolving, or reviewing a
 runnable prototype.
 
 Role-specific workflow belongs in each agent's `SKILL.md`; this document holds

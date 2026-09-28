@@ -2,8 +2,8 @@
   "avatarUrl": null,
   "members": [
     {
-      "memberName": "product_design_prototyping_team",
-      "ref": "product-design-prototyping-team",
+      "memberName": "product_team",
+      "ref": "product-team",
       "refType": "agent_team",
       "refScope": "shared"
     },
@@ -17,13 +17,13 @@
   "handoffs": [
     {
       "from": "/software_engineering_team/solution_designer",
-      "to": "/product_design_prototyping_team/product_prototyper",
+      "to": "/product_team/product_prototyper",
       "rules": [
-        "When Solution Designer classifies the outcome as Product Design Requested because the user explicitly or after clarification asks Product Design & Prototyping to help understand or evolve an experience. This also applies to purpose Result Correction for missing or inconsistent evidence in a returned package from the same user-requested engagement; include the original user-request reference and precise gap without expanding scope. Send the user's requested outcome in the user's own terms, the focused decision, relevant requirement and behavior IDs, established constraints, non-goals, canonical requirements paths, and supplied existing-product context when applicable. Do not prescribe a Product Prototyper mode, Bootstrapper payload, repository, ticket, or implementation procedure; Product Prototyper selects and owns those."
+        "When Solution Designer classifies the outcome as Product Design Requested because the user explicitly or after clarification asks Product Team to help understand or evolve an experience. This also applies to purpose Result Correction for missing or inconsistent evidence in a returned package from the same user-requested engagement; include the original user-request reference and precise gap without expanding scope. Send the user's requested outcome in the user's own terms, the focused decision, relevant requirement and behavior IDs, established constraints, non-goals, canonical requirements paths, and supplied existing-product context when applicable. Do not prescribe a Product Prototyper mode, Bootstrapper payload, repository, ticket, or implementation procedure; Product Prototyper selects and owns those."
       ]
     },
     {
-      "from": "/product_design_prototyping_team/product_prototyper",
+      "from": "/product_team/product_prototyper",
       "to": "/software_engineering_team/solution_designer",
       "rules": [
         "When Product Prototyper classifies the outcome as Requirements Visualization Ready because the interactive visualizer revision, review URL, evidence, and open clarification questions are ready for Solution Designer and user review.",

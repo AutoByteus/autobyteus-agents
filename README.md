@@ -56,7 +56,7 @@ Software Development Department — Agent Org (no coordinator)
 │   ├── Code Reviewer
 │   ├── API/E2E Engineer
 │   └── Delivery Engineer
-└── Product Design & Prototyping Team — Product Prototyper
+└── Product Team — Product Prototyper
     └── Prototype Bootstrapper
 ```
 
@@ -85,14 +85,14 @@ Solution Designer exchanges user-requested Product assistance and returned
 UI/UX evidence directly with Product Prototyper. Product Prototyper selects its
 own mode and owns its separate repository, tickets, commits and artifacts.
 
-## Product Design & Prototyping Team
+## Product Team
 
-The product design and prototyping team independently maintains the prototype repository for each product surface or independent concept package. `product_prototyper` owns prototype intake, tickets, per-ticket branches/worktrees, commits, integration, and two explicit modes: `exploratory-requirements-visualizer` for abstract or product-independent clarification, and `product-experience-prototyper` for incremental product-experience evolution or a new product-facing experience. Its repository-management skill handles isolation and lifecycle; the selected mode skill handles the experience work. `prototype_bootstrapper` owns only current-experience baseline discovery, parity implementation, and bootstrap evidence in the Product-assigned worktree. The team uses dynamic handoff rules plus `send_message_to` for baseline routing and cross-team results.
+The product team independently maintains the prototype repository for each product surface or independent concept package. `product_prototyper` owns prototype intake, tickets, per-ticket branches/worktrees, commits, integration, and two explicit modes: `exploratory-requirements-visualizer` for abstract or product-independent clarification, and `product-experience-prototyper` for incremental product-experience evolution or a new product-facing experience. Its repository-management skill handles isolation and lifecycle; the selected mode skill handles the experience work. `prototype_bootstrapper` owns only current-experience baseline discovery, parity implementation, and bootstrap evidence in the Product-assigned worktree. The team uses dynamic handoff rules plus `send_message_to` for baseline routing and cross-team results.
 
 ## AutoByteus Org
 
 The [AutoByteus Org](agent-orgs/autobyteus-org/org.md) mounts the shared
-Product Design & Prototyping Team, Software Engineering Team, and Marketing
+Product Team, Software Engineering Team, and Marketing
 Team. The Marketing Team is referenced with `refScope: "shared"`; it is
 resolved from the runtime's imported shared definition catalog and is not
 duplicated in this repository. Cross-Team routes are owned by the Org's

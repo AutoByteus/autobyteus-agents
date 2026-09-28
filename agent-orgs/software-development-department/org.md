@@ -1,6 +1,6 @@
 ---
 name: Software Development Department
-description: A coordinator-free Agent Org containing a Solution Designer-led Software Engineering Team and an independent Product Design & Prototyping Team.
+description: A coordinator-free Agent Org containing a Solution Designer-led Software Engineering Team and an independent Product Team.
 category: software-engineering
 ---
 
@@ -13,7 +13,7 @@ Org-level coordinator; each Team retains its own coordinator and workflow.
   product scenarios, requirements, user-approval capture, architecture design,
   solution revisions and upstream recovery. It coordinates the engineering
   team and verifies the finalized delivery receipt.
-- `product_design_prototyping_team` independently owns its modes, separate
+- `product_team` independently owns its modes, separate
   prototype projects, tickets, commits, user review and UI/UX artifacts.
 - The remaining Software Engineering specialists own independent architecture
   review, implementation, code review, executable validation and delivery.

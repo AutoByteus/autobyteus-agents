@@ -99,8 +99,7 @@ standards. Use the requirements and investigation templates listed below.
 - Create `SR-001` at the first coherent requirements baseline used for product
   review, Product handoff or approval. Record later materially completed rounds
   in the same solution revision index.
-- When the user explicitly or after clarification requests Product Design &
-  Prototyping help, persist context, classify `Product Design Requested` and
+- When the user explicitly or after clarification requests Product Team help, persist context, classify `Product Design Requested` and
   use the handoff rules. Forward the user's requested outcome without choosing
   Product Prototyper's mode, repository or Bootstrapper procedure.
 - On returned Product outcomes, use their evidence to clarify requirements

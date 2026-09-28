@@ -11,7 +11,7 @@ internal handoff rules.
 
 ## Mounted Teams
 
-- `product_design_prototyping_team` owns product discovery, experience design,
+- `product_team` owns product discovery, experience design,
   prototypes, and UI/UX evidence.
 - `software_engineering_team` owns requirements integration, solution design,
   implementation, review, executable validation, and delivery.
@@ -40,8 +40,7 @@ workspace data.
 
 ## Cross-Team Boundaries
 
-- Product experience questions and prototype evidence stay with Product Design
-  & Prototyping until the relevant product decision or package is ready.
+- Product experience questions and prototype evidence stay with Product Team until the relevant product decision or package is ready.
 - Requirements, technical feasibility, implementation, review, validation, and
   delivery remain with Software Engineering.
 - Marketing owns channel-native drafting and publishing workflows, but must

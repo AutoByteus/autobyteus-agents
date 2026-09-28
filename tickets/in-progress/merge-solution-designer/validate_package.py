@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[3]
 TEAMS = ROOT / 'agent-teams'
 SCOPES = [TEAMS / name for name in (
     'software-development-department', 'software-engineering-team',
-    'product-design-prototyping-team')]
+    'product-team')]
 OLD = re.compile(r'\b(?:requirements[_ -]engineer|architecture[_ -]designer)\b|'
                  r'\b(?:requirements-revision-record|architecture-design-revision-record)\b|'
                  r'\b(?:RER|AD-REV)-', re.I)
@@ -100,7 +100,7 @@ class PackageValidation(unittest.TestCase):
         self.assertTrue(expected <= self.routes, expected - self.routes)
 
     def test_product_and_department_boundaries(self):
-        product = '/product_design_prototyping_team/product_prototyper'
+        product = '/product_team/product_prototyper'
         self.assertIn((self.sd, product), self.routes)
         self.assertIn((product, self.sd), self.routes)
         head_edges = {(a, b) for a, b in self.routes if '/department_head' in (a, b)}

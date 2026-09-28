@@ -1,5 +1,5 @@
 ---
-name: Product Design & Prototyping Team
+name: Product Team
 description: An independent product-design team that explores abstract requirements visually, evolves product experiences, and delivers implementation-oriented experience specifications.
 category: product-development
 ---

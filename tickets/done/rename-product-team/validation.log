@@ -1,0 +1,8 @@
+PASS: 641 baseline regular files preserved or changed only by the rename; symlinks preserved.
+PASS: no stale team names in active paths, content, or existing executable scripts; active JSON parses.
+PASS: agent-teams/product-team: 2 agents, 2 checked handoffs and local bundled skills.
+PASS: agent-orgs/software-development-department: 8 agents, 21 checked handoffs and local bundled skills.
+LIMITATION: Marketing Team is supplied externally; its internal roster cannot be resolved locally.
+PASS: agent-orgs/autobyteus-org: 8 agents, 25 checked handoffs and local bundled skills.
+PASS: 47 local Markdown file links in moved/changed documents resolve.
+LIMITATION: static definition checks only; no live app import, stored-run migration, or model execution.

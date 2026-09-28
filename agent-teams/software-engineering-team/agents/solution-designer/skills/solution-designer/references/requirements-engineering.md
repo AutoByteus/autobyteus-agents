@@ -42,13 +42,13 @@ Read during discovery, requirements refinement and requirement-impact recovery. 
 
 ## Product Design Context
 
-Product Design & Prototyping is a separate team. Solution Designer records
+Product Team is a separate team. Solution Designer records
 the user's explicit or clarified request and supplies the requirements context;
 it does not decide whether Product Prototyper uses a visualizer or a product
 prototype workflow, and it does not prescribe Product repository or
 Bootstrapper work.
 
-When Product Design & Prototyping support is requested, include:
+When Product Team support is requested, include:
 
 - the user's requested outcome in the user's own terms, without translating it
   into a Product Prototyper mode
@@ -68,7 +68,7 @@ ready to forward. For `Result Correction`, include the original user-request
 reference, returned package and precise gap; stay within that requested scope.
 This label does not select a Product Prototyper mode.
 
-If the user has not requested Product Design & Prototyping support, do not
+If the user has not requested Product Team support, do not
 invent a visualization or prototype handoff. Record unresolved experience
 questions and ask the user for direction when that decision is necessary.
 Product Prototyper receives the request, reasons about its relationship to the

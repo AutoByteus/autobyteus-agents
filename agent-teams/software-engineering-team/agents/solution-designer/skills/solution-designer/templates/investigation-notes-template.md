@@ -140,7 +140,7 @@ request.
 
 ## Product Design Findings
 
-- Product Design package path (external Product Design & Prototyping repository):
+- Product Design package path (external Product Team repository):
 - Visualizer or prototype source path:
 - Approved UI/UX specification path, when applicable:
 - Review URL:

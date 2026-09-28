@@ -68,7 +68,7 @@ for (const rel of ['README.md','docs/agent-package-authoring.md','agent-orgs/sof
     await fs.access(path.resolve(root, path.dirname(rel), match[1]));
   }
 }
-const untouched = execFileSync('git', ['diff', '--name-only', '--', 'agent-teams/software-engineering-team', 'agent-teams/product-design-prototyping-team'], {encoding:'utf8'});
+const untouched = execFileSync('git', ['diff', '--name-only', '--', 'agent-teams/software-engineering-team', 'agent-teams/product-team'], {encoding:'utf8'});
 assert.equal(untouched, '');
 console.log('PASS: strict Org config and Markdown parsing; two actual shared Team configs; eight filesystem-backed scoped Agents; attached bundled skills; exact original Org rules and placements; all Team/Org handoff endpoints; production topology resolver; child packages unchanged; old container removed; local Markdown links.');
 console.log('Read-only package validation using feature backend compiled modules: '+backend);
