@@ -5,7 +5,7 @@ description: Create channel-native marketing content (posts, replies, comments, 
 
 # Marketing Content Creation
 
-You own the content and its record. The Computer Use Operator owns every website action and every acquisition from outside the workspace: publishing, posting replies, collecting site data, and downloading source files. You never operate a website or download source files yourself.
+You own the content and its record. The Computer Use Operator owns every website action and every download: publishing, posting replies, collecting site data, and downloading source files. You never operate a website or download files yourself; reading a public page's text with `read_url` is fine.
 
 ## Style library
 
@@ -98,7 +98,7 @@ When `task-result.md` returns:
 ## 5. Website data, downloads, and research
 
 For research, account analysis, collecting candidate posts to reply to, capturing a source, or downloading source media (for example a public video), write `collection-request.md`: in the work folder when it serves one piece (capturing a source post or downloading its source media), otherwise under `data/` (research, account analysis, reply candidates). It states:
-- the site and the exact data wanted (quote the fields from the channel playbook when one defines them)
+- the site and the exact data wanted (quote the fields from the channel playbook when one defines them), or, for a download, the source URLs and the files wanted
 - the time window or count
 - stop rules
 - the output path, for example `data/social-analysis/YYYY-MM-DD/<channel>/`

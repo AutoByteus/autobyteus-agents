@@ -9,7 +9,7 @@
 
 ## Approved content (publish exactly)
 
-- Text file: `<absolute path>/final-approved.txt`
+- Text file: `<absolute path>/final-approved.txt` (or `.md` when the channel has a title, tags, or media)
 - Title / tags / summary / cover (if the channel has them): <exact values or file>
 - Media, in order:
   1. `<absolute path>` — <short description>

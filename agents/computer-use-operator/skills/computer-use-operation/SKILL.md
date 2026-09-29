@@ -54,7 +54,7 @@ Neither is a run log. Record how sites and tools work. Do not record passwords, 
 - **Install when needed.** Use the official source, and prefer a user-level or isolated install (`pipx`, a virtual environment, `~/.local/bin`) over a system-wide one. Verify the installed version before use. List every install in the report.
 - **Long jobs:** run large downloads and conversions as background processes and check their output.
 - **Access limits:** use only ordinary public access, or access the user has supplied for this task. Do not bypass DRM, paywalls, login, or access controls. Do not share or export cookies or credentials. If the source itself denies access (401/403 on the original, a login wall, a geo-block), report it instead of working around it; trying a different ordinary tool on a public source is fine.
-- **Verify outputs:** check that the file exists and is not empty, and check media duration, dimensions, and audio with a metadata probe.
+- **Verify outputs:** check that the file exists and is not empty, and check media duration, dimensions, and audio with a metadata probe (for example `ffprobe`, or `read_media_file`).
 
 ### Both capabilities
 

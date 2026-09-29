@@ -152,6 +152,17 @@ Website knowledge moved to `<marketing-workspace>/web-ui-sites/<host>/` for six 
 - Principles review fixes: knowledge files are created only once something is proven, for both sites and tools; the access rule is limited to denials from the source itself, so another ordinary tool on a public source is allowed; a YAML-breaking colon in the skill description was fixed.
 - Checks: both skills valid; JSON parses; all skill links resolve; scripts compile; no stale names outside run records.
 
+## Principles review: Computer Use Operator and Marketing Team (2026-09-29, user-requested)
+
+- Structure, ownership, flow, and routing hold. Each agent file has identity, a skill pointer, and the handoff transition. Each skill owns its loop, outcomes, and gates. `team-config.json` owns two route sets that match the produced files and outcomes. Tools fit the skills.
+- Fixed:
+  - Content Creator intro contradicted its own `read_url` use. The Operator now owns website actions and downloads, and reading public page text stays with the creator.
+  - `team.md` and the README said "content from website work"; now "computer work (websites, downloads, tools)".
+  - Collection-request fields now cover downloads.
+  - The publish-request template allows `final-approved.md`.
+  - The Operator's metadata probe names `ffprobe` or `read_media_file`.
+- Checks: both skills valid; three configs parse; the member is referenced consistently.
+
 ## Risks, questions, and blockers
 
 - Native input has not been verified on LinkedIn, X, Xiaohongshu, or Weixin Official Account text insertion. The first publish on each site should be supervised. Weixin Channels video was already native-verified.

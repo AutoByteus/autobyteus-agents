@@ -92,7 +92,7 @@ The product team independently maintains the prototype repository for each produ
 
 ## Marketing Team
 
-The [Marketing Team](agent-teams/marketing-team/team.md) separates content from website work. Its `marketing_content_creator` coordinator drafts channel-native posts, replies, and articles with the user through a draft–feedback–approval loop, then hands each approved package to the shared [Computer Use Operator](agents/computer-use-operator/agent.md), which publishes with native input and handles downloads and tool work. Private data stays in the workspace: the style library (`marketing-style/`: voice, positioning, channel guides), website and tool knowledge (`web-ui-sites/`, `computer-tools/`), and per-platform conversation folders (`linkedin/`, `x/`, …). A new channel needs only a channel guide; the Operator learns the new site on its first successful run.
+The [Marketing Team](agent-teams/marketing-team/team.md) separates content from computer work (websites, downloads, tools). Its `marketing_content_creator` coordinator drafts channel-native posts, replies, and articles with the user through a draft–feedback–approval loop, then hands each approved package to the shared [Computer Use Operator](agents/computer-use-operator/agent.md), which publishes with native input and handles downloads and tool work. Private data stays in the workspace: the style library (`marketing-style/`: voice, positioning, channel guides), website and tool knowledge (`web-ui-sites/`, `computer-tools/`), and per-platform conversation folders (`linkedin/`, `x/`, …). A new channel needs only a channel guide; the Operator learns the new site on its first successful run.
 
 ## AutoByteus Org
 

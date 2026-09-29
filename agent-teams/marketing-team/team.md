@@ -4,7 +4,7 @@ description: Creates channel-native marketing content with the user and publishe
 category: marketing-and-publishing
 ---
 
-The Marketing Team separates content from website work.
+The Marketing Team separates content from computer work (websites, downloads, tools).
 
 ## Members
 
