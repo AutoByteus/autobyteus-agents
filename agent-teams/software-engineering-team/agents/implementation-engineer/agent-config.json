@@ -10,20 +10,13 @@
     "search_web",
     "read_url",
     "send_message_to",
-    "close_tab",
-    "dom_snapshot",
-    "list_tabs",
-    "navigate_to",
-    "open_tab",
-    "read_page",
-    "run_script",
-    "screenshot",
     "edit_image",
     "generate_image",
     "generate_speech",
     "get_handoff_rules"
   ],
   "skillNames": [
-    "implementation-engineer"
+    "implementation-engineer",
+    "browser-automation"
   ]
 }
