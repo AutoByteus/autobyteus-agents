@@ -22,7 +22,8 @@
     "download_video"
   ],
   "skillNames": [
-    "shell-first-operating-practice"
+    "shell-first-operating-practice",
+    "browser-automation"
   ],
   "defaultLaunchConfig": null,
   "inputProcessorNames": [],

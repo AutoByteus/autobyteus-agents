@@ -17,7 +17,8 @@
     "speak"
   ],
   "skillNames": [
-    "software-engineering-workflow-skill"
+    "software-engineering-workflow-skill",
+    "browser-automation"
   ],
   "defaultLaunchConfig": null
 }

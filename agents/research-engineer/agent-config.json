@@ -19,7 +19,8 @@
     "screenshot"
   ],
   "skillNames": [
-    "research-engineer"
+    "research-engineer",
+    "browser-automation"
   ],
   "defaultLaunchConfig": null
 }

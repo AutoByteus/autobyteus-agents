@@ -20,6 +20,7 @@
     "send_message_to"
   ],
   "skillNames": [
-    "prototype-bootstrapper"
+    "prototype-bootstrapper",
+    "browser-automation"
   ]
 }
