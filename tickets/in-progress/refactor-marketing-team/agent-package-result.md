@@ -163,6 +163,12 @@ Website knowledge moved to `<marketing-workspace>/web-ui-sites/<host>/` for six 
   - The Operator's metadata probe names `ffprobe` or `read_media_file`.
 - Checks: both skills valid; three configs parse; the member is referenced consistently.
 
+## Task requests for any computer work (2026-09-29, user-requested)
+
+- The Operator works on the Content Creator's behalf for any computer work. `collection-request.md` became `task-request.md`, covering site data, research, reply candidates, source capture, media downloads, screenshots, and tool work. `publish-request.md` stays for publishing.
+- Updated: Content Creator intro and step 5 ("Other computer work", generalized request fields, outcome handling points to step 4); the team route rule; `team.md`; four workspace playbooks. The Operator skill already treats any request file as its task, so it needed no change. Past run records keep `collection-request.md`.
+- Checks: skill valid; config parses; no stale name in agents, team, README, or the style library.
+
 ## Risks, questions, and blockers
 
 - Native input has not been verified on LinkedIn, X, Xiaohongshu, or Weixin Official Account text insertion. The first publish on each site should be supervised. Weixin Channels video was already native-verified.

@@ -5,7 +5,7 @@ description: Create channel-native marketing content (posts, replies, comments, 
 
 # Marketing Content Creation
 
-You own the content and its record. The Computer Use Operator owns every website action and every download: publishing, posting replies, collecting site data, and downloading source files. You never operate a website or download files yourself; reading a public page's text with `read_url` is fine.
+You own the content and its record. The Computer Use Operator does computer work on your behalf: every website action (publishing, posting replies, collecting site data), downloads, and other tool work you request. You never operate a website or download files yourself; reading a public page's text with `read_url` is fine.
 
 ## Style library
 
@@ -95,15 +95,17 @@ When `task-result.md` returns:
 - **`Needs Decision`:** revise with the user, for example shortening text the site rejected, and get a new approval before sending a new request.
 - **`Blocked`:** tell the user the blocker and what they need to do.
 
-## 5. Website data, downloads, and research
+## 5. Other computer work
 
-For research, account analysis, collecting candidate posts to reply to, capturing a source, or downloading source media (for example a public video), write `collection-request.md`: in the work folder when it serves one piece (capturing a source post or downloading its source media), otherwise under `data/` (research, account analysis, reply candidates). It states:
-- the site and the exact data wanted (quote the fields from the channel playbook when one defines them), or, for a download, the source URLs and the files wanted
-- the time window or count
+For any computer work other than publishing, write `task-request.md` and hand it to the Computer Use Operator. Examples: collecting site data (research, account analysis, reply candidates), capturing a source post, downloading source media such as a public video, taking screenshots, and installing or running a tool you need. Put the request in the work folder when it serves one piece, otherwise under `data/`.
+
+The request states:
+- the goal and the exact output wanted: the site data fields (quote them from the channel playbook when one defines them), the source URLs and files for a download, or the expected result of the tool work
+- the time window or count, when collecting
 - stop rules
 - the output path, for example `data/social-analysis/YYYY-MM-DD/<channel>/`
 
-Hand it to the Computer Use Operator. Analyze the returned data with the channel's playbook when one exists, then report. Collection comes before analysis; never analyze replies without their original posts. A live reply found this way still needs its own draft and approval (steps 2–4).
+When `task-result.md` returns, handle `Blocked` and `Needs Decision` as in step 4. Analyze collected data with the channel's playbook when one exists, then report. Collection comes before analysis; never analyze replies without their original posts. A live reply found this way still needs its own draft and approval (steps 2–4).
 
 ## 6. Media
 

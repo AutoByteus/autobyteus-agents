@@ -21,7 +21,7 @@
       "to": "/computer_use_operator",
       "rules": [
         "When a publish-request.md for a user-approved channel package is saved and ready for publishing.",
-        "When a collection-request.md for website data, research, reply candidates, source capture, or media download is saved and ready."
+        "When a task-request.md for other computer work (site data, research, reply candidates, source capture, media download, screenshots, or tool work) is saved and ready."
       ]
     },
     {
