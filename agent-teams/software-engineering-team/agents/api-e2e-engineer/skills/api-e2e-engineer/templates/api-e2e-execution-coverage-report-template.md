@@ -135,7 +135,7 @@ Carry forward the post-repository scores from the coverage investigation and rec
 ## Desktop Application Validation (When Applicable)
 
 - Validation approach executed and any deviation from the investigation:
-- Browser-tested web-equivalent behavior and evidence:
+- Web-equivalent behavior, surface used, and evidence:
 - Shell-specific or lifecycle behavior and evidence:
 - Effect on any already-running desktop application: `None` / explain
 - Behavior not directly proven and confidence consequence:
@@ -228,5 +228,5 @@ This is the API/E2E engineer's evidence-based recommendation. On `Fail`, `code_r
 - Any final applicable confidence category below `90%`: `No` / `Yes` — list:
 - Broader validation decision:
 - Critical acceptance criteria lacking direct proof:
-- Required next recipient (`Pass` -> `code_reviewer` for proportional test-code review; `Fail` -> `code_reviewer` for focused failure-origin review; `Blocked` -> user request):
+- Next recipient from `get_handoff_rules` (`Blocked` -> user request):
 - Notes:

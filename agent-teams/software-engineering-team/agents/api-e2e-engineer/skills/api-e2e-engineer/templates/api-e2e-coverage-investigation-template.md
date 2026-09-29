@@ -69,6 +69,7 @@ Identify behavior added, changed, removed, or intentionally preserved.
 
 - Assigned task worktree / workspace:
 - Project type and runtime stack:
+- Project testing guideline path(s), or `No project testing guideline found`:
 - Conflicting, missing, or unclear project instructions:
 - Required environment variables or secrets available: `Yes` / `No` / `N/A` (do not record secret values)
 
@@ -191,7 +192,7 @@ Score each applicable category from `0%` to `100%`. Use `N/A` only with a concre
 ## Desktop Application Validation Decision (When Applicable)
 
 - Desktop framework / shell:
-- Relevant README or development instructions:
+- Testing guideline, README, or development instructions used:
 - Web-equivalent behavior:
 - Shell-specific or lifecycle behavior:
 - Chosen validation approach and why it fits the project:

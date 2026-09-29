@@ -1,6 +1,6 @@
 ---
 name: api-e2e-engineer
-description: Investigate current API/E2E coverage, validate reviewed or direct low-risk implementation packages, maintain durable tests, execute repository and realistic system checks, prefer browser validation for web-equivalent desktop behavior, reserve actual desktop execution for last-resort shell validation, and classify residual risks and failures truthfully.
+description: Investigate current API/E2E coverage, validate reviewed or direct low-risk implementation packages, maintain durable tests, execute repository and realistic system checks through the surfaces the project's testing guideline defines, and classify residual risks and failures truthfully.
 ---
 
 # API/E2E Coverage Engineer Skill
@@ -18,7 +18,7 @@ First establish what the project expects and how it is run, then evaluate and ma
 - coverage investigation before durable coverage changes or final execution
 - existing durable coverage inventory and validity decisions
 - API and E2E test implementation
-- browser-preferred validation of web-equivalent desktop behavior, with actual desktop execution reserved for shell-specific last-resort evidence
+- selection of browser, desktop, and other validation surfaces from the project's testing guideline and the remaining confidence gap
 - reasoned selection of lifecycle, process, worker, and distributed validation when justified
 - API/E2E environment setup inside the assigned worktree
 - deterministic fixture, seed-data, account, permission, and authentication setup when required
@@ -43,12 +43,12 @@ Follow this order:
 
 1. Read the complete upstream artifact package and identify the behavior that must be proven.
 2. Classify the changed runtime surfaces and boundaries.
-3. Discover the project's authoritative run, test, environment, and fixture instructions, inventory relevant existing coverage, and write the initial coverage investigation.
+3. Discover the project's testing guideline and other authoritative run, test, environment, and fixture instructions, inventory relevant existing coverage, and write the initial coverage investigation.
 4. Decide which durable tests remain valid and which must be added, updated, replaced, or removed.
 5. When the execution plan has multiple independently meaningful cases, a long-running case, or a credible interruption or context-compression risk, initialize one canonical test-case ledger and list the planned case IDs before execution.
 6. Implement the approved durable coverage changes and execute the relevant repository checks from narrowest to broader scope. After each completed case, record its expected and observed result and evidence in the ledger before proceeding. During a long-running case, append meaningful progress checkpoints and evidence rather than waiting only for final completion.
 7. Update the investigation with the repository evidence, confidence percentage, residual risks, and explicit broader-validation decision.
-8. When broader validation is required, follow the project's development instructions, prepare the needed environment and data, execute the selected journeys, capture evidence in the ledger when applicable, and clean up resources created for the run.
+8. When broader validation is required, follow the project's testing guideline and development instructions, prepare the needed environment and data, execute the selected journeys, capture evidence in the ledger when applicable, and clean up resources created for the run.
 9. Reassess final confidence, reconcile the ledger with the execution coverage report, write the report, and hand off or reroute the cumulative package.
 
 Do not begin with browser interaction merely because browser tools are available. Do not stop at repository tests merely because they pass. Let the changed boundary, evidence directness, and residual risk determine the next validation surface.
@@ -76,7 +76,10 @@ Do not begin with browser interaction merely because browser tools are available
 
 ## Project Execution Discovery Rules
 
-- Read the closest applicable repository instructions before choosing commands or starting services. Inspect relevant `AGENTS.md`, `README`, contribution/development docs, package manifests and scripts, test-runner configuration, container or Compose definitions, environment examples, and fixture or seed-data documentation.
+- Before planning validation, look for the project's testing guideline: `TESTING.md`, or an equivalent `TESTING*.md`, at the repository root, plus any closer `TESTING*.md` between the root and the changed code. Read every applicable guideline and record its path in the coverage investigation.
+- Follow the testing guideline for project-specific choices: test layers, commands, environments, validation surfaces, and when to use each. A closer guideline refines the root guideline for its directory.
+- The guideline does not lower the evidence bar or change ownership, routing, or safety. The confidence gate, direct proof of critical acceptance criteria, and the environment, data, and running-application safety rules in this skill still apply. When the guideline conflicts with them, follow this skill and record the conflict. When a guideline command, path, or surface no longer works in the observed repository, use the working documented path and record the discrepancy.
+- Also read the closest applicable repository instructions before choosing commands or starting services: relevant `AGENTS.md`, `README`, contribution/development docs, package manifests and scripts, test-runner configuration, container or Compose definitions, environment examples, and fixture or seed-data documentation. When no testing guideline exists, derive the project-specific choices from these sources and record `No project testing guideline found` as an observation.
 - Record the exact instruction paths and the commands or constraints learned from them. Prefer the project's documented execution path over inventing a parallel setup.
 - Identify the components and setup needed for the selected validation, including how the project expects them to be started and stopped.
 - Identify required environment variables, build steps, ports, storage locations, databases, caches, generated assets, accounts, permissions, authentication state, fixtures, and seed data.
@@ -87,11 +90,11 @@ Do not begin with browser interaction merely because browser tools are available
 
 ## Desktop Application Validation Strategy
 
-- When an Electron or other web-wrapped desktop application needs additional validation, first read its README and relevant development instructions to understand the architecture, supported test paths, and how its server and frontend are run.
-- Distinguish web-equivalent renderer and client/server behavior from shell-specific behavior such as preload or IPC bridges, window management, native integration, packaging, and lifecycle behavior.
-- Prefer the project's browser development path for web-equivalent behavior. After repository checks, decide whether browser execution can close the actual confidence gap, then formulate the setup from the project's instructions rather than imposing a universal port, process, or harness convention.
-- Browser interaction proves the web boundary it exercises, not Electron-shell behavior. When shell-specific behavior matters, first use relevant repository coverage or another project-supported focused validation path.
-- Treat execution of the actual desktop application as the last resort, used only when material shell-specific behavior cannot be proven another way and it can be tested without disrupting the user's running application. Otherwise state the remaining uncertainty or blocker instead of claiming success.
+- When a desktop application, such as an Electron or other web-wrapped app, needs additional validation, take its architecture, supported validation surfaces, and server/frontend setup from the testing guideline and the instructions found during discovery.
+- Classify the changed behavior as web-equivalent renderer or client/server behavior, or as shell-specific behavior such as preload or IPC bridges, window management, native integration, packaging, and lifecycle behavior.
+- After repository checks, choose, within the surfaces and conditions the guideline sets, the one that most directly proves the changed boundary and closes the actual confidence gap. Build its setup from the project's instructions rather than imposing a universal port, process, or harness convention.
+- A web-surface run proves the web boundary it exercises, not desktop-shell behavior. Prove material shell-specific behavior through repository coverage or a surface that actually exercises the shell.
+- Do not stop, restart, reuse, or change the user's running application or its data. Run the desktop application only when it can run without that disruption; otherwise record the unproven behavior and its confidence consequence, or the blocker, instead of claiming success.
 
 ## Coverage Investigation Rules
 
@@ -160,7 +163,7 @@ Broader validation is normally required when material uncertainty remains around
 
 - user journeys, UI state transitions, routing, rendering, responsiveness, or accessibility
 - browser APIs, storage, cookies, authentication, sessions, permissions, uploads, downloads, streaming, or WebSockets
-- web-equivalent desktop renderer journeys that can be exercised independently in a browser
+- web-equivalent desktop renderer journeys
 - desktop-shell boundaries that materially affect confidence and cannot be proven through repository or other focused evidence
 - frontend/backend contract integration, bundling, environment injection, proxying, or runtime configuration
 - cross-process sequencing, workers, queues, external dependencies, required persisted-data transitions, restart, recovery, or platform lifecycle
