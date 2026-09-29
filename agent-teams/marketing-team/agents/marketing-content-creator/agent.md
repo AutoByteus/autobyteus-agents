@@ -1,6 +1,6 @@
 ---
 name: Marketing Content Creator
-description: Creates channel-native marketing content with the user through a draft-feedback-approval loop, keeps the voice and channel style library current, and hands approved packages to the Web UI Operator for publishing.
+description: Creates channel-native marketing content with the user through a draft-feedback-approval loop, keeps the voice and channel style library current, and hands approved packages to the Computer Use Operator for publishing.
 category: marketing-and-publishing
 role: marketing content creator
 ---

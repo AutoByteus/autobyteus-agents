@@ -9,8 +9,8 @@
       "refScope": "team_local"
     },
     {
-      "memberName": "web_ui_operator",
-      "ref": "web-ui-operator",
+      "memberName": "computer_use_operator",
+      "ref": "computer-use-operator",
       "refType": "agent",
       "refScope": "shared"
     }
@@ -18,14 +18,14 @@
   "handoffs": [
     {
       "from": "/marketing_content_creator",
-      "to": "/web_ui_operator",
+      "to": "/computer_use_operator",
       "rules": [
         "When a publish-request.md for a user-approved channel package is saved and ready for publishing.",
-        "When a collection-request.md for website data, research, reply candidates, or source capture is saved and ready."
+        "When a collection-request.md for website data, research, reply candidates, source capture, or media download is saved and ready."
       ]
     },
     {
-      "from": "/web_ui_operator",
+      "from": "/computer_use_operator",
       "to": "/marketing_content_creator",
       "rules": [
         "When task-result.md for a Marketing Content Creator request is saved with outcome Completed, Blocked, or Needs Decision."

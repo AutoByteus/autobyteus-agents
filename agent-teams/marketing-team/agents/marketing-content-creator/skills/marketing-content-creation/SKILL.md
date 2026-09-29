@@ -1,11 +1,11 @@
 ---
 name: marketing-content-creation
-description: Create channel-native marketing content (posts, replies, comments, articles, carousels, short videos) with the user through a saved draft-feedback-approval loop, using and updating the workspace style library, then hand each approved package to the Web UI Operator for publishing and record the result. Also covers cross-posts, new channels, and analysis of site data the operator collects.
+description: Create channel-native marketing content (posts, replies, comments, articles, carousels, short videos) with the user through a saved draft-feedback-approval loop, using and updating the workspace style library, then hand each approved package to the Computer Use Operator for publishing and record the result. Also covers cross-posts, new channels, and analysis of site data the operator collects.
 ---
 
 # Marketing Content Creation
 
-You own the content and its record. The Web UI Operator owns every website action: publishing, posting replies, and collecting data from sites. You never operate a website yourself.
+You own the content and its record. The Computer Use Operator owns every website action and every acquisition from outside the workspace: publishing, posting replies, collecting site data, and downloading source files. You never operate a website or download source files yourself.
 
 ## Style library
 
@@ -59,7 +59,7 @@ Research and analysis data goes under `data/`.
    - `source-material.md` for your own post: user notes, links, media, and constraints.
    - `source-post.md` for a reply or comment: the full visible post or comment being answered, its URL, and its media.
 
-   Read public links the user supplies with `read_url`. If the source needs the browser or a login (a target post, a paywall-prone article), ask the Web UI Operator (step 5).
+   Read public links the user supplies with `read_url`. If the source needs the browser or a login (a target post, a paywall-prone article), ask the Computer Use Operator (step 5).
 4. Ask only for inputs you cannot infer and that would change the draft.
 
 ## 2. Draft and revise
@@ -86,7 +86,7 @@ On approval, save:
 
 If the text or media changes after approval, save a new draft and ask again.
 
-## 4. Publish through the Web UI Operator
+## 4. Publish through the Computer Use Operator
 
 Write `publish-request.md` in the work folder from [publish-request-template.md](templates/publish-request-template.md), then hand it off. Send one request per channel.
 
@@ -95,15 +95,15 @@ When `task-result.md` returns:
 - **`Needs Decision`:** revise with the user, for example shortening text the site rejected, and get a new approval before sending a new request.
 - **`Blocked`:** tell the user the blocker and what they need to do.
 
-## 5. Website data and research
+## 5. Website data, downloads, and research
 
-For research, account analysis, collecting candidate posts to reply to, or capturing a source, write `collection-request.md`: in the work folder when it serves one piece (capturing a source post), otherwise under `data/` (research, account analysis, reply candidates). It states:
+For research, account analysis, collecting candidate posts to reply to, capturing a source, or downloading source media (for example a public video), write `collection-request.md`: in the work folder when it serves one piece (capturing a source post or downloading its source media), otherwise under `data/` (research, account analysis, reply candidates). It states:
 - the site and the exact data wanted (quote the fields from the channel playbook when one defines them)
 - the time window or count
 - stop rules
 - the output path, for example `data/social-analysis/YYYY-MM-DD/<channel>/`
 
-Hand it to the Web UI Operator. Analyze the returned data with the channel's playbook when one exists, then report. Collection comes before analysis; never analyze replies without their original posts. A live reply found this way still needs its own draft and approval (steps 2–4).
+Hand it to the Computer Use Operator. Analyze the returned data with the channel's playbook when one exists, then report. Collection comes before analysis; never analyze replies without their original posts. A live reply found this way still needs its own draft and approval (steps 2–4).
 
 ## 6. Media
 
@@ -119,7 +119,7 @@ If no channel guide exists:
 1. Draft from the voice.
 2. Ask only what changes the draft: format, length, language, and audience.
 3. After the first approved piece, create `channels/<channel>/content-guide.md` from [channel-guide-template.md](templates/channel-guide-template.md) with what the user confirmed.
-4. Publishing uses the same request to the Web UI Operator, which learns the new site on its first successful run.
+4. Publishing uses the same request to the Computer Use Operator, which learns the new site on its first successful run.
 
 ## 8. Product input needed
 

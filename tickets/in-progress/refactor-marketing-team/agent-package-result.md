@@ -142,6 +142,16 @@ Website knowledge moved to `<marketing-workspace>/web-ui-sites/<host>/` for six 
 - `autobyteus-org/org.md` and the README no longer describe the team as private; the README gains a Marketing Team entry. The workspace's local skill link now points to the public path.
 - Checks: JSON parses; skill valid; shared member `web-ui-operator` exists here; no personal references remain in the team package.
 
+## Web UI Operator became the Computer Use Operator (2026-09-29, user-requested)
+
+- Trigger: in a live run (a Xiaohongshu roundup that needed source videos), the Operator declined to install and run `yt-dlp` because its scope was "websites, via native UI". The Content Creator is barred from operating websites or downloading, so no member owned plain computer work.
+- The agent was renamed with `git mv`: `agents/web-ui-operator` → `agents/computer-use-operator`, and its skill `website-knowledge-automation` → `computer-use-operation`.
+- The skill has one task loop with two capabilities. Websites keep every prior rule (`web-ui-automation`, site knowledge, helper scripts, active-window check). Computer tools cover the shell, installs from official sources (user-level or isolated first, all reported), background jobs, access limits (no DRM, login, or paywall bypass; no cookie or credential sharing; a denial from the source itself is reported), and output checks. New tool knowledge lives at `computer-tools/<tool>.md` (new template). The shared confirmation gate, human checkpoints, and outcome classes are unchanged.
+- Tools added: background processes, `download_media`, `download_video`, `download_audio`, `read_media_file`.
+- Marketing Team: member `computer_use_operator` (ref `computer-use-operator`); collection requests now cover media downloads. The Content Creator's wording, `team.md`, the README, and the workspace style library use the new name. Past run records are unedited.
+- Principles review fixes: knowledge files are created only once something is proven, for both sites and tools; the access rule is limited to denials from the source itself, so another ordinary tool on a public source is allowed; a YAML-breaking colon in the skill description was fixed.
+- Checks: both skills valid; JSON parses; all skill links resolve; scripts compile; no stale names outside run records.
+
 ## Risks, questions, and blockers
 
 - Native input has not been verified on LinkedIn, X, Xiaohongshu, or Weixin Official Account text insertion. The first publish on each site should be supervised. Weixin Channels video was already native-verified.

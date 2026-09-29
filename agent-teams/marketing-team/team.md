@@ -1,6 +1,6 @@
 ---
 name: Marketing Team
-description: Creates channel-native marketing content with the user and publishes approved content on any website through the Web UI Operator.
+description: Creates channel-native marketing content with the user and publishes approved content on any website through the Computer Use Operator.
 category: marketing-and-publishing
 ---
 
@@ -9,7 +9,7 @@ The Marketing Team separates content from website work.
 ## Members
 
 - `marketing_content_creator`: the entry point. Owns briefs, drafts, the user's feedback and approval loop, media, the workspace style library (`marketing-style/`), platform content folders (`linkedin/`, `x/`, …), and published records for every channel.
-- `web_ui_operator`: the shared Web UI Operator. Owns every website action (publishing, replying, collecting data) using real mouse and keyboard input, and keeps per-site knowledge in `web-ui-sites/`.
+- `computer_use_operator`: the shared Computer Use Operator. Owns every website action (publishing, replying, collecting data) using real mouse and keyboard input, and computer work such as downloading source media or installing the tools for it. Keeps site knowledge in `web-ui-sites/` and tool knowledge in `computer-tools/`.
 
 ## Cooperation
 

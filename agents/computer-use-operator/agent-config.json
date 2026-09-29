@@ -4,6 +4,9 @@
     "write_file",
     "edit_file",
     "run_bash",
+    "start_background_process",
+    "get_process_output",
+    "stop_background_process",
     "list_tabs",
     "open_tab",
     "navigate_to",
@@ -12,12 +15,16 @@
     "read_page",
     "run_script",
     "screenshot",
+    "download_media",
+    "download_video",
+    "download_audio",
+    "read_media_file",
     "get_handoff_rules",
     "send_message_to"
   ],
   "skillNames": [
     "web-ui-automation",
-    "website-knowledge-automation"
+    "computer-use-operation"
   ],
   "defaultLaunchConfig": null,
   "avatarUrl": null

@@ -38,9 +38,9 @@ The paper research assistant is a standalone agent for the common paper-reading 
 
 The [Agent Package Creator](agents/agent-package-creator/agent.md) creates and updates standalone skills, individual Agents, Agent Teams, and Agent Orgs, including skills bundled with new roles when needed. Its bundled [`agent-package-creation`](agents/agent-package-creator/skills/agent-package-creation/SKILL.md) skill owns the two operation modes (`create` and `update`) and links the practical principles and examples.
 
-### Web UI Operator
+### Computer Use Operator
 
-The [Web UI Operator](agents/web-ui-operator/agent.md) completes user tasks on any website through the visible browser UI, using the shared `web-ui-automation` skill. Its bundled [`website-knowledge-automation`](agents/web-ui-operator/skills/website-knowledge-automation/SKILL.md) skill keeps one knowledge file per website (`web-ui-sites/<site>/site-knowledge.md`: elements, locate scripts, operation SOPs, pitfalls) in the current workspace, so later tasks on the same site are fast.
+The [Computer Use Operator](agents/computer-use-operator/agent.md) completes user tasks on the computer. It operates websites through the visible browser UI with native input (shared `web-ui-automation` skill), and uses command-line tools, installed software, downloads, and media files for other work. Its bundled [`computer-use-operation`](agents/computer-use-operator/skills/computer-use-operation/SKILL.md) skill keeps workspace knowledge per website (`web-ui-sites/<site>/site-knowledge.md`: elements, locate scripts, operation SOPs, pitfalls) and per tool (`computer-tools/<tool>.md`: install, working commands, pitfalls), so later tasks are fast.
 
 ## Software Development Department
 
@@ -92,7 +92,7 @@ The product team independently maintains the prototype repository for each produ
 
 ## Marketing Team
 
-The [Marketing Team](agent-teams/marketing-team/team.md) separates content from website work. Its `marketing_content_creator` coordinator drafts channel-native posts, replies, and articles with the user through a draft–feedback–approval loop, then hands each approved package to the shared [Web UI Operator](agents/web-ui-operator/agent.md), which publishes with native input. Private data stays in the workspace: the style library (`marketing-style/`: voice, positioning, channel guides), website knowledge (`web-ui-sites/`), and per-platform conversation folders (`linkedin/`, `x/`, …). A new channel needs only a channel guide; the Operator learns the new site on its first successful run.
+The [Marketing Team](agent-teams/marketing-team/team.md) separates content from website work. Its `marketing_content_creator` coordinator drafts channel-native posts, replies, and articles with the user through a draft–feedback–approval loop, then hands each approved package to the shared [Computer Use Operator](agents/computer-use-operator/agent.md), which publishes with native input and handles downloads and tool work. Private data stays in the workspace: the style library (`marketing-style/`: voice, positioning, channel guides), website and tool knowledge (`web-ui-sites/`, `computer-tools/`), and per-platform conversation folders (`linkedin/`, `x/`, …). A new channel needs only a channel guide; the Operator learns the new site on its first successful run.
 
 ## AutoByteus Org
 
