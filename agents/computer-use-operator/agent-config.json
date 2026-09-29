@@ -25,7 +25,5 @@
   "skillNames": [
     "web-ui-automation",
     "computer-use-operation"
-  ],
-  "defaultLaunchConfig": null,
-  "avatarUrl": null
+  ]
 }

@@ -8,13 +8,5 @@
     "send_message_to",
     "get_handoff_rules"
   ],
-  "skillNames": [],
-  "inputProcessorNames": [],
-  "llmResponseProcessorNames": [],
-  "systemPromptProcessorNames": [],
-  "toolExecutionResultProcessorNames": [],
-  "toolInvocationPreprocessorNames": [],
-  "lifecycleProcessorNames": [],
-  "avatarUrl": null,
-  "defaultLaunchConfig": null
+  "skillNames": []
 }
