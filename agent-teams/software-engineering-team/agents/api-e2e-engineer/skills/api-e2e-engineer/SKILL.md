@@ -51,7 +51,7 @@ Follow this order:
 8. When broader validation is required, follow the project's testing guideline and development instructions, prepare the needed environment and data, execute the selected journeys, capture evidence in the ledger when applicable, and clean up resources created for the run.
 9. Reassess final confidence, reconcile the ledger with the execution coverage report, write the report, and hand off or reroute the cumulative package.
 
-Do not begin with browser interaction merely because browser automation is available. Do not stop at repository tests merely because they pass. Let the changed boundary, evidence directness, and residual risk determine the next validation surface.
+Do not begin with browser interaction merely because browser tools are available. Do not stop at repository tests merely because they pass. Let the changed boundary, evidence directness, and residual risk determine the next validation surface.
 
 ## Artifact Location Rule
 
