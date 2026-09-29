@@ -18,7 +18,7 @@ Use `.claude/skills/agent-package-creation/references/result-and-handoff-contrac
 - all six Software Engineering Team members, including three without browser tools (architecture reviewer, code reviewer, delivery engineer), as requested;
 - every other Agent in this repository that has browser tools (10 configs).
 
-The marketing team is covered through its shared member `computer-use-operator`; its local `marketing-content-creator` has no browser tools and is unchanged. Browser tools stay on every Agent: a first draft removed them from Software Engineering members, and that was reverted at the user's direction. The API/E2E config keeps the empty processor/launch keys from the user's earlier edit.
+The marketing team is covered through its shared member `computer-use-operator`; its local `marketing-content-creator` has no browser tools and is unchanged. Browser tools stay on every Agent: a first draft removed them from Software Engineering members, and that was reverted at the user's direction.
 
 ## Ownership and design decisions
 

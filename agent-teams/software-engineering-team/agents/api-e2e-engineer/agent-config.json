@@ -23,12 +23,5 @@
   "skillNames": [
     "api-e2e-engineer",
     "browser-automation"
-  ],
-  "inputProcessorNames": [],
-  "llmResponseProcessorNames": [],
-  "toolExecutionResultProcessorNames": [],
-  "toolInvocationPreprocessorNames": [],
-  "lifecycleProcessorNames": [],
-  "avatarUrl": null,
-  "defaultLaunchConfig": null
+  ]
 }
