@@ -10,13 +10,5 @@
   ],
   "skillNames": [
     "perspective-miner"
-  ],
-  "inputProcessorNames": [],
-  "llmResponseProcessorNames": [],
-  "systemPromptProcessorNames": [],
-  "toolExecutionResultProcessorNames": [],
-  "toolInvocationPreprocessorNames": [],
-  "lifecycleProcessorNames": [],
-  "avatarUrl": null,
-  "defaultLaunchConfig": null
+  ]
 }

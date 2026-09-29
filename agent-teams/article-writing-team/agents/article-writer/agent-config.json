@@ -16,13 +16,5 @@
   "skillNames": [
     "article-researcher",
     "article-writing"
-  ],
-  "inputProcessorNames": [],
-  "llmResponseProcessorNames": [],
-  "systemPromptProcessorNames": [],
-  "toolExecutionResultProcessorNames": [],
-  "toolInvocationPreprocessorNames": [],
-  "lifecycleProcessorNames": [],
-  "avatarUrl": null,
-  "defaultLaunchConfig": null
+  ]
 }

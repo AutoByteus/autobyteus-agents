@@ -18,13 +18,5 @@
     "video_editing_add_text_overlay",
     "get_handoff_rules",
     "send_message_to"
-  ],
-  "inputProcessorNames": [],
-  "llmResponseProcessorNames": [],
-  "systemPromptProcessorNames": [],
-  "toolExecutionResultProcessorNames": [],
-  "toolInvocationPreprocessorNames": [],
-  "lifecycleProcessorNames": [],
-  "avatarUrl": null,
-  "defaultLaunchConfig": null
+  ]
 }

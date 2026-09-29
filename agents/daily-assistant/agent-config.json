@@ -23,12 +23,5 @@
   ],
   "skillNames": [
     "shell-first-operating-practice"
-  ],
-  "defaultLaunchConfig": null,
-  "inputProcessorNames": [],
-  "llmResponseProcessorNames": [],
-  "toolExecutionResultProcessorNames": [],
-  "toolInvocationPreprocessorNames": [],
-  "lifecycleProcessorNames": [],
-  "avatarUrl": null
+  ]
 }

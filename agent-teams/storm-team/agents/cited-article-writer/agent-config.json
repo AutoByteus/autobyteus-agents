@@ -10,13 +10,5 @@
   ],
   "skillNames": [
     "cited-article-writer"
-  ],
-  "inputProcessorNames": [],
-  "llmResponseProcessorNames": [],
-  "systemPromptProcessorNames": [],
-  "toolExecutionResultProcessorNames": [],
-  "toolInvocationPreprocessorNames": [],
-  "lifecycleProcessorNames": [],
-  "avatarUrl": null,
-  "defaultLaunchConfig": null
+  ]
 }

@@ -10,13 +10,5 @@
   ],
   "skillNames": [
     "topic-research-coordinator"
-  ],
-  "inputProcessorNames": [],
-  "llmResponseProcessorNames": [],
-  "systemPromptProcessorNames": [],
-  "toolExecutionResultProcessorNames": [],
-  "toolInvocationPreprocessorNames": [],
-  "lifecycleProcessorNames": [],
-  "avatarUrl": null,
-  "defaultLaunchConfig": null
+  ]
 }
