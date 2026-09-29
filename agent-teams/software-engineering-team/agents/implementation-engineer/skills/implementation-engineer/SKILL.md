@@ -9,9 +9,9 @@ description: Execute a completed design against approved requirements, validate 
 
 Implement the completed design against its approved requirements basis.
 Validate the changed implementation—including the rendered result for
-frontend-affecting work—preserve or evidence-basedly update the task-size and
-architectural-risk classification, and prepare the handoff for the route
-selected by the completed result.
+frontend-affecting work—keep the task-size and architectural-risk
+classification or update it from evidence, and prepare the handoff for the
+route selected by the completed result.
 
 ## You Own
 
@@ -67,6 +67,7 @@ Use [templates/implementation-revision-record-template.md](templates/implementat
   decision or deferred-risk rationale wrong, return `Design Impact` instead
   of patching around an architecture-owned decision.
 - Treat API test authoring, API test execution, E2E tests, broader executable coverage, API/E2E environment bring-up beyond normal implementation needs, and pass/fail classification as owned by `api_e2e_engineer`, not by you.
+- Before running local checks, read the project's testing guideline: `TESTING.md`, or an equivalent `TESTING*.md`, at the repository root, plus any closer `TESTING*.md` between the root and the changed code. Take commands and preview surfaces from it; without one, use the README, development instructions, and package scripts. The guideline selects how to check, not who owns the check.
 - If you run local checks, keep them implementation-scoped and report them as local implementation checks, not as downstream API/E2E sign-off.
 - Replace in-scope behavior cleanly without compatibility wrappers, dual-path reads/writes, or legacy fallback branches.
 - Follow the design's persisted-data transition decision; do not create migration
@@ -121,7 +122,7 @@ against the completed implementation and local evidence.
 
 - Apply this loop only when the change affects a rendered frontend or user interaction. For backend-only or otherwise non-visual work, record `Not Applicable` with a short reason in the handoff.
 - Before and during implementation, inspect the approved UI/UX or interaction specification when present, the project's design system or shared components, and relevant adjacent surfaces. Preserve the product's established visual language unless an approved requirement changes it.
-- Read the project README and relevant development instructions, then use the project-supported development or preview surface that represents the changed UI. For a web-rendered desktop application, prefer its browser or development renderer when that faithfully exercises the UI; do not disrupt an unrelated user-running desktop process merely to inspect web-equivalent behavior.
+- Use the preview or validation surface that the project's testing guideline names for the changed UI. Without one, use the development or preview surface from the README or development instructions that represents the changed UI. Do not disrupt an unrelated user-running desktop process merely to inspect web-equivalent behavior.
 - After implementation, render and interact with the affected surface through the relevant states. Use judgment to inspect requirement and journey fidelity, visual hierarchy, layout, spacing, alignment, typography, labels, component consistency, responsive behavior, and applicable loading, empty, error, disabled, focus, keyboard, or accessibility states.
 - Iterate on the implementation until observed visual or interaction defects within scope are corrected. Screenshots may support the handoff, but direct inspection and interaction are the validation; a screenshot alone is not.
 - If the surface cannot be rendered or a relevant state cannot be exercised, state the concrete limitation and remaining uncertainty in the handoff instead of claiming visual verification.

@@ -101,7 +101,7 @@ For frontend-affecting work, summarize the implementation feedback loop without 
 - Affected surfaces / journeys:
 - Approved UI/UX, interaction, requirement, or design references:
 - Existing design system, shared components, and adjacent product surfaces reviewed:
-- Project development / preview instructions and rendered surface used:
+- Testing guideline or development / preview instructions and rendered surface used:
 - States, layouts, viewports, and interactions inspected:
 - Visual or interaction issues found and corrected:
 - Supporting evidence and remaining unverified states or limitations:
