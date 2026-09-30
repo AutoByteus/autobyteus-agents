@@ -5,6 +5,7 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 Keep one canonical investigation path across reruns.
 Do not create versioned copies by default.
 Update this artifact whenever new evidence changes a test-validity or coverage decision.
+Omit a section marked `(When Applicable)` when it does not apply. For any other table with nothing to record, write `None`.
 
 ## Investigation Meta
 
@@ -104,7 +105,7 @@ Identify behavior added, changed, removed, or intentionally preserved.
 
 List relevant repository-resident API, E2E, integration, lifecycle, CLI, or executable coverage artifacts for the changed scope.
 
-| Path / Scenario | Current Assertion Or Intent | Related Requirement / Acceptance Criteria / Design | Validity Decision (`Still Valid`/`Needs Update`/`Stale / Remove`/`Replace`/`Out Of Scope`/`Unclear`) | Evidence | Action |
+| Path / Test | Current Assertion Or Intent | Related Requirement / Acceptance Criteria / Design | Validity Decision (`Still Valid`/`Needs Update`/`Stale / Remove`/`Replace`/`Out Of Scope`/`Unclear`) | Evidence | Action |
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
 
@@ -116,29 +117,23 @@ Decision rules:
 - `Out Of Scope`: the artifact is not relevant to this task's changed behavior.
 - `Unclear`: upstream requirements or design do not decide the test's validity.
 
-## Stale Or Obsolete Coverage Decisions
-
-Use this section before deleting or disabling existing durable coverage.
-
-| Path / Scenario | Obsolete Assertion | Why It Is Obsolete | Upstream Evidence | Replacement Coverage | No-Replacement Rationale |
-| --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |
-
 ## Durable Coverage To Add
 
-| Scenario ID | Behavior / Boundary | Requirement / Acceptance Criteria / Design Evidence | Planned Artifact / Path | Why Durable Coverage Is Needed |
+| Case ID | Behavior / Boundary | Requirement / Acceptance Criteria / Design Evidence | Planned Artifact / Path | Why Durable Coverage Is Needed |
 | --- | --- | --- | --- | --- |
 |  |  |  |  |  |
 
 ## Durable Coverage To Update
 
-| Scenario ID | Existing Path / Scenario | Required Update | Requirement / Acceptance Criteria / Design Evidence | Notes |
+| Case ID | Existing Path / Test | Required Update | Requirement / Acceptance Criteria / Design Evidence | Notes |
 | --- | --- | --- | --- | --- |
 |  |  |  |  |  |
 
 ## Durable Coverage To Remove
 
-| Existing Path / Scenario | Removal Reason | Requirement / Acceptance Criteria / Design Evidence | Replacement Or No-Replacement Decision |
+Complete this before deleting or disabling existing durable coverage.
+
+| Existing Path / Test | Obsolete Assertion And Why | Requirement / Acceptance Criteria / Design Evidence | Replacement Coverage Or No-Replacement Rationale |
 | --- | --- | --- | --- |
 |  |  |  |  |
 
@@ -150,18 +145,10 @@ Plan the narrowest relevant checks first and the broader affected suites afterwa
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
 
-## Test-Case Ledger Plan (When Applicable)
-
-Use one canonical `api-e2e-test-case-ledger.md` when execution contains multiple independently meaningful cases, a long-running case, or a credible interruption or context-compression risk. Initialize it before execution and update it immediately after each completed case. Do not create one file per case.
+## Test-Case Ledger Decision
 
 - Ledger required: `Yes` / `No` — explain the execution shape and risk:
-- Canonical ledger path:
-- Ledger initialized before execution: `No` / `Yes`
-- Case granularity: independently meaningful scenario, journey, lifecycle check, or temporary probe; not every assertion or internal step
-
-| Case ID | Case / Journey | Requirement / Acceptance-Criteria IDs | Boundary / Execution Surface | Planned Command Or Entry Point | Planned Order | Evidence Expected |
-| --- | --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |  |
+- Canonical ledger path (the ledger holds the planned cases):
 
 ## Post-Repository Confidence Scorecard (Mandatory)
 
@@ -219,7 +206,7 @@ Score each applicable category from `0%` to `100%`. Use `N/A` only with a concre
 
 ## Temporary Executable Validation Plan
 
-| Scenario ID | Probe / Harness / Runtime Setup | Behavior Proven | Why This Should Not Remain As Durable Coverage |
+| Case ID | Probe / Harness / Runtime Setup | Behavior Proven | Why This Should Not Remain As Durable Coverage |
 | --- | --- | --- | --- |
 |  |  |  |  |
 
@@ -231,7 +218,7 @@ Score each applicable category from `0%` to `100%`. Use `N/A` only with a concre
 
 ## Ambiguities Or Reroute Triggers
 
-| Issue | Classification (`Requirement Gap`/`Design Impact`/`Unclear`/`Local Fix`) | Evidence | Recommended Recipient |
+| Issue | Classification (`Requirement Gap`/`Design Impact`/`Unclear`/`Local Fix`) | Evidence | Recommended Owner |
 | --- | --- | --- | --- |
 |  |  |  |  |
 
@@ -242,5 +229,5 @@ Score each applicable category from `0%` to `100%`. Use `N/A` only with a concre
 - Post-repository confidence:
 - Broader validation decision:
 - Reroute Required Before Validation Execution: `No` / `Yes`
-- Recommended Recipient If Reroute Required:
+- Recommended Owner If Reroute Required:
 - Notes:

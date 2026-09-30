@@ -4,7 +4,8 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 Keep one canonical execution coverage report path across reruns.
 Do not create versioned copies by default.
-After every completed API/E2E validation round, update this report to the latest complete result and create or append the corresponding entry in `api-e2e-revision-record.md`. The first completed round creates `API-REV-001` with prior result and confidence `N/A`; later rounds recheck prior unresolved failures first. The latest canonical report is authoritative; the revision record preserves concise round history.
+After every completed API/E2E validation round, update this report to the latest complete result and add the round's entry to `api-e2e-revision-record.md`.
+Omit a section marked `(When Applicable)` when it does not apply. For any other table with nothing to record, write `None`.
 Execution may cover API, browser UI, a web-equivalent desktop renderer through the project's development workflow, project-supported desktop validation, CLI, process/lifecycle, integration, or distributed checks depending on the real boundaries being proven.
 
 ## Execution Round Meta
@@ -40,10 +41,9 @@ Execution may cover API, browser UI, a web-equivalent desktop renderer through t
 - Proportional test-code review decision: `Required` / `Not Required — direct low-risk route` / `Not Applicable`
 
 Round rules:
-- Reuse the same scenario IDs across reruns for the same scenarios.
-- Create new scenario IDs only for newly discovered coverage.
-- If no prior completed API/E2E result exists, set `Current Execution Round` to `1`, create `API-REV-001`, and record prior result and confidence as `N/A`.
-- On later rounds, complete prior-failure resolution in `api-e2e-revision-record.md` before evaluating new failures. Never infer `Pass` or a confidence value from a missing prior record.
+- Reuse the same case IDs across reruns; create new IDs only for newly discovered coverage.
+- If no prior completed API/E2E result exists, set `Current Execution Round` to `1`.
+- On later rounds, complete prior-failure resolution in `api-e2e-revision-record.md` before evaluating new failures.
 
 ## Investigation And Execution Basis
 
@@ -56,7 +56,7 @@ Round rules:
 
 ## Test-Case Ledger Reconciliation (When Applicable)
 
-Use the canonical ledger as the in-flight execution checkpoint. Record each completed case immediately before proceeding to the next case; for a long-running case, record meaningful checkpoints. Reconcile the ledger here without duplicating its full event log. The execution coverage report remains the authoritative latest round-level result.
+Reconcile the ledger here without duplicating its full event log.
 
 - Ledger path:
 - Ledger initialized before execution: `No` / `Yes`
@@ -82,7 +82,7 @@ Use the canonical ledger as the in-flight execution checkpoint. Record each comp
 
 ## Changed Boundary And Evidence Matrix
 
-| Scenario ID | Behavior / Requirement / Acceptance-Criteria IDs | Changed Boundary | Execution Surface / Mode | Evidence Type (`Durable`/`Temporary`/`Live`/`Browser`/`Desktop`) | Result (`Pass`/`Fail`/`Blocked`/`Not Tested`) | Evidence / Artifact |
+| Case ID | Behavior / Requirement / Acceptance-Criteria IDs | Changed Boundary | Execution Surface / Mode | Evidence Type (`Durable`/`Temporary`/`Live`/`Browser`/`Desktop`) | Result (`Pass`/`Fail`/`Blocked`/`Not Tested`) | Evidence / Artifact |
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |
 
@@ -156,23 +156,14 @@ Carry forward the post-repository scores from the coverage investigation and rec
 - Version-specific runtime branch, dual read/write, or compatibility fallback observed: `No` / `Yes (reroute required)`
 - Residual untested persisted-data risk:
 
-## Tests Implemented Or Updated
-
-| Path / Scenario | Change (`Added`/`Updated`) | Requirement / Boundary | Execution Result | Notes |
-| --- | --- | --- | --- | --- |
-|  |  |  |  |  |
-
-## Tests Removed As Stale Or Obsolete
-
-| Path / Scenario | Obsolete Assertion | Upstream Evidence | Replacement Coverage Or No-Replacement Rationale |
-| --- | --- | --- | --- |
-|  |  |  |  |
-
 ## Durable Coverage Changed In The Codebase
 
 - Repository-resident durable coverage added, updated, or removed this round: `No` / `Yes`
-- Paths added or updated:
-- Paths removed:
+
+| Path / Test | Change (`Added`/`Updated`/`Removed`) | Requirement / Boundary, Or Obsolete Assertion And Upstream Evidence | Execution Result, Or Replacement / No-Replacement Rationale |
+| --- | --- | --- | --- |
+|  |  |  |  |
+
 - Added or updated paths attached for proportional test-code review: `Yes` / `No` / `Not Applicable`
 - Diff or repository evidence supplied for removed paths:
 
@@ -196,7 +187,7 @@ Carry forward the post-repository scores from the coverage investigation and rec
 
 ## Result Summary
 
-| Result (`Pass`/`Fail`/`Blocked`/`Not Tested`/`Out Of Scope`) | Scenario IDs | Summary / Reason |
+| Result (`Pass`/`Fail`/`Blocked`/`Not Tested`/`Out Of Scope`) | Case IDs | Summary / Reason |
 | --- | --- | --- |
 |  |  |  |
 
@@ -213,11 +204,7 @@ Carry forward the post-repository scores from the coverage investigation and rec
 - `Requirement Gap`: intended behavior or acceptance criteria are missing or ambiguous.
 - `Unclear`: the issue is cross-cutting or cannot yet be classified cleanly from the available evidence.
 
-This is the API/E2E engineer's evidence-based recommendation. On `Fail`, `code_reviewer` confirms the failure origin and final owner before rework begins.
-
-## Recommended Recipient
-
-## Evidence / Notes
+This is the API/E2E engineer's evidence-based recommendation. On `Fail`, the failure-origin review confirms the origin and final owner before rework begins.
 
 ## Latest Authoritative Result
 
@@ -228,5 +215,6 @@ This is the API/E2E engineer's evidence-based recommendation. On `Fail`, `code_r
 - Any final applicable confidence category below `90%`: `No` / `Yes` — list:
 - Broader validation decision:
 - Critical acceptance criteria lacking direct proof:
+- Preliminary classification and recommended owner (on `Fail`):
 - Next recipient from `get_handoff_rules` (`Blocked` -> user request):
 - Notes:

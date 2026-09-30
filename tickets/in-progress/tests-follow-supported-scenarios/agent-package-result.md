@@ -23,6 +23,17 @@ The solution designer records real scenarios in the requirements doc (`Relevant 
 
 User corrections applied: the rule is positive (respect real usage) rather than "do not invent"; the designer's list is not assumed complete; documents stay lean.
 
+## Package slimming (second change on this request)
+
+A principles review of the whole API/E2E package found correct content with repeated rules and heavy documents. Workflow, confidence model, document names, and routing are unchanged.
+
+- **Skill:** each rule now has one home. Ledger rules moved into one `Test-Case Ledger Rules` section; the revision-record rule lives in `Outputs`; `Outcome Routing` and `Handoff Rules` merged into `Result And Handoff`; `Upstream Inputs` became `Inputs` and now precedes the sequence; `You Own` went from 17 bullets to 6. Descriptions of what the code reviewer checks were removed, since the code reviewer's skill owns them.
+- **Recipients:** hard-coded member addresses (8 occurrences) removed; `get_handoff_rules` is the only routing authority.
+- **`agent.md`:** identity plus "Follow `api-e2e-engineer`"; it no longer repeats the skill's revision-record procedure.
+- **Templates:** the execution report's three overlapping durable-coverage sections merged into one and two empty headings folded into `Latest Authoritative Result`; the investigation's stale-coverage and removal sections merged; planned cases are listed only in the ledger; both long templates allow omitting `(When Applicable)` sections.
+- **Terms:** tests use `Case ID` everywhere (was `Scenario ID` in two templates and `Case ID` in the ledger), which also separates them from product scenarios (`SCN-*`); `Recommended Owner` replaces `Recommended Recipient`.
+- **Size:** package 805 -> 763 lines; skill 233 -> 218; template sections 47 -> 42; the `API-REV-001` rule 9 -> 5 mentions; the ledger trigger sentence 4 -> 1.
+
 ## Ownership and design decisions
 
 - Which scenarios are real, and their production path: solution designer's requirements doc and design spec (unchanged authority)
@@ -39,7 +50,11 @@ User corrections applied: the rule is positive (respect real usage) rather than 
 
 ### Modified
 
+- `agent-teams/software-engineering-team/agents/api-e2e-engineer/agent.md`
 - `agent-teams/software-engineering-team/agents/api-e2e-engineer/skills/api-e2e-engineer/SKILL.md`
+- `agent-teams/software-engineering-team/agents/api-e2e-engineer/skills/api-e2e-engineer/templates/api-e2e-execution-coverage-report-template.md`
+- `agent-teams/software-engineering-team/agents/api-e2e-engineer/skills/api-e2e-engineer/templates/api-e2e-test-case-ledger-template.md`
+- `agent-teams/software-engineering-team/agents/api-e2e-engineer/skills/api-e2e-engineer/templates/api-e2e-revision-record-template.md`
 - `agent-teams/software-engineering-team/agents/api-e2e-engineer/skills/api-e2e-engineer/templates/api-e2e-coverage-investigation-template.md`
 - `agent-teams/software-engineering-team/agents/implementation-engineer/skills/implementation-engineer/SKILL.md`
 - `agent-teams/software-engineering-team/agents/code-reviewer/skills/code-reviewer/SKILL.md`

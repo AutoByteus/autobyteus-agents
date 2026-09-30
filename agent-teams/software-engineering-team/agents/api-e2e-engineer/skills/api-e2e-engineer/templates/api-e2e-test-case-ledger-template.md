@@ -1,6 +1,6 @@
 # API/E2E Test-Case Ledger
 
-Use this as one canonical execution checkpoint when an API/E2E run contains multiple independently meaningful cases, a long-running case, or a credible interruption or context-compression risk. Create it before execution and update it in place. Do not create one file per case or versioned copies.
+One canonical execution checkpoint for an API/E2E run. Create it before execution and update it in place. Do not create one file per case or versioned copies.
 
 The ledger preserves in-flight case-level continuity. The coverage investigation owns the plan, the execution coverage report owns the latest complete round-level result, and the API/E2E revision record owns cross-round history.
 
