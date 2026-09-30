@@ -22,8 +22,9 @@ ticket closure, and cleanup. This skill owns only the product-experience work.
 ## Purpose
 
 For an existing product surface, accept an independently runnable
-current-experience baseline with 100% observable UI/UX parity, then evolve that
-baseline with the smallest credible requirements-driven change. The preserved
+current-experience baseline that has **UI parity** with the product, as defined
+in the shared principles. Then evolve that baseline with the smallest credible
+requirements-driven change. The preserved
 product shell, layout, styling language, controls, and unaffected behavior are
 part of the experience being evolved; the proposed result must remain
 recognizably connected to the existing product. The implementation may still
@@ -32,6 +33,42 @@ frontend exists, create the smallest credible new product experience directly.
 After user confirmation, turn the production-quality visual and interaction
 design into a precise `ui-ux-spec.md` backed by the runnable prototype and
 normative final reference screenshots.
+
+## What You Build
+
+A prototype looks and behaves like the product, but it runs on a little mock
+data and has no real content or backend. It is a model of the product's UI,
+not a second copy of the website.
+
+Two definitions in the shared principles govern every accept, reject and
+correction decision in this skill:
+
+- **"What a product prototype project is"**: what the project implements and
+  what it never contains.
+- **"What UI parity means"**: what must match the product exactly, and what is
+  never required.
+
+In short:
+
+| The prototype implements | The prototype never contains |
+| --- | --- |
+| Every distinct page, component, style, asset and responsive layout | Real content: course texts, exam items, answer keys, transcripts, question banks, translations, articles, media inventories |
+| All UI-controlled text and messages | Real user or account records, or exports of them |
+| Navigation, controls, forms, validation and interactions, with scripted visible outcomes | The product's real logic: grading, progress calculation, recommendations, search, publishing |
+| Every distinct state and role, through deterministic scenarios | A backend: server rules, persistence, access control, integrations |
+| A small stub serving hand-written fixtures | Recorded, replayed or captured source responses, or data sized like the source's |
+
+"Complete" always means that every distinct page, state and interaction pattern
+is covered at least once. It never means a complete working website, every
+item, or every data combination.
+
+Two quick checks before any acceptance:
+
+1. **Size and provenance.** The mock data layer and any content files are
+   small (kilobytes) and hand-written. Megabytes of data, or item counts that
+   match the source, mean real data was copied.
+2. **What is compared.** UI code, UI text, structure, styles, states and
+   behavior must match. Data values are illustrative.
 
 ## Mode Boundary
 
@@ -200,7 +237,11 @@ Keep the future-state change proportional to the decision:
   the implementation.
 - For `Mode: Correction`, reuse the fixed schema, change `Action` to correct the
   named baseline gaps, and add only the established prototype repository/root,
-  bootstrap-report path, and failed or unsubstantiated inventory IDs. For
+  bootstrap-report path, and failed or unsubstantiated inventory IDs. State in
+  `Action` what kind of gap each ID has (UI copy, structure, style, state,
+  interaction, or data-boundary) and restate the baseline acceptance criterion
+  below. Never phrase a correction so it can be satisfied by making the
+  prototype show the source's data. For
   `Mode: Refresh`, change `Action` to refresh the established baseline and add
   only the established prototype repository/root, report path, and explicitly
   selected new source authority. Preserve the stable package identifier in all modes.
@@ -213,6 +254,27 @@ Keep the future-state change proportional to the decision:
   are replaced by documented local simulations. If correction is required,
   classify the outcome as `Baseline Needed` again and send the failed or
   unsubstantiated UI inventory IDs through the handoff rules.
+- Baseline acceptance criterion: accept only UI parity as defined in the
+  shared principles. Judge it on two tiers:
+  - **Exact:** UI-controlled text (labels, headings, instructions, template
+    text around values, empty / error / validation / feedback / status copy),
+    navigation targets, controls, interactions and their outcomes, redirects,
+    component structure and order, computed styles, responsive layout, and
+    every meaningful state (empty, populated, loading, error, locked,
+    permission, role).
+  - **Illustrative:** domain values such as titles, texts, topic names, counts,
+    percentages and item lists. They come from small synthetic fixtures and may
+    differ from the source. A difference in these values is never, on its own,
+    a parity failure. It fails only when it changes or hides a UI state, for
+    example a list with too few items to show its layout, or a missing
+    empty/locked case.
+- Baseline data-boundary check: before accepting, confirm that prototype data
+  is small, hand-written and synthetic. Inspect the fixture and content
+  directories, their size, and their provenance. Recorded, replayed, captured
+  or bulk-copied source data or course content is a baseline defect. Send it
+  back as a data-boundary correction. This includes content files that copied
+  presentation code imports statically. Do not accept it, and do not carry it
+  forward as an open item.
 - If the established prototype repository/root has an applicable accepted
   baseline report, read its current implementation and artifacts in the active
   ticket worktree and skip initial bootstrap. Request a refresh when an
@@ -322,6 +384,24 @@ Keep the future-state change proportional to the decision:
   accepted baseline for preserved areas and with the approved intended design
   for changed areas. Fix every visible or interaction discrepancy and repeat
   browser validation until none remains.
+- Compare source and prototype per component and per state, never by whole-page
+  text or layout hashes. Page-level hashes fail on every illustrative data
+  difference and hide real UI differences. Compare separately:
+  - UI-controlled text, with digits and content slots masked;
+  - the set of component signatures;
+  - computed styles of shared components;
+  - page-skeleton geometry;
+  - interactive elements and their targets, with item IDs masked;
+  - final route and title.
+  Exclude rendered course or article prose (for example markdown/prose
+  containers) from UI-copy checks. When a value comes from account or state
+  data (progress, entitlement, role, flags), seed the same synthetic value on
+  the source observation side instead of copying source data into the
+  prototype.
+- Use a clean, matched scenario on both sides. Before comparing logged-in
+  surfaces, confirm that both sides use the same synthetic account type and a
+  reset state. Before comparing logged-out surfaces, confirm that neither
+  side's session carries over from earlier work.
 - Use interim screenshots only as disposable review aids when needed.
 - Capture final reference screenshots only after explicit user confirmation and final validation of the corresponding states.
 - Reconfirm with the user after any post-confirmation change that materially alters visible or interactive behavior.
@@ -347,8 +427,13 @@ Before reporting the prototype as completed, confirm:
   result, or the exact reason either is not required or is blocked
 - a completed ticket is under `tickets/done/<ticket-id>/`; a blocked or
   unfinished ticket remains under `tickets/in-progress/<ticket-id>/`
-- an existing-frontend prototype has an accepted, applicable, exact-fidelity
-  `prototype-bootstrap-report.md`
+- an existing-frontend prototype has an accepted, applicable
+  `prototype-bootstrap-report.md` that shows UI parity for every distinct
+  inventory item
+- prototype data is small, hand-written and synthetic. No recorded, replayed,
+  captured or bulk-copied source data or course content remains anywhere in
+  the prototype repository, including statically imported content files.
+  Fixture size and provenance are recorded.
 - the documented command starts the prototype and the critical journey is runnable
 - `ui-ux-spec.md`, the runnable prototype, final screenshots, and applicable supporting artifacts agree
 - the UI/UX specification records the user's confirmation reference
@@ -367,6 +452,50 @@ Before reporting the prototype as completed, confirm:
 - every visible detail in a final reference is requirements-defining by default;
   fixture content or permitted variation is illustrative only when explicitly
   identified in `ui-ux-spec.md`
+
+## Anti-Patterns
+
+Each of these has happened before. Recognise it and use the correction
+instead.
+
+- **Copying content along with UI code.** Defining the copied "presentation
+  boundary" by folder, so every file the pages import comes along: course
+  Markdown in `exam/`, JSON in `data/`, and question banks or translations in
+  `shared/…/data/*.js`. The prototype ends up holding megabytes of real
+  content. Correction: copy UI code only. Replace every imported content file
+  with a small synthetic file of the same shape and exports, and audit UI code
+  and content separately.
+
+- **Judging data as if it were UI.** Rejecting a baseline because a dashboard
+  shows "1 Themenfamilien" where the source shows "18", or a different topic
+  name. Correction: counts, titles and topic names are illustrative domain
+  values. Check the template text around them ("… Themenfamilien im System"),
+  the component and its styles, and whether every state is represented.
+- **Whole-page hash comparison.** Comparing `innerText` or layout hashes of
+  entire pages and calling every mismatch a failure. Correction: compare per
+  component and per state, with content masked (see Validation).
+- **Corrections without a stated criterion.** Sending "these routes differ, fix
+  them" without saying what must be exact and what is illustrative. The
+  Bootstrapper will reasonably copy the source's data to make the pages
+  identical. Correction: every correction names the gap type for each ID and
+  restates the acceptance criterion.
+- **Accepting captured source data as "fixtures".** Passing "source-captured
+  payloads", "complete libraries", recorded API responses, replay layers, or
+  real answer keys, transcripts and question banks because the pages then
+  match. Correction: that is copied content, a data-boundary defect. Replace it
+  with a few hand-written items of the same shape.
+- **Carrying copied content forward as an open item.** Noting that real course
+  files are "unchanged from the earlier baseline" and moving on. Correction:
+  copied content is a defect in the current baseline. Request a data-boundary
+  correction before acceptance, or record the ticket as not complete.
+- **Trusting stale sessions.** Comparing logged-in pages while one side is
+  still logged in from earlier work, or with a different account type on each
+  side. Correction: set up the same synthetic scenario on both sides and
+  confirm it before comparing.
+- **Too little data to show the UI.** Swinging the other way and using fixtures
+  so small that lists, grouping, paging, empty and locked states never render.
+  Correction: minimal data is enough items of each shape to show every UI
+  state, and no more.
 
 ## Findings Rules
 

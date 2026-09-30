@@ -1,9 +1,10 @@
 # Prototype Bootstrap Report
 
 Create this report for every current-experience bootstrap, correction, or
-refresh. It substantiates 100% observable UI/UX parity between the pinned source
-and independently runnable baseline while recording deliberate implementation
-simplifications. It does not prove production integration or replace
+refresh. It substantiates UI parity (see "What UI parity means" in the shared
+principles) between the pinned source and the independently runnable baseline,
+and records deliberate implementation simplifications and the mock data
+boundary. It does not prove production integration or replace
 `requirements-doc.md` or `ui-ux-spec.md`.
 
 ## Status
@@ -51,7 +52,9 @@ simplifications. It does not prove production integration or replace
 Group equivalent contexts rather than creating a Cartesian matrix. Each row
 should identify a distinct user-facing surface or behavior, not an internal API
 operation. `Pass` requires applicable source evidence, prototype evidence, and
-no known perceptible or behavioral difference.
+no known perceptible or behavioral difference. In the fixture column, name the
+synthetic fixture and list any illustrative domain values (content-derived
+titles, texts, or counts that intentionally differ from the source).
 
 | ID | Route / Surface | Exact Visual And UI-Controlled Content Obligations | States / Operations / Outcomes | Material Contexts | Prototype Scenario / Synthetic Fixture | Source Evidence | Prototype Evidence | Fidelity Result |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -85,7 +88,8 @@ production mechanisms.
 - Presentation code, styles, tokens, or assets reused:
 - UI code recreated:
 - Prototype-specific state model:
-- Hard-coded or fixture-backed synthetic data:
+- Hard-coded or fixture-backed synthetic data (size under the prototype's
+  data/fixture paths; confirm that no source data was recorded or copied):
 - Scripted asynchronous behavior:
 - Browser simulation of mobile, desktop-host, Electron, role, permission, or
   feature contexts:
@@ -128,7 +132,9 @@ production mechanisms.
 - Perceptible appearance or client-behavior discrepancies remaining: `None` /
   details
 - Unsubstantiated distinct UI inventory items remaining: `None` / details
-- 100% observable UI/UX parity achieved for the recorded distinct inventory:
+- Mock data boundary: all data and content files are small and hand-written,
+  with no real, recorded or copied content (sizes per directory): `Yes` / `No`
+- UI parity achieved for every item in the recorded distinct inventory:
   `Yes` / `No`
 
 `Completed` means every distinct recorded UI/UX inventory item has passing
