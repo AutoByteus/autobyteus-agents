@@ -44,13 +44,19 @@ This is the canonical change boundary for requirements, architecture design, imp
 
 ### In-Scope Use Cases
 
-List the supported user, system, operational, or contract use cases this task is authorized to change. Give each use case a stable ID for requirement-to-use-case coverage.
+List the supported user, system, operational, or contract use cases this task is authorized to change. Give each use case a stable `UC-*` ID for requirement-to-use-case coverage.
+
+| Use-Case ID | Use Case | Related Scenario IDs |
+| --- | --- | --- |
+| UC-001 |  |  |
 
 ### Out Of Scope
 
-List adjacent behaviors, policies, systems, migrations, or quality improvements this task does not authorize. State explicitly when a plausible security, reliability, compatibility, or operational concern belongs to a separate requirement.
+List adjacent behaviors, policies, systems, migrations, or quality improvements this task does not authorize changing. State explicitly when a plausible security, reliability, compatibility, or operational concern belongs to a separate requirement.
 
 ### Non-Goals
+
+List outcomes this task deliberately does not aim to achieve, even within in-scope use cases, such as a performance level, full coverage of a use case, or a future capability. Write `None` when no non-goal needs stating. Do not repeat Out Of Scope items.
 
 ### Preserved Behavior Boundary
 

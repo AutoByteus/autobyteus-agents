@@ -52,6 +52,8 @@ upstream behavior narrative.
 | --- | --- | --- | --- |
 |  |  |  |  |
 
+- Changes stayed within the requirements doc's Scope Guardrail: `Yes` / `No (routed as Requirement Gap)`
+
 ## Key Files Or Areas
 
 ## Important Assumptions

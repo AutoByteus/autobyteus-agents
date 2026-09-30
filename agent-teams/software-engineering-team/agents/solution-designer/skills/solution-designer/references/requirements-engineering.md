@@ -24,7 +24,7 @@ Read during discovery, requirements refinement and requirement-impact recovery. 
 - Use the mandatory scope guardrail as the canonical change boundary. Keep in-scope use cases, out-of-scope concerns, non-goals, preserved behavior, and review authority explicit without duplicating the full behavior table or acceptance criteria.
 - Require every blocking downstream `Design Impact` or implementation-correction finding to trace to an approved requirement, acceptance criterion, or preserved-behavior ID. A proposed new product behavior, policy, threat model, migration obligation, compatibility promise, or operational contract is a `Requirement Gap`, not an automatic design correction.
 - Do not incorporate a scope-changing downstream proposal into the approved requirements basis without explicit user approval. Until approved, retain it only as a non-authoritative question, risk, recommendation, or separate-ticket candidate and keep downstream work blocked when the unresolved decision is material.
-- Give each requirement a stable `REQ-*` ID and each acceptance criterion a stable `AC-*` ID.
+- Give each in-scope use case a stable `UC-*` ID, each requirement a stable `REQ-*` ID, and each acceptance criterion a stable `AC-*` ID.
 - Write acceptance criteria as observable, verifiable outcomes. Include important alternate, error, empty, permission, lifecycle, and recovery behavior only when it is supported and relevant.
 - Separate scope, non-goals, assumptions, constraints, and unresolved decisions.
 - Record technical requirements as behavior or measurable constraints, not as an unapproved target architecture.
