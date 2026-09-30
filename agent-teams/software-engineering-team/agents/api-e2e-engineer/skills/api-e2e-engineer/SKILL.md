@@ -41,7 +41,7 @@ After every completed API/E2E validation result, use [templates/api-e2e-revision
 
 Follow this order:
 
-1. Read the complete upstream artifact package and identify the behavior that must be proven and the supported scenarios that reach it in real use.
+1. Read the complete upstream artifact package and identify the behavior that must be proven and the real-use scenarios that reach it.
 2. Classify the changed runtime surfaces and boundaries.
 3. Discover the project's testing guideline and other authoritative run, test, environment, and fixture instructions, inventory relevant existing coverage, and write the initial coverage investigation.
 4. Decide which durable tests remain valid and which must be added, updated, replaced, or removed.
@@ -98,20 +98,18 @@ Do not begin with browser interaction merely because browser tools are available
 
 ## Supported Scenarios And Real Usage
 
-Test the product the way its real users and real system events use it. The requirements doc's `Relevant Scenarios And Journeys` table and the design spec's `Relevant Behavior And Production-Path Map` define those scenarios and how production reaches them; they are the authority for what is real.
+Test the product the way its real users and real system events use it.
 
-- Before planning coverage, record in the coverage investigation each relevant product scenario (`SCN-*`), its behavior IDs, its validity, and its approved trigger or entry surface. In the templates, a `Scenario ID` column names a test scenario; link each test scenario to its product scenario.
-- Build every test case, journey, and probe from a `Supported Normal Scenario` or `Supported Explicit Edge Scenario`. Enter through its approved trigger or entry surface and follow the steps its real actor or system event takes, with the sessions, order, and timing that real use produces.
-- Cover the alternate, error, lifecycle, and recovery behavior those scenarios name.
-- Keep the simulation true to real use. A setup the scenario's actor would not produce does not represent the scenario; for example, one person driving the same application in two tabs to race an endpoint. Use concurrency, multiple sessions, or forced timing only when the scenario itself defines them.
-- A scenario recorded as `Technically Possible but Unsupported/Contrived` gets no test, cannot produce a `Fail`, and is not missing evidence in any confidence category.
-- When a material behavior has no supported scenario, or its scenario is `Unclear`, route it as `Requirement Gap` or `Unclear` under the coverage investigation rules rather than testing it as approved behavior.
+- Start from the requirements doc's `Relevant Scenarios And Journeys` table and the design spec's `Relevant Behavior And Production-Path Map`. They are a starting basis, not a complete list: add the real-use scenarios that your investigation of the implemented behavior shows complete coverage needs, and note them in the coverage investigation. Route upstream only when a scenario's intended behavior is undecided, as the coverage investigation rules describe.
+- Build every test case, journey, and probe to enter through its scenario's real trigger or entry surface and follow the steps its real actor or system event takes, with the sessions, order, and timing that real use produces.
+- A setup that real use does not produce does not represent the scenario; for example, one person driving the same application in two tabs to race an endpoint. Use concurrency, multiple sessions, or forced timing only when real use of the scenario produces them.
+- Do not test a scenario the designer recorded as `Technically Possible but Unsupported/Contrived`; it cannot produce a `Fail` or lower confidence.
 
 ## Coverage Investigation Rules
 
 - Before durable coverage edits, durable coverage removals, final execution, or failure rerouting, read the full upstream package and inspect the relevant repository-resident unit, integration, API, browser E2E, desktop-shell, lifecycle, CLI, or distributed coverage.
 - Write the initial investigation before changing the test suite. Keep it current as repository or runtime evidence changes the plan.
-- Map supported scenarios, requirements, acceptance criteria, reviewed design behavior, relevant supplemental task artifacts, implementation-handoff notes, and code-review findings to the real changed boundaries and planned evidence.
+- Map real-use scenarios, requirements, acceptance criteria, reviewed design behavior, relevant supplemental task artifacts, implementation-handoff notes, and code-review findings to the real changed boundaries and planned evidence.
 - Classify affected surfaces explicitly, such as domain/backend logic, API/transport, frontend component, browser integration, authentication/session, web-equivalent desktop renderer, desktop shell, process lifecycle, persisted-data transition, worker/queue, distributed coordination, or external integration.
 - Treat existing tests as evidence, not authority. A test's existence does not prove that its assertion still represents approved behavior.
 - For every relevant existing durable scenario, decide `Still Valid`, `Needs Update`, `Stale / Remove`, `Replace`, `Out Of Scope`, or `Unclear`.
@@ -160,7 +158,7 @@ Interpolate only when the evidence genuinely falls between anchors, and explain 
 
 Decision rules:
 
-- Score every category over supported scenarios exercised as real use. An untested unsupported or contrived scenario is not a gap, and a test that does not follow real use does not raise a score.
+- Score every category over real-use scenarios only; an untested contrived scenario is not a gap.
 - A score never overrides a missing or failing critical acceptance criterion; unproven critical behavior blocks `Pass`.
 - The default clean target requires overall confidence of at least `95%`, no applicable category below `90%`, direct proof for every critical acceptance criterion, and no material broader-validation risk.
 - At `90-94%`, identify the confidence gap and choose the targeted executable surface most likely to close it. Browser testing is one option, not the default.
@@ -201,7 +199,7 @@ Browser validation is normally unnecessary for a backend-local change when valid
 - Reroute any version-specific compatibility wrapper, dual-path read/write, request-time schema-upgrade shim, retained legacy branch, or fallback in normal runtime code. Do not misclassify an approved general reader policy or isolated required migration as backward-compatible runtime behavior.
 - Do not create or preserve durable coverage whose only purpose is to protect invalid compatibility behavior.
 - When behavior depends on workers, queues, multi-process or multi-node coordination, or external dependencies, stand up or emulate enough of the real environment to prove the material boundary when reasonable.
-- When a bug claim within a supported scenario remains uncertain, create a focused probe or harness that enters through the scenario's approved trigger to reproduce or disprove it instead of guessing.
+- When a bug claim within a real-use scenario remains uncertain, create a focused probe or harness that enters through the scenario's real trigger to reproduce or disprove it instead of guessing.
 
 ## Outcome Routing
 

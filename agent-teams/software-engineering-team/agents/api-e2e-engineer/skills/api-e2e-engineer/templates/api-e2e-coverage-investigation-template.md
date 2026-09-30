@@ -43,14 +43,9 @@ Summarize the current behavior that must be proven from the approved requirement
 
 ## Supported Scenarios And Real Usage
 
-Record the relevant product scenarios from the requirements doc's `Relevant Scenarios And Journeys` table and the design spec's `Relevant Behavior And Production-Path Map`, keeping their upstream classification. Plan tests for `Supported Normal Scenario` and `Supported Explicit Edge Scenario` rows, each following the steps its real actor or system event takes.
-
-| Product Scenario ID (`SCN-*`) | Behavior IDs | Scenario Validity | Approved Trigger / Entry Surface | Real Actor Or Event Steps The Test Follows | Supported Alternate / Error Behavior To Cover | Planned Test Scenario / Case IDs |
-| --- | --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |  |
-
-- Scenarios recorded upstream as `Technically Possible but Unsupported/Contrived` (not tested):
-- Material behavior with no supported scenario, or an `Unclear` scenario (route, do not test):
+- Designer scenarios covered (`SCN-*`):
+- Real-use scenarios added from investigating the implemented behavior, each with its real trigger:
+- Designer scenarios recorded as `Technically Possible but Unsupported/Contrived` (not tested):
 
 ## Changed Behavior Summary
 

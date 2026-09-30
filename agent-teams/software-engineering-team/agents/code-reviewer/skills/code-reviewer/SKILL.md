@@ -239,7 +239,7 @@ scenario by itself.
   - tests remain isolated and deterministic enough for their boundary
   - unrelated scenarios are not collapsed into one unstructured file
   - stale, duplicated, disabled-without-reason, or compatibility-only tests are not retained
-  - each test enters through its scenario's approved trigger and follows the real actor's or event's steps, without a setup real use does not produce
+  - each test enters through its scenario's real trigger and follows the real actor's or event's steps, without a setup real use does not produce
 - Treat test callers and synthetic fixtures as evidence for an already established
   scenario only; they cannot establish product-scenario validity or a supported
   production path by themselves.
