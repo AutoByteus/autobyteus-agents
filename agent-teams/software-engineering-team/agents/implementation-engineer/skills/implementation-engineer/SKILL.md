@@ -64,6 +64,9 @@ Use [templates/implementation-revision-record-template.md](templates/implementat
 - Stay within the requirements doc's Scope Guardrail: change only in-scope use
   cases, keep preserved behavior unchanged, and leave out-of-scope items
   untouched. Return work that needs a change outside it as `Requirement Gap`.
+- Apply the shared design principles' supported-scenario gate while coding:
+  add fallback, recovery, defensive, concurrency, or lifecycle machinery only
+  for how real users and real system events use the product.
 - Implement user-visible behavior against approved behavior-defining supplemental UI/UX or interaction specifications when they exist. Use other relevant supplements as evidence or context according to their recorded purpose. Route contradictions or missing states upstream instead of inventing the experience during implementation. When the change affects a rendered frontend, complete the feedback loop below before declaring the implementation ready for the selected downstream handoff.
 - Treat the task design health assessment as active implementation context.
   If the code path proves the root-cause classification, refactor-needed

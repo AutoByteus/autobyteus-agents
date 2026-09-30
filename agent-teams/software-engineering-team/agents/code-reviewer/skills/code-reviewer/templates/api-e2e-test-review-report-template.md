@@ -54,6 +54,7 @@ Do not apply implementation-source line limits, delta thresholds, full implement
 | No stale, duplicated, disabled-without-reason, or compatibility-only tests remain |  |  |
 | Added, updated, and removed coverage agrees with the coverage investigation and execution evidence |  |  |
 | Test callers and fixtures exercise an independently established supported scenario rather than proving one by themselves |  |  |
+| Each test enters through its scenario's real trigger and follows the real actor's or event's steps, without a setup real use does not produce |  |  |
 
 ## Findings
 
