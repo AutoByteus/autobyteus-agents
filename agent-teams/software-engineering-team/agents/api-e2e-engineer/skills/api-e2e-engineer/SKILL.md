@@ -100,7 +100,7 @@ Do not begin with browser interaction merely because browser tools are available
 
 Test the product the way its real users and real system events use it.
 
-- Start from the requirements doc's `Relevant Scenarios And Journeys` table and the design spec's `Relevant Behavior And Production-Path Map`. They are a starting basis, not a complete list: add the real-use scenarios that your investigation of the implemented behavior shows complete coverage needs, and note them in the coverage investigation. Route upstream only when a scenario's intended behavior is undecided, as the coverage investigation rules describe.
+- Start from the requirements doc's `Relevant Scenarios And Journeys` table and the design spec's `Relevant Behavior And Production-Path Map`. They are a starting basis, not a complete list: add the real-use scenarios that your investigation of the implemented behavior shows complete coverage needs, and note them in the coverage investigation.
 - Build every test case, journey, and probe to enter through its scenario's real trigger or entry surface and follow the steps its real actor or system event takes, with the sessions, order, and timing that real use produces.
 - A setup that real use does not produce does not represent the scenario; for example, one person driving the same application in two tabs to race an endpoint. Use concurrency, multiple sessions, or forced timing only when real use of the scenario produces them.
 - Do not test a scenario the designer recorded as `Technically Possible but Unsupported/Contrived`; it cannot produce a `Fail` or lower confidence.
