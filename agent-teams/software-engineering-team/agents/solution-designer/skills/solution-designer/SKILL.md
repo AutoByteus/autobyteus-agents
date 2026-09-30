@@ -93,7 +93,7 @@ standards. Use the requirements and investigation templates listed below.
   Use `Supported Normal Scenario`, `Supported Explicit Edge Scenario`,
   `Technically Possible but Unsupported/Contrived`, or `Unclear` as appropriate.
   Mechanical possibility alone does not establish approved scope.
-- Assign stable behavior, scenario, requirement and acceptance-criteria IDs;
+- Assign stable behavior, scenario, use-case, requirement and acceptance-criteria IDs;
   define current, desired and preserved behavior, scope/non-goals, measurable
   constraints, data-continuity requirements, unknowns and verification intent.
 - Create `SR-001` at the first coherent requirements baseline used for product
