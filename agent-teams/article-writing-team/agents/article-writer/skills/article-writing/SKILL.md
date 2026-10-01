@@ -158,6 +158,7 @@ Use the following structural checks before handoff:
 - Any negative or contrastive first move is explicitly justified by the request or source-grounded correction and recorded in the outline.
 - The idea spine is continuous: every major step follows from the established idea, adds a necessary contribution, and creates the next question or capability.
 - Every major idea has an intentional representation mode. If it uses both prose and image, their responsibilities are distinct and their combined takeaway is explicit; if it is prose-only, the outline explains why an image adds no information.
+- Representation modes follow the visualization-load trigger in the shared writing principles; every `prose-only` idea records why the reader does not need to build or hold a mental model to continue.
 - Every section adds a new claim, mechanism, evidence, example, decision, or implication.
 - Each section follows from the preceding section and prepares the next one; the order is not merely topical.
 - The chosen logic spine remains stable; the article does not switch from chronology to taxonomy or from explanation to promotion without a signpost and reason.
@@ -177,6 +178,7 @@ Create `visual-plan.md` when:
 - the article is technical, architectural, process-heavy, comparative, data-backed, or long enough that visuals would improve comprehension
 - the platform or audience expects visual pacing
 - the outline contains mechanisms, sequences, boundaries, comparisons, or abstractions that would be clearer visually
+- any idea meets the visualization-load trigger in the shared writing principles
 
 Do not create visuals merely to decorate the article. If the article should remain text-only, record that decision briefly in the outline or brief.
 

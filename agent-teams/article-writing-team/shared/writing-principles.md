@@ -66,6 +66,8 @@ Read this file before drafting or reviewing an article package. It is the canoni
 
 - Visuals should be planned from the article's reasoning flow, not appended after the prose is finished.
 - A useful visual explains, structures, compares, evidences, or summarizes a nearby section claim, mechanism, sequence, boundary, or decision.
+- **Visualization-load trigger:** an idea earns an image when a reader must construct and hold a mental model to follow the prose — a structure, sequence, movement, or concrete referent they otherwise have to build in their head. Common triggers: a roster of distinct roles with a handoff; a package or context moving between named parties; a before/after or comparison; a spatial or process layout; a concrete object the reader has not seen. The simple test: if understanding requires the reader to keep several things and how they move or relate in mind at once, that moment deserves an image.
+- "The text already names the parts" is **not** a reason to skip an image; it is a reason to design the image to be source-grounded and non-redundant. Redundancy and source-risk constrain what the image may invent and how it stays truthful; they do not decide whether an image appears at all.
 - Define the visual proposition before its art direction: state the one nearby idea the image must make concrete, the entities and relationships that must be visible, and the reader takeaway that should survive without the caption.
 - Derive each visual plan from a representation decision in the idea spine. Image generation executes the approved representation; it does not decide which idea deserves an image.
 - Decorative images, generic stock-like illustrations, and images that merely make the article look longer should be omitted.
@@ -75,6 +77,16 @@ Read this file before drafting or reviewing an article package. It is the canoni
 - Short exact labels, role names, state names, or action names may appear inside an explanatory image when they materially improve comprehension. Inspect the final raster and regenerate or revise any incorrect, invented, or unreadable text.
 - Ordinary low-quality SVG diagrams are not the default publication medium. Use an HTML-rendered or rasterized diagram only as an explicit high-quality exception when it is clearly more truthful and useful than an image; do not let a generic generated image replace a required explanation either.
 - If an article would be clearer with visuals, the outline or visual plan should show where they belong and what each one teaches the reader.
+
+#### Visualization-load examples (shared by writer and reviewer)
+
+Both the writer (when deciding representation mode) and the reviewer (when passing or rejecting it) apply the same trigger and the same reasoning, not just the same label.
+
+- **Good — image earned:** "Several specialists each own one stage, and the work passes from one to the next." This is a roster plus a handoff; the reader must hold the roles and their flow, so a labeled roster/handoff diagram is called for.
+- **Bad — image not earned:** "A single fact, such as 'this tool is faster', that the reader can hold as one proposition without tracking multiple moving parts." A decorative illustration would only repeat the sentence.
+- **Good — image earned:** "An order moves from the customer to the warehouse to the courier." This is a multi-party movement the reader must track (who carries what to whom), so a labeled movement/graph diagram is called for.
+- **Bad — image not earned:** resting a `prose-only` decision on "the text already names the parts." Naming the parts does not remove the reader's need to visualize the flow between them.
+- **Why-rule:** if the idea survives as one proposition the reader can hold without straining, text is enough. If following it requires holding several entities and their movement or relationship at once, that is a visualization moment and it deserves an image.
 
 ### 4B. Build And Review From Global Structure To Local Prose
 
