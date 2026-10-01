@@ -45,6 +45,14 @@ or create a clearly recorded neutral initialization commit; do not label that
 commit an accepted product baseline. The baseline or mode skill's accepted
 result remains the first accepted prototype revision.
 
+Reuse a canonical prototype repository that already represents the same
+frontend application or product surface. Otherwise derive `prototype-subject`
+in this order: the selected frontend application's name; a recognizable
+product-surface name when the application name is generic; the repository
+name when it represents one relevant frontend; or a stable product/experience
+name when no frontend exists. Normalize it to the workspace's naming
+conventions and name the repository `<prototype-subject>-prototype`.
+
 Use one dedicated branch and Git worktree for every active requirements-driven
 prototype request, including product-experience and exploratory-visualization
 requests. A ticket folder is an artifact/status location; it is not a
@@ -61,6 +69,11 @@ workspace/
   <prototype-subject>-prototype-worktrees/
     <ticket-id>/                                  # active Git worktree
 ```
+
+Product-experience source stays at the prototype repository root. An
+exploratory visualization may use a ticket-scoped subproject such as
+`visualizers/<ticket-id>/` inside the ticket worktree; it is not a second Git
+repository.
 
 Do not put a worktree inside the canonical repository, production source
 repository, frontend project, or a generic `prototypes/` directory. The
@@ -102,29 +115,21 @@ overlapping branches will merge without conflict.
 
 ## Baseline And Bootstrap Boundary
 
-The first current-experience baseline is a prerequisite for future-state work
-when an existing frontend is relevant:
+When an existing frontend is relevant, the first accepted current-experience
+baseline is a prerequisite for future-state work. The shared principles'
+Bootstrapper boundary defines what Bootstrapper may do; the
+`product-experience-prototyper` skill decides when to request it and whether
+to accept its result. This skill provides the baseline lifecycle:
 
 - If the canonical prototype repository has no accepted baseline, create or
-  resume a dedicated baseline ticket branch/worktree first. Product Prototyper
-  sends Bootstrapper the selected source, canonical repository, target
-  worktree, branch, and source/base constraints through the fixed local
-  handoff. Do not send the future-state requirements package as Bootstrapper
-  instructions.
-- Bootstrapper discovers and implements current-experience parity only in the
-  supplied Product-owned worktree and returns its report, runnable result, and
-  evidence. It must not create a second worktree or write to the canonical
-  integration checkout.
-- Product Prototyper reviews and tests the returned baseline. If it is
-  incomplete, keep the same baseline ticket/worktree, record the failed
-  inventory items, and send a correction through the normal local handoff.
-- After the baseline passes acceptance, Product Prototyper creates the
-  accepted baseline commit and integrates it into the canonical prototype base
-  according to repository policy. Later requirement work starts only from that
-  accepted revision.
-- For a no-frontend product, Product Prototyper establishes the smallest
-  initial project in the baseline ticket worktree without Bootstrapper, then
-  accepts and records the initial base using the same lifecycle.
+  resume a dedicated baseline ticket branch/worktree, then send the payload
+  below. A correction keeps the same baseline ticket and worktree.
+- After the baseline is accepted, create the accepted baseline commit and
+  integrate it into the canonical prototype base under repository policy.
+  Later requirement work starts only from that accepted revision.
+- For a no-frontend product, establish the smallest initial project in the
+  baseline ticket worktree without Bootstrapper, then accept and record the
+  initial base through the same lifecycle.
 
 The baseline ticket is still a Product ticket. Bootstrapper's report is a
 mode-specific artifact, not a second ticket-management system.
@@ -150,6 +155,32 @@ failed or unsubstantiated inventory IDs in addition to this schema. For
 `Refresh`, identify only the established report path and explicitly selected
 new source authority. Keep the stable Product ticket and prototype identity
 unchanged across retries.
+
+## Ticket Folders And Statuses
+
+Keep ticket folders inside the active ticket worktree:
+`tickets/in-progress/<ticket-id>/` while work is open and
+`tickets/done/<ticket-id>/` after completion. A ticket folder holds
+`prototype-ticket.md`, the UI/UX specification, visual references, and
+supporting evidence; the Git worktree provides source and index isolation.
+
+Set the `prototype-ticket.md` status with these transitions. The mode skill's
+outcome classification and the ticket status must agree.
+
+```text
+ticket opened / active work -> In Progress
+existing frontend has no accepted baseline -> Baseline Needed
+review URL or review package sent -> Awaiting User Review
+feedback or revision received -> In Progress
+explicit final approval and final artifacts committed -> Completed
+missing decision, required input, or other unresolved prerequisite -> Blocked
+interactive visualization is not useful for the decision -> Not Recommended
+```
+
+An exploratory-visualization ticket stays in `tickets/in-progress/` while
+clarification is open. When clarification closes without product-experience
+work, complete its evidence and close the ticket under repository policy; if
+product-experience work follows, keep or reopen it in progress.
 
 ## Runtime Isolation
 

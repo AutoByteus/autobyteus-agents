@@ -146,24 +146,12 @@ gap is a reason for `Blocked`, not a separate handoff outcome.
 
 ## Prototype Repository Boundary
 
-- Write only in the Product Prototyper's assigned worktree, which is a linked
-  checkout of the canonical separate prototype repository. Never write
-  bootstrap code, artifacts, or commits into production frontend paths, the
-  source repository, the canonical integration checkout, or another ticket's
-  worktree.
-- Product Prototyper owns repository, branch, worktree, ticket, integration,
-  and cleanup management. If the canonical prototype repository or assigned
-  worktree does not exist, is ambiguous, or is unsafe, return `Blocked` rather
-  than creating one yourself.
-- Verify the supplied repository identity, branch, worktree, applicable
-  instructions, source pin, and current prototype state. The worktree must be
-  dedicated to this Product ticket and must not contain another ticket's dirty
-  work.
-- Do not create future-state task packages, Product ticket status changes,
-  user approval records, or the canonical future-state `ui-ux-spec.md`. Those
-  belong to Product Prototyper's mode and management workflows. Bootstrapper may
-  update baseline evidence in the assigned worktree and return it to Product
-  Prototyper, but Product Prototyper creates the accepted baseline commit.
+Follow the repository boundary and the Bootstrapper boundary in the shared
+principles. Before building, verify the supplied repository identity, branch,
+worktree, applicable instructions, source pin, and current prototype state.
+The worktree must be dedicated to this Product ticket and free of another
+ticket's dirty work. If the repository or worktree is missing, ambiguous, or
+unsafe, return `Blocked` rather than creating one.
 
 ## Operating Sequence
 
@@ -172,9 +160,8 @@ gap is a reason for `Blocked`, not a separate handoff outcome.
    repository, Product ticket, target branch, and assigned worktree from the
    Product Prototyper handoff.
 2. Verify the selected application boundary, pin the source revision, and
-   verify the supplied repository/worktree identity. Do not create a repository
-   or worktree, modify production frontend paths, or silently move to another
-   revision, branch, or prototype location.
+   verify the supplied repository/worktree identity. Do not silently move to
+   another revision, branch, or prototype location.
 3. Inspect routes, navigation, screens, presentation components, styles, assets,
    localization, responsive behavior, tests, fixtures, roles, feature flags,
    host contexts, and runnable source behavior. Inspect production internals
@@ -212,11 +199,8 @@ gap is a reason for `Blocked`, not a separate handoff outcome.
    repository/root, ticket branch and target worktree, accepted base revision,
    any bootstrap candidate revision, experience inventory, implementation
    simplifications, scenarios, validation evidence, and known user-facing gaps.
-11. Return the runnable baseline, report, and durable current-state evidence to
-   Product Prototyper. Product Prototyper performs acceptance tests, updates
-   the ticket record, and owns the accepted prototype-repository commit.
-   Bootstrapper does not finalize the ticket, integrate the branch, or create
-   that accepted prototype-repository commit.
+11. Return the runnable baseline, report, and durable current-state evidence
+   for Product Prototyper's acceptance.
 12. Classify the result as `Completed` or `Blocked`, then follow the handoff
    rules with absolute artifact paths and exact project provenance.
 

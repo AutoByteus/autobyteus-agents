@@ -17,7 +17,11 @@ Before this mode begins, apply
 to establish or resume the canonical repository, Product ticket, ticket branch,
 active worktree, accepted base revision, and runtime isolation. Apply it again
 after this mode's validation and user-review work for commit, integration,
-ticket closure, and cleanup. This skill owns only the product-experience work.
+ticket closure, and cleanup, and use its ticket statuses for the common
+`prototype-ticket.md` record. This skill owns only the product-experience work
+and supplies the evidence each status transition needs; it never switches the
+canonical prototype checkout, creates a second ticket worktree, or edits a
+production or source path.
 
 ## Purpose
 
@@ -182,22 +186,7 @@ those supporting artifacts.
 Keep the runnable prototype source at the active Product ticket worktree while
 the ticket is in progress. Keep the ticket record, UI/UX specification, final
 visual references, and ticket-specific support artifacts together under that
-worktree's ticket folder. The repository-management skill owns the canonical
-repository, branch, worktree, ticket status, commit, integration, and cleanup
-lifecycle; this mode owns only the product-experience artifacts and behavior.
-
-## Repository-Management Boundary
-
-Before following the product-experience sequence, use
-[product-prototype-repository-management](../product-prototype-repository-management/SKILL.md)
-to establish or resume the active Product ticket worktree and its accepted
-prototype base. Do not switch the canonical prototype checkout, create a
-second ticket worktree, or edit a production/source path from this mode.
-
-Use the status transitions in the shared Product Prototype Principles for the
-common `prototype-ticket.md` record. The management skill owns the transition
-and repository state; this skill supplies the product-experience result and the
-mode-specific evidence required for each transition.
+worktree's ticket folder.
 
 ## Prototype Selection
 
@@ -235,16 +224,13 @@ Keep the future-state change proportional to the decision:
   independent current-experience bootstrap. The prototype repository/root and
   target worktree are locations, not a request to pre-inventory or prescribe
   the implementation.
-- For `Mode: Correction`, reuse the fixed schema, change `Action` to correct the
-  named baseline gaps, and add only the established prototype repository/root,
-  bootstrap-report path, and failed or unsubstantiated inventory IDs. State in
-  `Action` what kind of gap each ID has (UI copy, structure, style, state,
-  interaction, or data-boundary) and restate the baseline acceptance criterion
-  below. Never phrase a correction so it can be satisfied by making the
-  prototype show the source's data. For
-  `Mode: Refresh`, change `Action` to refresh the established baseline and add
-  only the established prototype repository/root, report path, and explicitly
-  selected new source authority. Preserve the stable package identifier in all modes.
+- For `Mode: Correction`, use the payload's correction fields. In `Action`,
+  state the gap type of each failed or unsubstantiated ID (UI copy, structure,
+  style, state, interaction, or data-boundary) and restate the baseline
+  acceptance criterion below. Never phrase a correction so it can be satisfied
+  by making the prototype show the source's data. For `Mode: Refresh`, use the
+  payload's refresh fields. Preserve the stable package identifier in all
+  modes.
 - When the Bootstrapper returns, read and review the runnable prototype,
   `prototype-bootstrap-report.md`, and referenced evidence directly. Accept an
   existing-frontend baseline only when its selected source and revision are
@@ -291,9 +277,7 @@ Keep the future-state change proportional to the decision:
    non-goals. Read applicable requirements, investigation, revision, and
    feedback artifacts when they exist.
 2. Use the management skill's active ticket worktree, accepted base revision,
-   repository instructions, and runtime-isolation record. Do not create a
-   second ticket worktree, switch the canonical checkout, or edit a production
-   or source path from this mode.
+   repository instructions, and runtime-isolation record.
 3. Inspect the accepted current-experience baseline and its bootstrap evidence
    in the active worktree. Apply the bootstrap routing rules before any
    existing-frontend future-state work. If the baseline is absent or fails
@@ -331,11 +315,8 @@ Keep the future-state change proportional to the decision:
     accepted base, and resulting prototype revision from management state when
     recording provenance.
 11. Return the completed mode artifacts and final validation evidence to the
-    management skill. It records the final ticket state, commits the accepted
-    baseline or prototype result on the Product ticket branch, integrates and,
-    when an approved preview candidate is the intended product baseline,
-    promotes it according to repository policy, moves an accepted ticket to
-    `tickets/done/`, and performs safe runtime/worktree cleanup. Do not claim
+    management skill for the final ticket state, commit, integration, any
+    approved preview promotion, ticket closure, and cleanup. Do not claim
     completion before integration and any required baseline promotion are
     durable.
 12. Classify the final package as `Prototype Completed` only after management
