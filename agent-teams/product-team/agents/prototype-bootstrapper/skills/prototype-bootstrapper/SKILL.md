@@ -113,13 +113,14 @@ gap is a reason for `Blocked`, not a separate handoff outcome.
   fixtures from them. Copying the source's data is not prototyping; it makes
   the prototype large and slow to build, and it duplicates product content into
   another repository. Content files that the copied UI imports statically
-  (Markdown, JSON, or data modules such as question banks, translations or
+  (Markdown, JSON, or data modules such as question sets, translations or
   topic lists) are content, not presentation code. Keep the importing UI code
   unchanged and replace each content file with a small synthetic file of the
   same shape and exports. See "What a product prototype project is" in the
   shared principles.
 - Values that the UI controls must be exact. These include labels, headings,
-  instructions, template text around values (for example "… im System"), and
+  instructions, template text around values (for example "… items in the
+  system"), and
   empty, error, validation, feedback, status, and locked copy. Domain values that come from
   the source's content (titles, texts, counts, topic names) may differ. Mark
   them as illustrative in the report for each inventory item.
@@ -128,9 +129,9 @@ gap is a reason for `Blocked`, not a separate handoff outcome.
   same synthetic values into the source observation environment so that those
   surfaces compare exactly. Do not bend the prototype toward the source's
   content instead.
-- Interaction outcomes are UI behavior, not content. If a compared journey
-  answers "B" and the source shows "correct", the synthetic answer key must make
-  "B" correct too. Likewise, give the fixture item the same kind of visible
+- Interaction outcomes are UI behavior, not content. If a compared journey submits a value
+  and the source shows it as accepted, the synthetic fixture must accept that
+  value too. Likewise, give the fixture item the same kind of visible
   state that the source item shows (for example written vs placeholder text,
   image available vs missing, partial vs complete). Only the words inside those
   states are illustrative.

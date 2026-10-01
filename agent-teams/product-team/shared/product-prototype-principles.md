@@ -35,8 +35,8 @@ It implements:
 
 It does not contain:
 
-- real data or content: course texts, exam items, answer keys, transcripts,
-  question banks, translations, article bodies, media inventories, user
+- real data or content: article and document bodies, catalog or question
+  sets, answer data, transcripts, translations, media inventories, user
   records, or any export of them;
 - recorded, replayed or captured source responses, whether kept as files or
   served through a replay layer;
@@ -55,8 +55,7 @@ kilobytes. If fixtures or content files reach megabytes, or match the
 source's item counts, real data has been copied.
 
 Copy the source's **UI code**, not its **content**. When copied presentation
-code imports content (Markdown, JSON, or data modules such as question banks or
-topic lists), keep the importing UI code unchanged and replace the imported
+code imports content (Markdown, JSON, or data modules such as question sets or topic lists), keep the importing UI code unchanged and replace the imported
 content with a small synthetic file of the same shape and exports. A
 presentation-boundary audit covers UI code only. Content files are expected to
 differ from the source.

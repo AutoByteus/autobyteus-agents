@@ -52,7 +52,7 @@ In short:
 
 | The prototype implements | The prototype never contains |
 | --- | --- |
-| Every distinct page, component, style, asset and responsive layout | Real content: course texts, exam items, answer keys, transcripts, question banks, translations, articles, media inventories |
+| Every distinct page, component, style, asset and responsive layout | Real content: article and document bodies, catalog or question sets, answer data, transcripts, translations, media inventories |
 | All UI-controlled text and messages | Real user or account records, or exports of them |
 | Navigation, controls, forms, validation and interactions, with scripted visible outcomes | The product's real logic: grading, progress calculation, recommendations, search, publishing |
 | Every distinct state and role, through deterministic scenarios | A backend: server rules, persistence, access control, integrations |
@@ -271,7 +271,7 @@ Keep the future-state change proportional to the decision:
 - Baseline data-boundary check: before accepting, confirm that prototype data
   is small, hand-written and synthetic. Inspect the fixture and content
   directories, their size, and their provenance. Recorded, replayed, captured
-  or bulk-copied source data or course content is a baseline defect. Send it
+  or bulk-copied source data or content is a baseline defect. Send it
   back as a data-boundary correction. This includes content files that copied
   presentation code imports statically. Do not accept it, and do not carry it
   forward as an open item.
@@ -393,8 +393,8 @@ Keep the future-state change proportional to the decision:
   - page-skeleton geometry;
   - interactive elements and their targets, with item IDs masked;
   - final route and title.
-  Exclude rendered course or article prose (for example markdown/prose
-  containers) from UI-copy checks. When a value comes from account or state
+  Exclude rendered content prose (for example markdown/prose containers) from
+  UI-copy checks. When a value comes from account or state
   data (progress, entitlement, role, flags), seed the same synthetic value on
   the source observation side instead of copying source data into the
   prototype.
@@ -431,7 +431,7 @@ Before reporting the prototype as completed, confirm:
   `prototype-bootstrap-report.md` that shows UI parity for every distinct
   inventory item
 - prototype data is small, hand-written and synthetic. No recorded, replayed,
-  captured or bulk-copied source data or course content remains anywhere in
+  captured or bulk-copied source data or content remains anywhere in
   the prototype repository, including statically imported content files.
   Fixture size and provenance are recorded.
 - the documented command starts the prototype and the critical journey is runnable
@@ -459,17 +459,16 @@ Each of these has happened before. Recognise it and use the correction
 instead.
 
 - **Copying content along with UI code.** Defining the copied "presentation
-  boundary" by folder, so every file the pages import comes along: course
-  Markdown in `exam/`, JSON in `data/`, and question banks or translations in
-  `shared/…/data/*.js`. The prototype ends up holding megabytes of real
+  boundary" by folder, so every file the pages import comes along: Markdown content, JSON data
+  files, and data modules such as question sets or translations. The prototype ends up holding megabytes of real
   content. Correction: copy UI code only. Replace every imported content file
   with a small synthetic file of the same shape and exports, and audit UI code
   and content separately.
 
 - **Judging data as if it were UI.** Rejecting a baseline because a dashboard
-  shows "1 Themenfamilien" where the source shows "18", or a different topic
-  name. Correction: counts, titles and topic names are illustrative domain
-  values. Check the template text around them ("… Themenfamilien im System"),
+  shows "1 categories" where the source shows "18", or a different category
+  name. Correction: counts, titles and names are illustrative domain values.
+  Check the template text around them ("… categories in the system"),
   the component and its styles, and whether every state is represented.
 - **Whole-page hash comparison.** Comparing `innerText` or layout hashes of
   entire pages and calling every mismatch a failure. Correction: compare per
@@ -481,10 +480,10 @@ instead.
   restates the acceptance criterion.
 - **Accepting captured source data as "fixtures".** Passing "source-captured
   payloads", "complete libraries", recorded API responses, replay layers, or
-  real answer keys, transcripts and question banks because the pages then
+  real answer data, transcripts and question sets because the pages then
   match. Correction: that is copied content, a data-boundary defect. Replace it
   with a few hand-written items of the same shape.
-- **Carrying copied content forward as an open item.** Noting that real course
+- **Carrying copied content forward as an open item.** Noting that real content
   files are "unchanged from the earlier baseline" and moving on. Correction:
   copied content is a defect in the current baseline. Request a data-boundary
   correction before acceptance, or record the ticket as not complete.
