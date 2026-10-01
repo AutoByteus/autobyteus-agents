@@ -249,8 +249,8 @@ Keep the future-state change proportional to the decision:
   `prototype-bootstrap-report.md`, and referenced evidence directly. Accept an
   existing-frontend baseline only when its selected source and revision are
   explicit, the browser prototype is independently runnable, every distinct UI
-  inventory item has matched source and prototype evidence, no known perceptible
-  appearance or client-behavior difference remains, and production capabilities
+  inventory item has matched source and prototype evidence, no known UI parity
+  difference remains, and production capabilities
   are replaced by documented local simulations. If correction is required,
   classify the outcome as `Baseline Needed` again and send the failed or
   unsubstantiated UI inventory IDs through the handoff rules.
@@ -279,7 +279,7 @@ Keep the future-state change proportional to the decision:
   baseline report, read its current implementation and artifacts in the active
   ticket worktree and skip initial bootstrap. Request a refresh when an
   explicitly selected new source authority differs from the report. Request a
-  correction when any known perceptible or behavioral difference or
+  correction when any known UI parity difference or
   unsubstantiated distinct UI item remains.
 - Do not start requirements-driven feature or design work on an unreviewed,
   failed, unsubstantiated, stale, or blocked current-experience baseline.
@@ -503,7 +503,7 @@ instead.
 - Distinguish observed prototype behavior from recommended requirement changes.
 - Record which alternatives were explored, what evidence differentiates them, and what decision remains with the user.
 - Do not silently convert a prototype convenience into a product requirement.
-- Treat user feedback that materially changes scope, requirements, acceptance criteria, or governing constraints as a requirement-impact finding; return it to `solution_designer` before implementing it.
+- Treat user feedback that materially changes scope, requirements, acceptance criteria, or governing constraints as a requirement-impact finding; classify it as `Requirement Impact` and route it through the handoff rules before implementing it.
 - If codebase or contract evidence contradicts the draft requirement, report the contradiction with its source; do not rewrite canonical requirements.
 
 ## Handoff Rules

@@ -1,6 +1,6 @@
 ---
 name: prototype-bootstrapper
-description: Create, correct, or refresh an independently runnable current-experience prototype with exact observable UI/UX parity to a selected pinned frontend, using deliberately lightweight local state, synthetic fixtures, and simulated runtime contexts rather than production internals.
+description: Create, correct, or refresh an independently runnable current-experience prototype with UI parity to a selected pinned frontend, using deliberately lightweight local state, synthetic fixtures, and simulated runtime contexts rather than production internals.
 ---
 
 # Prototype Bootstrapper
@@ -40,7 +40,7 @@ layout, a lesson page, and each state. The rest adds volume, not new UI.
 - independent discovery of the current observable UI/UX boundary
 - an independently runnable current-experience baseline in the Product
   Prototyper's assigned ticket worktree
-- exact observable parity for each distinct user-facing surface, behavior,
+- UI parity for each distinct user-facing surface, behavior,
   state pattern, and journey in the selected boundary
 - prototype-native state, synthetic fixtures, scripted transitions, and
   scenario controls
@@ -140,8 +140,8 @@ gap is a reason for `Blocked`, not a separate handoff outcome.
 - Stop and reconsider if exact matching seems to require copying source data,
   recording protocols, or reproducing production stores. That is a sign the
   comparison method is wrong, not that the prototype needs more data. Compare
-  per component and per state instead, and ask the Product Prototyper when the
-  acceptance criterion is unclear.
+  per component and per state instead, If the acceptance
+  criterion itself is unclear, return `Blocked` with the precise question.
 
 ## Prototype Repository Boundary
 
@@ -204,7 +204,7 @@ gap is a reason for `Blocked`, not a separate handoff outcome.
    list lengths and page height. Record source evidence, prototype evidence, the
    result, and which domain values are illustrative.
 9. Fix every observable discrepancy and repeat the matched browser comparison
-   until every inventory item passes with no known perceptible or behavioral
+   until every inventory item passes with no known UI parity
    difference. Equivalent permutations may share evidence only when their
    rendered UI and behavior are demonstrably identical.
 10. Complete `prototype-bootstrap-report.md` with source identity, prototype
@@ -240,7 +240,7 @@ gap is a reason for `Blocked`, not a separate handoff outcome.
 - Use browser interaction, DOM inspection, computed geometry or styles,
   screenshots, and perceptual comparison as appropriate. Raw screenshot bytes
   may differ because of normalized rendering noise, but any known
-  human-perceptible or behaviorally meaningful difference must be corrected.
+  UI parity difference must be corrected.
 - Run build, typecheck, lint, unit, and browser checks in proportion to the
   prototype implementation rather than inheriting production test scope.
 - Record exact commands, results, review URL, scenario-selection method, and
@@ -283,8 +283,7 @@ Before returning `Completed`, confirm:
   the report
 - no production credentials, customer data, live dependencies, or production
   writes are used
-- no known perceptible appearance, interaction, navigation, state, responsive,
-  or journey discrepancy remains
+- no known UI parity difference remains
 - `prototype-bootstrap-report.md` truthfully agrees with the runnable prototype
   and source revision
 

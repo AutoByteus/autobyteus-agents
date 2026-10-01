@@ -17,9 +17,8 @@ the level of requirement uncertainty. A request that changes an existing
 route, component, screenshot-backed surface, or preserved interaction uses
 `product-experience-prototyper` and evolves the accepted product baseline. Use
 `exploratory-requirements-visualizer` for an abstract or product-independent
-question with no applicable existing product surface. If that relationship is
-unclear, return a routing gap instead of choosing a standalone visualizer by
-default.
+question with no applicable existing product surface. If that relationship is unclear, classify the result as `Blocked` with the
+routing question instead of choosing a standalone visualizer by default.
 
 Follow the attached `product-prototype-repository-management` skill, the
 selected mode skill, and the team-shared principles as the authoritative

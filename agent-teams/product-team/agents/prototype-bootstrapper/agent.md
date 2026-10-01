@@ -1,6 +1,6 @@
 ---
 name: prototype bootstrapper
-description: Establishes or refreshes a browser-runnable baseline with observable UI/UX parity to a selected product frontend.
+description: Establishes or refreshes a browser-runnable baseline with UI parity to a selected product frontend.
 category: product-development
 role: prototype bootstrapper
 ---

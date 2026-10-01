@@ -52,7 +52,7 @@ boundary. It does not prove production integration or replace
 Group equivalent contexts rather than creating a Cartesian matrix. Each row
 should identify a distinct user-facing surface or behavior, not an internal API
 operation. `Pass` requires applicable source evidence, prototype evidence, and
-no known perceptible or behavioral difference. In the fixture column, name the
+no known UI parity difference. In the fixture column, name the
 synthetic fixture and list any illustrative domain values (content-derived
 titles, texts, or counts that intentionally differ from the source).
 
@@ -70,7 +70,7 @@ titles, texts, or counts that intentionally differ from the source).
 
 Validate each distinct rendered surface and state under matched conditions.
 Raw screenshot bytes may differ only because of normalized rendering noise; a
-known perceptible difference is a failure.
+known UI parity difference is a failure.
 
 | Visual ID | Surface / State / Context | Matched Browser / Viewport / Font / Asset / Theme / Locale / Scenario / Synthetic Fixture | Source Screenshot | Prototype Screenshot | DOM / Geometry / Style / Perceptual Method | Remaining Difference | Result |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -129,7 +129,7 @@ production mechanisms.
   `No`
 - Production credentials, customer data, live dependencies, and production
   writes are absent: `Yes` / `No`
-- Perceptible appearance or client-behavior discrepancies remaining: `None` /
+- UI parity differences remaining: `None` /
   details
 - Unsubstantiated distinct UI inventory items remaining: `None` / details
 - Mock data boundary: all data and content files are small and hand-written,
@@ -138,8 +138,8 @@ production mechanisms.
   `Yes` / `No`
 
 `Completed` means every distinct recorded UI/UX inventory item has passing
-source-versus-prototype evidence and no known perceptible or behavioral
-difference remains. It does not mean production stores, protocols, native
+source-versus-prototype evidence and no known UI parity difference
+remains. It does not mean production stores, protocols, native
 runtimes, integrations, or architecture were reproduced or validated.
 
 ## Known Gaps And Next Action

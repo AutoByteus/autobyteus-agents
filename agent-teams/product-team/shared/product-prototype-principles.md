@@ -103,10 +103,12 @@ can stand for every item that renders the same way.
   density, typography, font assets, color, borders, radii, shadows, icons,
   imagery, labels, controls, responsive behavior, focus, keyboard behavior,
   feedback, motion, navigation, state transitions, and journey outcomes.
-- "Exact" means no known human-perceptible or behaviorally meaningful
-  difference under matched browser, viewport, font, asset, theme, locale,
-  context, scenario, and synthetic data-fixture conditions. It does not require
-  identical source code, runtime architecture, or raw screenshot bytes.
+- A **UI parity difference** is a known human-perceptible or behaviorally
+  meaningful difference in something UI parity covers, under matched browser,
+  viewport, font, asset, theme, locale, context, scenario, and synthetic
+  data-fixture conditions. An illustrative data value is never one. "Exact"
+  means no known UI parity difference; it does not require identical source
+  code, runtime architecture, or raw screenshot bytes.
 - UI-controlled content—including labels, instructions, formatting, validation,
   feedback, and error or recovery messages—is part of the exact experience
   contract. Domain record values are synthetic and minimal. Current-source
@@ -269,7 +271,7 @@ for a prototype workspace. Later requirements-driven work normally belongs to
 - Use controlled browser interaction, DOM inspection, computed-style or
   geometry checks, screenshots, and perceptual comparison as appropriate.
   Rendering noise such as subpixel antialiasing does not require raw
-  screenshot-byte identity, but any known perceptible appearance or interaction
+  screenshot-byte identity, but any known UI parity
   difference blocks exact current-experience completion.
 - Differences in internal stores, protocols, runtimes, or architecture are
   intentional simplifications and do not affect UI/UX fidelity when the visible

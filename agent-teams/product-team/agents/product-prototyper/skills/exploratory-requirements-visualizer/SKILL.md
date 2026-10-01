@@ -72,7 +72,7 @@ from the sender. The request should identify:
   feedback when available.
 
 If the request concerns an existing product route, component, screenshot-backed
-surface, or preserved interaction, return a routing gap naming
+surface, or preserved interaction, this mode does not apply: switch to
 `product-experience-prototyper` instead of building a standalone visualizer.
 If there is no concrete decision question or observable experience to show,
 classify the result as `Blocked` with a precise request-gap reason instead of
@@ -219,7 +219,7 @@ integration work.
 - Confirm before design that the question is abstract, product-independent,
   or explicitly requested as an independent explanation. If it concerns an
   existing product route, component, screenshot-backed surface, or preserved
-  interaction, stop and return a routing gap for
+  interaction, switch to
   `product-experience-prototyper`; do not create visualizer artifacts.
 - Create or update the shared `prototype-ticket.md` record in the ticket
   folder for every supplied or newly created exploratory visualization ticket,
@@ -266,8 +266,8 @@ as the shared ticket record `prototype-ticket.md`.
 1. Read the focused exploratory visualization request, requirements context,
    active Product ticket, repository instructions, prior revision, and open
    user questions. Confirm that the question has no applicable existing
-   product surface; if it does, return a routing gap for
-   `product-experience-prototyper` and stop.
+   product surface; if it does, switch to
+   `product-experience-prototyper` and stop this mode.
 2. Use the management skill's canonical repository, ticket branch, active
    worktree, accepted base revision, runtime-isolation record, and visualizer
    template. Create or update the mode-specific fields in `prototype-ticket.md`
