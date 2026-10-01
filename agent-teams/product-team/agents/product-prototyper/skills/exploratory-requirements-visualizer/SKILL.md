@@ -72,7 +72,7 @@ from the sender. The request should identify:
   feedback when available.
 
 If the request concerns an existing product route, component, screenshot-backed
-surface, or preserved interaction, return a routing gap naming
+surface, or preserved interaction, this mode does not apply: switch to
 `product-experience-prototyper` instead of building a standalone visualizer.
 If there is no concrete decision question or observable experience to show,
 classify the result as `Blocked` with a precise request-gap reason instead of
@@ -216,16 +216,13 @@ integration work.
 - Use the canonical Product Prototype repository, the supplied Product ticket,
   and the active ticket worktree established by the management skill. Do not
   create a second product-prototype repository or ticket worktree.
-- Confirm before design that the question is abstract, product-independent,
-  or explicitly requested as an independent explanation. If it concerns an
-  existing product route, component, screenshot-backed surface, or preserved
-  interaction, stop and return a routing gap for
-  `product-experience-prototyper`; do not create visualizer artifacts.
+- Confirm the activation boundary in Activation And Inputs before design; do
+  not create visualizer artifacts for a request outside it.
 - Create or update the shared `prototype-ticket.md` record in the ticket
   folder for every supplied or newly created exploratory visualization ticket,
   including request-gap cases recorded as `Blocked`, `Not Recommended`, and
   other `Blocked` outcomes.
-  Use the shared status transitions; keep mode-specific brief, design-plan,
+  Use the repository-management skill's ticket statuses; keep mode-specific brief, design-plan,
   and review fields in their own artifacts instead of duplicating them in the
   ticket record.
 - Complete the cognition-first design pass and keep its design plan in the
@@ -265,9 +262,7 @@ as the shared ticket record `prototype-ticket.md`.
 
 1. Read the focused exploratory visualization request, requirements context,
    active Product ticket, repository instructions, prior revision, and open
-   user questions. Confirm that the question has no applicable existing
-   product surface; if it does, return a routing gap for
-   `product-experience-prototyper` and stop.
+   user questions. Confirm the activation boundary in Activation And Inputs.
 2. Use the management skill's canonical repository, ticket branch, active
    worktree, accepted base revision, runtime-isolation record, and visualizer
    template. Create or update the mode-specific fields in `prototype-ticket.md`
@@ -347,7 +342,7 @@ Every completed result must include:
   review record, ticket folder, and visual references; explicitly state when
   an artifact was not created because the result was `Blocked` due to a
   request gap, `Not Recommended`, or another `Blocked` condition;
-- the current ticket status, using the shared status transitions;
+- the current ticket status, using the repository-management skill's ticket statuses;
 - the design-gate status, or Not Applicable when no design pass occurred, and
   any intentional deviation between the plan and the delivered visualizer;
 - the review URL when a visualizer exists and the exact browser validation

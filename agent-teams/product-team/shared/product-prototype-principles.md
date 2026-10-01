@@ -35,8 +35,8 @@ It implements:
 
 It does not contain:
 
-- real data or content: course texts, exam items, answer keys, transcripts,
-  question banks, translations, article bodies, media inventories, user
+- real data or content: article and document bodies, catalog or question
+  sets, answer data, transcripts, translations, media inventories, user
   records, or any export of them;
 - recorded, replayed or captured source responses, whether kept as files or
   served through a replay layer;
@@ -55,8 +55,7 @@ kilobytes. If fixtures or content files reach megabytes, or match the
 source's item counts, real data has been copied.
 
 Copy the source's **UI code**, not its **content**. When copied presentation
-code imports content (Markdown, JSON, or data modules such as question banks or
-topic lists), keep the importing UI code unchanged and replace the imported
+code imports content (Markdown, JSON, or data modules such as question sets or topic lists), keep the importing UI code unchanged and replace the imported
 content with a small synthetic file of the same shape and exports. A
 presentation-boundary audit covers UI code only. Content files are expected to
 differ from the source.
@@ -103,10 +102,12 @@ can stand for every item that renders the same way.
   density, typography, font assets, color, borders, radii, shadows, icons,
   imagery, labels, controls, responsive behavior, focus, keyboard behavior,
   feedback, motion, navigation, state transitions, and journey outcomes.
-- "Exact" means no known human-perceptible or behaviorally meaningful
-  difference under matched browser, viewport, font, asset, theme, locale,
-  context, scenario, and synthetic data-fixture conditions. It does not require
-  identical source code, runtime architecture, or raw screenshot bytes.
+- A **UI parity difference** is a known human-perceptible or behaviorally
+  meaningful difference in something UI parity covers, under matched browser,
+  viewport, font, asset, theme, locale, context, scenario, and synthetic
+  data-fixture conditions. An illustrative data value is never one. "Exact"
+  means no known UI parity difference; it does not require identical source
+  code, runtime architecture, or raw screenshot bytes.
 - UI-controlled content—including labels, instructions, formatting, validation,
   feedback, and error or recovery messages—is part of the exact experience
   contract. Domain record values are synthetic and minimal. Current-source
@@ -269,7 +270,7 @@ for a prototype workspace. Later requirements-driven work normally belongs to
 - Use controlled browser interaction, DOM inspection, computed-style or
   geometry checks, screenshots, and perceptual comparison as appropriate.
   Rendering noise such as subpixel antialiasing does not require raw
-  screenshot-byte identity, but any known perceptible appearance or interaction
+  screenshot-byte identity, but any known UI parity
   difference blocks exact current-experience completion.
 - Differences in internal stores, protocols, runtimes, or architecture are
   intentional simplifications and do not affect UI/UX fidelity when the visible
@@ -287,56 +288,7 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   Bootstrap screenshots are current-experience evidence, not approved
   future-state references.
 
-## 7. Workspace Selection And Isolation
-
-- Reuse an applicable canonical prototype repository that already represents
-  the same frontend application or product surface.
-- Derive a new `prototype-subject` in this order: the selected frontend
-  application's name; a recognizable product-surface name when the
-  application name is generic; the repository name when it represents one
-  relevant frontend; or a stable product/experience name when no frontend
-  exists. Normalize it to the workspace's naming conventions and use
-  `<prototype-subject>-prototype` as the default prototype repository name.
-- Keep the prototype repository separate from the source repository. In a
-  workspace containing both, place them as sibling directories:
-
-  ```text
-  workspace/
-    source-repository/
-    <prototype-subject>-prototype/
-    <prototype-subject>-prototype-worktrees/
-  ```
-
-  The prototype repository is not a subdirectory of the source repository,
-  even when the selected frontend is nested inside that source repository. Do
-  not add a generic `prototypes/` container.
-- The canonical prototype repository is the stable project identity and
-  integration base. Active requirements-driven work uses a dedicated Git
-  worktree and branch under the sibling worktree directory, for example:
-
-  ```text
-  <prototype-subject>-prototype-worktrees/
-    <ticket-id>/
-  ```
-
-  Product-experience source remains at the prototype repository root within the
-  integrated base, while the active ticket edits its own worktree. Requirements
-  Visualization may use a ticket-scoped temporary project such as
-  `visualizers/<ticket-id>/` inside that worktree when the concept is
-  product-independent. This is a mode-specific subproject, not a second Git
-  repository or a generic `prototypes/` container.
-- When no frontend exists, derive the prototype subject from the product or
-  experience name and use the selected repository policy to create or reserve
-  the separate prototype repository. Create its initial baseline worktree
-  before editing and record the choice.
-- Record the source repository and selected frontend, pinned source revision,
-  canonical prototype repository/root, active ticket worktree and branch,
-  accepted base revision, run command, scenario-selection method, and major
-  implementation simplifications.
-- Do not let prototype runs write to production services or depend on
-  production credentials.
-
-## 8. UI Authority And Responsibility Boundary
+## 7. UI Authority And Responsibility Boundary
 
 - The pinned source frontend is the sole UI/UX authority for a current-
   experience baseline. `prototype_bootstrapper` discovers and reproduces that
@@ -359,104 +311,30 @@ for a prototype workspace. Later requirements-driven work normally belongs to
 - No prototype role owns the target production architecture or production
   implementation.
 
-## 9. Prototype Repository Boundary And Ownership
+## 8. Prototype Repository Boundary
 
-- Treat the source repository and the product prototype as separate Git
-  repositories and separate project roots. The prototype repository normally
-  sits beside the source repository in the workspace and uses the stable name
-  `<prototype-subject>-prototype`. It is not a nested project, production
-  frontend directory, Solution Designer worktree, or generic
-  `prototypes/` directory.
-- Product Prototyper resolves, creates when necessary, and owns the prototype
-  repository and each Product ticket worktree from request intake. Ownership
-  includes project files, ticket folders, ticket branches/worktrees,
-  prototype-specific commits, integration state, and durable UI/UX evidence.
-  Solution Designer may link those artifacts but does not manage them.
-- Prototype work may modify only the prototype repository through its assigned
-  ticket worktree. Production source paths, production services, and production
-  credentials remain outside the prototype boundary. Bootstrapping may read the
-  pinned source repository but must write only to the Product-owned active
-  prototype worktree.
-- Reuse an existing canonical prototype repository when its product surface
-  and source boundary match. Otherwise derive the stable repository name using
-  Section 7. If the repository cannot be identified, initialized, or isolated
-  safely, stop and report the exact blocker rather than silently creating a
-  second project.
-- Record source repository and revision, selected frontend, canonical prototype
-  repository/root, active ticket worktree and branch, accepted base revision,
-  ticket revision, run command, and major implementation simplifications in
-  durable prototype evidence.
+- Each prototype is a separate Git repository, normally a sibling of the
+  source repository named `<prototype-subject>-prototype`. It is not nested in
+  the source repository, a production frontend directory, a Solution Designer
+  worktree, or a generic `prototypes/` directory.
+- Product Prototyper owns the prototype repository and its lifecycle: tickets,
+  ticket branches and worktrees, ticket statuses, commits, integration,
+  baseline promotion, and cleanup. Its `product-prototype-repository-management`
+  skill defines that lifecycle. Solution Designer may link prototype artifacts
+  but does not manage them.
+- Prototype work writes only to the prototype repository, through the assigned
+  ticket worktree. The source repository may be read, never written. Prototype
+  runs never write to production services or use production credentials.
+- When the repository or worktree cannot be identified or isolated safely,
+  stop and report the exact blocker instead of creating a second project or
+  sharing a checkout.
+- Record in durable prototype evidence: the source repository and selected
+  frontend, pinned source revision, canonical prototype repository/root, active
+  ticket worktree and branch, accepted base revision, ticket revision, run
+  command, scenario-selection method, and major implementation
+  simplifications.
 
-## 10. Prototype Repository Lifecycle
-
-- Maintain one stable prototype repository for the selected frontend or
-  product surface. Manage each requirements-driven request as a ticket with a
-  dedicated branch and worktree, using the caller's existing ticket or request
-  identifier when one is supplied. If none exists, create the ticket using the
-  Product team's normal ticket convention before editing. Do not invent a
-  second prototype-specific ticket ID.
-- Keep ticket folders such as `tickets/in-progress/<ticket-id>/` and
-  `tickets/done/<ticket-id>/` inside the active ticket worktree. They contain
-  the ticket record, UI/UX specification, visual references, and supporting
-  evidence; the folder records the ticket, while the Git worktree provides
-  source and index isolation.
-- Product Prototyper creates or resumes the ticket branch/worktree from the
-  latest accepted prototype revision and performs ticket edits there. Record
-  the canonical repository separately from the active worktree, branch, base
-  revision, and ticket revision.
-- The Product Prototyper reads the accepted baseline before making a focused
-  change. Keep revision history in the branch commits, existing change log,
-  and ticket record when a material evolution needs traceability.
-- For an existing frontend with no accepted baseline, Product Prototyper sends
-  the fixed bootstrap request with the selected frontend, canonical prototype
-  repository/root, target baseline worktree, branch, and source/base
-  constraints. Bootstrapper establishes current UI/UX parity in that worktree
-  and returns the runnable result, bootstrap report, and evidence.
-- Product Prototyper performs acceptance and regression validation, commits
-  the accepted baseline and later durable changes on the Product-owned ticket
-  branch, and integrates them into the canonical prototype base under
-  repository policy. Keep mode-appropriate ticket evidence synchronized with
-  the committed state. Use the following status transitions for the common
-  `prototype-ticket.md` record; the outcome classification and ticket status
-  must agree:
-
-  Integration and baseline promotion are separate. A preview or review URL is
-  a candidate entry point; after the user explicitly approves a candidate as
-  the product experience, promote that candidate into the default prototype
-  baseline before reporting the ticket as completed. Promotion means the
-  approved experience is reachable through the normal/default entry point
-  without depending on preview-only state. Review URLs may remain available as
-  evidence or for comparison, but they must not be the only route to the
-  approved baseline. Record the promoted baseline revision and its validation
-  separately from the integration revision when they differ.
-
-  ```text
-  ticket opened / active work -> In Progress
-  existing frontend has no accepted baseline -> Baseline Needed
-  review URL or review package sent -> Awaiting User Review
-  feedback or revision received -> In Progress
-  explicit final approval and final artifacts committed -> Completed
-  missing decision, required input, or other unresolved prerequisite -> Blocked
-  interactive visualization is not useful for the decision -> Not Recommended
-  ```
-
-  An exploratory-visualization ticket remains in
-  `tickets/in-progress/` while clarification is open. When clarification
-  closes without product-experience work, complete its evidence and close the
-  ticket under repository policy; if product-experience work follows, keep or
-  reopen it in progress. Move a completed product-experience ticket folder to
-  `tickets/done/` in the ticket branch and preserve the integration result.
-  Push only under existing repository policy or explicit authorization.
-- Multiple tickets may exist in the same repository, but overlapping changes
-  may use separate worktrees and must still be integrated deliberately. Do not
-  overwrite another ticket's uncommitted changes. Before integration, reconcile
-  an advanced base and report merge conflicts or changed behavior instead of
-  silently resetting a ticket.
-- If the canonical repository, accepted base, ticket branch, or worktree is in
-  an unsafe or ambiguous state, stop and report the exact blocker rather than
-  inventing another root or sharing a checkout.
-
-## 11. Bootstrapper And Product-Prototyper Boundary
+## 9. Bootstrapper And Product-Prototyper Boundary
 
 - `prototype_bootstrapper` owns only the current-experience baseline: source
   verification and pinning, observable-surface discovery, prototype-native
@@ -478,7 +356,7 @@ for a prototype workspace. Later requirements-driven work normally belongs to
 - A no-frontend prototype does not need a Bootstrapper baseline; Product
   Prototyper establishes the prototype repository and initial runnable baseline directly.
 
-## 12. Delivery Artifacts And Visual References
+## 10. Delivery Artifacts And Visual References
 
 - The canonical prototype repository contains the runnable prototype,
   project-wide change history, and current-experience bootstrap evidence. Each

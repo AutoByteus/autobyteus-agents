@@ -17,7 +17,11 @@ Before this mode begins, apply
 to establish or resume the canonical repository, Product ticket, ticket branch,
 active worktree, accepted base revision, and runtime isolation. Apply it again
 after this mode's validation and user-review work for commit, integration,
-ticket closure, and cleanup. This skill owns only the product-experience work.
+ticket closure, and cleanup, and use its ticket statuses for the common
+`prototype-ticket.md` record. This skill owns only the product-experience work
+and supplies the evidence each status transition needs; it never switches the
+canonical prototype checkout, creates a second ticket worktree, or edits a
+production or source path.
 
 ## Purpose
 
@@ -52,7 +56,7 @@ In short:
 
 | The prototype implements | The prototype never contains |
 | --- | --- |
-| Every distinct page, component, style, asset and responsive layout | Real content: course texts, exam items, answer keys, transcripts, question banks, translations, articles, media inventories |
+| Every distinct page, component, style, asset and responsive layout | Real content: article and document bodies, catalog or question sets, answer data, transcripts, translations, media inventories |
 | All UI-controlled text and messages | Real user or account records, or exports of them |
 | Navigation, controls, forms, validation and interactions, with scripted visible outcomes | The product's real logic: grading, progress calculation, recommendations, search, publishing |
 | Every distinct state and role, through deterministic scenarios | A backend: server rules, persistence, access control, integrations |
@@ -182,22 +186,7 @@ those supporting artifacts.
 Keep the runnable prototype source at the active Product ticket worktree while
 the ticket is in progress. Keep the ticket record, UI/UX specification, final
 visual references, and ticket-specific support artifacts together under that
-worktree's ticket folder. The repository-management skill owns the canonical
-repository, branch, worktree, ticket status, commit, integration, and cleanup
-lifecycle; this mode owns only the product-experience artifacts and behavior.
-
-## Repository-Management Boundary
-
-Before following the product-experience sequence, use
-[product-prototype-repository-management](../product-prototype-repository-management/SKILL.md)
-to establish or resume the active Product ticket worktree and its accepted
-prototype base. Do not switch the canonical prototype checkout, create a
-second ticket worktree, or edit a production/source path from this mode.
-
-Use the status transitions in the shared Product Prototype Principles for the
-common `prototype-ticket.md` record. The management skill owns the transition
-and repository state; this skill supplies the product-experience result and the
-mode-specific evidence required for each transition.
+worktree's ticket folder.
 
 ## Prototype Selection
 
@@ -235,22 +224,19 @@ Keep the future-state change proportional to the decision:
   independent current-experience bootstrap. The prototype repository/root and
   target worktree are locations, not a request to pre-inventory or prescribe
   the implementation.
-- For `Mode: Correction`, reuse the fixed schema, change `Action` to correct the
-  named baseline gaps, and add only the established prototype repository/root,
-  bootstrap-report path, and failed or unsubstantiated inventory IDs. State in
-  `Action` what kind of gap each ID has (UI copy, structure, style, state,
-  interaction, or data-boundary) and restate the baseline acceptance criterion
-  below. Never phrase a correction so it can be satisfied by making the
-  prototype show the source's data. For
-  `Mode: Refresh`, change `Action` to refresh the established baseline and add
-  only the established prototype repository/root, report path, and explicitly
-  selected new source authority. Preserve the stable package identifier in all modes.
+- For `Mode: Correction`, use the payload's correction fields. In `Action`,
+  state the gap type of each failed or unsubstantiated ID (UI copy, structure,
+  style, state, interaction, or data-boundary) and restate the baseline
+  acceptance criterion below. Never phrase a correction so it can be satisfied
+  by making the prototype show the source's data. For `Mode: Refresh`, use the
+  payload's refresh fields. Preserve the stable package identifier in all
+  modes.
 - When the Bootstrapper returns, read and review the runnable prototype,
   `prototype-bootstrap-report.md`, and referenced evidence directly. Accept an
   existing-frontend baseline only when its selected source and revision are
   explicit, the browser prototype is independently runnable, every distinct UI
-  inventory item has matched source and prototype evidence, no known perceptible
-  appearance or client-behavior difference remains, and production capabilities
+  inventory item has matched source and prototype evidence, no known UI parity
+  difference remains, and production capabilities
   are replaced by documented local simulations. If correction is required,
   classify the outcome as `Baseline Needed` again and send the failed or
   unsubstantiated UI inventory IDs through the handoff rules.
@@ -271,7 +257,7 @@ Keep the future-state change proportional to the decision:
 - Baseline data-boundary check: before accepting, confirm that prototype data
   is small, hand-written and synthetic. Inspect the fixture and content
   directories, their size, and their provenance. Recorded, replayed, captured
-  or bulk-copied source data or course content is a baseline defect. Send it
+  or bulk-copied source data or content is a baseline defect. Send it
   back as a data-boundary correction. This includes content files that copied
   presentation code imports statically. Do not accept it, and do not carry it
   forward as an open item.
@@ -279,7 +265,7 @@ Keep the future-state change proportional to the decision:
   baseline report, read its current implementation and artifacts in the active
   ticket worktree and skip initial bootstrap. Request a refresh when an
   explicitly selected new source authority differs from the report. Request a
-  correction when any known perceptible or behavioral difference or
+  correction when any known UI parity difference or
   unsubstantiated distinct UI item remains.
 - Do not start requirements-driven feature or design work on an unreviewed,
   failed, unsubstantiated, stale, or blocked current-experience baseline.
@@ -291,9 +277,7 @@ Keep the future-state change proportional to the decision:
    non-goals. Read applicable requirements, investigation, revision, and
    feedback artifacts when they exist.
 2. Use the management skill's active ticket worktree, accepted base revision,
-   repository instructions, and runtime-isolation record. Do not create a
-   second ticket worktree, switch the canonical checkout, or edit a production
-   or source path from this mode.
+   repository instructions, and runtime-isolation record.
 3. Inspect the accepted current-experience baseline and its bootstrap evidence
    in the active worktree. Apply the bootstrap routing rules before any
    existing-frontend future-state work. If the baseline is absent or fails
@@ -331,11 +315,8 @@ Keep the future-state change proportional to the decision:
     accepted base, and resulting prototype revision from management state when
     recording provenance.
 11. Return the completed mode artifacts and final validation evidence to the
-    management skill. It records the final ticket state, commits the accepted
-    baseline or prototype result on the Product ticket branch, integrates and,
-    when an approved preview candidate is the intended product baseline,
-    promotes it according to repository policy, moves an accepted ticket to
-    `tickets/done/`, and performs safe runtime/worktree cleanup. Do not claim
+    management skill for the final ticket state, commit, integration, any
+    approved preview promotion, ticket closure, and cleanup. Do not claim
     completion before integration and any required baseline promotion are
     durable.
 12. Classify the final package as `Prototype Completed` only after management
@@ -393,8 +374,8 @@ Keep the future-state change proportional to the decision:
   - page-skeleton geometry;
   - interactive elements and their targets, with item IDs masked;
   - final route and title.
-  Exclude rendered course or article prose (for example markdown/prose
-  containers) from UI-copy checks. When a value comes from account or state
+  Exclude rendered content prose (for example markdown/prose containers) from
+  UI-copy checks. When a value comes from account or state
   data (progress, entitlement, role, flags), seed the same synthetic value on
   the source observation side instead of copying source data into the
   prototype.
@@ -431,7 +412,7 @@ Before reporting the prototype as completed, confirm:
   `prototype-bootstrap-report.md` that shows UI parity for every distinct
   inventory item
 - prototype data is small, hand-written and synthetic. No recorded, replayed,
-  captured or bulk-copied source data or course content remains anywhere in
+  captured or bulk-copied source data or content remains anywhere in
   the prototype repository, including statically imported content files.
   Fixture size and provenance are recorded.
 - the documented command starts the prototype and the critical journey is runnable
@@ -459,17 +440,16 @@ Each of these has happened before. Recognise it and use the correction
 instead.
 
 - **Copying content along with UI code.** Defining the copied "presentation
-  boundary" by folder, so every file the pages import comes along: course
-  Markdown in `exam/`, JSON in `data/`, and question banks or translations in
-  `shared/…/data/*.js`. The prototype ends up holding megabytes of real
+  boundary" by folder, so every file the pages import comes along: Markdown content, JSON data
+  files, and data modules such as question sets or translations. The prototype ends up holding megabytes of real
   content. Correction: copy UI code only. Replace every imported content file
   with a small synthetic file of the same shape and exports, and audit UI code
   and content separately.
 
 - **Judging data as if it were UI.** Rejecting a baseline because a dashboard
-  shows "1 Themenfamilien" where the source shows "18", or a different topic
-  name. Correction: counts, titles and topic names are illustrative domain
-  values. Check the template text around them ("… Themenfamilien im System"),
+  shows "1 categories" where the source shows "18", or a different category
+  name. Correction: counts, titles and names are illustrative domain values.
+  Check the template text around them ("… categories in the system"),
   the component and its styles, and whether every state is represented.
 - **Whole-page hash comparison.** Comparing `innerText` or layout hashes of
   entire pages and calling every mismatch a failure. Correction: compare per
@@ -481,10 +461,10 @@ instead.
   restates the acceptance criterion.
 - **Accepting captured source data as "fixtures".** Passing "source-captured
   payloads", "complete libraries", recorded API responses, replay layers, or
-  real answer keys, transcripts and question banks because the pages then
+  real answer data, transcripts and question sets because the pages then
   match. Correction: that is copied content, a data-boundary defect. Replace it
   with a few hand-written items of the same shape.
-- **Carrying copied content forward as an open item.** Noting that real course
+- **Carrying copied content forward as an open item.** Noting that real content
   files are "unchanged from the earlier baseline" and moving on. Correction:
   copied content is a defect in the current baseline. Request a data-boundary
   correction before acceptance, or record the ticket as not complete.
@@ -503,7 +483,7 @@ instead.
 - Distinguish observed prototype behavior from recommended requirement changes.
 - Record which alternatives were explored, what evidence differentiates them, and what decision remains with the user.
 - Do not silently convert a prototype convenience into a product requirement.
-- Treat user feedback that materially changes scope, requirements, acceptance criteria, or governing constraints as a requirement-impact finding; return it to `solution_designer` before implementing it.
+- Treat user feedback that materially changes scope, requirements, acceptance criteria, or governing constraints as a requirement-impact finding; classify it as `Requirement Impact` and route it through the handoff rules before implementing it.
 - If codebase or contract evidence contradicts the draft requirement, report the contradiction with its source; do not rewrite canonical requirements.
 
 ## Handoff Rules

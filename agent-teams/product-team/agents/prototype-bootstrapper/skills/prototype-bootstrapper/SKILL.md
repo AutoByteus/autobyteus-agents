@@ -1,6 +1,6 @@
 ---
 name: prototype-bootstrapper
-description: Create, correct, or refresh an independently runnable current-experience prototype with exact observable UI/UX parity to a selected pinned frontend, using deliberately lightweight local state, synthetic fixtures, and simulated runtime contexts rather than production internals.
+description: Create, correct, or refresh an independently runnable current-experience prototype with UI parity to a selected pinned frontend, using deliberately lightweight local state, synthetic fixtures, and simulated runtime contexts rather than production internals.
 ---
 
 # Prototype Bootstrapper
@@ -40,7 +40,7 @@ layout, a lesson page, and each state. The rest adds volume, not new UI.
 - independent discovery of the current observable UI/UX boundary
 - an independently runnable current-experience baseline in the Product
   Prototyper's assigned ticket worktree
-- exact observable parity for each distinct user-facing surface, behavior,
+- UI parity for each distinct user-facing surface, behavior,
   state pattern, and journey in the selected boundary
 - prototype-native state, synthetic fixtures, scripted transitions, and
   scenario controls
@@ -113,13 +113,14 @@ gap is a reason for `Blocked`, not a separate handoff outcome.
   fixtures from them. Copying the source's data is not prototyping; it makes
   the prototype large and slow to build, and it duplicates product content into
   another repository. Content files that the copied UI imports statically
-  (Markdown, JSON, or data modules such as question banks, translations or
+  (Markdown, JSON, or data modules such as question sets, translations or
   topic lists) are content, not presentation code. Keep the importing UI code
   unchanged and replace each content file with a small synthetic file of the
   same shape and exports. See "What a product prototype project is" in the
   shared principles.
 - Values that the UI controls must be exact. These include labels, headings,
-  instructions, template text around values (for example "… im System"), and
+  instructions, template text around values (for example "… items in the
+  system"), and
   empty, error, validation, feedback, status, and locked copy. Domain values that come from
   the source's content (titles, texts, counts, topic names) may differ. Mark
   them as illustrative in the report for each inventory item.
@@ -128,9 +129,9 @@ gap is a reason for `Blocked`, not a separate handoff outcome.
   same synthetic values into the source observation environment so that those
   surfaces compare exactly. Do not bend the prototype toward the source's
   content instead.
-- Interaction outcomes are UI behavior, not content. If a compared journey
-  answers "B" and the source shows "correct", the synthetic answer key must make
-  "B" correct too. Likewise, give the fixture item the same kind of visible
+- Interaction outcomes are UI behavior, not content. If a compared journey submits a value
+  and the source shows it as accepted, the synthetic fixture must accept that
+  value too. Likewise, give the fixture item the same kind of visible
   state that the source item shows (for example written vs placeholder text,
   image available vs missing, partial vs complete). Only the words inside those
   states are illustrative.
@@ -140,29 +141,17 @@ gap is a reason for `Blocked`, not a separate handoff outcome.
 - Stop and reconsider if exact matching seems to require copying source data,
   recording protocols, or reproducing production stores. That is a sign the
   comparison method is wrong, not that the prototype needs more data. Compare
-  per component and per state instead, and ask the Product Prototyper when the
-  acceptance criterion is unclear.
+  per component and per state instead, If the acceptance
+  criterion itself is unclear, return `Blocked` with the precise question.
 
 ## Prototype Repository Boundary
 
-- Write only in the Product Prototyper's assigned worktree, which is a linked
-  checkout of the canonical separate prototype repository. Never write
-  bootstrap code, artifacts, or commits into production frontend paths, the
-  source repository, the canonical integration checkout, or another ticket's
-  worktree.
-- Product Prototyper owns repository, branch, worktree, ticket, integration,
-  and cleanup management. If the canonical prototype repository or assigned
-  worktree does not exist, is ambiguous, or is unsafe, return `Blocked` rather
-  than creating one yourself.
-- Verify the supplied repository identity, branch, worktree, applicable
-  instructions, source pin, and current prototype state. The worktree must be
-  dedicated to this Product ticket and must not contain another ticket's dirty
-  work.
-- Do not create future-state task packages, Product ticket status changes,
-  user approval records, or the canonical future-state `ui-ux-spec.md`. Those
-  belong to Product Prototyper's mode and management workflows. Bootstrapper may
-  update baseline evidence in the assigned worktree and return it to Product
-  Prototyper, but Product Prototyper creates the accepted baseline commit.
+Follow the repository boundary and the Bootstrapper boundary in the shared
+principles. Before building, verify the supplied repository identity, branch,
+worktree, applicable instructions, source pin, and current prototype state.
+The worktree must be dedicated to this Product ticket and free of another
+ticket's dirty work. If the repository or worktree is missing, ambiguous, or
+unsafe, return `Blocked` rather than creating one.
 
 ## Operating Sequence
 
@@ -171,9 +160,8 @@ gap is a reason for `Blocked`, not a separate handoff outcome.
    repository, Product ticket, target branch, and assigned worktree from the
    Product Prototyper handoff.
 2. Verify the selected application boundary, pin the source revision, and
-   verify the supplied repository/worktree identity. Do not create a repository
-   or worktree, modify production frontend paths, or silently move to another
-   revision, branch, or prototype location.
+   verify the supplied repository/worktree identity. Do not silently move to
+   another revision, branch, or prototype location.
 3. Inspect routes, navigation, screens, presentation components, styles, assets,
    localization, responsive behavior, tests, fixtures, roles, feature flags,
    host contexts, and runnable source behavior. Inspect production internals
@@ -204,18 +192,15 @@ gap is a reason for `Blocked`, not a separate handoff outcome.
    list lengths and page height. Record source evidence, prototype evidence, the
    result, and which domain values are illustrative.
 9. Fix every observable discrepancy and repeat the matched browser comparison
-   until every inventory item passes with no known perceptible or behavioral
+   until every inventory item passes with no known UI parity
    difference. Equivalent permutations may share evidence only when their
    rendered UI and behavior are demonstrably identical.
 10. Complete `prototype-bootstrap-report.md` with source identity, prototype
    repository/root, ticket branch and target worktree, accepted base revision,
    any bootstrap candidate revision, experience inventory, implementation
    simplifications, scenarios, validation evidence, and known user-facing gaps.
-11. Return the runnable baseline, report, and durable current-state evidence to
-   Product Prototyper. Product Prototyper performs acceptance tests, updates
-   the ticket record, and owns the accepted prototype-repository commit.
-   Bootstrapper does not finalize the ticket, integrate the branch, or create
-   that accepted prototype-repository commit.
+11. Return the runnable baseline, report, and durable current-state evidence
+   for Product Prototyper's acceptance.
 12. Classify the result as `Completed` or `Blocked`, then follow the handoff
    rules with absolute artifact paths and exact project provenance.
 
@@ -240,7 +225,7 @@ gap is a reason for `Blocked`, not a separate handoff outcome.
 - Use browser interaction, DOM inspection, computed geometry or styles,
   screenshots, and perceptual comparison as appropriate. Raw screenshot bytes
   may differ because of normalized rendering noise, but any known
-  human-perceptible or behaviorally meaningful difference must be corrected.
+  UI parity difference must be corrected.
 - Run build, typecheck, lint, unit, and browser checks in proportion to the
   prototype implementation rather than inheriting production test scope.
 - Record exact commands, results, review URL, scenario-selection method, and
@@ -283,8 +268,7 @@ Before returning `Completed`, confirm:
   the report
 - no production credentials, customer data, live dependencies, or production
   writes are used
-- no known perceptible appearance, interaction, navigation, state, responsive,
-  or journey discrepancy remains
+- no known UI parity difference remains
 - `prototype-bootstrap-report.md` truthfully agrees with the runnable prototype
   and source revision
 
