@@ -8,6 +8,83 @@ only the principles that must remain consistent across prototype roles.
 
 ## 1. Purpose And Fidelity Boundary
 
+### What a product prototype project is
+
+A product prototype project is a runnable **model of the product's UI**. Every
+distinct page and state looks and behaves like the product, driven by **simple
+mock data**. It shows what the product looks like and how a user moves through
+it. It is **not a complete working website**: it does not hold the product's
+real data, and it does not implement the product's real logic.
+
+It implements:
+
+- every distinct page, route, layout, component, style and asset that makes up
+  the UI;
+- all UI-controlled text: labels, headings, instructions, and empty, error,
+  validation, feedback and status messages;
+- navigation, controls, forms, validation, dialogs and interactions, with
+  visible outcomes. Outcomes are scripted: the prototype shows the result the
+  product would show for the mock case, without computing it the way the
+  product does;
+- every meaningful state: empty, populated, loading, error, locked,
+  permission, role, logged out;
+- a small mock data layer: a stub that answers the UI's data requests from
+  hand-written fixtures, with scripted outcomes for user actions and
+  resettable in-memory state;
+- deterministic scenarios that select which state and role the UI shows.
+
+It does not contain:
+
+- real data or content: course texts, exam items, answer keys, transcripts,
+  question banks, translations, article bodies, media inventories, user
+  records, or any export of them;
+- recorded, replayed or captured source responses, whether kept as files or
+  served through a replay layer;
+- a backend: server rules, persistence, access control, integrations or
+  production protocols;
+- the product's real logic: scoring and grading engines, recommendation or
+  progress calculations, search, publishing pipelines, payment, email or media
+  processing. Only their visible results appear, as scripted outcomes for the
+  mock cases.
+
+Mock data is **enough items of each shape to show every UI state, and no
+more**. A list gets a few items, enough to show its layout, grouping, paging
+and facets. A detail page gets one or two item bodies per type. Values are
+invented and marked illustrative. A healthy data layer is measured in
+kilobytes. If fixtures or content files reach megabytes, or match the
+source's item counts, real data has been copied.
+
+Copy the source's **UI code**, not its **content**. When copied presentation
+code imports content (Markdown, JSON, or data modules such as question banks or
+topic lists), keep the importing UI code unchanged and replace the imported
+content with a small synthetic file of the same shape and exports. A
+presentation-boundary audit covers UI code only. Content files are expected to
+differ from the source.
+
+### What UI parity means
+
+**UI parity** is the fidelity target for a current-experience baseline. Every
+use of "parity", "exact" or "fidelity" in the Product Team's skills means this.
+A prototype has UI parity when, for every distinct page, state and interaction
+a user can see, the prototype and the pinned source look and behave the same
+under matched mock scenarios.
+
+| Parity covers (must match exactly) | Parity does not cover (never required) |
+| --- | --- |
+| Appearance: layout, spacing, typography, colors, borders, shadows, icons, imagery, responsive behavior | Data and content: titles, texts, counts, topic names, lists, media (illustrative) |
+| UI-controlled text, including template text around values | Real business logic: how scores, progress, recommendations or search results are computed |
+| Navigation: routes, links, redirects, guards | Backend behavior: persistence, access control, integrations, performance |
+| Interactions and their visible outcomes: clicks, forms, validation, feedback | Every data permutation, every item, every role/value combination |
+| Every distinct state: empty, populated, loading, error, locked, role, logged out | Code structure, stores, APIs or runtime architecture |
+| Focus, keyboard and motion behavior | Raw screenshot bytes |
+
+"Complete" means **complete coverage of distinct UI**: each distinct page type,
+state and interaction pattern appears at least once with evidence. It does not
+mean a complete website, every item, or every data combination. One mock item
+can stand for every item that renders the same way.
+
+### Fidelity boundary
+
 - A product prototype is an evidence instrument for product behavior, UI,
   interaction, state, navigation, visual hierarchy, and journey decisions.
   An exploratory requirements visualizer helps clarify an abstract or
@@ -17,9 +94,9 @@ only the principles that must remain consistent across prototype roles.
 - Optimize for **high experience fidelity and low implementation fidelity**.
   The reviewer should see and exercise the intended interface behavior, while
   the implementation underneath may be deliberately small and synthetic.
-- For a current-experience baseline, high experience fidelity means **100%
-  observable UI/UX parity** with the pinned source across the distinct recorded
-  inventory. For a future-state prototype, it means a production-quality,
+- For a current-experience baseline, high experience fidelity means **UI
+  parity** (defined above) for every item in the distinct recorded inventory.
+  For a future-state prototype, it means a production-quality,
   fully specified visual and interaction design suitable for use as an
   implementation reference after user approval.
 - Observable fidelity includes exact hierarchy, geometry, layout, spacing,
@@ -32,10 +109,13 @@ only the principles that must remain consistent across prototype roles.
   identical source code, runtime architecture, or raw screenshot bytes.
 - UI-controlled content—including labels, instructions, formatting, validation,
   feedback, and error or recovery messages—is part of the exact experience
-  contract. Domain record values may be synthetic, but current-source
-  comparisons use the same synthetic fixture values in source and prototype so
-  content differences do not conceal visual drift. Future-state references
-  identify any illustrative fixture value explicitly.
+  contract. Domain record values are synthetic and minimal. Current-source
+  comparisons seed the same synthetic values into the source observation
+  environment wherever that is cheap. Elsewhere they compare per component and
+  per state under representative data, and mark content-derived values as
+  illustrative. Never record, replay, or bulk-copy the source's data or content
+  into a prototype to force identical values. Future-state references identify
+  any illustrative fixture value explicitly.
 - A prototype is not a production implementation, frontend digital twin,
   integration test environment, production architecture, or proof of
   production readiness.
@@ -102,7 +182,10 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   prototype. A smaller prototype-native project is appropriate for
   no-frontend construction or Exploratory Requirements Visualization when no
   applicable existing product surface is in scope.
-- Do not copy a complete production frontend merely to claim fidelity. Choose the
+- Do not copy a complete production frontend merely to claim fidelity. When
+  reusing source code, separate UI code from content by what a file holds, not
+  by its folder. Content found in `shared/`, `utils/` or `data/` modules is
+  still content (see "What a product prototype project is"). Choose the
   smallest implementation that can express the complete observable UI
   experience within the selected boundary.
 - When no frontend exists, use the host workspace's configured prototype
@@ -164,6 +247,10 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   and connectivity contexts through deterministic scenario state. Do not bundle
   Electron, native bridges, server processes, or host runtimes when a browser
   scenario can express the same user-visible experience.
+- Real, recorded, replayed, captured or bulk-copied source data or content is a
+  defect wherever it sits in the prototype repository, including content files
+  that copied UI code imports statically. Replace it as described in "What a
+  product prototype project is".
 - Use only synthetic data. Prototype runs must not require production
   credentials, customer data, production exports, live production services, or
   production writes. Mutable state must be locally resettable.

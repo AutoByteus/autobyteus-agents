@@ -11,8 +11,11 @@ implementation, synthetic state, workspace/repository isolation, and evidence.
 
 ## Purpose
 
-Independently establish a browser-runnable prototype with 100% observable UI/UX
-parity to the selected product's pinned current frontend. Reproduce its exact
+Independently establish a browser-runnable prototype with **UI parity** to the
+selected product's pinned current frontend. UI parity is defined in "What UI
+parity means" in the shared principles: every distinct page, state and
+interaction looks and behaves the same. It never means real data, real logic,
+or a complete working website. Reproduce its exact
 appearance, navigation, interactions, validation, feedback, visible states,
 responsive behavior, and journeys while deliberately replacing production
 internals with the simplest credible prototype state and fixtures.
@@ -22,6 +25,13 @@ frontend, a frontend digital twin, or an integration test environment.
 The pinned source is the sole current-state UI/UX authority: choose the simplest
 implementation, but do not make product-design decisions or reinterpret what
 the interface should look like or do.
+
+A prototype has the same UI and accurate functionality, on top of a small amount
+of fake data. What must be exact is the interface: appearance, structure,
+UI-controlled copy, controls, navigation, interactions and their outcomes, and
+states. The data underneath is deliberately minimal and synthetic. If the source
+shows 17 lessons, one or two synthetic lessons are enough to show the list
+layout, a lesson page, and each state. The rest adds volume, not new UI.
 
 ## You Own
 
@@ -82,6 +92,57 @@ ambiguous or unreachable, an explicit constraint conflicts with the source, or
 a correction/refresh request omits its required mode-specific fields. The input
 gap is a reason for `Blocked`, not a separate handoff outcome.
 
+## Data And Fixtures
+
+- A prototype has no backend. Do not rebuild server behavior such as access
+  rules, validation, business calculations, persistence, revisions or conflicts,
+  exact server error contracts, or admin rule engines, and do not port server
+  logic from the source. When the copied UI loads data from an API path, a
+  trivial stub may answer it, but only by returning fixture data. Scenario
+  selection chooses which fixture set is returned. Locked, error, and empty
+  screens are fixture states that carry the text the UI shows. User actions
+  (login, save, publish, start a trial) produce scripted outcomes that switch the
+  scenario or update the in-memory fixture.
+- Write small hand-made synthetic fixtures for each data-driven surface. Include
+  only as many records as the UI needs to show its layout, grouping,
+  paging/facets, and every visible state (empty, populated, locked, error,
+  completed, and so on): usually one or two item bodies per item type and a
+  short list per list.
+- Never record, replay, export, or bulk-copy the source's API responses,
+  database, or content repository into the prototype, and do not generate
+  fixtures from them. Copying the source's data is not prototyping; it makes
+  the prototype large and slow to build, and it duplicates product content into
+  another repository. Content files that the copied UI imports statically
+  (Markdown, JSON, or data modules such as question banks, translations or
+  topic lists) are content, not presentation code. Keep the importing UI code
+  unchanged and replace each content file with a small synthetic file of the
+  same shape and exports. See "What a product prototype project is" in the
+  shared principles.
+- Values that the UI controls must be exact. These include labels, headings,
+  instructions, template text around values (for example "… im System"), and
+  empty, error, validation, feedback, status, and locked copy. Domain values that come from
+  the source's content (titles, texts, counts, topic names) may differ. Mark
+  them as illustrative in the report for each inventory item.
+- Where a visible value comes from cheap source-side state (account status,
+  progress or percentages, entitlements, role, flags, admin lists), seed the
+  same synthetic values into the source observation environment so that those
+  surfaces compare exactly. Do not bend the prototype toward the source's
+  content instead.
+- Interaction outcomes are UI behavior, not content. If a compared journey
+  answers "B" and the source shows "correct", the synthetic answer key must make
+  "B" correct too. Likewise, give the fixture item the same kind of visible
+  state that the source item shows (for example written vs placeholder text,
+  image available vs missing, partial vs complete). Only the words inside those
+  states are illustrative.
+- Start every matched run from the same state on both sides. Reset the
+  prototype scenario and restore the source observation data before each
+  viewport pass, because journeys change state (passwords, progress, trials).
+- Stop and reconsider if exact matching seems to require copying source data,
+  recording protocols, or reproducing production stores. That is a sign the
+  comparison method is wrong, not that the prototype needs more data. Compare
+  per component and per state instead, and ask the Product Prototyper when the
+  acceptance criterion is unclear.
+
 ## Prototype Repository Boundary
 
 - Write only in the Product Prototyper's assigned worktree, which is a linked
@@ -130,15 +191,18 @@ gap is a reason for `Blocked`, not a separate handoff outcome.
    browser project and reuse presentation code or assets only when that reduces
    work without importing unnecessary production coupling.
 7. Implement real interface structure and interaction using prototype-native
-   state, synthetic fixtures, scripted events, and locally selectable,
-   resettable scenarios. Follow the simplified implementation rules in the
-   shared principles.
+   state, minimal synthetic fixtures (see Data And Fixtures), scripted events,
+   and locally selectable, resettable scenarios. Follow the simplified
+   implementation rules in the shared principles.
 8. Run the pinned source and prototype in matched browser, viewport, font,
-   asset, theme, locale, context, scenario, and synthetic data-fixture
-   conditions. For every distinct inventory item, compare appearance,
-   UI-controlled content, rendered structure, geometry, interaction,
-   navigation, state transitions, feedback, and responsive behavior. Record
-   source evidence, prototype evidence, and the result.
+   asset, theme, locale, context, and scenario conditions, with the same
+   synthetic values wherever they can be seeded cheaply on the source side. For
+   every distinct inventory item, compare appearance, UI-controlled content,
+   rendered structure, geometry, interaction, navigation, state transitions,
+   feedback, and responsive behavior. Compare per component and per state
+   rather than as whole-page hashes, because fixture counts legitimately change
+   list lengths and page height. Record source evidence, prototype evidence, the
+   result, and which domain values are illustrative.
 9. Fix every observable discrepancy and repeat the matched browser comparison
    until every inventory item passes with no known perceptible or behavioral
    difference. Equivalent permutations may share evidence only when their
@@ -166,8 +230,11 @@ gap is a reason for `Blocked`, not a separate handoff outcome.
   mandatory; code inspection, build success, or unit tests alone cannot
   substantiate exact UI/UX parity.
 - Exercise every distinct surface, state, interaction pattern, and journey
-  outcome at least once under matched source and prototype conditions,
-  including the same synthetic fixture values wherever data is visible.
+  outcome at least once under matched source and prototype conditions. Use the
+  same synthetic values where they can be seeded cheaply into the source
+  observation environment. Otherwise compare under representative data and mark
+  the content-derived values illustrative. Never copy source data to force a
+  match.
 - Inspect normal desktop and narrow-mobile layouts plus any viewport that
   materially changes the UI.
 - Use browser interaction, DOM inspection, computed geometry or styles,
@@ -208,6 +275,12 @@ Before returning `Completed`, confirm:
   exactly in the browser
 - production capabilities are replaced by deterministic local simulations
   rather than recreated unnecessarily
+- there is no backend: no server-side rules, access control, persistence, or
+  emulated error contracts; only fixture data and scripted outcomes
+- fixtures are small, hand-made, and synthetic. No source API responses,
+  database content, or content-repository data were recorded, replayed, or
+  bulk-copied into the prototype, and illustrative domain values are marked in
+  the report
 - no production credentials, customer data, live dependencies, or production
   writes are used
 - no known perceptible appearance, interaction, navigation, state, responsive,
