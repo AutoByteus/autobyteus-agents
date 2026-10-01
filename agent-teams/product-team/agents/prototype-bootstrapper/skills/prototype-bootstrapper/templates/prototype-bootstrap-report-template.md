@@ -142,6 +142,14 @@ source-versus-prototype evidence and no known UI parity difference
 remains. It does not mean production stores, protocols, native
 runtimes, integrations, or architecture were reproduced or validated.
 
+## Refresh Reconciliation (Refresh Only)
+
+- Previous and new source pins:
+- Surfaces added, changed, or removed by the source diff:
+- Accepted prototype changes superseded by the source version:
+- Accepted prototype-only changes preserved, or removed because the request asked to match the source:
+- Unchanged surfaces given a load-and-look pass:
+
 ## Known Gaps And Next Action
 
 - Blocked or incomplete UI inventory IDs:

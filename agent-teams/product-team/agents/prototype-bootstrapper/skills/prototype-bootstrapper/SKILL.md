@@ -220,8 +220,9 @@ unsafe, return `Blocked` rather than creating one.
   observation environment. Otherwise compare under representative data and mark
   the content-derived values illustrative. Never copy source data to force a
   match.
-- Inspect normal desktop and narrow-mobile layouts plus any viewport that
-  materially changes the UI.
+- Cover viewports, locales, and other contexts as the shared principles' scope
+  rules describe: every distinct item in the primary configuration, the rest
+  by representative sample and material change.
 - Use browser interaction, DOM inspection, computed geometry or styles,
   screenshots, and perceptual comparison as appropriate. Raw screenshot bytes
   may differ because of normalized rendering noise, but any known
@@ -236,10 +237,15 @@ unsafe, return `Blocked` rather than creating one.
 
 - Refresh only when explicitly requested against a newer selected source
   revision. Do not silently track a moving branch.
-- Compare the affected source experience with the recorded UI inventory and
-  update its surfaces, behavior, scenarios, and evidence.
-- Preserve accepted prototype changes and record what was added, changed,
-  removed, preserved, or intentionally left illustrative.
+- Work from the source diff between the previous pin and the new pin. Update
+  the copied presentation files, fixtures, and simulations so every new,
+  changed, and removed surface matches the new source.
+- Verify in proportion to the diff: fully check every new or changed surface,
+  state, and journey in the primary configuration; re-check an unchanged
+  journey only when something it depends on changed; and give the unchanged
+  rest one quick load-and-look pass.
+- Apply the shared refresh policy to accepted prototype changes, and record
+  the reconciliation in the report.
 - Correct the named user-facing gap without expanding into unrelated production
   implementation.
 

@@ -16,6 +16,17 @@ mock data**. It shows what the product looks like and how a user moves through
 it. It is **not a complete working website**: it does not hold the product's
 real data, and it does not implement the product's real logic.
 
+It exists so Product can design new features on top of today's product before
+Software Engineering builds them: people click through a proposed feature in
+context, refine it, and capture the approved screenshots and UI/UX
+specification that engineering builds against. Call it the "product
+prototype" or "prototype project", never a "UI project", so it is not confused
+with the production frontend. Every prototype activity serves that purpose. A
+current-experience baseline is valuable as an accurate, navigable copy of
+today's product; comparison evidence only establishes that accuracy and is
+never the goal, so verification effort stays small next to the baseline
+itself.
+
 It implements:
 
 - every distinct page, route, layout, component, style and asset that makes up
@@ -145,9 +156,13 @@ Use one explicit mode for each prototype workspace:
   request that changes an existing product route, component, screenshot-backed
   surface, or preserved interaction; the result must remain connected to that
   product experience.
-- **Explicit refresh/reconciliation:** compare an established prototype with a
-  newer selected frontend revision only when requested; preserve accepted
-  prototype changes and record the reconciliation.
+- **Explicit refresh/reconciliation:** update an established prototype to a
+  newer selected frontend revision only when requested, and record the
+  reconciliation. Where the newer source implements a surface the prototype
+  had changed (an accepted prototype change that engineering has since
+  shipped, possibly differently), the source version wins. An accepted
+  prototype-only change with no source equivalent is preserved, unless the
+  request explicitly asks the baseline to match the source.
 - **Exploratory requirements visualization:** build the smallest interactive
   or animated experience needed to clarify one abstract or product-independent
   decision for which there is no applicable existing product surface. It is
@@ -208,6 +223,10 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   product of identical roles, data values, feature configurations, runtimes,
   locales, and viewports. One deterministic scenario may substantiate behavior
   that is visibly equivalent across several contexts.
+- Cover every distinct item once in the primary configuration (normal desktop
+  viewport, default locale). Check narrow viewports, alternate locales, and
+  other contexts on a representative sample plus every surface whose layout or
+  behavior materially changes in them.
 - Represent each context that produces a materially different UI or user
   journey. Record visibly equivalent contexts without rebuilding or retesting
   the same behavior unnecessarily.
@@ -272,6 +291,10 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   Rendering noise such as subpixel antialiasing does not require raw
   screenshot-byte identity, but any known UI parity
   difference blocks exact current-experience completion.
+- A harness that runs the source for comparison (a fake backend, fixture
+  server, or capture script) is disposable scaffolding. Give it only the
+  fixtures the compared screens need, and when it grows costly, prefer direct
+  side-by-side inspection of the affected surfaces.
 - Differences in internal stores, protocols, runtimes, or architecture are
   intentional simplifications and do not affect UI/UX fidelity when the visible
   presentation and behavior remain exact.
