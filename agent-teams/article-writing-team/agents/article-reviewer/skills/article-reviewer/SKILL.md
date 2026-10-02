@@ -181,8 +181,10 @@ Check whether `visual-plan.md` exists when:
 - the user requested images or image generation
 - the article is technical, architectural, process-heavy, comparative, data-backed, or visually dense enough that a text-only draft would weaken comprehension
 - the outline contains mechanisms, sequences, boundaries, comparisons, or abstractions that would be clearer visually
+- any idea meets the visualization-load trigger in the shared writing principles
 
 If no visuals are needed, verify that the writer made a reasonable text-only decision.
+For every `prose-only` idea, apply the same visualization-load trigger the writer uses and check that the writer recorded why the reader does not need to build or hold a mental model. A visualization-load moment left `prose-only` without that reason is a defect, not a style choice.
 
 For each planned or inserted visual, check:
 
@@ -201,7 +203,7 @@ For each planned or inserted visual, check:
 - ordinary low-quality SVG is not the default; a diagram is acceptable only as an explicit high-quality HTML-rendered/rasterized exception
 - `visual-asset-index.md` exists when assets are sourced, generated, inserted, or intentionally omitted
 
-Return `Outline Revision` when a major idea has no intentional representation decision or when prose/image responsibilities are unclear upstream. Return `Visual Plan Gap` when visual planning is missing, visuals are decorative, visuals are disconnected from the article flow, a visual's proposition is not self-contained, captions compensate for a generic image, captions overclaim, or assets invent unsupported details.
+Return `Outline Revision` when a major idea has no intentional representation decision, when prose/image responsibilities are unclear upstream, or when a visualization-load moment is left `prose-only` without a recorded reason. Return `Visual Plan Gap` when visual planning is missing, visuals are decorative, visuals are disconnected from the article flow, a visual's proposition is not self-contained, captions compensate for a generic image, captions overclaim, or assets invent unsupported details.
 
 ### Step 6 - Review the full draft package
 

@@ -17,6 +17,7 @@
 - Target section:
 - Placement intent:
 - Reader problem solved:
+- Reader visualization load resolved: the mental model the reader would otherwise have to build to follow the nearby prose:
 - Visual proposition: the one nearby idea this image must make concrete:
 - Prose responsibility: what the surrounding text carries:
 - Image responsibility: what this visual adds:
