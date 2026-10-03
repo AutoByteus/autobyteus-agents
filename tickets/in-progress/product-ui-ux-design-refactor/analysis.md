@@ -41,7 +41,7 @@ The current package in `agent-teams/product-team` repeatedly refers to its work 
 
 ### Principle 3: Give each rule one authoritative file
 - `team.md`: Defines the Product Team, its code-first design mission, member roles, and high-level cooperation.
-- `shared/product-prototype-principles.md`: The canonical principles document explaining *why* we design in code (browser DOM as the highest-fidelity design medium for AI agents), what the UI model contains (mock data, scripted outcomes), UI parity, and verification.
+- `shared/product-design-principles.md`: The canonical principles document explaining *why* we design in code (browser DOM as the highest-fidelity design medium for AI agents), what the UI model contains (mock data, scripted outcomes), UI parity, and verification.
 - Member `SKILL.md` files: Step-by-step specialist procedures for evolving the design, exploring abstract concepts, and bootstrapping baselines.
 
 ### Principle 4: Apply one authoring standard
@@ -55,7 +55,7 @@ The current package in `agent-teams/product-team` repeatedly refers to its work 
 | File | Target Improvements |
 | :--- | :--- |
 | `agent-teams/product-team/team.md` | • Name retained as `Product Team`.<br>• Elevate mission statement to code-first Product UI/UX Design.<br>• Clarify that runnable code is the design medium, and `ui-ux-spec.md` is the primary contract for engineering. |
-| `agent-teams/product-team/shared/product-prototype-principles.md` | • Add architectural rationale in Section 1: why code is the native design medium for AI agents.<br>• Define the dual deliverables: Approved UI/UX Specification (`ui-ux-spec.md`) + Interactive UI Reference.<br>• Refine terminology from "prototype project maintenance" to "interactive design sandbox". |
+| `agent-teams/product-team/shared/product-design-principles.md` | • Renamed from `product-prototype-principles.md` to eliminate legacy "prototype" framing in file naming.<br>• Add architectural rationale in Section 1: why code is the native design medium for AI agents.<br>• Define the dual deliverables: Approved UI/UX Specification (`ui-ux-spec.md`) + Interactive UI Reference.<br>• Refine terminology from "prototype project maintenance" to "interactive design sandbox". |
 | `agent-teams/product-team/agents/product-prototyper/agent.md` | • Clarify role as Product UI/UX Designer and coordinator.<br>• Explicitly state ownership of user experience, interaction flows, visual standards, and `ui-ux-spec.md`. |
 | `agent-teams/product-team/agents/prototype-bootstrapper/agent.md` | • Clarify role as UI Baseline Bootstrapper establishing the current-experience interactive canvas. |
 | Member Skills (`product-experience-prototyper`, `exploratory-requirements-visualizer`, `prototype-bootstrapper`) | • Align purpose and description statements to code-first UI/UX design exploration and specification. |

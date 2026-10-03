@@ -5,7 +5,7 @@ description: Create, correct, or refresh an independently runnable current-exper
 
 # UI Baseline Bootstrapper
 
-Read [product-prototype-principles.md](product-prototype-principles.md) before
+Read [product-design-principles.md](product-design-principles.md) before
 starting. It is the shared authority for experience fidelity, simplified
 implementation, synthetic state, workspace/repository isolation, and evidence.
 

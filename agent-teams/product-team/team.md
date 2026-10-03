@@ -31,7 +31,7 @@ true interaction fidelity rather than through static drawings.
 - Solution Designer owns canonical requirements and acceptance criteria.
   Software Engineering owns production architecture and implementation.
 
-The shared `product-prototype-principles.md` holds the rules both members
+The shared `product-design-principles.md` holds the rules both members
 follow: the code-first design rationale, what an interactive UI model is, UI
 parity, mock data, the repository boundary, and the Bootstrapper boundary.
 Detailed workflows belong to the member skills.

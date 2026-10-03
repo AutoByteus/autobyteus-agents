@@ -25,6 +25,8 @@ def test_team_config():
     print("PASS: team-config.json members and coordinator resolve.")
 
 def test_symlinks():
+    shared_principles = PRODUCT_TEAM / 'shared' / 'product-design-principles.md'
+    assert shared_principles.is_file(), f"Missing shared principles: {shared_principles}"
     count = 0
     for root, dirs, files in os.walk(PRODUCT_TEAM):
         for f in files:
@@ -32,8 +34,10 @@ def test_symlinks():
             if p.is_symlink():
                 target = p.resolve()
                 assert target.exists(), f"Broken symlink: {p} -> {target}"
+                assert target == shared_principles, f"Unexpected symlink target: {target}"
                 count += 1
-    print(f"PASS: {count} symlinks resolved successfully.")
+    assert count == 3, f"Expected 3 symlinks, got {count}"
+    print(f"PASS: {count} symlinks resolved to product-design-principles.md successfully.")
 
 def test_team_frontmatter():
     team_md = (PRODUCT_TEAM / 'team.md').read_text()

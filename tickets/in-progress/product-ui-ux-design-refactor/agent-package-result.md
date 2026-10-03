@@ -7,7 +7,7 @@ Use [result-and-handoff-contract.md](file:///Users/normy/.autobyteus/server-data
 - Package type: `team`
 - Update intent: `optimize` — elevate team identity to code-first Product UI/UX Design and clarify that runnable code is the AI agent's native design medium
 - Target package: `product-team`, `agent-teams/product-team/`
-- Scope included: `agent-teams/product-team/team.md`, `shared/product-prototype-principles.md`, agent definitions and skills, mounted organization descriptions, and `README.md`
+- Scope included: `agent-teams/product-team/team.md`, `shared/product-design-principles.md`, agent definitions and skills, mounted organization descriptions, and `README.md`
 - Scope excluded: Folder paths, internal agent IDs, and routing addresses (kept stable for zero breaking changes across mounted Orgs)
 - Request/reference: User request to analyze the Product Team through package principles, recognize code-first design as the native medium for AI UI/UX design, improve the team package, and submit a merge request
 
@@ -28,7 +28,7 @@ The update establishes:
 ## Ownership and design decisions
 
 - `Product Team framing`: Canonical owner in `agent-teams/product-team/team.md`.
-- `Code-first design rationale & interactive UI model`: Canonical owner in `agent-teams/product-team/shared/product-prototype-principles.md`.
+- `Code-first design rationale & interactive UI model`: Canonical owner in `agent-teams/product-team/shared/product-design-principles.md`.
 - `Preserved routing IDs`: Folder `agent-teams/product-team` and member addresses `/product_team/product_prototyper` retained to prevent breaking external routes in `autobyteus-org` and `software-development-department`.
 
 ## Changed paths
@@ -43,7 +43,7 @@ The update establishes:
 
 - `agent-teams/product-team/team.md`
 - `agent-teams/product-team/team-config.json`
-- `agent-teams/product-team/shared/product-prototype-principles.md`
+- `agent-teams/product-team/shared/product-design-principles.md`
 - `agent-teams/product-team/agents/product-prototyper/agent.md`
 - `agent-teams/product-team/agents/prototype-bootstrapper/agent.md`
 - `agent-teams/product-team/agents/product-prototyper/skills/product-prototype-repository-management/SKILL.md`
@@ -58,7 +58,7 @@ The update establishes:
 
 ### Moved or renamed
 
-None
+- `agent-teams/product-team/shared/product-prototype-principles.md` -> `agent-teams/product-team/shared/product-design-principles.md`
 
 ### Removed
 
@@ -83,7 +83,7 @@ None
 | Frontmatter and names align | `Pass` | `team.md` and agent definitions have valid YAML frontmatter |
 | Skill folder/frontmatter align | `Pass` | Frontmatter names match skill directory names |
 | Configured `skillNames` resolve | `Pass` | Verified all attached skills exist locally |
-| Markdown links and references resolve | `Pass` | Symlinks to `shared/product-prototype-principles.md` verified intact |
+| Markdown links and references resolve | `Pass` | Symlinks to `shared/product-design-principles.md` verified intact |
 | Skill validator and changed scripts | `Pass` | `tickets/in-progress/product-ui-ux-design-refactor/validate.py` passed all checks |
 | Member refs, coordinator, and rooted routes | `Pass` | Coordinator and members in `team-config.json` resolve |
 | Imported shared dependencies | `Pass` | Parent Org references verified |

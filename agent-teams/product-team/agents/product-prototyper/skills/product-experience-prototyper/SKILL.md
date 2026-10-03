@@ -5,7 +5,7 @@ description: Evolve an accepted product experience through code-first UI/UX desi
 
 # Product Experience Prototyper
 
-Read [product-prototype-principles.md](product-prototype-principles.md) before
+Read [product-design-principles.md](product-design-principles.md) before
 starting. It is the shared authority for prototype technology selection,
 current-experience fidelity, lightweight implementation, synthetic state,
 workspace/repository isolation, project ownership, and evidence.

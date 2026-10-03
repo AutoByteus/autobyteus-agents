@@ -24,7 +24,7 @@ Do not begin by building a frontend. First decide how the concept should be
 demonstrated with the smallest useful visual model, record that design
 hypothesis, and only then implement it.
 
-Read [product-prototype-principles.md](product-prototype-principles.md)
+Read [product-design-principles.md](product-design-principles.md)
 before choosing the technology or changing the prototype repository.
 That shared reference owns cross-mode repository, fidelity, safety, evidence,
 and approval invariants; this skill owns only the visualization-specific
