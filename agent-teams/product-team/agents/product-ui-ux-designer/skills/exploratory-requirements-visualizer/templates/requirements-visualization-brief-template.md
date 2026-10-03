@@ -12,7 +12,7 @@
 - Alternatives or comparisons:
 - Constraints:
 - Non-goals:
-- Existing frontend / prototype repository context: N/A unless supplied only as
+- Existing frontend / design repository context: N/A unless supplied only as
   background; do not change or imitate an existing product surface in this mode.
 - Success signal:
 - Known unknowns:

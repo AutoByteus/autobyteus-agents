@@ -44,7 +44,7 @@ deliverables:
    hierarchy, component styling tokens, and interaction rules that Software
    Engineering implements.
 2. **Interactive UI Reference**: the runnable browser sandbox (maintained in an
-   isolated prototype/design repository) that substantiates the specification
+   isolated design repository) that substantiates the specification
    and allows users and engineers to click through verified flows.
 
 Every design activity serves this outcome. A current-experience baseline is
@@ -59,7 +59,7 @@ It implements:
 - all UI-controlled text: labels, headings, instructions, and empty, error,
   validation, feedback and status messages;
 - navigation, controls, forms, validation, dialogs and interactions, with
-  visible outcomes. Outcomes are scripted: the prototype shows the result the
+  visible outcomes. Outcomes are scripted: the interactive UI model shows the result the
   product would show for the mock case, without computing it the way the
   product does;
 - every meaningful state: empty, populated, loading, error, locked,
@@ -100,8 +100,8 @@ differ from the source.
 
 **UI parity** is the fidelity target for a current-experience baseline. Every
 use of "parity", "exact" or "fidelity" in the Product Team's skills means this.
-A prototype has UI parity when, for every distinct page, state and interaction
-a user can see, the prototype and the pinned source look and behave the same
+A current-experience baseline has UI parity when, for every distinct page, state and interaction
+a user can see, the baseline and the pinned source look and behave the same
 under matched mock scenarios.
 
 | Parity covers (must match exactly) | Parity does not cover (never required) |
@@ -120,10 +120,10 @@ can stand for every item that renders the same way.
 
 ### Fidelity boundary
 
-- A product prototype is an evidence instrument for product behavior, UI,
+- An interactive UI model is an evidence instrument for product behavior, UI,
   interaction, state, navigation, visual hierarchy, and journey decisions.
   An exploratory requirements visualizer helps clarify an abstract or
-  product-independent decision; a product-experience prototype evolves or
+  product-independent decision; product experience design evolves or
   establishes the product-facing experience and becomes an approval instrument
   only after explicit user confirmation.
 - Optimize for **high experience fidelity and low implementation fidelity**.
@@ -131,7 +131,7 @@ can stand for every item that renders the same way.
   the implementation underneath may be deliberately small and synthetic.
 - For a current-experience baseline, high experience fidelity means **UI
   parity** (defined above) for every item in the distinct recorded inventory.
-  For a future-state prototype, it means a production-quality,
+  For a future-state design, it means a production-quality,
   fully specified visual and interaction design suitable for use as an
   implementation reference after user approval.
 - Observable fidelity includes exact hierarchy, geometry, layout, spacing,
@@ -151,24 +151,24 @@ can stand for every item that renders the same way.
   environment wherever that is cheap. Elsewhere they compare per component and
   per state under representative data, and mark content-derived values as
   illustrative. Never record, replay, or bulk-copy the source's data or content
-  into a prototype to force identical values. Future-state references identify
+  into an interactive UI model to force identical values. Future-state references identify
   any illustrative fixture value explicitly.
-- A prototype is not a production implementation, frontend digital twin,
+- An interactive UI model is not a production implementation, frontend digital twin,
   integration test environment, production architecture, or proof of
   production readiness.
-- Prototype code exists to remove ambiguity about the user experience. Its
+- Code-first design exists to remove ambiguity about the user experience. Its
   stores, data model, service shape, and runtime structure do not prescribe the
   eventual implementation.
 - Keep production requirements canonical in `requirements-doc.md`. Keep the
-  final prototype-owned UI/UX supplement canonical in `ui-ux-spec.md`; an
+  final UI/UX specification canonical in `ui-ux-spec.md`; an
   exploratory visualizer brief and review record are supporting clarification
   evidence, not a replacement for either canonical artifact.
-- Never use prototype convenience as proof of a product requirement without
+- Never use design convenience as proof of a product requirement without
   recording the decision and its evidence.
 
-## 2. Prototype Modes
+## 2. Product Design Modes
 
-Use one explicit mode for each prototype workspace:
+Use one explicit mode for each design workspace:
 
 - **Current-experience bootstrap:** independently establish a browser-runnable
   UI/UX baseline from a pinned existing frontend revision. Reproduce the
@@ -176,17 +176,17 @@ Use one explicit mode for each prototype workspace:
   not its production runtime or internal implementation.
 - **No-frontend construction:** create the smallest useful experience baseline
   from the team's standard frontend template.
-- **Product experience evolution:** read and preserve the accepted prototype
+- **Product experience design:** read and preserve the accepted design model
   before applying a focused requirements-driven change. Use this mode for a
   request that changes an existing product route, component, screenshot-backed
   surface, or preserved interaction; the result must remain connected to that
   product experience.
-- **Explicit refresh/reconciliation:** update an established prototype to a
+- **Explicit refresh/reconciliation:** update an established design model to a
   newer selected frontend revision only when requested, and record the
-  reconciliation. Where the newer source implements a surface the prototype
-  had changed (an accepted prototype change that engineering has since
+  reconciliation. Where the newer source implements a surface the design model
+  had changed (an accepted design change that engineering has since
   shipped, possibly differently), the source version wins. An accepted
-  prototype-only change with no source equivalent is preserved, unless the
+  design-only change with no source equivalent is preserved, unless the
   request explicitly asks the baseline to match the source.
 - **Exploratory requirements visualization:** build the smallest interactive
   or animated experience needed to clarify one abstract or product-independent
@@ -197,7 +197,7 @@ Use one explicit mode for each prototype workspace:
   change. Keep its ticket in progress while clarification continues.
 
 Initial current-experience bootstrap is normally a one-time independent stage
-for a prototype workspace. Later requirements-driven work normally belongs to
+for a design workspace. Later requirements-driven work normally belongs to
 `product_ui_ux_designer`.
 
 ## 3. Source And Technology Selection
@@ -207,7 +207,7 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   change the source boundary or revision. For no-frontend construction, record
   the selected product surface and template instead.
 - When a request changes an existing product surface, Product Experience
-  Prototyping is the baseline-native path: inspect the accepted product
+  Design is the baseline-native path: inspect the accepted product
   experience and preserve unaffected shell, styling, controls, and behavior.
   Exploratory Requirements Visualization is independent by default and must
   not be selected merely because the existing-product requirement is unclear.
@@ -215,21 +215,21 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   design-system conventions when they make visual reuse and maintenance easier.
   Matching production package layout, build topology, routing internals, state
   architecture, or service clients is not required.
-- For Product Experience Prototyping on an existing product surface, evolve the
-  accepted baseline in place within the Product prototype worktree. Reuse its
+- For Product Experience Design on an existing product surface, evolve the
+  accepted baseline in place within the Product design worktree. Reuse its
   presentation components, styles, tokens, assets, shell, and interaction
   language unless the approved change intentionally replaces one of them. Do
   not create a disconnected replacement application merely to simplify the
-  prototype. A smaller prototype-native project is appropriate for
+  design model. A smaller design-native project is appropriate for
   no-frontend construction or Exploratory Requirements Visualization when no
   applicable existing product surface is in scope.
 - Do not copy a complete production frontend merely to claim fidelity. When
   reusing source code, separate UI code from content by what a file holds, not
   by its folder. Content found in `shared/`, `utils/` or `data/` modules is
-  still content (see "What a product prototype project is"). Choose the
+  still content (see "What an interactive UI reference is"). Choose the
   smallest implementation that can express the complete observable UI
   experience within the selected boundary.
-- When no frontend exists, use the host workspace's configured prototype
+- When no frontend exists, use the host workspace's configured design
   template. If none is supplied, use Vue 3, Vite, and TypeScript and record the
   selection.
 
@@ -242,7 +242,7 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   behavior, validation and feedback pattern, meaningful visible state, and
   supported journey within that boundary.
 - Assign stable inventory IDs and require every distinct observable inventory
-  item to have applicable source evidence, prototype evidence, and a passing
+  item to have applicable source evidence, baseline or design evidence, and a passing
   fidelity result before declaring a current-experience baseline complete.
 - Completeness applies to distinct observable behavior, not to a Cartesian
   product of identical roles, data values, feature configurations, runtimes,
@@ -258,8 +258,8 @@ for a prototype workspace. Later requirements-driven work normally belongs to
 - A current-experience bootstrap does not require future-state requirements or
   feature decisions. It discovers the existing experience independently and
   must not introduce unapproved redesign or future behavior.
-- Later prototype changes remain proportional to the concrete product decision
-  they must resolve. Missing unrelated prototype detail does not justify
+- Later design changes remain proportional to the concrete product decision
+  they must resolve. Missing unrelated design detail does not justify
   expanding a focused requirements-driven change.
 
 ## 5. Simplified Implementation And Synthetic State
@@ -269,12 +269,12 @@ for a prototype workspace. Later requirements-driven work normally belongs to
 
   ```text
   runnable UI
-      -> prototype-native state and scripted transitions
+      -> design-native state and scripted transitions
       -> small synthetic fixtures
   ```
 
 - Hard-coded synthetic values are acceptable for isolated presentation
-  scenarios. Use a small prototype-specific store or fixture module when state
+  scenarios. Use a small design-specific store or fixture module when state
   is shared, mutable, or reused across surfaces.
 - Keep visible interactions real: navigation, forms, validation, dialogs,
   selection, filtering, search, focus, feedback, and state changes must respond
@@ -293,10 +293,10 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   Electron, native bridges, server processes, or host runtimes when a browser
   scenario can express the same user-visible experience.
 - Real, recorded, replayed, captured or bulk-copied source data or content is a
-  defect wherever it sits in the prototype repository, including content files
-  that copied UI code imports statically. Replace it as described in "What a
-  product prototype project is".
-- Use only synthetic data. Prototype runs must not require production
+  defect wherever it sits in the design repository, including content files
+  that copied UI code imports statically. Replace it as described in "What an
+  interactive UI reference is".
+- Use only synthetic data. Design sandbox runs must not require production
   credentials, customer data, production exports, live production services, or
   production writes. Mutable state must be locally resettable.
 
@@ -304,11 +304,11 @@ for a prototype workspace. Later requirements-driven work normally belongs to
 
 - Reproduce the pinned source's appearance and client-visible behavior exactly
   for every distinct item in the selected current-experience inventory unless
-  an accepted prototype change intentionally differs.
+  an accepted design change intentionally differs.
 - Use real interface structure and interaction. Do not use page screenshots or
   click hotspots as substitutes for a runnable UI.
 - Validate every distinct recorded surface, visible state, interaction pattern,
-  and journey outcome in matched source and prototype conditions. Equivalent
+  and journey outcome in matched source and baseline/design conditions. Equivalent
   permutations may share evidence only when their rendered UI and behavior are
   demonstrably the same.
 - Use controlled browser interaction, DOM inspection, computed-style or
@@ -323,7 +323,7 @@ for a prototype workspace. Later requirements-driven work normally belongs to
 - Differences in internal stores, protocols, runtimes, or architecture are
   intentional simplifications and do not affect UI/UX fidelity when the visible
   presentation and behavior remain exact.
-- Record what the prototype demonstrates, how technical capabilities are
+- Record what the interactive UI model demonstrates, how technical capabilities are
   simulated, which source revision it reflects, and any user-facing limitation.
 - In a user-approved future-state package, final screenshots and the
   corresponding `ui-ux-spec.md` are normative implementation references. Treat
@@ -340,7 +340,7 @@ for a prototype workspace. Later requirements-driven work normally belongs to
 
 - The pinned source frontend is the sole UI/UX authority for a current-
   experience baseline. `ui_baseline_bootstrapper` discovers and reproduces that
-  experience; it decides only the simplest prototype implementation, not the
+  experience; it decides only the simplest baseline implementation, not the
   appearance, behavior, product policy, or future design.
 - `product_ui_ux_designer` accepts an applicable baseline and authors a concrete,
   focused future-state UI/UX proposal within the requirements and user
@@ -356,28 +356,29 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   and behavior. `solution_designer` preserves that approval, owns canonical
   requirements and acceptance criteria, and integrates the approved UI/UX
   package for downstream implementation.
-- No prototype role owns the target production architecture or production
+- No product design role owns the target production architecture or production
   implementation.
 
-## 8. Prototype Repository Boundary
+## 8. Product Design Repository Boundary
 
-- Each prototype is a separate Git repository, normally a sibling of the
-  source repository named `<prototype-subject>-prototype`. It is not nested in
-  the source repository, a production frontend directory, a Solution Designer
-  worktree, or a generic `prototypes/` directory.
-- The Product UI/UX Designer owns the prototype repository and its lifecycle: tickets,
+- Each design project is a separate Git repository, normally a sibling of the
+  source repository named `<design-subject>-design` (or `<design-subject>-prototype`
+  for backward compatibility). It is not nested in the source repository, a
+  production frontend directory, a Solution Designer worktree, or a generic
+  `designs/` or `prototypes/` directory.
+- The Product UI/UX Designer owns the design repository and its lifecycle: tickets,
   ticket branches and worktrees, ticket statuses, commits, integration,
   baseline promotion, and cleanup. Its `product-design-repository-management`
-  skill defines that lifecycle. Solution Designer may link prototype artifacts
+  skill defines that lifecycle. Solution Designer may link design artifacts
   but does not manage them.
-- Prototype work writes only to the prototype repository, through the assigned
-  ticket worktree. The source repository may be read, never written. Prototype
+- Design work writes only to the design repository, through the assigned
+  ticket worktree. The source repository may be read, never written. Design sandbox
   runs never write to production services or use production credentials.
 - When the repository or worktree cannot be identified or isolated safely,
   stop and report the exact blocker instead of creating a second project or
   sharing a checkout.
-- Record in durable prototype evidence: the source repository and selected
-  frontend, pinned source revision, canonical prototype repository/root, active
+- Record in durable design evidence: the source repository and selected
+  frontend, pinned source revision, canonical design repository/root, active
   ticket worktree and branch, accepted base revision, ticket revision, run
   command, scenario-selection method, and major implementation
   simplifications.
@@ -385,7 +386,7 @@ for a prototype workspace. Later requirements-driven work normally belongs to
 ## 9. UI Baseline Bootstrapper And Product UI/UX Designer Boundary
 
 - `ui_baseline_bootstrapper` (UI Baseline Bootstrapper) owns only the current-experience baseline: source
-  verification and pinning, observable-surface discovery, prototype-native
+  verification and pinning, observable-surface discovery, baseline-native
   parity implementation, matched validation, and the bootstrap report.
 - UI Baseline Bootstrapper may create or update baseline files only in the Product
   UI/UX Designer's assigned baseline or ticket worktree. It does not create a
@@ -394,31 +395,31 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   future-state `ui-ux-spec.md`, conduct the user design review, or approve a
   product decision.
 - `product_ui_ux_designer` (Product UI/UX Designer) reviews and tests the Bootstrapper's
-  result, commits the accepted baseline in the prototype repository, and owns
+  result, commits the accepted baseline in the design repository, and owns
   product-experience future-state changes, user review, final UI/UX artifacts,
-  and prototype commits. In exploratory requirements-visualization mode, it
+  and design commits. In exploratory requirements-visualization mode, it
   owns the exploratory visualizer revisions and review evidence instead.
 - The Product UI/UX Designer must not begin future-state work on an unreviewed or
   failed bootstrap result. UI Baseline Bootstrapper must not add design changes while
   correcting current-state parity.
-- A no-frontend prototype does not need a Bootstrapper baseline; the Product
-  UI/UX Designer establishes the prototype repository and initial runnable baseline directly.
+- A no-frontend design project does not need a Bootstrapper baseline; the Product
+  UI/UX Designer establishes the design repository and initial runnable baseline directly.
 
 ## 10. Delivery Artifacts And Visual References
 
-- The canonical prototype repository contains the runnable prototype,
+- The canonical design repository contains the runnable UI reference,
   project-wide change history, and current-experience bootstrap evidence. Each
   ticket folder under `tickets/` contains `product-ticket.md` and the
   mode-appropriate supporting evidence. A product-experience ticket adds
   `ui-ux-spec.md`, final `visual-references/`, behavior matrix, runbook,
-  prototype report, assumptions, and other delivery artifacts as needed. A
+  product design report, assumptions, and other delivery artifacts as needed. An
   exploratory-visualization ticket adds its visualization brief,
   cognition-first design plan, review record, review URL, visualizer source or
   entry-point evidence, motion/comprehension evidence, visual references, and
   unresolved-question record as needed; it does not create a final
   `ui-ux-spec.md` merely for exploration.
 - `ui-ux-spec.md` is the canonical detailed experience contract only for a
-  product-experience ticket. The prototype report is an optional cross-stage
+  product-experience ticket. The product design report is an optional cross-stage
   summary and must not duplicate the UI/UX specification or supporting
   evidence.
 - Use `visual-references/` as the umbrella directory. Call an actual captured
@@ -429,6 +430,6 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   references captured after explicit user approval are normative for the
   approved surface, state, and viewport unless the UI/UX specification marks
   content or variation as illustrative/permitted.
-- Every durable artifact must link back to the source pin, prototype repository
+- Every durable artifact must link back to the source pin, design repository
   root/revision, and relevant requirements, behavior, and acceptance IDs when
   those references exist.

@@ -95,11 +95,16 @@ The Product Team package was updated to resolve legacy terminology and establish
 - `agent-teams/product-team/agents/product-ui-ux-designer/skills/product-design-repository-management/SKILL.md`
 - `agent-teams/product-team/agents/product-ui-ux-designer/skills/product-experience-design/SKILL.md`
 - `agent-teams/product-team/agents/product-ui-ux-designer/skills/product-experience-design/templates/ui-ux-spec-template.md`
+- `agent-teams/product-team/agents/product-ui-ux-designer/skills/product-experience-design/templates/experience-story-template.md`
+- `agent-teams/product-team/agents/product-ui-ux-designer/skills/product-experience-design/templates/product-design-report-template.md`
+- `agent-teams/product-team/agents/product-ui-ux-designer/skills/product-experience-design/templates/ui-behavior-test-matrix-template.md`
 - `agent-teams/product-team/agents/product-ui-ux-designer/skills/exploratory-requirements-visualizer/SKILL.md`
+- `agent-teams/product-team/agents/product-ui-ux-designer/skills/exploratory-requirements-visualizer/templates/requirements-visualization-brief-template.md`
 - `agent-teams/product-team/agents/product-ui-ux-designer/skills/exploratory-requirements-visualizer/templates/visualizer-project/README.md`
 - `agent-teams/product-team/agents/ui-baseline-bootstrapper/agent.md`
 - `agent-teams/product-team/agents/ui-baseline-bootstrapper/agent-config.json`
 - `agent-teams/product-team/agents/ui-baseline-bootstrapper/skills/ui-baseline-bootstrapper/SKILL.md`
+- `agent-teams/product-team/agents/ui-baseline-bootstrapper/skills/ui-baseline-bootstrapper/templates/ui-baseline-report-template.md`
 - `agent-orgs/autobyteus-org/org.md`
 - `agent-orgs/autobyteus-org/org-config.json`
 - `agent-orgs/software-development-department/org.md`

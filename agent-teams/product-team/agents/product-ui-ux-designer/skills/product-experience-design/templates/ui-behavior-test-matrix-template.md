@@ -1,6 +1,6 @@
 # UI Behavior Test Matrix
 
-Use stable transition and scenario IDs across prototype revisions.
+Use stable transition and scenario IDs across design revisions.
 
 | Transition / Scenario ID | Related Requirement / AC IDs | Screen / Flow | Trigger | From State | To State | Expected Visible Feedback | Service Scenario | Result / Evidence |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -14,6 +14,6 @@ Use stable transition and scenario IDs across prototype revisions.
 
 ## Unresolved Behavior
 
-| Requirement / Decision ID | Missing Or Ambiguous Behavior | Prototype Limitation | Required Product Decision |
+| Requirement / Decision ID | Missing Or Ambiguous Behavior | Design Limitation | Required Product Decision |
 | --- | --- | --- | --- |
 |  |  |  |  |

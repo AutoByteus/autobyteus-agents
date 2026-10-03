@@ -51,18 +51,18 @@ boundary. It does not prove production integration or replace
 
 Group equivalent contexts rather than creating a Cartesian matrix. Each row
 should identify a distinct user-facing surface or behavior, not an internal API
-operation. `Pass` requires applicable source evidence, prototype evidence, and
+operation. `Pass` requires applicable source evidence, baseline evidence, and
 no known UI parity difference. In the fixture column, name the
 synthetic fixture and list any illustrative domain values (content-derived
 titles, texts, or counts that intentionally differ from the source).
 
-| ID | Route / Surface | Exact Visual And UI-Controlled Content Obligations | States / Operations / Outcomes | Material Contexts | Prototype Scenario / Synthetic Fixture | Source Evidence | Prototype Evidence | Fidelity Result |
+| ID | Route / Surface | Exact Visual And UI-Controlled Content Obligations | States / Operations / Outcomes | Material Contexts | Baseline Scenario / Synthetic Fixture | Source Evidence | Baseline Evidence | Fidelity Result |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | UXB-001 |  |  |  |  |  |  |  | `Pass` / `Fail` / `Unknown` |
 
 ## Journey Inventory
 
-| Journey ID | Starting Scenario | Source Steps And Visible Outcomes | Prototype Steps And Visible Outcomes | Alternate / Recovery Path | Evidence | Result |
+| Journey ID | Starting Scenario | Source Steps And Visible Outcomes | Baseline Steps And Visible Outcomes | Alternate / Recovery Path | Evidence | Result |
 | --- | --- | --- | --- | --- | --- | --- |
 | UXJ-001 |  |  |  |  |  | `Pass` / `Fail` / `Unknown` |
 
@@ -72,23 +72,23 @@ Validate each distinct rendered surface and state under matched conditions.
 Raw screenshot bytes may differ only because of normalized rendering noise; a
 known UI parity difference is a failure.
 
-| Visual ID | Surface / State / Context | Matched Browser / Viewport / Font / Asset / Theme / Locale / Scenario / Synthetic Fixture | Source Screenshot | Prototype Screenshot | DOM / Geometry / Style / Perceptual Method | Remaining Difference | Result |
+| Visual ID | Surface / State / Context | Matched Browser / Viewport / Font / Asset / Theme / Locale / Scenario / Synthetic Fixture | Source Screenshot | Baseline Screenshot | DOM / Geometry / Style / Perceptual Method | Remaining Difference | Result |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | UXV-001 |  |  |  |  |  | `None` / details | `Pass` / `Fail` / `Unknown` |
 
 ## Implementation Simplifications
 
-Record how the prototype preserves visible experience without reproducing
+Record how the baseline preserves visible experience without reproducing
 production mechanisms.
 
-| Production Capability Visible In The UI | Visible Experience Preserved | Prototype Simulation | Production Mechanism Intentionally Absent |
+| Production Capability Visible In The UI | Visible Experience Preserved | Baseline Simulation | Production Mechanism Intentionally Absent |
 | --- | --- | --- | --- |
 |  |  |  |  |
 
 - Presentation code, styles, tokens, or assets reused:
 - UI code recreated:
-- Prototype-specific state model:
-- Hard-coded or fixture-backed synthetic data (size under the prototype's
+- Baseline-specific state model:
+- Hard-coded or fixture-backed synthetic data (size under the baseline's
   data/fixture paths; confirm that no source data was recorded or copied):
 - Scripted asynchronous behavior:
 - Browser simulation of mobile, desktop-host, Electron, role, permission, or
@@ -101,9 +101,9 @@ production mechanisms.
 - Browser and version:
 - Validated viewports:
 - Source-observation method:
-- Prototype commands and results:
+- Baseline commands and results:
 - Build, typecheck, lint, unit, or browser checks run in proportion to the
-  prototype:
+  baseline:
 - Complete navigation and journey checks:
 - DOM, computed-style, geometry, screenshot, perceptual, or manual evidence
   paths:
@@ -113,9 +113,9 @@ production mechanisms.
 ## Completion Check
 
 - Selected source boundary and pinned revision are explicit: `Yes` / `No`
-- Prototype starts independently at the documented URL: `Yes` / `No`
+- Baseline starts independently at the documented URL: `Yes` / `No`
 - Every distinct selected navigation destination and surface has exact source
-  and prototype evidence: `Yes` / `No`
+  and baseline evidence: `Yes` / `No`
 - Every distinct interaction, feedback, and meaningful state pattern is
   demonstrated at least once: `Yes` / `No`
 - Every context that materially changes the UI is represented: `Yes` / `No`
@@ -138,7 +138,7 @@ production mechanisms.
   `Yes` / `No`
 
 `Completed` means every distinct recorded UI/UX inventory item has passing
-source-versus-prototype evidence and no known UI parity difference
+source-versus-baseline evidence and no known UI parity difference
 remains. It does not mean production stores, protocols, native
 runtimes, integrations, or architecture were reproduced or validated.
 
@@ -146,8 +146,8 @@ runtimes, integrations, or architecture were reproduced or validated.
 
 - Previous and new source pins:
 - Surfaces added, changed, or removed by the source diff:
-- Accepted prototype changes superseded by the source version:
-- Accepted prototype-only changes preserved, or removed because the request asked to match the source:
+- Accepted design changes superseded by the source version:
+- Accepted design-only changes preserved, or removed because the request asked to match the source:
 - Unchanged surfaces given a load-and-look pass:
 
 ## Known Gaps And Next Action

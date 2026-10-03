@@ -25,7 +25,7 @@ demonstrated with the smallest useful visual model, record that design
 hypothesis, and only then implement it.
 
 Read [product-design-principles.md](product-design-principles.md)
-before choosing the technology or changing the prototype repository.
+before choosing the technology or changing the design repository.
 That shared reference owns cross-mode repository, fidelity, safety, evidence,
 and approval invariants; this skill owns only the visualization-specific
 workflow, artifacts, validation, and routing.
@@ -66,7 +66,7 @@ from the sender. The request should identify:
 - constraints, non-goals, and known alternatives;
 - the canonical requirements artifact paths when canonical requirements
   context exists;
-- the product surface or concept subject and the prototype repository/root when
+- the product surface or concept subject and the design repository/root when
   an independent exploratory package already exists;
 - the ticket or request identifier and any prior visualizer revision or user
   feedback when available.
@@ -98,7 +98,7 @@ separate handoff outcome.
 - deciding that the user understood or approved a requirement;
 - production backend, architecture, persistence, security, or integration
   behavior;
-- the product-experience prototype or normative ui-ux-spec.md;
+- the product-experience design or normative ui-ux-spec.md;
 - the Solution Designer's task workspace or ticket lifecycle.
 
 When canonical requirements context exists, Solution Designer owns the
@@ -189,7 +189,7 @@ the smallest active subset of its dependencies:
 - plain HTML/CSS/JavaScript for a small linear or stateful visualizer;
 - the scaffold's React/Vite/TypeScript setup when component state or repeated
   interaction makes a single file unclear;
-- the existing prototype frontend technology only when the independent
+- the existing design frontend technology only when the independent
   explanation explicitly needs a supplied design-system or technical context;
   this does not authorize changing an existing product surface in this mode;
 - `motion` or CSS transitions when animation clarifies causality or state;
@@ -200,12 +200,12 @@ the smallest active subset of its dependencies:
 The visualizer normally does not use a product's frontend technology because
 its purpose is to explain a concept independently of the product surface.
 When the question depends on existing UI behavior, component constraints, or
-interaction language, it is a product-experience prototyping request rather
-than an exploratory visualizer request. Product Experience Prototyping has a
+interaction language, it is a product-experience design request rather
+than an exploratory visualizer request. Product Experience Design has a
 different technology and fidelity contract.
 
 The visualizer may be a small project or route inside the active Product ticket
-worktree of the canonical Product Prototype repository. Do not create a new Git
+worktree of the canonical Product Design repository. Do not create a new Git
 repository or worktree for each visualizer; the management skill already
 created the isolated ticket worktree. Keep the copied project temporary and
 ticket-scoped, separate from production code, and free of production backend or
@@ -213,9 +213,9 @@ integration work.
 
 ## Artifact And Repository Rules
 
-- Use the canonical Product Prototype repository, the supplied Product ticket,
+- Use the canonical Product Design repository, the supplied Product ticket,
   and the active ticket worktree established by the management skill. Do not
-  create a second product-prototype repository or ticket worktree.
+  create a second product-design repository or ticket worktree.
 - Confirm the activation boundary in Activation And Inputs before design; do
   not create visualizer artifacts for a request outside it.
 - Create or update the shared `product-ticket.md` record in the ticket
@@ -232,7 +232,7 @@ integration work.
   Never edit the skill template in place.
 - Record the template revision, active dependencies, and any omitted optional
   capability in the visualization brief or review record.
-- Keep visualizer source and run instructions in the temporary prototype project
+- Keep visualizer source and run instructions in the ticket-scoped visualizer project
   inside the active worktree, and
   keep `product-ticket.md`, the brief, design plan, revision record, review
   evidence, motion/comprehension evidence, and visual references in the ticket
@@ -348,8 +348,8 @@ Every completed result must include:
 - the review URL when a visualizer exists and the exact browser validation
   performed;
 - the technology and revision used;
-- the canonical prototype repository/root, active ticket branch/worktree,
-  accepted prototype base, ticket revision, integration result, and cleanup
+- the canonical design repository/root, active ticket branch/worktree,
+  accepted design base, ticket revision, integration result, and cleanup
   result as recorded by repository management;
 - the visualizer template revision and active/omitted capabilities;
 - modeled states, mock boundaries, limitations, unresolved questions, and the

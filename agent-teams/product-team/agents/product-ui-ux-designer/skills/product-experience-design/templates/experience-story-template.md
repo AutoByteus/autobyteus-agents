@@ -1,8 +1,8 @@
 # Experience Story
 
-## Prototype Scope
+## Design Scope
 
-- Prototype request:
+- Design request:
 - Related behavior, requirement, and acceptance-criteria IDs:
 - Decision questions:
 - Critical journey:
@@ -45,6 +45,6 @@
 
 ## Open Product Decisions
 
-| Decision ID | Question / Alternatives | Prototype Evidence Planned | Decision Owner |
+| Decision ID | Question / Alternatives | Design Evidence Planned | Decision Owner |
 | --- | --- | --- | --- |
 |  |  |  |  |

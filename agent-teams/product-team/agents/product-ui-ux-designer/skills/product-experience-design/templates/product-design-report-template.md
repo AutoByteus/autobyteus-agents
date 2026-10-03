@@ -74,7 +74,7 @@ directory and use stable `VIS-*` IDs. “Screenshot” means an actual captured 
 
 ## Mocked Boundaries And Production Gaps
 
-| Boundary | Mocked / Simplified Behavior | What The Prototype Proves | What It Does Not Prove |
+| Boundary | Mocked / Simplified Behavior | What The UI Reference Proves | What It Does Not Prove |
 | --- | --- | --- | --- |
 |  |  |  |  |
 
