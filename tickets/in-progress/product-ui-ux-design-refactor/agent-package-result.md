@@ -21,13 +21,13 @@ The update establishes:
    - **Approved UI/UX Specification (`ui-ux-spec.md`)**: The primary normative design contract for engineering, backed by authoritative reference screenshots, component tokens, layout specs, and state rules.
    - **Interactive UI Reference**: The runnable browser sandbox demonstrating the verified interaction model.
 3. **Team & Role Elevation**:
-   - Team display name updated to **Product Design Team**.
-   - Coordinator framed as **Product UI/UX Designer & Coordinator**.
+   - Team name retained as **Product Team**.
+   - Coordinator framed as **Product Designer & Coordinator**.
    - Bootstrapper framed as **Baseline UI Specialist**.
 
 ## Ownership and design decisions
 
-- `Product Design Team framing`: Canonical owner in `agent-teams/product-team/team.md`.
+- `Product Team framing`: Canonical owner in `agent-teams/product-team/team.md`.
 - `Code-first design rationale & interactive UI model`: Canonical owner in `agent-teams/product-team/shared/product-prototype-principles.md`.
 - `Preserved routing IDs`: Folder `agent-teams/product-team` and member addresses `/product_team/product_prototyper` retained to prevent breaking external routes in `autobyteus-org` and `software-development-department`.
 

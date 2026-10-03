@@ -70,7 +70,7 @@ independently:
   constraint governs it
 - read repository and source run instructions
 - use the canonical prototype repository/root, Product ticket branch, and
-  Product-owned target worktree supplied by Product Prototyper; do not choose a
+  Product-owned target worktree supplied by the Product Designer; do not choose a
   different repository, branch, or worktree
 - discover routes, contexts, states, journeys, viewports, fixtures, assets, and
   validation scenarios
@@ -158,7 +158,7 @@ unsafe, return `Blocked` rather than creating one.
 1. Read the current scope/context, shared principles, and applicable repository
    instructions. Resolve the selected source location, canonical prototype
    repository, Product ticket, target branch, and assigned worktree from the
-   Product Prototyper handoff.
+   Product Designer handoff.
 2. Verify the selected application boundary, pin the source revision, and
    verify the supplied repository/worktree identity. Do not silently move to
    another revision, branch, or prototype location.
@@ -200,7 +200,7 @@ unsafe, return `Blocked` rather than creating one.
    any bootstrap candidate revision, experience inventory, implementation
    simplifications, scenarios, validation evidence, and known user-facing gaps.
 11. Return the runnable baseline, report, and durable current-state evidence
-   for Product Prototyper's acceptance.
+   for the Product Designer's acceptance.
 12. Classify the result as `Completed` or `Blocked`, then follow the handoff
    rules with absolute artifact paths and exact project provenance.
 
@@ -292,7 +292,7 @@ Before returning `Completed`, confirm:
   result, next expected action, source pin, prototype repository/root, Product
   ticket branch and target worktree, and absolute paths to the runnable
   prototype, report, and other durable evidence. Identify any bootstrap
-  candidate revision separately from Product Prototyper's accepted commit.
+  candidate revision separately from the Product Designer's accepted commit.
 - Do not claim completion when any distinct UI inventory item is failed or
   unsubstantiated, any known observable discrepancy remains, or the prototype
   is not independently runnable.

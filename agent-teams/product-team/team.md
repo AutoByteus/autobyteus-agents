@@ -1,6 +1,6 @@
 ---
-name: Product Design Team
-description: An independent product design team that uses code-first UI/UX design to explore requirements visually, evolve user experiences, and deliver production-ready UI/UX specifications and interactive reference models.
+name: Product Team
+description: An independent product team that uses code-first UI/UX design to explore requirements visually, evolve user experiences, and deliver production-ready UI/UX specifications and interactive reference models.
 category: product-development
 ---
 
@@ -15,8 +15,8 @@ true interaction fidelity rather than through static drawings.
 
 ## Members
 
-- `product_prototyper` is the coordinator and Product UI/UX Designer. It owns
-  the design project, tickets, branches and worktrees, user design review,
+- `product_prototyper` (Product Designer) is the coordinator and UI/UX Designer.
+  It owns the design project, tickets, branches and worktrees, user design review,
   baseline acceptance, UI/UX artifacts (`ui-ux-spec.md` with normative reference
   screenshots), commits, and integration. Its agent definition chooses one mode
   per request: `exploratory-requirements-visualizer` for an abstract or
@@ -24,7 +24,7 @@ true interaction fidelity rather than through static drawings.
   existing or new product experience. Its repository-management skill runs
   before and after that mode.
 - `prototype_bootstrapper` builds a current-experience baseline with UI parity
-  in the worktree Product Prototyper assigns, providing an accurate, runnable
+  in the worktree the Product Designer assigns, providing an accurate, runnable
   canvas of today's product. It reports the baseline and does not decide future
   behavior or manage the repository, ticket, or integration.
 - Solution Designer owns canonical requirements and acceptance criteria.
@@ -38,9 +38,9 @@ Detailed workflows belong to the member skills.
 ## Cooperation
 
 - When an existing frontend has no accepted baseline, or the baseline needs a
-  correction or refresh, Product Prototyper sends the fixed bootstrap request
+  correction or refresh, the Product Designer sends the fixed bootstrap request
   defined in its repository-management skill. Bootstrapper returns `Completed`
-  or `Blocked` for Product Prototyper to accept or recover.
+  or `Blocked` for the Product Designer to accept or recover.
 - `team-config.json` owns these internal routes; the parent department owns
   routes to other teams.
 - Each member finishes its work, persists its result, calls

@@ -103,7 +103,7 @@ separate handoff outcome.
 
 When canonical requirements context exists, Solution Designer owns the
 question and clarification loop. The user remains the approval authority.
-Product Prototyper owns the independent visual representation and sends each
+The Product Designer owns the independent visual representation and sends each
 review-ready revision to Solution Designer when that route exists; for
 a direct user request with no such route, return the review package to the
 user or calling workflow. Do not silently convert user feedback into an

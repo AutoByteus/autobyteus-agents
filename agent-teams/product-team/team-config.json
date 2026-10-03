@@ -19,14 +19,14 @@
       "from": "/product_prototyper",
       "to": "/prototype_bootstrapper",
       "rules": [
-        "When Product Prototyper classifies the outcome as Baseline Needed (initial bootstrap, correction, or refresh) for an existing frontend, send the fixed bootstrap payload defined in the product-prototype-repository-management skill, without the requirements or Product ticket package."
+        "When the Product Designer classifies the outcome as Baseline Needed (initial bootstrap, correction, or refresh) for an existing frontend, send the fixed bootstrap payload defined in the product-prototype-repository-management skill, without the requirements or Product ticket package."
       ]
     },
     {
       "from": "/prototype_bootstrapper",
       "to": "/product_prototyper",
       "rules": [
-        "When Prototype Bootstrapper classifies a bootstrap, correction, or refresh as Completed or Blocked, return the runnable baseline or precise blocker, the bootstrap report, source pin, and comparison evidence to Product Prototyper for acceptance or recovery."
+        "When Prototype Bootstrapper classifies a bootstrap, correction, or refresh as Completed or Blocked, return the runnable baseline or precise blocker, the bootstrap report, source pin, and comparison evidence to the Product Designer for acceptance or recovery."
       ]
     }
   ]

@@ -37,8 +37,8 @@ def test_symlinks():
 
 def test_team_frontmatter():
     team_md = (PRODUCT_TEAM / 'team.md').read_text()
-    assert 'name: Product Design Team' in team_md
-    print("PASS: team.md frontmatter has 'Product Design Team'.")
+    assert 'name: Product Team' in team_md
+    print("PASS: team.md frontmatter has 'Product Team'.")
 
 if __name__ == '__main__':
     test_json()
