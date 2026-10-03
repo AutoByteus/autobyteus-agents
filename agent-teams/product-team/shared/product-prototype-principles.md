@@ -1,31 +1,56 @@
-# Product Prototype Principles
+# Product Design & UI Principles
 
-This is the canonical shared reference for the Product Team. Read it before creating, bootstrapping, evolving, or reviewing a
-runnable prototype.
+This is the canonical shared reference for the Product Design Team. Read it before creating, bootstrapping, evolving, or reviewing an
+interactive UI reference or UI/UX specification.
 
 Role-specific workflow belongs in each agent's `SKILL.md`; this document holds
-only the principles that must remain consistent across prototype roles.
+only the principles that must remain consistent across design roles.
 
 ## 1. Purpose And Fidelity Boundary
 
-### What a product prototype project is
+### Code as the native UI/UX design medium
 
-A product prototype project is a runnable **model of the product's UI**. Every
-distinct page and state looks and behaves like the product, driven by **simple
-mock data**. It shows what the product looks like and how a user moves through
-it. It is **not a complete working website**: it does not hold the product's
-real data, and it does not implement the product's real logic.
+In traditional teams, UI/UX designers relied on static vector tools (Photoshop,
+Sketch, Figma) because human designers generally did not write code. This
+created a structural translation gap: static drawings lacked real responsive DOM
+behavior, real scroll and box-model dynamics, browser font rendering, and live
+interaction states.
 
-It exists so Product can design new features on top of today's product before
-Software Engineering builds them: people click through a proposed feature in
-context, refine it, and capture the approved screenshots and UI/UX
-specification that engineering builds against. Call it the "product
-prototype" or "prototype project", never a "UI project", so it is not confused
-with the production frontend. Every prototype activity serves that purpose. A
-current-experience baseline is valuable as an accurate, navigable copy of
-today's product; comparison evidence only establishes that accuracy and is
-never the goal, so verification effort stays small next to the baseline
-itself.
+For AI agents, writing frontend code is native, fast, and effortless.
+Designing directly in runnable code is the fastest, highest-fidelity way to
+perform Product UI/UX Design:
+- Interfaces are designed and validated directly in the browser DOM.
+- Responsive breakpoints, typography, spacing, and transitions behave exactly as
+  they will in the real product.
+- Edge states (empty, loading, error, long text overflow, role permissions) are
+  tested interactively rather than isolated on disconnected artboards.
+- The outcome is a **production-ready visual and interaction target**, not a
+  speculative drawing.
+
+### What an interactive UI reference is
+
+An interactive UI project (or design sandbox) is a runnable **model of the
+product's UI**. Every distinct page and state looks and behaves like the
+product, driven by **simple mock data**. It shows what the product looks like
+and how a user moves through it. It is **not a complete working website**: it
+does not hold the product's real data, and it does not implement the product's
+real backend logic.
+
+It exists so Product Design can explore, refine, and validate features on top of
+today's product before Software Engineering builds them. It yields two core
+deliverables:
+1. **Approved UI/UX Specification (`ui-ux-spec.md`)**: the canonical, normative
+   specification containing production-ready reference screenshots, layout
+   hierarchy, component styling tokens, and interaction rules that Software
+   Engineering implements.
+2. **Interactive UI Reference**: the runnable browser sandbox (maintained in an
+   isolated prototype/design repository) that substantiates the specification
+   and allows users and engineers to click through verified flows.
+
+Every design activity serves this outcome. A current-experience baseline is
+valuable as an accurate, navigable canvas of today's product; comparison
+evidence only establishes that accuracy and is never the goal, so verification
+effort stays small next to the baseline itself.
 
 It implements:
 

@@ -57,7 +57,7 @@ Software Development Department — Agent Org (no coordinator)
 │   ├── Code Reviewer
 │   ├── API/E2E Engineer
 │   └── Delivery Engineer
-└── Product Team — Product Prototyper
+└── Product Design Team — Product Prototyper
     └── Prototype Bootstrapper
 ```
 
@@ -86,9 +86,9 @@ Solution Designer exchanges user-requested Product assistance and returned
 UI/UX evidence directly with Product Prototyper. Product Prototyper selects its
 own mode and owns its separate repository, tickets, commits and artifacts.
 
-## Product Team
+## Product Design Team
 
-The product team independently maintains the prototype repository for each product surface or independent concept package. `product_prototyper` owns prototype intake, tickets, per-ticket branches/worktrees, commits, integration, and two explicit modes: `exploratory-requirements-visualizer` for abstract or product-independent clarification, and `product-experience-prototyper` for incremental product-experience evolution or a new product-facing experience. Its repository-management skill handles isolation and lifecycle; the selected mode skill handles the experience work. `prototype_bootstrapper` owns only current-experience baseline discovery, parity implementation, and bootstrap evidence in the Product-assigned worktree. The team uses dynamic handoff rules plus `send_message_to` for baseline routing and cross-team results.
+The Product Design Team (`product-team`) performs code-first Product UI/UX Design, producing approved UI/UX specifications (`ui-ux-spec.md`) and interactive reference models. Because AI agents write frontend code natively, designing directly in the browser DOM provides true layout, styling, and interaction fidelity without the translation gap of static vector tools. `product_prototyper` coordinates design intake, tickets, per-ticket branches/worktrees, commits, integration, and two explicit modes: `exploratory-requirements-visualizer` for abstract or product-independent concept clarification, and `product-experience-prototyper` for incremental product-experience evolution or a new product-facing experience. Its repository-management skill handles isolation and lifecycle; the selected mode skill handles the experience work. `prototype_bootstrapper` owns only current-experience baseline discovery, parity implementation, and bootstrap evidence in the Product-assigned worktree. The team uses dynamic handoff rules plus `send_message_to` for baseline routing and cross-team results.
 
 ## Marketing Team
 

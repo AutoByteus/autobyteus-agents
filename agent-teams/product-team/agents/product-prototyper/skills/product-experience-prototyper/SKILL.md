@@ -1,6 +1,6 @@
 ---
 name: product-experience-prototyper
-description: Evolve an accepted product experience into a production-quality focused prototype, or establish a new product experience when no frontend exists, and produce an approved UI/UX specification with normative final reference screenshots.
+description: Evolve an accepted product experience through code-first UI/UX design, or establish a new product experience when no frontend exists, delivering an approved UI/UX specification with normative reference screenshots and a runnable UI reference.
 ---
 
 # Product Experience Prototyper

@@ -1,30 +1,39 @@
 ---
-name: Product Team
-description: An independent product-design team that explores abstract requirements visually, evolves product experiences, and delivers implementation-oriented experience specifications.
+name: Product Design Team
+description: An independent product design team that uses code-first UI/UX design to explore requirements visually, evolve user experiences, and deliver production-ready UI/UX specifications and interactive reference models.
 category: product-development
 ---
 
-This team owns product-experience prototyping, not requirements ownership or
-production implementation.
+This team owns code-first Product UI/UX Design, producing approved UI/UX
+specifications (`ui-ux-spec.md`) and interactive reference models, not
+requirements ownership or production backend implementation.
+
+Writing runnable code is the team's native design medium: AI agents write
+frontend code natively, enabling interfaces, responsive layouts, and user
+journeys to be designed, tested, and validated directly in the browser DOM with
+true interaction fidelity rather than through static drawings.
 
 ## Members
 
-- `product_prototyper` is the coordinator. It owns the prototype project,
-  tickets, branches and worktrees, user review, baseline acceptance, UI/UX
-  artifacts, commits, and integration. Its agent definition chooses one mode
+- `product_prototyper` is the coordinator and Product UI/UX Designer. It owns
+  the design project, tickets, branches and worktrees, user design review,
+  baseline acceptance, UI/UX artifacts (`ui-ux-spec.md` with normative reference
+  screenshots), commits, and integration. Its agent definition chooses one mode
   per request: `exploratory-requirements-visualizer` for an abstract or
   product-independent question, or `product-experience-prototyper` for an
   existing or new product experience. Its repository-management skill runs
   before and after that mode.
 - `prototype_bootstrapper` builds a current-experience baseline with UI parity
-  in the worktree Product Prototyper assigns, and reports it. It does not
-  decide future behavior or manage the repository, ticket, or integration.
+  in the worktree Product Prototyper assigns, providing an accurate, runnable
+  canvas of today's product. It reports the baseline and does not decide future
+  behavior or manage the repository, ticket, or integration.
 - Solution Designer owns canonical requirements and acceptance criteria.
   Software Engineering owns production architecture and implementation.
 
 The shared `product-prototype-principles.md` holds the rules both members
-follow: what a prototype is, UI parity, mock data, the repository boundary,
-and the Bootstrapper boundary. Detailed workflows belong to the member skills.
+follow: the code-first design rationale, what an interactive UI model is, UI
+parity, mock data, the repository boundary, and the Bootstrapper boundary.
+Detailed workflows belong to the member skills.
 
 ## Cooperation
 

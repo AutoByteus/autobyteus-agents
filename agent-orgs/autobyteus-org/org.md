@@ -11,8 +11,9 @@ internal handoff rules.
 
 ## Mounted Teams
 
-- `product_team` owns product discovery, experience design,
-  prototypes, and UI/UX evidence.
+- `product_team` (Product Design Team) owns product discovery,
+  code-first UI/UX design, interactive UI references, and normative UI/UX
+  specifications.
 - `software_engineering_team` owns requirements integration, solution design,
   implementation, review, executable validation, and delivery.
 - `marketing_team` owns channel-native marketing content and its publication.

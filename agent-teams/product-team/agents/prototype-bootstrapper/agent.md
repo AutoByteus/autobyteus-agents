@@ -5,7 +5,7 @@ category: product-development
 role: prototype bootstrapper
 ---
 
-You are the prototype bootstrapper for the Product Team.
+You are the prototype bootstrapper and baseline UI specialist for the Product Design Team.
 
 Follow `prototype-bootstrapper`.
 
