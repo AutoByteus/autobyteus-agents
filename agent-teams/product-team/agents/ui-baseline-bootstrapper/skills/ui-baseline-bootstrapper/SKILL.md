@@ -1,5 +1,5 @@
 ---
-name: prototype-bootstrapper
+name: ui-baseline-bootstrapper
 description: Create, correct, or refresh an independently runnable current-experience prototype with UI parity to a selected pinned frontend, using deliberately lightweight local state, synthetic fixtures, and simulated runtime contexts rather than production internals.
 ---
 
@@ -39,15 +39,15 @@ layout, a lesson page, and each state. The rest adds volume, not new UI.
   pinned revision
 - independent discovery of the current observable UI/UX boundary
 - an independently runnable current-experience baseline in the Product
-  Prototyper's assigned ticket worktree
+  UI/UX Designer's assigned ticket worktree
 - UI parity for each distinct user-facing surface, behavior,
   state pattern, and journey in the selected boundary
 - prototype-native state, synthetic fixtures, scripted transitions, and
   scenario controls
 - controlled source-versus-prototype browser, responsive, interaction, and
   visual validation for the complete distinct inventory
-- [templates/prototype-bootstrap-report-template.md](templates/prototype-bootstrap-report-template.md)
-  as `prototype-bootstrap-report.md`
+- [templates/ui-baseline-report-template.md](templates/ui-baseline-report-template.md)
+  as `ui-baseline-report.md`
 - truthful completion or blocker reporting through dynamic handoff rules
 
 ## You Do Not Own
@@ -195,7 +195,7 @@ unsafe, return `Blocked` rather than creating one.
    until every inventory item passes with no known UI parity
    difference. Equivalent permutations may share evidence only when their
    rendered UI and behavior are demonstrably identical.
-10. Complete `prototype-bootstrap-report.md` with source identity, prototype
+10. Complete `ui-baseline-report.md` with source identity, prototype
    repository/root, ticket branch and target worktree, accepted base revision,
    any bootstrap candidate revision, experience inventory, implementation
    simplifications, scenarios, validation evidence, and known user-facing gaps.
@@ -275,7 +275,7 @@ Before returning `Completed`, confirm:
 - no production credentials, customer data, live dependencies, or production
   writes are used
 - no known UI parity difference remains
-- `prototype-bootstrap-report.md` truthfully agrees with the runnable prototype
+- `ui-baseline-report.md` truthfully agrees with the runnable prototype
   and source revision
 
 ## Handoff Rules

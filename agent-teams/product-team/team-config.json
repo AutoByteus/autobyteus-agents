@@ -1,30 +1,30 @@
 {
-  "coordinatorMemberName": "product_prototyper",
+  "coordinatorMemberName": "product_ui_ux_designer",
   "members": [
     {
-      "memberName": "product_prototyper",
-      "ref": "product-prototyper",
+      "memberName": "product_ui_ux_designer",
+      "ref": "product-ui-ux-designer",
       "refType": "agent",
       "refScope": "team_local"
     },
     {
-      "memberName": "prototype_bootstrapper",
-      "ref": "prototype-bootstrapper",
+      "memberName": "ui_baseline_bootstrapper",
+      "ref": "ui-baseline-bootstrapper",
       "refType": "agent",
       "refScope": "team_local"
     }
   ],
   "handoffs": [
     {
-      "from": "/product_prototyper",
-      "to": "/prototype_bootstrapper",
+      "from": "/product_ui_ux_designer",
+      "to": "/ui_baseline_bootstrapper",
       "rules": [
-        "When the Product UI/UX Designer classifies the outcome as Baseline Needed (initial bootstrap, correction, or refresh) for an existing frontend, send the fixed bootstrap payload defined in the product-prototype-repository-management skill, without the requirements or Product ticket package."
+        "When the Product UI/UX Designer classifies the outcome as Baseline Needed (initial bootstrap, correction, or refresh) for an existing frontend, send the fixed bootstrap payload defined in the product-design-repository-management skill, without the requirements or Product ticket package."
       ]
     },
     {
-      "from": "/prototype_bootstrapper",
-      "to": "/product_prototyper",
+      "from": "/ui_baseline_bootstrapper",
+      "to": "/product_ui_ux_designer",
       "rules": [
         "When the UI Baseline Bootstrapper classifies a bootstrap, correction, or refresh as Completed or Blocked, return the runnable baseline or precise blocker, the bootstrap report, source pin, and comparison evidence to the Product UI/UX Designer for acceptance or recovery."
       ]

@@ -15,15 +15,15 @@ true interaction fidelity rather than through static drawings.
 
 ## Members
 
-- `product_prototyper` (Product UI/UX Designer) is the coordinator.
+- `product_ui_ux_designer` (Product UI/UX Designer) is the coordinator.
   It owns the design project, tickets, branches and worktrees, user design review,
   baseline acceptance, UI/UX artifacts (`ui-ux-spec.md` with normative reference
   screenshots), commits, and integration. Its agent definition chooses one mode
   per request: `exploratory-requirements-visualizer` for an abstract or
-  product-independent question, or `product-experience-prototyper` for an
+  product-independent question, or `product-experience-design` for an
   existing or new product experience. Its repository-management skill runs
   before and after that mode.
-- `prototype_bootstrapper` (UI Baseline Bootstrapper) builds a current-experience
+- `ui_baseline_bootstrapper` (UI Baseline Bootstrapper) builds a current-experience
   baseline with UI parity in the worktree the Product UI/UX Designer assigns,
   providing an accurate, runnable canvas of today's product. It reports the
   baseline and does not decide future behavior or manage the repository,
@@ -48,7 +48,7 @@ Detailed workflows belong to the member skills.
   `get_handoff_rules`, sends the result to each exact returned
   `recipient_address` with `send_message_to`, and stops. If no rule matches, it
   returns the result to the user or calling workflow.
-- Handoffs carry the stable package identifier, prototype project/root, ticket
+- Handoffs carry the stable package identifier, design project/root, ticket
   context, source revision where applicable, and absolute artifact paths.
   External recipients receive results, not internal repository or ticket
   instructions.

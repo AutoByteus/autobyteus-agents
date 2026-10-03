@@ -1,18 +1,18 @@
 ---
-name: product-prototype-repository-management
-description: Manage the Product UI/UX Designer's canonical prototype repository, ticket branch, isolated worktree, revisions, integration state, and cleanup before and after a design-mode skill runs.
+name: product-design-repository-management
+description: Manage the Product UI/UX Designer's canonical design repository, ticket branch, isolated worktree, revisions, integration state, and cleanup before and after a design-mode skill runs.
 ---
 
-# Product Prototype Repository Management
+# Product Design Repository Management
 
 This is the Product UI/UX Designer's shared repository-lifecycle skill. Apply it
-before and after exactly one mode skill: `product-experience-prototyper` or
+before and after exactly one mode skill: `product-experience-design` or
 `exploratory-requirements-visualizer`. It owns repository and ticket-worktree
 isolation; it does not design the prototype or decide product behavior.
 
 ## Ownership
 
-You own the Product Prototype repository lifecycle:
+You own the Product Design repository lifecycle:
 
 - resolve or initialize the canonical prototype repository when permitted;
 - resolve or create the stable Product ticket identifier;
@@ -27,7 +27,7 @@ You own the Product Prototype repository lifecycle:
   repository under its repository policy.
 
 The selected mode skill owns the experience work, validation, user review,
-approval, and result classification. `prototype_bootstrapper` may write a
+approval, and result classification. `ui_baseline_bootstrapper` may write a
 candidate current-experience baseline in the Product-owned worktree, but does
 not own the branch, ticket status, acceptance, commit, integration, or cleanup.
 
@@ -99,8 +99,8 @@ At the beginning of every Product UI/UX Designer request:
    instead of creating a duplicate.
 5. Otherwise create a fresh ticket branch/worktree from the recorded latest
    accepted prototype revision. Create `tickets/in-progress/<ticket-id>/` in
-   that worktree and initialize or update `prototype-ticket.md` from the
-   Product team's shared [prototype-ticket template](../../../../shared/templates/prototype-ticket-template.md),
+   that worktree and initialize or update `product-ticket.md` from the
+   Product team's shared [product-ticket template](../../../../shared/templates/product-ticket-template.md),
    recording the repository, worktree, branch, base revision, and current
    status.
 6. Stop with a precise `Blocked` result when the repository, base revision,
@@ -118,7 +118,7 @@ overlapping branches will merge without conflict.
 When an existing frontend is relevant, the first accepted current-experience
 baseline is a prerequisite for future-state work. The shared principles'
 Bootstrapper boundary defines what Bootstrapper may do; the
-`product-experience-prototyper` skill decides when to request it and whether
+`product-experience-design` skill decides when to request it and whether
 to accept its result. This skill provides the baseline lifecycle:
 
 - If the canonical prototype repository has no accepted baseline, create or
@@ -161,10 +161,10 @@ unchanged across retries.
 Keep ticket folders inside the active ticket worktree:
 `tickets/in-progress/<ticket-id>/` while work is open and
 `tickets/done/<ticket-id>/` after completion. A ticket folder holds
-`prototype-ticket.md`, the UI/UX specification, visual references, and
+`product-ticket.md`, the UI/UX specification, visual references, and
 supporting evidence; the Git worktree provides source and index isolation.
 
-Set the `prototype-ticket.md` status with these transitions. The mode skill's
+Set the `product-ticket.md` status with these transitions. The mode skill's
 outcome classification and the ticket status must agree.
 
 ```text

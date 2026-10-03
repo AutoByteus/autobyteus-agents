@@ -17,13 +17,13 @@
   "handoffs": [
     {
       "from": "/software_engineering_team/solution_designer",
-      "to": "/product_team/product_prototyper",
+      "to": "/product_team/product_ui_ux_designer",
       "rules": [
         "When Solution Designer classifies the outcome as Product Design Requested because the user explicitly or after clarification asks Product Team to help understand or evolve an experience. This also applies to purpose Result Correction for missing or inconsistent evidence in a returned package from the same user-requested engagement; include the original user-request reference and precise gap without expanding scope. Send the user's requested outcome in the user's own terms, the focused decision, relevant requirement and behavior IDs, established constraints, non-goals, canonical requirements paths, and supplied existing-product context when applicable. Do not prescribe a Product UI/UX Designer mode, Bootstrapper payload, repository, ticket, or implementation procedure; the Product UI/UX Designer selects and owns those."
       ]
     },
     {
-      "from": "/product_team/product_prototyper",
+      "from": "/product_team/product_ui_ux_designer",
       "to": "/software_engineering_team/solution_designer",
       "rules": [
         "When the Product UI/UX Designer classifies the outcome as Requirements Visualization Ready because the interactive visualizer revision, review URL, evidence, and open clarification questions are ready for Solution Designer and user review.",

@@ -1,6 +1,6 @@
-# Prototype Ticket
+# Product Ticket
 
-Keep one record for the request being prototyped. The ticket folder is the
+Keep one record for the request being designed. The ticket folder is the
 durable artifact/status location inside the Product-owned ticket branch and
 worktree; it does not replace that branch/worktree isolation.
 
@@ -15,17 +15,17 @@ worktree; it does not replace that branch/worktree isolation.
 - In scope:
 - Non-goals:
 
-## Prototype Context
+## Design & Repository Context
 
-- Prototype repository/root (separate from source repository):
-- Prototype ticket worktree:
-- Prototype ticket branch:
+- Design repository/root (separate from source repository):
+- Design ticket worktree:
+- Design ticket branch:
 - Source repository and selected frontend:
 - Pinned source revision:
 - Accepted baseline revision:
 - Bootstrap report:
 - Product acceptance result and date:
-- Prototype revision for this ticket:
+- Design revision for this ticket:
 - Promoted default baseline revision, when applicable:
 - Default-entry-point promotion validation:
 - Integration target and result:
@@ -36,7 +36,7 @@ worktree; it does not replace that branch/worktree isolation.
 ## Delivery And Validation
 
 - UI/UX specification:
-- Runnable prototype entry point:
+- Runnable UI reference entry point:
 - Visual-reference directory:
 - Supporting artifact paths:
 - Validation commands and results:

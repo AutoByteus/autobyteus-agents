@@ -1,13 +1,13 @@
-# Product Prototype Report
+# Product Design Report
 
-Use this optional report only when a durable cross-stage summary adds value beyond `ui-ux-spec.md` and the supporting prototype artifacts. Do not create it solely to repeat their contents.
+Use this optional report only when a durable cross-stage summary adds value beyond `ui-ux-spec.md` and the supporting product design artifacts. Do not create it solely to repeat their contents.
 
 ## Request And Scope
 
 - Request / ticket:
 - Triggering requirements revision:
 - Related behavior, requirement, acceptance-criteria, and decision IDs:
-- Questions the prototype was asked to resolve:
+- Questions the design was asked to resolve:
 - In-scope critical journey:
 - Non-goals:
 
@@ -16,26 +16,26 @@ Use this optional report only when a durable cross-stage summary adds value beyo
 - Source repository:
 - Selected frontend application or product surface:
 - Pinned source commit or revision:
-- Prototype repository/root (separate Git repository):
-- Prototype ticket worktree:
-- Prototype ticket branch:
-- Accepted prototype base revision:
-- Prototype revision or commit:
+- Design repository/root (separate Git repository):
+- Design ticket worktree:
+- Design ticket branch:
+- Accepted design base revision:
+- Design revision or commit:
 - Integration target and result:
 - Runtime isolation and cleanup result:
 - Ticket folder:
 - Bootstrap report:
 
-## Prototype Package
+## Product Design Package
 
-- Prototype ticket record:
+- Product ticket record:
 - UI/UX specification:
-- Runnable prototype repository/root:
+- Runnable UI reference repository/root:
 - Experience story:
 - UI behavior test matrix:
-- Prototype assumptions:
-- Prototype change log:
-- Prototype runbook:
+- Design assumptions:
+- Design change log:
+- UI reference runbook:
 - Review URL:
 - User-confirmation reference:
 
@@ -86,7 +86,7 @@ directory and use stable `VIS-*` IDs. “Screenshot” means an actual captured 
 
 ## Latest Result
 
-- Prototype result: `Completed` / `Blocked` / `Not Recommended`
+- Design result: `Completed` / `Blocked` / `Not Recommended`
 - Ticket status: `In Progress` / `Awaiting User Review` / `Completed` / `Baseline Needed` / `Blocked` / `Not Recommended`
 - Critical journey runnable: `Yes` / `No`
 - Requirements questions resolved:

@@ -1,9 +1,9 @@
 ---
-name: product-experience-prototyper
+name: product-experience-design
 description: Evolve an accepted product experience through code-first UI/UX design, or establish a new product experience when no frontend exists, delivering an approved UI/UX specification with normative reference screenshots and a runnable UI reference.
 ---
 
-# Product Experience Prototyper
+# Product Experience Design
 
 Read [product-design-principles.md](product-design-principles.md) before
 starting. It is the shared authority for prototype technology selection,
@@ -13,12 +13,12 @@ This skill adds the product-experience workflow and artifacts; it does not
 replace the shared cross-mode invariants with a second policy.
 
 Before this mode begins, apply
-[product-prototype-repository-management](../product-prototype-repository-management/SKILL.md)
+[product-design-repository-management](../product-design-repository-management/SKILL.md)
 to establish or resume the canonical repository, Product ticket, ticket branch,
 active worktree, accepted base revision, and runtime isolation. Apply it again
 after this mode's validation and user-review work for commit, integration,
 ticket closure, and cleanup, and use its ticket statuses for the common
-`prototype-ticket.md` record. This skill owns only the product-experience work
+`product-ticket.md` record. This skill owns only the product-experience work
 and supplies the evidence each status transition needs; it never switches the
 canonical prototype checkout, creates a second ticket worktree, or edits a
 production or source path.
@@ -165,14 +165,14 @@ Create supporting artifacts only when they materially help construction, validat
 
 - [templates/experience-story-template.md](templates/experience-story-template.md) as `experience-story.md`
 - [templates/ui-behavior-test-matrix-template.md](templates/ui-behavior-test-matrix-template.md) as `ui-behavior-test-matrix.md`
-- [templates/prototype-assumptions-template.md](templates/prototype-assumptions-template.md) as `prototype-assumptions.md`
-- [templates/prototype-change-log-template.md](templates/prototype-change-log-template.md) as `prototype-change-log.md`
-- [templates/prototype-runbook-template.md](templates/prototype-runbook-template.md) as `prototype-runbook.md`
-- [templates/product-prototype-report-template.md](templates/product-prototype-report-template.md) as `product-prototype-report.md`
-- [shared/templates/prototype-ticket-template.md](../../../../shared/templates/prototype-ticket-template.md) as the shared per-ticket `prototype-ticket.md`
+- [templates/design-assumptions-template.md](templates/design-assumptions-template.md) as `design-assumptions.md`
+- [templates/design-change-log-template.md](templates/design-change-log-template.md) as `design-change-log.md`
+- [templates/ui-reference-runbook-template.md](templates/ui-reference-runbook-template.md) as `ui-reference-runbook.md`
+- [templates/product-design-report-template.md](templates/product-design-report-template.md) as `product-design-report.md`
+- [shared/templates/product-ticket-template.md](../../../../shared/templates/product-ticket-template.md) as the shared per-ticket `product-ticket.md`
 - `<ticket-folder>/visual-references/` containing the final `VIS-*` references
   and captured screenshots
-- the bootstrapper's `prototype-bootstrap-report.md` for every
+- the bootstrapper's `ui-baseline-report.md` for every
   current-experience bootstrap, correction, or refresh request
 
 Each support artifact has a distinct purpose: the experience story frames the
@@ -204,7 +204,7 @@ Keep the future-state change proportional to the decision:
 ## Bootstrap Routing
 
 - For an existing frontend, check only whether the active Product ticket
-  worktree has an applicable accepted `prototype-bootstrap-report.md` for the
+  worktree has an applicable accepted `ui-baseline-report.md` for the
   established canonical prototype repository/root. Do not inspect or inventory
   the current source UI merely to prepare a Bootstrapper request. If no
   repository/root or accepted baseline is established, use the repository-
@@ -216,7 +216,7 @@ Keep the future-state change proportional to the decision:
   without using the Bootstrapper.
 - For an absent baseline, classify the Product ticket as `Baseline Needed` and
   send the fixed payload in
-  [product-prototype-repository-management](../product-prototype-repository-management/SKILL.md)
+  [product-design-repository-management](../product-design-repository-management/SKILL.md)
   with `Mode: Initial Bootstrap` and an action to independently establish the
   exact current-experience baseline. Do not attach the requirements package or
   add discovered routes, contexts, expected states, implementation guidance,
@@ -232,7 +232,7 @@ Keep the future-state change proportional to the decision:
   payload's refresh fields. Preserve the stable package identifier in all
   modes.
 - When the Bootstrapper returns, read and review the runnable prototype,
-  `prototype-bootstrap-report.md`, and referenced evidence directly. Accept an
+  `ui-baseline-report.md`, and referenced evidence directly. Accept an
   existing-frontend baseline only when its selected source and revision are
   explicit, the browser prototype is independently runnable, every distinct UI
   inventory item has matched source and prototype evidence, no known UI parity
@@ -331,7 +331,7 @@ Keep the future-state change proportional to the decision:
 - Treat the accepted UI inventory and its exact visual evidence as the
   preservation baseline. Keep unaffected appearance and user-facing behavior
   exact while distinguishing each requirements-driven intentional delta.
-- When material revision rounds need traceability, create `prototype-change-log.md` and assign every recorded addition, behavior change, or removal a stable, never-reused `PC-*` ID.
+- When material revision rounds need traceability, create `design-change-log.md` and assign every recorded addition, behavior change, or removal a stable, never-reused `DC-*` ID.
 - Record which accepted behaviors are preserved, intentionally changed, or removed.
 - Keep existing transition and scenario IDs stable when their meaning has not changed.
 - Update the UI/UX specification, applicable supporting artifacts, and implementation only where the approved prototype request or user feedback requires it.
@@ -410,7 +410,7 @@ Before reporting the prototype as completed, confirm:
 - a completed ticket is under `tickets/done/<ticket-id>/`; a blocked or
   unfinished ticket remains under `tickets/in-progress/<ticket-id>/`
 - an existing-frontend prototype has an accepted, applicable
-  `prototype-bootstrap-report.md` that shows UI parity for every distinct
+  `ui-baseline-report.md` that shows UI parity for every distinct
   inventory item
 - prototype data is small, hand-written and synthetic. No recorded, replayed,
   captured or bulk-copied source data or content remains anywhere in
@@ -509,13 +509,13 @@ instead.
 - Complete the completed-prototype handoff only after user confirmation and final artifact production. If progress is blocked, return the blocker; if a prototype is not recommended, return the decision rationale and evidence path instead of claiming prototype completion or creating final UI/UX artifacts.
 - A requirement-impact handoff may occur during prototype review; include the exact user feedback, affected IDs, and prototype evidence, then wait for a revised requirements package.
 - For `Baseline Needed`, the applicable fixed Bootstrapper payload in the
-  [repository-management skill](../product-prototype-repository-management/SKILL.md)
+  [repository-management skill](../product-design-repository-management/SKILL.md)
   is the complete request; do not append the requirements package or the
   Product UI/UX Designer ticket package under the general artifact rule. Keep the
   ticket status and bootstrap result in the Product UI/UX Designer's ticket folder.
 - For `Prototype Completed`, include absolute paths to `ui-ux-spec.md`, the
   runnable prototype, final screenshots, the applicable
-  `prototype-bootstrap-report.md`, and every still-relevant supporting
+  `ui-baseline-report.md`, and every still-relevant supporting
   artifact. Include the ticket record and folder, prototype repository/root,
   ticket branch/worktree, accepted base, prototype revision, source pin,
   integration and cleanup result, user-confirmation reference, validated

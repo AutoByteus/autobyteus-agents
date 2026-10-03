@@ -1,4 +1,4 @@
-# Prototype Runbook
+# UI Reference Runbook
 
 ## Location And Stack
 
@@ -6,11 +6,11 @@
 - Source repository:
 - Selected frontend application or product surface:
 - Pinned source commit or revision:
-- Prototype repository/root (separate Git repository):
-- Prototype ticket worktree:
-- Prototype ticket branch:
-- Accepted prototype base revision:
-- Prototype revision or commit:
+- Design repository/root (separate Git repository):
+- Design ticket worktree:
+- Design ticket branch:
+- Accepted design base revision:
+- Design revision or commit:
 - Ticket folder:
 - Package manager:
 - Framework / stack:
@@ -27,7 +27,7 @@
 
 ## Reproducibility And Project State
 
-- Prototype repository status at validation:
+- Design repository status at validation:
 - Scenario reset/isolation method:
 - Required environment variables or credentials: synthetic/local only, or `None`
 

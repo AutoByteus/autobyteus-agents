@@ -1,4 +1,4 @@
-# Prototype Assumptions
+# Design Assumptions
 
 ## Product Assumptions
 
@@ -8,7 +8,7 @@
 
 ## Mocked Boundaries
 
-| Boundary / Integration | What Is Real In The Prototype | What Is Mocked Or Simplified | Deterministic Scenarios | Production Gap |
+| Boundary / Integration | What Is Real In The UI Reference | What Is Mocked Or Simplified | Deterministic Scenarios | Production Gap |
 | --- | --- | --- | --- | --- |
 |  |  |  |  |  |
 

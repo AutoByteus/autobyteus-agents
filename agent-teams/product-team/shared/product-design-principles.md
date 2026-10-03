@@ -193,12 +193,12 @@ Use one explicit mode for each prototype workspace:
   decision for which there is no applicable existing product surface. It is
   review-ready exploratory evidence, not an approved future-state design or a
   final UI/UX specification. Do not use it to replace or imitate an existing
-  product route or component; use Product Experience Prototyping for that
+  product route or component; use Product Experience Design for that
   change. Keep its ticket in progress while clarification continues.
 
 Initial current-experience bootstrap is normally a one-time independent stage
 for a prototype workspace. Later requirements-driven work normally belongs to
-`product_prototyper`.
+`product_ui_ux_designer`.
 
 ## 3. Source And Technology Selection
 
@@ -339,19 +339,19 @@ for a prototype workspace. Later requirements-driven work normally belongs to
 ## 7. UI Authority And Responsibility Boundary
 
 - The pinned source frontend is the sole UI/UX authority for a current-
-  experience baseline. `prototype_bootstrapper` discovers and reproduces that
+  experience baseline. `ui_baseline_bootstrapper` discovers and reproduces that
   experience; it decides only the simplest prototype implementation, not the
   appearance, behavior, product policy, or future design.
-- `product_prototyper` accepts an applicable baseline and authors a concrete,
+- `product_ui_ux_designer` accepts an applicable baseline and authors a concrete,
   focused future-state UI/UX proposal within the requirements and user
   feedback. After baseline acceptance, it owns the canonical runnable
   experience, review loop, final validation, screenshots, and `ui-ux-spec.md`,
   but it does not approve its own proposal.
-- In exploratory requirements-visualization mode, `product_prototyper` owns
+- In exploratory requirements-visualization mode, `product_ui_ux_designer` owns
   only the independent visual representation and review evidence. Solution
   Designer owns the canonical requirements clarification loop when it is
   present, and the user remains the approval authority. A concrete change to
-  an existing product surface belongs to Product Experience Prototyping.
+  an existing product surface belongs to Product Experience Design.
 - The user is the sole approval authority for intentional future-state UI/UX
   and behavior. `solution_designer` preserves that approval, owns canonical
   requirements and acceptance criteria, and integrates the approved UI/UX
@@ -367,7 +367,7 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   worktree, or a generic `prototypes/` directory.
 - The Product UI/UX Designer owns the prototype repository and its lifecycle: tickets,
   ticket branches and worktrees, ticket statuses, commits, integration,
-  baseline promotion, and cleanup. Its `product-prototype-repository-management`
+  baseline promotion, and cleanup. Its `product-design-repository-management`
   skill defines that lifecycle. Solution Designer may link prototype artifacts
   but does not manage them.
 - Prototype work writes only to the prototype repository, through the assigned
@@ -384,7 +384,7 @@ for a prototype workspace. Later requirements-driven work normally belongs to
 
 ## 9. UI Baseline Bootstrapper And Product UI/UX Designer Boundary
 
-- `prototype_bootstrapper` (UI Baseline Bootstrapper) owns only the current-experience baseline: source
+- `ui_baseline_bootstrapper` (UI Baseline Bootstrapper) owns only the current-experience baseline: source
   verification and pinning, observable-surface discovery, prototype-native
   parity implementation, matched validation, and the bootstrap report.
 - UI Baseline Bootstrapper may create or update baseline files only in the Product
@@ -393,7 +393,7 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   ticket work, implement future-state requirements, create the canonical
   future-state `ui-ux-spec.md`, conduct the user design review, or approve a
   product decision.
-- `product_prototyper` (Product UI/UX Designer) reviews and tests the Bootstrapper's
+- `product_ui_ux_designer` (Product UI/UX Designer) reviews and tests the Bootstrapper's
   result, commits the accepted baseline in the prototype repository, and owns
   product-experience future-state changes, user review, final UI/UX artifacts,
   and prototype commits. In exploratory requirements-visualization mode, it
@@ -408,7 +408,7 @@ for a prototype workspace. Later requirements-driven work normally belongs to
 
 - The canonical prototype repository contains the runnable prototype,
   project-wide change history, and current-experience bootstrap evidence. Each
-  ticket folder under `tickets/` contains `prototype-ticket.md` and the
+  ticket folder under `tickets/` contains `product-ticket.md` and the
   mode-appropriate supporting evidence. A product-experience ticket adds
   `ui-ux-spec.md`, final `visual-references/`, behavior matrix, runbook,
   prototype report, assumptions, and other delivery artifacts as needed. A

@@ -14,11 +14,11 @@ description or static diagram.
 
 This is an exploratory clarification skill for a concept that has no
 applicable existing product surface. It is not the product-experience
-prototyper, must not replace or imitate an existing product route or component,
+designer, must not replace or imitate an existing product route or component,
 and does not produce the canonical requirements or the final
 implementation-oriented ui-ux-spec.md. When a request changes an existing
 route, component, screenshot-backed surface, or preserved interaction, use
-`product-experience-prototyper` instead.
+`product-experience-design` instead.
 
 Do not begin by building a frontend. First decide how the concept should be
 demonstrated with the smallest useful visual model, record that design
@@ -31,7 +31,7 @@ and approval invariants; this skill owns only the visualization-specific
 workflow, artifacts, validation, and routing.
 
 Before this mode begins, apply
-[product-prototype-repository-management](../product-prototype-repository-management/SKILL.md)
+[product-design-repository-management](../product-design-repository-management/SKILL.md)
 to establish or resume the Product ticket, dedicated ticket branch, active
 worktree, accepted base revision, and runtime isolation. Apply it again after
 visualizer validation and review to finalize the ticket, commit the durable
@@ -73,7 +73,7 @@ from the sender. The request should identify:
 
 If the request concerns an existing product route, component, screenshot-backed
 surface, or preserved interaction, this mode does not apply: switch to
-`product-experience-prototyper` instead of building a standalone visualizer.
+`product-experience-design` instead of building a standalone visualizer.
 If there is no concrete decision question or observable experience to show,
 classify the result as `Blocked` with a precise request-gap reason instead of
 building a generic showcase. A request gap is a reason for `Blocked`, not a
@@ -218,7 +218,7 @@ integration work.
   create a second product-prototype repository or ticket worktree.
 - Confirm the activation boundary in Activation And Inputs before design; do
   not create visualizer artifacts for a request outside it.
-- Create or update the shared `prototype-ticket.md` record in the ticket
+- Create or update the shared `product-ticket.md` record in the ticket
   folder for every supplied or newly created exploratory visualization ticket,
   including request-gap cases recorded as `Blocked`, `Not Recommended`, and
   other `Blocked` outcomes.
@@ -234,7 +234,7 @@ integration work.
   capability in the visualization brief or review record.
 - Keep visualizer source and run instructions in the temporary prototype project
   inside the active worktree, and
-  keep `prototype-ticket.md`, the brief, design plan, revision record, review
+  keep `product-ticket.md`, the brief, design plan, revision record, review
   evidence, motion/comprehension evidence, and visual references in the ticket
   folder.
 - Keep the ticket under tickets/in-progress/<ticket-id>/ while
@@ -255,8 +255,8 @@ as requirements-visualization-design-plan.md.
 Use [templates/requirements-visualization-review-template.md](templates/requirements-visualization-review-template.md)
 as requirements-visualization-review.md.
 Use the Product team shared template
-[shared/templates/prototype-ticket-template.md](../../../../shared/templates/prototype-ticket-template.md)
-as the shared ticket record `prototype-ticket.md`.
+[shared/templates/product-ticket-template.md](../../../../shared/templates/product-ticket-template.md)
+as the shared ticket record `product-ticket.md`.
 
 ## Operating Sequence
 
@@ -265,7 +265,7 @@ as the shared ticket record `prototype-ticket.md`.
    user questions. Confirm the activation boundary in Activation And Inputs.
 2. Use the management skill's canonical repository, ticket branch, active
    worktree, accepted base revision, runtime-isolation record, and visualizer
-   template. Create or update the mode-specific fields in `prototype-ticket.md`
+   template. Create or update the mode-specific fields in `product-ticket.md`
    and provide the evidence management needs to set its status to `In Progress`
    once active work begins. Do not create another ticket worktree or edit the
    canonical checkout directly.
@@ -326,7 +326,7 @@ as the shared ticket record `prototype-ticket.md`.
    ticket to `tickets/done/`, and performs safe runtime/worktree cleanup. If no
    product-experience work follows, provide the evidence for management to mark the
    ticket `Completed`; otherwise keep or reopen it `In Progress` for the
-   separate `product-experience-prototyper` invocation. Do not claim completion before
+   separate `product-experience-design` invocation. Do not claim completion before
    repository finalization is durable.
 
 ## Result Contract
@@ -337,7 +337,7 @@ Every completed result must include:
   `Blocked` with a precise request-gap classification;
 - the stable package and ticket identifiers;
 - the decision question and covered requirement/behavior IDs;
-- the applicable absolute path to the common `prototype-ticket.md` record;
+- the applicable absolute path to the common `product-ticket.md` record;
 - applicable absolute paths to the visualizer source, brief, design plan,
   review record, ticket folder, and visual references; explicitly state when
   an artifact was not created because the result was `Blocked` due to a

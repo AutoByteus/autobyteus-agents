@@ -1,4 +1,4 @@
-# Prototype Bootstrap Report
+# UI Baseline Report
 
 Create this report for every current-experience bootstrap, correction, or
 refresh. It substantiates UI parity (see "What UI parity means" in the shared
@@ -23,13 +23,13 @@ boundary. It does not prove production integration or replace
 - Applicable repository instructions:
 - Source observation command and URL, or other authoritative evidence:
 
-## Prototype Identity
+## Baseline & Repository Identity
 
-- Prototype repository/root (separate Git repository):
+- Design repository/root (separate Git repository):
 - Product ticket:
 - Product ticket branch:
 - Product-owned target worktree:
-- Accepted prototype base revision:
+- Accepted design base revision:
 - Bootstrap candidate revision or commit, when available:
 - Install command:
 - Start command:
@@ -158,4 +158,4 @@ runtimes, integrations, or architecture were reproduced or validated.
   simplified without changing presentation:
 - Source reachability or evidence limitations:
 - Required correction:
-- Recommended next action for `product_prototyper`:
+- Recommended next action for `product_ui_ux_designer`:

@@ -22,7 +22,7 @@ does not need.
 
 This scaffold is not a replacement for an existing product route, component,
 or visual surface. If the requirement changes an existing product experience,
-use the `product-experience-prototyper` skill and evolve its accepted baseline
+use the `product-experience-design` skill and evolve its accepted baseline
 instead.
 
 ## Use
