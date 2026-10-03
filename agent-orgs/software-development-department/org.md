@@ -27,7 +27,7 @@ design. It classifies size/risk after completing that design, then applies the
 configured rules. Independent reviews remain conditional; design is not skipped.
 
 Solution Designer exchanges Product requests and returned evidence directly
-with Product Prototyper. Requirements/design clarification and downstream
+with the Product UI/UX Designer. Requirements/design clarification and downstream
 recovery stay with Solution Designer. Delivery Engineer returns finalized
 delivery to Solution Designer, which verifies the receipt before returning
 `Terminal` to the user or caller when no handoff rule matches.

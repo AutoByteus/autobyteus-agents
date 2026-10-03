@@ -22,8 +22,8 @@ The update establishes:
    - **Interactive UI Reference**: The runnable browser sandbox demonstrating the verified interaction model.
 3. **Team & Role Elevation**:
    - Team name retained as **Product Team**.
-   - Coordinator framed as **Product Designer & Coordinator**.
-   - Bootstrapper framed as **Baseline UI Specialist**.
+   - Coordinator framed as **Product UI/UX Designer & Coordinator**.
+   - Bootstrapper framed as **UI Baseline Bootstrapper**.
 
 ## Ownership and design decisions
 
@@ -42,12 +42,18 @@ The update establishes:
 ### Modified
 
 - `agent-teams/product-team/team.md`
+- `agent-teams/product-team/team-config.json`
 - `agent-teams/product-team/shared/product-prototype-principles.md`
 - `agent-teams/product-team/agents/product-prototyper/agent.md`
 - `agent-teams/product-team/agents/prototype-bootstrapper/agent.md`
+- `agent-teams/product-team/agents/product-prototyper/skills/product-prototype-repository-management/SKILL.md`
 - `agent-teams/product-team/agents/product-prototyper/skills/product-experience-prototyper/SKILL.md`
+- `agent-teams/product-team/agents/product-prototyper/skills/exploratory-requirements-visualizer/SKILL.md`
+- `agent-teams/product-team/agents/prototype-bootstrapper/skills/prototype-bootstrapper/SKILL.md`
 - `agent-orgs/autobyteus-org/org.md`
+- `agent-orgs/autobyteus-org/org-config.json`
 - `agent-orgs/software-development-department/org.md`
+- `agent-orgs/software-development-department/org-config.json`
 - `README.md`
 
 ### Moved or renamed

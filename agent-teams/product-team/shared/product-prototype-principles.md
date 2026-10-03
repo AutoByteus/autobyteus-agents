@@ -365,7 +365,7 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   source repository named `<prototype-subject>-prototype`. It is not nested in
   the source repository, a production frontend directory, a Solution Designer
   worktree, or a generic `prototypes/` directory.
-- The Product Designer owns the prototype repository and its lifecycle: tickets,
+- The Product UI/UX Designer owns the prototype repository and its lifecycle: tickets,
   ticket branches and worktrees, ticket statuses, commits, integration,
   baseline promotion, and cleanup. Its `product-prototype-repository-management`
   skill defines that lifecycle. Solution Designer may link prototype artifacts
@@ -382,27 +382,27 @@ for a prototype workspace. Later requirements-driven work normally belongs to
   command, scenario-selection method, and major implementation
   simplifications.
 
-## 9. Bootstrapper And Product-Designer Boundary
+## 9. UI Baseline Bootstrapper And Product UI/UX Designer Boundary
 
-- `prototype_bootstrapper` owns only the current-experience baseline: source
+- `prototype_bootstrapper` (UI Baseline Bootstrapper) owns only the current-experience baseline: source
   verification and pinning, observable-surface discovery, prototype-native
   parity implementation, matched validation, and the bootstrap report.
-- Bootstrapper may create or update baseline files only in the Product
-  Designer's assigned baseline or ticket worktree. It does not create a
+- UI Baseline Bootstrapper may create or update baseline files only in the Product
+  UI/UX Designer's assigned baseline or ticket worktree. It does not create a
   second worktree, write to the canonical integration checkout during active
   ticket work, implement future-state requirements, create the canonical
   future-state `ui-ux-spec.md`, conduct the user design review, or approve a
   product decision.
-- `product_prototyper` (Product Designer) reviews and tests the Bootstrapper's
+- `product_prototyper` (Product UI/UX Designer) reviews and tests the Bootstrapper's
   result, commits the accepted baseline in the prototype repository, and owns
   product-experience future-state changes, user review, final UI/UX artifacts,
   and prototype commits. In exploratory requirements-visualization mode, it
   owns the exploratory visualizer revisions and review evidence instead.
-- The Product Designer must not begin future-state work on an unreviewed or
-  failed bootstrap result. Bootstrapper must not add design changes while
+- The Product UI/UX Designer must not begin future-state work on an unreviewed or
+  failed bootstrap result. UI Baseline Bootstrapper must not add design changes while
   correcting current-state parity.
 - A no-frontend prototype does not need a Bootstrapper baseline; the Product
-  Designer establishes the prototype repository and initial runnable baseline directly.
+  UI/UX Designer establishes the prototype repository and initial runnable baseline directly.
 
 ## 10. Delivery Artifacts And Visual References
 

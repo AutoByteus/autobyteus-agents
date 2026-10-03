@@ -57,8 +57,8 @@ Software Development Department — Agent Org (no coordinator)
 │   ├── Code Reviewer
 │   ├── API/E2E Engineer
 │   └── Delivery Engineer
-└── Product Design Team — Product Designer
-    └── Prototype Bootstrapper
+└── Product Team — Product UI/UX Designer
+    └── UI Baseline Bootstrapper
 ```
 
 ## Solution Designer
@@ -83,12 +83,12 @@ This combined role replaces the split requirements/design ownership without
 reverting the improved scenario, evidence, approval or architecture practices.
 
 Solution Designer exchanges user-requested Product assistance and returned
-UI/UX evidence directly with the Product Designer. The Product Designer selects its
+UI/UX evidence directly with the Product UI/UX Designer. The Product UI/UX Designer selects its
 own mode and owns its separate repository, tickets, commits and artifacts.
 
-## Product Design Team
+## Product Team
 
-The Product Design Team (`product-team`) performs code-first Product UI/UX Design, producing approved UI/UX specifications (`ui-ux-spec.md`) and interactive reference models. Because AI agents write frontend code natively, designing directly in the browser DOM provides true layout, styling, and interaction fidelity without the translation gap of static vector tools. The Product Designer (`product_prototyper`) coordinates design intake, tickets, per-ticket branches/worktrees, commits, integration, and two explicit modes: `exploratory-requirements-visualizer` for abstract or product-independent concept clarification, and `product-experience-prototyper` for incremental product-experience evolution or a new product-facing experience. Its repository-management skill handles isolation and lifecycle; the selected mode skill handles the experience work. `prototype_bootstrapper` owns only current-experience baseline discovery, parity implementation, and bootstrap evidence in the Product-assigned worktree. The team uses dynamic handoff rules plus `send_message_to` for baseline routing and cross-team results.
+The Product Team (`product-team`) performs code-first Product UI/UX Design, producing approved UI/UX specifications (`ui-ux-spec.md`) and interactive reference models. Because AI agents write frontend code natively, designing directly in the browser DOM provides true layout, styling, and interaction fidelity without the translation gap of static vector tools. The Product UI/UX Designer (`product_prototyper`) coordinates design intake, tickets, per-ticket branches/worktrees, commits, integration, and two explicit modes: `exploratory-requirements-visualizer` for abstract or product-independent concept clarification, and `product-experience-prototyper` for incremental product-experience evolution or a new product-facing experience. Its repository-management skill handles isolation and lifecycle; the selected mode skill handles the experience work. The UI Baseline Bootstrapper (`prototype_bootstrapper`) owns current-experience baseline discovery, parity implementation, and bootstrap evidence in the Product-assigned worktree. The team uses dynamic handoff rules plus `send_message_to` for baseline routing and cross-team results.
 
 ## Marketing Team
 

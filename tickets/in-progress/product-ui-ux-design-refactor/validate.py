@@ -38,11 +38,27 @@ def test_symlinks():
 def test_team_frontmatter():
     team_md = (PRODUCT_TEAM / 'team.md').read_text()
     assert 'name: Product Team' in team_md
-    print("PASS: team.md frontmatter has 'Product Team'.")
+    prototyper_md = (PRODUCT_TEAM / 'agents' / 'product-prototyper' / 'agent.md').read_text()
+    assert 'name: Product UI/UX Designer' in prototyper_md
+    assert 'role: product UI/UX designer' in prototyper_md
+    bootstrapper_md = (PRODUCT_TEAM / 'agents' / 'prototype-bootstrapper' / 'agent.md').read_text()
+    assert 'name: UI Baseline Bootstrapper' in bootstrapper_md
+    assert 'role: UI baseline bootstrapper' in bootstrapper_md
+    print("PASS: agent.md and team.md frontmatters verified.")
+
+def test_org_configs():
+    for org_dir in (ROOT / 'agent-orgs').iterdir():
+        if org_dir.is_dir():
+            cfg_path = org_dir / 'org-config.json'
+            if cfg_path.exists():
+                cfg = json.loads(cfg_path.read_text())
+                assert isinstance(cfg, dict)
+    print("PASS: org configs valid.")
 
 if __name__ == '__main__':
     test_json()
     test_team_config()
     test_symlinks()
     test_team_frontmatter()
+    test_org_configs()
     print("ALL CHECKS PASSED.")

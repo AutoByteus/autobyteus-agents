@@ -15,7 +15,7 @@ true interaction fidelity rather than through static drawings.
 
 ## Members
 
-- `product_prototyper` (Product Designer) is the coordinator and UI/UX Designer.
+- `product_prototyper` (Product UI/UX Designer) is the coordinator.
   It owns the design project, tickets, branches and worktrees, user design review,
   baseline acceptance, UI/UX artifacts (`ui-ux-spec.md` with normative reference
   screenshots), commits, and integration. Its agent definition chooses one mode
@@ -23,10 +23,11 @@ true interaction fidelity rather than through static drawings.
   product-independent question, or `product-experience-prototyper` for an
   existing or new product experience. Its repository-management skill runs
   before and after that mode.
-- `prototype_bootstrapper` builds a current-experience baseline with UI parity
-  in the worktree the Product Designer assigns, providing an accurate, runnable
-  canvas of today's product. It reports the baseline and does not decide future
-  behavior or manage the repository, ticket, or integration.
+- `prototype_bootstrapper` (UI Baseline Bootstrapper) builds a current-experience
+  baseline with UI parity in the worktree the Product UI/UX Designer assigns,
+  providing an accurate, runnable canvas of today's product. It reports the
+  baseline and does not decide future behavior or manage the repository,
+  ticket, or integration.
 - Solution Designer owns canonical requirements and acceptance criteria.
   Software Engineering owns production architecture and implementation.
 
@@ -38,9 +39,9 @@ Detailed workflows belong to the member skills.
 ## Cooperation
 
 - When an existing frontend has no accepted baseline, or the baseline needs a
-  correction or refresh, the Product Designer sends the fixed bootstrap request
-  defined in its repository-management skill. Bootstrapper returns `Completed`
-  or `Blocked` for the Product Designer to accept or recover.
+  correction or refresh, the Product UI/UX Designer sends the fixed bootstrap
+  request defined in its repository-management skill. The UI Baseline Bootstrapper
+  returns `Completed` or `Blocked` for the Product UI/UX Designer to accept or recover.
 - `team-config.json` owns these internal routes; the parent department owns
   routes to other teams.
 - Each member finishes its work, persists its result, calls

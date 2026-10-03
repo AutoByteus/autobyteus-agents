@@ -25,7 +25,7 @@ The current package in `agent-teams/product-team` repeatedly refers to its work 
 ## 2. Evaluation Against Package Design Principles
 
 ### Principle 1: Choose the package boundary from the work
-- **Team Identity**: **Product Design Team** (folder retained as `agent-teams/product-team` to preserve backward-compatible routing in mounted Orgs).
+- **Team Identity**: **Product Team** (folder retained as `agent-teams/product-team` to preserve backward-compatible routing in mounted Orgs; team name retained as Product Team per user direction).
 - **Core Activity / Discipline**: **Code-First Product UI/UX Design** (spanning visual appearance, typography, layout, information architecture, navigation flows, state handling, and interactive feedback).
 - **Primary Deliverables**:
   1. **Approved UI/UX Specification (`ui-ux-spec.md`)**: The normative reference screenshots, component tokens, layout specs, and state rules that Software Engineering builds against.
@@ -36,11 +36,11 @@ The current package in `agent-teams/product-team` repeatedly refers to its work 
   - Role: **Product UI/UX Designer & Coordinator**.
   - Responsibilities: Owns UI/UX design exploration, layout hierarchy, interaction flows, user journey testing, normative reference screenshot capture, user confirmation, and authoring `ui-ux-spec.md`.
 - **`prototype_bootstrapper` (Member)**:
-  - Role: **Baseline UI Engineer / Current-Experience Specialist**.
+  - Role: **UI Baseline Bootstrapper**.
   - Responsibilities: Rapidly stands up or refreshes an accurate, browser-runnable current-experience baseline with UI parity to the existing product frontend, giving the designer a truthful canvas to work on.
 
 ### Principle 3: Give each rule one authoritative file
-- `team.md`: Defines the Product Design Team, its code-first design mission, member roles, and high-level cooperation.
+- `team.md`: Defines the Product Team, its code-first design mission, member roles, and high-level cooperation.
 - `shared/product-prototype-principles.md`: The canonical principles document explaining *why* we design in code (browser DOM as the highest-fidelity design medium for AI agents), what the UI model contains (mock data, scripted outcomes), UI parity, and verification.
 - Member `SKILL.md` files: Step-by-step specialist procedures for evolving the design, exploring abstract concepts, and bootstrapping baselines.
 
@@ -54,10 +54,10 @@ The current package in `agent-teams/product-team` repeatedly refers to its work 
 
 | File | Target Improvements |
 | :--- | :--- |
-| `agent-teams/product-team/team.md` | • Update display name to `Product Design Team`.<br>• Elevate mission statement to code-first Product UI/UX Design.<br>• Clarify that runnable code is the design medium, and `ui-ux-spec.md` is the primary contract for engineering. |
+| `agent-teams/product-team/team.md` | • Name retained as `Product Team`.<br>• Elevate mission statement to code-first Product UI/UX Design.<br>• Clarify that runnable code is the design medium, and `ui-ux-spec.md` is the primary contract for engineering. |
 | `agent-teams/product-team/shared/product-prototype-principles.md` | • Add architectural rationale in Section 1: why code is the native design medium for AI agents.<br>• Define the dual deliverables: Approved UI/UX Specification (`ui-ux-spec.md`) + Interactive UI Reference.<br>• Refine terminology from "prototype project maintenance" to "interactive design sandbox". |
 | `agent-teams/product-team/agents/product-prototyper/agent.md` | • Clarify role as Product UI/UX Designer and coordinator.<br>• Explicitly state ownership of user experience, interaction flows, visual standards, and `ui-ux-spec.md`. |
-| `agent-teams/product-team/agents/prototype-bootstrapper/agent.md` | • Clarify role as Baseline UI Specialist establishing the current-experience interactive canvas. |
+| `agent-teams/product-team/agents/prototype-bootstrapper/agent.md` | • Clarify role as UI Baseline Bootstrapper establishing the current-experience interactive canvas. |
 | Member Skills (`product-experience-prototyper`, `exploratory-requirements-visualizer`, `prototype-bootstrapper`) | • Align purpose and description statements to code-first UI/UX design exploration and specification. |
 
 ---

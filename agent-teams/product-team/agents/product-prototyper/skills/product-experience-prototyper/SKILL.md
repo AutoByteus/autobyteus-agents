@@ -282,7 +282,7 @@ Keep the future-state change proportional to the decision:
    in the active worktree. Apply the bootstrap routing rules before any
    existing-frontend future-state work. If the baseline is absent or fails
    acceptance, return `Baseline Needed` through the management and handoff
-   process and stop future-state work until the Product Designer accepts it.
+   process and stop future-state work until the Product UI/UX Designer accepts it.
 4. Create or update only the mode-specific source and supporting artifacts in
    the active ticket worktree. Preserve the accepted baseline and implement the
    smallest future-state delta that exercises the requested decisions. For
@@ -510,8 +510,8 @@ instead.
 - For `Baseline Needed`, the applicable fixed Bootstrapper payload in the
   [repository-management skill](../product-prototype-repository-management/SKILL.md)
   is the complete request; do not append the requirements package or the
-  Product Designer ticket package under the general artifact rule. Keep the
-  ticket status and bootstrap result in the Product Designer's ticket folder.
+  Product UI/UX Designer ticket package under the general artifact rule. Keep the
+  ticket status and bootstrap result in the Product UI/UX Designer's ticket folder.
 - For `Prototype Completed`, include absolute paths to `ui-ux-spec.md`, the
   runnable prototype, final screenshots, the applicable
   `prototype-bootstrap-report.md`, and every still-relevant supporting

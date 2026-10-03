@@ -1,11 +1,11 @@
 ---
 name: product-prototype-repository-management
-description: Manage the Product Designer's canonical prototype repository, ticket branch, isolated worktree, revisions, integration state, and cleanup before and after a design-mode skill runs.
+description: Manage the Product UI/UX Designer's canonical prototype repository, ticket branch, isolated worktree, revisions, integration state, and cleanup before and after a design-mode skill runs.
 ---
 
 # Product Prototype Repository Management
 
-This is the Product Designer's shared repository-lifecycle skill. Apply it
+This is the Product UI/UX Designer's shared repository-lifecycle skill. Apply it
 before and after exactly one mode skill: `product-experience-prototyper` or
 `exploratory-requirements-visualizer`. It owns repository and ticket-worktree
 isolation; it does not design the prototype or decide product behavior.
@@ -82,7 +82,7 @@ handoff that needs to resume active work.
 
 ## Intake And Isolation
 
-At the beginning of every Product Designer request:
+At the beginning of every Product UI/UX Designer request:
 
 1. Resolve the selected product surface, canonical prototype repository, and
    supplied ticket/request identifier. If the identifier is absent, create one
@@ -210,7 +210,7 @@ return `Blocked` rather than sharing it silently.
 ## Commit, Integration, And Cleanup
 
 The selected mode skill decides when the prototype behavior and user review
-are complete. Then the Product Designer performs this repository sequence:
+are complete. Then the Product UI/UX Designer performs this repository sequence:
 
 1. Update the ticket record and all durable artifacts in the active worktree.
 2. Run the mode skill's final validation and record the exact result.
