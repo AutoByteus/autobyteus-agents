@@ -13,8 +13,9 @@ Org-level coordinator; each Team retains its own coordinator and workflow.
   product scenarios, requirements, user-approval capture, architecture design,
   solution revisions and upstream recovery. It coordinates the engineering
   team and verifies the finalized delivery receipt.
-- `product_team` independently owns its modes, separate
-  prototype projects, tickets, commits, user review and UI/UX artifacts.
+- `product_team` (Product Team) independently owns its design modes,
+  interactive UI projects, tickets, commits, user design review, and normative
+  UI/UX artifacts.
 - The remaining Software Engineering specialists own independent architecture
   review, implementation, code review, executable validation and delivery.
 
@@ -26,7 +27,7 @@ design. It classifies size/risk after completing that design, then applies the
 configured rules. Independent reviews remain conditional; design is not skipped.
 
 Solution Designer exchanges Product requests and returned evidence directly
-with Product Prototyper. Requirements/design clarification and downstream
+with the Product UI/UX Designer. Requirements/design clarification and downstream
 recovery stay with Solution Designer. Delivery Engineer returns finalized
 delivery to Solution Designer, which verifies the receipt before returning
 `Terminal` to the user or caller when no handoff rule matches.

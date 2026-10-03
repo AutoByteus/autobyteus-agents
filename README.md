@@ -57,8 +57,8 @@ Software Development Department — Agent Org (no coordinator)
 │   ├── Code Reviewer
 │   ├── API/E2E Engineer
 │   └── Delivery Engineer
-└── Product Team — Product Prototyper
-    └── Prototype Bootstrapper
+└── Product Team — Product UI/UX Designer
+    └── UI Baseline Bootstrapper
 ```
 
 ## Solution Designer
@@ -83,12 +83,12 @@ This combined role replaces the split requirements/design ownership without
 reverting the improved scenario, evidence, approval or architecture practices.
 
 Solution Designer exchanges user-requested Product assistance and returned
-UI/UX evidence directly with Product Prototyper. Product Prototyper selects its
+UI/UX evidence directly with the Product UI/UX Designer. The Product UI/UX Designer selects its
 own mode and owns its separate repository, tickets, commits and artifacts.
 
 ## Product Team
 
-The product team independently maintains the prototype repository for each product surface or independent concept package. `product_prototyper` owns prototype intake, tickets, per-ticket branches/worktrees, commits, integration, and two explicit modes: `exploratory-requirements-visualizer` for abstract or product-independent clarification, and `product-experience-prototyper` for incremental product-experience evolution or a new product-facing experience. Its repository-management skill handles isolation and lifecycle; the selected mode skill handles the experience work. `prototype_bootstrapper` owns only current-experience baseline discovery, parity implementation, and bootstrap evidence in the Product-assigned worktree. The team uses dynamic handoff rules plus `send_message_to` for baseline routing and cross-team results.
+The Product Team (`product-team`) performs code-first Product UI/UX Design, producing approved UI/UX specifications (`ui-ux-spec.md`) and interactive reference models. Because AI agents write frontend code natively, designing directly in the browser DOM provides true layout, styling, and interaction fidelity without the translation gap of static vector tools. The Product UI/UX Designer (`product_ui_ux_designer`) coordinates design intake, tickets, per-ticket branches/worktrees, commits, integration, and two explicit modes: `exploratory-requirements-visualizer` for abstract or product-independent concept clarification, and `product-experience-design` for incremental product-experience evolution or a new product-facing experience. Its repository-management skill handles isolation and lifecycle; the selected mode skill handles the experience work. The UI Baseline Bootstrapper (`ui_baseline_bootstrapper`) owns current-experience baseline discovery, parity implementation, and bootstrap evidence in the Product-assigned worktree. The team uses dynamic handoff rules plus `send_message_to` for baseline routing and cross-team results.
 
 ## Marketing Team
 
@@ -140,6 +140,10 @@ The software product promo video team is organized as a product-marketing video 
 ## Narrated Presentation Video Team
 
 The narrated presentation video team is organized as a slide-based explainer and teaching-style presentation workflow. It takes user-provided materials, links, rough notes, documents, or topics through a presentation director for research, explanation framing, narration script writing, and slide storyboard planning, then requires full narration-script review before slide/video production, voiceover generation, and simple still-slide video assembly. The producer maintains `media-resource-index.md` as the durable registry for source media, generated slide images, audio clips, logs, and final exports.
+
+## English Bridge Team
+
+The [English Bridge Team](agent-teams/english-bridge-team/team.md) has exactly two members: an English Translator that sends the complete English translation unchanged through `send_message_to`, and a Worker that works on received requests without a language-specific procedure. There is no automatic return-translation loop.
 
 ## Classroom Simulation Team
 
