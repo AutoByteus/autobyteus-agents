@@ -67,3 +67,26 @@ The current package in `agent-teams/product-team` repeatedly refers to its work 
 1. **Preserve External Routing**: The folder name `agent-teams/product-team` and member addresses `/product_team/product_prototyper` and `/product_team/prototype_bootstrapper` remain unchanged so all parent organization mounts (`autobyteus-org`, `software-development-department`) continue to resolve without breaking changes.
 2. **Preserve Operational Safety**: Strict separation between the interactive design sandbox and the production repository is strictly maintained (separate git worktree/repo, lightweight synthetic mock data only, no live backend credentials or production writes).
 3. **Preserve Approval Authority**: The user remains the sole approval authority for future-state UI/UX designs before final reference screenshots and `ui-ux-spec.md` become normative for downstream engineering.
+
+---
+
+## 5. UI/UX Specification Template Evaluation & Upgrade Plan
+
+### Assessment of Current `ui-ux-spec-template.md`
+- **Strengths**: High rigor in traceability, state machine modeling, and normative vs illustrative visual boundaries.
+- **Shortcomings under Human UI/UX Craft Standards**:
+  1. *Flat table vs. Spatial hierarchy*: Squeezing layout and anatomy into a table cell fails to capture spatial hierarchy, z-index layering, and visual weight.
+  2. *Missing Design Rationale*: Captures "what" is on screen but misses "why" choices were made (trade-offs, user mental model).
+  3. *Unstructured placeholders*: Empty headers for responsive breakpoints, accessibility, and form validation leave critical engineering requirements unguided.
+  4. *Abstract styling vs. Code-first tokens*: Lacks structured design tokens (colors, type scale, spacing) and component manifest (Vue/React files built in sandbox).
+  5. *UX Writing / Micro-copy omission*: Missing action grammar, empty state formula, and actionable error message standards.
+
+### Upgrade Scope for `ui-ux-spec-template.md`
+1. **Design Rationale & Trade-offs**: Document core user intent and why the chosen pattern was selected over alternatives.
+2. **Page Anatomy & Spatial Hierarchy**: Structural breakdown (Base canvas, sticky bars, modals, drawers, visual focal points).
+3. **Design Tokens & Component Manifest**: Semantic color roles, typography scale, spacing grid, and code components in sandbox.
+4. **Structured Form & Input Validation Matrix**: Field, input type, required, validation rules, trigger timing, and exact error message.
+5. **Responsive Breakpoints & Ergonomics Matrix**: Viewports (`<640px`, `640-1024px`, `>1024px`), navigation adaptation, touch targets ($\ge 44\text{px}$).
+6. **Accessibility (a11y) & Keyboard Navigation**: Focus order, modal focus trap, keyboard shortcuts (`Tab`, `Esc`, `Enter`), ARIA roles, WCAG AA contrast.
+7. **UX Writing & Micro-copy Standards**: Button action grammar, empty state 3-part formula (icon + explanation + CTA), problem+remedy error copy.
+8. **Terminology Harmonization**: Update remaining "prototype-owned" phrasing to "Interactive UI Reference / Design Sandbox".

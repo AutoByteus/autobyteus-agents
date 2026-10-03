@@ -24,6 +24,8 @@ The update establishes:
    - Team name retained as **Product Team**.
    - Coordinator framed as **Product UI/UX Designer & Coordinator**.
    - Bootstrapper framed as **UI Baseline Bootstrapper**.
+4. **Professional UI/UX Specification Standard**:
+   - Upgraded `ui-ux-spec-template.md` to mirror the full rigor of human UI/UX craft: added Design Rationale, Screen Anatomy & Spatial Hierarchy, Code-First Design Tokens & Component Manifest, Structured Form & Input Validation Matrix, Responsive Breakpoints Matrix, Accessibility & Keyboard Standards, and Motion & Continuity.
 
 ## Ownership and design decisions
 
@@ -48,6 +50,7 @@ The update establishes:
 - `agent-teams/product-team/agents/prototype-bootstrapper/agent.md`
 - `agent-teams/product-team/agents/product-prototyper/skills/product-prototype-repository-management/SKILL.md`
 - `agent-teams/product-team/agents/product-prototyper/skills/product-experience-prototyper/SKILL.md`
+- `agent-teams/product-team/agents/product-prototyper/skills/product-experience-prototyper/templates/ui-ux-spec-template.md`
 - `agent-teams/product-team/agents/product-prototyper/skills/exploratory-requirements-visualizer/SKILL.md`
 - `agent-teams/product-team/agents/prototype-bootstrapper/skills/prototype-bootstrapper/SKILL.md`
 - `agent-orgs/autobyteus-org/org.md`

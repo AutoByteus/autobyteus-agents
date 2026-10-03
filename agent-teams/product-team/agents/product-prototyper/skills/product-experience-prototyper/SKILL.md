@@ -309,11 +309,12 @@ Keep the future-state change proportional to the decision:
    the current ticket's `visual-references/` directory using stable `VIS-*`
    IDs.
 10. Complete `ui-ux-spec.md` and useful mode-specific supporting artifacts,
-    including the approval reference, final screenshots, detailed behavior,
-    mocked boundaries, source pin, and validated journeys. Keep them under the
-    active ticket folder. Include the canonical repository, ticket branch,
-    accepted base, and resulting prototype revision from management state when
-    recording provenance.
+    including design rationale, screen anatomy, design tokens, component manifest,
+    form validation matrix, responsive behavior, accessibility guidelines,
+    approval reference, final screenshots, detailed behavior, mocked boundaries,
+    source pin, and validated journeys. Keep them under the active ticket folder.
+    Include the canonical repository, ticket branch, accepted base, and resulting
+    UI reference revision from management state when recording provenance.
 11. Return the completed mode artifacts and final validation evidence to the
     management skill for the final ticket state, commit, integration, any
     approved preview promotion, ticket closure, and cleanup. Do not claim

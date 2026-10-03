@@ -59,10 +59,30 @@ def test_org_configs():
                 assert isinstance(cfg, dict)
     print("PASS: org configs valid.")
 
+def test_ui_ux_spec_template():
+    tpl_path = PRODUCT_TEAM / 'agents' / 'product-prototyper' / 'skills' / 'product-experience-prototyper' / 'templates' / 'ui-ux-spec-template.md'
+    assert tpl_path.is_file(), f"Missing template: {tpl_path}"
+    content = tpl_path.read_text()
+    required_sections = [
+        "## Problem Context & Design Rationale",
+        "## Information Architecture & Screen Anatomy",
+        "## Production-Quality Design Tokens & Component Manifest",
+        "## Content Design & UX Writing Standards",
+        "## Form & Input Validation Matrix",
+        "## Responsive And Ergonomics Matrix",
+        "## Accessibility And Keyboard Behavior",
+        "## Motion, Transition, And Spatial Continuity",
+        "## Final Visual Reference Inventory"
+    ]
+    for sec in required_sections:
+        assert sec in content, f"Missing required section in template: {sec}"
+    print("PASS: ui-ux-spec-template.md contains all professional UI/UX sections.")
+
 if __name__ == '__main__':
     test_json()
     test_team_config()
     test_symlinks()
     test_team_frontmatter()
     test_org_configs()
+    test_ui_ux_spec_template()
     print("ALL CHECKS PASSED.")
