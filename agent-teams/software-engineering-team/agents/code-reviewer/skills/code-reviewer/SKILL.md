@@ -109,7 +109,11 @@ For API/E2E failure-origin review:
    and triggering evidence to locate what changed and why. Recheck prior
    unresolved findings first and verify every claimed resolution against the
    latest canonical artifacts, current code, diff, and evidence. Revision
-   records are navigation, not proof.
+   records are navigation, not proof. Autonomously assess the cumulative blast
+   radius and drift across rounds to determine the review scope mode: default to
+   a targeted delta review when fixes are cleanly isolated, or elevate to an
+   autonomous full re-audit when cumulative churn or patch-on-patch complexity
+   threatens overall structural convergence.
 5. Collect technical observations and apply the structural and design checks
    from macro structure toward detail: data-flow spine, ownership and
    boundaries, interfaces and dependencies, then subsystem, file-responsibility,
@@ -224,6 +228,10 @@ scenario by itself.
 - Apply `>500` and `>220` source thresholds only to changed implementation-source files, never to tests, fixtures, or generated coverage files.
 - When persisted data may be affected, verify that implementation follows the reviewed transition decision and does not add an unnecessary migration or version-specific runtime fallback. Review migration mechanics only when the approved decision is `Migration Required`.
 - Keep each canonical report focused on its latest complete result. Revalidate affected and previously failing checks, preserve still-valid evidence for unaffected checks, and reuse finding IDs across rounds.
+- Autonomously size the review scope on round `>1` without relying on arbitrary round counts:
+  - **Targeted Delta Review (Default):** When fixes remain bounded and cleanly confined to previous findings, recheck prior unresolved findings, revalidate affected checks and scores, and carry forward valid evidence for unaffected categories in `code-review-report.md`.
+  - **Autonomous Full Re-Audit:** When cumulative changes across rounds accumulate structural drift, modify shared interfaces or data shapes, touch the data-flow spine, or introduce cross-file patch-on-patch complexity, autonomously re-audit all structural checks and the full 10-category scorecard to guarantee architectural convergence.
+  - **Design Escalation:** When a local fix breaches module boundaries or reveals that the approved design cannot accommodate the fix cleanly, classify immediately as `Design Impact` and route to `/solution_designer` rather than continuing local review cycles.
 - Keep every completed review result's history and prior-finding resolution in `code-review-revision-record.md`. Link each entry to relevant architecture-design, architecture-review, implementation, API/E2E, and delivery revision IDs when they exist; use `N/A` when a revision type does not apply.
 
 ## Successful API/E2E Test-Code Review Rules
