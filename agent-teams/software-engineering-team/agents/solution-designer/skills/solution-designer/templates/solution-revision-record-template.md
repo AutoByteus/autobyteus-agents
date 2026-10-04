@@ -26,7 +26,7 @@ remain authoritative; this record indexes their changes and approval impact.
 - Why this baseline or revision was recorded:
 - Canonical requirements, investigation and design sections changed:
 - Supplemental artifacts added, changed or removed:
-- Prototype evidence or product decisions incorporated:
+- Product design evidence or product decisions incorporated:
 - Intended behavior changed: `Yes` / `No`
 - Approval impact, exact approved requirements baseline and user-approval reference:
 - Behavior-defining supplement versions and approval references:

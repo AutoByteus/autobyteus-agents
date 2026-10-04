@@ -1,65 +1,63 @@
 # Product Design & UI Principles
 
-This is the canonical shared reference for the Product Team. Read it before creating, bootstrapping, evolving, or reviewing an
-interactive UI reference or UI/UX specification.
+This is the canonical shared reference for the Product Team. Read it before creating, bootstrapping, evolving, or reviewing a
+UI reference or UI/UX specification.
 
 Role-specific workflow belongs in each agent's `SKILL.md`; this document holds
 only the principles that must remain consistent across design roles.
 
 ## 1. Purpose And Fidelity Boundary
 
-### Code as the native UI/UX design medium
+### Terms
 
-In traditional teams, UI/UX designers relied on static vector tools (Photoshop,
-Sketch, Figma) because human designers generally did not write code. This
-created a structural translation gap: static drawings lacked real responsive DOM
-behavior, real scroll and box-model dynamics, browser font rendering, and live
-interaction states.
+The Product Team's skills and templates use these terms with these meanings:
 
-For AI agents, writing frontend code is native, fast, and effortless.
-Designing directly in runnable code is the fastest, highest-fidelity way to
-perform Product UI/UX Design:
-- Interfaces are designed and validated directly in the browser DOM.
-- Responsive breakpoints, typography, spacing, and transitions behave exactly as
-  they will in the real product.
-- Edge states (empty, loading, error, long text overflow, role permissions) are
-  tested interactively rather than isolated on disconnected artboards.
-- The outcome is a **production-ready visual and interaction target**, not a
-  speculative drawing.
+- **UI reference:** the runnable model of the product's UI that the team
+  designs in, described below. Do not call it a prototype, sandbox, or UI
+  project; one name keeps it distinct from the production frontend.
+- **Baseline:** the accepted UI reference of today's product, with UI parity to
+  the pinned source.
+- **Design repository:** the separate Git repository that holds the UI
+  reference, its tickets, and its evidence (section 8).
+- **Visual reference:** a captured or annotated image of a surface and state
+  (section 10). A screenshot is a visual reference; the runnable UI reference
+  is not.
 
-### What an interactive UI reference is
+### Why the team designs in code
 
-An interactive UI project (or design sandbox) is a runnable **model of the
-product's UI**. Every distinct page and state looks and behaves like the
-product, driven by **simple mock data**. It shows what the product looks like
-and how a user moves through it. It is **not a complete working website**: it
-does not hold the product's real data, and it does not implement the product's
-real backend logic.
+Static design drawings cannot show real responsive layout, scrolling, font
+rendering, or live interaction states, so engineering has to interpret them.
+The team instead designs in a running UI reference, where layouts, states, and
+journeys are exercised in the browser rather than drawn. The result is a
+precise visual and interaction target for engineering, not production code.
 
-It exists so Product Design can explore, refine, and validate features on top of
-today's product before Software Engineering builds them. It yields two core
-deliverables:
-1. **Approved UI/UX Specification (`ui-ux-spec.md`)**: the canonical, normative
-   specification containing production-ready reference screenshots, layout
-   hierarchy, component styling tokens, and interaction rules that Software
-   Engineering implements.
-2. **Interactive UI Reference**: the runnable browser sandbox (maintained in an
-   isolated design repository) that substantiates the specification
-   and allows users and engineers to click through verified flows.
+### What a UI reference is
 
-Every design activity serves this outcome. A current-experience baseline is
-valuable as an accurate, navigable canvas of today's product; comparison
-evidence only establishes that accuracy and is never the goal, so verification
-effort stays small next to the baseline itself.
+A UI reference is a runnable **model of the product's UI**. Every distinct page
+and state looks and behaves like the product, driven by **simple mock data**.
+It shows what the product looks like and how a user moves through it. It is
+**not a complete working website**: it does not hold the product's real data,
+and it does not implement the product's real logic.
 
-It implements:
+It exists so Product can design features on top of today's product before
+Software Engineering builds them: people click through a proposed feature in
+context, refine it, and approve it. The approved outcome is the UI/UX
+specification (`ui-ux-spec.md`) with its normative reference screenshots,
+which Software Engineering implements; the UI reference substantiates that
+specification and lets users and engineers click through the approved flows.
+Every design activity serves that outcome. A baseline is valuable as an
+accurate, navigable copy of today's product; comparison evidence only
+establishes that accuracy and is never the goal, so verification effort stays
+small next to the baseline itself.
+
+A UI reference implements:
 
 - every distinct page, route, layout, component, style and asset that makes up
   the UI;
 - all UI-controlled text: labels, headings, instructions, and empty, error,
   validation, feedback and status messages;
 - navigation, controls, forms, validation, dialogs and interactions, with
-  visible outcomes. Outcomes are scripted: the interactive UI model shows the result the
+  visible outcomes. Outcomes are scripted: the UI reference shows the result the
   product would show for the mock case, without computing it the way the
   product does;
 - every meaningful state: empty, populated, loading, error, locked,
@@ -120,7 +118,7 @@ can stand for every item that renders the same way.
 
 ### Fidelity boundary
 
-- An interactive UI model is an evidence instrument for product behavior, UI,
+- A UI reference is an evidence instrument for product behavior, UI,
   interaction, state, navigation, visual hierarchy, and journey decisions.
   An exploratory requirements visualizer helps clarify an abstract or
   product-independent decision; product experience design evolves or
@@ -151,9 +149,9 @@ can stand for every item that renders the same way.
   environment wherever that is cheap. Elsewhere they compare per component and
   per state under representative data, and mark content-derived values as
   illustrative. Never record, replay, or bulk-copy the source's data or content
-  into an interactive UI model to force identical values. Future-state references identify
+  into a UI reference to force identical values. Future-state references identify
   any illustrative fixture value explicitly.
-- An interactive UI model is not a production implementation, frontend digital twin,
+- A UI reference is not a production implementation, frontend digital twin,
   integration test environment, production architecture, or proof of
   production readiness.
 - Code-first design exists to remove ambiguity about the user experience. Its
@@ -176,14 +174,14 @@ Use one explicit mode for each design workspace:
   not its production runtime or internal implementation.
 - **No-frontend construction:** create the smallest useful experience baseline
   from the team's standard frontend template.
-- **Product experience design:** read and preserve the accepted design model
+- **Product experience design:** read and preserve the accepted UI reference
   before applying a focused requirements-driven change. Use this mode for a
   request that changes an existing product route, component, screenshot-backed
   surface, or preserved interaction; the result must remain connected to that
   product experience.
-- **Explicit refresh/reconciliation:** update an established design model to a
+- **Explicit refresh/reconciliation:** update an established UI reference to a
   newer selected frontend revision only when requested, and record the
-  reconciliation. Where the newer source implements a surface the design model
+  reconciliation. Where the newer source implements a surface the UI reference
   had changed (an accepted design change that engineering has since
   shipped, possibly differently), the source version wins. An accepted
   design-only change with no source equivalent is preserved, unless the
@@ -220,13 +218,13 @@ for a design workspace. Later requirements-driven work normally belongs to
   presentation components, styles, tokens, assets, shell, and interaction
   language unless the approved change intentionally replaces one of them. Do
   not create a disconnected replacement application merely to simplify the
-  design model. A smaller design-native project is appropriate for
+  UI reference. A smaller new UI reference is appropriate for
   no-frontend construction or Exploratory Requirements Visualization when no
   applicable existing product surface is in scope.
 - Do not copy a complete production frontend merely to claim fidelity. When
   reusing source code, separate UI code from content by what a file holds, not
   by its folder. Content found in `shared/`, `utils/` or `data/` modules is
-  still content (see "What an interactive UI reference is"). Choose the
+  still content (see "What a UI reference is"). Choose the
   smallest implementation that can express the complete observable UI
   experience within the selected boundary.
 - When no frontend exists, use the host workspace's configured design
@@ -269,7 +267,7 @@ for a design workspace. Later requirements-driven work normally belongs to
 
   ```text
   runnable UI
-      -> design-native state and scripted transitions
+      -> UI reference state and scripted transitions
       -> small synthetic fixtures
   ```
 
@@ -294,9 +292,9 @@ for a design workspace. Later requirements-driven work normally belongs to
   scenario can express the same user-visible experience.
 - Real, recorded, replayed, captured or bulk-copied source data or content is a
   defect wherever it sits in the design repository, including content files
-  that copied UI code imports statically. Replace it as described in "What an
-  interactive UI reference is".
-- Use only synthetic data. Design sandbox runs must not require production
+  that copied UI code imports statically. Replace it as described in "What a UI
+  reference is".
+- Use only synthetic data. UI reference runs must not require production
   credentials, customer data, production exports, live production services, or
   production writes. Mutable state must be locally resettable.
 
@@ -323,7 +321,7 @@ for a design workspace. Later requirements-driven work normally belongs to
 - Differences in internal stores, protocols, runtimes, or architecture are
   intentional simplifications and do not affect UI/UX fidelity when the visible
   presentation and behavior remain exact.
-- Record what the interactive UI model demonstrates, how technical capabilities are
+- Record what the UI reference demonstrates, how technical capabilities are
   simulated, which source revision it reflects, and any user-facing limitation.
 - In a user-approved future-state package, final screenshots and the
   corresponding `ui-ux-spec.md` are normative implementation references. Treat
@@ -361,10 +359,9 @@ for a design workspace. Later requirements-driven work normally belongs to
 
 ## 8. Product Design Repository Boundary
 
-- Each design project is a separate Git repository, normally a sibling of the
-  source repository named `<design-subject>-design` (or `<design-subject>-prototype`
-  for backward compatibility). It is not nested in the source repository, a
-  production frontend directory, a Solution Designer worktree, or a generic
+- Each design repository is a separate Git repository, normally a sibling of
+  the source repository named `<design-subject>-design`. It is not nested in the
+  source repository, a production frontend directory, a Solution Designer worktree, or a generic
   `designs/` or `prototypes/` directory.
 - The Product UI/UX Designer owns the design repository and its lifecycle: tickets,
   ticket branches and worktrees, ticket statuses, commits, integration,
@@ -372,7 +369,7 @@ for a design workspace. Later requirements-driven work normally belongs to
   skill defines that lifecycle. Solution Designer may link design artifacts
   but does not manage them.
 - Design work writes only to the design repository, through the assigned
-  ticket worktree. The source repository may be read, never written. Design sandbox
+  ticket worktree. The source repository may be read, never written. UI reference
   runs never write to production services or use production credentials.
 - When the repository or worktree cannot be identified or isolated safely,
   stop and report the exact blocker instead of creating a second project or
@@ -386,8 +383,8 @@ for a design workspace. Later requirements-driven work normally belongs to
 ## 9. UI Baseline Bootstrapper And Product UI/UX Designer Boundary
 
 - `ui_baseline_bootstrapper` (UI Baseline Bootstrapper) owns only the current-experience baseline: source
-  verification and pinning, observable-surface discovery, baseline-native
-  parity implementation, matched validation, and the bootstrap report.
+  verification and pinning, observable-surface discovery, lightweight
+  parity implementation, matched validation, and the baseline report.
 - UI Baseline Bootstrapper may create or update baseline files only in the Product
   UI/UX Designer's assigned baseline or ticket worktree. It does not create a
   second worktree, write to the canonical integration checkout during active
@@ -402,12 +399,12 @@ for a design workspace. Later requirements-driven work normally belongs to
 - The Product UI/UX Designer must not begin future-state work on an unreviewed or
   failed bootstrap result. UI Baseline Bootstrapper must not add design changes while
   correcting current-state parity.
-- A no-frontend design project does not need a Bootstrapper baseline; the Product
+- A no-frontend design repository does not need a Bootstrapper baseline; the Product
   UI/UX Designer establishes the design repository and initial runnable baseline directly.
 
 ## 10. Delivery Artifacts And Visual References
 
-- The canonical design repository contains the runnable UI reference,
+- The canonical design repository contains the UI reference,
   project-wide change history, and current-experience bootstrap evidence. Each
   ticket folder under `tickets/` contains `product-ticket.md` and the
   mode-appropriate supporting evidence. A product-experience ticket adds

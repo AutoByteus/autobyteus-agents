@@ -1,6 +1,6 @@
 # Agent Package Creation Result
 
-Use [result-and-handoff-contract.md](file:///Users/normy/.autobyteus/server-data/memory/agents/agent_package_creator_0cc60bc5ef864c279c03f388349720fa/agy-project/.agents/skills/agent-package-creation/references/result-and-handoff-contract.md) for field meanings and classification.
+Use [result-and-handoff-contract.md](../../../agents/agent-package-creator/skills/agent-package-creation/references/result-and-handoff-contract.md) for field meanings and classification.
 
 - Status: `Completed`
 - Operation: `update`

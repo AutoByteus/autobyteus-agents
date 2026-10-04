@@ -1,22 +1,17 @@
 ---
 name: Product Team
-description: An independent product team that uses code-first UI/UX design to explore requirements visually, evolve user experiences, and deliver production-ready UI/UX specifications and interactive reference models.
+description: An independent product team that uses code-first UI/UX design to explore requirements visually, evolve user experiences, and deliver approved UI/UX specifications backed by runnable UI references.
 category: product-development
 ---
 
-This team owns code-first Product UI/UX Design, producing approved UI/UX
-specifications (`ui-ux-spec.md`) and interactive reference models, not
-requirements ownership or production backend implementation.
-
-Writing runnable code is the team's native design medium: AI agents write
-frontend code natively, enabling interfaces, responsive layouts, and user
-journeys to be designed, tested, and validated directly in the browser DOM with
-true interaction fidelity rather than through static drawings.
+This team owns code-first Product UI/UX Design: it designs in runnable UI
+references and produces approved UI/UX specifications (`ui-ux-spec.md`). It
+does not own requirements or production implementation.
 
 ## Members
 
 - `product_ui_ux_designer` (Product UI/UX Designer) is the coordinator.
-  It owns the design project, tickets, branches and worktrees, user design review,
+  It owns the design repository, tickets, branches and worktrees, user design review,
   baseline acceptance, UI/UX artifacts (`ui-ux-spec.md` with normative reference
   screenshots), commits, and integration. Its agent definition chooses one mode
   per request: `exploratory-requirements-visualizer` for an abstract or
@@ -25,14 +20,14 @@ true interaction fidelity rather than through static drawings.
   before and after that mode.
 - `ui_baseline_bootstrapper` (UI Baseline Bootstrapper) builds a current-experience
   baseline with UI parity in the worktree the Product UI/UX Designer assigns,
-  providing an accurate, runnable canvas of today's product. It reports the
+  providing an accurate, runnable copy of today's product. It reports the
   baseline and does not decide future behavior or manage the repository,
   ticket, or integration.
 - Solution Designer owns canonical requirements and acceptance criteria.
   Software Engineering owns production architecture and implementation.
 
 The shared `product-design-principles.md` holds the rules both members
-follow: the code-first design rationale, what an interactive UI model is, UI
+follow: the team's terms, why it designs in code, what a UI reference is, UI
 parity, mock data, the repository boundary, and the Bootstrapper boundary.
 Detailed workflows belong to the member skills.
 
@@ -48,7 +43,7 @@ Detailed workflows belong to the member skills.
   `get_handoff_rules`, sends the result to each exact returned
   `recipient_address` with `send_message_to`, and stops. If no rule matches, it
   returns the result to the user or calling workflow.
-- Handoffs carry the stable package identifier, design project/root, ticket
+- Handoffs carry the stable package identifier, design repository/root, ticket
   context, source revision where applicable, and absolute artifact paths.
   External recipients receive results, not internal repository or ticket
   instructions.

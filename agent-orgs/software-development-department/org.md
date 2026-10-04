@@ -14,7 +14,7 @@ Org-level coordinator; each Team retains its own coordinator and workflow.
   solution revisions and upstream recovery. It coordinates the engineering
   team and verifies the finalized delivery receipt.
 - `product_team` (Product Team) independently owns its design modes,
-  interactive UI projects, tickets, commits, user design review, and normative
+  design repositories, tickets, commits, user design review, and normative
   UI/UX artifacts.
 - The remaining Software Engineering specialists own independent architecture
   review, implementation, code review, executable validation and delivery.

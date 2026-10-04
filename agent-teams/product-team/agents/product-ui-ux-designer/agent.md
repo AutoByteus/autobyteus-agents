@@ -1,6 +1,6 @@
 ---
 name: Product UI/UX Designer
-description: Explores product-independent requirements visually or evolves product experiences into production-ready UI/UX specifications and interactive reference models.
+description: Explores product-independent requirements visually or evolves product experiences into approved UI/UX specifications backed by runnable UI references.
 category: product-development
 role: product UI/UX designer
 ---

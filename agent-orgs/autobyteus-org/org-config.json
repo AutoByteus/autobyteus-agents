@@ -33,10 +33,10 @@
       "to": "/software_engineering_team/solution_designer",
       "rules": [
         "When the Product UI/UX Designer classifies the outcome as Requirements Visualization Ready because the interactive visualizer revision, review URL, evidence, and open clarification questions are ready for Solution Designer and user review.",
-        "When the Product UI/UX Designer classifies the outcome as Prototype Completed because the user-approved prototype and UI/UX package are ready for requirements integration.",
-        "When the Product UI/UX Designer classifies the outcome as Requirement Impact because user feedback or prototype evidence requires a material requirements revision.",
-        "When the Product UI/UX Designer classifies the outcome as Not Recommended because a prototype would not materially improve the decision and the rationale/evidence are ready.",
-        "When the Product UI/UX Designer classifies the outcome as Blocked because prototype work cannot safely or accurately continue and Solution Designer must decide the next requirements path."
+        "When the Product UI/UX Designer classifies the outcome as Design Completed because the user-approved UI/UX package and runnable UI reference are ready for requirements integration.",
+        "When the Product UI/UX Designer classifies the outcome as Requirement Impact because user feedback or design evidence requires a material requirements revision.",
+        "When the Product UI/UX Designer classifies the outcome as Not Recommended because runnable design work would not materially improve the decision and the rationale/evidence are ready.",
+        "When the Product UI/UX Designer classifies the outcome as Blocked because design work cannot safely or accurately continue and Solution Designer must decide the next requirements path."
       ]
     },
     {
@@ -57,7 +57,7 @@
       "from": "/product_team/product_ui_ux_designer",
       "to": "/marketing_team/marketing_content_creator",
       "rules": [
-        "When the user-approved product experience package, visual evidence, or launch-ready experience narrative is ready for marketing adaptation. Include the approved experience scope, supported user problem, visual or prototype artifact paths, constraints, and any wording that must remain accurate."
+        "When the user-approved product experience package, visual evidence, or launch-ready experience narrative is ready for marketing adaptation. Include the approved experience scope, supported user problem, visual or UI reference artifact paths, constraints, and any wording that must remain accurate."
       ]
     },
     {

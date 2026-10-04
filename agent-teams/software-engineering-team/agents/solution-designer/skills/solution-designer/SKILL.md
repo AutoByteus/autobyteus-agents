@@ -30,7 +30,7 @@ Keep the authorities distinct:
 - `solution-revision-record.md`: chronological index of completed solution
   rounds and their approval/design impact, not a duplicate specification.
 
-Product Prototyper owns its modes, visualizer/prototype artifacts, UI/UX spec,
+Product UI/UX Designer owns its modes, visualizer and design artifacts, UI/UX spec,
 repository and ticket lifecycle. Independent specialists own architecture
 review, implementation, code review, API/E2E validation and delivery. Do not
 perform their work or edit their artifacts to make your solution pass a gate.
@@ -101,7 +101,7 @@ standards. Use the requirements and investigation templates listed below.
   in the same solution revision index.
 - When the user explicitly or after clarification requests Product Team help, persist context, classify `Product Design Requested` and
   use the handoff rules. Forward the user's requested outcome without choosing
-  Product Prototyper's mode, repository or Bootstrapper procedure.
+  the Product UI/UX Designer's mode, repository or Bootstrapper procedure.
 - On returned Product outcomes, use their evidence to clarify requirements
   with the user, request a user-directed revision, integrate approved UI/UX
   decisions, or preserve the precise blocker/not-recommended rationale. Keep
