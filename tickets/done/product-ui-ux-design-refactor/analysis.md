@@ -65,6 +65,7 @@ The current package in `agent-teams/product-team` repeatedly refers to its work 
 ## 4. Preservation & Non-Goals
 
 1. **Preserve External Routing**: The folder name `agent-teams/product-team` and member addresses `/product_team/product_prototyper` and `/product_team/prototype_bootstrapper` remain unchanged so all parent organization mounts (`autobyteus-org`, `software-development-department`) continue to resolve without breaking changes.
+   - *Superseded during this ticket:* the members were later renamed to `product_ui_ux_designer` and `ui_baseline_bootstrapper`, and both parent orgs' routes were updated to the new addresses.
 2. **Preserve Operational Safety**: Strict separation between the interactive design sandbox and the production repository is strictly maintained (separate git worktree/repo, lightweight synthetic mock data only, no live backend credentials or production writes).
 3. **Preserve Approval Authority**: The user remains the sole approval authority for future-state UI/UX designs before final reference screenshots and `ui-ux-spec.md` become normative for downstream engineering.
 

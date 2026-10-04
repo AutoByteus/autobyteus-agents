@@ -18,7 +18,7 @@ interaction looks and behaves the same. It never means real data, real logic,
 or a complete working website. Reproduce its exact
 appearance, navigation, interactions, validation, feedback, visible states,
 responsive behavior, and journeys while deliberately replacing production
-internals with the simplest credible baseline-native state and fixtures.
+internals with the simplest credible UI reference state and fixtures.
 
 This is a UI-experience baseline, not a runnable copy of the production
 frontend, a frontend digital twin, or an integration test environment.
@@ -26,7 +26,7 @@ The pinned source is the sole current-state UI/UX authority: choose the simplest
 implementation, but do not make product-design decisions or reinterpret what
 the interface should look like or do.
 
-An interactive UI baseline has the same UI and accurate functionality, on top of a small amount
+A baseline has the same UI and accurate functionality, on top of a small amount
 of fake data. What must be exact is the interface: appearance, structure,
 UI-controlled copy, controls, navigation, interactions and their outcomes, and
 states. The data underneath is deliberately minimal and synthetic. If the source
@@ -42,7 +42,7 @@ layout, a lesson page, and each state. The rest adds volume, not new UI.
   UI/UX Designer's assigned ticket worktree
 - UI parity for each distinct user-facing surface, behavior,
   state pattern, and journey in the selected boundary
-- baseline-native state, synthetic fixtures, scripted transitions, and
+- UI reference state, synthetic fixtures, scripted transitions, and
   scenario controls
 - controlled source-versus-baseline browser, responsive, interaction, and
   visual validation for the complete distinct inventory
@@ -94,7 +94,7 @@ gap is a reason for `Blocked`, not a separate handoff outcome.
 
 ## Data And Fixtures
 
-- An interactive UI reference has no backend. Do not rebuild server behavior such as access
+- A UI reference has no backend. Do not rebuild server behavior such as access
   rules, validation, business calculations, persistence, revisions or conflicts,
   exact server error contracts, or admin rule engines, and do not port server
   logic from the source. When the copied UI loads data from an API path, a
@@ -116,7 +116,7 @@ gap is a reason for `Blocked`, not a separate handoff outcome.
   (Markdown, JSON, or data modules such as question sets, translations or
   topic lists) are content, not presentation code. Keep the importing UI code
   unchanged and replace each content file with a small synthetic file of the
-  same shape and exports. See "What an interactive UI reference is" in the
+  same shape and exports. See "What a UI reference is" in the
   shared principles.
 - Values that the UI controls must be exact. These include labels, headings,
   instructions, template text around values (for example "… items in the
@@ -178,7 +178,7 @@ unsafe, return `Blocked` rather than creating one.
 6. Create or update only the assigned Product-owned worktree. Prefer a small
    browser project and reuse presentation code or assets only when that reduces
    work without importing unnecessary production coupling.
-7. Implement real interface structure and interaction using baseline-native
+7. Implement real interface structure and interaction using UI reference
    state, minimal synthetic fixtures (see Data And Fixtures), scripted events,
    and locally selectable, resettable scenarios. Follow the simplified
    implementation rules in the shared principles.

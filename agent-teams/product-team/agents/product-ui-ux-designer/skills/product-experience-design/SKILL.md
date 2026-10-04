@@ -32,7 +32,7 @@ requirements-driven change. The preserved
 product shell, layout, styling language, controls, and unaffected behavior are
 part of the experience being evolved; the proposed result must remain
 recognizably connected to the existing product. The implementation may still
-use lightweight design-native state instead of production internals. When no
+use lightweight UI reference state instead of production internals. When no
 frontend exists, create the smallest credible new product experience directly.
 After user confirmation, turn the production-quality visual and interaction
 design into a precise `ui-ux-spec.md` backed by the runnable UI reference and
@@ -40,14 +40,14 @@ normative final reference screenshots.
 
 ## What You Build
 
-An interactive UI reference looks and behaves like the product, but it runs on a little mock
+A UI reference looks and behaves like the product, but it runs on a little mock
 data and has no real content or backend. It is a model of the product's UI,
 not a second copy of the website.
 
 Two definitions in the shared principles govern every accept, reject and
 correction decision in this skill:
 
-- **"What an interactive UI reference is"**: what the project implements and
+- **"What a UI reference is"**: what the project implements and
   what it never contains.
 - **"What UI parity means"**: what must match the product exactly, and what is
   never required.
@@ -150,7 +150,7 @@ inventing them:
 
 If the current request lacks a decision question or observable journey, classify
 the result as `Blocked`, record the precise missing input and recovery question
-in the Product ticket, and stop instead of inventing a broad design project. The
+in the Product ticket, and stop instead of inventing a broad UI reference. The
 input gap is a reason for the `Blocked` result, not a separate handoff outcome.
 
 ## Final Outputs
@@ -199,7 +199,7 @@ Keep the future-state change proportional to the decision:
 - Build one critical journey before secondary flows.
 - Include alternate, loading, empty, permission, error, and recovery states only when they affect the product decision.
 - Compare alternatives only when the request asks for comparison or the solution designer identifies a real ambiguity.
-- Do not build an interactive UI model when a focused static artifact or direct clarification would answer the question more effectively; return that recommendation.
+- Do not build a UI reference when a focused static artifact or direct clarification would answer the question more effectively; return that recommendation.
 
 ## Bootstrap Routing
 
@@ -228,7 +228,7 @@ Keep the future-state change proportional to the decision:
   state the gap type of each failed or unsubstantiated ID (UI copy, structure,
   style, state, interaction, or data-boundary) and restate the baseline
   acceptance criterion below. Never phrase a correction so it can be satisfied
-  by making the design model show the source's data. For `Mode: Refresh`, use the
+  by making the UI reference show the source's data. For `Mode: Refresh`, use the
   payload's refresh fields. Preserve the stable package identifier in all
   modes.
 - When the Bootstrapper returns, read and review the runnable baseline,
@@ -309,10 +309,11 @@ Keep the future-state change proportional to the decision:
    the current ticket's `visual-references/` directory using stable `VIS-*`
    IDs.
 10. Complete `ui-ux-spec.md` and useful mode-specific supporting artifacts,
-    including design rationale, screen anatomy, design tokens, component manifest,
-    form validation matrix, responsive behavior, accessibility guidelines,
-    approval reference, final screenshots, detailed behavior, mocked boundaries,
-    source pin, and validated journeys. Keep them under the active ticket folder.
+    including the design rationale, approval reference, final screenshots,
+    detailed behavior, mocked boundaries, source pin, and validated journeys.
+    Fill the visual, content, responsive, accessibility, and motion sections
+    for the scope the change affects, using the product's existing values or
+    the approved change. Keep them under the active ticket folder.
     Include the canonical repository, ticket branch, accepted base, and resulting
     UI reference revision from management state when recording provenance.
 11. Return the completed mode artifacts and final validation evidence to the
@@ -320,14 +321,14 @@ Keep the future-state change proportional to the decision:
     approved preview promotion, ticket closure, and cleanup. Do not claim
     completion before integration and any required baseline promotion are
     durable.
-12. Classify the final package as `Prototype Completed` only after management
+12. Classify the final package as `Design Completed` only after management
     finalization succeeds, then follow the handoff rules with the ticket record,
     final UI/UX package, repository state, and every still-relevant supporting
     artifact.
 
 ## Design Evolution Rules
 
-- For an existing design model, read the current design artifacts and implementation before changing either.
+- For an existing UI reference, read the current design artifacts and implementation before changing either.
 - Treat the accepted UI inventory and its exact visual evidence as the
   preservation baseline. Keep unaffected appearance and user-facing behavior
   exact while distinguishing each requirements-driven intentional delta.
@@ -336,7 +337,7 @@ Keep the future-state change proportional to the decision:
 - Keep existing transition and scenario IDs stable when their meaning has not changed.
 - Update the UI/UX specification, applicable supporting artifacts, and implementation only where the approved design request or user feedback requires it.
 - Validate the changed journey and affected baseline behavior. When a change
-  touches shared navigation, layout, design tokens, or design-native state,
+  touches shared navigation, layout, design tokens, or UI reference state,
   revalidate the related shared surfaces rather than unrelated product scope.
 - For removals, delete obsolete UI, routes, scenarios, and artifact statements instead of retaining compatibility behavior without an explicit requirement.
 
@@ -344,7 +345,7 @@ Keep the future-state change proportional to the decision:
 
 - Keep shared state and asynchronous status in an appropriate store or composable; keep local presentation state near the component.
 - Preserve the UI reference's high-experience-fidelity, low-implementation-fidelity
-  boundary. Extend design-native state and fixtures instead of introducing
+  boundary. Extend UI reference state and fixtures instead of introducing
   production protocols or runtimes unless those mechanisms are themselves part
   of the user-facing decision.
 - Treat production quality as a UI/UX standard: the approved design must be
@@ -379,7 +380,7 @@ Keep the future-state change proportional to the decision:
   UI-copy checks. When a value comes from account or state
   data (progress, entitlement, role, flags), seed the same synthetic value on
   the source observation side instead of copying source data into the
-  design model.
+  UI reference.
 - Use a clean, matched scenario on both sides. Before comparing logged-in
   surfaces, confirm that both sides use the same synthetic account type and a
   reset state. Before comparing logged-out surfaces, confirm that neither
@@ -387,7 +388,7 @@ Keep the future-state change proportional to the decision:
 - Use interim screenshots only as disposable review aids when needed.
 - Capture final reference screenshots only after explicit user confirmation and final validation of the corresponding states.
 - Reconfirm with the user after any post-confirmation change that materially alters visible or interactive behavior.
-- Run the available build, typecheck, lint, unit, or browser checks that are proportionate to the design model.
+- Run the available build, typecheck, lint, unit, or browser checks that are proportionate to the UI reference.
 - Record exact commands, results, review URL, and any limitation.
 - For an explicitly approved preview candidate, validate the normal/default
   entry point as well; a review URL alone does not prove baseline promotion.
@@ -409,7 +410,7 @@ Before reporting the design package as completed, confirm:
   result, or the exact reason either is not required or is blocked
 - a completed ticket is under `tickets/done/<ticket-id>/`; a blocked or
   unfinished ticket remains under `tickets/in-progress/<ticket-id>/`
-- an existing-frontend design project has an accepted, applicable
+- an existing-frontend design repository has an accepted, applicable
   `ui-baseline-report.md` that shows UI parity for every distinct
   inventory item
 - design data is small, hand-written and synthetic. No recorded, replayed,
@@ -442,7 +443,7 @@ instead.
 
 - **Copying content along with UI code.** Defining the copied "presentation
   boundary" by folder, so every file the pages import comes along: Markdown content, JSON data
-  files, and data modules such as question sets or translations. The design sandbox ends up holding megabytes of real
+  files, and data modules such as question sets or translations. The UI reference ends up holding megabytes of real
   content. Correction: copy UI code only. Replace every imported content file
   with a small synthetic file of the same shape and exports, and audit UI code
   and content separately.
@@ -489,7 +490,7 @@ instead.
 
 ## Handoff Rules
 
-- Use these rules at each `Baseline Needed`, `Prototype Completed`, `Requirement Impact`, `Not Recommended`, or `Blocked` outcome.
+- Use these rules at each `Baseline Needed`, `Design Completed`, `Requirement Impact`, `Not Recommended`, or `Blocked` outcome.
 - A missing decision question or observable journey is a `Blocked` input-gap
   outcome. Include the missing input, evidence, and recovery question; do not
   emit an unconfigured gap outcome.
@@ -506,14 +507,14 @@ instead.
   artifact. Do not create a second design-specific task ID.
 - If no returned rule applies, return the outcome to the user or calling workflow.
 - After all required messages succeed, end the current stage and do not poll.
-- Complete the completed-design handoff only after user confirmation and final artifact production. If progress is blocked, return the blocker; if a design model is not recommended, return the decision rationale and evidence path instead of claiming design completion or creating final UI/UX artifacts.
+- Complete the completed-design handoff only after user confirmation and final artifact production. If progress is blocked, return the blocker; if a UI reference is not recommended, return the decision rationale and evidence path instead of claiming design completion or creating final UI/UX artifacts.
 - A requirement-impact handoff may occur during design review; include the exact user feedback, affected IDs, and design evidence, then wait for a revised requirements package.
 - For `Baseline Needed`, the applicable fixed Bootstrapper payload in the
   [repository-management skill](../product-design-repository-management/SKILL.md)
   is the complete request; do not append the requirements package or the
   Product UI/UX Designer ticket package under the general artifact rule. Keep the
   ticket status and bootstrap result in the Product UI/UX Designer's ticket folder.
-- For `Prototype Completed`, include absolute paths to `ui-ux-spec.md`, the
+- For `Design Completed`, include absolute paths to `ui-ux-spec.md`, the
   runnable UI reference, final screenshots, the applicable
   `ui-baseline-report.md`, and every still-relevant supporting
   artifact. Include the ticket record and folder, design repository/root,

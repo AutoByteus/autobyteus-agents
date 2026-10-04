@@ -23,7 +23,7 @@ worktree; it does not replace that branch/worktree isolation.
 - Source repository and selected frontend:
 - Pinned source revision:
 - Accepted baseline revision:
-- Bootstrap report:
+- Baseline report:
 - Product acceptance result and date:
 - Design revision for this ticket:
 - Promoted default baseline revision, when applicable:

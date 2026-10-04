@@ -12,7 +12,7 @@ internal handoff rules.
 ## Mounted Teams
 
 - `product_team` (Product Team) owns product discovery,
-  code-first UI/UX design, interactive UI references, and normative UI/UX
+  code-first UI/UX design, runnable UI references, and normative UI/UX
   specifications.
 - `software_engineering_team` owns requirements integration, solution design,
   implementation, review, executable validation, and delivery.
@@ -39,7 +39,7 @@ the workspace the Marketing Team runs in, not in these packages.
 
 ## Cross-Team Boundaries
 
-- Product experience questions and prototype evidence stay with Product Team until the relevant product decision or package is ready.
+- Product experience questions and design evidence stay with Product Team until the relevant product decision or package is ready.
 - Requirements, technical feasibility, implementation, review, validation, and
   delivery remain with Software Engineering.
 - Marketing owns channel-native content and publishing, but must

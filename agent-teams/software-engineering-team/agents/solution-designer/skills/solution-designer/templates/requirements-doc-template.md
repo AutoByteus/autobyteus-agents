@@ -108,10 +108,10 @@ be confused with approved scope; use `Unclear` when evidence is missing.
 
 - Applicable: `Yes` / `No`
 - Linked UI/UX or interaction supplement:
-- Linked runnable prototype, separate prototype repository/root, UI/UX specification, and
+- Linked runnable UI reference, separate design repository/root, UI/UX specification, and
   applicable support artifacts:
-- Product prototype ticket record and folder (externally owned):
-- Prototype revision or commit:
+- Product ticket record and folder (externally owned):
+- Design repository revision or commit:
 - UI/UX user-confirmation reference:
 - Approved visual-reference baseline:
 - Normative visual and interaction details, including the approved final
@@ -122,7 +122,7 @@ be confused with approved scope; use `Unclear` when evidence is missing.
 - Explicitly unresolved product decisions:
 
 When this section is not applicable, write `N/A — not applicable` for
-prototype-specific fields rather than leaving their approval state ambiguous.
+Product design fields rather than leaving their approval state ambiguous.
 
 ## Quality And Non-Functional Requirements
 
@@ -170,7 +170,7 @@ State the required outcome and constraints. Do not prescribe a migration merely 
 
 ## Traceability
 
-| Requirement ID | Use-Case IDs | Behavior IDs | Acceptance-Criteria IDs | Scenario IDs | Supplemental / Prototype Evidence |
+| Requirement ID | Use-Case IDs | Behavior IDs | Acceptance-Criteria IDs | Scenario IDs | Supplemental / Product Design Evidence |
 | --- | --- | --- | --- | --- | --- |
 | REQ-001 |  |  |  |  |  |
 
@@ -196,7 +196,7 @@ This section transfers constraints and open technical questions. It does not def
 - Scope and non-goals are clear: `Yes` / `No`
 - Requirements and acceptance criteria are testable and traceable: `Yes` / `No`
 - Applicable scenarios are covered with validity and evidence: `Yes` / `No`
-- Prototype and supplemental evidence is integrated consistently: `Yes` / `No` / `N/A`
+- Product design and supplemental evidence is integrated consistently: `Yes` / `No` / `N/A`
 - Applicable UI/UX approval and final visual-reference basis are recorded: `Yes` / `No` / `N/A`
 - Material assumptions and open decisions are visible: `Yes` / `No`
 - Content ready for user approval: `Yes` / `No`

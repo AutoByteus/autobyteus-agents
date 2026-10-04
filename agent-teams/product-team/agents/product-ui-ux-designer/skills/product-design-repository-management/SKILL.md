@@ -51,8 +51,7 @@ in this order: the selected frontend application's name; a recognizable
 product-surface name when the application name is generic; the repository
 name when it represents one relevant frontend; or a stable product/experience
 name when no frontend exists. Normalize it to the workspace's naming
-conventions and name the repository `<design-subject>-design` (or preserve an
-existing `<design-subject>-prototype` repository).
+conventions and name the repository `<design-subject>-design`.
 
 Use one dedicated branch and Git worktree for every active requirements-driven
 design request, including product-experience and exploratory-visualization
@@ -66,7 +65,7 @@ worktree such as:
 ```text
 workspace/
   <source-repository>/
-  <design-subject>-design/                      # canonical repository (or <design-subject>-prototype)
+  <design-subject>-design/                      # canonical repository
   <design-subject>-design-worktrees/
     <ticket-id>/                                # active Git worktree
 ```
@@ -185,7 +184,7 @@ product-experience work follows, keep or reopen it in progress.
 
 ## Runtime Isolation
 
-Git isolation is necessary but not sufficient when multiple design sandboxes run at
+Git isolation is necessary but not sufficient when multiple UI references run at
 once. For each active worktree, resolve and record an isolated or explicitly
 owned dev-server port, process identity, temporary output directory, fixture
 state, and reset method. Do not stop, reset, or reuse a process or state store

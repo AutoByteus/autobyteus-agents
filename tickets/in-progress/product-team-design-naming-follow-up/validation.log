@@ -1,0 +1,70 @@
+PASS: JSON parses: agent-teams/product-team/team-config.json
+PASS: JSON parses: agent-orgs/autobyteus-org/org-config.json
+PASS: JSON parses: agent-orgs/software-development-department/org-config.json
+PASS: JSON parses: agent-teams/product-team/agents/ui-baseline-bootstrapper/agent-config.json
+PASS: JSON parses: agent-teams/product-team/agents/product-ui-ux-designer/agent-config.json
+PASS: coordinator is a team member
+PASS: member product_ui_ux_designer resolves to agent-teams/product-team/agents/product-ui-ux-designer
+PASS: product_ui_ux_designer skill product-design-repository-management resolves and frontmatter matches
+PASS: product_ui_ux_designer skill product-experience-design resolves and frontmatter matches
+PASS: product_ui_ux_designer skill exploratory-requirements-visualizer resolves and frontmatter matches
+PASS: member ui_baseline_bootstrapper resolves to agent-teams/product-team/agents/ui-baseline-bootstrapper
+PASS: ui_baseline_bootstrapper skill ui-baseline-bootstrapper resolves and frontmatter matches
+PASS: team route address /product_ui_ux_designer resolves
+PASS: team route address /ui_baseline_bootstrapper resolves
+PASS: team route address /ui_baseline_bootstrapper resolves
+PASS: team route address /product_ui_ux_designer resolves
+PASS: autobyteus-org route address /product_team/product_ui_ux_designer resolves
+PASS: autobyteus-org route address /product_team/product_ui_ux_designer resolves
+PASS: autobyteus-org route address /product_team/product_ui_ux_designer resolves
+PASS: autobyteus-org route address /product_team/product_ui_ux_designer resolves
+PASS: software-development-department route address /product_team/product_ui_ux_designer resolves
+PASS: software-development-department route address /product_team/product_ui_ux_designer resolves
+PASS: principles link resolves: agents/ui-baseline-bootstrapper/skills/ui-baseline-bootstrapper/product-design-principles.md
+PASS: principles link resolves: agents/product-ui-ux-designer/skills/product-experience-design/product-design-principles.md
+PASS: principles link resolves: agents/product-ui-ux-designer/skills/exploratory-requirements-visualizer/product-design-principles.md
+PASS: link product-design-principles.md in agent-teams/product-team/agents/ui-baseline-bootstrapper/skills/ui-baseline-bootstrapper/SKILL.md
+PASS: link templates/ui-baseline-report-template.md in agent-teams/product-team/agents/ui-baseline-bootstrapper/skills/ui-baseline-bootstrapper/SKILL.md
+PASS: link product-design-principles.md in agent-teams/product-team/agents/product-ui-ux-designer/skills/product-experience-design/SKILL.md
+PASS: link ../product-design-repository-management/SKILL.md in agent-teams/product-team/agents/product-ui-ux-designer/skills/product-experience-design/SKILL.md
+PASS: link templates/ui-ux-spec-template.md in agent-teams/product-team/agents/product-ui-ux-designer/skills/product-experience-design/SKILL.md
+PASS: link templates/experience-story-template.md in agent-teams/product-team/agents/product-ui-ux-designer/skills/product-experience-design/SKILL.md
+PASS: link templates/ui-behavior-test-matrix-template.md in agent-teams/product-team/agents/product-ui-ux-designer/skills/product-experience-design/SKILL.md
+PASS: link templates/design-assumptions-template.md in agent-teams/product-team/agents/product-ui-ux-designer/skills/product-experience-design/SKILL.md
+PASS: link templates/design-change-log-template.md in agent-teams/product-team/agents/product-ui-ux-designer/skills/product-experience-design/SKILL.md
+PASS: link templates/ui-reference-runbook-template.md in agent-teams/product-team/agents/product-ui-ux-designer/skills/product-experience-design/SKILL.md
+PASS: link templates/product-design-report-template.md in agent-teams/product-team/agents/product-ui-ux-designer/skills/product-experience-design/SKILL.md
+PASS: link ../../../../shared/templates/product-ticket-template.md in agent-teams/product-team/agents/product-ui-ux-designer/skills/product-experience-design/SKILL.md
+PASS: link ../product-design-repository-management/SKILL.md in agent-teams/product-team/agents/product-ui-ux-designer/skills/product-experience-design/SKILL.md
+PASS: link ../product-design-repository-management/SKILL.md in agent-teams/product-team/agents/product-ui-ux-designer/skills/product-experience-design/SKILL.md
+PASS: link ../../../../shared/templates/product-ticket-template.md in agent-teams/product-team/agents/product-ui-ux-designer/skills/product-design-repository-management/SKILL.md
+PASS: link product-design-principles.md in agent-teams/product-team/agents/product-ui-ux-designer/skills/exploratory-requirements-visualizer/SKILL.md
+PASS: link ../product-design-repository-management/SKILL.md in agent-teams/product-team/agents/product-ui-ux-designer/skills/exploratory-requirements-visualizer/SKILL.md
+PASS: link templates/visualizer-project/ in agent-teams/product-team/agents/product-ui-ux-designer/skills/exploratory-requirements-visualizer/SKILL.md
+PASS: link references/visualization-principles.md in agent-teams/product-team/agents/product-ui-ux-designer/skills/exploratory-requirements-visualizer/SKILL.md
+PASS: link templates/visualizer-project/ in agent-teams/product-team/agents/product-ui-ux-designer/skills/exploratory-requirements-visualizer/SKILL.md
+PASS: link templates/requirements-visualization-brief-template.md in agent-teams/product-team/agents/product-ui-ux-designer/skills/exploratory-requirements-visualizer/SKILL.md
+PASS: link templates/requirements-visualization-design-plan-template.md in agent-teams/product-team/agents/product-ui-ux-designer/skills/exploratory-requirements-visualizer/SKILL.md
+PASS: link templates/requirements-visualization-review-template.md in agent-teams/product-team/agents/product-ui-ux-designer/skills/exploratory-requirements-visualizer/SKILL.md
+PASS: link ../../../../shared/templates/product-ticket-template.md in agent-teams/product-team/agents/product-ui-ux-designer/skills/exploratory-requirements-visualizer/SKILL.md
+PASS: no legacy or competing Product Team terms
+PASS: autobyteus-org outcome 'Requirements Visualization Ready' is produced by a Product skill
+PASS: autobyteus-org outcome 'Design Completed' is produced by a Product skill
+PASS: autobyteus-org outcome 'Requirement Impact' is produced by a Product skill
+PASS: autobyteus-org outcome 'Not Recommended' is produced by a Product skill
+PASS: autobyteus-org outcome 'Blocked' is produced by a Product skill
+PASS: software-development-department outcome 'Requirements Visualization Ready' is produced by a Product skill
+PASS: software-development-department outcome 'Design Completed' is produced by a Product skill
+PASS: software-development-department outcome 'Requirement Impact' is produced by a Product skill
+PASS: software-development-department outcome 'Not Recommended' is produced by a Product skill
+PASS: software-development-department outcome 'Blocked' is produced by a Product skill
+PASS: spec template asks for existing product language
+PASS: spec template allows proportional sections
+PASS: spec template has no hard-coded design defaults
+
+ALL CHECKS PASSED.
+agent-teams/product-team/agents/product-ui-ux-designer/skills/exploratory-requirements-visualizer/: Skill is valid!
+agent-teams/product-team/agents/product-ui-ux-designer/skills/product-design-repository-management/: Skill is valid!
+agent-teams/product-team/agents/product-ui-ux-designer/skills/product-experience-design/: Skill is valid!
+agent-teams/product-team/agents/ui-baseline-bootstrapper/skills/ui-baseline-bootstrapper/: Skill is valid!
+agent-teams/software-engineering-team/agents/solution-designer/skills/solution-designer/: Skill is valid!

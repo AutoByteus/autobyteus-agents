@@ -24,7 +24,7 @@ Use this optional report only when a durable cross-stage summary adds value beyo
 - Integration target and result:
 - Runtime isolation and cleanup result:
 - Ticket folder:
-- Bootstrap report:
+- Baseline report:
 
 ## Product Design Package
 
@@ -86,7 +86,7 @@ directory and use stable `VIS-*` IDs. “Screenshot” means an actual captured 
 
 ## Latest Result
 
-- Design result: `Completed` / `Blocked` / `Not Recommended`
+- Design result: `Design Completed` / `Blocked` / `Not Recommended`
 - Ticket status: `In Progress` / `Awaiting User Review` / `Completed` / `Baseline Needed` / `Blocked` / `Not Recommended`
 - Critical journey runnable: `Yes` / `No`
 - Requirements questions resolved:

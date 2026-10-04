@@ -132,16 +132,16 @@ size/risk classification. Keep target architecture decisions in the design spec.
 - Known constraints and non-goals:
 - Relevant existing-product or frontend context supplied or established:
 - Product Design request artifact / message reference:
-- Established separate prototype repository/root and ticket reference, when applicable:
+- Established separate design repository/root and ticket reference, when applicable:
 
-Do not select a Product Prototyper mode or prescribe repository/bootstrap work in
-this section. Product Prototyper makes those decisions after receiving the
+Do not select a Product UI/UX Designer mode or prescribe repository/bootstrap work in
+this section. The Product UI/UX Designer makes those decisions after receiving the
 request.
 
 ## Product Design Findings
 
 - Product Design package path (external Product Team repository):
-- Visualizer or prototype source path:
+- Visualizer or UI reference source path:
 - Approved UI/UX specification path, when applicable:
 - Review URL:
 - Explicit user-confirmation reference:
