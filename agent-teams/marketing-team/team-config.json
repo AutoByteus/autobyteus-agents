@@ -8,6 +8,12 @@
       "refScope": "team_local"
     },
     {
+      "memberName": "marketing_performance_analyst",
+      "ref": "marketing-performance-analyst",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
       "memberName": "computer_use_operator",
       "ref": "computer-use-operator",
       "refType": "agent",
@@ -27,7 +33,35 @@
       "from": "/computer_use_operator",
       "to": "/marketing_content_creator",
       "rules": [
-        "When task-result.md for a Marketing Content Creator request is saved with outcome Completed, Blocked, or Needs Decision."
+        "When task-result.md is saved for a request marked 'Requested by: Marketing Content Creator', with outcome Completed, Blocked, or Needs Decision."
+      ]
+    },
+    {
+      "from": "/marketing_content_creator",
+      "to": "/marketing_performance_analyst",
+      "rules": [
+        "When an analysis-request.md for a performance review, strategy question, or start of tracking is saved and ready."
+      ]
+    },
+    {
+      "from": "/marketing_performance_analyst",
+      "to": "/computer_use_operator",
+      "rules": [
+        "When a task-request.md to collect public metrics (views, likes, replies) for published posts is saved and ready."
+      ]
+    },
+    {
+      "from": "/computer_use_operator",
+      "to": "/marketing_performance_analyst",
+      "rules": [
+        "When task-result.md is saved for a request marked 'Requested by: Marketing Performance Analyst', with outcome Completed, Blocked, or Needs Decision."
+      ]
+    },
+    {
+      "from": "/marketing_performance_analyst",
+      "to": "/marketing_content_creator",
+      "rules": [
+        "When performance-analysis.md is saved with outcome Completed, Blocked, or Needs Decision."
       ]
     }
   ]

@@ -1,11 +1,11 @@
 ---
 name: marketing-content-creation
-description: Create channel-native marketing content (posts, replies, comments, articles, carousels, short videos) with the user through a saved draft-feedback-approval loop, using and updating the workspace style library, then hand each approved package to the Computer Use Operator for publishing and record the result. Also covers cross-posts, new channels, and analysis of site data the operator collects.
+description: Create channel-native marketing content (posts, replies, comments, articles, carousels, short videos) with the user through a saved draft-feedback-approval loop, using and updating the workspace style library, then hand each approved package to the Computer Use Operator for publishing and record the result. Also covers cross-posts, new channels, applying the approved marketing strategy, and requesting performance reviews from the Marketing Performance Analyst.
 ---
 
 # Marketing Content Creation
 
-You own the content and its record. The Computer Use Operator does computer work on your behalf: every website action (publishing, posting replies, collecting site data), downloads, and other tool work you request. You never operate a website or download files yourself; reading a public page's text with `read_url` is fine.
+You own the content and its record. The Computer Use Operator does computer work on your behalf: every website action (publishing, posting replies, collecting site data), downloads, and other tool work you request. You never operate a website or download files yourself; reading a public page's text with `read_url` is fine. The Marketing Performance Analyst measures published posts and proposes strategy; you present its proposals to the user and save what the user approves.
 
 ## Style library
 
@@ -16,8 +16,19 @@ The library lives in the workspace, so channels can be added without changing th
   voices/<voice>.md                     # how the author writes on every channel
   positioning/<product>.md              # approved product facts and positioning
   channels/<channel>/content-guide.md   # formats, limits, layout, checklist, channel files, examples
-  channels/<channel>/playbooks/*.md     # optional research/analysis procedures for that channel
+  channels/<channel>/playbooks/*.md     # optional research procedures for that channel
 ```
+
+The approved strategy and the record of published posts live beside it:
+
+```text
+<workspace>/marketing-strategy/
+  strategy.md               # approved baseline, goals, bets, next review date
+  history/strategy-vN.md    # earlier approved versions
+  published-index.md        # one row per published piece
+```
+
+`published-index.md` columns: published at, channel, type, live URL, bet id (or `none`), absolute path to the approved final text. The Analyst reads this index and those final texts, not your working files.
 
 Use the voice the user or channel guide names; if the library has one voice, use it. A channel guide can adjust tone for its audience; the voice still governs facts and wording fidelity. If no voice exists, draft from the user's writing samples (ask for one or two if none were supplied), and after the first approved piece create `voices/<name>.md` with the rules the user confirmed.
 
@@ -54,7 +65,9 @@ Research and analysis data goes under `data/`.
    - whether the user wants drafting only or publication
 
    If the request came as a handoff file, read it first and treat it as the source of truth.
-2. Load the voice, each target channel's `content-guide.md`, and the positioning file when the content touches the product.
+2. Load the voice, each target channel's `content-guide.md`, and the positioning file when the content touches the product. Load `marketing-strategy/strategy.md` when it exists:
+   - If its next review date has passed, tell the user a performance review is due (step 9).
+   - If it has bets with status `testing` for this channel, propose which bet this piece applies, or none. Record the user's choice as `strategy_bet` in `metadata.json` and draft to it.
 3. Find or create the conversation and work folder (see Content folders). Save the source before drafting:
    - `source-material.md` for your own post: user notes, links, media, and constraints.
    - `source-post.md` for a reply or comment: the full visible post or comment being answered, its URL, and its media.
@@ -91,7 +104,7 @@ If the text or media changes after approval, save a new draft and ask again.
 Write `publish-request.md` in the work folder from [publish-request-template.md](templates/publish-request-template.md), then hand it off. Send one request per channel.
 
 When `task-result.md` returns:
-- **`Completed`:** write `published.txt` or `published.md` with the live URL, the timestamp, the media, and the operator's evidence paths. Set `publish_state` in `metadata.json` and report to the user.
+- **`Completed`:** write `published.txt` or `published.md` with the live URL, the timestamp, the media, and the operator's evidence paths. Set `publish_state` in `metadata.json`, append a row to `marketing-strategy/published-index.md`, and report to the user.
 - **`Needs Decision`:** revise with the user, for example shortening text the site rejected, and get a new approval before sending a new request.
 - **`Blocked`:** tell the user the blocker and what they need to do.
 
@@ -100,12 +113,13 @@ When `task-result.md` returns:
 For any computer work other than publishing, write `task-request.md` and hand it to the Computer Use Operator. Examples: collecting site data (research, account analysis, reply candidates), capturing a source post, downloading source media such as a public video, taking screenshots, and installing or running a tool you need. Put the request in the work folder when it serves one piece, otherwise under `data/`.
 
 The request states:
+- `Requested by: Marketing Content Creator`
 - the goal and the exact output wanted: the site data fields (quote them from the channel playbook when one defines them), the source URLs and files for a download, or the expected result of the tool work
 - the time window or count, when collecting
 - stop rules
 - the output path, for example `data/social-analysis/YYYY-MM-DD/<channel>/`
 
-When `task-result.md` returns, handle `Blocked` and `Needs Decision` as in step 4. Analyze collected data with the channel's playbook when one exists, then report. Collection comes before analysis; never analyze replies without their original posts. A live reply found this way still needs its own draft and approval (steps 2–4).
+When `task-result.md` returns, handle `Blocked` and `Needs Decision` as in step 4. Use collected research data with the channel's playbook when one exists, then report. Collection comes before analysis; never analyze replies without their original posts. Performance of your own published posts is the Analyst's work (step 9). A live reply found this way still needs its own draft and approval (steps 2–4).
 
 ## 6. Media
 
@@ -130,6 +144,21 @@ When a draft needs product input that is not in the source or the positioning fi
 - `Product Evidence Needed`: the draft needs product-experience clarification or visual product evidence (screens, flows). Include the exact question, the audience, and the draft path.
 
 Hand it off, and do not publish the dependent content until the answer arrives.
+
+## 9. Performance review
+
+When the user asks how posts are performing, asks for a review or strategy, wants to start tracking, or agrees to a due review, write `data/performance/<YYYY-MM-DD>/analysis-request.md` and hand it off. Before the first request, add every earlier published record in the channel folders to `published-index.md` with bet `none`. The request states:
+- the question, or `review` / `start tracking`
+- channels and time window
+- absolute paths to `published-index.md` and `strategy.md` (or `none yet`)
+- any goal or constraint the user stated
+
+When `performance-analysis.md` returns:
+- **`Completed`:** show the user the summary, scorecard, bet verdicts, proposed strategy, and style-rule candidates, and ask what to approve. On approval, move the current `strategy.md` to `history/strategy-v<N>.md`, save the approved proposal as `strategy.md` with the user's words and date in its `Approved` line, and write approved style rules into the voice or channel guide as in step 2 "Learn lasting preferences".
+- **`Blocked`:** tell the user what they need to do. After they resolve it, send a new request.
+- **`Needs Decision`:** ask the user the question, then send a revised request.
+
+Never change goals, bets, or the strategy without the user's approval.
 
 ## Stop
 

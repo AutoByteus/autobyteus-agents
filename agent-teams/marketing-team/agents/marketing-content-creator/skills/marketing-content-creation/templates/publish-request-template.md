@@ -1,5 +1,7 @@
 # Publish request — <channel> — <slug>
 
+Requested by: Marketing Content Creator
+
 ## Action
 
 - Site / surface: <for example https://www.linkedin.com/feed/>

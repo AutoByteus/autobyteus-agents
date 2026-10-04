@@ -1,0 +1,14 @@
+{
+  "skillNames": [
+    "marketing-performance-analysis"
+  ],
+  "toolNames": [
+    "read_file",
+    "write_file",
+    "edit_file",
+    "run_bash",
+    "read_media_file",
+    "get_handoff_rules",
+    "send_message_to"
+  ]
+}
