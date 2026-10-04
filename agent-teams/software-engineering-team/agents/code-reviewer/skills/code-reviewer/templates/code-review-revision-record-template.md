@@ -16,6 +16,7 @@ The latest `code-review-report.md` or `api-e2e-test-review-report.md` remains au
 
 - Canonical review report updated:
 - Review entry point and round:
+- Review scope: `Full Review` / `Targeted Delta Review` / `Full Re-Audit` / `N/A` (failure-origin or test review)
 - Triggering role, report path, and finding or scenario IDs:
 - Relevant solution revision IDs: `SR-*` / `N/A`
 - Relevant architecture-review revision IDs: `ARCH-REV-*` / `N/A`

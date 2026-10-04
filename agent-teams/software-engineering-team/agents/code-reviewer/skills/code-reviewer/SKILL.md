@@ -109,7 +109,8 @@ For API/E2E failure-origin review:
    and triggering evidence to locate what changed and why. Recheck prior
    unresolved findings first and verify every claimed resolution against the
    latest canonical artifacts, current code, diff, and evidence. Revision
-   records are navigation, not proof.
+   records are navigation, not proof. Then choose the round's review scope
+   under Implementation Review Rules.
 5. Collect technical observations and apply the structural and design checks
    from macro structure toward detail: data-flow spine, ownership and
    boundaries, interfaces and dependencies, then subsystem, file-responsibility,
@@ -223,7 +224,10 @@ scenario by itself.
 - Review design integrity, API/E2E readiness, cleanup completeness, and changed implementation-source size or structural pressure.
 - Apply `>500` and `>220` source thresholds only to changed implementation-source files, never to tests, fixtures, or generated coverage files.
 - When persisted data may be affected, verify that implementation follows the reviewed transition decision and does not add an unnecessary migration or version-specific runtime fallback. Review migration mechanics only when the approved decision is `Migration Required`.
-- Keep each canonical report focused on its latest complete result. Revalidate affected and previously failing checks, preserve still-valid evidence for unaffected checks, and reuse finding IDs across rounds.
+- Keep each canonical report focused on its latest complete result, and reuse finding IDs across rounds.
+- Record the `Review Scope` of every implementation-review round and, on round `>1`, the evidence for it: `Full Review` on round 1; on round `>1`, one of:
+  - `Targeted Delta Review` (default): changes since the prior round stay within the files and behavior of the prior findings. Recheck those findings, revalidate affected checks and scores, and carry forward still-valid evidence for unaffected checks.
+  - `Full Re-Audit`: changes across rounds touch the data-flow spine, change shared interfaces or data shapes, spread to files beyond the prior findings, or layer new fixes on earlier fixes. Rerun all structural checks and the full scorecard.
 - Keep every completed review result's history and prior-finding resolution in `code-review-revision-record.md`. Link each entry to relevant architecture-design, architecture-review, implementation, API/E2E, and delivery revision IDs when they exist; use `N/A` when a revision type does not apply.
 
 ## Successful API/E2E Test-Code Review Rules

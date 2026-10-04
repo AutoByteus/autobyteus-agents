@@ -31,6 +31,8 @@ Do not record successful API/E2E test-code review here. Use the separate `api-e2
 - Code Review Revision Record:
 - Current Code Review Revision ID: `N/A` / `CRR-*`
 - Current Review Round:
+- Review Scope: `Full Review` / `Targeted Delta Review` / `Full Re-Audit` / `N/A` (failure-origin round)
+- Review Scope Evidence (round >1):
 - Trigger:
 - Prior Review Round Reviewed:
 - Latest Authoritative Round:
@@ -55,7 +57,7 @@ Do not record successful API/E2E test-code review here. Use the separate `api-e2
 Round rules:
 - Reuse the same finding IDs across reruns for the same unresolved issues.
 - Create new finding IDs only for newly discovered review findings.
-- Keep the full scorecard current on every implementation-review round. Revalidate affected and previously failing checks, and preserve still-valid evidence for unaffected checks instead of repeating the review solely to rewrite unchanged content. Do not repeat the scorecard for a failure-origin-only round.
+- Keep the full scorecard current on every implementation-review round, within the `Review Scope` recorded above. Do not repeat the scorecard for a failure-origin-only round.
 - Set `Current Review Round` to `1` when no prior canonical result exists. If a prior report exists without a revision record, record that result as an unrecorded baseline and create `CRR-001`; never infer a prior `Pass` from missing history.
 
 ## Review Scope
