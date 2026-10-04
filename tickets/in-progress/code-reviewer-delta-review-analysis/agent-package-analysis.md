@@ -63,3 +63,21 @@
 ## Next action
 
 Apply the planned updates to `SKILL.md`, `code-review-report-template.md`, and `code-review-revision-record-template.md`.
+
+## Revision after independent review (2026-10-04)
+
+An independent review of PR #25 (`/Users/normy/autobyteus_org/autobyteus-agents/tickets/in-progress/pr-25-code-reviewer-scope-review/agent-package-analysis.md`) kept the intent and found these problems in the first implementation:
+
+| # | Priority area | Problem | Correction |
+| --- | --- | --- | --- |
+| R1 | Structure and ownership | The scope rule was stated in four places (step 4, Implementation Review Rules, template round rules, template fields) with diverging trigger lists. | Criteria live once in Implementation Review Rules; step 4 points there; templates hold fields only. |
+| R2 | Structure and ownership | "Design Escalation" was listed as a scope mode but is the existing `Design Impact` classification (Classification Rules). | Removed; design issues stay under Classification Rules. |
+| R3 | Content flow | "classify immediately as `Design Impact`" conflicted with step 7: classification only after the Candidate Finding gate. | Removed with R2. |
+| R4 | Clarity | Field names and values differed across the skill and both templates; `Full Initial Review` was undefined. | One field, `Review Scope`, with values `Full Review` / `Targeted Delta Review` / `Full Re-Audit` (and `N/A` for non-implementation rounds), defined in the skill. |
+| R5 | Economy | The report template asked for scope and rationale twice. | One pair in Review Round Meta. |
+| R6 | Grounding | "guarantee architectural convergence" overclaimed; "without relying on arbitrary round counts" guarded against a counter that does not exist on `main`. | Removed. |
+| R7 | Clarity | "Blast radius", "drift", "patch-on-patch" were undefined. | Replaced by observable triggers. |
+| R8 | Economy | "Autonomous/Autonomously" five times, changing no action. | Removed. |
+| R9 | Grounding | Result validation overstated checks (JSON `Pass` with no JSON changed; skill validator `N/A`). | Result corrected. |
+
+Planned edits: `SKILL.md` step 4 and Implementation Review Rules; report template meta, round rule, and Review Scope section; revision-record template field; result file.

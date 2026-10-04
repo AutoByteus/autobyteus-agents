@@ -31,8 +31,8 @@ Do not record successful API/E2E test-code review here. Use the separate `api-e2
 - Code Review Revision Record:
 - Current Code Review Revision ID: `N/A` / `CRR-*`
 - Current Review Round:
-- Round Review Scope: `Full Initial Review` / `Targeted Delta Review` / `Autonomous Full Re-Audit`
-- Scope Sizing Rationale (round >1):
+- Review Scope: `Full Review` / `Targeted Delta Review` / `Full Re-Audit` / `N/A` (failure-origin round)
+- Review Scope Evidence (round >1):
 - Trigger:
 - Prior Review Round Reviewed:
 - Latest Authoritative Round:
@@ -57,13 +57,11 @@ Do not record successful API/E2E test-code review here. Use the separate `api-e2
 Round rules:
 - Reuse the same finding IDs across reruns for the same unresolved issues.
 - Create new finding IDs only for newly discovered review findings.
-- Keep the full scorecard current on every implementation-review round. On round `>1`, autonomously size review scope based on cumulative blast radius: default to a targeted delta review for clean bounded fixes, preserving still-valid evidence for unaffected checks; or elevate to an autonomous full re-audit when cumulative cross-file churn or patch-on-patch complexity threatens overall convergence. Do not repeat the scorecard for a failure-origin-only round.
+- Keep the full scorecard current on every implementation-review round, within the `Review Scope` recorded above. Do not repeat the scorecard for a failure-origin-only round.
 - Set `Current Review Round` to `1` when no prior canonical result exists. If a prior report exists without a revision record, record that result as an unrecorded baseline and create `CRR-001`; never infer a prior `Pass` from missing history.
 
 ## Review Scope
 
-- Review Scope Mode (`Full Initial Review` / `Targeted Delta Review` / `Autonomous Full Re-Audit`):
-- Cumulative Blast Radius Assessment (for round >1):
 - Changed implementation and behavior reviewed:
 - Files / areas reviewed:
 - Explicit exclusions:

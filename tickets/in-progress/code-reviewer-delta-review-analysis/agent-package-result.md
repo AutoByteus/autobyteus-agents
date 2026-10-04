@@ -11,18 +11,18 @@
 
 ## Summary
 
-Updated the `code-reviewer` agent package to formally specify autonomous review scope sizing on subsequent review rounds (`>1`):
-1. On round `>1`, the reviewer evaluates the cumulative blast radius and drift across rounds rather than counting rounds.
-2. By default, bounded and cleanly isolated fixes receive a **Targeted Delta Review**, rechecking prior unresolved findings and revalidating affected checks while preserving valid prior evidence and scores for unaffected checks.
-3. If cumulative churn, patch-on-patch complexity, or cross-file type/data-flow modifications threaten overall architectural convergence, the reviewer autonomously elevates the pass to an **Autonomous Full Re-Audit** across all structural checks and the full 10-category scorecard.
-4. If a local fix breaches modular boundaries, it escalates immediately to `Design Impact` &rarr; `/solution_designer`.
-5. Canonical report and revision record templates now capture `Round Review Scope` and `Cumulative Blast Radius Assessment`.
+Revised after independent review (see `agent-package-analysis.md`, "Revision after independent review"). The Code Reviewer now records a `Review Scope` for every implementation-review round:
+1. `Full Review` on round 1.
+2. `Targeted Delta Review` by default on round `>1` when changes stay within the files and behavior of the prior findings: recheck those findings, revalidate affected checks and scores, and carry forward still-valid evidence.
+3. `Full Re-Audit` when changes across rounds touch the data-flow spine, change shared interfaces or data shapes, spread beyond the prior findings' files, or layer fixes on earlier fixes: rerun all structural checks and the full scorecard.
+4. Design problems stay under the existing `Design Impact` classification, after the Candidate Finding gate.
+5. Both templates record the scope with the same field name and values.
 
 ## Ownership and design decisions
 
-- **Review Scope Sizing Decision:** Owned by `SKILL.md` (lines 107–116 and 231–239). The reviewer independently evaluates cumulative blast radius and drift across rounds to determine the review mode.
-- **Reporting & History Traceability:** Owned by `code-review-report-template.md` and `code-review-revision-record-template.md`. Captures the scope mode (`Full Initial Review`, `Targeted Delta Review`, `Autonomous Full Re-Audit`) and blast radius rationale.
-- **Single Canonical Authoritative Artifact:** Maintained in `code-review-report.md`, with chronological deltas indexed in `code-review-revision-record.md`.
+- **Review scope criteria:** `SKILL.md` Implementation Review Rules only; step 4 points there.
+- **Design Impact routing:** unchanged in Classification Rules and `team-config.json`.
+- **Scope record:** one `Review Scope` field pair in the report template's Review Round Meta; one `Review scope` field in the revision-record template.
 
 ## Changed paths
 
@@ -48,8 +48,8 @@ Updated the `code-reviewer` agent package to formally specify autonomous review 
 
 - Result: `/home/autobyteus/workspace/autobyteus-agents/tickets/in-progress/code-reviewer-delta-review-analysis/agent-package-result.md`
 - Analysis: `/home/autobyteus/workspace/autobyteus-agents/tickets/in-progress/code-reviewer-delta-review-analysis/agent-package-analysis.md`
-- Design/requirements: Explicit user instruction to replace mechanical round counter with autonomous scope sizing based on blast radius and drift.
-- Validation evidence: Python JSON parse checks on `agent-config.json` and `team-config.json`; git diff audit.
+- Design/requirements: User request to codify review scope sizing on later rounds; independent review at `/Users/normy/autobyteus_org/autobyteus-agents/tickets/in-progress/pr-25-code-reviewer-scope-review/agent-package-analysis.md`.
+- Validation evidence: `quick_validate.py` on the skill; `git diff origin/main`; stale-term search.
 
 ## Approval state
 
@@ -60,16 +60,16 @@ Updated the `code-reviewer` agent package to formally specify autonomous review 
 
 | Check | Observed result | Evidence or limitation |
 | --- | --- | --- |
-| Changed JSON parses | `Pass` | `agent-config.json` and `team-config.json` validated cleanly. |
-| Frontmatter and names align | `Pass` | `agent.md` and `SKILL.md` frontmatter match `code reviewer` / `code-reviewer`. |
-| Skill folder/frontmatter align | `Pass` | Folder `skills/code-reviewer/` matches frontmatter `name: code-reviewer`. |
-| Configured `skillNames` resolve | `Pass` | `agent-config.json` specifies `"skillNames": ["code-reviewer"]`. |
-| Markdown links and references resolve | `Pass` | All relative links to templates in `SKILL.md` resolve. |
-| Skill validator and changed scripts | `N/A` | No scripts added or modified. |
-| Member refs, coordinator, and rooted routes | `Pass` | `/code_reviewer` routes in `team-config.json` remain valid and unchanged. |
-| Imported shared dependencies | `N/A` | Team-local member; no external catalog dependencies. |
-| Ownership and cross-file consistency | `Pass` | Rule cleanly owned in `SKILL.md` and reflected in report templates. |
-| Scope/diff review | `Pass` | Diff confined strictly to `code-reviewer` skill and templates. |
+| Changed JSON parses | `N/A` | No JSON changed. |
+| Frontmatter and names align | `Pass` | `SKILL.md` frontmatter `name: code-reviewer` unchanged. |
+| Skill folder/frontmatter align | `Pass` | Folder `skills/code-reviewer/` matches. |
+| Configured `skillNames` resolve | `Pass` | Unchanged `agent-config.json`. |
+| Markdown links and references resolve | `Pass` | No links added or changed. |
+| Skill validator and changed scripts | `Pass` | `quick_validate.py`: "Skill is valid!"; no scripts. |
+| Member refs, coordinator, and rooted routes | `N/A` | No routing change; the existing `/code_reviewer` -> `/solution_designer` Design Impact route covers design issues. |
+| Imported shared dependencies | `N/A` | None. |
+| Ownership and cross-file consistency | `Pass` | Criteria stated once; identical field values in both templates; no remaining "autonomous", "blast radius", "Full Initial", or "Design Escalation" terms. |
+| Scope/diff review | `Pass` | Diff against `main` limited to the three package files and this ticket folder. |
 
 ## Risks, questions, and blockers
 
