@@ -42,6 +42,10 @@ The [Agent Package Creator](agents/agent-package-creator/agent.md) creates, anal
 
 The [Computer Use Operator](agents/computer-use-operator/agent.md) completes user tasks on the computer. It operates websites through the visible browser UI with native input (shared `web-ui-automation` skill), and uses command-line tools, installed software, downloads, and media files for other work. Its bundled [`computer-use-operation`](agents/computer-use-operator/skills/computer-use-operation/SKILL.md) skill keeps workspace knowledge per website (`web-ui-sites/<site>/site-knowledge.md`: elements, locate scripts, operation SOPs, pitfalls) and per tool (`computer-tools/<tool>.md`: install, working commands, pitfalls), so later tasks are fast.
 
+### Data Engineer
+
+The [Data Engineer](agents/data-engineer/agent.md) ingests, cleans, normalizes, structures, validates, and prepares dataset and JSON content collections for data-driven applications. Its bundled [`data-engineering`](agents/data-engineer/skills/data-engineering/SKILL.md) skill owns the pipeline lifecycle: source audit, schema contract definition, reproducible extraction and transformation scripting, referential and structural integrity verification, and data preparation reporting.
+
 ## Software Development Department
 
 The [Software Development Department](agent-orgs/software-development-department/org.md)
