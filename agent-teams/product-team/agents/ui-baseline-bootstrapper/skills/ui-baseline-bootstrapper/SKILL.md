@@ -256,7 +256,7 @@ Before returning `Completed`, confirm:
 - the design repository/root is explicit and does not overlap production
   frontend paths, and the assigned Product ticket worktree is explicit
 - the supplied Product ticket branch/worktree is dedicated to this baseline and
-  the canonical integration checkout was not modified
+  the canonical checkout was not modified
 - the selected application and pinned source revision are explicit
 - the baseline starts independently with the documented command
 - each distinct selected surface, interaction, state pattern, journey, and

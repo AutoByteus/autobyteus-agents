@@ -35,8 +35,11 @@ not own the branch, ticket status, acceptance, commit, integration, or cleanup.
 
 Keep one stable design Git repository per selected frontend or product
 surface, separate from the production/source repository. The canonical
-repository is the long-lived project identity and integration base; it is not
-the active checkout for a ticket while ticket work is in progress.
+repository is the long-lived project identity, and its **default branch** is
+the integration base: the branch the remote marks as default (`origin/HEAD`),
+or, when the repository has no remote, the branch the canonical checkout uses.
+The canonical checkout keeps the default branch checked out; it is not the
+active checkout for a ticket while ticket work is in progress.
 
 If the canonical repository is missing, initialize it at the resolved sibling
 path before creating the ticket worktree. If Git has no commit from which to
@@ -88,17 +91,22 @@ At the beginning of every Product UI/UX Designer request:
    supplied ticket/request identifier. If the identifier is absent, create one
    using the Product team's established convention; never create a second ID
    for the same request.
-2. Resolve the repository's integration/default branch and the latest accepted
-   design revision. Record the source repository/frontend and the accepted
-   design base separately from the active ticket checkout.
+2. Run `git fetch origin` and resolve the default branch
+   (`git remote set-head origin --auto` refreshes `origin/HEAD`). The base
+   revision is the fetched `origin/<default-branch>` commit. Record the source
+   repository/frontend and the base revision separately from the active ticket
+   checkout. If the local default branch has commits that
+   `origin/<default-branch>` lacks, stop with `Blocked` and report them instead
+   of choosing a base around unpushed work.
 3. Inspect `git status`, `git worktree list`, branch identity, repository
    instructions, and any existing Product ticket record. Never reset, delete,
    overwrite, or silently reuse another ticket's dirty worktree.
 4. If this ticket already has a recorded worktree and branch, verify that they
    still point to the expected repository and ticket. Resume that worktree
    instead of creating a duplicate.
-5. Otherwise create a fresh ticket branch/worktree from the recorded latest
-   accepted design revision. Create `tickets/in-progress/<ticket-id>/` in
+5. Otherwise create a fresh ticket branch/worktree from the fetched
+   `origin/<default-branch>`, never from the local default branch or a
+   previously recorded revision. Create `tickets/in-progress/<ticket-id>/` in
    that worktree and initialize or update `product-ticket.md` from the
    Product team's shared [product-ticket template](../../../../shared/templates/product-ticket-template.md),
    recording the repository, worktree, branch, base revision, and current
@@ -125,8 +133,9 @@ to accept its result. This skill provides the baseline lifecycle:
   resume a dedicated baseline ticket branch/worktree, then send the payload
   below. A correction keeps the same baseline ticket and worktree.
 - After the baseline is accepted, create the accepted baseline commit and
-  integrate it into the canonical design base under repository policy.
-  Later requirement work starts only from that accepted revision.
+  integrate it into the default branch through the finalization sequence
+  below. Later requirement work starts from the default branch that contains
+  it.
 - For a no-frontend product, establish the smallest initial project in the
   baseline ticket worktree without Bootstrapper, then accept and record the
   initial base through the same lifecycle.
@@ -195,9 +204,9 @@ return `Blocked` rather than sharing it silently.
 
 - Resume from the recorded ticket worktree, branch, ticket status, and latest
   ticket revision. Do not recreate the ticket or silently discard its changes.
-- Before final integration, compare the ticket base with the latest accepted
-  canonical revision. If the base advanced, integrate it deliberately in the
-  ticket worktree, preserve approved ticket behavior, rerun affected browser
+- Before final integration, fetch and compare the ticket base with
+  `origin/<default-branch>`. If the default branch advanced, merge it into the
+  ticket branch in the ticket worktree, preserve approved ticket behavior, rerun affected browser
   and regression validation, and update the recorded base.
 - If integration produces a conflict, unexpected behavior, or unsafe dirty
   state, preserve the evidence and classify the result as `Blocked` or the
@@ -217,8 +226,25 @@ are complete. Then the Product UI/UX Designer performs this repository sequence:
 3. Commit the accepted baseline or ticket result on the ticket branch. The
    commit must include the runnable UI reference and the durable ticket evidence
    that belongs with that result.
-4. Integrate the ticket branch into the canonical design branch only when
-   the repository's documented policy or explicit authorization permits it.
+4. Integrate the ticket into the default branch so that the remote and the
+   local canonical checkout end on the same revision:
+   - Fetch. If `origin/<default-branch>` moved past the ticket base, apply the
+     base-advancement rule above first.
+   - Push the ticket result to the remote default branch as a fast-forward
+     (`git push origin <ticket-branch>:<default-branch>`). If the push is
+     rejected, fetch and apply the base-advancement rule again; never
+     force-push.
+   - Fast-forward the local default branch in the canonical checkout
+     (`git -C <canonical-repository> merge --ff-only origin/<default-branch>`).
+     If that checkout is not on the default branch, is dirty, or cannot
+     fast-forward, leave it untouched and report the exact blocker.
+   - Without a remote, fast-forward the canonical checkout's default branch to
+     the ticket branch instead.
+   - Every later finalization commit on the default branch, such as an
+     integration record, baseline promotion, or ticket move, follows the same
+     push-then-update sequence. Finish by confirming that the local default
+     branch and `origin/<default-branch>` are the same revision.
+
    Revalidate after integration. When the ticket contains an approved preview
    candidate for the product experience, promote that candidate into the
    default baseline before terminal completion: the approved experience must be
@@ -227,8 +253,8 @@ are complete. Then the Product UI/UX Designer performs this repository sequence:
    when needed. A merged candidate that still requires a preview URL is not a
    completed baseline promotion; preserve the ticket and report the promotion
    as incomplete or blocked. Record `Completed`, `Not required`, or `Blocked`,
-   and do not imply that an unintegrated branch is present on the canonical
-   base.
+   and do not imply that an unintegrated branch is present on the default
+   branch.
 5. Move an accepted completed ticket from
    `tickets/in-progress/<ticket-id>/` to `tickets/done/<ticket-id>/` in the
    same repository-finalization sequence, when the ticket policy defines that
@@ -238,9 +264,10 @@ are complete. Then the Product UI/UX Designer performs this repository sequence:
    delete the ticket branch only under repository policy. If cleanup is unsafe,
    leave the worktree intact and report the exact cleanup blocker.
 
-Remote creation and pushing are not implicit. Follow the existing design
-repository policy or explicit authorization, and record remote/branch state in
-the result.
+Creating a remote is not implicit. When the repository has a remote, pushing
+the default branch is part of finalization; push ticket branches only under
+repository policy or explicit authorization. Record the final local and remote
+default-branch revisions in the result.
 
 ## Workspace Result Contract
 
@@ -256,8 +283,8 @@ Before returning control to the selected mode skill, provide or record:
 - default-entry-point promotion validation evidence or exact blocker;
 - runtime port/process/temp-state ownership;
 - baseline status and Bootstrapper report path when applicable;
-- integration target and current result (`Pending` until finalization when
-  appropriate);
+- default branch, its local and `origin` revisions after integration, and the
+  integration result (`Pending` until finalization when appropriate);
 - cleanup status or exact cleanup blocker (`Pending` until finalization when
   appropriate).
 

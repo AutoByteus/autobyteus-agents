@@ -387,7 +387,7 @@ for a design workspace. Later requirements-driven work normally belongs to
   parity implementation, matched validation, and the baseline report.
 - UI Baseline Bootstrapper may create or update baseline files only in the Product
   UI/UX Designer's assigned baseline or ticket worktree. It does not create a
-  second worktree, write to the canonical integration checkout during active
+  second worktree, write to the canonical checkout during active
   ticket work, implement future-state requirements, create the canonical
   future-state `ui-ux-spec.md`, conduct the user design review, or approve a
   product decision.
