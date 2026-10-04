@@ -41,7 +41,8 @@ Use [result-and-handoff-contract.md](../references/result-and-handoff-contract.m
 ## Durable artifacts and evidence
 
 - Result: `<absolute path to this file>`
-- Design/requirements: `<absolute paths>`
+- Analysis: `<absolute path to agent-package-analysis.md; required for update, N/A for create>`
+- Design/requirements: `<absolute paths or None>`
 - Validation evidence: `<absolute paths or command logs>`
 - Generated package artifacts: `<absolute paths>`
 

@@ -45,7 +45,7 @@ Short pointers are useful; competing procedures are not. When an Agent has a ski
 
 ## 4. Apply one authoring standard
 
-Use the same quality principles when creating or updating any target kind. Apply them in this order while designing and writing, with cross-file consistency throughout:
+Use the same quality principles when creating, analyzing, or updating any target kind. An analysis uses them as its review criteria; create and update apply them in this order while designing and writing, with cross-file consistency throughout:
 
 1. **Structure and ownership:** Choose the smallest package topology that can own the requested work; assign each behavior, route, and output one authoritative file before polishing prose.
 2. **Content architecture and flow:** Make the path from trigger and inputs through decisions, work, outputs, validation/recovery, and handoff or stop coherent. Put prerequisites before dependent actions and exceptions beside the action they modify.
@@ -61,7 +61,7 @@ The same test prevents both wordiness and over-shortening:
 | “Follow the bundled `agent-package-creation` skill as the authoritative workflow for creating agent packages.” | “Follow `agent-package-creation`.” | Its attachment and scope are already clear. |
 | “Send the result.” | “Send the result to every exact `recipient_address` returned.” | The shorter version loses the routing requirement. |
 
-This standard guides the author's work, not a separate self-review stage. Independent review occurs only when requested or required by the containing workflow. For a skill's trigger, instruction flow, and resources, apply the [skill-authoring principles](skill-authoring-principles.md).
+This standard guides the author's work, not a separate self-review stage. Independent review occurs only when requested (the `analyze` operation) or required by the containing workflow. For a skill's trigger, instruction flow, and resources, apply the [skill-authoring principles](skill-authoring-principles.md).
 
 ## 5. Attach skills deliberately
 
@@ -100,7 +100,7 @@ The same task may need several kinds: creating a Team can include new Agents and
 
 ## 9. Preserve evidence and update safely
 
-For `create`, inspect repository instructions and analogous packages, then select the smallest coherent topology. For `update`, read the full affected package and record the baseline, requested delta, affected owners, and preserved behavior before editing.
+For `create`, inspect repository instructions and analogous packages, then select the smallest coherent topology. For `analyze` and `update`, read the full affected package and write its baseline, preserved behavior, findings, and changes to the analysis file the [skill](../SKILL.md) requires before any edit.
 
 When optimizing, compare the observed package with intended and preserved behavior. Diagnose structure and ownership, flow, grounding, then wording; repeated text may signal a wrong owner or broken flow. Choose whether to add, move, merge, remove, or update a rule before trimming sentences.
 

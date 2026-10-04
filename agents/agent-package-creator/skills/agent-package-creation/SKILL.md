@@ -1,24 +1,25 @@
 ---
 name: agent-package-creation
-description: Create or update standalone skills, Agents, Agent Teams, and Agent Orgs, including skills their roles need.
+description: Create, analyze, or update standalone skills, Agents, Agent Teams, and Agent Orgs, including skills their roles need.
 ---
 
 # Agent Package Creation
 
-Create or update Skill, Agent, Team, and Org definitions. The roles you define perform their own work.
+Create, analyze, or update Skill, Agent, Team, and Org definitions. The roles you define perform their own work.
 
 Read [package-design-principles.md](references/package-design-principles.md) for package boundaries and writing principles. For skill work, also read [skill-authoring-principles.md](references/skill-authoring-principles.md).
 
 ## Inputs and operation
 
-Identify the requested outcome, repository and path, target kind (`skill`, `agent`, `team`, or `org`), users, constraints, approvals, and artifact workspace. Choose the source root from the user's direction or confirmed repository conventions; if neither resolves it, ask before writing.
+Identify the requested outcome, repository and path, target kind (`skill`, `agent`, `team`, or `org`), users, constraints, approvals, and artifact workspace. Choose the source root and artifact workspace from the user's direction or confirmed repository conventions; if neither resolves them, ask before writing.
 
-Use two operations:
+Use three operations:
 
 - `create`: establish a new target; record `update_intent: new-package`.
-- `update`: change an existing target; record the user's reason as `update_intent` (for example `extend`, `repair`, `optimize`, or `simplify`).
+- `analyze`: review an existing target without changing it, when the user asks to analyze, review, or audit it. The analysis file is the result.
+- `update`: change an existing target; record the user's reason as `update_intent` (for example `extend`, `repair`, `optimize`, or `simplify`). Write the analysis before editing.
 
-Target kind is separate from operation. If an identity already exists, inspect it and use `update` unless the user confirms a distinct target. Before an update, read the affected topology: definition/config files, attached skills and resources, members, routes, shared dependencies, and affected docs. Preserve accepted behavior outside the approved change.
+Target kind is separate from operation. If an identity already exists, inspect it; use `update` when the user asks for a change and `analyze` when they ask only for a review, unless the user confirms a distinct target. Before `analyze` or `update`, read the affected topology: definition/config files, attached skills and resources, members, routes, shared dependencies, and affected docs. Preserve accepted behavior outside the approved change.
 
 When material scope, behavior, ownership, or removal is unresolved, surface a requirement or approval gap before making that decision. Follow repository-specific artifact, branch, worktree, approval, and finalization instructions where they apply. Do not commit, push, publish, or deploy without explicit authorization.
 
@@ -28,11 +29,18 @@ When material scope, behavior, ownership, or removal is unresolved, surface a re
 
 Map the target kind and root, each role's responsibility, skill ownership and attachment, coordinator or intake owner where applicable, artifacts, routes and addresses, dependencies, and links.
 
-For `create`, establish the intended behavior and required outputs from the request and confirmed repository conventions. For `update`, distinguish the approved change from existing behavior that must remain intact. When optimizing, diagnose observed defects and their owners before choosing edits. For any update, identify the smallest coherent delta.
+For `create`, establish the intended behavior and required outputs from the request and confirmed repository conventions. For `analyze` and `update`, distinguish the requested change or review question from existing behavior that must remain intact. When optimizing or reviewing, diagnose observed defects and their owners before choosing edits. For any update, identify the smallest coherent delta.
 
 Describe the path from request to completion and recovery. For a role, specify input, owned work, output, quality gate, and handoff. For a skill, specify trigger, inputs, work, outputs, validation, and stopping condition. Give each rule one owner. Team coordinator registration does not create duties by itself; an Org has no coordinator field.
 
-### 2. Create or update canonical files
+### 2. Write the analysis (`analyze` and `update`)
+
+Before editing any package file, write one `agent-package-analysis.md` in the artifact workspace using [agent-package-analysis-template.md](templates/agent-package-analysis-template.md). If this task's workspace already has an analysis of the same target, revise that file instead of adding another. Judge the target against the shared authoring standard in [package-design-principles.md](references/package-design-principles.md) (and [skill-authoring-principles.md](references/skill-authoring-principles.md) for skills) and against the request or the package's stated purpose, so findings cover both defects in existing files and missing behavior. Record the baseline, preserved behavior, findings with evidence and owning file, recommended or planned changes, and open questions. Run the read-only checks from step 4 that the findings rely on and record the observed results.
+
+- **`analyze`:** Change no package file. Leave recommended changes unapplied, since applying them is a later `update` the user must request. Continue at step 5 with the analysis as the result.
+- **`update`:** If the analysis exposes an unresolved material decision, record `Requirement Gap` in it and continue at step 5. Otherwise apply the planned changes in step 3.
+
+### 3. Create or update canonical files
 
 For `create`, write the required definition files at the confirmed location, plus only the roles, skills, references, templates, scripts, or assets that own necessary behavior. For `update`, change the canonical owner of each affected rule, remove paths made obsolete by the approved design, and reconcile bindings, member references, routes, and links.
 
@@ -45,7 +53,7 @@ Apply the shared authoring standard while writing.
 
 Design handoffs from completed, classified results, not a fixed stage list. The sending role owns the result; the applicable Team/Org config owns conditional recipients. Carry the original request, current status/decision, constraints, approvals, relevant absolute artifact paths, and next action across boundaries. Keep human documentation navigational rather than a competing runtime procedure.
 
-### 3. Validate and recover
+### 4. Validate and recover
 
 Validate what the selected kind and changed files require, and record observed evidence:
 
@@ -56,12 +64,12 @@ Validate what the selected kind and changed files require, and record observed e
 
 Correct an in-scope canonical owner and rerun affected checks. Record `Requirement Gap` when intent or approval is missing, `Design Impact` when topology must be reconsidered, or `Blocked` when an external dependency prevents safe work. Do not claim a runtime registration or catalog check that was not observed.
 
-### 4. Persist and route the result
+### 5. Persist and route the result
 
-Before handoff, read [result-and-handoff-contract.md](references/result-and-handoff-contract.md) and write one file-backed result using [agent-package-result-template.md](templates/agent-package-result-template.md). Record observed validation and limitations; use absolute artifact paths in handoff messages.
+Before handoff, read [result-and-handoff-contract.md](references/result-and-handoff-contract.md). For `analyze`, the analysis file from step 2 is the result. For `create` and `update`, write one result using [agent-package-result-template.md](templates/agent-package-result-template.md); an `update` result links its analysis. Record observed validation and limitations; use absolute artifact paths in handoff messages.
 
 Follow that contract to classify and route the result. If no rule matches or handoff tools are unavailable, return the persisted result to the user or caller with the limitation.
 
 ## Complete-result standard
 
-The requested definition is created or updated at its canonical boundary, reconciled with any containing package, and supported by observed validation and a durable result; or that result truthfully records the gap or blocker that prevented completion.
+For `create` and `update`, the requested definition is created or updated at its canonical boundary, reconciled with any containing package, and supported by observed validation and a durable result. For `analyze`, one durable analysis covers the requested scope with evidence and leaves the package unchanged. In every case, a gap or blocker that prevented completion is recorded truthfully instead.

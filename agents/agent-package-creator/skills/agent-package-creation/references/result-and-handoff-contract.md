@@ -1,6 +1,26 @@
 # Result And Handoff Contract
 
-This file defines result fields and handoff for [Agent Package Creation](../SKILL.md); [agent-package-result-template.md](../templates/agent-package-result-template.md) supplies the format.
+This file defines the analysis and result fields and the handoff for [Agent Package Creation](../SKILL.md). [agent-package-analysis-template.md](../templates/agent-package-analysis-template.md) and [agent-package-result-template.md](../templates/agent-package-result-template.md) supply the formats.
+
+The persisted file that is routed is the analysis for `analyze` and the result for `create` and `update`.
+
+## Required analysis fields
+
+An analysis is written for `analyze` and before editing in `update`.
+
+| Field | Requirement |
+| --- | --- |
+| `status` | Same values as the result `status`. |
+| `operation` | `analyze` or `update`. |
+| `package_type`, `target_package`, `scope`, `request_reference` | As defined for the result. |
+| `baseline` | Each reviewed file and what it currently owns. |
+| `preserved_behavior` | Triggers, outputs, approvals, routes, and safeguards that must stay intact. |
+| `findings` | Each defect, missing behavior, or risk with evidence (file and line or observed check), owning file, impact, and recommended change, ordered by the authoring-standard priority. |
+| `changes` | Recommended (unapplied) changes for `analyze`; planned edits by file for `update`; `None` when no change is needed. |
+| `open_questions` | Decisions, assumptions to confirm, and approval state. |
+| `checks` | Read-only checks run, observed result, and limitations. |
+| `next_action` | What the user or next owner should do. |
+| `handoff_state` | For `analyze` only, as defined for the result. |
 
 ## Required result fields
 
@@ -16,7 +36,7 @@ This file defines result fields and handoff for [Agent Package Creation](../SKIL
 | `summary` | Short explanation of the decision and outcome. |
 | `ownership_decisions` | The canonical owner for each changed rule or concern, including standalone versus bundled skill ownership. |
 | `changed_paths` | Added, modified, moved, and removed paths, using truthful status. |
-| `artifacts` | Absolute paths to the durable design, result, validation, and generated package artifacts that remain relevant. |
+| `artifacts` | Absolute paths to the durable analysis (required for `update`), design, result, validation, and generated package artifacts that remain relevant. |
 | `approval_state` | Approved, pending, not required, or blocked, with the evidence/reference. |
 | `validation` | Checks performed, observed result, and limitations; mark irrelevant type-specific checks `N/A`. |
 | `risks_and_questions` | Residual risks, unknowns, blockers, and decisions needed. |
@@ -25,7 +45,7 @@ This file defines result fields and handoff for [Agent Package Creation](../SKIL
 
 ## Classification guidance
 
-- Use `Completed` only when the approved create/update is applied, reconciled, and validated.
+- Use `Completed` for create/update only when the approved change is applied, reconciled, and validated. For `analyze`, use it when the analysis covers the requested scope with evidence; recommended changes remain unapplied.
 - Use `Requirement Gap` when intended behavior or acceptance criteria must be clarified.
 - Use `Design Impact` when ownership, topology, or boundary design must be revised before the package can proceed.
 - Use `Blocked` when an external dependency, unsafe workspace, unavailable required input/tool, or other non-local blocker prevents safe continuation.
@@ -33,7 +53,7 @@ This file defines result fields and handoff for [Agent Package Creation](../SKIL
 
 ## Handoff protocol
 
-1. Persist the complete result artifact.
+1. Persist the complete analysis or result artifact.
 2. Include absolute paths to the result and all still-relevant upstream artifacts.
 3. Call `get_handoff_rules` after the result exists.
 4. Apply every matching conditional rule.

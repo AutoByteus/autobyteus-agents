@@ -6,7 +6,7 @@ repository. For ownership and topology decisions, start with
 For standalone or bundled skills, use the Creator's
 [Skill Authoring Principles](../agents/agent-package-creator/skills/agent-package-creation/references/skill-authoring-principles.md).
 The [Agent Package Creation skill](../agents/agent-package-creator/skills/agent-package-creation/SKILL.md)
-owns the create/update procedure; this guide explains how to express a package
+owns the create, analyze, and update procedure; this guide explains how to express a package
 in repository files, not how a specialist performs its domain work.
 
 ## Contents

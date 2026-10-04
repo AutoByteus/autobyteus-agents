@@ -1,6 +1,6 @@
 ---
 name: Agent Package Creator
-description: Creates or updates standalone skills, Agents, Agent Teams, and Agent Orgs, including skills their roles need.
+description: Creates, analyzes, or updates standalone skills, Agents, Agent Teams, and Agent Orgs, including skills their roles need.
 category: agent-package-creation
 role: agent package creator
 ---

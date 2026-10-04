@@ -10,7 +10,7 @@ Team and Org configuration own their respective routing boundaries. Start with:
 - [Agent Package Design Principles](agents/agent-package-creator/skills/agent-package-creation/references/package-design-principles.md): Skill, Agent, Team, and Org boundaries, role ownership, and handoff examples.
 - [Skill Authoring Principles](agents/agent-package-creator/skills/agent-package-creation/references/skill-authoring-principles.md): standalone and bundled skill design and validation.
 - [Agent Package Authoring](docs/agent-package-authoring.md): file responsibilities, packaging, coordinator roles, handoff conventions, examples, and validation.
-- [Agent Package Creation skill](agents/agent-package-creator/skills/agent-package-creation/SKILL.md): the create/update workflow used by Agent Package Creator.
+- [Agent Package Creation skill](agents/agent-package-creator/skills/agent-package-creation/SKILL.md): the create, analyze, and update workflow used by Agent Package Creator.
 
 ## Standalone Agents
 
@@ -36,7 +36,7 @@ The paper research assistant is a standalone agent for the common paper-reading 
 
 ### Agent Package Creator
 
-The [Agent Package Creator](agents/agent-package-creator/agent.md) creates and updates standalone skills, individual Agents, Agent Teams, and Agent Orgs, including skills bundled with new roles when needed. Its bundled [`agent-package-creation`](agents/agent-package-creator/skills/agent-package-creation/SKILL.md) skill owns the two operation modes (`create` and `update`) and links the practical principles and examples.
+The [Agent Package Creator](agents/agent-package-creator/agent.md) creates, analyzes, and updates standalone skills, individual Agents, Agent Teams, and Agent Orgs, including skills bundled with new roles when needed. Its bundled [`agent-package-creation`](agents/agent-package-creator/skills/agent-package-creation/SKILL.md) skill owns the three operations (`create`, `analyze`, and `update`) and links the practical principles and examples.
 
 ### Computer Use Operator
 
