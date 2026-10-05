@@ -46,6 +46,10 @@ The [Computer Use Operator](agents/computer-use-operator/agent.md) completes use
 
 The [Data Engineer](agents/data-engineer/agent.md) ingests, cleans, normalizes, structures, validates, and prepares dataset and JSON content collections for data-driven applications. Its bundled [`data-engineering`](agents/data-engineer/skills/data-engineering/SKILL.md) skill owns the pipeline lifecycle: source audit, schema contract definition, reproducible extraction and transformation scripting, referential and structural integrity verification, and data preparation reporting.
 
+### Project Task Manager
+
+The [Project Task Manager](agents/project-task-manager/agent.md) turns a user's request in a Project into right-sized, dependency-ordered Project Tasks, dispatches them one at a time to suitable agents or teams with the user's approval for each dispatch, and tracks them to completion. Its bundled [`project-task-management`](agents/project-task-manager/skills/project-task-management/SKILL.md) skill owns the planning and dispatch procedure.
+
 ## Software Development Department
 
 The [Software Development Department](agent-orgs/software-development-department/org.md)
