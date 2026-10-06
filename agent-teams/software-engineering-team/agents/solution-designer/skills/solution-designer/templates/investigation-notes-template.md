@@ -15,6 +15,7 @@ Keep evidence, sources, observations, and unknowns here rather than overloading 
 - Bootstrap result:
 - Bootstrap blocker:
 - Current solution revision ID: `SR-*` / `N/A`
+- Authorities read (requirements reading gate; file and date): `references/requirements-engineering.md`
 - Investigation status:
 
 ## Initial Request And Clarifications

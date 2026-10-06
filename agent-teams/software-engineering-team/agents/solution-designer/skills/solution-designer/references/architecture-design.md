@@ -2,6 +2,8 @@
 
 Read after requirements approval for architecture design, and during design-impact recovery. The main skill owns phase transitions and recovery; this reference owns technical design quality and post-design classification.
 
+[design-principles.md](../design-principles.md) is the canonical design authority. It governs what architecture investigation must establish as well as how the design is reasoned. The design-spec template records the completed design; it is not the design method.
+
 ## Architecture Investigation Standard
 
 - Begin from the approved requirements, investigation notes, and supplements, but perform the additional technical investigation needed for architecture decisions.
@@ -38,7 +40,7 @@ adding parallel journals/backups for speculative failures.
 
 ## Design Production Rules
 
-- Use [design-spec-template.md](../templates/design-spec-template.md) as the mandatory design structure and [design-principles.md](../design-principles.md) as the canonical design authority.
+- Write the design in [design-spec-template.md](../templates/design-spec-template.md), the mandatory structure for recording it, after making the decisions with the design principles.
 - Build from approved behavior, requirements evidence, architecture investigation, applicable supplements, and current code reality.
 - Preserve stable behavior, requirement, and acceptance-criteria IDs. Link each relevant behavior to its approved trigger, target production path, lifecycle boundary, and applicable spine IDs.
 - Keep the design actionable in the current codebase; implementation and review must not reconstruct the target structure from scattered notes.
