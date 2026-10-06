@@ -18,20 +18,21 @@ This is the canonical shared design reference for the software engineering team.
 
 ## Project-Specific Design Principles
 
-This file holds the common design principles that apply to every project. A
-project can add its own project-specific design principles in a `DESIGN.md` at
-its repository root, and in a closer `DESIGN*.md` for one part of the
-repository. Respect both when designing, implementing, or reviewing a change in
-that project.
+This file holds the general design principles that apply to every software
+project. A project can also have its own project-specific design principles,
+such as its patterns, libraries and conventions, in a `DESIGN.md` at its
+repository root and in closer `DESIGN*.md` files for parts of the repository.
+When designing, implementing, or reviewing a change, apply the general
+principles and respect the project's own as well.
 
-- Read the `DESIGN.md` files that apply to the changed code, and the documents
-  they link. A closer file refines the root one for its directory. When the
-  design spec records which files apply, use those.
-- Project-specific principles add to the common principles; they do not waive
+- Check whether the project has `DESIGN.md` files that apply to the changed
+  code, read them, and follow them. A closer file refines the root one for its
+  directory. When the design spec records which files apply, use those.
+- Project-specific principles add to the general principles; they do not waive
   them or change approvals, ownership, routing, or the review bar. When the two
-  conflict, follow the common principles and record the conflict as an open
-  question for the user. When a project rule or link no longer matches the
-  repository, record the discrepancy.
+  conflict, follow the general principles and record the conflict as an open
+  question for the user. When a project rule no longer matches the repository,
+  record the discrepancy.
 - When a project has no `DESIGN.md`, follow the conventions visible in its
   existing code and record `No project DESIGN.md found`.
 
