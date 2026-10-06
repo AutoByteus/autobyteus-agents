@@ -74,6 +74,43 @@ Two quick checks before any acceptance:
 2. **What is compared.** UI code, UI text, structure, styles, states and
    behavior must match. Data values are illustrative.
 
+## Core Design Rules
+
+These rules govern every future-state change. The rest of this skill points
+back to them.
+
+1. **Evolve the product in place.** Start from the accepted baseline and make
+   the smallest localized change that answers the request. Do not replace the
+   product shell with a disconnected demo or move the behavior into a
+   standalone visualizer. Build the critical journey first. Add alternate,
+   loading, empty, permission, error, and recovery states only when they
+   affect the decision.
+2. **Keep interactions real; simulate underneath.** Every visible control is
+   a real product control. When an agent, the server, or time causes the
+   change, trigger it through that actor's real product surface, such as a
+   scripted tool call in the agent's own conversation. Never add a review
+   panel, overlay, or URL switch (shared principles, section 5).
+3. **Use only paths the product has.** Before you propose a journey step,
+   confirm in the source or product docs that the product supports it, and
+   record where. Never invent a product control to stage a scenario. A path
+   the product lacks is a requirement change (Findings Rules).
+4. **Commit to one design.** Present the design you recommend, even when the
+   request lists options. Describe the alternatives in words in the review
+   notes, with your reasoning. Build an alternative only if the user asks to
+   see it, as a real variant reached through normal product UI, never as a
+   toggle.
+5. **Own the visual quality of what you change.** Inside the changed area,
+   judge the existing visual quality and fix its problems, recording each fix
+   as a design change. Outside it, keep appearance and behavior exact. Passing
+   functional and parity checks does not show that a screen is clean.
+6. **Review inside the product.** The ticket worktree already isolates the
+   change, so the review URL is the product's normal entry point, with no
+   preview-only state. Run the visual design review (Validation) before
+   presenting.
+
+If a focused static artifact or direct clarification would answer the question
+better than a UI reference, return that recommendation instead.
+
 ## Mode Boundary
 
 This skill is the product-facing evolution workflow. Use it when the request
@@ -188,19 +225,6 @@ the ticket is in progress. Keep the ticket record, UI/UX specification, final
 visual references, and ticket-specific support artifacts together under that
 worktree's ticket folder.
 
-## Design Proportionality
-
-Keep the future-state change proportional to the decision:
-
-- For an existing product surface, start from the accepted baseline and make
-  the smallest localized change that answers the request. Do not replace the
-  product shell with a disconnected demo application or move the affected
-  behavior into an unrelated standalone visualizer.
-- Build one critical journey before secondary flows.
-- Include alternate, loading, empty, permission, error, and recovery states only when they affect the product decision.
-- Compare alternatives only when the request asks for comparison or the solution designer identifies a real ambiguity.
-- Do not build a UI reference when a focused static artifact or direct clarification would answer the question more effectively; return that recommendation.
-
 ## Bootstrap Routing
 
 - For an existing frontend, check only whether the active Product ticket
@@ -275,7 +299,8 @@ Keep the future-state change proportional to the decision:
 1. Read the active Product ticket and management state, then restate the
    decision questions, in-scope IDs, critical journey, constraints, and
    non-goals. Read applicable requirements, investigation, revision, and
-   feedback artifacts when they exist.
+   feedback artifacts when they exist. Confirm that each journey step you
+   plan exists in the product (Core Design Rule 3).
 2. Use the management skill's active ticket worktree, accepted base revision,
    repository instructions, and runtime-isolation record.
 3. Inspect the accepted current-experience baseline and its bootstrap evidence
@@ -284,15 +309,15 @@ Keep the future-state change proportional to the decision:
    acceptance, return `Baseline Needed` through the management and handoff
    process and stop future-state work until the Product UI/UX Designer accepts it.
 4. Create or update only the mode-specific source and supporting artifacts in
-   the active ticket worktree. Preserve the accepted baseline and implement the
-   smallest future-state delta that exercises the requested decisions. For
+   the active ticket worktree. Implement the smallest future-state delta that
+   exercises the requested decisions, following the Core Design Rules. For
    no-frontend work, build the smallest runnable experience directly in the
    management-established baseline worktree.
 5. Start the UI reference using the runtime resources recorded by the management
-   skill. Validate the critical journey, relevant scenarios, preserved baseline
-   surfaces, and production-quality visual finish in a browser. Correct every
-   observed visual or interaction discrepancy and repeat validation before
-   presenting the review URL.
+   skill. Validate the critical journey, relevant scenarios, and preserved
+   baseline surfaces in a browser, and run the visual design review. Correct
+   every observed visual or interaction discrepancy and repeat validation
+   before presenting the review URL.
 6. Keep the UI reference available, give the user the review URL and concise
    review focus, and provide the evidence needed for management to set the
    ticket status to `Awaiting User Review`. Request explicit feedback.
@@ -301,10 +326,9 @@ Keep the future-state change proportional to the decision:
    ticket back to `In Progress`. Revalidate affected and relevant regression
    paths, and repeat review as needed.
 8. After explicit user confirmation, perform final browser and visual
-   validation, including the approved experience through its normal/default
-   entry point rather than relying only on a preview URL. If that validation
-   requires a material visible or behavioral change, reopen user review before
-   finalizing.
+   validation of the approved experience through its normal entry point. If
+   that validation requires a material visible or behavioral change, reopen
+   user review before finalizing.
 9. Capture canonical screenshots for relevant pages, states, and viewports in
    the current ticket's `visual-references/` directory using stable `VIS-*`
    IDs.
@@ -317,9 +341,8 @@ Keep the future-state change proportional to the decision:
     Include the canonical repository, ticket branch, accepted base, and resulting
     UI reference revision from management state when recording provenance.
 11. Return the completed mode artifacts and final validation evidence to the
-    management skill for the final ticket state, commit, integration, any
-    approved preview promotion, ticket closure, and cleanup. Do not claim
-    completion before integration and any required baseline promotion are
+    management skill for the final ticket state, commit, integration, ticket
+    closure, and cleanup. Do not claim completion before integration is
     durable.
 12. Classify the final package as `Design Completed` only after management
     finalization succeeds, then follow the handoff rules with the ticket record,
@@ -330,8 +353,8 @@ Keep the future-state change proportional to the decision:
 
 - For an existing UI reference, read the current design artifacts and implementation before changing either.
 - Treat the accepted UI inventory and its exact visual evidence as the
-  preservation baseline. Keep unaffected appearance and user-facing behavior
-  exact while distinguishing each requirements-driven intentional delta.
+  preservation baseline outside the changed area (Core Design Rule 5), and
+  distinguish each intentional delta, including visual-quality fixes.
 - When material revision rounds need traceability, create `design-change-log.md` and assign every recorded addition, behavior change, or removal a stable, never-reused `DC-*` ID.
 - Record which accepted behaviors are preserved, intentionally changed, or removed.
 - Keep existing transition and scenario IDs stable when their meaning has not changed.
@@ -367,6 +390,10 @@ Keep the future-state change proportional to the decision:
   accepted baseline for preserved areas and with the approved intended design
   for changed areas. Fix every visible or interaction discrepancy and repeat
   browser validation until none remains.
+- Visual design review: look at every changed screen as a user would, beside
+  the surrounding product. Check hierarchy, colour noise, borders and boxes,
+  and consistency with sibling components, and ask whether it looks like the
+  product. Fix what you find, then revalidate.
 - Compare source and baseline/design per component and per state, never by whole-page
   text or layout hashes. Page-level hashes fail on every illustrative data
   difference and hide real UI differences. Compare separately:
@@ -390,8 +417,6 @@ Keep the future-state change proportional to the decision:
 - Reconfirm with the user after any post-confirmation change that materially alters visible or interactive behavior.
 - Run the available build, typecheck, lint, unit, or browser checks that are proportionate to the UI reference.
 - Record exact commands, results, review URL, and any limitation.
-- For an explicitly approved preview candidate, validate the normal/default
-  entry point as well; a review URL alone does not prove baseline promotion.
 - Keep the UI reference process available during active user review. Clean it up after the review stage ends or the user no longer needs the live URL, without disrupting unrelated user processes.
 
 ## Quality Gate
@@ -401,9 +426,6 @@ Before reporting the design package as completed, confirm:
 - the design repository/root is distinct from production frontend paths and
   its source pin, accepted base, ticket branch/worktree, and committed design
   revision are recorded
-- an explicitly approved preview candidate, when present, is promoted so the
-  approved experience is reachable through the normal/default entry point
-  without preview-only state, and the promotion evidence is recorded
 - the ticket identifier, ticket status, ticket folder, and linked artifacts are
   recorded and agree
 - repository management has recorded the integration result and safe cleanup
@@ -417,13 +439,16 @@ Before reporting the design package as completed, confirm:
   captured or bulk-copied source data or content remains anywhere in
   the design repository, including statically imported content files.
   Fixture size and provenance are recorded.
-- the documented command starts the UI reference and the critical journey is runnable
+- the documented command starts the UI reference, and the critical journey,
+  including any actor-caused change, runs from the product's normal entry
+  point with no preview-only control, overlay, or URL switch
 - `ui-ux-spec.md`, the runnable UI reference, final screenshots, and applicable supporting artifacts agree
 - the UI/UX specification records the user's confirmation reference
 - every requested action has visible feedback and every important transition has a stable ID
 - changed behavior and relevant previously accepted journeys have been exercised
 - simulation boundaries, simplifications, and production gaps are explicit
-- the visual direction is specific to the product rather than a generic starter screen
+- every changed screen passed the visual design review and looks like the
+  product rather than a generic starter screen
 - hierarchy, dimensions, spacing, density, typography, font assets, colors,
   borders, radii, shadows, icons, imagery, surfaces, controls, states, focus,
   feedback, motion, and responsive behavior are production-quality and fully
@@ -478,6 +503,16 @@ instead.
   so small that lists, grouping, paging, empty and locked states never render.
   Correction: minimal data is enough items of each shape to show every UI
   state, and no more.
+- **Review control panels or overlays on top of the product**, including a
+  `?prototypeReview=` switch copied from an older ticket. Correction: Core
+  Design Rule 2.
+- **Asking the user to choose between switches instead of designing.**
+  Correction: Core Design Rule 4.
+- **Preserving a visibly unclean baseline inside the area you are
+  redesigning** because every functional check passed. Correction: Core
+  Design Rule 5.
+- **Proposing a product path that doesn't exist.** Correction: Core Design
+  Rule 3.
 
 ## Findings Rules
 

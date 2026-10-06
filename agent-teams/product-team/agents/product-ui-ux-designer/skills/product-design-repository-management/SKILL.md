@@ -19,8 +19,7 @@ You own the Product Design repository lifecycle:
 - create, verify, resume, and safely clean up one ticket branch/worktree per
   active requirements-driven request;
 - record the canonical repository, active worktree, branch, base revision,
-  ticket revision, promoted default baseline revision, runtime resources, and
-  integration/promotion state;
+  ticket revision, runtime resources, and integration state;
 - protect unrelated changes and prevent two executions from using the same
   ticket worktree;
 - commit accepted baseline and ticket changes in the Product design
@@ -241,25 +240,21 @@ are complete. Then the Product UI/UX Designer performs this repository sequence:
    - Without a remote, fast-forward the canonical checkout's default branch to
      the ticket branch instead.
    - Every later finalization commit on the default branch, such as an
-     integration record, baseline promotion, or ticket move, follows the same
+     integration record or ticket move, follows the same
      push-then-update sequence. Finish by confirming that the local default
      branch and `origin/<default-branch>` are the same revision.
 
-   Revalidate after integration. When the ticket contains an approved preview
-   candidate for the product experience, promote that candidate into the
-   default baseline before terminal completion: the approved experience must be
-   reachable through the normal/default entry point without preview-only state.
-   Record the integration revision and promoted baseline revision separately
-   when needed. A merged candidate that still requires a preview URL is not a
-   completed baseline promotion; preserve the ticket and report the promotion
-   as incomplete or blocked. Record `Completed`, `Not required`, or `Blocked`,
-   and do not imply that an unintegrated branch is present on the default
-   branch.
+   Revalidate after integration: the approved experience must be reachable
+   from the default branch through the product's normal entry point, without
+   a preview URL or preview-only state. If it is not, preserve the ticket and
+   report the integration as `Blocked`. Record `Completed`, `Not required`,
+   or `Blocked`, and do not imply that an unintegrated branch is present on
+   the default branch.
 5. Move an accepted completed ticket from
    `tickets/in-progress/<ticket-id>/` to `tickets/done/<ticket-id>/` in the
    same repository-finalization sequence, when the ticket policy defines that
    transition. Keep blocked or unfinished work in `tickets/in-progress/`.
-6. Stop active preview processes, then remove the local worktree only after
+6. Stop the ticket's running UI reference processes, then remove the local worktree only after
    final evidence, handoff, and integration state are durable. Retain or
    delete the ticket branch only under repository policy. If cleanup is unsafe,
    leave the worktree intact and report the exact cleanup blocker.
@@ -279,8 +274,7 @@ Before returning control to the selected mode skill, provide or record:
 - source repository/frontend and pinned source revision when applicable;
 - accepted design base revision;
 - ticket commit/revision when one exists;
-- promoted default baseline revision when an approved candidate is promoted;
-- default-entry-point promotion validation evidence or exact blocker;
+- default-entry-point validation evidence after integration, or exact blocker;
 - runtime port/process/temp-state ownership;
 - baseline status and Bootstrapper report path when applicable;
 - default branch, its local and `origin` revisions after integration, and the

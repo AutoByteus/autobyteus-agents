@@ -281,6 +281,17 @@ for a design workspace. Later requirements-driven work normally belongs to
   is not itself under review. Saving may update memory, streaming may use a
   timer, a terminal may return scripted output, and a run may advance through
   predefined statuses.
+- **Actor-caused changes.** When an agent, the server, or the passage of time
+  causes a change on a product surface, trigger it through that actor's real
+  product surface. Examples are a scripted reply or tool call in the agent's
+  own conversation, the existing product page that causes the change, or a
+  scripted timeline. Simulation lives under the interface, never on top of it.
+  Never add a control panel, overlay, debug toolbar, or URL switch that is not
+  part of the product. Scenario selection may seed the starting state, role,
+  or context without visible UI. It does not trigger the change under review.
+- Historical `prototypeReview` URLs, review-controlled scenarios, and in-page
+  comparison switches in existing design repositories are legacy evidence. Do
+  not use them as a pattern for new work.
 - Do not reproduce GraphQL, REST, WebSocket, authentication, persistence,
   filesystem, terminal, model, tool, messaging, update, download, or other
   production contracts merely to keep production stores or clients unchanged.
@@ -364,8 +375,8 @@ for a design workspace. Later requirements-driven work normally belongs to
   source repository, a production frontend directory, a Solution Designer worktree, or a generic
   `designs/` or `prototypes/` directory.
 - The Product UI/UX Designer owns the design repository and its lifecycle: tickets,
-  ticket branches and worktrees, ticket statuses, commits, integration,
-  baseline promotion, and cleanup. Its `product-design-repository-management`
+  ticket branches and worktrees, ticket statuses, commits, integration, and
+  cleanup. Its `product-design-repository-management`
   skill defines that lifecycle. Solution Designer may link design artifacts
   but does not manage them.
 - Design work writes only to the design repository, through the assigned

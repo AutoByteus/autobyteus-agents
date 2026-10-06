@@ -28,7 +28,8 @@ does not own requirements or production implementation.
 
 The shared `product-design-principles.md` holds the rules both members
 follow: the team's terms, why it designs in code, what a UI reference is, UI
-parity, mock data, the repository boundary, and the Bootstrapper boundary.
+parity, mock data, simulation under the interface (including actor-caused
+changes), the repository boundary, and the Bootstrapper boundary.
 Detailed workflows belong to the member skills.
 
 ## Cooperation
