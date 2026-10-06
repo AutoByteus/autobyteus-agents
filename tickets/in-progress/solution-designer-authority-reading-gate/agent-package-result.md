@@ -54,6 +54,25 @@ PR #27 was merged into `main` first, with the user's authorization (admin bypass
   - The shared principles say only "when the design spec records which files apply, use those". No other agent names those fields (checked with `grep`), so downstream consumers are unaffected.
 - **`architecture-design.md`:** #27's bullet now says "apply" (the reading is gated in `SKILL.md`) and points the record to the design-spec field.
 
+### Content review of the combined result
+
+After the merge, both changes were reviewed together for content, not just for textual conflicts:
+
+- **#27 alone is sound.** The shared section is placed first in `design-principles.md`, so every consumer reads it. Common principles win on conflict. The migration check now finds the guideline through `DESIGN.md`, and the workspace's root `DESIGN.md` (default branch `origin/personal`) does link `autobyteus-server-ts/docs/design/data_migration_guideline.md`, so removing the hard-coded path loses nothing.
+- **One problem came from combining the two.**
+  - #28's gate says "read each gate file in full", and the first merge listed "`DESIGN.md` and the documents they link".
+  - Together these would force reading every linked design document in full on every task: migration, startup, streaming protocol, terminal and others.
+  - The workspace `DESIGN.md` itself says to read a linked document only "when a change touches one of these areas".
+  - Fixed: the gate now covers `DESIGN.md` plus "each document they link whose area the change touches", and the design-spec record matches.
+- Everything else in the combined text checks out:
+  - The `architecture-design.md` opening and its #27 bullet agree.
+  - Phase 3 step 2's migration check goes through the updated reference.
+  - Exactly one read record exists.
+- **Left as follow-ups (shared file / other agents, not in this PR):**
+  - The shared principles' unconditional "and the documents they link" has the same over-reading effect for reviewers and implementation. Suggested wording: "the linked documents whose area the change touches".
+  - The reviewers' and implementation engineer's templates have no field to record which `DESIGN.md` applies or that none was found.
+  - #27's ticket record still describes the removed investigation-notes field. It stays as a historical record.
+
 ## Ownership and design decisions
 
 - The read-versus-write (proportionality) rule and the template-timing rule: owned by the `SKILL.md` "Phase reading gates" paragraph alone.
