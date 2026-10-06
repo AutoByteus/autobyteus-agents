@@ -13,6 +13,8 @@
 
 Created a standalone Project Task Manager. It resolves the Project, reads existing Tasks, investigates enough to plan, splits the request into Tasks of at most about three days of work, orders them by dependency in `task-plan.md`, gets the user's approval of the plan, creates the Tasks, then dispatches one ready Task at a time with the user's approval for each dispatch, and tracks results to DONE (user direction, 2026-10-05). Task descriptions are ordinary, detailed task descriptions (user direction); dependencies and order live in the plan, not in Task fields.
 
+Update 2026-10-06 (user request): added `create_or_update_project`, the fourth Project tool on the server (`origin/personal`). The skill now creates a Project only after the user agrees, and sets DONE only when no follow-up is needed, because DONE now stops and removes the Task's delegated workers. `skillScope` is left unset: the server default is `CONFIGURED`, so the agent gets only its own skill.
+
 ## Ownership and design decisions
 
 - Identity and stance: `agent.md`. Tools and skill: `agent-config.json`.
