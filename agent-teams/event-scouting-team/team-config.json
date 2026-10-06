@@ -1,0 +1,34 @@
+{
+  "coordinatorMemberName": "event_scout",
+  "members": [
+    {
+      "memberName": "event_scout",
+      "ref": "event-scout",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "computer_use_operator",
+      "ref": "computer-use-operator",
+      "refType": "agent",
+      "refScope": "shared"
+    }
+  ],
+  "handoffs": [
+    {
+      "from": "/event_scout",
+      "to": "/computer_use_operator",
+      "rules": [
+        "When a search-request.md to collect events from event sites is saved and ready.",
+        "When a registration-request.md for a user-approved event is saved and ready."
+      ]
+    },
+    {
+      "from": "/computer_use_operator",
+      "to": "/event_scout",
+      "rules": [
+        "When task-result.md for an Event Scout request is saved with outcome Completed, Blocked, or Needs Decision."
+      ]
+    }
+  ]
+}

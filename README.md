@@ -102,6 +102,10 @@ The Product Team (`product-team`) performs code-first Product UI/UX Design, desi
 
 The [Marketing Team](agent-teams/marketing-team/team.md) separates content from computer work (websites, downloads, tools). Its `marketing_content_creator` coordinator drafts channel-native posts, replies, and articles with the user through a draft–feedback–approval loop, then hands each approved package to the shared [Computer Use Operator](agents/computer-use-operator/agent.md), which publishes with native input and handles downloads and tool work. The `marketing_performance_analyst` runs a build-measure-learn loop: it has the Operator collect views, likes, and replies for published posts, compares results with the baseline and goals, and proposes the next strategy version, which the Content Creator applies after the user approves. Private data stays in the workspace: the style library (`marketing-style/`: voice, positioning, channel guides), website and tool knowledge (`web-ui-sites/`, `computer-tools/`), per-platform conversation folders (`linkedin/`, `x/`, …), the approved strategy and published-post index (`marketing-strategy/`), and performance data (`data/performance/`). A new channel needs only a channel guide; the Operator learns the new site on its first successful run.
 
+## Event Scouting Team
+
+The [Event Scouting Team](agent-teams/event-scouting-team/team.md) finds events worth attending, such as AI builder and founder events or investor events, on Luma and other event sites. Its `event_scout` coordinator keeps the user's event profile, assesses fit, tracks every event considered, and shortlists the best for approval; the shared [Computer Use Operator](agents/computer-use-operator/agent.md) browses the sites and registers the user only for approved events. Private data stays in the workspace (`events/`: profile, tracker, shortlists, registrations; `web-ui-sites/` for site knowledge).
+
 ## AutoByteus Org
 
 The [AutoByteus Org](agent-orgs/autobyteus-org/org.md) mounts the shared
