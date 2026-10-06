@@ -62,8 +62,11 @@ First distinguish solution work from returned notifications:
    result in the available safe reporting workspace before deeper work. Do not
    create task drafts in the shared integration checkout to report that failure.
 4. In the established workspace, create or locate `requirements-doc.md` (Draft
-   for new work) and begin `investigation-notes.md` before deeper investigation.
-   Record the bootstrap evidence and link any earlier blocker report.
+   for new work) from [requirements-doc-template.md](templates/requirements-doc-template.md)
+   and begin `investigation-notes.md` from
+   [investigation-notes-template.md](templates/investigation-notes-template.md)
+   before deeper investigation. Record the bootstrap evidence and link any
+   earlier blocker report.
 5. On resumed work, read the current requirements, approval references,
    evidence, design when present, supplements and revision history. Verify
    that approval actually applies to the current intended behavior. Preserve
@@ -77,11 +80,18 @@ Approval or resumed design does not waive isolation for solution authoring.
 
 ## Operating Sequence
 
+**Phase reading gates.** Each phase below opens with a reading gate. In every
+task, read each gate file in full before starting that phase's work, including
+investigation, unless you already read it in the current conversation. Each
+template is introduced at the step that writes its artifact; a template records
+work done under these authorities and does not replace them. Record the files
+read in the phase artifact's `Authorities read` field. Proportionality limits
+what you write, never what you read: a narrow change still passes every gate.
+
 ### 1. Investigate And Engineer Requirements
 
-Read [requirements-engineering.md](references/requirements-engineering.md) for
-the detailed investigation, requirements, Product integration and readiness
-standards. Use the requirements and investigation templates listed below.
+**Reading gate:** [requirements-engineering.md](references/requirements-engineering.md)
+(investigation, requirements, Product integration and readiness standards).
 
 - Understand the request and investigate the real product, relevant code,
   runtime evidence, data and governing contracts. Technical feasibility
@@ -96,7 +106,9 @@ standards. Use the requirements and investigation templates listed below.
 - Assign stable behavior, scenario, use-case, requirement and acceptance-criteria IDs;
   define current, desired and preserved behavior, scope/non-goals, measurable
   constraints, data-continuity requirements, unknowns and verification intent.
-- Create `SR-001` at the first coherent requirements baseline used for product
+- Create `solution-revision-record.md` from
+  [solution-revision-record-template.md](templates/solution-revision-record-template.md)
+  with `SR-001` at the first coherent requirements baseline used for product
   review, Product handoff or approval. Record later materially completed rounds
   in the same solution revision index.
 - When the user explicitly or after clarification requests Product Team help, persist context, classify `Product Design Requested` and
@@ -122,35 +134,42 @@ standards. Use the requirements and investigation templates listed below.
 
 ### 3. Investigate Architecture And Produce Design
 
-Read [architecture-design.md](references/architecture-design.md),
-[design-principles.md](design-principles.md), including the project-specific
-design principles it describes. Use
-[design-examples.md](design-examples.md) when concrete shape guidance helps.
-Use the examples as guidance, not mechanical templates.
+**Reading gate:** [architecture-design.md](references/architecture-design.md);
+[design-principles.md](design-principles.md), the canonical design authority;
+and the project's applicable `DESIGN.md` files, as its
+[Project-Specific Design Principles](design-principles.md#project-specific-design-principles)
+section describes, plus each document they link whose area the change
+touches. Read them before architecture investigation; they govern what to
+investigate as well as how to design.
 
-- Reconfirm workspace isolation and requirements/supplement approval.
-- Before any persisted-data migration design, follow the mandatory repository
-  migration-conventions investigation in [architecture-design.md](references/architecture-design.md).
-  Record the governing convention and predecessor source dispositions before
-  choosing migration success semantics or an application-startup gate.
-- Produce a design spec for every solution before implementation handoff.
-  For a narrow local change, keep the design concise: explain the existing
-  owner/path, intended delta, affected files, evidence and design-health decision.
-  Apply mandatory template sections proportionately and use reasoned `N/A`
-  for genuinely inapplicable details, rather than inventing architecture.
-- Perform additional architecture-level current-state investigation. Earlier
-  discovery is input, not proof that all technical facts are known. Extend the
-  same investigation notes with exact sources, commands, probes and unknowns.
-- Build `design-spec.md` from approved scenarios and behavior, evidence and
-  current code. Map behavior IDs to target production paths and lifecycle
-  boundaries before defining spines, owners, off-spine concerns, subsystems,
-  interfaces, reusable structures, file responsibilities and folder placement.
-- Preserve the detailed design-health/root-cause/refactor assessment, clean-cut
-  removal and dependency rules, evidence-based persisted-data transition
-  decisions, change sequencing and implementation guidance in the standards
-  and design template. Do not infer migration solely from a schema change.
-- Resolve requirement implications using Recovery below, rather than silently
-  changing intended behavior to fit the architecture.
+1. Reconfirm workspace isolation and requirements/supplement approval.
+2. Perform architecture-level current-state investigation. Earlier discovery
+   is input, not proof that all technical facts are known. Trace each relevant
+   behavior's complete production path and its owners. Extend the same
+   investigation notes with exact sources, commands, probes and unknowns.
+   Before any persisted-data migration design, complete the mandatory
+   repository migration-conventions investigation in
+   [architecture-design.md](references/architecture-design.md), recording the
+   governing convention and predecessor source dispositions before choosing
+   migration success semantics or an application-startup gate.
+3. Make the design decisions by applying the design principles: map behavior
+   IDs to target production paths and lifecycle boundaries, then decide spines,
+   owners, off-spine concerns, subsystems, interfaces, reusable structures,
+   file responsibilities and folder placement. Assess design health, root cause
+   and refactor need against the principles' Task Design Health Assessment and
+   Structural Triggers. Decide clean-cut removal, dependency rules,
+   evidence-based persisted-data transitions (never inferred solely from a
+   schema change) and change sequencing. Use
+   [design-examples.md](design-examples.md) when concrete shape guidance helps;
+   use the examples as guidance, not mechanical templates.
+4. Write `design-spec.md` from
+   [design-spec-template.md](templates/design-spec-template.md); every solution
+   needs one before implementation handoff. For a narrow local change, keep the
+   written design concise: explain the existing owner/path, intended delta,
+   affected files, evidence and design-health decision. Use reasoned `N/A` for
+   genuinely inapplicable details rather than inventing architecture.
+5. Resolve requirement implications using Recovery below, rather than silently
+   changing intended behavior to fit the architecture.
 
 ### 4. Classify The Completed Solution
 
@@ -175,6 +194,7 @@ applying them. Completing design does not itself require independent review.
 For every new conversation or feedback report, read the latest canonical
 artifacts and classify the actual impact before revising them. Preserve package
 identity, stable IDs and history. Investigation may resume in either phase.
+Revising requirements or design re-enters that phase, so its reading gate applies.
 
 | Finding | Required work | Approval / forward-work boundary |
 | --- | --- | --- |
@@ -203,17 +223,12 @@ review, API/E2E and delivery retain their local-fix and failure-origin ownership
 
 ## Artifacts And Solution Revision Record
 
-For solution authoring, maintain:
-
-- [requirements-doc-template.md](templates/requirements-doc-template.md) → `requirements-doc.md`
-- [investigation-notes-template.md](templates/investigation-notes-template.md) → `investigation-notes.md`
-- [solution-revision-record-template.md](templates/solution-revision-record-template.md) → `solution-revision-record.md` from the first coherent requirements baseline
-
-After requirements approval, also maintain
-[design-spec-template.md](templates/design-spec-template.md) → `design-spec.md`;
-it is required for every implementation-ready package.
-Keep useful supplements in the canonical investigation inventory, with purpose,
-owner, scope, related IDs, status and approval applicability. Do not promote
+Maintain `requirements-doc.md`, `investigation-notes.md` and
+`solution-revision-record.md` throughout solution authoring, and `design-spec.md`
+after requirements approval; the design spec is required for every
+implementation-ready package. The operating sequence introduces each template
+where its artifact is created. Keep useful supplements in the canonical
+investigation inventory, with purpose, owner, scope, related IDs, status and approval applicability. Do not promote
 disposable probes or create duplicates of Product-owned deliverables.
 
 Append one `SR-*` entry per materially completed solution round, including

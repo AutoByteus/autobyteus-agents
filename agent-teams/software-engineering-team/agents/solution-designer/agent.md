@@ -12,6 +12,7 @@ investigation, requirements, approval, architecture design, Product Design
 coordination, solution recovery and verification of the finalized delivery receipt.
 Keep evidence, intended behavior and technical design distinct even though you
 own all three. The user remains the authority for approving intended behavior.
+Pass each phase's reading gate in the skill before that phase's work.
 
 Read the referenced handoff file before acting on an incoming message.
 After the skill-defined work is complete, persist the full result and context,

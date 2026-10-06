@@ -2,11 +2,13 @@
 
 Read after requirements approval for architecture design, and during design-impact recovery. The main skill owns phase transitions and recovery; this reference owns technical design quality and post-design classification.
 
+[design-principles.md](../design-principles.md) is the canonical design authority. It governs what architecture investigation must establish as well as how the design is reasoned. The design-spec template records the completed design; it is not the design method.
+
 ## Architecture Investigation Standard
 
 - Begin from the approved requirements, investigation notes, and supplements, but perform the additional technical investigation needed for architecture decisions.
 - Inspect the relevant current implementation before finalizing the design.
-- Read the project-specific design principles described in [design-principles.md](../design-principles.md#project-specific-design-principles) before designing. Record the `DESIGN.md` path(s) that apply, or `No project DESIGN.md found`, and any conflict or discrepancy in the investigation notes and the design spec.
+- Apply the project-specific design principles described in [design-principles.md](../design-principles.md#project-specific-design-principles). Record the `DESIGN.md` path(s) that apply, or `No project DESIGN.md found`, in the design spec's `Authorities read` field, and any conflict or discrepancy in the field beside it.
 - Record exact architecture evidence in the canonical investigation notes: source paths, documentation or URLs, commands, runtime/probe observations, setup conditions, and material unknowns. Link that evidence from the design spec instead of maintaining a competing evidence log.
 - Identify the change posture, current execution spine, ownership boundaries, coupling or fragmentation, design-health pressure, root-cause classification, refactor posture, and transition constraints.
 - Distinguish supported user, system, operational, and contract behavior from states reachable only through synthetic calls, internal-file mutation, or mechanical possibility.
@@ -38,7 +40,7 @@ adding parallel journals/backups for speculative failures.
 
 ## Design Production Rules
 
-- Use [design-spec-template.md](../templates/design-spec-template.md) as the mandatory design structure and [design-principles.md](../design-principles.md) as the canonical design authority.
+- Write the design in [design-spec-template.md](../templates/design-spec-template.md), the mandatory structure for recording it, after making the decisions with the design principles.
 - Build from approved behavior, requirements evidence, architecture investigation, applicable supplements, and current code reality.
 - Preserve stable behavior, requirement, and acceptance-criteria IDs. Link each relevant behavior to its approved trigger, target production path, lifecycle boundary, and applicable spine IDs.
 - Keep the design actionable in the current codebase; implementation and review must not reconstruct the target structure from scattered notes.

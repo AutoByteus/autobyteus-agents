@@ -9,6 +9,8 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Behavior-defining supplements and their approval references:
 - Design status: `Draft` / `Ready` / `Needs Revision` / `Blocked`
 - Canonical investigation-notes path:
+- Authorities read (design reading gate; file and date): `references/architecture-design.md`, `design-principles.md`, applicable project `DESIGN.md` path(s) and the linked documents whose area the change touches (or `No project DESIGN.md found`); `design-examples.md` sections, if used:
+- Project design-principle conflicts with the common principles, or discrepancies (open questions for the user):
 
 Changed intended behavior requires renewed user approval before affected design is authoritative. An evidence-only or technical-design revision does not itself invalidate unchanged requirements approval.
 
@@ -29,9 +31,6 @@ inputs to the configured handoff rules; they do not select recipients.
 - Escalation trigger if implementation or validation discovers new impact:
 
 ## Architecture Investigation Evidence
-
-- Project-specific design principles applied: `DESIGN.md` path(s), or `No project DESIGN.md found`:
-- Conflicts with the common principles, or discrepancies (open questions for the user):
 
 Link the architecture-level evidence gathered after requirements approval from the canonical investigation notes. Those notes own both product and technical observations; this section maps evidence to design decisions without duplicating the raw log.
 
@@ -63,9 +62,11 @@ List every still-relevant supplement used as design evidence or context and expl
 
 This section is required for every task: feature request, bug fix, behavior change, refactor, cleanup, performance issue, or larger requirement.
 Do not fill it with ritual text. Tie the decision to current-state evidence from the investigation notes and the real current code path.
+Apply [Task Design Health Assessment](../design-principles.md#task-design-health-assessment) and [Structural Triggers](../design-principles.md#structural-triggers). This section records the result of applying them; it does not replace them.
 
 - Change posture (`Feature`/`Bug Fix`/`Behavior Change`/`Refactor`/`Cleanup`/`Performance`/`Larger Requirement`):
 - Current design issue found (`Yes`/`No`/`Unclear`):
+- Structural triggers that fire, each with evidence; if none fire, name the triggers this change could plausibly hit and the evidence ruling each out:
 - Root cause classification (`Local Implementation Defect`/`Missing Invariant`/`Boundary Or Ownership Issue`/`Duplicated Policy Or Coordination`/`File Placement Or Responsibility Drift`/`Shared Structure Looseness`/`Legacy Or Compatibility Pressure`/`No Design Issue Found`/`Unclear`):
 - Refactor needed now (`Yes`/`No`/`Deferred`/`Unclear`):
 - Evidence:
@@ -82,9 +83,9 @@ Rules:
 
 Define only task-specific terms needed to interpret this design. Do not repeat the shared design glossary unless this task requires a narrower meaning or an explicit deviation.
 
-## Design Reading Order
+## Section Fill Order
 
-Use the sections in this template in the following reasoning order, moving from verified context to concrete structure:
+Design reasoning follows [design-principles.md](../design-principles.md#practical-application-guide); this list shows which template sections record each stage. The physical section order differs: for example, Task Size And Architectural Risk appears early but is completed last.
 
 1. current-state read, architecture investigation evidence, and intended change
 2. relevant behavior and production-path map plus applicable supplemental context
@@ -96,7 +97,7 @@ Use the sections in this template in the following reasoning order, moving from 
 8. folder/path mapping
 9. change sequence, tradeoffs, risks, and implementation guidance
 
-Complete every mandatory section, but apply the detailed mappings proportionately to the actual change. For a genuinely inapplicable section, write `N/A` with a short reason. Do not invent spines, subsystems, interfaces, abstractions, or risks merely to populate the template.
+Complete every mandatory section, but keep the written detail of each mapping proportionate to the actual change. For a genuinely inapplicable section, write `N/A` with a short reason. Do not invent spines, subsystems, interfaces, abstractions, or risks merely to populate the template.
 
 ## Legacy Removal Policy (Mandatory)
 
