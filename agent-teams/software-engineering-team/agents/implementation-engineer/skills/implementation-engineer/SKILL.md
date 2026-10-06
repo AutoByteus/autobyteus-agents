@@ -73,7 +73,7 @@ Use [templates/implementation-revision-record-template.md](templates/implementat
   decision or deferred-risk rationale wrong, return `Design Impact` instead
   of patching around an architecture-owned decision.
 - Treat API test authoring, API test execution, E2E tests, broader executable coverage, API/E2E environment bring-up beyond normal implementation needs, and pass/fail classification as owned by `api_e2e_engineer`, not by you.
-- Before running local checks, read the project's testing guideline: `TESTING.md`, or an equivalent `TESTING*.md`, at the repository root, plus any closer `TESTING*.md` between the root and the changed code. Take commands and preview surfaces from it; without one, use the README, development instructions, and package scripts. The guideline selects how to check, not who owns the check.
+- Before running local checks, read the project's testing guideline: `TESTING.md`, or an equivalent `TESTING*.md`, at the repository root, plus any closer `TESTING*.md` between the root and the changed code. Take commands and preview surfaces from it; without one, use the README, development instructions, and package scripts. The guideline selects how to check, not who owns the check. Project testing rules add to this skill's rules; when they conflict, follow this skill and record the conflict in the handoff, and record a guideline command or surface that no longer works as a discrepancy.
 - If you run local checks, keep them implementation-scoped and report them as local implementation checks, not as downstream API/E2E sign-off.
 - Replace in-scope behavior cleanly without compatibility wrappers, dual-path reads/writes, or legacy fallback branches.
 - Follow the design's persisted-data transition decision; do not create migration

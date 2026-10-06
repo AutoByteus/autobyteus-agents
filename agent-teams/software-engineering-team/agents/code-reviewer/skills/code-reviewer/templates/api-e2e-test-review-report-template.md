@@ -27,6 +27,7 @@ Keep one canonical report path across reruns. Reuse finding IDs for unresolved f
 - API/E2E Result:
 - Final Validation Confidence:
 - Prior unresolved test-review findings rechecked:
+- Project testing guideline(s) applied (from the coverage investigation), or `No project testing guideline found`; conflicts or discrepancies:
 - Supported Product Scenario Basis Confirmed: `Yes` / `No` / `Unclear`
 
 ## Changed Durable Test Scope
