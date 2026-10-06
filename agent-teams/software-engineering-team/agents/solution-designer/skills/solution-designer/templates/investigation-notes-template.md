@@ -166,6 +166,9 @@ request.
 
 ## Architecture Investigation Findings
 
+- Project-specific design principles: `DESIGN.md` path(s) that apply, or `No project DESIGN.md found`:
+- Conflicts with the common principles, or discrepancies:
+
 Extend these same notes during architecture work; do not create a separate
 architecture evidence authority. Record current entrypoints, execution/lifecycle
 boundaries, owners, coupling, root-cause evidence, transition constraints, exact
