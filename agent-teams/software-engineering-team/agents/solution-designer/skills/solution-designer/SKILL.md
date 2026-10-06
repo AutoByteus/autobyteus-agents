@@ -135,12 +135,11 @@ what you write, never what you read: a narrow change still passes every gate.
 ### 3. Investigate Architecture And Produce Design
 
 **Reading gate:** [architecture-design.md](references/architecture-design.md);
-[design-principles.md](design-principles.md), the canonical design authority;
-and the project's applicable `DESIGN.md` files, as its
-[Project-Specific Design Principles](design-principles.md#project-specific-design-principles)
-section describes, plus each document they link whose area the change
-touches. Read them before architecture investigation; they govern what to
-investigate as well as how to design.
+[design-principles.md](design-principles.md), the general design authority;
+and the project's own `DESIGN.md` files that apply, when the project has them
+(see [Project-Specific Design Principles](design-principles.md#project-specific-design-principles)).
+Read them before architecture investigation; they govern what to investigate
+as well as how to design.
 
 1. Reconfirm workspace isolation and requirements/supplement approval.
 2. Perform architecture-level current-state investigation. Earlier discovery
