@@ -123,3 +123,13 @@ The user reviews this analysis. If approved, I apply the planned changes, rerun 
 ## Handoff state
 
 Returned to the user in conversation for review. No handoff before the edits are applied.
+
+## Addendum: integration with PR #27
+
+PR #27 (merged to `main` as `dd42ef7`) added project-specific `DESIGN.md` reading and recorded the paths in two places. To keep one owner per rule while integrating it:
+
+- the design-phase reading gate in `SKILL.md` now includes the applicable `DESIGN.md` files
+- the design spec's `Authorities read` field is the single read record, with a conflicts/discrepancies field beside it
+- the duplicate investigation-notes and Architecture Investigation Evidence fields are removed
+
+Consumer check: no other agent's skill names those fields; the shared principles only require that the design spec record which files apply. The user approved this plan in conversation ("make the change on top of the merged one").

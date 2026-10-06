@@ -42,6 +42,18 @@ Round 2 (analysis revision 2) fixed the content flow:
   - `agent.md` is a plain gate pointer.
   - The triggers field now asks for evidence when no trigger fires.
 
+### Integration with PR #27 (project-specific design principles)
+
+PR #27 was merged into `main` first, with the user's authorization (admin bypass of the required-review rule, because the PR author can't approve their own PR). This branch then merged `main` and reconciled the two changes:
+
+- **`SKILL.md` conflict:** resolved by adding the project's applicable `DESIGN.md` files, and the documents they link, to the design-phase reading gate (via `design-principles.md#project-specific-design-principles`). #27's design-examples sentence is already covered by Phase 3 step 3.
+- **One read record:**
+  - #27 recorded `DESIGN.md` paths in both the investigation notes and the design spec's Architecture Investigation Evidence.
+  - Now the design spec's `Authorities read` field lists them, with a conflicts/discrepancies field right beside it.
+  - #27's fields in the investigation notes and in Architecture Investigation Evidence are removed.
+  - The shared principles say only "when the design spec records which files apply, use those". No other agent names those fields (checked with `grep`), so downstream consumers are unaffected.
+- **`architecture-design.md`:** #27's bullet now says "apply" (the reading is gated in `SKILL.md`) and points the record to the design-spec field.
+
 ## Ownership and design decisions
 
 - The read-versus-write (proportionality) rule and the template-timing rule: owned by the `SKILL.md` "Phase reading gates" paragraph alone.

@@ -9,7 +9,8 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Behavior-defining supplements and their approval references:
 - Design status: `Draft` / `Ready` / `Needs Revision` / `Blocked`
 - Canonical investigation-notes path:
-- Authorities read (design reading gate; file and date): `references/architecture-design.md`, `design-principles.md`; `design-examples.md` sections, if used:
+- Authorities read (design reading gate; file and date): `references/architecture-design.md`, `design-principles.md`, applicable project `DESIGN.md` path(s) and linked documents (or `No project DESIGN.md found`); `design-examples.md` sections, if used:
+- Project design-principle conflicts with the common principles, or discrepancies (open questions for the user):
 
 Changed intended behavior requires renewed user approval before affected design is authoritative. An evidence-only or technical-design revision does not itself invalidate unchanged requirements approval.
 
