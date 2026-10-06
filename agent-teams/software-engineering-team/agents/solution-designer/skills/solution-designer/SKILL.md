@@ -122,8 +122,9 @@ standards. Use the requirements and investigation templates listed below.
 
 ### 3. Investigate Architecture And Produce Design
 
-Read [architecture-design.md](references/architecture-design.md) and
-[design-principles.md](design-principles.md). Use
+Read [architecture-design.md](references/architecture-design.md),
+[design-principles.md](design-principles.md), including the project-specific
+design principles it describes. Use
 [design-examples.md](design-examples.md) when concrete shape guidance helps.
 Use the examples as guidance, not mechanical templates.
 

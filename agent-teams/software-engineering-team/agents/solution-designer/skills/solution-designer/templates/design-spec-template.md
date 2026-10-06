@@ -30,6 +30,9 @@ inputs to the configured handoff rules; they do not select recipients.
 
 ## Architecture Investigation Evidence
 
+- Project-specific design principles applied: `DESIGN.md` path(s), or `No project DESIGN.md found`:
+- Conflicts with the common principles, or discrepancies (open questions for the user):
+
 Link the architecture-level evidence gathered after requirements approval from the canonical investigation notes. Those notes own both product and technical observations; this section maps evidence to design decisions without duplicating the raw log.
 
 | Source / Command / Probe | Exact Path / Reference | Observation | Design Decision Supported | Remaining Uncertainty |

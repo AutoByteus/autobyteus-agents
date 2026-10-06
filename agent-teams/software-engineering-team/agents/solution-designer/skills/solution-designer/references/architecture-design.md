@@ -6,6 +6,7 @@ Read after requirements approval for architecture design, and during design-impa
 
 - Begin from the approved requirements, investigation notes, and supplements, but perform the additional technical investigation needed for architecture decisions.
 - Inspect the relevant current implementation before finalizing the design.
+- Read the project-specific design principles described in [design-principles.md](../design-principles.md#project-specific-design-principles) before designing. Record the `DESIGN.md` path(s) that apply, or `No project DESIGN.md found`, and any conflict or discrepancy in the investigation notes and the design spec.
 - Record exact architecture evidence in the canonical investigation notes: source paths, documentation or URLs, commands, runtime/probe observations, setup conditions, and material unknowns. Link that evidence from the design spec instead of maintaining a competing evidence log.
 - Identify the change posture, current execution spine, ownership boundaries, coupling or fragmentation, design-health pressure, root-cause classification, refactor posture, and transition constraints.
 - Distinguish supported user, system, operational, and contract behavior from states reachable only through synthetic calls, internal-file mutation, or mechanical possibility.
@@ -16,13 +17,12 @@ Read after requirements approval for architecture design, and during design-impa
 
 When persisted data may require transformation, locate and read the target
 repository's authoritative migration conventions before designing that
-transformation or its admission gate. For AutoByteus server work this is
-`autobyteus-server-ts/docs/design/data_migration_guideline.md`
-(relative to the software workspace), the single canonical **Data Migration
-Guideline** with worked production examples, not a copy in the skill repository.
-If that authority is absent or insufficient, record the gap and update the
-canonical document within authorized scope; do not invent contradictory local
-policy. Link its reviewed version in investigation notes and the design.
+transformation or its admission gate. Find them through the project's `DESIGN.md`
+or the repository's design documentation; use the project's own
+document, not a copy in the skill repository. If that authority is absent or
+insufficient, record the gap and update the canonical document within
+authorized scope; do not invent contradictory local policy. Link its reviewed
+version in investigation notes and the design.
 
 Inspect at least the relevant released predecessor migrations and current
 admission owner. Record retained/skipped/warning source dispositions, real
