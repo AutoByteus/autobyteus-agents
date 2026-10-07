@@ -46,7 +46,7 @@
 ## Risks, questions, and blockers
 
 - **Sweep for anti-pattern 12 (follow-up):** 26 agents in 9 teams hand off without `get_handoff_rules`: Article Writing, Classroom Simulation, Kids Coloring Story, Kids Picture Story, Manga Video Studio, Narrated Presentation Video, Research-to-Deck, Software Product Promo Video. Skills naming teammates: Software Engineering (40 mentions in 9 files), Promo Video (36/6), Kids Coloring (22/5), Narrated Presentation (20/4), Research-to-Deck (20/3), Kids Picture Story (14/4), Manga (12/4), Article Writing (3/3), Product (2/2). Some mentions describe ownership rather than recipients; review per team.
-- `product-experience-design/SKILL.md` line 201 mentions the Solution Designer; fix after the Product branch merges.
+- Resolved: `product-experience-design/SKILL.md`'s Solution Designer mention was removed by the Product branch `product-team/designer-core-design-rules`, merged after review on 2026-10-07.
 - Runtime behavior of the STORM change not observed in a live run.
 
 ## Handoff state
