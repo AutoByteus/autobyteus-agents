@@ -26,8 +26,7 @@ worktree; it does not replace that branch/worktree isolation.
 - Baseline report:
 - Product acceptance result and date:
 - Design revision for this ticket:
-- Promoted default baseline revision, when applicable:
-- Default-entry-point promotion validation:
+- Default-entry-point validation after integration:
 - Integration target and result:
 - Runtime isolation record (port / process / temporary state):
 - Cleanup result or blocker:
