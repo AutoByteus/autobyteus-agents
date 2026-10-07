@@ -78,6 +78,13 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Instead:** Check the external site, API, or tool before writing steps for it, and record what was observed.
 - **Detect:** List every external system a skill depends on and the evidence for each assumed capability.
 
+### 13. Treating a proxy signal as a verified defect
+
+- **Incident:** Product guidance equated megabyte/captured fixtures with real-data copying and an older baseline-report pin with stale UI, prompting an unsupported refresh (2026-10-07).
+- **Breaks:** [§4](package-design-principles.md#4-apply-one-authoring-standard), grounding: obligations need evidence, not an unqualified heuristic.
+- **Instead:** Use size, method and metadata to guide proportionate inspection. Distinguish verified failure, unknown provenance/currency, optional maintenance, and an explicit refresh request before blocking or commissioning work.
+- **Detect:** Search active guidance for `kilobytes`, `megabytes`, `hand-written`, `hand-made`, `captured source`, and source-pin/refresh rules; check whether a signal alone becomes a factual failure or mandatory rebuild. Report historical artifacts separately from active rules.
+
 ## Creator process
 
 ### 10. Working from a stale or unrelated checkout

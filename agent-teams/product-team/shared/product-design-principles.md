@@ -62,8 +62,8 @@ A UI reference implements:
   product does;
 - every meaningful state: empty, populated, loading, error, locked,
   permission, role, logged out;
-- a small mock data layer: a stub that answers the UI's data requests from
-  hand-written fixtures, with scripted outcomes for user actions and
+- a lightweight mock data layer: local synthetic state or a stub that answers
+  the UI's data requests from synthetic fixtures, with scripted outcomes and
   resettable in-memory state;
 - deterministic scenarios that select which state and role the UI shows.
 
@@ -72,8 +72,8 @@ It does not contain:
 - real data or content: article and document bodies, catalog or question
   sets, answer data, transcripts, translations, media inventories, user
   records, or any export of them;
-- recorded, replayed or captured source responses, whether kept as files or
-  served through a replay layer;
+- recorded or replayed real production/customer/account responses, whether
+  kept as files or served through a replay layer;
 - a backend: server rules, persistence, access control, integrations or
   production protocols;
 - the product's real logic: scoring and grading engines, recommendation or
@@ -81,16 +81,35 @@ It does not contain:
   processing. Only their visible results appear, as scripted outcomes for the
   mock cases.
 
-Mock data is **enough items of each shape to show every UI state, and no
-more**. A list gets a few items, enough to show its layout, grouping, paging
-and facets. A detail page gets one or two item bodies per type. Values are
-invented and marked illustrative. A healthy data layer is measured in
-kilobytes. If fixtures or content files reach megabytes, or match the
-source's item counts, real data has been copied.
+### Synthetic-state provenance and proportionality
+
+Local synthetic/mock state is the intended way to drive the UI without a
+production backend. Hand-authored fixtures, generators, serialization, and
+snapshots captured from wholly controlled synthetic scenarios are all valid
+techniques, including capture from a source app running only on synthetic
+observation data. Capture describes a method, not whether the content is real.
+
+Judge the data layer by its provenance, independence from live production,
+coverage of meaningful UI states, deterministic/resettable behavior, UI
+fidelity, and proportionate complexity. Record how data was authored or
+generated and, for captures, what supplied the observation environment.
+Unknown or mixed provenance needs inspection; a synthetic-looking sample is
+not proof that the whole collection is synthetic. Renaming a real customer
+response as a fixture, or transforming it through a generator, does not make
+it acceptable.
+
+Prefer representative, understandable state: enough items and scenario
+variation to show layout, grouping, paging, facets and every meaningful state.
+Invent domain values and mark them illustrative. File size, repetition and
+source-like item counts are inspection and maintainability signals, not proof
+of copied real data or automatic blocking thresholds. A generated 5 MB
+multi-scenario collection can satisfy this contract; a tiny copied customer
+response cannot. Reduce unnecessary volume when useful, without forced hand
+transcription or sacrificing UI coverage.
 
 Copy the source's **UI code**, not its **content**. When copied presentation
 code imports content (Markdown, JSON, or data modules such as question sets or topic lists), keep the importing UI code unchanged and replace the imported
-content with a small synthetic file of the same shape and exports. A
+content with representative synthetic data of the same shape and exports. A
 presentation-boundary audit covers UI code only. Content files are expected to
 differ from the source.
 
@@ -148,8 +167,9 @@ can stand for every item that renders the same way.
   comparisons seed the same synthetic values into the source observation
   environment wherever that is cheap. Elsewhere they compare per component and
   per state under representative data, and mark content-derived values as
-  illustrative. Never record, replay, or bulk-copy the source's data or content
-  into a UI reference to force identical values. Future-state references identify
+  illustrative. Never copy or replay real source data or content into a UI
+  reference to force identical values; synthetic observation captures follow
+  the provenance rule above. Future-state references identify
   any illustrative fixture value explicitly.
 - A UI reference is not a production implementation, frontend digital twin,
   integration test environment, production architecture, or proof of
@@ -268,7 +288,7 @@ for a design workspace. Later requirements-driven work normally belongs to
   ```text
   runnable UI
       -> UI reference state and scripted transitions
-      -> small synthetic fixtures
+      -> representative synthetic fixtures
   ```
 
 - Hard-coded synthetic values are acceptable for isolated presentation
@@ -301,10 +321,10 @@ for a design workspace. Later requirements-driven work normally belongs to
   and connectivity contexts through deterministic scenario state. Do not bundle
   Electron, native bridges, server processes, or host runtimes when a browser
   scenario can express the same user-visible experience.
-- Real, recorded, replayed, captured or bulk-copied source data or content is a
-  defect wherever it sits in the design repository, including content files
-  that copied UI code imports statically. Replace it as described in "What a UI
-  reference is".
+- Apply [synthetic-state provenance and proportionality](#synthetic-state-provenance-and-proportionality)
+  to generated and captured state as well as handwritten fixtures. Real source
+  data or content remains prohibited wherever it sits, including statically
+  imported content; replace it with synthetic data, not a replay wrapper.
 - Use only synthetic data. UI reference runs must not require production
   credentials, customer data, production exports, live production services, or
   production writes. Mutable state must be locally resettable.

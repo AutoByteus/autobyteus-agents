@@ -159,10 +159,13 @@ Action: <independent current-experience baseline, named correction, or selected 
 ```
 
 For `Correction`, identify only the established bootstrap-report path and
-failed or unsubstantiated inventory IDs in addition to this schema. For
-`Refresh`, identify only the established report path and explicitly selected
-new source authority. Keep the stable Product ticket and design identity
-unchanged across retries.
+failed or unsubstantiated inventory IDs in addition to this schema; use
+`Action` for the observed gap or specific missing evidence and acceptance
+criterion. For `Refresh`, identify only the established report path and explicitly selected
+new source authority; record the explicit refresh instruction in `Action`.
+The mode skill owns whether correction/refresh is justified, not this payload
+or a difference between revision fields. Keep the stable Product ticket and
+design identity unchanged across retries.
 
 ## Ticket Folders And Statuses
 

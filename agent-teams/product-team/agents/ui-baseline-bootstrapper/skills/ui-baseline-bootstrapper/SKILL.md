@@ -26,12 +26,11 @@ The pinned source is the sole current-state UI/UX authority: choose the simplest
 implementation, but do not make product-design decisions or reinterpret what
 the interface should look like or do.
 
-A baseline has the same UI and accurate functionality, on top of a small amount
-of fake data. What must be exact is the interface: appearance, structure,
+A baseline has the same UI and accurate functionality, on top of representative
+synthetic state. What must be exact is the interface: appearance, structure,
 UI-controlled copy, controls, navigation, interactions and their outcomes, and
-states. The data underneath is deliberately minimal and synthetic. If the source
-shows 17 lessons, one or two synthetic lessons are enough to show the list
-layout, a lesson page, and each state. The rest adds volume, not new UI.
+states. A few invented items often suffice; use more when needed to show
+grouping, paging or another meaningful state, not to replicate a real catalog.
 
 ## You Own
 
@@ -84,11 +83,12 @@ Missing information that this role owns is discovery work, not an input gap.
 
 The mode-specific exceptions are narrow: a **Correction** request adds the
 established design repository/root, target worktree/branch, report path, and
-failed or unsubstantiated inventory IDs; a **Refresh** request adds the
+failed or unsubstantiated inventory IDs with the observed gap or specific
+missing evidence in `Action`; a **Refresh** request adds the
 established design repository/root, target worktree/branch, report path, and
-explicitly selected new source authority. Classify the result as `Blocked` and
-record a precise input gap only when the selected frontend is genuinely
-ambiguous or unreachable, an explicit constraint conflicts with the source, or
+explicitly selected new source authority and refresh instruction. Classify the
+result as `Blocked` and record a precise input gap only when the selected
+frontend is genuinely ambiguous or unreachable, an explicit constraint conflicts with the source, or
 a correction/refresh request omits its required mode-specific fields. The input
 gap is a reason for `Blocked`, not a separate handoff outcome.
 
@@ -103,21 +103,19 @@ gap is a reason for `Blocked`, not a separate handoff outcome.
   screens are fixture states that carry the text the UI shows. User actions
   (login, save, publish, start a trial) produce scripted outcomes that switch the
   scenario or update the in-memory fixture.
-- Write small hand-made synthetic fixtures for each data-driven surface. Include
-  only as many records as the UI needs to show its layout, grouping,
-  paging/facets, and every visible state (empty, populated, locked, error,
-  completed, and so on): usually one or two item bodies per item type and a
-  short list per list.
-- Never record, replay, export, or bulk-copy the source's API responses,
-  database, or content repository into the baseline or design repository, and do not generate
-  fixtures from them. Copying the source's data is not UI modeling; it makes
-  the baseline large and slow to build, and it duplicates product content into
-  another repository. Content files that the copied UI imports statically
-  (Markdown, JSON, or data modules such as question sets, translations or
-  topic lists) are content, not presentation code. Keep the importing UI code
-  unchanged and replace each content file with a small synthetic file of the
-  same shape and exports. See "What a UI reference is" in the
-  shared principles.
+- Apply [synthetic-state provenance and proportionality](product-design-principles.md#synthetic-state-provenance-and-proportionality).
+  Hand-authoring, generation and snapshots from wholly synthetic observation
+  scenarios are valid. Use representative state sufficient for layout,
+  grouping, paging/facets and meaningful visible states; do not force manual
+  transcription or reject a fixture solely because it is large.
+- Record fixture origin and generation/capture inputs in the report, with
+  evidence of local independence and deterministic reset. Inspect unknown or
+  mixed inputs; neither a filename nor a synthetic-looking sample establishes
+  provenance for the whole collection. Real customer/account responses and
+  source content dumps remain prohibited, even through replay or generation.
+  Content imported by presentation code is still content: replace real
+  content with synthetic data of the same shape and exports, while preserving
+  UI-controlled copy and assets.
 - Values that the UI controls must be exact. These include labels, headings,
   instructions, template text around values (for example "… items in the
   system"), and
@@ -138,10 +136,10 @@ gap is a reason for `Blocked`, not a separate handoff outcome.
 - Start every matched run from the same state on both sides. Reset the
   baseline scenario and restore the source observation data before each
   viewport pass, because journeys change state (passwords, progress, trials).
-- Stop and reconsider if exact matching seems to require copying source data,
-  recording protocols, or reproducing production stores. That is a sign the
-  comparison method is wrong, not that the baseline needs more data. Compare
-  per component and per state instead, If the acceptance
+- Stop and reconsider if exact matching seems to require copying real source
+  content, replaying production protocols, or reproducing production stores.
+  That is a sign the comparison method is wrong, not that the baseline needs
+  more data. Compare per component and per state instead. If the acceptance
   criterion itself is unclear, return `Blocked` with the precise question.
 
 ## Design Repository Boundary
@@ -154,6 +152,11 @@ ticket's dirty work. If the repository or worktree is missing, ambiguous, or
 unsafe, return `Blocked` rather than creating one.
 
 ## Operating Sequence
+
+The full discovery/inventory sequence applies to initial bootstrap. For a
+correction or refresh, scope it using Refresh And Correction below and retain
+applicable accepted evidence for unaffected items; do not restart discovery
+for the whole application on every focused correction.
 
 1. Read the current scope/context, shared principles, and applicable repository
    instructions. Resolve the selected source location, canonical design
@@ -218,8 +221,8 @@ unsafe, return `Blocked` rather than creating one.
   outcome at least once under matched source and baseline conditions. Use the
   same synthetic values where they can be seeded cheaply into the source
   observation environment. Otherwise compare under representative data and mark
-  the content-derived values illustrative. Never copy source data to force a
-  match.
+  the content-derived values illustrative. Never copy real source content to
+  force a match.
 - Cover viewports, locales, and other contexts as the shared principles' scope
   rules describe: every distinct item in the primary configuration, the rest
   by representative sample and material change.
@@ -236,18 +239,24 @@ unsafe, return `Blocked` rather than creating one.
 ## Refresh And Correction
 
 - Refresh only when explicitly requested against a newer selected source
-  revision. Do not silently track a moving branch.
-- Work from the source diff between the previous pin and the new pin. Update
+  revision. A newer source path/pin in feature context or an old report is not
+  itself a refresh instruction. Without an explicit refresh instruction or a
+  substantiated correction, return the precise routing question rather than
+  assume a UI mismatch or rebuild. Do not silently track a moving branch.
+- For refresh, work from the source diff between the previous and new pins. Update
   the copied presentation files, fixtures, and simulations so every new,
   changed, and removed surface matches the new source.
-- Verify in proportion to the diff: fully check every new or changed surface,
+- For refresh, verify in proportion to the diff: fully check every new or changed surface,
   state, and journey in the primary configuration; re-check an unchanged
   journey only when something it depends on changed; and give the unchanged
   rest one quick load-and-look pass.
 - Apply the shared refresh policy to accepted design changes, and record
   the reconciliation in the report.
-- Correct the named user-facing gap without expanding into unrelated production
-  implementation.
+- For correction, substantiate and correct the named UI or data-boundary gap;
+  distinguish confirmed defects from missing evidence and optional cleanup.
+  Recheck affected behavior and dependencies, retaining applicable evidence
+  elsewhere. Do not expand it into unrelated implementation or refresh, or
+  replace valid synthetic snapshots merely to change their format or size.
 
 ## Quality Gate
 
@@ -268,10 +277,9 @@ Before returning `Completed`, confirm:
   rather than recreated unnecessarily
 - there is no backend: no server-side rules, access control, persistence, or
   emulated error contracts; only fixture data and scripted outcomes
-- fixtures are small, hand-made, and synthetic. No source API responses,
-  database content, or content-repository data were recorded, replayed, or
-  bulk-copied into the design repository, and illustrative domain values are marked in
-  the report
+- fixtures meet the shared synthetic-state rule; provenance, generation/capture
+  method and inspection limits are recorded, real source/customer content is
+  absent, and illustrative domain values are marked in the report
 - no production credentials, customer data, live dependencies, or production
   writes are used
 - no known UI parity difference remains
