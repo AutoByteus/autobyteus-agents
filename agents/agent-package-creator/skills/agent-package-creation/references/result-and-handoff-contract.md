@@ -59,7 +59,8 @@ An analysis is written for `analyze` and before editing in `update`.
 4. Apply every matching conditional rule.
 5. Call `send_message_to` once for each exact returned `recipient_address`.
 6. Keep the message short: identify the result path, outcome, and next action.
-7. If no rule matches, return the result to the user or caller.
-8. Stop after required handoffs succeed; do not poll or do the next owner's work.
+7. If the user explicitly asked to involve an agent or team, send the result to it as described in [package-design-principles.md](package-design-principles.md#6-design-team-coordination-and-routing), whether or not a rule matches.
+8. If no rule matches and the user named no collaborator, return the result to the user or caller.
+9. Stop after required handoffs succeed; do not poll or do the next owner's work.
 
 The skill and result may describe the outcome and next action, but cannot invent a recipient address. The containing Team/Org configuration or runtime selects recipients.

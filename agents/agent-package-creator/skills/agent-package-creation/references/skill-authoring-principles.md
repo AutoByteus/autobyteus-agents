@@ -1,6 +1,6 @@
 # Skill Authoring Principles
 
-Use this reference for standalone and Agent-bundled skills. The [package design principles](package-design-principles.md) cover package boundaries and writing standards; this file covers skill instructions.
+Use this reference for standalone and Agent-bundled skills. The [package design principles](package-design-principles.md) cover package boundaries and writing standards; this file covers skill instructions. [package-anti-patterns.md](package-anti-patterns.md) shows real mistakes against both.
 
 ## Choose ownership and location
 

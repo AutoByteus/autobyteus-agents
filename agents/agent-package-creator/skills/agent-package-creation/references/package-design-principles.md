@@ -1,6 +1,6 @@
 # Agent Package Design Principles
 
-Use these package boundaries and writing principles with [Agent Package Creation](../SKILL.md). For skill internals, see [skill-authoring-principles.md](skill-authoring-principles.md). Adapt examples to the target repository's schema and catalog.
+Use these package boundaries and writing principles with [Agent Package Creation](../SKILL.md). [package-anti-patterns.md](package-anti-patterns.md) shows real mistakes against them. For skill internals, see [skill-authoring-principles.md](skill-authoring-principles.md). Adapt examples to the target repository's schema and catalog.
 
 ## 1. Choose the package boundary from the work
 
@@ -75,7 +75,9 @@ A Team's `team-config.json` registers `coordinatorMemberName`; the selected memb
 
 Team-local Agent members use the repository's `refType: "agent"` and `refScope: "team_local"` pattern, pointing to the local definition. Routes in `team-config.json` use rooted member addresses, such as `/planner` and `/validator`. Check that every `from` and `to` address resolves. Write route conditions from statuses and artifact readiness that a member actually produces. Make success, recovery, notification, and terminal paths distinguishable; reviews and escalation are conditional policies, not mandatory stages by default.
 
-The sending role completes its own work and produces a classified, file-backed result before routing. The Team config selects recipients from that result; the sender follows the [result and handoff contract](result-and-handoff-contract.md) for the exact protocol. `delegate_task` is a distinct execution mechanism, not a substitute for result-based handoff; declare a different mechanism only when the target workflow actually uses one.
+The sending role completes its own work and produces a classified, file-backed result before routing. The Team config selects recipients from that result; the sender follows the [result and handoff contract](result-and-handoff-contract.md) for the exact protocol. Do not use `delegate_task` to bypass a configured route for a normal result.
+
+Configured rules route the workflow's own results; they do not limit collaboration the user asks for. When the user explicitly asks a role to involve an agent or team at runtime (by name, address, or mention), the role sends that collaborator its persisted context even when no rule covers it, using the tool the request names: `delegate_task` to delegate, `send_message_to` to message. A role never contacts anyone that neither the user nor the rules named. A role's skill describes its own outcomes; it does not name other teams' internals or forbid user-directed collaboration.
 
 ## 7. Design Org membership and cross-member routing
 

@@ -54,5 +54,6 @@ classifies its result, calls `get_handoff_rules`, applies every matching rule
 and uses `send_message_to` with each exact returned `recipient_address`.
 [team-config.json](team-config.json) owns internal conditional recipients;
 parent rules own cross-team Product handoffs. Return the result
-to the caller if no rule matches and stop after required handoffs. Do not use
-`delegate_task` as a substitute for this result-based protocol.
+to the caller if no rule matches and stop after required handoffs. When the
+user explicitly asks a specialist to involve another agent or team, the
+specialist sends it the context even without a rule.
