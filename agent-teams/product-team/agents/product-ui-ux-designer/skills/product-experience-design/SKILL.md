@@ -70,9 +70,8 @@ item, or every data combination.
 
 Two quick checks before any acceptance:
 
-1. **Provenance and fitness.** Apply the shared synthetic-state rule to fixtures
-   and content files. Generated or captured synthetic state is not a defect
-   because of its method or size; inspect provenance and its role in the UI.
+1. **Provenance and fitness.** Apply [synthetic-state provenance and proportionality](product-design-principles.md#synthetic-state-provenance-and-proportionality)
+   to fixtures and content files.
 2. **What is compared.** UI code, UI text, structure, styles, states and
    behavior must match. Data values are illustrative.
 
@@ -298,7 +297,7 @@ worktree's ticket folder.
     never, on its own, a parity failure. It fails only when it changes or hides a UI state, for
     example a list with too few items to show its layout, or a missing
     empty/locked case.
-- Baseline data-boundary check: apply the shared synthetic-state rule, including
+- Baseline data-boundary check: apply [synthetic-state provenance and proportionality](product-design-principles.md#synthetic-state-provenance-and-proportionality), including
   statically imported content. Inspect provenance, generation/capture inputs,
   and local reset/independence evidence; record inspected scope and limitations.
   Reuse applicable accepted evidence for unchanged data rather than imposing
@@ -458,7 +457,7 @@ Before reporting the design package as completed, confirm:
   evidence (`ui-baseline-report.md` plus later accepted design artifacts);
   changed and affected behavior is validated without inferring stale UI from
   an older report pin
-- design data meets the shared synthetic-state rule, including statically
+- design data meets [synthetic-state provenance and proportionality](product-design-principles.md#synthetic-state-provenance-and-proportionality), including statically
   imported content; provenance evidence and inspection limits are recorded,
   and no known real-data violation remains. Size alone is not a pass/fail gate.
 - the documented command starts the UI reference, and the critical journey,
@@ -511,8 +510,13 @@ instead.
 - **Treating method or size as provenance.** Rejecting generated or captured
   synthetic snapshots as real-data copying because they occupy megabytes, or
   accepting a tiny real customer response because it is called a fixture.
-  Correction: inspect origin and inputs under the shared synthetic-state rule;
+  Correction: inspect origin and inputs under [synthetic-state provenance and proportionality](product-design-principles.md#synthetic-state-provenance-and-proportionality);
   replace real content, not valid synthetic techniques.
+- **Accepting captured real source data as "fixtures".** Passing recorded
+  production API responses, replay layers, complete content libraries, or real
+  answer data, transcripts and question sets because the pages then match.
+  Correction: that is copied real content, a data-boundary defect; replace it
+  with synthetic data of the same shape.
 - **Refreshing from metadata alone.** Treating an old baseline-report pin and
   a newer source reference as proof of stale UI, without considering accepted
   design commits or the current affected surface. Correction: distinguish a

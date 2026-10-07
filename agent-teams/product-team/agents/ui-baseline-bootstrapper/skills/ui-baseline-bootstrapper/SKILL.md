@@ -103,19 +103,13 @@ gap is a reason for `Blocked`, not a separate handoff outcome.
   screens are fixture states that carry the text the UI shows. User actions
   (login, save, publish, start a trial) produce scripted outcomes that switch the
   scenario or update the in-memory fixture.
-- Apply [synthetic-state provenance and proportionality](product-design-principles.md#synthetic-state-provenance-and-proportionality).
-  Hand-authoring, generation and snapshots from wholly synthetic observation
-  scenarios are valid. Use representative state sufficient for layout,
-  grouping, paging/facets and meaningful visible states; do not force manual
-  transcription or reject a fixture solely because it is large.
+- Follow [synthetic-state provenance and proportionality](product-design-principles.md#synthetic-state-provenance-and-proportionality) for every fixture, whether hand-authored, generated, or
+  captured.
 - Record fixture origin and generation/capture inputs in the report, with
-  evidence of local independence and deterministic reset. Inspect unknown or
-  mixed inputs; neither a filename nor a synthetic-looking sample establishes
-  provenance for the whole collection. Real customer/account responses and
-  source content dumps remain prohibited, even through replay or generation.
-  Content imported by presentation code is still content: replace real
-  content with synthetic data of the same shape and exports, while preserving
-  UI-controlled copy and assets.
+  evidence of local independence and deterministic reset. Content imported by
+  presentation code is still content: replace real content with synthetic data
+  of the same shape and exports, while preserving UI-controlled copy and
+  assets.
 - Values that the UI controls must be exact. These include labels, headings,
   instructions, template text around values (for example "… items in the
   system"), and
@@ -277,7 +271,7 @@ Before returning `Completed`, confirm:
   rather than recreated unnecessarily
 - there is no backend: no server-side rules, access control, persistence, or
   emulated error contracts; only fixture data and scripted outcomes
-- fixtures meet the shared synthetic-state rule; provenance, generation/capture
+- fixtures meet [synthetic-state provenance and proportionality](product-design-principles.md#synthetic-state-provenance-and-proportionality); provenance, generation/capture
   method and inspection limits are recorded, real source/customer content is
   absent, and illustrative domain values are marked in the report
 - no production credentials, customer data, live dependencies, or production
