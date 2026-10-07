@@ -23,7 +23,7 @@ Read [storm-production-principles.md](storm-production-principles.md) before act
 4. Keep neutral, explanatory, Wikipedia-like prose unless the user requested another style.
 5. Maintain `article-sources.json` linking article sections and citations to source records.
 6. Write `article.md` and `article-sources.json`.
-7. Handoff to `article_polisher_verifier`.
+7. Hand off as described in Handoff.
 
 ## Output
 
@@ -38,18 +38,18 @@ Use [article-md-template.md](templates/article-md-template.md) and [article-sour
 
 ## Handoff
 
-Send `article_polisher_verifier` all upstream artifacts plus `article.md` and `article-sources.json`.
+The team's handoff rules choose the recipient. Send the recipient all upstream artifacts plus `article.md` and `article-sources.json`.
 
 ### File-Backed Handoff Requirement
 
-Before calling `send_message_to`, write `handoffs/cited-article-writer-to-article-polisher-verifier.md` inside the project workspace. The handoff file must include:
+Before calling `send_message_to`, write `handoffs/cited-article-writer-to-<recipient>.md` inside the project workspace. The handoff file must include:
 
 - project workspace path;
 - completed artifact paths;
 - all still-relevant upstream artifact paths;
 - what changed in this stage;
 - open questions, blockers, source-quality concerns, or routing risks;
-- expected next action for `article_polisher_verifier`.
+- expected next action for the recipient.
 
 Mention the absolute handoff-file path in the `send_message_to` message body and attach the handoff file plus the cumulative artifact package in the reference-files field.
 

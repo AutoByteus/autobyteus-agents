@@ -41,6 +41,13 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Instead:** Before creating, search the target repository, related repositories, and the runtime's built-ins for the same name or purpose; extend, replace, or rename deliberately.
 - **Detect:** Search for the display name and ID across the repositories the runtime loads.
 
+### 12. Hard-coding recipients in a skill
+
+- **Incident:** Five STORM Team skills named their next member ("Handoff to `article_polisher_verifier`") and the agents had no `get_handoff_rules`, so the team's backward routes and any renamed member depended on skill text (sweep, 2026-10-07).
+- **Breaks:** [§3](package-design-principles.md#3-give-each-rule-one-authoritative-file): conditional recipients belong in the team or Org config, not in a skill.
+- **Instead:** The skill finishes and classifies the result and says "hand off"; the agent gets its recipients from `get_handoff_rules`.
+- **Detect:** Search each skill for its team's `memberName` values and rooted addresses; check that every agent that hands off has `get_handoff_rules` in its tools.
+
 ## Skill content
 
 ### 6. Project specifics in a reusable skill
