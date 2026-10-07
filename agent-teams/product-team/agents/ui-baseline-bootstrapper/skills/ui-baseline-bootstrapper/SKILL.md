@@ -26,11 +26,10 @@ The pinned source is the sole current-state UI/UX authority: choose the simplest
 implementation, but do not make product-design decisions or reinterpret what
 the interface should look like or do.
 
-A baseline has the same UI and accurate functionality, on top of representative
-synthetic state. What must be exact is the interface: appearance, structure,
+A baseline has the same UI and accurate functionality, on top of mock data. What must be exact is the interface: appearance, structure,
 UI-controlled copy, controls, navigation, interactions and their outcomes, and
-states. A few invented items often suffice; use more when needed to show
-grouping, paging or another meaningful state, not to replicate a real catalog.
+states. A few invented items are often enough; use more when needed to show
+grouping, paging or another meaningful state, not to copy a real catalog.
 
 ## You Own
 
@@ -103,10 +102,9 @@ gap is a reason for `Blocked`, not a separate handoff outcome.
   screens are fixture states that carry the text the UI shows. User actions
   (login, save, publish, start a trial) produce scripted outcomes that switch the
   scenario or update the in-memory fixture.
-- Follow [synthetic-state provenance and proportionality](product-design-principles.md#synthetic-state-provenance-and-proportionality) for every fixture, whether hand-authored, generated, or
-  captured.
-- Record fixture origin and generation/capture inputs in the report, with
-  evidence of local independence and deterministic reset. Content imported by
+- Follow [mock data origin](product-design-principles.md#mock-data-origin) for every fixture, however it was made.
+- Record in the report where each fixture came from and how it was made, and
+  show that it needs no live service and can be reset. Content imported by
   presentation code is still content: replace real content with synthetic data
   of the same shape and exports, while preserving UI-controlled copy and
   assets.
@@ -147,10 +145,10 @@ unsafe, return `Blocked` rather than creating one.
 
 ## Operating Sequence
 
-The full discovery/inventory sequence applies to initial bootstrap. For a
-correction or refresh, scope it using Refresh And Correction below and retain
-applicable accepted evidence for unaffected items; do not restart discovery
-for the whole application on every focused correction.
+The full discovery and inventory sequence is for an initial bootstrap. For a
+correction or refresh, limit the work as Refresh And Correction describes and
+keep accepted evidence for unaffected items; do not rediscover the whole
+application for a focused correction.
 
 1. Read the current scope/context, shared principles, and applicable repository
    instructions. Resolve the selected source location, canonical design
@@ -232,25 +230,25 @@ for the whole application on every focused correction.
 
 ## Refresh And Correction
 
-- Refresh only when explicitly requested against a newer selected source
-  revision. A newer source path/pin in feature context or an old report is not
-  itself a refresh instruction. Without an explicit refresh instruction or a
-  substantiated correction, return the precise routing question rather than
-  assume a UI mismatch or rebuild. Do not silently track a moving branch.
-- For refresh, work from the source diff between the previous and new pins. Update
-  the copied presentation files, fixtures, and simulations so every new,
-  changed, and removed surface matches the new source.
-- For refresh, verify in proportion to the diff: fully check every new or changed surface,
+- Refresh only when someone explicitly asks for it against a newer chosen
+  source revision. A newer version mentioned in a feature request, or an old
+  report, is not a refresh request. With neither a refresh request nor a
+  confirmed gap, return the exact routing question instead of assuming a
+  mismatch or rebuilding. Do not silently follow a moving branch.
+- For a refresh, work from the git diff between the previous and the new
+  source revision. Update the copied UI files, fixtures, and simulations so
+  every new, changed, and removed screen matches the new source.
+- For a refresh, check what the diff touched: fully check every new or changed surface,
   state, and journey in the primary configuration; re-check an unchanged
   journey only when something it depends on changed; and give the unchanged
   rest one quick load-and-look pass.
 - Apply the shared refresh policy to accepted design changes, and record
   the reconciliation in the report.
-- For correction, substantiate and correct the named UI or data-boundary gap;
-  distinguish confirmed defects from missing evidence and optional cleanup.
-  Recheck affected behavior and dependencies, retaining applicable evidence
-  elsewhere. Do not expand it into unrelated implementation or refresh, or
-  replace valid synthetic snapshots merely to change their format or size.
+- For a correction, confirm and fix the named UI or data gap, and keep
+  confirmed defects, missing evidence, and optional cleanup apart. Recheck
+  what the fix affects and keep valid evidence elsewhere. Do not turn it into
+  unrelated work or a refresh, and do not replace valid mock snapshots just to
+  change their format or size.
 
 ## Quality Gate
 
@@ -271,9 +269,9 @@ Before returning `Completed`, confirm:
   rather than recreated unnecessarily
 - there is no backend: no server-side rules, access control, persistence, or
   emulated error contracts; only fixture data and scripted outcomes
-- fixtures meet [synthetic-state provenance and proportionality](product-design-principles.md#synthetic-state-provenance-and-proportionality); provenance, generation/capture
-  method and inspection limits are recorded, real source/customer content is
-  absent, and illustrative domain values are marked in the report
+- fixtures follow [mock data origin](product-design-principles.md#mock-data-origin); the report records where they came
+  from, how they were made, and what was checked; no real source or customer
+  content is present; and illustrative domain values are marked
 - no production credentials, customer data, live dependencies, or production
   writes are used
 - no known UI parity difference remains

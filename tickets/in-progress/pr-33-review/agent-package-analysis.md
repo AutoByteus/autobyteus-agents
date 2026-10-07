@@ -65,3 +65,7 @@ Not applied. Before merge: findings 4 and 6. Recommended in the same pass: findi
 - `get_handoff_rules` called: `Yes`
 - Handoffs sent: None
 - Caller return: Yes; no rule matched.
+
+## Plain-language pass (2026-10-07, user request)
+
+Applied to the PR's added text, per principle §4.4–4.5: the rule is renamed "Mock data origin" (was "Synthetic-state provenance and proportionality"); the shared section lists four plain checks (origin, independence, coverage, repeatability); "unverified currency" becomes "possibly outdated"; slash compounds and "proportionate" phrasing are replaced with concrete actions. Added (user direction): for a possibly outdated baseline, check with git which files changed between the baseline's source revision and the newer one; if no UI file changed, the baseline is current. Meaning otherwise unchanged; skills valid; PR validation passes (48 links).

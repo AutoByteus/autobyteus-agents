@@ -62,9 +62,9 @@ A UI reference implements:
   product does;
 - every meaningful state: empty, populated, loading, error, locked,
   permission, role, logged out;
-- a lightweight mock data layer: local synthetic state or a stub that answers
-  the UI's data requests from synthetic fixtures, with scripted outcomes and
-  resettable in-memory state;
+- a mock data layer: local mock state, or a stub that answers the UI's data
+  requests from mock fixtures, with scripted outcomes and resettable in-memory
+  state;
 - deterministic scenarios that select which state and role the UI shows.
 
 It does not contain:
@@ -81,31 +81,33 @@ It does not contain:
   processing. Only their visible results appear, as scripted outcomes for the
   mock cases.
 
-### Synthetic-state provenance and proportionality
+### Mock data origin
 
-Local synthetic/mock state is the intended way to drive the UI without a
-production backend. Hand-authored fixtures, generators, serialization, and
-snapshots captured from wholly controlled synthetic scenarios are all valid
-techniques, including capture from a source app running only on synthetic
-observation data. Capture describes a method, not whether the content is real.
+Local mock data is how a UI reference runs without a production backend. Any
+way of making it is fine: writing it by hand, generating it, saving it to
+files, or capturing it from the source app while that app runs only on mock
+data. How data was made does not decide whether it is real; where it came from
+does.
 
-Judge the data layer by its provenance, independence from live production,
-coverage of meaningful UI states, deterministic/resettable behavior, UI
-fidelity, and proportionate complexity. Record how data was authored or
-generated and, for captures, what supplied the observation environment.
-Unknown or mixed provenance needs inspection; a synthetic-looking sample is
-not proof that the whole collection is synthetic. Renaming a real customer
-response as a fixture, or transforming it through a generator, does not make
-it acceptable.
+Judge mock data by four things:
 
-Prefer representative, understandable state: enough items and scenario
-variation to show layout, grouping, paging, facets and every meaningful state.
-Invent domain values and mark them illustrative. File size, repetition and
-source-like item counts are inspection and maintainability signals, not proof
-of copied real data or automatic blocking thresholds. A generated 5 MB
-multi-scenario collection can satisfy this contract; a tiny copied customer
-response cannot. Reduce unnecessary volume when useful, without forced hand
-transcription or sacrificing UI coverage.
+- **Origin:** it is invented, or captured only from mock data. Record how it
+  was made and, for a capture, what data the source app was running on.
+- **Independence:** it needs no live production service.
+- **Coverage:** it shows every meaningful UI state.
+- **Repeatability:** it gives the same result on every run and can be reset.
+
+If the origin is unknown or mixed, inspect it: one mock-looking sample does not
+show that the whole collection is mock. A real customer response stays real
+when it is renamed as a fixture or passed through a generator.
+
+Use as much data as the states need: enough items and scenarios to show
+layout, grouping, paging, filters, and every meaningful state. Invent domain
+values and mark them illustrative. Large files, repetition, or item counts that
+match the source are reasons to look closer, not proof of copied data and not
+limits. A generated 5 MB set of scenarios can be fine; a tiny copied customer
+response is not. Trim data that adds no state when that helps, but never by
+copying it out by hand or by losing UI coverage.
 
 Copy the source's **UI code**, not its **content**. When copied presentation
 code imports content (Markdown, JSON, or data modules such as question sets or topic lists), keep the importing UI code unchanged and replace the imported
@@ -169,7 +171,7 @@ can stand for every item that renders the same way.
   per state under representative data, and mark content-derived values as
   illustrative. Never copy or replay real source data or content into a UI
   reference to force identical values; synthetic observation captures follow
-  the provenance rule above. Future-state references identify
+  the mock data origin rule above. Future-state references identify
   any illustrative fixture value explicitly.
 - A UI reference is not a production implementation, frontend digital twin,
   integration test environment, production architecture, or proof of
@@ -321,7 +323,7 @@ for a design workspace. Later requirements-driven work normally belongs to
   and connectivity contexts through deterministic scenario state. Do not bundle
   Electron, native bridges, server processes, or host runtimes when a browser
   scenario can express the same user-visible experience.
-- Apply [synthetic-state provenance and proportionality](#synthetic-state-provenance-and-proportionality)
+- Apply [mock data origin](#mock-data-origin)
   to generated and captured state as well as handwritten fixtures. Real source
   data or content remains prohibited wherever it sits, including statically
   imported content; replace it with synthetic data, not a replay wrapper.

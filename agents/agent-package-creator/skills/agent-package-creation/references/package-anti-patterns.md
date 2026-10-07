@@ -82,7 +82,7 @@ Concrete mistakes found in real package work. The [package design principles](pa
 
 - **Incident:** Product guidance equated megabyte/captured fixtures with real-data copying and an older baseline-report pin with stale UI, prompting an unsupported refresh (2026-10-07).
 - **Breaks:** [§4](package-design-principles.md#4-apply-one-authoring-standard), grounding: obligations need evidence, not an unqualified heuristic.
-- **Instead:** Use size, method and metadata to guide proportionate inspection. Distinguish verified failure, unknown provenance/currency, optional maintenance, and an explicit refresh request before blocking or commissioning work.
+- **Instead:** Treat size, method, and metadata as reasons to look closer. Before blocking work or starting new work, tell apart a confirmed failure, unknown origin or freshness, optional cleanup, and an explicit request.
 - **Detect:** For every rule that blocks work or forces an action, name the evidence it requires; flag rules triggered by a proxy (size, age, method, naming, metadata) alone.
 
 ## Creator process

@@ -51,7 +51,7 @@ correction decision in this skill:
   what it never contains.
 - **"What UI parity means"**: what must match the product exactly, and what is
   never required.
-- **[Synthetic-state provenance and proportionality](product-design-principles.md#synthetic-state-provenance-and-proportionality)**:
+- **[mock data origin](product-design-principles.md#mock-data-origin)**:
   which fixture techniques are valid and how to assess them.
 
 In short:
@@ -70,7 +70,7 @@ item, or every data combination.
 
 Two quick checks before any acceptance:
 
-1. **Provenance and fitness.** Apply [synthetic-state provenance and proportionality](product-design-principles.md#synthetic-state-provenance-and-proportionality)
+1. **Data origin.** Apply [mock data origin](product-design-principles.md#mock-data-origin)
    to fixtures and content files.
 2. **What is compared.** UI code, UI text, structure, styles, states and
    behavior must match. Data values are illustrative.
@@ -234,28 +234,32 @@ worktree's ticket folder.
   subsequent accepted UI work. If no repository/root or accepted baseline is
   established, use the repository-management skill's baseline-worktree path
   before requesting Bootstrapper.
-- Distinguish the reason for work before routing:
-  - **Absent baseline:** request initial bootstrap; do not pre-inventory the
-    source on the Bootstrapper's behalf.
-  - **Verified gap or missing substantiation:** name the affected surface or
-    inventory ID, expected current-source behavior, and observed difference
-    or specific missing evidence. Inspect only the relevant source/UI and
-    accepted design history needed to decide; request a focused correction.
-    An accepted intentional design delta is not itself a parity defect.
-  - **Unverified currency:** an older report, moving branch, or a feature
-    request citing a newer production revision does not prove stale UI and
-    does not itself request refresh. Check the affected journey proportionately;
-    retain uncertainty without declaring failure or blanket parity. If it
-    prevents scoped work, record the exact evidence gap and recovery action.
-  - **Explicit refresh:** a request to refresh/reconcile the baseline against
-    a selected source revision justifies refresh without first proving a
-    mismatch. Record that instruction and pin; follow shared reconciliation
-    policy rather than discarding accepted design changes indiscriminately.
-  - **Optional fixture cleanup:** size/repetition alone is not a data violation
-    or reason to block a feature on a rebuild. Keep maintenance suggestions
-    separate from verified safety, fidelity or functional defects.
+- Before routing, decide which case applies:
+  - **No baseline yet:** request an initial bootstrap. Do not inspect the
+    source for the Bootstrapper.
+  - **A verified gap:** a screen differs from the current source, or evidence
+    for an inventory item is missing. Name the screen or inventory ID, what
+    the source does, and what differs or which evidence is missing. Look only
+    at the source, the UI, and the accepted design history needed to confirm
+    it, then request a focused correction. An approved design change is not a
+    gap.
+  - **Possibly outdated:** an older report, a moving branch, or a request that
+    mentions a newer app version does not show that the UI changed, and is not
+    a refresh request; many source changes never touch the UI. Check with git:
+    list the files changed between the baseline's source revision and the newer
+    one, and look for UI code (components, pages, styles, UI text). If no UI
+    file changed, the baseline is current. Otherwise check only the screens
+    those files affect. If the question still blocks the scoped work, record
+    which evidence is missing and how to get it.
+  - **Explicit refresh:** when the user asks to refresh the baseline against a
+    chosen source revision, refresh without first proving a difference. Record
+    the instruction and the revision, and keep accepted design changes as the
+    refresh policy says.
+  - **Optional cleanup:** large or repetitive mock data is not a data
+    violation and never blocks a feature. Report cleanup ideas separately from
+    real problems.
 
-  Do not revalidate every unrelated surface merely to route a small change.
+  Do not recheck unrelated screens just to route a small change.
   For no-frontend work, construct the experience directly without Bootstrapper.
 - For an absent baseline, classify the Product ticket as `Baseline Needed` and
   send the fixed payload in
@@ -297,23 +301,23 @@ worktree's ticket folder.
     never, on its own, a parity failure. It fails only when it changes or hides a UI state, for
     example a list with too few items to show its layout, or a missing
     empty/locked case.
-- Baseline data-boundary check: apply [synthetic-state provenance and proportionality](product-design-principles.md#synthetic-state-provenance-and-proportionality), including
-  statically imported content. Inspect provenance, generation/capture inputs,
-  and local reset/independence evidence; record inspected scope and limitations.
-  Reuse applicable accepted evidence for unchanged data rather than imposing
-  a repository-wide re-audit for each feature. A demonstrated real-data violation
-  requires correction before acceptance, even if historically deferred.
-  If provenance cannot be established for data needed by the scoped work,
-  record the specific missing evidence and resolve it before acceptance; do
-  not assert copying from size or certify the collection from a sample.
+- Baseline data-boundary check: apply [mock data origin](product-design-principles.md#mock-data-origin),
+  including content that copied UI code imports. Check where the data came
+  from and how it was made, and record what you checked and what you could
+  not. Reuse accepted evidence for data that has not changed; do not re-audit
+  the whole repository for each feature. Real data must be corrected before
+  acceptance, even if it was deferred earlier. If you cannot tell where data
+  that the scoped work needs came from, record the missing evidence and
+  resolve it before acceptance. Never conclude copying from size, and never
+  vouch for a whole collection from a sample.
 - If the established design repository/root has an applicable accepted
   baseline report, read its current implementation and artifacts in the active
   ticket worktree and skip initial bootstrap. Use the reasons above for any
   further correction or refresh, not report metadata alone.
-- Do not start future-state work on an unaccepted bootstrap result or with an
-  unresolved baseline defect/evidence gap that prevents the scoped design.
-  A stale report field alone neither invalidates prior acceptance nor proves
-  current UI parity.
+- Do not start future-state work on an unaccepted bootstrap result, or while a
+  baseline defect or missing evidence blocks the scoped design. An old report
+  revision alone neither undoes an earlier acceptance nor proves the UI still
+  matches.
 
 ## Operating Sequence
 
@@ -455,11 +459,11 @@ Before reporting the design package as completed, confirm:
   unfinished ticket remains under `tickets/in-progress/<ticket-id>/`
 - an existing-frontend design repository has applicable accepted baseline
   evidence (`ui-baseline-report.md` plus later accepted design artifacts);
-  changed and affected behavior is validated without inferring stale UI from
-  an older report pin
-- design data meets [synthetic-state provenance and proportionality](product-design-principles.md#synthetic-state-provenance-and-proportionality), including statically
-  imported content; provenance evidence and inspection limits are recorded,
-  and no known real-data violation remains. Size alone is not a pass/fail gate.
+  changed and affected behavior is validated, without treating an older report
+  revision as proof of an outdated UI
+- design data meets [mock data origin](product-design-principles.md#mock-data-origin), including statically
+  imported content; where the data came from and what was checked are recorded,
+  and no known real data remains. Size alone neither passes nor fails it.
 - the documented command starts the UI reference, and the critical journey,
   including any actor-caused change, runs from the product's normal entry
   point with no preview-only control, overlay, or URL switch
@@ -507,21 +511,21 @@ instead.
   Bootstrapper may copy real source content to make the pages identical.
   Correction: every correction names the gap type for each ID and
   restates the acceptance criterion.
-- **Treating method or size as provenance.** Rejecting generated or captured
-  synthetic snapshots as real-data copying because they occupy megabytes, or
+- **Judging data by how it was made or by its size.** Rejecting generated or
+  captured mock snapshots as copied real data because they take megabytes, or
   accepting a tiny real customer response because it is called a fixture.
-  Correction: inspect origin and inputs under [synthetic-state provenance and proportionality](product-design-principles.md#synthetic-state-provenance-and-proportionality);
-  replace real content, not valid synthetic techniques.
+  Correction: check where the data came from under [mock data origin](product-design-principles.md#mock-data-origin);
+  replace real content, not valid ways of making mock data.
 - **Accepting captured real source data as "fixtures".** Passing recorded
   production API responses, replay layers, complete content libraries, or real
   answer data, transcripts and question sets because the pages then match.
   Correction: that is copied real content, a data-boundary defect; replace it
   with synthetic data of the same shape.
-- **Refreshing from metadata alone.** Treating an old baseline-report pin and
-  a newer source reference as proof of stale UI, without considering accepted
-  design commits or the current affected surface. Correction: distinguish a
-  verified gap, unverified currency, and an explicit refresh instruction using
-  Bootstrap Routing; do not initiate a broad rebuild for an unverified claim.
+- **Refreshing because a version number is newer.** Treating an old
+  baseline-report revision and a newer app version as proof of an outdated UI,
+  without checking which files changed or the accepted design work since.
+  Correction: use the cases in Bootstrap Routing, starting with the git check
+  for UI files; never start a broad rebuild for an unchecked claim.
 - **Carrying copied content forward as an open item.** Noting that real content
   files are "unchanged from the earlier baseline" and moving on. Correction:
   copied content is a defect in the current baseline. Request a data-boundary
