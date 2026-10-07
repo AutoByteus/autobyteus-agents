@@ -1,0 +1,17 @@
+Skill is valid!
+PASS skill: agent-teams/product-team/agents/product-ui-ux-designer/skills/exploratory-requirements-visualizer/SKILL.md
+Skill is valid!
+PASS skill: agent-teams/product-team/agents/product-ui-ux-designer/skills/product-design-repository-management/SKILL.md
+Skill is valid!
+PASS skill: agent-teams/product-team/agents/product-ui-ux-designer/skills/product-experience-design/SKILL.md
+Skill is valid!
+PASS skill: agent-teams/product-team/agents/ui-baseline-bootstrapper/skills/ui-baseline-bootstrapper/SKILL.md
+Skill is valid!
+PASS skill: agents/agent-package-creator/skills/agent-package-creation/SKILL.md
+PASS local member and explicit attachments: product_ui_ux_designer
+PASS local member and explicit attachments: ui_baseline_bootstrapper
+PASS coordinator and 2 internal rooted routes
+PASS shared authority symlinks: 3
+PASS local Markdown links and heading anchors: 43 in 23 files
+PASS diff whitespace
+LIMIT: structural checks only; semantic scenarios reviewed separately; no runtime import or UI validation.

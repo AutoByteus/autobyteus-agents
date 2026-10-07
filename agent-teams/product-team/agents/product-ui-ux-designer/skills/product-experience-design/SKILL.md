@@ -40,17 +40,19 @@ normative final reference screenshots.
 
 ## What You Build
 
-A UI reference looks and behaves like the product, but it runs on a little mock
-data and has no real content or backend. It is a model of the product's UI,
+A UI reference looks and behaves like the product, but it runs on local synthetic
+state and has no real content or backend. It is a model of the product's UI,
 not a second copy of the website.
 
-Two definitions in the shared principles govern every accept, reject and
+These definitions in the shared principles govern every accept, reject and
 correction decision in this skill:
 
 - **"What a UI reference is"**: what the project implements and
   what it never contains.
 - **"What UI parity means"**: what must match the product exactly, and what is
   never required.
+- **[mock data origin](product-design-principles.md#mock-data-origin)**:
+  which fixture techniques are valid and how to assess them.
 
 In short:
 
@@ -60,7 +62,7 @@ In short:
 | All UI-controlled text and messages | Real user or account records, or exports of them |
 | Navigation, controls, forms, validation and interactions, with scripted visible outcomes | The product's real logic: grading, progress calculation, recommendations, search, publishing |
 | Every distinct state and role, through deterministic scenarios | A backend: server rules, persistence, access control, integrations |
-| A small stub serving hand-written fixtures | Recorded, replayed or captured source responses, or data sized like the source's |
+| Local synthetic state or a lightweight fixture stub | Captured or replayed real production/customer/account data |
 
 "Complete" always means that every distinct page, state and interaction pattern
 is covered at least once. It never means a complete working website, every
@@ -68,9 +70,8 @@ item, or every data combination.
 
 Two quick checks before any acceptance:
 
-1. **Size and provenance.** The mock data layer and any content files are
-   small (kilobytes) and hand-written. Megabytes of data, or item counts that
-   match the source, mean real data was copied.
+1. **Data origin.** Apply [mock data origin](product-design-principles.md#mock-data-origin)
+   to fixtures and content files.
 2. **What is compared.** UI code, UI text, structure, styles, states and
    behavior must match. Data values are illustrative.
 
@@ -227,17 +228,39 @@ worktree's ticket folder.
 
 ## Bootstrap Routing
 
-- For an existing frontend, check only whether the active Product ticket
-  worktree has an applicable accepted `ui-baseline-report.md` for the
-  established canonical design repository/root. Do not inspect or inventory
-  the current source UI merely to prepare a Bootstrapper request. If no
-  repository/root or accepted baseline is established, use the repository-
-  management skill's baseline-worktree path before requesting Bootstrapper.
-- Request bootstrap work when the baseline is absent, any distinct UI inventory
-  item is failed or unsubstantiated, or an explicit correction or source
-  refresh is required. Do not infer a refresh from a moving branch. For
-  no-frontend work, create the smallest requirements-driven experience directly
-  without using the Bootstrapper.
+- For an existing frontend, read the accepted `ui-baseline-report.md` together
+  with later accepted design changes and the current implementation in the
+  active Product ticket worktree. The report pin alone does not describe all
+  subsequent accepted UI work. If no repository/root or accepted baseline is
+  established, use the repository-management skill's baseline-worktree path
+  before requesting Bootstrapper.
+- Before routing, decide which case applies:
+  - **No baseline yet:** request an initial bootstrap. Do not inspect the
+    source for the Bootstrapper.
+  - **A verified gap:** a screen differs from the current source, or evidence
+    for an inventory item is missing. Name the screen or inventory ID, what
+    the source does, and what differs or which evidence is missing. Look only
+    at the source, the UI, and the accepted design history needed to confirm
+    it, then request a focused correction. An approved design change is not a
+    gap.
+  - **Possibly outdated:** an older report, a moving branch, or a request that
+    mentions a newer app version does not show that the UI changed, and is not
+    a refresh request; many source changes never touch the UI. Check with git:
+    list the files changed between the baseline's source revision and the newer
+    one, and look for UI code (components, pages, styles, UI text). If no UI
+    file changed, the baseline is current. Otherwise check only the screens
+    those files affect. If the question still blocks the scoped work, record
+    which evidence is missing and how to get it.
+  - **Explicit refresh:** when the user asks to refresh the baseline against a
+    chosen source revision, refresh without first proving a difference. Record
+    the instruction and the revision, and keep accepted design changes as the
+    refresh policy says.
+  - **Optional cleanup:** large or repetitive mock data is not a data
+    violation and never blocks a feature. Report cleanup ideas separately from
+    real problems.
+
+  Do not recheck unrelated screens just to route a small change.
+  For no-frontend work, construct the experience directly without Bootstrapper.
 - For an absent baseline, classify the Product ticket as `Baseline Needed` and
   send the fixed payload in
   [product-design-repository-management](../product-design-repository-management/SKILL.md)
@@ -249,12 +272,12 @@ worktree's ticket folder.
   target worktree are locations, not a request to pre-inventory or prescribe
   the implementation.
 - For `Mode: Correction`, use the payload's correction fields. In `Action`,
-  state the gap type of each failed or unsubstantiated ID (UI copy, structure,
-  style, state, interaction, or data-boundary) and restate the baseline
+  state the evidence and gap type of each failed or unsubstantiated ID (UI copy,
+  structure, style, state, interaction, or data-boundary) and restate the baseline
   acceptance criterion below. Never phrase a correction so it can be satisfied
-  by making the UI reference show the source's data. For `Mode: Refresh`, use the
-  payload's refresh fields. Preserve the stable package identifier in all
-  modes.
+  by making the UI reference copy real source content. For `Mode: Refresh`,
+  use the payload's refresh fields. Preserve the stable package identifier in
+  all modes.
 - When the Bootstrapper returns, read and review the runnable baseline,
   `ui-baseline-report.md`, and referenced evidence directly. Accept an
   existing-frontend baseline only when its selected source and revision are
@@ -273,26 +296,28 @@ worktree's ticket folder.
     every meaningful state (empty, populated, loading, error, locked,
     permission, role).
   - **Illustrative:** domain values such as titles, texts, topic names, counts,
-    percentages and item lists. They come from small synthetic fixtures and may
-    differ from the source. A difference in these values is never, on its own,
-    a parity failure. It fails only when it changes or hides a UI state, for
+    percentages and item lists. They come from representative synthetic
+    fixtures and may differ from the source. A difference in these values is
+    never, on its own, a parity failure. It fails only when it changes or hides a UI state, for
     example a list with too few items to show its layout, or a missing
     empty/locked case.
-- Baseline data-boundary check: before accepting, confirm that baseline data
-  is small, hand-written and synthetic. Inspect the fixture and content
-  directories, their size, and their provenance. Recorded, replayed, captured
-  or bulk-copied source data or content is a baseline defect. Send it
-  back as a data-boundary correction. This includes content files that copied
-  presentation code imports statically. Do not accept it, and do not carry it
-  forward as an open item.
+- Baseline data-boundary check: apply [mock data origin](product-design-principles.md#mock-data-origin),
+  including content that copied UI code imports. Check where the data came
+  from and how it was made, and record what you checked and what you could
+  not. Reuse accepted evidence for data that has not changed; do not re-audit
+  the whole repository for each feature. Real data must be corrected before
+  acceptance, even if it was deferred earlier. If you cannot tell where data
+  that the scoped work needs came from, record the missing evidence and
+  resolve it before acceptance. Never conclude copying from size, and never
+  vouch for a whole collection from a sample.
 - If the established design repository/root has an applicable accepted
   baseline report, read its current implementation and artifacts in the active
-  ticket worktree and skip initial bootstrap. Request a refresh when an
-  explicitly selected new source authority differs from the report. Request a
-  correction when any known UI parity difference or
-  unsubstantiated distinct UI item remains.
-- Do not start requirements-driven feature or design work on an unreviewed,
-  failed, unsubstantiated, stale, or blocked current-experience baseline.
+  ticket worktree and skip initial bootstrap. Use the reasons above for any
+  further correction or refresh, not report metadata alone.
+- Do not start future-state work on an unaccepted bootstrap result, or while a
+  baseline defect or missing evidence blocks the scoped design. An old report
+  revision alone neither undoes an earlier acceptance nor proves the UI still
+  matches.
 
 ## Operating Sequence
 
@@ -406,7 +431,7 @@ worktree's ticket folder.
   Exclude rendered content prose (for example markdown/prose containers) from
   UI-copy checks. When a value comes from account or state
   data (progress, entitlement, role, flags), seed the same synthetic value on
-  the source observation side instead of copying source data into the
+  the source observation side instead of copying real source data into the
   UI reference.
 - Use a clean, matched scenario on both sides. Before comparing logged-in
   surfaces, confirm that both sides use the same synthetic account type and a
@@ -432,13 +457,13 @@ Before reporting the design package as completed, confirm:
   result, or the exact reason either is not required or is blocked
 - a completed ticket is under `tickets/done/<ticket-id>/`; a blocked or
   unfinished ticket remains under `tickets/in-progress/<ticket-id>/`
-- an existing-frontend design repository has an accepted, applicable
-  `ui-baseline-report.md` that shows UI parity for every distinct
-  inventory item
-- design data is small, hand-written and synthetic. No recorded, replayed,
-  captured or bulk-copied source data or content remains anywhere in
-  the design repository, including statically imported content files.
-  Fixture size and provenance are recorded.
+- an existing-frontend design repository has applicable accepted baseline
+  evidence (`ui-baseline-report.md` plus later accepted design artifacts);
+  changed and affected behavior is validated, without treating an older report
+  revision as proof of an outdated UI
+- design data meets [mock data origin](product-design-principles.md#mock-data-origin), including statically
+  imported content; where the data came from and what was checked are recorded,
+  and no known real data remains. Size alone neither passes nor fails it.
 - the documented command starts the UI reference, and the critical journey,
   including any actor-caused change, runs from the product's normal entry
   point with no preview-only control, overlay, or URL switch
@@ -467,11 +492,11 @@ Each of these has happened before. Recognise it and use the correction
 instead.
 
 - **Copying content along with UI code.** Defining the copied "presentation
-  boundary" by folder, so every file the pages import comes along: Markdown content, JSON data
-  files, and data modules such as question sets or translations. The UI reference ends up holding megabytes of real
-  content. Correction: copy UI code only. Replace every imported content file
-  with a small synthetic file of the same shape and exports, and audit UI code
-  and content separately.
+  boundary" by folder, so every file the pages import comes along: Markdown
+  content, JSON data files, and data modules such as question sets or
+  translations. Correction: copy UI code only. Replace imported real content
+  with representative synthetic data of the same shape and exports; audit
+  UI code and content separately.
 
 - **Judging data as if it were UI.** Rejecting a baseline because a dashboard
   shows "1 categories" where the source shows "18", or a different category
@@ -483,14 +508,24 @@ instead.
   component and per state, with content masked (see Validation).
 - **Corrections without a stated criterion.** Sending "these routes differ, fix
   them" without saying what must be exact and what is illustrative. The
-  Bootstrapper will reasonably copy the source's data to make the pages
-  identical. Correction: every correction names the gap type for each ID and
+  Bootstrapper may copy real source content to make the pages identical.
+  Correction: every correction names the gap type for each ID and
   restates the acceptance criterion.
-- **Accepting captured source data as "fixtures".** Passing "source-captured
-  payloads", "complete libraries", recorded API responses, replay layers, or
-  real answer data, transcripts and question sets because the pages then
-  match. Correction: that is copied content, a data-boundary defect. Replace it
-  with a few hand-written items of the same shape.
+- **Judging data by how it was made or by its size.** Rejecting generated or
+  captured mock snapshots as copied real data because they take megabytes, or
+  accepting a tiny real customer response because it is called a fixture.
+  Correction: check where the data came from under [mock data origin](product-design-principles.md#mock-data-origin);
+  replace real content, not valid ways of making mock data.
+- **Accepting captured real source data as "fixtures".** Passing recorded
+  production API responses, replay layers, complete content libraries, or real
+  answer data, transcripts and question sets because the pages then match.
+  Correction: that is copied real content, a data-boundary defect; replace it
+  with synthetic data of the same shape.
+- **Refreshing because a version number is newer.** Treating an old
+  baseline-report revision and a newer app version as proof of an outdated UI,
+  without checking which files changed or the accepted design work since.
+  Correction: use the cases in Bootstrap Routing, starting with the git check
+  for UI files; never start a broad rebuild for an unchecked claim.
 - **Carrying copied content forward as an open item.** Noting that real content
   files are "unchanged from the earlier baseline" and moving on. Correction:
   copied content is a defect in the current baseline. Request a data-boundary
@@ -501,8 +536,8 @@ instead.
   confirm it before comparing.
 - **Too little data to show the UI.** Swinging the other way and using fixtures
   so small that lists, grouping, paging, empty and locked states never render.
-  Correction: minimal data is enough items of each shape to show every UI
-  state, and no more.
+  Correction: use representative data sufficient to show every meaningful UI
+  state; compactness is not more important than fidelity.
 - **Review control panels or overlays on top of the product**, including a
   `?prototypeReview=` switch copied from an older ticket. Correction: Core
   Design Rule 2.

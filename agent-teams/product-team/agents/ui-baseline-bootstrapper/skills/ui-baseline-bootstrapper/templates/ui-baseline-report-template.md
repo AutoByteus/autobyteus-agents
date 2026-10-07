@@ -11,6 +11,7 @@ boundary. It does not prove production integration or replace
 
 - Status: `Completed` / `Blocked`
 - Request type: `Current-Experience Bootstrap` / `Correction` / `Refresh`
+- For a correction, the confirmed gap or missing evidence; for a refresh, the refresh request:
 - Next expected action:
 
 ## Source Identity
@@ -56,6 +57,11 @@ no known UI parity difference. In the fixture column, name the
 synthetic fixture and list any illustrative domain values (content-derived
 titles, texts, or counts that intentionally differ from the source).
 
+For a correction or refresh, mark which items were checked now and link the
+accepted evidence that still applies to the rest. Do not present earlier
+evidence as a new check, and do not treat the report's older source revision
+alone as proof that the UI changed.
+
 | ID | Route / Surface | Exact Visual And UI-Controlled Content Obligations | States / Operations / Outcomes | Material Contexts | Baseline Scenario / Synthetic Fixture | Source Evidence | Baseline Evidence | Fidelity Result |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | UXB-001 |  |  |  |  |  |  |  | `Pass` / `Fail` / `Unknown` |
@@ -88,8 +94,14 @@ production mechanisms.
 - Presentation code, styles, tokens, or assets reused:
 - UI code recreated:
 - Baseline-specific state model:
-- Hard-coded or fixture-backed synthetic data (size under the baseline's
-  data/fixture paths; confirm that no source data was recorded or copied):
+- Where the mock data came from and how it was made (written by hand,
+  generated, saved, or captured from the source app running on mock data),
+  with the inputs or scenarios used:
+- What was checked about its origin, what was found, and what could not be
+  checked (include content that UI code imports; do not vouch for a whole
+  collection from a sample):
+- Size or repetition notes, when useful (a reason to look closer, not proof
+  of copying and not a limit):
 - Scripted asynchronous behavior:
 - Browser simulation of mobile, desktop-host, Electron, role, permission, or
   feature contexts:
@@ -132,8 +144,9 @@ production mechanisms.
 - UI parity differences remaining: `None` /
   details
 - Unsubstantiated distinct UI inventory items remaining: `None` / details
-- Mock data boundary: all data and content files are small and hand-written,
-  with no real, recorded or copied content (sizes per directory): `Yes` / `No`
+- Mock data follows "Mock data origin" in the shared principles, with the
+  evidence above and no real source or customer content: `Yes` / `No` /
+  `Unknown`
 - UI parity achieved for every item in the recorded distinct inventory:
   `Yes` / `No`
 
@@ -158,4 +171,5 @@ runtimes, integrations, or architecture were reproduced or validated.
   simplified without changing presentation:
 - Source reachability or evidence limitations:
 - Required correction:
+- Optional data cleanup (not a parity or origin failure by itself):
 - Recommended next action for `product_ui_ux_designer`:

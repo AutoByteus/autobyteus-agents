@@ -60,6 +60,9 @@ The same test prevents both wordiness and over-shortening:
 | “In order to validate the package, perform validation of the changed files.” | “Validate the changed files.” | The extra words add no action or condition. |
 | “Follow the bundled `agent-package-creation` skill as the authoritative workflow for creating agent packages.” | “Follow `agent-package-creation`.” | Its attachment and scope are already clear. |
 | “Send the result.” | “Send the result to every exact `recipient_address` returned.” | The shorter version loses the routing requirement. |
+| “Unverified currency.” | “Possibly outdated.” | Jargon hides the meaning. |
+| “Verify in proportion to the diff.” | “Check what the diff touched.” | Names the action instead of a quality. |
+| “Judge it by provenance, independence, deterministic/resettable behavior, and proportionate complexity.” | A short list: where it came from, needs no live service, same result every run. | A chain of abstract nouns and slash compounds becomes checks an agent can perform. |
 
 This standard guides the author's work, not a separate self-review stage. Independent review occurs only when requested (the `analyze` operation) or required by the containing workflow. For a skill's trigger, instruction flow, and resources, apply the [skill-authoring principles](skill-authoring-principles.md).
 
