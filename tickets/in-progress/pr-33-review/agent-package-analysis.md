@@ -69,3 +69,9 @@ Not applied. Before merge: findings 4 and 6. Recommended in the same pass: findi
 ## Plain-language pass (2026-10-07, user request)
 
 Applied to the PR's added text, per principle §4.4–4.5: the rule is renamed "Mock data origin" (was "Synthetic-state provenance and proportionality"); the shared section lists four plain checks (origin, independence, coverage, repeatability); "unverified currency" becomes "possibly outdated"; slash compounds and "proportionate" phrasing are replaced with concrete actions. Added (user direction): for a possibly outdated baseline, check with git which files changed between the baseline's source revision and the newer one; if no UI file changed, the baseline is current. Meaning otherwise unchanged; skills valid; PR validation passes (48 links).
+
+## Anti-pattern 14 and sweep (2026-10-07, user request)
+
+The PR was produced by an agent following the Agent Package Creator workflow, so the jargon is a gap in the creator's guidance: §4.5 states plain language abstractly. Added anti-pattern 14 "Writing in jargon instead of plain actions" and three before/after rows from this PR to the §4 Avoid/Use table.
+
+Sweep with #14's detection (slash compounds, vague qualifiers, sentences with four or more -ity/-ance/-ence nouns; code spans and links ignored; heuristic signals, not confirmed defects). Follow-ups, highest first: software-engineering-team 297 hits (9 noun-chain sentences), product-team 118 (10), research-to-deck-team 113 (1), software-product-promo-video-team 112 (4), narrated-presentation-video-team 111 (4), article-writing-team 102 (9), northstar-operating-company 67 (2), kids-coloring-story-team 58 (17), manga-video-studio-team 43 (2), agent-package-creator 31 (0), storm-team 26 (0), kids-picture-story-team 20 (1).

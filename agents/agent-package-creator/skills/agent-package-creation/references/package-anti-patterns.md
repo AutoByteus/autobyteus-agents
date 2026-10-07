@@ -85,6 +85,13 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Instead:** Treat size, method, and metadata as reasons to look closer. Before blocking work or starting new work, tell apart a confirmed failure, unknown origin or freshness, optional cleanup, and an explicit request.
 - **Detect:** For every rule that blocks work or forces an action, name the evidence it requires; flag rules triggered by a proxy (size, age, method, naming, metadata) alone.
 
+### 14. Writing in jargon instead of plain actions
+
+- **Incident:** PR #33's guidance used "unverified currency" (for "possibly outdated"), "proportionate" about 20 times, slash compounds such as "generation/capture", and sentences that chained abstract nouns; the meaning was right but hard to act on (2026-10-07).
+- **Breaks:** [§4](package-design-principles.md#4-apply-one-authoring-standard), clarity and plain language: name the actor, action, and result in everyday words.
+- **Instead:** Say what to do. Use a short list when there are several criteria, and a concrete check instead of "proportionately".
+- **Detect:** Search changed text for slash compounds (`word/word`), vague qualifiers ("proportionate", "appropriate", "as needed", "relevant"), and sentences that pile up nouns ending in -ity, -ance, or -ence; for each, ask what exactly the agent does.
+
 ## Creator process
 
 ### 10. Working from a stale or unrelated checkout
