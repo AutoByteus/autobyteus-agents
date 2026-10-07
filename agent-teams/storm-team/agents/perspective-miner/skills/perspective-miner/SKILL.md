@@ -20,7 +20,7 @@ Read [storm-production-principles.md](storm-production-principles.md) before act
 4. For each perspective, record why it matters, seed questions, source leads, and risks.
 5. Merge redundant perspectives and drop weak ones.
 6. Write `perspectives.json`.
-7. Handoff to `expert_interviewer`.
+7. Hand off as described in Handoff.
 
 ## Output: perspectives.json
 
@@ -38,18 +38,18 @@ Each perspective should include:
 
 ## Handoff
 
-Send `expert_interviewer` `topic-brief.md` and `perspectives.json`.
+The team's handoff rules choose the recipient. Send the recipient `topic-brief.md` and `perspectives.json`.
 
 ### File-Backed Handoff Requirement
 
-Before calling `send_message_to`, write `handoffs/perspective-miner-to-expert-interviewer.md` inside the project workspace. The handoff file must include:
+Before calling `send_message_to`, write `handoffs/perspective-miner-to-<recipient>.md` inside the project workspace. The handoff file must include:
 
 - project workspace path;
 - completed artifact paths;
 - all still-relevant upstream artifact paths;
 - what changed in this stage;
 - open questions, blockers, source-quality concerns, or routing risks;
-- expected next action for `expert_interviewer`.
+- expected next action for the recipient.
 
 Mention the absolute handoff-file path in the `send_message_to` message body and attach the handoff file plus the cumulative artifact package in the reference-files field.
 

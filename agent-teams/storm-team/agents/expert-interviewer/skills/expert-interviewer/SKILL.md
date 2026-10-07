@@ -23,7 +23,7 @@ Read [storm-production-principles.md](storm-production-principles.md) before act
    - Ask follow-up questions when answers reveal new gaps or concepts.
 3. Maintain source IDs in `source-index.json`.
 4. Write `interview-notes.md` with question IDs and source IDs.
-5. Handoff to `outline_architect`.
+5. Hand off as described in Handoff.
 
 ## Output
 
@@ -38,18 +38,18 @@ Use [interview-notes-template.md](templates/interview-notes-template.md) and [so
 
 ## Handoff
 
-Send `outline_architect` the full upstream package plus `interview-notes.md` and `source-index.json`.
+The team's handoff rules choose the recipient. Send the recipient the full upstream package plus `interview-notes.md` and `source-index.json`.
 
 ### File-Backed Handoff Requirement
 
-Before calling `send_message_to`, write `handoffs/expert-interviewer-to-outline-architect.md` inside the project workspace. The handoff file must include:
+Before calling `send_message_to`, write `handoffs/expert-interviewer-to-<recipient>.md` inside the project workspace. The handoff file must include:
 
 - project workspace path;
 - completed artifact paths;
 - all still-relevant upstream artifact paths;
 - what changed in this stage;
 - open questions, blockers, source-quality concerns, or routing risks;
-- expected next action for `outline_architect`.
+- expected next action for the recipient.
 
 Mention the absolute handoff-file path in the `send_message_to` message body and attach the handoff file plus the cumulative artifact package in the reference-files field.
 

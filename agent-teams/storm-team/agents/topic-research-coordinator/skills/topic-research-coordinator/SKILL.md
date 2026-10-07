@@ -21,7 +21,7 @@ Read [storm-production-principles.md](storm-production-principles.md) before act
    - Create `sources/`, `notes/`, `drafts/`, `logs/`, and `handoffs/` if useful.
 3. Write `topic-brief.md`.
 4. Do a light seed-source scan only to identify terminology, not to replace the perspective miner.
-5. Handoff to `perspective_miner` with absolute paths.
+5. Hand off with absolute paths, as described in Handoff.
 
 ## Output: topic-brief.md
 
@@ -41,18 +41,18 @@ Required sections:
 
 ## Handoff
 
-Send `perspective_miner` the workspace path and `topic-brief.md`.
+The team's handoff rules choose the recipient. Send the recipient the workspace path and `topic-brief.md`.
 
 ### File-Backed Handoff Requirement
 
-Before calling `send_message_to`, write `handoffs/topic-research-coordinator-to-perspective-miner.md` inside the project workspace. The handoff file must include:
+Before calling `send_message_to`, write `handoffs/topic-research-coordinator-to-<recipient>.md` inside the project workspace. The handoff file must include:
 
 - project workspace path;
 - completed artifact paths;
 - all still-relevant upstream artifact paths;
 - what changed in this stage;
 - open questions, blockers, source-quality concerns, or routing risks;
-- expected next action for `perspective_miner`.
+- expected next action for the recipient.
 
 Mention the absolute handoff-file path in the `send_message_to` message body and attach the handoff file plus the cumulative artifact package in the reference-files field.
 
