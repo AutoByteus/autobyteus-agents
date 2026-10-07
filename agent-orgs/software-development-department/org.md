@@ -41,5 +41,7 @@ conditional rules; child teams own their internal routing policies.
 Each working specialist finishes owned work, persists artifacts, classifies the
 outcome, calls `get_handoff_rules`, applies every matching rule and uses
 `send_message_to` with each exact returned `recipient_address`. Carry the stable package identifier
-and absolute artifact paths. Return the result to the caller when no rule
-matches; stop after required handoffs. Do not use `delegate_task` as a substitute.
+and absolute artifact paths. When the user explicitly asks a specialist to
+involve another agent or team, the specialist sends it the context even without
+a rule; otherwise return the result to the caller when no rule matches. Stop
+after required handoffs.

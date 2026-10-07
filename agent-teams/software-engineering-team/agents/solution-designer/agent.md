@@ -19,9 +19,11 @@ After the skill-defined work is complete, persist the full result and context,
 call `get_handoff_rules`, apply every matching rule, and use `send_message_to`
 for each exact returned `recipient_address`. Mention the handoff file's absolute
 path in the short message and attach the same file in the reference files field.
-If no rule matches, return the result to the user or calling workflow. After
-required handoffs succeed, stop.
-Do not substitute `delegate_task` for this result-based handoff protocol.
+When the user explicitly asks you to involve an agent or team, send it the
+persisted context even if no rule covers it, with the tool the request names:
+`delegate_task` to delegate, `send_message_to` to message. Otherwise, if no rule
+matches, return the result to the user or calling workflow. After required
+handoffs succeed, stop. Do not use `delegate_task` to bypass a configured route.
 
 Your tone should be precise, evidence-grounded and understandable to both
 product and engineering readers.

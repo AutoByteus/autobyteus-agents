@@ -219,10 +219,12 @@ conditional policies, not automatically mandatory stages for every team.
 An agent participating in this protocol needs `get_handoff_rules` and
 `send_message_to` in its runtime tool configuration. State the universal
 transition in the agent/team contract; the skill owns work completion and
-result classification, not a duplicate routing matrix. `delegate_task` starts
-a separate delegated execution and is not a substitute for this protocol.
-If a workflow deliberately uses another mechanism, declare that choice without
-conflicting instructions for the same transition.
+result classification, not a duplicate routing matrix. Do not use `delegate_task`
+to bypass a configured route for a normal result. Configured rules do not limit
+collaboration the user asks for: when the user explicitly asks a role to involve
+an agent or team at runtime, the role sends it the persisted context even when
+no rule covers it, with the tool the request names (`delegate_task` to
+delegate, `send_message_to` to message).
 
 ## Markdown File Reference Style
 

@@ -7,7 +7,7 @@ description: Create, analyze, or update standalone skills, Agents, Agent Teams, 
 
 Create, analyze, or update Skill, Agent, Team, and Org definitions. The roles you define perform their own work.
 
-Read [package-design-principles.md](references/package-design-principles.md) for package boundaries and writing principles. For skill work, also read [skill-authoring-principles.md](references/skill-authoring-principles.md).
+Read [package-design-principles.md](references/package-design-principles.md) for package boundaries and writing principles. For skill work, also read [skill-authoring-principles.md](references/skill-authoring-principles.md). [package-anti-patterns.md](references/package-anti-patterns.md) records real mistakes and how to detect them.
 
 ## Inputs and operation
 
@@ -35,7 +35,7 @@ Describe the path from request to completion and recovery. For a role, specify i
 
 ### 2. Write the analysis (`analyze` and `update`)
 
-Before editing any package file, write one `agent-package-analysis.md` in the artifact workspace using [agent-package-analysis-template.md](templates/agent-package-analysis-template.md). If this task's workspace already has an analysis of the same target, revise that file instead of adding another. Judge the target against the shared authoring standard in [package-design-principles.md](references/package-design-principles.md) (and [skill-authoring-principles.md](references/skill-authoring-principles.md) for skills) and against the request or the package's stated purpose, so findings cover both defects in existing files and missing behavior. Record the baseline, preserved behavior, findings with evidence and owning file, recommended or planned changes, and open questions. Run the read-only checks from step 4 that the findings rely on and record the observed results.
+Before editing any package file, write one `agent-package-analysis.md` in the artifact workspace using [agent-package-analysis-template.md](templates/agent-package-analysis-template.md). If this task's workspace already has an analysis of the same target, revise that file instead of adding another. Judge the target against the shared authoring standard in [package-design-principles.md](references/package-design-principles.md) (and [skill-authoring-principles.md](references/skill-authoring-principles.md) for skills) and against the request or the package's stated purpose, so findings cover both defects in existing files and missing behavior. Check the target against [package-anti-patterns.md](references/package-anti-patterns.md). Record the baseline, preserved behavior, findings with evidence and owning file, recommended or planned changes, and open questions. Run the read-only checks from step 4 that the findings rely on and record the observed results.
 
 - **`analyze`:** Change no package file. Leave recommended changes unapplied, since applying them is a later `update` the user must request. Continue at step 5 with the analysis as the result.
 - **`update`:** If the analysis exposes an unresolved material decision, record `Requirement Gap` in it and continue at step 5. Otherwise apply the planned changes in step 3.
@@ -59,10 +59,10 @@ Validate what the selected kind and changed files require, and record observed e
 
 - **Any skill:** check frontmatter/name/description, direct links and referenced paths, unfinished placeholders, and the available standard skill validator. Run focused checks for changed scripts, and confirm the skill's claimed outputs and tool dependencies are supported. For bundled skills, verify explicit `skillNames` attachment.
 - **Any changed Agent/config:** parse JSON; check Agent frontmatter, tool/skill wiring, and folder/name alignment.
-- **Team/Org:** check member references and rooted addresses; for a Team, confirm its coordinator is a member; for an Org, check shared versus org-local placements and child-Team boundaries. Record catalog availability or its absence truthfully.
-- **All kinds:** compare definition, config, skill, references, templates, and human docs for one owner per rule, no stale names or competing routes, and a diff contained to the approved scope.
+- **Team/Org:** check member references and rooted addresses; for a Team, confirm its coordinator is a member; for an Org, check shared versus org-local placements and child-Team boundaries. Check that every outcome a role hands off has a destination in the containing config, or that the package states which parent provides it and what happens when the package runs on its own. Check that no role forbids user-directed collaboration. Record catalog availability or its absence truthfully.
+- **All kinds:** compare definition, config, skill, references, templates, and human docs for one owner per rule, no stale names or competing routes, and a diff contained to the approved scope. Run the detection checks in [package-anti-patterns.md](references/package-anti-patterns.md) that apply.
 
-Correct an in-scope canonical owner and rerun affected checks. Record `Requirement Gap` when intent or approval is missing, `Design Impact` when topology must be reconsidered, or `Blocked` when an external dependency prevents safe work. Do not claim a runtime registration or catalog check that was not observed.
+Correct an in-scope canonical owner and rerun affected checks. When a finding shows a mistake the principles and anti-patterns did not prevent, add an anti-pattern entry, or extend the one with the same cause, in the same update. Then run that entry's detection check across the repository and list every other instance in the result as a follow-up. Record `Requirement Gap` when intent or approval is missing, `Design Impact` when topology must be reconsidered, or `Blocked` when an external dependency prevents safe work. Do not claim a runtime registration or catalog check that was not observed.
 
 ### 5. Persist and route the result
 
