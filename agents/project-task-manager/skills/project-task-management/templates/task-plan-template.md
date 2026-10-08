@@ -7,11 +7,11 @@
 
 ## Tasks
 
-Listed in dispatch order; each Task comes after the Tasks it depends on. Each dispatch needs the user's approval.
+Listed in dispatch order; each Task comes after the Tasks it depends on. Run IDs and dispatch approvals go on the board.
 
-| # | Task | Depends on | Worker | Dispatch approved | Task ID | Run ID | Status |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | <short title> | — | <agent or team> | <user's words and date, or Pending> | `<task_id>` | `<target_agent_run_id>` | TODO / IN_PROGRESS / DONE |
+| # | Task | Depends on | Worker | Task ID | Status |
+| --- | --- | --- | --- | --- | --- |
+| 1 | <short title> | — | <agent or team> | `<task_id>` | TODO / IN_PROGRESS / DONE |
 
 ## Open questions and changes
 
