@@ -11,7 +11,7 @@ Listed in dispatch order; each Task comes after the Tasks it depends on. Run IDs
 
 | # | Task | Depends on | Worker | Task ID | Status |
 | --- | --- | --- | --- | --- | --- |
-| 1 | <short title> | — | <agent or team> | `<task_id>` | TODO / IN_PROGRESS / DONE |
+| 1 | <short title> | — | <agent or team> | `<task_id>` | TODO / IN_PROGRESS / DONE / CANCELLED |
 
 ## Open questions and changes
 
