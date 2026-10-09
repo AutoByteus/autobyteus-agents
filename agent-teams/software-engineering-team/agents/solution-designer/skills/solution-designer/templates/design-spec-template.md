@@ -190,6 +190,8 @@ If a public facade or entry wrapper exists, say explicitly whether it is only a 
 
 Use this section to make removal first-class instead of leaving the design as addition-only.
 
+Include dead code in the touched files and modules ([Core Principle 7](../design-principles.md#7-no-dead-code)): in `Why It Becomes Unnecessary`, write `Dead:` and the evidence that nothing reaches it. Dead code found elsewhere goes in with scope `Follow-up`.
+
 | Item To Remove / Decommission | Why It Becomes Unnecessary | Replaced By Which Owner / File / Structure | Scope (`In This Change`/`Follow-up`) | Notes |
 | --- | --- | --- | --- | --- |
 |  |  |  |  |  |

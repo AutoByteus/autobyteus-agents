@@ -73,7 +73,8 @@ upstream behavior narrative.
 
 - Backward-compatibility mechanisms introduced: `None` / `List + redesign required`
 - Legacy old-behavior retained in scope: `No` / `Yes (blocked)`
-- Dead/obsolete code, obsolete files, unused helpers/tests/flags/adapters, and dormant replaced paths removed in scope: `Yes` / `No (blocked)`
+- Dead code in the touched files and modules removed (Core Principle 7): `Yes` / `No (blocked)`
+- Dead code found elsewhere, listed as follow-up: <items with evidence, or None>
 - Shared structures remain tight (no one-for-all base or overlapping parallel shapes introduced): `Yes` / `No (blocked)`
 - Canonical shared design guidance was reapplied during implementation, and file-level design weaknesses were routed upstream when needed: `Yes` / `No (blocked)`
 - Changed source implementation files stayed within proactive size-pressure guardrails (`>500` avoided; `>220` assessed/acted on): `Yes` / `No (blocked)`

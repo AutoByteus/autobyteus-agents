@@ -138,6 +138,8 @@ If no supplemental task artifacts exist, write `None`.
 
 ## Removal / Decommission Completeness Verdict
 
+Include dead code ([Core Principle 7](../design-principles.md#7-no-dead-code)): fail the verdict when dead code in the touched files and modules is missing from the removal plan, or is listed without evidence that nothing reaches it.
+
 | Item / Area | Redundant / Obsolete Piece To Remove Is Named? (`Pass`/`Fail`) | Replacement Owner / Structure Is Clear? (`Pass`/`Fail`/`N/A`) | Removal / Decommission Scope Is Explicit? (`Pass`/`Fail`) | Verdict (`Pass`/`Fail`) | Notes |
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |

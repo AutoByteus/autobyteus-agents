@@ -175,7 +175,7 @@ Review test structure proportionately when test files are relevant. Do not apply
 | Naming quality and naming-to-responsibility alignment check (files, folders, APIs, types, functions, parameters, variables) |  |  |  |
 | No unjustified duplication of code / repeated structures in changed scope |  |  |  |
 | Patch-on-patch complexity control |  |  |  |
-| Dead/obsolete code cleanup completeness in changed scope |  |  |  |
+| Dead code removed in the touched files and modules (Core Principle 7) |  |  |  |
 | Relevant test scenarios and assertions are clear and requirement-aligned |  |  |  |
 | Test fixtures/helpers are reasonably reusable and test structure remains coherent |  |  |  |
 | No stale, duplicated, or compatibility-only tests are retained in changed scope |  |  |  |
@@ -199,7 +199,7 @@ A general version-agnostic reader is not backward compatibility merely because i
 | --- | --- | --- |
 | No backward-compatibility mechanisms in changed scope |  |  |
 | No legacy old-behavior retention in changed scope |  |  |
-| Dead/obsolete code cleanup completeness in changed scope |  |  |
+| Dead code removed in the touched files and modules (Core Principle 7) |  |  |
 | Approved persisted-data transition decision is followed without unnecessary migration work |  |  |
 | No version-specific dual reads/writes or request-time old-shape fallback exists |  |  |
 | Approved transition mechanics match the reviewed design, including migration safety only when required |  |  |

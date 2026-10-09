@@ -152,6 +152,24 @@ Apply these principles from behavioral foundation through macro structure before
 - Require additional state, APIs, abstractions, coordination, or recovery behavior only when they address a supported reachable material problem and are proportionate to its consequence. Technical completeness means correctness for supported behavior and real operational constraints, not handling every imaginable state.
 - See [Example 10: Supported Product Scenario Versus Technical Possibility](design-examples.md#example-10-supported-product-scenario-versus-technical-possibility) for positive normal and explicit-edge examples, rejected technical-only scenarios, and the downstream review treatment.
 
+### 7. No Dead Code
+
+Dead code is code that nothing in the product reaches anymore. It makes the codebase larger, slower to read, and misleading, so removing it is part of every change, not optional cleanup.
+
+- **What counts as dead:**
+  - branches that can never run;
+  - functions, classes, exports, files, and imports that nothing calls or imports;
+  - feature flags and configuration options with only one value still in use, and the code behind the other values;
+  - tests, fixtures, and mocks for code that no longer exists;
+  - code that only its own tests call;
+  - paths that a change replaces (see the clean-cut rules in Derived Checks).
+- **Evidence:** before removing code, show that nothing reaches it. A search finds no references, and the compiler, linter, or unused-export check agrees where the project has one. Also check entry points a search can miss: dynamic imports, reflection, configuration and routing files, plugin or script entry points, and public APIs used outside the repository. Code reached only through such an entry point is not dead.
+- **Scope:**
+  - remove dead code in the files and modules a change touches, including code that was already dead before the change;
+  - list dead code found elsewhere as a follow-up cleanup task with its evidence. Do not leave it unrecorded, and do not mix it into an unrelated change.
+- Removing dead code does not change approved behavior, because nothing reaches it. If removal would change something a user, system, or external caller can still reach, the code is not dead; treat the removal as a behavior change that needs approved requirements.
+- Record each removal, with its evidence, in the design's removal plan.
+
 ## Derived Checks
 
 - Separation of concerns is still mandatory, and it should get stronger as the spine and ownership model become clearer. It is derived from the spine, main subject nodes, and ownership boundaries rather than treated as the starting point.
@@ -193,6 +211,7 @@ Apply these principles from behavioral foundation through macro structure before
 - Map subsystems, folders, and files from the spine and ownership model, not from a rigid one-folder-per-step rule.
 - If the layout stays flatter, record why that is clearer for this scope. If the layout splits more, make sure each split reflects a real owner or boundary.
 - Record change inventory explicitly: `Add`, `Modify`, `Rename/Move`, `Remove`.
+- Look for dead code in the files and modules the change touches, and add each item to the removal plan with its evidence (Core Principle 7).
 - Define the change/refactor sequence when the change is not greenfield.
 - When persisted data may be affected, make the transition decision before designing migration machinery. If migration is required, design it as a separate owned spine and keep the target runtime current-schema-only.
 - Prefer clean-cut replacement over compatibility wrappers or dual-path behavior. If old behavior is being replaced, design and record its removal explicitly.
@@ -383,6 +402,7 @@ Do not introduce a pattern if it obscures the spine, blurs ownership, or creates
 - What persisted-data transition decision applies, and what representative reader, semantic, invariant, storage, volume, and operational evidence supports it?
 - If migration is required, which owner performs it, and how are ordering, completion, validation, interruption, recovery, and rollout handled?
 - Which duplicated, fragmented, or now-unnecessary helpers/files/structures become removable because the new design gives them a clearer owner or replacement?
+- Which code in the touched files and modules is dead, what evidence shows that nothing reaches it, and which dead code found elsewhere goes on the follow-up list (Core Principle 7)?
 - Which shared data structures, schemas, DTOs, mappers, or types need tightening so redundant attributes or overlapping representations are removed instead of standardized?
 - Which dependencies are allowed, and which shortcuts are forbidden?
 - Which boundaries are public entrypoints versus internal owned sub-layers, and which callers are allowed to depend on each?
@@ -406,6 +426,7 @@ Do not introduce a pattern if it obscures the spine, blurs ownership, or creates
 - New helper or service pieces created ad hoc even though an existing subsystem already owns that kind of work
 - A caller depends on both a public boundary and one of its internal managers, repositories, helpers, or lower-level concerns at the same time
 - Compatibility wrappers, dual-path behavior, or legacy fallback branches kept only to preserve old flows
+- Dead code left in the files a change touches, or code removed as dead without evidence that nothing reaches it
 - Old-schema decoding, branching, or dual reads/writes embedded in current business services or normal repositories instead of isolated migration-owned code
 - Bulk migration or destructive rewriting proposed merely because a schema changed, without evidence that existing data must be transformed or that the operational benefit justifies the risk
 - Migration steps that can partially apply without a completion marker, validation, restart strategy, or recovery path
