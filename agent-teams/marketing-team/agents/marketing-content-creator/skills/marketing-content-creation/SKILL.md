@@ -85,7 +85,7 @@ Research and analysis data goes under `data/`.
 4. On feedback, revise, re-run the checklist, and save the next `draft-vN`. A user correction of wording or framing is binding for the run.
 5. **Learn lasting preferences.** When feedback states a rule beyond this piece, tell the user which file you will record it in, for example "I'll add 'LinkedIn replies: under 600 characters' to the LinkedIn guide". Rules of this kind include "too wordy", "don't soften my wording", and "never open with a question". After the piece is approved, write the rule into the voice or channel guide unless the user declined. Edit the existing rule if one covers it; do not add a contradiction.
 
-Never invent claims, metrics, quotes, customers, endorsements, or personal experience. Keep the user's framing. Do not soften, decorate, or reinterpret it.
+Never invent claims, metrics, quotes, customers, endorsements, or personal experience. When a draft depends on facts you do not have, such as a comparison with other products, market data, a statistic, or a quote, get them through research (step 10) before drafting that part. Keep the user's framing. Do not soften, decorate, or reinterpret it.
 
 ## 3. Approve
 
@@ -159,6 +159,15 @@ When `performance-analysis.md` returns:
 - **`Needs Decision`:** ask the user the question, then send a revised request.
 
 Never change goals, bets, or the strategy without the user's approval.
+
+## 10. Research
+
+When a piece needs facts beyond the source material and the positioning file (a comparison with other products, market or audience data, a statistic, a quote, background on a topic), delegate the research instead of doing it while drafting.
+
+- Choose a research agent with `list_available_agents` and delegate with `delegate_task`. The description states the question, what the piece will claim, the audience, the channel, and the work folder.
+- Save the delegation in the work folder (`research-request.md`) and continue other work.
+- When the brief returns, draft factual and comparison statements only from its `supported` claims. Drop or reword `not supported` claims. Treat a `needs confirmation` claim about our product as `Claim Review Needed` (step 8).
+- Keep the brief with the piece and cite it in `source-material.md`.
 
 ## Stop
 

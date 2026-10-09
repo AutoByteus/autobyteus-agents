@@ -17,6 +17,8 @@
     "video_editing_add_subtitles",
     "video_editing_add_text_overlay",
     "get_handoff_rules",
+    "list_available_agents",
+    "delegate_task",
     "send_message_to"
   ]
 }

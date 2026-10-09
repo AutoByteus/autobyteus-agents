@@ -1,0 +1,24 @@
+{
+  "toolNames": [
+    "read_file",
+    "write_file",
+    "edit_file",
+    "run_bash",
+    "search_web",
+    "read_url",
+    "read_media_file",
+    "list_tabs",
+    "open_tab",
+    "navigate_to",
+    "read_page",
+    "dom_snapshot",
+    "screenshot",
+    "close_tab",
+    "list_available_agents",
+    "delegate_task",
+    "send_message_to"
+  ],
+  "skillNames": [
+    "deep-research"
+  ]
+}

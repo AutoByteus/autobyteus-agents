@@ -50,6 +50,10 @@ The [Data Engineer](agents/data-engineer/agent.md) ingests, cleans, normalizes, 
 
 The [Project Task Manager](agents/project-task-manager/agent.md) turns a user's request in a Project into right-sized, dependency-ordered Project Tasks, dispatches them one at a time to suitable agents or teams with the user's approval for each dispatch, and tracks them to completion. Its bundled [`project-task-management`](agents/project-task-manager/skills/project-task-management/SKILL.md) skill owns the planning and dispatch procedure.
 
+### Deep Researcher
+
+The [Deep Researcher](agents/deep-researcher/agent.md) researches any question in depth from primary sources and delivers a sourced brief: findings with source and date, comparisons when asked, and a check of the claims the requester wants to make (`supported`, `not supported`, or `needs confirmation`). The user or other agents delegate research to it; for pages behind sign-in it delegates browser work to a computer-use agent. Its bundled [`deep-research`](agents/deep-researcher/skills/deep-research/SKILL.md) skill owns the procedure.
+
 ## Software Development Department
 
 The [Software Development Department](agent-orgs/software-development-department/org.md)
