@@ -18,7 +18,7 @@ The Marketing Team separates content, performance analysis, and computer work (w
 - The user works with the Content Creator. Nothing is published without the user's approval of the exact package for that channel, and no goal or strategy changes without the user's approval.
 - **Build:** the Content Creator drafts from the approved strategy, records which bet each piece tests, and sends one `publish-request.md` per channel or a `task-request.md` for other computer work.
 - **Measure and learn:** on a review request (`analysis-request.md`), the Analyst asks the Operator to collect public metrics, then returns `performance-analysis.md` with the scorecard, bet verdicts, and a proposed strategy. The Content Creator presents it and saves what the user approves.
-- The Operator returns `task-result.md` classified `Completed`, `Blocked`, or `Needs Decision` to the member named in the request's `Requested by` line.
-- **Research:** when a piece needs facts beyond its source material, the Content Creator sends a `research-request.md` to the Deep Researcher and drafts only from the brief's supported claims. The Deep Researcher asks the Operator for pages behind sign-in.
+- Any member can ask the Operator for website or computer work. The Operator returns `task-result.md` classified `Completed`, `Blocked`, or `Needs Decision` to the member named in the request's `Requested by` line.
+- **Research:** any member who needs research sends a `research-request.md` to the Deep Researcher: the Content Creator for facts a piece needs, drafting only from the brief's supported claims; the Analyst for strategy context. The Deep Researcher asks the Operator for pages behind sign-in.
 - A new channel needs no new member: the Content Creator adds a channel guide, and the Operator learns the site on its first successful run.
 - Login, 2FA, CAPTCHA, QR verification, and permission prompts go to the user; no member bypasses them.

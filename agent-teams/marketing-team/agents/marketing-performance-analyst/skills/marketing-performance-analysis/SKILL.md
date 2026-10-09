@@ -82,6 +82,7 @@ Hand it off and stop. When `task-result.md` returns, append each collected post 
 
 - **First review:** propose a measurable, time-bound goal per channel from the baseline, and 2–3 bets, each with its expected effect.
 - **Later reviews:** propose the next strategy version: keep, change, or drop each bet, and add new bets only where the evidence suggests one.
+- When a proposal would gain from outside context (what competitors post and how it performs, what the audience discusses, which formats are rising on a channel), write `research-request.md` in the review folder and hand it off; the team's handoff rules choose the researcher. Continue when the brief returns, and mark each bet as based on our own numbers, on research, or on both.
 - Propose style-rule candidates only with evidence from several posts.
 - Set the next review date, for example in 7 days or after 3 new posts per channel.
 

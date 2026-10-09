@@ -81,7 +81,7 @@
       "from": "/deep_researcher",
       "to": "/marketing_content_creator",
       "rules": [
-        "When the research brief for a Marketing Content Creator request is saved, or the research is blocked and needs the requester's decision."
+        "When the research brief for a Marketing Content Creator request is saved, or that research is blocked and needs the requester's decision."
       ]
     },
     {
@@ -96,6 +96,20 @@
       "to": "/deep_researcher",
       "rules": [
         "When task-result.md is saved for a request marked 'Requested by: Deep Researcher', with outcome Completed, Blocked, or Needs Decision."
+      ]
+    },
+    {
+      "from": "/marketing_performance_analyst",
+      "to": "/deep_researcher",
+      "rules": [
+        "When a research-request.md for strategy context (competitors' content and results, audience topics, channel trends) is saved and ready."
+      ]
+    },
+    {
+      "from": "/deep_researcher",
+      "to": "/marketing_performance_analyst",
+      "rules": [
+        "When the research brief for a Marketing Performance Analyst request is saved, or that research is blocked and needs the requester's decision."
       ]
     }
   ]

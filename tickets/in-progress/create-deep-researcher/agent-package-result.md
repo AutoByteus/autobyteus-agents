@@ -58,3 +58,4 @@ User decides: push to `main` or open a PR. First live test: ask the Content Crea
 - Content Creator step 10: hand off `research-request.md` through the handoff rules; delegate with `delegate_task` only when no rule matches (standalone use).
 - Deep Researcher: `get_handoff_rules` added; `agent.md` owns the transition (rules first, otherwise reply to the requester); the skill hands off browser work through the rules and falls back to delegation. Standalone behavior unchanged.
 - `team.md` and README updated.
+- Follow-up (user, 2026-10-09: general helpers serve every member): Performance Analyst ↔ Deep Researcher routes; the Analyst requests research for strategy context and marks each bet as based on our numbers, research, or both. Every member can now reach both shared helpers. 12 routes.
