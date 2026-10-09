@@ -18,6 +18,14 @@ Tasks created for later dispatch, on the user's word or a trigger. Move a row to
 | --- | --- | --- | --- |
 | `<task_id>` | <short title> | <e.g. the user's go-ahead; blocked by `<task_id>`; trigger> | <date> |
 
+## Pending user decisions
+
+Decisions a worker asked the user for. Remove a row once the answer is sent back to the worker.
+
+| Task ID | Decision | Asked by | Asked |
+| --- | --- | --- | --- |
+| `<task_id>` | <e.g. DEC-001: option A or B; worker recommends A> | `<address>` | <date> |
+
 ## Open dispatches
 
 Tasks you delegated that are not yet closed. Copy ID: what `delegate_task` takes for a follow-up (a Team's `target_team_run_id`, an Agent's `target_agent_run_id`). Message ID: what `send_message_to` takes (the Agent's run, or the Team's `target_team_coordinator_agent_run_id`).
