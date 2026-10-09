@@ -16,6 +16,7 @@
     "close_tab",
     "list_available_agents",
     "delegate_task",
+    "get_handoff_rules",
     "send_message_to"
   ],
   "skillNames": [

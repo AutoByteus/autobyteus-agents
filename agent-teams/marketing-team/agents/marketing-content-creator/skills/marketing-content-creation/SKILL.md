@@ -164,8 +164,8 @@ Never change goals, bets, or the strategy without the user's approval.
 
 When a piece needs facts beyond the source material and the positioning file (a comparison with other products, market or audience data, a statistic, a quote, background on a topic), delegate the research instead of doing it while drafting.
 
-- Choose a research agent with `list_available_agents` and delegate with `delegate_task`. The description states the question, what the piece will claim, the audience, the channel, and the work folder.
-- Save the delegation in the work folder (`research-request.md`) and continue other work.
+- Write `research-request.md` in the work folder: the question, what the piece will claim, the audience, the channel, and the work folder. Hand it off; the team's handoff rules choose the researcher. If no rule matches, choose a research agent with `list_available_agents` and delegate the request with `delegate_task`.
+- Continue other work while the research runs.
 - When the brief returns, draft factual and comparison statements only from its `supported` claims. Drop or reword `not supported` claims. Treat a `needs confirmation` claim about our product as `Claim Review Needed` (step 8).
 - Keep the brief with the piece and cite it in `source-material.md`.
 

@@ -14,6 +14,12 @@
       "refScope": "team_local"
     },
     {
+      "memberName": "deep_researcher",
+      "ref": "deep-researcher",
+      "refType": "agent",
+      "refScope": "shared"
+    },
+    {
       "memberName": "computer_use_operator",
       "ref": "computer-use-operator",
       "refType": "agent",
@@ -62,6 +68,34 @@
       "to": "/marketing_content_creator",
       "rules": [
         "When performance-analysis.md is saved with outcome Completed, Blocked, or Needs Decision."
+      ]
+    },
+    {
+      "from": "/marketing_content_creator",
+      "to": "/deep_researcher",
+      "rules": [
+        "When a research-request.md for facts a piece needs (comparison with other products, market or audience data, a statistic, a quote, topic background) is saved and ready."
+      ]
+    },
+    {
+      "from": "/deep_researcher",
+      "to": "/marketing_content_creator",
+      "rules": [
+        "When the research brief for a Marketing Content Creator request is saved, or the research is blocked and needs the requester's decision."
+      ]
+    },
+    {
+      "from": "/deep_researcher",
+      "to": "/computer_use_operator",
+      "rules": [
+        "When a task-request.md for browser work (pages behind sign-in, a trial account, or many clicks) marked 'Requested by: Deep Researcher' is saved and ready."
+      ]
+    },
+    {
+      "from": "/computer_use_operator",
+      "to": "/deep_researcher",
+      "rules": [
+        "When task-result.md is saved for a request marked 'Requested by: Deep Researcher', with outcome Completed, Blocked, or Needs Decision."
       ]
     }
   ]

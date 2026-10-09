@@ -51,3 +51,10 @@ A shared Deep Researcher answers any research question from primary sources: pla
 ## Next expected action
 
 User decides: push to `main` or open a PR. First live test: ask the Content Creator for a post comparing our product with the market leader.
+
+## Update 2026-10-09: mounted in the Marketing Team (user request)
+
+- `team-config.json`: shared member `deep_researcher`; routes Content Creator → Deep Researcher (research request), Deep Researcher → Content Creator (brief or blocker), Deep Researcher ↔ Computer Use Operator (`Requested by: Deep Researcher`). 4 members, 10 routes, all resolve.
+- Content Creator step 10: hand off `research-request.md` through the handoff rules; delegate with `delegate_task` only when no rule matches (standalone use).
+- Deep Researcher: `get_handoff_rules` added; `agent.md` owns the transition (rules first, otherwise reply to the requester); the skill hands off browser work through the rules and falls back to delegation. Standalone behavior unchanged.
+- `team.md` and README updated.

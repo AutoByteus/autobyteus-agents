@@ -21,7 +21,7 @@ List the sub-questions and where each answer most likely lives. Start with prima
 
 - Search with `search_web` and read pages with `read_url`.
 - If a page only shows its content in a browser, open it with the browser tools and read it there.
-- If a page needs sign-in, a trial account, or many clicks, delegate that browser work to a computer-use agent (choose one with `list_available_agents`). Name the exact pages and the details to capture, and continue with other sub-questions meanwhile.
+- If a page needs sign-in, a trial account, or many clicks, write `task-request.md` in the topic folder with `Requested by: Deep Researcher`, the exact pages, and the details to capture, and hand it off; the handoff rules choose a computer-use agent. If no rule matches, choose one with `list_available_agents` and delegate. Continue with other sub-questions meanwhile.
 - A sub-question is done when the primary source answers it, when two independent reliable sources agree, or when you can show that available sources do not answer it.
 
 ## 4. Keep an evidence record
@@ -48,10 +48,7 @@ Facts about the requester's own product or organization come from its public mat
 
 ## 6. Deliver
 
-- If another agent delegated the work, send it the brief's absolute path with `send_message_to`, addressed to the agent that sent the request, and attach the brief.
-- If the user asked directly, give the answer and the brief's path.
-
-Stop after delivering. Do not write the requester's content.
+Hand off the brief as the agent instructions describe, with the answer in the message and the brief attached. Stop after delivering. Do not write the requester's content.
 
 ## Rules
 
