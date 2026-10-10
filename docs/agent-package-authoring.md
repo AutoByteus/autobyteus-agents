@@ -74,8 +74,8 @@ that the role is the team's coordinator or entrypoint.
 
 A working Team coordinator can own a real specialist responsibility, as
 Solution Designer does. Agent Orgs do not require a coordinator. The
-[Software Development Department](../agent-orgs/software-development-department/org.md)
-contains two shared Teams directly, without a placeholder Agent. Its
+[AutoByteus Org](../agent-orgs/autobyteus-org/org.md)
+contains shared Teams directly, without a placeholder Agent. Its
 `org-config.json` owns cross-team routes; each Team retains its own coordinator
 and internal routing.
 

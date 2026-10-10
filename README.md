@@ -60,12 +60,6 @@ Coordinator is the entry member; routing lives in each team's `team-config.json`
 
 | Org | Contents |
 | --- | --- |
-| [Software Development Department](agent-orgs/software-development-department/org.md) | Coordinator-free Org mounting the Software Engineering Team and Product Team; cross-team routing in its [org-config.json](agent-orgs/software-development-department/org-config.json). |
 | [AutoByteus Org](agent-orgs/autobyteus-org/org.md) | Mounts the shared Product, Software Engineering, and Marketing Teams; owns cross-team routes in its [org-config.json](agent-orgs/autobyteus-org/org-config.json). |
 | [Northstar Operating Company](agent-orgs/northstar-operating-company/org.md) | Fictional B2B SaaS simulation: executive team (CEO, Chief of Staff, CTO, CPO, CMO, CRO, COO, CFO, Chief People Officer) plus Org-mounted Engineering, Product, Marketing, Revenue, Operations, and Finance & People teams. |
 
-```text
-Software Development Department — Agent Org (no coordinator)
-├── Software Engineering Team — Solution Designer
-└── Product Team — Product UI/UX Designer
-```
