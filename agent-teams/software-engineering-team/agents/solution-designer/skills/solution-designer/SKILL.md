@@ -175,7 +175,7 @@ as well as how to design.
 ### 4. Classify The Completed Solution
 
 After the design spec is complete, use the task-size and architectural-risk
-standard in [architecture-design.md](references/architecture-design.md#task-size-and-architectural-risk).
+standard in [design-principles.md](design-principles.md#task-size-and-architectural-risk).
 Record `task_size`, `architectural_risk`, supporting evidence and the escalation
 trigger in `design-spec.md`. Classify the completed design's actual scope, not
 an early estimate or the volume of investigation notes.

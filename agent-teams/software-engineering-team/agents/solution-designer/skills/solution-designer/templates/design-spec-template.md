@@ -101,15 +101,14 @@ Complete every mandatory section, but keep the written detail of each mapping pr
 
 ## Legacy Removal Policy (Mandatory)
 
-- Policy: `No backward compatibility; remove legacy code paths.`
-- Required action: identify obsolete legacy paths/files included in this scope.
-- Treat removal as first-class design work: when clearer subsystem ownership, reusable owned structures, or tighter file responsibilities make fragmented or duplicated pieces unnecessary, name and remove/decommission them in scope.
-- Decision rule: the design is invalid if it depends on compatibility wrappers, dual-path behavior, or legacy fallback branches kept only for old behavior.
-- A schema or model change does not by itself require persisted-data migration. Record the approved transition decision; when transformation is required, use an explicit migration boundary rather than dual-shape business logic or normal repository fallbacks.
+Apply the clean-cut and removal rules in the design principles' [Derived Checks](../design-principles.md#derived-checks); record removals in the Removal / Decommission Plan below.
+
+- Obsolete legacy paths and files in this scope:
+- Compatibility wrappers, dual paths, or legacy fallbacks this design keeps: `None` / <item and why; the design is invalid unless the user approved it>
 
 ## Persisted Data / State Transition Decision (Mandatory When Persisted Data May Be Affected)
 
-A code-model, serialization, or storage-schema change triggers this decision, not an automatic migration. If no persisted data is affected, write `Not Affected` with a brief reason.
+Decide with [Core Principle 5](../design-principles.md#5-current-schema-runtime-and-proportionate-persisted-data-transitions). If no persisted data is affected, write `Not Affected` with a brief reason.
 
 - Stored subject, location, representative shape, and approximate volume:
 - Relevant code-model, serialization, semantic, or physical-store change:

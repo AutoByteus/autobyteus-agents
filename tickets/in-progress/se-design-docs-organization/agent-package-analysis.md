@@ -1,7 +1,7 @@
 # Agent Package Analysis
 
 - Status: `Completed`
-- Operation: `analyze`
+- Operation: `update` (began as `analyze`; user approved on 2026-10-10)
 - Package type: `team` (Software Engineering Team, design documents)
 - Target package: `/Users/normy/autobyteus_org/autobyteus-agents/agent-teams/software-engineering-team/` at `origin/main` `eea734b`
 - Scope included: `shared/design-principles.md` (438 lines), `shared/design-examples.md` (1,209), Solution Designer `SKILL.md`, `references/architecture-design.md`, `templates/design-spec-template.md`; both reviewers' skills and templates; Implementation Engineer skill; the shared-file links in each skill.
@@ -40,7 +40,7 @@ Not applied; they need an `update` request. Order: 1 (broken links) → 2 and 4 
 
 ## Open questions and approvals
 
-1. Finding 1 applied (user, 2026-10-10: "1 definitely needs to be fixed"): `design-examples.md` is linked at the skill root in all four roles (moved for both reviewers, added for the Implementation Engineer); the reviewers' own links updated; 9 example links resolve as each role sees them. Findings 2–5 explained to the user; not applied yet. Finding 6 later.
+1. Finding 1 applied (user, 2026-10-10: "1 definitely needs to be fixed"): `design-examples.md` is linked at the skill root in all four roles (moved for both reviewers, added for the Implementation Engineer); the reviewers' own links updated; 9 example links resolve as each role sees them. Findings 2–5 applied after the user's instruction "if your principles find all these points need to be fixed, fix it now" (see `agent-package-result.md`). Finding 6 (plain-language pass) later.
 
 ## Analysis checks
 

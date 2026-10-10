@@ -10,6 +10,7 @@ This is the canonical shared design reference for the software engineering team.
 - [Derived Checks](#derived-checks)
 - [Practical Application Guide](#practical-application-guide)
 - [Task Design Health Assessment](#task-design-health-assessment)
+- [Task Size And Architectural Risk](#task-size-and-architectural-risk)
 - [Structural Triggers](#structural-triggers)
 - [Common Local Patterns](#common-local-patterns)
 - [Short Example Shapes](#short-example-shapes)
@@ -145,6 +146,7 @@ Apply these principles from behavioral foundation through macro structure before
 - `Independent Origin Rule` (mandatory): the initiating trigger or governing contract must exist independently of the premise or mechanism under review. For a user-facing premise, name both the exposed product surface and supported user action. For a non-user premise, name the supported system event, operational action, or applicable governing contract.
 - A client, SDK, endpoint, handler, middleware, generic infrastructure, or proposed target mechanism may appear only after the initiating basis in the witness; it cannot prove that the product exposes its own path.
 - Trace the normal production path forward from the supported trigger. When the initiating basis is a governing contract, name the concrete caller or event that exercises it. Do not reason backward from a fallback branch, synthetic reproduction, or test and invent an initiating cause. Mechanical possibility at any one link is insufficient.
+- Two individually supported actions do not establish a supported concurrent workflow. Multi-tab, cross-session, race, or contradictory-action behavior needs its own independent product goal or explicit contract.
 - Classify distinct initiating conditions separately when their evidence or consequence differs. Do not use an `A or B or C` list to create aggregate reachability; one real but irrelevant condition does not validate the speculative conditions or the claimed consequence.
 - Manual tampering, arbitrary deletion or corruption, unsupported data/schema versions, infrastructure failure, or interrupted execution are outside scope by default. Count one only when the product explicitly supports the relevant action or state, or an established product, security, or operational contract makes it relevant and evidence establishes the actual lifecycle path.
 - Without a supported product scenario and its observed or governing production path, the premise cannot drive a finding or new machinery. A scenario that is `Technically Possible but Unsupported/Contrived` is not promoted merely because its code path can be reached.
@@ -180,7 +182,6 @@ Dead code is code that nothing in the product reaches anymore. It makes the code
 - The Authoritative Boundary Rule is about authority and encapsulation, not about specific labels like `service`, `manager`, `repository`, `controller`, or `facade`.
 - If a caller needs both an outer boundary and one of that boundary's internal managers, repositories, helpers, or lower-level concerns, either the boundary is wrong or the caller is bypassing ownership. Resolve that by choosing one authoritative entrypoint, or by redesigning the boundary and responsibilities explicitly.
 - If callers only bypass an internal concern because the outer boundary does not expose enough usable API, fix that by strengthening the authoritative boundary or by reshaping ownership explicitly. Do not normalize the bypass as the steady-state design.
-- Finalize folder/path mapping only after drafting file responsibilities, extracting any reusable owned structures, and re-tightening those responsibilities.
 - Reusable owned structures must also be semantically tight: remove redundant attributes, avoid overlapping parallel representations for the same domain subject, and keep each field's meaning singular and explicit.
 - Shared cores and specialized variants are valid only when the shared base is truly coherent. Do not create one-for-all base structures that collect mostly-optional fields for unrelated cases; prefer meaningful specialization or composition under a clear subsystem owner.
 - File placement must follow ownership; move or split files when their paths no longer match their real concern. Optional module groupings may be used inside a subsystem only when they improve readability.
@@ -203,19 +204,16 @@ Dead code is code that nothing in the product reaches anymore. It makes the code
 - Before creating a new off-spine helper, check whether an existing capability area or subsystem already owns that category of work and should be reused or extended.
 - If one spine node starts collecting too many unrelated duties, split off-spine concerns around that owner rather than letting it become a god-object.
 - When repeated data structures, types, normalizers, converters, mappers, or schemas appear across several files, extract them into reusable owned files under the correct subsystem instead of duplicating them.
-- When extracting a reusable owned structure, tighten it before standardizing it: remove redundant attributes, collapse overlapping parallel shapes, and keep each field semantically singular.
-- When two cases share a real common core but one case needs extra fields or behavior, prefer a meaningful specialized variant on top of a tight shared base. Do not turn the base into a kitchen-sink structure with mostly-optional fields just to force reuse.
+- Tighten each reusable structure before standardizing it, and choose between a shared core and specialized variants, by the rules in [Derived Checks](#derived-checks).
 - Draft file responsibilities first. Then extract reusable owned structures where repetition appears, re-tighten the file responsibilities, and only after that finalize folder/path mapping.
 - Split APIs, queries, commands, and service methods by subject when identity meaning differs; prefer explicit `getAgent...` / `getTeam...` style boundaries over one generic method that guesses what an ID or selector means.
 - Specify target subsystems and files explicitly; mention module groupings only when they materially help readability or reflect an established codebase pattern.
 - Map subsystems, folders, and files from the spine and ownership model, not from a rigid one-folder-per-step rule.
 - If the layout stays flatter, record why that is clearer for this scope. If the layout splits more, make sure each split reflects a real owner or boundary.
 - Record change inventory explicitly: `Add`, `Modify`, `Rename/Move`, `Remove`.
-- Look for dead code in the files and modules the change touches, and add each item to the removal plan with its evidence (Core Principle 7).
+- Once the target shape is clear, list in the removal plan what it makes unnecessary (clean-cut replacement and removal in [Derived Checks](#derived-checks)) and the dead code in the files and modules the change touches, with evidence ([Core Principle 7](#7-no-dead-code)).
 - Define the change/refactor sequence when the change is not greenfield.
 - When persisted data may be affected, make the transition decision before designing migration machinery. If migration is required, design it as a separate owned spine and keep the target runtime current-schema-only.
-- Prefer clean-cut replacement over compatibility wrappers or dual-path behavior. If old behavior is being replaced, design and record its removal explicitly.
-- Treat addition and removal symmetrically: when a clearer subsystem owner, reusable owned structure, or file responsibility replaces fragmented or duplicated pieces, record what becomes unnecessary and remove/decommission it in scope.
 - Add short concrete examples when they clarify a non-obvious spine, interface split, folder choice, or bounded local flow.
 
 ## Task Design Health Assessment
@@ -272,6 +270,86 @@ Decision examples:
   - `Refactor needed now`: yes
   - `Why`: preserving old and new behavior through a dual-path branch would keep two representations authoritative.
   - `Design response`: make a clean-cut replacement and record the old path removal in scope.
+
+## Task Size And Architectural Risk
+
+The Solution Designer classifies every completed design with these two fields
+and records the evidence in the design spec, including for a narrow local
+change. The reviewers check the same classification.
+
+- `task_size`: `Small`, `Medium`, or `Large`.
+  - `Small`: a narrow local change with limited implementation scope.
+  - `Medium`: several files or components within existing ownership and
+    architectural boundaries.
+  - `Large`: a broad feature, major refactor, or change spanning substantial
+    implementation scope or multiple subsystems.
+- `architectural_risk`: `Low` or `High`.
+  - `Low`: the current architecture absorbs the change with bounded impact,
+    low uncertainty, and no material new or changed contract, persistence,
+    security, concurrency, deployment, or ownership-boundary behavior.
+  - `High`: any material contract, persistence, security, concurrency,
+    deployment, ownership-boundary, blast-radius, or unresolved-uncertainty
+    impact is present.
+
+### Content-Heavy Work Classification Guardrail
+
+Separate **content volume** from **code-architecture impact** before assigning
+these fields. A large number of Markdown/JSON/content packages, source files,
+catalog entries, generated records, or schema conversions does not by itself
+make work `Large` or `High`. Classify the implementation surface and production
+path, not the number of content records.
+
+When the bounded delta is a deterministic content/projection conversion plus
+catalog, generator, verifier, focused test, or documentation updates within
+existing ownership and contracts, it is normally `Small` or `Medium` with
+`architectural_risk=Low`, even when the content inventory is large. Confirm
+that the existing readers/contracts can consume the result and that no new
+runtime owner, API, persistence migration, route behavior, security boundary,
+concurrency behavior, deployment concern, or normative availability/scoring
+semantics is introduced.
+
+Use `Large` or `High` only when the implementation itself materially changes
+code architecture or another listed risk surface—for example, introducing or
+moving runtime owners, changing shared contracts, migrating learner state,
+rewiring routes/APIs, removing duplicate readers, or reconciling multiple
+subsystems. Do not inflate risk merely because the current repository contains
+legacy architecture that is explicitly out of scope for the requested delta.
+Conversely, a small amount of content can still be `High` when its integration
+changes a shared contract or persistence/ownership boundary.
+
+Record the distinction explicitly in `design-spec.md`: list content inventory
+as evidence, then separately list the code/runtime/persistence surfaces actually
+in scope. If implementation discovers that a content-only change requires
+material architecture changes, return a Design Impact and reclassify rather
+than broadening the direct route silently.
+
+Use this structural-versus-payload check when classifying the completed design:
+
+1. **Payload surfaces:** content packages, Markdown/JSON bodies, catalogs,
+   fixtures, generated indexes, provenance, and content-only documentation.
+2. **Structural surfaces:** runtime modules, shared types/interfaces, ownership
+   boundaries, dependency direction, routes/APIs, persistence readers/writers,
+   migrations, security/concurrency controls, and deployment configuration.
+3. **House test:** if the existing structural surfaces can consume the changed
+   payload through their current contract and no structural surface changes
+   meaningfully, do not inflate size or risk solely because the payload
+   inventory is large.
+4. **Target-versus-delta test:** distinguish the architecture the requirements
+   describe as a long-term target from the code and payload surfaces actually
+   requested in this implementation round. Do not turn an entire repository
+   inventory or a future clean-cut target into current implementation scope
+   without evidence that those structural changes are part of the delta.
+
+Typical sizing examples: one content package or local validation adjustment is
+usually `Small`; a bulk package conversion with catalog/generator/verifier,
+test, and documentation updates but no runtime-owner change is usually
+`Medium`/`Low`; a runtime-boundary refactor, shared-contract change, route/API
+rewrite, or persistence migration is `Large` and/or `High`.
+
+Record the values, rationale and affected surfaces in the design spec. If later
+evidence changes the classification, update the design artifact and classify
+the revised result rather than silently downgrading risk. The classification
+informs routing; the team's handoff rules choose the recipients.
 
 ## Structural Triggers
 

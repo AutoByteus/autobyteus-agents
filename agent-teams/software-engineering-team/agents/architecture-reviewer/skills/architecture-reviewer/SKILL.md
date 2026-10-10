@@ -17,7 +17,7 @@ Perform a behavior-grounded technical architecture review before implementation,
 - naming, ownership, interface-boundary, and decoupling review
 - boundary-encapsulation review
 - task design health assessment review, including whether root-cause classification and refactor/no-refactor decisions are evidence-backed
-- verification that `task_size` and `architectural_risk` justify this independent review gate
+- verification that `task_size` and `architectural_risk` justify this independent review gate, by the definitions in [Task Size And Architectural Risk](design-principles.md#task-size-and-architectural-risk)
 
 ## Primary Output
 
