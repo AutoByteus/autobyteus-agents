@@ -45,13 +45,13 @@ Default to internet-backed research unless the user explicitly forbids it. When 
 
 Create or update `research-resource-index.md` as the single combined source/resource index. Include supplied files, images, charts, tables, URLs, notes, generated research artifacts, publication dates when available, what each source contains, why it matters, credibility or limitation notes when useful, evidence IDs, deck-use potential, and status.
 
-Do not rely on hidden chat memory for downstream work. If a resource may matter for slides, record it in the index with an absolute path or URL.
+Do not rely on hidden chat memory for downstream work or in-flight research. Flush each newly discovered or read source to the index immediately so findings survive conversational context compression. If a resource may matter for slides, record it in the index with an absolute path or URL.
 
 ### Step 2 - Capture notes, evidence, and claim mapping
 
-Create or update `research_notes.md` for working notes, source reading notes, important evidence extracts, quotes, figures, definitions, examples, constraints, and reasoning that should not clutter the article or resource index.
+Create or update `research_notes.md` continuously for working notes, source reading notes, important evidence extracts, quotes, figures, definitions, examples, constraints, and reasoning that should not clutter the article or resource index. Persist extracts as you read rather than buffering findings in chat memory.
 
-Create `claim_evidence_ledger.md` so each major claim has an evidence anchor and confidence/risk status.
+Create `claim_evidence_ledger.md` so each major claim has an evidence anchor and confidence/risk status. Re-read these local files to restore full context if context compression occurs.
 
 If the source base cannot support a likely slide claim, mark it as an open gap instead of smoothing over it.
 

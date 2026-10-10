@@ -27,6 +27,14 @@ For each role, write a compact contract:
 
 Trace a normal path and each meaningful return path from intake to terminal result. A handoff should move a completed, classified result across a real ownership boundary. The receiver should depend on that result and evidence, not the sender's private ticket lifecycle, branch, worktree, implementation detail, or undocumented chat memory. Keep user decisions with the user; a role cannot silently approve a material behavior change on their behalf.
 
+### Continuous file-backed persistence for long-horizon work
+
+Long-horizon tasks (deep research, multi-file engineering, complex analysis) exceed single context windows and undergo runtime context compression, summarization, or truncation. Ephemeral chat memory degrades; files in the workspace are durable ground truth.
+
+- **Dedicated task folder:** Give each distinct task an isolated folder (e.g. `research/<topic-slug>/`, `<channel>/<YYYY-MM-DD-slug>/`, or ticket folder), and reuse it when continuing the same work.
+- **Milestone checkpointing:** Persist evidence, notes, extracts, and sub-task status to disk immediately as each milestone completes (e.g. after reading each source or running each test), rather than buffering findings in chat memory until a final handoff.
+- **Compression recovery:** Explicitly instruct roles to re-read their local milestone files to recover context after compression or upon session resume, restoring full fidelity without repeating work.
+
 ## 3. Give each rule one authoritative file
 
 | Concern | Owner |
