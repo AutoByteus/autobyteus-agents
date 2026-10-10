@@ -13,7 +13,7 @@
 
 Each design rule now has one owner, and every other file points to it.
 
-1. **Example links:** `design-examples.md` is linked at the skill root in all four roles (moved for both reviewers, added for the Implementation Engineer); all example links resolve in every role.
+1. **One layout for shared files:** `design-principles.md` and `design-examples.md` are linked in `references/` in all four roles (user decision, 2026-10-10: consistency makes maintenance and the mental model easier). Every skill now has the same shape: `SKILL.md` and `templates/` at the root, everything the skill reads in `references/`. All example links resolve in every role.
 2. **Process file and template point to the standard:** `architecture-design.md` is retitled "Architecture Design Process"; its production rules point to the Task Design Health Assessment, the Practical Application Guide, and Core Principle 5 instead of restating them. The design-spec template's "Legacy Removal Policy" keeps only fields with a pointer to Derived Checks; its data-transition section points to Core Principle 5.
 3. **Size and risk definitions are shared:** "Task Size And Architectural Risk" (with the content-heavy guardrail) moved from the Solution Designer's file into `design-principles.md`, after the Task Design Health Assessment; the Solution Designer classifies with it and both reviewers judge with it (links added).
 4. **Code Reviewer's copy of Principle 6 removed:** its section points to Core Principle 6 and keeps the review-specific rules (what a rejected scenario may not affect, structural observations, the Promote / Hold / Reject gate); 66 → 43 lines. The concurrent-workflow rule, which existed only in the Code Reviewer's copy, moved into Principle 6 so designers apply it too.
@@ -43,7 +43,7 @@ Each design rule now has one owner, and every other file points to it.
 | Check | Observed result | Evidence or limitation |
 | --- | --- | --- |
 | Skill validator | `Pass` | All Software Engineering Team skills. |
-| Links and anchors | `Pass` | 194 links, each role's view (including linked shared files): 0 broken. |
+| Links and anchors | `Pass` | 195 links, each role's view (including linked shared files): 0 broken. |
 | Anti-pattern 4 | `Pass` | Size/risk definitions and scenario-class definitions each in one file; the remaining `Discard or Rebuild` mentions are the Implementation Engineer's own action and the template's "what to record". |
 | Old title references | `Pass` | No reference to "Architecture Design Standards". |
 | Runtime | Not observed | Applies on the next design and review. |

@@ -9,7 +9,7 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Behavior-defining supplements and their approval references:
 - Design status: `Draft` / `Ready` / `Needs Revision` / `Blocked`
 - Canonical investigation-notes path:
-- Authorities read (design reading gate; file and date): `references/architecture-design.md`, `design-principles.md`, applicable project `DESIGN.md` path(s) (or `No project DESIGN.md found`); `design-examples.md` sections, if used:
+- Authorities read (design reading gate; file and date): `references/architecture-design.md`, `references/design-principles.md`, applicable project `DESIGN.md` path(s) (or `No project DESIGN.md found`); `references/design-examples.md` sections, if used:
 - Project design-principle conflicts with the general principles, or discrepancies (open questions for the user):
 
 Changed intended behavior requires renewed user approval before affected design is authoritative. An evidence-only or technical-design revision does not itself invalidate unchanged requirements approval.
@@ -62,7 +62,7 @@ List every still-relevant supplement used as design evidence or context and expl
 
 This section is required for every task: feature request, bug fix, behavior change, refactor, cleanup, performance issue, or larger requirement.
 Do not fill it with ritual text. Tie the decision to current-state evidence from the investigation notes and the real current code path.
-Apply [Task Design Health Assessment](../design-principles.md#task-design-health-assessment) and [Structural Triggers](../design-principles.md#structural-triggers). This section records the result of applying them; it does not replace them.
+Apply [Task Design Health Assessment](../references/design-principles.md#task-design-health-assessment) and [Structural Triggers](../references/design-principles.md#structural-triggers). This section records the result of applying them; it does not replace them.
 
 - Change posture (`Feature`/`Bug Fix`/`Behavior Change`/`Refactor`/`Cleanup`/`Performance`/`Larger Requirement`):
 - Current design issue found (`Yes`/`No`/`Unclear`):
@@ -85,7 +85,7 @@ Define only task-specific terms needed to interpret this design. Do not repeat t
 
 ## Section Fill Order
 
-Design reasoning follows [design-principles.md](../design-principles.md#practical-application-guide); this list shows which template sections record each stage. The physical section order differs: for example, Task Size And Architectural Risk appears early but is completed last.
+Design reasoning follows [design-principles.md](../references/design-principles.md#practical-application-guide); this list shows which template sections record each stage. The physical section order differs: for example, Task Size And Architectural Risk appears early but is completed last.
 
 1. current-state read, architecture investigation evidence, and intended change
 2. relevant behavior and production-path map plus applicable supplemental context
@@ -101,14 +101,14 @@ Complete every mandatory section, but keep the written detail of each mapping pr
 
 ## Legacy Removal Policy (Mandatory)
 
-Apply the clean-cut and removal rules in the design principles' [Derived Checks](../design-principles.md#derived-checks); record removals in the Removal / Decommission Plan below.
+Apply the clean-cut and removal rules in the design principles' [Derived Checks](../references/design-principles.md#derived-checks); record removals in the Removal / Decommission Plan below.
 
 - Obsolete legacy paths and files in this scope:
 - Compatibility wrappers, dual paths, or legacy fallbacks this design keeps: `None` / <item and why; the design is invalid unless the user approved it>
 
 ## Persisted Data / State Transition Decision (Mandatory When Persisted Data May Be Affected)
 
-Decide with [Core Principle 5](../design-principles.md#5-current-schema-runtime-and-proportionate-persisted-data-transitions). If no persisted data is affected, write `Not Affected` with a brief reason.
+Decide with [Core Principle 5](../references/design-principles.md#5-current-schema-runtime-and-proportionate-persisted-data-transitions). If no persisted data is affected, write `Not Affected` with a brief reason.
 
 - Stored subject, location, representative shape, and approximate volume:
 - Relevant code-model, serialization, semantic, or physical-store change:
@@ -189,7 +189,7 @@ If a public facade or entry wrapper exists, say explicitly whether it is only a 
 
 Use this section to make removal first-class instead of leaving the design as addition-only.
 
-Include dead code in the touched files and modules ([Core Principle 7](../design-principles.md#7-no-dead-code)): in `Why It Becomes Unnecessary`, write `Dead:` and the evidence that nothing reaches it. Dead code found elsewhere goes in with scope `Follow-up`.
+Include dead code in the touched files and modules ([Core Principle 7](../references/design-principles.md#7-no-dead-code)): in `Why It Becomes Unnecessary`, write `Dead:` and the evidence that nothing reaches it. Dead code found elsewhere goes in with scope `Follow-up`.
 
 | Item To Remove / Decommission | Why It Becomes Unnecessary | Replaced By Which Owner / File / Structure | Scope (`In This Change`/`Follow-up`) | Notes |
 | --- | --- | --- | --- | --- |

@@ -137,9 +137,9 @@ what you write, never what you read: a narrow change still passes every gate.
 ### 3. Investigate Architecture And Produce Design
 
 **Reading gate:** [architecture-design.md](references/architecture-design.md);
-[design-principles.md](design-principles.md), the general design authority;
+[design-principles.md](references/design-principles.md), the general design authority;
 and the project's own `DESIGN.md` files that apply, when the project has them
-(see [Project-Specific Design Principles](design-principles.md#project-specific-design-principles)).
+(see [Project-Specific Design Principles](references/design-principles.md#project-specific-design-principles)).
 Read them before architecture investigation; they govern what to investigate
 as well as how to design.
 
@@ -161,7 +161,7 @@ as well as how to design.
    Structural Triggers. Decide clean-cut removal, dependency rules,
    evidence-based persisted-data transitions (never inferred solely from a
    schema change) and change sequencing. Use
-   [design-examples.md](design-examples.md) when concrete shape guidance helps;
+   [design-examples.md](references/design-examples.md) when concrete shape guidance helps;
    use the examples as guidance, not mechanical templates.
 4. Write `design-spec.md` from
    [design-spec-template.md](templates/design-spec-template.md); every solution
@@ -175,7 +175,7 @@ as well as how to design.
 ### 4. Classify The Completed Solution
 
 After the design spec is complete, use the task-size and architectural-risk
-standard in [design-principles.md](design-principles.md#task-size-and-architectural-risk).
+standard in [design-principles.md](references/design-principles.md#task-size-and-architectural-risk).
 Record `task_size`, `architectural_risk`, supporting evidence and the escalation
 trigger in `design-spec.md`. Classify the completed design's actual scope, not
 an early estimate or the volume of investigation notes.

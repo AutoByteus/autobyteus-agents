@@ -17,7 +17,7 @@ Perform a behavior-grounded technical architecture review before implementation,
 - naming, ownership, interface-boundary, and decoupling review
 - boundary-encapsulation review
 - task design health assessment review, including whether root-cause classification and refactor/no-refactor decisions are evidence-backed
-- verification that `task_size` and `architectural_risk` justify this independent review gate, by the definitions in [Task Size And Architectural Risk](design-principles.md#task-size-and-architectural-risk)
+- verification that `task_size` and `architectural_risk` justify this independent review gate, by the definitions in [Task Size And Architectural Risk](references/design-principles.md#task-size-and-architectural-risk)
 
 ## Primary Output
 
@@ -40,14 +40,14 @@ Use [templates/architecture-review-revision-record-template.md](templates/archit
 
 ## Required Shared Reads
 
-- Start by reading [design-principles.md](design-principles.md).
+- Start by reading [design-principles.md](references/design-principles.md).
 - Use it as the canonical shared design reference while producing or revising the design review report. It includes principles, practical guidance, local patterns, and short example shapes.
 
 ## Example Guidance
 
-- When judging whether a design is concrete enough, compare its shape against [design-examples.md](design-examples.md) whenever examples would clarify the target shape.
+- When judging whether a design is concrete enough, compare its shape against [design-examples.md](references/design-examples.md) whenever examples would clarify the target shape.
 - Use that file as a benchmark for what a clear design explanation can look like across different cases, and for what bad practice looks like when boundaries become generic or fragmented.
-- When a prospective finding depends on an assumed production, failure, or lifecycle scenario, consult [Example 9](design-examples.md#example-9-rejecting-an-unreachable-edge-case-during-technical-review) before finalizing the premise or finding.
+- When a prospective finding depends on an assumed production, failure, or lifecycle scenario, consult [Example 9](references/design-examples.md#example-9-rejecting-an-unreachable-edge-case-during-technical-review) before finalizing the premise or finding.
 
 ## Review Basis And Sequence
 

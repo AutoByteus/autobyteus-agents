@@ -76,10 +76,10 @@ For API/E2E failure-origin review:
 
 ## Required Shared Reads
 
-- Start implementation review by reading [design-principles.md](design-principles.md).
+- Start implementation review by reading [design-principles.md](references/design-principles.md).
 - Use it as the canonical design authority for source and structural review.
-- Consult [design-examples.md](design-examples.md) only when a concrete structural example is needed to judge the implementation or its alignment with the reviewed design.
-- When a prospective finding or score rationale depends on an assumed production, failure, or lifecycle scenario, consult [Example 9](design-examples.md#example-9-rejecting-an-unreachable-edge-case-during-technical-review) before finalizing it.
+- Consult [design-examples.md](references/design-examples.md) only when a concrete structural example is needed to judge the implementation or its alignment with the reviewed design.
+- When a prospective finding or score rationale depends on an assumed production, failure, or lifecycle scenario, consult [Example 9](references/design-examples.md#example-9-rejecting-an-unreachable-edge-case-during-technical-review) before finalizing it.
 - For the later entry points, reread only the requirements, design, changed tests, relevant source paths, and prior findings needed for the bounded review.
 - For test-code review and failure-origin review, also read the project's testing guideline(s) that the coverage investigation records, or note `No project testing guideline found` when it records none. Apply this skill's general test-review rules and respect the project's testing rules as well. When the two conflict, follow this skill and record the conflict; record a guideline rule that no longer matches the repository as a discrepancy.
 
@@ -147,7 +147,7 @@ requirements or architecture basis is corrected by its owner.
 
 The upstream requirements or design package should provide the supported
 scenario basis for each behavior under review. Judge it with
-[Core Principle 6](design-principles.md#6-supported-product-scenario-and-reachability-gate),
+[Core Principle 6](references/design-principles.md#6-supported-product-scenario-and-reachability-gate),
 which defines the scenario classes, the complete scenario witness, and the
 independent-origin rule. Record any missing or reclassified basis in the
 canonical code-review report.
@@ -254,7 +254,7 @@ scenario by itself.
 - `Unclear` -> `/solution_designer` for a cross-cutting issue that cannot be classified from available evidence.
 - After an implementation-owned fix, require source review and API/E2E again.
 - After an API/E2E-owned fix, require API/E2E execution and a proportional test-code review result; use `Not Applicable` when no durable test changed.
-- Preserve the task-size and architectural-risk classification in every review result. If review evidence shows the classification is wrong by the definitions in [Task Size And Architectural Risk](design-principles.md#task-size-and-architectural-risk), route `Design Impact` to Solution Designer rather than silently changing the route locally.
+- Preserve the task-size and architectural-risk classification in every review result. If review evidence shows the classification is wrong by the definitions in [Task Size And Architectural Risk](references/design-principles.md#task-size-and-architectural-risk), route `Design Impact` to Solution Designer rather than silently changing the route locally.
 
 ## Handoff Rules
 
