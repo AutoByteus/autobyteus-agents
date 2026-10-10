@@ -21,8 +21,6 @@ The frontmatter `description` should make selection accurate: state the task and
 
 Specify what a finished artifact contains and what evidence proves it ready. Put approval or safety gates next to the action they control. Allow judgment where multiple approaches can satisfy the request; prescribe exact steps or scripts where the operation is fragile or deterministic.
 
-When the work spans many tool calls or sessions, have the skill keep its working record in files in one task folder that it reuses for the same work. The skill adds findings and status as each unit of work finishes, adds new entries instead of overwriting earlier ones, and reads the record before continuing. A summary of a long conversation keeps paths and decisions, not every detail; the files keep the detail.
-
 A skill used by a Team member may classify the result needed by handoff rules, but the Team/Org config owns conditional recipients. An Agent shell may remind the role to use its skill; it should not repeat the skill's full procedure. A standalone skill should not imply an Agent attachment or runtime tool access it does not have.
 
 ## Ground and prioritize instructions
