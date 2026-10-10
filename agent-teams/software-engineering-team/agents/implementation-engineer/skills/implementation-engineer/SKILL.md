@@ -50,7 +50,7 @@ Use [templates/implementation-revision-record-template.md](templates/implementat
 
 ## Required Shared Reads
 
-- Start by reading [design-principles.md](design-principles.md).
+- Start by reading [design-principles.md](references/design-principles.md).
 - Use it as the canonical shared design reference while producing or revising the implementation handoff. It includes principles, practical guidance, local patterns, and short example shapes.
 
 ## Operating Rules
@@ -86,7 +86,7 @@ Use [templates/implementation-revision-record-template.md](templates/implementat
   Confine historical-schema knowledge there and match the specified ordering,
   completion, validation, interruption, recovery and rollout behavior; do not
   add old-shape branches or dual reads/writes to current services or repositories.
-- Remove dead code in the files and modules you touch, as [Core Principle 7](design-principles.md#7-no-dead-code) describes, as part of normal completion, not optional later cleanup. List dead code found elsewhere as a follow-up.
+- Remove dead code in the files and modules you touch, as [Core Principle 7](references/design-principles.md#7-no-dead-code) describes, as part of normal completion, not optional later cleanup. List dead code found elsewhere as a follow-up.
 - Keep shared structures tight during implementation. If one case needs extra fields or behavior, prefer a meaningful specialized variant or composition over expanding one shared base into a mostly-optional structure.
 - Treat correct file placement, ownership boundaries, and shared-structure tightness as active implementation concerns, not design-only concerns.
 - Treat boundary encapsulation as an active implementation concern too: when one boundary is the intended public authority for a domain subject, do not let callers above it depend on both that boundary and one of its internal mechanisms.
