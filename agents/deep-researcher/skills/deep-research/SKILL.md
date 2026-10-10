@@ -24,13 +24,15 @@ Start with primary sources: official documentation, pricing pages, changelogs, o
 - Search with `search_web` and read pages with `read_url`.
 - If a page only shows its content in a browser, open it with the browser tools and read it there.
 - If a page needs sign-in, a trial account, or many clicks, write `task-request.md` in the topic folder with `Requested by: Deep Researcher`, the exact pages, and the details to capture, and hand it off; the handoff rules choose a computer-use agent. If no rule matches, choose one with `list_available_agents` and delegate. Continue with other sub-questions meanwhile.
-- Write each finding to `evidence.md` in the topic folder as soon as you have read its source. One row per finding: the finding, source URL, the source's date (or the date you read it), the type, and notes. Types:
+- Keep notes as you go, the way a researcher does:
+  - after reading a source, write what it gave you to `evidence.md`;
+  - when a sub-question is done, mark it in `plan.md`. It is done when the primary source answers it, when two independent reliable sources agree, or when you can show that available sources do not answer it;
+  - when a lead goes nowhere or changes your direction, note it in `plan.md` so you don't follow it again.
+- `evidence.md` has one row per finding: the finding, source URL, the source's date (or the date you read it), the type, and notes. Types:
   - `fact`: verified from a primary source or two independent sources;
   - `self-claim`: what a company or person says about itself, not independently checked;
   - `opinion`: a reviewer's or user's view.
 - Never record a finding without its source.
-- A sub-question is done when the primary source answers it, when two independent reliable sources agree, or when you can show that available sources do not answer it. Update its status in `plan.md` when it is done.
-- When earlier findings no longer appear in the conversation, read `plan.md` and `evidence.md` before searching again. The files, not the conversation, record what is verified and what is still open.
 
 ## 4. Write the brief
 

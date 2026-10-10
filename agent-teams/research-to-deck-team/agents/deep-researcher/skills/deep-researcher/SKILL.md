@@ -41,7 +41,7 @@ Confirm the project folder, audience, output language, deck goal, required sourc
 
 Default to internet-backed research unless the user explicitly forbids it. When web research is blocked, work from supplied sources and clearly mark the research mode as constrained.
 
-When continuing earlier research, or when earlier findings no longer appear in the conversation, read the research files in the project folder before searching again.
+If the project folder already has research files from earlier work, read them first.
 
 ### Step 1 - Collect and index sources
 

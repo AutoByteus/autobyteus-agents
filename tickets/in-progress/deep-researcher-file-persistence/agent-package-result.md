@@ -7,19 +7,19 @@
 - Target package: `agents/deep-researcher/skills/deep-research/SKILL.md`, `agent-teams/research-to-deck-team/agents/deep-researcher/skills/deep-researcher/SKILL.md`
 - Scope included: the two skills above and this ticket folder.
 - Scope excluded: agent definitions, configs, routes; other teams.
-- Request/reference: User request to keep research progress in files so it survives conversation summarization; revised after the independent review of PR #35 at the user's request.
+- Request/reference: User request to keep research progress in files, as a researcher keeps notes; revised after the independent review of PR #35 at the user's request.
 
 ## Summary
 
-- **Deep Researcher** (`deep-research`): creates or reuses the topic folder; writes sub-questions with a status to `plan.md`; writes each finding to `evidence.md` as soon as its source is read; when earlier findings no longer appear in the conversation, reads `plan.md` and `evidence.md` before searching again.
+- **Deep Researcher** (`deep-research`): creates or reuses the topic folder; writes sub-questions with a status to `plan.md`; keeps notes the way a researcher does: after reading a source (findings to `evidence.md`), when a sub-question is done, and when a lead goes nowhere or changes direction (both in `plan.md`).
 - **research-to-deck Deep Researcher**: updates the notes and source index as sources are read (only sources read and kept); reads the project folder's research files before continuing.
 
 ## Changes from the first version of this PR (after independent review)
 
 - Removed anti-pattern "15. Buffering findings only in chat memory". Its incident was not observed, and the number clashed with the lean-workflow entries 15–16. Add it later with a real incident if one occurs.
 - Removed the general principle from the Agent Package Creator (first in `package-design-principles.md` §2, briefly in `skill-authoring-principles.md`). Its condition ("work that spans many tool calls or sessions") can't be known in advance; note-taking belongs to the skills whose work needs it (user decision).
-- `deep-research`: removed the rule stated three times (Rules line, §4 runtime description), chose `plan.md` only, replaced the "Continuous milestone persistence" label with the action, and folded the recovery step into §3 (sections renumbered 1–5).
-- research-to-deck: index gets sources read and kept, not every discovered one; "flush" wording removed; recovery sentence moved to Step 0.
+- `deep-research`: removed the rule stated three times (Rules line, §4 runtime description), chose `plan.md` only, replaced the "Continuous milestone persistence" label with the action, and merged search and evidence into §3 (sections renumbered 1–5). Removed the step triggered by context compression, because the agent can't know when the framework compresses the conversation (user decision).
+- research-to-deck: index gets sources read and kept, not every discovered one; "flush" wording removed; Step 0 reads research files from earlier work first; no compression trigger.
 
 ## Changed paths (vs `origin/main`)
 
@@ -40,7 +40,7 @@
 
 ## Risks, questions, and blockers
 
-- Runtime compaction was checked for the AutoByteus native runtime only, not for Codex or Claude runtimes. The recovery sentence relies on what the agent sees in the conversation, not on any runtime signal.
+- None.
 
 ## Handoff state
 
