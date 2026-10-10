@@ -2,69 +2,57 @@
 
 - Status: `Completed`
 - Operation: `update`
-- Package type: `skill`
-- Target package: `agents/deep-researcher/skills/deep-research/SKILL.md` and `agents/agent-package-creator/skills/agent-package-creation/references/package-design-principles.md`
-- Scope included:
-  - `agents/deep-researcher/skills/deep-research/SKILL.md`
-  - `agent-teams/research-to-deck-team/agents/deep-researcher/skills/deep-researcher/SKILL.md`
-  - `agents/agent-package-creator/skills/agent-package-creation/references/package-design-principles.md`
-  - `agents/agent-package-creator/skills/agent-package-creation/references/package-anti-patterns.md`
-- Scope excluded:
-  - Unrelated agent definitions, tools, and configs in other teams
-  - Marketing team implementation (reviewed as an architectural reference only)
-- Request/reference: User request on deep researcher task folder isolation, continuous milestone file persistence, and resilience against runtime context compression.
+- Package type: `skill` (standalone `deep-research`, research-to-deck team-local `deep-researcher`), plus one Agent Package Creator authoring principle
+- Target package: `agents/deep-researcher/skills/deep-research/SKILL.md`, `agent-teams/research-to-deck-team/agents/deep-researcher/skills/deep-researcher/SKILL.md`, `agents/agent-package-creator/skills/agent-package-creation/references/skill-authoring-principles.md`
+- Scope included: the three files above; the Research Engineer skill and the AutoByteus native compaction code (`autobyteus-ts/src/memory/compaction/`) as references.
+- Scope excluded: agent definitions, tools, configs, routes; other teams.
+- Request/reference: User request: keep research progress in the topic folder so it survives conversation summarization and resumption. Revised 2026-10-10 after the independent review of PR #35, at the user's request ("Since you said it's partly correct … Update the PR").
 
-## Baseline
+## Baseline (`origin/main` `636e0df`)
 
 | File | Current responsibility |
 | --- | --- |
-| `agents/deep-researcher/skills/deep-research/SKILL.md` | Defines standalone deep research workflow: search/read sources, write `evidence.md` and `research-brief-<YYYY-MM-DD>.md` under `research/<topic-slug>/`. |
-| `agent-teams/research-to-deck-team/agents/deep-researcher/skills/deep-researcher/SKILL.md` | Defines team research stage: outputs `research-resource-index.md`, `research_notes.md`, `claim_evidence_ledger.md`, and `article.md` in the project folder. |
-| `agents/agent-package-creator/skills/agent-package-creation/references/package-design-principles.md` | Package boundaries, role contracts, file ownership, and authoring quality standards. |
-| `agents/agent-package-creator/skills/agent-package-creation/references/package-anti-patterns.md` | Catalog of observed design and authoring mistakes and how to detect them. |
+| `deep-research/SKILL.md` | §1 looks for earlier notes in `<workspace>/research/<topic-slug>/` and reuses them. §4 writes `evidence.md` "as you go". No file holds the sub-questions and their status. No instruction for when earlier findings drop out of the conversation. |
+| research-to-deck `deep-researcher/SKILL.md` | Keeps `research-resource-index.md`, `research_notes.md` and `claim_evidence_ledger.md` in the project folder. Doesn't say to update them while reading, or to read them before continuing. |
+| `skill-authoring-principles.md` | "Write the operating contract" covers outputs and recovery, but not where a long-running skill keeps its working record. |
 
 ## Preserved behavior
 
-- Dedicated topic folder `research/<topic-slug>/` remains the research location, reused when continuing or refreshing prior research on the same topic.
-- Source hierarchy (primary sources first, secondary sources labeled for user experience context).
-- Browser / computer-use delegation via `task-request.md` for sources requiring login, trials, or complex interactions.
-- Evidence classification into `fact`, `self-claim`, and `opinion` with source URL and date recorded for every finding.
-- Final research brief format using `research-brief-template.md` and handoff routing via `get_handoff_rules`.
+- The topic folder, reused for the same topic. Primary sources first, secondary sources labeled.
+- `task-request.md` handoff for sign-in or browser-heavy pages.
+- Evidence types `fact` / `self-claim` / `opinion`, each with source and date. "Never record a finding without its source."
+- Brief template, Deliver step, and handoff via `agent.md`.
+- research-to-deck artifacts, the handoff to `infographic_powerpoint_designer`, and downstream-fix routing.
 
 ## Findings
 
 | # | Priority area | Evidence | Owner | Impact | Recommended change |
 | --- | --- | --- | --- | --- | --- |
-| 1 | Content flow & robustness | `agents/deep-researcher/skills/deep-research/SKILL.md:27-35` separates Step 3 ("Search and read") from Step 4 ("Keep an evidence record"). | `agents/deep-researcher/skills/deep-research/SKILL.md` | During long-running research, an agent reads many pages in Step 3 before writing in Step 4. Context compression causes intermediate findings, source URLs, and metrics to be lost or degraded. | Update Step 3 & 4 to mandate continuous milestone persistence: append to `evidence.md` and update sub-question status immediately after reading each source. |
-| 2 | Robustness & grounding | `agents/deep-researcher/skills/deep-research/SKILL.md` lacks explicit compression recovery instructions. | `agents/deep-researcher/skills/deep-research/SKILL.md` | When context is compressed or a session resumes, the agent may duplicate searches or guess details instead of re-reading local files. | Add explicit context-compression recovery rule: disk files are authoritative ground truth; re-read them to restore context. |
-| 3 | General architecture principles | `agents/agent-package-creator/skills/agent-package-creation/references/package-design-principles.md:28` forbids undocumented chat memory in handoffs, but does not state the in-flight milestone persistence rule for long-horizon agent tasks. | `package-design-principles.md` | Other long-running skills (analysis, multi-step debugging, research) risk holding state only in context memory until the final handoff. | Add a general principle for continuous file-backed persistence and context compression resilience across all long-horizon tasks. |
-| 4 | Anti-pattern catalog | `agents/agent-package-creator/skills/agent-package-creation/references/package-anti-patterns.md` lacks an entry for accumulating findings in chat memory during multi-step work. | `package-anti-patterns.md` | Authors may continue writing skills that batch all file writes to the final step. | Add Anti-Pattern 15: Accumulating findings only in chat memory during long-horizon tasks. |
-| 5 | Team skill alignment | `agent-teams/research-to-deck-team/agents/deep-researcher/skills/deep-researcher/SKILL.md:46-54` notes not to rely on chat memory for downstream work, but does not explicitly require in-flight milestone updates. | `agent-teams/.../SKILL.md` | Secondary deep research skill could also suffer from context loss before `article.md` is generated. | Update Step 1 and Step 2 in `research-to-deck-team` deep-researcher skill to mandate continuous milestone writing. |
+| 1 | Content flow | `deep-research/SKILL.md` §2 lists sub-questions only in the conversation. | `deep-research/SKILL.md` | After the conversation is summarized, the agent can lose track of which sub-questions are still open and repeat searches. | Write sub-questions and their status to `plan.md`, and update the status when a sub-question is done. |
+| 2 | Content flow | §3 (search) and §4 (evidence) are separate steps, although §4 already says "as you go". | `deep-research/SKILL.md` | Readers can take the step order to mean "read first, record later". | Merge them: write each finding to `evidence.md` as soon as its source is read. |
+| 3 | Recovery | No step for when earlier findings no longer appear in the conversation. The AutoByteus compaction summary keeps paths and decisions (`compaction-summary-prompt.ts`), but not every evidence row. | `deep-research/SKILL.md`, research-to-deck skill | Detail lost to summarization gets guessed or re-searched. | One trigger sentence: read the folder's files before searching again. |
+| 4 | Content flow | The research-to-deck skill doesn't say when to update the index and notes. | research-to-deck skill | Same loss risk before `article.md` is written. | Update the notes and index as sources are read; add the recovery sentence to Step 0. |
+| 5 | Authoring guidance | No authoring rule for a skill's working record over long work. The Research Engineer already follows the practice (durable project folder; loop log before the first trial). | `skill-authoring-principles.md` | New long-running skills may keep progress only in the conversation, or overwrite earlier results. | One paragraph under "Write the operating contract". |
 
-## Recommended or planned changes
+No anti-pattern entry: no observed incident was recorded, and the catalog holds only observed mistakes. If one is observed, add it then.
 
-- `agents/deep-researcher/skills/deep-research/SKILL.md`:
-  - Clarify Step 1 & 2 on initializing the topic folder `<workspace>/research/<topic-slug>/` and sub-questions.
-  - Integrate Step 3 & 4 to enforce continuous milestone writing: append to `evidence.md` immediately upon reading each source; track sub-question resolution.
-  - Add explicit compression-recovery rule: disk files are the ground truth; re-read local files upon resumption or after context compression.
-- `agents/agent-package-creator/skills/agent-package-creation/references/package-design-principles.md`:
-  - Add subsection in Section 2 / Section 4 establishing continuous file-backed persistence for long-horizon tasks to survive runtime context compression.
-- `agents/agent-package-creator/skills/agent-package-creation/references/package-anti-patterns.md`:
-  - Add Anti-Pattern 15: Accumulating findings only in chat memory during long-horizon tasks.
-- `agent-teams/research-to-deck-team/agents/deep-researcher/skills/deep-researcher/SKILL.md`:
-  - Emphasize continuous in-flight persistence of `research-resource-index.md` and `research_notes.md` as sources are examined.
+## Planned changes
+
+- `deep-research/SKILL.md`: §1 creates or reuses the folder; §2 writes `plan.md` with a status per sub-question; §3 and §4 become one "Search, read, and record" step with the recovery sentence; later sections are renumbered.
+- research-to-deck `deep-researcher/SKILL.md`: recovery sentence in Step 0; index and notes updated as sources are read.
+- `skill-authoring-principles.md`: one paragraph on the working record.
 
 ## Open questions and approvals
 
-- None. The user explicitly requested an update and a merge request / PR for review.
+- None. The user asked for the update.
 
 ## Analysis checks
 
 | Check | Observed result | Evidence or limitation |
 | --- | --- | --- |
-| Target files exist | Pass | Verified via `view_file` |
-| Git status clean on feature branch | Pass | Clean branch `deep-researcher/file-persistence-compression-resilience` created from `origin/main` |
+| Baseline read | Pass | `git show origin/main:<path>` for each file. |
+| Runtime compaction behavior | Observed | AutoByteus native runtime only: `compaction-summary-prompt.ts`, `accepted-compaction-builder.ts`. Codex/Claude runtimes not inspected. |
 
 ## Next action
 
-Apply planned changes to canonical files, validate changes, generate result artifact, and create PR.
+Apply the planned changes, validate, and update PR #35.
