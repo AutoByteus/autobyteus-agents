@@ -41,15 +41,17 @@ Confirm the project folder, audience, output language, deck goal, required sourc
 
 Default to internet-backed research unless the user explicitly forbids it. When web research is blocked, work from supplied sources and clearly mark the research mode as constrained.
 
+If the project folder already has research files from earlier work, read them first.
+
 ### Step 1 - Collect and index sources
 
 Create or update `research-resource-index.md` as the single combined source/resource index. Include supplied files, images, charts, tables, URLs, notes, generated research artifacts, publication dates when available, what each source contains, why it matters, credibility or limitation notes when useful, evidence IDs, deck-use potential, and status.
 
-Do not rely on hidden chat memory for downstream work. If a resource may matter for slides, record it in the index with an absolute path or URL.
+Do not rely on hidden chat memory for downstream work. Add each source you read and keep to the index as you go. If a resource may matter for slides, record it in the index with an absolute path or URL.
 
 ### Step 2 - Capture notes, evidence, and claim mapping
 
-Create or update `research_notes.md` for working notes, source reading notes, important evidence extracts, quotes, figures, definitions, examples, constraints, and reasoning that should not clutter the article or resource index.
+Create or update `research_notes.md` as you read, for working notes, source reading notes, important evidence extracts, quotes, figures, definitions, examples, constraints, and reasoning that should not clutter the article or resource index.
 
 Create `claim_evidence_ledger.md` so each major claim has an evidence anchor and confidence/risk status.
 
