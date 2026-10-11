@@ -64,7 +64,7 @@ The same test prevents both wordiness and over-shortening:
 | “Verify in proportion to the diff.” | “Check what the diff touched.” | Names the action instead of a quality. |
 | “Judge it by provenance, independence, deterministic/resettable behavior, and proportionate complexity.” | A short list: where it came from, needs no live service, same result every run. | A chain of abstract nouns and slash compounds becomes checks an agent can perform. |
 
-This standard guides the author's work, not a separate self-review stage. Independent review occurs only when requested (the `analyze` operation) or required by the containing workflow. For a skill's trigger, instruction flow, and resources, apply the [skill-authoring principles](skill-authoring-principles.md).
+This standard guides the analysis, the changes, and the final review of the changed text ([Agent Package Creation](../SKILL.md) steps 2–4). Independent review occurs only when requested (the `analyze` operation) or required by the containing workflow. For a skill's trigger, instruction flow, and resources, apply the [skill-authoring principles](skill-authoring-principles.md).
 
 ## 5. Attach skills deliberately
 

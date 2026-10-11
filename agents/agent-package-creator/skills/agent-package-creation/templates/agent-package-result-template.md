@@ -65,6 +65,7 @@ Use [result-and-handoff-contract.md](../references/result-and-handoff-contract.m
 | Imported shared dependencies | `Pass` / `Fail` / `Not checked` / `N/A` | `<catalog evidence or limitation>` |
 | Ownership and cross-file consistency | `Pass` / `Fail` | `<evidence>` |
 | Scope/diff review | `Pass` / `Fail` | `<evidence>` |
+| Final review against the standard and anti-patterns | `Pass` / `Fail` | `<rounds run and what each fixed>` |
 
 ## Risks, questions, and blockers
 
