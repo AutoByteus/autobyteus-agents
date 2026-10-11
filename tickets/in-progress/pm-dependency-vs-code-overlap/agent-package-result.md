@@ -14,7 +14,7 @@
 - **§3:** defines a dependency. A Task depends on another when it needs that Task's outcome (a follow-up on the work it follows, a build on its approved design). Touching the same code is not a dependency.
 - **§6:** a Task that doesn't depend on running Tasks may be dispatched while they run, "even when it touches the same code".
 - **§7 "Parallel Tasks in the same area":** Tasks that only touch the same code are independent and run in parallel. Teams on their own branch merge the latest base and resolve conflicts at delivery, so whichever lands second handles the overlap. The PM doesn't hold a Task back or set a landing order, but still tells both workers about the overlap and relays findings and conflicts. If the teams agree an order helps (a refactor rewriting the code a feature changes), the PM relays the order they agreed.
-- **Scenario row:** "Run them in parallel; tell both workers about the overlap, relay findings and conflicts; a landing order only when the teams agree one."
+- **Scenario row:** "Run them in parallel; tell both workers about the overlap, relay findings and conflicts; a landing order only when the teams agree on one."
 
 ## Validation
 
