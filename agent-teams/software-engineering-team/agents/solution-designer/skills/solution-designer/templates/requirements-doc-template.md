@@ -119,7 +119,7 @@ be confused with approved scope; use `Unclear` when evidence is missing.
 - Explicitly illustrative fixture content or permitted implementation
   variation:
 - Required screens, states, transitions, feedback, responsive behavior, or accessibility outcomes:
-- Explicitly unresolved product decisions:
+- Product decisions that need the user (with reasoning and recommendation):
 
 When this section is not applicable, write `N/A — not applicable` for
 Product design fields rather than leaving their approval state ambiguous.
@@ -162,11 +162,13 @@ State the required outcome and constraints. Do not prescribe a migration merely 
 | --- | --- | --- | --- | --- |
 | ASM-001 |  |  |  |  |
 
-## Open Decisions And Questions
+## Decisions
 
-| Decision / Question ID | Question | Why It Matters | Options / Evidence | Decision Owner | Status |
-| --- | --- | --- | --- | --- | --- |
-| DEC-001 |  |  |  |  |  |
+Every row carries reasoning first (current project, industry practice, user experience or other quality goals), then the recommendation. Status: `Decided` (by you, within the direction) or `Needs user` (scope or product direction).
+
+| Decision ID | Question | Why It Matters | Options / Evidence | Reasoning And Recommendation | Decision Owner | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+| DEC-001 |  |  |  |  |  |  |
 
 ## Traceability
 
@@ -198,7 +200,7 @@ This section transfers constraints and open technical questions. It does not def
 - Applicable scenarios are covered with validity and evidence: `Yes` / `No`
 - Product design and supplemental evidence is integrated consistently: `Yes` / `No` / `N/A`
 - Applicable UI/UX approval and final visual-reference basis are recorded: `Yes` / `No` / `N/A`
-- Material assumptions and open decisions are visible: `Yes` / `No`
+- Material assumptions and decisions are visible, each decision with reasoning and recommendation: `Yes` / `No`
 - Content ready for user approval: `Yes` / `No`
 - Remaining content blocker:
 

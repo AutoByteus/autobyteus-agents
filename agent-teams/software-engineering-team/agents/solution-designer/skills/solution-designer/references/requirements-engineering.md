@@ -70,7 +70,7 @@ This label does not select a Product UI/UX Designer mode.
 
 If the user has not requested Product Team support, do not
 invent a visualization or design handoff. Record unresolved experience
-questions and ask the user for direction when that decision is necessary.
+questions; when one needs the user, ask with your reasoning and recommendation.
 The Product UI/UX Designer receives the request, reasons about its relationship to the
 product surface, selects its own mode, and owns its repository, ticket, and
 experience workflow.

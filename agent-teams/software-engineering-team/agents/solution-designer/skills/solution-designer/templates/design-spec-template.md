@@ -10,7 +10,7 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Design status: `Draft` / `Ready` / `Needs Revision` / `Blocked`
 - Canonical investigation-notes path:
 - Authorities read (design reading gate; file and date): `references/architecture-design.md`, `references/design-principles.md`, applicable project `DESIGN.md` path(s) (or `No project DESIGN.md found`); `references/design-examples.md` sections, if used:
-- Project design-principle conflicts with the general principles, or discrepancies (open questions for the user):
+- Project design-principle conflicts with the general principles, or discrepancies (for the user, with your reasoning and recommendation):
 
 Changed intended behavior requires renewed user approval before affected design is authoritative. An evidence-only or technical-design revision does not itself invalidate unchanged requirements approval.
 
