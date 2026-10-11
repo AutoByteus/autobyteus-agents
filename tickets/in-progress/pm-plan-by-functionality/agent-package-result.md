@@ -14,7 +14,7 @@
 - **PM §6:** dropped "even when it touches the same code"; readiness is by dependency only.
 - **PM §7:** "Parallel Tasks in the same area" becomes "Findings or conflicts between Tasks". The PM relays what one worker raises for another (a finding, a merge conflict, or a landing order the teams agreed on). Code overlap is the teams' concern; the PM doesn't look for it, hold a Task back for it, or set a landing order.
 - **PM scenario row:** "A worker raises a finding or conflict for another Task: relay it to that Task's worker, including a landing order the teams agreed on."
-- **Solution Designer §2:** "When you are waiting for the user, tell the delegator in one line, so it can show that on its board; the user can't watch every conversation." This matches PM §7 "Decisions for the user", which records waiting workers on the board.
+- **Solution Designer §2:** "When you are waiting for the user, tell the delegator in one line, so it can let the user know; the user may not be watching your conversation." This matches PM §7 "Decisions for the user", which tells the user which Task and worker is waiting. (Revised after review: the designer skill no longer mentions the PM's board, which is another agent's internal detail.)
 
 ## Validation
 
