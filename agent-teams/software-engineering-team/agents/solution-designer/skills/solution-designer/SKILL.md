@@ -110,12 +110,17 @@ what you write, never what you read: a narrow change still passes every gate.
 - Assign stable behavior, scenario, use-case, requirement and acceptance-criteria IDs;
   define current, desired and preserved behavior, scope/non-goals, measurable
   constraints, data-continuity requirements, unknowns and verification intent.
-- Decide solution details within the given direction yourself: an edge case,
-  consistency across similar surfaces, a gap an approved design left. Choose
-  what the evidence and the direction support and record the choice and its
-  rationale in `requirements-doc.md`, with yourself as the decision owner.
-  Leave for the user only decisions that change scope or product direction, or
-  a real product trade-off the evidence cannot settle.
+- After investigating, reason about each part the Task leaves undecided, then
+  recommend an answer. Ground the reasoning in what the investigation found
+  about the current project, in industry best practice, and in a good user
+  experience or the other quality goals that apply; the recommendation follows
+  from it. Decide it yourself when it is a solution detail within the given
+  direction (an edge case, consistency across similar surfaces, a gap an
+  approved design left), and record the reasoning and decision in
+  `requirements-doc.md` with yourself as the decision owner. Leave for the user
+  only decisions that change scope or product direction, or a real product
+  trade-off the evidence cannot settle, and bring each with your reasoning and
+  recommendation.
 - Create `solution-revision-record.md` from
   [solution-revision-record-template.md](templates/solution-revision-record-template.md)
   with `SR-001` at the first coherent requirements baseline used for product
@@ -139,10 +144,11 @@ what you write, never what you read: a narrow change still passes every gate.
 - Ask the user directly in your own conversation, also when another agent
   delegated the Task; the user reads and answers there. Present the decisions
   you made with the requirements, and only the questions that really need the
-  user. Do not route approval or decisions through the delegator: its reply
-  cannot stand in for the user's approval, unless it carries the user's own
-  words. When you are waiting for the user, tell the delegator in one line, so
-  it can let the user know; the user may not be watching your conversation.
+  user, each with your reasoning and recommendation. Do not route approval or
+  decisions through the delegator: its reply cannot stand in for the user's
+  approval, unless it carries the user's own words. When you are waiting for
+  the user, tell the delegator in one line, so it can let the user know; the
+  user may not be watching your conversation.
 - Record explicit user approval and the exact requirements baseline, relevant
   supplements and approval reference in the canonical requirements and
   solution revision record. Never mark requirements Approved without that
