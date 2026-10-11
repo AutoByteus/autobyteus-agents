@@ -144,10 +144,11 @@ what you write, never what you read: a narrow change still passes every gate.
 - Ask the user directly in your own conversation, also when another agent
   delegated the Task; the user reads and answers there. Present the decisions
   you made with the requirements, and only the questions that really need the
-  user, each with your reasoning and recommendation. Do not route approval or decisions through the delegator: its reply
-  cannot stand in for the user's approval, unless it carries the user's own
-  words. When you are waiting for the user, tell the delegator in one line, so
-  it can let the user know; the user may not be watching your conversation.
+  user, each with your reasoning and recommendation. Do not route approval or
+  decisions through the delegator: its reply cannot stand in for the user's
+  approval, unless it carries the user's own words. When you are waiting for
+  the user, tell the delegator in one line, so it can let the user know; the
+  user may not be watching your conversation.
 - Record explicit user approval and the exact requirements baseline, relevant
   supplements and approval reference in the canonical requirements and
   solution revision record. Never mark requirements Approved without that

@@ -13,7 +13,7 @@
 - **SKILL §2:** questions that need the user come "each with your reasoning and recommendation".
 - **requirements-doc-template:**
   - "Open Decisions And Questions" becomes "Decisions", with a "Reasoning And Recommendation" column.
-  - One line: every row carries reasoning first, then recommendation; Status `Decided` or `Needs user`.
+  - One line: "Every row carries reasoning first, then the recommendation", with Status `Decided` or `Needs user`. The list of what the reasoning draws on stays only in SKILL §1.
   - "Explicitly unresolved product decisions" becomes "Product decisions that need the user (with reasoning and recommendation)".
   - The readiness line becomes "… each decision with reasoning and recommendation".
 - **requirements-engineering.md:** unresolved experience questions that need the user are asked "with your reasoning and recommendation".
@@ -30,4 +30,5 @@
 | --- | --- | --- |
 | Skill validator | Pass | `quick_validate.py` → "Skill is valid!" for `solution-designer`. |
 | Stale references | Pass | No other file in the team refers to "Open Decisions And Questions". The Product Team's own `ui-ux-spec-template.md` "Open Decisions And Risks" is a separate package and was left unchanged. |
-| Scope | Pass | 4 files in the Solution Designer skill (+22/−15) and this ticket folder. |
+| Scope | Pass | 4 files in the Solution Designer skill and this ticket folder. |
+| Final review against the standard and anti-patterns | `Pass` (round 2) | Round 1 found (a) the template note repeated the skill's list of reasoning sources (anti-pattern 4), so the template now says only "reasoning first, then the recommendation"; and (b) an overlong line in SKILL §2, which was re-wrapped. Round 2 found nothing more. |

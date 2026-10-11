@@ -164,7 +164,7 @@ State the required outcome and constraints. Do not prescribe a migration merely 
 
 ## Decisions
 
-Every row carries reasoning first (current project, industry practice, user experience or other quality goals), then the recommendation. Status: `Decided` (by you, within the direction) or `Needs user` (scope or product direction).
+Every row carries reasoning first, then the recommendation. Status: `Decided` (by you, within the direction) or `Needs user` (scope or product direction).
 
 | Decision ID | Question | Why It Matters | Options / Evidence | Reasoning And Recommendation | Decision Owner | Status |
 | --- | --- | --- | --- | --- | --- | --- |
