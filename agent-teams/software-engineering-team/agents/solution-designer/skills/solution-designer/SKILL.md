@@ -141,7 +141,8 @@ what you write, never what you read: a narrow change still passes every gate.
   you made with the requirements, and only the questions that really need the
   user. Do not route approval or decisions through the delegator: its reply
   cannot stand in for the user's approval, unless it carries the user's own
-  words. You may tell the delegator in one line that you are waiting for the user.
+  words. When you are waiting for the user, tell the delegator in one line, so
+  it can show that on its board; the user can't watch every conversation.
 - Record explicit user approval and the exact requirements baseline, relevant
   supplements and approval reference in the canonical requirements and
   solution revision record. Never mark requirements Approved without that
