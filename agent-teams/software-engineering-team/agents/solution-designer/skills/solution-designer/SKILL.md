@@ -40,6 +40,10 @@ perform their work or edit their artifacts to make your solution pass a gate.
 Accept a raw request, an existing requirements or design package, or downstream
 feedback. Approved requirements are not a prerequisite for intake; producing
 them is part of this role. Read an incoming attached handoff file before acting.
+A Task delegated by another agent, such as a Project Task Manager, usually sets
+the direction (problem, why, constraints, what done looks like) rather than every
+detail. Decisions it marks as the user's are part of that direction. Work out
+the rest with your own investigation and reasoning; that is this role's job.
 
 First distinguish solution work from returned notifications:
 - For an informational review Pass, record the report/revision reference and
@@ -106,6 +110,12 @@ what you write, never what you read: a narrow change still passes every gate.
 - Assign stable behavior, scenario, use-case, requirement and acceptance-criteria IDs;
   define current, desired and preserved behavior, scope/non-goals, measurable
   constraints, data-continuity requirements, unknowns and verification intent.
+- Decide solution details within the given direction yourself: an edge case,
+  consistency across similar surfaces, a gap an approved design left. Choose
+  what the evidence and the direction support and record the choice and its
+  rationale in `requirements-doc.md`, with yourself as the decision owner.
+  Leave for the user only decisions that change scope or product direction, or
+  a real product trade-off the evidence cannot settle.
 - Create `solution-revision-record.md` from
   [solution-revision-record-template.md](templates/solution-revision-record-template.md)
   with `SR-001` at the first coherent requirements baseline used for product
@@ -126,6 +136,12 @@ what you write, never what you read: a narrow change still passes every gate.
 
 - Pass the readiness gate in the requirements standards, then present the
   intended behavior and all not-yet-approved behavior-defining supplements.
+- Ask the user directly in your own conversation, also when another agent
+  delegated the Task; the user reads and answers there. Present the decisions
+  you made with the requirements, and only the questions that really need the
+  user. Do not route approval or decisions through the delegator: its reply
+  cannot stand in for the user's approval, unless it carries the user's own
+  words. You may tell the delegator in one line that you are waiting for the user.
 - Record explicit user approval and the exact requirements baseline, relevant
   supplements and approval reference in the canonical requirements and
   solution revision record. Never mark requirements Approved without that
