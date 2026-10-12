@@ -6,8 +6,8 @@ category: software-engineering
 
 Solution Designer is the coordinator and software-work entrypoint. It accepts
 raw requests, approved packages or solution-revision feedback, owning both
-requirements engineering and architecture design with explicit user approval
-between those phases. The team can run standalone or within the Software
+requirements engineering and architecture design with an approved requirements
+basis between those phases. The team can run standalone or within the Software
 Development Department; no separate requirements owner is required.
 
 ## Ownership Boundaries
@@ -25,8 +25,9 @@ Development Department; no separate requirements owner is required.
 
 ## Route Contract
 
-Solution Designer investigates and refines requirements, obtains explicit user
-approval, and completes architecture investigation and a proportionate design
+Solution Designer investigates and refines requirements, approves them within
+the request's direction or obtains the user's approval when a decision needs
+it, and completes architecture investigation and a proportionate design
 spec. It then classifies the completed solution's size and architectural risk.
 The configured rules determine independent review or direct implementation;
 see [team-config.json](team-config.json) for the conditions. Direct here means

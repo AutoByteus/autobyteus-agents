@@ -6,6 +6,7 @@ Keep one canonical path across refinement rounds.
 ## Document Status
 
 - Status: `Draft` / `Ready for Approval` / `Approved` / `Blocked`
+- Approved by: `User` / `Solution Designer within the direction (user informed)`; reference:
 - Current solution revision ID: `SR-*` / `N/A`
 - Package identifier:
 - Request / ticket:
@@ -201,12 +202,12 @@ This section transfers constraints and open technical questions. It does not def
 - Product design and supplemental evidence is integrated consistently: `Yes` / `No` / `N/A`
 - Applicable UI/UX approval and final visual-reference basis are recorded: `Yes` / `No` / `N/A`
 - Material assumptions and decisions are visible, each decision with reasoning and recommendation: `Yes` / `No`
-- Content ready for user approval: `Yes` / `No`
+- Content ready for approval: `Yes` / `No`
 - Remaining content blocker:
 
 ### Approved Basis Ready For Design
 
-- User approval received: `Yes` / `No`
+- Approval recorded (the user's, or yours within the direction with the user informed): `Yes` / `No`
 - Exact requirements and supplement approval basis recorded: `Yes` / `No`
 - Approved requirements package ready for architecture design: `Yes` / `No`
 - Remaining blocker:

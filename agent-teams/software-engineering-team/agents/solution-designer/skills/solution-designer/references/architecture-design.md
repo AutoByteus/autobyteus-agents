@@ -49,7 +49,7 @@ adding parallel journals/backups for speculative failures.
 - Decide each persisted-data transition with [Core Principle 5](design-principles.md#5-current-schema-runtime-and-proportionate-persisted-data-transitions).
 - Make removals, dependency rules, compatibility rejection, sequencing, risks, and persisted-data decisions explicit in the design spec.
 - Use short examples when a target shape would otherwise remain abstract or easy to misread.
-- Keep the design, investigation notes and supplements aligned with the approved requirements basis. Resolve conflicts using the main skill's recovery rules; obtain renewed user approval before changed intended behavior governs design.
+- Keep the design, investigation notes and supplements aligned with the approved requirements basis. Resolve conflicts using the main skill's recovery rules; obtain renewed approval (main skill, step 2) before changed intended behavior governs design.
 
 ## Task Size And Architectural Risk
 

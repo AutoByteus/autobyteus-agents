@@ -43,7 +43,7 @@
       "from": "/solution_designer",
       "to": "/architecture_reviewer",
       "rules": [
-        "When Solution Designer classifies a completed or revised architecture package as Architecture Design Complete with task_size=Large or architectural_risk=High, and the aligned cumulative solution package is ready for independent architecture review. Requirements and behavior-defining supplements must have current explicit user approval."
+        "When Solution Designer classifies a completed or revised architecture package as Architecture Design Complete with task_size=Large or architectural_risk=High, and the aligned cumulative solution package is ready for independent architecture review. Requirements and behavior-defining supplements must have current approval: the user's, or the Solution Designer's within the request's direction with the user informed."
       ]
     },
     {

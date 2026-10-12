@@ -37,8 +37,8 @@ Read during discovery, requirements refinement and requirement-impact recovery. 
   supporting evidence. Do not treat the exploratory visualizer itself as the
   final normative UI/UX specification.
 - Keep evidence in investigation notes instead of bloating the requirements doc with raw research.
-- Never mark the package `Approved` without explicit user approval.
-- After readiness and explicit approval, continue architecture investigation and design in the main skill. Task-size/risk classification follows the completed design spec.
+- Never mark the package `Approved` without the approval the main skill's approval step requires.
+- After readiness and approval, continue architecture investigation and design in the main skill. Task-size/risk classification follows the completed design spec.
 
 ## Product Design Context
 
