@@ -8,7 +8,7 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 - Release guide path and revision, or `No project release guide`:
 - Deviations from the guide and why: `None` / list
-- Guide corrections made in docs sync, or suggested: `None` / list
+- Proposed guide fixes, and whether the user agreed: `None` / list
 
 ## Handoff Summary
 

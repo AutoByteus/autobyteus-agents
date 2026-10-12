@@ -57,7 +57,7 @@ Use [templates/delivery-revision-record-template.md](templates/delivery-revision
 - Before repository finalization, release, publication, or deployment, read the project's release guide: `RELEASE.md` at the repository root, or the file the project's `AGENTS.md` points to for releases. It holds what is specific to the project, such as the finalization target, the release decision, checks before tagging, release commands, what to watch after publishing, recovery, rollback, and deployment.
 - Where the guide and the generic steps below differ on how to finalize, release, or deploy, follow the guide. The user-verification hold and truthful reporting still apply. Record the guide's path and revision in the release/deployment report, with any deviation and why.
 - Without a guide, use the generic steps, record `No project release guide` in the report, and suggest creating one from [templates/release-guide-template.md](templates/release-guide-template.md).
-- Keep the guide current like other long-lived docs: when this delivery shows it is wrong or missing a step, correct it during docs sync.
+- The project owns its guide. When this delivery shows the guide is wrong or missing a step, record that in the report with a proposed fix; change the guide only when the user agrees or the ticket is about it.
 
 ## Workflow Rules
 
@@ -80,7 +80,7 @@ not a receipt-only evidence correction.
 - After that user signal, move the ticket folder to `tickets/done/<ticket-name>/` before the final commit.
 - Use the recorded bootstrap context, or the release guide's finalization target, as the finalization target. Ask once if both are missing.
 - After the user signal, refresh the finalization target from remote again. If it has advanced beyond the user-verified handoff state, do not blindly finalize an older integration state; first protect any delivery-owned uncommitted edits, then bring the ticket branch current again, rerun the required checks, and if the user-facing handoff state materially changes, update docs or other delivery-owned artifacts as needed, update the handoff summary, and obtain renewed verification before the final merge.
-- Before the final commit, check that the names of committed files, including ticket evidence, are portable across operating systems: none of `< > : " | ? * \`, no trailing dot or space, no reserved device names such as `CON` or `NUL`, and paths well under Windows' 260-character limit (or the project guide's limit). Rename what fails.
+- Before the final commit, check that the names and paths of committed files, including ticket evidence, work on every operating system the project builds on or is checked out on, using the rules or checks the release guide gives. Rename what fails.
 - When the repository uses ticket-branch finalization, run it in this order: commit the ticket branch, push the ticket branch, update the recorded finalization target branch from remote, merge the ticket branch into it, then push the updated target branch.
 - Treat release, publication, and deployment as a separate conditional step after repository finalization, using the release guide's method when there is one.
 - After publishing, watch every pipeline the release triggered to completion and check the published artifacts against what the release should produce. When only some pipelines succeed, record a partial release as partial.

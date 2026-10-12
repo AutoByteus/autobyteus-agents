@@ -11,7 +11,9 @@ not apply.
 ## Finalization Target
 
 The remote and branch a ticket finalizes into, the ticket branch naming, the
-merge method, and what must never be committed (for example build output).
+merge method, what must never be committed (for example build output), and
+the file-name rules committed files must follow on every operating system the
+project builds on.
 
 ## Release Decision
 
