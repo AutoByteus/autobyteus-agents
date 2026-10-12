@@ -22,6 +22,7 @@ Take the API/E2E-passed implementation state—whether it arrived through the in
 - user-verification hold
 - archived ticket-state transition
 - release notes
+- following the project release guide and recording deviations from it
 - version bump or release commit work when applicable
 - ticket-branch commit/push plus resolved-target-branch update/merge/push when the repo uses that flow
 - tags and release packaging when applicable
@@ -51,6 +52,13 @@ Use [templates/delivery-revision-record-template.md](templates/delivery-revision
   receipt. If the gap reveals unfinished work, resume only that owning gate;
   keep completion blocked until it is truthful.
 
+## Project Release Guide
+
+- Before repository finalization, release, publication, or deployment, read the project's release guide: `RELEASE.md` at the repository root, or the file the project's `AGENTS.md` points to for releases. It holds what is specific to the project, such as the finalization target, the release decision, checks before tagging, release commands, what to watch after publishing, recovery, rollback, and deployment.
+- Where the guide and the generic steps below differ on how to finalize, release, or deploy, follow the guide. The user-verification hold and truthful reporting still apply. Record the guide's path and revision in the release/deployment report, with any deviation and why.
+- Without a guide, use the generic steps, record `No project release guide` in the report, and suggest creating one from [templates/release-guide-template.md](templates/release-guide-template.md).
+- Keep the guide current like other long-lived docs: when this delivery shows it is wrong or missing a step, correct it during docs sync.
+
 ## Workflow Rules
 
 The sequence below applies to initial delivery and genuinely unfinished gates,
@@ -70,10 +78,13 @@ not a receipt-only evidence correction.
 - Create or update the ticket-local `handoff-summary.md` only after the ticket branch reflects the latest integrated base intended for user verification, and record the integration method, checked base revision, and post-integration check result there or in the delivery report.
 - Wait for explicit user verification before moving the ticket to `done`, pushing, merging into the finalization target branch, or running release, publication, or deployment work. The allowed pre-verification exception is a local checkpoint commit plus the base-into-ticket integration refresh described above.
 - After that user signal, move the ticket folder to `tickets/done/<ticket-name>/` before the final commit.
-- Use the recorded bootstrap context as the finalization target. Ask once if that target is missing.
+- Use the recorded bootstrap context, or the release guide's finalization target, as the finalization target. Ask once if both are missing.
 - After the user signal, refresh the finalization target from remote again. If it has advanced beyond the user-verified handoff state, do not blindly finalize an older integration state; first protect any delivery-owned uncommitted edits, then bring the ticket branch current again, rerun the required checks, and if the user-facing handoff state materially changes, update docs or other delivery-owned artifacts as needed, update the handoff summary, and obtain renewed verification before the final merge.
+- Before the final commit, check that the names of committed files, including ticket evidence, are portable across operating systems: none of `< > : " | ? * \`, no trailing dot or space, no reserved device names such as `CON` or `NUL`, and paths well under Windows' 260-character limit (or the project guide's limit). Rename what fails.
 - When the repository uses ticket-branch finalization, run it in this order: commit the ticket branch, push the ticket branch, update the recorded finalization target branch from remote, merge the ticket branch into it, then push the updated target branch.
-- Treat release, publication, and deployment as a separate conditional step after repository finalization. Use the project's documented method when one exists.
+- Treat release, publication, and deployment as a separate conditional step after repository finalization, using the release guide's method when there is one.
+- After publishing, watch every pipeline the release triggered to completion and check the published artifacts against what the release should produce. When only some pipelines succeed, record a partial release as partial.
+- Never move or delete a published tag; other pipelines may already have published from it. Fix forward with the next version.
 - When release notes are required, create or update `tickets/in-progress/<ticket-name>/release-notes.md` before user verification, then pass the archived `tickets/done/<ticket-name>/release-notes.md` artifact into the release/publication path when that path is applicable.
 - After repository finalization and any applicable release/publication/deployment work, clean up ticket worktrees and branches when they were created for this task and when the recorded finalization target makes that cleanup safe.
 - If any finalization, release, deployment, or cleanup step fails, keep final handoff blocked and record the blocker explicitly. Do not undo already-completed repository finalization.

@@ -4,6 +4,12 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 ## Release / Publication / Deployment Scope
 
+## Project Release Guide
+
+- Release guide path and revision, or `No project release guide`:
+- Deviations from the guide and why: `None` / list
+- Guide corrections made in docs sync, or suggested: `None` / list
+
 ## Handoff Summary
 
 - Handoff summary artifact:
@@ -70,9 +76,11 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 ## Release / Publication / Deployment
 
 - Applicable: `Yes` / `No`
-- Method: `Release Script` / `Documented Command` / `Git Tag Method` / `GitHub Release` / `Deployment Path` / `Other`
+- Method: `Project Release Guide` / `Release Script` / `Documented Command` / `Git Tag Method` / `GitHub Release` / `Deployment Path` / `Other`
 - Method reference / command:
-- Release/publication/deployment result: `Completed` / `Not required` / `Blocked`
+- Pipelines triggered and their results:
+- Published artifacts checked against what the release should produce:
+- Release/publication/deployment result: `Completed` / `Partial` / `Not required` / `Blocked`
 - Release notes handoff result: `Used` / `Not required` / `Blocked`
 - Blocker (if applicable):
 
