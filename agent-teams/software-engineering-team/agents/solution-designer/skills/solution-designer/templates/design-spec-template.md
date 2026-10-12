@@ -5,14 +5,14 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 ## Solution And Approval Basis
 
 - Current solution revision ID: `SR-*`
-- Approved requirements baseline / revision and user-approval reference:
+- Approved requirements baseline / revision, who approved, and approval reference:
 - Behavior-defining supplements and their approval references:
 - Design status: `Draft` / `Ready` / `Needs Revision` / `Blocked`
 - Canonical investigation-notes path:
 - Authorities read (design reading gate; file and date): `references/architecture-design.md`, `references/design-principles.md`, applicable project `DESIGN.md` path(s) (or `No project DESIGN.md found`); `references/design-examples.md` sections, if used:
 - Project design-principle conflicts with the general principles, or discrepancies (for the user, with your reasoning and recommendation):
 
-Changed intended behavior requires renewed user approval before affected design is authoritative. An evidence-only or technical-design revision does not itself invalidate unchanged requirements approval.
+Changed intended behavior requires renewed approval (Solution Designer skill, step 2) before affected design is authoritative. An evidence-only or technical-design revision does not itself invalidate unchanged requirements approval.
 
 ## Current-State Read
 

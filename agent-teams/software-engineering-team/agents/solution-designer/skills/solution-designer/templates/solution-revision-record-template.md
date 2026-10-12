@@ -28,7 +28,7 @@ remain authoritative; this record indexes their changes and approval impact.
 - Supplemental artifacts added, changed or removed:
 - Product design evidence or product decisions incorporated:
 - Intended behavior changed: `Yes` / `No`
-- Approval impact, exact approved requirements baseline and user-approval reference:
+- Approval impact, exact approved requirements baseline, who approved, and approval reference:
 - Behavior-defining supplement versions and approval references:
 - Affected design/review basis invalidated or rebuilt:
 - Post-design task-size/risk classification and rationale changes (`N/A` before design completion):
