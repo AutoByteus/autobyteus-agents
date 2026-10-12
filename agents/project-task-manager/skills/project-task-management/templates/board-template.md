@@ -18,13 +18,13 @@ Tasks created for later dispatch, on the user's word or a trigger. Move a row to
 | --- | --- | --- | --- |
 | `<task_id>` | <short title> | <e.g. the user's go-ahead; blocked by `<task_id>`; trigger> | <date> |
 
-## Pending user decisions
+## Your questions waiting for the user
 
-Decisions a worker asked the user for. Remove a row once the answer is sent back to the worker.
+Your own questions to the user, such as a dispatch approval or a plan change. Remove a row once the user answers.
 
-| Task ID | Decision | Asked by | Asked |
-| --- | --- | --- | --- |
-| `<task_id>` | <e.g. DEC-001: option A or B; worker recommends A> | `<address>` | <date> |
+| Task ID or plan | Question | Asked |
+| --- | --- | --- |
+| `<task_id>` or `<plan folder>` | <e.g. dispatch to the software team?> | <date> |
 
 ## Open dispatches
 
