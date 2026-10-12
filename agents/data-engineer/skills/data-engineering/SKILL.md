@@ -61,5 +61,5 @@ Run automated verification across all generated data files:
 
 ### 5. Report & handoff
 
-1. **Document results**: Use [data-preparation-report-template.md](templates/data-preparation-report-template.md) to record input sources, generated artifacts, transformation scripts, item counts, and validation results.
+1. **Document results**: Use [data-preparation-report-template.md](templates/data-preparation-report-template.md) to record input sources, generated artifacts, transformation scripts, item counts, and validation results. Keep it a short Markdown summary; do not add charts, diagrams, or HTML data explorers.
 2. **Deliver package**: Ensure all output JSON files, transformation scripts, and the preparation report are committed or placed at their designated repository paths.
