@@ -78,7 +78,17 @@ Classification:
 - `Requirement Gap`: intended behavior is missing or ambiguous; owned by `solution_designer` for requirements revision and any necessary renewed user approval
 - `Unclear`: the issue cannot be classified from the available package; owned by `solution_designer` for routing
 
+Findings outside this ticket go under Follow-ups (skill: Ticket Scope), not here.
+
 Do not rerun the full API/E2E workflow by default. If a changed assertion cannot be judged from the diff and existing execution evidence, record the focused command, result, and evidence in the relevant finding.
+
+## Follow-ups
+
+| Follow-up ID | What is wrong, where | Evidence | Why it is outside this ticket | Suggested Task description |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+
+- Sent to (address and message reference), or `No Task manager found — kept in this report`, or `None`:
 
 ## Latest Authoritative Result
 

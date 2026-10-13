@@ -304,6 +304,17 @@ Rules:
 - Every finding must link to a promoted candidate in the Supported Product Scenario Gate or to an approved engineering contract. When it depends on an additional production, failure, or lifecycle premise, cite its material-premise validation ID and include the independent trigger/path, evidence, material consequence, and why the required action is proportionate.
 - Do not include a candidate marked `Hold for Evidence`, `Reject`, `Unclear`, or `Technically Possible but Unsupported/Contrived` as an actionable finding or score deduction.
 - If dead/obsolete/legacy/compatibility issues exist, enumerate each one explicitly with the concrete file/path/item, evidence, and required removal or cleanup action.
+- A promoted finding outside this ticket's Scope Guardrail goes under Follow-ups, not here (skill: Ticket Scope).
+
+## Follow-ups
+
+Findings outside this ticket. They do not fail the review, lower the score, or reopen implementation.
+
+| Follow-up ID | What is wrong, where | Evidence | Why it is outside this ticket | Suggested Task description |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+
+- Sent to (address and message reference), or `No Task manager found — kept in this report`, or `None`:
 
 ## Classification
 

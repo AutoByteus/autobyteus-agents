@@ -10,6 +10,7 @@ Keep one canonical path across refinement rounds.
 - Current solution revision ID: `SR-*` / `N/A`
 - Package identifier:
 - Request / ticket:
+- Requested by (the user, or the delegating agent's address):
 - Requirements owner:
 - Date:
 - Approval state and reference:
