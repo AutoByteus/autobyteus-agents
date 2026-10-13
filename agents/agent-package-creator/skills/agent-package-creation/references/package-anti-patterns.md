@@ -92,6 +92,20 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Instead:** Say what to do. Use a short list when there are several criteria, and a concrete check instead of "proportionately".
 - **Detect:** Search changed text for slash compounds (`word/word`), vague qualifiers ("proportionate", "appropriate", "as needed", "relevant"), and sentences that pile up nouns ending in -ity, -ance, or -ence; for each, ask what exactly the agent does.
 
+### 15. One full procedure for every request
+
+- **Incident:** The Project Task Manager ran investigate, plan file, approval, propose, and dispatch even when the user said "delegate this Task to the software team", which already named the Task and worker and gave approval (2026-10-08).
+- **Breaks:** [Write the operating contract](skill-authoring-principles.md#write-the-operating-contract): the shortest coherent path, with gates only where they protect something.
+- **Instead:** Give the small, common request its own short path, and say that an explicit user instruction is the approval it grants.
+- **Detect:** Walk the smallest realistic request through the skill (one named item, a direct instruction); flag each step or approval that adds nothing for it.
+
+### 16. Re-reading state instead of keeping it
+
+- **Incident:** The Project Task Manager listed every Project, every available agent, and every Task including DONE ones for each request, re-checked assignments before each dispatch, and kept no record between conversations (2026-10-08).
+- **Breaks:** [§4](package-design-principles.md#4-apply-one-authoring-standard), economy: an instruction, including a tool call, must change what the role does.
+- **Instead:** In a role's procedure at runtime, read only what the next decision needs, use the tools' filters, and give knowledge that lasts (who does what, what is open) a saved record that the role reads first and updates as it works.
+- **Detect:** For each read or listing call a skill requires, name what the role does differently with the answer and whether a filter or saved record already gives it.
+
 ## Creator process
 
 ### 10. Deciding from a stale or partial view of the package
@@ -107,3 +121,10 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Breaks:** Diff contained to the approved scope ([SKILL.md step 4](../SKILL.md#4-validate-and-recover)).
 - **Instead:** Before pushing, list `origin/<branch>..HEAD` and push only when it contains exactly the intended commits; build the change on a fresh branch from the remote when the local branch carries other work.
 - **Detect:** The list of commits to push, checked immediately before the push.
+
+### 17. Merging without updating the local checkout
+
+- **Incident:** After PR #46 was merged, the local checkout was left behind because uncommitted edits overlapped the merged file, so the installed creator skill, linked to that checkout, kept running the old text (2026-10-13).
+- **Breaks:** [Inputs and operation](../SKILL.md#inputs-and-operation): a merged change takes effect only when the local checkout has it.
+- **Instead:** Right after merging, update the local checkout as the [skill](../SKILL.md#inputs-and-operation) describes, preserving any overlapping local work.
+- **Detect:** After each merge, compare the local branch with `origin/<branch>`; it should be neither behind nor ahead.
