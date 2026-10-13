@@ -131,3 +131,22 @@ Final review:
 2. Round 2 was clean. The validator passes for all five member skills.
 
 Open policy question for the user: should the size audit's `>500` hard limit apply to an old oversized file that a ticket only edits slightly, or only when the change grows it?
+
+## Revision 6 (user, 2026-10-13): file size follows contribution
+
+User's rule: "respect your scope". A file already oversized that the change didn't contribute to is a follow-up. A change that takes a file over the limit, or adds to an already oversized one ("you contribute to make it worse"), owns it.
+
+| Case | Where it belongs | Proportionate fix |
+| --- | --- | --- |
+| The change takes a file over 500 lines (for example 400 + 100) | This ticket | Bring it back under the limit |
+| A file was already over 500 lines and the change adds to it | This ticket | Put the added code in a properly owned file; split the old file only if that is not possible |
+| A file was already over 500 lines and the change doesn't grow it | Follow-up (its own refactoring Task), unless the design spec decided the refactor is needed now | — |
+
+Applied consistently in:
+- implementation-engineer `SKILL.md`, which previously said "do not knowingly grow **or leave** a changed file above 500", forcing refactors of old files;
+- implementation handoff template;
+- code-reviewer `SKILL.md` size rule;
+- code-review report template, whose size audit gets "lines before (base branch)" and "after" columns and the three outcomes;
+- shared Example 11, with three rows.
+
+Final review: round 1 found the reviewer's rule didn't name the proportionate fix and could over-demand a full split, so it now does. Round 2 was clean. The validator passes for code-reviewer and implementation-engineer.

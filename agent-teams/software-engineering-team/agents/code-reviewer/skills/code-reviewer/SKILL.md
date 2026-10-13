@@ -245,7 +245,7 @@ review result as usual.
 - Review against the full artifact chain, canonical design guidance, and relevant supplemental task artifacts, applying approval constraints where applicable.
 - Treat earlier design artifacts as context, not immunity from review. Classify an inadequate design as `Design Impact`.
 - Review design integrity, API/E2E readiness, cleanup completeness, and changed implementation-source size or structural pressure.
-- Apply `>500` and `>220` source thresholds only to changed implementation-source files, never to tests, fixtures, or generated coverage files.
+- Apply `>500` and `>220` source thresholds only to changed implementation-source files, never to tests, fixtures, or generated coverage files. The `>500` limit belongs to this ticket when the change takes a file over it, or adds to a file that was already over it on the base branch (the change made it worse; ask for the added code in a properly owned file, or a split only if that is not possible). A file already over it that the change does not grow is a follow-up (Ticket Scope), unless the design spec decided the refactor is needed now.
 - When persisted data may be affected, verify that implementation follows the reviewed transition decision and does not add an unnecessary migration or version-specific runtime fallback. Review migration mechanics only when the approved decision is `Migration Required`.
 - Keep each canonical report focused on its latest complete result, and reuse finding IDs across rounds.
 - Record the `Review Scope` of every implementation-review round and, on round `>1`, the evidence for it: `Full Review` on round 1; on round `>1`, one of:

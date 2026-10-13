@@ -187,9 +187,9 @@ Complete this local source audit after the structural review above. It is requir
 Use this section for changed source implementation files only.
 Do not apply the source-file hard limit to unit, integration, API, or E2E test files.
 
-| Source File | Effective Non-Empty Lines | `>500` Hard-Limit Check | `>220` Delta Check | SoC / Ownership Check | Placement Check | Preliminary Classification | Required Action |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |  |  |
+| Source File | Effective Non-Empty Lines Before Change (base branch) | Effective Non-Empty Lines After | `>500` Hard-Limit Check (`Pass` / `Fail — this change takes it over or grows it` / `Already over, not grown — follow-up`) | `>220` Delta Check | SoC / Ownership Check | Placement Check | Preliminary Classification | Required Action |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |  |  |
 
 ## Legacy / Backward-Compatibility Verdict
 
