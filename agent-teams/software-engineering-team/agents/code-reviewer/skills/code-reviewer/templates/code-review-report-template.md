@@ -126,9 +126,9 @@ fields. Pure structural, ownership, naming, or maintainability observations
 may link to an approved design or engineering contract instead of a user
 scenario; do not invent a user journey for them.
 
-| Candidate ID | Observation Or Mechanism | Scenario / Contract ID | Independent Trigger | Forward Path / Lifecycle / Consequence | Evidence | Disposition (`Promote`/`Hold for Evidence`/`Reject`) | Reason / Proportionate Response |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |  |  |
+| Candidate ID | Observation Or Mechanism | Scenario / Contract ID | Independent Trigger | Forward Path / Lifecycle / Consequence | Evidence | Disposition (`Promote`/`Hold for Evidence`/`Reject`) | Scope, if promoted (`This ticket`/`Follow-up`/`Requirement Gap`) | Reason / Proportionate Response |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |  |  |
 
 - `Promote`: the scenario or contract is supported and the technical
   consequence is evidenced and proportionate; the candidate may become a

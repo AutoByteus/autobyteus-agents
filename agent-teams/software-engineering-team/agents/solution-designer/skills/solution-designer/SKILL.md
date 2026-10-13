@@ -109,8 +109,10 @@ what you write, never what you read: a narrow change still passes every gate.
   `Technically Possible but Unsupported/Contrived`, or `Unclear` as appropriate.
   Mechanical possibility alone does not establish approved scope.
 - Assign stable behavior, scenario, use-case, requirement and acceptance-criteria IDs;
-  define current, desired and preserved behavior, scope/non-goals, measurable
-  constraints, data-continuity requirements, unknowns and verification intent.
+  define current, desired and preserved behavior, measurable constraints,
+  data-continuity requirements, unknowns and verification intent. Write the
+  requirements doc's Scope Guardrail: the use cases this ticket may change,
+  what is out of scope, non-goals and preserved behavior.
 - After investigating, reason about each part the Task leaves undecided, then
   recommend an answer. Ground the reasoning in what the investigation found
   about the current project, in industry best practice, and in a good user
@@ -203,6 +205,9 @@ as well as how to design.
    written design concise: explain the existing owner/path, intended delta,
    affected files, evidence and design-health decision. Use reasoned `N/A` for
    genuinely inapplicable details rather than inventing architecture.
+   Once the design is decided, write its Change Scope: the areas and files this
+   change modifies, what nearby it deliberately leaves alone, and problems found
+   during design that become follow-ups.
 5. Resolve requirement implications using Recovery below, rather than silently
    changing intended behavior to fit the architecture.
 

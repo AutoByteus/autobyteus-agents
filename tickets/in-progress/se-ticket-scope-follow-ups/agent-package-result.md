@@ -56,3 +56,23 @@ A UI ticket is implemented and passes API/E2E. The package comes to the code rev
 | Ownership and cross-file consistency | Pass | Matches the architecture reviewer's out-of-scope rule and the guardrail's Review Authority; the templates point to the skill's Ticket Scope. |
 | Scope/diff review | Pass | 5 files (+62/−3) and this ticket folder. |
 | Final review against the standard and anti-patterns | `Pass` (round 3) | Round 1: the Follow-up bullet overlapped "the change caused it" for regressions outside the guardrail, so it's now "pre-existing, unrelated, not blocking acceptance". "The requester" could be the user, so it's now "the delegating agent under 'Requested by'". The API/E2E template's Follow-ups block was moved below the Findings notes it had split. Round 2: re-wrapped one paragraph. Round 3: clean. Anti-patterns 1, 3, 4, 12 and 14 were checked: follow-ups go outside the team to the requester or a discovered Task manager as the user directed, with no hard-coded team recipient and no rule copied. |
+
+## Revision 2 (user, 2026-10-13): put the scope where the real workflow writes and uses it
+
+The user asked that each instruction sit at the step where a real solution designer or reviewer would do that work, in that order.
+
+- **Solution Designer, requirements phase (SKILL step 1):** "Write the requirements doc's Scope Guardrail: the use cases this ticket may change, what is out of scope, non-goals and preserved behavior." Previously the skill only said "scope/non-goals"; the guardrail was named only in a reference and the template.
+- **Solution Designer, end of design (SKILL step 3, item 4), before classification:** "Once the design is decided, write its Change Scope: the areas and files this change modifies, what nearby it deliberately leaves alone, and problems found during design that become follow-ups." Step 4 then classifies "the completed design's actual scope".
+- **Design-spec template:** a new "Change Scope (Mandatory)" section right after "Intended Change". It is written last but placed early, like Task Size, so readers see the boundary first. It records in scope (guardrail IDs, areas and files), deliberately left alone, and follow-ups. The Section Fill Order adds "10. change scope, written once the design is decided".
+- **Code reviewer review sequence:** step 2 reads the ticket's scope (Scope Guardrail plus Change Scope); step 6 judges each promoted candidate's scope; step 7 scores and routes this ticket's findings only, records follow-ups, and sends the follow-up request.
+- **Code reviewer test-code review rules:** "An unrelated problem you notice here is a follow-up (Ticket Scope)." This is the entry point of the user's case.
+- **Code reviewer Ticket Scope:** the boundary is now the guardrail plus the Change Scope.
+- **Code-review report template:** the candidate table has a "Scope, if promoted" column.
+
+Final review of revision 2:
+
+1. Round 1 found three things:
+   - the skill and the template both explained who uses Change Scope, so the explanation stays only in the template;
+   - the test-code bullet repeated "does not fail … reopen", so it now only points to Ticket Scope;
+   - two long lines were re-wrapped.
+2. Round 2 found nothing more. The validator passes for both skills.

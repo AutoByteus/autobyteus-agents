@@ -40,6 +40,14 @@ Link the architecture-level evidence gathered after requirements approval from t
 
 ## Intended Change
 
+## Change Scope (Mandatory)
+
+Write this last, once the design is decided; it appears early so readers see the boundary first. Reviewers use it with the requirements doc's Scope Guardrail to tell this ticket's findings from follow-ups.
+
+- In scope: the Scope Guardrail use-case IDs this design covers, and the areas and files this change modifies:
+- Deliberately left alone: nearby areas, components or behaviors this change does not touch, and why:
+- Follow-ups: problems found during design that this ticket does not fix (including `Follow-up` items from the Removal / Decommission Plan), or `None`:
+
 ## Relevant Behavior And Production-Path Map (Mandatory)
 
 Synthesize the approved current-and-desired behavior from the requirements and the supporting existing-behavior evidence from the investigation notes before making structural design decisions. Use the stable behavior IDs from investigation. A small or backend-only change may need only one system, operational, or contract row; do not invent rows for unsupported technical possibilities.
@@ -96,6 +104,7 @@ Design reasoning follows [design-principles.md](../references/design-principles.
 7. draft file responsibilities -> extract reusable owned structures -> finalize file responsibilities
 8. folder/path mapping
 9. change sequence, tradeoffs, risks, and implementation guidance
+10. change scope, written once the design is decided
 
 Complete every mandatory section, but keep the written detail of each mapping proportionate to the actual change. For a genuinely inapplicable section, write `N/A` with a short reason. Do not invent spines, subsystems, interfaces, abstractions, or risks merely to populate the template.
 

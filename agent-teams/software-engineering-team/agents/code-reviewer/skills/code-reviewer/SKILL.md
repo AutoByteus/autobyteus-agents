@@ -94,7 +94,8 @@ For API/E2E failure-origin review:
    requirements as intended-behavior authority and any reviewed map as prior
    technical context, not immutable truth.
 2. Confirm the relevant existing behavior, approved change, preserved behavior,
-   and out-of-scope behavior. Establish the supported product-scenario basis
+   and the ticket's scope: the requirements doc's Scope Guardrail and the design
+   spec's Change Scope. Establish the supported product-scenario basis
    for each behavior that the review relies on: actor and coherent goal, or a
    supported system/operational event or governing contract; supported entry
    surface; expected outcome; and relevant lifecycle. Do not judge, reopen, or
@@ -124,15 +125,17 @@ For API/E2E failure-origin review:
    promoting it. Reject circular witnesses that use a downstream technical
    mechanism, diff, test, endpoint, or internal method to establish its own
    scenario. Do not search for hypothetical scenarios as a separate review
-   stage.
-7. Complete the scorecard, findings, classification, and routing only after
-   every material candidate has been promoted or explicitly rejected by the
-   gate. If a candidate is held for missing evidence, stop and mark the
-   dependent review `Unclear` or `Blocked` without scoring, routing, or
-   prescribing machinery for that candidate. Then update the applicable
-   canonical report to the latest complete result and append the concise
-   `CRR-*` entry for the finished review result, including `CRR-001` for the
-   initial result.
+   stage. For each promoted candidate, then judge whether it belongs to this
+   ticket or is a follow-up (Ticket Scope).
+7. Complete the scorecard, findings, classification, and routing only after every
+   material candidate has been promoted or explicitly rejected by the gate.
+   Score and route this ticket's findings only; record follow-ups and send the
+   follow-up request (Ticket Scope). If a candidate is held for missing
+   evidence, stop and mark the dependent review `Unclear` or `Blocked` without
+   scoring, routing, or prescribing machinery for that candidate. Then update
+   the applicable canonical report to the latest complete result and append the
+   concise `CRR-*` entry for the finished review result, including `CRR-001`
+   for the initial result.
 
 If approved behavior or its supported scenario basis is materially ambiguous,
 classify a `Requirement Gap` or `Unclear` according to the missing authority.
@@ -187,9 +190,9 @@ scenario by itself.
 
 ## Ticket Scope
 
-The requirements doc's Scope Guardrail is this ticket's boundary, and its
-Review Authority applies to your findings. For each promoted finding, judge
-where it belongs:
+The requirements doc's Scope Guardrail and the design spec's Change Scope are
+this ticket's boundary, and the guardrail's Review Authority applies to your
+findings. For each promoted finding, judge where it belongs:
 
 - **This ticket:** the change caused it; it blocks an in-scope acceptance
   criterion or preserved behavior; or it is a small fix in code this change
@@ -246,6 +249,7 @@ review result as usual.
 
 - Use only [templates/api-e2e-test-review-report-template.md](templates/api-e2e-test-review-report-template.md). Do not reopen or append this result to `code-review-report.md`.
 - Review only durable test files added, updated, or removed during API/E2E. Do not review temporary probes or execution artifacts as production source code.
+- An unrelated problem you notice here is a follow-up (Ticket Scope).
 - Do not apply implementation-source line limits, delta thresholds, full implementation source-review score categories, or forced file splitting to tests.
 - Accept large test files when they cover one coherent behavior/surface and remain navigable.
 - Check proportionately that:
