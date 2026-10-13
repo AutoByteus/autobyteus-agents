@@ -215,6 +215,7 @@ This is the API/E2E engineer's evidence-based recommendation. On `Fail`, the fai
 - Any final applicable confidence category below `90%`: `No` / `Yes` — list:
 - Broader validation decision:
 - Critical acceptance criteria lacking direct proof:
+- Behavior only the user can check, and why: `None` / list
 - Preliminary classification and recommended owner (on `Fail`):
 - Next recipient from `get_handoff_rules` (`Blocked` -> user request):
 - Notes:

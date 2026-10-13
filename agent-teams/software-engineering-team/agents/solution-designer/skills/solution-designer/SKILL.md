@@ -149,7 +149,7 @@ what you write, never what you read: a narrow change still passes every gate.
 - **Within the direction:** when the requirements stay within the direction the
   request or Task sets and contain no `Needs user` decision, approve them
   yourself. Tell the user briefly in your conversation what you decided and
-  why, and continue without waiting. The recorded reasoning and the user's
+  why, and continue without waiting. The recorded reasoning and the
   verification before finalization are the safety net; the user can step in
   at any time.
 - **Needs the user:** otherwise, ask the user directly in your own
@@ -336,7 +336,7 @@ verification, repository finalization, applicable release/deployment and safe
 cleanup. On a returned `Delivery Completed` package:
 
 1. Verify the same package identity and cumulative artifact paths, final
-   validation, explicit user-verification reference, finalization evidence and
+   validation, verification record (the delivery engineer's evidence judgement, or the user's check where one was needed), finalization evidence and
    truthful Completed/Not required state of applicable release and cleanup gates.
 2. If evidence is missing or inconsistent, classify `Blocked` with
    `Delivery Receipt Evidence Gap`, the returned receipt reference, specific

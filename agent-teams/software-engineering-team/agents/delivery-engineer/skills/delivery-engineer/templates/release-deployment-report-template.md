@@ -34,13 +34,19 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Handoff state current with latest tracked remote base: `Yes` / `No`
 - Blocker (if applicable):
 
-## User Verification
+## Verification
 
-- Initial explicit user completion/verification received: `Yes` / `No`
-- Initial verification / acceptance reference:
-- Renewed verification required after later re-integration: `Yes` / `No`
-- Renewed verification received: `Yes` / `No` / `Not needed`
-- Renewed verification / acceptance reference:
+- Evidence judged: `Sufficient` / `Insufficient`
+- Evidence relied on (execution report, critical acceptance criteria, confidence, journeys, integrated-state rerun):
+- More evidence requested (from whom, what, result): `None` / list
+- User check needed: `No` / `Yes` — why (taste or feel, unreachable by tests, user asked):
+- User check reference, when needed:
+- Re-verification after later re-integration: `Not needed` / result and evidence
+
+## Release Decision
+
+- Decision: `No release` / `Beta` / `Stable` / `Deployment` / `Other`
+- Decided by: the user's words and reference, or the release guide's default
 
 ## Docs Sync Result
 
@@ -121,7 +127,7 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 ## Final Status
 
-- Explicit user testing/verification complete: `Yes` / `No`
+- Verification complete (from the evidence, or the user's check where needed): `Yes` / `No`
 - Repository finalization complete: `Yes` / `No`
 - Applicable release/deployment/rollout complete or not required: `Yes` / `No`
 - Applicable safe cleanup complete or not required: `Yes` / `No`
