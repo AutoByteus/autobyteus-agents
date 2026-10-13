@@ -12,8 +12,8 @@
 - **Code reviewer `SKILL.md`, new "Ticket Scope" section:**
   - The Scope Guardrail is the ticket's boundary, and its Review Authority applies to findings.
   - Each promoted finding is judged:
-    - **This ticket:** caused by the change, blocks an in-scope acceptance criterion or preserved behavior, or a small fix in code the change already modifies.
-    - **Follow-up:** pre-existing, unrelated, and not blocking acceptance. It is recorded in the report and never fails the review, lowers the score, or reopens implementation.
+    - **This ticket** only when it is an inherent part of the ticket: the change introduced it (including a design problem in the code the change adds), or without it an in-scope acceptance criterion or preserved behavior fails.
+    - **Follow-up** when everything the ticket delivers works without it (a pre-existing bug or design problem in surrounding code, even code the change touches). When unsure and the ticket works, prefer a follow-up. It never fails the review, lowers the score, or reopens implementation.
     - **Requirement Gap:** the fix would need unapproved behavior.
   - Stay within the entry point you were called for.
   - Three worked examples, including the user's UI case.
@@ -76,3 +76,20 @@ Final review of revision 2:
    - the test-code bullet repeated "does not fail … reopen", so it now only points to Ticket Scope;
    - two long lines were re-wrapped.
 2. Round 2 found nothing more. The validator passes for both skills.
+
+## Revision 3 (user, 2026-10-13): judge by how critical the finding is to this ticket
+
+The user's criterion: fix it in this ticket only when it is an inherent part of the ticket, so that without it the ticket's functionality is broken; otherwise a follow-up is easier, since everything works.
+
+- **Ticket Scope:**
+  - the judgement is now the question "is it an inherent part of this ticket, so that without fixing it the ticket's change does not work or is not done properly?";
+  - "a small fix in code this change already modifies" is removed;
+  - when the ticket works and the reviewer is unsure, it prefers a follow-up;
+  - two design-problem examples: duplicated logic in the code the change adds is this ticket; an older oversized class in a touched module, while the ticket works, is a follow-up.
+- **Break C from the third analysis, fixed:**
+  - the `team-config.json` failure-origin route to `/api_e2e_engineer` now also covers "a pre-existing problem unrelated to this change, which API/E2E records as out of scope";
+  - the API/E2E skill records such a failure as out of scope, with the reviewer's follow-up reference, and finishes on the in-scope checks.
+- **Gap E, fixed:** the reviewer reads the Change Scope "when the design spec has one".
+- **Gap D, not changed** (Project Task Manager package): a worker's follow-up request has no written handling in the PM skill, though it works in practice. Left for a separate decision.
+
+Final review: round 1 found the result file and PR description still described the removed "small fix" rule, so both were updated. Round 2 was clean. The validator passes for code-reviewer, api-e2e-engineer and solution-designer, and `team-config.json` parses.

@@ -94,8 +94,8 @@ For API/E2E failure-origin review:
    requirements as intended-behavior authority and any reviewed map as prior
    technical context, not immutable truth.
 2. Confirm the relevant existing behavior, approved change, preserved behavior,
-   and the ticket's scope: the requirements doc's Scope Guardrail and the design
-   spec's Change Scope. Establish the supported product-scenario basis
+   and the ticket's scope: the requirements doc's Scope Guardrail and, when the
+   design spec has one, its Change Scope. Establish the supported product-scenario basis
    for each behavior that the review relies on: actor and coherent goal, or a
    supported system/operational event or governing contract; supported entry
    surface; expected outcome; and relevant lifecycle. Do not judge, reopen, or
@@ -190,16 +190,21 @@ scenario by itself.
 
 ## Ticket Scope
 
-The requirements doc's Scope Guardrail and the design spec's Change Scope are
-this ticket's boundary, and the guardrail's Review Authority applies to your
-findings. For each promoted finding, judge where it belongs:
+The requirements doc's Scope Guardrail and, when present, the design spec's
+Change Scope are this ticket's boundary, and the guardrail's Review Authority applies to your
+findings. For each promoted finding, ask how critical it is to this ticket: is
+it an inherent part of the ticket, so that without fixing it the ticket's
+change does not work or is not done properly?
 
-- **This ticket:** the change caused it; it blocks an in-scope acceptance
-  criterion or preserved behavior; or it is a small fix in code this change
-  already modifies. Classify and route it as usual.
-- **Follow-up:** it existed before this change, is unrelated to it, and does
-  not block this ticket's acceptance. Record it under Follow-ups in the report.
-  It does not fail the review, lower the score, or reopen implementation.
+- **This ticket:** yes. The change introduced it, including a design problem in
+  the code the change adds, or without it an in-scope acceptance criterion or
+  preserved behavior fails. Classify and route it as usual.
+- **Follow-up:** no. Everything the ticket delivers works without it, as with
+  a pre-existing bug or design problem in surrounding code, even code the
+  change touches. When the ticket works and you are unsure, prefer a
+  follow-up: it keeps the ticket small and loses nothing. Record it under
+  Follow-ups in the report. It does not fail the review, lower the score, or
+  reopen implementation.
 - **Requirement Gap:** fixing it here would need behavior the requirements do
   not approve. Route it as usual.
 
@@ -212,6 +217,8 @@ widen that review.
 | A UI ticket passed API/E2E. During the test-code review you notice a pre-existing layout bug in a neighbouring panel the ticket did not change. | Follow-up. Judge the test review on the changed tests only, send the follow-up request, and do not reopen implementation for it. |
 | The ticket adds a table column, and the new rendering path breaks the table's existing sorting, a preserved behavior. | This ticket: the change caused it. `Local Fix`. |
 | A pre-existing bug in a function the ticket calls makes an in-scope acceptance criterion fail. | This ticket, because it blocks acceptance; `Requirement Gap` instead if the fix needs behavior the requirements do not approve. |
+| The ticket's new handler duplicates logic that belongs to an existing owner, a design problem in the code the change adds. | This ticket: the change introduced it. `Local Fix` or `Design Impact`. |
+| A module the ticket edits has an older oversized class with mixed responsibilities, but the ticket's behavior works and its own changes are sound. | Follow-up: propose the refactor as its own Task. |
 
 Send the follow-ups from one review together, in one message, to the agent that
 manages the project's Tasks: the delegating agent the requirements doc records
