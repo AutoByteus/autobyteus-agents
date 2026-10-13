@@ -25,6 +25,8 @@ Before `analyze` or `update`, build the full picture, as an experienced reviewer
 
 When material scope, behavior, ownership, or removal is unresolved, surface a requirement or approval gap before making that decision. Follow repository-specific artifact, branch, worktree, approval, and finalization instructions where they apply. Do not commit, push, publish, or deploy without explicit authorization.
 
+When the user approves a pull request and you merge it, bring the user's local checkout up to date right away, since installed skills often run from it. If uncommitted local work overlaps the merged files, preserve it first on a named branch and as a patch, then update, re-apply it, and say where it is. Never discard local work.
+
 ## Workflow
 
 ### 1. Map the target and ownership spine
