@@ -79,3 +79,23 @@ The Solution Designer needs no new scope statement: the Scope Guardrail and Revi
   - step 7 routes only in-ticket findings and sends follow-ups;
   - the test-code review rules say an unrelated problem noticed there is a follow-up;
   - the candidate table gets a Scope column.
+
+## Third analysis (user, 2026-10-13): does it work end to end with PR #45?
+
+Each case was walked through the PR branch text, checking at every handoff that the next role receives what it needs and has an instruction and a route for it.
+
+| Case | Path | Works? | Evidence / gap |
+| --- | --- | --- | --- |
+| A. User's UI case: unrelated pre-existing bug noticed at the test-code review | SD fills "Requested by" and Change Scope → package reaches the reviewer with requirements and design → test-code rule says it's a follow-up → Follow-ups in the report → one message to "Requested by" (or a Task manager via `list_available_agents`) → Pass → `/delivery_engineer` | **Yes** | The test-review pass route to delivery exists in `team-config.json`; `list_available_agents` and `send_message_to` are in the tools. |
+| B. Unrelated problem found during implementation review | step 2 reads the scope → step 6 judges it a follow-up → step 7 routes only in-ticket findings → Pass → API/E2E | **Yes** | Sequence steps 2, 6, 7; candidate Scope column. |
+| C. API/E2E fails on a pre-existing problem unrelated to the change | API/E2E `Fail` → failure-origin review → origin "pre-existing, unrelated" → follow-up sent → "return the package to the API/E2E owner to record the failure as out of scope" | **No, two breaks** | (1) No `team-config.json` rule from `/code_reviewer` to `/api_e2e_engineer` matches. The existing conditions cover "coverage, test code, fixtures, environment, execution, or reporting", so `get_handoff_rules` gives no route and the reviewer falls back to returning to the caller. (2) The API/E2E skill has no instruction for this return: its `Out Of Scope` disposition covers existing tests in the coverage investigation, not a failure handed back from failure-origin review. |
+| D. The follow-up request reaches the Project Task Manager | PM receives "please create a follow-up Task …" from a worker | **Works in practice, not written down** | PM `SKILL.md` §5 covers "Requests forwarded for the user" (the user's own requests) and "New work arrives", but nothing says what to do with a worker's follow-up proposal: create it as TODO, tell the user, dispatch only on approval. |
+| E. A ticket already in flight, with no Change Scope in its design spec | reviewer step 2 reads "the design spec's Change Scope" | **Mostly** | The guardrail still applies, but the text doesn't say what to do when the Change Scope is missing. |
+
+### Recommended fixes
+
+1. **C, needed:**
+   - extend the `team-config.json` failure-origin route to `/api_e2e_engineer` with "…or a pre-existing problem unrelated to this change, which API/E2E records as out of scope";
+   - add one API/E2E skill line: when failure-origin review returns a failure as pre-existing and unrelated, record it as out of scope with the follow-up reference, and finish the result on the in-scope checks.
+2. **D, optional, PM package:** one line in PM §5: a worker's follow-up request becomes a TODO Task (or extends the open Task it belongs to), the PM tells the user, and dispatches only on approval.
+3. **E, small:** reviewer step 2 reads "…and the design spec's Change Scope when it has one".
