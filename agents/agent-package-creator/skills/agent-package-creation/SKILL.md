@@ -19,7 +19,9 @@ Use three operations:
 - `analyze`: review an existing target without changing it, when the user asks to analyze, review, or audit it. The analysis file is the result.
 - `update`: change an existing target; record the user's reason as `update_intent` (for example `extend`, `repair`, `optimize`, or `simplify`). Write the analysis before editing.
 
-Target kind is separate from operation. If an identity already exists, inspect it; use `update` when the user asks for a change and `analyze` when they ask only for a review, unless the user confirms a distinct target. Before `analyze` or `update`, read the affected topology: definition/config files, attached skills and resources, members, routes, shared dependencies, and affected docs. Preserve accepted behavior outside the approved change.
+Target kind is separate from operation. If an identity already exists, inspect it; use `update` when the user asks for a change and `analyze` when they ask only for a review, unless the user confirms a distinct target. Preserve accepted behavior outside the approved change.
+
+Before `analyze` or `update`, build the full picture, as an experienced reviewer would before judging anyone's work. Read in full every file of the affected package (`agent.md`, config, every skill with its references and templates), the containing Team or Org files, the shared files they link to, and the sibling members the change affects. A search shows where a phrase is, not how the package works. Base findings and designs on that read, and list the files read in the analysis.
 
 When material scope, behavior, ownership, or removal is unresolved, surface a requirement or approval gap before making that decision. Follow repository-specific artifact, branch, worktree, approval, and finalization instructions where they apply. Do not commit, push, publish, or deploy without explicit authorization.
 

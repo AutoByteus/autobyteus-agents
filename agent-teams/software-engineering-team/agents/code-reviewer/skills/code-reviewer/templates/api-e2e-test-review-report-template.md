@@ -73,7 +73,7 @@ system, operational, or contract basis.
 
 Classification:
 
-- `Local Fix`: bounded test-code, fixture, setup, helper, or reporting correction; normally owned by `api_e2e_engineer`
+- `Local Fix`: bounded test-code, fixture, setup, helper, or reporting correction, normally owned by `api_e2e_engineer`; or a source defect this change caused that the changed tests reveal, owned by `implementation_engineer`
 - `Design Impact`: test review exposes a structural weakness or mismatch in the reviewed design; owned by `solution_designer`
 - `Requirement Gap`: intended behavior is missing or ambiguous; owned by `solution_designer` for requirements revision and any necessary renewed user approval
 - `Unclear`: the issue cannot be classified from the available package; owned by `solution_designer` for routing

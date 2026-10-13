@@ -105,7 +105,7 @@ The same task may need several kinds: creating a Team can include new Agents and
 
 ## 9. Preserve evidence and update safely
 
-For `create`, inspect repository instructions and analogous packages, then select the smallest coherent topology. For `analyze` and `update`, read the full affected package and write its baseline, preserved behavior, findings, and changes to the analysis file the [skill](../SKILL.md) requires before any edit.
+For `create`, inspect repository instructions and analogous packages, then select the smallest coherent topology. For `analyze` and `update`, build the full picture the [skill](../SKILL.md#inputs-and-operation) describes, then write the baseline, preserved behavior, findings, and changes to the analysis file before any edit.
 
 When optimizing, compare the observed package with intended and preserved behavior. Diagnose structure and ownership, flow, grounding, then wording; repeated text may signal a wrong owner or broken flow. Choose whether to add, move, merge, remove, or update a rule before trimming sentences.
 

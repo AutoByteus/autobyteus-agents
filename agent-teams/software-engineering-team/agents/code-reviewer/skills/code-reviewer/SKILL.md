@@ -261,6 +261,7 @@ review result as usual.
 - Use only [templates/api-e2e-test-review-report-template.md](templates/api-e2e-test-review-report-template.md). Do not reopen or append this result to `code-review-report.md`.
 - Review only durable test files added, updated, or removed during API/E2E. Do not review temporary probes or execution artifacts as production source code.
 - An unrelated problem you notice here is a follow-up (Ticket Scope).
+- When the changed tests reveal a source defect the change caused, for example an assertion weakened so a wrong result passes, classify an implementation-owned `Local Fix`. It returns through source review, API/E2E and this review.
 - Do not apply implementation-source line limits, delta thresholds, full implementation source-review score categories, or forced file splitting to tests.
 - Accept large test files when they cover one coherent behavior/surface and remain navigable.
 - Check proportionately that:
@@ -317,7 +318,7 @@ review result as usual.
 - End an implementation-review pass only after both required messages succeed. For every other completed handoff, end after its required message succeeds. Do not poll recipients; act on a later incoming team message if more work is required.
 - On implementation-review `Fail` or `Blocked`, send the complete package, code review report, and code review revision record to the classified owner; do not advance to API/E2E.
 - On successful post-API/E2E test-code review, send the complete passed package, including `api-e2e-test-review-report.md` and the current code review revision record, to `/delivery_engineer`.
-- On failed post-API/E2E test-code review, send the complete package, test-review report, and current code review revision record to the confirmed owner; normally this is `/api_e2e_engineer` for a bounded test-code correction.
+- On failed post-API/E2E test-code review, send the complete package, test-review report, and current code review revision record to the confirmed owner; normally this is `/api_e2e_engineer` for a bounded test-code correction, or `/implementation_engineer` for an implementation-owned `Local Fix` the change caused.
 - After API/E2E failure-origin review, send the complete failure package, updated code review report, and current code review revision record to the confirmed owning specialist.
 - Use absolute filesystem paths and attach all relevant artifacts using the tool's reference-file input when available.
 - For successful test-code review, attach every added or updated durable test file and include diff or repository evidence for removed test paths when available.

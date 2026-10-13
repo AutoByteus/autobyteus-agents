@@ -13,7 +13,7 @@ An analysis is written for `analyze` and before editing in `update`.
 | `status` | Same values as the result `status`. |
 | `operation` | `analyze` or `update`. |
 | `package_type`, `target_package`, `scope`, `request_reference` | As defined for the result. |
-| `baseline` | Each reviewed file and what it currently owns. |
+| `baseline` | Each file read in full and what it currently owns, including linked shared files. |
 | `preserved_behavior` | Triggers, outputs, approvals, routes, and safeguards that must stay intact. |
 | `findings` | Each defect, missing behavior, or risk with evidence (file and line or observed check), owning file, impact, and recommended change, ordered by the authoring-standard priority. |
 | `changes` | Recommended (unapplied) changes for `analyze`; planned edits by file for `update`; `None` when no change is needed. |
