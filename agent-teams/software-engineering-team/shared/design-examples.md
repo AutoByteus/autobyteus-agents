@@ -30,6 +30,7 @@ The examples are intentionally detailed. Preserve them rather than shortening or
 - [Example 8: Schema Contraction With No Data Migration](#example-8-schema-contraction-with-no-data-migration)
 - [Example 9: Rejecting An Unreachable Edge Case During Technical Review](#example-9-rejecting-an-unreachable-edge-case-during-technical-review)
 - [Example 10: Supported Product Scenario Versus Technical Possibility](#example-10-supported-product-scenario-versus-technical-possibility)
+- [Example 11: Keeping A Ticket In Scope During Technical Review](#example-11-keeping-a-ticket-in-scope-during-technical-review)
 - [Common Bad-Practice Patterns](#common-bad-practice-patterns)
 - [How To Use These Examples](#how-to-use-these-examples)
 
@@ -1050,6 +1051,77 @@ contractual workflow. Good design and review require both. This prevents
 bottom-up reasoning from endpoints, fields, tests, or callbacks from creating
 false defects and unnecessary architecture.
 
+## Example 11: Keeping A Ticket In Scope During Technical Review
+
+### Situation
+
+A UI ticket adds a filter to a task list. The requirements doc's Scope Guardrail
+covers the filter use case; the design spec's Change Scope lists the list
+component and its query, and leaves the sidebar alone. Implementation and
+API/E2E have passed, and the ticket comes back for the test-code review. While
+reading, the reviewer notices that the neighbouring sidebar loses its scroll
+position on refresh.
+
+### Bad Finding Shape
+
+```text
+The sidebar loses its scroll position.
+Classify it as a Local Fix and send it to the implementation engineer.
+```
+
+The ticket reopens, the fix needs new tests, the next round finds more, and the
+ticket keeps growing. The finding may be a real bug, but nothing ties it to this
+ticket.
+
+### The Judgement
+
+Ask how critical the finding is to this ticket, with two questions:
+
+- **Did this change introduce it?** The sidebar code is unchanged, and the bug
+  also happens on the base branch. No.
+- **Does the ticket fail without fixing it?** The filter works and its
+  acceptance criteria pass. No.
+
+It is not part of this ticket. The reviewer judges the test review on the
+changed tests, records the sidebar bug as a follow-up with its evidence, sends
+the follow-up request, and the ticket goes on to delivery.
+
+### When The Decision Would Change
+
+If the bug does not happen on the base branch because the new filter reloads the
+whole list and the sidebar with it, the change introduced it, so it belongs to
+this ticket.
+
+### Common Situations
+
+| Situation | Where it belongs | Anti-pattern |
+| --- | --- | --- |
+| The change breaks a preserved behavior, such as existing sorting | This ticket: the change introduced it | Calling it an old weakness and shipping the regression |
+| An old bug in code the ticket calls makes an in-scope acceptance criterion fail | This ticket, because it cannot pass without the fix; `Requirement Gap` if the fix needs unapproved behavior | Making it a follow-up because the bug is old |
+| The new code duplicates logic that belongs to an existing owner | This ticket: a design problem the change adds | Accepting it because it works |
+| A module the change edits has old design debt, such as an oversized class, while the ticket works | Follow-up, unless the design spec's [Task Design Health Assessment](design-principles.md#task-design-health-assessment) decided the refactor is needed now or the change itself fails the review's size checks | Requiring the refactor because the ticket touched the file |
+| Dead code | As [Core Principle 7](design-principles.md#7-no-dead-code) scopes it: in touched files this ticket, elsewhere a follow-up | Ignoring it all, or demanding removal everywhere |
+| The change adds behavior without tests, and an old feature nearby has none either | Tests for the new behavior: this ticket; the old feature's coverage: a follow-up | Asking for the old feature's tests here |
+| An old security or data-loss risk near the change that the change does not reach or expose | Follow-up marked urgent, with its evidence; this ticket if the change exposes it | Fixing it quietly here, or dropping it as out of scope |
+| The code meets the design and works, but the reviewer would structure it differently | Not a finding | Sending it back for a preferred structure |
+
+### How The Roles Use This Example
+
+- The Solution Designer writes the Scope Guardrail in the requirements and the
+  Change Scope once the design is decided, so the boundary exists before review.
+- The Architecture Reviewer treats a concern the guardrail places out of scope as
+  non-blocking.
+- The Implementation Engineer changes only what is in scope and lists what it
+  finds outside as follow-ups.
+- The Code Reviewer judges each promoted finding with the two questions, routes
+  only this ticket's findings, and sends the rest as follow-up requests.
+
+### Design Lesson
+
+A ticket stays reviewable when its scope stays stable. A real problem found
+outside that scope is still recorded and sent as a follow-up, so nothing is lost,
+but it does not reopen work that already does what the ticket promised.
+
 ## Common Bad-Practice Patterns
 
 ### 1. Generalist Boundary
@@ -1205,5 +1277,6 @@ Better direction:
 - Keep interface boundaries singular and identity-explicit.
 - Distinguish thin public facades from deeper governing owners when both exist.
 - Validate edge-case findings against an approved journey, production trigger, and lifecycle; record unreachable or unclear premises instead of designing from isolated technical possibility.
+- Judge a finding outside a ticket's scope with Example 11: keep it in the ticket only when the change introduced it or the ticket fails without it; otherwise send it as a follow-up.
 - Choose `Directly Usable — No Migration`, `Discard or Rebuild`, or `Migration Required` before designing migration machinery.
 - Let files and any optional module groupings appear after the design story is already clear.

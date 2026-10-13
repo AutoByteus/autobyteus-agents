@@ -78,7 +78,7 @@ For API/E2E failure-origin review:
 
 - Start implementation review by reading [design-principles.md](references/design-principles.md).
 - Use it as the canonical design authority for source and structural review.
-- Consult [design-examples.md](references/design-examples.md) only when a concrete structural example is needed to judge the implementation or its alignment with the reviewed design.
+- Consult [design-examples.md](references/design-examples.md) only when a concrete example is needed to judge the implementation, its alignment with the reviewed design, or a finding's scope.
 - When a prospective finding or score rationale depends on an assumed production, failure, or lifecycle scenario, consult [Example 9](references/design-examples.md#example-9-rejecting-an-unreachable-edge-case-during-technical-review) before finalizing it.
 - For the later entry points, reread only the requirements, design, changed tests, relevant source paths, and prior findings needed for the bounded review.
 - For test-code review and failure-origin review, also read the project's testing guideline(s) that the coverage investigation records, or note `No project testing guideline found` when it records none. Apply this skill's general test-review rules and respect the project's testing rules as well. When the two conflict, follow this skill and record the conflict; record a guideline rule that no longer matches the repository as a discrepancy.
@@ -191,14 +191,16 @@ scenario by itself.
 ## Ticket Scope
 
 The requirements doc's Scope Guardrail and, when present, the design spec's
-Change Scope are this ticket's boundary, and the guardrail's Review Authority applies to your
-findings. For each promoted finding, ask how critical it is to this ticket: is
-it an inherent part of the ticket, so that without fixing it the ticket's
-change does not work or is not done properly?
+Change Scope are this ticket's boundary, and the guardrail's Review Authority
+applies to your findings. For each promoted finding, ask how critical it is to
+this ticket: is it an inherent part of the ticket, so that without fixing it
+the ticket's change does not work or is not done properly?
 
 - **This ticket:** yes. The change introduced it, including a design problem in
-  the code the change adds, or without it an in-scope acceptance criterion or
-  preserved behavior fails. Classify and route it as usual.
+  the code the change adds; without it an in-scope acceptance criterion or
+  preserved behavior fails; or the design spec already places it in this
+  change, such as a refactor its design-health assessment requires. Classify
+  and route it as usual.
 - **Follow-up:** no. Everything the ticket delivers works without it, as with
   a pre-existing bug or design problem in surrounding code, even code the
   change touches. When the ticket works and you are unsure, prefer a
@@ -212,33 +214,12 @@ Stay within the entry point you were called for. An unrelated observation
 during test-code or failure-origin review is a follow-up, not a reason to
 widen that review.
 
-**Worked example.** A UI ticket adds a filter to a task list. It passed
-API/E2E and comes to you for the test-code review. While reading, you notice
-that the neighbouring sidebar loses its scroll position on refresh.
-
-- *Anti-pattern:* analyse the sidebar bug, classify it `Local Fix`, and send it
-  to the implementation engineer. The ticket reopens, the fix needs new tests,
-  the next round finds more, and the ticket keeps growing.
-- *Judge it with two questions.* Did this change introduce it? The sidebar code
-  is unchanged, and the bug also happens on the base branch, so no. Does the
-  ticket fail without fixing it? The filter works and its acceptance criteria
-  pass, so no. It is not part of this ticket.
-- *Right:* judge the test review on the changed tests, record the sidebar bug
-  under Follow-ups with its evidence, send the follow-up request, and hand the
-  ticket on to delivery.
-- *When it would be this ticket:* if the bug does not happen on the base branch
-  because the new filter reloads the whole list and the sidebar with it, the
-  change introduced it, so it belongs to this ticket. Classify and route it as
-  usual.
-
-More cases:
-
-| Situation | Where it belongs |
-| --- | --- |
-| The ticket adds a table column, and the new rendering path breaks the table's existing sorting, a preserved behavior. | This ticket: the change caused it. `Local Fix`. |
-| A pre-existing bug in a function the ticket calls makes an in-scope acceptance criterion fail. | This ticket, because it blocks acceptance; `Requirement Gap` instead if the fix needs behavior the requirements do not approve. |
-| The ticket's new handler duplicates logic that belongs to an existing owner, a design problem in the code the change adds. | This ticket: the change introduced it. `Local Fix` or `Design Impact`. |
-| A module the ticket edits has an older oversized class with mixed responsibilities, but the ticket's behavior works and its own changes are sound. | Follow-up: propose the refactor as its own Task. |
+When a finding's place is not obvious, consult
+[Example 11](references/design-examples.md#example-11-keeping-a-ticket-in-scope-during-technical-review):
+a worked case with the anti-pattern, the two questions and when the decision
+would change, plus common situations such as regressions, old bugs that block
+the ticket, old and new design problems, dead code, missing tests and old
+security risks.
 
 Send the follow-ups from one review together, in one message, to the agent that
 manages the project's Tasks: the delegating agent the requirements doc records

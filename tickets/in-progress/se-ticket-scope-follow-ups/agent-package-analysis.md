@@ -99,3 +99,17 @@ Each case was walked through the PR branch text, checking at every handoff that 
    - add one API/E2E skill line: when failure-origin review returns a failure as pre-existing and unrelated, record it as out of scope with the follow-up reference, and finish the result on the in-scope checks.
 2. **D, optional, PM package:** one line in PM §5: a worker's follow-up request becomes a TODO Task (or extends the open Task it belongs to), the PM tells the user, and dispatches only on approval.
 3. **E, small:** reviewer step 2 reads "…and the design spec's Change Scope when it has one".
+
+## Fourth analysis (user, 2026-10-13): read the whole package first
+
+The user pointed out that the earlier revisions were made without reading the whole code reviewer package. Read now in full:
+- `agent.md`, `agent-config.json`, `SKILL.md`;
+- all three templates;
+- both references, which are symlinks to the team's shared `design-principles.md` (516 lines) and `design-examples.md` (1209 lines).
+
+| Finding | Evidence | Consequence |
+| --- | --- | --- |
+| The team already has one shared home for review examples. | `shared/design-examples.md` holds Example 9 ("Rejecting An Unreachable Edge Case During Technical Review") and Example 10, with "How The Roles Use This Example"; it says to "add examples when new … practices need concrete shape guidance". It is linked from the solution designer, architecture reviewer, implementation engineer and code reviewer. | The reviewer-only `references/ticket-scope-scenarios.md` would have been a second example location seen by one role. The scope examples belong in shared Example 11. |
+| Two scenarios restated rules the shared principles own. | Core Principle 7 Scope (dead code in touched files vs elsewhere as a follow-up); Task Design Health Assessment (refactor needed now / not / deferred). | Example 11 points to them instead of restating them. |
+| The size audit can force refactors of old files the change touches. | Report template "Source File Size And Structure Audit": `>500` hard-limit and `>220` delta checks on every changed source file; the SKILL applies the thresholds "only to changed implementation-source files". | This is an existing team policy whose intent for pre-existing oversized files is undocumented. Example 11 defers to the size checks and the design-health decision; the policy question goes to the user. |
+| The reviewer's "Required Shared Reads" consulted the examples "only when a concrete structural example is needed". | code-reviewer `SKILL.md` line 81 | It now also covers a finding's scope. |

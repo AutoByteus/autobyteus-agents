@@ -108,3 +108,26 @@ Final review: round 1 found the result file and PR description still described t
 Final review: round 1 found the example named `Local Fix`, but there is no route from the test-code review to the implementation engineer, so the example now says "classify and route it as usual". Round 2 was clean, and the validator passes.
 
 Follow-up found during this review, outside this PR: `team-config.json` has no route from the post-API/E2E test-code review to `/implementation_engineer`, so a source regression the change caused that is first noticed at that stage has no route. This predates this PR.
+
+## Revision 5 (user, 2026-10-13): built on the whole package
+
+- **`shared/design-examples.md`:** new **Example 11: Keeping A Ticket In Scope During Technical Review**, in the same shape as Examples 9 and 10:
+  - situation: the user's UI case;
+  - bad finding shape (the anti-pattern);
+  - the two-question judgement;
+  - when the decision would change;
+  - common situations with their anti-patterns (regression, old bug blocking acceptance, new design problem, old design debt deferring to the design-health assessment and size checks, dead code pointing to Core Principle 7, missing tests, old security risk, preferences);
+  - how the roles use it;
+  - design lesson.
+
+  It is added to Contents and "How To Use These Examples".
+- **code-reviewer `SKILL.md`:**
+  - the worked example and the reviewer-only scenarios file are removed; "Ticket Scope" points to Example 11, as the skill already points to Example 9;
+  - "This ticket" now also covers what the design spec already places in the change (for example a refactor its design-health assessment requires);
+  - "Required Shared Reads" consults the examples for a finding's scope too.
+
+Final review:
+1. Round 1 found the "This ticket" bullet didn't match Example 11's design-health case, and fixed it; re-wrapped one line.
+2. Round 2 was clean. The validator passes for all five member skills.
+
+Open policy question for the user: should the size audit's `>500` hard limit apply to an old oversized file that a ticket only edits slightly, or only when the change grows it?
