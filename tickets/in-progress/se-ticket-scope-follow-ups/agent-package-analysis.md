@@ -46,3 +46,36 @@ The Solution Designer needs no new scope statement: the Scope Guardrail and Revi
 ## Principle check of the follow-up path
 
 §6: "A role never contacts anyone that neither the user nor the rules named." The follow-up recipient sits outside the team, so a team rule can't name it. Here the user named the path explicitly (follow-ups to the Project Task Manager, found with `list_available_agents`), and the Task's own requester is recorded in the package. The skill names the role generically ("the agent that manages the project's Tasks"), not another team's internals (anti-pattern 3).
+
+## Second analysis (user, 2026-10-13): is the ticket's scope written clearly, when, and where does the reviewer reason about it?
+
+### Solution Designer: where the scope is written
+
+| Question | Finding | Evidence |
+| --- | --- | --- |
+| Is the scope written explicitly? | **Yes, at the behavior level.** | requirements-doc template "Scope Guardrail (Mandatory)": In-Scope Use Cases (`UC-*`), Out Of Scope, Non-Goals, Preserved Behavior Boundary, Review Authority ("Every blocking … finding must cite an approved requirement, acceptance criterion, or preserved-behavior ID"; outside concerns are "non-blocking … separate-ticket candidate"). |
+| When is it written? | **Only in the requirements phase, before the solution is decided.** Nothing tells the designer to revisit it after design. | requirements-engineering.md line 24; SKILL step 1. SKILL steps 3–4 (design, classify) never mention scope again. |
+| Is there a final scope after the solution is decided? | **No single statement.** The concrete change set is spread across the design spec's file mapping, its removal plan (with `In This Change` / `Follow-up`), and the change sequence. The "Intended Change" section is an empty heading with no guidance. | design-spec template lines 41, 194, 299, 362. |
+| Does the skill itself name the guardrail? | **No.** `SKILL.md` never says "Scope Guardrail"; it is only in the reference and the template, so it is easy to fill thinly. | `grep` on SD `SKILL.md`. |
+| Clear enough for a reviewer judging a code finding? | **Partly.** Use cases say what behavior changes; a reviewer looking at a neighbouring panel needs to know which areas the change touches and which it deliberately leaves. | — |
+
+### Code reviewer: where the scope reasoning happens (PR #45 as it stands)
+
+| Question | Finding | Evidence |
+| --- | --- | --- |
+| Explicit instruction to respect scope? | **Yes, added by PR #45.** | New "Ticket Scope" section. |
+| Clear judgement wording (this ticket / follow-up / requirement gap) with examples? | **Yes, added by PR #45**, including the user's UI case. | Ticket Scope section. |
+| Is the judgement placed in the workflow where the reviewer reasons? | **No.** Ticket Scope is a separate section. The review sequence (steps 1–7) doesn't call it, the test-code review rules (the entry point of the user's case) don't mention it, and the candidate table has no scope column, so the decision isn't recorded where findings are decided. | code-reviewer `SKILL.md` "Implementation Review Basis And Sequence", "Successful API/E2E Test-Code Review Rules"; report template "Candidate Finding And Mechanism Gate" table. |
+
+### Recommended changes (to PR #45)
+
+- **Solution Designer:**
+  - when the design is complete (step 4), write the ticket's final scope in the design spec's "Intended Change", renamed "Change Scope": the guardrail's in-scope IDs, the areas and files this change modifies, what it deliberately leaves untouched, and follow-ups found during design. The requirements guardrail stays the behavior boundary and the authority;
+  - name the guardrail in SKILL step 1;
+  - the design-spec template gets guidance for that section.
+- **Code reviewer:**
+  - sequence step 2 reads the guardrail and the design's Change Scope as the review boundary;
+  - step 6 judges each promoted candidate's scope (Ticket Scope);
+  - step 7 routes only in-ticket findings and sends follow-ups;
+  - the test-code review rules say an unrelated problem noticed there is a follow-up;
+  - the candidate table gets a Scope column.
