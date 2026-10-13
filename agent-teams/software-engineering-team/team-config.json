@@ -107,6 +107,7 @@
       "rules": [
         "When source review identifies an implementation-owned Local Fix or packaging defect that must be corrected before executable coverage.",
         "When API/E2E failure-origin review confirms that the owning problem is an implementation defect.",
+        "When post-API/E2E test-code review finds an implementation-owned Local Fix that this change caused or that blocks an in-scope acceptance criterion. Unrelated pre-existing problems stay follow-ups.",
         "When implementation review passes and Implementation Engineer needs the informational pass notification after the primary API/E2E handoff succeeds."
       ]
     },

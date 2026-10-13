@@ -94,12 +94,12 @@ Concrete mistakes found in real package work. The [package design principles](pa
 
 ## Creator process
 
-### 10. Working from a stale or unrelated checkout
+### 10. Deciding from a stale or partial view of the package
 
-- **Incident:** A design-guide decision was based on a checkout 16 commits behind; the current branch already had a root `AGENTS.md` and a design guide, and a duplicate file was nearly pushed.
-- **Breaks:** [§9](package-design-principles.md#9-preserve-evidence-and-update-safely): read the actual current package before deciding.
-- **Instead:** Fetch first, and read the target branch (`origin/<branch>`) or a fresh worktree from it, not a local checkout of unknown state.
-- **Detect:** Before relying on a repository, compare the checkout with its remote branch and note the commit inspected.
+- **Incidents:** A decision based on a checkout 16 commits behind nearly pushed a duplicate design guide; a code-reviewer change made without reading its linked shared references duplicated the team's design examples, and a full read later found nine more inconsistencies (2026-10-13).
+- **Breaks:** [§9](package-design-principles.md#9-preserve-evidence-and-update-safely): judge and change the actual, complete package.
+- **Instead:** Fetch first and work from the target branch (`origin/<branch>`) or a fresh worktree from it. Read the whole package before judging, as the [skill](../SKILL.md#inputs-and-operation) describes, including the shared files its references link to.
+- **Detect:** Compare the checkout with its remote branch and note the commit inspected; compare the analysis's list of files read in full with the package's files and their links.
 
 ### 11. Pushing without checking what goes out
 

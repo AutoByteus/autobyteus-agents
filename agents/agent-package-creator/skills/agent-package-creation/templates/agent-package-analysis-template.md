@@ -7,6 +7,7 @@ Use [result-and-handoff-contract.md](../references/result-and-handoff-contract.m
 - Package type: `skill` / `agent` / `team` / `org`
 - Target package: `<name and absolute path>`
 - Scope included: `<files, members, and questions reviewed>`
+- Files read in full: `<every file of the affected package, the Team or Org files, and the linked shared files>`
 - Scope excluded: `<what was not reviewed or will not change>`
 - Request/reference: `<user request or calling artifact>`
 
