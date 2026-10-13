@@ -29,7 +29,7 @@ First establish what the project expects and how it is run, then evaluate and ma
   validation route still requires the design and its post-design classification.
 - On a rerun after a prior execution, also accept the existing coverage investigation, execution coverage report, and API/E2E revision record. Use them to locate prior decisions and results, then update the canonical artifacts rather than creating copies.
 - When failure-origin review returns a failure as a pre-existing problem unrelated to this change, record it in the execution report as out of scope, with the follow-up reference the reviewer sent, and finish the result on the in-scope checks.
-- On an API/E2E-owned `Local Fix` from code review or delivery, or delivery's request for more or stronger evidence, also accept the specific test, fixture, environment, execution, reporting, or evidence gap and its evidence. When delivery discovered the issue, accept the delivery revision record and relevant `DR-*` entry. Resume the affected API/E2E work and preserve the classification.
+- On an API/E2E-owned `Local Fix` from code review or delivery, or delivery's request for more or stronger evidence, also accept the specific test, fixture, environment, execution, reporting, or evidence gap and its evidence. For an evidence gap, go deeper until the evidence proves the behavior, or until you can show it cannot be reached without the user. When delivery discovered the issue, accept the delivery revision record and relevant `DR-*` entry. Resume the affected API/E2E work and preserve the classification.
 - Treat the full upstream package as active validation context, not just the latest implementation handoff or code review report.
 - Read the implementation handoff's `Legacy / Compatibility Removal Check` and `Persisted Data Transition Check` before finalizing coverage. Treat any non-clean answer, or any mismatch between those sections and the implementation, as an active validation signal.
 
@@ -204,7 +204,7 @@ Per result:
 Every result:
 
 - Distinguish durable coverage changes, temporary executable checks, and blocked or infeasible residual scenarios in the execution report.
-- Mark any behavior only the user can check, and why: their own accounts, machines or nodes, or a taste call no approved design settles. Delivery uses it to decide whether the user must check.
+- Mark a behavior as one only the user can check only after you tried to prove it yourself (deeper tests, a real surface, emulation, a safe setup), and record what you tried and why it still needs the user, such as their own accounts or nodes. Delivery uses it to decide whether the user must check.
 - On a later round, recheck prior unresolved failures first, reuse case IDs, and record the rerun delta and prior-failure resolution in the revision record.
 - Include the approved requirements doc, investigation notes,
   solution revision record, completed design spec, every

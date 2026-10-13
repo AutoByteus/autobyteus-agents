@@ -22,7 +22,10 @@ The API/E2E evidence was already decision-grade; nothing downstream was told to 
   - the delivery engineer judges whether the evidence proves the change works, from the critical acceptance criteria, confidence, the journeys run and their evidence, mocks, and what wasn't tested;
   - if it does, it records the judgement and continues without waiting;
   - if not, it names the gap and asks API/E2E (or the defect's owner), then judges again;
-  - it asks the user only when evidence can't settle it, saying why: taste or feel no approved design settles, things tests can't reach (the user's own accounts, machines, nodes), or a check the user asked for;
+  - if not, API/E2E goes deeper (more journeys, a real surface, stronger assertions, higher confidence) as many rounds as it takes, because proving the change is API/E2E's job;
+  - a change proven by evidence (for example screenshots of a UI change matching the approved design) needs no repeat check by the user;
+  - the user is involved only as a last resort, saying why: API/E2E shows what it tried and that something can't be reached without the user (their own accounts or nodes), or the user asked to check;
+  - a visible behavior that neither the requirements nor an approved design settles is a Requirement Gap for the designer, not a user check;
   - the user can always ask to check;
   - two examples.
 - **Delivery `SKILL.md`, new "Release Decision":** release is a product decision separate from verification. Release only when the user asked, or the release guide makes it the default; otherwise finalize and say a release is available. Release safety rules unchanged.
@@ -85,3 +88,21 @@ The API/E2E evidence was already decision-grade; nothing downstream was told to 
 | Ownership and cross-file consistency | Pass | Verification is owned by the delivery skill. API/E2E marks user-only checks. The designer's safety net and receipt, `team.md` and the config use the same terms. |
 | Scope/diff review | Pass | 10 files (+88/−32) and this ticket folder. |
 | Final review against the standard and anti-patterns | `Pass` (round 2) | Round 1 clarified that in the second example the delivery engineer finalizes after the user's check. Round 2 was clean. Checked anti-patterns 3, 4, 6, 8, 12 and 14: the targets stay in the API/E2E skill and are not restated. |
+
+## Revision 2 (user, 2026-10-13): the user is a last resort; API/E2E goes deeper
+
+The user: screenshots already prove a UI change, so a repeat check is not needed. When proof is not enough, API/E2E must go deeper until it is, rather than involve the user.
+
+- **Delivery "Verify From Evidence":**
+  - weak evidence goes back to API/E2E "as many rounds as it takes";
+  - a change proven by evidence needs no repeat user check;
+  - the user is involved only as a last resort (unreachable without the user, after what API/E2E tried; or the user asked);
+  - "taste or feel" is removed as a reason: an unsettled visible behavior is a Requirement Gap for the designer;
+  - the examples are now: settings page (no check); dialog without a journey (sent back to API/E2E, no check); sign-in to the user's own node after emulation (last-resort check).
+- **API/E2E:**
+  - for delivery's evidence gap, it goes deeper until the behavior is proven or shown unreachable without the user;
+  - it marks "only the user can check" only after trying deeper tests, a real surface, emulation or a safe setup, recording what it tried;
+  - the execution report's line asks for what was tried.
+- **Delivery report template:** the user-check reason no longer offers taste.
+
+Final review: round 1 found the template's leftover "taste or feel". Round 2 was clean. The validator passes.

@@ -39,7 +39,7 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Evidence judged: `Sufficient` / `Insufficient`
 - Evidence relied on (execution report, critical acceptance criteria, confidence, journeys, integrated-state rerun):
 - More evidence requested (from whom, what, result): `None` / list
-- User check needed: `No` / `Yes` — why (taste or feel, unreachable by tests, user asked):
+- User check needed: `No` / `Yes` — why (unreachable without the user after what API/E2E tried, or the user asked to check):
 - User check reference, when needed:
 - Re-verification after later re-integration: `Not needed` / result and evidence
 
