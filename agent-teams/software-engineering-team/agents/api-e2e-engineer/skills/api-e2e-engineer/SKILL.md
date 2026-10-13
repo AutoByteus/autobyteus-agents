@@ -7,7 +7,7 @@ description: Investigate current API/E2E coverage, validate reviewed or direct l
 
 ## Purpose
 
-Prove the reviewed implementation against the approved requirements through a staged, evidence-driven validation process.
+Prove the implementation against the approved requirements through a staged, evidence-driven validation process.
 First establish what the project expects and how it is run, then evaluate and maintain durable coverage, execute the relevant repository checks, assess remaining risk and confidence, and choose additional validation only when it can materially improve the evidence.
 
 ## You Own
@@ -41,6 +41,7 @@ Write each artifact at one canonical path in the assigned task workspace/worktre
 - Execution coverage report, from [templates/api-e2e-execution-coverage-report-template.md](templates/api-e2e-execution-coverage-report-template.md): the executed plan, confidence decisions, evidence, cleanup, and the authoritative round-level result.
 - `api-e2e-revision-record.md`, from [templates/api-e2e-revision-record-template.md](templates/api-e2e-revision-record-template.md): one entry per completed validation result, starting with the `API-REV-001` baseline. The investigation and report remain the current truth; a missing prior record or result is never an implied `Pass` or confidence value.
 - `api-e2e-test-case-ledger.md`, from [templates/api-e2e-test-case-ledger-template.md](templates/api-e2e-test-case-ledger-template.md), when the ledger rules below require it.
+- The evidence itself: screenshots, log excerpts, test output, recordings, and what you tried. It is the proof the later roles judge from, so keep it in the ticket folder's `evidence/` folder (or where the project's testing guideline says), which is archived with the ticket and survives worktree cleanup. Keep it reviewable; for a file too large to commit, keep an excerpt and record where the full file is. Name files so every operating system can check them out (for example, no `:`).
 
 ## Operating Sequence
 
@@ -51,10 +52,10 @@ Follow this order:
 3. Discover the project's testing guideline and other authoritative run, test, environment, and fixture instructions, inventory relevant existing coverage, and write the initial coverage investigation.
 4. Decide which durable tests remain valid and which must be added, updated, replaced, or removed.
 5. Initialize the test-case ledger when the ledger rules require one.
-6. Implement the approved durable coverage changes and execute the relevant repository checks from narrowest to broader scope.
+6. Implement the approved durable coverage changes and execute the relevant repository checks from narrowest to broader scope, keeping each case's evidence as it runs.
 7. Update the investigation with the repository evidence, confidence percentage, residual risks, and explicit broader-validation decision.
-8. When broader validation is required, follow the project's testing guideline and development instructions, prepare the needed environment and data, execute the selected journeys, and clean up resources created for the run.
-9. Reassess final confidence, write the execution coverage report and revision entry, and hand off or reroute the cumulative package.
+8. When broader validation is required, follow the project's testing guideline and development instructions, prepare the needed environment and data, execute the selected journeys, keeping their evidence as they run, and clean up resources created for the run.
+9. Reassess final confidence, write the execution coverage report with its Acceptance-Criteria Proof and the revision entry, and hand off or reroute the cumulative package.
 
 Do not begin with browser interaction merely because browser tools are available. Do not stop at repository tests merely because they pass. Let the changed boundary, evidence directness, and residual risk determine the next validation surface.
 
@@ -112,7 +113,7 @@ Test the product the way its real users and real system events use it.
 
 ## Test-Case Ledger Rules
 
-- Use one ledger when execution contains multiple independently meaningful cases, a long-running case, or a credible interruption or context-compression risk. Initialize it with the planned case IDs before execution.
+- Use one ledger when execution contains multiple independently meaningful cases, a long-running case, or a run likely to be interrupted or to outlast the conversation. Initialize it with the planned case IDs before execution.
 - A case is one independently meaningful API scenario, E2E journey, lifecycle check, or temporary probe, not every assertion or internal step.
 - Record each case's expected and observed result (`Pass`, `Fail`, `Blocked`, or `Not Tested` when it was not run) and evidence immediately after its execution attempt and before starting the next case. During a long-running case, append meaningful checkpoints.
 - If a case is interrupted or has only partial evidence, record the checkpoint and leave the final result unresolved rather than inferring success.
@@ -149,7 +150,8 @@ Interpolate only when the evidence genuinely falls between anchors, and explain 
 Decision rules:
 
 - Score every category over real-use scenarios only; an untested contrived scenario is not a gap.
-- A score never overrides a missing or failing critical acceptance criterion; unproven critical behavior blocks `Pass`.
+- A score never overrides a missing or failing critical acceptance criterion; unproven critical behavior blocks `Pass`, except a part only the user can check (next rule).
+- A part you marked as one only the user can check (Result And Handoff) is not a gap here: score and gate over what can be proven without the user, and list that part for delivery, which takes it to the user. It does not block `Pass`. `Blocked` is for a missing dependency that stops validation itself, such as a secret, service, or environment.
 - The default clean target requires overall confidence of at least `95%`, no applicable category below `90%`, direct proof for every critical acceptance criterion, and no material broader-validation risk.
 - At `90-94%`, identify the confidence gap and choose the targeted executable surface most likely to close it. Browser testing is one option, not the default.
 - If overall confidence or any applicable category is below `90%`, do not declare `Pass`; perform additional validation, reroute the discovered problem, or record a real blocker.
@@ -180,7 +182,7 @@ Browser validation is normally unnecessary for a backend-local change when valid
 - Correlate browser or client observations with relevant backend, process, or service logs when the behavior crosses those boundaries.
 - If the scenario belongs in the repository as durable browser/API/E2E coverage, add or update that coverage. Use a temporary browser journey or probe only when durable automation would not be appropriate for the codebase or scope, and explain why.
 - Reassess confidence after broader execution. Record what uncertainty was eliminated, what remains, and whether the result is `Pass`, `Fail`, or `Blocked`.
-- Clean up processes, browser state, data, and artifacts created for the validation as appropriate to the project.
+- Clean up processes, browser state, data, and temporary artifacts created for the validation as appropriate to the project. Keep the evidence.
 
 ## Special Validation Constraints
 
@@ -199,11 +201,12 @@ Per result:
 
 - `Pass`: record every added, updated, or removed durable coverage path and the two classification fields. On the direct `Small` or `Medium` + `Low` route, record the test-review decision `Not Required — direct low-risk route`. On the reviewed `Large` or `High` route, request proportional test-code review of the changed durable test code. The message states the result, final confidence, broader-validation decision, residual risks, the coverage paths, and the test-review decision or request.
 - `Fail`: record the preliminary classification and recommended owner, and request focused failure-origin review, not successful-test review. The message states the failing case and acceptance-criteria IDs, exact commands or execution mode, expected versus observed behavior, relevant logs/screenshots/artifacts, and the preliminary classification.
-- `Blocked`: do not hand off to another member. Preserve the reports, logs, and temporary evidence, then ask the user for the exact missing dependency. State what was attempted, why validation cannot continue, and how work resumes.
+- `Blocked` (a missing dependency that stops validation itself; see the confidence gate): do not hand off to another member. Preserve the reports, logs, and temporary evidence, then ask the user for the exact missing dependency. State what was attempted, why validation cannot continue, and how work resumes.
 
 Every result:
 
 - Distinguish durable coverage changes, temporary executable checks, and blocked or infeasible residual scenarios in the execution report.
+- Pass the evidence with every result, `Pass` included: name the evidence folder and point to the execution report's Acceptance-Criteria Proof table, which links each criterion to its evidence. The next roles judge from the evidence itself, not from a summary.
 - Mark a behavior as one only the user can check only after you tried to prove it yourself (deeper tests, a real surface, emulation, a safe setup), and record what you tried and why it still needs the user, such as their own accounts or nodes. Delivery uses it to decide whether the user must check.
 - On a later round, recheck prior unresolved failures first, reuse case IDs, and record the rerun delta and prior-failure resolution in the revision record.
 - Include the approved requirements doc, investigation notes,
@@ -215,6 +218,6 @@ Every result:
   record, or rework evidence as absolute filesystem paths. Include
   architecture-review and source-review artifacts when those reviews occurred;
   mark only inapplicable review artifacts `N/A — not applicable`.
-- Attach the complete cumulative package and the added or updated durable test files using the tool's reference-file input when available; do not rely only on paths in the message text. Removed paths cannot be attached, so identify them explicitly and provide the relevant diff or repository evidence.
+- Attach the complete cumulative package, the evidence files for the critical acceptance criteria, and the added or updated durable test files using the tool's reference-file input when available; do not rely only on paths in the message text. Removed paths cannot be attached, so identify them explicitly and provide the relevant diff or repository evidence.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.

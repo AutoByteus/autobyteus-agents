@@ -65,11 +65,13 @@ Use [templates/delivery-revision-record-template.md](templates/delivery-revision
 Verification answers one question: does the evidence prove the change works?
 You own that judgement, as a delivery lead would.
 
-- Judge it from the API/E2E execution report and the integrated-state rerun:
-  whether every critical acceptance criterion is directly proven, the final
-  confidence and category scores against the team's target, the journeys run
-  with their evidence (screenshots, logs, API results), what was mocked, and
-  what was not tested and why.
+- Judge it from the evidence itself, not only the report's summary: open the
+  evidence files the execution report's Acceptance-Criteria Proof table links
+  for the critical acceptance criteria, and use the integrated-state rerun.
+  Check that every critical acceptance criterion is directly proven, and weigh
+  the final confidence and category scores against the team's target, the
+  journeys run with their evidence (screenshots, logs, API results), what was
+  mocked, and what was not tested and why.
 - When the evidence proves the change works, record your judgement and the
   evidence you relied on, and continue without waiting for the user.
 - When it does not, name what is missing and send it back: API/E2E goes

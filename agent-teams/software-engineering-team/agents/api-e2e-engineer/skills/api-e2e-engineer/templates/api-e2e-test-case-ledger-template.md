@@ -35,6 +35,6 @@ Record a `Started` event when a case begins, then append a `Completed` event imm
 - Last completed case and result:
 - Cases still running, interrupted, or not started:
 - Next case or recovery action:
-- Interruption, context-compression, or rerun note:
+- Interruption or rerun note:
 - Reconciled into execution coverage report: `No` / `Yes` — report path and section:
 - Reconciliation note for any case missing a terminal result:
