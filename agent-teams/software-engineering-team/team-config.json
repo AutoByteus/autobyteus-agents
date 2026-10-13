@@ -152,7 +152,7 @@
       "to": "/solution_designer",
       "rules": [
         "When delivery discovers a Design Impact, Requirement Gap, or Unclear issue, or final handoff is blocked by a non-deployment issue that requires upstream classification.",
-        "When Delivery Engineer classifies the result as Delivery Completed after explicit user verification, repository finalization, and all applicable release, deployment and safe-cleanup gates are Completed or truthfully Not required. Include the same package identifier, complete cumulative artifacts and final evidence for Solution Designer to verify the terminal receipt."
+        "When Delivery Engineer classifies the result as Delivery Completed after verification (from the validation evidence, or the user's check where one was needed), repository finalization, and all applicable release, deployment and safe-cleanup gates are Completed or truthfully Not required. Include the same package identifier, complete cumulative artifacts and final evidence for Solution Designer to verify the terminal receipt."
       ]
     },
     {
@@ -167,6 +167,13 @@
       "to": "/delivery_engineer",
       "rules": [
         "When Solution Designer checks a Delivery Completed receipt and finds missing or inconsistent delivery-owned completion evidence. Send only the specific receipt gap and cumulative package for correction; do not claim Terminal, reopen unchanged requirements or redo delivery work."
+      ]
+    },
+    {
+      "from": "/delivery_engineer",
+      "to": "/api_e2e_engineer",
+      "rules": [
+        "When delivery judges the validation evidence too weak to prove the change works and API/E2E must add or strengthen evidence, such as a missing journey, an unproven acceptance criterion, or an unrecorded user-only check."
       ]
     }
   ]

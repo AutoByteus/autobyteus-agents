@@ -212,9 +212,9 @@ Score each applicable category from `0%` to `100%`. Use `N/A` only with a concre
 
 ## Not Tested / Infeasible / Deferred
 
-| Behavior / Boundary | Reason | Risk | Required Follow-Up Or Escalation |
-| --- | --- | --- | --- |
-|  |  |  |  |
+| Behavior / Boundary | Reason | Risk | Only The User Can Check? (`Yes`/`No`) | Required Follow-Up Or Escalation |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
 
 ## Ambiguities Or Reroute Triggers
 

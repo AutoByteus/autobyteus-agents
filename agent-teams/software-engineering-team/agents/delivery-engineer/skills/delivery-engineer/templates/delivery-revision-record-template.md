@@ -22,7 +22,7 @@ The latest docs sync report, handoff summary, and release/publication/deployment
 - Handoff summary:
 - Release/publication/deployment report:
 - Integration and post-integration verification:
-- User verification/finalization state:
+- Verification (evidence judgement or user check) and finalization state:
 - Terminal return to `/solution_designer`: `Sent` / `Not yet eligible` / `Blocked`
 - Terminal return message/reference:
 - Why this baseline or delivery revision was recorded:

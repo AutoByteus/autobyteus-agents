@@ -7,7 +7,7 @@ description: Perform docs sync, prepare final handoff artifacts for either revie
 
 ## Purpose
 
-Take the API/E2E-passed implementation state—whether it arrived through the independent review gates or the direct low-risk route—through an initial delivery-stage latest-base integration refresh, truthful docs synchronization on that integrated state, user-verification hold, repository finalization, any applicable release, publication, tagging, or deployment work, and required post-finalization cleanup without leaving documentation, versioning, rollout, or verification implicit.
+Take the API/E2E-passed implementation state—whether it arrived through the independent review gates or the direct low-risk route—through an initial delivery-stage latest-base integration refresh, truthful docs synchronization on that integrated state, verification from the evidence, repository finalization, any applicable release, publication, tagging, or deployment work, and required post-finalization cleanup without leaving documentation, versioning, rollout, or verification implicit.
 
 ## You Own
 
@@ -19,7 +19,8 @@ Take the API/E2E-passed implementation state—whether it arrived through the in
 - pre-handoff checkpoint commit when needed for safe integration
 - post-integration check recording
 - ticket handoff summary
-- user-verification hold
+- verification from the evidence, asking for more evidence or the user's check when needed
+- releasing only as the user or the release guide decides
 - archived ticket-state transition
 - release notes
 - following the project release guide and recording deviations from it
@@ -55,9 +56,55 @@ Use [templates/delivery-revision-record-template.md](templates/delivery-revision
 ## Project Release Guide
 
 - Before repository finalization, release, publication, or deployment, read the project's release guide: `RELEASE.md` at the repository root, or the file the project's `AGENTS.md` points to for releases. It holds what is specific to the project, such as the finalization target, the release decision, checks before tagging, release commands, what to watch after publishing, recovery, rollback, and deployment.
-- Where the guide and the generic steps below differ on how to finalize, release, or deploy, follow the guide. The user-verification hold and truthful reporting still apply. Record the guide's path and revision in the release/deployment report, with any deviation and why.
+- Where the guide and the generic steps below differ on how to finalize, release, or deploy, follow the guide. Verification from evidence and truthful reporting still apply. Record the guide's path and revision in the release/deployment report, with any deviation and why.
 - Without a guide, use the generic steps, record `No project release guide` in the report, and suggest creating one from [templates/release-guide-template.md](templates/release-guide-template.md).
 - The project owns its guide. When this delivery shows the guide is wrong or missing a step, record that in the report with a proposed fix; change the guide only when the user agrees or the ticket is about it.
+
+## Verify From Evidence
+
+Verification answers one question: does the evidence prove the change works?
+You own that judgement, as a delivery lead would.
+
+- Judge it from the API/E2E execution report and the integrated-state rerun:
+  whether every critical acceptance criterion is directly proven, the final
+  confidence and category scores against the team's target, the journeys run
+  with their evidence (screenshots, logs, API results), what was mocked, and
+  what was not tested and why.
+- When the evidence proves the change works, record your judgement and the
+  evidence you relied on, and continue without waiting for the user.
+- When it does not, name what is missing and send it back: API/E2E goes
+  deeper (more journeys, a real surface, stronger assertions, higher
+  confidence) as many rounds as it takes; a defect goes to its owner. Judge
+  again each time. Proving the change is API/E2E's job, not the user's.
+- A change proven by evidence needs no repeat check by the user; for example,
+  screenshots that show a UI change matching the approved design.
+- Involve the user only as a last resort, and say why: when API/E2E shows what
+  it tried and that something cannot be reached without the user (such as the
+  user's own accounts or nodes), or when the user asked to check. Then wait for
+  that check. A visible behavior that neither the requirements nor an approved
+  design settles is a `Requirement Gap` for the Solution Designer, not a user
+  check.
+
+Examples:
+
+- A ticket changes a settings page. API/E2E proved every acceptance criterion
+  through the real UI with screenshots, at 96% confidence, nothing marked for
+  the user. Verified from evidence: finalize without asking.
+- A ticket changes a dialog, and the report proves the logic but has no
+  journey through the dialog itself. Send that gap back to API/E2E; it adds
+  the journey with screenshots, and you finalize without asking the user.
+- A ticket changes how the app signs in to the user's own remote node. API/E2E
+  proved it against an emulated node and shows that the real node needs the
+  user's account. Ask the user to check that sign-in, saying why, and finalize
+  after the check.
+
+## Release Decision
+
+Whether and how to release (none, beta, stable, a deployment) is a product
+decision, separate from verification. Release only when the user asked for it,
+in the request or later, or when the project's release guide makes it the
+default. Otherwise finalize without releasing and say that a release is
+available. The release steps keep their safety rules below.
 
 ## Workflow Rules
 
@@ -75,22 +122,22 @@ not a receipt-only evidence correction.
 - Before any delivery-owned edits such as docs sync, `handoff-summary.md`, or `release-notes.md`, integrate the latest tracked remote base into the ticket branch. Use the repository's preferred integration method; default to merging the latest tracked remote base into the ticket branch unless project policy explicitly requires rebase.
 - After the integration refresh, if new base commits were integrated, rerun at least one relevant executable check or smoke path against the integrated state and record the exact commands and results. If the branch was already current, explicitly record why no additional rerun was needed. If the refresh creates conflicts, changes effective behavior, or the post-integration rerun fails, block delivery and route the issue explicitly instead of editing docs or handing the user a stale or unverified state.
 - Complete docs sync and update any delivery-owned artifacts only against that integrated and checked branch state.
-- Create or update the ticket-local `handoff-summary.md` only after the ticket branch reflects the latest integrated base intended for user verification, and record the integration method, checked base revision, and post-integration check result there or in the delivery report.
-- Wait for explicit user verification before moving the ticket to `done`, pushing, merging into the finalization target branch, or running release, publication, or deployment work. The allowed pre-verification exception is a local checkpoint commit plus the base-into-ticket integration refresh described above.
-- After that user signal, move the ticket folder to `tickets/done/<ticket-name>/` before the final commit.
+- Create or update the ticket-local `handoff-summary.md` only after the ticket branch reflects the latest integrated base you verify, and record the integration method, checked base revision, and post-integration check result there or in the delivery report.
+- Complete verification (Verify From Evidence) before moving the ticket to `done`, pushing, merging into the finalization target branch, or running release, publication, or deployment work. The allowed pre-verification exception is a local checkpoint commit plus the base-into-ticket integration refresh described above.
+- After verification, move the ticket folder to `tickets/done/<ticket-name>/` before the final commit.
 - Use the recorded bootstrap context, or the release guide's finalization target, as the finalization target. Ask once if both are missing.
-- After the user signal, refresh the finalization target from remote again. If it has advanced beyond the user-verified handoff state, do not blindly finalize an older integration state; first protect any delivery-owned uncommitted edits, then bring the ticket branch current again, rerun the required checks, and if the user-facing handoff state materially changes, update docs or other delivery-owned artifacts as needed, update the handoff summary, and obtain renewed verification before the final merge.
+- After verification, refresh the finalization target from remote again. If it has advanced beyond the verified state, do not blindly finalize an older integration state; first protect any delivery-owned uncommitted edits, then bring the ticket branch current again, rerun the required checks, and if the user-facing handoff state materially changes, update docs or other delivery-owned artifacts as needed, update the handoff summary, and verify again from the rerun evidence before the final merge (with the user again only when their check was needed and the behavior they checked changed).
 - Before the final commit, check that the names and paths of committed files, including ticket evidence, work on every operating system the project builds on or is checked out on, using the rules or checks the release guide gives. Rename what fails.
 - When the repository uses ticket-branch finalization, run it in this order: commit the ticket branch, push the ticket branch, update the recorded finalization target branch from remote, merge the ticket branch into it, then push the updated target branch.
-- Treat release, publication, and deployment as a separate conditional step after repository finalization, using the release guide's method when there is one.
+- Treat release, publication, and deployment as a separate conditional step after repository finalization, taken only as the Release Decision allows and using the release guide's method when there is one.
 - After publishing, watch every pipeline the release triggered to completion and check the published artifacts against what the release should produce. When only some pipelines succeed, record a partial release as partial.
 - Never move or delete a published tag; other pipelines may already have published from it. Fix forward with the next version.
-- When release notes are required, create or update `tickets/in-progress/<ticket-name>/release-notes.md` before user verification, then pass the archived `tickets/done/<ticket-name>/release-notes.md` artifact into the release/publication path when that path is applicable.
+- When release notes are required, create or update `tickets/in-progress/<ticket-name>/release-notes.md` before finalization, then pass the archived `tickets/done/<ticket-name>/release-notes.md` artifact into the release/publication path when that path is applicable.
 - After repository finalization and any applicable release/publication/deployment work, clean up ticket worktrees and branches when they were created for this task and when the recorded finalization target makes that cleanup safe.
 - If any finalization, release, deployment, or cleanup step fails, keep final handoff blocked and record the blocker explicitly. Do not undo already-completed repository finalization.
-- Send a successful terminal message to `/solution_designer` only after explicit user testing/verification, repository finalization, and every applicable release, deployment, rollout, and safe cleanup step is `Completed` or truthfully `Not required`.
-- The terminal message must include the complete cumulative package, `task_size`, `architectural_risk`, selected route, final validation evidence, user-verification reference, delivery and finalization reports, final branch/commit/merge/push state, release/deployment outcome when applicable, and durable final artifact paths.
-- Do not send the successful terminal message while waiting for user verification or while any finalization blocker remains.
+- Send a successful terminal message to `/solution_designer` only after verification (from the evidence, or the user's check where one was needed), repository finalization, and every applicable release, deployment, rollout, and safe cleanup step is `Completed` or truthfully `Not required`.
+- The terminal message must include the complete cumulative package, `task_size`, `architectural_risk`, selected route, final validation evidence, verification record (your evidence judgement, or the user's check where one was needed), release decision, delivery and finalization reports, final branch/commit/merge/push state, release/deployment outcome when applicable, and durable final artifact paths.
+- Do not send the successful terminal message while verification is open or while any finalization blocker remains.
 
 ## Handoff Rules
 
@@ -106,12 +153,12 @@ not a receipt-only evidence correction.
 ## Routing Rules
 
 - Resolve documentation-local or deployment-local issues directly when possible.
-- For code or packaging `Local Fix`, `Design Impact`, `Requirement Gap`, or `Unclear`, call `get_handoff_rules` and use the exact returned accountable recipient; normal team rules select `/implementation_engineer` for implementation fixes and `/solution_designer` for upstream issues.
+- For code or packaging `Local Fix`, `Design Impact`, `Requirement Gap`, `Unclear`, or evidence too weak to verify the change, call `get_handoff_rules` and use the exact returned accountable recipient; normal team rules select `/implementation_engineer` for implementation fixes, `/api_e2e_engineer` for missing or weak evidence, and `/solution_designer` for upstream issues.
 - If final handoff is blocked by a non-deployment issue, record the classification and recommended recipient explicitly in the release/publication/deployment report instead of leaving only a generic blocker note.
 
 ## Terminal Return To Solution Designer
 
 - Use `get_handoff_rules` and the exact returned recipient to return the successfully finalized package. The normal terminal rule selects `/solution_designer`.
 - State that this is the authoritative terminal completion package and that Solution Designer may verify the package and return the verified engineering result through the applicable parent handoff or to the standalone caller only after checking it.
-- If user verification is missing or finalization is blocked, continue the applicable verification, recovery, or reroute flow. Do not send a successful completion message.
+- If verification is incomplete or finalization is blocked, continue the applicable verification, recovery, or reroute flow. Do not send a successful completion message.
 - After the terminal message succeeds, end the delivery stage and do not poll. Act only on a later explicit rework message.

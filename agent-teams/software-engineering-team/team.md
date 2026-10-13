@@ -20,8 +20,9 @@ separate requirements owner is required.
 - `code_reviewer` independently reviews selected source/test work and owns
   failure-origin review at its boundary.
 - `api_e2e_engineer` owns executable coverage and validation.
-- `delivery_engineer` owns integrated delivery, documentation sync, explicit
-  user verification, finalization and applicable release/deployment/cleanup.
+- `delivery_engineer` owns integrated delivery, documentation sync,
+  verification from the evidence, finalization and the release the user or the
+  release guide decides, deployment and cleanup.
 
 ## Route Contract
 
