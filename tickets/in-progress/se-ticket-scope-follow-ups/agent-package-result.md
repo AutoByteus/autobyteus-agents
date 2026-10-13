@@ -150,3 +150,30 @@ Applied consistently in:
 - shared Example 11, with three rows.
 
 Final review: round 1 found the reviewer's rule didn't name the proportionate fix and could over-demand a full split, so it now does. Round 2 was clean. The validator passes for code-reviewer and implementation-engineer.
+
+## Revision 7 (user, 2026-10-13): full consistency and real-workflow review
+
+Both packages were read in full (see the fifth analysis). The workflow order matches real practice for both roles. Nine inconsistencies were fixed in their owning files:
+
+1. **requirements-doc template:** one approval field ("Approved by and reference") instead of two.
+2. **requirements-doc template:** `Needs user` points to the skill's criteria instead of a narrower list.
+3. **"Follow-up" as the one term,** replacing "separate-ticket candidate/note", in:
+   - requirements-doc Review Authority;
+   - requirements-engineering.md;
+   - architecture-reviewer `SKILL.md`;
+   - architecture-reviewer report template.
+4. **solution-revision-record template:** SR-001 can be `Approved` (designer approval within the direction).
+5. **design-spec Section Fill Order:** "11. task size and architectural risk, from the completed design and its change scope".
+6. **design-spec:**
+   - Intended Change gets a one-line purpose (the early intent);
+   - Change Scope points to the file mapping instead of re-listing files;
+   - its follow-ups include refactors the design-health assessment defers.
+7. **Solution Designer `SKILL.md`, Finalized Delivery Receipt step 3:** the designer sends the follow-ups nobody sent yet in one message, to "Requested by" or to the user in its result. These are the follow-ups in the Change Scope, the design review report's out-of-scope recommendations, and the implementation handoff. Every follow-up source now has a sender.
+8. **code-reviewer Ticket Scope:** "This ticket" also covers what a team rule makes part of every change: dead code in touched files (Core Principle 7), and a file the change takes over or grows past the size limit. This no longer contradicts the reviewer's own checklist.
+9. **`team.md`:** the stale "Software Development Department" (removed in `66e417b`) becomes "an Org", plus one line on the shared scope and follow-up convention, pointing to Example 11.
+
+Final review:
+1. Round 1 found a leftover "separate-ticket note" in the architecture review template, and that the designer's wrap-up missed the architecture reviewer's out-of-scope recommendations. Both fixed.
+2. Round 2 was clean.
+
+The validator passes for all five member skills; `team-config.json` parses; the links in the changed files resolve.

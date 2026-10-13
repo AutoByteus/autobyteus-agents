@@ -7,8 +7,8 @@ category: software-engineering
 Solution Designer is the coordinator and software-work entrypoint. It accepts
 raw requests, approved packages or solution-revision feedback, owning both
 requirements engineering and architecture design with an approved requirements
-basis between those phases. The team can run standalone or within the Software
-Development Department; no separate requirements owner is required.
+basis between those phases. The team can run standalone or inside an Org; no
+separate requirements owner is required.
 
 ## Ownership Boundaries
 
@@ -58,3 +58,8 @@ parent rules own cross-team Product handoffs. Return the result
 to the caller if no rule matches and stop after required handoffs. When the
 user explicitly asks a specialist to involve another agent or team, the
 specialist sends it the context even without a rule.
+
+Every role keeps to the ticket's scope: the requirements doc's Scope Guardrail
+and the design spec's Change Scope. Problems found outside it become follow-ups
+for the agent that manages the project's Tasks instead of growing the ticket;
+see [Example 11](shared/design-examples.md#example-11-keeping-a-ticket-in-scope-during-technical-review).

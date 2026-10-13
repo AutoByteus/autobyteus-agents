@@ -40,13 +40,15 @@ Link the architecture-level evidence gathered after requirements approval from t
 
 ## Intended Change
 
+A short statement of the intended delta, written at the start of design. The final boundary goes in Change Scope.
+
 ## Change Scope (Mandatory)
 
 Write this last, once the design is decided; it appears early so readers see the boundary first. Reviewers use it with the requirements doc's Scope Guardrail to tell this ticket's findings from follow-ups.
 
-- In scope: the Scope Guardrail use-case IDs this design covers, and the areas and files this change modifies:
+- In scope: the Scope Guardrail use-case IDs this design covers, and the areas this change modifies (the file list stays in Target Subsystem / Folder / File Mapping):
 - Deliberately left alone: nearby areas, components or behaviors this change does not touch, and why:
-- Follow-ups: problems found during design that this ticket does not fix (including `Follow-up` items from the Removal / Decommission Plan), or `None`:
+- Follow-ups: problems found during design that this ticket does not fix, including `Follow-up` items from the Removal / Decommission Plan and refactors the Task Design Health Assessment defers, or `None`:
 
 ## Relevant Behavior And Production-Path Map (Mandatory)
 
@@ -105,6 +107,7 @@ Design reasoning follows [design-principles.md](../references/design-principles.
 8. folder/path mapping
 9. change sequence, tradeoffs, risks, and implementation guidance
 10. change scope, written once the design is decided
+11. task size and architectural risk, from the completed design and its change scope
 
 Complete every mandatory section, but keep the written detail of each mapping proportionate to the actual change. For a genuinely inapplicable section, write `N/A` with a short reason. Do not invent spines, subsystems, interfaces, abstractions, or risks merely to populate the template.
 

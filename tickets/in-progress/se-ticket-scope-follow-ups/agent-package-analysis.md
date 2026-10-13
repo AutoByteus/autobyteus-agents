@@ -113,3 +113,44 @@ The user pointed out that the earlier revisions were made without reading the wh
 | Two scenarios restated rules the shared principles own. | Core Principle 7 Scope (dead code in touched files vs elsewhere as a follow-up); Task Design Health Assessment (refactor needed now / not / deferred). | Example 11 points to them instead of restating them. |
 | The size audit can force refactors of old files the change touches. | Report template "Source File Size And Structure Audit": `>500` hard-limit and `>220` delta checks on every changed source file; the SKILL applies the thresholds "only to changed implementation-source files". | This is an existing team policy whose intent for pre-existing oversized files is undocumented. Example 11 defers to the size checks and the design-health decision; the policy question goes to the user. |
 | The reviewer's "Required Shared Reads" consulted the examples "only when a concrete structural example is needed". | code-reviewer `SKILL.md` line 81 | It now also covers a finding's scope. |
+
+## Fifth analysis (user, 2026-10-13): full consistency and real-workflow review of both packages
+
+Read in full on the PR branch (`d0d6b12`):
+- **Solution Designer:** `agent.md`, `agent-config.json`, `SKILL.md`, `requirements-engineering.md`, `architecture-design.md`, and the four templates;
+- **code reviewer:** `agent.md`, `agent-config.json`, `SKILL.md`, and the three templates;
+- **shared:** `design-principles.md`; `design-examples.md` (Examples 9–11 and the role-use and usage sections in full, and the outline of Examples 1–8, which are design shapes with no scope or workflow rules);
+- **team:** `team.md`, `team-config.json`.
+
+### Real workflow check
+
+- **Solution Designer:**
+  1. intake;
+  2. investigate;
+  3. requirements with the Scope Guardrail;
+  4. reasoned decisions;
+  5. approve (self within the direction, or the user);
+  6. architecture investigation;
+  7. design decisions;
+  8. Change Scope;
+  9. classify from the final scope;
+  10. hand off;
+  11. delivery receipt.
+
+  This matches how a designer works; the readiness gate checks scope before approval.
+- **Code reviewer:** read the ticket's scope (step 2) → trace scenarios → collect observations → candidate gate → scope judgement for each promoted finding (step 6) → score and route this ticket's findings, send follow-ups (step 7). This matches how a reviewer works.
+- **A regression first noticed at the test-code review** has a route through the existing chain: a test-coverage `Local Fix` to API/E2E, whose new test fails, then failure-origin review, then the implementation engineer. The follow-up noted in revision 4 (no direct route) is therefore not a gap.
+
+### Inconsistencies found
+
+| # | Where | Inconsistency | Fix |
+| --- | --- | --- | --- |
+| 1 | requirements-doc template lines 9 and 16 | "Approved by …; reference" (added in #41) duplicates "Approval state and reference". | One field. |
+| 2 | requirements-doc template line 169 | `Needs user` "(scope or product direction)" is narrower than the skill's five criteria. | Point to the skill's criteria. |
+| 3 | requirements-doc Review Authority line 71; requirements-engineering line 26; architecture-reviewer `SKILL.md` line 70 | "separate-ticket candidate", while the reviewer, Core Principle 7 and the design spec say "follow-up". | Use "follow-up" (stable terminology). |
+| 4 | solution-revision-record template line 13 | SR-001 status offers only "Draft / Ready for Approval"; a within-direction approval can be `Approved` at once (#41). | Add `Approved`. |
+| 5 | design-spec Section Fill Order | Item 10 is change scope, but Task Size "is completed last" and is not numbered; sizing needs the final scope. | Add "11. task size and architectural risk". |
+| 6 | design-spec "Intended Change" / "Change Scope" | Intended Change is an empty heading next to Change Scope; the early intent and the final boundary are hard to tell apart. Change Scope "files this change modifies" also re-lists the Target File Mapping (anti-pattern 4). Design-health deferrals are not linked to follow-ups. | One guidance line for Intended Change; Change Scope points to the file mapping; its follow-ups include deferred refactors. |
+| 7 | Solution Designer `SKILL.md` | Follow-ups recorded by the designer (Change Scope) and the implementation engineer (dead code elsewhere, oversized files) are never sent anywhere; only the reviewer sends its own. | At the delivery receipt, the designer sends the package's unsent follow-ups to the delegating agent ("Requested by"), or lists them in its result when the user asked directly. |
+| 8 | code-reviewer `SKILL.md` Ticket Scope | The "Follow-up … even code the change touches" bullet contradicts Core Principle 7 and the reviewer's own checklist ("Dead code removed in the touched files"), and the size rule for files the change grows. | "This ticket" also covers what a team rule makes part of every change: dead code in touched files, and a file the change takes over or grows past the size limit. |
+| 9 | `team.md` | Still names the removed "Software Development Department" org (`66e417b`); and the team summary doesn't mention the scope and follow-up convention the roles now share. | Fix the stale name; add one line on the shared scope convention. |

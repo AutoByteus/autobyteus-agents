@@ -95,8 +95,8 @@ For API/E2E failure-origin review:
    technical context, not immutable truth.
 2. Confirm the relevant existing behavior, approved change, preserved behavior,
    and the ticket's scope: the requirements doc's Scope Guardrail and, when the
-   design spec has one, its Change Scope. Establish the supported product-scenario basis
-   for each behavior that the review relies on: actor and coherent goal, or a
+   design spec has one, its Change Scope. Establish the supported
+   product-scenario basis for each behavior that the review relies on: actor and coherent goal, or a
    supported system/operational event or governing contract; supported entry
    surface; expected outcome; and relevant lifecycle. Do not judge, reopen, or
    redefine the business decision.
@@ -198,9 +198,12 @@ the ticket's change does not work or is not done properly?
 
 - **This ticket:** yes. The change introduced it, including a design problem in
   the code the change adds; without it an in-scope acceptance criterion or
-  preserved behavior fails; or the design spec already places it in this
-  change, such as a refactor its design-health assessment requires. Classify
-  and route it as usual.
+  preserved behavior fails; the design spec already places it in this change,
+  such as a refactor its design-health assessment requires; or a team rule
+  makes it part of every change, such as dead code in touched files
+  ([Core Principle 7](references/design-principles.md#7-no-dead-code)) or a file
+  the change takes over or grows past the size limit. Classify and route it as
+  usual.
 - **Follow-up:** no. Everything the ticket delivers works without it, as with
   a pre-existing bug or design problem in surrounding code, even code the
   change touches. When the ticket works and you are unsure, prefer a

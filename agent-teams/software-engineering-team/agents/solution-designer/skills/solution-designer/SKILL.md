@@ -342,8 +342,15 @@ cleanup. On a returned `Delivery Completed` package:
    `Delivery Receipt Evidence Gap`, the returned receipt reference, specific
    missing evidence and required correction. Use the applicable handoff rules;
    do not claim Terminal or redo repository work.
-3. When evidence is sufficient, classify `Terminal` and return the verified
-   result using the Result And Handoff procedure above.
+3. When evidence is sufficient, collect the follow-ups the package recorded
+   but nobody sent yet: those in the design spec's Change Scope, the design
+   review report's out-of-scope recommendations, and the implementation
+   handoff. The code reviewer's report records the ones it sent.
+   Send them together, in one message, to the delegating agent the requirements
+   doc records under "Requested by", with what, where, evidence and a suggested
+   Task description; when the user asked directly, list them in your result.
+4. Classify `Terminal` and return the verified result using the Result And
+   Handoff procedure above.
 
 Do not reopen approved requirements merely because delivery returned. A genuine
 requirement gap uses Recovery; a non-requirement blocker stays a blocker.
