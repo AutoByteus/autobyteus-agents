@@ -80,6 +80,16 @@ Reconcile the ledger here without duplicating its full event log.
 - If compatibility-related invalid scope was observed, reroute classification used: `Local Fix` / `Design Impact` / `Requirement Gap` / `Unclear`
 - Upstream recipient notified:
 
+## Acceptance-Criteria Proof
+
+The index later roles use to find the proof.
+
+- Evidence folder:
+
+| Acceptance-Criteria ID | Critical (`Yes`/`No`) | Proven By Case IDs | Evidence Files | Result (`Proven`/`Not Proven`/`Only The User Can Check`) |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+
 ## Changed Boundary And Evidence Matrix
 
 | Case ID | Behavior / Requirement / Acceptance-Criteria IDs | Changed Boundary | Execution Surface / Mode | Evidence Type (`Durable`/`Temporary`/`Live`/`Browser`/`Desktop`) | Result (`Pass`/`Fail`/`Blocked`/`Not Tested`) | Evidence / Artifact |

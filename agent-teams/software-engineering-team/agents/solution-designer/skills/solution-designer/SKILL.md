@@ -336,7 +336,7 @@ verification, repository finalization, applicable release/deployment and safe
 cleanup. On a returned `Delivery Completed` package:
 
 1. Verify the same package identity and cumulative artifact paths, final
-   validation, verification record (the delivery engineer's evidence judgement, or the user's check where one was needed), finalization evidence and
+   validation with its evidence in the archived ticket folder, verification record (the delivery engineer's evidence judgement, or the user's check where one was needed), finalization evidence and
    truthful Completed/Not required state of applicable release and cleanup gates.
 2. If evidence is missing or inconsistent, classify `Blocked` with
    `Delivery Receipt Evidence Gap`, the returned receipt reference, specific

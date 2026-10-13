@@ -41,6 +41,7 @@ Write each artifact at one canonical path in the assigned task workspace/worktre
 - Execution coverage report, from [templates/api-e2e-execution-coverage-report-template.md](templates/api-e2e-execution-coverage-report-template.md): the executed plan, confidence decisions, evidence, cleanup, and the authoritative round-level result.
 - `api-e2e-revision-record.md`, from [templates/api-e2e-revision-record-template.md](templates/api-e2e-revision-record-template.md): one entry per completed validation result, starting with the `API-REV-001` baseline. The investigation and report remain the current truth; a missing prior record or result is never an implied `Pass` or confidence value.
 - `api-e2e-test-case-ledger.md`, from [templates/api-e2e-test-case-ledger-template.md](templates/api-e2e-test-case-ledger-template.md), when the ledger rules below require it.
+- The evidence itself: screenshots, log excerpts, test output, recordings, and what you tried. It is the proof the later roles judge from, so keep it in the ticket folder's `evidence/` folder (or where the project's testing guideline says), which is archived with the ticket and survives worktree cleanup. Keep it reviewable; for a file too large to commit, keep an excerpt and record where the full file is. Name files so every operating system can check them out (for example, no `:`).
 
 ## Operating Sequence
 
@@ -180,7 +181,7 @@ Browser validation is normally unnecessary for a backend-local change when valid
 - Correlate browser or client observations with relevant backend, process, or service logs when the behavior crosses those boundaries.
 - If the scenario belongs in the repository as durable browser/API/E2E coverage, add or update that coverage. Use a temporary browser journey or probe only when durable automation would not be appropriate for the codebase or scope, and explain why.
 - Reassess confidence after broader execution. Record what uncertainty was eliminated, what remains, and whether the result is `Pass`, `Fail`, or `Blocked`.
-- Clean up processes, browser state, data, and artifacts created for the validation as appropriate to the project.
+- Clean up processes, browser state, data, and temporary artifacts created for the validation as appropriate to the project. Keep the evidence.
 
 ## Special Validation Constraints
 
@@ -204,6 +205,7 @@ Per result:
 Every result:
 
 - Distinguish durable coverage changes, temporary executable checks, and blocked or infeasible residual scenarios in the execution report.
+- Pass the evidence with the result, `Pass` included: name the evidence folder, and attach the execution report, whose Acceptance-Criteria Proof table links each criterion to its evidence, together with the evidence files for the critical acceptance criteria. The next roles judge from the evidence itself, not from a summary.
 - Mark a behavior as one only the user can check only after you tried to prove it yourself (deeper tests, a real surface, emulation, a safe setup), and record what you tried and why it still needs the user, such as their own accounts or nodes. Delivery uses it to decide whether the user must check.
 - On a later round, recheck prior unresolved failures first, reuse case IDs, and record the rerun delta and prior-failure resolution in the revision record.
 - Include the approved requirements doc, investigation notes,
