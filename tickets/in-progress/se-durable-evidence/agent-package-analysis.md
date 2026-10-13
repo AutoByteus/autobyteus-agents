@@ -30,3 +30,31 @@
 | 6 | Downstream | designer receipt step 1 | Verify that the final validation evidence is in the archived ticket folder. |
 
 The code reviewer needs no change: its test-code and failure-origin reviews already work from the existing evidence, which the handoff now carries.
+
+## Second analysis (user, 2026-10-13): logical flow and consistency of the API/E2E engineer
+
+Read: the API/E2E `SKILL.md` in full on this branch (`1abb344`), the templates (read in full earlier, plus my #48 and #49 edits), and the delivery and code-reviewer skills that consume its result.
+
+### Real-workflow check
+
+The Operating Sequence matches how an API/E2E engineer works:
+1. understand the change and its real-use scenarios;
+2. learn how the project tests (`TESTING.md`, README, scripts);
+3. inventory existing tests and decide validity;
+4. plan cases (ledger);
+5. write and run repository tests from narrow to broad;
+6. score confidence;
+7. use a real surface only where a gap remains;
+8. report and hand off.
+
+The real-use scenario rules, the "not contrived" rule, the confidence gate and the persisted-data rules are sound.
+
+### Findings
+
+| # | Priority area | Evidence | Problem | Recommended change |
+| --- | --- | --- | --- | --- |
+| 1 | Logic conflict | Lines 153 ("unproven critical behavior blocks `Pass`"), 156 (category below 90% means no `Pass`) and 203 (`Blocked` means "ask the user for the exact missing dependency"), versus 209 and #48 (mark what only the user can check; delivery asks the user as a last resort). | A critical acceptance criterion with a part only the user can check can never `Pass`. API/E2E must return `Blocked` and ask the user itself, so the #48 path (delivery asks the user once, at the end) can't be reached. The two rules contradict. | Gate and score over what can be proven without the user. A part marked "only the user can check" (after trying) doesn't block `Pass`; it is listed for delivery. `Blocked` stays for a missing dependency that stops validation itself (a secret, service or environment). |
+| 2 | Content flow | Operating Sequence steps 6, 8 and 9; ledger rule 118 | Evidence capture appears only in the ledger rule (when a ledger is used) and at the end (step 9). A real engineer saves evidence as each case runs. Step 9 doesn't mention the new Acceptance-Criteria Proof. | Steps 6 and 8: keep the evidence as each case runs. Step 9: write the report with its Acceptance-Criteria Proof. |
+| 3 | Economy | Lines 208 and 220 | Two separate "attach" bullets (evidence; cumulative package and test files). | One attach bullet: the cumulative package, the evidence for the critical acceptance criteria, and the changed durable test files. |
+| 4 | Grounding | Line 116 "a credible interruption or context-compression risk"; ledger template "Interruption, context-compression, or rerun note" | Relies on a framework event the agent can't observe (the point the user made for the Deep Researcher). | "a run long enough to outlast the conversation, or one likely to be interrupted". |
+| 5 | Clarity | Line 10 "Prove the reviewed implementation" | On the direct low-risk route nothing was reviewed. | "Prove the implementation". |
