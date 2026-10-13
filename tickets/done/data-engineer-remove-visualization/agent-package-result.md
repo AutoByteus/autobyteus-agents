@@ -1,6 +1,6 @@
 # Agent Package Creation Result
 
-- Status: `Completed` (package change); merge to `main` pending — see Risks
+- Status: `Completed` — merged in PR #43 (`origin/main` `25dd779`, 2026-10-12)
 - Operation: `update`
 - Package type: `agent`
 - Update intent: `simplify` — remove data visualization so the Data Engineer focuses on preparing data
@@ -24,8 +24,8 @@ To keep the user's decision in the package, step 5.1 of the skill now says the r
 
 ### Added
 
-- `/Users/normy/autobyteus-org/autobyteus-agents/tickets/in-progress/data-engineer-remove-visualization/agent-package-analysis.md`
-- `/Users/normy/autobyteus-org/autobyteus-agents/tickets/in-progress/data-engineer-remove-visualization/agent-package-result.md`
+- `/Users/normy/autobyteus-org/autobyteus-agents/tickets/done/data-engineer-remove-visualization/agent-package-analysis.md`
+- `/Users/normy/autobyteus-org/autobyteus-agents/tickets/done/data-engineer-remove-visualization/agent-package-result.md`
 
 ### Modified
 
@@ -41,8 +41,8 @@ To keep the user's decision in the package, step 5.1 of the skill now says the r
 
 ## Durable artifacts and evidence
 
-- Result: `/Users/normy/autobyteus-org/autobyteus-agents/tickets/in-progress/data-engineer-remove-visualization/agent-package-result.md`
-- Analysis: `/Users/normy/autobyteus-org/autobyteus-agents/tickets/in-progress/data-engineer-remove-visualization/agent-package-analysis.md`
+- Result: `/Users/normy/autobyteus-org/autobyteus-agents/tickets/done/data-engineer-remove-visualization/agent-package-result.md`
+- Analysis: `/Users/normy/autobyteus-org/autobyteus-agents/tickets/done/data-engineer-remove-visualization/agent-package-analysis.md`
 - Design/requirements: None
 - Validation evidence: commands recorded below
 - Generated package artifacts: `/Users/normy/autobyteus-org/autobyteus-agents/agents/data-engineer/`
@@ -50,7 +50,7 @@ To keep the user's decision in the package, step 5.1 of the skill now says the r
 ## Approval state
 
 - State: `Approved`
-- Evidence or decision reference: user decision relayed by the Project Task Manager, including commit and push to `main`. Direct push to `main` was rejected (`protected branch hook declined`); the change is in PR #43 (https://github.com/AutoByteus/autobyteus-agents/pull/43), `mergeStateStatus: BLOCKED`, `reviewDecision: REVIEW_REQUIRED`. Not merged with `--admin`: that bypasses the required review and needs the repository owner's decision.
+- Evidence or decision reference: user decision relayed by the Project Task Manager, including commit and push to `main`. Direct push to `main` was rejected (`protected branch hook declined`); the change is in PR #43 (https://github.com/AutoByteus/autobyteus-agents/pull/43), `mergeStateStatus: BLOCKED`, `reviewDecision: REVIEW_REQUIRED`. The repository owner merged it on 2026-10-12 (`25dd779`).
 
 ## Validation
 
@@ -70,14 +70,13 @@ To keep the user's decision in the package, step 5.1 of the skill now says the r
 
 ## Risks, questions, and blockers
 
-- Merge pending: `origin/main` is still `5e667c8`. PR #43 needs an approving review or an owner admin merge (PR #42 was merged by `ryan-zheng-teki`; `gh` here is authenticated as `NormyWang`).
 
 - The stash also held a before/after quality comparison (principles §7, template table). It was dropped with the rest of the stash because the user asked to drop the stash; the committed report already records counts and checks.
 - `agent.md:12` ("Keep this runtime prompt thin …") is a note to authors rather than an agent instruction; left unchanged as out of scope.
 
 ## Next expected action
 
-Merge PR #43 (approve it, or have the owner merge it with admin rights). Then fast-forward local `main` in `/Users/normy/autobyteus-org/autobyteus-agents`.
+None. Local `main` is level with `origin/main`, the feature branch is deleted, and this ticket is closed under `tickets/done/`.
 
 ## Handoff state
 
