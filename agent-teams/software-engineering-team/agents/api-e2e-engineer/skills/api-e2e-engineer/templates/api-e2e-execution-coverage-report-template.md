@@ -65,7 +65,7 @@ Reconcile the ledger here without duplicating its full event log.
 - Ledger reconciled into this report: `No` / `Yes`
 - Last durably recorded event:
 - Cases still running, interrupted, or not started:
-- Interruption, context-compression, or rerun note:
+- Interruption or rerun note:
 
 | Case ID | Final Result (`Pass`/`Fail`/`Blocked`/`Not Tested`/`N/A`) | Last Event | Evidence / Artifact Path | Reconciled Result / Follow-Up |
 | --- | --- | --- | --- | --- |
@@ -122,7 +122,7 @@ Carry forward the post-repository scores from the coverage investigation and rec
 - Overall final confidence:
 - Calculation method:
 - Confidence change produced by broader validation:
-- Every critical acceptance criterion directly proven: `Yes` / `No`
+- Every critical acceptance criterion directly proven, apart from parts only the user can check: `Yes` / `No`
 - Any final applicable category below `90%`: `No` / `Yes` — list:
 - Default final confidence target of `95%` met: `Yes` / `No`
 - Confidence-limiting residual risks:

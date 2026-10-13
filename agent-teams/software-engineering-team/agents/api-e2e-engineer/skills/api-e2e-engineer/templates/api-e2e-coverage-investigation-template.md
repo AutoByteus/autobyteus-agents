@@ -166,7 +166,7 @@ Score each applicable category from `0%` to `100%`. Use `N/A` only with a concre
 
 - Overall post-repository confidence:
 - Calculation method:
-- Every critical acceptance criterion directly proven: `Yes` / `No`
+- Every critical acceptance criterion directly proven, apart from parts only the user can check: `Yes` / `No`
 - Any applicable category below `90%`: `No` / `Yes` — list:
 - Default clean-confidence target of `95%` met: `Yes` / `No`
 - Material residual risks:

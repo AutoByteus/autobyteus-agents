@@ -40,3 +40,19 @@ Its release guide says the artifact-hygiene check rejects "generated ticket arti
 | Ownership and cross-file consistency | Pass | The evidence location rule is stated once (API/E2E skill); the template only has the field. Delivery and the designer receipt read what API/E2E now passes. The result values match #48's "Only The User Can Check". |
 | Scope/diff review | Pass | 4 files (+20/−4) and this ticket folder. |
 | Final review against the standard and anti-patterns | `Pass` (round 3) | Round 1: the template repeated the evidence location (anti-pattern 4), so it was removed there; "(no `:`)" became an example. Round 2: the delivery bullet's grammar was fixed. Round 3 was clean. |
+
+## Revision 2 (user, 2026-10-13): logical-flow fixes from the second analysis
+
+1. **Logic conflict fixed (confidence gate):**
+   - "unproven critical behavior blocks `Pass`, except a part only the user can check";
+   - a new rule says such a part is not a gap: score and gate over what can be proven without the user, list that part for delivery, and it doesn't block `Pass`;
+   - `Blocked` is for a missing dependency that stops validation itself (a secret, service or environment), and the `Blocked` result points to the gate;
+   - both templates' "every critical acceptance criterion directly proven" lines now say "apart from parts only the user can check".
+2. **Evidence as it runs:** Operating Sequence steps 6 and 8 keep each case's evidence as it runs; step 9 writes the report "with its Acceptance-Criteria Proof".
+3. **One attach rule:** the cumulative package, the evidence files for the critical acceptance criteria, and the changed durable test files. The evidence bullet now names the folder and points to the proof table.
+4. **Observable trigger:** the ledger rule says "a run likely to be interrupted or to outlast the conversation" instead of "context-compression risk"; both templates' note field is "Interruption or rerun note".
+5. **Purpose:** "Prove the implementation" (the direct route has no review).
+
+Final review:
+1. Round 1 made the gate rule point to the marking rule instead of repeating it (anti-pattern 4), and aligned the templates' "directly proven" lines with the gate.
+2. Round 2 was clean. The validator passes.
