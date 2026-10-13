@@ -6,13 +6,13 @@ Keep one canonical path across refinement rounds.
 ## Document Status
 
 - Status: `Draft` / `Ready for Approval` / `Approved` / `Blocked`
-- Approved by: `User` / `Solution Designer within the direction (user informed)`; reference:
 - Current solution revision ID: `SR-*` / `N/A`
 - Package identifier:
 - Request / ticket:
+- Requested by (the user, or the delegating agent's address):
 - Requirements owner:
 - Date:
-- Approval state and reference:
+- Approved by and reference: `User` / `Solution Designer within the direction (user informed)`; reference:
 - Exact approved requirements baseline / solution revision:
 - Behavior-defining supplements and their approved versions:
 
@@ -67,7 +67,7 @@ Reference the applicable `BEH-*`, requirement, and acceptance-criteria IDs whose
 
 - Every blocking `Design Impact` or implementation-correction finding must cite an approved requirement, acceptance criterion, or preserved-behavior ID that it protects.
 - A finding that would introduce new product behavior, policy, threat model, migration obligation, compatibility promise, or operational contract is a `Requirement Gap`; it requires explicit user approval before becoming authoritative.
-- An adjacent concern outside the approved boundary may be recorded as a non-blocking risk, recommendation, or separate-ticket candidate. It is not a required design correction.
+- An adjacent concern outside the approved boundary may be recorded as a non-blocking risk, recommendation, or follow-up. It is not a required design correction.
 - A downstream reviewer comment does not amend this requirements basis. The Solution Designer must update the canonical requirements and obtain renewed user approval before a scope-changing proposal can govern design or implementation.
 
 ## Requirements
@@ -165,7 +165,7 @@ State the required outcome and constraints. Do not prescribe a migration merely 
 
 ## Decisions
 
-Every row carries reasoning first, then the recommendation. Status: `Decided` (by you, within the direction) or `Needs user` (scope or product direction).
+Every row carries reasoning first, then the recommendation. Status: `Decided` (by you, within the direction) or `Needs user` (a decision only the user can make, by the skill's criteria).
 
 | Decision ID | Question | Why It Matters | Options / Evidence | Reasoning And Recommendation | Decision Owner | Status |
 | --- | --- | --- | --- | --- | --- | --- |

@@ -78,7 +78,7 @@ For API/E2E failure-origin review:
 
 - Start implementation review by reading [design-principles.md](references/design-principles.md).
 - Use it as the canonical design authority for source and structural review.
-- Consult [design-examples.md](references/design-examples.md) only when a concrete structural example is needed to judge the implementation or its alignment with the reviewed design.
+- Consult [design-examples.md](references/design-examples.md) only when a concrete example is needed to judge the implementation, its alignment with the reviewed design, or a finding's scope.
 - When a prospective finding or score rationale depends on an assumed production, failure, or lifecycle scenario, consult [Example 9](references/design-examples.md#example-9-rejecting-an-unreachable-edge-case-during-technical-review) before finalizing it.
 - For the later entry points, reread only the requirements, design, changed tests, relevant source paths, and prior findings needed for the bounded review.
 - For test-code review and failure-origin review, also read the project's testing guideline(s) that the coverage investigation records, or note `No project testing guideline found` when it records none. Apply this skill's general test-review rules and respect the project's testing rules as well. When the two conflict, follow this skill and record the conflict; record a guideline rule that no longer matches the repository as a discrepancy.
@@ -94,8 +94,9 @@ For API/E2E failure-origin review:
    requirements as intended-behavior authority and any reviewed map as prior
    technical context, not immutable truth.
 2. Confirm the relevant existing behavior, approved change, preserved behavior,
-   and out-of-scope behavior. Establish the supported product-scenario basis
-   for each behavior that the review relies on: actor and coherent goal, or a
+   and the ticket's scope: the requirements doc's Scope Guardrail and, when the
+   design spec has one, its Change Scope. Establish the supported
+   product-scenario basis for each behavior that the review relies on: actor and coherent goal, or a
    supported system/operational event or governing contract; supported entry
    surface; expected outcome; and relevant lifecycle. Do not judge, reopen, or
    redefine the business decision.
@@ -124,15 +125,17 @@ For API/E2E failure-origin review:
    promoting it. Reject circular witnesses that use a downstream technical
    mechanism, diff, test, endpoint, or internal method to establish its own
    scenario. Do not search for hypothetical scenarios as a separate review
-   stage.
-7. Complete the scorecard, findings, classification, and routing only after
-   every material candidate has been promoted or explicitly rejected by the
-   gate. If a candidate is held for missing evidence, stop and mark the
-   dependent review `Unclear` or `Blocked` without scoring, routing, or
-   prescribing machinery for that candidate. Then update the applicable
-   canonical report to the latest complete result and append the concise
-   `CRR-*` entry for the finished review result, including `CRR-001` for the
-   initial result.
+   stage. For each promoted candidate, then judge whether it belongs to this
+   ticket or is a follow-up (Ticket Scope).
+7. Complete the scorecard, findings, classification, and routing only after every
+   material candidate has been promoted or explicitly rejected by the gate.
+   Score and route this ticket's findings only; record follow-ups and send the
+   follow-up request (Ticket Scope). If a candidate is held for missing
+   evidence, stop and mark the dependent review `Unclear` or `Blocked` without
+   scoring, routing, or prescribing machinery for that candidate. Then update
+   the applicable canonical report to the latest complete result and append the
+   concise `CRR-*` entry for the finished review result, including `CRR-001`
+   for the initial result.
 
 If approved behavior or its supported scenario basis is materially ambiguous,
 classify a `Requirement Gap` or `Unclear` according to the missing authority.
@@ -185,6 +188,51 @@ disposition. A test, diff, endpoint, callback, internal method, or proposed
 mechanism may confirm an already established path but cannot establish the
 scenario by itself.
 
+## Ticket Scope
+
+The requirements doc's Scope Guardrail and, when present, the design spec's
+Change Scope are this ticket's boundary, and the guardrail's Review Authority
+applies to your findings. For each promoted finding, ask how critical it is to
+this ticket: is it an inherent part of the ticket, so that without fixing it
+the ticket's change does not work or is not done properly?
+
+- **This ticket:** yes. The change introduced it, including a design problem in
+  the code the change adds; without it an in-scope acceptance criterion or
+  preserved behavior fails; the design spec already places it in this change,
+  such as a refactor its design-health assessment requires; or a team rule
+  makes it part of every change, such as dead code in touched files
+  ([Core Principle 7](references/design-principles.md#7-no-dead-code)) or a file
+  the change takes over or grows past the size limit. Classify and route it as
+  usual.
+- **Follow-up:** no. Everything the ticket delivers works without it, as with
+  a pre-existing bug or design problem in surrounding code, even code the
+  change touches. When the ticket works and you are unsure, prefer a
+  follow-up: it keeps the ticket small and loses nothing. Record it under
+  Follow-ups in the report. It does not fail the review, lower the score, or
+  reopen implementation.
+- **Requirement Gap:** fixing it here would need behavior the requirements do
+  not approve. Route it as usual.
+
+Stay within the entry point you were called for. An unrelated observation
+during test-code or failure-origin review is a follow-up, not a reason to
+widen that review.
+
+When a finding's place is not obvious, consult
+[Example 11](references/design-examples.md#example-11-keeping-a-ticket-in-scope-during-technical-review):
+a worked case with the anti-pattern, the two questions and when the decision
+would change, plus common situations such as regressions, old bugs that block
+the ticket, old and new design problems, dead code, missing tests and old
+security risks.
+
+Send the follow-ups from one review together, in one message, to the agent that
+manages the project's Tasks: the delegating agent the requirements doc records
+under "Requested by", or else an agent you find with `list_available_agents`
+whose description says it manages Project Tasks. For each follow-up give what
+is wrong, where, the evidence, why it is outside this ticket, and a suggested
+Task description, and record in the report where you sent it. When no such
+agent exists, leave the follow-ups in the report. Then finish and hand off the
+review result as usual.
+
 ## General Review Rules
 
 - Review independently and record findings; do not implement source or test-code fixes while acting as reviewer.
@@ -200,7 +248,7 @@ scenario by itself.
 - Review against the full artifact chain, canonical design guidance, and relevant supplemental task artifacts, applying approval constraints where applicable.
 - Treat earlier design artifacts as context, not immunity from review. Classify an inadequate design as `Design Impact`.
 - Review design integrity, API/E2E readiness, cleanup completeness, and changed implementation-source size or structural pressure.
-- Apply `>500` and `>220` source thresholds only to changed implementation-source files, never to tests, fixtures, or generated coverage files.
+- Apply `>500` and `>220` source thresholds only to changed implementation-source files, never to tests, fixtures, or generated coverage files. The `>500` limit belongs to this ticket when the change takes a file over it, or adds to a file that was already over it on the base branch (the change made it worse; ask for the added code in a properly owned file, or a split only if that is not possible). A file already over it that the change does not grow is a follow-up (Ticket Scope), unless the design spec decided the refactor is needed now.
 - When persisted data may be affected, verify that implementation follows the reviewed transition decision and does not add an unnecessary migration or version-specific runtime fallback. Review migration mechanics only when the approved decision is `Migration Required`.
 - Keep each canonical report focused on its latest complete result, and reuse finding IDs across rounds.
 - Record the `Review Scope` of every implementation-review round and, on round `>1`, the evidence for it: `Full Review` on round 1; on round `>1`, one of:
@@ -212,6 +260,7 @@ scenario by itself.
 
 - Use only [templates/api-e2e-test-review-report-template.md](templates/api-e2e-test-review-report-template.md). Do not reopen or append this result to `code-review-report.md`.
 - Review only durable test files added, updated, or removed during API/E2E. Do not review temporary probes or execution artifacts as production source code.
+- An unrelated problem you notice here is a follow-up (Ticket Scope).
 - Do not apply implementation-source line limits, delta thresholds, full implementation source-review score categories, or forced file splitting to tests.
 - Accept large test files when they cover one coherent behavior/surface and remain navigable.
 - Check proportionately that:
@@ -240,13 +289,15 @@ scenario by itself.
   an established path; it cannot establish product-scenario validity or the
   product path itself.
 - Inspect the failure evidence and the smallest relevant test, environment, execution, or implementation path needed to classify the cause.
-- Decide whether the origin is an implementation defect, earlier review gap, runtime-only behavior, implementation change after review, invalid/stale test, fixture/environment/execution issue, design impact, requirement gap, or unclear.
+- Decide whether the origin is an implementation defect, earlier review gap, runtime-only behavior, implementation change after review, invalid/stale test, fixture/environment/execution issue, design impact, requirement gap, a pre-existing problem unrelated to this change, or unclear.
+- For a pre-existing problem unrelated to this change, send a follow-up request (Ticket Scope) and return the package to the API/E2E owner to record the failure as out of scope.
 - When a real review gap exists, state the exact source evidence or invariant that should have been caught and update only the affected finding or score rationale.
 - When the failure was not reasonably detectable in source review, say so explicitly rather than treating every runtime failure as reviewer error.
 
 ## Classification Rules
 
 - `Pass` is a review outcome, not a failure classification.
+- A `Follow-up` is not a classification either: it records a finding outside this ticket and leaves the team as a follow-up request (Ticket Scope).
 - `Local Fix` -> `/implementation_engineer` for a bounded implementation or packaging defect.
 - `Local Fix` -> `/api_e2e_engineer` for a test-code, stale-test, fixture, environment, execution, or report problem.
 - `Design Impact` -> `/solution_designer` for a structural issue or inadequate reviewed design.
@@ -260,7 +311,7 @@ scenario by itself.
 
 - Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to an exact canonical rooted address from the visible team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
-- Finish the applicable review result, classify the outcome, call `get_handoff_rules`, and use the returned conditional rules as the routing authority before sending any handoff or notification.
+- Finish the applicable review result, classify the outcome, call `get_handoff_rules`, and use the returned conditional rules as the routing authority before sending any handoff or notification. Follow-up requests leave the team and are not team handoffs (Ticket Scope).
 - On implementation-review pass, first send the cumulative package, code review report, and code review revision record to the exact returned recipient for the primary pass rule (normally `/api_e2e_engineer`).
 - After that primary handoff succeeds, send the exact returned recipient for the informational pass rule (normally `/implementation_engineer`) a short notification containing `Pass`, the current `CRR-*`, the code-review report path, the primary returned recipient as the next recipient, and `Informational — no action required`.
 - End an implementation-review pass only after both required messages succeed. For every other completed handoff, end after its required message succeeds. Do not poll recipients; act on a later incoming team message if more work is required.

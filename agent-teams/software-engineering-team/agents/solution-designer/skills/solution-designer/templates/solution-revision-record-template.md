@@ -10,7 +10,7 @@ remain authoritative; this record indexes their changes and approval impact.
 
 | Revision ID | Phase (`Requirements`/`Evidence`/`Design`/`Mixed`) | Trigger / Report / Round | Finding IDs | Prior Status | Current Status | Affected Behavior / Requirement IDs | Result |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| SR-001 | Requirements | Initial coherent baseline | N/A | N/A | Draft / Ready for Approval |  |  |
+| SR-001 | Requirements | Initial coherent baseline | N/A | N/A | Draft / Ready for Approval / Approved |  |  |
 
 ## Revision Entries
 

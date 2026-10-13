@@ -28,6 +28,7 @@ First establish what the project expects and how it is run, then evaluate and ma
   mark only inapplicable review artifacts `N/A — not applicable`. The low-risk
   validation route still requires the design and its post-design classification.
 - On a rerun after a prior execution, also accept the existing coverage investigation, execution coverage report, and API/E2E revision record. Use them to locate prior decisions and results, then update the canonical artifacts rather than creating copies.
+- When failure-origin review returns a failure as a pre-existing problem unrelated to this change, record it in the execution report as out of scope, with the follow-up reference the reviewer sent, and finish the result on the in-scope checks.
 - On an API/E2E-owned `Local Fix` from code review or delivery, also accept the specific test, fixture, environment, execution, or reporting issue and its evidence. When delivery discovered the issue, accept the delivery revision record and relevant `DR-*` entry. Resume the affected API/E2E work and preserve the classification.
 - Treat the full upstream package as active validation context, not just the latest implementation handoff or code review report.
 - Read the implementation handoff's `Legacy / Compatibility Removal Check` and `Persisted Data Transition Check` before finalizing coverage. Treat any non-clean answer, or any mismatch between those sections and the implementation, as an active validation signal.
