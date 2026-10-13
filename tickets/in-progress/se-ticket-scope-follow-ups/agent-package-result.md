@@ -93,3 +93,18 @@ The user's criterion: fix it in this ticket only when it is an inherent part of 
 - **Gap D, not changed** (Project Task Manager package): a worker's follow-up request has no written handling in the PM skill, though it works in practice. Left for a separate decision.
 
 Final review: round 1 found the result file and PR description still described the removed "small fix" rule, so both were updated. Round 2 was clean. The validator passes for code-reviewer, api-e2e-engineer and solution-designer, and `team-config.json` parses.
+
+## Revision 4 (user, 2026-10-13): one worked example; no separate scope file
+
+- **No separate scope file:** the behavior boundary is decided and approved with the requirements (Scope Guardrail), and the concrete change scope exists only once the design is decided (Change Scope). A third file would copy both (anti-pattern 4), so both stay where they are decided, and Change Scope sits near the top of the design spec.
+- **Ticket Scope worked example:** the UI-ticket table row is replaced by a worked example. A filter ticket at test-code review notices an old sidebar scroll bug.
+  - **Anti-pattern:** send it to implementation and grow the ticket.
+  - **Judgement, two questions:** did this change introduce it (the sidebar is unchanged and the bug happens on the base branch: no)? Does the ticket fail without fixing it (the filter works: no)?
+  - **Right action:** follow-up, then delivery.
+  - **When it would be this ticket:** the new filter reloads the sidebar.
+
+  The other cases stay as a short "More cases" table.
+
+Final review: round 1 found the example named `Local Fix`, but there is no route from the test-code review to the implementation engineer, so the example now says "classify and route it as usual". Round 2 was clean, and the validator passes.
+
+Follow-up found during this review, outside this PR: `team-config.json` has no route from the post-API/E2E test-code review to `/implementation_engineer`, so a source regression the change caused that is first noticed at that stage has no route. This predates this PR.

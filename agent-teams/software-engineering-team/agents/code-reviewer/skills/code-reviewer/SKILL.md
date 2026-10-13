@@ -212,9 +212,29 @@ Stay within the entry point you were called for. An unrelated observation
 during test-code or failure-origin review is a follow-up, not a reason to
 widen that review.
 
+**Worked example.** A UI ticket adds a filter to a task list. It passed
+API/E2E and comes to you for the test-code review. While reading, you notice
+that the neighbouring sidebar loses its scroll position on refresh.
+
+- *Anti-pattern:* analyse the sidebar bug, classify it `Local Fix`, and send it
+  to the implementation engineer. The ticket reopens, the fix needs new tests,
+  the next round finds more, and the ticket keeps growing.
+- *Judge it with two questions.* Did this change introduce it? The sidebar code
+  is unchanged, and the bug also happens on the base branch, so no. Does the
+  ticket fail without fixing it? The filter works and its acceptance criteria
+  pass, so no. It is not part of this ticket.
+- *Right:* judge the test review on the changed tests, record the sidebar bug
+  under Follow-ups with its evidence, send the follow-up request, and hand the
+  ticket on to delivery.
+- *When it would be this ticket:* if the bug does not happen on the base branch
+  because the new filter reloads the whole list and the sidebar with it, the
+  change introduced it, so it belongs to this ticket. Classify and route it as
+  usual.
+
+More cases:
+
 | Situation | Where it belongs |
 | --- | --- |
-| A UI ticket passed API/E2E. During the test-code review you notice a pre-existing layout bug in a neighbouring panel the ticket did not change. | Follow-up. Judge the test review on the changed tests only, send the follow-up request, and do not reopen implementation for it. |
 | The ticket adds a table column, and the new rendering path breaks the table's existing sorting, a preserved behavior. | This ticket: the change caused it. `Local Fix`. |
 | A pre-existing bug in a function the ticket calls makes an in-scope acceptance criterion fail. | This ticket, because it blocks acceptance; `Requirement Gap` instead if the fix needs behavior the requirements do not approve. |
 | The ticket's new handler duplicates logic that belongs to an existing owner, a design problem in the code the change adds. | This ticket: the change introduced it. `Local Fix` or `Design Impact`. |
