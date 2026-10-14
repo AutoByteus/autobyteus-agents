@@ -16,13 +16,13 @@ Read this file before drafting or reviewing an article package. It is the canoni
 ### 2. Understanding Comes Before Writing
 
 - The article should be based on an explicit understanding package when the request depends on facts, systems, documents, code, papers, current events, or supplied source material.
-- Understanding can come from many investigation modes:
-  - supplied-source reading
-  - workspace file and source-code discovery
-  - online research
-  - documentation reading
-  - paper, PDF, report, or specification reading
-  - firsthand builder experience supplied by the user
+- Understanding can come from one or more investigation modes. Name them in `brief.md` and the research package:
+  - `supplied-source`: files, notes, pasted material, links, transcripts, screenshots, or source articles the user supplied
+  - `workspace-source`: project files, source code, docs, tests, logs, examples, or existing artifacts in the current workspace
+  - `online-research`: web search, websites, documentation, public repos, announcements, standards, or papers, when useful and allowed
+  - `paper-document`: papers, PDFs, reports, manuals, specifications, or long documents
+  - `experiential-builder`: the user's firsthand sequence, observations, product decisions, runtime behavior, or implementation story
+  - With no explicit mode, infer the smallest set that supports the requested article. Do not over-research a simple style rewrite, and do not under-research an article that makes technical, factual, or current-world claims.
 - The writer should use the smallest investigation scope that can honestly support the article, but should not draft around a vague source basis.
 - For source-code or workspace-backed articles, concrete file paths, commands, observed behavior, or project artifacts should support mechanism claims.
 - For online or current-world claims, source dates and uncertainty matter.
@@ -278,30 +278,3 @@ Both the writer (when deciding representation mode) and the reviewer (when passi
 - platform polish masking shallow structure
 - bilingual conversion that preserves words but loses reasoning
 - strong local paragraphs with a weak overall article arc
-
-## Required Questions
-
-- Did the selected author style introduce any fact, opponent, common belief, observation, or causal claim that is not in the source basis?
-- If the article uses contrast, where exactly does the contrasted `X` come from?
-- What understanding mode does this article need?
-- What sources, files, code paths, documents, papers, websites, or user observations support the article?
-- Are any load-bearing claims unsupported or stronger than the evidence allows?
-- What opening stance does this article actually need?
-- What does the reader know, assume, or need at each major step?
-- What question or need does each section answer, and what does that answer make the reader ask next?
-- Why does each section or paragraph follow now rather than earlier or later?
-- Where might a first-time reader ask `Where did this come from?`, `How does this follow?`, or `Why now?`?
-- Did any new topic, time, actor, abstraction, scope, or evidence type appear without a bridge or signpost?
-- If the article is thesis-first, what is the thesis, and where does it appear?
-- What does each section contribute to the thesis?
-- What evidence or mechanism makes the central claim believable?
-- Would any section become clearer with a visual, and what exactly would that visual explain?
-- Does every planned or inserted visual support a nearby claim, mechanism, sequence, comparison, boundary, or takeaway?
-- Are captions and visual details supported by the understanding package rather than invented for presentation?
-- Does the requested style affect only wording, or does it also affect structure and argument rhythm?
-- Is the article using the right ownership stance for who is speaking?
-- If the user supplied a more exact mechanism during revision, did the draft replace the earlier generic explanation?
-- Does every important noun still have a stable referent at sentence level, or did the draft blur distinct boundaries together?
-- Is the article genuinely ready for the requested platform?
-- If bilingual, does the target version preserve logic while sounding native?
-- If revised, were the substantive issues actually resolved, or only softened?

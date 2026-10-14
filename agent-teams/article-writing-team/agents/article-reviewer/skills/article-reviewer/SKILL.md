@@ -5,18 +5,21 @@ description: Review investigation-led article packages for understanding suffici
 
 # Article Reviewer
 
-Use this skill to critically review article packages produced by `article_writer`.
-The writer owns investigation, hierarchical structure, and drafting; the reviewer owns the gate that decides whether the understanding basis, article structure, and draft are publication-ready.
-The writer owns visual planning and asset insertion; the reviewer owns the gate that decides whether those visuals improve the article without inventing facts.
+Use this skill to critically review article packages produced by the article writer.
+The writer owns investigation, hierarchical structure, drafting, visual planning, and asset insertion; the reviewer owns the gate that decides whether the understanding basis, structure, visuals, and draft are publication-ready.
+Review and route: do not rewrite the article, and do not invent context to repair missing investigation. Return each gap to the writer.
 
 Review structure from the largest unit to the smallest. Do not let polished local prose compensate for an unresolved article promise, weak section progression, or paragraphs with multiple competing jobs.
 
 ## Expected Inputs
 
+The package described in [the article package](../../../../shared/article-package.md). Read every file present:
+
 - `brief.md`
 - `understanding-notes.md`
 - `source-index.md`
 - `claim-evidence-ledger.md` when present
+- `research-handoff.md`, and `research-open-questions.md` when present
 - `style-profile-notes.md` when an author/style profile, rhetorical mode, or platform style is part of the task
 - `outline.md`
 - `visual-plan.md` when visuals are requested or materially useful for the article shape
@@ -32,8 +35,8 @@ Use `templates/review-report-template.md` as the report skeleton.
 
 ## Required Shared Reads
 
-- Start by reading [the team writing principles](../../../../shared/writing-principles.md).
-- Use it as the canonical shared writing reference while producing or revising the review report.
+- Start by reading [the team writing principles](../../../../shared/writing-principles.md), the canonical shared writing reference for the review report.
+- Read [the platform output rules](../../../../shared/platform-output-rules.md) to judge platform fit and visual legibility.
 
 ## Review Modes
 
@@ -43,6 +46,8 @@ Use `templates/review-report-template.md` as the report skeleton.
 - `Draft Review`: single-language article review
 - `Bilingual Review`: bilingual pair or cross-language conversion review
 - `Polish Review`: final pass after substantive issues are already resolved
+
+Choose the mode from what the package contains. A package with no draft gets the pre-draft review: Understanding, Outline, and Visual Plan Review (Steps 1-5). A package with a draft gets Draft Review, or Bilingual Review for a bilingual pair or conversion (Steps 1-8). Use Polish Review only when the previous report left no substantive finding.
 
 ## Workflow
 
@@ -128,32 +133,14 @@ Do not ask the writer to fix missing understanding only through prose edits.
 
 ### Step 4 - Review the outline first
 
-Check whether the outline has:
+Check that `outline.md` fills in the hierarchy below with specifics and agrees with `style-profile-notes.md` and the understanding package. A title list or section list alone fails. Look for:
 
-- the correct opening stance for the request
-- an opening progression that matches the stance: positive subject/system -> capability/current use -> observed pressure/question -> change, explanation, or proposal for non-essay modes
-- an explicit, user-requested or source-grounded reason when the outline intentionally begins with a negative or contrastive frame
-- a clear central question, promise, thesis, or main observation appropriate to that stance
-- an explicit scope and bounded conclusion path
-- one named primary logic spine: causal, chronological, problem-solution, question-answer, comparative, derivational, or another justified pattern
-- the reader's starting point: what the reader likely knows, assumes, or needs before the article begins
-- an idea spine or enrichment chain: established idea -> next idea -> why it follows now -> reader capability or next question
-- a representation decision for each major idea: `prose-only`, `image-led`, or `prose-and-image`, with prose responsibility, image responsibility, combined takeaway, and visual ID or `none`
-- a reader progression that explains how understanding changes from section to section
-- a continuous reader question ladder: what each step answers and what question, consequence, or decision it creates next
-- a section spine with one-sentence section claims or observations in reading order
-- a paragraph beat map inside each section, with one dominant job per beat
-- evidence, mechanism, example, or source burden attached to each section and relevant paragraph beat
-- section dependencies: what each section answers, inherits, and prepares
-- reader bridges into and out of sections when the relationship is not self-evident
-- a completed compression test showing that the section and paragraph maps form one coherent progression
-- an appropriate scope for the requested audience and platform
-- enough planned evidence, mechanism, examples, or support
-- a visible relationship to the understanding package
-- a conclusion that lands the intended takeaway
-- a style direction that matches the requested profile
-- visible alignment with `style-profile-notes.md` when style matching is in scope
-- visible visual opportunities when the article is technical, architectural, process-heavy, comparative, data-backed, or long enough to need visual pacing
+- the opening stance, and for non-essay modes a positive-first opening progression, with a recorded reason for any negative or contrastive first move
+- one named logic spine, the reader's starting point, and a bounded promise and scope
+- the idea spine, with a representation decision per major idea (`prose-only`, `image-led`, or `prose-and-image`) that records prose responsibility, image responsibility, combined takeaway, and visual ID or `none`
+- a continuous reader question ladder, section dependencies, and bridges where the relationship is not self-evident
+- a paragraph beat map with one dominant job per beat, and the evidence, mechanism, or example each section carries
+- a completed compression test and an ending that lands the takeaway
 
 Use these structural tests:
 
@@ -168,9 +155,7 @@ Use these structural tests:
 - **Enrichment test:** Does each paragraph advance its approved beat and make the next beat more possible through known-to-new movement and an explicit relation when needed?
 - **Ending test:** Does the conclusion resolve or compress the promise without introducing a new core idea?
 
-If the outline has only titles or section topics without this hierarchy, return `Outline Revision`. Do not advance a structurally underspecified outline because its topic coverage looks complete.
-
-If the outline is not strong enough, return `Outline Revision`.
+If the outline has only titles or section topics without this hierarchy, or is otherwise not strong enough, return `Outline Revision`. Do not advance a structurally underspecified outline because its topic coverage looks complete.
 
 Do not let the process advance to full drafting on a weak outline unless the user explicitly asked to skip that gate.
 
@@ -198,8 +183,8 @@ For each planned or inserted visual, check:
 - generated images do not fake UI, metrics, architecture, charts, people, logos, screenshots, benchmarks, or source evidence
 - the visual has a proposition, visible entities, visible relationships/actions/states, and a minimum reader takeaway without relying entirely on the caption
 - a generic illustration could not replace the visual without changing what the reader learns, unless the asset is intentionally a conceptual cover
-- image-first raster production is used: prioritize built-in `image_gen__imagegen` when available, use image-to-image when a concrete reference improves fidelity, and use configured `generate_image` only as fallback
-- any short in-image labels are grounded, accurate, and legible in the final raster
+- the production method follows the tool order in the writing principles, and any fallback is documented
+- view each final raster: any short in-image labels are grounded, accurate, and legible, including at mobile article width
 - ordinary low-quality SVG is not the default; a diagram is acceptable only as an explicit high-quality HTML-rendered/rasterized exception
 - `visual-asset-index.md` exists when assets are sourced, generated, inserted, or intentionally omitted
 
@@ -297,7 +282,9 @@ The report should include:
 - required revisions
 - decision rationale
 
-Use one of these decisions:
+Use exactly one decision per report: the class of the highest-priority finding (Step 7), listing the other findings under it. Use `Pass` only when no required revision remains.
+
+Decisions:
 
 - `Pass`
 - `Brief Gap`
@@ -310,12 +297,12 @@ Use one of these decisions:
 - `Style Fit Gap`
 - `Fidelity Issue`
 - `Platform Fit Gap`
-- `Unclear`
+- `Unclear` (the package cannot be classified, for example because the files do not match each other or the request; say what is unclear)
 
 ## Re-review Rule
 
 - Re-review the full package after each revision.
-- Do not auto-pass on the first resubmission if the article still feels structurally weak.
+- After substantive findings, pass only after at least one full-package re-review; do not pass a resubmission that is still structurally weak.
 - If a style or fidelity issue materially changes the draft, review the whole argument again, not just the edited paragraph.
 - If the writer changes the investigation notes, source index, or claim/evidence ledger, re-check the outline and draft against the updated understanding package.
 - If the writer changes `visual-plan.md`, `visual-asset-index.md`, captions, or inserted images, re-check the visual plan against the understanding package and the surrounding article flow.

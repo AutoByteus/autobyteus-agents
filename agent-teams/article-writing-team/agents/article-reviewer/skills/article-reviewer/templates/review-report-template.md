@@ -103,22 +103,6 @@
 
 - 
 
-## Next Handoff
+## Next Action For The Writer
 
-- Send back to:
 - Expected next action:
-
-## Decision Values
-
-- `Pass`
-- `Brief Gap`
-- `Understanding Gap`
-- `Source Gap`
-- `Evidence Gap`
-- `Outline Revision`
-- `Visual Plan Gap`
-- `Draft Revision`
-- `Style Fit Gap`
-- `Fidelity Issue`
-- `Platform Fit Gap`
-- `Unclear`

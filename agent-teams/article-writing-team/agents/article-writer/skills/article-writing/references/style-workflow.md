@@ -4,12 +4,12 @@ Use this reference inside the `article-writing` skill when the request includes 
 
 This reference owns style-profile loading, platform rules, bilingual expression, and style-fit checks. The parent `article-writing` skill owns article-level structure, outline shaping, visual planning, drafting order, reviewer handoff, and revision packaging.
 The local `article-researcher` skill owns investigation, understanding artifacts, source/evidence tracking, and reusable research handoff.
-The shared team writing principles remain the article quality authority for both writing and review.
+The shared team writing principles remain the article quality authority for both writing and review; the shared platform output rules own packaging.
 
 ## Required Shared Read
 
-- Start by reading [the team writing principles](../../../../../shared/writing-principles.md).
-- Use it for structure, evidence, style boundaries, bilingual fidelity, and revision precedence; do not let a profile override it.
+- Start by reading [the team writing principles](../../../../../shared/writing-principles.md) and, for platform packaging, [the platform output rules](../../../../../shared/platform-output-rules.md).
+- Use the principles for structure, evidence, style boundaries, bilingual fidelity, and revision precedence; do not let a profile override it.
 
 ## Expected Research Inputs
 
@@ -46,7 +46,7 @@ Treat these files as the source of truth. Do not redo research. If the package h
 - If user does not specify rhetorical mode, default to `factual-technical` for technical topics and `essay` only when the request clearly asks for a persuasive article.
 - Do not assume that naming an author profile automatically authorizes high-rhetoric prose. Profile controls voice and structural habits; rhetorical pressure is a separate choice.
 - If the user objects to prior drafts with phrases like `too salesy`, `too indirect`, `too much like an article about the article`, `too much contrast`, `too repetitive`, or `too detached`, treat those as hard style constraints for the next pass, not as soft preferences.
-- In the article-writing team, record target decisions in `brief.md` and style-specific decisions in `style-profile-notes.md` instead of keeping them only in chat.
+- Record target decisions in `brief.md` and style-specific decisions in `style-profile-notes.md` instead of keeping them only in chat.
 
 2. Load the correct style profile.
 - Read `references/style-registry.md`.
@@ -55,9 +55,9 @@ Treat these files as the source of truth. Do not redo research. If the package h
 - If example file exists for that profile in registry, load it before drafting.
 - If the selected profile defines internal variants or stance modes, choose one explicitly before the article-writing skill finalizes the outline. Record it in `style-profile-notes.md` as `profile + variant + rhetorical mode`.
 - Prefer profile variants that answer the user's actual stance request, not the loudest version of the profile.
-- If profile does not exist, create `references/profiles/<profile-id>.md` from `references/profiles/profile-template.md`, add a row in `style-registry.md`, and set status to `bootstrapping`.
+- If the profile does not exist, add it as the registry's "Add New Author Profile" section describes.
 - For `bootstrapping` status, require 2-5 sample articles before final drafting.
-- In the article-writing team, `style-profile-notes.md` must include the profile path, example paths, selected variant, rhetorical mode, hard constraints, and forbidden moves so `article_reviewer` can review style fit from durable artifacts.
+- `style-profile-notes.md` must include the profile path, example paths, selected variant, rhetorical mode, hard constraints, and forbidden moves so the reviewer can review style fit from durable artifacts.
 
 3. Read and verify the research package before outlining.
 - Read `research-handoff.md` first, then `brief.md`, `understanding-notes.md`, `source-index.md`, and `claim-evidence-ledger.md` when present.
@@ -93,8 +93,7 @@ Treat these files as the source of truth. Do not redo research. If the package h
 6. Run quality and style checks.
 - Check that style and language edits preserve the approved article promise, section order, paragraph beats, and bounded conclusion. Return structural conflicts to `article-writing` instead of silently reshaping the article.
 - Check style alignment against the chosen profile constraints.
-- Check platform fit using `references/platform-output-rules.md`.
-- When text-bearing visuals are present, apply the platform's mobile-legibility rules from `references/platform-output-rules.md` and verify the rendered result, not only the export resolution.
+- Check platform fit using the platform output rules, including the visual-legibility rules when text-bearing visuals are present; verify the rendered result, not only the export resolution.
 - Check rhetorical fit:
   - no sales tone unless explicitly requested
   - no forced binary contrast
@@ -129,7 +128,7 @@ Treat these files as the source of truth. Do not redo research. If the package h
   - `subject-precision`: replace vague nouns with exact system components
   - `derivation-flow`: ensure each section follows from the previous one rather than jumping to a conclusion early
   - `transition-smoothing`: fix inter-sentence jumps where the referent or causal chain becomes hard to track
-- Report style, language, platform, or fidelity findings to the parent `article-writing` workflow. It owns the outline gate, cumulative package, reviewer handoff, and revision routing.
+- Report style, language, platform, or fidelity findings to the parent `article-writing` workflow. It owns the outline gate, the article package, review handoffs, and revisions.
 
 ## Rhetorical Modes
 
@@ -175,4 +174,4 @@ For builder-direct openings, treat `start with what we used`, `start with what w
 - `references/examples/ryan-examples.md`: Ryan few-shot examples for EN/CN and conversion behavior.
 - `references/examples/normy-examples.md`: placeholder for future Normy examples.
 - `references/examples/example-template.md`: template for adding examples for any new profile.
-- `references/platform-output-rules.md`: WeChat/Medium packaging rules.
+- [Platform output rules](../../../../../shared/platform-output-rules.md): WeChat/Medium packaging rules (shared with the reviewer).

@@ -5,44 +5,30 @@ description: Produce a publication-ready article package through source-grounded
 
 # Article Writing
 
-Use this skill to produce article packages for the article writing team.
-Use this as the single end-to-end writing workflow: coordinate the research phase, hierarchical article structure, style and language decisions, outline gate, article draft, and revision package.
-Use the separate bundled `article-researcher` skill for source investigation when the article needs it; do not add another research agent or another writing skill.
-The writer also owns visual planning because image placement is part of the article's structure and explanation flow.
+Use this skill as the article writer's single end-to-end workflow: research phase, style and language decisions, hierarchical outline, visual plan, draft, revision, and delivery. The writer owns visual planning because image placement is part of the article's structure and explanation flow.
 
-## Package Artifacts
+For source investigation, run `article-researcher` as the research phase (Step 2).
 
-Research phase, when needed:
+## Artifacts
 
-- `brief.md`
-- `understanding-notes.md`
-- `source-index.md`
-- `claim-evidence-ledger.md` when factual, technical, or interpretive claims need explicit support
+[The article package](../../../../shared/article-package.md) lists the files in the work folder, their owners, and what every review handoff carries. This skill creates `brief.md`, `style-profile-notes.md`, `outline.md`, `visual-plan.md`, `visual-asset-index.md`, and the draft files.
 
-Writing phase:
+Templates:
 
-- `style-profile-notes.md` when an author/style profile, rhetorical mode, or platform style is part of the task
-- `outline.md`
-- `visual-plan.md` when the article would benefit from diagrams, screenshots, generated images, charts, or other content-bearing visuals
-- `visual-asset-index.md` when visual assets are sourced, generated, inserted, or intentionally omitted
-- `article.md` or bilingual draft set
-
-The reviewer owns `review-report.md`.
-
-Use [templates/style-profile-notes-template.md](templates/style-profile-notes-template.md) for `style-profile-notes.md`.
-Use [templates/outline-template.md](templates/outline-template.md) for `outline.md`.
-Use [templates/visual-plan-template.md](templates/visual-plan-template.md) for `visual-plan.md`.
-Use [templates/visual-asset-index-template.md](templates/visual-asset-index-template.md) for `visual-asset-index.md`.
+- [templates/style-profile-notes-template.md](templates/style-profile-notes-template.md)
+- [templates/outline-template.md](templates/outline-template.md)
+- [templates/visual-plan-template.md](templates/visual-plan-template.md)
+- [templates/visual-asset-index-template.md](templates/visual-asset-index-template.md)
 
 ## Required Shared Reads
 
-- Start by reading [the team writing principles](../../../../shared/writing-principles.md).
-- Use it as the canonical shared writing reference before outlining, drafting, or revising.
+- Start by reading [the team writing principles](../../../../shared/writing-principles.md), the canonical quality bar before outlining, drafting, or revising.
+- When platform packaging is in scope, read [the platform output rules](../../../../shared/platform-output-rules.md).
 
 ## Style And Language Reference
 
 When style profile, bilingual behavior, or platform packaging is in scope, read [references/style-workflow.md](references/style-workflow.md).
-That reference owns profile loading, example loading, bilingual expression, platform rules, and style-fit checks inside this workflow. The present `article-writing` skill remains the only owner of artifact order, hierarchical structure, outline approval, drafting, revision, and reviewer handoff.
+That reference owns profile loading, example loading, bilingual expression, and style-fit checks. This skill owns artifact order, hierarchical structure, the outline gate, drafting, revision, and review handoffs.
 
 ## Workflow
 
@@ -50,37 +36,22 @@ That reference owns profile loading, example loading, bilingual expression, plat
 
 Record:
 
-- mode
-- platform
-- language
-- style profile
-- selected profile variant
-- rhetorical mode
-- opening stance
-- audience
-- one-sentence takeaway
-- depth target
-- understanding mode
-- allowed investigation methods
-- visual expectations, visual constraints, and whether image generation, sourced images, diagrams, screenshots, or no visuals are appropriate
+- mode, platform, language, audience, one-sentence takeaway, depth target
+- style profile, selected profile variant, rhetorical mode, opening stance
+- understanding mode (named in the writing principles) and allowed investigation methods
 - source basis
+- visual expectations and constraints: whether image generation, sourced images, diagrams, screenshots, or no visuals are appropriate
 - active user constraints from revision feedback such as `too salesy`, `too detached`, `too repetitive`, `too indirect`, or `not accurate`
 - explicit limitations or bootstrapping notes when relevant
 
-Use one or more understanding modes:
+If no mode is explicit, infer the smallest mode that can support the requested article.
 
-- `supplied-source`: understand files, notes, pasted material, links, transcripts, screenshots, or source articles supplied by the user
-- `workspace-source`: inspect project files, source code, docs, tests, logs, examples, or existing artifacts in the current workspace
-- `online-research`: search the web, read websites, documentation, public repos, announcements, standards, papers, or other current sources when useful and allowed
-- `paper-document`: read papers, PDFs, reports, manuals, specifications, or long documents
-- `experiential-builder`: organize the user's firsthand sequence, observations, product decisions, runtime behavior, or implementation story
-
-If no mode is explicit, infer the smallest mode that can support the requested article. Do not over-research a simple style rewrite, and do not under-research an article that makes technical, factual, or current-world claims.
+If a missing detail changes the article's direction and the request, workspace, and sources cannot settle it, ask the user a targeted question before continuing.
 
 ### Step 2 - Build the understanding package
 
 When the article needs factual, technical, document, source-code, or supplied-material understanding, run the bundled `article-researcher` skill as this workflow's research phase.
-It owns the detailed research modes, source inspection, understanding notes, source index, claim/evidence ledger, research handoff, and research readiness gate.
+It owns source inspection, understanding notes, source index, claim/evidence ledger, `research-handoff.md`, and the research readiness gate; it updates the research fields of `brief.md`.
 
 - Reuse an existing research package before starting new discovery.
 - Use the smallest research mode that can support the intended article; do not under-research load-bearing claims.
@@ -126,49 +97,13 @@ If a gate fails, update the relevant upstream artifact before outlining.
 
 ### Step 5 - Build the hierarchical structure in `outline.md`
 
-Build the structure from large units to small units. Use the outline template and include:
-
-- title options
-- opening stance
-- central question or reader problem
-- thesis, promise, or bounded main observation, depending on the selected stance
-- scope and explicit non-goals when they prevent overreach
-- one primary logic spine, such as causal, chronological, problem-solution, question-answer, comparative, or derivational
-- reader starting point: what the reader likely knows, assumes, or needs before the article begins
-- opening progression: positive subject/system -> capability or current use -> observed pressure/question -> change, explanation, or proposal
-- justified opening exception, if the first move is intentionally negative or contrastive
-- idea spine / enrichment chain: for each major step, record the established idea, next idea, why it follows now, and the reader capability or question it creates
-- representation mode for each major idea: `prose-only`, `image-led`, or `prose-and-image`
-- prose responsibility, image responsibility, combined reader takeaway, and visual ID or `none` for each representation decision
-- reader progression: what the reader should understand after each major step, expanding the idea spine rather than listing topics
-- a reader question ladder: what question or need each step answers and what question, consequence, or decision it creates next
-- the section spine: one sentence per section in reading order, with each section's job, predecessor or question, evidence burden, and successor or implication
-- a reader bridge into and out of every section when the relationship is not self-evident
-- paragraph beats inside every section: one sentence per planned paragraph or equivalent short-note unit, with its job and evidence/mechanism/example
-- the expansion pattern for each major section, such as claim -> mechanism -> evidence/example -> implication
-- visual opportunities for sections where an image, diagram, screenshot, chart, or table would materially improve understanding
-- intended ending move
+Build the structure from large units to small units. Fill every field of [the outline template](templates/outline-template.md) with specifics: article contract (title options, opening stance and progression, thesis or bounded observation, one logic spine, reader starting point, scope and non-goals, ending move), the idea spine with a representation decision for each major idea, reader progression, question ladder, and a section spine with paragraph beats.
 
 If the user provides a practical sequence such as `we used X -> it worked in Y way -> it started to break at Z -> we changed to W -> we observed Q`, preserve that sequence as the section spine instead of rewriting it into a generic essay shape.
 
-Use the following structural checks before handoff:
+Representation modes follow the visualization-load trigger in the writing principles; every `prose-only` idea records why the reader does not need to build or hold a mental model to continue.
 
-- The article can be summarized as one central promise or bounded answer.
-- For non-essay modes, the first paragraph positively introduces the real subject/system before discussing what was not used, missing, rejected, or proposed instead.
-- Any negative or contrastive first move is explicitly justified by the request or source-grounded correction and recorded in the outline.
-- The idea spine is continuous: every major step follows from the established idea, adds a necessary contribution, and creates the next question or capability.
-- Every major idea has an intentional representation mode. If it uses both prose and image, their responsibilities are distinct and their combined takeaway is explicit; if it is prose-only, the outline explains why an image adds no information.
-- Representation modes follow the visualization-load trigger in the shared writing principles; every `prose-only` idea records why the reader does not need to build or hold a mental model to continue.
-- Every section adds a new claim, mechanism, evidence, example, decision, or implication.
-- Each section follows from the preceding section and prepares the next one; the order is not merely topical.
-- The chosen logic spine remains stable; the article does not switch from chronology to taxonomy or from explanation to promotion without a signpost and reason.
-- The reader question ladder is continuous: each section answers a prepared question or need and creates a reason for the next section.
-- Every meaningful shift in topic, time, actor, abstraction level, scope, or evidence type has a bridge or an explicit signpost.
-- Each paragraph beat has one dominant job and can be compressed to one sentence.
-- The conclusion resolves or compresses the article's promise instead of introducing a new core idea.
-- The outline does not use style, visuals, or title polish to hide an unresolved structure.
-
-If the structure is weak, revise `outline.md` before writing detailed prose. Do not proceed to full drafting unless the reviewer passes the outline or the user explicitly wants to skip that gate.
+Then complete the template's Structural Gate. If the structure is weak, revise `outline.md` before writing detailed prose. Style, visuals, and title polish do not hide an unresolved structure.
 
 ### Step 6 - Create `visual-plan.md` when visuals would help
 
@@ -182,50 +117,22 @@ Create `visual-plan.md` when:
 
 Do not create visuals merely to decorate the article. If the article should remain text-only, record that decision briefly in the outline or brief.
 
-For each planned visual, record:
+For each planned visual, fill [the visual plan template](templates/visual-plan-template.md).
 
-- visual ID
-- idea-spine or section-beat reference
-- representation mode: `image-led` or `prose-and-image`
-- target section and exact placement intent
-- reader problem the visual solves
-- visual proposition: the one nearby idea the image must make concrete
-- prose responsibility: what the surrounding text carries
-- image responsibility: what this visual adds
-- combined reader takeaway: what the reader should understand from both
-- concrete entities that must be visible
-- relationships, direction, state, or lifecycle that must be visible
-- minimum reader takeaway without reading the caption or body prose
-- visual type: architecture diagram, workflow diagram, sequence diagram, concept map, comparison matrix, timeline, annotated screenshot, code-path map, artifact map, evidence chart, generated illustration, or other
-- content that must appear
-- content that must not be invented
-- required labels or text, if any
-- source or evidence anchor from the understanding package
-- caption draft
-- why the selected production method is clearer than a generic alternative
-- production method: built-in `image_gen__imagegen` first when available in the active runtime; image-to-image when a concrete reference improves fidelity; configured `generate_image` second if the preferred tool is unavailable or fails; high-quality HTML/raster diagram only as an explicit exception; or placeholder
-- asset path when already available
-- status: `planned`, `generated`, `inserted`, `omitted`, or `needs user input`
-
-When using image generation, keep prompts constrained by the understanding package. Name the article-specific entities, relationships, action or state, and one visual proposition. Do not ask the image model to invent real interfaces, metrics, architecture, people, logos, or source evidence. Short exact labels are allowed when they materially improve comprehension, but inspect the final raster and regenerate or revise incorrect or unreadable text. Do not use an ordinary low-quality SVG diagram as the default; use a high-quality HTML-rendered or rasterized diagram only when explicitly justified.
+When using image generation, keep prompts constrained by the understanding package. Name the article-specific entities, relationships, action or state, and one visual proposition. Do not ask the image model to invent real interfaces, metrics, architecture, people, logos, or source evidence. Short exact labels are allowed when they materially improve comprehension; view the final raster and regenerate or revise incorrect or unreadable text. Production method and tool order follow the writing principles (visuals section). Do not use an ordinary low-quality SVG diagram as the default.
 
 Reject or redesign a visual when a generic illustration could replace it without changing what the reader learns. A caption may expand the image's meaning, but it must not be the only place where the article-specific mechanism exists. If the image repeats the prose without adding its recorded responsibility, revise the representation decision or omit the image.
 
-### Step 7 - Pre-draft gate
+### Step 7 - Pre-draft review and gate
+
+When Steps 1-6 and their gates pass, the package is ready for the pre-draft review of the understanding basis, style basis, outline, and visual plan. Send it as [the article package](../../../../shared/article-package.md) describes, then wait for the reviewer's result.
 
 Before writing the full draft, verify:
 
 - the outline has passed review or the user explicitly skipped the outline gate
-- `outline.md` contains the article promise, section spine, paragraph beats, evidence burden, and ending move
-- the first-paragraph progression is explicit and follows the selected opening stance
-- `outline.md` contains the chosen logic spine, idea spine, representation decisions, reader question ladder, and section bridges where needed
-- the compressed section and paragraph maps form a coherent reader progression
-- a first-time-reader pass finds no unprepared topic, time, actor, abstraction, scope, or evidence shift
-- any review findings against understanding, evidence, style basis, or structure have been resolved in the corresponding artifact
-- the selected author style is constrained by the shared writing principles, especially `Style Never Creates Facts`
-- style-profile notes and the outline agree on opening stance, profile variant, rhetorical mode, and forbidden moves
-- `visual-plan.md` exists when visuals are requested or clearly needed by the article shape
-- each planned visual is linked to an idea-spine representation decision, has a clear visual proposition, and passes the self-contained takeaway test
+- any review findings against understanding, evidence, style basis, structure, or the visual plan have been resolved in the corresponding artifact
+- `style-profile-notes.md` and the outline agree on opening stance, profile variant, rhetorical mode, and forbidden moves
+- each planned visual links to a representation decision and passes the self-contained takeaway test
 
 If a gate fails, update the upstream package before drafting.
 
@@ -252,6 +159,7 @@ If a gate fails, update the upstream package before drafting.
 - Include image references or stable placeholders, captions, and nearby prose that explain why the reader is seeing the visual.
 - Create or update `visual-asset-index.md` when assets are generated, sourced, inserted, or intentionally omitted.
 - If a planned visual cannot be truthfully produced, keep the placeholder explicit, mark the status in `visual-plan.md`, and do not replace it with a generic image.
+- When the draft is complete, send the full package for draft review.
 
 ### Step 9 - Revise after review
 
@@ -263,13 +171,13 @@ If a gate fails, update the upstream package before drafting.
 - If the draft's local paragraphs are strong but the global map is weak, revise the structure instead of preserving polished prose.
 - If the reviewer reports `Understanding Gap`, `Source Gap`, or `Evidence Gap`, return to the understanding package before editing prose.
 - If the reviewer reports `Visual Plan Gap`, revise the outline, visual plan, captions, assets, or article placement before polishing prose.
+- If a finding needs information only the user has (brief details, source access, platform, a decision), ask the user targeted questions instead of guessing.
 - Preserve the original audience and selected direction unless the review identifies that the direction itself is wrong.
 - When style fit is weak, revise rhythm, transitions, and structural moves, not just isolated words.
 - If the user or reviewer supplies a more exact mechanism, replace the earlier generic explanation immediately.
 - If the active revision constraints include `too salesy`, `too detached`, or `too repetitive`, remove those failure modes explicitly instead of only softening them.
+- After revisions, send the whole updated package for re-review.
 
-## Handoff Rules
+### Step 10 - Deliver
 
-- Send the outline package to `article_reviewer` before the full draft in the normal flow.
-- Include the full cumulative package in every reviewer handoff: brief, understanding notes, source index, claim/evidence ledger when present, style-profile notes when present, visual plan when present, visual asset index when present, source basis, outline, draft files, and any material style notes.
-- On revision rounds, resend the full cumulative package plus the latest review report context.
+When the reviewer's decision is `Pass`, give the user the absolute paths of the final article files and the visual assets, the platform and language of each draft, and any limitation the review report recorded.

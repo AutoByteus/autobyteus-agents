@@ -35,7 +35,7 @@
 
 - No fake UI, screenshot, metric, architecture, chart, benchmark, logo, or source evidence:
 - Captions supported by source basis:
-- Built-in `image_gen__imagegen` prioritized when available; `generate_image` fallback documented when used:
+- Production method follows the tool order in the writing principles; any fallback is documented:
 - Final raster inspected for accurate, readable labels and article-specific content:
 - Image cannot be replaced by a generic illustration without losing the planned explanation:
 - Asset paths valid:
