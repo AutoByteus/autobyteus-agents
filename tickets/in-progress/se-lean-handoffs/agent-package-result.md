@@ -82,7 +82,7 @@ the worktree.
 - Not yet observed in a live run. The next SE ticket's handoffs will show it.
 - Follow-up candidates (anti-pattern 18 detection, no change here):
   - STORM's six skills attach "the handoff file plus the cumulative artifact package". Its "default cumulative package" per receiver is a bounded list.
-  - Article Writing resends "the full cumulative package" every review round. It is a bounded list of named documents.
+  - Article Writing (after PR #50) sends "the full package" for draft review. It is a small set of named documents.
   - Product Team's `product-experience-design` says "every still-relevant supporting artifact".
 - Separate possible Task: the AutoByteus UI slows down rendering a message with many attachments.
 
