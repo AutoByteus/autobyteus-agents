@@ -21,9 +21,9 @@ Everything else stays where it is. The ticket's documents link to each other:
 the revision records index every round, the implementation handoff and the
 API/E2E execution report list the upstream documents, the execution report's
 Acceptance-Criteria Proof table links the evidence, and the investigation
-notes keep the supplement inventory. Name the ticket folder so the receiver
-can find anything else it needs. The code is in the worktree at the branch and
-commit you name.
+notes keep the supplement inventory. Give the ticket folder's absolute path so
+the receiver can find anything else it needs. The code is in the worktree;
+give its absolute path, branch and commit.
 
 "The package" in a role's inputs means these documents in the ticket folder.
 It says what the role works from, not what every message must attach.
@@ -52,7 +52,7 @@ validation against the revised acceptance criteria. So it attaches its
 handoff file, the requirements doc with the new approval record, the solution
 revision record, the design spec, and the API/E2E coverage investigation,
 case ledger, execution report and revision record that API/E2E will update.
-The handoff file names the ticket folder and the review and implementation
+The handoff file gives the ticket folder's absolute path and names the review and implementation
 reports in case they are needed, and says the earlier evidence is linked from
 the proof table. That is nine files instead of 1,618, and the
 receiver loses nothing it needs.
