@@ -1,21 +1,27 @@
 # Choosing What To Hand Off
 
 When you finish your work, decide what to hand off, as a person would before
-passing work to a colleague. You did the work, so you know what you produced,
-what changed and what the receiver has to act on. Think it through instead of
-forwarding everything you received.
+passing work to a colleague. Two parts:
+
+- **Your own documents always go.** Your skill names them: the documents you
+  own and keep current, such as your report and revision record. They are what
+  the next role builds on, so every handoff carries them, on every route.
+- **Other files are your judgement.** You did the work, so you know what
+  changed and what the receiver has to act on. Think it through instead of
+  forwarding everything you received.
 
 ## Think it through
 
-- **What did I produce or change?** Your result, report or handoff file, your
-  revision record entry, and anything new the receiver must look at, such as
-  changed test files for a test review or the evidence of a failing case.
+- **What did I produce or change?** Besides your own documents, anything new
+  the receiver must look at, such as changed test files for a test review or
+  the evidence of a failing case.
 - **What will the receiver do next?** The route you classified tells you:
   review a design, build it, validate it, review tests, deliver it.
-- **Which files will it open for that?** Name those, with absolute paths, and
-  attach them in the reference-files field. Usually that is a handful of
-  current documents, such as the requirements doc and design spec, plus your
-  own result.
+- **Which other files will it open for that?** Usually a few current documents
+  from earlier roles, such as the requirements doc and design spec.
+
+Give every file's absolute path, and attach the files in the reference-files
+field.
 
 Everything else stays where it is. The ticket's documents link to each other:
 the revision records index every round, the implementation handoff and the
@@ -47,12 +53,12 @@ text said "all 1614 incoming refs preserved", backed by a 756 KB package index.
 The receiver had to find the right files among them, and the message was slow
 to open.
 
-**After.** The Solution Designer asks what API/E2E will do next: resume
-validation against the revised acceptance criteria. So it attaches its
-handoff file, the requirements doc with the new approval record, the solution
-revision record, the design spec, and the API/E2E coverage investigation,
-case ledger, execution report and revision record that API/E2E will update.
-The handoff file gives the ticket folder's absolute path and names the review and implementation
-reports in case they are needed, and says the earlier evidence is linked from
-the proof table. That is nine files instead of 1,618, and the
-receiver loses nothing it needs.
+**After.** The Solution Designer attaches its own documents: the handoff
+file, requirements doc, investigation notes, solution revision record and
+design spec. Then it asks what API/E2E will do next: resume validation against
+the revised acceptance criteria. So it adds the new approval record and the
+API/E2E coverage investigation, case ledger, execution report and revision
+record that API/E2E will update. The handoff file gives the ticket folder's
+absolute path, names the review and implementation reports in case they are
+needed, and says the earlier evidence is linked from the proof table. That is
+ten files instead of 1,618, and the receiver loses nothing it needs.

@@ -21,8 +21,12 @@ indexes and hash checks to prove nothing was dropped.
 Now the agent decides, as the user asked: after finishing, it reasons about
 what it produced, what the receiver does next and which files the receiver
 will open, and hands off those. A shared guide owns that reasoning, with the
-real before/after example (1,618 files vs. nine). Each role's per-route lists
-became one line pointing to it.
+real before/after example (1,618 files vs. ten). Each role's per-route lists
+became one line: your own documents always go (named per role, for example
+the Solution Designer's handoff file, requirements, investigation notes,
+solution revision record and design spec); other files are your judgement,
+as the guide describes. Paths are absolute, including the ticket folder and
+the worktree.
 
 ## Ownership and design decisions
 
@@ -71,7 +75,7 @@ became one line pointing to it.
 | Member refs, coordinator, routes | N/A | `team-config.json` unchanged |
 | Ownership and cross-file consistency | Pass | Search for "cumulative package", "complete package", "attach all" and "every still-relevant supplement and" in the team: none left |
 | Scope/diff review | Pass | Only handoff, attach, preserve and receipt lines changed |
-| Final review against the standard and anti-patterns | Pass | Round 1: removed repeated "do not re-attach" lines (anti-pattern 4). Round 2 (user direction): replaced per-route lists with agent judgement (anti-pattern 7). Round 3: removed a duplicate absolute-paths line. |
+| Final review against the standard and anti-patterns | Pass | Round 1: removed repeated "do not re-attach" lines (anti-pattern 4). Round 2 (user direction): replaced per-route lists with agent judgement (anti-pattern 7). Round 3: removed a duplicate absolute-paths line. Round 4 (user direction): absolute paths for the ticket folder and worktree; each role's own documents always handed off. |
 
 ## Risks, questions, and blockers
 

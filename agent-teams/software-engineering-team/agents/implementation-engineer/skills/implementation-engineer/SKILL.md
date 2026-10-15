@@ -140,7 +140,7 @@ against the completed implementation and local evidence.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
 - Finish implementation, validation, classification, and the implementation handoff before routing. Call `get_handoff_rules` and use the returned conditional rules as the routing authority; do not infer the normal recipient from memory.
-- After finishing, decide what to hand off: your result plus the files the receiver needs for its next step, named with absolute paths and attached in the reference-files field. Reason it through as [handoff-references.md](references/handoff-references.md) describes; do not forward everything you received.
+- Every handoff carries your own documents: `implementation-handoff.md` and `implementation-revision-record.md`. Add the other files the receiver needs for its next step; you decide which, as [handoff-references.md](references/handoff-references.md) describes, and do not forward everything you received. Give absolute paths and attach the files in the reference-files field.
 - The completed classification determines whether source review or direct
   API/E2E validation is applicable; use the exact returned recipient from
   `get_handoff_rules` rather than selecting a recipient from memory.
