@@ -75,7 +75,7 @@ the worktree.
 | Member refs, coordinator, routes | N/A | `team-config.json` unchanged |
 | Ownership and cross-file consistency | Pass | Search for "cumulative package", "complete package", "attach all" and "every still-relevant supplement and" in the team: none left |
 | Scope/diff review | Pass | Only handoff, attach, preserve and receipt lines changed |
-| Final review against the standard and anti-patterns | Pass | Round 1: removed repeated "do not re-attach" lines (anti-pattern 4). Round 2 (user direction): replaced per-route lists with agent judgement (anti-pattern 7). Round 3: removed a duplicate absolute-paths line. Round 4 (user direction): absolute paths for the ticket folder and worktree; each role's own documents always handed off. |
+| Final review against the standard and anti-patterns | Pass | Round 1: removed repeated "do not re-attach" lines (anti-pattern 4). Round 2 (user direction): replaced per-route lists with agent judgement (anti-pattern 7). Round 3: removed a duplicate absolute-paths line. Round 4 (user direction): absolute paths for the ticket folder and worktree; each role's own documents always handed off. Round 5 (user question): API/E2E's own documents include the evidence for the critical acceptance criteria, attached, with the evidence folder's absolute path; the guide says a handoff to delivery carries that evidence, also through the code reviewer. Round 1 had dropped the attachment. |
 
 ## Risks, questions, and blockers
 

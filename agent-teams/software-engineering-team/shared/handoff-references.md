@@ -18,7 +18,10 @@ passing work to a colleague. Two parts:
 - **What will the receiver do next?** The route you classified tells you:
   review a design, build it, validate it, review tests, deliver it.
 - **Which other files will it open for that?** Usually a few current documents
-  from earlier roles, such as the requirements doc and design spec.
+  from earlier roles, such as the requirements doc and design spec. Delivery
+  verifies from evidence, so a handoff to delivery also carries the API/E2E
+  execution report and the evidence for the critical acceptance criteria,
+  even when it comes through the code reviewer.
 
 Give every file's absolute path, and attach the files in the reference-files
 field.
