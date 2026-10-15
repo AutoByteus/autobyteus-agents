@@ -16,18 +16,19 @@ Read this file before drafting or reviewing an article package. It is the canoni
 ### 2. Understanding Comes Before Writing
 
 - The article should be based on an explicit understanding package when the request depends on facts, systems, documents, code, papers, current events, or supplied source material.
-- Understanding can come from many investigation modes:
-  - supplied-source reading
-  - workspace file and source-code discovery
-  - online research
-  - documentation reading
-  - paper, PDF, report, or specification reading
-  - firsthand builder experience supplied by the user
+- Understanding can come from one or more investigation modes. Name them in `brief.md` and the research package:
+  - `supplied-source`: files, notes, pasted material, links, transcripts, screenshots, or source articles the user supplied
+  - `workspace-source`: project files, source code, docs, tests, logs, examples, or existing artifacts in the current workspace
+  - `online-research`: web search, websites, documentation, public repos, announcements, standards, or papers, when useful and allowed
+  - `paper-document`: papers, PDFs, reports, manuals, specifications, or long documents
+  - `experiential-builder`: the user's firsthand sequence, observations, product decisions, runtime behavior, or implementation story
+  - With no explicit mode, infer the smallest set that supports the requested article. Do not over-research a simple style rewrite, and do not under-research an article that makes technical, factual, or current-world claims.
 - The writer should use the smallest investigation scope that can honestly support the article, but should not draft around a vague source basis.
 - For source-code or workspace-backed articles, concrete file paths, commands, observed behavior, or project artifacts should support mechanism claims.
 - For online or current-world claims, source dates and uncertainty matter.
 - For papers and documents, article-specific claims should come from actual reading, not title-level inference.
 - If understanding is weak, narrow the article's claims or investigate more before polishing prose.
+- Drafting often exposes a gap the research missed. Going back to investigate at any stage is normal; record what was added in the research package.
 
 ### 3. Opening Stance Must Match The Request
 
@@ -44,21 +45,18 @@ Read this file before drafting or reviewing an article package. It is the canoni
 - A grounded contrast is not automatically the right opening. Use a negative or contrastive first move only when the user explicitly requests it, the article is intentionally `thesis-first`, or the contrast is essential to a source-grounded correction and the outline records that reason.
 - Do not force `not X, but Y` or a compressed thesis hook when the request is better served by a direct system description or builder-owned sequence.
 
-### 4. Outline Before Full Draft
+### 4. Decide The Point, Then Outline Small
 
-- The outline is not a formality. It is the structural contract for the article.
-- Keep one explicit idea spine in `outline.md`: `established reader understanding -> next idea -> why it follows now -> what it enables or makes the reader ask next`.
-- Treat `Reader Progression`, `Reader Question Ladder`, and `Section Spine` as expansions of that same spine, not independent lists. If they disagree, resolve the disagreement in the outline before drafting.
-- For each major idea, choose its representation mode: `prose-only`, `image-led`, or `prose-and-image`. Record what the prose carries, what the image carries, and the combined reader takeaway. This is a content decision, not an image-production decision.
-- A strong outline should show:
-  - working title options
-  - the selected opening stance
-  - the article's central question, promise, thesis, or bounded main observation
-  - the reader's intended progression from what they know now to what they should understand at the end
-  - section-by-section purpose
-  - one-sentence section claims or observations in reading order
-  - the paragraph beats inside each section, with one sentence per planned paragraph or equivalent short-note unit
-  - the evidence, mechanism, examples, or reasoning burden of each section
+- Before outlining, decide the point: what the article claims in one or two sentences, why this reader cares or what is new for them, and the strongest evidence. If research changed what the article can honestly claim, change the claim.
+- The outline fixes the point and the order of the sections. It is a short structural contract, not a pre-written article.
+- Keep one section chain in `outline.md`: `what the reader understands -> next idea -> why it follows now -> what it makes the reader ask next`. Each section's claim, the question it answers, and what it leads to are read off that chain; if they disagree, resolve it in the outline before drafting.
+- A strong outline shows:
+  - working title options and the selected opening stance
+  - the main claim, central question, or bounded main observation
+  - the reader and what they know at the start
+  - the anchor example (see 4D)
+  - the sections in reading order, each with a one-sentence claim, the reader question it answers, its evidence, mechanism, or example, and what it leads to
+  - visual opportunities where the visualization-load trigger fires
   - the intended ending move
 - Do not compensate for a weak outline with polished paragraphs.
 
@@ -69,7 +67,7 @@ Read this file before drafting or reviewing an article package. It is the canoni
 - **Visualization-load trigger:** an idea earns an image when a reader must construct and hold a mental model to follow the prose — a structure, sequence, movement, or concrete referent they otherwise have to build in their head. Common triggers: a roster of distinct roles with a handoff; a package or context moving between named parties; a before/after or comparison; a spatial or process layout; a concrete object the reader has not seen. The simple test: if understanding requires the reader to keep several things and how they move or relate in mind at once, that moment deserves an image.
 - "The text already names the parts" is **not** a reason to skip an image; it is a reason to design the image to be source-grounded and non-redundant. Redundancy and source-risk constrain what the image may invent and how it stays truthful; they do not decide whether an image appears at all.
 - Define the visual proposition before its art direction: state the one nearby idea the image must make concrete, the entities and relationships that must be visible, and the reader takeaway that should survive without the caption.
-- Derive each visual plan from a representation decision in the idea spine. Image generation executes the approved representation; it does not decide which idea deserves an image.
+- Derive each visual plan from a section where the visualization-load trigger fires. Image generation executes the planned visual; it does not decide which idea deserves an image.
 - Decorative images, generic stock-like illustrations, and images that merely make the article look longer should be omitted.
 - Visuals obey the same factual standard as prose. Do not create fake UI states, fake charts, fake architecture, fake screenshots, fake benchmarks, or fake source material.
 - Captions are claims. Every caption should be supported by the understanding package and should not smuggle in new facts.
@@ -91,18 +89,17 @@ Both the writer (when deciding representation mode) and the reviewer (when passi
 ### 4B. Build And Review From Global Structure To Local Prose
 
 - Article work is hierarchical. Resolve the largest unit that can invalidate the work before expanding the next unit:
-  1. article promise, scope, and bounded answer
-  2. section spine and dependency order
-  3. paragraph beats inside each section
-  4. paragraph expansion: claim, explanation or mechanism, evidence or example, and implication when needed
-  5. sentence clarity, rhythm, and platform polish
-- The writer should not draft detailed prose while the article promise or section spine is still unstable.
-- A section is ready to expand only when its one-sentence job, predecessor or question, evidence basis, and successor or implication are clear.
-- A paragraph is ready to expand only when its beat has one dominant job. Split a paragraph beat when it tries to introduce a new claim, mechanism, and conclusion that deserve separate steps.
-- The reviewer should run the same hierarchy in reverse: verify the article-level promise first, then section progression, then paragraph beats, and only then sentence-level polish.
-- Before expanding paragraphs, run the idea-chain test for every major step: identify the established idea, the next idea, why the next idea follows now, and the capability or question it creates. A list of related topics is not a coherent spine.
-- Before creating visuals, run the representation test: if the mode is `prose-and-image`, state what understanding would be lost if either medium were removed; if the mode is `prose-only`, explain why an image would add no information.
-- Use a compression test during both writing and review: compress each section to one sentence and each paragraph to one sentence, then compare that map with `outline.md`. If the compressed map cannot be explained as a coherent progression, route the issue back to structure rather than polishing prose.
+  1. main claim, scope, and bounded answer
+  2. section chain and order
+  3. paragraph expansion: one job per paragraph, built as claim, explanation or mechanism, evidence or example, and implication when needed
+  4. sentence clarity, rhythm, and platform polish
+- The writer should not draft detailed prose while the main claim or section chain is unstable.
+- A section is ready to draft only when its claim, the question it answers, its evidence basis, and what it leads to are clear.
+- Give each paragraph one dominant job. Split a paragraph that introduces a new claim, a mechanism, and a conclusion that deserve separate steps.
+- The reviewer runs the same hierarchy in reverse: main claim first, then section progression, then paragraphs, and only then sentence-level polish.
+- Before drafting, run the idea-chain test for every section: what the reader already understands, the next idea, why it follows now, and the question it creates. A list of related topics is not a coherent chain.
+- Where the visualization-load trigger fires, choose `prose-only`, `image-led`, or `prose-and-image`. For `prose-and-image`, state what understanding would be lost if either medium were removed; for `prose-only`, state why the reader does not need to hold a mental model.
+- Use a reverse outline on the draft: compress each section and each paragraph to one sentence, then compare that map with `outline.md`. If the compressed map cannot be explained as a coherent progression, route the issue back to structure rather than polishing prose.
 - Each section must change the reader's understanding by adding a new claim, mechanism, evidence, example, decision, or implication. A conclusion should compress the resolved argument, not introduce another central idea.
 
 ### 4C. Protect Reader Continuity And Expectation
@@ -114,10 +111,17 @@ Both the writer (when deciding representation mode) and the reviewer (when passi
   - **movement:** the one new claim, mechanism, example, or decision this section adds
   - **exit:** what has now been resolved and why the next section follows
 - Preserve known-to-new movement inside paragraphs. Start from an established referent or question, introduce the next concept, and explain its relation before adding another concept.
-- Enrich rather than accumulate: each paragraph should advance its approved beat and make the next paragraph or section more possible. Name the relation—continuation, consequence, contrast, example, qualification, or return to the central question—when the reader cannot infer it.
+- Enrich rather than accumulate: each paragraph should do its one job and make the next paragraph or section more possible. Name the relation—continuation, consequence, contrast, example, qualification, or return to the central question—when the reader cannot infer it.
 - Bridge every meaningful shift in topic, time, actor, abstraction level, scope, or evidence type. If a reader could ask `Why are we discussing this now?`, add the reason or change the order.
 - At each section and paragraph boundary, make the relationship explicit when it is not obvious: continuation, consequence, contrast, example, qualification, or return to the central question.
 - Audit the article as a first-time reader, not as its author. Mark every place where the reader may ask `Where did this come from?`, `How does this follow?`, or `What does this have to do with the promise?` and repair the bridge, missing prerequisite, or structure.
+
+### 4D. A Technical Article Shows The Thing
+
+- Show the subject early with a concrete anchor: a worked example, real code, a real command and its output, real numbers, or a real artifact. Say what the anchor demonstrates.
+- The anchor must be real. Code shown was run, or is marked as not run; numbers, quotes, and outputs trace to a source in the research package. An invented example is allowed only when labeled illustrative and when it adds no factual claim.
+- Later sections reuse the anchor to carry the argument where they can, instead of switching to abstraction.
+- Explanation with no anchor is a structural weakness, like evidence with no weight (section 6).
 
 ### 5. One Section, One Job
 
@@ -193,7 +197,7 @@ Both the writer (when deciding representation mode) and the reviewer (when passi
   - factual accuracy
   - mechanism accuracy
   - understanding sufficiency
-  - source support
+  - source support, checked against the primary source for the load-bearing claims, not only against the writer's notes
   - claim/evidence alignment
   - opening stance correctness
   - outline integrity
@@ -258,6 +262,9 @@ Both the writer (when deciding representation mode) and the reviewer (when passi
 - wrong opening stance for the requested article type
 - vague or missing investigation before drafting
 - source-code or workspace claims without inspected file/path evidence
+- claims that rest only on the writer's notes and were never checked against the primary source
+- explanation with no concrete anchor (no worked example, real code, or real numbers)
+- an over-detailed outline that stands in for a draft
 - online/current claims without dates or source uncertainty
 - paper/document claims inferred without deep reading
 - weak or delayed thesis when thesis-first framing is actually required
@@ -278,30 +285,3 @@ Both the writer (when deciding representation mode) and the reviewer (when passi
 - platform polish masking shallow structure
 - bilingual conversion that preserves words but loses reasoning
 - strong local paragraphs with a weak overall article arc
-
-## Required Questions
-
-- Did the selected author style introduce any fact, opponent, common belief, observation, or causal claim that is not in the source basis?
-- If the article uses contrast, where exactly does the contrasted `X` come from?
-- What understanding mode does this article need?
-- What sources, files, code paths, documents, papers, websites, or user observations support the article?
-- Are any load-bearing claims unsupported or stronger than the evidence allows?
-- What opening stance does this article actually need?
-- What does the reader know, assume, or need at each major step?
-- What question or need does each section answer, and what does that answer make the reader ask next?
-- Why does each section or paragraph follow now rather than earlier or later?
-- Where might a first-time reader ask `Where did this come from?`, `How does this follow?`, or `Why now?`?
-- Did any new topic, time, actor, abstraction, scope, or evidence type appear without a bridge or signpost?
-- If the article is thesis-first, what is the thesis, and where does it appear?
-- What does each section contribute to the thesis?
-- What evidence or mechanism makes the central claim believable?
-- Would any section become clearer with a visual, and what exactly would that visual explain?
-- Does every planned or inserted visual support a nearby claim, mechanism, sequence, comparison, boundary, or takeaway?
-- Are captions and visual details supported by the understanding package rather than invented for presentation?
-- Does the requested style affect only wording, or does it also affect structure and argument rhythm?
-- Is the article using the right ownership stance for who is speaking?
-- If the user supplied a more exact mechanism during revision, did the draft replace the earlier generic explanation?
-- Does every important noun still have a stable referent at sentence level, or did the draft blur distinct boundaries together?
-- Is the article genuinely ready for the requested platform?
-- If bilingual, does the target version preserve logic while sounding native?
-- If revised, were the substantive issues actually resolved, or only softened?

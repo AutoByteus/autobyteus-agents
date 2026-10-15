@@ -1,125 +1,75 @@
 # Article Outline
 
+Keep this short. It fixes the point and the order of the sections; the paragraphs are written in the draft.
+
 - Article package:
 - Last updated:
 - Outline status: `draft` / `ready for review` / `passed`
-- Mode:
-- Platform:
-- Language:
-- Audience:
-- Depth target:
+- Mode, platform, language, audience, depth target:
 
-## Article-Level Contract
+## The Point
+
+- Main claim, central question, or bounded main observation (one or two sentences):
+- Why this reader cares, or what is new for them:
+- Strongest evidence (source IDs or paths):
+- Scope and explicit non-goals:
+
+## Opening And Reader
 
 - Working title options:
-- Central question or reader problem:
-- Promise, thesis, or bounded main observation:
 - Opening stance:
 - Opening progression: positive subject/system -> capability/current use -> observed pressure/question -> change, explanation, or proposal:
 - Justified opening exception, if the first move is intentionally negative or contrastive:
-- Primary logic spine: `causal` / `chronological` / `problem-solution` / `question-answer` / `comparative` / `derivational` / other:
 - Reader starting point: what the reader likely knows, assumes, or needs before the article begins:
-- Scope:
-- Explicit non-goals or claims intentionally excluded:
-- Intended ending move:
+- Primary logic spine: `causal` / `chronological` / `problem-solution` / `question-answer` / `comparative` / `derivational` / other:
 
-## Idea Spine / Enrichment Chain
+## Anchor Example
 
-Use one line per major step. This is the article's macro logic map; the question ladder and section spine expand it rather than replace it.
+- What is shown (worked example, real code, command and output, real numbers, or artifact):
+- What it demonstrates:
+- Where it is introduced, and which later sections reuse it:
+- How it is real (run, or source ID):
 
-1. Established idea:  -> Next idea:  -> Why it follows now:  -> What it enables or makes the reader ask next:
-   - Representation mode: `prose-only` / `image-led` / `prose-and-image`:
-   - Prose responsibility:
-   - Image responsibility, if any:
-   - Combined reader takeaway:
-   - Visual ID or `none`:
-2. Established idea:  -> Next idea:  -> Why it follows now:  -> What it enables or makes the reader ask next:
-   - Representation mode: `prose-only` / `image-led` / `prose-and-image`:
-   - Prose responsibility:
-   - Image responsibility, if any:
-   - Combined reader takeaway:
-   - Visual ID or `none`:
-3. Established idea:  -> Next idea:  -> Why it follows now:  -> What it enables or makes the reader ask next:
-   - Representation mode: `prose-only` / `image-led` / `prose-and-image`:
-   - Prose responsibility:
-   - Image responsibility, if any:
-   - Combined reader takeaway:
-   - Visual ID or `none`:
+## Section Chain
 
-## Reader Progression
-
-Describe what the reader should understand after each major step. Expand the idea spine; do not list topics without stating the change in understanding.
-
-1.
-2.
-3.
-
-## Reader Question Ladder
-
-Record the question or need that each step answers and, when useful, the next question that answer creates. A new section should not appear without a prepared question, consequence, or explicit signpost.
-
-1. Reader question or need:  -> Answer or movement:  -> Next question created:
-2. Reader question or need:  -> Answer or movement:  -> Next question created:
-3. Reader question or need:  -> Answer or movement:  -> Next question created:
-
-## Section Spine
-
-Each section must have one dominant job and one sentence that states its contribution in reading order.
+One entry per section, in reading order. Each entry says what this section adds and what it makes the reader ask next.
 
 ### Section 1 -
 
-- One-sentence section claim or observation:
-- Section job:
-- Starts from or answers:
-- Evidence, mechanism, example, or source burden:
-- Reader bridge from the previous section:
-- Prepares the reader for:
-- Reader bridge into the next section:
-- Paragraph beats:
-  1.
-  2.
+- Claim or observation (one sentence):
+- Reader question it answers:
+- Evidence, mechanism, or example:
+- Leads to (bridge into the next section, if the link is not obvious):
 
 ### Section 2 -
 
-- One-sentence section claim or observation:
-- Section job:
-- Starts from or answers:
-- Evidence, mechanism, example, or source burden:
-- Reader bridge from the previous section:
-- Prepares the reader for:
-- Reader bridge into the next section:
-- Paragraph beats:
-  1.
-  2.
+- Claim or observation (one sentence):
+- Reader question it answers:
+- Evidence, mechanism, or example:
+- Leads to:
 
-<!-- Repeat the section block as needed. For a short article, keep one line per paragraph beat. -->
+<!-- Repeat as needed. Add a one-line paragraph plan only for a section whose order is fragile. -->
 
-## Expansion Pattern
+## Ending Move
 
-- Default paragraph pattern, if useful: claim -> explanation/mechanism -> evidence/example -> implication/transition
-- Sections that need a different pattern and why:
+- How the ending resolves or compresses the main claim without adding a new core idea:
 
 ## Visual Opportunities
 
-- Section or paragraph:
-- Reader problem solved:
-- Candidate visual and evidence anchor:
+For each section where the visualization-load trigger fires, or the text-only decision with its reason. Details go in `visual-plan.md`.
+
+- Section:
+- Mental model the reader would otherwise have to hold:
+- Representation: `prose-only` (reason) / `image-led` / `prose-and-image`:
 
 ## Structural Gate
 
-- Article promise can be stated in one sentence:
-- Opening progression matches the selected stance:
-- Any negative or contrastive first move has a justified exception recorded:
-- Idea spine is continuous: every major step follows from the previous understanding and creates the next question or capability:
-- Every major idea has an intentional representation mode, with distinct prose/image responsibilities and a combined takeaway:
-- One primary logic spine is named and used consistently:
-- Reader question ladder is continuous:
-- Each section adds a new contribution:
-- Section order forms a causal, explanatory, chronological, or reader-question progression:
-- Every meaningful topic, time, actor, abstraction, scope, or evidence shift has a bridge:
-- Each paragraph beat has one dominant job:
-- Known-to-new movement is clear inside paragraphs:
-- First-time-reader jump audit completed:
-- Conclusion resolves rather than reopens the article:
-- Compression test completed:
+- The main claim can be stated in one sentence
+- Opening progression matches the selected stance; any negative or contrastive first move has a recorded exception
+- Every section adds a new contribution and follows from the one before it
+- One logic spine is named and used consistently
+- Every meaningful shift in topic, time, actor, abstraction, scope, or evidence type has a bridge
+- The anchor example is real and appears early
+- Every trigger moment has a representation decision
+- The ending resolves rather than reopens the article
 - Reviewer decision and date:

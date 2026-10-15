@@ -4,95 +4,25 @@ description: A two-specialist article team for investigation-led understanding, 
 category: writing-and-editing
 ---
 
-This team handles an article request from understanding and investigation through outline, draft, review, revision, and final publication-ready handoff.
-It is the default team for research-to-article, investigate-to-article, understand-to-article, source-code-to-article, documentation-to-article, paper-to-article, and bilingual author-style article work.
+This team turns an article request into a publication-ready package: investigation, outline, draft, review, and revision. It is the default team for research-to-article, investigate-to-article, source-code-to-article, documentation-to-article, paper-to-article, and bilingual author-style article work.
 
-There is no separate orchestrator for this team.
-Each specialist does its own work, follows its own agent definition, and hands work to the next relevant specialist when ready.
-Detailed operating rules, artifact standards, and send-back behavior belong in each member's own agent definition.
+## Roles
 
-## Shared Principles Rule
+- `article_writer` is the entry and coordinator. It receives the user's request, asks the user for what only the user can supply, builds the package (research, style, outline, visual plan, draft), revises after review, and delivers the final package to the user. Its work is defined by the `article-researcher` and `article-writing` skills.
+- `article_reviewer` is the gate. It judges the understanding basis, style basis, outline, visual plan, draft, and publication readiness, and writes `review-report.md`. It does not rewrite the article or repair missing investigation. Its work is defined by the `article-reviewer` skill.
 
-- `article_writer` and `article_reviewer` should both read [`shared/writing-principles.md`](shared/writing-principles.md) before doing substantive drafting or review work.
-- Use it as the canonical quality standard for opening stance, structure, evidence, visual planning, style fidelity, bilingual fidelity, platform fit, revision precedence, and common failure patterns.
-- Agent-specific skills may add role-specific rules, but they should not silently contradict the shared writing principles.
-- `article_writer` uses the bundled `article-writing` skill as its single end-to-end writing workflow. Its style and language reference is part of that skill package, not a second attached writer skill. `article-researcher` remains a separate research-phase skill because it owns source investigation and evidence artifacts rather than article expression.
+## Cooperation
 
-## Artifact Visibility Rule
+1. The writer decides the point, builds the package, and sends it for a light pre-draft review: the point, the evidence (spot-checked against primary sources), the style basis, a short outline, and the visual plan.
+2. After a pass, the writer drafts and sends the draft package. The reviewer reads the draft cold, spot-checks its claims against primary sources, and reviews structure from the claim down to the sentence.
+3. The reviewer returns every decision to the writer: a pass, or the gap and revisions to fix. The writer revises and returns the whole package for re-review until it passes, then delivers the result to the user. A finding that survives two revisions goes to the user for a decision.
 
-- Every `send_message_to` handoff should include absolute filesystem paths for all still-relevant upstream artifacts, not just the latest edited file.
-- Default cumulative package:
-  - `article_reviewer`: brief, understanding notes, source index, claim/evidence ledger when needed, style-profile notes, visual plan when present, visual asset index when present, source material or source article, outline, current draft set
-  - `article_writer` on revision return: brief, understanding notes, source index, claim/evidence ledger when needed, style-profile notes, visual plan when present, visual asset index when present, source material or source article, outline, current draft set, latest review report
-- If the request is bilingual or cross-language, always include both the source and target drafts in the handoff package.
-- If the user has objected to earlier drafts as `too salesy`, `too detached`, `too repetitive`, `too indirect`, or `not accurate`, include those active constraints in the handoff package until the article passes.
+A small request (a rewrite, a conversion, a short note, or a supplied draft) takes the short path in `article-writing`: it skips the pre-draft review and goes straight to draft review.
 
-## Team Roles
+Recipients for each result come from `team-config.json`.
 
-- `article_writer`: owns request intake, understanding mode selection, investigation, source discovery, workspace and source-code reading when relevant, online and documentation research when useful and allowed, source indexing, claim/evidence mapping, style-profile selection, outline creation, visual planning and insertion when useful, draft writing, bilingual adaptation when in scope, and revision passes after review feedback.
-- `article_reviewer`: owns the critical gate for understanding sufficiency, evidence support, outline quality, visual usefulness and factuality, draft quality, style fit, platform fit, bilingual fidelity, and final publication readiness.
+## Shared files
 
-## Delivery Flow
-
-1. `article_writer` starts the run, creates one dedicated work folder, and records the article target in `brief.md`.
-2. `article_writer` builds the understanding and style package: `understanding-notes.md`, `source-index.md`, `claim-evidence-ledger.md` when needed, and `style-profile-notes.md`.
-3. `article_writer` builds the hierarchical structure in `outline.md` (article promise, idea spine, representation decisions, section spine, and paragraph beats), derives `visual-plan.md` from those decisions when visuals would improve the article, and sends the cumulative package to `article_reviewer`.
-4. `article_reviewer` reviews the understanding basis, style basis, outline, and visual plan when applicable before full drafting can proceed.
-5. After outline and applicable visual-plan pass, `article_writer` writes the draft package, inserts planned visuals or explicit placeholders, creates `visual-asset-index.md` when assets are generated, sourced, inserted, or intentionally omitted, and sends the full cumulative package back to `article_reviewer`.
-6. `article_reviewer` writes `review-report.md` and either passes the article or routes a specific gap back to `article_writer`.
-7. `article_writer` revises the affected package artifacts and returns the full cumulative package for re-review until the article passes.
-
-## Working Agreement
-
-- Outline review happens before full drafting. Do not jump straight from brief to full article unless the user explicitly asks to skip the outline gate.
-- The outline gate is hierarchical: a title list or section list is not enough. The reviewer must be able to see the article's central promise, the idea-to-idea progression, the one-sentence job of each section, and the one-sentence beat of each planned paragraph or equivalent short-note unit.
-- Understanding comes before outlining. Do not draft from a vague source basis when the request needs code, document, paper, website, or supplied-material investigation.
-- Review should move from factual and mechanism accuracy to global structure, section flow, paragraph flow, evidence support, style fit, fidelity, platform fit, and only then line-level polish.
-- A draft is not ready when a first-time reader would reasonably ask `Where did this come from?`, `How does this follow?`, or `Why now?`; route the missing bridge, prerequisite, or reordering back to the writer.
-- Representation planning is part of article structure. The writer chooses prose, image, or both for each major idea; the visual plan executes that choice. Do not add a separate image agent by default; the writer owns the article flow.
-- Use one dedicated work folder per request so brief, outline, drafts, and review artifacts stay together.
-- The reviewer should re-review the whole package after each revision rather than checking only the previously flagged lines.
-- The writer should keep the chosen style profile, profile files, example basis, selected variant, rhetorical mode, and hard style constraints visible in `style-profile-notes.md`.
-- For bilingual and cross-language work, the reviewer should treat claim fidelity and natural target-language expression as first-class review dimensions.
-- Both roles should use the same shared writing principles file so drafting and review are evaluating the same bar.
-
-## Issue Routing
-
-- `Brief Gap` -> `article_writer`
-- `Understanding Gap` -> `article_writer`
-- `Source Gap` -> `article_writer`
-- `Evidence Gap` -> `article_writer`
-- `Outline Revision` -> `article_writer`
-- `Visual Plan Gap` -> `article_writer`
-- `Draft Revision` -> `article_writer`
-- `Style Fit Gap` -> `article_writer`
-- `Fidelity Issue` -> `article_writer`
-- `Platform Fit Gap` -> `article_writer`
-- `Unclear` -> `article_writer`
-
-## Ownership
-
-- `article_writer` owns brief completeness, investigation choices, understanding sufficiency, source indexing, evidence mapping, style intent, outline quality, representation decisions, visual planning, visual insertion, draft production, bilingual adaptation, and revision execution.
-- `article_reviewer` owns the review bar, review findings, representation and visual quality gates, decision state, and final publication-readiness gate.
-
-## Send-Back Rules
-
-- Do not treat title polish as a substitute for a weak thesis or weak outline.
-- Do not force a thesis-first or contrastive opening when the request is better served by scope-first, builder-direct, or paper-report framing.
-- Do not ask the reviewer to fix missing structure by rewriting the article from scratch. Route those issues back to `article_writer`.
-- Do not ask the reviewer to repair missing investigation by inventing context. Route missing understanding, weak source support, or unsupported mechanism claims back to `article_writer`.
-- Do not repair a text-only technical draft by sprinkling generic images after the fact. Route missing visual structure, weak captions, unsupported diagrams, or misplaced images back to `article_writer`.
-- Do not treat bilingual conversion as passed if claims are lost, invented, or materially weakened in the target language.
-- If the brief is underspecified, route the gap before overcommitting the draft to a brittle direction.
-- If the user later supplies a more exact mechanism or runtime explanation, replace the earlier generic abstraction instead of preserving it for stylistic continuity.
-- Once substantive findings have been raised, the reviewer should expect at least one full-package re-review before passing.
-
-## Team Rules
-
-- Start with `article_writer`.
-- Keep outputs concrete and ready for the next specialist.
-- Prefer publication-ready structure over decorative prose.
-- Prefer content-bearing visuals over decorative images when visuals are used.
-- Let the requested platform shape packaging, but do not let platform conventions weaken the core argument.
-- Make style decisions explicit instead of letting them remain implicit guesses.
-- Let user-supplied corrections about accuracy, ownership stance, rhetoric, and repetition override default style habits.
+- [`shared/writing-principles.md`](shared/writing-principles.md): the quality bar both roles apply. Skills add role-specific rules but do not contradict it.
+- [`shared/platform-output-rules.md`](shared/platform-output-rules.md): packaging and visual-legibility rules for WeChat and Medium.
+- [`shared/article-package.md`](shared/article-package.md): the files in one request's work folder and what each handoff carries.

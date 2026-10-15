@@ -5,16 +5,15 @@ description: Build and maintain durable article research artifacts before drafti
 
 # Article Researcher
 
-Use this skill before outlining or drafting an article when the topic requires understanding, evidence, source inspection, or factual grounding.
-Use this skill as the article-writing agent's research phase when the article needs source investigation or evidence grounding.
-It owns the research and investigation phase; the `article-writing` skill owns hierarchical structure, style and language decisions, outline shaping, drafting, and revision.
+Use this skill as the article writer's research phase, before outlining or drafting, when the article needs understanding, evidence, source inspection, or factual grounding.
+It owns investigation and the research artifacts; the `article-writing` skill owns `brief.md`, hierarchical structure, style and language decisions, drafting, and revision.
 
 Start by reading [the team writing principles](../../../../shared/writing-principles.md) and use them as the quality standard for evidence, clarity, and the rule that style never creates facts.
 
 ## Core Principle
 
 Research should become durable files, not temporary chat context.
-The research package is complete only when the writer can outline and draft from the artifacts without opening new sources or repeating discovery.
+The research package is ready when the writer can outline and draft from the artifacts without repeating discovery. Writing can still expose a gap; the writer then returns here with the exact missing claim, and this skill adds it to the package.
 Once a research package exists, read it first and update only missing or stale parts instead of researching the same topic again.
 
 ## Research Sufficiency Contract
@@ -37,7 +36,7 @@ If the writer would need to search, inspect code, reread papers, or ask broad cl
 
 ## Produced Artifacts
 
-- `brief.md`
+- the research fields of `brief.md` (created by `article-writing`)
 - `understanding-notes.md`
 - `source-index.md`
 - `claim-evidence-ledger.md` when factual, technical, source-backed, or interpretive claims need explicit support
@@ -46,15 +45,7 @@ If the writer would need to search, inspect code, reread papers, or ask broad cl
 
 ## Research Modes
 
-Use one or more modes, choosing the smallest set that supports the article:
-
-- `supplied-source`: understand files, notes, pasted material, links, transcripts, screenshots, or source articles supplied by the user
-- `workspace-source`: inspect project files, source code, docs, tests, logs, examples, or existing artifacts in the current workspace
-- `online-research`: search the web, read websites, documentation, public repos, announcements, standards, papers, or other current sources when useful and allowed
-- `paper-document`: read papers, PDFs, reports, manuals, specifications, or long documents
-- `experiential-builder`: organize the user's firsthand sequence, observations, product decisions, runtime behavior, or implementation story
-
-If no mode is explicit, infer the smallest mode that can support the requested article. Do not over-research a simple style rewrite, and do not under-research an article that makes technical, factual, or current-world claims.
+Use the investigation modes named in [the writing principles](../../../../shared/writing-principles.md) (section 2): `supplied-source`, `workspace-source`, `online-research`, `paper-document`, and `experiential-builder`. Choose the smallest set that supports the article.
 
 ## Workflow
 
@@ -77,24 +68,15 @@ Update research only when:
 - source material is stale for a current-world claim
 - the reviewer or user identifies an understanding, source, or evidence gap
 
-### Step 2 - Write or update `brief.md`
+### Step 2 - Update the research fields of `brief.md`
 
-Record:
+`article-writing` creates `brief.md`. Update only what research settles or changes:
 
-- article objective
-- audience
-- language and platform if known
-- style profile if known
-- rhetorical mode if known
-- one-sentence takeaway if known
-- depth target
-- research modes used
-- allowed investigation methods
+- research modes used and allowed investigation methods
 - source basis
-- active user constraints or corrections
-- explicit limitations, assumptions, and bootstrapping notes
-
-The brief does not need to decide final style. It must make the research scope clear enough for the writing skill.
+- depth target, when the evidence changes it
+- user corrections and constraints that arrived during research
+- limitations, assumptions, and bootstrapping notes
 
 ### Step 3 - Build `understanding-notes.md`
 
@@ -196,7 +178,7 @@ Include:
 - terms and definitions that must stay precise
 - source IDs for load-bearing claims
 - central question or reader problem and the bounded answer the evidence can support
-- reader starting point and a candidate question ladder: what each major step answers and what it makes possible to ask next
+- reader starting point and the candidate chain of reader questions: what each major step answers and what it makes possible to ask next
 - recommended article spine based on the research, with one sentence per candidate section and the dependency or reader question connecting them, without doing style drafting
 - evidence or mechanism burden for each candidate section; do not invent paragraph prose here
 - for comparisons, the neutral primitive inventory, composability classification, and one same-scenario walkthrough across products
@@ -211,7 +193,7 @@ Do not make `research-handoff.md` a vague summary. It should be specific enough 
 
 Before switching to the writing skill, verify:
 
-- `brief.md` records the article objective, audience, depth, research modes, and constraints
+- `brief.md` records the research modes, source basis, depth, and constraints
 - `understanding-notes.md` and `source-index.md` support the intended article scope
 - `claim-evidence-ledger.md` exists when explicit evidence tracking is needed
 - `research-handoff.md` gives a writer-ready summary with must-use claims, mechanisms, caveats, and forbidden overclaims
@@ -219,15 +201,16 @@ Before switching to the writing skill, verify:
 - comparative dimensions are neutral, consistent across products, and do not mislabel composable primitives as exclusive modes
 - negative capability claims were checked against current authoritative evidence and are qualified precisely, including `not observed in the checked sources` when evidence is incomplete
 - builder-owned design rationale, product interaction surface, and a representative end-to-end scenario are captured when they are central to the article
-- the reader starting point and candidate question ladder are explicit enough for the writing phase to turn into a coherent reader journey
+- the reader starting point and candidate chain of reader questions are explicit enough for the writing phase to turn into a coherent section order
+- a concrete anchor is identified when one exists: a worked example, real code or commands that can be run, real numbers, or an artifact, with its source
 - open questions are either resolved, narrowed, or explicitly listed
-- the writer should not need to open new sources, inspect code, or perform broad discovery before outlining
+- the writer should not need broad discovery before outlining; a narrow gap found later is fixed through this skill
 
 If the gate fails, update the research package or ask a targeted question before drafting.
 
-## Handoff To Writing Skill
+## Return To The Writing Skill
 
-After research, hand off to `article-writing` with:
+After research, continue with `article-writing` and give it:
 
 - `research-handoff.md` first
 - research artifact paths

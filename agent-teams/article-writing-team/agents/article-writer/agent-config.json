@@ -9,9 +9,10 @@
     "stop_background_process",
     "search_web",
     "read_url",
-    "send_message_to",
     "generate_image",
-    "generate_speech"
+    "edit_image",
+    "get_handoff_rules",
+    "send_message_to"
   ],
   "skillNames": [
     "article-researcher",

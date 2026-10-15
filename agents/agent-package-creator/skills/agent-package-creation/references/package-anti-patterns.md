@@ -29,7 +29,7 @@ Concrete mistakes found in real package work. The [package design principles](pa
 
 ### 4. Copying one rule into several files
 
-- **Incident:** The `delegate_task` ban appeared in the Solution Designer's `agent.md`, its skill, `team.md`, an Org summary, and another team's agent, so fixing one left the others refusing.
+- **Incident:** The `delegate_task` ban appeared in the Solution Designer's `agent.md`, its skill, `team.md`, an Org summary, and another team's agent, so fixing one left the others refusing. In the Article Writing Team the opening-progression rule sat in eight files and the image-tool order in five (2026-10-14).
 - **Breaks:** [§3](package-design-principles.md#3-give-each-rule-one-authoritative-file): one authoritative file per rule; others point to it.
 - **Instead:** State the rule once (universal transition in `agent.md`, shared rules in the shared file) and use pointers elsewhere.
 - **Detect:** Search the repository for a distinctive phrase of the rule before and after editing; every hit is a copy to remove or reconcile.
@@ -43,10 +43,10 @@ Concrete mistakes found in real package work. The [package design principles](pa
 
 ### 12. Hard-coding recipients in a skill
 
-- **Incident:** Five STORM Team skills named their next member ("Handoff to `article_polisher_verifier`") and the agents had no `get_handoff_rules`, so the team's backward routes and any renamed member depended on skill text (sweep, 2026-10-07).
+- **Incident:** Five STORM Team skills named their next member ("Handoff to `article_polisher_verifier`") and the agents had no `get_handoff_rules`, so the team's backward routes and any renamed member depended on skill text (sweep, 2026-10-07). The Article Writing Team's two agents also lacked `get_handoff_rules` and a post-work transition, so its configured routes could not be retrieved (2026-10-14).
 - **Breaks:** [§3](package-design-principles.md#3-give-each-rule-one-authoritative-file): conditional recipients belong in the team or Org config, not in a skill.
 - **Instead:** The skill finishes and classifies the result and says "hand off"; the agent gets its recipients from `get_handoff_rules`.
-- **Detect:** Search each skill for its team's `memberName` values and rooted addresses; check that every agent that hands off has `get_handoff_rules` in its tools.
+- **Detect:** Search each skill for its team's `memberName` values and rooted addresses; check that every agent in a team with `handoffs` has `get_handoff_rules` in its tools and the transition in its `agent.md`.
 
 ## Skill content
 
@@ -105,6 +105,20 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Breaks:** [§4](package-design-principles.md#4-apply-one-authoring-standard), economy: an instruction, including a tool call, must change what the role does.
 - **Instead:** In a role's procedure at runtime, read only what the next decision needs, use the tools' filters, and give knowledge that lasts (who does what, what is open) a saved record that the role reads first and updates as it works.
 - **Detect:** For each read or listing call a skill requires, name what the role does differently with the answer and whether a filter or saved record already gives it.
+
+### 18. A tool list that does not match the work
+
+- **Incident:** The Article Writer had `generate_speech` though no step makes speech, and its skill required image-to-image editing without granting `edit_image`; the reviewer carried three process-control tools its review never used (2026-10-14).
+- **Breaks:** [§5](package-design-principles.md#5-attach-skills-deliberately): give each Agent only the tools its work or handoff uses, and every tool its work needs.
+- **Instead:** Derive the list from the skill's actions: each action that needs a tool gets one, and each tool traces to an action.
+- **Detect:** For each tool in `agent-config.json`, find the skill step that uses it; for each step that edits an image, hands off, or runs a process, find the tool.
+
+### 19. A review standard the reviewer cannot read
+
+- **Incident:** The Article Reviewer judged platform fit and mobile legibility while the rules sat in the writer's skill references; its own package had no mention of them (2026-10-14).
+- **Breaks:** [§3](package-design-principles.md#3-give-each-rule-one-authoritative-file): a rule needs one owner that every role applying it can read.
+- **Instead:** Put a standard that writer and reviewer both apply in a file shared at the Team level and link it from both skills.
+- **Detect:** For each dimension a reviewer judges, find the file that states the bar and check that the reviewer's skill can reach it.
 
 ## Creator process
 
