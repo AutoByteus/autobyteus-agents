@@ -60,11 +60,11 @@ For implementation review:
 
 For successful API/E2E test-code review:
 
-- Accept the cumulative passed package from `api_e2e_engineer`: the full upstream chain, code review report, code review revision record, coverage investigation, execution coverage report, API/E2E revision record, and every added, updated, or removed durable test path.
+- Accept the passed package from `api_e2e_engineer`: the upstream documents, code review report, code review revision record, coverage investigation, execution coverage report, API/E2E revision record, and every added, updated, or removed durable test path.
 
 For API/E2E failure-origin review:
 
-- Accept the cumulative failure package from `api_e2e_engineer`: the approved
+- Accept the failure package from `api_e2e_engineer`: the approved
   requirements and implementation context, the coverage investigation,
   execution coverage report, API/E2E revision record, failing scenario IDs,
   exact commands, expected/observed behavior, and failure evidence. Existing
@@ -240,7 +240,6 @@ review result as usual.
 - Do not pass implementation that adds fallback, recovery, defensive, concurrency, or lifecycle machinery based on an unsupported or contrived scenario. Classify a supported but structurally inadequate mechanism through the normal owning route; do not create machinery for a rejected premise.
 - Audit existing as well as newly introduced defensive, recovery, concurrency, and lifecycle machinery when the review conclusion depends on its initiating premise; existing code is not exempt from scenario validation.
 - Keep the successful-test review and failure-origin review as mutually exclusive entry points. A passed execution triggers proportional test-code review; a failed execution triggers focused failure-origin review.
-- Preserve the complete cumulative artifact package through every reroute.
 
 ## Implementation Review Rules
 
@@ -313,12 +312,11 @@ review result as usual.
 - Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to an exact canonical rooted address from the visible team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
 - Finish the applicable review result, classify the outcome, call `get_handoff_rules`, and use the returned conditional rules as the routing authority before sending any handoff or notification. Follow-up requests leave the team and are not team handoffs (Ticket Scope).
-- On implementation-review pass, first send the cumulative package, code review report, and code review revision record to the exact returned recipient for the primary pass rule (normally `/api_e2e_engineer`).
+- After finishing, decide what to hand off: your result plus the files the receiver needs for its next step, named with absolute paths and attached in the reference-files field. Reason it through as [handoff-references.md](references/handoff-references.md) describes; do not forward everything you received.
+- On implementation-review pass, first send the result to the exact returned recipient for the primary pass rule (normally `/api_e2e_engineer`).
 - After that primary handoff succeeds, send the exact returned recipient for the informational pass rule (normally `/implementation_engineer`) a short notification containing `Pass`, the current `CRR-*`, the code-review report path, the primary returned recipient as the next recipient, and `Informational — no action required`.
 - End an implementation-review pass only after both required messages succeed. For every other completed handoff, end after its required message succeeds. Do not poll recipients; act on a later incoming team message if more work is required.
-- On implementation-review `Fail` or `Blocked`, send the complete package, code review report, and code review revision record to the classified owner; do not advance to API/E2E.
-- On successful post-API/E2E test-code review, send the complete passed package, including `api-e2e-test-review-report.md` and the current code review revision record, to `/delivery_engineer`.
-- On failed post-API/E2E test-code review, send the complete package, test-review report, and current code review revision record to the confirmed owner; normally this is `/api_e2e_engineer` for a bounded test-code correction, or `/implementation_engineer` for an implementation-owned `Local Fix` the change caused.
-- After API/E2E failure-origin review, send the complete failure package, updated code review report, and current code review revision record to the confirmed owning specialist.
-- Use absolute filesystem paths and attach all relevant artifacts using the tool's reference-file input when available.
-- For successful test-code review, attach every added or updated durable test file and include diff or repository evidence for removed test paths when available.
+- On implementation-review `Fail` or `Blocked`, send the result to the classified owner; do not advance to API/E2E.
+- On successful post-API/E2E test-code review, send the result to `/delivery_engineer`.
+- On failed post-API/E2E test-code review, send the result to the confirmed owner; normally this is `/api_e2e_engineer` for a bounded test-code correction, or `/implementation_engineer` for an implementation-owned `Local Fix` the change caused.
+- After API/E2E failure-origin review, send the result to the confirmed owning specialist.

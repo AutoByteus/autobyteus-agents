@@ -307,8 +307,9 @@ Persist owned artifacts and classify the result before routing:
 Every result carries the stable package identifier, current SR entry when one
 exists, absolute artifact paths, approval state, scope, workspace/base/finalization
 context, open risks, relevant scenario IDs/evidence uncertainty and next expected action.
-Include every still-relevant supplement and external Product artifact, marking
-inapplicable paths truthfully rather than inventing them.
+Name the supplements and external Product artifacts the receiver needs; the
+investigation notes' supplement inventory lists the rest. Mark inapplicable
+paths truthfully rather than inventing them.
 
 Before rule lookup, persist these fields and the full handoff context in a
 local handoff/result file: original request, goals, relevant sources/links,
@@ -321,8 +322,10 @@ worktree or modify finalized solution documents merely to report the receipt.
 Call `get_handoff_rules`, apply every matching rule, record the resulting route
 in the handoff/result file, and use `send_message_to` with each exact returned
 `recipient_address`. Mention the handoff file's absolute
-path in the short message and attach the same file using the tool's reference
-files field. Do not invent recipients. When the user named a collaborator,
+path in the short message and attach it in the tool's reference-files field,
+with the files the receiver needs for its next step. Decide which as
+[handoff-references.md](references/handoff-references.md) describes; do not
+forward everything you received. Do not invent recipients. When the user named a collaborator,
 send to it as the agent instructions describe, whether or not a rule applies;
 otherwise, if no rule applies, return the result to the user or calling
 workflow. Stop after all required handoffs
@@ -335,7 +338,7 @@ Delivery Engineer owns integrated validation, documentation, explicit user
 verification, repository finalization, applicable release/deployment and safe
 cleanup. On a returned `Delivery Completed` package:
 
-1. Verify the same package identity and cumulative artifact paths, final
+1. Verify the same package identity, the final documents and the final
    validation with its evidence in the archived ticket folder, verification record (the delivery engineer's evidence judgement, or the user's check where one was needed), finalization evidence and
    truthful Completed/Not required state of applicable release and cleanup gates.
 2. If evidence is missing or inconsistent, classify `Blocked` with

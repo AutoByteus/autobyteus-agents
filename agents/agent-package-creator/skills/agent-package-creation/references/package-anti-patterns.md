@@ -48,6 +48,13 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Instead:** The skill finishes and classifies the result and says "hand off"; the agent gets its recipients from `get_handoff_rules`.
 - **Detect:** Search each skill for its team's `memberName` values and rooted addresses; check that every agent that hands off has `get_handoff_rules` in its tools.
 
+### 18. Handoffs that forward everything
+
+- **Incident:** Software Engineering Team skills said to send "the complete cumulative package" and "attach all relevant artifacts", so each role forwarded every reference it received; one message attached 1,618 files, mostly old evidence and source (2026-10-15).
+- **Breaks:** [§2](package-design-principles.md#2-design-responsibilities-before-files): a handoff moves a completed result; the receiver depends on that result, not on the sender's whole history.
+- **Instead:** Let the sender decide after its work: its result plus the files the receiver opens for its next step. Earlier material stays reachable through the documents' links. Give guidance and an example, not a fixed list per route.
+- **Detect:** Search handoff text for "complete", "cumulative", "all relevant", "every still-relevant" or "preserve" next to "package" or "attach"; check that no rule makes a reference list grow with every hop.
+
 ## Skill content
 
 ### 6. Project specifics in a reusable skill

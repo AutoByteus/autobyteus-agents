@@ -54,7 +54,7 @@ An analysis is written for `analyze` and before editing in `update`.
 ## Handoff protocol
 
 1. Persist the complete analysis or result artifact.
-2. Include absolute paths to the result and all still-relevant upstream artifacts.
+2. Include absolute paths to the result and the upstream artifacts the recipient needs for its next step.
 3. Call `get_handoff_rules` after the result exists.
 4. Apply every matching conditional rule.
 5. Call `send_message_to` once for each exact returned `recipient_address`.

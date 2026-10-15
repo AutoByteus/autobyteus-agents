@@ -38,7 +38,7 @@ and executable validation still apply.
 Requirements and design stay distinct authorities despite their shared owner.
 The same canonical investigation notes support both phases; one cumulative
 `solution-revision-record.md` indexes their evolution. Every implementation-ready
-package carries approved requirements, investigation, design, solution history
+package has approved requirements, investigation, design, solution history
 and relevant supplements. Include independent review artifacts when applicable;
 omitted review artifacts are explicitly `N/A — not applicable`.
 
@@ -54,6 +54,8 @@ and returns `Terminal` to the user/caller when no handoff rule matches.
 Each specialist completes its skill-defined responsibility, persists artifacts,
 classifies its result, calls `get_handoff_rules`, applies every matching rule
 and uses `send_message_to` with each exact returned `recipient_address`.
+A handoff carries what the receiver needs for its next step, not every file
+the ticket has produced; see [handoff-references.md](shared/handoff-references.md).
 [team-config.json](team-config.json) owns internal conditional recipients;
 parent rules own cross-team Product handoffs. Return the result
 to the caller if no rule matches and stop after required handoffs. When the

@@ -44,7 +44,7 @@ Use [templates/implementation-revision-record-template.md](templates/implementat
   architecture-review artifacts when that review was selected; otherwise mark
   those review artifacts `N/A — not applicable`. A missing design or missing
   post-design classification is an upstream gap, not a review-bypass route.
-- On an implementation-owned `Local Fix`, accept the cumulative package plus the targeted source or packaging evidence and every still-relevant upstream revision record.
+- On an implementation-owned `Local Fix`, accept the finding with its source or packaging evidence and the sender's report and revision record; the ticket's other documents stay where they are.
 - Treat the full received package as active implementation context, not just one
   artifact in isolation. Skipping independent review does not waive the design.
 
@@ -140,16 +140,11 @@ against the completed implementation and local evidence.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
 - Finish implementation, validation, classification, and the implementation handoff before routing. Call `get_handoff_rules` and use the returned conditional rules as the routing authority; do not infer the normal recipient from memory.
-- Send the cumulative package with approved requirements, investigation notes,
-  completed design spec, solution revision record, every still-relevant
-  supplement, implementation handoff/revision record and triggering evidence.
-  Include design-review and architecture-review records when independent review
-  was selected; mark only inapplicable review artifacts `N/A — not applicable`.
+- After finishing, decide what to hand off: your result plus the files the receiver needs for its next step, named with absolute paths and attached in the reference-files field. Reason it through as [handoff-references.md](references/handoff-references.md) describes; do not forward everything you received.
 - The completed classification determines whether source review or direct
   API/E2E validation is applicable; use the exact returned recipient from
   `get_handoff_rules` rather than selecting a recipient from memory.
 - On rework, identify the current `IR-*` entry, applicable upstream/downstream revision entries or `N/A`, and triggering finding IDs in the message.
-- Use absolute filesystem paths for every artifact in that handoff.
 - For `Design Impact`, `Requirement Gap`, or `Unclear`, call
   `get_handoff_rules` and use the exact returned accountable recipient.
 - Treat an implementation-review pass notification as informational. Record
