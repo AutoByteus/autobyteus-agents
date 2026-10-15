@@ -92,7 +92,7 @@ product-experience design package, verify that it includes explicit user confirm
 - record mocked boundaries, rejected alternatives, and unresolved questions truthfully
 - If the package claims approval without an approval reference or its artifacts disagree, classify `Product Design Requested` with purpose `Result Correction` and use the main skill's handoff procedure. Do not integrate the disputed result as approved.
 - when design review reveals a material scope or requirement change, update the canonical requirements and revision record before forwarding any new user-approved request to the Product UI/UX Designer
-- preserve the approved UI/UX package in the cumulative downstream handoff
+- link the approved UI/UX package from the requirements doc so downstream roles can find it
 
 ## Supplemental Artifact Rules
 
@@ -100,7 +100,7 @@ product-experience design package, verify that it includes explicit user confirm
 - Record each supplement's purpose, scope, status, related requirement IDs, and whether user approval applies.
 - A supplement may complement but never replace the requirements doc or investigation notes.
 - Do not promote scratch files or disposable probes unless they remain useful downstream.
-- Preserve every still-relevant supplement in the cumulative package.
+- Keep every still-relevant supplement in the inventory so later roles can find it.
 
 ## Readiness Gate
 

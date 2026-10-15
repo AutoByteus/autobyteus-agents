@@ -32,7 +32,7 @@ Use [templates/architecture-review-revision-record-template.md](templates/archit
 
 ## Upstream Inputs
 
-- Accept the complete architecture package from `solution_designer`: approved requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, and `solution-revision-record.md`.
+- Accept the architecture package from `solution_designer`: approved requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, and `solution-revision-record.md`.
 - The package must include `task_size` (`Small`/`Medium`/`Large`), `architectural_risk` (`Low`/`High`), the classification rationale, and a selected `Architecture Review` route. This role normally receives only `Large` or `High` work; if the classification does not justify review, return the routing inconsistency to `/solution_designer` instead of reviewing an incorrectly selected gate.
 - On later review rounds, also accept the existing design review report, architecture review revision record, triggering solution revision entry, and any still-relevant downstream report, revision record, or evidence that caused design rework.
 - Treat the requirements doc, investigation notes, and supplemental task artifacts as active review context, not as substitutes for independent design judgment.
@@ -83,10 +83,10 @@ Do not issue the structural verdict until the behavior basis is sufficiently est
 - Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to an exact canonical rooted address from the visible team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
 - Finish the review result, preserve the task-size and architectural-risk classification, call `get_handoff_rules`, and use the returned conditional rules as the routing authority before sending any handoff or pass notification.
-- On pass, first send the cumulative reviewed architecture package to the exact returned recipient for the primary pass rule (normally `/implementation_engineer`): approved requirements doc, investigation notes, solution revision record, design spec, every still-relevant supplemental task artifact, design review report, architecture review revision record, and any still-relevant triggering downstream report, revision record, or evidence.
+- Every handoff carries your own documents: `design-review-report.md` and `architecture-review-revision-record.md`. Add the other files the receiver needs for its next step; you decide which, as [handoff-references.md](references/handoff-references.md) describes, and do not forward everything you received. Give absolute paths and attach the files in the reference-files field.
+- On pass, first send the result to the exact returned recipient for the primary pass rule (normally `/implementation_engineer`).
 - After the primary handoff succeeds, send the exact returned recipient for the informational pass rule (normally `/solution_designer`) a short notification containing `Pass`, the current `ARCH-REV-*`, applicable `SR-*`, the design-review report path, the primary returned recipient as the next recipient, and `Informational — no action required`.
 - End the stage only after every required pass message succeeds. Do not poll either recipient; act on a later incoming team message if more work is required.
-- Use absolute filesystem paths for all artifacts in those handoffs.
-- On `Fail` or `Blocked`, choose `Design Impact`, `Requirement Gap`, or `Unclear` as the failure classification, call `get_handoff_rules`, and route the complete architecture package plus the design review report, architecture review revision record, and still-relevant triggering evidence to the exact returned accountable recipient; normally that is `/solution_designer`. Do not hand off to `/implementation_engineer`.
+- On `Fail` or `Blocked`, choose `Design Impact`, `Requirement Gap`, or `Unclear` as the failure classification, call `get_handoff_rules`, and route the result to the exact returned accountable recipient; normally that is `/solution_designer`. Do not hand off to `/implementation_engineer`.
 - Identify the current `ARCH-REV-*` entry, applicable `SR-*` entries, and finding IDs in every handoff.
 - Expect iterative review rounds with `/solution_designer` until the design passes.

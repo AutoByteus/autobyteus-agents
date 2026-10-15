@@ -21,7 +21,7 @@ First establish what the project expects and how it is run, then evaluate and ma
 
 ## Inputs
 
-- Accept the cumulative implementation package: approved requirements doc,
+- Accept the implementation package: approved requirements doc,
   investigation notes, solution revision record, completed design spec,
   supplements, implementation handoff and implementation revision record.
   Include each independent review artifact when that review was selected;
@@ -55,7 +55,7 @@ Follow this order:
 6. Implement the approved durable coverage changes and execute the relevant repository checks from narrowest to broader scope, keeping each case's evidence as it runs.
 7. Update the investigation with the repository evidence, confidence percentage, residual risks, and explicit broader-validation decision.
 8. When broader validation is required, follow the project's testing guideline and development instructions, prepare the needed environment and data, execute the selected journeys, keeping their evidence as they run, and clean up resources created for the run.
-9. Reassess final confidence, write the execution coverage report with its Acceptance-Criteria Proof and the revision entry, and hand off or reroute the cumulative package.
+9. Reassess final confidence, write the execution coverage report with its Acceptance-Criteria Proof and the revision entry, and hand off or reroute the result.
 
 Do not begin with browser interaction merely because browser tools are available. Do not stop at repository tests merely because they pass. Let the changed boundary, evidence directness, and residual risk determine the next validation surface.
 
@@ -206,18 +206,9 @@ Per result:
 Every result:
 
 - Distinguish durable coverage changes, temporary executable checks, and blocked or infeasible residual scenarios in the execution report.
-- Pass the evidence with every result, `Pass` included: name the evidence folder and point to the execution report's Acceptance-Criteria Proof table, which links each criterion to its evidence. The next roles judge from the evidence itself, not from a summary.
+- Pass the evidence with every result, `Pass` included: give the evidence folder's absolute path, attach the evidence files that prove the critical acceptance criteria, and point to the execution report's Acceptance-Criteria Proof table, which links each criterion to its evidence. The next roles judge from the evidence itself, not from a summary.
 - Mark a behavior as one only the user can check only after you tried to prove it yourself (deeper tests, a real surface, emulation, a safe setup), and record what you tried and why it still needs the user, such as their own accounts or nodes. Delivery uses it to decide whether the user must check.
 - On a later round, recheck prior unresolved failures first, reuse case IDs, and record the rerun delta and prior-failure resolution in the revision record.
-- Include the approved requirements doc, investigation notes,
-  solution revision record, completed design spec, every
-  still-relevant supplemental task artifact, implementation handoff,
-  implementation revision record, coverage investigation, execution coverage
-  report, API/E2E revision record, the test-case ledger when used, and any
-  still-relevant triggering test-review or delivery report, delivery revision
-  record, or rework evidence as absolute filesystem paths. Include
-  architecture-review and source-review artifacts when those reviews occurred;
-  mark only inapplicable review artifacts `N/A — not applicable`.
-- Attach the complete cumulative package, the evidence files for the critical acceptance criteria, and the added or updated durable test files using the tool's reference-file input when available; do not rely only on paths in the message text. Removed paths cannot be attached, so identify them explicitly and provide the relevant diff or repository evidence.
+- Every handoff carries your own documents: the coverage investigation, execution coverage report, `api-e2e-revision-record.md`, the test-case ledger when used, and the evidence for the critical acceptance criteria (above). Add the other files the receiver needs for its next step; you decide which, as [handoff-references.md](references/handoff-references.md) describes, and do not forward everything you received. Give absolute paths and attach the files in the reference-files field. Removed test files cannot be attached; give their paths with the diff.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
