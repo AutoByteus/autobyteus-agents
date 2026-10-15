@@ -30,6 +30,13 @@ Templates:
 When style profile, bilingual behavior, or platform packaging is in scope, read [references/style-workflow.md](references/style-workflow.md).
 That reference owns profile loading, example loading, bilingual expression, and style-fit checks. This skill owns artifact order, hierarchical structure, the outline gate, drafting, revision, and review handoffs.
 
+## Choose The Path
+
+- **Full path (Steps 1-10):** a new article that makes technical, factual, or current-world claims.
+- **Short path:** a style rewrite, a cross-language conversion, a short note, or a draft the user supplied. Write a short `brief.md`; run research only for claims that need it; write `outline.md` as the main claim plus the section list; skip the visual plan unless the visualization-load trigger fires; draft (Step 8); and send the draft package for draft review (the reviewer then skips the pre-draft review). Steps 9 and 10 apply unchanged.
+
+If the user names a path, use it. If a short-path request turns out to carry load-bearing claims you cannot support, move to the full path.
+
 ## Workflow
 
 ### Step 1 - Write `brief.md`
@@ -56,6 +63,7 @@ It owns source inspection, understanding notes, source index, claim/evidence led
 - Reuse an existing research package before starting new discovery.
 - Use the smallest research mode that can support the intended article; do not under-research load-bearing claims.
 - Do not outline from vague notes. The research phase must leave a writer-ready `research-handoff.md` with supported claims, mechanisms, chronology, caveats, and a candidate evidence-based spine.
+- Research is not closed after Step 2. When outlining or drafting exposes a gap, return to `article-researcher` with the exact missing claim or source need, then continue.
 - If the source basis cannot support the intended article, narrow the claims or ask a targeted question before outlining.
 
 ### Step 3 - Resolve the style package
@@ -81,29 +89,36 @@ Record:
 
 Do not leave style fit implicit in chat. The reviewer must be able to read `style-profile-notes.md` and understand what style standard the draft was trying to meet.
 
-### Step 4 - Pre-outline gate
+### Step 4 - Decide the point and check the basis
 
-Before writing `outline.md`, verify:
+Before writing `outline.md`, decide the point and write it at the top of the outline:
+
+- the main claim in one or two sentences, bounded by what the evidence supports
+- why this reader cares, or what is new for them
+- the strongest evidence for it
+- the anchor example: the worked example, real code, command and output, real numbers, or artifact that shows the subject early (writing principles, section 4D)
+
+If the point is not specific, or is not new or useful to this reader, go back to the research or ask the user before outlining.
+
+Then verify:
 
 - `brief.md` records target, audience, mode, platform, language, and constraints
-- `research-handoff.md` has been read when the research skill produced it
+- `research-handoff.md` has been read when the research phase produced it
 - `style-profile-notes.md` records profile, variant, rhetorical mode, and style constraints when style matching is in scope
 - the opening progression matches the selected stance; non-essay modes do not plan a negative-first opening without a recorded exception
-- `understanding-notes.md` and `source-index.md` support the intended article scope
-- `claim-evidence-ledger.md` exists when the article needs explicit evidence tracking
 - no planned contrast, common-belief claim, recommendation, root-cause claim, or production observation lacks an evidence anchor
 
-If a gate fails, update the relevant upstream artifact before outlining.
+If a check fails, update the relevant upstream artifact before outlining.
 
-### Step 5 - Build the hierarchical structure in `outline.md`
+### Step 5 - Write the outline in `outline.md`
 
-Build the structure from large units to small units. Fill every field of [the outline template](templates/outline-template.md) with specifics: article contract (title options, opening stance and progression, thesis or bounded observation, one logic spine, reader starting point, scope and non-goals, ending move), the idea spine with a representation decision for each major idea, reader progression, question ladder, and a section spine with paragraph beats.
+Fill [the outline template](templates/outline-template.md): the point, the opening and reader, the anchor example, a section chain with each section's claim, the reader question it answers, its evidence, and what it leads to, the ending move, and visual opportunities. Keep it short; do not plan every paragraph.
 
-If the user provides a practical sequence such as `we used X -> it worked in Y way -> it started to break at Z -> we changed to W -> we observed Q`, preserve that sequence as the section spine instead of rewriting it into a generic essay shape.
+If the user provides a practical sequence such as `we used X -> it worked in Y way -> it started to break at Z -> we changed to W -> we observed Q`, preserve that sequence as the section chain instead of rewriting it into a generic essay shape.
 
-Representation modes follow the visualization-load trigger in the writing principles; every `prose-only` idea records why the reader does not need to build or hold a mental model to continue.
+Where the visualization-load trigger fires, record a representation decision (writing principles, section 4B); every `prose-only` decision records why the reader does not need to hold a mental model.
 
-Then complete the template's Structural Gate. If the structure is weak, revise `outline.md` before writing detailed prose. Style, visuals, and title polish do not hide an unresolved structure.
+Then complete the template's Structural Gate. If the structure is weak, revise `outline.md` before drafting. Style, visuals, and title polish do not hide an unresolved structure.
 
 ### Step 6 - Create `visual-plan.md` when visuals would help
 
@@ -125,11 +140,11 @@ Reject or redesign a visual when a generic illustration could replace it without
 
 ### Step 7 - Pre-draft review and gate
 
-When Steps 1-6 and their gates pass, the package is ready for the pre-draft review of the understanding basis, style basis, outline, and visual plan. Send it as [the article package](../../../../shared/article-package.md) describes, then wait for the reviewer's result.
+On the full path, when Steps 1-6 and their gates pass, the package is ready for the pre-draft review of the point, evidence basis, style basis, section chain, and visual plan. Send it as [the article package](../../../../shared/article-package.md) describes, then wait for the reviewer's result.
 
 Before writing the full draft, verify:
 
-- the outline has passed review or the user explicitly skipped the outline gate
+- the outline has passed review, the user explicitly skipped the outline gate, or the short path applies
 - any review findings against understanding, evidence, style basis, structure, or the visual plan have been resolved in the corresponding artifact
 - `style-profile-notes.md` and the outline agree on opening stance, profile variant, rhetorical mode, and forbidden moves
 - each planned visual links to a representation decision and passes the self-contained takeaway test
@@ -138,10 +153,11 @@ If a gate fails, update the upstream package before drafting.
 
 ### Step 8 - Draft the article package
 
-- Expand the approved outline top-down: article promise -> section spine -> paragraph beats -> paragraph reasoning -> sentence polish.
+- Draft from the outline: main claim -> sections -> paragraphs (one job each) -> sentence polish.
+- Introduce the anchor example early, as the outline plans. Run any code or command you show and keep its real output; mark anything not run. Reuse the anchor in later sections where it carries the argument.
 - Compose prose and planned visuals as one explanatory unit: the prose carries its recorded responsibility, the image carries its recorded responsibility, and the pair delivers the combined takeaway without accidental duplication.
-- Preserve the approved section order and paragraph jobs. If drafting reveals a structural problem, stop and revise `outline.md` rather than silently improvising a new article shape.
-- Expand paragraphs only as far as their beat requires. A useful default for explanatory prose is claim -> explanation or mechanism -> evidence/example -> implication or transition; omit a component when the article does not need it.
+- Preserve the approved section order. If drafting reveals a structural problem, stop and revise `outline.md` rather than silently improvising a new article shape.
+- Give each paragraph one job and expand it only as far as that job requires. A useful default for explanatory prose is claim -> explanation or mechanism -> evidence/example -> implication or transition; omit a component when the article does not need it.
 - Draft with known-to-new movement: begin from an established referent or question, introduce one next concept, state its relation, and only then move to another concept.
 - Write or preserve a bridge whenever the article changes topic, time, actor, abstraction level, scope, or evidence type. Do not assume the reader will infer why the shift is relevant.
 - For single-language work, write `article.md`.
@@ -164,9 +180,9 @@ If a gate fails, update the upstream package before drafting.
 ### Step 9 - Revise after review
 
 - Read the review report fully.
-- Fix the highest-level failing unit first: article promise, section spine, paragraph beats, paragraph reasoning, then local polish.
-- If the article feels like a sequence of topics, rebuild the idea spine before editing transitions: established idea -> next idea -> reason it follows -> reader capability or next question.
-- Re-run the compression test after structural edits: summarize each section and paragraph in one sentence and compare that map with the revised `outline.md`.
+- Fix the highest-level failing unit first: main claim, section chain, paragraphs, then local polish.
+- If the article feels like a sequence of topics, rebuild the section chain before editing transitions: what the reader understands -> next idea -> reason it follows -> the question it creates.
+- Re-run the reverse outline after structural edits: summarize each section and paragraph of the draft in one sentence and compare that map with the revised `outline.md`.
 - Run a first-time-reader continuity pass after structural edits: read section endings and openings together, then paragraph openings and endings, and mark every `Where did this come from?`, `How does this follow?`, or `Why now?` moment. Repair the bridge, prerequisite, or order before polishing.
 - If the draft's local paragraphs are strong but the global map is weak, revise the structure instead of preserving polished prose.
 - If the reviewer reports `Understanding Gap`, `Source Gap`, or `Evidence Gap`, return to the understanding package before editing prose.
@@ -176,6 +192,7 @@ If a gate fails, update the upstream package before drafting.
 - When style fit is weak, revise rhythm, transitions, and structural moves, not just isolated words.
 - If the user or reviewer supplies a more exact mechanism, replace the earlier generic explanation immediately.
 - If the active revision constraints include `too salesy`, `too detached`, or `too repetitive`, remove those failure modes explicitly instead of only softening them.
+- If the same finding survives two revisions, or the fix needs a decision the package cannot settle, stop revising and give the user the review report and the choice instead of looping.
 - After revisions, send the whole updated package for re-review.
 
 ### Step 10 - Deliver

@@ -5,7 +5,7 @@
 ### Asset 1
 
 - Visual ID:
-- Idea-spine or section-beat reference:
+- Section reference:
 - Representation mode: `image-led` / `prose-and-image`:
 - Asset path:
 - Source:

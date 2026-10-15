@@ -13,7 +13,7 @@ Start by reading [the team writing principles](../../../../shared/writing-princi
 ## Core Principle
 
 Research should become durable files, not temporary chat context.
-The research package is complete only when the writer can outline and draft from the artifacts without opening new sources or repeating discovery.
+The research package is ready when the writer can outline and draft from the artifacts without repeating discovery. Writing can still expose a gap; the writer then returns here with the exact missing claim, and this skill adds it to the package.
 Once a research package exists, read it first and update only missing or stale parts instead of researching the same topic again.
 
 ## Research Sufficiency Contract
@@ -178,7 +178,7 @@ Include:
 - terms and definitions that must stay precise
 - source IDs for load-bearing claims
 - central question or reader problem and the bounded answer the evidence can support
-- reader starting point and a candidate question ladder: what each major step answers and what it makes possible to ask next
+- reader starting point and the candidate chain of reader questions: what each major step answers and what it makes possible to ask next
 - recommended article spine based on the research, with one sentence per candidate section and the dependency or reader question connecting them, without doing style drafting
 - evidence or mechanism burden for each candidate section; do not invent paragraph prose here
 - for comparisons, the neutral primitive inventory, composability classification, and one same-scenario walkthrough across products
@@ -201,9 +201,10 @@ Before switching to the writing skill, verify:
 - comparative dimensions are neutral, consistent across products, and do not mislabel composable primitives as exclusive modes
 - negative capability claims were checked against current authoritative evidence and are qualified precisely, including `not observed in the checked sources` when evidence is incomplete
 - builder-owned design rationale, product interaction surface, and a representative end-to-end scenario are captured when they are central to the article
-- the reader starting point and candidate question ladder are explicit enough for the writing phase to turn into a coherent reader journey
+- the reader starting point and candidate chain of reader questions are explicit enough for the writing phase to turn into a coherent section order
+- a concrete anchor is identified when one exists: a worked example, real code or commands that can be run, real numbers, or an artifact, with its source
 - open questions are either resolved, narrowed, or explicitly listed
-- the writer should not need to open new sources, inspect code, or perform broad discovery before outlining
+- the writer should not need broad discovery before outlining; a narrow gap found later is fixed through this skill
 
 If the gate fails, update the research package or ask a targeted question before drafting.
 

@@ -47,31 +47,33 @@
 - Justified exception recorded in the outline:
 - Opening decision: `pass` / `draft revision` / `outline revision`:
 
-## Hierarchical Structure Check
+## Primary-Source Spot Checks
 
-- Article promise, scope, and bounded answer:
-- Primary logic spine:
-- Reader starting point:
-- Idea spine / enrichment chain: established idea -> next idea -> why it follows now -> reader capability or next question:
-- Representation decisions: `prose-only` / `image-led` / `prose-and-image` with visual IDs:
-- Prose responsibility, image responsibility, and combined takeaway:
-- Opening stance and reader progression:
-- Reader question ladder:
-- Section spine and section dependencies:
-- One-sentence contribution of each section:
+| Claim (number, command, quote, or mechanism) | Primary source opened or command run | Result: `supported` / `contradicted` / `not supported` |
+| --- | --- | --- |
+|  |  |  |
+
+## Cold Read (draft review only)
+
+- Where the draft lost the reader before the package was opened:
+
+## Structure Check
+
+- Main claim, scope, and bounded answer:
+- Primary logic spine and reader starting point:
+- Anchor example: real, early, reused:
+- Section chain: what each section adds, the question it answers, and what it leads to:
 - Section entry/exit bridges:
-- Paragraph beat map and one-job-per-paragraph check:
-- Known-to-new movement and continuity audit:
-- Idea-chain continuity and enrichment test:
-- Representation decision and information-allocation test:
-- Compression test: section and paragraph summaries compared with `outline.md`:
+- Representation decisions where the visualization-load trigger fires:
+- Paragraph jobs and known-to-new movement (draft review):
+- Reverse outline: section and paragraph summaries of the draft compared with `outline.md` (draft review):
 - First failing level: `article` / `section` / `paragraph` / `sentence`:
 - Structure decision: `pass` / `outline revision` / `draft revision`:
 
 ## Visual Plan Check
 
 - Visual strategy:
-- Idea-spine or section-beat references:
+- Section references:
 - Representation modes:
 - Visual propositions and visible entity/relationship coverage:
 - Prose/image responsibility split:
@@ -96,6 +98,8 @@
 - 
 
 ## Required Revisions
+
+Mark a finding `recurring` when the previous report raised it and it is still open after two revisions.
 
 1.
 

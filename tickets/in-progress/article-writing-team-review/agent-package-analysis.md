@@ -110,3 +110,23 @@ Creator
 ## Next action
 
 Apply the planned changes (this update), then validate and write the result.
+
+---
+
+# Round 2 (2026-10-15): workflow fit for writing one technical article
+
+Request: after the user asked whether the workflow matches how a good technical article is written, I listed seven flaws. The user asked for them to be fixed as more commits on PR #50. Operation: `update`, intent `optimize`. Files read: the same set as round 1, all still in the conversation, plus the PR-branch copies at `c5599b4` (identical to the working tree; `origin/main` still `ed23b4d`).
+
+Preserved: evidence discipline (research files, claim ledger, style never creates facts), the reviewer as a separate gate, decision values, the visualization-load trigger, positive-first openings, builder voice, bilingual fidelity, the routes and wiring from round 1.
+
+| # | Priority area | Evidence | Owner | Change |
+| --- | --- | --- | --- | --- |
+| R1 | Flow: outline is too heavy and reviewed too early | `outline-template.md` has about 100 fields (idea spine, reader progression, question ladder, section spine, paragraph beats for every paragraph, a representation choice per idea). `writing-principles.md` §4 to §4C require it; reviewer Step 4 and writer Steps 5 and 7 gate on it. Paragraph-level plans cannot be judged without prose. | principles §4–4C, outline template, writer Steps 5/7, reviewer Steps 4/6 | Replace with a small outline: main claim, reader, anchor example, one section chain (claim, what it answers, evidence, what it leads to), visual opportunities. Pre-draft review checks only claim, evidence, style basis, section chain. Paragraph jobs are checked on the draft by a reverse outline. |
+| R2 | Grounding: reviewer checks the draft against the writer's notes | Reviewer Step 3 reads `understanding-notes.md` and `source-index.md`; no step opens the primary source. A wrong note passes review. | reviewer skill, review template | Add primary-source spot checks of the load-bearing claims, numbers, commands, and quotes; record them in the report. |
+| R3 | Flow: one full procedure for every request (anti-pattern 15) | No short path anywhere; a style rewrite or short note runs all gates. | writer skill, reviewer mode rule | Add a short path: brief, main claim and section list, draft, draft review. |
+| R4 | Flow: no step decides the point; research must be "complete" | No file asks what the article claims, why this reader cares, what is new. Researcher gate line "writer should not need to open new sources" and style-workflow "Do not redo research" block going back during drafting. | writer Step 4, researcher gate, style-workflow | Add a "decide the point" step; allow the writer to return to research whenever drafting exposes a gap. |
+| R5 | Content: no weight on concrete examples | The only anchors are style and structure; no rule asks for a worked example, real code, or real numbers, or that they were run or sourced. | principles (new rule), outline template, writer Step 8, reviewer | Add one rule in the principles; point to it. |
+| R6 | Flow: no cold read | "First-time-reader pass" is done with the full package in hand. | reviewer Step 6 | Reviewer reads the draft files alone first and notes where it is lost, before opening the outline or notes. |
+| R7 | Recovery: no limit on review rounds | Re-review rule has no exit. | writer Step 9, reviewer Re-review rule | A finding that survives two revisions, or needs a decision the package cannot settle, goes to the user. |
+
+Open questions: none new. The image tool order question from round 1 is still open.

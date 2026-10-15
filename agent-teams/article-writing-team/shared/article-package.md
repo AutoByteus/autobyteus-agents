@@ -31,4 +31,4 @@ Send the whole package each time, not only the latest file:
 - The user's active corrections (for example `too salesy`, `too detached`, `too repetitive`, `too indirect`, `not accurate`) until the article passes.
 - On a return to the writer, the latest `review-report.md`.
 
-The first handoff to the reviewer has no draft: it asks for the pre-draft review of the understanding basis, style basis, outline, and visual plan. The second carries the draft.
+The first handoff to the reviewer has no draft: it asks for the pre-draft review of the point, the evidence, the style basis, the outline, and the visual plan. The second carries the draft. On the short path, only the second is sent.

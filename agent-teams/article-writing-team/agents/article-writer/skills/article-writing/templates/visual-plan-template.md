@@ -12,7 +12,7 @@
 ### Visual 1
 
 - Visual ID:
-- Idea-spine or section-beat reference:
+- Section reference:
 - Representation mode: `image-led` / `prose-and-image`:
 - Target section:
 - Placement intent:
@@ -47,7 +47,7 @@
 ## Review Questions
 
 - Does every visual explain something the nearby text needs?
-- Does every visual link to an explicit idea-spine representation decision?
+- Does every visual link to a representation decision for its section?
 - Are the prose responsibility and image responsibility distinct rather than duplicated?
 - If the image were removed, what understanding would be lost? If the prose were removed, what qualification or mechanism would be lost?
 - Does each visual communicate its proposition through concrete visible entities and relationships rather than generic metaphor?

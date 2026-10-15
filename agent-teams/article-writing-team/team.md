@@ -13,9 +13,11 @@ This team turns an article request into a publication-ready package: investigati
 
 ## Cooperation
 
-1. The writer builds the package and sends it for a pre-draft review: understanding basis, style basis, outline, and visual plan.
-2. After a pass, the writer drafts and sends the draft package for review.
-3. The reviewer returns every decision to the writer: a pass, or the gap and revisions to fix. The writer revises and returns the whole package for re-review until it passes, then delivers the result to the user.
+1. The writer decides the point, builds the package, and sends it for a light pre-draft review: the point, the evidence (spot-checked against primary sources), the style basis, a short outline, and the visual plan.
+2. After a pass, the writer drafts and sends the draft package. The reviewer reads the draft cold, spot-checks its claims against primary sources, and reviews structure from the claim down to the sentence.
+3. The reviewer returns every decision to the writer: a pass, or the gap and revisions to fix. The writer revises and returns the whole package for re-review until it passes, then delivers the result to the user. A finding that survives two revisions goes to the user for a decision.
+
+A small request (a rewrite, a conversion, a short note, or a supplied draft) takes the short path in `article-writing`: it skips the pre-draft review and goes straight to draft review.
 
 Recipients for each result come from `team-config.json`.
 

@@ -131,33 +131,35 @@ Return:
 
 Do not ask the writer to fix missing understanding only through prose edits.
 
+### Spot-check against the primary source
+
+The notes can be wrong. Choose the load-bearing claims: everything the main claim depends on, plus every number, command, quote, and mechanism the package or draft states as fact (at least five, or all of them if fewer). Check each against the primary source itself: open the file or code path, run the command, read the cited section or page. Record claim, source opened, and result in the report. A claim the source contradicts or does not support is an `Evidence Gap` and outranks structure findings. Run code the draft shows when running it is cheap. Do this on the pre-draft review for the claims the point rests on, and again on the draft for what the draft adds.
+
 ### Step 4 - Review the outline first
 
-Check that `outline.md` fills in the hierarchy below with specifics and agrees with `style-profile-notes.md` and the understanding package. A title list or section list alone fails. Look for:
+The pre-draft review is light: it decides whether the direction is sound before the writer drafts. Do not ask for paragraph plans. Check that `outline.md` agrees with `style-profile-notes.md` and the understanding package, and look for:
 
+- a specific main claim, bounded by the evidence, that is new or useful to this reader
 - the opening stance, and for non-essay modes a positive-first opening progression, with a recorded reason for any negative or contrastive first move
-- one named logic spine, the reader's starting point, and a bounded promise and scope
-- the idea spine, with a representation decision per major idea (`prose-only`, `image-led`, or `prose-and-image`) that records prose responsibility, image responsibility, combined takeaway, and visual ID or `none`
-- a continuous reader question ladder, section dependencies, and bridges where the relationship is not self-evident
-- a paragraph beat map with one dominant job per beat, and the evidence, mechanism, or example each section carries
-- a completed compression test and an ending that lands the takeaway
+- one named logic spine and the reader's starting point
+- a real anchor example (run or sourced) planned for an early place
+- a section chain: each section has a one-sentence claim, the reader question it answers, its evidence, mechanism, or example, and what it leads to
+- a representation decision wherever the visualization-load trigger fires
+- an ending that lands the main claim
 
 Use these structural tests:
 
-- **Article test:** Can the whole article be stated as one bounded promise or answer?
+- **Article test:** Can the whole article be stated as one bounded claim or answer?
 - **Section test:** Does each section add a new claim, mechanism, evidence, example, decision, or implication rather than restating a prior section?
 - **Order test:** Does each section follow from the previous section and create the need for the next one?
-- **Continuity test:** Does the article keep one logic spine, and does each section answer a prepared question or need?
-- **Idea-chain test:** Does every major step follow from the previous understanding, add a necessary contribution, and create the next question or capability, rather than merely introduce another related topic?
-- **Representation test:** Does each major idea intentionally choose prose, image, or both, and do the recorded responsibilities explain why that representation is clearest?
+- **Chain test:** Does every section follow from what the reader already understands, add a necessary contribution, and create the next question, rather than merely introduce another related topic?
+- **Representation test:** Where the trigger fires, does the outline choose prose, image, or both, and do the recorded reasons explain why?
 - **Bridge test:** Does every meaningful shift in topic, time, actor, abstraction level, scope, or evidence type have a reason and a bridge?
-- **Paragraph test:** Can each paragraph beat be summarized in one sentence with one dominant job?
-- **Enrichment test:** Does each paragraph advance its approved beat and make the next beat more possible through known-to-new movement and an explicit relation when needed?
-- **Ending test:** Does the conclusion resolve or compress the promise without introducing a new core idea?
+- **Ending test:** Does the conclusion resolve or compress the main claim without introducing a new core idea?
 
-If the outline has only titles or section topics without this hierarchy, or is otherwise not strong enough, return `Outline Revision`. Do not advance a structurally underspecified outline because its topic coverage looks complete.
+If the outline is only a title list or section topics, or is otherwise not strong enough, return `Outline Revision`. Do not advance an underspecified outline because its topic coverage looks complete.
 
-Do not let the process advance to full drafting on a weak outline unless the user explicitly asked to skip that gate.
+Do not let the process advance to full drafting on a weak outline unless the user explicitly asked to skip that gate or the writer used the short path.
 
 ### Step 5 - Review the visual plan
 
@@ -178,7 +180,7 @@ For each planned or inserted visual, check:
 - the type is appropriate: diagram, screenshot, chart, table, matrix, map, generated illustration, or placeholder
 - the source or evidence anchor supports the visual content
 - the caption is accurate and does not introduce unsupported facts
-- the visual links back to an idea-spine or section-beat representation decision
+- the visual links back to a representation decision for its section
 - prose responsibility, image responsibility, and combined takeaway are distinct and accurate
 - generated images do not fake UI, metrics, architecture, charts, people, logos, screenshots, benchmarks, or source evidence
 - the visual has a proposition, visible entities, visible relationships/actions/states, and a minimum reader takeaway without relying entirely on the caption
@@ -192,11 +194,13 @@ Return `Outline Revision` when a major idea has no intentional representation de
 
 ### Step 6 - Review the full draft package
 
+**Cold read first.** Before opening the outline, notes, or ledger, read only the draft files from the top as a first-time reader. Write down each place you were lost: an unexplained term, a jump, a claim whose source you wondered about, a point where you stopped seeing why you were reading. Then open the package and use these notes in the passes below. Do this on the first draft review and after any structural revision.
+
 Review in this order and record the highest failing level first:
 
-1. **Article level:** promise, scope, opening stance, thesis or main observation, bounded conclusion, and reader transformation.
-2. **Section level:** section order, dependency chain, idea-spine enrichment, representation decisions, section jobs, contribution to the article promise, reader question ladder, and repetition across sections.
-3. **Paragraph level:** alignment with the approved paragraph beats, one dominant job per paragraph, known-to-new movement, claim-to-mechanism-to-evidence continuity, prose/image responsibility, idea-to-idea relations, and transitions between beats.
+1. **Article level:** main claim, scope, opening stance, bounded conclusion, reader transformation, and whether the anchor example is real, early, and reused.
+2. **Section level:** section order, the chain from one section to the next, representation decisions, section jobs, contribution to the main claim, and repetition across sections.
+3. **Paragraph level:** one dominant job per paragraph, known-to-new movement, claim-to-mechanism-to-evidence continuity, prose/image responsibility, and transitions between paragraphs.
 4. **Sentence level:** referents, terminology, rhythm, clarity, and platform polish.
 
 For single-language articles, check:
@@ -234,13 +238,13 @@ For bilingual or conversion work, also check:
 
 Apply the shared writing principles before using narrower review taste or local preferences.
 
-Run the compression test on the draft itself: write one sentence for each section and each paragraph, then compare that map with `outline.md`. If the draft's compressed map cannot be explained as a coherent progression, classify the problem as `Draft Revision` or `Outline Revision` according to whether the outline or the draft first diverged. Do not solve a macro failure with line edits.
+Run the reverse outline on the draft: write one sentence for each section and each paragraph, then compare that map with `outline.md`. If the draft's compressed map cannot be explained as a coherent progression, classify the problem as `Draft Revision` or `Outline Revision` according to whether the outline or the draft first diverged. Do not solve a macro failure with line edits.
 
 Run a first-time-reader continuity audit during the macro pass. Read each section ending with the next section opening, then do the same for paragraph boundaries. Mark every moment that invites `Where did this come from?`, `How does this follow?`, or `Why now?`; require a bridge, missing prerequisite, explicit signpost, or structural reorder. Do not treat an unprepared topic, time, actor, abstraction, scope, or evidence shift as a mere transition-polish issue.
 
 Complete two review passes:
 
-1. **Macro pass:** source and mechanism fidelity, article promise, scope, opening stance, idea spine, representation decisions, section spine, paragraph-beat alignment, reader progression, evidence placement, visual propositions, and ending.
+1. **Macro pass:** source and mechanism fidelity (including the spot checks), main claim, scope, opening stance, anchor example, section chain, representation decisions, evidence placement, visual propositions, and ending.
 2. **Micro pass:** terminology, known-to-new movement, transitions, paragraph relations, prose/image redundancy, rhythm, style variant, bilingual fidelity, platform packaging, captions, label accuracy, and line-level clarity.
 
 Run the micro pass only after the macro pass is coherent. `Pass` requires both passes to be complete with no unresolved high-priority finding; a polished draft with a weak global map is not publication-ready.
@@ -277,6 +281,7 @@ The report should include:
 - review mode
 - decision
 - artifacts reviewed
+- primary-source spot checks and cold-read notes
 - high-priority findings
 - strengths worth preserving
 - required revisions
@@ -307,7 +312,8 @@ Decisions:
 - If the writer changes the investigation notes, source index, or claim/evidence ledger, re-check the outline and draft against the updated understanding package.
 - If the writer changes `visual-plan.md`, `visual-asset-index.md`, captions, or inserted images, re-check the visual plan against the understanding package and the surrounding article flow.
 - If a prior round flagged sales tone, detachment, repetition, or a too-generic mechanism, verify that the failure mode was actually removed.
-- If the draft changes the article promise, idea spine, section order, or paragraph jobs, require `outline.md` to be updated and review the revised structure before passing the prose.
+- If the draft changes the main claim or section order, require `outline.md` to be updated and review the revised structure before passing the prose.
+- If a finding from the previous report is still open after two revisions, mark it `recurring` in the report and say that the writer should ask the user to decide, rather than repeating the same request.
 
 ## Reviewer Standards
 

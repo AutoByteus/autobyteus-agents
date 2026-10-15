@@ -105,3 +105,48 @@ Review the diff. Tell me the image tool order, and whether to commit or open a P
 - Matching routes: None (empty rule list)
 - Handoffs sent: None
 - Caller return: Yes; no rule matched and the user named no collaborator, so the result goes back to the user.
+
+---
+
+# Round 2 (2026-10-15): workflow fit for technical articles
+
+Analysis: the "Round 2" section of `agent-package-analysis.md` (findings R1 to R7). Operation `update`, intent `optimize`. Status `Completed`. Added as commits on PR #50 at the user's request.
+
+## Summary
+
+The first round fixed wiring and ownership. This round fixes the workflow itself so it matches how a technical article is actually written: decide the point, outline small, draft, then review the draft against primary sources.
+
+## What changed
+
+- **Small outline (R1).** `outline-template.md` shrinks from about 100 fields to: the point, opening and reader, anchor example, a section chain (claim, question answered, evidence, leads-to), ending move, visual opportunities. The idea spine, reader progression, question ladder, and per-paragraph beats are gone. Principles 4 to 4C are rewritten to match; paragraph jobs are checked on the draft by a reverse outline. The pre-draft review is light and no longer asks for paragraph plans.
+- **Primary-source spot checks (R2).** The reviewer checks the load-bearing claims, numbers, commands, and quotes against the primary source, not the writer's notes, and records them in the report. A contradicted claim is an `Evidence Gap`.
+- **Short path (R3).** Rewrites, conversions, short notes, and supplied drafts skip research (unless claims need it), the pre-draft review, and usually the visual plan.
+- **Decide the point (R4).** New Step 4: main claim, why this reader cares or what is new, strongest evidence, anchor example. Research stays open: drafting can send the writer back to `article-researcher` for a narrow gap.
+- **Anchor example (R5).** New principle 4D: show the subject early with a real example, code, or numbers that were run or sourced. Carried into the outline template, drafting step, and review.
+- **Cold read (R6).** The reviewer reads the draft alone before opening the package and notes where it was lost.
+- **Round limit (R7).** A finding that survives two revisions is marked `recurring` and goes to the user for a decision.
+
+## Changed paths (all under `agent-teams/article-writing-team/`)
+
+`shared/writing-principles.md`, `shared/article-package.md`, `team.md`, `agents/article-writer/skills/article-writing/SKILL.md`, `.../templates/{outline,visual-plan,visual-asset-index}-template.md`, `.../references/style-workflow.md`, `agents/article-writer/skills/article-researcher/SKILL.md`, `agents/article-reviewer/skills/article-reviewer/SKILL.md`, `.../templates/review-report-template.md`. Added: nothing. Removed: nothing. Config files are unchanged in this round.
+
+## Validation
+
+| Check | Observed result | Evidence or limitation |
+| --- | --- | --- |
+| JSON, frontmatter, `skillNames`, routes, links, no member names in skills, no placeholders | Pass | `validate-package.py` |
+| Stale terms (`idea spine`, `question ladder`, `paragraph beat`, `enrichment chain`) | Pass | grep over all team `.md` files except the profile and example content, which are untouched |
+| Reviewer can reach every rule it applies | Pass | spot-check, cold-read, and anchor rules live in principles 4D and 10 plus the reviewer skill |
+| Final review against the standard and anti-patterns | Pass | one round: removed duplicate paragraph and enrichment tests from the reviewer, and marked Step 7 as full path only |
+| Live behavior | Not run | No run of the team on a real article; the changes follow the reasoning above and should be tried on one |
+
+## Risks and questions
+
+- The lighter outline gives up early paragraph-level control. If drafts come back structurally weak, tighten the section chain, not the paragraph plan.
+- Spot checks cost reviewer time: at least five claims per review. Adjust the number after a real run.
+- Image tool order (open since round 1) is still your decision.
+
+## Handoff state
+
+- `get_handoff_rules` called: Yes (round 1 result; same empty list applies)
+- Caller return: Yes

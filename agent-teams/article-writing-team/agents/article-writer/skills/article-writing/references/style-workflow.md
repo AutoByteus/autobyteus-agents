@@ -66,7 +66,7 @@ Treat these files as the source of truth. Do not redo research. If the package h
 - Do not repeat research just because you are writing. Use the research artifacts; if they are insufficient, send a precise gap back to `article-researcher`.
 
 4. Bind style and language decisions to the approved structure.
-- Read the current `outline.md` and preserve its article promise, section order, paragraph beats, evidence burden, and ending move.
+- Read the current `outline.md` and preserve its main claim, section order, evidence burden, and ending move.
 - For `essay`, ensure the outline's thesis is expressed with the selected rhetorical pressure rather than replacing the outline with a more dramatic thesis.
 - For `factual-technical` or `paper-like`, preserve the outline's scope, mechanism, evidence basis, and bounded conclusion path; do not add a debate frame for style.
 - For `builder-direct`, `factual-technical`, and `paper-like` work, the first paragraph must orient the reader positively in the real subject or system before discussing absence, rejection, limitation, or an alternative. Use a negative or contrastive first move only when the user requests it or the outline records an essential source-grounded correction.
@@ -91,7 +91,7 @@ Treat these files as the source of truth. Do not redo research. If the package h
 - For math-heavy content, define symbols on first use and keep notation stable.
 
 6. Run quality and style checks.
-- Check that style and language edits preserve the approved article promise, section order, paragraph beats, and bounded conclusion. Return structural conflicts to `article-writing` instead of silently reshaping the article.
+- Check that style and language edits preserve the approved main claim, section order, and bounded conclusion. Return structural conflicts to `article-writing` instead of silently reshaping the article.
 - Check style alignment against the chosen profile constraints.
 - Check platform fit using the platform output rules, including the visual-legibility rules when text-bearing visuals are present; verify the rendered result, not only the export resolution.
 - Check rhetorical fit:
