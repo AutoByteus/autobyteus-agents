@@ -127,6 +127,13 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Instead:** Put a standard that writer and reviewer both apply in a file shared at the Team level and link it from both skills.
 - **Detect:** For each dimension a reviewer judges, find the file that states the bar and check that the reviewer's skill can reach it.
 
+### 20. Symlinked references the reader cannot see in a listing
+
+- **Incident:** The Solution Designer skill's required reading `design-principles.md` is a symlink into the team's `shared/` folder. The agent listed the skill folder with `find -type f`, which skips symlinks, decided the file did not exist, and told the user so twice (2026-10-16).
+- **Breaks:** [Ground and prioritize instructions](skill-authoring-principles.md#ground-and-prioritize-instructions): a skill that depends on a package fact the reader cannot easily see should state it.
+- **Instead:** Where the skill tells the reader to read a symlinked file, add one hint: some files are symbolic links; open them by path.
+- **Detect:** List links with `find <package> -type l` and check that the skill that reads each one carries the hint; `find -L <package> -type l` prints broken links.
+
 ## Creator process
 
 ### 10. Deciding from a stale or partial view of the package
