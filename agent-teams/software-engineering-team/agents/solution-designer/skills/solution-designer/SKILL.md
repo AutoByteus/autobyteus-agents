@@ -87,11 +87,14 @@ Approval or resumed design does not waive isolation for solution authoring.
 
 **Phase reading gates.** Each phase below opens with a reading gate. In every
 task, read each gate file in full before starting that phase's work, including
-investigation, unless you already read it in the current conversation. Each
-template is introduced at the step that writes its artifact; a template records
-work done under these authorities and does not replace them. Record the files
-read in the phase artifact's `Authorities read` field. Proportionality limits
-what you write, never what you read: a narrow change still passes every gate.
+investigation, unless you already read it in the current conversation. Some
+`references/` files are symbolic links into the team's `shared/` folder; a
+listing such as `find -type f` skips them, so open each gate file by its path.
+Each template is introduced at the step that writes its artifact; a template
+records work done under these authorities and does not replace them. Record the
+files read in the phase artifact's `Authorities read` field. Proportionality
+limits what you write, never what you read: a narrow change still passes every
+gate.
 
 ### 1. Investigate And Engineer Requirements
 
