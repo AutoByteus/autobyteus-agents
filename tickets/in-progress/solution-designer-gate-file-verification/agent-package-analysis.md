@@ -14,6 +14,7 @@
   - Request: `/Users/normy/Desktop/claude-test/agent-feedback/solution-designer-skipped-design-principles.md`
 - Scope excluded: the other SE Team skills and the other teams' skills (follow-ups below); the runtime tool behavior of AutoByteus itself; the content of `shared/design-principles.md`.
 - Request/reference: feedback from `/solution_designer` (AgentRun `solution_designer_6b302d043a0444e4bf4812970aef8cd1`), sent at the user's request, 2026-10-16.
+- Round 2 (2026-10-16, same task reopened): the user asked why only the Solution Designer skill got the hint and then narrowed the scope to the Software Engineering Team's other skills that use the shared files: architecture reviewer, implementation engineer, code reviewer. See "Round 2" below.
 
 ## Baseline
 
@@ -81,9 +82,57 @@ Revision 2 (user direction, 2026-10-16): "don't overcomplicate; one hint in the 
 | Rule duplicated elsewhere? | Pass | `grep -rIl -i "reading gate"` in `agents`, `agent-teams`, `agent-orgs`: only the Solution Designer's `agent.md` (pointer), `SKILL.md`, and the two templates' field labels |
 | Other skills with the same exposure | Follow-up | 29 other skills (SE Team 3, plus 8 other teams) name a symlinked file in a read-style line ("read", "consult", "start by"); none has a stop rule. A grep for "cannot be opened", "unreadable" and "does not exist" in them matched only unrelated lines (image legibility, upstream world rules). |
 
+## Round 2: the architecture reviewer, implementation engineer and code reviewer skills
+
+- Status: `Completed`
+- Operation: `update`; update intent `extend` (the same hint, applied where the same shared files are read)
+- Target packages: `architecture-reviewer`, `implementation-engineer` and `code-reviewer`, under `agent-teams/software-engineering-team/agents/<agent>/skills/<agent>/`
+- Source read: worktree `/Users/normy/autobyteus_org/autobyteus-agents-worktrees/se-skills-symlink-hint`, branch `se-skills-symlink-hint` from `origin/main` = `44508f4` (fetched 2026-10-16; the merge of PR #52)
+- Files read in full: the three `SKILL.md` files, the three `agent.md` and `agent-config.json` files; from round 1: `team.md`, `team-config.json`, `shared/design-principles.md`, `shared/handoff-references.md`, the Solution Designer package and the Creator package files listed above. Not read in full: the code-reviewer, architecture-reviewer and implementation-engineer templates (they carry no reading gate; `grep` found one inline link to `design-principles.md` in `design-review-report-template.md`, line 141) and `shared/design-examples.md` (an optional example reference).
+- Scope excluded: the 26 skills in 8 other teams (the user limited this round to the Software Engineering Team); `api-e2e-engineer` and `delivery-engineer` (see finding 3).
+
+### Baseline
+
+| File | Current responsibility |
+| --- | --- |
+| `architecture-reviewer/SKILL.md` lines 41-44, "Required Shared Reads" | "Start by reading `design-principles.md`" and use it as the canonical design reference. `design-examples.md` and `handoff-references.md` are linked elsewhere (lines 48, 50, 86). |
+| `implementation-engineer/SKILL.md` lines 51-54, "Required Shared Reads" | Same two bullets. `handoff-references.md` linked at line 143. |
+| `code-reviewer/SKILL.md` lines 77-84, "Required Shared Reads" | "Start implementation review by reading `design-principles.md`", then when to consult `design-examples.md` and how to read for the later entry points. `handoff-references.md` linked at line 315. |
+| `references/` in each of the three | Contains only three symlinks (`design-principles.md`, `design-examples.md`, `handoff-references.md`) into `shared/`; no real file. |
+| `agent.md` and `agent-config.json` of each | Identity, a pointer to the skill, tools, `skillNames`. No reading-gate content. |
+
+### Findings
+
+| # | Priority area | Evidence | Owner | Impact | Recommended change |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Grounding: the same unstated fact as in round 1, in a stronger form | In each of the three skills the whole `references/` folder is symlinks: `find references -type f` prints 0 files, `find -L references -type f` prints 3, and each link opens by its path (observed 2026-10-16). An agent that lists the skill folder sees an empty `references/` while the skill tells it to start by reading `references/design-principles.md`. | The "Required Shared Reads" section of each `SKILL.md` | The same wrong conclusion ("the file does not exist") is likely, and these reviewers and the implementer apply the principles to every ticket. | Add the one-sentence hint to that section in each skill. |
+| 2 | Ownership: one place per skill | Each skill already has a section that names the shared reads. The hint belongs beside the read instruction, once per skill, with no copy in `agent.md`, `team.md` or the templates. | `SKILL.md` of each | Avoids a second owner (anti-pattern 4). | One bullet in "Required Shared Reads". |
+| 3 | Scope: `api-e2e-engineer` and `delivery-engineer` | Each has one symlink, `references/handoff-references.md`, named only in an inline link inside a handoff bullet ("as `handoff-references.md` describes"); neither has a "start by reading" instruction. | None | No gate depends on it; the agent follows a link rather than searching a listing. The user named the three skills. | No change; offered as an option. |
+
+### Recommended or planned changes
+
+- `.../architecture-reviewer/skills/architecture-reviewer/SKILL.md`, "Required Shared Reads": add a bullet: the `references/` files are symbolic links into the team's `shared/` folder; a listing such as `find -type f` skips them, so open each by its path.
+- `.../implementation-engineer/skills/implementation-engineer/SKILL.md`, "Required Shared Reads": the same bullet.
+- `.../code-reviewer/skills/code-reviewer/SKILL.md`, "Required Shared Reads": the same bullet.
+- No change: the three `agent.md` and `agent-config.json` files, the templates, `team.md`, `team-config.json`, the symlinks, `shared/*`, `package-anti-patterns.md` (entry 20 already describes this fix and its detection check).
+
+### Open questions and approvals
+
+- Approval: the user asked for these three skills (conversation through `/solution_designer`). A pull request for review was requested; merging waits for the user's go-ahead.
+- Decision for the user: whether to add the hint to `api-e2e-engineer` and `delivery-engineer` (finding 3) and to the 26 skills in 8 other teams.
+
+### Checks (read-only, before editing)
+
+| Check | Observed result | Evidence or limitation |
+| --- | --- | --- |
+| Checkout current | Pass | `git fetch origin`; worktree `HEAD` = `origin/main` = `44508f4`; no open pull requests |
+| References are symlinks only | Observed | 0 real files under `references/` in the three skills; `find -L` 3 each |
+| The links open | Pass | `[ -r <link> ]` true for all 11 links (3 + 3 + 3 + 1 + 1) |
+| Existing hint wording | Pass | The Solution Designer sentence, merged in PR #52, reads "Some `references/` files are symbolic links into the team's `shared/` folder; a listing such as `find -type f` skips them, so open each gate file by its path." |
+
 ## Next action
 
-Apply the planned changes (step 3), validate, then reply to `/solution_designer`.
+Round 1 is merged (PR #52). For round 2, apply the planned changes (step 3), validate, open a pull request for the user to review, then reply to `/solution_designer`.
 
 ## Handoff state
 

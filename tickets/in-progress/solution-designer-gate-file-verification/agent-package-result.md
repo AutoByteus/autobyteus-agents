@@ -83,13 +83,49 @@ Observed blind spots (installed skill folder, 2026-10-16): `find . -type f` 7 fi
 - Residual risk: a skill folder installed by copying (`cp -r`) instead of linking leaves the relative `../../../../../shared/...` links dangling. The skill carries no stop rule (removed on the user's direction), so a dangling link would show up as a failed open; install time is not checked.
 - The branch was built in a clean worktree from `origin/main` (`16fb608`), so the unrelated uncommitted config edits in the main checkout are not in the PR. The main checkout still carries the same two edits uncommitted (the installed skills link to it, so they apply now); after the merge it must be brought up to date (discard those two identical edits and the untracked ticket copy, then fast-forward).
 
+## Round 2 (2026-10-16): the other Software Engineering Team skills
+
+- Status: `Completed`; operation `update`; update intent `extend`
+- Request: the user asked why only the Solution Designer skill had the hint, then limited it to the Software Engineering Team's architecture reviewer, implementation engineer and code reviewer (via `/solution_designer`, task `ad_hoc_task_6c03c098-5c64-4691-af33-1d50ee411659` reopened).
+- Branch: `se-skills-symlink-hint` from `origin/main` = `44508f4`, built in a clean worktree. Pull request opened for the user to review; not merged.
+- Analysis: the "Round 2" section of `agent-package-analysis.md` in this folder.
+
+### Changed paths (all under `/Users/normy/autobyteus_org/autobyteus-agents/agent-teams/software-engineering-team/agents/`)
+
+- `architecture-reviewer/skills/architecture-reviewer/SKILL.md`: one bullet in "Required Shared Reads".
+- `implementation-engineer/skills/implementation-engineer/SKILL.md`: one bullet in "Required Shared Reads".
+- `code-reviewer/skills/code-reviewer/SKILL.md`: one bullet in "Required Shared Reads".
+- Ticket files in this folder: `agent-package-analysis.md` and `agent-package-result.md` revised.
+
+The bullet, identical in the three: "The `references/` files are symbolic links into the team's `shared/` folder; a listing such as `find -type f` skips them, so open each by its path." In these skills `references/` holds only symlinks, so `find -type f` shows the folder empty; hence "The", not "Some".
+
+### Left alone, with reasons
+
+- `api-e2e-engineer` and `delivery-engineer`: one symlink each (`references/handoff-references.md`), named only in an inline link in the handoff bullet; no "start by reading" instruction, so no gate depends on it. Not in the user's named three.
+- The 26 skills in 8 other teams: outside this round's scope; listed in `follow-up-skills-with-symlinked-reads.txt`.
+- `agent.md`, `agent-config.json`, templates, `team.md`, `team-config.json`, `package-anti-patterns.md` (entry 20 already describes this fix): no rule belongs there.
+
+### Validation (Round 2)
+
+| Check | Observed result | Evidence or limitation |
+| --- | --- | --- |
+| Changed JSON parses | N/A | No JSON changed |
+| Frontmatter and names align | Pass | Frontmatter untouched in the three skills |
+| Skill validator | Pass | `quick_validate.py`: "Skill is valid!" for all three |
+| Markdown links and references resolve | Pass | 27 local links in the three skill packages, 0 broken; the 11 symlinks in the SE Team skills open by path |
+| Detection check from anti-pattern 20 (Software Engineering Team) | Pass | Skills with a read-gate on a symlinked file: `solution-designer`, `architecture-reviewer`, `implementation-engineer`, `code-reviewer`, each now carries the hint once; `api-e2e-engineer` and `delivery-engineer` have a link but no gate (above) |
+| One owner per rule | Pass | The hint appears once per skill, in no `agent.md`, `team.md` or template |
+| Scope/diff review | Pass | `git diff --stat`: 3 files, +3 lines, in `SKILL.md` files only |
+| Final review against the standard and anti-patterns | Pass | Round 1 found no issues: the bullet sits beside the read instruction (flow), is grounded in an observed listing (grounding), uses plain words (clarity), has no copy elsewhere (anti-pattern 4), and adds only a fact the agent would not otherwise know (anti-pattern 8). |
+
+Unrelated observation (not changed): in `origin/main` the symlink `.codex/skills/software-engineering-workflow-skill` points to `/home/autobyteus/workspace/autobyteus-skills/...`, an absolute path on another machine, so it dangles on this machine; the user's main checkout has a local edit pointing it to `/Users/normy/autobyteus_org/autobyteus-skills/...`. The repo-wide "0 broken links" in round 1 was measured in that checkout.
+
 ## Next expected action
 
-`/solution_designer` relays the outcome to the user. The user reviews the pull request and decides whether to merge it, and whether to dispatch follow-up 1.
+Round 1 is merged (PR #52). For round 2, `/solution_designer` relays the outcome; the user reviews the pull request and decides whether to merge it, and whether to extend the hint to `api-e2e-engineer`, `delivery-engineer` and the 26 skills in 8 other teams (follow-up 1).
 
 ## Handoff state
 
-- `get_handoff_rules` called: Yes; it returned `{"handoffs":[]}`.
-- Matching routes: None.
-- Handoffs sent: None by rule. The delegating agent asked for a reply, so the result goes back to it as the caller (next line).
-- Caller return: Yes, to `/solution_designer` (AgentRun `solution_designer_6b302d043a0444e4bf4812970aef8cd1`) with `send_message_to`; a second, short message after the simplification.
+Round 1: `get_handoff_rules` returned `{"handoffs":[]}`; the result went to `/solution_designer` as the caller.
+
+Round 2: `get_handoff_rules` called, returned `{"handoffs":[]}`, so no route matched. The result returns to `/solution_designer` (AgentRun `solution_designer_6b302d043a0444e4bf4812970aef8cd1`), which asked for it, with `send_message_to`, including the pull request URL. Merging waits for the user's go-ahead.

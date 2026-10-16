@@ -78,6 +78,7 @@ For API/E2E failure-origin review:
 
 - Start implementation review by reading [design-principles.md](references/design-principles.md).
 - Use it as the canonical design authority for source and structural review.
+- The `references/` files are symbolic links into the team's `shared/` folder; a listing such as `find -type f` skips them, so open each by its path.
 - Consult [design-examples.md](references/design-examples.md) only when a concrete example is needed to judge the implementation, its alignment with the reviewed design, or a finding's scope.
 - When a prospective finding or score rationale depends on an assumed production, failure, or lifecycle scenario, consult [Example 9](references/design-examples.md#example-9-rejecting-an-unreachable-edge-case-during-technical-review) before finalizing it.
 - For the later entry points, reread only the requirements, design, changed tests, relevant source paths, and prior findings needed for the bounded review.
