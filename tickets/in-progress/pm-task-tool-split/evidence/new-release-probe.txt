@@ -1,0 +1,5 @@
+static task adapters: create_task, delegate_task, list_project_tasks, update_task
+[transition (old+new)] member ctx no | requested: list_project_tasks, create_or_update_task, create_task, update_task, delegate_task | project-task: list_projects, create_or_update_project, list_project_tasks, create_task, update_task | MCP: ["list_project_tasks","create_task","update_task"]
+[transition (old+new)] member ctx yes | requested: list_project_tasks, create_or_update_task, create_task, update_task, delegate_task | project-task: list_projects, create_or_update_project, list_project_tasks, create_task, update_task | MCP: ["list_project_tasks","create_task","update_task"]
+[old name only] member ctx no | requested: list_project_tasks, create_or_update_task, delegate_task | project-task: list_projects, create_or_update_project, list_project_tasks | MCP: ["list_project_tasks"]
+[old name only] member ctx yes | requested: list_project_tasks, create_or_update_task, delegate_task | project-task: list_projects, create_or_update_project, list_project_tasks | MCP: ["list_project_tasks"]

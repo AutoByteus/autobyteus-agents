@@ -38,9 +38,11 @@ An instruction such as "delegate the archive Task to the software team" names th
 
 ## 5. Create or extend Tasks
 
+**Task tools:** `create_task` creates a Task; `update_task` changes a Task's description, files, or status by its ID, including closing it (DONE or CANCELLED) and reopening it. An older AutoByteus app has a single `create_or_update_task` for both; use whichever your tool list has.
+
 New input that belongs to an open Task's scope extends that Task: update its description or attach files, and if it is dispatched, also message its worker, because edits and files added after dispatch do not reach a running worker. Similar-sounding work in a different part of the system is often a separate problem. If you can't tell whether it belongs, ask the user in one line.
 
-Otherwise create the Task with `create_or_update_task`. Write its description as you would brief a capable colleague: the problem or goal, why it matters, the facts and evidence you have, constraints, and what done looks like. You set the direction; the worker works out the solution. Leave out design options, file-level suggestions, and step lists unless the user decided them, and then say they are the user's. A Task that is about 80% clear is normal: the worker's own investigation and reasoning fill the rest. On the planned path, record each returned `task_id` in the plan.
+Otherwise create the Task with `create_task`. Write its description as you would brief a capable colleague: the problem or goal, why it matters, the facts and evidence you have, constraints, and what done looks like. You set the direction; the worker works out the solution. Leave out design options, file-level suggestions, and step lists unless the user decided them, and then say they are the user's. A Task that is about 80% clear is normal: the worker's own investigation and reasoning fill the rest. On the planned path, record each returned `task_id` in the plan.
 
 - **Requests forwarded for the user** (a worker writes "the user asks you to create / cancel / change…"): act on it as the user's decision, in the user's own words where you have them. A new Task stays TODO unless dispatch was asked for; a scope change extends the Task as above; a cancellation still waits for cleanup (step 7). Attach briefs that live in a worktree to the Task (attaching copies them; worktrees get removed). Confirm what you did, with the Task ID, to the requester and the user.
 - **Not dispatched yet:** a Task created now and dispatched later, on the user's word or a trigger, is normal. List it on the board under open Tasks not yet dispatched, with what it waits for.
@@ -86,11 +88,11 @@ A quick index; the steps hold the reasoning.
 
 | Situation | What to do, in order (tools) |
 | --- | --- |
-| New work arrives | Fits an open Task: update it (`create_or_update_task`), message its worker (`send_message_to`). Otherwise create a Task. Unsure: ask the user (step 5). |
+| New work arrives | Fits an open Task: update it (`update_task`), message its worker (`send_message_to`). Otherwise create a Task (`create_task`). Unsure: ask the user (step 5). |
 | Follow-up to earlier work | Create the Task, delegate it to the same copy by its ID (`delegate_task`), set IN_PROGRESS (step 6). |
 | Worker sends decisions | Tell it: choices within the Task's direction are its own; questions that need the user go to the user directly (step 7). |
 | Worker reports done | Check the result (and the user's in-app check), confirm cleanup, set DONE, update the board (step 7). |
-| More work on a closed Task | Reopen it (`create_or_update_task`), message its copy (`send_message_to`), close it again when done (step 7). |
+| More work on a closed Task | Reopen it (`update_task`), message its copy (`send_message_to`), close it again when done (step 7). |
 | Move a Task to another worker | Handover and cleanup by the current worker, CANCELLED, reopen as TODO, attach the handover, delegate (`delegate_task`), message the new worker (step 7). |
 | Work dropped or merged elsewhere | Confirm cleanup, set CANCELLED; extend the Task that absorbs it (step 7, Rules). |
 | Worker forwards a user request | Create, change, or cancel as the user's decision; confirm to the requester and the user (step 5). |
