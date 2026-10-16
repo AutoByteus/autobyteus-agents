@@ -42,6 +42,7 @@ Use [templates/architecture-review-revision-record-template.md](templates/archit
 
 - Start by reading [design-principles.md](references/design-principles.md).
 - Use it as the canonical shared design reference while producing or revising the design review report. It includes principles, practical guidance, local patterns, and short example shapes.
+- The `references/` files are symbolic links into the team's `shared/` folder; a listing such as `find -type f` skips them, so open each by its path.
 
 ## Example Guidance
 

@@ -52,6 +52,7 @@ Use [templates/implementation-revision-record-template.md](templates/implementat
 
 - Start by reading [design-principles.md](references/design-principles.md).
 - Use it as the canonical shared design reference while producing or revising the implementation handoff. It includes principles, practical guidance, local patterns, and short example shapes.
+- The `references/` files are symbolic links into the team's `shared/` folder; a listing such as `find -type f` skips them, so open each by its path.
 
 ## Operating Rules
 
