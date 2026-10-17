@@ -5,7 +5,6 @@
     "list_project_tasks",
     "create_task",
     "update_task",
-    "create_or_update_task",
     "list_available_agents",
     "delegate_task",
     "send_message_to",
