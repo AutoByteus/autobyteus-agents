@@ -38,7 +38,7 @@ An instruction such as "delegate the archive Task to the software team" names th
 
 ## 5. Create or extend Tasks
 
-**Task tools:** `create_task` creates a Task; `update_task` changes a Task's description, files, or status by its ID, including closing it (DONE or CANCELLED) and reopening it. An older AutoByteus app has a single `create_or_update_task` for both; use whichever your tool list has.
+**Task tools:** `create_task` creates a Task; `update_task` changes a Task's description, files, or status by its ID, including closing it (DONE or CANCELLED) and reopening it.
 
 New input that belongs to an open Task's scope extends that Task: update its description or attach files, and if it is dispatched, also message its worker, because edits and files added after dispatch do not reach a running worker. Similar-sounding work in a different part of the system is often a separate problem. If you can't tell whether it belongs, ask the user in one line.
 
