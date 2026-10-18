@@ -55,6 +55,13 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Instead:** Let the sender decide after its work: its result plus the files the receiver opens for its next step. Earlier material stays reachable through the documents' links. Give guidance and an example, not a fixed list per route.
 - **Detect:** Search handoff text for "complete", "cumulative", "all relevant", "every still-relevant" or "preserve" next to "package" or "attach"; check that no rule makes a reference list grow with every hop.
 
+### 23. The same fact in several documents
+
+- **Incident:** The API/E2E report wrote each test case's result and evidence in up to seven places, and a first fix added an eighth, an Evidence Index. The API/E2E engineer reran the implementation engineer's 5,830 unit tests because those results had no commit or evidence. A review of the team called its documents "too much paperwork"; the user corrected that the problem was the information structure, not the amount (2026-10-18).
+- **Breaks:** [§2](package-design-principles.md#2-design-responsibilities-before-files), information the roles share: one owner per fact, and results recorded so they can be reused.
+- **Instead:** Keep the documents the agents need. Find where each fact lives, extend that owner, and point to it elsewhere (#60 kept the plan, progress log, record and history, each fact written once; #61 extended the implementation handoff into a Checks Run table that later roles reuse by ID). Compare the old and new structure so no check is lost (#60's comparison restored three).
+- **Detect:** For each fact a template records (a result, a commit, an evidence path, a score), count the places it is written. For each check a role runs, see whether an earlier role already recorded it in a form that could be reused.
+
 ## Skill content
 
 ### 6. Project specifics in a reusable skill
@@ -94,7 +101,7 @@ Concrete mistakes found in real package work. The [package design principles](pa
 
 ### 14. Writing in jargon instead of plain actions
 
-- **Incident:** PR #33's guidance used "unverified currency" (for "possibly outdated"), "proportionate" about 20 times, slash compounds such as "generation/capture", and sentences that chained abstract nouns; the meaning was right but hard to act on (2026-10-07).
+- **Incident:** PR #33's guidance used "unverified currency" (for "possibly outdated"), "proportionate" about 20 times, slash compounds such as "generation/capture", and sentences that chained abstract nouns; the meaning was right but hard to act on (2026-10-07). The API/E2E "test-case ledger" was a progress log whose name hid its purpose; the user asked why it was called a ledger (renamed "test progress", 2026-10-18).
 - **Breaks:** [§4](package-design-principles.md#4-apply-one-authoring-standard), clarity and plain language: name the actor, action, and result in everyday words.
 - **Instead:** Say what to do. Use a short list when there are several criteria, and a concrete check instead of "proportionately".
 - **Detect:** Search changed text for slash compounds (`word/word`), vague qualifiers ("proportionate", "appropriate", "as needed", "relevant"), and sentences that pile up nouns ending in -ity, -ance, or -ence; for each, ask what exactly the agent does.
@@ -113,14 +120,14 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Instead:** In a role's procedure at runtime, read only what the next decision needs, use the tools' filters, and give knowledge that lasts (who does what, what is open) a saved record that the role reads first and updates as it works.
 - **Detect:** For each read or listing call a skill requires, name what the role does differently with the answer and whether a filter or saved record already gives it.
 
-### 18. A tool list that does not match the work
+### 21. A tool list that does not match the work
 
 - **Incident:** The Article Writer had `generate_speech` though no step makes speech, and its skill required image-to-image editing without granting `edit_image`; the reviewer carried three process-control tools its review never used (2026-10-14).
 - **Breaks:** [§5](package-design-principles.md#5-attach-skills-deliberately): give each Agent only the tools its work or handoff uses, and every tool its work needs.
 - **Instead:** Derive the list from the skill's actions: each action that needs a tool gets one, and each tool traces to an action.
 - **Detect:** For each tool in `agent-config.json`, find the skill step that uses it; for each step that edits an image, hands off, or runs a process, find the tool.
 
-### 19. A review standard the reviewer cannot read
+### 22. A review standard the reviewer cannot read
 
 - **Incident:** The Article Reviewer judged platform fit and mobile legibility while the rules sat in the writer's skill references; its own package had no mention of them (2026-10-14).
 - **Breaks:** [§3](package-design-principles.md#3-give-each-rule-one-authoritative-file): a rule needs one owner that every role applying it can read.
