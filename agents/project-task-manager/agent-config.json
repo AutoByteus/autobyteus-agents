@@ -3,7 +3,6 @@
     "list_projects",
     "create_project",
     "update_project",
-    "create_or_update_project",
     "list_project_tasks",
     "create_task",
     "update_task",
