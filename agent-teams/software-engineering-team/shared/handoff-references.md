@@ -28,8 +28,8 @@ field.
 
 Everything else stays where it is. The ticket's documents link to each other:
 the revision records index every round, the implementation handoff and the
-API/E2E execution report list the upstream documents, the execution report's
-Acceptance-Criteria Proof table links the evidence, and the investigation
+API/E2E coverage investigation list the upstream documents, the execution
+report's Cases table lists each case's evidence, and the investigation
 notes keep the supplement inventory. Give the ticket folder's absolute path so
 the receiver can find anything else it needs. The code is in the worktree;
 give its absolute path, branch and commit.
@@ -60,8 +60,9 @@ to open.
 file, requirements doc, investigation notes, solution revision record and
 design spec. Then it asks what API/E2E will do next: resume validation against
 the revised acceptance criteria. So it adds the new approval record and the
-API/E2E coverage investigation, case ledger, execution report and revision
+API/E2E coverage investigation, test progress log, execution report and revision
 record that API/E2E will update. The handoff file gives the ticket folder's
 absolute path, names the review and implementation reports in case they are
-needed, and says the earlier evidence is linked from the proof table. That is
+needed, and says the earlier evidence is listed in the execution report's
+Cases table. That is
 ten files instead of 1,618, and the receiver loses nothing it needs.

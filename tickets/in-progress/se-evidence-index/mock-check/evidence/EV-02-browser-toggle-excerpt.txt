@@ -1,0 +1,7 @@
+# Step: Settings > Appearance > switch "Dark mode" on, reload the page
+# Commit: 4f2a9c1 | Env: Chromium 141, dev server :3000 | Date: 2026-10-18 | Case: E2E-01
+# Excerpt of EV-02-browser-toggle-full.log (412 lines, same folder): the proving lines
+[12:01:07] click #appearance-dark-toggle -> aria-checked="true"
+[12:01:08] document.documentElement.dataset.theme = "dark"
+[12:01:11] reload
+[12:01:12] document.documentElement.dataset.theme = "dark"   <- kept after reload

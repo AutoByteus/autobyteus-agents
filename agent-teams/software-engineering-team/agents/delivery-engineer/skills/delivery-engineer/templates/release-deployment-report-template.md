@@ -37,7 +37,12 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 ## Verification
 
 - Evidence judged: `Sufficient` / `Insufficient`
-- Evidence relied on (execution report, critical acceptance criteria, confidence, journeys, integrated-state rerun):
+- Evidence relied on (the execution report's proof and cases, confidence, integrated-state rerun):
+
+| Acceptance-Criteria ID | Cases And Files Checked | What You Saw | Judgement (`Proven`/`Not Proven`/`User Check`) |
+| --- | --- | --- | --- |
+|  |  |  |  |
+
 - More evidence requested (from whom, what, result): `None` / list
 - User check needed: `No` / `Yes` — why (unreachable without the user after what API/E2E tried, or the user asked to check):
 - User check reference, when needed:

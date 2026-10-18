@@ -1,36 +1,19 @@
 # API/E2E Execution Coverage Report
 
-Write this artifact to a canonical file path in the assigned task workspace before any handoff message.
+The run record and the result: what ran, what it proves, how confident you are, and the outcome. The coverage investigation is the plan; `api-e2e-revision-record.md` is the history across rounds.
 
-Keep one canonical execution coverage report path across reruns.
-Do not create versioned copies by default.
-After every completed API/E2E validation round, update this report to the latest complete result and add the round's entry to `api-e2e-revision-record.md`.
+Keep one canonical path across rounds, in the assigned task workspace. Start it before the first case runs and fill each case's row when the case completes; the test progress log tracks cases while they run. At the end of a round it holds the latest complete result.
 Omit a section marked `(When Applicable)` when it does not apply. For any other table with nothing to record, write `None`.
-Execution may cover API, browser UI, a web-equivalent desktop renderer through the project's development workflow, project-supported desktop validation, CLI, process/lifecycle, integration, or distributed checks depending on the real boundaries being proven.
 
-## Execution Round Meta
+## Round
 
-- Requirements Doc:
-- Investigation Notes:
-- Solution Revision Record:
-- Design Spec (required on every route):
-- Supplemental Task Artifacts:
-- Design Review Report: `N/A — not applicable` when architecture review was not selected
-- Architecture Review Revision Record: `N/A — not applicable` when architecture review was not selected
-- Implementation Handoff:
-- Implementation Revision Record:
-- Code Review Report:
-- Code Review Revision Record:
-- Delivery Revision Record (delivery re-entry only):
-- Relevant Delivery Revision IDs:
-- Coverage Investigation:
-- API/E2E Test-Case Ledger (when used):
-- API/E2E Revision Record:
-- Current API/E2E Revision ID: `N/A` / `API-REV-*`
-- Current Execution Round:
-- Trigger:
-- Prior Round Reviewed:
-- Latest Authoritative Round:
+- Coverage investigation (the plan; it lists the upstream documents):
+- API/E2E revision record and current revision ID: `N/A` / `API-REV-*`
+- Test progress log (when used):
+- Round and trigger:
+- Prior round reviewed:
+- Deviations from the investigation's plan, and why: `None` / list
+- Evidence folder (absolute path; the handoff message gives the commit that holds it):
 
 ## Routing Classification
 
@@ -40,75 +23,35 @@ Execution may cover API, browser UI, a web-equivalent desktop renderer through t
 - Successful-output route (`Code Review`/`Delivery`):
 - Proportional test-code review decision: `Required` / `Not Required — direct low-risk route` / `Not Applicable`
 
-Round rules:
-- Reuse the same case IDs across reruns; create new IDs only for newly discovered coverage.
-- If no prior completed API/E2E result exists, set `Current Execution Round` to `1`.
-- On later rounds, complete prior-failure resolution in `api-e2e-revision-record.md` before evaluating new failures.
+## Tested Builds And Environments
 
-## Investigation And Execution Basis
+Each case names the environment it ran in.
 
-- Coverage investigation artifact:
-- Investigation completed before durable coverage changes or final execution: `No` / `Yes`
-- Investigation plan followed: `Yes` / `No` — explain material deviations:
-- Existing coverage decisions revised during execution, with evidence:
-- Reroute required before or during execution: `No` / `Yes`
-- Notes:
-
-## Test-Case Ledger Reconciliation (When Applicable)
-
-Reconcile the ledger here without duplicating its full event log.
-
-- Ledger path:
-- Ledger initialized before execution: `No` / `Yes`
-- Every completed case recorded immediately: `No` / `Yes` / `N/A`
-- Long-running case checkpoints recorded when needed: `No` / `Yes` / `N/A`
-- Ledger reconciled into this report: `No` / `Yes`
-- Last durably recorded event:
-- Cases still running, interrupted, or not started:
-- Interruption or rerun note:
-
-| Case ID | Final Result (`Pass`/`Fail`/`Blocked`/`Not Tested`/`N/A`) | Last Event | Evidence / Artifact Path | Reconciled Result / Follow-Up |
+| Env ID | Commit Tested | Platform / OS | Runtime, Browser, Or App Build | Other Settings That Matter (data, identity, locale, viewport) |
 | --- | --- | --- | --- | --- |
-|  |  |  |  |  |
+| ENV-1 |  |  |  |  |
 
-## Compatibility / Legacy Scope Check
+## Cases
 
-- Reviewed requirements/design introduce, tolerate, or ambiguously describe backward compatibility in scope: `No` / `Yes (invalid upstream; reroute required)`
-- Compatibility-only or legacy-retention behavior observed in implementation: `No` / `Yes (invalid implementation scope; reroute required)`
-- Approved persisted-data transition followed without unnecessary migration or version-specific runtime fallback: `Yes` / `No (reroute required)` / `N/A`
-- Durable coverage added or retained only for compatibility-only behavior: `No` / `Yes (invalid; explain)`
-- If compatibility-related invalid scope was observed, reroute classification used: `Local Fix` / `Design Impact` / `Requirement Gap` / `Unclear`
-- Upstream recipient notified:
+The one record of what ran and what it proves, under the case IDs the investigation planned (add new IDs only for newly found cases, and reuse them across rounds). Write a case's row when it completes. A case that was interrupted or never ran is `Not Tested`, with the reason in Notes; never infer a result.
+
+| Case ID | Criteria (AC / Requirement IDs) | Boundary / Surface | Command Or Steps | Env | Result (`Pass`/`Fail`/`Blocked`/`Not Tested`) | Evidence Files | Look For | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+|  |  |  | <exact command, or the journey steps> | ENV-1 |  | <paths inside the evidence folder> | <the key line quoted exactly as in the file, a count, or a screenshot detail> |  |
 
 ## Acceptance-Criteria Proof
 
-The index later roles use to find the proof.
+Each criterion and the cases that prove it; the cases hold the evidence.
 
-- Evidence folder:
-
-| Acceptance-Criteria ID | Critical (`Yes`/`No`) | Proven By Case IDs | Evidence Files | Result (`Proven`/`Not Proven`/`Only The User Can Check`) |
+| Acceptance-Criteria ID | Critical (`Yes`/`No`) | Proven By Case IDs | Result (`Proven`/`Not Proven`/`Only The User Can Check`) | For A User-Only Part: What You Tried And Why It Still Needs The User |
 | --- | --- | --- | --- | --- |
 |  |  |  |  |  |
 
-## Changed Boundary And Evidence Matrix
-
-| Case ID | Behavior / Requirement / Acceptance-Criteria IDs | Changed Boundary | Execution Surface / Mode | Evidence Type (`Durable`/`Temporary`/`Live`/`Browser`/`Desktop`) | Result (`Pass`/`Fail`/`Blocked`/`Not Tested`) | Evidence / Artifact |
-| --- | --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |  |
-
-## Additional Repository Coverage Execution
-
-Treat the updated coverage investigation as the authoritative record of planned and completed repository checks. Record only commands added or rerun after its post-repository confidence and broader-validation decision.
-
-| Order | Command | Working Directory / Configuration | Boundary Or Scenario Proven | Result (`Pass`/`Fail`/`Blocked`) | Evidence / Output Path |
-| --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |
-
 ## Validation Confidence Scorecard (Mandatory)
 
-Carry forward the post-repository scores from the coverage investigation and record the final scores after broader validation. Do not repeat unchanged supporting rationale. If broader validation did not run, repeat the post-repository score as final and explain why it was unnecessary.
+Fill the post-repository scores after the repository cases, then the final scores after broader validation. If broader validation did not run, repeat the post-repository score as final and say why.
 
-| Confidence Category | Post-Repository Score (`0-100%`/`N/A`) | Final Score (`0-100%`/`N/A`) | Change | New / Final Supporting Evidence | Residual Uncertainty |
+| Confidence Category | Post-Repository Score (`0-100%`/`N/A`) | Final Score (`0-100%`/`N/A`) | What Supports It (Case IDs) | Residual Uncertainty | What Could Improve It |
 | --- | --- | --- | --- | --- | --- |
 | Requirement and acceptance-criteria proof |  |  |  |  |  |
 | Changed-boundary execution directness |  |  |  |  |  |
@@ -121,73 +64,56 @@ Carry forward the post-repository scores from the coverage investigation and rec
 - Overall post-repository confidence:
 - Overall final confidence:
 - Calculation method:
-- Confidence change produced by broader validation:
 - Every critical acceptance criterion directly proven, apart from parts only the user can check: `Yes` / `No`
 - Any final applicable category below `90%`: `No` / `Yes` — list:
 - Default final confidence target of `95%` met: `Yes` / `No`
 - Confidence-limiting residual risks:
 
-## Broader Validation Decision And Execution
+## Broader Validation Decision (Mandatory)
 
-- Decision and selected execution mode from the coverage investigation:
-- Material deviation from the planned mode or rationale:
-- Confidence gap or residual risk actually addressed:
-- If `Not Required`, direct evidence that made broader validation unnecessary:
-- If `Blocked`, exact unavailable dependency or access and attempted alternatives:
-- Startup order, commands, and readiness results:
-- Environment choices that materially affected the run:
-- Seed data, fixtures, identities, authentication, permissions, or session state:
+Decide after the post-repository scores.
 
-| Scenario / Journey Step | Expected Observable Result | Actual Observable Result | DOM / Screenshot / Log / API / Process Evidence | Result |
-| --- | --- | --- | --- | --- |
-|  |  |  |  |  |
+- Decision: `Required` / `Not Required` / `Blocked`
+- Execution mode (`Browser`/`Live API`/`Project Desktop Validation`/`CLI`/`Lifecycle`/`Worker or Distributed`/`Other`/`None`):
+- Confidence gap or residual risk it addresses, and the expected gain:
+- Browser validation needed, and why or why not:
+- If `Not Required`: the cases that already exercise the real changed boundary:
+- If `Blocked`: the exact unavailable dependency or access, and what you tried:
 
 ## Desktop Application Validation (When Applicable)
 
-- Validation approach executed and any deviation from the investigation:
-- Web-equivalent behavior, surface used, and evidence:
-- Shell-specific or lifecycle behavior and evidence:
+- Approach executed, and any deviation from the investigation's plan:
+- Cases proving web-equivalent behavior, and cases proving shell-specific or lifecycle behavior:
 - Effect on any already-running desktop application: `None` / explain
-- Behavior not directly proven and confidence consequence:
+- Behavior not directly proven and its confidence consequence:
 
-## Platform / Runtime Targets
-
-- Operating system / platform:
-- Runtime and relevant framework versions:
-- Browser / engine and version, when applicable:
-- Device, viewport, locale, timezone, or accessibility settings, when applicable:
-
-## Lifecycle / Upgrade / Restart / Persisted-Data Checks
+## Persisted-Data Transition Checks (When Applicable)
 
 - Approved persisted-data decision:
-- Representative existing data exercised:
-- Direct-use, discard/rebuild, or migration result and evidence:
-- Migration completion/recovery evidence, only when `Migration Required`:
+- Representative existing data used:
+- Approved transition followed without an unnecessary migration: `Yes` / `No (reroute required)`
+- Cases proving the direct-use, discard/rebuild, or migration outcome (completion and recovery only when `Migration Required`):
 - Version-specific runtime branch, dual read/write, or compatibility fallback observed: `No` / `Yes (reroute required)`
 - Residual untested persisted-data risk:
+
+## Compatibility / Legacy Scope Check
+
+- Reviewed requirements/design introduce, tolerate, or ambiguously describe backward compatibility in scope: `No` / `Yes (invalid upstream; reroute required)`
+- Compatibility-only or legacy-retention behavior observed in implementation: `No` / `Yes (invalid implementation scope; reroute required)`
+- Durable coverage added or retained only for compatibility-only behavior: `No` / `Yes (invalid; explain)`
+- If compatibility-related invalid scope was observed, reroute classification used: `Local Fix` / `Design Impact` / `Requirement Gap` / `Unclear`
+- Upstream recipient notified:
 
 ## Durable Coverage Changed In The Codebase
 
 - Repository-resident durable coverage added, updated, or removed this round: `No` / `Yes`
 
-| Path / Test | Change (`Added`/`Updated`/`Removed`) | Requirement / Boundary, Or Obsolete Assertion And Upstream Evidence | Execution Result, Or Replacement / No-Replacement Rationale |
+| Path / Test | Change (`Added`/`Updated`/`Removed`) | Case IDs | For A Removal: Obsolete Assertion, Upstream Evidence, And Replacement Or No-Replacement Rationale |
 | --- | --- | --- | --- |
 |  |  |  |  |
 
 - Added or updated paths attached for proportional test-code review: `Yes` / `No` / `Not Applicable`
 - Diff or repository evidence supplied for removed paths:
-
-## Other Execution Artifacts
-
-| Artifact Path | Type / Purpose | Retained Or Temporary | Notes |
-| --- | --- | --- | --- |
-|  |  |  |  |
-
-## Temporary Execution Methods / Scaffolding
-
-| Path / Method | Why Needed | Result / Evidence | Cleanup Result |
-| --- | --- | --- | --- |
-|  |  |  |  |
 
 ## Dependencies Mocked Or Emulated
 
@@ -195,37 +121,29 @@ Carry forward the post-repository scores from the coverage investigation and rec
 | --- | --- | --- | --- |
 |  |  |  |  |
 
-## Result Summary
+## Temporary Methods And Cleanup
 
-| Result (`Pass`/`Fail`/`Blocked`/`Not Tested`/`Out Of Scope`) | Case IDs | Summary / Reason |
-| --- | --- | --- |
-|  |  |  |
+Probes, harnesses, processes, data and browser state this run created, and what happened to them. Keep the evidence.
 
-## Cleanup Performed
-
-| Resource / Process / Data | Ownership | Cleanup Action | Result |
+| Item | Owned By This Run (`Yes`/`No`) | Cleanup Action | Result |
 | --- | --- | --- | --- |
 |  |  |  |  |
 
-## Preliminary Classification
+## Preliminary Classification (On `Fail`)
 
 - `Local Fix`: the main issue is a bounded implementation, test, fixture, environment, execution, or report correction; identify the owning specialist.
 - `Design Impact`: the main issue is a weakness or mismatch in the reviewed design.
 - `Requirement Gap`: intended behavior or acceptance criteria are missing or ambiguous.
 - `Unclear`: the issue is cross-cutting or cannot yet be classified cleanly from the available evidence.
 
-This is the API/E2E engineer's evidence-based recommendation. On `Fail`, the failure-origin review confirms the origin and final owner before rework begins.
+This is the API/E2E engineer's evidence-based recommendation. The failure-origin review confirms the origin and final owner before rework begins.
 
 ## Latest Authoritative Result
 
-- Result values: `Pass` / `Fail` / `Blocked`
-- Result:
-- Final validation confidence:
-- Default `95%` confidence target met: `Yes` / `No`
-- Any final applicable confidence category below `90%`: `No` / `Yes` — list:
-- Broader validation decision:
-- Critical acceptance criteria lacking direct proof:
-- Behavior only the user can check, what was tried, and why it still needs the user: `None` / list
+The outcome; the reasons are in the sections above.
+
+- Result: `Pass` / `Fail` / `Blocked`
+- Criteria not proven, or parts only the user can check (IDs): `None` / list
 - Preliminary classification and recommended owner (on `Fail`):
 - Next recipient from `get_handoff_rules` (`Blocked` -> user request):
 - Notes:
