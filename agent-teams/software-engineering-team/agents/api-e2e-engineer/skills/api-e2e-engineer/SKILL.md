@@ -99,11 +99,11 @@ Test the product the way its real users and real system events use it.
 - Map real-use scenarios, requirements, acceptance criteria, reviewed design behavior, relevant supplemental task artifacts, implementation-handoff notes, and code-review findings to the real changed boundaries and planned evidence.
 - Classify affected surfaces explicitly, such as domain/backend logic, API/transport, frontend component, browser integration, authentication/session, web-equivalent desktop renderer, desktop shell, process lifecycle, persisted-data transition, worker/queue, distributed coordination, or external integration.
 - Treat existing tests as evidence, not authority. A test's existence does not prove that its assertion still represents approved behavior.
-- Read the implementation handoff's Checks Run before planning cases, and reuse a result instead of repeating it when both hold:
+- Before planning cases, read the results already recorded: the implementation handoff's Checks Run, and on a later round your own earlier Cases. Reuse a result instead of repeating it when both hold:
   - it ran on the commit you validate, or the files changed since then (`git diff --name-only <its commit> <yours>`) do not touch the code it exercises;
   - its evidence lets you judge it: a header, and the line to look for.
 
-  Plan a reused check as a case of kind `Reused` that names its check ID and why it still holds. Rerun it when the code it exercises changed, its result is unclear, or its evidence is not enough. A reused result counts like your own repository evidence: it adds to confidence on the same terms, a mocked test still proves only what it exercises, and you still run what it does not cover and what realistic-system validation needs.
+  Plan a reused implementation check as a case of kind `Reused` that names its check ID and why it still holds; keep a reused earlier case of your own under its ID and say in Notes why it still holds. Rerun it when the code it exercises changed, its result is unclear, or its evidence is not enough. A reused result counts like your own repository evidence: it adds to confidence on the same terms, a mocked test still proves only what it exercises, and you still run what it does not cover and what realistic-system validation needs.
 - For every relevant existing durable test, decide `Still Valid`, `Needs Update`, `Stale / Remove`, `Replace`, `Out Of Scope`, or `Unclear`.
 - For every required behavior without adequate durable coverage, decide `Add Durable Coverage`, `Use Temporary Executable Probe Only`, `Not Testable In Scope`, or `Escalate`.
 - Do not classify a failing existing test as an implementation defect until its assertion has been validated against the approved current behavior.

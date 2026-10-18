@@ -37,7 +37,7 @@
 | Links resolve | Pass | 0 broken; the new symbolic links resolve |
 | Nothing lost | Pass | Every rule moved out of the API/E2E Outputs is in `evidence-files.md`. The implementation template keeps "not API/E2E sign-off", "no broader environments", and the preview setup (restored after review). |
 | Real-use check | Pass | `mock-check/reuse-check.md`: a real two-commit git repository. A review fix changed `src/server/api.ts`; under the rule, IMP-01 (`src/theme/`) is reused and IMP-02 (`src/server/`) is rerun. The AC-001 journey that implementation did not run is run by API/E2E. Delivery's path still ends at the file and the quoted line. |
-| Final review | Pass | Round 1: reflowed the delivery paragraph (no hyphen break); shortened the Planned Cases "Why" header; restored the preview-setup mention. Round 2: no findings. |
+| Final review | Pass | Round 1: reflowed the delivery paragraph (no hyphen break); shortened the Planned Cases "Why" header; restored the preview-setup mention. Round 2: no findings. Route check at the user's request (round 3): read every handoff route in `team-config.json`. Implementation goes straight to API/E2E on the direct route, or through the code reviewer (which never edits code) on the reviewed route; every later code change goes back through implementation, which reruns the affected checks and updates their rows, so the commit on each row is the right key. The reuse rule now also covers API/E2E's own earlier cases on a later round (the real ticket did "rerun by impact" by hand). |
 
 ## Grounding
 
