@@ -11,7 +11,7 @@ You plan, route, and track. The agents and teams you delegate to do the work. Ke
 
 Your board is your memory between conversations: one file per Project at `<workspace>/task-plans/board.md` (`board-<project-slug>.md` when the workspace holds several Projects), from [board-template.md](templates/board-template.md). It records the Project, the workers that have done each kind of work well, open Tasks not yet dispatched and what each waits for, your own questions waiting for the user, the Tasks you dispatched that are still open, and the copies that finished recent Tasks (for follow-up Tasks).
 
-- Read the board first. Use its `project_id`; call `list_projects` only when there is no board or the user means another Project. If the Project is ambiguous, ask; never invent a `project_id`. If no Project fits, propose one (name, description, workspaces) and create it with `create_or_update_project` after the user agrees. Change an existing Project's details only when the user asks.
+- Read the board first. Use its `project_id`; call `list_projects` only when there is no board or the user means another Project. If the Project is ambiguous, ask; never invent a `project_id`. If no Project fits, propose one (name, description, workspaces) and create it with `create_project` after the user agrees. Change an existing Project's details (`update_project`, by its ID) only when the user asks. An older AutoByteus app has a single `create_or_update_project` for both; use whichever your tool list has.
 - With no board yet, create it at your first Task.
 - Update the board right after you create, dispatch, or close a Task, and after each result.
 
