@@ -68,12 +68,15 @@ You own that judgement, as a delivery lead would.
 - Judge it from the evidence itself, not only the report's summary. In the
   execution report, the Acceptance-Criteria Proof names the cases that prove
   each criterion, and each case's row in Cases lists its evidence files and
-  what to look for. For each acceptance criterion, follow it to its cases and
-  open the files for the critical ones to check the line or detail named
-  there; use the integrated-state rerun as well. Check that every critical acceptance criterion is directly
-  proven, and weigh the final confidence and category scores against the
-  team's target, the journeys run with their evidence (screenshots, logs,
-  API results), what was mocked, and what was not tested and why.
+  what to look for; a `Reused` case points to its check in the
+  implementation handoff's Checks Run, which lists the same. For each
+  acceptance criterion, follow it to its cases and open the files for the
+  critical ones to check the line or detail named there; use the
+  integrated-state rerun as well. Check that every critical acceptance
+  criterion is directly proven, and weigh the final confidence and category
+  scores against the team's target, the journeys run with their evidence
+  (screenshots, logs, API results), what was mocked, and what was not tested
+  and why.
 - When the evidence proves the change works, record your judgement and the
   evidence you relied on, and continue without waiting for the user.
 - When it does not, name the criterion and what is missing, such as no

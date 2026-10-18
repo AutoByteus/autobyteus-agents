@@ -43,13 +43,7 @@ Each document has one job, so each fact is written once:
 - Execution coverage report, from [templates/api-e2e-execution-coverage-report-template.md](templates/api-e2e-execution-coverage-report-template.md): **the record and the result**: each case with its evidence, the proof of each acceptance criterion, the confidence scores, the broader-validation decision, cleanup, and the round's result.
 - `api-e2e-test-progress.md`, from [templates/api-e2e-test-progress-template.md](templates/api-e2e-test-progress-template.md): **your progress log** while tests run (Recording Progress And Cases below).
 - `api-e2e-revision-record.md`, from [templates/api-e2e-revision-record-template.md](templates/api-e2e-revision-record-template.md): **the history**, one entry per completed validation result, starting with the `API-REV-001` baseline. The investigation and report remain the current truth; a missing prior record or result is never an implied `Pass` or confidence value.
-- The evidence itself: screenshots, log excerpts, test output, recordings, and what you tried. It is the proof the later roles judge from, often without running anything, so write it for a reader:
-  - keep it in the ticket folder's `evidence/` folder (or where the project's testing guideline says);
-  - list each file under its case in the execution report's Cases table, with what to look for, quoting the key line exactly as it appears so a reader can find it;
-  - start each text file with a short header: the command or step, the commit, the environment, the date and the case ID. A screenshot or other binary file gets the rest from its case row;
-  - for a long log, save a short excerpt with the lines that prove the result next to the full log, or record where the full log is when it is too large to commit;
-  - save a check you only observed (a page, a console, a running app) as a file: a screenshot, a DOM snapshot or the copied output, not only a line in a report;
-  - name files so every operating system can check them out (for example, no `:`).
+- The evidence itself: screenshots, log excerpts, test output, recordings, and what you tried, written as [evidence-files.md](references/evidence-files.md) describes and listed under its case in the execution report's Cases table.
 
 ## Operating Sequence
 
@@ -105,6 +99,11 @@ Test the product the way its real users and real system events use it.
 - Map real-use scenarios, requirements, acceptance criteria, reviewed design behavior, relevant supplemental task artifacts, implementation-handoff notes, and code-review findings to the real changed boundaries and planned evidence.
 - Classify affected surfaces explicitly, such as domain/backend logic, API/transport, frontend component, browser integration, authentication/session, web-equivalent desktop renderer, desktop shell, process lifecycle, persisted-data transition, worker/queue, distributed coordination, or external integration.
 - Treat existing tests as evidence, not authority. A test's existence does not prove that its assertion still represents approved behavior.
+- Read the implementation handoff's Checks Run before planning cases, and reuse a result instead of repeating it when both hold:
+  - it ran on the commit you validate, or the files changed since then (`git diff --name-only <its commit> <yours>`) do not touch the code it exercises;
+  - its evidence lets you judge it: a header, and the line to look for.
+
+  Plan a reused check as a case of kind `Reused` that names its check ID and why it still holds. Rerun it when the code it exercises changed, its result is unclear, or its evidence is not enough. A reused result counts like your own repository evidence: it adds to confidence on the same terms, a mocked test still proves only what it exercises, and you still run what it does not cover and what realistic-system validation needs.
 - For every relevant existing durable test, decide `Still Valid`, `Needs Update`, `Stale / Remove`, `Replace`, `Out Of Scope`, or `Unclear`.
 - For every required behavior without adequate durable coverage, decide `Add Durable Coverage`, `Use Temporary Executable Probe Only`, `Not Testable In Scope`, or `Escalate`.
 - Do not classify a failing existing test as an implementation defect until its assertion has been validated against the approved current behavior.
@@ -203,7 +202,7 @@ Browser validation is normally unnecessary for a backend-local change when valid
 
 ## Result And Handoff
 
-Finish validation, persist the reports and the revision entry, and preserve the classification and selected route. Commit the ticket folder's reports and evidence on the ticket branch, so they survive if the worktree is removed before delivery archives the ticket; follow the project's testing guideline if it says otherwise. Then call `get_handoff_rules` and send the result with AutoByteus `send_message_to` to each exact returned `recipient_address`. The returned rules are the routing authority; do not select a recipient from memory.
+Finish validation, persist the reports and the revision entry, and preserve the classification and selected route. Commit the reports and evidence as [evidence-files.md](references/evidence-files.md) describes. Then call `get_handoff_rules` and send the result with AutoByteus `send_message_to` to each exact returned `recipient_address`. The returned rules are the routing authority; do not select a recipient from memory.
 
 Per result:
 

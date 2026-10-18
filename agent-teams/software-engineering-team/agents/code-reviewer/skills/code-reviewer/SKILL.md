@@ -246,6 +246,7 @@ review result as usual.
 
 - Use the full implementation sections and mandatory scorecard in [templates/code-review-report-template.md](templates/code-review-report-template.md).
 - Review against the full artifact chain, canonical design guidance, and relevant supplemental task artifacts, applying approval constraints where applicable.
+- Read the implementation handoff's Checks Run before running anything. Do not rerun a recorded check just to confirm it; run one only when the code it exercises changed after it ran, its result is unclear, or a finding needs a check nobody ran.
 - Treat earlier design artifacts as context, not immunity from review. Classify an inadequate design as `Design Impact`.
 - Review design integrity, API/E2E readiness, cleanup completeness, and changed implementation-source size or structural pressure.
 - Apply `>500` and `>220` source thresholds only to changed implementation-source files, never to tests, fixtures, or generated coverage files. The `>500` limit belongs to this ticket when the change takes a file over it, or adds to a file that was already over it on the base branch (the change made it worse; ask for the added code in a properly owned file, or a split only if that is not possible). A file already over it that the change does not grow is a follow-up (Ticket Scope), unless the design spec decided the refactor is needed now.

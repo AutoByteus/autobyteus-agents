@@ -114,7 +114,7 @@ Decision rules:
 
 Every case you plan to run, repository checks and broader journeys alike, narrowest first. The execution report's Cases table records each one under the same ID.
 
-| Case ID | Criteria (AC / Requirement IDs) | Boundary / Surface | Kind (`Durable`/`Existing Test`/`Temporary Probe`/`Journey`) | Planned Command Or Steps | For A Temporary Probe: Why It Should Not Stay As Durable Coverage |
+| Case ID | Criteria (AC / Requirement IDs) | Boundary / Surface | Kind (`Durable`/`Existing Test`/`Temporary Probe`/`Journey`/`Reused`) | Planned Command Or Steps (for `Reused`: the implementation check ID) | Why (Temporary Probe: why not durable; `Reused`: why it still holds) |
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
 
