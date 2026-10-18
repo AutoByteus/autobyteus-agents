@@ -27,6 +27,16 @@ For each role, write a compact contract:
 
 Trace a normal path and each meaningful return path from intake to terminal result. A handoff should move a completed, classified result across a real ownership boundary. The receiver should depend on that result and evidence, not the sender's private ticket lifecycle, branch, worktree, implementation detail, or undocumented chat memory. Keep user decisions with the user; a role cannot silently approve a material behavior change on their behalf.
 
+**Information the roles share.** In an agent team, the documents are the roles' memory and the audit trail: each run starts fresh and may lose earlier context, so what is not written down is lost. Do not judge them by how many there are; judge how the information is structured:
+
+- Before adding a document, section, field, or step, find where that fact already lives, and extend its owner instead of adding another place.
+- Give each fact one owner; other documents point to it by ID or path instead of copying it.
+- Order a document the way the work happens, and name it for its use: a "test progress log", not a "ledger".
+- Record a result a role produced (a test run, a decision) with what the next role needs to judge whether it still holds, such as the commit and the evidence, so the next role reuses it instead of repeating it.
+- A restructure removes repeats, never checks ([step 4](../SKILL.md#4-validate-and-recover) verifies this).
+
+Keep it in proportion: a small change needs a small record.
+
 ## 3. Give each rule one authoritative file
 
 | Concern | Owner |
