@@ -65,17 +65,20 @@ Use [templates/delivery-revision-record-template.md](templates/delivery-revision
 Verification answers one question: does the evidence prove the change works?
 You own that judgement, as a delivery lead would.
 
-- Judge it from the evidence itself, not only the report's summary: open the
-  evidence files the execution report's Acceptance-Criteria Proof table links
-  for the critical acceptance criteria, and use the integrated-state rerun.
-  Check that every critical acceptance criterion is directly proven, and weigh
-  the final confidence and category scores against the team's target, the
-  journeys run with their evidence (screenshots, logs, API results), what was
-  mocked, and what was not tested and why.
+- Judge it from the evidence itself, not only the report's summary. The
+  execution report's Evidence Index says, for each evidence file, which
+  criteria it supports, what it proves and what to look for. For each
+  acceptance criterion, read its rows and open the files for the critical
+  ones to check the line or detail named there; use the integrated-state
+  rerun as well. Check that every critical acceptance criterion is directly
+  proven, and weigh the final confidence and category scores against the
+  team's target, the journeys run with their evidence (screenshots, logs,
+  API results), what was mocked, and what was not tested and why.
 - When the evidence proves the change works, record your judgement and the
   evidence you relied on, and continue without waiting for the user.
-- When it does not, name what is missing and send it back: API/E2E goes
-  deeper (more journeys, a real surface, stronger assertions, higher
+- When it does not, name the criterion and what is missing, such as no
+  index row or a file without the line it claims, and send it back: API/E2E
+  goes deeper (more journeys, a real surface, stronger assertions, higher
   confidence) as many rounds as it takes; a defect goes to its owner. Judge
   again each time. Proving the change is API/E2E's job, not the user's.
 - A change proven by evidence needs no repeat check by the user; for example,

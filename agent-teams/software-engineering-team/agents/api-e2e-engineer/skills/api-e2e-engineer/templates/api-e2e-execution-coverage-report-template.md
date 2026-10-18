@@ -67,7 +67,7 @@ Reconcile the ledger here without duplicating its full event log.
 - Cases still running, interrupted, or not started:
 - Interruption or rerun note:
 
-| Case ID | Final Result (`Pass`/`Fail`/`Blocked`/`Not Tested`/`N/A`) | Last Event | Evidence / Artifact Path | Reconciled Result / Follow-Up |
+| Case ID | Final Result (`Pass`/`Fail`/`Blocked`/`Not Tested`/`N/A`) | Last Event | Evidence IDs | Reconciled Result / Follow-Up |
 | --- | --- | --- | --- | --- |
 |  |  |  |  |  |
 
@@ -80,19 +80,28 @@ Reconcile the ledger here without duplicating its full event log.
 - If compatibility-related invalid scope was observed, reroute classification used: `Local Fix` / `Design Impact` / `Requirement Gap` / `Unclear`
 - Upstream recipient notified:
 
+## Evidence Index
+
+The one place that lists the evidence. Later roles judge each criterion from these rows, so each row says what to look for. Every other section names evidence by its ID. One row per file; a small change has a small index.
+
+- Evidence folder (absolute path):
+- Commit that holds the evidence and these reports:
+
+| Evidence ID | File | Case IDs | Acceptance-Criteria IDs | Command Or Step | Tested Commit And Environment | What It Proves | Look For |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| EV-01 | <path inside the evidence folder> |  |  | <exact command, or the journey step> | <commit; OS, runtime, app build> |  | <the key line quoted exactly as in the file, a count, or a screenshot detail> |
+
 ## Acceptance-Criteria Proof
 
-The index later roles use to find the proof.
+Each criterion with the evidence that proves it.
 
-- Evidence folder:
-
-| Acceptance-Criteria ID | Critical (`Yes`/`No`) | Proven By Case IDs | Evidence Files | Result (`Proven`/`Not Proven`/`Only The User Can Check`) |
+| Acceptance-Criteria ID | Critical (`Yes`/`No`) | Proven By Case IDs | Evidence IDs | Result (`Proven`/`Not Proven`/`Only The User Can Check`) |
 | --- | --- | --- | --- | --- |
 |  |  |  |  |  |
 
 ## Changed Boundary And Evidence Matrix
 
-| Case ID | Behavior / Requirement / Acceptance-Criteria IDs | Changed Boundary | Execution Surface / Mode | Evidence Type (`Durable`/`Temporary`/`Live`/`Browser`/`Desktop`) | Result (`Pass`/`Fail`/`Blocked`/`Not Tested`) | Evidence / Artifact |
+| Case ID | Behavior / Requirement / Acceptance-Criteria IDs | Changed Boundary | Execution Surface / Mode | Evidence Type (`Durable`/`Temporary`/`Live`/`Browser`/`Desktop`) | Result (`Pass`/`Fail`/`Blocked`/`Not Tested`) | Evidence IDs |
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |
 
@@ -100,7 +109,7 @@ The index later roles use to find the proof.
 
 Treat the updated coverage investigation as the authoritative record of planned and completed repository checks. Record only commands added or rerun after its post-repository confidence and broader-validation decision.
 
-| Order | Command | Working Directory / Configuration | Boundary Or Scenario Proven | Result (`Pass`/`Fail`/`Blocked`) | Evidence / Output Path |
+| Order | Command | Working Directory / Configuration | Boundary Or Scenario Proven | Result (`Pass`/`Fail`/`Blocked`) | Evidence IDs |
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
 
@@ -138,15 +147,15 @@ Carry forward the post-repository scores from the coverage investigation and rec
 - Environment choices that materially affected the run:
 - Seed data, fixtures, identities, authentication, permissions, or session state:
 
-| Scenario / Journey Step | Expected Observable Result | Actual Observable Result | DOM / Screenshot / Log / API / Process Evidence | Result |
+| Scenario / Journey Step | Expected Observable Result | Actual Observable Result | Evidence IDs (DOM, screenshot, log, API, process) | Result |
 | --- | --- | --- | --- | --- |
 |  |  |  |  |  |
 
 ## Desktop Application Validation (When Applicable)
 
 - Validation approach executed and any deviation from the investigation:
-- Web-equivalent behavior, surface used, and evidence:
-- Shell-specific or lifecycle behavior and evidence:
+- Web-equivalent behavior, surface used, and evidence IDs:
+- Shell-specific or lifecycle behavior and evidence IDs:
 - Effect on any already-running desktop application: `None` / explain
 - Behavior not directly proven and confidence consequence:
 
@@ -161,8 +170,8 @@ Carry forward the post-repository scores from the coverage investigation and rec
 
 - Approved persisted-data decision:
 - Representative existing data exercised:
-- Direct-use, discard/rebuild, or migration result and evidence:
-- Migration completion/recovery evidence, only when `Migration Required`:
+- Direct-use, discard/rebuild, or migration result and evidence IDs:
+- Migration completion/recovery evidence IDs, only when `Migration Required`:
 - Version-specific runtime branch, dual read/write, or compatibility fallback observed: `No` / `Yes (reroute required)`
 - Residual untested persisted-data risk:
 
@@ -178,6 +187,8 @@ Carry forward the post-repository scores from the coverage investigation and rec
 - Diff or repository evidence supplied for removed paths:
 
 ## Other Execution Artifacts
+
+Artifacts that are not evidence, such as harness scripts or generated fixtures. Evidence goes in the Evidence Index.
 
 | Artifact Path | Type / Purpose | Retained Or Temporary | Notes |
 | --- | --- | --- | --- |

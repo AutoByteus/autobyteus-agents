@@ -141,7 +141,7 @@ Complete this before deleting or disabling existing durable coverage.
 
 Plan the narrowest relevant checks first and the broader affected suites afterward. Update this table with actual results before making the confidence decision.
 
-| Order | Command | Working Directory / Configuration | Boundary Or Scenario Proven | Result (`Planned`/`Pass`/`Fail`/`Blocked`) | Evidence / Output Path |
+| Order | Command | Working Directory / Configuration | Boundary Or Scenario Proven | Result (`Planned`/`Pass`/`Fail`/`Blocked`) | Evidence IDs |
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
 

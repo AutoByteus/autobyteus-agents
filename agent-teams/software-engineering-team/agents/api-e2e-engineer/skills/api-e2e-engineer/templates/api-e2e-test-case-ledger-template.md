@@ -23,9 +23,9 @@ List independently meaningful executable cases, not every assertion or internal 
 
 ## Execution Events
 
-Record a `Started` event when a case begins, then append a `Completed` event immediately after its execution attempt and before proceeding to the next case. For a long-running case, append meaningful checkpoints while it is in progress. A non-terminal event does not prove a final result.
+Record a `Started` event when a case begins, then append a `Completed` event immediately after its execution attempt and before proceeding to the next case. For a long-running case, append meaningful checkpoints while it is in progress. A non-terminal event does not prove a final result. When you save an evidence file, add its row to the execution report's Evidence Index and record its ID here.
 
-| Sequence | Case ID | Timestamp | Event (`Started`/`Checkpoint`/`Completed`) | Command / Entry Point / Material Configuration | Expected Observable Result | Observed Result Or Checkpoint | Result (`Pass`/`Fail`/`Blocked`/`Not Tested`/`N/A`) | Evidence / Artifact Path | Next Action / Unresolved Issue |
+| Sequence | Case ID | Timestamp | Event (`Started`/`Checkpoint`/`Completed`) | Command / Entry Point / Material Configuration | Expected Observable Result | Observed Result Or Checkpoint | Result (`Pass`/`Fail`/`Blocked`/`Not Tested`/`N/A`) | Evidence IDs | Next Action / Unresolved Issue |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |  |  |  |
 

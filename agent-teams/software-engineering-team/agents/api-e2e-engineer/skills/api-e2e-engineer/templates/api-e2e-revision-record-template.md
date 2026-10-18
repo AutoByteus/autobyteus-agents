@@ -24,7 +24,7 @@ The latest coverage investigation and execution coverage report remain authorita
 
 #### Prior Failure Resolution
 
-| Prior Case / Failure Reference | Previous Classification | Current Resolution | Evidence |
+| Prior Case / Failure Reference | Previous Classification | Current Resolution | Evidence IDs |
 | --- | --- | --- | --- |
 |  |  |  |  |
 

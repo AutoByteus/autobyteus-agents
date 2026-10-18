@@ -41,7 +41,13 @@ Write each artifact at one canonical path in the assigned task workspace/worktre
 - Execution coverage report, from [templates/api-e2e-execution-coverage-report-template.md](templates/api-e2e-execution-coverage-report-template.md): the executed plan, confidence decisions, evidence, cleanup, and the authoritative round-level result.
 - `api-e2e-revision-record.md`, from [templates/api-e2e-revision-record-template.md](templates/api-e2e-revision-record-template.md): one entry per completed validation result, starting with the `API-REV-001` baseline. The investigation and report remain the current truth; a missing prior record or result is never an implied `Pass` or confidence value.
 - `api-e2e-test-case-ledger.md`, from [templates/api-e2e-test-case-ledger-template.md](templates/api-e2e-test-case-ledger-template.md), when the ledger rules below require it.
-- The evidence itself: screenshots, log excerpts, test output, recordings, and what you tried. It is the proof the later roles judge from, so keep it in the ticket folder's `evidence/` folder (or where the project's testing guideline says), which is archived with the ticket and survives worktree cleanup. Keep it reviewable; for a file too large to commit, keep an excerpt and record where the full file is. Name files so every operating system can check them out (for example, no `:`).
+- The evidence itself: screenshots, log excerpts, test output, recordings, and what you tried. It is the proof the later roles judge from, often without running anything, so write it for a reader:
+  - keep it in the ticket folder's `evidence/` folder (or where the project's testing guideline says);
+  - give each file a row in the execution report's Evidence Index when you save it: what it proves and what to look for, quoting the key line exactly as it appears so a reader can find it;
+  - start each text file with a short header: the command or step, the commit, the environment, the date and the case ID. For a screenshot or other binary file, its index row carries this;
+  - for a long log, save a short excerpt with the lines that prove the result next to the full log, or record where the full log is when it is too large to commit;
+  - save a check you only observed (a page, a console, a running app) as a file: a screenshot, a DOM snapshot or the copied output, not only a line in the ledger;
+  - name files so every operating system can check them out (for example, no `:`).
 
 ## Operating Sequence
 
@@ -55,7 +61,7 @@ Follow this order:
 6. Implement the approved durable coverage changes and execute the relevant repository checks from narrowest to broader scope, keeping each case's evidence as it runs.
 7. Update the investigation with the repository evidence, confidence percentage, residual risks, and explicit broader-validation decision.
 8. When broader validation is required, follow the project's testing guideline and development instructions, prepare the needed environment and data, execute the selected journeys, keeping their evidence as they run, and clean up resources created for the run.
-9. Reassess final confidence, write the execution coverage report with its Acceptance-Criteria Proof and the revision entry, and hand off or reroute the result.
+9. Reassess final confidence, write the execution coverage report with its Evidence Index and Acceptance-Criteria Proof and the revision entry, and hand off or reroute the result.
 
 Do not begin with browser interaction merely because browser tools are available. Do not stop at repository tests merely because they pass. Let the changed boundary, evidence directness, and residual risk determine the next validation surface.
 
@@ -195,7 +201,7 @@ Browser validation is normally unnecessary for a backend-local change when valid
 
 ## Result And Handoff
 
-Finish validation, persist the reports and the revision entry, and preserve the classification and selected route. Then call `get_handoff_rules` and send the result with AutoByteus `send_message_to` to each exact returned `recipient_address`. The returned rules are the routing authority; do not select a recipient from memory.
+Finish validation, persist the reports and the revision entry, and preserve the classification and selected route. Commit the ticket folder's reports and evidence on the ticket branch, so they survive if the worktree is removed before delivery archives the ticket; follow the project's testing guideline if it says otherwise. Then call `get_handoff_rules` and send the result with AutoByteus `send_message_to` to each exact returned `recipient_address`. The returned rules are the routing authority; do not select a recipient from memory.
 
 Per result:
 
@@ -206,7 +212,7 @@ Per result:
 Every result:
 
 - Distinguish durable coverage changes, temporary executable checks, and blocked or infeasible residual scenarios in the execution report.
-- Pass the evidence with every result, `Pass` included: give the evidence folder's absolute path, attach the evidence files that prove the critical acceptance criteria, and point to the execution report's Acceptance-Criteria Proof table, which links each criterion to its evidence. The next roles judge from the evidence itself, not from a summary.
+- Pass the evidence with every result, `Pass` included: give the evidence folder's absolute path and the commit that holds it, attach the evidence files that prove the critical acceptance criteria, and point to the execution report's Evidence Index, which says for each file what it proves and what to look for. The next roles judge from the evidence itself, not from a summary.
 - Mark a behavior as one only the user can check only after you tried to prove it yourself (deeper tests, a real surface, emulation, a safe setup), and record what you tried and why it still needs the user, such as their own accounts or nodes. Delivery uses it to decide whether the user must check.
 - On a later round, recheck prior unresolved failures first, reuse case IDs, and record the rerun delta and prior-failure resolution in the revision record.
 - Every handoff carries your own documents: the coverage investigation, execution coverage report, `api-e2e-revision-record.md`, the test-case ledger when used, and the evidence for the critical acceptance criteria (above). Add the other files the receiver needs for its next step; you decide which, as [handoff-references.md](references/handoff-references.md) describes, and do not forward everything you received. Give absolute paths and attach the files in the reference-files field. Removed test files cannot be attached; give their paths with the diff.
