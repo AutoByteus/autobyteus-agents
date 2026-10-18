@@ -76,6 +76,7 @@ Decide after the post-repository scores.
 - Decision: `Required` / `Not Required` / `Blocked`
 - Execution mode (`Browser`/`Live API`/`Project Desktop Validation`/`CLI`/`Lifecycle`/`Worker or Distributed`/`Other`/`None`):
 - Confidence gap or residual risk it addresses, and the expected gain:
+- Browser validation needed, and why or why not:
 - If `Not Required`: the cases that already exercise the real changed boundary:
 - If `Blocked`: the exact unavailable dependency or access, and what you tried:
 
@@ -89,6 +90,8 @@ Decide after the post-repository scores.
 ## Persisted-Data Transition Checks (When Applicable)
 
 - Approved persisted-data decision:
+- Representative existing data used:
+- Approved transition followed without an unnecessary migration: `Yes` / `No (reroute required)`
 - Cases proving the direct-use, discard/rebuild, or migration outcome (completion and recovery only when `Migration Required`):
 - Version-specific runtime branch, dual read/write, or compatibility fallback observed: `No` / `Yes (reroute required)`
 - Residual untested persisted-data risk:
