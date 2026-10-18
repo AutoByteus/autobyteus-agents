@@ -1,6 +1,6 @@
 # Agent Package Creation Result
 
-- Status: `Completed` (pending the real-run check after the merge)
+- Status: `Completed`
 - Operation: `update`
 - Package type: `agent`
 - Update intent: `extend`: Task keys and stored dependencies
@@ -52,4 +52,4 @@ The Project Task Manager now:
 | Matches the installed tools | Pass | 1.5.6-beta.1 descriptions of `list_project_tasks`, `create_task` and `update_task`: keys as `taskId`, keys or long IDs accepted, `depends_on` on create and update (replaces on update), `dependsOn` in the list, dependencies only inform |
 | `agent-config.json` | N/A | No change; the needed tools are already listed |
 | Final review | Pass | Round 1: moved the "store on the Tasks" sentence after step 3's judgement, and cut step 5's repeat of step 3's examples and the sharing-code rule. Round 2: removed the board template's repeat of the key rule. Round 3: no findings. |
-| Real run on the new release | Pending | After the merge, a new Project Task Manager run creates a dependent Task (for example the next real follow-up) and reports its key and the Blocked-by result. |
+| Real run on the new release | Pass | 2026-10-18: a Project Task Manager run with the merged skill (`887e79d`) on app 1.5.6-beta.1 set `depends_on` on the real CI-gating Task (long ID `7ea7804f…`) with `update_task`. The tool accepted long IDs, replaced the list, and returned keys: Task `autobyteus-65`, dependsOn `autobyteus-103`, `autobyteus-104`, `autobyteus-59`, `autobyteus-116`, `autobyteus-115`. The user's screenshot shows the amber "Blocked by autobyteus-59 +4" badge on `autobyteus-65`. |
