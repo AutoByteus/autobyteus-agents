@@ -35,15 +35,27 @@ Ticket folder: `autobyteus-worktrees/workspace-skill-collision-fix/tickets/done/
 | Release/deployment report template | Verification is one free-text line, "Evidence relied on". |
 | `shared/handoff-references.md`:32 and 66 | "the proof table links the evidence". |
 
-## Findings
+## Findings (revised after the user's direction, 2026-10-18)
 
-| # | Priority area | Evidence | Owner | Change |
-| --- | --- | --- | --- | --- |
-| F1 | Structure and ownership | Evidence is described in seven report places, the ledger and the investigation, each as free text | Execution report template | One **Evidence Index** section: a row per file with an ID. Every other place references evidence IDs. |
-| F2 | Grounding | 29 of 30 files have no header; 39k log lines with no excerpt; desktop page checks are ledger text only | API/E2E `SKILL.md` Outputs | Each file starts with a short header. Long logs get an excerpt of the proving lines. Checks observed only on a page or console are saved as files. |
-| F3 | Grounding | The evidence lives uncommitted in the worktree until delivery archives it | API/E2E `SKILL.md` | Commit the evidence and the reports with the ticket folder on the ticket branch before each handoff (or as the project's testing guideline says), and give the commit in the handoff. |
-| F4 | Content flow | Delivery reads raw logs and records verification in one line | Delivery `SKILL.md`; release/deployment template | Judge each acceptance criterion from its index rows and the key line or detail named there. Record a short per-criterion judgement. Finalize when all are proven; send back only what is not. The user stays the last resort. |
-| F5 | Consistency | The handoff guide and the ledger, investigation and revision templates point to evidence their own way | Those files | Point to the Evidence Index and evidence IDs. |
+The user's direction: no duplicates; fix the information structure so the existing documents, consolidated, provide the evidence ("good logic will normally help us with information structure").
+
+**Where one case's facts were written before this change:**
+
+| Fact | Places it was written |
+| --- | --- |
+| A case's plan (ID, criteria, command) | the investigation's add/update tables, its repository execution table, its temporary-probe plan, and the ledger's Planned Cases |
+| A case's result and evidence | the ledger's events, the report's ledger reconciliation, the proof table, the boundary matrix, the repository coverage table, the broader-validation step table, the desktop section, the result summary, and "Other Execution Artifacts" (and my first draft added an Evidence Index) |
+| Post-repository confidence and the broader-validation decision | the investigation, and again in the report ("carry forward") |
+| Upstream document list | the investigation meta and the report meta |
+| Environment | the report's platform section and free text per case |
+
+| # | Priority area | Owner | Change |
+| --- | --- | --- | --- |
+| F1 | Structure and ownership | The templates | One owner per fact, following the work: the **investigation is the plan** (what to prove, how, planned cases); the **report is the run record and result** (cases with evidence, criteria proof, confidence, decisions); the **revision record is history**. The **ledger is removed**: the report's Cases table, updated right after each case, gives the same resume point. |
+| F2 | Content flow | The report | One **Cases** table (case, criteria, boundary, command or steps, environment ID, result, evidence files, the exact line to look for, notes). Environments and tested commits are listed once and referenced by ID. The **Acceptance-Criteria Proof** maps each criterion to case IDs. |
+| F3 | Grounding | API/E2E `SKILL.md` | Evidence files carry their own header and excerpt, so per-file facts live in the file. Observed checks are saved as files. Commit before each handoff. |
+| F4 | Content flow | Delivery `SKILL.md` and template | Criterion → case rows → files and the quoted line; a per-criterion judgement table. |
+| F5 | Consistency | Handoff guide, revision record, code reviewer and delivery mentions | Point to the Cases table and case IDs; no ledger. |
 
 ## Other roles (checked; no change)
 
@@ -60,17 +72,21 @@ Ticket folder: `autobyteus-worktrees/workspace-skill-collision-fix/tickets/done/
 
 ## Planned changes
 
-- **Execution report template:**
-  - add an Evidence Index (before the proof table), with the evidence folder and the commit holding it;
-  - the proof table, boundary matrix, repository coverage, broader validation, desktop, lifecycle and ledger-reconciliation evidence columns use evidence IDs;
-  - "Other Execution Artifacts" is for non-evidence artifacts.
-- **Ledger template:** the evidence column takes evidence IDs; add a row to the index when a file is saved.
-- **Coverage investigation template:** the command table's evidence column takes evidence IDs.
-- **Revision record template:** prior-failure evidence as evidence IDs.
+- **`api-e2e-execution-coverage-report-template.md` (rewritten):**
+  - sections: Round (with the evidence folder and its commit), Routing Classification, Tested Builds And Environments, Cases, Acceptance-Criteria Proof, Validation Confidence Scorecard (post-repository and final), Broader Validation Decision, Desktop (when applicable), Lifecycle (when applicable), Compatibility, Durable Coverage Changed, Dependencies Mocked, Temporary Methods And Cleanup, Preliminary Classification, Latest Authoritative Result;
+  - removed as duplicates: ledger reconciliation, boundary matrix, repository coverage table, broader-validation step table, Platform section (now environments), Other Execution Artifacts, separate temporary-method and cleanup tables, Result Summary, the upstream document list (kept in the investigation).
+- **`api-e2e-coverage-investigation-template.md`:**
+  - one Planned Cases table replaces the repository execution table, the temporary-probe plan and the ledger decision;
+  - the post-repository scorecard and broader-validation decision move to the report;
+  - routing classification moves to the report;
+  - the desktop and environment sections are plans.
+- **`api-e2e-test-case-ledger-template.md`:** removed.
+- **`api-e2e-revision-record-template.md`:** prior-failure evidence as case IDs.
 - **API/E2E `SKILL.md`:**
-  - Outputs: index row, header, excerpt, files for observed checks;
-  - commit before each handoff;
-  - Result: point to the Evidence Index and give the commit.
-- **Delivery `SKILL.md` "Verify From Evidence":** judge each criterion from the index.
-- **Release/deployment template, Verification:** a per-criterion table.
-- **`shared/handoff-references.md`:** the Evidence Index links the evidence.
+  - Outputs: three documents plus the evidence;
+  - Operating Sequence: plan, cases recorded as they run, the confidence gate in the report;
+  - Test-Case Ledger Rules become Recording Cases;
+  - confidence and broader-validation recording in the report;
+  - handoff documents without a ledger.
+- **Delivery `SKILL.md` and `release-deployment-report-template.md`:** judge each criterion through its cases.
+- **`shared/handoff-references.md`:** the Cases table links the evidence; the example lists no ledger.

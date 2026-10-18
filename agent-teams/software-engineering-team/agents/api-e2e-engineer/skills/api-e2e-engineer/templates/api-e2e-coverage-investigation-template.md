@@ -1,5 +1,7 @@
 # API/E2E Coverage Investigation
 
+The plan: what must be proven, how, the decisions about existing tests, and the planned cases. Results, confidence scores and the broader-validation decision go in the execution coverage report.
+
 Write this artifact to a canonical file path in the assigned task workspace before final test execution, durable coverage edits, durable coverage removals, or failure rerouting.
 
 Keep one canonical investigation path across reruns.
@@ -24,19 +26,10 @@ Omit a section marked `(When Applicable)` when it does not apply. For any other 
 - Relevant Delivery Revision IDs:
 - API/E2E Revision Record (created after the first completed result):
 - Current API/E2E Revision ID: `N/A` / `API-REV-*`
-- API/E2E Test-Case Ledger (when multi-case, long-running, or interruption-prone execution is planned):
 - Current Investigation Round:
 - Trigger:
 - Prior Investigation Reviewed:
 - Latest Authoritative Investigation:
-
-## Routing Classification
-
-- Task size (`Small`/`Medium`/`Large`):
-- Architectural risk (`Low`/`High`):
-- Input route (`Reviewed`/`Direct Low-Risk`):
-- Successful-output route (`Code Review`/`Delivery`):
-- Proportional test-code review decision: `Required` / `Not Required — direct low-risk route` / `Not Applicable`
 
 ## Current Requirement And Design Basis
 
@@ -137,52 +130,17 @@ Complete this before deleting or disabling existing durable coverage.
 | --- | --- | --- | --- |
 |  |  |  |  |
 
-## Repository Coverage Execution Plan And Results
+## Planned Cases
 
-Plan the narrowest relevant checks first and the broader affected suites afterward. Update this table with actual results before making the confidence decision.
+Every case you plan to run, repository checks and broader journeys alike, narrowest first. The execution report's Cases table records each one under the same ID.
 
-| Order | Command | Working Directory / Configuration | Boundary Or Scenario Proven | Result (`Planned`/`Pass`/`Fail`/`Blocked`) | Evidence IDs |
+| Case ID | Criteria (AC / Requirement IDs) | Boundary / Surface | Kind (`Durable`/`Existing Test`/`Temporary Probe`/`Journey`) | Planned Command Or Steps | For A Temporary Probe: Why It Should Not Stay As Durable Coverage |
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
 
-## Test-Case Ledger Decision
+- Test progress log needed (more than one case, or a long case): `Yes` / `No`
 
-- Ledger required: `Yes` / `No` — explain the execution shape and risk:
-- Canonical ledger path (the ledger holds the planned cases):
-
-## Post-Repository Confidence Scorecard (Mandatory)
-
-Score each applicable category from `0%` to `100%`. Use `N/A` only with a concrete inapplicability reason. Do not let the average hide a weak category or unproven critical behavior.
-
-| Confidence Category | Score (`0-100%`/`N/A`) | What Supports The Score | Remaining Uncertainty | Additional Validation That Could Improve It |
-| --- | --- | --- | --- | --- |
-| Requirement and acceptance-criteria proof |  |  |  |  |
-| Changed-boundary execution directness |  |  |  |  |
-| Cross-boundary integration realism and mock gap |  |  |  |  |
-| Environment, configuration, identity, and fixture fidelity |  |  |  |  |
-| Failure, edge-case, lifecycle, and recovery evidence |  |  |  |  |
-| User-surface, browser, and desktop-shell confidence |  |  |  |  |
-| Durable regression coverage quality and relevance |  |  |  |  |
-
-- Overall post-repository confidence:
-- Calculation method:
-- Every critical acceptance criterion directly proven, apart from parts only the user can check: `Yes` / `No`
-- Any applicable category below `90%`: `No` / `Yes` — list:
-- Default clean-confidence target of `95%` met: `Yes` / `No`
-- Material residual risks:
-
-## Broader Validation Decision (Mandatory)
-
-- Decision: `Required` / `Not Required` / `Blocked`
-- Selected execution mode (`Browser`/`Live API`/`Project Desktop Validation`/`CLI`/`Lifecycle`/`Worker or Distributed`/`Other`/`None`):
-- Specific confidence gap or residual risk addressed:
-- Why the selected mode can materially improve confidence:
-- Expected confidence after the selected validation:
-- Browser-specific decision and rationale:
-- If `Not Required`, evidence proving the real changed boundary without broader execution:
-- If `Blocked`, exact dependency or access that remains unavailable after safe setup/emulation attempts:
-
-## Desktop Application Validation Decision (When Applicable)
+## Desktop Application Validation Plan (When Applicable)
 
 - Desktop framework / shell:
 - Testing guideline, README, or development instructions used:
@@ -190,10 +148,9 @@ Score each applicable category from `0%` to `100%`. Use `N/A` only with a concre
 - Shell-specific or lifecycle behavior:
 - Chosen validation approach and why it fits the project:
 - Server/frontend setup when browser validation is used:
-- Effect on any already-running desktop application: `None` / explain
-- Behavior not directly proven and confidence consequence:
+- How the run avoids disturbing an already-running desktop application:
 
-## Live Environment And Fixture Plan (Required When Broader Validation Runs)
+## Live Environment And Fixture Plan (When Broader Validation Is Likely)
 
 - Startup order and commands:
 - Environment choices that materially affect the run:
@@ -203,12 +160,6 @@ Score each applicable category from `0%` to `100%`. Use `N/A` only with a concre
 - Requirement-linked journeys or scenarios:
 - DOM, screenshot, log, API, process, or other evidence to capture:
 - Owned processes and temporary state to clean up:
-
-## Temporary Executable Validation Plan
-
-| Case ID | Probe / Harness / Runtime Setup | Behavior Proven | Why This Should Not Remain As Durable Coverage |
-| --- | --- | --- | --- |
-|  |  |  |  |
 
 ## Not Tested / Infeasible / Deferred
 
@@ -226,8 +177,6 @@ Score each applicable category from `0%` to `100%`. Use `N/A` only with a concre
 
 - Proceed To API/E2E Execution: `Yes` / `No`
 - Repository-Resident Durable Coverage Will Be Added / Updated / Removed: `No` / `Yes`
-- Post-repository confidence:
-- Broader validation decision:
 - Reroute Required Before Validation Execution: `No` / `Yes`
 - Recommended Owner If Reroute Required:
 - Notes:

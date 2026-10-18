@@ -35,18 +35,20 @@ First establish what the project expects and how it is run, then evaluate and ma
 
 ## Outputs
 
-Write each artifact at one canonical path in the assigned task workspace/worktree before any handoff message. Update it in place across reruns; do not create versioned or per-case copies.
+Write each artifact at one canonical path in the assigned task workspace/worktree before any handoff message. Update it in place across reruns (the test progress log only gains rows); do not create versioned or per-case copies.
 
-- Coverage investigation, from [templates/api-e2e-coverage-investigation-template.md](templates/api-e2e-coverage-investigation-template.md): the plan and decisions, written before durable coverage changes, final execution, or failure rerouting.
-- Execution coverage report, from [templates/api-e2e-execution-coverage-report-template.md](templates/api-e2e-execution-coverage-report-template.md): the executed plan, confidence decisions, evidence, cleanup, and the authoritative round-level result.
-- `api-e2e-revision-record.md`, from [templates/api-e2e-revision-record-template.md](templates/api-e2e-revision-record-template.md): one entry per completed validation result, starting with the `API-REV-001` baseline. The investigation and report remain the current truth; a missing prior record or result is never an implied `Pass` or confidence value.
-- `api-e2e-test-case-ledger.md`, from [templates/api-e2e-test-case-ledger-template.md](templates/api-e2e-test-case-ledger-template.md), when the ledger rules below require it.
+Each document has one job, so each fact is written once:
+
+- Coverage investigation, from [templates/api-e2e-coverage-investigation-template.md](templates/api-e2e-coverage-investigation-template.md): **the plan**: what must be proven, how, the decisions about existing tests, and the planned cases. Write it before durable coverage changes, execution, or failure rerouting.
+- Execution coverage report, from [templates/api-e2e-execution-coverage-report-template.md](templates/api-e2e-execution-coverage-report-template.md): **the record and the result**: each case with its evidence, the proof of each acceptance criterion, the confidence scores, the broader-validation decision, cleanup, and the round's result.
+- `api-e2e-test-progress.md`, from [templates/api-e2e-test-progress-template.md](templates/api-e2e-test-progress-template.md): **your progress log** while tests run (Recording Progress And Cases below).
+- `api-e2e-revision-record.md`, from [templates/api-e2e-revision-record-template.md](templates/api-e2e-revision-record-template.md): **the history**, one entry per completed validation result, starting with the `API-REV-001` baseline. The investigation and report remain the current truth; a missing prior record or result is never an implied `Pass` or confidence value.
 - The evidence itself: screenshots, log excerpts, test output, recordings, and what you tried. It is the proof the later roles judge from, often without running anything, so write it for a reader:
   - keep it in the ticket folder's `evidence/` folder (or where the project's testing guideline says);
-  - give each file a row in the execution report's Evidence Index when you save it: what it proves and what to look for, quoting the key line exactly as it appears so a reader can find it;
-  - start each text file with a short header: the command or step, the commit, the environment, the date and the case ID. For a screenshot or other binary file, its index row carries this;
+  - list each file under its case in the execution report's Cases table, with what to look for, quoting the key line exactly as it appears so a reader can find it;
+  - start each text file with a short header: the command or step, the commit, the environment, the date and the case ID. A screenshot or other binary file gets these from its case row;
   - for a long log, save a short excerpt with the lines that prove the result next to the full log, or record where the full log is when it is too large to commit;
-  - save a check you only observed (a page, a console, a running app) as a file: a screenshot, a DOM snapshot or the copied output, not only a line in the ledger;
+  - save a check you only observed (a page, a console, a running app) as a file: a screenshot, a DOM snapshot or the copied output, not only a line in a report;
   - name files so every operating system can check them out (for example, no `:`).
 
 ## Operating Sequence
@@ -57,11 +59,11 @@ Follow this order:
 2. Classify the changed runtime surfaces and boundaries.
 3. Discover the project's testing guideline and other authoritative run, test, environment, and fixture instructions, inventory relevant existing coverage, and write the initial coverage investigation.
 4. Decide which durable tests remain valid and which must be added, updated, replaced, or removed.
-5. Initialize the test-case ledger when the ledger rules require one.
-6. Implement the approved durable coverage changes and execute the relevant repository checks from narrowest to broader scope, keeping each case's evidence as it runs.
-7. Update the investigation with the repository evidence, confidence percentage, residual risks, and explicit broader-validation decision.
-8. When broader validation is required, follow the project's testing guideline and development instructions, prepare the needed environment and data, execute the selected journeys, keeping their evidence as they run, and clean up resources created for the run.
-9. Reassess final confidence, write the execution coverage report with its Evidence Index and Acceptance-Criteria Proof and the revision entry, and hand off or reroute the result.
+5. Start the execution coverage report and, when the run needs one, the test progress log.
+6. Implement the approved durable coverage changes and execute the relevant repository checks from narrowest to broader scope, recording progress and each completed case as it runs.
+7. In the report, score post-repository confidence, residual risks, and the broader-validation decision.
+8. When broader validation is required, follow the project's testing guideline and development instructions, prepare the needed environment and data, execute the selected journeys, recording them the same way, and clean up resources created for the run.
+9. Reassess final confidence, complete the Acceptance-Criteria Proof and the result, add the revision entry, and hand off or reroute the result.
 
 Do not begin with browser interaction merely because browser tools are available. Do not stop at repository tests merely because they pass. Let the changed boundary, evidence directness, and residual risk determine the next validation surface.
 
@@ -113,23 +115,23 @@ Test the product the way its real users and real system events use it.
 
 - Execute the smallest directly relevant valid checks first, then the broader affected suites needed to detect integration or regression failures. Follow the project's documented command order when it defines one.
 - Distinguish the evidence provided by unit, integration, API, repository-resident browser E2E, contract, lifecycle, and other suites. A passing mocked test does not prove a boundary the mock bypasses.
-- Record exact commands, working directories, important configuration, results, failure output locations, and coverage artifacts.
+- Record each case's exact command, working directory and important configuration in its Cases row, with its environment, result and evidence.
 - If new evidence changes a test-validity or coverage decision, update the investigation before continuing.
 - Keep durable coverage changes narrow, requirement-linked, boundary-appropriate, and maintainable. Do not use this stage to introduce unrelated test or source architecture changes.
 
-## Test-Case Ledger Rules
+## Recording Progress And Cases
 
-- Use one ledger when execution contains multiple independently meaningful cases, a long-running case, or a run likely to be interrupted or to outlast the conversation. Initialize it with the planned case IDs before execution.
-- A case is one independently meaningful API scenario, E2E journey, lifecycle check, or temporary probe, not every assertion or internal step.
-- Record each case's expected and observed result (`Pass`, `Fail`, `Blocked`, or `Not Tested` when it was not run) and evidence immediately after its execution attempt and before starting the next case. During a long-running case, append meaningful checkpoints.
-- If a case is interrupted or has only partial evidence, record the checkpoint and leave the final result unresolved rather than inferring success.
-- Reconcile the ledger's completed, failed, blocked, and unstarted cases into the execution coverage report. The ledger preserves in-flight continuity; it does not override the report's confidence gate or result.
+- A case is one independently meaningful API scenario, E2E journey, lifecycle check, or temporary probe, not every assertion or internal step. Use the case IDs the investigation planned, and reuse them across rounds.
+- Keep the test progress log whenever the run has more than one case or a case that runs long; a single quick case needs none. Write `Started` right before a case and `Completed` with its result right after, before the next case; add checkpoints during a long case. Whenever you pick the run back up, or are unsure what has already run, read the progress log first and continue from it: do not rerun a completed case without a reason, and do not skip one that never completed. The conversation can be compacted during a long run, and the log is what you rely on then.
+- When a case completes, write its row in the report's Cases table: the command or steps, the environment, the result, the evidence files, and what to look for.
+- Never infer a result. A case with only `Started` in the progress log did not complete: rerun it, or, if it cannot complete, record it as `Not Tested` in Cases with the reason.
+- The progress log keeps you on track; the report's Cases table and confidence gate are the result.
 
 ## Confidence And Broader-Validation Gate
 
 After repository checks, assess validation confidence from evidence rather than intuition.
 
-- Complete the mandatory confidence scorecard after repository execution and again after broader validation when it runs.
+- Complete the report's mandatory confidence scorecard after repository execution and again after broader validation when it runs.
 - Score each applicable category from `0%` to `100%` and explain what supports the score, what remains uncertain, and what additional validation could improve it. Use `N/A` only for a genuinely inapplicable category and explain why.
 - Calculate one overall validation confidence percentage from the applicable category scores. A simple average is acceptable unless the project defines another method, but the overall percentage never hides a weak category or missing critical evidence.
 
@@ -161,7 +163,7 @@ Decision rules:
 - The default clean target requires overall confidence of at least `95%`, no applicable category below `90%`, direct proof for every critical acceptance criterion, and no material broader-validation risk.
 - At `90-94%`, identify the confidence gap and choose the targeted executable surface most likely to close it. Browser testing is one option, not the default.
 - If overall confidence or any applicable category is below `90%`, do not declare `Pass`; perform additional validation, reroute the discovered problem, or record a real blocker.
-- Record the broader-validation decision as `Required`, `Not Required`, or `Blocked`, with the residual risk, expected evidence gain, selected execution mode, and rationale.
+- Record the broader-validation decision in the report as `Required`, `Not Required`, or `Blocked`, with the residual risk, expected evidence gain, selected execution mode, and rationale.
 - Use `Not Required` only when repository evidence already exercises the real changed boundary and no material broader-validation risk remains. “Tests passed” alone is not sufficient rationale.
 - Use `Blocked` only after safe documented setup, local reproduction, focused probes, fixtures, mocks, or emulation cannot reasonably provide the required evidence.
 
@@ -212,9 +214,9 @@ Per result:
 Every result:
 
 - Distinguish durable coverage changes, temporary executable checks, and blocked or infeasible residual scenarios in the execution report.
-- Pass the evidence with every result, `Pass` included: give the evidence folder's absolute path and the commit that holds it, attach the evidence files that prove the critical acceptance criteria, and point to the execution report's Evidence Index, which says for each file what it proves and what to look for. The next roles judge from the evidence itself, not from a summary.
+- Pass the evidence with every result, `Pass` included: give the evidence folder's absolute path and the commit that holds it, attach the evidence files that prove the critical acceptance criteria, and point to the execution report's Acceptance-Criteria Proof and Cases, which say for each criterion which cases prove it, with their evidence files and what to look for. The next roles judge from the evidence itself, not from a summary.
 - Mark a behavior as one only the user can check only after you tried to prove it yourself (deeper tests, a real surface, emulation, a safe setup), and record what you tried and why it still needs the user, such as their own accounts or nodes. Delivery uses it to decide whether the user must check.
 - On a later round, recheck prior unresolved failures first, reuse case IDs, and record the rerun delta and prior-failure resolution in the revision record.
-- Every handoff carries your own documents: the coverage investigation, execution coverage report, `api-e2e-revision-record.md`, the test-case ledger when used, and the evidence for the critical acceptance criteria (above). Add the other files the receiver needs for its next step; you decide which, as [handoff-references.md](references/handoff-references.md) describes, and do not forward everything you received. Give absolute paths and attach the files in the reference-files field. Removed test files cannot be attached; give their paths with the diff.
+- Every handoff carries your own documents: the coverage investigation, execution coverage report, `api-e2e-revision-record.md`, and the evidence for the critical acceptance criteria (above). The test progress log is your working file; it stays in the ticket folder. Add the other files the receiver needs for its next step; you decide which, as [handoff-references.md](references/handoff-references.md) describes, and do not forward everything you received. Give absolute paths and attach the files in the reference-files field. Removed test files cannot be attached; give their paths with the diff.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
 - After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.

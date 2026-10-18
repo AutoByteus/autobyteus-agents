@@ -134,6 +134,13 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Instead:** Where the skill tells the reader to read a symlinked file, add one hint: some files are symbolic links; open them by path.
 - **Detect:** List links with `find <package> -type l` and check that the skill that reads each one carries the hint; `find -L <package> -type l` prints broken links.
 
+### 19. A trigger the agent cannot observe
+
+- **Incident:** Skill text told agents to act "after compression" or "when work spans many sessions" (deep researcher, 2026-10-13), and a draft API/E2E rule said "after compaction, read the progress log". The agent cannot tell that its context was compacted.
+- **Breaks:** [§4](package-design-principles.md#4-apply-one-authoring-standard), grounding: a condition must be something the role can check.
+- **Instead:** Trigger on what the agent can see: picking the work back up, being unsure what already ran, a file's content. Mention compaction only as the reason a record exists.
+- **Detect:** Search skills for "compaction", "compression", "session", "context window" and "forget"; for each, check that the condition is one the agent can observe.
+
 ## Creator process
 
 ### 10. Deciding from a stale or partial view of the package

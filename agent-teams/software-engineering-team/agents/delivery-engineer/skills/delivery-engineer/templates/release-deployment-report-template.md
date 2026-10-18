@@ -37,9 +37,9 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 ## Verification
 
 - Evidence judged: `Sufficient` / `Insufficient`
-- Evidence relied on (execution report and its Evidence Index, confidence, integrated-state rerun):
+- Evidence relied on (the execution report's proof and cases, confidence, integrated-state rerun):
 
-| Acceptance-Criteria ID | Evidence IDs Checked | What You Saw | Judgement (`Proven`/`Not Proven`/`User Check`) |
+| Acceptance-Criteria ID | Cases And Files Checked | What You Saw | Judgement (`Proven`/`Not Proven`/`User Check`) |
 | --- | --- | --- | --- |
 |  |  |  |  |
 
