@@ -20,7 +20,7 @@
 | Changed JSON parses | Pass | `json.load` |
 | Skill validator | Pass | `quick_validate.py`: valid |
 | Old app keeps project tools | Pass | `evidence/ac005-probe-release-v1.5.5-beta.2.txt` |
-| New app gives the new tools | Pass | `evidence/app-new-journey-summary.json`; installed 1.5.6-beta.1 contract lists all three names |
+| New app gives the new tools | Pass | `evidence/app-new-journey-results.json`; installed 1.5.6-beta.1 contract lists all three names |
 | Other packages | Pass | Only the Project Task Manager |
 | Final review | Pass | One round, no findings |
 

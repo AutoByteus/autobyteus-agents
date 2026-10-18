@@ -13,7 +13,7 @@
 | Version | Names it knows | Agent listing old + new names gets | Source |
 | --- | --- | --- | --- |
 | v1.5.5-beta.2 (before the split) | `create_or_update_project` | `create_or_update_project` on native and MCP; `create_project` and `update_project` skipped with warnings; 0 resolver errors | `evidence/ac005-probe-release-v1.5.5-beta.2.txt` (AutoByteus API/E2E) |
-| New build (`personal`, after the split) | `create_project`, `update_project`, and still `create_or_update_project` | All three; every combination of names gives the right tools, checked in an isolated real app, including real Claude runs that created and updated a Project | `evidence/app-new-journey-summary.json` (APP-NEW, APP-OLD, APP-MIX, APP-NONE, REAL-*), all Pass |
+| New build (`personal`, after the split) | `create_project`, `update_project`, and still `create_or_update_project` | All three; every combination of names gives the right tools, checked in an isolated real app, including real Claude runs that created and updated a Project | `evidence/app-new-journey-results.json` (APP-NEW, APP-OLD, APP-MIX, APP-NONE, REAL-*), all Pass |
 | Installed here | 1.5.6-beta.1: `create_project`, `update_project`, `create_or_update_project` in `project-task-tool-contract.js` | Same as the new build | Checked on this machine, 2026-10-18 |
 
 - The split is in tags `v1.5.5`, `v1.5.5-beta.3` and `v1.5.6-beta.1`; the user runs 1.5.6-beta.1.
