@@ -51,7 +51,7 @@ The user's direction: no duplicates; fix the information structure so the existi
 
 | # | Priority area | Owner | Change |
 | --- | --- | --- | --- |
-| F1 | Structure and ownership | The templates | One owner per fact, following the work: the **investigation is the plan** (what to prove, how, planned cases); the **report is the run record and result** (cases with evidence, criteria proof, confidence, decisions); the **revision record is history**. The **ledger is removed**: the report's Cases table, updated right after each case, gives the same resume point. |
+| F1 | Structure and ownership | The templates | One owner per fact, following the work: the **investigation is the plan** (what to prove, how, planned cases); the **report is the run record and result** (cases with evidence, criteria proof, confidence, decisions); the **revision record is history**. The ledger stays for its purpose, progress the agent can pick up after a compacted conversation, renamed to the **test progress log** and cut to Started/Completed rows (user, 2026-10-18). |
 | F2 | Content flow | The report | One **Cases** table (case, criteria, boundary, command or steps, environment ID, result, evidence files, the exact line to look for, notes). Environments and tested commits are listed once and referenced by ID. The **Acceptance-Criteria Proof** maps each criterion to case IDs. |
 | F3 | Grounding | API/E2E `SKILL.md` | Evidence files carry their own header and excerpt, so per-file facts live in the file. Observed checks are saved as files. Commit before each handoff. |
 | F4 | Content flow | Delivery `SKILL.md` and template | Criterion → case rows → files and the quoted line; a per-criterion judgement table. |
@@ -80,7 +80,7 @@ The user's direction: no duplicates; fix the information structure so the existi
   - the post-repository scorecard and broader-validation decision move to the report;
   - routing classification moves to the report;
   - the desktop and environment sections are plans.
-- **`api-e2e-test-case-ledger-template.md`:** removed.
+- **`api-e2e-test-case-ledger-template.md`:** renamed to `api-e2e-test-progress-template.md` and cut to progress rows.
 - **`api-e2e-revision-record-template.md`:** prior-failure evidence as case IDs.
 - **API/E2E `SKILL.md`:**
   - Outputs: three documents plus the evidence;

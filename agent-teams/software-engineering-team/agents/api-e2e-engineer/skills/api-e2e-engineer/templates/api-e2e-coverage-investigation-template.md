@@ -110,26 +110,6 @@ Decision rules:
 - `Out Of Scope`: the artifact is not relevant to this task's changed behavior.
 - `Unclear`: upstream requirements or design do not decide the test's validity.
 
-## Durable Coverage To Add
-
-| Case ID | Behavior / Boundary | Requirement / Acceptance Criteria / Design Evidence | Planned Artifact / Path | Why Durable Coverage Is Needed |
-| --- | --- | --- | --- | --- |
-|  |  |  |  |  |
-
-## Durable Coverage To Update
-
-| Case ID | Existing Path / Test | Required Update | Requirement / Acceptance Criteria / Design Evidence | Notes |
-| --- | --- | --- | --- | --- |
-|  |  |  |  |  |
-
-## Durable Coverage To Remove
-
-Complete this before deleting or disabling existing durable coverage.
-
-| Existing Path / Test | Obsolete Assertion And Why | Requirement / Acceptance Criteria / Design Evidence | Replacement Coverage Or No-Replacement Rationale |
-| --- | --- | --- | --- |
-|  |  |  |  |
-
 ## Planned Cases
 
 Every case you plan to run, repository checks and broader journeys alike, narrowest first. The execution report's Cases table records each one under the same ID.
@@ -139,6 +119,28 @@ Every case you plan to run, repository checks and broader journeys alike, narrow
 |  |  |  |  |  |  |
 
 - Test progress log needed (more than one case, or a long case): `Yes` / `No`
+
+## Durable Coverage To Add
+
+The case's criteria and boundary are in Planned Cases above.
+
+| Case ID | Planned Test Path | Why Durable Coverage Is Needed |
+| --- | --- | --- |
+|  |  |  |
+
+## Durable Coverage To Update
+
+| Case ID | Existing Path / Test | Required Update | Notes |
+| --- | --- | --- | --- |
+|  |  |  |  |
+
+## Durable Coverage To Remove
+
+Complete this before deleting or disabling existing durable coverage.
+
+| Existing Path / Test | Obsolete Assertion And Why | Requirement / Acceptance Criteria / Design Evidence | Replacement Coverage Or No-Replacement Rationale |
+| --- | --- | --- | --- |
+|  |  |  |  |
 
 ## Desktop Application Validation Plan (When Applicable)
 

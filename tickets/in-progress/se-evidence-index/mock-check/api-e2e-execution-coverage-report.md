@@ -2,8 +2,7 @@
 
 ## Round
 
-- Evidence folder (absolute path): `<ticket>/evidence/`
-- Commit that holds this report and the evidence: `7d1e0b2` (ticket branch dark-mode-toggle)
+- Evidence folder (absolute path; the handoff message gives the commit that holds it): `<ticket>/evidence/`
 
 ## Tested Builds And Environments
 

@@ -13,8 +13,7 @@ Omit a section marked `(When Applicable)` when it does not apply. For any other 
 - Round and trigger:
 - Prior round reviewed:
 - Deviations from the investigation's plan, and why: `None` / list
-- Evidence folder (absolute path):
-- Commit that holds this report and the evidence:
+- Evidence folder (absolute path; the handoff message gives the commit that holds it):
 
 ## Routing Classification
 

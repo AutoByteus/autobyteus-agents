@@ -28,7 +28,7 @@ First establish what the project expects and how it is run, then evaluate and ma
   mark only inapplicable review artifacts `N/A — not applicable`. The low-risk
   validation route still requires the design and its post-design classification.
 - On a rerun after a prior execution, also accept the existing coverage investigation, execution coverage report, and API/E2E revision record. Use them to locate prior decisions and results, then update the canonical artifacts rather than creating copies.
-- When failure-origin review returns a failure as a pre-existing problem unrelated to this change, record it in the execution report as out of scope, with the follow-up reference the reviewer sent, and finish the result on the in-scope checks.
+- When failure-origin review returns a failure as a pre-existing problem unrelated to this change, record it in that case's Notes in the execution report as out of scope, with the follow-up reference the reviewer sent, and finish the result on the in-scope checks.
 - On an API/E2E-owned `Local Fix` from code review or delivery, or delivery's request for more or stronger evidence, also accept the specific test, fixture, environment, execution, reporting, or evidence gap and its evidence. For an evidence gap, go deeper until the evidence proves the behavior, or until you can show it cannot be reached without the user. When delivery discovered the issue, accept the delivery revision record and relevant `DR-*` entry. Resume the affected API/E2E work and preserve the classification.
 - Treat the full upstream package as active validation context, not just the latest implementation handoff or code review report.
 - Read the implementation handoff's `Legacy / Compatibility Removal Check` and `Persisted Data Transition Check` before finalizing coverage. Treat any non-clean answer, or any mismatch between those sections and the implementation, as an active validation signal.
@@ -46,7 +46,7 @@ Each document has one job, so each fact is written once:
 - The evidence itself: screenshots, log excerpts, test output, recordings, and what you tried. It is the proof the later roles judge from, often without running anything, so write it for a reader:
   - keep it in the ticket folder's `evidence/` folder (or where the project's testing guideline says);
   - list each file under its case in the execution report's Cases table, with what to look for, quoting the key line exactly as it appears so a reader can find it;
-  - start each text file with a short header: the command or step, the commit, the environment, the date and the case ID. A screenshot or other binary file gets these from its case row;
+  - start each text file with a short header: the command or step, the commit, the environment, the date and the case ID. A screenshot or other binary file gets the rest from its case row;
   - for a long log, save a short excerpt with the lines that prove the result next to the full log, or record where the full log is when it is too large to commit;
   - save a check you only observed (a page, a console, a running app) as a file: a screenshot, a DOM snapshot or the copied output, not only a line in a report;
   - name files so every operating system can check them out (for example, no `:`).
@@ -183,9 +183,9 @@ Browser validation is normally unnecessary for a backend-local change when valid
 
 ## Broader Validation Execution Rules
 
-- Before starting broader validation, determine the needed services, setup, data, evidence, and cleanup from the project's instructions. Record the choices that materially affect reproducibility or confidence.
+- Before starting broader validation, determine the needed services, setup, data, evidence, and cleanup from the project's instructions. Record the choices that materially affect reproducibility or confidence in the report's environment rows.
 - Start the services required to prove the selected scenarios and confirm they are ready using the project's normal signals.
-- Seed only the minimum deterministic data needed. Record how the data was created and how it will be removed or isolated.
+- Seed only the minimum deterministic data needed. Record how the data was created in its environment row, and how it was removed or isolated under cleanup.
 - Execute the requirement-linked journey through the selected real surface. For browser work, prefer semantic DOM/state assertions and observable behavior; use screenshots as supporting evidence rather than the sole proof.
 - Correlate browser or client observations with relevant backend, process, or service logs when the behavior crosses those boundaries.
 - If the scenario belongs in the repository as durable browser/API/E2E coverage, add or update that coverage. Use a temporary browser journey or probe only when durable automation would not be appropriate for the codebase or scope, and explain why.
@@ -213,9 +213,9 @@ Per result:
 
 Every result:
 
-- Distinguish durable coverage changes, temporary executable checks, and blocked or infeasible residual scenarios in the execution report.
+- Leave nothing out: a planned case you could not run is `Not Tested` and a criterion you could not prove is `Not Proven`, each with the reason.
 - Pass the evidence with every result, `Pass` included: give the evidence folder's absolute path and the commit that holds it, attach the evidence files that prove the critical acceptance criteria, and point to the execution report's Acceptance-Criteria Proof and Cases, which say for each criterion which cases prove it, with their evidence files and what to look for. The next roles judge from the evidence itself, not from a summary.
-- Mark a behavior as one only the user can check only after you tried to prove it yourself (deeper tests, a real surface, emulation, a safe setup), and record what you tried and why it still needs the user, such as their own accounts or nodes. Delivery uses it to decide whether the user must check.
+- Mark a behavior as one only the user can check only after you tried to prove it yourself (deeper tests, a real surface, emulation, a safe setup), and record in the Acceptance-Criteria Proof what you tried and why it still needs the user, such as their own accounts or nodes. Delivery uses it to decide whether the user must check.
 - On a later round, recheck prior unresolved failures first, reuse case IDs, and record the rerun delta and prior-failure resolution in the revision record.
 - Every handoff carries your own documents: the coverage investigation, execution coverage report, `api-e2e-revision-record.md`, and the evidence for the critical acceptance criteria (above). The test progress log is your working file; it stays in the ticket folder. Add the other files the receiver needs for its next step; you decide which, as [handoff-references.md](references/handoff-references.md) describes, and do not forward everything you received. Give absolute paths and attach the files in the reference-files field. Removed test files cannot be attached; give their paths with the diff.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
