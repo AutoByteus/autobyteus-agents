@@ -91,11 +91,15 @@ upstream behavior narrative.
 
 ## Environment Or Dependency Notes
 
-## Local Implementation Checks Run
+## Checks Run
 
-Record only implementation-scoped checks here, such as build, typecheck, unit tests, narrow integration checks around the changed code, and the normal development or preview setup needed for frontend self-validation.
-Do not stand up broader downstream API/E2E execution environments or treat that work as part of this section.
-Do not report API, E2E, or broader executable checks as passed in this artifact.
+The implementation-scoped checks you ran, such as build, typecheck, unit tests, narrow integration checks around the changed code, and the preview setup for frontend self-validation. Code review and API/E2E read this first and reuse a result instead of repeating it when the code it exercises has not changed, so record what lets them judge that. Evidence files follow [evidence-files.md](../references/evidence-files.md). These are not API/E2E sign-off: do not stand up broader downstream environments here or report API, E2E, or broader checks as passed.
+
+| Check ID | Command Or Steps | Commit Tested | Environment | Code It Exercises | Behavior / Criteria IDs | Result (`Pass`/`Fail`) | Evidence Files | Look For |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| IMP-01 | <exact command> |  | <OS, runtime> | <paths or modules> |  |  |  | <the key line quoted exactly, or the count> |
+
+- Not run, and why (left to API/E2E, gated, needs a live system): `None` / list
 
 ## Frontend Rendered-Result Check (When Applicable)
 
@@ -107,7 +111,7 @@ For frontend-affecting work, summarize the implementation feedback loop without 
 - Testing guideline or development / preview instructions and rendered surface used:
 - States, layouts, viewports, and interactions inspected:
 - Visual or interaction issues found and corrected:
-- Supporting evidence and remaining unverified states or limitations:
+- Check IDs with the supporting evidence, and remaining unverified states or limitations:
 
 If the change does not affect a rendered frontend, write `Not Applicable` with a short reason. This check records implementation self-validation and polish; it is not downstream API/E2E sign-off.
 

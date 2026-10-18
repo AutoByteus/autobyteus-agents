@@ -33,7 +33,7 @@ Each case names the environment it ran in.
 
 ## Cases
 
-The one record of what ran and what it proves, under the case IDs the investigation planned (add new IDs only for newly found cases, and reuse them across rounds). Write a case's row when it completes. A case that was interrupted or never ran is `Not Tested`, with the reason in Notes; never infer a result.
+The one record of what ran and what it proves, under the case IDs the investigation planned (add new IDs only for newly found cases, and reuse them across rounds). Write a case's row when it completes. A case that was interrupted or never ran is `Not Tested`, with the reason in Notes; never infer a result. A `Reused` case names its implementation check (for example `IMP-03`) in Command Or Steps and leaves Env, Evidence Files and Look For to that check's row in the implementation handoff; Notes says why it still holds.
 
 | Case ID | Criteria (AC / Requirement IDs) | Boundary / Surface | Command Or Steps | Env | Result (`Pass`/`Fail`/`Blocked`/`Not Tested`) | Evidence Files | Look For | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
