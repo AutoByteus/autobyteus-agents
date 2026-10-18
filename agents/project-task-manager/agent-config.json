@@ -4,6 +4,7 @@
     "create_project",
     "update_project",
     "list_project_tasks",
+    "search_project_tasks",
     "create_task",
     "update_task",
     "list_available_agents",
