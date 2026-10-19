@@ -1,55 +1,69 @@
 ---
 name: AutoByteus Org
-description: A cross-functional AutoByteus organization combining product experience, software engineering, and marketing execution through shared Teams.
+description: How AutoByteus is run. The user works with the Project Task Manager, which plans the work as Project Tasks and delegates each to the Software Engineering Team, the Product Team, the Marketing Team, or the Agent Package Creator, and tracks it to completion.
 category: product-and-software
 ---
 
-AutoByteus Org is the top-level operating organization for product experience,
-software delivery, and marketing execution. It mounts the existing shared
-Teams directly; it does not copy or redefine their agents, skills, tools, or
-internal handoff rules.
+AutoByteus Org is how AutoByteus is run. The user talks to the Project Task
+Manager; it turns requests into Project Tasks and delegates each one, by its
+kind, to the member that does that work. Every delegated result comes back to
+the Project Task Manager.
 
-## Mounted Teams
+## Members
 
-- `product_team` (Product Team) owns product discovery,
-  code-first UI/UX design, runnable UI references, and normative UI/UX
-  specifications.
-- `software_engineering_team` owns requirements integration, solution design,
-  implementation, review, executable validation, and delivery.
-- `marketing_team` owns channel-native marketing content and its publication.
-  Its Marketing Content Creator is the Team's entry point.
+| Member | Owns |
+| --- | --- |
+| `project_task_manager` (Project Task Manager) | The user's entry point. Plans requests as right-sized Project Tasks with dependencies, keeps the boards, delegates each Task with the user's approval, verifies delivery claims (merge, release, cleanup), and closes Tasks. It does not design or build. |
+| `software_engineering_team` | Product code and tests: requirements, design, implementation, review, validation, delivery. |
+| `product_team` | Product experience and UI/UX design in runnable UI references. |
+| `marketing_team` | Channel-native marketing content and its publication. |
+| `agent_package_creator` (Agent Package Creator) | The agent packages: skills, agents, Teams, and this Org, including the Project Task Manager's own package. |
 
-All three Teams are shared definitions in this repository. Account-specific
-marketing data (voice, channel guides, website knowledge, and content) lives in
-the workspace the Marketing Team runs in, not in these packages.
+All five are shared definitions in this repository; the Org mounts them and does
+not copy or change them. Account-specific marketing data lives in the workspace
+the Marketing Team runs in.
 
-## Operating Contract
+## How work flows
 
-- Each mounted Team owns its internal coordinator, specialist responsibilities,
-  skills, tools, artifacts, and local routing.
-- Use the Org handoff rules for work that crosses product experience, software
-  engineering, and marketing boundaries.
-- Preserve the stable package or campaign identifier, the original request,
-  approval state, constraints, and absolute artifact paths in every cross-Team
-  handoff.
-- Before sending a cross-Team result, call `get_handoff_rules`, apply every
-  matching rule, and send to each exact returned `recipient_address`.
-- Do not invent a recipient from memory or use a Team-internal address when the
-  result belongs to another mounted Team.
+1. **The user talks to the Project Task Manager.** Launch the Org and work with
+   `project_task_manager`; the Org has no other entry point.
+2. **The Project Task Manager delegates each Task by its kind:**
+   - software changes → `software_engineering_team`;
+   - design → `product_team`;
+   - marketing → `marketing_team`;
+   - agent packages, including a problem in how any member works →
+     `agent_package_creator`.
+3. **Results come back to the Project Task Manager.** The Org's handoff rules
+   route each delegated result to `/project_task_manager`: a verified delivery
+   from the Solution Designer, a design result, a finished marketing Task, a
+   package result. It checks the result against the Task's done criteria and
+   the user's checks, then closes the Task.
+4. **Work one member needs from another goes through the Project Task
+   Manager.** A design for a software Task, a product claim for a marketing
+   draft, marketing for a release: the member sends the need to
+   `/project_task_manager`, which delegates it and passes the result back to
+   the asking member by its run ID. Delegated work runs in its own copy, which
+   only its run ID reaches, so the Project Task Manager, which holds those run
+   IDs, routes it.
+5. **Decisions and follow-ups.** Members ask the user directly for decisions.
+   Problems they find outside their Task (what is wrong, where, the evidence,
+   why it is outside the Task, a suggested Task) go to the Project Task
+   Manager, which records them as Tasks.
+6. **The Agent Package Creator maintains the members' packages** (skills,
+   handoff rules, templates) when the Project Task Manager delegates a package
+   Task. It is not part of the other members' delivery flow. It opens a pull
+   request; the user merges it, and the Creator then updates the user's local
+   checkout, keeping uncommitted edits.
 
-## Cross-Team Boundaries
+## What the Org owns
 
-- Product experience questions and design evidence stay with Product Team until the relevant product decision or package is ready.
-- Requirements, technical feasibility, implementation, review, validation, and
-  delivery remain with Software Engineering.
-- Marketing owns channel-native content and publishing, but must
-  obtain verified product facts and explicit approval before making claims or
-  publishing live content.
-- The Org owns only these cross-Team routes; each Team's `team-config.json`
-  remains the source of truth for its internal handoffs.
-
-## Package Model
-
-This Org contains three shared Team references and no Org-level coordinator.
-The shared Teams may be provided by different imported agent-definition
-packages, as long as the runtime catalog contains the referenced Team IDs.
+- **Only the routes between members:** the rules in
+  [org-config.json](org-config.json) that send results and needs to the
+  Project Task Manager.
+- **Each member keeps the rest:** each Team's coordinator and internal routes in
+  its `team-config.json`, each member's work in its own skills, and the Project
+  Task Manager's planning and delegation in its own package.
+- **Handoff protocol:** before sending a result across members, a member calls
+  `get_handoff_rules`, applies every matching rule, and sends to each exact
+  returned `recipient_address`. When no rule matches, it returns the result to
+  the user or caller.
