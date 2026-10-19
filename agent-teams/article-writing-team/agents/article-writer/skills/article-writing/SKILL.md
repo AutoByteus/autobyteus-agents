@@ -5,13 +5,13 @@ description: Produce a publication-ready article package through source-grounded
 
 # Article Writing
 
-Use this skill as the article writer's single end-to-end workflow: research phase, style and language decisions, hierarchical outline, visual plan, draft, revision, and delivery. The writer owns visual planning because image placement is part of the article's structure and explanation flow.
+Use this skill as the article writer's single end-to-end workflow: understanding the subject, style and language decisions, hierarchical outline, visual plan, draft, revision, and delivery. The writer owns visual planning because image placement is part of the article's structure and explanation flow.
 
-For source investigation, run `article-researcher` as the research phase (Step 2).
+For understanding the subject, follow [references/understanding.md](references/understanding.md) (Step 2); outside research comes from the team's Deep Researcher.
 
 ## Artifacts
 
-[The article package](../../../../shared/article-package.md) lists the files in the work folder, their owners, and what every review handoff carries. This skill creates `brief.md`, `style-profile-notes.md`, `outline.md`, `visual-plan.md`, `visual-asset-index.md`, and the draft files.
+[The article package](../../../../shared/article-package.md) lists the files in the work folder, their owners, and what every review handoff carries. This skill creates `brief.md`, the understanding files and `research-request.md` (through [references/understanding.md](references/understanding.md)), `style-profile-notes.md`, `outline.md`, `visual-plan.md`, `visual-asset-index.md`, and the draft files.
 
 Templates:
 
@@ -33,7 +33,7 @@ That reference owns profile loading, example loading, bilingual expression, and 
 ## Choose The Path
 
 - **Full path (Steps 1-10):** a new article that makes technical, factual, or current-world claims.
-- **Short path:** a style rewrite, a cross-language conversion, a short note, or a draft the user supplied. Write a short `brief.md`; run research only for claims that need it; write `outline.md` as the main claim plus the section list; skip the visual plan unless the visualization-load trigger fires; draft (Step 8); and send the draft package for draft review (the reviewer then skips the pre-draft review). Steps 9 and 10 apply unchanged.
+- **Short path:** a style rewrite, a cross-language conversion, a short note, or a draft the user supplied. Write a short `brief.md`; request research only for claims that need it; write `outline.md` as the main claim plus the section list; skip the visual plan unless the visualization-load trigger fires; draft (Step 8); and send the draft package for draft review (the reviewer then skips the pre-draft review). Steps 9 and 10 apply unchanged.
 
 If the user names a path, use it. If a short-path request turns out to carry load-bearing claims you cannot support, move to the full path.
 
@@ -57,13 +57,12 @@ If a missing detail changes the article's direction and the request, workspace, 
 
 ### Step 2 - Build the understanding package
 
-When the article needs factual, technical, document, source-code, or supplied-material understanding, run the bundled `article-researcher` skill as this workflow's research phase.
-It owns source inspection, understanding notes, source index, claim/evidence ledger, `research-handoff.md`, and the research readiness gate; it updates the research fields of `brief.md`.
+When the article needs factual, technical, document, source-code, or supplied-material understanding, follow [references/understanding.md](references/understanding.md). It owns the understanding files and their Ready-to-outline check, and says which investigation you do and which you ask the Deep Researcher for with `research-request.md`.
 
-- Reuse an existing research package before starting new discovery.
-- Use the smallest research mode that can support the intended article; do not under-research load-bearing claims.
-- Do not outline from vague notes. The research phase must leave a writer-ready `research-handoff.md` with supported claims, mechanisms, chronology, caveats, and a candidate evidence-based spine.
-- Research is not closed after Step 2. When outlining or drafting exposes a gap, return to `article-researcher` with the exact missing claim or source need, then continue.
+- Reuse existing understanding files and research briefs before starting new discovery.
+- Use the smallest investigation that can support the intended article; do not under-research load-bearing claims.
+- Do not outline from vague notes. The files must pass the Ready-to-outline check: supported claims, mechanisms, chronology, caveats, and the evidence each planned section needs.
+- Understanding is not closed after Step 2. When outlining or drafting exposes a gap, return to the reference with the exact missing claim (and, for outside research, a new or narrower `research-request.md`), then continue.
 - If the source basis cannot support the intended article, narrow the claims or ask a targeted question before outlining.
 
 ### Step 3 - Resolve the style package
@@ -103,7 +102,7 @@ If the point is not specific, or is not new or useful to this reader, go back to
 Then verify:
 
 - `brief.md` records target, audience, mode, platform, language, and constraints
-- `research-handoff.md` has been read when the research phase produced it
+- the understanding files passed their Ready-to-outline check
 - `style-profile-notes.md` records profile, variant, rhetorical mode, and style constraints when style matching is in scope
 - the opening progression matches the selected stance; non-essay modes do not plan a negative-first opening without a recorded exception
 - no planned contrast, common-belief claim, recommendation, root-cause claim, or production observation lacks an evidence anchor
@@ -153,6 +152,8 @@ If a gate fails, update the upstream package before drafting.
 
 ### Step 8 - Draft the article package
 
+Before drafting, on either path, check that every research brief you requested has come back ([understanding.md](references/understanding.md), section 2).
+
 - Draft from the outline: main claim -> sections -> paragraphs (one job each) -> sentence polish.
 - Introduce the anchor example early, as the outline plans. Run any code or command you show and keep its real output; mark anything not run. Reuse the anchor in later sections where it carries the argument.
 - Compose prose and planned visuals as one explanatory unit: the prose carries its recorded responsibility, the image carries its recorded responsibility, and the pair delivers the combined takeaway without accidental duplication.
@@ -167,7 +168,7 @@ If a gate fails, update the upstream package before drafting.
 - If the article is about the user's own product or workflow, use builder ownership language unless the user explicitly wants detached report prose.
 - In non-essay modes, draft the first paragraph positively: name the subject or system, state what it does or how we use it, then introduce the observed pressure, question, or proposed change. Do not use a negative or contrastive opener merely to create a hook.
 - If a negative or contrastive opening is explicitly justified, preserve the recorded exception and make the reason legible before expanding the rest of the article.
-- Use the understanding package as the source of truth. Do not introduce claims that are absent from the notes, source index, user brief, or ledger unless they are clearly marked as assumptions and accepted by the user.
+- Use the understanding package as the source of truth. Do not introduce claims that are absent from the notes, source index, research briefs, user brief, or ledger unless they are clearly marked as assumptions and accepted by the user.
 - Treat author style as expression, not evidence. Do not add an opponent, common belief, industry claim, prior failure, or production observation only because it fits the selected profile.
 - Preserve exact mechanisms, terminology, and source-code boundaries when those distinctions matter to the article.
 - Prefer a clear reasoning chain over a dramatic hook when the article is explanatory, factual-technical, paper-like, or builder-report prose.

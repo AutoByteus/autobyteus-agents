@@ -19,7 +19,7 @@ The package described in [the article package](../../../../shared/article-packag
 - `understanding-notes.md`
 - `source-index.md`
 - `claim-evidence-ledger.md` when present
-- `research-handoff.md`, and `research-open-questions.md` when present
+- the research briefs from the Deep Researcher listed in `source-index.md`, when present
 - `style-profile-notes.md` when an author/style profile, rhetorical mode, or platform style is part of the task
 - `outline.md`
 - `visual-plan.md` when visuals are requested or materially useful for the article shape
@@ -98,7 +98,7 @@ Return `Evidence Gap` when the style package authorizes a move that conflicts wi
 
 ### Step 3 - Review the understanding package
 
-Check whether `understanding-notes.md`, `source-index.md`, and `claim-evidence-ledger.md` when present show enough understanding for the article being attempted.
+Check whether `understanding-notes.md`, `source-index.md`, `claim-evidence-ledger.md` when present, and the research briefs show enough understanding for the article being attempted.
 
 For supplied-source articles, verify:
 
@@ -117,6 +117,7 @@ For online, documentation, paper, or PDF-backed articles, verify:
 - material sources were read deeply enough for the claims being made
 - dates and uncertainty are explicit when recency matters
 - opposing evidence, caveats, or source limitations are not hidden
+- for research from the Deep Researcher, the article uses only claims its brief marks `supported`, and `needs confirmation` or `not supported` claims are dropped or qualified
 
 For builder-experience articles, verify:
 

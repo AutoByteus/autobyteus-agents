@@ -1,0 +1,10 @@
+# Case: ATW-03
+# Step: Run 2: the Deep Researcher's index
+# App: isolated instance iso-56497-602e of the installed AutoByteus 1.5.6-beta.7 (own data root); package: branch article-team-deep-researcher (/tmp/atdr) imported as a local package
+# Runtime: claude_agent_sdk, model haiku | Date: 2026-10-19
+
+# Research index
+
+| Topic folder | Questions answered | Latest brief (date) | Answer in one line |
+|---|---|---|---|
+| rfc-418-teapot | HTTP 418 history: RFC 2324 (1998), RFC 7168 (2014, tea), Node.js STATUS_CODES, RFC 9110 reserved status | research-brief-2026-10-19.md (2026-10-19) | 418 is in RFC 2324 (dated 1 April 1998); RFC 7168 applied it to tea; Node lists 'I'm a Teapot'; RFC 9110 calls it reserved; RFC 2324 itself never says "joke". |

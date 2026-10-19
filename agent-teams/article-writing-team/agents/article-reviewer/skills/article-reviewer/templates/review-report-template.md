@@ -15,6 +15,7 @@
 - `understanding-notes.md`:
 - `source-index.md`:
 - `claim-evidence-ledger.md`:
+- research briefs (Deep Researcher):
 - `style-profile-notes.md`:
 - `outline.md`
 - `visual-plan.md`:

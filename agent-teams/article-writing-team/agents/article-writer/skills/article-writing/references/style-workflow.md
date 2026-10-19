@@ -3,7 +3,7 @@
 Use this reference inside the `article-writing` skill when the request includes author style, bilingual drafting, or platform-specific packaging.
 
 This reference owns style-profile loading, platform rules, bilingual expression, and style-fit checks. The parent `article-writing` skill owns article-level structure, outline shaping, visual planning, drafting order, reviewer handoff, and revision packaging.
-The local `article-researcher` skill owns investigation, understanding artifacts, source/evidence tracking, and reusable research handoff.
+[understanding.md](understanding.md) owns investigation, the understanding files, and source and evidence tracking; outside research comes from the Deep Researcher's briefs.
 The shared team writing principles remain the article quality authority for both writing and review; the shared platform output rules own packaging.
 
 ## Required Shared Read
@@ -13,16 +13,15 @@ The shared team writing principles remain the article quality authority for both
 
 ## Expected Research Inputs
 
-Before applying style decisions or drafting, read the research package produced by `article-researcher` when the article requires factual grounding:
+Before applying style decisions or drafting, read the understanding files when the article requires factual grounding:
 
 - `brief.md`
 - `understanding-notes.md`
 - `source-index.md`
 - `claim-evidence-ledger.md` when present
-- `research-handoff.md`
-- `research-open-questions.md` when present
+- the research briefs listed in `source-index.md`, when present
 
-Treat these files as the source of truth. Do not redo research. If the package has a clear gap, stale source, unsupported planned claim, or user/reviewer correction, return to `article-researcher` with the exact missing claim or source need.
+Treat these files as the source of truth. Do not redo research. If they have a clear gap, stale source, unsupported planned claim, or user/reviewer correction, return to [understanding.md](understanding.md) with the exact missing claim or source need.
 
 ## Produced Writing Artifacts
 
@@ -60,10 +59,10 @@ Treat these files as the source of truth. Do not redo research. If the package h
 - `style-profile-notes.md` must include the profile path, example paths, selected variant, rhetorical mode, hard constraints, and forbidden moves so the reviewer can review style fit from durable artifacts.
 
 3. Read and verify the research package before outlining.
-- Read `research-handoff.md` first, then `brief.md`, `understanding-notes.md`, `source-index.md`, and `claim-evidence-ledger.md` when present.
+- Read `brief.md`, `understanding-notes.md`, `source-index.md`, `claim-evidence-ledger.md` when present, and the research briefs.
 - Preserve the mechanisms, chronology, source-backed claims, caveats, and user-supplied sequences from the research package.
-- If a planned claim, contrast, recommendation, root-cause statement, or production observation lacks an evidence anchor, return to `article-researcher` before drafting or narrow the claim.
-- Do not repeat research just because you are writing. Use the research artifacts; if they are insufficient, send a precise gap back to `article-researcher`.
+- If a planned claim, contrast, recommendation, root-cause statement, or production observation lacks an evidence anchor, return to [understanding.md](understanding.md) before drafting or narrow the claim.
+- Do not repeat research just because you are writing. Use the understanding files and briefs; if they are insufficient, fix the precise gap through [understanding.md](understanding.md).
 
 4. Bind style and language decisions to the approved structure.
 - Read the current `outline.md` and preserve its main claim, section order, evidence burden, and ending move.
