@@ -8,7 +8,7 @@ This file defines them; each role's skill says how it acts on them.
 | Kind | Test | What happens | When |
 | --- | --- | --- | --- |
 | **This ticket** | It is an inherent part of the ticket: the change introduced it (including a design problem in the code the change adds); it is a problem in the functionality the ticket changes, without which an in-scope acceptance criterion or preserved behavior fails; the design spec already places it in this change, such as a refactor its design-health assessment requires; or a team rule makes it part of every change, such as dead code in touched files ([Core Principle 7](design-principles.md#7-no-dead-code)) or a file the change takes over or grows past the size limit. | Fixed in this ticket through the normal route. | As found. |
-| **Prerequisite** | It blocks the ticket: the ticket's goal cannot be reached, or cannot be reached safely, until it is fixed. **And** it belongs to other functionality, outside the ticket's scope. Its size does not decide this. | Its own Task, done first. This ticket waits, or narrows to the parts the prerequisite does not affect, unless the user decides to widen this ticket to include it. | **At once**, not at the end. |
+| **Prerequisite** | It blocks the ticket: the ticket's goal cannot be reached, or cannot be reached safely, until it is fixed. **And** it belongs to other functionality, outside the ticket's scope. Its size does not decide this. | Its own Task, done first. This ticket stops until it is delivered. | Written down when found; sent at the end of the investigation that found it, not at the end of the ticket. |
 | **Follow-up** | Everything the ticket delivers works without it, as with a pre-existing bug or design problem in surrounding code, even code the change touches. When the ticket works and you are unsure, prefer a follow-up: it keeps the ticket small and loses nothing. | Recorded with its evidence and sent to the agent that manages the project's Tasks. | When the role's work ends (a review, the delivery receipt). |
 | **Requirement Gap** | Fixing it would need behavior the requirements do not approve. | Back to the Solution Designer, which asks the user. | As found. |
 
@@ -28,19 +28,19 @@ that stops at our code and tests misses them.
 
 ## Who acts on a prerequisite
 
-- **The Solution Designer** owns it, because scope and order are the user's
-  decisions. Its skill's Prerequisites section says how: record it, ask the
-  user at once, send the agreed Task to the agent that manages the project's
-  Tasks, pause or narrow this ticket, and resume when the prerequisite is
-  delivered.
+- **The Solution Designer** owns it. Its skill's Prerequisites section says
+  how: write it down, finish the investigation, ask the agent that delegated
+  the Task to create and dispatch the prerequisite's Task first, stop, and
+  continue when the prerequisite is delivered.
 - **Any other role that finds one** (architecture review, implementation, code
   review, failure-origin review) records the evidence and routes it to the
   Solution Designer as a `Requirement Gap`, naming it a prerequisite. It does not
   absorb it or route it as a `Local Fix`.
-- **The agent that manages the project's Tasks** creates the prerequisite's
-  Task and makes the paused Task depend on it, so the app shows the paused Task
-  as blocked. It dispatches the prerequisite with the user's approval, and
-  tells the paused work to continue when the prerequisite is delivered.
+- **The agent that delegated the Task** (normally the Project Task Manager)
+  creates the prerequisite's Task, makes the waiting Task depend on it, so the
+  app shows it as blocked, dispatches the prerequisite to the Software
+  Engineering Team, and tells the waiting Task's team to continue when the
+  prerequisite is delivered.
 
 ## Example
 
@@ -55,9 +55,9 @@ MCP server.
 - Test: if this stays, can the ticket reach its goal? No, because Atlassian's
   server cannot connect at all. Whose functionality is it? The MCP transport's,
   not the Jira preset's. So it is a prerequisite.
-- The designer raised it with the user at once, with a recommended order. The
-  fix became its own Task (autobyteus-179), done first, and the Jira work
-  continued on top of it.
+- At the end of the investigation, the designer sent it, with its evidence
+  and a suggested Task, to the Project Task Manager. The fix became its own
+  Task (autobyteus-179), done first, and the Jira work continued on top of it.
 - Two more prerequisites came from the same investigation: the vault could not
   hold MCP secrets, and the MCP gateway exposed credentialed tools without a
   token.

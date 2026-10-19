@@ -67,7 +67,7 @@ Reference the applicable `BEH-*`, requirement, and acceptance-criteria IDs whose
 
 Problems in other functionality without which this ticket's goal cannot be reached, or not safely ([ticket-scope.md](../references/ticket-scope.md)). Write `None` when there are none.
 
-| Prerequisite ID | Finding And Evidence | Blocks (REQ / AC IDs) | User's Decision (its own Task first, and what this ticket does meanwhile; or this ticket widened to include it) | Status (raised / Task key / delivered) |
+| Prerequisite ID | Finding And Evidence | Blocks (REQ / AC IDs) | Sent To (agent) / Task Key | Status (written down / sent / delivered) |
 | --- | --- | --- | --- | --- |
 |  |  |  |  |  |
 

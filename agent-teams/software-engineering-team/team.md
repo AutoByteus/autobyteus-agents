@@ -65,5 +65,6 @@ specialist sends it the context even without a rule.
 Every role keeps to the ticket's scope: the requirements doc's Scope Guardrail
 and the design spec's Change Scope. [shared/ticket-scope.md](shared/ticket-scope.md)
 says whether a problem found is part of this ticket, a prerequisite (its own
-Task first, raised at once through the Solution Designer), or a follow-up for
-the agent that manages the project's Tasks.
+Task first, sent by the Solution Designer at the end of its investigation to the
+agent that delegated the Task), or a follow-up for the agent that manages the
+project's Tasks.

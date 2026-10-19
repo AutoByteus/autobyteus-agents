@@ -55,3 +55,17 @@
 | Delivery receipt | Follow-ups only |
 
 The procedure has one owner, the Solution Designer skill's new **Prerequisites** section (record, ask at once, send the agreed Task, pause or narrow, resume); each step points to it. The shared `ticket-scope.md` keeps the definition, the test, the other roles' routing, and what the Task-managing agent does.
+
+## Simplified (user direction, 2026-10-19)
+
+The user: "it should only send back after it decides this prerequisite … needs to be done. At the end of the investigation, after it has written down the investigation, it should already contact the project task manager … ask it to create … tickets … dispatch that ticket to the solution designer. Nothing complicated … After it sends the message back, then it just stops."
+
+The Solution Designer's Prerequisites procedure is now:
+
+1. write it down when found;
+2. finish the investigation;
+3. at its end, send one message to the "Requested by" agent asking it to create and dispatch the prerequisite Tasks first (to the user when the user asked directly);
+4. stop (`Blocked`, `Waiting For Prerequisite`);
+5. continue when told it is delivered.
+
+Removed: asking the user mid-investigation, the step 2 approval rule, pause or narrow, and widening. The Solution Designer decides; the delegating agent creates and dispatches with the user's approval under its own skill.

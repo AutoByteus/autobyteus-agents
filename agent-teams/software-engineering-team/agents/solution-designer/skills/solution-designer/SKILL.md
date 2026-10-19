@@ -117,8 +117,8 @@ gate.
   a service, a runtime), not only through our code and tests, which may
   replace them with fakes; confirm a suspicion with a cheap probe. Judge each
   problem you find with [ticket-scope.md](references/ticket-scope.md): this
-  ticket, a prerequisite, or a follow-up. Handle a prerequisite at once, as
-  Prerequisites describes, not at the end.
+  ticket, a prerequisite, or a follow-up. Write a prerequisite down at once
+  and send it at the end of the investigation, as Prerequisites describes.
 - Assign stable behavior, scenario, use-case, requirement and acceptance-criteria IDs;
   define current, desired and preserved behavior, measurable constraints,
   data-continuity requirements, unknowns and verification intent. Write the
@@ -136,8 +136,7 @@ gate.
   change scope or product direction; set visible product behavior or taste the
   direction does not settle; are hard to undo (a data migration, deletion, a
   release); carry security or cost implications; or conflict with what the
-  user explicitly asked for. A prerequisite is always the user's decision,
-  because it changes the order and scope of the work. Mark them `Needs user` and bring each with your
+  user explicitly asked for. Mark them `Needs user` and bring each with your
   reasoning and recommendation.
 - Create `solution-revision-record.md` from
   [solution-revision-record-template.md](templates/solution-revision-record-template.md)
@@ -159,8 +158,8 @@ gate.
 
 - Pass the readiness gate in the requirements standards.
 - **Within the direction:** when the requirements stay within the direction the
-  request or Task sets and contain no `Needs user` decision and no open
-  prerequisite, approve them yourself. Tell the user briefly in your conversation what you decided and
+  request or Task sets and contain no `Needs user` decision, approve them
+  yourself. Tell the user briefly in your conversation what you decided and
   why, and continue without waiting. The recorded reasoning and the
   verification before finalization are the safety net; the user can step in
   at any time.
@@ -175,8 +174,7 @@ gate.
   own words.
 - Record the approval, who gave it (the user, or you within the direction) and
   its reference (the user's answer, or your message informing the user), with
-  the exact requirements baseline and relevant supplements, and the user's
-  decision on each prerequisite with the scope it leaves, in the canonical
+  the exact requirements baseline and relevant supplements, in the canonical
   requirements and solution revision record. Never mark requirements Approved
   without that record.
 - Approval authorizes the requirements basis, not automatic implementation,
@@ -257,7 +255,7 @@ Revising requirements or design re-enters that phase, so its reading gate applie
 | `Design Impact` | Investigate the cause, complete or revise design and affected evidence/supplements, then reclassify the completed solution | Keep approved intent fixed; repeat applicable review before dependent implementation |
 | `Requirement Gap` or user change to intended behavior | Investigate, revise canonical requirements/ACs and affected supplements, record the proposed delta and approval impact | Set requirements to Draft or Ready for Approval and affected design to Needs Revision/Blocked; obtain renewed approval (step 2) before affected design or implementation proceeds |
 | `Unclear` | Investigate enough to distinguish intended-behavior, technical-design or external-prerequisite uncertainty | Resolve within this role; if unresolved, return a precise Blocked result rather than guessing scope or a safe route |
-| A prerequisite routed to you as a `Requirement Gap` | Handle it as Prerequisites describes, and tell the role that raised it what the user decided | The ticket's affected work waits until the prerequisite is delivered |
+| A prerequisite routed to you as a `Requirement Gap` | Handle it as Prerequisites describes | The ticket waits until the prerequisite is delivered |
 | Non-requirement external blocker | Preserve actual evidence, missing prerequisite and needed user/external action | Return Blocked without inventing requirements |
 
 After a requirements change is approved, rebuild affected design and evidence
@@ -280,26 +278,25 @@ review, API/E2E and delivery retain their local-fix and failure-origin ownership
 ## Prerequisites
 
 A prerequisite ([ticket-scope.md](references/ticket-scope.md)) blocks this
-ticket and belongs to other functionality. Handle it when you find it, in any
-step, or when another role routes it to you:
+ticket and belongs to other functionality. When you find one, or another role
+reports one:
 
-1. **Record it** in the requirements doc's Scope Guardrail, under Prerequisites:
-   an ID, the evidence (such as a probe and its result), and the requirement and
-   acceptance-criteria IDs it blocks. Keep the evidence in the investigation
-   notes.
-2. **Ask the user at once**, in your own conversation, with your
-   recommendation: its own Task first, with a draft Task description and the
-   order; and what this ticket does meanwhile, paused or narrowed to the parts
-   the prerequisite does not affect. The user may instead widen this ticket to
-   include it; that is a scope change and follows Approve The Requirements Basis.
-3. **When the user decides**, record the decision and send the drafted Task to
-   the agent the requirements doc records under "Requested by", saying which
-   Task waits for it. When the user asked directly, give the user the Task
-   description. Continue the unaffected parts, if any. While the affected work
-   waits, your result is `Blocked` with `Waiting For Prerequisite`.
-4. **When told the prerequisite is delivered**, re-check the blocked scenarios
-   against the delivered change, update the Prerequisites row, and continue from
-   the step where you stopped.
+1. **Write it down at once** in the requirements doc's Scope Guardrail, under
+   Prerequisites: an ID, the evidence (such as a probe and its result), and the
+   requirement and acceptance-criteria IDs it blocks. Keep the full evidence in
+   the investigation notes.
+2. **Finish the investigation** you are in, so every prerequisite is found and
+   written down.
+3. **At the end of the investigation**, when a prerequisite must be done first,
+   send one message to the agent the requirements doc records under "Requested
+   by": the prerequisites with their evidence, why each blocks this ticket, and
+   a suggested Task description for each. Ask it to create the Tasks and
+   dispatch them to this team first. When the user asked you directly, give the
+   user the same instead.
+4. **Stop.** Your result is `Blocked` with `Waiting For Prerequisite`.
+5. **Continue** when told the prerequisite is delivered: re-check the blocked
+   scenarios against the delivered change, update the Prerequisites row, and go
+   on from where you stopped.
 
 ## Artifacts And Solution Revision Record
 
