@@ -63,11 +63,19 @@ List outcomes this task deliberately does not aim to achieve, even within in-sco
 
 Reference the applicable `BEH-*`, requirement, and acceptance-criteria IDs whose outcomes must remain unchanged. Do not repeat their complete text. Add a concise cross-cutting invariant only when the behavior table's preserved-behavior column is insufficient.
 
+### Prerequisites
+
+Problems in other functionality without which this ticket's goal cannot be reached, or not safely ([ticket-scope.md](../references/ticket-scope.md)). Write `None` when there are none.
+
+| Prerequisite ID | Finding And Evidence | Blocks (REQ / AC IDs) | Sent To (agent) / Task Key | Status (written down / sent / delivered) |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+
 ### Review Authority
 
 - Every blocking `Design Impact` or implementation-correction finding must cite an approved requirement, acceptance criterion, or preserved-behavior ID that it protects.
 - A finding that would introduce new product behavior, policy, threat model, migration obligation, compatibility promise, or operational contract is a `Requirement Gap`; it requires explicit user approval before becoming authoritative.
-- An adjacent concern outside the approved boundary may be recorded as a non-blocking risk, recommendation, or follow-up. It is not a required design correction.
+- An adjacent concern outside the approved boundary may be recorded as a non-blocking risk, recommendation, or follow-up. It is not a required design correction, unless it is a prerequisite (Prerequisites above).
 - A downstream reviewer comment does not amend this requirements basis. The Solution Designer must update the canonical requirements and obtain renewed user approval before a scope-changing proposal can govern design or implementation.
 
 ## Requirements

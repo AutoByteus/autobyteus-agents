@@ -64,7 +64,9 @@ Use [templates/implementation-revision-record-template.md](templates/implementat
   a concrete mismatch or newly discovered supported behavior upstream.
 - Stay within the requirements doc's Scope Guardrail: change only in-scope use
   cases, keep preserved behavior unchanged, and leave out-of-scope items
-  untouched. Return work that needs a change outside it as `Requirement Gap`.
+  untouched. Return work that needs a change outside it as `Requirement Gap`;
+  when that change is a prerequisite ([ticket-scope.md](references/ticket-scope.md)),
+  name it as one, with its evidence.
 - Apply the shared design principles' supported-scenario gate while coding:
   add fallback, recovery, defensive, concurrency, or lifecycle machinery only
   for how real users and real system events use the product.

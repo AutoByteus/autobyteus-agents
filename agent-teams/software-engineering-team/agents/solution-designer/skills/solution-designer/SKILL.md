@@ -51,6 +51,8 @@ First distinguish solution work from returned notifications:
   stop without reopening authoring or repeating the primary handoff.
 - For `Delivery Completed`, go directly to Finalized Delivery Receipt using
   the returned durable paths, even if the original task worktree was cleaned up.
+- For word that a prerequisite you raised is delivered, resume as Prerequisites
+  describes.
 - For a request, Product result or material finding, use the bootstrap and
   recovery rules below for the solution work actually needed.
 
@@ -111,6 +113,12 @@ gate.
   Use `Supported Normal Scenario`, `Supported Explicit Edge Scenario`,
   `Technically Possible but Unsupported/Contrived`, or `Unclear` as appropriate.
   Mechanical possibility alone does not establish approved scope.
+- Trace each scenario through the real dependencies it relies on (a library,
+  a service, a runtime), not only through our code and tests, which may
+  replace them with fakes; confirm a suspicion with a cheap probe. Judge each
+  problem you find with [ticket-scope.md](references/ticket-scope.md): this
+  ticket, a prerequisite, or a follow-up; for a prerequisite, see
+  Prerequisites.
 - Assign stable behavior, scenario, use-case, requirement and acceptance-criteria IDs;
   define current, desired and preserved behavior, measurable constraints,
   data-continuity requirements, unknowns and verification intent. Write the
@@ -185,7 +193,9 @@ as well as how to design.
 1. Reconfirm workspace isolation and requirements/supplement approval.
 2. Perform architecture-level current-state investigation. Earlier discovery
    is input, not proof that all technical facts are known. Trace each relevant
-   behavior's complete production path and its owners. Extend the same
+   behavior's complete production path and its owners, through the real
+   dependencies, and judge what you find with
+   [ticket-scope.md](references/ticket-scope.md) as in step 1. Extend the same
    investigation notes with exact sources, commands, probes and unknowns.
    Before any persisted-data migration design, complete the mandatory
    repository migration-conventions investigation in
@@ -245,6 +255,7 @@ Revising requirements or design re-enters that phase, so its reading gate applie
 | `Design Impact` | Investigate the cause, complete or revise design and affected evidence/supplements, then reclassify the completed solution | Keep approved intent fixed; repeat applicable review before dependent implementation |
 | `Requirement Gap` or user change to intended behavior | Investigate, revise canonical requirements/ACs and affected supplements, record the proposed delta and approval impact | Set requirements to Draft or Ready for Approval and affected design to Needs Revision/Blocked; obtain renewed approval (step 2) before affected design or implementation proceeds |
 | `Unclear` | Investigate enough to distinguish intended-behavior, technical-design or external-prerequisite uncertainty | Resolve within this role; if unresolved, return a precise Blocked result rather than guessing scope or a safe route |
+| A prerequisite routed to you as a `Requirement Gap` | Handle it as Prerequisites describes | The ticket waits until the prerequisite is delivered |
 | Non-requirement external blocker | Preserve actual evidence, missing prerequisite and needed user/external action | Return Blocked without inventing requirements |
 
 After a requirements change is approved, rebuild affected design and evidence
@@ -263,6 +274,18 @@ On architecture-review Fail/Blocked, resolve the owned findings through this
 same loop. A review Pass notification is informational: record it without
 repeating the reviewer's primary implementation handoff. Implementation, code
 review, API/E2E and delivery retain their local-fix and failure-origin ownership.
+
+## Prerequisites
+
+A prerequisite ([ticket-scope.md](references/ticket-scope.md)) is something
+outside this ticket's functionality that blocks it. You usually see it once your
+investigation has traced the real path, or another role reports one to you.
+Write it down in the requirements doc's Prerequisites with its evidence, then
+message the agent that delegated the Task (the requirements doc's "Requested
+by") right away: what blocks, the evidence, and a suggested Task. Ask it to
+create that Task and give it to you, so you do it first, then stop. You continue
+this ticket once the prerequisite is done. When the user asked you directly,
+tell the user instead.
 
 ## Artifacts And Solution Revision Record
 
@@ -302,7 +325,9 @@ Persist owned artifacts and classify the result before routing:
 - `Blocked`: precise missing decision, approval, evidence or external/workspace
   prerequisite, available artifacts and next required action; no forward-ready
   claim. Distinguish a `Delivery Receipt Evidence Gap` (delivery-owned evidence
-  correction on a returned receipt) from a `User/External Prerequisite` blocker.
+  correction on a returned receipt), a `User/External Prerequisite` blocker, and
+  `Waiting For Prerequisite` (a prerequisite Task this ticket waits for, by its
+  Task key).
   A routine approval hold remains in the requirements conversation
   rather than triggering a handoff.
 - `Terminal`: verified delivery receipt as defined below; no repeated delivery.
@@ -352,6 +377,7 @@ cleanup. On a returned `Delivery Completed` package:
    missing evidence and required correction. Use the applicable handoff rules;
    do not claim Terminal or redo repository work.
 3. When evidence is sufficient, collect the follow-ups the package recorded
+   (prerequisites were raised when they were found)
    but nobody sent yet: those in the design spec's Change Scope, the design
    review report's out-of-scope recommendations, and the implementation
    handoff. The code reviewer's report records the ones it sent.
