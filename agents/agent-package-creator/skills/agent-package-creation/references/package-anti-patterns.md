@@ -4,6 +4,34 @@ Concrete mistakes found in real package work. The [package design principles](pa
 
 [Agent Package Creation](../SKILL.md) says when to read this file and when to add to it. Keep entries short and general: one cause per entry, the incident as a single line, and merge entries that share a cause.
 
+## Index
+
+| # | Mistake | Section |
+| --- | --- | --- |
+| 1 | Forbidding user-directed collaboration | Package design |
+| 2 | An outcome only a parent can route | Package design |
+| 3 | A member describing another team's internals | Package design |
+| 4 | One rule or fact in several places | Package design |
+| 5 | Colliding with an existing identity | Package design |
+| 6 | Project specifics in a reusable skill | Skill content |
+| 7 | Over-structuring what people write naturally | Skill content |
+| 8 | Instructing default runtime behavior | Skill content |
+| 9 | Procedures that assume an external system's behavior | Skill content |
+| 10 | Deciding from a stale or partial view of the package | Creator process |
+| 11 | Pushing without checking what goes out | Creator process |
+| 12 | Hard-coding recipients in a skill | Package design |
+| 13 | Treating a proxy signal as a verified defect | Skill content |
+| 14 | Writing in jargon instead of plain actions | Skill content |
+| 15 | One full procedure for every request | Skill content |
+| 16 | Re-reading state instead of keeping it | Skill content |
+| 17 | Merging without updating the local checkout | Creator process |
+| 18 | Handoffs that forward everything | Package design |
+| 19 | A trigger the agent cannot observe | Skill content |
+| 20 | Symlinked references the reader cannot see in a listing | Skill content |
+| 21 | A tool list that does not match the work | Skill content |
+| 22 | A review standard the reviewer cannot read | Skill content |
+| 23 | Merged into 4 | Package design |
+
 ## Package design
 
 ### 1. Forbidding user-directed collaboration
@@ -27,12 +55,12 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Instead:** Describe the role's own outcome and what it hands over; link the receiver's result as an external artifact.
 - **Detect:** Search a member's skill for other teams' member names and internal terms.
 
-### 4. Copying one rule into several files
+### 4. One rule or fact in several places
 
-- **Incident:** The `delegate_task` ban appeared in the Solution Designer's `agent.md`, its skill, `team.md`, an Org summary, and another team's agent, so fixing one left the others refusing. In the Article Writing Team the opening-progression rule sat in eight files and the image-tool order in five (2026-10-14).
-- **Breaks:** [§3](package-design-principles.md#3-give-each-rule-one-authoritative-file): one authoritative file per rule; others point to it.
-- **Instead:** State the rule once (universal transition in `agent.md`, shared rules in the shared file) and use pointers elsewhere.
-- **Detect:** Search the repository for a distinctive phrase of the rule before and after editing; every hit is a copy to remove or reconcile.
+- **Incident:** The `delegate_task` ban appeared in the Solution Designer's `agent.md`, its skill, `team.md`, an Org summary, and another team's agent, so fixing one left the others refusing. In the Article Writing Team the opening-progression rule sat in eight files and the image-tool order in five (2026-10-14). The API/E2E report wrote each test case's result and evidence in up to seven places, and a first fix added an eighth, an Evidence Index. The API/E2E engineer reran the implementation engineer's 5,830 unit tests because those results had no commit or evidence. A review of the team called its documents "too much paperwork"; the user corrected that the problem was the information structure, not the amount (2026-10-18).
+- **Breaks:** [§3](package-design-principles.md#3-give-each-rule-one-authoritative-file) and [§2](package-design-principles.md#2-design-responsibilities-before-files), information the roles share: one owner per rule and per fact; others point to it.
+- **Instead:** State the rule once (universal transition in `agent.md`, shared rules in the shared file) and use pointers elsewhere. For the documents roles produce: keep the documents the agents need. Find where each fact lives, extend that owner, and point to it elsewhere (#60 kept the plan, progress log, record and history, each fact written once; #61 extended the implementation handoff into a Checks Run table that later roles reuse by ID). Compare the old and new structure so no check is lost (#60's comparison restored three).
+- **Detect:** Search the repository for a distinctive phrase of the rule before and after editing; every hit is a copy to remove or reconcile. For each fact a template records (a result, a commit, an evidence path, a score), count the places it is written. For each check a role runs, see whether an earlier role already recorded it in a form that could be reused.
 
 ### 5. Colliding with an existing identity
 
@@ -55,13 +83,6 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Instead:** Let the sender decide after its work: its result plus the files the receiver opens for its next step. Earlier material stays reachable through the documents' links. Give guidance and an example, not a fixed list per route.
 - **Detect:** Search handoff text for "complete", "cumulative", "all relevant", "every still-relevant" or "preserve" next to "package" or "attach"; check that no rule makes a reference list grow with every hop.
 
-### 23. The same fact in several documents
-
-- **Incident:** The API/E2E report wrote each test case's result and evidence in up to seven places, and a first fix added an eighth, an Evidence Index. The API/E2E engineer reran the implementation engineer's 5,830 unit tests because those results had no commit or evidence. A review of the team called its documents "too much paperwork"; the user corrected that the problem was the information structure, not the amount (2026-10-18).
-- **Breaks:** [§2](package-design-principles.md#2-design-responsibilities-before-files), information the roles share: one owner per fact, and results recorded so they can be reused.
-- **Instead:** Keep the documents the agents need. Find where each fact lives, extend that owner, and point to it elsewhere (#60 kept the plan, progress log, record and history, each fact written once; #61 extended the implementation handoff into a Checks Run table that later roles reuse by ID). Compare the old and new structure so no check is lost (#60's comparison restored three).
-- **Detect:** For each fact a template records (a result, a commit, an evidence path, a score), count the places it is written. For each check a role runs, see whether an earlier role already recorded it in a form that could be reused.
-
 ## Skill content
 
 ### 6. Project specifics in a reusable skill
@@ -73,9 +94,9 @@ Concrete mistakes found in real package work. The [package design principles](pa
 
 ### 7. Over-structuring what people write naturally
 
-- **Incident:** Project Task descriptions were given required fields ("Depends on", "report back"); the user wanted ordinary, detailed task descriptions.
+- **Incident:** Project Task descriptions were given required fields ("Depends on", "report back"); the user wanted ordinary, detailed task descriptions. A prerequisite procedure was written as five numbered steps; the user asked for one short paragraph that trusts the model's judgement (2026-10-19).
 - **Breaks:** [Write the operating contract](skill-authoring-principles.md#write-the-operating-contract): prescribe exact structure only where the operation is fragile.
-- **Instead:** Describe what a good result contains; keep tracking data (dependencies, order) in the role's own records.
+- **Instead:** Describe what a good result contains; keep tracking data (dependencies, order) in the role's own records. State the purpose, the boundary, and the few things that must happen; trust a capable model with the rest.
 - **Detect:** For each required field or template, name what breaks without it; if nothing does, make it guidance.
 
 ### 8. Instructing default runtime behavior
@@ -120,6 +141,20 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Instead:** In a role's procedure at runtime, read only what the next decision needs, use the tools' filters, and give knowledge that lasts (who does what, what is open) a saved record that the role reads first and updates as it works.
 - **Detect:** For each read or listing call a skill requires, name what the role does differently with the answer and whether a filter or saved record already gives it.
 
+### 19. A trigger the agent cannot observe
+
+- **Incident:** Skill text told agents to act "after compression" or "when work spans many sessions" (deep researcher, 2026-10-13), and a draft API/E2E rule said "after compaction, read the progress log". The agent cannot tell that its context was compacted.
+- **Breaks:** [§4](package-design-principles.md#4-apply-one-authoring-standard), grounding: a condition must be something the role can check.
+- **Instead:** Trigger on what the agent can see: picking the work back up, being unsure what already ran, a file's content. Mention compaction only as the reason a record exists.
+- **Detect:** Search skills for "compaction", "compression", "session", "context window" and "forget"; for each, check that the condition is one the agent can observe.
+
+### 20. Symlinked references the reader cannot see in a listing
+
+- **Incident:** The Solution Designer skill's required reading `design-principles.md` is a symlink into the team's `shared/` folder. The agent listed the skill folder with `find -type f`, which skips symlinks, decided the file did not exist, and told the user so twice (2026-10-16).
+- **Breaks:** [Ground and prioritize instructions](skill-authoring-principles.md#ground-and-prioritize-instructions): a skill that depends on a package fact the reader cannot easily see should state it.
+- **Instead:** Where the skill tells the reader to read a symlinked file, add one hint: some files are symbolic links; open them by path.
+- **Detect:** List links with `find <package> -type l` and check that the skill that reads each one carries the hint; `find -L <package> -type l` prints broken links.
+
 ### 21. A tool list that does not match the work
 
 - **Incident:** The Article Writer had `generate_speech` though no step makes speech, and its skill required image-to-image editing without granting `edit_image`; the reviewer carried three process-control tools its review never used (2026-10-14).
@@ -133,20 +168,6 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Breaks:** [§3](package-design-principles.md#3-give-each-rule-one-authoritative-file): a rule needs one owner that every role applying it can read.
 - **Instead:** Put a standard that writer and reviewer both apply in a file shared at the Team level and link it from both skills.
 - **Detect:** For each dimension a reviewer judges, find the file that states the bar and check that the reviewer's skill can reach it.
-
-### 20. Symlinked references the reader cannot see in a listing
-
-- **Incident:** The Solution Designer skill's required reading `design-principles.md` is a symlink into the team's `shared/` folder. The agent listed the skill folder with `find -type f`, which skips symlinks, decided the file did not exist, and told the user so twice (2026-10-16).
-- **Breaks:** [Ground and prioritize instructions](skill-authoring-principles.md#ground-and-prioritize-instructions): a skill that depends on a package fact the reader cannot easily see should state it.
-- **Instead:** Where the skill tells the reader to read a symlinked file, add one hint: some files are symbolic links; open them by path.
-- **Detect:** List links with `find <package> -type l` and check that the skill that reads each one carries the hint; `find -L <package> -type l` prints broken links.
-
-### 19. A trigger the agent cannot observe
-
-- **Incident:** Skill text told agents to act "after compression" or "when work spans many sessions" (deep researcher, 2026-10-13), and a draft API/E2E rule said "after compaction, read the progress log". The agent cannot tell that its context was compacted.
-- **Breaks:** [§4](package-design-principles.md#4-apply-one-authoring-standard), grounding: a condition must be something the role can check.
-- **Instead:** Trigger on what the agent can see: picking the work back up, being unsure what already ran, a file's content. Mention compaction only as the reason a record exists.
-- **Detect:** Search skills for "compaction", "compression", "session", "context window" and "forget"; for each, check that the condition is one the agent can observe.
 
 ## Creator process
 

@@ -78,4 +78,4 @@ Here `agent.md` owns the researcher's identity and runtime stance; `agent-config
 
 ## Validate the skill as loaded
 
-Check the standard validator when available, frontmatter and name alignment, discriminating description, local links and directly discoverable references, intended versus actual outputs, and any script syntax or focused behavior. Confirm that frontmatter, body, references, and configured attachment describe one effective trigger and behavior rather than conflicting variants. For a bundled skill, check `skillNames` resolves to the folder/frontmatter. For an update, compare the previous trigger, required outputs, approvals, recovery, and stopping condition with the revised package. Report unavailable runtime-selection or tool checks as limitations rather than claiming observed behavior from prose alone.
+[Agent Package Creation](../SKILL.md#4-validate-and-recover) step 4 owns the checks for a skill.

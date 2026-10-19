@@ -25,7 +25,7 @@ For each role, write a compact contract:
 - **Quality gate:** how its output is checked, including approval when required.
 - **Exit:** result classification and next-action information available for routing.
 
-Trace a normal path and each meaningful return path from intake to terminal result. A handoff should move a completed, classified result across a real ownership boundary. The receiver should depend on that result and evidence, not the sender's private ticket lifecycle, branch, worktree, implementation detail, or undocumented chat memory. Keep user decisions with the user; a role cannot silently approve a material behavior change on their behalf.
+Trace a normal path and each meaningful return path from intake to terminal result. A handoff should move a completed, classified result across a real ownership boundary, carrying the original request, the status or decision, constraints, approvals, absolute artifact paths, and the next action. The receiver should depend on that result and evidence, not the sender's private ticket lifecycle, branch, worktree, implementation detail, or undocumented chat memory. Keep user decisions with the user; a role cannot silently approve a material behavior change on their behalf.
 
 **Information the roles share.** In an agent team, the documents are the roles' memory and the audit trail: each run starts fresh and may lose earlier context, so what is not written down is lost. Do not judge them by how many there are; judge how the information is structured:
 
@@ -54,6 +54,8 @@ Keep it in proportion: a small change needs a small record.
 Short pointers are useful; competing procedures are not. When an Agent has a skill, keep its detailed work instructions there rather than repeating them in its shell, Team/Org summary, or README. Keep conditional recipient addresses in the applicable configuration, not in a skill. A containing Team or Org can state a communication convention without taking ownership of a member's procedure.
 
 ## 4. Apply one authoring standard
+
+**Design a package like software.** The boundaries (§1) are its architecture; the path from request to result (§2) is its data-flow spine; one owner per rule and per fact (§2, §3) is its single source of truth; handoffs and their files are its interfaces; restructuring compares old and new so no check is lost; validation and real runs are its tests. Duplication is a smell, as in code. Two differences matter. The runtime is a model that interprets: state the purpose, the boundary, and the few things that must happen, and trust its judgement for the rest; do not script every step. And its bugs are silent: two drifting copies or wrong wording fail without an error, so owners and real runs matter even more than in code.
 
 Use the same quality principles when creating, analyzing, or updating any target kind. An analysis uses them as its review criteria; create and update apply them in this order while designing and writing, with cross-file consistency throughout:
 
@@ -100,6 +102,8 @@ An Org has `members`, `handoffs`, `avatarUrl`, and `defaultLaunchConfig` in `org
 - An org-local Agent or Team uses `refScope: "org_local"` and an ID that resolves to the Org's local definition. Follow the target repository's observed `ref` encoding rather than guessing it. An org-local Team still uses a `team-config.json` for its internal routing.
 - Org `handoffs` own only cross-member routes. Addresses may target direct Agents or nested Team members, such as `/engineering_org/platform_engineering_manager`. Verify the full rooted address through the member graph. Do not duplicate a child Team's internal routes at Org level.
 
+**Delegated copies** (observed in AutoByteus, 2026-10-19): a member that delegates starts an independent copy. A copy of a mounted Team, or of a direct Org agent at its address, carries the Org's handoff rules for that address, so Org rules reach delegated work. A message by address reaches only the standing instance; a copy is reached only by its run ID, so a cross-member reply addressed to a Team reaches the standing Team, not the copy that asked. A copy has one current Task at a time.
+
 Shared catalog references may be syntactically valid but unresolved in the current environment. Verify catalog availability when possible and otherwise report the dependency explicitly. Do not copy a private or external shared package just to make a local link appear resolved.
 
 ## 8. Boundary examples
@@ -121,6 +125,6 @@ When optimizing, compare the observed package with intended and preserved behavi
 
 Apply the change at its owner and reconcile configured names, member references, routes, links, and human docs. Remove obsolete paths when an approved replacement makes them stale; keep a compatibility path only when its consumer and lifecycle are justified.
 
-Before declaring completion, validate what the actual package needs: JSON syntax, frontmatter, configured skill resolution, links and templates, tool/role fit, member refs, routed addresses, shared dependencies, cross-file ownership, and diff scope. Capture observed results and limitations in the durable result. If intent, approval, or package identity is material and ambiguous, return a precise gap rather than inventing a role, tool, recipient, capability, or permission.
+Before declaring completion, validate as [step 4](../SKILL.md#4-validate-and-recover) describes and capture observed results and limitations in the durable result. If intent, approval, or package identity is material and ambiguous, return a precise gap rather than inventing a role, tool, recipient, capability, or permission.
 
 Use examples of the desired artifact when a package boundary would otherwise remain abstract; keep risky handoff and irreversible-decision detail explicit even in a concise package.
