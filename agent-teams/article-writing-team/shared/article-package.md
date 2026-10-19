@@ -1,6 +1,6 @@
 # Article Package
 
-The files one article request produces, who owns each, and what every handoff carries. Both roles use this file; `article-writing`, `article-researcher`, and `article-reviewer` own how each file is made or judged.
+The files one article request produces, who owns each, and what every handoff carries. The writer and the reviewer use this file; `article-writing`, `article-reviewer`, and the Deep Researcher's `deep-research` own how each file is made or judged.
 
 ## Work folder
 
@@ -10,11 +10,11 @@ Create one dedicated work folder per request. Keep every file below in it, and u
 
 | File | Owner | Present when |
 | --- | --- | --- |
-| `brief.md` | `article-writing` creates it; `article-researcher` updates the research fields | Always |
-| `understanding-notes.md`, `source-index.md` | `article-researcher` | The article needs investigation or source grounding |
-| `claim-evidence-ledger.md` | `article-researcher` | Factual, technical, or interpretive claims need explicit support |
-| `research-handoff.md` | `article-researcher` | The research phase ran |
-| `research-open-questions.md` | `article-researcher` | Research is blocked or narrowed by a missing input |
+| `brief.md` | `article-writing` | Always |
+| `understanding-notes.md`, `source-index.md` | `article-writing` (its understanding reference) | The article needs investigation or source grounding |
+| `claim-evidence-ledger.md` | `article-writing` (its understanding reference) | Factual, technical, or interpretive claims need explicit support |
+| `research-request.md` | `article-writing` | The article needs online or paper research |
+| The research brief and its `evidence.md` | The Deep Researcher (`deep-research`), saved where its message says; `source-index.md` records the brief's path | A research request was answered |
 | `style-profile-notes.md` | `article-writing` | An author style, rhetorical mode, or platform style is in scope |
 | `outline.md` | `article-writing` | Always |
 | `visual-plan.md` | `article-writing` | Visuals are requested or earned by the visualization-load trigger |
@@ -26,7 +26,7 @@ Create one dedicated work folder per request. Keep every file below in it, and u
 
 Send the whole package each time, not only the latest file:
 
-- Every artifact above that exists, plus the source material or source article.
+- Every artifact above that exists (a research brief by its path), plus the source material or source article.
 - For bilingual or cross-language work, both the source and target drafts.
 - The user's active corrections (for example `too salesy`, `too detached`, `too repetitive`, `too indirect`, `not accurate`) until the article passes.
 - On a return to the writer, the latest `review-report.md`.

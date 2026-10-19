@@ -12,6 +12,12 @@
       "ref": "article-reviewer",
       "refType": "agent",
       "refScope": "team_local"
+    },
+    {
+      "memberName": "deep_researcher",
+      "ref": "deep-researcher",
+      "refType": "agent",
+      "refScope": "shared"
     }
   ],
   "handoffs": [
@@ -24,11 +30,25 @@
       ]
     },
     {
+      "from": "/article_writer",
+      "to": "/deep_researcher",
+      "rules": [
+        "When the writer saves a research-request.md because the article needs online or paper research: several sources, current facts, or a check of claims the article will make. Include the request's absolute path and the work folder."
+      ]
+    },
+    {
       "from": "/article_reviewer",
       "to": "/article_writer",
       "rules": [
         "When review-report.md decides Pass: the writer delivers the final package to the user.",
         "When review-report.md names a gap or revision (any decision other than Pass) and lists the required revisions."
+      ]
+    },
+    {
+      "from": "/deep_researcher",
+      "to": "/article_writer",
+      "rules": [
+        "When the research brief for the writer's research-request.md is saved. Include the brief's absolute path, the answer in a few sentences, and the open gaps."
       ]
     }
   ]
