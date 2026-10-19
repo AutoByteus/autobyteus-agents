@@ -33,7 +33,7 @@ That reference owns profile loading, example loading, bilingual expression, and 
 ## Choose The Path
 
 - **Full path (Steps 1-10):** a new article that makes technical, factual, or current-world claims.
-- **Short path:** a style rewrite, a cross-language conversion, a short note, or a draft the user supplied. Write a short `brief.md`; request research only for claims that need it, and wait for the brief before drafting them; write `outline.md` as the main claim plus the section list; skip the visual plan unless the visualization-load trigger fires; draft (Step 8); and send the draft package for draft review (the reviewer then skips the pre-draft review). Steps 9 and 10 apply unchanged.
+- **Short path:** a style rewrite, a cross-language conversion, a short note, or a draft the user supplied. Write a short `brief.md`; request research only for claims that need it; write `outline.md` as the main claim plus the section list; skip the visual plan unless the visualization-load trigger fires; draft (Step 8); and send the draft package for draft review (the reviewer then skips the pre-draft review). Steps 9 and 10 apply unchanged.
 
 If the user names a path, use it. If a short-path request turns out to carry load-bearing claims you cannot support, move to the full path.
 
@@ -102,7 +102,7 @@ If the point is not specific, or is not new or useful to this reader, go back to
 Then verify:
 
 - `brief.md` records target, audience, mode, platform, language, and constraints
-- the understanding files passed their Ready-to-outline check, and every research brief you requested has come back
+- the understanding files passed their Ready-to-outline check
 - `style-profile-notes.md` records profile, variant, rhetorical mode, and style constraints when style matching is in scope
 - the opening progression matches the selected stance; non-essay modes do not plan a negative-first opening without a recorded exception
 - no planned contrast, common-belief claim, recommendation, root-cause claim, or production observation lacks an evidence anchor
@@ -152,7 +152,7 @@ If a gate fails, update the upstream package before drafting.
 
 ### Step 8 - Draft the article package
 
-Before drafting, check that every research brief you requested has come back and that the draft will use only claims it marks `supported` (others dropped or qualified).
+Before drafting, on either path, check that every research brief you requested has come back ([understanding.md](references/understanding.md), section 2).
 
 - Draft from the outline: main claim -> sections -> paragraphs (one job each) -> sentence polish.
 - Introduce the anchor example early, as the outline plans. Run any code or command you show and keep its real output; mark anything not run. Reuse the anchor in later sections where it carries the argument.

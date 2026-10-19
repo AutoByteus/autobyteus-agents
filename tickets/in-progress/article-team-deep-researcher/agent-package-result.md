@@ -36,7 +36,7 @@ The Article Writing Team now includes the shared Deep Researcher as a member, th
 | Nothing lost | Pass | Section map in the analysis; all 12 old readiness checks are in "Ready to outline" |
 | Live run 1 (isolated app, Claude Haiku) | Found a gap | The flow ran writer → Deep Researcher → brief → reviewer, but the writer drafted before the brief came back, and the reviewer returned Evidence Gap (`ATW-01`, `ATW-05`). Fixed: wait for the brief. |
 | Live run 2 after the fix | Pass | Request → brief → draft → Draft Revision → revision → **Pass** (`ATW-02`, `ATW-04`, final article `ATW-06`). The researcher created `research/index.md` with the topic's row (`ATW-03`). |
-| Final review | Pass | Round 1: the live-run gap (wait for the brief) and the brief location. Round 2: no findings. |
+| Final review | Pass | Round 1: the live-run gap (wait for the brief) and the brief location. Round 2: no findings. Round 3, requested by the user: the "wait for the brief" rule was written in five places. It is now owned by `understanding.md`, checked once by "Ready to outline" and once by Step 8 (both paths); the short path and Step 4 no longer restate it. Round 4: no findings. |
 
 ## Question for the user
 
