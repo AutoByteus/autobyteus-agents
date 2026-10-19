@@ -1097,7 +1097,7 @@ this ticket.
 | Situation | Where it belongs | Anti-pattern |
 | --- | --- | --- |
 | The change breaks a preserved behavior, such as existing sorting | This ticket: the change introduced it | Calling it an old weakness and shipping the regression |
-| An old bug in code the ticket calls makes an in-scope acceptance criterion fail | This ticket, because it cannot pass without the fix; `Requirement Gap` if the fix needs unapproved behavior | Making it a follow-up because the bug is old |
+| An old bug in code the ticket calls makes an in-scope acceptance criterion fail | This ticket when the bug is in the functionality the ticket changes; a prerequisite when it is in other functionality: its own Task first, raised at once ([ticket-scope.md](ticket-scope.md)); `Requirement Gap` if the fix needs unapproved behavior | Making it a follow-up because the bug is old, or quietly fixing other functionality inside this ticket |
 | The new code duplicates logic that belongs to an existing owner | This ticket: a design problem the change adds | Accepting it because it works |
 | A module the change edits has old design debt, such as an oversized class, while the ticket works | Follow-up, unless the design spec's [Task Design Health Assessment](design-principles.md#task-design-health-assessment) decided the refactor is needed now | Requiring the refactor because the ticket touched the file |
 | A source file was already over the 500-line limit before the change, and the change does not add to it | Follow-up: its own refactoring Task, unless the design spec decided the refactor is needed now | Failing this ticket for an old file's size |

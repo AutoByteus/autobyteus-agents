@@ -191,28 +191,17 @@ scenario by itself.
 
 ## Ticket Scope
 
-The requirements doc's Scope Guardrail and, when present, the design spec's
-Change Scope are this ticket's boundary, and the guardrail's Review Authority
-applies to your findings. For each promoted finding, ask how critical it is to
-this ticket: is it an inherent part of the ticket, so that without fixing it
-the ticket's change does not work or is not done properly?
+For each promoted finding, decide its kind with
+[ticket-scope.md](references/ticket-scope.md), which defines this ticket,
+prerequisite, follow-up and Requirement Gap against the Scope Guardrail and the
+Change Scope. Then act:
 
-- **This ticket:** yes. The change introduced it, including a design problem in
-  the code the change adds; without it an in-scope acceptance criterion or
-  preserved behavior fails; the design spec already places it in this change,
-  such as a refactor its design-health assessment requires; or a team rule
-  makes it part of every change, such as dead code in touched files
-  ([Core Principle 7](references/design-principles.md#7-no-dead-code)) or a file
-  the change takes over or grows past the size limit. Classify and route it as
-  usual.
-- **Follow-up:** no. Everything the ticket delivers works without it, as with
-  a pre-existing bug or design problem in surrounding code, even code the
-  change touches. When the ticket works and you are unsure, prefer a
-  follow-up: it keeps the ticket small and loses nothing. Record it under
-  Follow-ups in the report. It does not fail the review, lower the score, or
-  reopen implementation.
-- **Requirement Gap:** fixing it here would need behavior the requirements do
-  not approve. Route it as usual.
+- **This ticket:** classify and route it as usual.
+- **Prerequisite:** route it to the Solution Designer as a `Requirement Gap`,
+  naming it a prerequisite, with its evidence; not as a `Local Fix`.
+- **Follow-up:** record it under Follow-ups in the report. It does not fail the
+  review, lower the score, or reopen implementation.
+- **Requirement Gap:** route it as usual.
 
 Stay within the entry point you were called for. An unrelated observation
 during test-code or failure-origin review is a follow-up, not a reason to
@@ -292,7 +281,7 @@ review result as usual.
   product path itself.
 - Inspect the failure evidence and the smallest relevant test, environment, execution, or implementation path needed to classify the cause.
 - Decide whether the origin is an implementation defect, earlier review gap, runtime-only behavior, implementation change after review, invalid/stale test, fixture/environment/execution issue, design impact, requirement gap, a pre-existing problem unrelated to this change, or unclear.
-- For a pre-existing problem unrelated to this change, send a follow-up request (Ticket Scope) and return the package to the API/E2E owner to record the failure as out of scope.
+- For a pre-existing problem unrelated to this change, send a follow-up request (Ticket Scope) and return the package to the API/E2E owner to record the failure as out of scope. If the pre-existing problem keeps an in-scope acceptance criterion from passing, it is this ticket or a prerequisite instead ([ticket-scope.md](references/ticket-scope.md)); route it as Ticket Scope says.
 - When a real review gap exists, state the exact source evidence or invariant that should have been caught and update only the affected finding or score rationale.
 - When the failure was not reasonably detectable in source review, say so explicitly rather than treating every runtime failure as reviewer error.
 

@@ -63,6 +63,7 @@ user explicitly asks a specialist to involve another agent or team, the
 specialist sends it the context even without a rule.
 
 Every role keeps to the ticket's scope: the requirements doc's Scope Guardrail
-and the design spec's Change Scope. Problems found outside it become follow-ups
-for the agent that manages the project's Tasks instead of growing the ticket;
-see [Example 11](shared/design-examples.md#example-11-keeping-a-ticket-in-scope-during-technical-review).
+and the design spec's Change Scope. [shared/ticket-scope.md](shared/ticket-scope.md)
+says whether a problem found is part of this ticket, a prerequisite (its own
+Task first, raised at once through the Solution Designer), or a follow-up for
+the agent that manages the project's Tasks.
