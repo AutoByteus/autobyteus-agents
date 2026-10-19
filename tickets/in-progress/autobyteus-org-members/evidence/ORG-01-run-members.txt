@@ -1,0 +1,23 @@
+# Case: ORG-01
+# Step: createAgentOrgRun(autobyteus-org), then getAgentOrgRunInspection
+# App: isolated instance iso-49453-e799 of the installed AutoByteus 1.5.6-beta.7 (own data root); package: branch autobyteus-org-members (/tmp/aorg) imported as a local package
+# Runtime: claude_agent_sdk, model haiku | Date: 2026-10-19
+
+/
+/project_task_manager
+/agent_package_creator
+/software_engineering_team
+/software_engineering_team/solution_designer
+/software_engineering_team/architecture_reviewer
+/software_engineering_team/implementation_engineer
+/software_engineering_team/code_reviewer
+/software_engineering_team/api_e2e_engineer
+/software_engineering_team/delivery_engineer
+/product_team
+/product_team/product_ui_ux_designer
+/product_team/ui_baseline_bootstrapper
+/marketing_team
+/marketing_team/marketing_content_creator
+/marketing_team/marketing_performance_analyst
+/marketing_team/deep_researcher
+/marketing_team/computer_use_operator
