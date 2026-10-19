@@ -6,10 +6,8 @@
 Prints, for example:
   screenshot=/tmp/screen-1700000000.png image=2560x1440 screen=2560x1440 screen_per_image_px=1
 
-Open the PNG with the tool that shows you images. A point read from the image as
-you see it becomes a screen point by: x (image width / width you see) x screen_per_image_px.
-Uses the first of scrot, ImageMagick import, or gnome-screenshot that is installed;
-the screen size comes from xdotool.
+Uses the first of scrot, ImageMagick import, or gnome-screenshot that is
+installed; the screen size comes from xdotool.
 """
 import os
 import shutil

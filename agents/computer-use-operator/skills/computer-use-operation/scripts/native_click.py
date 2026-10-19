@@ -3,8 +3,7 @@
 
 From a screenshot (the usual way): the point as you see it in the image.
   native_click.py --at X,Y [--scale S] [--double] [--dry-run]
-  --scale  screen pixels per pixel you see: (image width / width you see) x
-           screen_per_image_px from screen_capture.py (default 1).
+  --scale  screen pixels per pixel of the image as you see it (default 1).
 
 From the DOM: a read-only locate script's viewport rectangle and the browser
 window metrics (window.screenX, window.screenY, window.outerHeight - window.innerHeight).

@@ -6,7 +6,7 @@ description: Complete a user's task on the computer by operating websites and ap
 # Computer Use Operation
 
 This skill owns the task loop and the workspace knowledge that makes later tasks fast. It has two capabilities, chosen per step:
-- **Screen:** operate a website or app the way a person does: look at a screenshot, act with native mouse and keyboard input, and look again. Locating through the page's DOM, as `web-ui-automation` describes, is the fallback.
+- **Screen:** operate a website or app the way a person does: look at a screenshot, act with native mouse and keyboard input, and look again. `web-ui-automation` supplies the page (DOM) mechanics and native-input rules; here the screenshot is how you find a target, and the page is the fallback.
 - **Computer tools:** use the shell, installed software, and media tools for work that is not a site's UI. Examples are downloading a public video with `yt-dlp`, converting media with `ffmpeg`, and preparing files.
 
 ## Knowledge
@@ -39,18 +39,18 @@ Neither is a run log. Record how sites and tools work. Do not record passwords, 
 
 ### Screen
 
-- **Look.** [`scripts/screen_capture.py`](scripts/screen_capture.py) `[OUT.png]` captures the whole screen and prints its path, `image=` and `screen=` sizes, and `screen_per_image_px`. Open the PNG with the tool that shows you images (`read_media_file`, or your runtime's own file reader). The screenshot also shows what is on top, such as a dialog or another window; a native click lands there.
-- **Click what you see.** Read the target's centre in the image as you see it, and click it with [`scripts/native_click.py`](scripts/native_click.py) `--at X,Y --scale S`. Your runtime may show a large image smaller than the file: it may state the factor, or else compare the width you see with `image=`. `S` = (image width / width you see) × `screen_per_image_px`; for example 1.28 × 0.5 = 0.64 for a 2560 px capture shown at 2000 px on a screen whose X coordinates are half the capture's pixels. If the target is not in the screenshot, scroll or navigate and look again rather than guessing a point.
-- **Locate through the page instead** (`web-ui-automation`: a read-only locate script's rectangle and window metrics, then `native_click.py --rect X,Y,W,H --window SX,SY,CHROME [--point FX,FY]`) when:
+- **Known operation:** follow its SOP. Find each recorded control on the current screen by its look and place; if it moved or changed, locate it again and continue.
+- **New operation or first visit:** explore the site. Record how each control looks and where it is, a stable page locator for the fallback (CSS, role, label, visible text, `id`, `data-*`, `aria-*`, shadow-DOM host path), page URLs, and a working step sequence.
+- **Look.** [`scripts/screen_capture.py`](scripts/screen_capture.py) captures the whole screen and prints the sizes needed to click from it. Open the PNG with the tool that shows you images (`read_media_file`, or your runtime's own file reader). The screenshot shows what is on top, such as a dialog or another window; a native click lands there.
+- **Click what you see.** Read the target's centre in the image and click it with [`scripts/native_click.py`](scripts/native_click.py) `--at X,Y --scale S`. `S` is `screen_per_image_px` from the capture, multiplied by (`image=` width / the width you see) when your runtime shows the image smaller than the file; it may state that factor. If the target is not in the screenshot, scroll or navigate and look again rather than guessing a point.
+- **Check what changed.** After a click whose result matters, such as opening the composer, attaching a file or switching a setting, take a new screenshot and compare it with the one before: the expected change is there and nothing else changed. A routine step with an obvious result needs no extra check.
+- **Locate through the page instead** (a read-only locate script, then `native_click.py --rect`) when:
   - you cannot see images: the screenshot does not load, or the tool says the model has no image input;
   - the target is off screen and easier to find in the page, such as one row in a long list;
   - several controls look alike and the picture cannot tell them apart;
   - a click from the image did not do what you expected.
 
   Read exact text and field values from the page (`read_page`, `dom_snapshot`, a read-only script) rather than from the picture.
-- **Check what changed.** After a click whose result matters, such as opening the composer, attaching a file or switching a setting, take a new screenshot and compare it with the one before: the expected change is there and nothing else changed. A routine step with an obvious result needs no extra check.
-- **Known operation:** follow its SOP. Find each recorded control on the current screen by its look and place; if it moved or changed, locate it again, continue, and update the knowledge.
-- **New operation or first visit:** explore the site. Record how each control looks and where it is, a stable page locator for the fallback (CSS, role, label, visible text, `id`, `data-*`, `aria-*`, shadow-DOM host path), page URLs, and a working step sequence.
 - **Other native helpers:**
   - [`scripts/paste_file.py`](scripts/paste_file.py) `FILE [--mime text/html]` pastes a file's exact text into the focused field. It is safe for CJK and multi-line text.
   - [`scripts/choose_file.py`](scripts/choose_file.py) `/abs/path [--confirm return|alt+o]` completes an open native file chooser and waits for it to close.

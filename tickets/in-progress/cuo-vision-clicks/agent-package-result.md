@@ -37,7 +37,8 @@ The live check on the final text: the operator captured the (stub) screen, read 
 ## Ownership and design decisions
 
 - Vision-first loop, unit conversion, when to fall back, after-click check: `computer-use-operation/SKILL.md` §2 "Screen".
-- DOM locating, CSS→screen mapping, native-input tool choice: the shared `web-ui-automation` (unchanged; the operator's skill points to it).
+- DOM locating, CSS→screen mapping, native-input tool choice: the shared `web-ui-automation` (unchanged). The operator's skill states the layering once, in its opening: `web-ui-automation` supplies the page mechanics, the screenshot finds the target, and the page is the fallback.
+- The scale rule (`S`): `SKILL.md` only; the scripts define their units, not the rule.
 - Capture and sizes: `scripts/screen_capture.py`. Clicking a point or a rectangle: `scripts/native_click.py`.
 - What a control looks like and where it is: the site knowledge Elements table, with an optional reference crop in `<site-slug>/refs/`.
 - Safety: the confirmation gate stays; it now also asks for a fresh screenshot showing that the final click is on the approved control and the content shown is the approved content.
@@ -71,7 +72,8 @@ The live check on the final text: the operator captured the (stub) screen, read 
 - Validation evidence:
   - `/tmp/cuo/tickets/in-progress/cuo-vision-clicks/evidence/`: answers, truth files and scoring scripts for t1–t5;
   - `runtime-claude-agent-sdk.json` and `runtime-image-delivery.md`;
-  - `LC-01-click-from-screenshot.log`.
+  - `LC-01-click-from-screenshot.log`;
+  - `LC-02-final-text-checkbox.log` (final text).
 - Generated package artifacts: None
 
 ## Approval state
@@ -93,7 +95,7 @@ The live check on the final text: the operator captured the (stub) screen, read 
 | Imported shared dependencies | `Pass` | `web-ui-automation` exists in `autobyteus-skills`; read in full |
 | Ownership and cross-file consistency | `Pass` | DOM mechanics stay in `web-ui-automation`; the template's new column matches the Knowledge list |
 | Scope/diff review | `Pass` | Four package files plus the ticket folder |
-| Final review against the standard and anti-patterns | `Pass` | Old/new comparison in the analysis ("Preserved behavior"); observable fallback triggers; no fixed after-every-click ritual; LC-01 on the final text |
+| Final review against the standard and anti-patterns | `Pass` | Round 1: old/new comparison ("Preserved behavior"), observable fallback triggers, no fixed after-every-click ritual. Round 2 (structure): the Screen section now runs decide → look → click → check → fallback → helpers; the scale rule had three copies (SKILL and both scripts' help) and now has one, in `SKILL.md`; the layering with `web-ui-automation` is stated once; a duplicate "update the knowledge" was removed (§3 owns it). Round 3: no further findings. LC-02 on the final text: clicked (48, 221) on a 13×13 checkbox whose centre is (48.5, 221.5). When the stub screen did not change, the agent checked and reported it instead of clicking again. |
 
 ## Risks, questions, and blockers
 

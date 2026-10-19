@@ -1,0 +1,59 @@
+# Live check LC-02: final skill text (after the structure review), tick a 13x13 checkbox from a screenshot
+# AutoByteus 1.5.6 isolated instance, runtime claude_agent_sdk, model claude-opus-5, 2026-10-19
+# Screen: stub scrot returns t1-dpr1.png (1280x800), stub xdotool reports 1280x800. Truth: #remember rect x42 y215 13x13, centre (48.5, 221.5).
+## prompt
+Please tick the "Remember me" checkbox on the sign-in card that is open on the screen.
+
+Test setup note: this machine has no real X11. Stub X11 tools are in /tmp/cuo-stub/bin; put that folder first on PATH for every command (export PATH=/tmp/cuo-stub/bin:$PATH). The stubs behave like the real screen: scrot captures the current screen, xdotool reports the display and performs clicks. There is no browser you can inspect for this page. This is a harmless test page, so no confirmation is needed. When done, reply with what you did and the screen point you clicked.
+## stub call log
+xdotool getdisplaygeometry
+scrot /tmp/screen-1792409528.png
+xdotool getdisplaygeometry
+xdotool mousemove --sync 48 221 click 1
+scrot /tmp/screen-1792409538.png
+xdotool getdisplaygeometry
+## tool calls
+- Skill {"skill": "computer-use-operation"}
+- Bash {"command": "ls -la /private/tmp/cuo-live3/ 2>&1; echo \"---sites---\"; ls -la /private/tmp/cuo-live3/web-ui-sites/ 2>&1; echo \"---tools---\"; ls -la /private/tmp/cuo-live3/computer-tools/ 2>&1", "description": "List workspace and knowledge dirs"}
+- Bash {"command": "export PATH=/tmp/cuo-stub/bin:$PATH; ls -la /tmp/cuo-stub/bin; echo \"---\"; xdotool getdisplaygeometry 2>&1", "description": "Inspect stub tools and display geometry"}
+- Bash {"command": "export PATH=/tmp/cuo-stub/bin:$PATH; cd /private/tmp/cuo-live3 && python3 -I /private/tmp/cuo-live3/.claude/skills/computer-use-operation/scripts/screen_capture.py 2>&1 | tail -20", "description": "Capture full screen screenshot"}
+- Read {"file_path": "/tmp/screen-1792409528.png"}
+- Bash {"command": "export PATH=/tmp/cuo-stub/bin:$PATH; cd /private/tmp/cuo-live3 && python3 -I /private/tmp/cuo-live3/.claude/skills/computer-use-operation/scripts/native_click.py --at 48,221 --scale 1 2>&1 | tail -10", "description": "Click the Remember me checkbox"}
+- Bash {"command": "export PATH=/tmp/cuo-stub/bin:$PATH; cd /private/tmp/cuo-live3 && python3 -I /private/tmp/cuo-live3/.claude/skills/computer-use-operation/scripts/screen_capture.py 2>&1 | tail -5", "description": "Capture screen after click"}
+- Read {"file_path": "/tmp/screen-1792409538.png"}
+- Bash {"command": "cd /tmp && python3 -I -c \"\nfrom PIL import Image\nim = Image.open('/tmp/screen-1792409538.png')\nprint(im.size, im.mode)\nc = im.crop((30,205,180,240)).resize((150*6,35*6), Image.NEAREST)\nc.save('/tmp/crop1.png')\nprint('ok')\n\" 2>&1 | tail -5", "description": "Crop and enlarge chec
+- Bash {"command": "cd /tmp && sips -c 35 150 --cropOffset 205 30 /tmp/screen-1792409538.png --out /tmp/crop1.png >/dev/null 2>&1 && sips -z 280 1200 /tmp/crop1.png --out /tmp/crop1big.png >/dev/null 2>&1 && echo done && ls -l /tmp/crop1big.png", "description": "Crop and scale checkbox area with sips"}
+- Read {"file_path": "/tmp/crop1big.png"}
+- Bash {"command": "cat /tmp/cuo-stub/bin/scrot; echo \"=====XDOTOOL=====\"; cat /tmp/cuo-stub/bin/xdotool", "description": "Read stub tool scripts"}
+- Bash {"command": "ls -la /tmp/cuo-measure/ 2>&1; echo \"---\"; cat /tmp/cuo-stub/calls.log 2>&1; echo \"---measure files---\"; for f in /tmp/cuo-measure/*.png; do echo -n \"$f: \"; sips -g pixelWidth -g pixelHeight \"$f\" 2>/dev/null | tr '\\n' ' '; echo; done", "description": "Inspect measurement image 
+- Bash {"command": "cd /tmp && sips -c 24 24 --cropOffset 209 36 /tmp/screen-1792409538.png --out /tmp/crop2.png >/dev/null 2>&1 && sips -z 720 720 /tmp/crop2.png --out /tmp/crop2big.png >/dev/null 2>&1 && echo \"crop: x36-60 y209-233 at 30x\"", "description": "Tight crop around checkbox at 30x"}
+- Read {"file_path": "/tmp/crop2big.png"}
+- Bash {"command": "cat /private/tmp/cuo-live3/.claude/skills/computer-use-operation/templates/tool-knowledge-template.md", "description": "Read tool knowledge template"}
+- Write {"file_path": "/private/tmp/cuo-live3/computer-tools/x11-screen-stubs.md", "content": "# x11-screen-stubs Tool Knowledge\n\nStub `scrot` / `xdotool` used on this machine, which has no real X11 server.\n\n## Install and location\n\n- Purpose: stand in for X11 screen capture (`scrot`) and native input
+- get_handoff_rules {}
+## final reply
+**Outcome: action performed — but it cannot be verified on screen, because the stubs are not live.**
+
+## What I did
+
+1. Put `/tmp/cuo-stub/bin` first on `PATH` and captured the screen: `image=1280x800 screen=1280x800 screen_per_image_px=1`, so image pixels map 1:1 to screen pixels (`--scale 1`).
+2. The screenshot showed the "Pulse" page with the **Sign in** card at the left and an unchecked **Remember me** checkbox below the Password field.
+3. Measured the checkbox centre by cropping and enlarging the region 30× (`sips`, since PIL isn't installed): the box spans roughly x 42–55, y 215–228 → centre **(48.4, 221.3)**.
+4. Clicked it: `native_click.py --at 48,221 --scale 1`, logged by the stub as `xdotool mousemove --sync 48 221 click 1`.
+
+**Screen point clicked: (48, 221)** — in a 1280×800 screen, scale 1.
+
+## The verification problem
+
+I re-captured after the click and the checkbox was still unchecked, so I inspected the tooling rather than guessing at a new point. The stubs do not behave like a real screen:
+
+- `scrot` ignores the screen entirely and copies a fixed image (`/tmp/cuo-measure/t1-dpr1.png`) to whatever path it's given.
+- `xdotool` appends its arguments to `/tmp/cuo-stub/calls.log` and `exit 0` — it performs no input.
+
+So the screenshot is a constant and **no click could ever change it**. This contradicts the setup note ("scrot captures the current screen, xdotool performs clicks"); you may want to know that, in case the fixture was meant to be live. I also didn't have the DOM fallback available (no inspectable browser), so I confirmed the click by re-measuring the target centre independently instead, which reproduced (48, 221).
+
+I deliberately did **not** read `/tmp/cuo-measure/t1-dpr1.truth.json` — that's the answer key for this target, and reading it would have made my click point meaningless as a measurement.
+
+## Knowledge updated
+
+Created `/private/tmp/cuo-live3/computer-tools/x11-screen-stubs.md`: the required `PATH` export per command (shell state doesn't persist), the capture/click commands and the `calls.log` record, the `sips` crop-and-zoom recipe for locating a control centre precisely (crop args are `-c H W --cropOffset Y X`), and the pitfall that the stubs are static so post-click screenshot comparison proves nothing. No site knowledge file — the page is a local test fixture with no host, not a real site worth a reusable entry.
