@@ -117,8 +117,8 @@ gate.
   a service, a runtime), not only through our code and tests, which may
   replace them with fakes; confirm a suspicion with a cheap probe. Judge each
   problem you find with [ticket-scope.md](references/ticket-scope.md): this
-  ticket, a prerequisite, or a follow-up. Write a prerequisite down at once
-  and send it at the end of the investigation, as Prerequisites describes.
+  ticket, a prerequisite, or a follow-up; for a prerequisite, see
+  Prerequisites.
 - Assign stable behavior, scenario, use-case, requirement and acceptance-criteria IDs;
   define current, desired and preserved behavior, measurable constraints,
   data-continuity requirements, unknowns and verification intent. Write the
@@ -277,26 +277,15 @@ review, API/E2E and delivery retain their local-fix and failure-origin ownership
 
 ## Prerequisites
 
-A prerequisite ([ticket-scope.md](references/ticket-scope.md)) blocks this
-ticket and belongs to other functionality. When you find one, or another role
-reports one:
-
-1. **Write it down at once** in the requirements doc's Scope Guardrail, under
-   Prerequisites: an ID, the evidence (such as a probe and its result), and the
-   requirement and acceptance-criteria IDs it blocks. Keep the full evidence in
-   the investigation notes.
-2. **Finish the investigation** you are in, so every prerequisite is found and
-   written down.
-3. **At the end of the investigation**, when a prerequisite must be done first,
-   send one message to the agent the requirements doc records under "Requested
-   by": the prerequisites with their evidence, why each blocks this ticket, and
-   a suggested Task description for each. Ask it to create the Tasks and
-   dispatch them to this team first. When the user asked you directly, give the
-   user the same instead.
-4. **Stop.** Your result is `Blocked` with `Waiting For Prerequisite`.
-5. **Continue** when told the prerequisite is delivered: re-check the blocked
-   scenarios against the delivered change, update the Prerequisites row, and go
-   on from where you stopped.
+A prerequisite ([ticket-scope.md](references/ticket-scope.md)) is something
+outside this ticket's functionality that blocks it. You usually see it once your
+investigation has traced the real path, or another role reports one to you.
+Write it down in the requirements doc's Prerequisites with its evidence, then
+message the agent that delegated the Task (the requirements doc's "Requested
+by") right away: what blocks, the evidence, and a suggested Task. Ask it to
+create that Task and give it to you, so you do it first, then stop. You continue
+this ticket once the prerequisite is done. When the user asked you directly,
+tell the user instead.
 
 ## Artifacts And Solution Revision Record
 
