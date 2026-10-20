@@ -34,6 +34,7 @@ Concrete mistakes found in real package work. The [package design principles](pa
 | 24 | Judging only the fix the request proposes | Creator process |
 | 25 | A link that exists only for another file's links | Package design |
 | 26 | Softening requirements while restructuring | Creator process |
+| 27 | Judging a change from a run that did not exercise it | Creator process |
 
 ## Package design
 
@@ -215,3 +216,13 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Breaks:** [§9](package-design-principles.md#9-update-and-restructure-safely): a restructure moves and joins text; it does not change what the text requires.
 - **Instead:** Carry each requirement word, qualifier, and named case with the text it belongs to. Reword only where the meaning stays the same strength. Merge two statements only when they say the same thing; when they cover different cases, keep both.
 - **Detect:** Run [compare-wording.py](../scripts/compare-wording.py) on the old and new files, and read every sentence it lists beside its new home, starting with those whose closest match lacks a requirement word. A dropped count is a lead, not a verdict: merged duplicates also lower it.
+
+### 27. Judging a change from a run that did not exercise it
+
+- **Incidents:** Three on 2026-10-20.
+  - **Task 43:** the first test data cited an evidence folder that did not exist, and the PM held the Task to rescue the evidence instead of showing the rule under test.
+  - **#91:** the first question told both copies not to run any tools, so neither opened the skill under test, and both answered from general caution.
+  - **Task 33:** the data never made a probe mislead, so "a surprising result gets a second check" went unexercised and was nearly reported as passed. The user pointed out that evaluation sometimes needs test data created for it.
+- **Breaks:** [step 4](../SKILL.md#4-validate-and-recover), real use: a run on the final text that shows the change at work.
+- **Instead:** Create consistent test data that makes each point of the change happen, and leave the agent the tools and reading it has in real use ([live-checks.md](live-checks.md)). After the run, map each point to where it happened; build data for any point that did not, and rerun.
+- **Detect:** In the result's validation, each point of the change names the run and the step where it was observed; a point without one is listed as untested.
