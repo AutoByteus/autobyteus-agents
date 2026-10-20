@@ -1,21 +1,31 @@
 # Design Principles
 
-This is the canonical shared design reference for the software engineering team. Use it for design work and technical review; it contains the team's principles, practical guidance, local patterns, design questions, smells, and short example shapes.
+This is the canonical shared design reference for the software engineering team. Use it for design work and technical review. Each rule has one home: its principle states the rule, how to apply it, the signals that it is broken, and the question a reviewer asks. The sections after the principles order the work, list the structural triggers, assess design health, classify size and risk, and describe local patterns; they point back to the principles rather than restating them.
 
 ## Contents
 
 - [Project-Specific Design Principles](#project-specific-design-principles)
 - [Terminology](#terminology)
 - [Core Principles](#core-principles)
-- [Derived Checks](#derived-checks)
+  - [1. Approved Behavior And Production Reality](#1-approved-behavior-and-production-reality)
+  - [2. Data-Flow Spine Inventory and Clarity](#2-data-flow-spine-inventory-and-clarity)
+  - [3. Ownership Clarity and Boundary Encapsulation](#3-ownership-clarity-and-boundary-encapsulation)
+  - [4. Off-Spine Concerns Around The Spine](#4-off-spine-concerns-around-the-spine)
+  - [5. Current-Schema Runtime And Proportionate Persisted-Data Transitions](#5-current-schema-runtime-and-proportionate-persisted-data-transitions)
+  - [6. Supported Product Scenario And Reachability Gate](#6-supported-product-scenario-and-reachability-gate)
+  - [7. No Dead Code](#7-no-dead-code)
+  - [8. Clean-Cut Replacement And Explicit Removal](#8-clean-cut-replacement-and-explicit-removal)
+  - [9. Dependency Direction](#9-dependency-direction)
+  - [10. Interfaces Follow Ownership](#10-interfaces-follow-ownership)
+  - [11. Reusable Owned Structures Stay Tight](#11-reusable-owned-structures-stay-tight)
+  - [12. File Responsibility And Placement](#12-file-responsibility-and-placement)
+  - [13. One Owner For Coordination Policy, No Empty Layers](#13-one-owner-for-coordination-policy-no-empty-layers)
+  - [14. A Spine-First, Concrete Design Document](#14-a-spine-first-concrete-design-document)
 - [Practical Application Guide](#practical-application-guide)
+- [Structural Triggers](#structural-triggers)
 - [Task Design Health Assessment](#task-design-health-assessment)
 - [Task Size And Architectural Risk](#task-size-and-architectural-risk)
-- [Structural Triggers](#structural-triggers)
 - [Common Local Patterns](#common-local-patterns)
-- [Short Example Shapes](#short-example-shapes)
-- [Required Design Questions](#required-design-questions)
-- [Design Smells](#design-smells)
 
 ## Project-Specific Design Principles
 
@@ -53,15 +63,18 @@ principles and respect the project's own as well.
 
 Apply these principles from behavioral foundation through macro structure before detailed checks. Every design and technical review must establish the supported product-scenario basis for the behavior it serves. The detailed premise gate in Principle 6 is conditional only for an additional material scenario or mechanism not already established by that basis; it is not a separate edge-case discovery stage.
 
+A principle may end with **Signals** (what shows the rule is broken) and **Check** (the question a design or review answers).
+
 ### 1. Approved Behavior And Production Reality
 
 - Architecture review and code review are technical reviews, not a second business-approval process. Begin by understanding the approved business intent and use the approved requirements as the intended-behavior authority. If they are materially ambiguous or inconsistent, return the gap instead of judging, redefining, or inventing behavior.
 - Before applying structural principles, establish the relevant behavioral baseline: existing behavior, the approved change, and behavior that must remain unchanged or outside scope.
 - Understand the complete relevant behavior and production path from a supported trigger or governing contract to its meaningful outcome. The behavior may be user-initiated, system-initiated, operational, or contract-driven. Trace enough of its lifecycle boundaries to judge the change correctly; this does not require understanding unrelated parts of the product.
+- Read the current code path before defining the target design.
 
 ### 2. Data-Flow Spine Inventory and Clarity
 
-- Identify and inventory the relevant data-flow spines for each in-scope use case.
+- Identify and inventory the relevant data-flow spines for each in-scope use case. Build the inventory early and use it to decide ownership and decomposition.
 - A practical spine inventory row should usually capture:
   - `spine_id`
   - scope
@@ -75,7 +88,7 @@ Apply these principles from behavioral foundation through macro structure before
   - return/event spines,
   - bounded local spines inside one owner when a loop, worker cycle, state machine, or dispatcher materially affects the design.
 - `Primary` is per use case/path, not globally singular. If two important use cases each have a top-level business path, both can have their own primary spine.
-- For each spine, state its start, end, owner, and why it exists.
+- For each spine, state its start, end, owner, and why it exists. Write each primary spine as a short arrow chain, and name its main-line nodes in natural domain language.
 - Keep only true main-line nodes on each spine.
 - `Spine Span Sufficiency Rule` (mandatory): a primary spine must be stretched far enough to expose the real business path, not only the local edited segment.
 - The primary spine should usually show:
@@ -86,11 +99,13 @@ Apply these principles from behavioral foundation through macro structure before
   - the meaningful downstream effect, returned result, or emitted consequence.
 - Practical default: use at least `4-5` meaningful nodes on the primary spine unless the full real path is genuinely smaller.
 - A bounded local/internal spine is additive detail. It does not replace the longer primary spine when the longer spine is needed to judge ownership, API shape, or business meaning correctly.
-- Good-shape example:
-  - `Browser UI -> Session Bootstrap -> Runtime Invocation -> Exposure Composer -> Browser Surface`
-- Bad-shape example:
-  - `Exposure Composer -> Browser Surface`
-- If the declared spine inventory is incomplete, or if the main line / secondary line / bounded local spines are hard to draw, the design is probably fragmented.
+- Shapes:
+  - Good: `Browser UI -> Session Bootstrap -> Runtime Invocation -> Exposure Composer -> Browser Surface`
+  - Bad: `Exposure Composer -> Browser Surface`
+  - Common: CRUD/request `Frontend -> API -> Service -> Repository -> Database`; runtime/worker `API -> Run -> Runtime -> Worker/Event Loop`; bounded local loop/state `Queue/Event Source -> Loop/State Machine -> Handler/Transition -> Output/Next Event`.
+  - Pairing: primary spine `Request Surface -> Session Owner -> Runtime -> Event Loop Owner`, with the bounded local spine inside `Event Loop Owner`: `Receive Event -> Normalize -> Select Handler -> Apply Transition -> Emit Next Event`.
+- **Signals:** the declared inventory is incomplete, or the main line, secondary lines, or bounded local spines are hard to draw (the design is probably fragmented); many peer coordinators with no obvious main line; important spines left implicit instead of named; the named spine stops at the local edited helper and hides the initiating surface, authoritative owner boundary, or downstream consequence; event loops or state machines materially affect the behavior but no bounded local spine is described.
+- **Check:** What are the primary, secondary, return/event, and bounded local spines for the in-scope use cases? With several use cases or major business paths, does each have its own primary spine instead of one vague chain? Is each primary spine stretched to the real business path, authoritative owner, and downstream consequence? Which bounded local spines exist inside owned nodes, and where do they start and end? What are the main domain subject nodes on each spine? What are the return/event spines when the change is async or event-driven?
 
 ### 3. Ownership Clarity and Boundary Encapsulation
 
@@ -101,34 +116,46 @@ Apply these principles from behavioral foundation through macro structure before
   - sequencing
   - contracts
   - transformations
-- Ownership is the concrete form of separation of concerns.
+- Ownership is the concrete form of separation of concerns. Separation of concerns stays mandatory and gets stronger as the spine and ownership model become clearer; derive it from the spine, main subject nodes, and ownership boundaries rather than treating it as the starting point.
+- Define what each main-line node owns before splitting off-spine concerns.
 - Main domain subject nodes on the spine should stay coherent; do not force one node to absorb every nearby responsibility just because it is on the main line.
-- When additional responsibilities are needed to make one node work, split them into clear off-spine concerns around that owner instead of creating hidden mixed-concern blobs.
+- When additional responsibilities are needed to make one node work, split them into clear off-spine concerns around that owner (Principle 4) instead of creating hidden mixed-concern blobs or letting the node become a god-object.
 - If a concern has no clear owner, the boundary is wrong.
-- Authoritative Boundary Rule (mandatory): callers above a subject's authoritative boundary must depend on that boundary, not on that boundary and one of its internals at the same time. This is the `no boundary bypass / no mixed-level dependency` rule.
-- API/interface/query/command shape should be derived from this ownership and boundary model, not designed independently from it.
+- `Authoritative Boundary Rule` (mandatory): callers above a subject's authoritative boundary must depend on that boundary, not on that boundary and one of its internals at the same time. This is the `no boundary bypass / no mixed-level dependency` rule.
+  - It is about authority and encapsulation, not about labels such as `service`, `manager`, `repository`, `controller`, or `facade`.
+  - If a caller needs both an outer boundary and one of that boundary's internal managers, repositories, helpers, or lower-level concerns, either the boundary is wrong or the caller is bypassing ownership. Choose one authoritative entrypoint, or redesign the boundary and responsibilities explicitly.
+  - If callers bypass an internal concern only because the outer boundary does not expose enough usable API, strengthen the authoritative boundary or reshape ownership explicitly. Do not normalize the bypass as the steady-state design.
+  - Good shape: `Caller -> Outer Boundary`, `Outer Boundary -> Internal Owned Mechanism`. Bad shape: `Caller -> Outer Boundary`, `Caller -> Internal Owned Mechanism`, `Outer Boundary -> Internal Owned Mechanism`.
+- When a thin public facade and a deeper governing owner both exist, name both.
+- API, interface, query, and command shape follows from this ownership and boundary model (Principle 10).
+- **Signals:** a caller depends on both a public boundary and one of its internal managers, repositories, helpers, or lower-level concerns at the same time; a higher boundary reaches directly into a deeper layer the intended owner should encapsulate; one node collects many unrelated duties; a concern has no clear owner.
+- **Check:** What does each node own? Which boundaries are public entrypoints and which are internal owned sub-layers, and which callers may depend on each? Is any caller depending on both an outer owner and one of its internals, and if so which boundary stays authoritative?
 
 ### 4. Off-Spine Concerns Around The Spine
 
 - Off-spine concerns should serve a clear owner on the spine.
 - Keep off-spine concerns off the main line unless they truly own core sequencing.
 - Off-spine concerns may resolve, persist, adapt, map, publish, observe, or translate, but they should not compete with the spine.
-- Before creating a new off-spine concern, check whether an existing capability area or subsystem already fits that responsibility and should be reused or extended.
+- `Capability-area reuse`: before creating a new off-spine concern or helper, check whether an existing capability area or subsystem already owns that category of work (status, events, handlers, persistence, streaming, bootstrap, shutdown, and similar) and should be reused or extended.
 - `Spine`, `owner`, and `off-spine concern` are architecture relationship terms, not naming templates.
 - Do not name files, folders, services, classes, or types with vague labels like `Support`, `Supporting`, `OffSpine`, `SideConcern`, or `Helper` just because they sit off the main line. Name them by the concrete concern they own.
+- **Signals:** shared helpers that quietly own business behavior; off-spine concerns sitting on the main line without owning sequencing; new helper or service pieces created ad hoc although an existing subsystem already owns that kind of work.
+- **Check:** Which off-spine concerns serve which owner on the spine? Which off-spine needs should reuse or extend an existing capability area instead of creating a new helper?
 
 ### 5. Current-Schema Runtime And Proportionate Persisted-Data Transitions
 
 - A code-model, serialization, or storage-schema change triggers persisted-data analysis, not an automatic migration.
-- Decide explicitly whether existing data is `Not Affected`, `Directly Usable — No Migration`, `Discard or Rebuild`, `Migration Required`, or `Undetermined`.
+- Decide explicitly whether existing data is `Not Affected`, `Directly Usable — No Migration`, `Discard or Rebuild`, `Migration Required`, or `Undetermined`, and make that decision before designing migration machinery.
 - Base the decision on representative stored data, normal reader and writer behavior, semantic meaning, current invariants, physical-store constraints, data volume, and operational risk.
 - Existing data is directly usable when the normal version-agnostic runtime can read it correctly and preserve required semantics and invariants without old-version branches. For example, a stored JSON superset does not require rewriting merely because the current model ignores obsolete extra attributes.
-- A generic reader policy that projects recognized fields or tolerates irrelevant extras is not automatically backward-compatibility code. Version-specific branching, dual reads/writes, compatibility fields, and fallback paths in current business logic remain prohibited.
+- A generic reader policy that projects recognized fields or tolerates irrelevant extras is not automatically backward-compatibility code. Version-specific branching, dual reads/writes, compatibility fields, and fallback paths in current business logic remain prohibited (Principle 8).
 - Choose `Discard or Rebuild` when the data is disposable or safely reproducible and that outcome satisfies the requirements.
 - Choose `Migration Required` only when existing data must be transformed for correctness, current invariants, a required physical-store change, privacy/security, or another concrete operational need. State the benefit and why direct use or rebuild is insufficient.
-- When migration is required, keep it in an explicit startup, deployment, or maintenance boundary. Confine historical-schema knowledge there; define ordering, validation, completion, interruption/recovery, and risk-appropriate backup or rollback behavior.
+- When migration is required, design it as a separate owned spine in an explicit startup, deployment, or maintenance boundary, and keep the target runtime current-schema-only. Confine historical-schema knowledge there; define ordering, validation, completion, interruption/recovery, and risk-appropriate backup or rollback behavior. Never compensate with version-specific compatibility behavior in normal business or runtime paths.
 - Do not rewrite large data sets merely for representational cleanliness. Weigh I/O, downtime, corruption exposure, recovery complexity, and rollout constraints against the migration's concrete benefit.
 - If the evidence is insufficient, choose `Undetermined` and investigate or block the design rather than assuming either migration or safety.
+- **Signals:** old-schema decoding, branching, or dual reads/writes embedded in current business services or normal repositories instead of isolated migration-owned code; bulk migration or destructive rewriting proposed merely because a schema changed, without evidence that existing data must be transformed or that the benefit justifies the risk; migration steps that can partially apply without a completion marker, validation, restart strategy, or recovery path.
+- **Check:** What persisted-data transition decision applies, and what representative reader, semantic, invariant, storage, volume, and operational evidence supports it? If migration is required, which owner performs it, and how are ordering, completion, validation, interruption, recovery, and rollout handled?
 
 ### 6. Supported Product Scenario And Reachability Gate
 
@@ -153,6 +180,7 @@ Apply these principles from behavioral foundation through macro structure before
 - Persist the supported scenario basis and every additional material-premise classification in the applicable design or review artifact, including scenarios rejected as unsupported or `Not Reachable`. Record the complete relevant behavior and production path, actual system lifecycle, and evidence that makes the scenario supported, unsupported, reachable, unreachable, or unclear.
 - Require additional state, APIs, abstractions, coordination, or recovery behavior only when they address a supported reachable material problem and are proportionate to its consequence. Technical completeness means correctness for supported behavior and real operational constraints, not handling every imaginable state.
 - See Example 10, Supported Product Scenario Versus Technical Possibility, in the team's design examples for positive normal and explicit-edge examples, rejected technical-only scenarios, and the downstream review treatment.
+- **Signals:** a technical finding or new machinery is justified only by a hypothetical state, generic capability, or test-only path rather than approved behavior and current or target-production reachability.
 
 ### 7. No Dead Code
 
@@ -164,57 +192,101 @@ Dead code is code that nothing in the product reaches anymore. It makes the code
   - feature flags and configuration options with only one value still in use, and the code behind the other values;
   - tests, fixtures, and mocks for code that no longer exists;
   - code that only its own tests call;
-  - paths that a change replaces (see the clean-cut rules in Derived Checks).
+  - paths that a change replaces (Principle 8).
 - **Evidence:** before removing code, show that nothing reaches it. A search finds no references, and the compiler, linter, or unused-export check agrees where the project has one. Also check entry points a search can miss: dynamic imports, reflection, configuration and routing files, plugin or script entry points, and public APIs used outside the repository. Code reached only through such an entry point is not dead.
 - **Scope:**
   - remove dead code in the files and modules a change touches, including code that was already dead before the change;
   - record dead code found elsewhere as a follow-up with its evidence, in the ticket's `follow-ups.md` ([ticket-scope.md](ticket-scope.md#recording-follow-ups)). Do not leave it unrecorded, and do not mix it into an unrelated change.
 - Removing dead code does not change approved behavior, because nothing reaches it. If removal would change something a user, system, or external caller can still reach, the code is not dead; treat the removal as a behavior change that needs approved requirements.
 - Record each removal, with its evidence, in the design's removal plan.
+- **Signals:** dead code left in the files a change touches, or code removed as dead without evidence that nothing reaches it.
+- **Check:** Which code in the touched files and modules is dead, what evidence shows that nothing reaches it, and which dead code found elsewhere goes on the follow-up list?
 
-## Derived Checks
+### 8. Clean-Cut Replacement And Explicit Removal
 
-- Separation of concerns is still mandatory, and it should get stronger as the spine and ownership model become clearer. It is derived from the spine, main subject nodes, and ownership boundaries rather than treated as the starting point.
 - No backward compatibility or legacy retention is a hard modernization rule for in-scope behavior. Design the clean-cut target directly and make removal of obsolete paths explicit.
-- Give every affected persisted-data change an evidence-backed transition decision. Use an explicit migration boundary only when transformation is actually required; never compensate with version-specific compatibility behavior in normal business or runtime paths.
-- Removal is first-class architecture work, not optional cleanup. When clearer ownership, reusable owned structures, or better file responsibilities make redundant pieces unnecessary, name and remove/decommission those pieces explicitly in scope.
+- Removal is first-class architecture work, not optional cleanup. When clearer ownership, reusable owned structures, or better file responsibilities make redundant pieces unnecessary, name and remove or decommission those pieces explicitly in scope. Once the target shape is clear, list in the removal plan what it makes unnecessary, together with the dead code in the touched files and modules (Principle 7).
+- If a proposed solution keeps compatibility wrappers, dual-path reads/writes, or fallback branches only to preserve old behavior, redesign it toward a clean-cut replacement and an explicit removal plan.
+- **Signals:** compatibility wrappers, dual-path behavior, or legacy fallback branches kept only to preserve old flows.
+- **Check:** Which legacy paths, compatibility wrappers, dual-path branches, obsolete files, or deprecated boundaries are removed in this change? Which duplicated, fragmented, or now-unnecessary helpers, files, or structures become removable because the design gives them a clearer owner or replacement?
+
+### 9. Dependency Direction
+
 - Dependency direction follows ownership; name allowed directions and forbidden shortcuts explicitly.
-- The Authoritative Boundary Rule is about authority and encapsulation, not about specific labels like `service`, `manager`, `repository`, `controller`, or `facade`.
-- If a caller needs both an outer boundary and one of that boundary's internal managers, repositories, helpers, or lower-level concerns, either the boundary is wrong or the caller is bypassing ownership. Resolve that by choosing one authoritative entrypoint, or by redesigning the boundary and responsibilities explicitly.
-- If callers only bypass an internal concern because the outer boundary does not expose enough usable API, fix that by strengthening the authoritative boundary or by reshaping ownership explicitly. Do not normalize the bypass as the steady-state design.
-- Reusable owned structures must also be semantically tight: remove redundant attributes, avoid overlapping parallel representations for the same domain subject, and keep each field's meaning singular and explicit.
-- Shared cores and specialized variants are valid only when the shared base is truly coherent. Do not create one-for-all base structures that collect mostly-optional fields for unrelated cases; prefer meaningful specialization or composition under a clear subsystem owner.
-- File placement must follow ownership; move or split files when their paths no longer match their real concern. Optional module groupings may be used inside a subsystem only when they improve readability.
-- Subsystem, folder, and file mapping should be spine-led and ownership-led, but not mechanical. Optional module groupings are secondary structure only when they help the reader.
-- Distinct structural depths often deserve distinct folders, but do not force artificial over-splitting. If a flatter layout is clearer, justify it explicitly.
-- Interfaces, APIs, queries, commands, and reused service methods must also follow ownership and separation of concerns: one boundary, one subject, one responsibility, explicit identity shape.
-- The design document should read spine-first, not file-first. Files, folders, and any optional module groupings are a derived implementation mapping, not the primary structure of the architecture story.
-- Use concrete examples when they materially improve clarity. Do not leave a non-obvious design entirely abstract when a short example would explain the intended shape faster.
-- Layering is optional explanatory output only. Do not use layering as a first principle.
-- If layering is used as explanation, it must still follow ownership and encapsulation: a higher layer should not skip an owning boundary and directly reach into a deeper layer that the intermediate boundary already owns.
+- Layering is optional explanatory output only. Do not use layering as a first principle. If layering is used as explanation, it must still follow ownership and encapsulation: a higher layer should not skip an owning boundary and directly reach into a deeper layer that the intermediate boundary already owns (Principle 3).
+- **Check:** Which dependencies are allowed, and which shortcuts are forbidden?
+
+### 10. Interfaces Follow Ownership
+
+- API, interface, query, and command shape is derived from the ownership and boundary model (Principle 3), not designed independently from it.
+- Interfaces, APIs, queries, commands, and reused service methods follow ownership and separation of concerns: one boundary, one subject, one responsibility, explicit identity shape.
+- Split APIs, queries, commands, and service methods by subject when identity meaning differs; prefer explicit `getAgent...` / `getTeam...` style boundaries over one generic method that guesses what an ID or selector means.
+- If one API, query, command, or service method accepts a generic ID or selector that may refer to different subjects, or returns a generic mixed-subject list, split it into explicit subject-owned boundaries or require an explicit compound identity shape.
+- **Signals:** generic interface boundaries, list or query surfaces, or service methods that accept one ambiguous ID or selector and then guess what subject it belongs to.
+- **Check:** Which interface boundaries exist, what subject does each own, and what identity or selector shape does each accept?
+
+### 11. Reusable Owned Structures Stay Tight
+
+- When repeated data structures, types, normalizers, converters, mappers, or schemas appear across several files, extract them into reusable owned files under the correct subsystem instead of duplicating them.
+- Reusable owned structures must be semantically tight: remove redundant attributes, avoid overlapping parallel representations for the same domain subject, and keep each field's meaning singular and explicit. Tighten a structure before standardizing it or promoting it into a reusable owned file.
+- Shared cores and specialized variants are valid only when the shared base is truly coherent. Do not create one-for-all base structures that collect mostly-optional fields for unrelated cases; when a base accumulates optional fields mainly to serve divergent cases, split it into a tighter shared core plus meaningful specialized variants, or use composition, under a clear subsystem owner.
+- Put code in a shared or common folder only when it is truly cross-cutting and concern-agnostic.
+- **Signals:** shared structures that still carry redundant fields, overlapping representations, or mixed meanings after extraction.
+- **Check:** Which shared data structures, schemas, DTOs, mappers, or types need tightening so redundant attributes or overlapping representations are removed instead of standardized?
+
+### 12. File Responsibility And Placement
+
+- One file owns one concrete concern. If one file owns multiple unrelated concerns, split it. If a subsystem or optional module grouping becomes a mixed catch-all, reorganize it into clearer owned files and boundaries.
+- File placement follows ownership; move or split files when their paths no longer match their real concern.
+- Subsystem, folder, and file mapping is spine-led and ownership-led, but not mechanical: do not impose a rigid one-folder-per-step rule. Specify target subsystems and files explicitly; use optional module groupings only when they improve readability or reflect an established codebase pattern.
+- Distinct structural depths often deserve distinct folders, but do not force artificial over-splitting. If a flatter layout is clearer, record why; if the layout splits more, make sure each split reflects a real owner or boundary.
+- **Signals:** names that do not describe the actual owner or role; misplaced files whose paths hide the real concern; folder layouts so flat they hide boundaries, or so split that they create artificial structure with no real owner.
+- **Check:** Which subsystems and files own the target structure, and are any optional module groupings actually needed? Does the subsystem, folder, and file layout make ownership and structural depth readable without artificial fragmentation?
+
+### 13. One Owner For Coordination Policy, No Empty Layers
+
+- If provider selection, fallback, retry, aggregation, routing, fan-out, or validation logic repeats across callers, give that policy a clear owner.
+- If a proposed layer or module only forwards calls and owns no policy, translation, or boundary concern, remove it.
+- **Signals:** the same coordination policy repeated in several callers; empty indirection layers that only pass work through.
+
+### 14. A Spine-First, Concrete Design Document
+
+- The design document reads spine-first, not file-first. Files, folders, and any optional module groupings are a derived implementation mapping, not the primary structure of the architecture story; let them appear after the design story is clear.
+- Record the change inventory explicitly: `Add`, `Modify`, `Rename/Move`, `Remove`.
+- When the change is not greenfield, define the change or refactor sequence from the current state to the target, including migration only when the approved persisted-data decision requires it (Principle 5).
+- Use concrete examples when they materially improve clarity: when a spine, interface split, folder choice, or bounded local flow would otherwise stay abstract or easy to misread, add a short good-shape example and, when useful, a bad-shape anti-example.
+- **Check:** Which parts of the design need a concrete example to make the intended shape obvious? What is the change or refactor path from the current state to the target?
 
 ## Practical Application Guide
 
-- Read the current code path before defining the target design.
-- Write each primary execution/data-flow spine as a short arrow chain, but stretch it far enough to expose the real business path instead of only the local edited segment.
-- Build a small spine inventory early, then use it to decide ownership and decomposition.
-- Name the main-line nodes with natural domain language.
-- Define what each main-line node owns before splitting off-spine concerns.
-- Keep off-spine concerns attached to a clear owner on the spine.
-- Before creating a new off-spine helper, check whether an existing capability area or subsystem already owns that category of work and should be reused or extended.
-- If one spine node starts collecting too many unrelated duties, split off-spine concerns around that owner rather than letting it become a god-object.
-- When repeated data structures, types, normalizers, converters, mappers, or schemas appear across several files, extract them into reusable owned files under the correct subsystem instead of duplicating them.
-- Tighten each reusable structure before standardizing it, and choose between a shared core and specialized variants, by the rules in [Derived Checks](#derived-checks).
-- Draft file responsibilities first. Then extract reusable owned structures where repetition appears, re-tighten the file responsibilities, and only after that finalize folder/path mapping.
-- Split APIs, queries, commands, and service methods by subject when identity meaning differs; prefer explicit `getAgent...` / `getTeam...` style boundaries over one generic method that guesses what an ID or selector means.
-- Specify target subsystems and files explicitly; mention module groupings only when they materially help readability or reflect an established codebase pattern.
-- Map subsystems, folders, and files from the spine and ownership model, not from a rigid one-folder-per-step rule.
-- If the layout stays flatter, record why that is clearer for this scope. If the layout splits more, make sure each split reflects a real owner or boundary.
-- Record change inventory explicitly: `Add`, `Modify`, `Rename/Move`, `Remove`.
-- Once the target shape is clear, list in the removal plan what it makes unnecessary (clean-cut replacement and removal in [Derived Checks](#derived-checks)) and the dead code in the files and modules the change touches, with evidence ([Core Principle 7](#7-no-dead-code)).
-- Define the change/refactor sequence when the change is not greenfield.
-- When persisted data may be affected, make the transition decision before designing migration machinery. If migration is required, design it as a separate owned spine and keep the target runtime current-schema-only.
-- Add short concrete examples when they clarify a non-obvious spine, interface split, folder choice, or bounded local flow.
+Design in this order. Each step applies the principle it names; the design spec's section fill order records the result.
+
+1. Read the current code path and establish the behavioral baseline (Principle 1); confirm the supported scenario basis (Principle 6).
+2. Build the spine inventory and write each primary spine (Principle 2).
+3. Name the main-line nodes and define what each owns (Principle 3); attach off-spine concerns to their owner, reusing existing capability areas first (Principle 4).
+4. Decide boundaries, dependency direction, and interfaces (Principles 3, 9, 10).
+5. Draft file responsibilities, then extract reusable owned structures where repetition appears and tighten them (Principle 11), re-tighten the file responsibilities, and only then finalize folder and path mapping (Principle 12).
+6. List what the target makes unnecessary and the dead code in the touched files (Principles 7, 8); make each persisted-data transition decision (Principle 5).
+7. Record the change inventory and sequence, and add short examples where a shape would stay abstract (Principle 14).
+
+## Structural Triggers
+
+When a trigger fires, apply the principle it names and record in the design spec which triggers fired, with evidence.
+
+| Trigger | Fires when | Principle |
+| --- | --- | --- |
+| Repeated coordination | selection, fallback, retry, aggregation, routing, or fan-out logic repeats across callers | 13 |
+| Responsibility overload | one file owns several unrelated concerns, or a grouping becomes a catch-all | 12 |
+| Ambiguous boundary | a method takes a generic ID or selector for different subjects, or returns a mixed-subject list | 10 |
+| Empty indirection | a layer only forwards calls | 13 |
+| Authoritative boundary | a caller depends on both an outer boundary and one of its internals | 3 |
+| Shared folder | code lands in a shared or common folder without being truly cross-cutting | 11 |
+| Shared-structure tightness | a proposed shared type still has redundant fields or overlapping representations | 11 |
+| Shared-base overreach | a base type accumulates optional fields to serve divergent cases | 11 |
+| Capability-area reuse | the spine needs status, events, handlers, persistence, streaming, bootstrap, shutdown, or similar off-spine behavior | 4 |
+| Legacy cleanup | a solution keeps wrappers, dual paths, or fallbacks only for old behavior | 8 |
+| Persisted-data transition | a code model, serialization contract, or storage schema changes | 5 |
+| Example clarity | a design point would stay abstract or easy to misread | 14 |
 
 ## Task Design Health Assessment
 
@@ -233,11 +305,11 @@ Root-cause classifications:
 
 - `Local Implementation Defect`: the existing owner and boundary are correct; one local branch, condition, conversion, or state update is wrong.
 - `Missing Invariant`: the right owner exists but does not enforce a required rule consistently.
-- `Boundary Or Ownership Issue`: the task crosses, bypasses, or confuses authoritative ownership.
-- `Duplicated Policy Or Coordination`: fallback, retry, aggregation, routing, fan-out, validation, or selection logic repeats across callers and needs one owner.
-- `File Placement Or Responsibility Drift`: the change would expand a file or folder beyond its real concern.
-- `Shared Structure Looseness`: shared DTOs, schemas, types, mappers, or normalizers are redundant, overlapping, or too generic.
-- `Legacy Or Compatibility Pressure`: the proposed answer keeps old paths, dual behavior, wrappers, or fallback branches that should be removed.
+- `Boundary Or Ownership Issue`: the task crosses, bypasses, or confuses authoritative ownership (Principle 3).
+- `Duplicated Policy Or Coordination`: fallback, retry, aggregation, routing, fan-out, validation, or selection logic repeats across callers and needs one owner (Principle 13).
+- `File Placement Or Responsibility Drift`: the change would expand a file or folder beyond its real concern (Principle 12).
+- `Shared Structure Looseness`: shared DTOs, schemas, types, mappers, or normalizers are redundant, overlapping, or too generic (Principle 11).
+- `Legacy Or Compatibility Pressure`: the proposed answer keeps old paths, dual behavior, wrappers, or fallback branches that should be removed (Principle 8).
 - `No Design Issue Found`: the current design remains healthy for this scope; explain why.
 
 Decision examples:
@@ -351,38 +423,11 @@ evidence changes the classification, update the design artifact and classify
 the revised result rather than silently downgrading risk. The classification
 informs routing; the team's handoff rules choose the recipients.
 
-## Structural Triggers
-
-- Repeated coordination trigger:
-  - If provider selection, fallback, retry, aggregation, routing, or fan-out logic repeats across callers, give that policy a clear owner.
-- Responsibility overload trigger:
-  - If one file owns multiple unrelated concerns, split it. If a subsystem or optional module grouping becomes a mixed catch-all, reorganize it into clearer owned files and boundaries.
-- Ambiguous-boundary trigger:
-  - If one API, query, command, or service method accepts a generic ID or selector that may refer to different subjects, or returns a generic mixed-subject list, split it into explicit subject-owned boundaries or require an explicit compound identity shape.
-- Empty indirection trigger:
-  - If a proposed layer or module only forwards calls and owns no policy, translation, or boundary concern, remove it.
-- Authoritative-boundary trigger:
-  - If a caller depends on both an outer boundary and one of that boundary's internal managers, repositories, helpers, or lower-level concerns, keep one authoritative entrypoint and remove the bypass.
-- Shared-folder trigger:
-  - Put code in a shared/common folder only when it is truly cross-cutting and concern-agnostic.
-- Shared-structure tightness trigger:
-  - If a proposed shared type, schema, or model still contains redundant fields, overlapping representations, or mixed-purpose attributes, tighten the shape before promoting it into a reusable owned file.
-- Shared-base overreach trigger:
-  - If a proposed base/shared type is accumulating optional fields mainly to serve divergent cases, split it into a tighter shared core plus meaningful specialized variants, or use composition instead.
-- Capability-area reuse trigger:
-  - If the spine needs status, events, handlers, persistence, streaming, bootstrap, shutdown, or similar off-spine behavior, first check whether an existing subsystem already owns that work before creating a new local helper.
-- Legacy-cleanup trigger:
-  - If a proposed solution keeps compatibility wrappers, dual-path reads/writes, or fallback branches only to preserve old behavior, redesign it toward a clean-cut replacement and explicit removal plan.
-- Persisted-data transition trigger:
-  - If a code model, serialization contract, or storage schema changes, determine whether existing data is directly usable, disposable/rebuildable, or truly requires transformation. Create a migration owner only for `Migration Required`; do not teach the current business path version-specific old/new behavior.
-- Example-clarity trigger:
-  - If a design point would otherwise remain abstract or easy to misread, add a short good-shape example and, when useful, a bad-shape anti-example.
-
 ## Common Local Patterns
 
 Use these only when they solve a local problem inside a clear owner or off-spine concern.
 These patterns are secondary to the primary execution/data-flow spine and ownership model.
-Do not introduce a pattern if it obscures the spine, blurs ownership, or creates generic coordination blobs.
+Do not introduce a pattern if it obscures the spine, blurs ownership, or creates generic coordination blobs. For a repository or a manager, callers above the owning boundary still depend only on that boundary (Principle 3).
 
 ### State Machine
 
@@ -430,7 +475,6 @@ Do not introduce a pattern if it obscures the spine, blurs ownership, or creates
 - Solves: persistence access behind a stable domain-facing contract.
 - Best fit: persistence boundary serving a clear owner.
 - Avoid: placing orchestration, validation, or business rules in the repository.
-- Avoid: callers above the owning service or boundary depending on both that boundary and the repository directly.
 - Example shape: repository fulfills storage for a domain/use-case owner; it should not become a hidden coordinator.
 
 ### Manager
@@ -438,79 +482,4 @@ Do not introduce a pattern if it obscures the spine, blurs ownership, or creates
 - Solves: explicit coordination only when authority and lifecycle ownership are clear.
 - Best fit: top-level orchestration with narrow, well-defined ownership.
 - Avoid: vague coordination blobs that accumulate unrelated responsibilities.
-- Avoid: callers above the owning service or boundary depending on both that boundary and the manager directly.
 - Example shape: `TeamManager` owns lazy member creation, node startup, and team-level node routing, while runtime loops and handlers stay elsewhere.
-
-## Short Example Shapes
-
-### Authoritative Boundary Mini Example
-
-- Good shape:
-  - `Caller -> Outer Boundary`
-  - `Outer Boundary -> Internal Owned Mechanism`
-- Bad shape:
-  - `Caller -> Outer Boundary`
-  - `Caller -> Internal Owned Mechanism`
-  - `Outer Boundary -> Internal Owned Mechanism`
-
-### Common Spine Shapes
-
-- CRUD/request spine:
-  - `Frontend -> API -> Service -> Repository -> Database`
-- Runtime/worker spine:
-  - `API -> Run -> Runtime -> Worker/Event Loop`
-- Bounded local loop/state spine:
-  - `Queue/Event Source -> Loop/State Machine -> Handler/Transition -> Output/Next Event`
-- Example pairing:
-  - primary spine: `Request Surface -> Session Owner -> Runtime -> Event Loop Owner`
-  - bounded local spine inside `Event Loop Owner`: `Receive Event -> Normalize -> Select Handler -> Apply Transition -> Emit Next Event`
-
-## Required Design Questions
-
-- What are the relevant primary, secondary, return/event, and bounded local data-flow spines for the in-scope use cases?
-- If there are multiple in-scope use cases or major business paths, did the design name multiple primary spines instead of compressing them into one vague chain?
-- Is each primary spine stretched far enough to expose the real business path, authoritative owner, and downstream consequence instead of stopping at the local edited segment?
-- Which bounded local/internal spines exist inside owned nodes, and where do they start and end?
-- What are the main domain subject nodes on each spine?
-- What does each node own?
-- What are the return/event spines, if the change is async or event-driven?
-- Which off-spine concerns serve which owner on the spine?
-- Which off-spine needs should reuse or extend an existing capability area or subsystem instead of creating a new helper?
-- Which legacy paths, compatibility wrappers, dual-path branches, obsolete files, or deprecated boundaries are removed in this change?
-- What persisted-data transition decision applies, and what representative reader, semantic, invariant, storage, volume, and operational evidence supports it?
-- If migration is required, which owner performs it, and how are ordering, completion, validation, interruption, recovery, and rollout handled?
-- Which duplicated, fragmented, or now-unnecessary helpers/files/structures become removable because the new design gives them a clearer owner or replacement?
-- Which code in the touched files and modules is dead, what evidence shows that nothing reaches it, and which dead code found elsewhere goes on the follow-up list (Core Principle 7)?
-- Which shared data structures, schemas, DTOs, mappers, or types need tightening so redundant attributes or overlapping representations are removed instead of standardized?
-- Which dependencies are allowed, and which shortcuts are forbidden?
-- Which boundaries are public entrypoints versus internal owned sub-layers, and which callers are allowed to depend on each?
-- Is any caller currently depending on both an outer owner and one of that owner's internals? If so, which boundary should remain authoritative?
-- Which subsystems and files should own the target structure, and are any optional module groupings actually needed?
-- Does the subsystem, folder, and file layout make ownership and structural depth readable without becoming artificially fragmented?
-- Which interface boundaries exist, what subject does each one own, and what identity shape or selector shape does each one accept?
-- Which parts of the design need a concrete example to make the intended shape obvious?
-- What is the change/refactor path from current state to target state, including migration only when the approved persisted-data decision requires it?
-
-## Design Smells
-
-- A technical finding or new machinery is justified only by a hypothetical state, generic capability, or test-only path rather than approved behavior and current or target-production reachability
-- Many peer coordinators with no obvious main line
-- Important spines are left implicit instead of being named
-- The named spine stops at the local edited helper path and hides the real initiating surface, authoritative owner boundary, or downstream consequence
-- Event loops or state machines materially affect the behavior, but no bounded local spine is described
-- Shared helpers that quietly own business behavior
-- Shared structures that still carry redundant fields, overlapping representations, or mixed meanings after extraction
-- Off-spine concerns sitting on the main line without owning sequencing
-- New helper or service pieces created ad hoc even though an existing subsystem already owns that kind of work
-- A caller depends on both a public boundary and one of its internal managers, repositories, helpers, or lower-level concerns at the same time
-- Compatibility wrappers, dual-path behavior, or legacy fallback branches kept only to preserve old flows
-- Dead code left in the files a change touches, or code removed as dead without evidence that nothing reaches it
-- Old-schema decoding, branching, or dual reads/writes embedded in current business services or normal repositories instead of isolated migration-owned code
-- Bulk migration or destructive rewriting proposed merely because a schema changed, without evidence that existing data must be transformed or that the operational benefit justifies the risk
-- Migration steps that can partially apply without a completion marker, validation, restart strategy, or recovery path
-- Generic interface boundaries, list/query surfaces, or service methods that accept one ambiguous ID or selector and then guess what subject it belongs to
-- A higher boundary bypasses the intended owner and reaches directly into a deeper layer that should stay encapsulated
-- Names that do not describe the actual owner or role
-- Misplaced files whose paths hide the real concern
-- Folder layouts that are so flat they hide boundaries, or so split that they create artificial structure with no real owner
-- Empty indirection layers that only pass through work
