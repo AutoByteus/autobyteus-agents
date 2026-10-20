@@ -50,8 +50,29 @@ notes keep the supplement inventory. Give the ticket folder's absolute path so
 the receiver can find anything else it needs. The code is in the worktree;
 give its absolute path, branch and commit.
 
-"The package" in a role's inputs means these documents in the ticket folder.
-It says what the role works from, not what every message must attach.
+"The package" in a role's inputs means these documents in the ticket folder,
+listed below. It says what the role works from, not what every message must
+attach.
+
+## The ticket's documents
+
+All live in the ticket folder; evidence in its `evidence/` folder. A role works
+from the documents written before its stage on the ticket's route.
+
+| Document | Written by | Exists |
+| --- | --- | --- |
+| `requirements-doc.md`, `investigation-notes.md`, `solution-revision-record.md`, `design-spec.md`, and the supplements the investigation notes list | Solution Designer | on every route |
+| `design-review-report.md`, `architecture-review-revision-record.md` | architecture reviewer | when architecture review was selected |
+| `implementation-handoff.md`, `implementation-revision-record.md` | implementation engineer | on every route |
+| `code-review-report.md`, `code-review-revision-record.md`; `api-e2e-test-review-report.md` after a passed API/E2E run | code reviewer | when source review was selected (`Large` or `High`) |
+| coverage investigation, execution coverage report, `api-e2e-revision-record.md` (and the test progress log, its working file) | API/E2E engineer | on every route |
+| docs sync report, `handoff-summary.md`, release/deployment report, `delivery-revision-record.md`, `release-notes.md` when required | delivery engineer | on every route |
+| `follow-ups.md` | any role ([ticket-scope.md](ticket-scope.md#recording-follow-ups)) | when a follow-up was found |
+| `evidence/` | implementation and API/E2E (as the team's `evidence-files.md` describes) | when checks ran |
+
+A review that was not selected has no documents; a role that would read them
+marks them `N/A — not applicable` and never invents a prior review. A missing
+design spec or post-design classification is an upstream gap, not a shortcut.
 
 ### Signs you are forwarding instead of choosing
 

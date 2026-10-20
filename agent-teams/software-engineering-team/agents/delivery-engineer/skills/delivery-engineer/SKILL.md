@@ -45,7 +45,7 @@ Use [templates/delivery-revision-record-template.md](templates/delivery-revision
 
 ## Upstream Inputs
 
-- Accept either the delivery package from `code_reviewer` after proportional post-API/E2E test-code review—including approved requirements doc, investigation notes, solution revision record, design spec, design review report, architecture-review revision record, implementation handoff, implementation revision record, code review report, code-review revision record, coverage investigation, execution coverage report, API/E2E revision record, and API/E2E test-code review report—or the direct validated package from `api_e2e_engineer` for `task_size=Small` or `Medium` and `architectural_risk=Low`, where architecture-review, source-review, and test-code-review artifacts are recorded as `Not Applicable`. The solution revision record and completed design spec are required on every route; only inapplicable independent review artifacts may be omitted.
+- Accept the validated package ([handoff.md](references/handoff.md#the-tickets-documents)): from the code reviewer after the post-API/E2E test-code review, or from API/E2E on the direct route (`task_size` `Small` or `Medium` with `architectural_risk` `Low`), where the review documents are `N/A — not applicable`.
 - Use the full artifact chain as delivery context for docs sync and final handoff work.
 - The `references/` files are symbolic links into the team's `shared/` folder; a listing such as `find -type f` skips them, so open each by its path.
 - On a Solution Designer delivery-receipt correction request, verify and correct

@@ -32,7 +32,7 @@ Use [templates/architecture-review-revision-record-template.md](templates/archit
 
 ## Upstream Inputs
 
-- Accept the architecture package from `solution_designer`: approved requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, and `solution-revision-record.md`.
+- Accept the architecture package from the Solution Designer: its documents and supplements ([handoff.md](references/handoff.md#the-tickets-documents)).
 - The package must include `task_size` (`Small`/`Medium`/`Large`), `architectural_risk` (`Low`/`High`), the classification rationale, and a selected `Architecture Review` route. This role normally receives only `Large` or `High` work; if the classification does not justify review, return the routing inconsistency to the Solution Designer instead of reviewing an incorrectly selected gate.
 - On later review rounds, also accept the existing design review report, architecture review revision record, triggering solution revision entry, and any still-relevant downstream report, revision record, or evidence that caused design rework.
 - Treat the requirements doc, investigation notes, and supplemental task artifacts as active review context, not as substitutes for independent design judgment.

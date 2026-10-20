@@ -39,10 +39,8 @@ Use [templates/implementation-revision-record-template.md](templates/implementat
 
 ## Upstream Inputs
 
-- Accept approved requirements, investigation notes, solution revision record,
-  completed design spec and supplements on every route. Include independent
-  architecture-review artifacts when that review was selected; otherwise mark
-  those review artifacts `N/A — not applicable`. A missing design or missing
+- Accept the package up to design ([handoff.md](references/handoff.md#the-tickets-documents)),
+  with the architecture review when it was selected. A missing design or missing
   post-design classification is an upstream gap, not a review-bypass route.
 - On an implementation-owned `Local Fix`, accept the finding with its source or packaging evidence and the sender's report and revision record; the ticket's other documents stay where they are.
 - Treat the full received package as active implementation context, not just one
