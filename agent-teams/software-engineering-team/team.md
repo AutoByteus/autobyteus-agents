@@ -55,7 +55,7 @@ Each specialist completes its skill-defined responsibility, persists artifacts,
 classifies its result, calls `get_handoff_rules`, applies every matching rule
 and uses `send_message_to` with each exact returned `recipient_address`.
 A handoff carries what the receiver needs for its next step, not every file
-the ticket has produced; see [handoff-references.md](shared/handoff-references.md).
+the ticket has produced; see [handoff.md](shared/handoff.md).
 [team-config.json](team-config.json) owns internal conditional recipients;
 parent rules own cross-team Product handoffs. Return the result
 to the caller if no rule matches and stop after required handoffs. When the

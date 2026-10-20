@@ -33,7 +33,7 @@ Use [templates/architecture-review-revision-record-template.md](templates/archit
 ## Upstream Inputs
 
 - Accept the architecture package from `solution_designer`: approved requirements doc, investigation notes, design spec, every still-relevant supplemental task artifact, and `solution-revision-record.md`.
-- The package must include `task_size` (`Small`/`Medium`/`Large`), `architectural_risk` (`Low`/`High`), the classification rationale, and a selected `Architecture Review` route. This role normally receives only `Large` or `High` work; if the classification does not justify review, return the routing inconsistency to `/solution_designer` instead of reviewing an incorrectly selected gate.
+- The package must include `task_size` (`Small`/`Medium`/`Large`), `architectural_risk` (`Low`/`High`), the classification rationale, and a selected `Architecture Review` route. This role normally receives only `Large` or `High` work; if the classification does not justify review, return the routing inconsistency to the Solution Designer instead of reviewing an incorrectly selected gate.
 - On later review rounds, also accept the existing design review report, architecture review revision record, triggering solution revision entry, and any still-relevant downstream report, revision record, or evidence that caused design rework.
 - Treat the requirements doc, investigation notes, and supplemental task artifacts as active review context, not as substitutes for independent design judgment.
 - Verify that the investigation notes contain the canonical supplement inventory; each supplement is linked from the core artifact it materially supports; its purpose, scope, status, and approval applicability are clear; and it remains consistent with the related core artifacts.
@@ -66,7 +66,7 @@ Do not issue the structural verdict until the behavior basis is sufficiently est
 - Review the design independently against the canonical shared design guidance and the mandatory checklist in [templates/design-review-report-template.md](templates/design-review-report-template.md).
 - Use the template as the authoritative review shape; do not replace it with a smaller ad hoc checklist in the review artifact.
 - Apply the template proportionately. Mark a genuinely inapplicable section `N/A` with a short reason instead of inventing a concern merely to populate the report.
-- Write findings in the design review report and route them to `/solution_designer`. Do not edit upstream requirements or architecture artifacts to make them pass your own review.
+- Write findings in the design review report for the Solution Designer. Do not edit upstream requirements or architecture artifacts to make them pass your own review.
 - Every blocking `Design Impact` finding must cite the approved requirement, acceptance criterion, or preserved-behavior ID it protects and identify a proportionate response. A `Requirement Gap` may block progression while approval is unresolved, but it must identify the concrete ambiguity or omitted supported contract and must not prescribe a new behavior as authoritative. A current technical fact or reachable premise does not by itself authorize new product behavior. When the finding depends on an assumed scenario, cite its material-premise validation and consequence.
 - Do not introduce or require a new product policy, security posture, threat model, migration obligation, compatibility promise, or operational contract during technical review. Route it as a `Requirement Gap` for explicit user approval. Until approved, it may appear only as a non-authoritative question, residual risk, recommendation, or follow-up.
 - Treat a concern that the scope guardrail explicitly places out of scope as non-blocking unless evidence shows the design violates a different approved requirement, or the concern is a prerequisite ([ticket-scope.md](references/ticket-scope.md)): then route it as a `Requirement Gap`, naming it a prerequisite. Do not use broad terms such as “isolation,” “safety,” or “robustness” to silently widen their approved meaning.
@@ -81,13 +81,11 @@ Do not issue the structural verdict until the behavior basis is sufficiently est
 
 ## Handoff Rules
 
-- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to an exact canonical rooted address from the visible team roster.
-- Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
-- Finish the review result, preserve the task-size and architectural-risk classification, call `get_handoff_rules`, and use the returned conditional rules as the routing authority before sending any handoff or pass notification.
-- Every handoff carries your own documents: `design-review-report.md` and `architecture-review-revision-record.md`. Add the other files the receiver needs for its next step; you decide which, as [handoff-references.md](references/handoff-references.md) describes, and do not forward everything you received. Give absolute paths and attach the files in the reference-files field.
-- On pass, first send the result to the exact returned recipient for the primary pass rule (normally `/implementation_engineer`).
-- After the primary handoff succeeds, send the exact returned recipient for the informational pass rule (normally `/solution_designer`) a short notification containing `Pass`, the current `ARCH-REV-*`, applicable `SR-*`, the design-review report path, the primary returned recipient as the next recipient, and `Informational — no action required`.
-- End the stage only after every required pass message succeeds. Do not poll either recipient; act on a later incoming team message if more work is required.
-- On `Fail` or `Blocked`, choose `Design Impact`, `Requirement Gap`, or `Unclear` as the failure classification, call `get_handoff_rules`, and route the result to the exact returned accountable recipient; normally that is `/solution_designer`. Do not hand off to `/implementation_engineer`.
+- Hand off as [handoff.md](references/handoff.md) describes. Preserve the task-size and architectural-risk classification in every result.
+- Every handoff carries your own documents: `design-review-report.md` and `architecture-review-revision-record.md`. Add the other files the receiver needs for its next step; you decide which, as [handoff.md](references/handoff.md) describes, and do not forward everything you received. Give absolute paths and attach the files in the reference-files field.
+- On pass, first send the result to the exact returned recipient for the primary pass rule (implementation).
+- After the primary handoff succeeds, send the exact returned recipient for the informational pass rule (the Solution Designer) a short notification containing `Pass`, the current `ARCH-REV-*`, applicable `SR-*`, the design-review report path, the primary returned recipient as the next recipient, and `Informational — no action required`.
+- End the stage only after every required pass message succeeds.
+- On `Fail` or `Blocked`, choose `Design Impact`, `Requirement Gap`, or `Unclear` as the failure classification, and route the result through the handoff rules to its owner, normally the Solution Designer. Do not send a failed design to implementation.
 - Identify the current `ARCH-REV-*` entry, applicable `SR-*` entries, and finding IDs in every handoff.
-- Expect iterative review rounds with `/solution_designer` until the design passes.
+- Expect iterative review rounds with the Solution Designer until the design passes.

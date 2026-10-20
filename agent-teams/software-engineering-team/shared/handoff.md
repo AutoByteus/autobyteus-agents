@@ -1,4 +1,20 @@
-# Choosing What To Hand Off
+# Handing Off
+
+## How every role hands off
+
+- Finish and classify your result, and persist your documents first.
+- Call `get_handoff_rules`. The rules it returns are the routing authority:
+  send with `send_message_to` to each exact returned `recipient_address`, never
+  to a recipient picked from memory. A skill names the owning role of an
+  outcome; the address comes from the rules.
+- Give absolute paths, and attach the files in the reference-files field (what
+  to attach: below).
+- Stop after the required messages succeed. Do not poll a recipient; act on a
+  later incoming message.
+- While acting as a team member, use the team's tools, not Codex-native
+  collaboration tools such as `spawn_agent`, `wait_agent` or `list_agents`.
+
+## Choosing what to hand off
 
 When you finish your work, decide what to hand off, as a person would before
 passing work to a colleague. Two parts:
@@ -10,7 +26,7 @@ passing work to a colleague. Two parts:
   changed and what the receiver has to act on. Think it through instead of
   forwarding everything you received.
 
-## Think it through
+### Think it through
 
 - **What did I produce or change?** Besides your own documents, anything new
   the receiver must look at, such as changed test files for a test review or
@@ -37,7 +53,7 @@ give its absolute path, branch and commit.
 "The package" in a role's inputs means these documents in the ticket folder.
 It says what the role works from, not what every message must attach.
 
-## Signs you are forwarding instead of choosing
+### Signs you are forwarding instead of choosing
 
 - You are attaching files because you received them.
 - The list grows with every hop.
@@ -45,7 +61,7 @@ It says what the role works from, not what every message must attach.
   source files.
 - You are building an index or hash list to prove nothing was dropped.
 
-## Example
+### Example
 
 **Before.** The Solution Designer resumed API/E2E validation after an
 acceptance revision. Its handoff file was clear and named about fifteen

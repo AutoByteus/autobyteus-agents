@@ -27,7 +27,7 @@ Keep their standards distinct. Implementation code receives the full structural 
 
 - Use [templates/code-review-report-template.md](templates/code-review-report-template.md) to produce and update the canonical `code-review-report.md` for implementation review and focused API/E2E failure-origin review.
 - Use [templates/api-e2e-test-review-report-template.md](templates/api-e2e-test-review-report-template.md) to produce and update the separate canonical `api-e2e-test-review-report.md` after a successful API/E2E run.
-- Use [templates/code-review-revision-record-template.md](templates/code-review-revision-record-template.md) to create `code-review-revision-record.md` with a `CRR-001` baseline after the first completed review result, then append one entry for every later source-review, failure-origin, or proportional test-review result.
+- Use [templates/code-review-revision-record-template.md](templates/code-review-revision-record-template.md) to create `code-review-revision-record.md` with a `CRR-001` baseline after the first completed review result, then append one entry for every later source-review, failure-origin, or proportional test-review result. A missing prior record or result never means `Pass`.
 - Never merge the proportional test-code review into the full source-review report or scorecard.
 
 ## Artifact Location Rule
@@ -283,25 +283,23 @@ security risks.
 
 - `Pass` is a review outcome, not a failure classification.
 - A `Follow-up` is not a classification either: it records a finding outside this ticket in `follow-ups.md` (Ticket Scope).
-- `Local Fix` -> `/implementation_engineer` for a bounded implementation or packaging defect.
-- `Local Fix` -> `/api_e2e_engineer` for a test-code, stale-test, fixture, environment, execution, or report problem.
-- `Design Impact` -> `/solution_designer` for a structural issue or inadequate reviewed design.
-- `Requirement Gap` -> `/solution_designer` for missing or ambiguous intended behavior requiring solution-owner clarification.
-- `Unclear` -> `/solution_designer` for a cross-cutting issue that cannot be classified from available evidence.
+- `Local Fix` owned by implementation: a bounded implementation or packaging defect.
+- `Local Fix` owned by API/E2E: a test-code, stale-test, fixture, environment, execution, or report problem.
+- `Design Impact` owned by the Solution Designer: a structural issue or inadequate reviewed design.
+- `Requirement Gap` owned by the Solution Designer: missing or ambiguous intended behavior requiring solution-owner clarification.
+- `Unclear` owned by the Solution Designer: a cross-cutting issue that cannot be classified from available evidence.
 - After an implementation-owned fix, require source review and API/E2E again.
 - After an API/E2E-owned fix, require API/E2E execution and a proportional test-code review result; use `Not Applicable` when no durable test changed.
 - Preserve the task-size and architectural-risk classification in every review result. If review evidence shows the classification is wrong by the definitions in [Task Size And Architectural Risk](references/design-principles.md#task-size-and-architectural-risk), route `Design Impact` to Solution Designer rather than silently changing the route locally.
 
 ## Handoff Rules
 
-- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to an exact canonical rooted address from the visible team roster.
-- Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
-- Finish the applicable review result, classify the outcome, call `get_handoff_rules`, and use the returned conditional rules as the routing authority before sending any handoff or notification.
-- Every handoff carries your own documents: the report of the review you did (`code-review-report.md` or `api-e2e-test-review-report.md`) and `code-review-revision-record.md`. Add the other files the receiver needs for its next step; you decide which, as [handoff-references.md](references/handoff-references.md) describes, and do not forward everything you received. Give absolute paths and attach the files in the reference-files field.
-- On implementation-review pass, first send the result to the exact returned recipient for the primary pass rule (normally `/api_e2e_engineer`).
-- After that primary handoff succeeds, send the exact returned recipient for the informational pass rule (normally `/implementation_engineer`) a short notification containing `Pass`, the current `CRR-*`, the code-review report path, the primary returned recipient as the next recipient, and `Informational — no action required`.
-- End an implementation-review pass only after both required messages succeed. For every other completed handoff, end after its required message succeeds. Do not poll recipients; act on a later incoming team message if more work is required.
+- Hand off as [handoff.md](references/handoff.md) describes.
+- Every handoff carries your own documents: the report of the review you did (`code-review-report.md` or `api-e2e-test-review-report.md`) and `code-review-revision-record.md`. Add the other files the receiver needs for its next step; you decide which, as [handoff.md](references/handoff.md) describes, and do not forward everything you received. Give absolute paths and attach the files in the reference-files field.
+- On implementation-review pass, first send the result to the exact returned recipient for the primary pass rule (API/E2E).
+- After that primary handoff succeeds, send the exact returned recipient for the informational pass rule (implementation) a short notification containing `Pass`, the current `CRR-*`, the code-review report path, the primary returned recipient as the next recipient, and `Informational — no action required`.
+- End an implementation-review pass only after both required messages succeed. For every other completed handoff, end after its required message succeeds.
 - On implementation-review `Fail` or `Blocked`, send the result to the classified owner; do not advance to API/E2E.
-- On successful post-API/E2E test-code review, send the result to `/delivery_engineer`.
-- On failed post-API/E2E test-code review, send the result to the confirmed owner; normally this is `/api_e2e_engineer` for a bounded test-code correction, or `/implementation_engineer` for an implementation-owned `Local Fix` the change caused.
+- On successful post-API/E2E test-code review, send the result on to delivery.
+- On failed post-API/E2E test-code review, send the result to the confirmed owner: API/E2E for a bounded test-code correction, or implementation for an implementation-owned `Local Fix` the change caused.
 - After API/E2E failure-origin review, send the result to the confirmed owning specialist.

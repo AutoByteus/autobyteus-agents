@@ -36,7 +36,7 @@ Take the API/E2E-passed implementation state—whether it arrived through the in
 
 Use [templates/docs-sync-report-template.md](templates/docs-sync-report-template.md) to produce a docs sync report.
 Update the ticket-local handoff summary before final handoff, then use [templates/release-deployment-report-template.md](templates/release-deployment-report-template.md) to produce a release/publication/deployment report.
-Use [templates/delivery-revision-record-template.md](templates/delivery-revision-record-template.md) to create `delivery-revision-record.md` with `DR-001` for the first completed delivery-stage result and append one entry for each later delivery round.
+Use [templates/delivery-revision-record-template.md](templates/delivery-revision-record-template.md) to create `delivery-revision-record.md` with `DR-001` for the first completed delivery-stage result and append one entry for each later delivery round. Never infer a prior delivery result from a missing record.
 
 ## Artifact Location Rule
 
@@ -145,30 +145,23 @@ not a receipt-only evidence correction.
 - When release notes are required, create or update `tickets/in-progress/<ticket-name>/release-notes.md` before finalization, then pass the archived `tickets/done/<ticket-name>/release-notes.md` artifact into the release/publication path when that path is applicable.
 - After repository finalization and any applicable release/publication/deployment work, clean up ticket worktrees and branches when they were created for this task and when the recorded finalization target makes that cleanup safe.
 - If any finalization, release, deployment, or cleanup step fails, keep final handoff blocked and record the blocker explicitly. Do not undo already-completed repository finalization.
-- Send a successful terminal message to `/solution_designer` only after verification (from the evidence, or the user's check where one was needed), repository finalization, and every applicable release, deployment, rollout, and safe cleanup step is `Completed` or truthfully `Not required`.
-- The terminal message must carry your own documents (`handoff-summary.md`, the docs sync report, the release/deployment report, `delivery-revision-record.md` and `release-notes.md` when written) and the archived ticket folder, plus the other files the receipt check needs, which you decide as [handoff-references.md](references/handoff-references.md) describes; state `task_size`, `architectural_risk`, selected route, final validation evidence, verification record (your evidence judgement, or the user's check where one was needed), release decision, final branch/commit/merge/push state, release/deployment outcome when applicable, and durable final artifact paths.
+- Send the successful terminal message only after verification (from the evidence, or the user's check where one was needed), repository finalization, and every applicable release, deployment, rollout, and safe cleanup step is `Completed` or truthfully `Not required`.
+- The terminal message must carry your own documents (`handoff-summary.md`, the docs sync report, the release/deployment report, `delivery-revision-record.md` and `release-notes.md` when written) and the archived ticket folder, plus the other files the receipt check needs, which you decide as [handoff.md](references/handoff.md) describes; state `task_size`, `architectural_risk`, selected route, final validation evidence, verification record (your evidence judgement, or the user's check where one was needed), release decision, final branch/commit/merge/push state, release/deployment outcome when applicable, and durable final artifact paths.
 - Do not send the successful terminal message while verification is open or while any finalization blocker remains.
 
 ## Handoff Rules
 
-- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to an exact canonical rooted address from the visible team roster.
-- Use absolute filesystem paths for every artifact included in a handoff.
-- Finish the delivery result, classify a successful result as `Delivery
-  Completed` or an unsuccessful result as `Blocked`, call
-  `get_handoff_rules`, and use the returned conditional rules as the routing
-  authority before sending any handoff. Do not infer or hard-code the terminal
-  recipient.
-- After a successful `send_message_to` handoff, end the current delivery action and wait for a later incoming team message if more work is required.
+- Hand off as [handoff.md](references/handoff.md) describes. Classify a successful result as `Delivery Completed` and an unsuccessful one as `Blocked`.
 
 ## Routing Rules
 
 - Resolve documentation-local or deployment-local issues directly when possible.
-- For code or packaging `Local Fix`, `Design Impact`, `Requirement Gap`, `Unclear`, or evidence too weak to verify the change, call `get_handoff_rules` and use the exact returned accountable recipient; normal team rules select `/implementation_engineer` for implementation fixes, `/api_e2e_engineer` for missing or weak evidence, and `/solution_designer` for upstream issues.
+- For code or packaging `Local Fix`, `Design Impact`, `Requirement Gap`, `Unclear`, or evidence too weak to verify the change, hand it off to its owner: implementation for implementation fixes, API/E2E for missing or weak evidence, the Solution Designer for upstream issues.
 - If final handoff is blocked by a non-deployment issue, record the classification and recommended recipient explicitly in the release/publication/deployment report instead of leaving only a generic blocker note.
 
 ## Terminal Return To Solution Designer
 
-- Use `get_handoff_rules` and the exact returned recipient to return the successfully finalized package. The normal terminal rule selects `/solution_designer`.
+- Return the successfully finalized package through the handoff rules; the terminal rule selects the Solution Designer.
 - State that this is the authoritative terminal completion package and that Solution Designer may verify the package and return the verified engineering result through the applicable parent handoff or to the standalone caller only after checking it.
 - If verification is incomplete or finalization is blocked, continue the applicable verification, recovery, or reroute flow. Do not send a successful completion message.
-- After the terminal message succeeds, end the delivery stage and do not poll. Act only on a later explicit rework message.
+- After the terminal message succeeds, end the delivery stage; act only on a later explicit rework message.

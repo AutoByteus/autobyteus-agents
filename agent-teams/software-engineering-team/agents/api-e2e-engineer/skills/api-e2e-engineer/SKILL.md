@@ -203,7 +203,7 @@ Browser validation is normally unnecessary for a backend-local change when valid
 
 ## Result And Handoff
 
-Finish validation, persist the reports and the revision entry, and preserve the classification and selected route. Commit the reports and evidence as [evidence-files.md](references/evidence-files.md) describes. Then call `get_handoff_rules` and send the result with AutoByteus `send_message_to` to each exact returned `recipient_address`. The returned rules are the routing authority; do not select a recipient from memory.
+Finish validation, persist the reports and the revision entry, and preserve the classification and selected route. Commit the reports and evidence as [evidence-files.md](references/evidence-files.md) describes. Then hand off as [handoff.md](references/handoff.md) describes.
 
 Per result:
 
@@ -217,6 +217,4 @@ Every result:
 - Pass the evidence with every result, `Pass` included: give the evidence folder's absolute path and the commit that holds it, attach the evidence files that prove the critical acceptance criteria, and point to the execution report's Acceptance-Criteria Proof and Cases, which say for each criterion which cases prove it, with their evidence files and what to look for. The next roles judge from the evidence itself, not from a summary.
 - Mark a behavior as one only the user can check only after you tried to prove it yourself (deeper tests, a real surface, emulation, a safe setup), and record in the Acceptance-Criteria Proof what you tried and why it still needs the user, such as their own accounts or nodes. Delivery uses it to decide whether the user must check.
 - On a later round, recheck prior unresolved failures first, reuse case IDs, and record the rerun delta and prior-failure resolution in the revision record.
-- Every handoff carries your own documents: the coverage investigation, execution coverage report, `api-e2e-revision-record.md`, and the evidence for the critical acceptance criteria (above). The test progress log is your working file; it stays in the ticket folder. Add the other files the receiver needs for its next step; you decide which, as [handoff-references.md](references/handoff-references.md) describes, and do not forward everything you received. Give absolute paths and attach the files in the reference-files field. Removed test files cannot be attached; give their paths with the diff.
-- Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
-- After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
+- Every handoff carries your own documents: the coverage investigation, execution coverage report, `api-e2e-revision-record.md`, and the evidence for the critical acceptance criteria (above). The test progress log is your working file; it stays in the ticket folder. Add the other files the receiver needs for its next step; you decide which, as [handoff.md](references/handoff.md) describes, and do not forward everything you received. Give absolute paths and attach the files in the reference-files field. Removed test files cannot be attached; give their paths with the diff.
