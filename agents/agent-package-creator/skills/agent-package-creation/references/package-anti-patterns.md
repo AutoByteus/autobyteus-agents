@@ -33,6 +33,7 @@ Concrete mistakes found in real package work. The [package design principles](pa
 | 23 | Merged into 4 | Package design |
 | 24 | Judging only the fix the request proposes | Creator process |
 | 25 | A link that exists only for another file's links | Package design |
+| 26 | Softening requirements while restructuring | Creator process |
 
 ## Package design
 
@@ -207,3 +208,10 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Breaks:** [§2](package-design-principles.md#2-design-responsibilities-before-files): trace the information and the path from request to result before choosing a design.
 - **Instead:** Read a proposed fix as the requester's view of the problem. Map the information or flow it concerns across every role first: where each kind of record is written, who reads it, who sends it. Then judge the proposal against that map, and say so when a different structure is better.
 - **Detect:** Check that the analysis maps the current information or flow before it discusses the proposed fix, and that it names at least one alternative to the proposal.
+
+### 26. Softening requirements while restructuring
+
+- **Incident:** #84 regrouped the SE design-principles guide so each rule had one home. The map showed every old section's new home, but rewording had softened eleven requirements: "should be derived" became "is derived", "justify it explicitly" became "record why", "File placement must follow ownership" and "the operational benefit justifies the risk" dropped out in merges. The user asked whether anything was lost; a line-by-line read found four (#85) and a requirement-word comparison seven more (#86) (2026-10-20).
+- **Breaks:** [§9](package-design-principles.md#9-update-and-restructure-safely): a restructure moves and joins text; it does not change what the text requires.
+- **Instead:** Carry each requirement word, qualifier, and named case with the text it belongs to. Reword only where the meaning stays the same strength. Merge two statements only when they say the same thing; when they cover different cases, keep both.
+- **Detect:** Run [compare-wording.py](../scripts/compare-wording.py) on the old and new files, and read every sentence it lists beside its new home, starting with those whose closest match lacks a requirement word. A dropped count is a lead, not a verdict: merged duplicates also lower it.

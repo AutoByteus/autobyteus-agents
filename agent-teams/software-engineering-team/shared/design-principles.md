@@ -241,7 +241,7 @@ Dead code is code that nothing in the product reaches anymore. It makes the code
 - Subsystem, folder, and file mapping should be spine-led and ownership-led, but not mechanical: do not impose a rigid one-folder-per-step rule. Specify target subsystems and files explicitly; use optional module groupings only when they improve readability or reflect an established codebase pattern.
 - Distinct structural depths often deserve distinct folders, but do not force artificial over-splitting. If a flatter layout is clearer, justify it explicitly; if the layout splits more, make sure each split reflects a real owner or boundary.
 - **Signals:** names that do not describe the actual owner or role; misplaced files whose paths hide the real concern; folder layouts so flat they hide boundaries, or so split that they create artificial structure with no real owner.
-- **Check:** Which subsystems and files own the target structure, and are any optional module groupings actually needed? Does the subsystem, folder, and file layout make ownership and structural depth readable without artificial fragmentation?
+- **Check:** Which subsystems and files should own the target structure, and are any optional module groupings actually needed? Does the subsystem, folder, and file layout make ownership and structural depth readable without artificial fragmentation?
 
 ### 13. One Owner For Coordination Policy, No Empty Layers
 
