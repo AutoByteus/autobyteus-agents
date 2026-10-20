@@ -23,7 +23,7 @@ Use [result-and-handoff-contract.md](../references/result-and-handoff-contract.m
 
 ## Findings
 
-Include defects in existing files and behavior the request or package purpose needs but the package lacks. Order by the authoring-standard priority: structure and ownership, content flow, grounding, clarity, economy.
+Include defects in existing files and behavior the request or package purpose needs but the package lacks, and structure signals at the file and file-set level ([principles §9](../references/package-design-principles.md#9-update-and-restructure-safely)). Order by the authoring-standard priority: structure and ownership, content flow, grounding, clarity, economy.
 
 | # | Priority area | Evidence | Owner | Impact | Recommended change |
 | --- | --- | --- | --- | --- | --- |
