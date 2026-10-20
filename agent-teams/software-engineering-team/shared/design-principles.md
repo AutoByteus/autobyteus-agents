@@ -116,7 +116,7 @@ A principle may end with **Signals** (what shows the rule is broken) and **Check
   - sequencing
   - contracts
   - transformations
-- Ownership is the concrete form of separation of concerns. Separation of concerns stays mandatory and gets stronger as the spine and ownership model become clearer; derive it from the spine, main subject nodes, and ownership boundaries rather than treating it as the starting point.
+- Ownership is the concrete form of separation of concerns. Separation of concerns is still mandatory, and it should get stronger as the spine and ownership model become clearer; derive it from the spine, main subject nodes, and ownership boundaries rather than treating it as the starting point.
 - Define what each main-line node owns before splitting off-spine concerns.
 - Main domain subject nodes on the spine should stay coherent; do not force one node to absorb every nearby responsibility just because it is on the main line.
 - When additional responsibilities are needed to make one node work, split them into clear off-spine concerns around that owner (Principle 4) instead of creating hidden mixed-concern blobs or letting the node become a god-object.
@@ -127,9 +127,9 @@ A principle may end with **Signals** (what shows the rule is broken) and **Check
   - If callers bypass an internal concern only because the outer boundary does not expose enough usable API, strengthen the authoritative boundary or reshape ownership explicitly. Do not normalize the bypass as the steady-state design.
   - Good shape: `Caller -> Outer Boundary`, `Outer Boundary -> Internal Owned Mechanism`. Bad shape: `Caller -> Outer Boundary`, `Caller -> Internal Owned Mechanism`, `Outer Boundary -> Internal Owned Mechanism`.
 - When a thin public facade and a deeper governing owner both exist, name both.
-- API, interface, query, and command shape follows from this ownership and boundary model (Principle 10).
+- API, interface, query, and command shape should be derived from this ownership and boundary model (Principle 10).
 - **Signals:** a caller depends on both a public boundary and one of its internal managers, repositories, helpers, or lower-level concerns at the same time; a higher boundary reaches directly into a deeper layer the intended owner should encapsulate; one node collects many unrelated duties; a concern has no clear owner.
-- **Check:** What does each node own? Which boundaries are public entrypoints and which are internal owned sub-layers, and which callers may depend on each? Is any caller depending on both an outer owner and one of its internals, and if so which boundary stays authoritative?
+- **Check:** What does each node own? Which boundaries are public entrypoints and which are internal owned sub-layers, and which callers may depend on each? Is any caller depending on both an outer owner and one of its internals, and if so which boundary should remain authoritative?
 
 ### 4. Off-Spine Concerns Around The Spine
 
@@ -218,7 +218,7 @@ Dead code is code that nothing in the product reaches anymore. It makes the code
 
 ### 10. Interfaces Follow Ownership
 
-- API, interface, query, and command shape is derived from the ownership and boundary model (Principle 3), not designed independently from it.
+- API, interface, query, and command shape should be derived from the ownership and boundary model (Principle 3), not designed independently from it.
 - Interfaces, APIs, queries, commands, and reused service methods must follow ownership and separation of concerns: one boundary, one subject, one responsibility, explicit identity shape.
 - Split APIs, queries, commands, and service methods by subject when identity meaning differs; prefer explicit `getAgent...` / `getTeam...` style boundaries over one generic method that guesses what an ID or selector means.
 - If one API, query, command, or service method accepts a generic ID or selector that may refer to different subjects, or returns a generic mixed-subject list, split it into explicit subject-owned boundaries or require an explicit compound identity shape.
@@ -238,8 +238,8 @@ Dead code is code that nothing in the product reaches anymore. It makes the code
 
 - One file owns one concrete concern. If one file owns multiple unrelated concerns, split it. If a subsystem or optional module grouping becomes a mixed catch-all, reorganize it into clearer owned files and boundaries.
 - File placement must follow ownership; move or split files when their paths no longer match their real concern.
-- Subsystem, folder, and file mapping is spine-led and ownership-led, but not mechanical: do not impose a rigid one-folder-per-step rule. Specify target subsystems and files explicitly; use optional module groupings only when they improve readability or reflect an established codebase pattern.
-- Distinct structural depths often deserve distinct folders, but do not force artificial over-splitting. If a flatter layout is clearer, record why; if the layout splits more, make sure each split reflects a real owner or boundary.
+- Subsystem, folder, and file mapping should be spine-led and ownership-led, but not mechanical: do not impose a rigid one-folder-per-step rule. Specify target subsystems and files explicitly; use optional module groupings only when they improve readability or reflect an established codebase pattern.
+- Distinct structural depths often deserve distinct folders, but do not force artificial over-splitting. If a flatter layout is clearer, justify it explicitly; if the layout splits more, make sure each split reflects a real owner or boundary.
 - **Signals:** names that do not describe the actual owner or role; misplaced files whose paths hide the real concern; folder layouts so flat they hide boundaries, or so split that they create artificial structure with no real owner.
 - **Check:** Which subsystems and files own the target structure, and are any optional module groupings actually needed? Does the subsystem, folder, and file layout make ownership and structural depth readable without artificial fragmentation?
 
@@ -251,10 +251,10 @@ Dead code is code that nothing in the product reaches anymore. It makes the code
 
 ### 14. A Spine-First, Concrete Design Document
 
-- The design document reads spine-first, not file-first. Files, folders, and any optional module groupings are a derived implementation mapping, not the primary structure of the architecture story; let them appear after the design story is clear.
+- The design document should read spine-first, not file-first. Files, folders, and any optional module groupings are a derived implementation mapping, not the primary structure of the architecture story; let them appear after the design story is clear.
 - Record the change inventory explicitly: `Add`, `Modify`, `Rename/Move`, `Remove`.
 - When the change is not greenfield, define the change or refactor sequence from the current state to the target, including migration only when the approved persisted-data decision requires it (Principle 5).
-- Use concrete examples when they materially improve clarity: when a spine, interface split, folder choice, or bounded local flow would otherwise stay abstract or easy to misread, add a short good-shape example and, when useful, a bad-shape anti-example.
+- Use concrete examples when they materially improve clarity. Do not leave a non-obvious design entirely abstract when a short example would explain the intended shape faster: when a spine, interface split, folder choice, or bounded local flow would otherwise stay abstract or easy to misread, add a short good-shape example and, when useful, a bad-shape anti-example.
 - **Check:** Which parts of the design need a concrete example to make the intended shape obvious? What is the change or refactor path from the current state to the target?
 
 ## Practical Application Guide
