@@ -210,8 +210,8 @@ Stay within the entry point you were called for. An unrelated observation
 during test-code or failure-origin review is a follow-up, not a reason to
 widen that review.
 
-When a finding's place is not obvious, consult
-[Example 11](references/design-examples.md#example-11-keeping-a-ticket-in-scope-during-technical-review):
+When a finding's place is not obvious, consult the follow-up example and the
+common situations in [ticket-scope.md](references/ticket-scope.md#example-a-follow-up-found-during-technical-review):
 a worked case with the anti-pattern, the two questions and when the decision
 would change, plus common situations such as regressions, old bugs that block
 the ticket, old and new design problems, dead code, missing tests and old
