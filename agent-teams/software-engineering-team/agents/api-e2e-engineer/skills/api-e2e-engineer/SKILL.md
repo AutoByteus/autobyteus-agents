@@ -21,11 +21,8 @@ First establish what the project expects and how it is run, then evaluate and ma
 
 ## Inputs
 
-- Accept the implementation package: approved requirements doc,
-  investigation notes, solution revision record, completed design spec,
-  supplements, implementation handoff and implementation revision record.
-  Include each independent review artifact when that review was selected;
-  mark only inapplicable review artifacts `N/A — not applicable`. The low-risk
+- Accept the package up to implementation, with each review that was selected
+  ([handoff.md](references/handoff.md#the-tickets-documents)). The low-risk
   validation route still requires the design and its post-design classification.
 - On a rerun after a prior execution, also accept the existing coverage investigation, execution coverage report, and API/E2E revision record. Use them to locate prior decisions and results, then update the canonical artifacts rather than creating copies.
 - When failure-origin review returns a failure as a pre-existing problem unrelated to this change, record it in that case's Notes in the execution report as out of scope, with the follow-up ID the reviewer added, and finish the result on the in-scope checks.

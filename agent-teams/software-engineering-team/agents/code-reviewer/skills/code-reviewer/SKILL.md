@@ -41,37 +41,27 @@ Keep their standards distinct. Implementation code receives the full structural 
 
 For implementation review:
 
-- Accept the approved requirements doc, investigation notes,
-  solution revision record, design spec, every still-relevant supplemental
-  task artifact, design review report,
-  architecture review revision record, implementation handoff, and
-  implementation revision record when the architecture route selected normal
-  implementation source review.
+- Accept the package up to implementation ([handoff.md](references/handoff.md#the-tickets-documents))
+  when the route selected implementation source review.
 - The implementation package must include `task_size`
   (`Small`/`Medium`/`Large`), `architectural_risk` (`Low`/`High`), and the
   selected route. Normal implementation source review is selected for `Large`
   or `High` work. A direct-route API/E2E failure may still arrive here for
-  focused failure-origin review without architecture-review or source-review artifacts;
-  record those review artifacts as `N/A — not applicable` rather than inventing a
-  prior review.
+  focused failure-origin review without review documents.
 - When implementation returns after a delivery-stage local fix, also accept the delivery revision record and triggering delivery evidence.
 - On later review rounds, also accept the current code review revision record and still-relevant triggering reports, revision records, or evidence.
 - Review against the complete implementation artifact chain, not only the handoff summary.
 
 For successful API/E2E test-code review:
 
-- Accept the passed package from `api_e2e_engineer`: the upstream documents, code review report, code review revision record, coverage investigation, execution coverage report, API/E2E revision record, and every added, updated, or removed durable test path.
+- Accept the passed package from API/E2E, with every added, updated, or removed durable test path.
 
 For API/E2E failure-origin review:
 
-- Accept the failure package from `api_e2e_engineer`: the approved
-  requirements and implementation context, the coverage investigation,
-  execution coverage report, API/E2E revision record, failing scenario IDs,
-  exact commands, expected/observed behavior, and failure evidence. Existing
-  design spec is required on every route; architecture-review and source-review
-  artifacts are included when those reviews occurred and otherwise marked
-  `N/A — not applicable`. Do not require a code-review
-  report or revision record before creating this failure-origin review.
+- Accept the failure package from API/E2E: the package so far, with the failing
+  scenario IDs, exact commands, expected and observed behavior, and failure
+  evidence. Do not require a code-review report or revision record before
+  creating this failure-origin review.
 - Treat a failing test as evidence to classify, not automatic proof that the implementation is wrong.
 
 ## Required Shared Reads
