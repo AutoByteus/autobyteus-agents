@@ -368,21 +368,15 @@ Every completed result must include:
   the active worktree before routing. For a terminal result, have it finalize
   the repository state before routing. A mode result is not complete merely
   because its files exist in a worktree.
-- Call get_handoff_rules and use the returned conditional rules as the
-  routing authority.
-- Apply every matching rule and call send_message_to with the exact returned
-  recipient_address; do not infer or hard-code a recipient.
-- For Requirements Visualization Ready, send the review-ready package to the
-  recipient returned by the matching rule, or return it to the user/calling
-  workflow when no handoff rule applies. Do not claim user approval.
+- Hand off as your agent instructions describe; these rules add what each
+  result carries.
+- For Requirements Visualization Ready, send the review-ready package. Do not
+  claim user approval.
 - For `Blocked`, including a request-gap case, send the precise blocker,
-  evidence, and recovery question through the matching rule; when no rule
-  applies, return it to the user or calling workflow.
+  evidence, and recovery question.
 - For Requirement Impact, send the exact conflicting feedback, affected
   requirement or behavior IDs, visualizer evidence, and the decision that
-  the requirements owner must resolve through the matching rule; when no
-  rule applies, return it to the user or calling workflow.
+  the requirements owner must resolve.
 - For Not Recommended, send the evidence explaining why an interactive
   visualizer would not materially improve the current decision.
-- If no returned rule applies, return the result to the user or calling
-  workflow. After all required messages succeed, end the stage and do not poll.
+

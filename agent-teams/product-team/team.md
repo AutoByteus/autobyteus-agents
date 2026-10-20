@@ -10,26 +10,23 @@ does not own requirements or production implementation.
 
 ## Members
 
-- `product_ui_ux_designer` (Product UI/UX Designer) is the coordinator.
-  It owns the design repository, tickets, branches and worktrees, user design review,
-  baseline acceptance, UI/UX artifacts (`ui-ux-spec.md` with normative reference
-  screenshots), commits, and integration. Its agent definition chooses one mode
-  per request: `exploratory-requirements-visualizer` for an abstract or
-  product-independent question, or `product-experience-design` for an
-  existing or new product experience. Its repository-management skill runs
-  before and after that mode.
+- `product_ui_ux_designer` (Product UI/UX Designer) is the coordinator. It
+  designs, runs user review, accepts baselines, and owns the design repository:
+  every accepted result, baseline or design, is integrated into its default
+  branch. Its agent definition chooses one mode per request:
+  `exploratory-requirements-visualizer` for an abstract or product-independent
+  question, or `product-experience-design` for an existing or new product
+  experience; its repository-management skill runs before and after that mode.
 - `ui_baseline_bootstrapper` (UI Baseline Bootstrapper) builds a current-experience
   baseline with UI parity in the worktree the Product UI/UX Designer assigns,
-  providing an accurate, runnable copy of today's product. It reports the
-  baseline and does not decide future behavior or manage the repository,
-  ticket, or integration.
+  and reports it as a candidate for acceptance.
 - Solution Designer owns canonical requirements and acceptance criteria.
   Software Engineering owns production architecture and implementation.
 
 The shared `product-design-principles.md` holds the rules both members
 follow: the team's terms, why it designs in code, what a UI reference is, UI
 parity, mock data, simulation under the interface (including actor-caused
-changes), the repository boundary, and the Bootstrapper boundary.
+changes), the repository boundary (section 8), and the Bootstrapper boundary (section 9).
 Detailed workflows belong to the member skills.
 
 ## Cooperation

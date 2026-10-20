@@ -54,20 +54,6 @@ correction decision in this skill:
 - **[mock data origin](product-design-principles.md#mock-data-origin)**:
   which fixture techniques are valid and how to assess them.
 
-In short:
-
-| The UI reference implements | The UI reference never contains |
-| --- | --- |
-| Every distinct page, component, style, asset and responsive layout | Real content: article and document bodies, catalog or question sets, answer data, transcripts, translations, media inventories |
-| All UI-controlled text and messages | Real user or account records, or exports of them |
-| Navigation, controls, forms, validation and interactions, with scripted visible outcomes | The product's real logic: grading, progress calculation, recommendations, search, publishing |
-| Every distinct state and role, through deterministic scenarios | A backend: server rules, persistence, access control, integrations |
-| Local synthetic state or a lightweight fixture stub | Captured or replayed real production/customer/account data |
-
-"Complete" always means that every distinct page, state and interaction pattern
-is covered at least once. It never means a complete working website, every
-item, or every data combination.
-
 Two quick checks before any acceptance:
 
 1. **Data origin.** Apply [mock data origin](product-design-principles.md#mock-data-origin)
@@ -284,23 +270,14 @@ worktree's ticket folder.
   explicit, the browser baseline is independently runnable, every distinct UI
   inventory item has matched source and baseline evidence, no known UI parity
   difference remains, and production capabilities
-  are replaced by documented local simulations. If correction is required,
-  classify the outcome as `Baseline Needed` again and send the failed or
-  unsubstantiated UI inventory IDs through the handoff rules.
-- Baseline acceptance criterion: accept only UI parity as defined in the
-  shared principles. Judge it on two tiers:
-  - **Exact:** UI-controlled text (labels, headings, instructions, template
-    text around values, empty / error / validation / feedback / status copy),
-    navigation targets, controls, interactions and their outcomes, redirects,
-    component structure and order, computed styles, responsive layout, and
-    every meaningful state (empty, populated, loading, error, locked,
-    permission, role).
-  - **Illustrative:** domain values such as titles, texts, topic names, counts,
-    percentages and item lists. They come from representative synthetic
-    fixtures and may differ from the source. A difference in these values is
-    never, on its own, a parity failure. It fails only when it changes or hides a UI state, for
-    example a list with too few items to show its layout, or a missing
-    empty/locked case.
+  are replaced by documented local simulations. When you accept it, repository
+  management integrates it into the default branch at once (its Baseline And
+  Bootstrap Boundary). If correction is required, classify the outcome as
+  `Baseline Needed` again and send the failed or unsubstantiated UI inventory
+  IDs through the handoff rules.
+- Baseline acceptance criterion: UI parity as the shared principles define it
+  ("What UI parity means": what must match exactly, what is illustrative, and
+  when an illustrative value fails), compared as their section 6 describes.
 - Baseline data-boundary check: apply [mock data origin](product-design-principles.md#mock-data-origin),
   including content that copied UI code imports. Check where the data came
   from and how it was made, and record what you checked and what you could
@@ -419,24 +396,8 @@ worktree's ticket folder.
   the surrounding product. Check hierarchy, colour noise, borders and boxes,
   and consistency with sibling components, and ask whether it looks like the
   product. Fix what you find, then revalidate.
-- Compare source and baseline/design per component and per state, never by whole-page
-  text or layout hashes. Page-level hashes fail on every illustrative data
-  difference and hide real UI differences. Compare separately:
-  - UI-controlled text, with digits and content slots masked;
-  - the set of component signatures;
-  - computed styles of shared components;
-  - page-skeleton geometry;
-  - interactive elements and their targets, with item IDs masked;
-  - final route and title.
-  Exclude rendered content prose (for example markdown/prose containers) from
-  UI-copy checks. When a value comes from account or state
-  data (progress, entitlement, role, flags), seed the same synthetic value on
-  the source observation side instead of copying real source data into the
-  UI reference.
-- Use a clean, matched scenario on both sides. Before comparing logged-in
-  surfaces, confirm that both sides use the same synthetic account type and a
-  reset state. Before comparing logged-out surfaces, confirm that neither
-  side's session carries over from earlier work.
+- Compare source and baseline or design as the shared principles' section 6
+  ("How to compare source and UI reference") describes.
 - Use interim screenshots only as disposable review aids when needed.
 - Capture final reference screenshots only after explicit user confirmation and final validation of the corresponding states.
 - Reconfirm with the user after any post-confirmation change that materially alters visible or interactive behavior.
@@ -504,8 +465,8 @@ instead.
   Check the template text around them ("… categories in the system"),
   the component and its styles, and whether every state is represented.
 - **Whole-page hash comparison.** Comparing `innerText` or layout hashes of
-  entire pages and calling every mismatch a failure. Correction: compare per
-  component and per state, with content masked (see Validation).
+  entire pages and calling every mismatch a failure. Correction: shared
+  principles, section 6.
 - **Corrections without a stated criterion.** Sending "these routes differ, fix
   them" without saying what must be exact and what is illustrative. The
   Bootstrapper may copy real source content to make the pages identical.
@@ -532,8 +493,7 @@ instead.
   correction before acceptance, or record the ticket as not complete.
 - **Trusting stale sessions.** Comparing logged-in pages while one side is
   still logged in from earlier work, or with a different account type on each
-  side. Correction: set up the same synthetic scenario on both sides and
-  confirm it before comparing.
+  side. Correction: shared principles, section 6.
 - **Too little data to show the UI.** Swinging the other way and using fixtures
   so small that lists, grouping, paging, empty and locked states never render.
   Correction: use representative data sufficient to show every meaningful UI
@@ -560,7 +520,7 @@ instead.
 
 ## Handoff Rules
 
-- Use these rules at each `Baseline Needed`, `Design Completed`, `Requirement Impact`, `Not Recommended`, or `Blocked` outcome.
+- Hand off as your agent instructions describe, at each `Baseline Needed`, `Design Completed`, `Requirement Impact`, `Not Recommended`, or `Blocked` outcome. These rules add what each result carries.
 - A missing decision question or observable journey is a `Blocked` input-gap
   outcome. Include the missing input, evidence, and recovery question; do not
   emit an unconfigured gap outcome.
@@ -569,14 +529,10 @@ instead.
   status and preserve the active worktree before routing. For a terminal result,
   have it finalize the repository state before routing. A mode result is not
   complete merely because its files exist in a worktree.
-- Call `get_handoff_rules` and use the returned conditional rules as the routing authority.
-- Apply every matching rule, then call `send_message_to` with the exact returned `recipient_address`. Do not infer or hard-code a recipient.
 - Include the stable package identifier from the surrounding workflow when
   supplied, the supplied ticket or request identifier, outcome, next expected
   action, and absolute paths to the ticket folder and every still-relevant
   artifact. Do not create a second design-specific task ID.
-- If no returned rule applies, return the outcome to the user or calling workflow.
-- After all required messages succeed, end the current stage and do not poll.
 - Complete the completed-design handoff only after user confirmation and final artifact production. If progress is blocked, return the blocker; if a UI reference is not recommended, return the decision rationale and evidence path instead of claiming design completion or creating final UI/UX artifacts.
 - A requirement-impact handoff may occur during design review; include the exact user feedback, affected IDs, and design evidence, then wait for a revised requirements package.
 - For `Baseline Needed`, the applicable fixed Bootstrapper payload in the
