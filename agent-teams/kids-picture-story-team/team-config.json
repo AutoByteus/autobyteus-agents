@@ -59,7 +59,36 @@
       "from": "/book_production_editor",
       "to": "/story_picture_book_author",
       "rules": [
-        "When exports and mechanical QA are complete and the coordinator needs the final package status and any residual risks."
+        "When exports and mechanical QA are complete and the coordinator needs the final package status and any residual risks.",
+        "When packaging finds a story or wording issue that the author must decide."
+      ]
+    },
+    {
+      "from": "/picture_book_illustrator",
+      "to": "/story_picture_book_author",
+      "rules": [
+        "When the approved brief or storyboard is missing, contradictory, or needs a story, wording, age, reading-level, or page-count decision before illustration can continue."
+      ]
+    },
+    {
+      "from": "/picture_book_reviewer",
+      "to": "/story_picture_book_author",
+      "rules": [
+        "When review finds a story, source wording, age-fit, reading-level, or storyboard defect that the author must decide before the page can be fixed."
+      ]
+    },
+    {
+      "from": "/book_production_editor",
+      "to": "/picture_book_reviewer",
+      "rules": [
+        "When the review report's approval or approved page manifest is missing, incomplete, or contradicts the requested pages."
+      ]
+    },
+    {
+      "from": "/book_production_editor",
+      "to": "/picture_book_illustrator",
+      "rules": [
+        "When an approved page has a visual or text-surface defect that packaging must not repair."
       ]
     }
   ]

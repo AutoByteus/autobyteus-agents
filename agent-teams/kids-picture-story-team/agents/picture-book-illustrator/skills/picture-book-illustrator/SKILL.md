@@ -51,8 +51,8 @@ characters, motifs, text placement, and page-turn intent.
 1. Verify the upstream approval state, target age, reading level, language, page count,
    dimensions, orientation, exact text or word-free status, page order, and
    recurring-character requirements. Confirm that any relevant source-text index and
-   supplied references are present. Stop and route missing or contradictory decisions to
-   the author.
+   supplied references are present. Stop and hand missing or contradictory decisions
+   back to the author.
 2. Lock the visual family: medium, palette, lighting, composition, texture, typography,
    safe margins, and age-appropriate detail density.
 3. Create or approve a reference sheet for every recurring main character unless an
@@ -66,14 +66,12 @@ characters, motifs, text placement, and page-turn intent.
    approved character reference as an image input/reference when a recurring character
    appears. Compose the exact approved words into the image; never let a prompt invent
    captions.
-6. Inspect every actual output. Record the tool used, prompt id, source and candidate
+6. Open and inspect every actual output (`read_media_file`, or your runtime's own image
+   reader). Record the tool used, prompt id, source and candidate
    paths, passed/needs-edit/rejected/blocked status, defects, and next action in the index
    and log. Rework failures from the correct approved source.
-7. Handoff only inspected candidates to `picture_book_reviewer`, together with the
-   approved upstream brief and storyboard, the source-text index when relevant,
-   visual-style guide, applicable character references, prompt pack, visual asset index,
-   image-generation log, cumulative absolute paths, current status, open risks, and the
-   explicit review focus.
+7. Hand off only inspected candidates for review, as the principles' artifact and
+   handoff discipline describes, with the explicit review focus.
 
 ## Page checks
 
@@ -87,6 +85,5 @@ changes, or visual corrections to book layout.
 
 ## Routing
 
-- story wording, age, reading level, or story-beat issue -> `story_picture_book_author`;
-- visual, character, composition, or text-rendering issue -> illustrator;
-- independent approval finding -> `picture_book_reviewer`.
+You own visual, character, composition, and text-rendering issues. A story wording, age,
+reading-level, or story-beat issue belongs to the author.

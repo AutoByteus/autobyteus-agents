@@ -7,7 +7,9 @@
     "start_background_process",
     "get_process_output",
     "stop_background_process",
-    "send_message_to"
+    "send_message_to",
+    "read_media_file",
+    "get_handoff_rules"
   ],
   "skillNames": [
     "book-production-editor"
