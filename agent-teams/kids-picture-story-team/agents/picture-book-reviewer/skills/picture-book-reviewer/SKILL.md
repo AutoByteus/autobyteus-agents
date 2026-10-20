@@ -8,6 +8,10 @@ description: Review actual picture-book references and page images for story cor
 Independently gate the actual visual package before any book export. Prompts, filenames,
 and logs provide provenance but never replace opening and inspecting the image files.
 
+Read the team's [picture-book-production-principles.md](picture-book-production-principles.md)
+before reviewing. Its exact-text, visual-continuity, and child-safety and readability
+sections are the bar you judge every page against.
+
 ## Expected inputs
 
 - approved brief, storyboard, and source-text index when applicable;
@@ -32,7 +36,7 @@ Use [picture-book-review-report-template.md](templates/picture-book-review-repor
 3. Compare recurring characters with the actual approved reference and with every other
    appearance. Check identity, proportions, hair, face, clothing, accessories, age, and
    expression range.
-4. Apply the shared child-safety and readability gates: focal point, visual breathing room,
+4. Apply the [child-safety and readability gates](picture-book-production-principles.md#child-safety-and-readability-gates): focal point, visual breathing room,
    legible text, correct contrast, no cropped important details, no unsafe or gratuitously
    frightening content, no stereotypes, and no stray production text.
 5. Record per-page pass, fix required, rejected, or blocked decisions with evidence and

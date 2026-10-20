@@ -8,6 +8,10 @@ description: Assemble reviewer-approved picture-book pages into ordered digital 
 Own mechanical assembly and final export QA. Do not repair story, visual, typography, or
 source defects during packaging.
 
+Read the [production and export rules](picture-book-production-principles.md#production-and-export-rules)
+in the team's shared principles before planning; they are the bar your packaging and QA
+meet.
+
 ## Inputs and approval gate
 
 - approved brief, storyboard, and source-text index when applicable;
