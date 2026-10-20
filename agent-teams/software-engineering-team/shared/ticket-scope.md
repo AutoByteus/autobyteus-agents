@@ -7,7 +7,7 @@ This file defines them; each role's skill says how it acts on them.
 
 | Kind | Test | What happens | When |
 | --- | --- | --- | --- |
-| **This ticket** | It is an inherent part of the ticket: the change introduced it (including a design problem in the code the change adds); it is a problem in the functionality the ticket changes, without which an in-scope acceptance criterion or preserved behavior fails; the design spec already places it in this change, such as a refactor its design-health assessment requires; or a team rule makes it part of every change, such as dead code in touched files ([Core Principle 7](design-principles.md#7-no-dead-code)) or a file the change takes over or grows past the size limit. | Fixed in this ticket through the normal route. | As found. |
+| **This ticket** | It is an inherent part of the ticket: the change introduced it (including a design problem in the code the change adds); it is a problem in the functionality the ticket changes, without which an in-scope acceptance criterion or preserved behavior fails; the design spec already places it in this change, such as a refactor its design-health assessment requires; or a team rule makes it part of every change, such as dead code in touched files (Core Principle 7, No Dead Code, in the team's design principles) or a file the change takes over or grows past the size limit. | Fixed in this ticket through the normal route. | As found. |
 | **Prerequisite** | It blocks the ticket: the ticket's goal cannot be reached, or cannot be reached safely, until it is fixed. **And** it belongs to other functionality, outside the ticket's scope. Its size does not decide this. | Its own Task, done first; this ticket waits for it. | As soon as the investigation shows it, not at the end of the ticket. |
 | **Follow-up** | Everything the ticket delivers works without it, as with a pre-existing bug or design problem in surrounding code, even code the change touches. When the ticket works and you are unsure, prefer a follow-up: it keeps the ticket small and loses nothing. | Added with its evidence to the ticket's `follow-ups.md` (Recording follow-ups below); the Solution Designer sends them when the ticket leaves the team. | As found. |
 | **Requirement Gap** | Fixing it would need behavior the requirements do not approve. | Back to the Solution Designer, which asks the user. | As found. |
@@ -77,5 +77,5 @@ MCP server.
   hold MCP secrets, and the MCP gateway exposed credentialed tools without a
   token.
 
-[Example 11](design-examples.md#example-11-keeping-a-ticket-in-scope-during-technical-review)
-works through the other kinds during technical review.
+Example 11 in the team's design examples works through the other kinds during
+technical review.

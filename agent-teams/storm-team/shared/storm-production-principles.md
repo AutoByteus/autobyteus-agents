@@ -5,7 +5,7 @@ This shared reference defines the contract for the STORM Team.
 
 ## Source Basis
 
-The team design is based on the public Stanford STORM project, GitHub repository, and STORM paper. See [storm-source-notes.md](storm-source-notes.md) for the summarized source basis and mapping from STORM concepts to AutoByteus roles.
+The team design is based on the public Stanford STORM project, GitHub repository, and STORM paper. See `storm-source-notes.md` in the team's `shared/` folder for the summarized source basis and mapping from STORM concepts to AutoByteus roles.
 
 ## Core Idea
 

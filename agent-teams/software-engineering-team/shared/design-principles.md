@@ -152,7 +152,7 @@ Apply these principles from behavioral foundation through macro structure before
 - Without a supported product scenario and its observed or governing production path, the premise cannot drive a finding or new machinery. A scenario that is `Technically Possible but Unsupported/Contrived` is not promoted merely because its code path can be reached.
 - Persist the supported scenario basis and every additional material-premise classification in the applicable design or review artifact, including scenarios rejected as unsupported or `Not Reachable`. Record the complete relevant behavior and production path, actual system lifecycle, and evidence that makes the scenario supported, unsupported, reachable, unreachable, or unclear.
 - Require additional state, APIs, abstractions, coordination, or recovery behavior only when they address a supported reachable material problem and are proportionate to its consequence. Technical completeness means correctness for supported behavior and real operational constraints, not handling every imaginable state.
-- See [Example 10: Supported Product Scenario Versus Technical Possibility](design-examples.md#example-10-supported-product-scenario-versus-technical-possibility) for positive normal and explicit-edge examples, rejected technical-only scenarios, and the downstream review treatment.
+- See Example 10, Supported Product Scenario Versus Technical Possibility, in the team's design examples for positive normal and explicit-edge examples, rejected technical-only scenarios, and the downstream review treatment.
 
 ### 7. No Dead Code
 
