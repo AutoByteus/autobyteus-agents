@@ -21,6 +21,8 @@ The frontmatter `description` should make selection accurate: state the task and
 
 Specify what a finished artifact contains and what evidence proves it ready. Put approval or safety gates next to the action they control. Allow judgment where multiple approaches can satisfy the request; prescribe exact steps or scripts where the operation is fragile or deterministic.
 
+Write for a capable model. Before adding an instruction, ask whether such a model would already do it from the purpose and context, as a very capable person would. Add what it cannot know or would not do by default: project facts, team conventions, permissions and boundaries, irreversible actions, and lessons from real incidents. Leave out how to do work it already reasons through well. Models keep improving, and an instruction they do not need only makes the skill longer.
+
 A skill used by a Team member may classify the result needed by handoff rules, but the Team/Org config owns conditional recipients. An Agent shell may remind the role to use its skill; it should not repeat the skill's full procedure. A standalone skill should not imply an Agent attachment or runtime tool access it does not have.
 
 ## Ground and prioritize instructions
