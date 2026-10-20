@@ -33,7 +33,7 @@ When the user approves a pull request and you merge it, bring the user's local c
 
 Map the target kind and root, each role's responsibility, skill ownership and attachment, coordinator or intake owner where applicable, artifacts, routes and addresses, dependencies, and links.
 
-For `create`, establish the intended behavior and required outputs from the request and confirmed repository conventions. For `analyze` and `update`, distinguish the requested change or review question from existing behavior that must remain intact. When optimizing or reviewing, diagnose observed defects and their owners before choosing edits. For any update, identify the smallest coherent delta.
+For `create`, establish the intended behavior and required outputs from the request and confirmed repository conventions. For `analyze` and `update`, distinguish the requested change or review question from existing behavior that must remain intact. When optimizing or reviewing, diagnose observed defects and their owners before choosing edits. When the request proposes a fix, first map the information or flow the problem is about across every role, then judge the proposal against that map; the proposal frames the question, not the answer. For any update, identify the smallest coherent delta.
 
 Describe the path from request to completion and recovery. For a role, specify input, owned work, output, quality gate, and handoff. For a skill, specify trigger, inputs, work, outputs, validation, and stopping condition. Give each rule one owner. Team coordinator registration does not create duties by itself; an Org has no coordinator field.
 

@@ -24,6 +24,10 @@
   - 23 merged into 4 ("One rule or fact in several places"; the index keeps 23 as merged);
   - 7 extended with "trust a capable model; don't script every step".
 - **Merge rule:** when re-applying local work conflicts, keep the merged text and re-apply the local change by hand.
+- **One home per kind of record** (added 2026-10-20, after the follow-ups discussion on Task autobyteus-agents-34):
+  - principles §2: records of one kind that several roles produce get one file the roles add to, and their own documents cite the IDs; moving records into one home is not duplication, copying them is. §4's software frame: "one table per entity".
+  - anti-pattern 4 renamed "One rule, fact or kind of record in several places", with the incident and a detect check (count the documents that hold one kind of record).
+  - step 1 and new anti-pattern 24: when a request proposes a fix, map the information or flow across every role first, then judge the proposal.
 
 ## Validation
 
@@ -33,4 +37,5 @@
 | Links | Pass | 0 broken |
 | Script | Pass | `node --check`; a real run against an isolated app delivered "Script test only…" to a team member, which replied "OK" |
 | Old to new | Pass | Every validation item from §9 and skill-authoring is in step 4; every part of the old step 3 handoff paragraph is in §2 or §6; entry 23's incident, instead and detect are in entry 4; no reference to entry 23 elsewhere |
+| Live check, kind of record | Pass | `evidence/LC-KR-old-text.md`, `evidence/LC-KR-new-text.md`: a fresh Creator asked a neutral question about the SE team's follow-ups recommended one `follow-ups.md` and one sender on both texts; on the new text it cited the rule ("One kind of record, one home"). So the first miss came mainly from anchoring on the proposed field, which anti-pattern 24 now covers. |
 | Final review | Pass | Round 1: the skill-authoring pointer still repeated a step 4 rule (cut). Round 2: the old-to-new map found the handoff field list missing (moved to §2). Round 3: no findings. |

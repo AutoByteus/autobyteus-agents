@@ -31,6 +31,7 @@ Trace a normal path and each meaningful return path from intake to terminal resu
 
 - Before adding a document, section, field, or step, find where that fact already lives, and extend its owner instead of adding another place.
 - Give each fact one owner; other documents point to it by ID or path instead of copying it.
+- Give each kind of record one home. When several roles produce records of the same kind and someone uses them together, such as follow-ups found by any role, keep them in one file the roles add to; each role's own document cites their IDs. Records spread over several documents make every reader know all the places and merge them. A file that moves records into one home is not a duplicate; a file that copies them, such as an index of results that live elsewhere, is.
 - Order a document the way the work happens, and name it for its use: a "test progress log", not a "ledger".
 - Record a result a role produced (a test run, a decision) with what the next role needs to judge whether it still holds, such as the commit and the evidence, so the next role reuses it instead of repeating it.
 - A restructure removes repeats, never checks ([step 4](../SKILL.md#4-validate-and-recover) verifies this).
@@ -55,7 +56,7 @@ Short pointers are useful; competing procedures are not. When an Agent has a ski
 
 ## 4. Apply one authoring standard
 
-**Design a package like software.** The boundaries (§1) are its architecture; the path from request to result (§2) is its data-flow spine; one owner per rule and per fact (§2, §3) is its single source of truth; handoffs and their files are its interfaces; restructuring compares old and new so no check is lost; validation and real runs are its tests. Duplication is a smell, as in code. Two differences matter. The runtime is a model that interprets: state the purpose, the boundary, and the few things that must happen, and trust its judgement for the rest; do not script every step. And its bugs are silent: two drifting copies or wrong wording fail without an error, so owners and real runs matter even more than in code.
+**Design a package like software.** The boundaries (§1) are its architecture; the path from request to result (§2) is its data-flow spine; one owner per rule and per fact (§2, §3) is its single source of truth, and one home per kind of record is its one table per entity; handoffs and their files are its interfaces; restructuring compares old and new so no check is lost; validation and real runs are its tests. Duplication is a smell, as in code. Two differences matter. The runtime is a model that interprets: state the purpose, the boundary, and the few things that must happen, and trust its judgement for the rest; do not script every step. And its bugs are silent: two drifting copies or wrong wording fail without an error, so owners and real runs matter even more than in code.
 
 Use the same quality principles when creating, analyzing, or updating any target kind. An analysis uses them as its review criteria; create and update apply them in this order while designing and writing, with cross-file consistency throughout:
 
