@@ -222,7 +222,7 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Incidents:** Three on 2026-10-20.
   - **Task 43:** the first test data cited an evidence folder that did not exist, and the PM held the Task to rescue the evidence instead of showing the rule under test.
   - **#91:** the first question told both copies not to run any tools, so neither opened the skill under test, and both answered from general caution.
-  - **Task 33:** the data never made a probe mislead, so "a surprising result gets a second check" went unexercised and was nearly reported as passed. The user pointed out that evaluation sometimes needs test data created for it.
+  - **Task 33:** the data never made a probe mislead, so "a surprising result gets a second check" went unexercised and was nearly reported as passed. The user pointed out that evaluation sometimes needs test data created for it. Two more fixtures (a stale count, a stale server on the default port) were sidestepped by careful agents that used their own file and port. The user: "agents are really really smart … if you babysit a smart model, maybe it doesn't work". The point was dropped from the guide instead.
 - **Breaks:** [step 4](../SKILL.md#4-validate-and-recover), real use: a run on the final text that shows the change at work.
 - **Instead:** Create consistent test data that makes each point of the change happen, and leave the agent the tools and reading it has in real use ([live-checks.md](live-checks.md)). After the run, map each point to where it happened; build data for any point that did not, and rerun.
 - **Detect:** In the result's validation, each point of the change names the run and the step where it was observed; a point without one is listed as untested.
