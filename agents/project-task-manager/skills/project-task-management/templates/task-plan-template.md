@@ -7,11 +7,11 @@
 
 ## Tasks
 
-Listed in dispatch order; each Task comes after the Tasks it depends on. When you create the Tasks, each one's Depends on becomes its `depends_on`. Run IDs and dispatch approvals go on the board.
+Listed in dispatch order; each Task comes after the Tasks it depends on. When you create the Tasks, each one's Depends on becomes its `depends_on` and its Part of its `part_of`. When the request is one goal in slices, row 1 is the parent Task (not dispatched; worker `—`) and each slice names it in Part of. Run IDs and dispatch approvals go on the board.
 
-| # | Task | Depends on | Worker | Key | Status |
-| --- | --- | --- | --- | --- | --- |
-| 1 | <short title> | — (or row numbers, then keys once created) | <agent or team> | `<key>` | TODO / IN_PROGRESS / DONE / CANCELLED |
+| # | Task | Part of | Depends on | Worker | Key | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | <short title> | — (or the parent's row number, then its key) | — (or row numbers, then keys once created) | <agent or team> | `<key>` | TODO / IN_PROGRESS / DONE / CANCELLED |
 
 ## Open questions and changes
 

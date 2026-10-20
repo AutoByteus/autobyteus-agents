@@ -1,0 +1,22 @@
+# PROBE-1: parent with two parts, part depends_on, parent DONE. AutoByteus 1.5.7-beta.4 isolated instance, Project Task Manager tools, 2026-10-20
+{"data":{"importAgentPackage":[{"__typename":"Agen
+sent
+status=
+CALL create_project {"name": "Probe", "workspaces": [{"workspace_path": "/tmp/ptm-live/probe"}]}
+RESULT "{\"project\":{\"projectId\":\"project_5625f87a-d2a7-4433-8007-d6a75396057c\",\"name\":\"Probe\",\"description\":\"\",\"workspaces\":[{\"workspaceRootPath\":\"/tmp/ptm-live/probe\",\"description\":\"\"}]}}"
+CALL create_task {"project_id": "project_5625f87a-d2a7-4433-8007-d6a75396057c", "description": "Goal: cross-node sync"}
+RESULT "{\"task\":{\"projectId\":\"project_5625f87a-d2a7-4433-8007-d6a75396057c\",\"taskId\":\"probe-1\",\"status\":\"TODO\",\"dependsOn\":[],\"partOf\":null}}"
+CALL create_task {"project_id": "project_5625f87a-d2a7-4433-8007-d6a75396057c", "description": "Slice A", "part_of": "probe-1"}
+RESULT "{\"task\":{\"projectId\":\"project_5625f87a-d2a7-4433-8007-d6a75396057c\",\"taskId\":\"probe-2\",\"status\":\"TODO\",\"dependsOn\":[],\"partOf\":\"probe-1\"}}"
+CALL create_task {"project_id": "project_5625f87a-d2a7-4433-8007-d6a75396057c", "description": "Slice B", "part_of": "probe-1", "depends_on": ["probe-2"]}
+RESULT "{\"task\":{\"projectId\":\"project_5625f87a-d2a7-4433-8007-d6a75396057c\",\"taskId\":\"probe-3\",\"status\":\"TODO\",\"dependsOn\":[\"probe-2\"],\"partOf\":\"probe-1\"}}"
+CALL list_project_tasks {"project_id": "project_5625f87a-d2a7-4433-8007-d6a75396057c", "status": "TODO"}
+RESULT "{\"projectId\":\"project_5625f87a-d2a7-4433-8007-d6a75396057c\",\"tasks\":[{\"projectId\":\"project_5625f87a-d2a7-4433-8007-d6a75396057c\",\"taskId\":\"probe-3\",\"description\":\"Slice B\",\"status\":\"TODO\",\"dependsOn\":[\"probe-2\"],\"partOf\":\"probe-1\",\"parts\":[],\"contextFiles\":[],\"assignments\":[],\"closedAssignments\":[]},{\"projectId\":\"project_5625f87a-d2a7-4433-8007-d6a75396057c\",\"taskId\":\"probe-2\",\"description\":\"Slice A\",\"status\":\"TODO\",\"dependsOn\":[],\"partOf\":\"probe-1\",\"parts\":[],\"contextFiles\":[],\"assignments\":[],\"closedAssignments\":[]},{\"projectId\":\"project_5625f87a-d2a7-4433-8007-d6a75396057c\",\"taskId\":\"probe-1\",\"description\":\"Goal: cross-node sync\",\"status\":\"TODO\",\"dependsOn\":[],\"partOf\":null,\"parts\":[\"probe-2\",\"probe-3\"],\"contextFiles\":[],\"assignments\":[],\"closedAssignments\":[]}]}"
+CALL update_task {"task_id": "probe-1", "status": "DONE"}
+RESULT "{\"task\":{\"projectId\":\"project_5625f87a-d2a7-4433-8007-d6a75396057c\",\"taskId\":\"probe-1\",\"status\":\"DONE\",\"dependsOn\":[],\"partOf\":null,\"closedParts\":[\"probe-2\",\"probe-3\"]}}"
+CALL list_project_tasks {"project_id": "project_5625f87a-d2a7-4433-8007-d6a75396057c", "status": "DONE"}
+RESULT "{\"projectId\":\"project_5625f87a-d2a7-4433-8007-d6a75396057c\",\"tasks\":[{\"projectId\":\"project_5625f87a-d2a7-4433-8007-d6a75396057c\",\"taskId\":\"probe-3\",\"description\":\"Slice B\",\"status\":\"DONE\",\"dependsOn\":[\"probe-2\"],\"partOf\":\"probe-1\",\"parts\":[],\"contextFiles\":[],\"assignments\":[],\"closedAssignments\":[]},{\"projectId\":\"project_5625f87a-d2a7-4433-8007-d6a75396057c\",\"taskId\":\"probe-2\",\"description\":\"Slice A\",\"status\":\"DONE\",\"dependsOn\":[],\"partOf\":\"probe-1\",\"parts\":[],\"contextFiles\":[],\"assignments\":[],\"closedAssignments\":[]},{\"projectId\":\"project_5625f87a-d2a7-4433-8007-d6a75396057c\",\"taskId\":\"probe-1\",\"description\":\"Goal: cross-node sync\",\"status\":\"DONE\",\"dependsOn\":[],\"partOf\":null,\"parts\":[\"probe-2\",\"probe-3\"],\"contextFiles\":[],\"assignments\":[],\"closedAssignments\":[]}]}"
+CALL list_project_tasks {"project_id": "project_5625f87a-d2a7-4433-8007-d6a75396057c", "status": "CANCELLED"}
+RESULT "{\"projectId\":\"project_5625f87a-d2a7-4433-8007-d6a75396057c\",\"tasks\":[]}"
+
+[exited with code 0]
