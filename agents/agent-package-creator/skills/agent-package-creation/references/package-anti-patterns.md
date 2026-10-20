@@ -98,10 +98,10 @@ Concrete mistakes found in real package work. The [package design principles](pa
 
 ### 6. Project specifics in a reusable skill
 
-- **Incident:** A team skill hard-coded `autobyteus-server-ts/docs/design/data_migration_guideline.md` for every project.
+- **Incidents:** A team skill hard-coded `autobyteus-server-ts/docs/design/data_migration_guideline.md` for every project. Task autobyteus-agents-42 asked to teach the API/E2E engineer a full-rerun rule after a ticket missed two broken tests; the Creator first proposed a skill edit. The ticket's report showed the engineer had applied the project's `TESTING.md` rule exactly; the rule's wording was the gap. The user: agent packages are general, and project-specific rules live in the project's own files (2026-10-20).
 - **Breaks:** [Ground and prioritize instructions](skill-authoring-principles.md#ground-and-prioritize-instructions): name a project only when it changes behavior.
-- **Instead:** Point to the project's own guidance (for example its `DESIGN.md` or `TESTING.md`) and let the project link its documents.
-- **Detect:** Search skills for repository names, absolute paths, and product names.
+- **Instead:** Point to the project's own guidance (for example its `DESIGN.md` or `TESTING.md`) and let the project link its documents. When a project problem proposes a package change, fix the project's document when the agent followed it, and leave the package general.
+- **Detect:** Search skills for repository names, absolute paths, and product names. For a problem from project work, check the agent's own record against the project document it followed before changing the package.
 
 ### 7. Over-structuring what people write naturally
 
