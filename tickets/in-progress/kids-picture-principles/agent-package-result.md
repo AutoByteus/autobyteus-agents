@@ -3,21 +3,22 @@
 - Status: `Completed`
 - Operation: `update` (update intent: `repair`)
 - Package type: `team` (`agent-teams/kids-picture-story-team`)
-- Request/reference: Task autobyteus-agents-41 (the PM, from the Creator's suggestion at the end of autobyteus-agents-36)
+- Request/reference: Task autobyteus-agents-41 (the PM, from the Creator's suggestion at the end of autobyteus-agents-36). The user, 2026-10-20: evaluate with the updated skill, make the changes, then merge and close.
 - Files read in full:
   - `team.md`, `team-config.json`;
   - the shared `picture-book-production-principles.md`;
   - the reviewer's and the editor's `agent.md` and `SKILL.md`;
   - all four `agent-config.json`.
 
-## Decision, role by role
+## Evaluation with the updated Creator skill (whole team, three levels, anti-patterns)
 
-| Role | Uses the principles? | Change |
+| # | Finding | Fix |
 | --- | --- | --- |
-| Picture-book reviewer | Yes. Its step 4 applies "the shared child-safety and readability gates" (a section of the principles), and its text and continuity checks follow the principles' exact-text and visual-continuity sections. It judged against a standard its skill never pointed to (anti-pattern 22). | Read the principles before reviewing; those three sections are the bar. Step 4 links the gates section. |
-| Book production editor | Yes. The principles' "Production and export rules" section is its rule set. | Read the production and export rules before planning; they are the bar its packaging and QA meet. |
-
-The links stay. Each role now names the file where it needs it.
+| F0 | Task: the reviewer and editor have the principles linked but never told to read them. Both apply them: the reviewer's gates and text and continuity checks; the editor's production and export rules. | Each skill names the file and the sections it judges by, before review or before planning. The links stay. |
+| F1 | Anti-pattern 12: no agent had `get_handoff_rules`; every skill and intro named its recipients; the routes in `team-config.json` could not be retrieved. | `get_handoff_rules` in all four configs; a post-work transition in each `agent.md`; the skills name the owning role in words; `team.md` Communication states the rules-based convention. |
+| F2 | Anti-pattern 2: outcomes with no route (illustrator → author, reviewer → author, editor → reviewer, illustrator or author). | Four routes added and one rule added to editor → author (9 routes; every outcome a skill routes now has one). |
+| F3 | Anti-pattern 21: the illustrator, reviewer and editor must open page images but had no image tool for the AutoByteus runtime. | `read_media_file` added to those three; their skills say to open images with it or the runtime's own image reader. |
+| F4 | Anti-pattern 4: the handoff contents were stated in four places; `team.md` restated the principles (Artifact Visibility), and Ownership Boundaries restated Team Members; the illustrator's intro repeated its skill's image-tool policy. | The handoff contents live in the principles' artifact and handoff discipline (now also "continue without hidden context"). `team.md` keeps members (boundaries merged in), communication, delivery flow and the classification vocabulary. The image-tool policy lives only in the skill. The one check `team.md` alone held (show the source-text index for approval) moved into the author's skill. |
 
 ## Validation
 
@@ -25,9 +26,5 @@ The links stay. Each role now names the file where it needs it.
 | --- | --- | --- |
 | Links | Pass | `check-links.py` on the team: 0 broken, 0 unnamed. Repository-wide: 0 broken, 0 unnamed. |
 | Skills | Pass | `quick_validate.py` on all four skills |
-| Live run | Not run | The change only points two roles to a file and a section they already apply. A run of this team generates 21–28 images per book; its cost is not justified for this text. |
-
-## Findings beyond this Task (proposed, not changed)
-
-- **Anti-pattern 12, the routes cannot be retrieved:** none of the four agents has `get_handoff_rules`, and every skill and intro names its recipients (`book_production_editor`, `story_picture_book_author`, …). The routes in `team-config.json` are therefore unreachable, and renaming a member would silently break the flow.
-- **Anti-pattern 21, no tool to see the images:** the reviewer must "open the actual files", but its tools are `read_file`, `run_bash` and messaging. On the Claude runtime it can use the runtime's own file reader; on the AutoByteus runtime it needs `read_media_file`. The same applies to the illustrator's self-checks and the editor's readability QA.
+| JSON | Pass | `team-config.json` and all four `agent-config.json` parse |
+| Live run (LC-KP-01) | Pass | `evidence/LC-KP-01-team-run.md`: the team ran a two-page test book (pages drawn with Pillow; no image model), starting at the illustrator. Every handoff went through `get_handoff_rules`: illustrator → reviewer → production editor → author. The reviewer read the principles and opened all page and reference images; the editor read the principles, assembled only the approved pages and proved them byte-identical; the author reported the finished book to the user. Not covered: the new fix routes (no defect was planted) and `read_media_file` itself (the Claude runtime used its own image reader). |

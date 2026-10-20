@@ -26,52 +26,39 @@ that have templates; the role skills define requirements for the remaining artif
 
 - The canonical shared production reference is
   [picture-book-production-principles.md](shared/picture-book-production-principles.md).
-- Each bundled skill folder has a local `picture-book-production-principles.md` symlink to
-  that shared file.
+- Each bundled skill folder has a local `picture-book-production-principles.md` symbolic
+  link to that shared file, and each skill says when to read it.
 - Member skills may add narrower role rules, but must not silently contradict the shared
   picture-book contract.
 
 ## Team Members
 
-- `story_picture_book_author`: owns intake, age and reading level, theme, story arc,
-  page-turn rhythm, page count, exact page text, source wording, recurring-character
-  plan, storyboard, and user approval before illustration.
-- `picture_book_illustrator`: owns full-color visual style, recurring-character reference
-  sheets, page composition, in-image text-safe art direction, generated or edited page
-  assets, prompt provenance, and illustrator self-checks.
-- `picture_book_reviewer`: independently reviews actual page images for story-image match,
-  character continuity, child safety, text fidelity, typography, readability, and
-  review-report readiness.
-- `book_production_editor`: assembles only reviewer-approved pages into ordered digital
-  and optional print/booklet exports, runs mechanical QA, and writes the delivery report.
+- `story_picture_book_author` (coordinator): owns intake, age and reading level, theme,
+  story arc, page-turn rhythm, page count, exact page text, source wording, the
+  recurring-character plan, the storyboard, and the user's approval before illustration.
+  It does not approve image quality on behalf of the reviewer.
+- `picture_book_illustrator`: owns the visual style, recurring-character reference sheets,
+  page composition, text-safe art direction, generated or edited page images, prompt
+  provenance, and self-checks. It does not rewrite the story to fit an image.
+- `picture_book_reviewer`: the independent quality gate. It inspects the actual page
+  images for story match, character continuity, child safety, exact words, typography and
+  readability, and publishes the approved page and character manifest in
+  `picture-book-review-report.md`.
+- `book_production_editor`: assembles only the pages that manifest approves into ordered
+  digital and optional print or booklet exports, runs mechanical QA, and writes the
+  delivery report. It routes content or visual defects upstream instead of repairing them.
+
+The book's rules (page count, one image per page, exact text on the image, continuity,
+child-safety gates, export rules) and what every handoff carries are in the shared
+principles.
 
 ## Communication
 
-- Use `send_message_to` for specialist handoffs.
-- Every handoff includes the current decision or approval state, open risks, next action,
-  and absolute paths for all still-relevant artifacts.
-- Handoffs are cumulative enough that the receiving specialist can continue without hidden
-  model context.
-- If a downstream specialist finds a missing or contradictory upstream decision, route it
-  back to the owning specialist instead of inventing around it.
-- Review requests name the exact focus: story-image match, recurring-character continuity,
-  exact approved words, in-image text readability, absence of stray text, child safety,
-  and export readiness.
-
-## Artifact Visibility And Approval
-
-- `story_picture_book_author` must present `picture-book-brief.md` and
-  `picture-book-storyboard.md` for user approval before illustration. Include
-  `source-text-index.md` when sourced or protected wording is in scope.
-- Use the shared default of 21-28 illustrated pages. The approved brief may choose a
-  shorter or longer count when it records the story or audience rationale.
-- Each story page is one complete image in the approved book format. Text is part of the
-  image surface; layout must not silently add, rewrite, or relocate it.
-- The illustrator inspects every generated or edited page before reviewer handoff.
-- The reviewer must inspect actual page images and publish the approved page and character
-  manifest sections in `picture-book-review-report.md` before production.
-- The production editor packages only pages named in that approved report and does not
-  repair story, illustration, or wording defects during export.
+Each member finishes its work, saves its artifacts, calls `get_handoff_rules`, and sends
+the handoff to each exact returned `recipient_address` with `send_message_to`;
+[team-config.json](team-config.json) owns the routes. A member that finds a missing or
+contradictory upstream decision hands it back to the owning member instead of inventing
+around it.
 
 ## Delivery Flow
 
@@ -91,23 +78,12 @@ that have templates; the role skills define requirements for the remaining artif
    order, validates digital and optional print/booklet exports, and writes
    `book-production-report.md`.
 
-## Issue Routing
+## Issue Classifications And Owners
 
-- `Story Gap`, `Age Fit Gap`, `Reading Level Gap`, `Source Text Issue`, or `Storyboard Revision` -> `story_picture_book_author`
-- `Visual Style Fix`, `Character Reference Fix`, `Composition Fix`, or `Image Text Composition Fix` -> `picture_book_illustrator`
-- `Review Finding` -> `picture_book_reviewer`
-- `Book Layout Fix` or `Export QA Fix` -> `book_production_editor`
-- `Unclear` -> `story_picture_book_author`
+The routes in `team-config.json` send each of these to its owner:
 
-## Ownership Boundaries
-
-- The author owns story meaning, age fit, source wording, page order, exact text, and the
-  user-approval handoff for the written package. The user approves the brief and
-  storyboard; the author does not approve image quality on behalf of the reviewer.
-- The illustrator owns visual execution and text-safe composition from approved story
-  decisions. The illustrator does not rewrite the story to fit a generated image.
-- The reviewer owns the independent quality gate and the manifest sections in the review
-  report. A prompt, filename, or generation log cannot substitute for actual image
-  inspection.
-- The production editor owns mechanical ordering, sizing, export, and QA only. It must
-  route content or visual defects upstream.
+- `Story Gap`, `Age Fit Gap`, `Reading Level Gap`, `Source Text Issue`, or `Storyboard Revision`: the author
+- `Visual Style Fix`, `Character Reference Fix`, `Composition Fix`, or `Image Text Composition Fix`: the illustrator
+- `Review Finding`: the reviewer
+- `Book Layout Fix` or `Export QA Fix`: the production editor
+- `Unclear`: the author

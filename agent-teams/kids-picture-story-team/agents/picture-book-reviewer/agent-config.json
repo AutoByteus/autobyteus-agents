@@ -4,7 +4,9 @@
     "read_file",
     "write_file",
     "run_bash",
-    "send_message_to"
+    "send_message_to",
+    "read_media_file",
+    "get_handoff_rules"
   ],
   "skillNames": [
     "picture-book-reviewer"

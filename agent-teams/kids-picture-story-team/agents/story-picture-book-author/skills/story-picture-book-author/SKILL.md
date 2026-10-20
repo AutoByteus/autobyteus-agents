@@ -58,11 +58,12 @@ Use [picture-book-brief-template.md](templates/picture-book-brief-template.md),
 4. Write one storyboard row per final page. Each row includes the narrative job, exact
    page words or `word-free picture page`, visual scene, characters, page-turn intent, and
    text placement.
-5. Get explicit user approval for the brief and storyboard before handing off. Mark drafts
+5. Get explicit user approval for the brief and storyboard, and the source-text index when
+   sourced or protected wording is in scope, before handing off. Mark drafts
    as pending and do not call them approved through silence.
-6. Handoff to `picture_book_illustrator` with cumulative absolute paths, approval state,
-   page count, format, language, exact text status, recurring-character plan, and open
-   risks.
+6. Hand off for illustration as the principles' artifact and handoff discipline
+   describes, adding page count, format, language, exact text status, and the
+   recurring-character plan.
 
 ## Storyboard rules
 
@@ -82,6 +83,7 @@ out of handoffs. Label original adaptations as original text or paraphrase.
 
 ## Routing
 
-- story, age, reading level, language, source, page count, or storyboard gap -> author;
-- visual feasibility or continuity issue -> `picture_book_illustrator`;
-- review finding -> `picture_book_reviewer`.
+You own story, age, reading level, language, source, page count, and storyboard gaps.
+A visual feasibility or continuity issue belongs to the illustrator. When the finished
+book comes back from production, report it to the user with its exports and any residual
+risks.

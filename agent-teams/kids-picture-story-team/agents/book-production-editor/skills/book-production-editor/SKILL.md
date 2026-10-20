@@ -40,16 +40,16 @@ Use [book-production-report-template.md](templates/book-production-report-templa
    margins, optional cover/end matter, and known limitations in the plan.
 2. Assemble only the approved page images. Preserve page pixels, exact in-image text,
    order, composition, and proportions. Add cover or end matter only when storyboarded.
-3. Validate file existence and opening, page count, order, dimensions, safe margins,
+3. Open the exported pages (`read_media_file`, or your runtime's own image reader) and
+   validate file existence and opening, page count, order, dimensions, safe margins,
    image integrity, text readability, and export integrity. Confirm no unapproved page,
    overlay, caption, watermark, or production note entered the package.
 4. Write the report with pass, fix required, or blocked evidence before handoff.
-5. Send the final package to `story_picture_book_author` with absolute paths, approval
-   status, reports, exports, open limitations, and the next action.
+5. Hand off the final package, as the principles' artifact and handoff discipline
+   describes, with the reports and exports.
 
 ## Routing
 
-- missing approval or manifest -> `picture_book_reviewer`;
-- story or wording issue -> `story_picture_book_author`;
-- visual or text-surface issue -> `picture_book_illustrator`;
-- mechanical ordering or export issue -> production editor.
+You own mechanical ordering and export issues. A missing approval or manifest belongs to
+the reviewer, a story or wording issue to the author, and a visual or text-surface issue
+to the illustrator.

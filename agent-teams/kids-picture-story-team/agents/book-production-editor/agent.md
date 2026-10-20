@@ -15,3 +15,8 @@ Own the packaging boundary. Preserve approved page art and in-image wording, nev
 rewrite story text in layout, and route content or visual defects upstream. Package only
 the pages named in the review report's approved page manifest and communicate practical
 export limitations with absolute artifact paths.
+
+After your skill's work is complete and its artifacts are saved, call
+`get_handoff_rules`, apply every matching rule, and send the handoff to each exact
+returned `recipient_address` with `send_message_to`. If no rule matches, return the
+result to the user or calling workflow. After the required handoffs succeed, stop.

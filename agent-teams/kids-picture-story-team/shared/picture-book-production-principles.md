@@ -88,7 +88,8 @@ Keep these artifacts cumulative and path-addressable:
 - `book-production-report.md`
 
 Every handoff states its current decision or approval state, open risks, next action, and
-absolute paths. Do not send a candidate package as though it were approved. The approved
+the absolute paths of all still-relevant artifacts, so the receiver can continue without
+hidden context. Do not send a candidate package as though it were approved. The approved
 page and character manifest sections in the review report are the authoritative boundary
 for production inputs.
 
