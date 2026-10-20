@@ -132,6 +132,10 @@ under matched mock scenarios.
 | Every distinct state: empty, populated, loading, error, locked, role, logged out | Code structure, stores, APIs or runtime architecture |
 | Focus, keyboard and motion behavior | Raw screenshot bytes |
 
+An illustrative value that differs is never a parity failure on its own; it
+fails only when it changes or hides a UI state, for example a list with too few
+items to show its layout, or a missing empty or locked case.
+
 "Complete" means **complete coverage of distinct UI**: each distinct page type,
 state and interaction pattern appears at least once with evidence. It does not
 mean a complete website, every item, or every data combination. One mock item
@@ -165,13 +169,10 @@ can stand for every item that renders the same way.
   code, runtime architecture, or raw screenshot bytes.
 - UI-controlled content—including labels, instructions, formatting, validation,
   feedback, and error or recovery messages—is part of the exact experience
-  contract. Domain record values are synthetic and minimal. Current-source
-  comparisons seed the same synthetic values into the source observation
-  environment wherever that is cheap. Elsewhere they compare per component and
-  per state under representative data, and mark content-derived values as
-  illustrative. Never copy or replay real source data or content into a UI
-  reference to force identical values; synthetic observation captures follow
-  the mock data origin rule above. Future-state references identify
+  contract. Domain record values are synthetic and minimal and are marked
+  illustrative; section 6 says how to compare. Never copy or replay real source
+  data or content into a UI reference to force identical values; synthetic
+  observation captures follow the mock data origin rule above. Future-state references identify
   any illustrative fixture value explicitly.
 - A UI reference is not a production implementation, frontend digital twin,
   integration test environment, production architecture, or proof of
@@ -347,6 +348,23 @@ for a design workspace. Later requirements-driven work normally belongs to
   Rendering noise such as subpixel antialiasing does not require raw
   screenshot-byte identity, but any known UI parity
   difference blocks exact current-experience completion.
+- **How to compare source and UI reference.** Both the Bootstrapper and the
+  Product UI/UX Designer compare this way:
+  - Start both sides from the same state: the same synthetic account type and
+    scenario, reset before each viewport pass because journeys change state,
+    and no session carried over from earlier work.
+  - Where a visible value comes from cheap account or state data (progress,
+    entitlement, role, flags, admin lists), seed the same synthetic value on
+    the source side instead of copying source data into the UI reference.
+  - Compare per component and per state, never by whole-page text or layout
+    hashes, which fail on every illustrative value and hide real differences.
+    Compare separately: UI-controlled text with digits and content slots
+    masked; the set of component signatures; computed styles of shared
+    components; page-skeleton geometry; interactive elements and their
+    targets, with item IDs masked; the final route and title. Leave rendered
+    content prose out of UI-copy checks.
+  - If exact matching seems to need real source content, production protocols,
+    or production stores, the comparison method is wrong, not the data.
 - A harness that runs the source for comparison (a fake backend, fixture
   server, or capture script) is disposable scaffolding. Give it only the
   fixtures the compared screens need, and when it grows costly, prefer direct
@@ -425,7 +443,9 @@ for a design workspace. Later requirements-driven work normally belongs to
   future-state `ui-ux-spec.md`, conduct the user design review, or approve a
   product decision.
 - `product_ui_ux_designer` (Product UI/UX Designer) reviews and tests the Bootstrapper's
-  result, commits the accepted baseline in the design repository, and owns
+  result. Once it accepts the result, it integrates it into the design
+  repository's default branch at once, as its repository-management skill
+  describes, so the design project carries every accepted baseline. It also owns
   product-experience future-state changes, user review, final UI/UX artifacts,
   and design commits. In exploratory requirements-visualization mode, it
   owns the exploratory visualizer revisions and review evidence instead.

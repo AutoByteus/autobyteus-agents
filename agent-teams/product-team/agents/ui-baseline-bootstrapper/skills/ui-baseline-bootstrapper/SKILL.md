@@ -114,25 +114,15 @@ gap is a reason for `Blocked`, not a separate handoff outcome.
   empty, error, validation, feedback, status, and locked copy. Domain values that come from
   the source's content (titles, texts, counts, topic names) may differ. Mark
   them as illustrative in the report for each inventory item.
-- Where a visible value comes from cheap source-side state (account status,
-  progress or percentages, entitlements, role, flags, admin lists), seed the
-  same synthetic values into the source observation environment so that those
-  surfaces compare exactly. Do not bend the baseline toward the source's
-  content instead.
 - Interaction outcomes are UI behavior, not content. If a compared journey submits a value
   and the source shows it as accepted, the synthetic fixture must accept that
   value too. Likewise, give the fixture item the same kind of visible
   state that the source item shows (for example written vs placeholder text,
   image available vs missing, partial vs complete). Only the words inside those
   states are illustrative.
-- Start every matched run from the same state on both sides. Reset the
-  baseline scenario and restore the source observation data before each
-  viewport pass, because journeys change state (passwords, progress, trials).
-- Stop and reconsider if exact matching seems to require copying real source
-  content, replaying production protocols, or reproducing production stores.
-  That is a sign the comparison method is wrong, not that the baseline needs
-  more data. Compare per component and per state instead. If the acceptance
-  criterion itself is unclear, return `Blocked` with the precise question.
+- Compare as the shared principles' section 6 ("How to compare source and UI
+  reference") describes. If the acceptance criterion itself is unclear, return
+  `Blocked` with the precise question.
 
 ## Design Repository Boundary
 
@@ -142,6 +132,12 @@ worktree, applicable instructions, source pin, and current baseline state.
 The worktree must be dedicated to this Product ticket and free of another
 ticket's dirty work. If the repository or worktree is missing, ambiguous, or
 unsafe, return `Blocked` rather than creating one.
+
+Your result is a candidate. The Product UI/UX Designer reviews it and, once it
+accepts it, integrates it into the design repository's default branch and
+records that in the baseline ticket. If someone asks whether the design project
+is up to date, answer from that ticket's integration result: not yet while the
+candidate awaits acceptance, and up to date once the integration is recorded.
 
 ## Operating Sequence
 
@@ -178,14 +174,10 @@ application for a focused correction.
    and locally selectable, resettable scenarios. Follow the simplified
    implementation rules in the shared principles.
 8. Run the pinned source and baseline in matched browser, viewport, font,
-   asset, theme, locale, context, and scenario conditions, with the same
-   synthetic values wherever they can be seeded cheaply on the source side. For
-   every distinct inventory item, compare appearance, UI-controlled content,
-   rendered structure, geometry, interaction, navigation, state transitions,
-   feedback, and responsive behavior. Compare per component and per state
-   rather than as whole-page hashes, because fixture counts legitimately change
-   list lengths and page height. Record source evidence, baseline evidence, the
-   result, and which domain values are illustrative.
+   asset, theme, locale, context, and scenario conditions, and compare every
+   distinct inventory item as the shared principles' section 6 describes.
+   Record source evidence, baseline evidence, the result, and which domain
+   values are illustrative.
 9. Fix every observable discrepancy and repeat the matched browser comparison
    until every inventory item passes with no known UI parity
    difference. Equivalent permutations may share evidence only when their
@@ -210,11 +202,8 @@ application for a focused correction.
   mandatory; code inspection, build success, or unit tests alone cannot
   substantiate exact UI/UX parity.
 - Exercise every distinct surface, state, interaction pattern, and journey
-  outcome at least once under matched source and baseline conditions. Use the
-  same synthetic values where they can be seeded cheaply into the source
-  observation environment. Otherwise compare under representative data and mark
-  the content-derived values illustrative. Never copy real source content to
-  force a match.
+  outcome at least once under matched source and baseline conditions (shared
+  principles, section 6). Never copy real source content to force a match.
 - Cover viewports, locales, and other contexts as the shared principles' scope
   rules describe: every distinct item in the primary configuration, the rest
   by representative sample and material change.
@@ -280,21 +269,17 @@ Before returning `Completed`, confirm:
 
 ## Handoff Rules
 
-- Use these rules at each `Completed` or `Blocked` outcome.
-- A precise input gap is always reported as a `Blocked` result; do not emit an
-  unconfigured input-gap outcome.
-- Finish the runnable baseline, report, and evidence before routing the outcome.
-- Call `get_handoff_rules` and use the returned conditional rules as the routing
-  authority.
-- Apply every matching rule, then call `send_message_to` with the exact returned
-  `recipient_address`. Do not infer or hard-code a recipient.
-- Include the stable package identifier when supplied, request type, concise
-  result, next expected action, source pin, design repository/root, Product
-  ticket branch and target worktree, and absolute paths to the runnable
-  baseline, report, and other durable evidence. Identify any bootstrap
-  candidate revision separately from the Product UI/UX Designer's accepted commit.
+Hand off as your agent instructions describe, at each `Completed` or `Blocked`
+outcome, once the runnable baseline, report, and evidence are finished. A
+precise input gap is always reported as a `Blocked` result.
+
+- The result carries the stable package identifier when supplied, request type,
+  concise result, next expected action, source pin, design repository/root,
+  Product ticket branch and target worktree, and absolute paths to the runnable
+  baseline, report, and other durable evidence.
+- Identify any bootstrap candidate revision separately from the Product UI/UX
+  Designer's accepted commit, and say that integration into the default branch
+  follows its acceptance.
 - Do not claim completion when any distinct UI inventory item is failed or
   unsubstantiated, any known observable discrepancy remains, or the baseline
   is not independently runnable.
-- If no returned rule applies, return the outcome to the user or calling
-  workflow. After all required messages succeed, end the stage and do not poll.

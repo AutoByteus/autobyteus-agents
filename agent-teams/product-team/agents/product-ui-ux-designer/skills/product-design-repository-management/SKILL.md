@@ -26,9 +26,8 @@ You own the Product Design repository lifecycle:
   repository under its repository policy.
 
 The selected mode skill owns the experience work, validation, user review,
-approval, and result classification. `ui_baseline_bootstrapper` may write a
-candidate current-experience baseline in the Product-owned worktree, but does
-not own the branch, ticket status, acceptance, commit, integration, or cleanup.
+approval, and result classification. The Bootstrapper's limits are in the shared
+principles' Bootstrapper boundary.
 
 ## Repository And Worktree Model
 
@@ -131,10 +130,14 @@ to accept its result. This skill provides the baseline lifecycle:
 - If the canonical design repository has no accepted baseline, create or
   resume a dedicated baseline ticket branch/worktree, then send the payload
   below. A correction keeps the same baseline ticket and worktree.
-- After the baseline is accepted, create the accepted baseline commit and
-  integrate it into the default branch through the finalization sequence
-  below. Later requirement work starts from the default branch that contains
-  it.
+- As soon as you accept a baseline result (initial bootstrap, correction, or
+  refresh), finalize its baseline ticket through the sequence below: commit it,
+  integrate it into the default branch, bring the canonical checkout to the
+  same revision, and record the integration in the ticket. The design project
+  is up to date with the source pin when that record says `Completed`. Do not
+  leave an accepted baseline waiting for a design ticket to carry it.
+- A design ticket that needs the new baseline merges the default branch after
+  that integration, never the baseline ticket's branch.
 - For a no-frontend product, establish the smallest initial project in the
   baseline ticket worktree without Bootstrapper, then accept and record the
   initial base through the same lifecycle.
@@ -215,8 +218,9 @@ return `Blocked` rather than sharing it silently.
   mode-specific recovery outcome. Never overwrite another branch or silently
   reset user-approved work.
 - A source refresh or baseline correction can affect active ticket branches.
-  Pause and reconcile it explicitly; do not silently rebase or invalidate an
-  active ticket.
+  Pause and reconcile it explicitly: once the baseline ticket is integrated,
+  merge the default branch into the active ticket. Do not silently rebase or
+  invalidate an active ticket.
 
 ## Commit, Integration, And Cleanup
 
@@ -285,7 +289,5 @@ Before returning control to the selected mode skill, provide or record:
 - cleanup status or exact cleanup blocker (`Pending` until finalization when
   appropriate).
 
-The mode skill uses this state in its own result package and then performs the
-normal `get_handoff_rules` -> apply every matching rule ->
-`send_message_to` exact returned recipients protocol. This management skill does
-not invent a recipient or replace the mode skill's handoff.
+The mode skill uses this state in its own result package and hands off; this
+management skill does not replace that handoff.
