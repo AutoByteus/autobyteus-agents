@@ -74,7 +74,7 @@ Before handoff, read [result-and-handoff-contract.md](references/result-and-hand
 
 Deliver the change the way the repository works, usually a pull request. Do not commit, push, publish, or deploy without explicit authorization.
 
-When the user approves a pull request and you merge it, bring the user's local checkout up to date right away, since installed skills often run from it. If uncommitted local work overlaps the merged files, preserve it first on a named branch and as a patch, then update, re-apply it, and say where it is. When the re-apply conflicts because the merge changed the same lines, keep the merged text and re-apply the local change by hand; the branch and patch keep the original. Never discard local work.
+When the user approves a pull request and you merge it, bring the user's local checkout up to date right away: installed skills run from it, and every running agent whose skill folder changed receives a skill-update notice listing the changed files. So a change reaches running agents only through that update, and a file a role links but does not use shows up as noise in its notices. If uncommitted local work overlaps the merged files, preserve it first on a named branch and as a patch, then update, re-apply it, and say where it is. When the re-apply conflicts because the merge changed the same lines, keep the merged text and re-apply the local change by hand; the branch and patch keep the original. Never discard local work.
 
 Then classify and route the result as the contract describes.
 
