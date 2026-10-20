@@ -47,3 +47,10 @@ Consumers: the design-spec template's link to the removed Derived Checks section
 | Final review | Pass | Every principle has Signals and/or a Check where the old file had smells or questions for it. The triggers table covers all 12 old triggers. The patterns keep their content. |
 
 Size: 516 → 485 lines. The aim was one home per rule, not a shorter file; trimming belongs to autobyteus-agents-39.
+
+## Line-by-line verification (after merge, at the user's request)
+
+The user asked for every merged or reworded line to be compared for lost information: two statements that look alike may cover different aspects. All 87 lines not carried over verbatim were read beside the new text that carries them.
+
+- **Lost:** none. No rule, check, design question (all 23), design smell (all 21), trigger (all 12), or example shape was merged away. Statements that looked alike said the same thing; where they differed in detail, the new text keeps the union (for example, capability reuse keeps both the general check and the trigger's list of categories).
+- **Softened, 4 places, restored in a follow-up PR:** "file placement **must** follow ownership" and "interfaces … **must** follow ownership" had become plain "follows"; "build a **small** spine inventory early" had lost "small"; "the **operational** benefit justifies the risk" had lost "operational".

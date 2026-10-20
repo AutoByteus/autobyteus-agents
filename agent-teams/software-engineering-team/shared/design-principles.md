@@ -74,7 +74,7 @@ A principle may end with **Signals** (what shows the rule is broken) and **Check
 
 ### 2. Data-Flow Spine Inventory and Clarity
 
-- Identify and inventory the relevant data-flow spines for each in-scope use case. Build the inventory early and use it to decide ownership and decomposition.
+- Identify and inventory the relevant data-flow spines for each in-scope use case. Build a small inventory early and use it to decide ownership and decomposition.
 - A practical spine inventory row should usually capture:
   - `spine_id`
   - scope
@@ -154,7 +154,7 @@ A principle may end with **Signals** (what shows the rule is broken) and **Check
 - When migration is required, design it as a separate owned spine in an explicit startup, deployment, or maintenance boundary, and keep the target runtime current-schema-only. Confine historical-schema knowledge there; define ordering, validation, completion, interruption/recovery, and risk-appropriate backup or rollback behavior. Never compensate with version-specific compatibility behavior in normal business or runtime paths.
 - Do not rewrite large data sets merely for representational cleanliness. Weigh I/O, downtime, corruption exposure, recovery complexity, and rollout constraints against the migration's concrete benefit.
 - If the evidence is insufficient, choose `Undetermined` and investigate or block the design rather than assuming either migration or safety.
-- **Signals:** old-schema decoding, branching, or dual reads/writes embedded in current business services or normal repositories instead of isolated migration-owned code; bulk migration or destructive rewriting proposed merely because a schema changed, without evidence that existing data must be transformed or that the benefit justifies the risk; migration steps that can partially apply without a completion marker, validation, restart strategy, or recovery path.
+- **Signals:** old-schema decoding, branching, or dual reads/writes embedded in current business services or normal repositories instead of isolated migration-owned code; bulk migration or destructive rewriting proposed merely because a schema changed, without evidence that existing data must be transformed or that the operational benefit justifies the risk; migration steps that can partially apply without a completion marker, validation, restart strategy, or recovery path.
 - **Check:** What persisted-data transition decision applies, and what representative reader, semantic, invariant, storage, volume, and operational evidence supports it? If migration is required, which owner performs it, and how are ordering, completion, validation, interruption, recovery, and rollout handled?
 
 ### 6. Supported Product Scenario And Reachability Gate
@@ -219,7 +219,7 @@ Dead code is code that nothing in the product reaches anymore. It makes the code
 ### 10. Interfaces Follow Ownership
 
 - API, interface, query, and command shape is derived from the ownership and boundary model (Principle 3), not designed independently from it.
-- Interfaces, APIs, queries, commands, and reused service methods follow ownership and separation of concerns: one boundary, one subject, one responsibility, explicit identity shape.
+- Interfaces, APIs, queries, commands, and reused service methods must follow ownership and separation of concerns: one boundary, one subject, one responsibility, explicit identity shape.
 - Split APIs, queries, commands, and service methods by subject when identity meaning differs; prefer explicit `getAgent...` / `getTeam...` style boundaries over one generic method that guesses what an ID or selector means.
 - If one API, query, command, or service method accepts a generic ID or selector that may refer to different subjects, or returns a generic mixed-subject list, split it into explicit subject-owned boundaries or require an explicit compound identity shape.
 - **Signals:** generic interface boundaries, list or query surfaces, or service methods that accept one ambiguous ID or selector and then guess what subject it belongs to.
@@ -237,7 +237,7 @@ Dead code is code that nothing in the product reaches anymore. It makes the code
 ### 12. File Responsibility And Placement
 
 - One file owns one concrete concern. If one file owns multiple unrelated concerns, split it. If a subsystem or optional module grouping becomes a mixed catch-all, reorganize it into clearer owned files and boundaries.
-- File placement follows ownership; move or split files when their paths no longer match their real concern.
+- File placement must follow ownership; move or split files when their paths no longer match their real concern.
 - Subsystem, folder, and file mapping is spine-led and ownership-led, but not mechanical: do not impose a rigid one-folder-per-step rule. Specify target subsystems and files explicitly; use optional module groupings only when they improve readability or reflect an established codebase pattern.
 - Distinct structural depths often deserve distinct folders, but do not force artificial over-splitting. If a flatter layout is clearer, record why; if the layout splits more, make sure each split reflects a real owner or boundary.
 - **Signals:** names that do not describe the actual owner or role; misplaced files whose paths hide the real concern; folder layouts so flat they hide boundaries, or so split that they create artificial structure with no real owner.
