@@ -1,1 +1,0 @@
-../../../../../shared/style-guide.md
