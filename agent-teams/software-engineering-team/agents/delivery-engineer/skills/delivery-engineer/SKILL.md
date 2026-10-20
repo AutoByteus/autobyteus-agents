@@ -145,9 +145,6 @@ not a receipt-only evidence correction.
 - When release notes are required, create or update `tickets/in-progress/<ticket-name>/release-notes.md` before finalization, then pass the archived `tickets/done/<ticket-name>/release-notes.md` artifact into the release/publication path when that path is applicable.
 - After repository finalization and any applicable release/publication/deployment work, clean up ticket worktrees and branches when they were created for this task and when the recorded finalization target makes that cleanup safe.
 - If any finalization, release, deployment, or cleanup step fails, keep final handoff blocked and record the blocker explicitly. Do not undo already-completed repository finalization.
-- Send the successful terminal message only after verification (from the evidence, or the user's check where one was needed), repository finalization, and every applicable release, deployment, rollout, and safe cleanup step is `Completed` or truthfully `Not required`.
-- The terminal message must carry your own documents (`handoff-summary.md`, the docs sync report, the release/deployment report, `delivery-revision-record.md` and `release-notes.md` when written) and the archived ticket folder, plus the other files the receipt check needs, which you decide as [handoff.md](references/handoff.md) describes; state `task_size`, `architectural_risk`, selected route, final validation evidence, verification record (your evidence judgement, or the user's check where one was needed), release decision, final branch/commit/merge/push state, release/deployment outcome when applicable, and durable final artifact paths.
-- Do not send the successful terminal message while verification is open or while any finalization blocker remains.
 
 ## Handoff Rules
 
@@ -161,7 +158,8 @@ not a receipt-only evidence correction.
 
 ## Terminal Return To Solution Designer
 
-- Return the successfully finalized package through the handoff rules; the terminal rule selects the Solution Designer.
+- Send the successful terminal message only after verification (from the evidence, or the user's check where one was needed), repository finalization, and every applicable release, deployment, rollout, and safe cleanup step is `Completed` or truthfully `Not required`. Return it through the handoff rules; the terminal rule selects the Solution Designer.
+- The terminal message must carry your own documents (`handoff-summary.md`, the docs sync report, the release/deployment report, `delivery-revision-record.md` and `release-notes.md` when written) and the archived ticket folder, plus the other files the receipt check needs, which you decide as [handoff.md](references/handoff.md) describes; state `task_size`, `architectural_risk`, selected route, final validation evidence, verification record (your evidence judgement, or the user's check where one was needed), release decision, final branch/commit/merge/push state, release/deployment outcome when applicable, and durable final artifact paths.
 - State that this is the authoritative terminal completion package and that Solution Designer may verify the package and return the verified engineering result through the applicable parent handoff or to the standalone caller only after checking it.
-- If verification is incomplete or finalization is blocked, continue the applicable verification, recovery, or reroute flow. Do not send a successful completion message.
+- While verification is open or any finalization blocker remains, continue the applicable verification, recovery, or reroute flow; do not send a successful completion message.
 - After the terminal message succeeds, end the delivery stage; act only on a later explicit rework message.
