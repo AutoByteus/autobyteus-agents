@@ -15,15 +15,16 @@ Follow the AutoByteus repository's testing guide (`TESTING.md`, "Isolated deskto
 ## 3. Start a run
 
 - **Models:** `providerModelCatalogSnapshots(runtimeKind: "claude_agent_sdk") { llmModels { modelIdentifier name } }`. Use a capable model for the role under test and a cheap one for the rest.
+- **Single agent:** `createAgentRun(input: { agentDefinitionId, workspaceRootPath, llmModelIdentifier, runtimeKind, autoExecuteTools: true }) { success message runId }`.
 - **Team:** `createAgentTeamRun(input: { teamDefinitionId, teamConfigs: [{ teamAddress: "/", runtimeKind, llmModelIdentifier, autoExecuteTools: true, workspaceRootPath }], memberConfigs: [{ memberAddress, agentDefinitionId, runtimeKind, llmModelIdentifier, autoExecuteTools: true, workspaceRootPath }] })`. Every member needs an entry.
 - **Org:** `createAgentOrgRun(input: { agentOrgDefinitionId, rootConfiguration: { runtimeKind, llmModelIdentifier, autoExecuteTools: true, workspaceRootPath }, teamOverrides: [], agentOverrides: [] })`.
 - **Member run IDs** are in `<dataRoot>/server-data/memory/agent_teams/<teamRunId>/team_run_execution_tree.json`, or for an Org in `getAgentOrgRunInspection(orgRunId)`.
 
 ## 4. Give the scenario and observe
 
-- **Scenario:** build the smallest realistic input that exercises the change, such as a request that needs the new route, or a test repository with the trap the rule is about.
-- **Send** the message to the member with [send-message.mjs](../scripts/send-message.mjs). Run it from a folder outside the repositories, and point `--ws-module` at a `package.json` whose `node_modules` contains `ws`, for example the AutoByteus server's.
-- **Observe from files**, with a background wait loop rather than repeated manual checks:
+- **Scenario:** build the smallest realistic input that exercises the change, such as a request that needs the new route, or a test repository with the trap the rule is about. When the change is about how an agent judges or designs, ask a neutral question that does not hint at the answer, and run it on the old text and on the new text: load one package, run, remove it, load the other (both define the same IDs), or use two instances. Give each run its own copy of the repository it works on: runs write notes there, and a later run that finds an earlier run's notes builds on them instead of judging independently.
+- **Send** the message to the agent or member with [send-message.mjs](../scripts/send-message.mjs) (`--kind agent`, `team`, or `org`; `--text-file` for a long scenario). Run it from a folder outside the repositories, and point `--ws-module` at a `package.json` whose `node_modules` contains `ws`, for example the AutoByteus server's.
+- **Observe from files.** [wait-for-reply.mjs](../scripts/wait-for-reply.mjs) waits until a run's turn has ended and prints its final reply; run it in the background for long turns. An agent can add a short postscript after a background task; when the printed reply reads like one, find the main reply in the traces. Then read:
   - the run's message log (`team_communication_messages_active.jsonl` or `agent_org_communication_messages_active.jsonl`; `senderAgentRunId`, `content`);
   - each member's `raw_traces_active.jsonl` (`trace_type` `user`, `assistant`, tool calls);
   - the files the agents write.
@@ -32,5 +33,5 @@ Follow the AutoByteus repository's testing guide (`TESTING.md`, "Isolated deskto
 ## 5. Record and clean up
 
 - **Evidence:** save excerpts with a header (case, step, app version, model, date), as the target team's evidence rules describe, in the ticket folder.
-- **Clean up:** terminate the runs (`terminateAgentTeamRun`, `terminateAgentOrgRun`), stop the instance, and remove temporary folders.
+- **Clean up:** terminate the runs (`terminateAgentRun`, `terminateAgentTeamRun`, `terminateAgentOrgRun`), stop the instance, and remove temporary folders.
 - **Re-run after a fix:** when a check leads to a fix, run it again on the final text.

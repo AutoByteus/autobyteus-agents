@@ -124,6 +124,14 @@ For `create`, inspect repository instructions and analogous packages, then selec
 
 When optimizing, compare the observed package with intended and preserved behavior. Diagnose structure and ownership, flow, grounding, then wording; repeated text may signal a wrong owner or broken flow. Choose whether to add, move, merge, remove, or update a rule before trimming sentences.
 
+**Restructure at the right level.** A package drifts as many small changes land, each right on its own. Judge its structure at three levels:
+
+1. **Inside a file:** order, repeats, wording.
+2. **A file:** whether its name still describes most of what it holds, and whether it sits where its readers look. Split a file whose parts serve different readers or different moments in the work; merge files that do one job.
+3. **The file set:** what each file is for, who reads it and when, and how the files connect. Ask whether you would draw these boundaries if you started fresh.
+
+The full read before an update shows the signals: a name that no longer fits the content; a file that keeps gaining sections for other readers; one task that sends the reader through many files, or one rule that needs many cross-links; fixes that each add a file or section instead of extending an owner; one concept under several names. Record them as findings. Propose a restructure above the file level as its own change, separate from the behavior change in hand, unless that change cannot be done well without it. Start it from the readers and what each needs when, map every old file, section, and name to its new home, update every link, and check in a live run that the agents still behave as before.
+
 Apply the change at its owner and reconcile configured names, member references, routes, links, and human docs. Remove obsolete paths when an approved replacement makes them stale; keep a compatibility path only when its consumer and lifecycle are justified.
 
 Before declaring completion, validate as [step 4](../SKILL.md#4-validate-and-recover) describes and capture observed results and limitations in the durable result. If intent, approval, or package identity is material and ambiguous, return a precise gap rather than inventing a role, tool, recipient, capability, or permission.
