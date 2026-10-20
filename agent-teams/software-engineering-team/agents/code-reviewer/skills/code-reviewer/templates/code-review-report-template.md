@@ -323,11 +323,7 @@ Findings outside this ticket go in the ticket's `follow-ups.md` ([ticket-scope.m
 
 ## Recommended Recipient
 
-- `Local Fix` -> `implementation_engineer` when the bounded fix is in implementation-owned source or packaging
-- `Local Fix` -> `api_e2e_engineer` when the bounded fix is an invalid/stale test, fixture, environment, execution, or report problem
-- `Design Impact` -> `solution_designer`
-- `Requirement Gap` -> `solution_designer`
-- `Unclear` -> `solution_designer`
+- Owner of the classified outcome (skill: Classification Rules) and the recipient `get_handoff_rules` returned for it:
 
 Routing note:
 - Implementation-owned fixes return through implementation review and API/E2E again.

@@ -355,22 +355,18 @@ For a finalized receipt, write the verification result in the active reporting
 workspace and link the finalized artifacts read-only. Do not reopen a cleaned-up
 worktree or modify finalized solution documents merely to report the receipt.
 
-Call `get_handoff_rules`, apply every matching rule, record the resulting route
-in the handoff/result file, and use `send_message_to` with each exact returned
-`recipient_address`. Mention the handoff file's absolute
+Hand off as [handoff.md](references/handoff.md) describes, and record the
+resulting route in the handoff/result file. Mention the handoff file's absolute
 path in the short message. Every handoff carries your own documents: the
 handoff file, `requirements-doc.md`, `investigation-notes.md`,
 `solution-revision-record.md` and, once written, `design-spec.md`. Add the
 other files the receiver needs for its next step, such as a supplement or a
 Product artifact; you decide which, as
-[handoff-references.md](references/handoff-references.md) describes, and do
-not forward everything you received. Attach them in the tool's reference-files
-field. Do not invent recipients. When the user named a collaborator,
+[handoff.md](references/handoff.md) describes, and do
+not forward everything you received. When the user named a collaborator,
 send to it as the agent instructions describe, whether or not a rule applies;
 otherwise, if no rule applies, return the result to the user or calling
-workflow. Stop after all required handoffs
-succeed; do not poll or perform the receiving specialist's work. Do not use
-Codex-native collaboration tools while acting as this team member.
+workflow. Do not perform the receiving specialist's work.
 
 ## Finalized Delivery Receipt
 

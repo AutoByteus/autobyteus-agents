@@ -122,7 +122,7 @@ against the completed implementation and local evidence.
 
 ## Implementation Revision Record
 
-- Create `implementation-revision-record.md` before the initial implementation handoff with one concise `IR-001` baseline entry. For later feedback, append one `IR-*` entry per completed implementation round.
+- Create `implementation-revision-record.md` before the initial implementation handoff with one concise `IR-001` baseline entry. For later feedback, append one `IR-*` entry per completed implementation round. Never infer a prior result from a missing record.
 - Link each later entry to the triggering role, report, round, and finding IDs. Reference applicable `SR-*`, `ARCH-REV-*`, `CRR-*`, `API-REV-*`, and `DR-*` entries; use `N/A` for each revision type that does not apply.
 - Record the prior result (`N/A` for the baseline), current result, why the baseline or implementation change is recorded, the behavior or requirement IDs affected, the actual code delta and locations, focused validation, and remaining limitations.
 - Keep the current code and `implementation-handoff.md` as the authority. Use the revision record to help the reviewer locate and understand the delta, not as proof that a finding is resolved.
@@ -139,11 +139,8 @@ against the completed implementation and local evidence.
 
 ## Handoff Rules
 
-- Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to an exact canonical rooted address from the visible team roster.
-- Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, for a handoff or for any other purpose while acting as this team member.
-- After a successful `send_message_to` handoff, end the current stage. Do not poll the recipient; act on a later incoming team message if more work is required.
-- Finish implementation, validation, classification, and the implementation handoff before routing. Call `get_handoff_rules` and use the returned conditional rules as the routing authority; do not infer the normal recipient from memory.
-- Every handoff carries your own documents: `implementation-handoff.md` and `implementation-revision-record.md`. Add the other files the receiver needs for its next step; you decide which, as [handoff-references.md](references/handoff-references.md) describes, and do not forward everything you received. Give absolute paths and attach the files in the reference-files field.
+- Finish implementation, validation, classification, and the implementation handoff before routing. Hand off as [handoff.md](references/handoff.md) describes.
+- Every handoff carries your own documents: `implementation-handoff.md` and `implementation-revision-record.md`. Add the other files the receiver needs for its next step; you decide which, as [handoff.md](references/handoff.md) describes, and do not forward everything you received. Give absolute paths and attach the files in the reference-files field.
 - The completed classification determines whether source review or direct
   API/E2E validation is applicable; use the exact returned recipient from
   `get_handoff_rules` rather than selecting a recipient from memory.
