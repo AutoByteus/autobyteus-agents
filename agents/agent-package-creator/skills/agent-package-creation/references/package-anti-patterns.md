@@ -32,6 +32,7 @@ Concrete mistakes found in real package work. The [package design principles](pa
 | 22 | A review standard the reviewer cannot read | Skill content |
 | 23 | Merged into 4 | Package design |
 | 24 | Judging only the fix the request proposes | Creator process |
+| 25 | A link that exists only for another file's links | Package design |
 
 ## Package design
 
@@ -83,6 +84,13 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Breaks:** [§2](package-design-principles.md#2-design-responsibilities-before-files): a handoff moves a completed result; the receiver depends on that result, not on the sender's whole history.
 - **Instead:** Let the sender decide after its work: its result plus the files the receiver opens for its next step. Earlier material stays reachable through the documents' links. Give guidance and an example, not a fixed list per route.
 - **Detect:** Search handoff text for "complete", "cumulative", "all relevant", "every still-relevant" or "preserve" next to "package" or "attach"; check that no rule makes a reference list grow with every hop.
+
+### 25. A link that exists only for another file's links
+
+- **Incident:** The Software Engineering Team's shared `ticket-scope.md` links two design files. When delivery and API/E2E got `ticket-scope.md`, those links broke in their skill folders, and the Creator linked both design files into those roles too (#71). The roles never use them, and every change to the 1,800 lines sent their agents an update notice; the user asked why delivery has the design principles (2026-10-20). The STORM team has the same coupling the other way round: its shared file links a file no role has, so the link is broken in six skills.
+- **Breaks:** [§3](package-design-principles.md#3-give-each-rule-one-authoritative-file): what a role reads is owned by its skill; a shared file must not decide it through its own links.
+- **Instead:** A role links only the files its skill names. A shared file links only files that every role reading it also has, and names the others in plain text ("Core Principle 7 in the team's design principles").
+- **Detect:** [check-links.py](../scripts/check-links.py) reports links no file of the skill names, and broken links in a shared file seen through a role's folder.
 
 ## Skill content
 
