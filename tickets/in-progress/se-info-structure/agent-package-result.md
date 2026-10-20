@@ -32,7 +32,7 @@ Not changed (cosmetic, per the analysis): `design-principles.md` keeps the routi
 | --- | --- | --- |
 | Links and unnamed links | Pass | `check-links.py` on the SE and STORM teams: 0 broken, 0 unnamed after each PR. In PR 4 it caught my own new link from `handoff.md` to `evidence-files.md`, which four roles lack, and a wrong anchor; both fixed. |
 | Leftovers | Pass | No `/member` addresses in the SE team's skills or templates. "Use AutoByteus `send_message_to`…", "Codex-native" and "Do not poll" appear only in `handoff.md`. No "Example 11" or `handoff-references` left. |
-| End-to-end team run | In progress at merge time | The isolated app, the whole team, a tiny ticket (`subtract` in a shared package, so it takes the review route), on the PR 4 text. The user asked to merge on the static checks; the run's result is reported to the PM afterwards, and any defect it shows is fixed in a follow-up change. |
+| End-to-end team run | Pass | `evidence/E2E-01-team-run.md`. The whole team ran one ticket on the restructured text (`subtract` in a test package, high risk, so the full review route). All nine handoffs reached the right owner through `handoff.md` and the rules, with no address in any skill: Solution Designer → architecture reviewer (Pass, plus the no-action note) → implementation → code reviewer (Pass, plus the no-action note) → API/E2E (Pass) → code-reviewer test review (Not Applicable: no durable test changed) → delivery (merged into `main`, ticket archived) → Solution Designer (receipt verified, Terminal, no follow-ups). No role hit a missing or broken file. About 33 minutes for a three-line change, which shows the proportionality finding above. |
 
 ## Follow-ups found (other teams)
 
