@@ -23,12 +23,13 @@ Follow the AutoByteus repository's testing guide (`TESTING.md`, "Isolated deskto
 ## 4. Give the scenario and observe
 
 - **Scenario:** build the smallest realistic input that exercises the change, such as a request that needs the new route, or a test repository with the trap the rule is about. When the change is about how an agent judges or designs, ask a neutral question that does not hint at the answer, and run it on the old text and on the new text: load one package, run, remove it, load the other (both define the same IDs), or use two instances. Give each run its own copy of the repository it works on: runs write notes there, and a later run that finds an earlier run's notes builds on them instead of judging independently.
+- **Test data:** create what each point of the change needs in order to happen: files, seeded state, a stale process, a misleading log, a merged branch. Make the data consistent, because an agent reacts to a flaw in the data instead of to the rule under test. Leave the agent the tools and reading it would have in real use, so it acts on the text under test.
 - **Send** the message to the agent or member with [send-message.mjs](../scripts/send-message.mjs) (`--kind agent`, `team`, or `org`; `--text-file` for a long scenario). Run it from a folder outside the repositories, and point `--ws-module` at a `package.json` whose `node_modules` contains `ws`, for example the AutoByteus server's.
 - **Observe from files.** [wait-for-reply.mjs](../scripts/wait-for-reply.mjs) waits until a run's turn has ended and prints its final reply; run it in the background for long turns. An agent can add a short postscript after a background task; when the printed reply reads like one, find the main reply in the traces. Then read:
   - the run's message log (`team_communication_messages_active.jsonl` or `agent_org_communication_messages_active.jsonl`; `senderAgentRunId`, `content`);
   - each member's `raw_traces_active.jsonl` (`trace_type` `user`, `assistant`, tool calls);
   - the files the agents write.
-- **Judge** against what the change should produce: the order of messages, the rule an agent quotes from `get_handoff_rules`, the file it writes, where it stops.
+- **Judge** against what the change should produce: the order of messages, the rule an agent quotes from `get_handoff_rules`, the file it writes, where it stops. List each point of the change and find where the run exercised it. A point the run did not exercise is untested, not passed: build data that exercises it and run again.
 
 ## 5. Record and clean up
 
