@@ -308,13 +308,9 @@ Rules:
 
 ## Follow-ups
 
-Findings outside this ticket. They do not fail the review, lower the score, or reopen implementation.
+Findings outside this ticket go in the ticket's `follow-ups.md` ([ticket-scope.md](../references/ticket-scope.md#recording-follow-ups)). They do not fail the review, lower the score, or reopen implementation.
 
-| Follow-up ID | What is wrong, where | Evidence | Why it is outside this ticket | Suggested Task description |
-| --- | --- | --- | --- | --- |
-|  |  |  |  |  |
-
-- Sent to (address and message reference), or `No Task manager found — kept in this report`, or `None`:
+- Follow-ups this review added: <FU IDs, or None>
 
 ## Classification
 

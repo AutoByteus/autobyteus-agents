@@ -118,7 +118,7 @@ gate.
   replace them with fakes; confirm a suspicion with a cheap probe. Judge each
   problem you find with [ticket-scope.md](references/ticket-scope.md): this
   ticket, a prerequisite, or a follow-up; for a prerequisite, see
-  Prerequisites.
+  Prerequisites, and record a follow-up as that file describes.
 - Assign stable behavior, scenario, use-case, requirement and acceptance-criteria IDs;
   define current, desired and preserved behavior, measurable constraints,
   data-continuity requirements, unknowns and verification intent. Write the
@@ -219,8 +219,8 @@ as well as how to design.
    affected files, evidence and design-health decision. Use reasoned `N/A` for
    genuinely inapplicable details rather than inventing architecture.
    Once the design is decided, write its Change Scope: the areas and files this
-   change modifies, what nearby it deliberately leaves alone, and problems found
-   during design that become follow-ups.
+   change modifies, what nearby it deliberately leaves alone, and the IDs of the
+   follow-ups found during design.
 5. Resolve requirement implications using Recovery below, rather than silently
    changing intended behavior to fit the architecture.
 
@@ -332,6 +332,15 @@ Persist owned artifacts and classify the result before routing:
   rather than triggering a handoff.
 - `Terminal`: verified delivery receipt as defined below; no repeated delivery.
 
+**Follow-ups.** When a result leaves the team, `Terminal` or `Blocked` returned
+to the user or caller, first send the rows of the ticket's `follow-ups.md` not
+yet sent ([ticket-scope.md](references/ticket-scope.md)), in one message, to
+the requirements doc's "Requested by": for each, what is wrong and where, the
+evidence, why it is outside this ticket and a suggested Task description, urgent
+rows first, with the file attached. Make it part of the result when the result
+goes there. Then fill in Sent. When the user asked you directly, put them in
+your result to the user.
+
 Every result carries the stable package identifier, current SR entry when one
 exists, absolute artifact paths, approval state, scope, workspace/base/finalization
 context, open risks, relevant scenario IDs/evidence uncertainty and next expected action.
@@ -376,16 +385,8 @@ cleanup. On a returned `Delivery Completed` package:
    `Delivery Receipt Evidence Gap`, the returned receipt reference, specific
    missing evidence and required correction. Use the applicable handoff rules;
    do not claim Terminal or redo repository work.
-3. When evidence is sufficient, collect the follow-ups the package recorded
-   (prerequisites were raised when they were found)
-   but nobody sent yet: those in the design spec's Change Scope, the design
-   review report's out-of-scope recommendations, and the implementation
-   handoff. The code reviewer's report records the ones it sent.
-   Send them together, in one message, to the delegating agent the requirements
-   doc records under "Requested by", with what, where, evidence and a suggested
-   Task description; when the user asked directly, list them in your result.
-4. Classify `Terminal` and return the verified result using the Result And
-   Handoff procedure above.
+3. When evidence is sufficient, classify `Terminal` and return the verified
+   result using the Result And Handoff procedure above, follow-ups included.
 
 Do not reopen approved requirements merely because delivery returned. A genuine
 requirement gap uses Recovery; a non-requirement blocker stays a blocker.

@@ -168,7 +168,7 @@ Dead code is code that nothing in the product reaches anymore. It makes the code
 - **Evidence:** before removing code, show that nothing reaches it. A search finds no references, and the compiler, linter, or unused-export check agrees where the project has one. Also check entry points a search can miss: dynamic imports, reflection, configuration and routing files, plugin or script entry points, and public APIs used outside the repository. Code reached only through such an entry point is not dead.
 - **Scope:**
   - remove dead code in the files and modules a change touches, including code that was already dead before the change;
-  - list dead code found elsewhere as a follow-up cleanup task with its evidence. Do not leave it unrecorded, and do not mix it into an unrelated change.
+  - record dead code found elsewhere as a follow-up with its evidence, in the ticket's `follow-ups.md` ([ticket-scope.md](ticket-scope.md#recording-follow-ups)). Do not leave it unrecorded, and do not mix it into an unrelated change.
 - Removing dead code does not change approved behavior, because nothing reaches it. If removal would change something a user, system, or external caller can still reach, the code is not dead; treat the removal as a behavior change that needs approved requirements.
 - Record each removal, with its evidence, in the design's removal plan.
 

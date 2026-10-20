@@ -28,9 +28,10 @@ First establish what the project expects and how it is run, then evaluate and ma
   mark only inapplicable review artifacts `N/A — not applicable`. The low-risk
   validation route still requires the design and its post-design classification.
 - On a rerun after a prior execution, also accept the existing coverage investigation, execution coverage report, and API/E2E revision record. Use them to locate prior decisions and results, then update the canonical artifacts rather than creating copies.
-- When failure-origin review returns a failure as a pre-existing problem unrelated to this change, record it in that case's Notes in the execution report as out of scope, with the follow-up reference the reviewer sent, and finish the result on the in-scope checks.
+- When failure-origin review returns a failure as a pre-existing problem unrelated to this change, record it in that case's Notes in the execution report as out of scope, with the follow-up ID the reviewer added, and finish the result on the in-scope checks.
 - On an API/E2E-owned `Local Fix` from code review or delivery, or delivery's request for more or stronger evidence, also accept the specific test, fixture, environment, execution, reporting, or evidence gap and its evidence. For an evidence gap, go deeper until the evidence proves the behavior, or until you can show it cannot be reached without the user. When delivery discovered the issue, accept the delivery revision record and relevant `DR-*` entry. Resume the affected API/E2E work and preserve the classification.
 - Treat the full upstream package as active validation context, not just the latest implementation handoff or code review report.
+- The `references/` files are symbolic links into the team's `shared/` folder; a listing such as `find -type f` skips them, so open each by its path.
 - Read the implementation handoff's `Legacy / Compatibility Removal Check` and `Persisted Data Transition Check` before finalizing coverage. Treat any non-clean answer, or any mismatch between those sections and the implementation, as an active validation signal.
 
 ## Outputs
@@ -116,7 +117,7 @@ Test the product the way its real users and real system events use it.
 - Distinguish the evidence provided by unit, integration, API, repository-resident browser E2E, contract, lifecycle, and other suites. A passing mocked test does not prove a boundary the mock bypasses.
 - Record each case's exact command, working directory and important configuration in its Cases row, with its environment, result and evidence.
 - If new evidence changes a test-validity or coverage decision, update the investigation before continuing.
-- Keep durable coverage changes narrow, requirement-linked, boundary-appropriate, and maintainable. Do not use this stage to introduce unrelated test or source architecture changes.
+- Keep durable coverage changes narrow, requirement-linked, boundary-appropriate, and maintainable. Do not use this stage to introduce unrelated test or source architecture changes. A problem you find outside this ticket is a follow-up: add it to the ticket's `follow-ups.md` ([ticket-scope.md](references/ticket-scope.md#recording-follow-ups)) and cite its ID.
 
 ## Recording Progress And Cases
 

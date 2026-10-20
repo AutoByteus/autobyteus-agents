@@ -130,8 +130,8 @@ For API/E2E failure-origin review:
    ticket or is a follow-up (Ticket Scope).
 7. Complete the scorecard, findings, classification, and routing only after every
    material candidate has been promoted or explicitly rejected by the gate.
-   Score and route this ticket's findings only; record follow-ups and send the
-   follow-up request (Ticket Scope). If a candidate is held for missing
+   Score and route this ticket's findings only; record follow-ups as Ticket
+   Scope says. If a candidate is held for missing
    evidence, stop and mark the dependent review `Unclear` or `Blocked` without
    scoring, routing, or prescribing machinery for that candidate. Then update
    the applicable canonical report to the latest complete result and append the
@@ -199,8 +199,11 @@ Change Scope. Then act:
 - **This ticket:** classify and route it as usual.
 - **Prerequisite:** route it to the Solution Designer as a `Requirement Gap`,
   naming it a prerequisite, with its evidence; not as a `Local Fix`.
-- **Follow-up:** record it under Follow-ups in the report. It does not fail the
-  review, lower the score, or reopen implementation.
+- **Follow-up:** add it to the ticket's `follow-ups.md` as
+  [ticket-scope.md](references/ticket-scope.md#recording-follow-ups) describes,
+  and list its ID under Follow-ups in your report. It does not fail the review,
+  lower the score, or reopen implementation. You do not send follow-ups; the
+  Solution Designer sends them when the ticket leaves the team.
 - **Requirement Gap:** route it as usual.
 
 Stay within the entry point you were called for. An unrelated observation
@@ -213,15 +216,6 @@ a worked case with the anti-pattern, the two questions and when the decision
 would change, plus common situations such as regressions, old bugs that block
 the ticket, old and new design problems, dead code, missing tests and old
 security risks.
-
-Send the follow-ups from one review together, in one message, to the agent that
-manages the project's Tasks: the delegating agent the requirements doc records
-under "Requested by", or else an agent you find with `list_available_agents`
-whose description says it manages Project Tasks. For each follow-up give what
-is wrong, where, the evidence, why it is outside this ticket, and a suggested
-Task description, and record in the report where you sent it. When no such
-agent exists, leave the follow-ups in the report. Then finish and hand off the
-review result as usual.
 
 ## General Review Rules
 
@@ -281,14 +275,14 @@ review result as usual.
   product path itself.
 - Inspect the failure evidence and the smallest relevant test, environment, execution, or implementation path needed to classify the cause.
 - Decide whether the origin is an implementation defect, earlier review gap, runtime-only behavior, implementation change after review, invalid/stale test, fixture/environment/execution issue, design impact, requirement gap, a pre-existing problem unrelated to this change, or unclear.
-- For a pre-existing problem unrelated to this change, send a follow-up request (Ticket Scope) and return the package to the API/E2E owner to record the failure as out of scope. If the pre-existing problem keeps an in-scope acceptance criterion from passing, it is this ticket or a prerequisite instead ([ticket-scope.md](references/ticket-scope.md)); route it as Ticket Scope says.
+- For a pre-existing problem unrelated to this change, add it as a follow-up (Ticket Scope) and return the package to the API/E2E owner, with its follow-up ID, to record the failure as out of scope. If the pre-existing problem keeps an in-scope acceptance criterion from passing, it is this ticket or a prerequisite instead ([ticket-scope.md](references/ticket-scope.md)); route it as Ticket Scope says.
 - When a real review gap exists, state the exact source evidence or invariant that should have been caught and update only the affected finding or score rationale.
 - When the failure was not reasonably detectable in source review, say so explicitly rather than treating every runtime failure as reviewer error.
 
 ## Classification Rules
 
 - `Pass` is a review outcome, not a failure classification.
-- A `Follow-up` is not a classification either: it records a finding outside this ticket and leaves the team as a follow-up request (Ticket Scope).
+- A `Follow-up` is not a classification either: it records a finding outside this ticket in `follow-ups.md` (Ticket Scope).
 - `Local Fix` -> `/implementation_engineer` for a bounded implementation or packaging defect.
 - `Local Fix` -> `/api_e2e_engineer` for a test-code, stale-test, fixture, environment, execution, or report problem.
 - `Design Impact` -> `/solution_designer` for a structural issue or inadequate reviewed design.
@@ -302,7 +296,7 @@ review result as usual.
 
 - Use AutoByteus `send_message_to` for every inter-member handoff or reroute, setting `recipient_address` to an exact canonical rooted address from the visible team roster.
 - Do not call Codex-native multi-agent or collaboration tools, including `spawn_agent`, `wait_agent`, or `list_agents`, while acting as this team member.
-- Finish the applicable review result, classify the outcome, call `get_handoff_rules`, and use the returned conditional rules as the routing authority before sending any handoff or notification. Follow-up requests leave the team and are not team handoffs (Ticket Scope).
+- Finish the applicable review result, classify the outcome, call `get_handoff_rules`, and use the returned conditional rules as the routing authority before sending any handoff or notification.
 - Every handoff carries your own documents: the report of the review you did (`code-review-report.md` or `api-e2e-test-review-report.md`) and `code-review-revision-record.md`. Add the other files the receiver needs for its next step; you decide which, as [handoff-references.md](references/handoff-references.md) describes, and do not forward everything you received. Give absolute paths and attach the files in the reference-files field.
 - On implementation-review pass, first send the result to the exact returned recipient for the primary pass rule (normally `/api_e2e_engineer`).
 - After that primary handoff succeeds, send the exact returned recipient for the informational pass rule (normally `/implementation_engineer`) a short notification containing `Pass`, the current `CRR-*`, the code-review report path, the primary returned recipient as the next recipient, and `Informational — no action required`.

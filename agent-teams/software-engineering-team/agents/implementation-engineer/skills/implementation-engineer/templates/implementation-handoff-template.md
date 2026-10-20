@@ -74,10 +74,10 @@ upstream behavior narrative.
 - Backward-compatibility mechanisms introduced: `None` / `List + redesign required`
 - Legacy old-behavior retained in scope: `No` / `Yes (blocked)`
 - Dead code in the touched files and modules removed (Core Principle 7): `Yes` / `No (blocked)`
-- Dead code found elsewhere, listed as follow-up: <items with evidence, or None>
+- Dead code found elsewhere, added to `follow-ups.md`: <FU IDs, or None>
 - Shared structures remain tight (no one-for-all base or overlapping parallel shapes introduced): `Yes` / `No (blocked)`
 - Canonical shared design guidance was reapplied during implementation, and file-level design weaknesses were routed upstream when needed: `Yes` / `No (blocked)`
-- Changed source implementation files stayed within proactive size-pressure guardrails (no file taken over `>500` or grown while already over it by this change; files already over it and not grown listed as follow-ups; `>220` assessed/acted on): `Yes` / `No (blocked)`
+- Changed source implementation files stayed within proactive size-pressure guardrails (no file taken over `>500` or grown while already over it by this change; files already over it and not grown added to `follow-ups.md`; `>220` assessed/acted on): `Yes` / `No (blocked)`
 - Notes:
 
 ## Persisted Data Transition Check (When Applicable)

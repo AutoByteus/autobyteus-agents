@@ -66,4 +66,5 @@ Every role keeps to the ticket's scope: the requirements doc's Scope Guardrail
 and the design spec's Change Scope. [shared/ticket-scope.md](shared/ticket-scope.md)
 says whether a problem found is part of this ticket, a prerequisite (its own
 Task first, which the Solution Designer asks the delegating agent to create), or
-a follow-up for the agent that manages the project's Tasks.
+a follow-up, recorded in the ticket's `follow-ups.md` and sent by the Solution
+Designer when the ticket leaves the team.
