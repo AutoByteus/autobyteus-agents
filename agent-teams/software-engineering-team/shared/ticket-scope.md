@@ -57,7 +57,7 @@ Solution Designer sends follow-ups, when a result leaves the team (its skill's
 Result And Handoff), and it fills in Sent; no other role messages anyone about
 a follow-up.
 
-## Example
+## Example: a prerequisite
 
 The ticket (autobyteus-175) asked what works today for Jira through a ready-made
 MCP server.
@@ -77,5 +77,61 @@ MCP server.
   hold MCP secrets, and the MCP gateway exposed credentialed tools without a
   token.
 
-Example 11 in the team's design examples works through the other kinds during
-technical review.
+## Example: a follow-up found during technical review
+
+A UI ticket adds a filter to a task list. The requirements doc's Scope Guardrail
+covers the filter use case; the design spec's Change Scope lists the list
+component and its query, and leaves the sidebar alone. Implementation and
+API/E2E have passed, and the ticket comes back for the test-code review. While
+reading, the reviewer notices that the neighbouring sidebar loses its scroll
+position on refresh.
+
+**The wrong finding:**
+
+```text
+The sidebar loses its scroll position.
+Classify it as a Local Fix and send it to the implementation engineer.
+```
+
+The ticket reopens, the fix needs new tests, the next round finds more, and the
+ticket keeps growing. The finding may be a real bug, but nothing ties it to this
+ticket.
+
+**The judgement:**
+
+Ask how critical the finding is to this ticket, with two questions:
+
+- **Did this change introduce it?** The sidebar code is unchanged, and the bug
+  also happens on the base branch. No.
+- **Does the ticket fail without fixing it?** The filter works and its
+  acceptance criteria pass. No.
+
+It is not part of this ticket. The reviewer judges the test review on the
+changed tests, adds the sidebar bug to the ticket's `follow-ups.md` with its
+evidence, and the ticket goes on to delivery.
+
+**When the decision would change:**
+
+If the bug does not happen on the base branch because the new filter reloads the
+whole list and the sidebar with it, the change introduced it, so it belongs to
+this ticket.
+
+A ticket stays reviewable when its scope stays stable. A real problem found
+outside that scope is still recorded as a follow-up and sent on, so nothing is lost,
+but it does not reopen work that already does what the ticket promised.
+
+## Common situations
+
+| Situation | Where it belongs | Anti-pattern |
+| --- | --- | --- |
+| The change breaks a preserved behavior, such as existing sorting | This ticket: the change introduced it | Calling it an old weakness and shipping the regression |
+| An old bug in code the ticket calls makes an in-scope acceptance criterion fail | This ticket when the bug is in the functionality the ticket changes; a prerequisite when it is in other functionality: its own Task first (above); `Requirement Gap` if the fix needs unapproved behavior | Making it a follow-up because the bug is old, or quietly fixing other functionality inside this ticket |
+| The new code duplicates logic that belongs to an existing owner | This ticket: a design problem the change adds | Accepting it because it works |
+| A module the change edits has old design debt, such as an oversized class, while the ticket works | Follow-up, unless the design spec's Task Design Health Assessment decided the refactor is needed now | Requiring the refactor because the ticket touched the file |
+| A source file was already over the 500-line limit before the change, and the change does not add to it | Follow-up: its own refactoring Task, unless the design spec decided the refactor is needed now | Failing this ticket for an old file's size |
+| A source file was already over the limit, and the change adds 100 lines to it | This ticket: the change made it worse. Put the new code in a properly owned file, or split the file if that is not possible | Calling it old debt, or refactoring the whole old file here |
+| The change takes a file over the 500-line limit, for example 400 lines plus 100 added | This ticket: the change introduced it | Calling it old debt and proposing a follow-up |
+| Dead code | As Core Principle 7 (No Dead Code) in the team's design principles scopes it: in touched files this ticket, elsewhere a follow-up | Ignoring it all, or demanding removal everywhere |
+| The change adds behavior without tests, and an old feature nearby has none either | Tests for the new behavior: this ticket; the old feature's coverage: a follow-up | Asking for the old feature's tests here |
+| An old security or data-loss risk near the change that the change does not reach or expose | Follow-up marked urgent, with its evidence; this ticket if the change exposes it | Fixing it quietly here, or dropping it as out of scope |
+| The code meets the design and works, but the reviewer would structure it differently | Not a finding | Sending it back for a preferred structure |
