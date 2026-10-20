@@ -1,0 +1,12 @@
+{
+  "seen_size": [2000, 1250],
+  "points": {
+    "a": [1706, 30],
+    "b": [409, 124],
+    "c": [75, 346],
+    "d": [704, 133],
+    "e": [596, 349],
+    "f": [651, 635]
+  },
+  "browser_screenshot": "No image. open_tab on file:///tmp/cuo-measure/page.html succeeded (tab_id b0d4a4, title 'Composer test'), but screenshot failed twice (default and full_page=true) with the same error: {\"error\":{\"code\":\"browser_bridge_unavailable\",\"message\":\"Browser screenshot produced no image bytes.\"}}. So I received no viewable image from the browser tools; the only image I could see was /tmp/cuo-measure/t2-dpr2.png, read via the Read tool (there is no read_media_file tool in this toolset), which the harness presented to me at 2000x1250 with a note that the original is 2560x1600 (scale factor 1.28)."
+}

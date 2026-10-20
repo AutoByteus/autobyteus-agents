@@ -1,0 +1,40 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Composer test</title>
+<style>
+body{font-family:-apple-system,Helvetica,Arial,sans-serif;margin:0;background:#f4f5f7;color:#222}
+header{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;background:#1d2a3a;color:#fff}
+header nav a{color:#cfe;margin-left:18px;font-size:14px;text-decoration:none}
+.wrap{display:grid;grid-template-columns:260px 1fr 300px;gap:20px;padding:20px 24px}
+.card{background:#fff;border-radius:8px;padding:14px;box-shadow:0 1px 2px #0002}
+.toolbar{display:flex;gap:4px;margin-bottom:8px}
+.toolbar button{width:26px;height:26px;border:1px solid #ccd;border-radius:4px;background:#fff;font-size:13px;padding:0}
+textarea{width:100%;height:90px;box-sizing:border-box}
+.split{display:inline-flex;margin-top:8px}.split button{border:none;background:#0a66c2;color:#fff;padding:7px 12px;font-size:14px}
+.split .caret{padding:7px 6px;border-left:1px solid #fff6}
+.post{border-bottom:1px solid #eee;padding:10px 0}.post .acts button{background:none;border:none;color:#556;font-size:12px;margin-right:10px;padding:2px}
+label{display:block;font-size:13px;margin:8px 0 3px}input[type=text],input[type=password]{width:100%;box-sizing:border-box;padding:6px}
+.close{position:relative;float:right;width:16px;height:16px;border:none;background:#ddd;border-radius:50%;font-size:10px;line-height:16px;padding:0}
+.long{height:1400px;background:linear-gradient(#fff,#e9eef5)}
+</style></head><body>
+<header><b>Pulse</b><nav><a id="nav-home" href="#">Home</a><a id="nav-jobs" href="#">Jobs</a><a id="nav-messages" href="#">Messages</a><a id="nav-notifications" href="#">Notifications</a><a id="nav-profile" href="#">Me</a></nav></header>
+<div class="wrap">
+ <aside class="card"><button class="close" id="dismiss" aria-label="Dismiss">✕</button><b>Sign in</b>
+  <label for="email">Email</label><input id="email" type="text" placeholder="you@example.com">
+  <label for="pw">Password</label><input id="pw" type="password">
+  <div style="font-size:13px;margin-top:8px"><input type="checkbox" id="remember"><label for="remember" style="display:inline">Remember me</label></div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px"><button id="signin" style="padding:6px 14px">Sign in</button><a id="forgot" href="#" style="font-size:12px">Forgot password?</a></div>
+ </aside>
+ <main class="card">
+  <div class="toolbar">
+   <button id="tb-bold" aria-label="Bold"><b>B</b></button><button id="tb-italic" aria-label="Italic"><i>I</i></button><button id="tb-underline" aria-label="Underline"><u>U</u></button><button id="tb-link" aria-label="Link">🔗</button><button id="tb-image" aria-label="Image">🖼</button><button id="tb-list" aria-label="List">☰</button><button id="tb-quote" aria-label="Quote">❝</button><button id="tb-code" aria-label="Code">&lt;/&gt;</button>
+  </div>
+  <textarea id="composer" placeholder="What do you want to talk about?"></textarea>
+  <div class="split"><button id="post-main">Post</button><button class="caret" id="post-caret" aria-label="More post options">▾</button></div>
+  <div style="margin-top:14px">
+   <div class="post"><b>Ana</b> shipped a new release today.<div class="acts"><button id="p1-like">Like</button><button id="p1-reply">Reply</button><button id="p1-share">Share</button></div></div>
+   <div class="post"><b>Ben</b> is hiring two engineers.<div class="acts"><button id="p2-like">Like</button><button id="p2-reply">Reply</button><button id="p2-share">Share</button></div></div>
+   <div class="post"><b>Chen</b> wrote about MCP transports.<div class="acts"><button id="p3-like">Like</button><button id="p3-reply">Reply</button><button id="p3-share">Share</button></div></div>
+  </div>
+ </main>
+ <aside class="card"><b>Trending</b><ol style="font-size:13px;padding-left:18px"><li><a id="tr-1" href="#">Agent teams in practice</a></li><li><a id="tr-2" href="#">Why tests fake the SDK</a></li><li><a id="tr-3" href="#">Retina screenshots and clicks</a></li></ol>
+  <div class="long"></div><button id="footer-follow" style="padding:6px 12px">Follow</button></aside>
+</div></body></html>

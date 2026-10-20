@@ -5,6 +5,7 @@
 - Base URL(s):
 - Account and login (for example, "session persists in browser profile"; "2FA via phone"):
 - Operating rules stricter than web-ui-automation defaults, if any:
+- Screen setup the controls below were seen in (browser window size, page zoom), if it matters:
 - Anti-automation sensitivity (observed warnings or blocks and what triggered them):
 
 ## Page map
@@ -14,8 +15,8 @@
 
 ## Elements
 
-| Control | Page / view | Locator (CSS, role, label, text, data-*, shadow path) | Notes | Last verified |
-| --- | --- | --- | --- | --- |
+| Control | Page / view | Looks like, where on screen | Locator (CSS, role, label, text, data-*, shadow path) | Notes | Last verified |
+| --- | --- | --- | --- | --- | --- |
 
 ### Locate scripts
 

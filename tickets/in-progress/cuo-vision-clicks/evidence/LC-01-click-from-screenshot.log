@@ -1,0 +1,41 @@
+# Live check LC-01: the operator clicks from a screenshot (new skill text)
+# AutoByteus 1.5.6 isolated instance, runtime claude_agent_sdk, model claude-opus-5, 2026-10-19
+# Screen: stub scrot returns t4-footer.png (2560x1600), stub xdotool reports 1280x800 and logs clicks. Truth: #footer-follow centre = screen (1003, 750).
+## prompt
+Please click the "Follow" button on the page that is open on the screen.
+
+Test setup note: this machine has no real X11. Stub X11 tools are in /tmp/cuo-stub/bin; put that folder first on PATH for every command (export PATH=/tmp/cuo-stub/bin:$PATH). The stubs behave like the real screen: scrot captures the current screen, xdotool reports the display and performs clicks. There is no browser you can inspect for this page. This is a harmless test page, so no confirmation is needed. When done, reply with what you did and the screen point you clicked.
+## stub call log
+scrot /private/tmp/cuo-live2/shot1.png
+xdotool getdisplaygeometry
+xdotool mousemove --sync 1003 750 click 1
+scrot /private/tmp/cuo-live2/shot2.png
+xdotool getdisplaygeometry
+## tool calls
+- Skill {"skill": "computer-use-operation"}
+- Bash {"command": "ls -la /private/tmp/cuo-live2/ 2>/dev/null; echo \"---\"; ls -R /private/tmp/cuo-live2/web-ui-sites /private/tmp/cuo-live2/computer-tools 2>/dev/null; echo \"--- stubs\"; ls /tmp/cuo-stub/bin", "description": "List workspace and stub tools"}
+- Bash {"command": "export PATH=/tmp/cuo-stub/bin:$PATH; cd /private/tmp/cuo-live2 && python3 .claude/skills/computer-use-operation/scripts/screen_capture.py /private/tmp/cuo-live2/shot1.png", "description": "Capture the current screen"}
+- Read {"file_path": "/private/tmp/cuo-live2/shot1.png"}
+- Bash {"command": "export PATH=/tmp/cuo-stub/bin:$PATH; file $(command -v xdotool); echo \"---\"; head -c 3000 $(command -v xdotool)", "description": "Inspect the stub xdotool"}
+- Bash {"command": "export PATH=/tmp/cuo-stub/bin:$PATH; cd /private/tmp/cuo-live2 && python3 .claude/skills/computer-use-operation/scripts/native_click.py --at 1567,1172 --scale 0.64", "description": "Click the Follow button"}
+- Bash {"command": "export PATH=/tmp/cuo-stub/bin:$PATH; cd /private/tmp/cuo-live2 && python3 .claude/skills/computer-use-operation/scripts/screen_capture.py /private/tmp/cuo-live2/shot2.png; echo \"--- calls\"; cat /tmp/cuo-stub/calls.log", "description": "Capture screen after click and show call log"}
+- Read {"file_path": "/private/tmp/cuo-live2/shot2.png"}
+- Bash {"command": "export PATH=/tmp/cuo-stub/bin:$PATH; cat $(command -v scrot); echo \"---\"; ls -la /tmp/cuo-stub/; md5 /private/tmp/cuo-live2/shot1.png /private/tmp/cuo-live2/shot2.png 2>/dev/null || md5sum /private/tmp/cuo-live2/shot*.png", "description": "Inspect scrot stub and compare screenshots"}
+- Bash {"command": "python3 -I -c \"\nfrom PIL import Image\nim=Image.open('shot1.png').convert('RGB')\nw,h=im.size\npx=im.load()\n# find the button: light gray fill (#f0f0f0-ish) with dark border, near bottom right\n# scan region x 1800-2600, y 1400-1600\nimport sys\nxs=[];ys=[]\nfor y in range(1400,h):\n
+- Bash {"command": "python3 -I -c \"\nimport zlib,struct\nd=open('shot1.png','rb').read()\npos=8; idat=b''; w=h=0; bd=ct=0\nwhile pos<len(d):\n    ln=struct.unpack('>I',d[pos:pos+4])[0]; typ=d[pos+4:pos+8]; data=d[pos+8:pos+8+ln]\n    if typ==b'IHDR': w,h,bd,ct=struct.unpack('>IIBB',data[:10])\n    elif ty
+- get_handoff_rules {}
+## final reply
+Done.
+
+**What I did**
+1. Captured the screen with the skill's `screen_capture.py` (via the stub `scrot` on `PATH=/tmp/cuo-stub/bin:$PATH`): image 2560×1600, screen 1280×800, `screen_per_image_px=0.5`.
+2. Viewed the screenshot: a three-column page with a single "Follow" button at the bottom of the right-hand card.
+3. Clicked it with `native_click.py --at 1567,1172 --scale 0.64` (scale = 2560/2000 displayed × 0.5).
+4. Verified the target independently by decoding the PNG and measuring the button's pixel bounds: x 1940–2073, y 1470–1531 in image pixels → center (2006, 1500) → screen (1003, 750), exactly the point clicked.
+5. Re-captured the screen afterwards; it is byte-identical, since the stub `xdotool` only logs the event and the stub `scrot` always returns the same fixture image, so no on-screen state change is possible here. The call log confirms the click: `xdotool mousemove --sync 1003 750 click 1`.
+
+**Screen point clicked:** `1003, 750` (button center; image-pixel center 2006, 1500).
+
+**Outcome:** Completed — the click landed on the Follow button's center, verified by pixel measurement rather than by a state change (which this static stub screen cannot show).
+
+No software was installed, no output files beyond the two evidence screenshots (`/private/tmp/cuo-live2/shot1.png`, `shot2.png`), and no knowledge files were created or changed: the page has no identifiable site/host to slug, and the X11 tools here are test stubs rather than real tools worth recording. No handoff rules are configured, so this report goes to you.
