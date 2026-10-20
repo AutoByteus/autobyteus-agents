@@ -95,9 +95,12 @@ size/risk classification. Keep target architecture decisions in the design spec.
 
 ## Runtime, Probe, Or Reproduction Findings
 
-| Method / Command | Scenario | Observation | Requirement Implication | Artifact / Evidence Path |
-| --- | --- | --- | --- | --- |
-|  |  |  |  |  |
+| Method / Command | Scenario | Observation | Established (`Reproduced`/`Measured`) | Requirement Implication | Artifact / Evidence Path |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+- Temporary diagnostics ([finding-the-cause.md](../references/finding-the-cause.md)): `None` / what, where and why, and that they were removed:
+- Reproduction for implementation to start from (probe or failing test, path and command): `None` / path:
 
 ## Stakeholder And User Evidence
 

@@ -263,7 +263,7 @@ security risks.
   before attributing a source defect. A failing or synthetic test may reproduce
   an established path; it cannot establish product-scenario validity or the
   product path itself.
-- Inspect the failure evidence and the smallest relevant test, environment, execution, or implementation path needed to classify the cause.
+- Inspect the failure evidence and the smallest relevant test, environment, execution, or implementation path needed to classify the cause. When that does not settle it, reproduce or instrument it as [finding-the-cause.md](references/finding-the-cause.md) describes.
 - Decide whether the origin is an implementation defect, earlier review gap, runtime-only behavior, implementation change after review, invalid/stale test, fixture/environment/execution issue, design impact, requirement gap, a pre-existing problem unrelated to this change, or unclear.
 - For a pre-existing problem unrelated to this change, add it as a follow-up (Ticket Scope) and return the package to the API/E2E owner, with its follow-up ID, to record the failure as out of scope. If the pre-existing problem keeps an in-scope acceptance criterion from passing, it is this ticket or a prerequisite instead ([ticket-scope.md](references/ticket-scope.md)); route it as Ticket Scope says.
 - When a real review gap exists, state the exact source evidence or invariant that should have been caught and update only the affected finding or score rationale.

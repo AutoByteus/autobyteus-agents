@@ -196,7 +196,7 @@ Browser validation is normally unnecessary for a backend-local change when valid
 - Reroute any version-specific compatibility wrapper, dual-path read/write, request-time schema-upgrade shim, retained legacy branch, or fallback in normal runtime code. Do not misclassify an approved general reader policy or isolated required migration as backward-compatible runtime behavior.
 - Do not create or preserve durable coverage whose only purpose is to protect invalid compatibility behavior.
 - When behavior depends on workers, queues, multi-process or multi-node coordination, or external dependencies, stand up or emulate enough of the real environment to prove the material boundary when reasonable.
-- When a bug claim within a real-use scenario remains uncertain, create a focused probe or harness that enters through the scenario's real trigger to reproduce or disprove it instead of guessing.
+- When a bug claim within a real-use scenario remains uncertain, create a focused probe or harness that enters through the scenario's real trigger to reproduce or disprove it instead of guessing; [finding-the-cause.md](references/finding-the-cause.md) has the rules for temporary diagnostics.
 
 ## Result And Handoff
 
