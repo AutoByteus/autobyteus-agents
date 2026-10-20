@@ -39,9 +39,6 @@ passing work to a colleague. Two parts:
   execution report and the evidence for the critical acceptance criteria,
   even when it comes through the code reviewer.
 
-Give every file's absolute path, and attach the files in the reference-files
-field.
-
 Everything else stays where it is. The ticket's documents link to each other:
 the revision records index every round, the implementation handoff and the
 API/E2E coverage investigation list the upstream documents, the execution

@@ -39,8 +39,8 @@ Requirements and design stay distinct authorities despite their shared owner.
 The same canonical investigation notes support both phases; one cumulative
 `solution-revision-record.md` indexes their evolution. Every implementation-ready
 package has approved requirements, investigation, design, solution history
-and relevant supplements. Include independent review artifacts when applicable;
-omitted review artifacts are explicitly `N/A — not applicable`.
+and relevant supplements; [handoff.md](shared/handoff.md#the-tickets-documents)
+lists the ticket's documents and when each exists.
 
 Requirement/design/unclear findings return to Solution Designer, which obtains
 renewed approval for changed intended behavior before revising the affected
@@ -51,16 +51,14 @@ and returns `Terminal` to the user/caller when no handoff rule matches.
 
 ## Communication Convention
 
-Each specialist completes its skill-defined responsibility, persists artifacts,
-classifies its result, calls `get_handoff_rules`, applies every matching rule
-and uses `send_message_to` with each exact returned `recipient_address`.
-A handoff carries what the receiver needs for its next step, not every file
-the ticket has produced; see [handoff.md](shared/handoff.md).
-[team-config.json](team-config.json) owns internal conditional recipients;
-parent rules own cross-team Product handoffs. Return the result
-to the caller if no rule matches and stop after required handoffs. When the
-user explicitly asks a specialist to involve another agent or team, the
-specialist sends it the context even without a rule.
+Each specialist completes its skill-defined responsibility and hands off as
+[handoff.md](shared/handoff.md) describes: the rules from `get_handoff_rules`
+choose the recipients, and a handoff carries what the receiver needs for its
+next step. [team-config.json](team-config.json) owns internal conditional
+recipients; parent rules own cross-team Product handoffs. When no rule matches,
+the result returns to the caller. When the user explicitly asks a specialist to
+involve another agent or team, the specialist sends it the context even without
+a rule.
 
 Every role keeps to the ticket's scope: the requirements doc's Scope Guardrail
 and the design spec's Change Scope. [shared/ticket-scope.md](shared/ticket-scope.md)
