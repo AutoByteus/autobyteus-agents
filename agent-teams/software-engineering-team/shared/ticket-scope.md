@@ -9,7 +9,7 @@ This file defines them; each role's skill says how it acts on them.
 | --- | --- | --- | --- |
 | **This ticket** | It is an inherent part of the ticket: the change introduced it (including a design problem in the code the change adds); it is a problem in the functionality the ticket changes, without which an in-scope acceptance criterion or preserved behavior fails; the design spec already places it in this change, such as a refactor its design-health assessment requires; or a team rule makes it part of every change, such as dead code in touched files ([Core Principle 7](design-principles.md#7-no-dead-code)) or a file the change takes over or grows past the size limit. | Fixed in this ticket through the normal route. | As found. |
 | **Prerequisite** | It blocks the ticket: the ticket's goal cannot be reached, or cannot be reached safely, until it is fixed. **And** it belongs to other functionality, outside the ticket's scope. Its size does not decide this. | Its own Task, done first; this ticket waits for it. | As soon as the investigation shows it, not at the end of the ticket. |
-| **Follow-up** | Everything the ticket delivers works without it, as with a pre-existing bug or design problem in surrounding code, even code the change touches. When the ticket works and you are unsure, prefer a follow-up: it keeps the ticket small and loses nothing. | Recorded with its evidence and sent to the agent that manages the project's Tasks. | When the role's work ends (a review, the delivery receipt). |
+| **Follow-up** | Everything the ticket delivers works without it, as with a pre-existing bug or design problem in surrounding code, even code the change touches. When the ticket works and you are unsure, prefer a follow-up: it keeps the ticket small and loses nothing. | Added with its evidence to the ticket's `follow-ups.md` (Recording follow-ups below); the Solution Designer sends them when the ticket leaves the team. | As found. |
 | **Requirement Gap** | Fixing it would need behavior the requirements do not approve. | Back to the Solution Designer, which asks the user. | As found. |
 
 ## The prerequisite test
@@ -40,6 +40,22 @@ that stops at our code and tests misses them.
   the prerequisite done first, preferably by the same Solution Designer, which
   already knows the context, and tells it to continue the waiting Task once the
   prerequisite is done.
+
+## Recording follow-ups
+
+A ticket's follow-ups live in one file, `follow-ups.md`, in the ticket folder
+next to the requirements doc. Whoever finds a follow-up adds a row, creating the
+file if it does not exist yet, and cites the row's ID in its own report instead
+of describing the problem again. Commit it with your other documents.
+
+| ID | Found by (role, document) | What is wrong, where | Evidence | Why it is outside this ticket | Urgent (`Yes`/`No`) | Suggested Task description | Sent (to, date) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| FU-001 |  |  |  |  |  |  |  |
+
+Number rows in order. Mark a security or data-loss risk urgent. Only the
+Solution Designer sends follow-ups, when a result leaves the team (its skill's
+Result And Handoff), and it fills in Sent; no other role messages anyone about
+a follow-up.
 
 ## Example
 

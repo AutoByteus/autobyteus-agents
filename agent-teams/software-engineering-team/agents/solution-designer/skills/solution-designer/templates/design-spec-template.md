@@ -48,7 +48,7 @@ Write this last, once the design is decided; it appears early so readers see the
 
 - In scope: the Scope Guardrail use-case IDs this design covers, and the areas this change modifies (the file list stays in Target Subsystem / Folder / File Mapping):
 - Deliberately left alone: nearby areas, components or behaviors this change does not touch, and why:
-- Follow-ups: problems found during design that this ticket does not fix, including `Follow-up` items from the Removal / Decommission Plan and refactors the Task Design Health Assessment defers, or `None`:
+- Follow-ups: the `follow-ups.md` IDs ([ticket-scope.md](../references/ticket-scope.md)) of problems found during design that this ticket does not fix, such as dead code elsewhere and refactors the Task Design Health Assessment defers, or `None`:
 
 ## Relevant Behavior And Production-Path Map (Mandatory)
 
@@ -201,11 +201,11 @@ If a public facade or entry wrapper exists, say explicitly whether it is only a 
 
 Use this section to make removal first-class instead of leaving the design as addition-only.
 
-Include dead code in the touched files and modules ([Core Principle 7](../references/design-principles.md#7-no-dead-code)): in `Why It Becomes Unnecessary`, write `Dead:` and the evidence that nothing reaches it. Dead code found elsewhere goes in with scope `Follow-up`.
+Include dead code in the touched files and modules ([Core Principle 7](../references/design-principles.md#7-no-dead-code)): in `Why It Becomes Unnecessary`, write `Dead:` and the evidence that nothing reaches it. Dead code found elsewhere, and anything else to remove later, is a follow-up in `follow-ups.md`, not a row here.
 
-| Item To Remove / Decommission | Why It Becomes Unnecessary | Replaced By Which Owner / File / Structure | Scope (`In This Change`/`Follow-up`) | Notes |
-| --- | --- | --- | --- | --- |
-|  |  |  |  |  |
+| Item To Remove / Decommission | Why It Becomes Unnecessary | Replaced By Which Owner / File / Structure | Notes |
+| --- | --- | --- | --- |
+|  |  |  |  |
 
 ## Return Or Event Spine(s) (If Applicable)
 

@@ -10,8 +10,7 @@
     "search_web",
     "read_url",
     "send_message_to",
-    "get_handoff_rules",
-    "list_available_agents"
+    "get_handoff_rules"
   ],
   "skillNames": [
     "code-reviewer"

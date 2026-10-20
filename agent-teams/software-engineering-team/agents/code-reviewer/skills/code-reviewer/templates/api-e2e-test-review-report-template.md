@@ -84,11 +84,9 @@ Do not rerun the full API/E2E workflow by default. If a changed assertion cannot
 
 ## Follow-ups
 
-| Follow-up ID | What is wrong, where | Evidence | Why it is outside this ticket | Suggested Task description |
-| --- | --- | --- | --- | --- |
-|  |  |  |  |  |
+Findings outside this ticket go in the ticket's `follow-ups.md` ([ticket-scope.md](../references/ticket-scope.md#recording-follow-ups)).
 
-- Sent to (address and message reference), or `No Task manager found — kept in this report`, or `None`:
+- Follow-ups this review added: <FU IDs, or None>
 
 ## Latest Authoritative Result
 

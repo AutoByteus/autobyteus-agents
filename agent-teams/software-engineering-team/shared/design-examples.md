@@ -1083,8 +1083,8 @@ Ask how critical the finding is to this ticket, with two questions:
   acceptance criteria pass. No.
 
 It is not part of this ticket. The reviewer judges the test review on the
-changed tests, records the sidebar bug as a follow-up with its evidence, sends
-the follow-up request, and the ticket goes on to delivery.
+changed tests, adds the sidebar bug to the ticket's `follow-ups.md` with its
+evidence, and the ticket goes on to delivery.
 
 ### When The Decision Would Change
 
@@ -1114,15 +1114,17 @@ this ticket.
   Change Scope once the design is decided, so the boundary exists before review.
 - The Architecture Reviewer treats a concern the guardrail places out of scope as
   non-blocking.
-- The Implementation Engineer changes only what is in scope and lists what it
+- The Implementation Engineer changes only what is in scope and records what it
   finds outside as follow-ups.
 - The Code Reviewer judges each promoted finding with the two questions, routes
-  only this ticket's findings, and sends the rest as follow-up requests.
+  only this ticket's findings, and records the rest as follow-ups.
+- Every role adds its follow-ups to the ticket's `follow-ups.md`; the Solution
+  Designer sends them when the ticket leaves the team ([ticket-scope.md](ticket-scope.md#recording-follow-ups)).
 
 ### Design Lesson
 
 A ticket stays reviewable when its scope stays stable. A real problem found
-outside that scope is still recorded and sent as a follow-up, so nothing is lost,
+outside that scope is still recorded as a follow-up and sent on, so nothing is lost,
 but it does not reopen work that already does what the ticket promised.
 
 ## Common Bad-Practice Patterns
@@ -1280,6 +1282,6 @@ Better direction:
 - Keep interface boundaries singular and identity-explicit.
 - Distinguish thin public facades from deeper governing owners when both exist.
 - Validate edge-case findings against an approved journey, production trigger, and lifecycle; record unreachable or unclear premises instead of designing from isolated technical possibility.
-- Judge a finding outside a ticket's scope with Example 11: keep it in the ticket only when the change introduced it or the ticket fails without it; otherwise send it as a follow-up.
+- Judge a finding outside a ticket's scope with Example 11: keep it in the ticket only when the change introduced it or the ticket fails without it; otherwise record it as a follow-up.
 - Choose `Directly Usable — No Migration`, `Discard or Rebuild`, or `Migration Required` before designing migration machinery.
 - Let files and any optional module groupings appear after the design story is already clear.

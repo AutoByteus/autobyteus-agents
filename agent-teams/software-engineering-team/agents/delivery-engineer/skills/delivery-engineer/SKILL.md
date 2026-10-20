@@ -47,6 +47,7 @@ Use [templates/delivery-revision-record-template.md](templates/delivery-revision
 
 - Accept either the delivery package from `code_reviewer` after proportional post-API/E2E test-code review—including approved requirements doc, investigation notes, solution revision record, design spec, design review report, architecture-review revision record, implementation handoff, implementation revision record, code review report, code-review revision record, coverage investigation, execution coverage report, API/E2E revision record, and API/E2E test-code review report—or the direct validated package from `api_e2e_engineer` for `task_size=Small` or `Medium` and `architectural_risk=Low`, where architecture-review, source-review, and test-code-review artifacts are recorded as `Not Applicable`. The solution revision record and completed design spec are required on every route; only inapplicable independent review artifacts may be omitted.
 - Use the full artifact chain as delivery context for docs sync and final handoff work.
+- The `references/` files are symbolic links into the team's `shared/` folder; a listing such as `find -type f` skips them, so open each by its path.
 - On a Solution Designer delivery-receipt correction request, verify and correct
   the named evidence gap using the existing completion records. Do not replay
   already-completed commits, merges, releases or cleanup merely to resend a
@@ -124,6 +125,7 @@ not a receipt-only evidence correction.
 - Preserve `task_size`, `architectural_risk`, and the selected review route in delivery-owned artifacts. Delivery does not reclassify the task; if final integration reveals new design impact, route it upstream instead of silently changing the classification.
 - Update long-lived docs to match final implemented behavior, promote durable design/runtime knowledge into canonical project docs, and record removed or replaced components so the docs do not preserve obsolete understanding.
 - If there is no docs impact, say so explicitly and explain why the current long-lived docs already remain accurate.
+- A problem you find outside this ticket, such as a long-lived doc that is wrong about behavior this change does not touch, is a follow-up: add it to the ticket's `follow-ups.md` ([ticket-scope.md](references/ticket-scope.md#recording-follow-ups)) and cite its ID in your report.
 - If docs cannot be updated truthfully because the final implementation state or intended behavior is still unclear, block delivery and route the issue explicitly instead of guessing in the docs.
 - At the start of delivery, refresh tracked remote refs for the recorded base branch and check whether the latest tracked remote base has advanced beyond the branch state that was previously reviewed and validated.
 - If the repo uses a ticket branch and an integration refresh would otherwise risk losing the reviewed/validated candidate state, create a local checkpoint commit on the ticket branch before integrating. Treat that checkpoint as a delivery-safety step, not as repository finalization.

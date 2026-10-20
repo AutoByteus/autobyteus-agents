@@ -229,7 +229,7 @@ Otherwise list actionable findings with:
 
 Rules:
 - A blocking `Design Impact` finding must have scope status `Within Approved Scope` and cite its approved authority. A `Requirement Gap — User Approval Required` may block progression while clarification is unresolved, but it must not prescribe the proposed new behavior as a mandatory design correction before approval.
-- An `Out-of-Scope Recommendation` is non-blocking and belongs under residual risks, recommendations, or follow-ups.
+- An `Out-of-Scope Recommendation` is non-blocking. A problem that should become its own Task is a follow-up: add it to the ticket's `follow-ups.md` ([ticket-scope.md](../references/ticket-scope.md)) and cite its ID; a risk that needs no Task stays under Residual Risks.
 - A reachable technical premise proves that a state can occur; it does not prove that the ticket authorizes changing that behavior.
 - Reuse the same finding ID when the same issue persists across rounds.
 - Create a new finding ID only for newly discovered issues.
