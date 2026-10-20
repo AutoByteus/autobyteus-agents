@@ -152,7 +152,7 @@
       "to": "/solution_designer",
       "rules": [
         "When delivery discovers a Design Impact, Requirement Gap, or Unclear issue, or final handoff is blocked by a non-deployment issue that requires upstream classification.",
-        "When Delivery Engineer classifies the result as Delivery Completed after verification (from the validation evidence, or the user's check where one was needed), repository finalization, and all applicable release, deployment and safe-cleanup gates are Completed or truthfully Not required. Include the same package identifier, complete cumulative artifacts and final evidence for Solution Designer to verify the terminal receipt."
+        "When Delivery Engineer classifies the result as Delivery Completed after verification (from the validation evidence, the user's check where one was needed, or for a release request the release guide's checks), repository finalization, and all applicable release, deployment and safe-cleanup gates are Completed or truthfully Not required. Include the same package identifier, complete cumulative artifacts and final evidence for Solution Designer to verify the terminal receipt."
       ]
     },
     {
@@ -166,6 +166,7 @@
       "from": "/solution_designer",
       "to": "/delivery_engineer",
       "rules": [
+        "When Solution Designer classifies a request as Release Requested: the user asks to release or deploy work that is already merged, with no change to the software. Include the handoff file with the request, who requested it, and the bootstrapped worktree, branch and base.",
         "When Solution Designer checks a Delivery Completed receipt and finds missing or inconsistent delivery-owned completion evidence. Send only the specific receipt gap and cumulative package for correction; do not claim Terminal, reopen unchanged requirements or redo delivery work."
       ]
     },

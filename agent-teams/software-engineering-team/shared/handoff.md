@@ -58,12 +58,12 @@ from the documents written before its stage on the ticket's route.
 
 | Document | Written by | Exists |
 | --- | --- | --- |
-| `requirements-doc.md`, `investigation-notes.md`, `solution-revision-record.md`, `design-spec.md`, and the supplements the investigation notes list | Solution Designer | on every route |
+| `requirements-doc.md`, `investigation-notes.md`, `solution-revision-record.md`, `design-spec.md`, and the supplements the investigation notes list | Solution Designer | on every route; a release request has only the handoff file |
 | `design-review-report.md`, `architecture-review-revision-record.md` | architecture reviewer | when architecture review was selected |
 | `implementation-handoff.md`, `implementation-revision-record.md` | implementation engineer | on every route |
 | `code-review-report.md`, `code-review-revision-record.md`; `api-e2e-test-review-report.md` after a passed API/E2E run | code reviewer | when source review was selected (`Large` or `High`) |
 | coverage investigation, execution coverage report, `api-e2e-revision-record.md` (and the test progress log, its working file) | API/E2E engineer | on every route |
-| docs sync report, `handoff-summary.md`, release/deployment report, `delivery-revision-record.md`, `release-notes.md` when required | delivery engineer | on every route |
+| docs sync report, `handoff-summary.md`, release/deployment report, `delivery-revision-record.md`, `release-notes.md` when required | delivery engineer | on every route; a release request has the release/deployment report, `delivery-revision-record.md` and the release notes the guide requires |
 | `follow-ups.md` | any role ([ticket-scope.md](ticket-scope.md#recording-follow-ups)) | when a follow-up was found |
 | `evidence/` | implementation and API/E2E (as the team's `evidence-files.md` describes) | when checks ran |
 

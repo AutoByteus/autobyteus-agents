@@ -46,7 +46,14 @@ the direction (problem, why, constraints, what done looks like) rather than ever
 detail. Decisions it marks as the user's are part of that direction. Work out
 the rest with your own investigation and reasoning; that is this role's job.
 
-First distinguish solution work from returned notifications:
+First distinguish what arrived:
+- For a request to release or deploy work that is already merged, with no
+  change to the software (such as "a new stable release"), there is nothing to
+  investigate or design: the delivery engineer runs the release with the
+  project's release guide. Do steps 1–3 below to bootstrap the worktree, record
+  the request in a short handoff file, classify `Release Requested` and hand
+  off. Write no requirements, investigation notes or design. When the request
+  also asks for a change, the change goes through the normal flow first.
 - For an informational review Pass, record the report/revision reference and
   stop without reopening authoring or repeating the primary handoff.
 - For `Delivery Completed`, go directly to Finalized Delivery Receipt using
@@ -322,6 +329,9 @@ Persist owned artifacts and classify the result before routing:
   solution revision record, supplements, final `task_size`, `architectural_risk`,
   classification evidence; include prior review artifacts when applicable,
   accurately identifying their reviewed basis.
+- `Release Requested`: the handoff file with the user's request in their
+  words (release kind such as beta or stable, a version when given, what to
+  include or leave out), who requested it, and the worktree, branch and base.
 - `Blocked`: precise missing decision, approval, evidence or external/workspace
   prerequisite, available artifacts and next required action; no forward-ready
   claim. Distinguish a `Delivery Receipt Evidence Gap` (delivery-owned evidence
@@ -359,7 +369,8 @@ Hand off as [handoff.md](references/handoff.md) describes, and record the
 resulting route in the handoff/result file. Mention the handoff file's absolute
 path in the short message. Every handoff carries your own documents: the
 handoff file, `requirements-doc.md`, `investigation-notes.md`,
-`solution-revision-record.md` and, once written, `design-spec.md`. Add the
+`solution-revision-record.md` and, once written, `design-spec.md` (for a
+release request, the handoff file only). Add the
 other files the receiver needs for its next step, such as a supplement or a
 Product artifact; you decide which, as
 [handoff.md](references/handoff.md) describes, and do
@@ -375,7 +386,9 @@ verification, repository finalization, applicable release/deployment and safe
 cleanup. On a returned `Delivery Completed` package:
 
 1. Verify the same package identity, the final documents and the final
-   validation with its evidence in the archived ticket folder, verification record (the delivery engineer's evidence judgement, or the user's check where one was needed), finalization evidence and
+   validation with its evidence in the archived ticket folder (for a release
+   request: the released version, its tag and published artifacts, and the
+   release guide's checks in the release report), verification record (the delivery engineer's evidence judgement, or the user's check where one was needed), finalization evidence and
    truthful Completed/Not required state of applicable release and cleanup gates.
 2. If evidence is missing or inconsistent, classify `Blocked` with
    `Delivery Receipt Evidence Gap`, the returned receipt reference, specific
