@@ -1199,12 +1199,5 @@ Better direction:
 
 - Start from the example whose shape is closest to the current task.
 - Reuse the reasoning style, not the exact names.
-- Keep the design spine-first.
-- Keep ownership explicit.
-- Keep off-spine concerns around the spine.
-- Keep interface boundaries singular and identity-explicit.
-- Distinguish thin public facades from deeper governing owners when both exist.
-- Validate edge-case findings against an approved journey, production trigger, and lifecycle; record unreachable or unclear premises instead of designing from isolated technical possibility.
-- Judge a finding outside a ticket's scope with [ticket-scope.md](ticket-scope.md#common-situations): keep it in the ticket only when the change introduced it or the ticket fails without it; otherwise record it as a follow-up.
-- Choose `Directly Usable — No Migration`, `Discard or Rebuild`, or `Migration Required` before designing migration machinery.
-- Let files and any optional module groupings appear after the design story is already clear.
+- The rules these examples illustrate live in [design-principles.md](design-principles.md): spine-first design (Principles 2 and 14), explicit ownership and named facades (3), off-spine concerns (4), singular interfaces (10), reachable premises (6), persisted-data decisions (5), and file placement after the design story (12).
+- Judge a finding outside a ticket's scope with [ticket-scope.md](ticket-scope.md#common-situations).

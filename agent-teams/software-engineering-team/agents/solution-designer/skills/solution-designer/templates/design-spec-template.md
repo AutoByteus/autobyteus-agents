@@ -113,7 +113,7 @@ Complete every mandatory section, but keep the written detail of each mapping pr
 
 ## Legacy Removal Policy (Mandatory)
 
-Apply the clean-cut and removal rules in the design principles' [Derived Checks](../references/design-principles.md#derived-checks); record removals in the Removal / Decommission Plan below.
+Apply the design principles' [Principle 8, Clean-Cut Replacement And Explicit Removal](../references/design-principles.md#8-clean-cut-replacement-and-explicit-removal); record removals in the Removal / Decommission Plan below.
 
 - Obsolete legacy paths and files in this scope:
 - Compatibility wrappers, dual paths, or legacy fallbacks this design keeps: `None` / <item and why; the design is invalid unless the user approved it>
