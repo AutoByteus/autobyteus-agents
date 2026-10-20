@@ -66,7 +66,7 @@ Concrete mistakes found in real package work. The [package design principles](pa
 ### 5. Colliding with an existing identity
 
 - **Incident:** A new "Project Task Manager" agent duplicated a built-in agent of the same name in the server, so the user saw the wrong one.
-- **Breaks:** [§9](package-design-principles.md#9-preserve-evidence-and-update-safely): inspect existing packages and the runtime before choosing an identity.
+- **Breaks:** [§9](package-design-principles.md#9-update-and-restructure-safely): inspect existing packages and the runtime before choosing an identity.
 - **Instead:** Before creating, search the target repository, related repositories, and the runtime's built-ins for the same name or purpose; extend, replace, or rename deliberately.
 - **Detect:** Search for the display name and ID across the repositories the runtime loads.
 
@@ -175,7 +175,7 @@ Concrete mistakes found in real package work. The [package design principles](pa
 ### 10. Deciding from a stale or partial view of the package
 
 - **Incidents:** A decision based on a checkout 16 commits behind nearly pushed a duplicate design guide; a code-reviewer change made without reading its linked shared references duplicated the team's design examples, and a full read later found nine more inconsistencies (2026-10-13).
-- **Breaks:** [§9](package-design-principles.md#9-preserve-evidence-and-update-safely): judge and change the actual, complete package.
+- **Breaks:** [§9](package-design-principles.md#9-update-and-restructure-safely): judge and change the actual, complete package.
 - **Instead:** Fetch first and work from the target branch (`origin/<branch>`) or a fresh worktree from it. Read the whole package before judging, as the [skill](../SKILL.md#inputs-and-operation) describes, including the shared files its references link to.
 - **Detect:** Compare the checkout with its remote branch and note the commit inspected; compare the analysis's list of files read in full with the package's files and their links.
 
@@ -189,8 +189,8 @@ Concrete mistakes found in real package work. The [package design principles](pa
 ### 17. Merging without updating the local checkout
 
 - **Incident:** After PR #46 was merged, the local checkout was left behind because uncommitted edits overlapped the merged file, so the installed creator skill, linked to that checkout, kept running the old text (2026-10-13).
-- **Breaks:** [Inputs and operation](../SKILL.md#inputs-and-operation): a merged change takes effect only when the local checkout has it.
-- **Instead:** Right after merging, update the local checkout as the [skill](../SKILL.md#inputs-and-operation) describes, preserving any overlapping local work.
+- **Breaks:** [Step 5](../SKILL.md#5-persist-deliver-and-route-the-result): a merged change takes effect only when the local checkout has it.
+- **Instead:** Right after merging, update the local checkout as the [skill](../SKILL.md#5-persist-deliver-and-route-the-result) describes, preserving any overlapping local work.
 - **Detect:** After each merge, compare the local branch with `origin/<branch>`; it should be neither behind nor ahead.
 
 ### 24. Judging only the fix the request proposes

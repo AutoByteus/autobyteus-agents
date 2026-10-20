@@ -63,7 +63,7 @@ Use the same quality principles when creating, analyzing, or updating any target
 1. **Structure and ownership:** Choose the smallest package topology that can own the requested work; assign each behavior, route, and output one authoritative file before polishing prose.
 2. **Content architecture and flow:** Make the path from trigger and inputs through decisions, work, outputs, validation/recovery, and handoff or stop coherent. Put prerequisites before dependent actions and exceptions beside the action they modify.
 3. **Behavioral and factual grounding:** Derive obligations from the user's request, confirmed repository contract, observed files/tools, or explicit approvals. Qualify assumptions and unresolved decisions rather than presenting an inferred capability, path, or outcome as fact.
-4. **Clarity and precision:** Name the actor, action, object, condition, and expected result where ambiguity would change execution. Keep terminology stable across definitions, configuration, and references.
+4. **Clarity and precision:** Name the actor, action, object, condition, and expected result where ambiguity would change execution. Keep terminology stable across definitions, configuration, and references. Give an example of the desired artifact when a boundary would otherwise stay abstract.
 5. **Economy and plain language:** Write direct prose in descriptions, instructions, examples, results, handoffs, and docs. Remove words that change no action, condition, scope, owner, evidence, output, or safety boundary. Keep meaningful distinctions; replace duplicate rules with pointers. Retain prohibitions that prevent plausible authority, safety, ambiguity, recovery, validation, or output failures.
 
 The same test prevents both wordiness and over-shortening:
@@ -118,9 +118,9 @@ These examples show where a responsibility belongs; adapt names and detail to th
 
 The same task may need several kinds: creating a Team can include new Agents and their bundled skills. Report the requested top-level kind as `team` and validate the nested definitions; create a separate standalone Skill only when the user needs an independently owned skill package.
 
-## 9. Preserve evidence and update safely
+## 9. Update and restructure safely
 
-For `create`, inspect repository instructions and analogous packages, then select the smallest coherent topology. For `analyze` and `update`, build the full picture the [skill](../SKILL.md#inputs-and-operation) describes, then write the baseline, preserved behavior, findings, and changes to the analysis file before any edit.
+Before creating, inspect the repository's instructions, analogous packages, and the runtime's built-in definitions, so a new identity extends, replaces, or deliberately differs from what exists. Before changing, build the full picture and write the analysis, as the [skill](../SKILL.md#inputs-and-operation) describes.
 
 When optimizing, compare the observed package with intended and preserved behavior. Diagnose structure and ownership, flow, grounding, then wording; repeated text may signal a wrong owner or broken flow. Choose whether to add, move, merge, remove, or update a rule before trimming sentences.
 
@@ -135,5 +135,3 @@ The full read before an update shows the signals: a name that no longer fits the
 Apply the change at its owner and reconcile configured names, member references, routes, links, and human docs. Remove obsolete paths when an approved replacement makes them stale; keep a compatibility path only when its consumer and lifecycle are justified.
 
 Before declaring completion, validate as [step 4](../SKILL.md#4-validate-and-recover) describes and capture observed results and limitations in the durable result. If intent, approval, or package identity is material and ambiguous, return a precise gap rather than inventing a role, tool, recipient, capability, or permission.
-
-Use examples of the desired artifact when a package boundary would otherwise remain abstract; keep risky handoff and irreversible-decision detail explicit even in a concise package.

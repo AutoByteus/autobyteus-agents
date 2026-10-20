@@ -51,16 +51,11 @@ An analysis is written for `analyze` and before editing in `update`.
 - Use `Blocked` when an external dependency, unsafe workspace, unavailable required input/tool, or other non-local blocker prevents safe continuation.
 - Use `Pass`/`Fail` for a validation sub-result only when the overall result also states the operation outcome.
 
-## Handoff protocol
+## Handoff
 
-1. Persist the complete analysis or result artifact.
-2. Include absolute paths to the result and the upstream artifacts the recipient needs for its next step.
-3. Call `get_handoff_rules` after the result exists.
-4. Apply every matching conditional rule.
-5. Call `send_message_to` once for each exact returned `recipient_address`.
-6. Keep the message short: identify the result path, outcome, and next action.
-7. If the user explicitly asked to involve an agent or team, send the result to it as described in [package-design-principles.md](package-design-principles.md#6-design-team-coordination-and-routing), whether or not a rule matches.
-8. If no rule matches and the user named no collaborator, return the result to the user or caller.
-9. Stop after required handoffs succeed; do not poll or do the next owner's work.
+The agent's post-work transition (`agent.md`) retrieves the handoff rules, sends to every matching recipient, and stops. For each handoff:
 
-The skill and result may describe the outcome and next action, but cannot invent a recipient address. The containing Team/Org configuration or runtime selects recipients.
+- Persist the complete analysis or result before calling `get_handoff_rules`.
+- Keep the message short: the result's absolute path, the outcome, and the next action, plus the absolute paths of the upstream artifacts the recipient needs for its next step.
+- If the user explicitly asked to involve an agent or team, send the result to it as described in [package-design-principles.md](package-design-principles.md#6-design-team-coordination-and-routing), whether or not a rule matches.
+- Never invent a recipient address; the containing Team or Org configuration or the runtime selects recipients. Do not poll a recipient or do the next owner's work.

@@ -23,9 +23,7 @@ Target kind is separate from operation. If an identity already exists, inspect i
 
 Before `analyze` or `update`, build the full picture, as an experienced reviewer would before judging anyone's work. Read in full every file of the affected package (`agent.md`, config, every skill with its references and templates), the containing Team or Org files, the shared files they link to, and the sibling members the change affects. A search shows where a phrase is, not how the package works. A read stays valid while the files' full text is still in your conversation. For the next request on the same package, read again only what is no longer there (for example after the conversation was summarized) and what changed since; a diff from the commit you read shows that. Base findings and designs on that read, and list the files read in the analysis.
 
-When material scope, behavior, ownership, or removal is unresolved, surface a requirement or approval gap before making that decision. Follow repository-specific artifact, branch, worktree, approval, and finalization instructions where they apply. Do not commit, push, publish, or deploy without explicit authorization.
-
-When the user approves a pull request and you merge it, bring the user's local checkout up to date right away, since installed skills often run from it. If uncommitted local work overlaps the merged files, preserve it first on a named branch and as a patch, then update, re-apply it, and say where it is. When the re-apply conflicts because the merge changed the same lines, keep the merged text and re-apply the local change by hand; the branch and patch keep the original. Never discard local work.
+When material scope, behavior, ownership, or removal is unresolved, surface a requirement or approval gap before making that decision. Follow repository-specific artifact, branch, worktree, approval, and finalization instructions where they apply.
 
 ## Workflow
 
@@ -33,7 +31,7 @@ When the user approves a pull request and you merge it, bring the user's local c
 
 Map the target kind and root, each role's responsibility, skill ownership and attachment, coordinator or intake owner where applicable, artifacts, routes and addresses, dependencies, and links.
 
-For `create`, establish the intended behavior and required outputs from the request and confirmed repository conventions. For `analyze` and `update`, distinguish the requested change or review question from existing behavior that must remain intact. When optimizing or reviewing, diagnose observed defects and their owners, at the level where they sit ([principles §9](references/package-design-principles.md#9-preserve-evidence-and-update-safely)), before choosing edits. When the request proposes a fix, first map the information or flow the problem is about across every role, then judge the proposal against that map; the proposal frames the question, not the answer. For any update, identify the smallest coherent delta.
+For `create`, establish the intended behavior and required outputs from the request and confirmed repository conventions. For `analyze` and `update`, distinguish the requested change or review question from existing behavior that must remain intact. When optimizing or reviewing, diagnose observed defects and their owners, at the level where they sit ([principles §9](references/package-design-principles.md#9-update-and-restructure-safely)), before choosing edits. When the request proposes a fix, first map the information or flow the problem is about across every role, then judge the proposal against that map; the proposal frames the question, not the answer. For any update, identify the smallest coherent delta.
 
 Describe the path from request to completion and recovery. For a role, specify input, owned work, output, quality gate, and handoff. For a skill, specify trigger, inputs, work, outputs, validation, and stopping condition. Give each rule one owner. Team coordinator registration does not create duties by itself; an Org has no coordinator field.
 
@@ -61,7 +59,7 @@ Design handoffs as [package-design-principles.md](references/package-design-prin
 
 Validate what the selected kind and changed files require, and record observed evidence:
 
-- **Any skill:** check frontmatter/name/description, direct links and referenced paths, unfinished placeholders, and the available standard skill validator. Run focused checks for changed scripts, and confirm the skill's claimed outputs and tool dependencies are supported. Check that frontmatter, body, references, and attachment describe one effective trigger and behavior, not conflicting variants. For an update, compare the previous trigger, outputs, approvals, recovery, and stopping condition with the revised ones. For bundled skills, verify explicit `skillNames` attachment.
+- **Any skill:** check frontmatter/name/description, links with their `#anchors` ([check-links.py](scripts/check-links.py)) and referenced paths, unfinished placeholders, and the available standard skill validator. Run focused checks for changed scripts, and confirm the skill's claimed outputs and tool dependencies are supported. Check that frontmatter, body, references, and attachment describe one effective trigger and behavior, not conflicting variants. For an update, compare the previous trigger, outputs, approvals, recovery, and stopping condition with the revised ones. For bundled skills, verify explicit `skillNames` attachment.
 - **Any changed Agent/config:** parse JSON; check Agent frontmatter, tool/skill wiring, and folder/name alignment.
 - **Team/Org:** check member references and rooted addresses; for a Team, confirm its coordinator is a member; for an Org, check shared versus org-local placements and child-Team boundaries. Check that every outcome a role hands off has a destination in the containing config, or that the package states which parent provides it and what happens when the package runs on its own. Check that no role forbids user-directed collaboration. Record catalog availability or its absence truthfully.
 - **All kinds:** compare definition, config, skill, references, templates, and human docs for one owner per rule, no stale names or competing routes, and a diff contained to the approved scope. When the change restructures files or the documents a role produces, map every old file, section, field, and name to its new home, so the restructure loses no check, and update every link to a moved or renamed file. Run the detection checks in [package-anti-patterns.md](references/package-anti-patterns.md) that apply.
@@ -70,11 +68,15 @@ Validate what the selected kind and changed files require, and record observed e
 
 Correct an in-scope canonical owner and rerun affected checks. When a finding shows a mistake the principles and anti-patterns did not prevent, add an anti-pattern entry, or extend the one with the same cause, in the same update. Then run that entry's detection check across the repository and list every other instance in the result as a follow-up. Record `Requirement Gap` when intent or approval is missing, `Design Impact` when topology must be reconsidered, or `Blocked` when an external dependency prevents safe work. Do not claim a runtime registration or catalog check that was not observed.
 
-### 5. Persist and route the result
+### 5. Persist, deliver, and route the result
 
 Before handoff, read [result-and-handoff-contract.md](references/result-and-handoff-contract.md). For `analyze`, the analysis file from step 2 is the result. For `create` and `update`, write one result using [agent-package-result-template.md](templates/agent-package-result-template.md); an `update` result links its analysis. Record observed validation and limitations; use absolute artifact paths in handoff messages.
 
-Follow that contract to classify and route the result. If no rule matches or handoff tools are unavailable, return the persisted result to the user or caller with the limitation.
+Deliver the change the way the repository works, usually a pull request. Do not commit, push, publish, or deploy without explicit authorization.
+
+When the user approves a pull request and you merge it, bring the user's local checkout up to date right away, since installed skills often run from it. If uncommitted local work overlaps the merged files, preserve it first on a named branch and as a patch, then update, re-apply it, and say where it is. When the re-apply conflicts because the merge changed the same lines, keep the merged text and re-apply the local change by hand; the branch and patch keep the original. Never discard local work.
+
+Then classify and route the result as the contract describes.
 
 ## Complete-result standard
 
