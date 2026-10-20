@@ -47,6 +47,15 @@ Use [templates/delivery-revision-record-template.md](templates/delivery-revision
 
 - Accept the validated package ([handoff.md](references/handoff.md#the-tickets-documents)): from the code reviewer after the post-API/E2E test-code review, or from API/E2E on the direct route (`task_size` `Small` or `Medium` with `architectural_risk` `Low`), where the review documents are `N/A — not applicable`.
 - Use the full artifact chain as delivery context for docs sync and final handoff work.
+- Accept a release request from the Solution Designer (`Release Requested`):
+  the user asks to release or deploy work that is already merged, with no
+  change to the software. Its handoff file holds the request; the worktree is
+  bootstrapped. There is no validated package, so docs sync, the handoff
+  summary and Verify From Evidence do not apply; the release guide's checks
+  are the verification. Write the release/deployment report,
+  `delivery-revision-record.md`, and release notes when the guide requires
+  them. A code fix the release turns out to need is a new change: send it to
+  the Solution Designer.
 - The `references/` files are symbolic links into the team's `shared/` folder; a listing such as `find -type f` skips them, so open each by its path.
 - On a Solution Designer delivery-receipt correction request, verify and correct
   the named evidence gap using the existing completion records. Do not replay
@@ -113,7 +122,8 @@ Whether and how to release (none, beta, stable, a deployment) is a product
 decision, separate from verification. Release only when the user asked for it,
 in the request or later, or when the project's release guide makes it the
 default. Otherwise finalize without releasing and say that a release is
-available. The release steps keep their safety rules below.
+available. A release request is the user's decision: do not ask for it again;
+involve the user only when the guide says to or a check it requires fails. The release steps keep their safety rules below.
 
 ## Workflow Rules
 
@@ -159,7 +169,7 @@ not a receipt-only evidence correction.
 ## Terminal Return To Solution Designer
 
 - Send the successful terminal message only after verification (from the evidence, or the user's check where one was needed), repository finalization, and every applicable release, deployment, rollout, and safe cleanup step is `Completed` or truthfully `Not required`. Return it through the handoff rules; the terminal rule selects the Solution Designer.
-- The terminal message must carry your own documents (`handoff-summary.md`, the docs sync report, the release/deployment report, `delivery-revision-record.md` and `release-notes.md` when written) and the archived ticket folder, plus the other files the receipt check needs, which you decide as [handoff.md](references/handoff.md) describes; state `task_size`, `architectural_risk`, selected route, final validation evidence, verification record (your evidence judgement, or the user's check where one was needed), release decision, final branch/commit/merge/push state, release/deployment outcome when applicable, and durable final artifact paths.
+- The terminal message must carry your own documents (`handoff-summary.md`, the docs sync report, the release/deployment report, `delivery-revision-record.md` and `release-notes.md` when written; for a release request, those it wrote) and the archived ticket folder, plus the other files the receipt check needs, which you decide as [handoff.md](references/handoff.md) describes; state `task_size`, `architectural_risk`, selected route, final validation evidence, verification record (your evidence judgement, or the user's check where one was needed), release decision, final branch/commit/merge/push state, release/deployment outcome when applicable, and durable final artifact paths.
 - State that this is the authoritative terminal completion package and that Solution Designer may verify the package and return the verified engineering result through the applicable parent handoff or to the standalone caller only after checking it.
 - While verification is open or any finalization blocker remains, continue the applicable verification, recovery, or reroute flow; do not send a successful completion message.
 - After the terminal message succeeds, end the delivery stage; act only on a later explicit rework message.

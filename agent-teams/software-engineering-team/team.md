@@ -35,6 +35,11 @@ see [team-config.json](team-config.json) for the conditions. Direct here means
 skipping independent review, not skipping design. Implementation self-checks
 and executable validation still apply.
 
+A request to release or deploy work that is already merged, with no change to
+the software, has nothing to design: Solution Designer bootstraps the worktree
+and hands the request to the delivery engineer, which releases with the
+project's release guide and returns the result to Solution Designer.
+
 Requirements and design stay distinct authorities despite their shared owner.
 The same canonical investigation notes support both phases; one cumulative
 `solution-revision-record.md` indexes their evolution. Every implementation-ready
