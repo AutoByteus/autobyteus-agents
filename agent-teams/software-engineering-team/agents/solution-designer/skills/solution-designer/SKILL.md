@@ -122,7 +122,9 @@ gate.
   Mechanical possibility alone does not establish approved scope.
 - Trace each scenario through the real dependencies it relies on (a library,
   a service, a runtime), not only through our code and tests, which may
-  replace them with fakes; confirm a suspicion with a cheap probe. Judge each
+  replace them with fakes. When reading does not prove a cause or a premise,
+  reproduce or measure it as [finding-the-cause.md](references/finding-the-cause.md)
+  describes, and say how each finding was established. Judge each
   problem you find with [ticket-scope.md](references/ticket-scope.md): this
   ticket, a prerequisite, or a follow-up; for a prerequisite, see
   Prerequisites, and record a follow-up as that file describes.
@@ -201,8 +203,8 @@ as well as how to design.
 2. Perform architecture-level current-state investigation. Earlier discovery
    is input, not proof that all technical facts are known. Trace each relevant
    behavior's complete production path and its owners, through the real
-   dependencies, and judge what you find with
-   [ticket-scope.md](references/ticket-scope.md) as in step 1. Extend the same
+   dependencies, establish causes and premises as in step 1, and judge what you
+   find with [ticket-scope.md](references/ticket-scope.md). Extend the same
    investigation notes with exact sources, commands, probes and unknowns.
    Before any persisted-data migration design, complete the mandatory
    repository migration-conventions investigation in

@@ -56,6 +56,9 @@ Use [templates/implementation-revision-record-template.md](templates/implementat
 
 - Use the completed design and approved requirements as the implementation basis,
   continuing to apply the shared references above during file-level work.
+- When the design hands over a reproduction (its Guidance For Implementation;
+  [finding-the-cause.md](references/finding-the-cause.md)), start from it:
+  confirm it fails, then make it pass.
 - Implement the design spec's behavior and production-path map. Record each
   applicable behavior ID's actual implementation path and outcome in the
   handoff. Do not invent new behavior from a convenient local code path; route

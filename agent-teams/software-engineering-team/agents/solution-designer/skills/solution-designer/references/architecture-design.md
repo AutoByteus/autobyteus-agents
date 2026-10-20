@@ -7,7 +7,7 @@ Read after requirements approval for architecture design, and during design-impa
 ## Architecture Investigation Standard
 
 - Begin from the approved requirements, investigation notes, and supplements, but perform the additional technical investigation needed for architecture decisions.
-- Inspect the relevant current implementation before finalizing the design.
+- Inspect the relevant current implementation before finalizing the design. Confirm the premises the design rests on (a dependency's behavior, an entry point, a file or base class left alone) by running or type-checking them where that is cheap ([finding-the-cause.md](finding-the-cause.md)).
 - Apply the project-specific design principles described in [design-principles.md](design-principles.md#project-specific-design-principles). Record the `DESIGN.md` path(s) that apply, or `No project DESIGN.md found`, in the design spec's `Authorities read` field, and any conflict or discrepancy in the field beside it.
 - Record exact architecture evidence in the canonical investigation notes: source paths, documentation or URLs, commands, runtime/probe observations, setup conditions, and material unknowns. Link that evidence from the design spec instead of maintaining a competing evidence log.
 - Identify the change posture, current execution spine, ownership boundaries, coupling or fragmentation, design-health pressure, root-cause classification, refactor posture, and transition constraints.
