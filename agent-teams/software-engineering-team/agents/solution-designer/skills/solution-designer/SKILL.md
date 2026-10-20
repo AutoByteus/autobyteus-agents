@@ -395,7 +395,10 @@ cleanup. On a returned `Delivery Completed` package:
    missing evidence and required correction. Use the applicable handoff rules;
    do not claim Terminal or redo repository work.
 3. When evidence is sufficient, classify `Terminal` and return the verified
-   result using the Result And Handoff procedure above, follow-ups included.
+   result using the Result And Handoff procedure above, follow-ups included. A
+   finalized delivery ends the ticket: a release or the user's own check in
+   the app that the Task did not ask for is a separate decision, not an open
+   item of this result.
 
 Do not reopen approved requirements merely because delivery returned. A genuine
 requirement gap uses Recovery; a non-requirement blocker stays a blocker.
