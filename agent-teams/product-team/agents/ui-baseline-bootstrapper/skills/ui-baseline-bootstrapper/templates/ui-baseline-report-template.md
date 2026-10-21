@@ -113,9 +113,7 @@ production mechanisms.
 - Browser and version:
 - Validated viewports:
 - Source-observation method:
-- Baseline commands and results:
-- Build, typecheck, lint, unit, or browser checks run in proportion to the
-  baseline:
+- Baseline start command:
 - Complete navigation and journey checks:
 - DOM, computed-style, geometry, screenshot, perceptual, or manual evidence
   paths:

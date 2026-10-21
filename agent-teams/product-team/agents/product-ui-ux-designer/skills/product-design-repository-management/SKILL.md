@@ -211,8 +211,8 @@ return `Blocked` rather than sharing it silently.
   ticket revision. Do not recreate the ticket or silently discard its changes.
 - Before final integration, fetch and compare the ticket base with
   `origin/<default-branch>`. If the default branch advanced, merge it into the
-  ticket branch in the ticket worktree, preserve approved ticket behavior, rerun affected browser
-  and regression validation, and update the recorded base.
+  ticket branch in the ticket worktree, preserve approved ticket behavior, look again at the affected
+  screens in the browser, and update the recorded base.
 - If integration produces a conflict, unexpected behavior, or unsafe dirty
   state, preserve the evidence and classify the result as `Blocked` or the
   mode-specific recovery outcome. Never overwrite another branch or silently
@@ -228,7 +228,7 @@ The selected mode skill decides when the design behavior and user review
 are complete. Then the Product UI/UX Designer performs this repository sequence:
 
 1. Update the ticket record and all durable artifacts in the active worktree.
-2. Run the mode skill's final validation and record the exact result.
+2. Confirm that the mode skill's final check is done and recorded.
 3. Commit the accepted baseline or ticket result on the ticket branch. The
    commit must include the runnable UI reference and the durable ticket evidence
    that belongs with that result.
@@ -251,7 +251,7 @@ are complete. Then the Product UI/UX Designer performs this repository sequence:
      push-then-update sequence. Finish by confirming that the local default
      branch and `origin/<default-branch>` are the same revision.
 
-   Revalidate after integration: the approved experience must be reachable
+   After integration, open the approved experience once: it must be reachable
    from the default branch through the product's normal entry point, without
    a preview URL or preview-only state. If it is not, preserve the ticket and
    report the integration as `Blocked`. Record `Completed`, `Not required`,
@@ -281,7 +281,7 @@ Before returning control to the selected mode skill, provide or record:
 - source repository/frontend and pinned source revision when applicable;
 - accepted design base revision;
 - ticket commit/revision when one exists;
-- default-entry-point validation evidence after integration, or exact blocker;
+- the default-entry-point check after integration, or exact blocker;
 - runtime port/process/temp-state ownership;
 - baseline status and Bootstrapper report path when applicable;
 - default branch, its local and `origin` revisions after integration, and the

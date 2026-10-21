@@ -26,19 +26,19 @@ worktree; it does not replace that branch/worktree isolation.
 - Baseline report:
 - Product acceptance result and date:
 - Design revision for this ticket:
-- Default-entry-point validation after integration:
+- Opens from the default branch after integration:
 - Integration target and result:
 - Runtime isolation record (port / process / temporary state):
 - Cleanup result or blocker:
 - Ticket folder:
 
-## Delivery And Validation
+## Delivery
 
 - UI/UX specification:
 - Runnable UI reference entry point:
 - Visual-reference directory:
 - Supporting artifact paths:
-- Validation commands and results:
+- Checked in the browser (journeys and viewports):
 - User-confirmation reference:
 - Mocked boundaries and known limitations:
 
