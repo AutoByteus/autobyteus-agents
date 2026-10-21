@@ -13,7 +13,7 @@ Specify the scope the approved change affects. Record values from the product's 
 - Design repository/root:
 - Review URL:
 - Explicit user-confirmation reference:
-- Final validation date:
+- Final check date:
 
 ## Repository And Baseline Provenance
 

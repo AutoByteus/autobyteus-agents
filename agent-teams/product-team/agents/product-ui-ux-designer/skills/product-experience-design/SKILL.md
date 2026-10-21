@@ -16,7 +16,7 @@ Before this mode begins, apply
 [product-design-repository-management](../product-design-repository-management/SKILL.md)
 to establish or resume the canonical repository, Product ticket, ticket branch,
 active worktree, accepted base revision, and runtime isolation. Apply it again
-after this mode's validation and user-review work for commit, integration,
+after this mode's final check and user review for commit, integration,
 ticket closure, and cleanup, and use its ticket statuses for the common
 `product-ticket.md` record. This skill owns only the product-experience work
 and supplies the evidence each status transition needs; it never switches the
@@ -92,7 +92,7 @@ back to them.
    functional and parity checks does not show that a screen is clean.
 6. **Review inside the product.** The ticket worktree already isolates the
    change, so the review URL is the product's normal entry point, with no
-   preview-only state. Run the visual design review (Validation) before
+   preview-only state. Run the visual design review (Checking) before
    presenting.
 
 If a focused static artifact or direct clarification would answer the question
@@ -133,8 +133,8 @@ a visual or behavioral product decision.
   folder
 - normative final reference screenshots and their mapping to pages, states,
   journeys, and requirements
-- browser validation of the critical journey and important states
-- supporting experience stories, behavior matrices, assumptions, run instructions, change history, and completion evidence when useful
+- checking the critical journey and important states in the browser
+- supporting experience stories, assumptions, run instructions, change history, and completion evidence when useful
 - evidence-backed design findings and unresolved product decisions
 
 ## You Do Not Own
@@ -185,10 +185,9 @@ For a completed design stage, produce:
 - the runnable UI reference package reviewed by the user
 - final reference screenshots stored at stable paths and embedded or linked from `ui-ux-spec.md`
 
-Create supporting artifacts only when they materially help construction, validation, revision, or handoff:
+Create supporting artifacts only when they materially help construction, review, revision, or handoff:
 
 - [templates/experience-story-template.md](templates/experience-story-template.md) as `experience-story.md`
-- [templates/ui-behavior-test-matrix-template.md](templates/ui-behavior-test-matrix-template.md) as `ui-behavior-test-matrix.md`
 - [templates/design-assumptions-template.md](templates/design-assumptions-template.md) as `design-assumptions.md`
 - [templates/design-change-log-template.md](templates/design-change-log-template.md) as `design-change-log.md`
 - [templates/ui-reference-runbook-template.md](templates/ui-reference-runbook-template.md) as `ui-reference-runbook.md`
@@ -200,8 +199,7 @@ Create supporting artifacts only when they materially help construction, validat
   current-experience bootstrap, correction, or refresh request
 
 Each support artifact has a distinct purpose: the experience story frames the
-working journey, the behavior matrix records deterministic validation,
-assumptions record simulation boundaries, the change log records revision
+working journey, assumptions record simulation boundaries, the change log records revision
 history, the ticket record manages request status and delivery links, the
 runbook records execution, and the product design report is an optional cross-stage
 summary. Do not create the report merely to duplicate the UI/UX specification or
@@ -316,33 +314,35 @@ worktree's ticket folder.
    no-frontend work, build the smallest runnable experience directly in the
    management-established baseline worktree.
 5. Start the UI reference using the runtime resources recorded by the management
-   skill. Validate the critical journey, relevant scenarios, and preserved
-   baseline surfaces in a browser, and run the visual design review. Correct
-   every observed visual or interaction discrepancy and repeat validation
+   skill. Click through the critical journey and the screens around it in
+   the browser and run the visual design review (Checking); fix what you see
    before presenting the review URL.
 6. Keep the UI reference available, give the user the review URL and concise
    review focus, and provide the evidence needed for management to set the
    ticket status to `Awaiting User Review`. Request explicit feedback.
 7. Apply focused feedback that stays within the current scope, preserve
    accepted behavior, and provide the evidence needed for management to set the
-   ticket back to `In Progress`. Revalidate affected and relevant regression
-   paths, and repeat review as needed.
-8. After explicit user confirmation, perform final browser and visual
-   validation of the approved experience through its normal entry point. If
-   that validation requires a material visible or behavioral change, reopen
+   ticket back to `In Progress`. Look again at what the feedback changed, and
+   repeat review as needed.
+8. After explicit user confirmation, click through the approved journeys once
+   through the product's normal entry point. If
+   that check requires a material visible or behavioral change, reopen
    user review before finalizing.
-9. Capture canonical screenshots for relevant pages, states, and viewports in
+9. Capture canonical screenshots of every page and state the design changes,
+   the page around each change, and the journey steps that lead to it, so an
+   engineer can find and build it; add a narrow viewport where its layout
+   changes. Store them in
    the current ticket's `visual-references/` directory using stable `VIS-*`
    IDs.
 10. Complete `ui-ux-spec.md` and useful mode-specific supporting artifacts,
     including the design rationale, approval reference, final screenshots,
-    detailed behavior, mocked boundaries, source pin, and validated journeys.
+    detailed behavior, mocked boundaries, source pin, and approved journeys.
     Fill the visual, content, responsive, accessibility, and motion sections
     for the scope the change affects, using the product's existing values or
     the approved change. Keep them under the active ticket folder.
     Include the canonical repository, ticket branch, accepted base, and resulting
     UI reference revision from management state when recording provenance.
-11. Return the completed mode artifacts and final validation evidence to the
+11. Return the completed mode artifacts and the final check's result to the
     management skill for the final ticket state, commit, integration, ticket
     closure, and cleanup. Do not claim completion before integration is
     durable.
@@ -361,9 +361,9 @@ worktree's ticket folder.
 - Record which accepted behaviors are preserved, intentionally changed, or removed.
 - Keep existing transition and scenario IDs stable when their meaning has not changed.
 - Update the UI/UX specification, applicable supporting artifacts, and implementation only where the approved design request or user feedback requires it.
-- Validate the changed journey and affected baseline behavior. When a change
+- Check the changed journey and the screens it affects. When a change
   touches shared navigation, layout, design tokens, or UI reference state,
-  revalidate the related shared surfaces rather than unrelated product scope.
+  look at the related shared surfaces too, not unrelated product scope.
 - For removals, delete obsolete UI, routes, scenarios, and artifact statements instead of retaining compatibility behavior without an explicit requirement.
 
 ## Implementation Principles
@@ -377,32 +377,32 @@ worktree's ticket folder.
   visually finished and precise enough for downstream frontend implementation,
   without implying production backend or runtime readiness.
 
-## Validation
+## Checking
 
-- Read the project's README and applicable development instructions before choosing commands or starting services.
+Check as a designer does (shared principles, section 6): in the browser, without test suites or check scripts.
+
+- Read the project's README for how to install and start the UI reference.
 - Verify the documented install/start command, entry route, and scenario-selection method.
 - Exercise the critical journey from its real entry point.
-- Validate every requested deterministic scenario and visible outcome.
+- Try each requested scenario and its visible outcome.
 - Keep UI-controlled labels, instructions, formatting, validation, feedback,
   and recovery messages synchronized across the runnable UI reference,
   `ui-ux-spec.md`, and final references. Mark synthetic domain record values as
   illustrative when they are not intended requirements.
-- Inspect desktop and narrow-mobile layouts when the experience is responsive.
+- Look at narrow-mobile layouts where the change affects them.
 - After implementing or revising UI, compare the browser result with the exact
   accepted baseline for preserved areas and with the approved intended design
-  for changed areas. Fix every visible or interaction discrepancy and repeat
-  browser validation until none remains.
+  for changed areas. Fix every visible or interaction discrepancy you find.
 - Visual design review: look at every changed screen as a user would, beside
   the surrounding product. Check hierarchy, colour noise, borders and boxes,
   and consistency with sibling components, and ask whether it looks like the
-  product. Fix what you find, then revalidate.
+  product. Fix what you find, then look again.
 - Compare source and baseline or design as the shared principles' section 6
   ("How to compare source and UI reference") describes.
 - Use interim screenshots only as disposable review aids when needed.
-- Capture final reference screenshots only after explicit user confirmation and final validation of the corresponding states.
+- Capture final reference screenshots only after explicit user confirmation and the final check of the corresponding states.
 - Reconfirm with the user after any post-confirmation change that materially alters visible or interactive behavior.
-- Run the available build, typecheck, lint, unit, or browser checks that are proportionate to the UI reference.
-- Record exact commands, results, review URL, and any limitation.
+- Record the review URL and any limitation.
 - Keep the UI reference process available during active user review. Clean it up after the review stage ends or the user no longer needs the live URL, without disrupting unrelated user processes.
 
 ## Quality Gate
@@ -420,7 +420,7 @@ Before reporting the design package as completed, confirm:
   unfinished ticket remains under `tickets/in-progress/<ticket-id>/`
 - an existing-frontend design repository has applicable accepted baseline
   evidence (`ui-baseline-report.md` plus later accepted design artifacts);
-  changed and affected behavior is validated, without treating an older report
+  changed and affected behavior was checked, without treating an older report
   revision as proof of an outdated UI
 - design data meets [mock data origin](product-design-principles.md#mock-data-origin), including statically
   imported content; where the data came from and what was checked are recorded,
@@ -431,7 +431,7 @@ Before reporting the design package as completed, confirm:
 - `ui-ux-spec.md`, the runnable UI reference, final screenshots, and applicable supporting artifacts agree
 - the UI/UX specification records the user's confirmation reference
 - every requested action has visible feedback and every important transition has a stable ID
-- changed behavior and relevant previously accepted journeys have been exercised
+- the changed journeys and the screens they affect were clicked through
 - simulation boundaries, simplifications, and production gaps are explicit
 - every changed screen passed the visual design review and looks like the
   product rather than a generic starter screen
@@ -442,7 +442,7 @@ Before reporting the design package as completed, confirm:
 - desktop and narrow-mobile views have no avoidable clipping, overlap, awkward wrapping, or layout drift
 - keyboard focus, labels, contrast intent, and readable hierarchy are represented
 - no unapproved behavior is presented as confirmed
-- every final visual reference matches the validated runnable state and identifies its viewport
+- every final visual reference matches the approved runnable state and identifies its viewport
 - every visible detail in a final reference is requirements-defining by default;
   fixture content or permitted variation is illustrative only when explicitly
   identified in `ui-ux-spec.md`
@@ -545,6 +545,6 @@ instead.
   `ui-baseline-report.md`, and every still-relevant supporting
   artifact. Include the ticket record and folder, design repository/root,
   ticket branch/worktree, accepted base, design revision, source pin,
-  integration and cleanup result, user-confirmation reference, validated
+  integration and cleanup result, user-confirmation reference, approved
   journeys and scenarios, mocked boundaries, design findings, and unresolved
   decisions.

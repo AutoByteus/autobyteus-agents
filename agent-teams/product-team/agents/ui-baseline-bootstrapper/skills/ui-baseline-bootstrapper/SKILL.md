@@ -211,9 +211,9 @@ application for a focused correction.
   screenshots, and perceptual comparison as appropriate. Raw screenshot bytes
   may differ because of normalized rendering noise, but any known
   UI parity difference must be corrected.
-- Run build, typecheck, lint, unit, and browser checks in proportion to the
-  baseline implementation rather than inheriting production test scope.
-- Record exact commands, results, review URL, scenario-selection method, and
+- Compare in the browser as the shared principles' section 6 describes,
+  without test suites or check scripts kept in the repository.
+- Record the start command, review URL, scenario-selection method, and
   limitations. Do not claim that simulated production capabilities were
   validated.
 

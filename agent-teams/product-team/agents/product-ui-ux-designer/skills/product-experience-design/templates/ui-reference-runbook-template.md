@@ -27,7 +27,7 @@
 
 ## Reproducibility And Project State
 
-- Design repository status at validation:
+- Design repository status at the final check:
 - Scenario reset/isolation method:
 - Required environment variables or credentials: synthetic/local only, or `None`
 
@@ -43,10 +43,9 @@
 | --- | --- | --- | --- |
 |  |  |  |  |
 
-## Validated Viewports And Checks
+## Checked Viewports
 
 - Desktop:
-- Narrow mobile:
-- Build / typecheck / lint / tests:
+- Narrow mobile (where the change affects it):
 
 ## Known Limitations And Product Questions

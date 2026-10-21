@@ -30,6 +30,8 @@ rendering, or live interaction states, so engineering has to interpret them.
 The team instead designs in a running UI reference, where layouts, states, and
 journeys are exercised in the browser rather than drawn. The result is a
 precise visual and interaction target for engineering, not production code.
+This is design work done in code, not software engineering: the reference
+only has to look and behave right in the browser.
 
 ### What a UI reference is
 
@@ -334,6 +336,19 @@ for a design workspace. Later requirements-driven work normally belongs to
 
 ## 6. Experience Fidelity And Evidence
 
+- **Check like a designer, not like a test suite.** A UI reference is a design
+  tool. What engineering builds from is the runnable reference, the approved
+  screenshots and `ui-ux-spec.md`, so check those the way a designer would:
+  open the reference in the browser, click through the journeys, and look at
+  the screens beside the product. Do not run test suites (typecheck, lint,
+  unit tests), write per-ticket check scripts, or add `validate:*` or
+  `capture:*` scripts to the design repository; a repository's own testing
+  instructions are not part of design work. When one specific risk needs a
+  small script, such as a comparison too large to do by eye, say why, keep it
+  disposable, and do not commit it.
+- **Check what the work changed.** Finished designs are a record of what the
+  user approved: a refresh or a later ticket does not recheck them or
+  recapture their screenshots.
 - Reproduce the pinned source's appearance and client-visible behavior exactly
   for every distinct item in the selected current-experience inventory unless
   an accepted design change intentionally differs.
@@ -394,7 +409,7 @@ for a design workspace. Later requirements-driven work normally belongs to
 - `product_ui_ux_designer` accepts an applicable baseline and authors a concrete,
   focused future-state UI/UX proposal within the requirements and user
   feedback. After baseline acceptance, it owns the canonical runnable
-  experience, review loop, final validation, screenshots, and `ui-ux-spec.md`,
+  experience, review loop, final check, screenshots, and `ui-ux-spec.md`,
   but it does not approve its own proposal.
 - In exploratory requirements-visualization mode, `product_ui_ux_designer` owns
   only the independent visual representation and review evidence. Solution
@@ -442,7 +457,7 @@ for a design workspace. Later requirements-driven work normally belongs to
   ticket work, implement future-state requirements, create the canonical
   future-state `ui-ux-spec.md`, conduct the user design review, or approve a
   product decision.
-- `product_ui_ux_designer` (Product UI/UX Designer) reviews and tests the Bootstrapper's
+- `product_ui_ux_designer` (Product UI/UX Designer) reviews and checks the Bootstrapper's
   result. Once it accepts the result, it integrates it into the design
   repository's default branch at once, as its repository-management skill
   describes, so the design project carries every accepted baseline. It also owns
@@ -461,7 +476,7 @@ for a design workspace. Later requirements-driven work normally belongs to
   project-wide change history, and current-experience bootstrap evidence. Each
   ticket folder under `tickets/` contains `product-ticket.md` and the
   mode-appropriate supporting evidence. A product-experience ticket adds
-  `ui-ux-spec.md`, final `visual-references/`, behavior matrix, runbook,
+  `ui-ux-spec.md`, final `visual-references/`, runbook,
   product design report, assumptions, and other delivery artifacts as needed. An
   exploratory-visualization ticket adds its visualization brief,
   cognition-first design plan, review record, review URL, visualizer source or

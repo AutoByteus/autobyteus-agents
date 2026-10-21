@@ -32,7 +32,6 @@ Use this optional report only when a durable cross-stage summary adds value beyo
 - UI/UX specification:
 - Runnable UI reference repository/root:
 - Experience story:
-- UI behavior test matrix:
 - Design assumptions:
 - Design change log:
 - UI reference runbook:
@@ -45,15 +44,15 @@ Use this optional report only when a durable cross-stage summary adds value beyo
 | --- | --- | --- | --- |
 |  |  |  |  |
 
-## Validation
+## Checked In The Browser
 
-| Check / Command / Viewport | Result | Evidence / Notes |
+| Journey / Screen / Viewport | Result | Notes |
 | --- | --- | --- |
 |  |  |  |
 
 ## Visual References
 
-Use this section for working validation evidence. After user confirmation, the
+Use this section for working review captures. After user confirmation, the
 canonical production-quality visual references belong in `ui-ux-spec.md` and
 serve as normative implementation references subject only to explicitly
 recorded illustrative content or permitted variation.
@@ -62,7 +61,7 @@ Store captured images under the current ticket folder's `visual-references/`
 directory and use stable `VIS-*` IDs. “Screenshot” means an actual captured browser image;
 “visual reference” is the broader evidence term.
 
-| Visual ID | Journey / Surface / State | Viewport | Image Path | Behavior Or Visual Decision Demonstrated | Validation Result |
+| Visual ID | Journey / Surface / State | Viewport | Image Path | Behavior Or Visual Decision Demonstrated | Result |
 | --- | --- | --- | --- | --- | --- |
 | VIS-001 |  |  |  |  |  |
 
