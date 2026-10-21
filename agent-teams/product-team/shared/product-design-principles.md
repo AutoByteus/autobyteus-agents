@@ -349,6 +349,12 @@ for a design workspace. Later requirements-driven work normally belongs to
 - **Check what the work changed.** Finished designs are a record of what the
   user approved: a refresh or a later ticket does not recheck them or
   recapture their screenshots.
+- **Copied UI code is its own evidence.** Where the baseline reuses the
+  source's presentation files unchanged, they render the same by
+  construction: confirm the files match and look at the screens once beside
+  the source. Compare item by item only what the baseline rebuilds or
+  simulates (synthetic data in place of real data, scripted behavior, a
+  replaced store), and only as far as needed to see that it matches.
 - Reproduce the pinned source's appearance and client-visible behavior exactly
   for every distinct item in the selected current-experience inventory unless
   an accepted design change intentionally differs.

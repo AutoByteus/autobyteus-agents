@@ -175,7 +175,8 @@ application for a focused correction.
    implementation rules in the shared principles.
 8. Run the pinned source and baseline in matched browser, viewport, font,
    asset, theme, locale, context, and scenario conditions, and compare every
-   distinct inventory item as the shared principles' section 6 describes.
+   distinct inventory item as the shared principles' section 6 describes;
+   files copied unchanged from the source need no item-by-item comparison.
    Record source evidence, baseline evidence, the result, and which domain
    values are illustrative.
 9. Fix every observable discrepancy and repeat the matched browser comparison
