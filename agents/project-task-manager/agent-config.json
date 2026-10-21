@@ -8,6 +8,7 @@
     "create_task",
     "update_task",
     "list_available_agents",
+    "list_available_nodes",
     "delegate_task",
     "send_message_to",
     "read_file",
