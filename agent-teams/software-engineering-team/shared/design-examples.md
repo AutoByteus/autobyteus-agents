@@ -31,6 +31,7 @@ The examples are intentionally detailed. Preserve them rather than shortening or
 - [Example 9: Rejecting An Unreachable Edge Case During Technical Review](#example-9-rejecting-an-unreachable-edge-case-during-technical-review)
 - [Example 10: Supported Product Scenario Versus Technical Possibility](#example-10-supported-product-scenario-versus-technical-possibility)
 - [Common Bad-Practice Patterns](#common-bad-practice-patterns)
+- [Cases From Our Own Reviews](#cases-from-our-own-reviews)
 - [How To Use These Examples](#how-to-use-these-examples)
 
 ## Example 1: CRUD Request Flow
@@ -1195,9 +1196,76 @@ Better direction:
 - name the deeper governing owner explicitly
 - if a bounded local loop exists below that, name it too
 
+## Cases From Our Own Reviews
+
+Real design mistakes from this team's tickets: what the design said, the fix that was adopted, and how to notice the shape next time. Each case is short; its ticket holds the full story.
+
+When a design mistake that the principles describe is fixed, add it here in the same shape: ticket and finding, what the design said (❌), the fix (✅), why it mattered, and how to notice it. When a new case repeats an existing one, add its ticket to that case instead of a new entry.
+
+### Case 1: One Sequence, Two Owners (autobyteus-191, AR-005)
+
+Principles 2 and 13.
+
+- **The design said:** to message a run on another node, the root gets the endpoint from `RemoteRunLinks`, then calls `engine.sendToRemote(input, transmit)`. The engine checks the message, assigns its ID, calls `transmit`, which goes back into `RemoteRunLinks` and the channel, and then commits. The spine's owner read "root + `RemoteRunLinks`". Every dependency pointed the right way, and the second review passed it.
+
+  ```text
+  ❌ root → RemoteRunLinks.endpointFor → engine.sendToRemote(input, transmit)
+                                            └─ transmit() → RemoteRunLinks → channel
+                                         → engine commits the sender's log
+  ```
+
+- **The fix:** the root's message delivery owns the order and calls each mechanism itself.
+
+  ```text
+  ✅ root: endpoint.allowsSender → engine.prepareRemoteSend → RemoteRunLinks.deliver → engine.commitSentToRemote
+  ```
+
+- **Why it mattered:** with the callback, refusal, timeout and partial failure had no single owner, and the next retry or queueing rule would have landed on whichever side someone touched first.
+- **Notice it by:** a function passed to one mechanism so it can reach another collaborator; an owner written "A + B". A chain of many coordinators with no main owner is a different mistake ([Common Bad-Practice Pattern 2](#2-fragmented-coordinator-chain)).
+
+### Case 2: One Entry Form Traced, Another Left Open (autobyteus-191, AR-003)
+
+Principle 1.
+
+- **The design said:** remote delegation was designed for `delegate_task` with `node`. The tool's other entry form, giving a saved Task (`task_id`) to an existing copy by its run ID, was not traced; given a remote run, it would have tried to assign a saved Task across nodes.
+- **The fix:** each entry form of `delegate_task` traced; the existing-copy form refuses a remote run (`REMOTE_SAVED_TASK_NOT_SUPPORTED`) before it resolves the Task.
+- **Why it mattered:** a path traced for one form says nothing about another; the untraced form is the one that fails in use.
+- **Notice it by:** one example standing for every entry form of a tool or API, or one kind ("a run") standing for several.
+
+### Case 3: A Reader Of Derived Data Left Out (autobyteus-191, F-002)
+
+Principle 11.
+
+- **The design said:** Team and Org stores compose delegator ↔ remote messages into their stored view. Its table of code reading the changed structure left out the package validators, which still required both message endpoints to be local agents.
+- **What happened:** after a restart the validators dropped the stored package, and replies were refused. API/E2E found it; design and architecture review had not.
+- **The fix:** a table row "Package-state validation: include as message endpoints"; both validators check endpoints against the store's endpoint set, the one owner of that set.
+- **Why it mattered:** code that reads what is derived from a structure (views, endpoint sets, validators, streams) breaks as surely as code that reads it directly.
+- **Notice it by:** an inventory that lists only the direct readers of a changed structure.
+
+### Case 4: Behavior By Absence (autobyteus-191, AR-007)
+
+Principle 13.
+
+- **The design said:** closing a Task fences off its run on another node because the release lookup finds no authority for it (`NO_AUTHORITY`), which then counts as "stopped".
+- **The fix:** an explicit `fenced_remote` result where Task executions are released: no release is invoked, the message says what happened, and it is the hook for a later "stop on the peer".
+- **Why it mattered:** a behavior reached through a failed lookup works by accident and breaks silently when the lookup changes.
+- **Notice it by:** "finds no X, so …", "counts as".
+
+### Case 5: Claims About The Code Taken On Trust (autobyteus-245, AR-202; autobyteus-247, AR-301)
+
+Principle 1.
+
+- **The designs said:**
+  - autobyteus-245 counted "14 readers" of `rootLaunchConfiguration`; the port method had exactly one. The inflated count kept a second method beside the new one and a dead `rootKind`.
+  - autobyteus-247 said the idle shutdown of a Team started by a peer "mirrors `StandaloneHostIdleShutdown`", but it used the user's Stop, which interrupts work in progress.
+- **The fixes:** `launchBase()` replaces `rootLaunchConfiguration()` on the port, its one reader, and `rootKind` is removed; the peer-started Team shuts down only when every started member prepares a quiet termination, reusing the Team copy's quiet rule.
+- **Why it mattered:** a count and a "mirrors" are claims; checked against the cited code, rule by rule, both fell apart.
+- **Notice it by:** "mirrors", "as today", "the compiler enforces", a count with no source.
+
 ## How To Use These Examples
 
 - Start from the example whose shape is closest to the current task.
+- Read the cases from our own reviews when a design touches the same shape: several kinds or entry forms, a sequence across components, derived data, a decision by absence, or a claim about existing code.
 - Reuse the reasoning style, not the exact names.
 - The rules these examples illustrate live in [design-principles.md](design-principles.md): spine-first design (Principles 2 and 14), explicit ownership and named facades (3), off-spine concerns (4), singular interfaces (10), reachable premises (6), persisted-data decisions (5), and file placement after the design story (12).
 - Judge a finding outside a ticket's scope with [ticket-scope.md](ticket-scope.md#common-situations).
