@@ -71,6 +71,10 @@ A principle may end with **Signals** (what shows the rule is broken) and **Check
 - Before applying structural principles, establish the relevant behavioral baseline: existing behavior, the approved change, and behavior that must remain unchanged or outside scope.
 - Understand the complete relevant behavior and production path from a supported trigger or governing contract to its meaningful outcome. The behavior may be user-initiated, system-initiated, operational, or contract-driven. Trace enough of its lifecycle boundaries to judge the change correctly; this does not require understanding unrelated parts of the product.
 - Read the current code path before defining the target design.
+- When a mechanism serves several kinds of subject (for example root kinds, Agent or Team, local or remote) or a capability has several entry forms (for example a tool's parameter modes), trace the path for each kind and each form; a path traced for one is not evidence for another. When two parallel paths serve one capability, compare their gates and refusals: a gate on one path only is a finding or an explicit decision.
+- Cite the file and line for each statement about existing code that the design relies on. Compare "mirrors X", "the same as Y" and "as today" rule by rule against that code, and count callers at their call sites, not declarations.
+- **Signals:** a generic subject ("the root", "a run") standing for several kinds; one example standing for every entry form; a gate on only one of two parallel paths; "the compiler enforces", "mirrors", "as today", or a count without a source.
+- **Check:** Which kinds and entry forms does each mechanism serve, and where is each one traced? Which statements about existing code carry no citation?
 
 ### 2. Data-Flow Spine Inventory and Clarity
 
@@ -88,7 +92,7 @@ A principle may end with **Signals** (what shows the rule is broken) and **Check
   - return/event spines,
   - bounded local spines inside one owner when a loop, worker cycle, state machine, or dispatcher materially affects the design.
 - `Primary` is per use case/path, not globally singular. If two important use cases each have a top-level business path, both can have their own primary spine.
-- For each spine, state its start, end, owner, and why it exists. Write each primary spine as a short arrow chain, and name its main-line nodes in natural domain language.
+- For each spine, state its start, end, owner, and why it exists. Write each primary spine as a short arrow chain in the actual call order, callbacks and hooks included, with one governing owner per node, and name its main-line nodes in natural domain language.
 - Keep only true main-line nodes on each spine.
 - `Spine Span Sufficiency Rule` (mandatory): a primary spine must be stretched far enough to expose the real business path, not only the local edited segment.
 - The primary spine should usually show:
@@ -104,7 +108,7 @@ A principle may end with **Signals** (what shows the rule is broken) and **Check
   - Bad: `Exposure Composer -> Browser Surface`
   - Common: CRUD/request `Frontend -> API -> Service -> Repository -> Database`; runtime/worker `API -> Run -> Runtime -> Worker/Event Loop`; bounded local loop/state `Queue/Event Source -> Loop/State Machine -> Handler/Transition -> Output/Next Event`.
   - Pairing: primary spine `Request Surface -> Session Owner -> Runtime -> Event Loop Owner`, with the bounded local spine inside `Event Loop Owner`: `Receive Event -> Normalize -> Select Handler -> Apply Transition -> Emit Next Event`.
-- **Signals:** the declared inventory is incomplete, or the main line, secondary lines, or bounded local spines are hard to draw (the design is probably fragmented); many peer coordinators with no obvious main line; important spines left implicit instead of named; the named spine stops at the local edited helper and hides the initiating surface, authoritative owner boundary, or downstream consequence; event loops or state machines materially affect the behavior but no bounded local spine is described.
+- **Signals:** the declared inventory is incomplete, or the main line, secondary lines, or bounded local spines are hard to draw (the design is probably fragmented); many peer coordinators with no obvious main line; important spines left implicit instead of named; the named spine stops at the local edited helper and hides the initiating surface, authoritative owner boundary, or downstream consequence; event loops or state machines materially affect the behavior but no bounded local spine is described; a governing owner written as "A + B"; a function passed to one mechanism so it can reach another collaborator (Principle 13).
 - **Check:** What are the primary, secondary, return/event, and bounded local spines for the in-scope use cases? With several use cases or major business paths, does each have its own primary spine instead of one vague chain? Is each primary spine stretched to the real business path, authoritative owner, and downstream consequence? Which bounded local spines exist inside owned nodes, and where do they start and end? What are the main domain subject nodes on each spine? What are the return/event spines when the change is async or event-driven?
 
 ### 3. Ownership Clarity and Boundary Encapsulation
@@ -231,8 +235,10 @@ Dead code is code that nothing in the product reaches anymore. It makes the code
 - Reusable owned structures must be semantically tight: remove redundant attributes, avoid overlapping parallel representations for the same domain subject, and keep each field's meaning singular and explicit. Tighten a structure before standardizing it or promoting it into a reusable owned file.
 - Shared cores and specialized variants are valid only when the shared base is truly coherent. Do not create one-for-all base structures that collect mostly-optional fields for unrelated cases; when a base accumulates optional fields mainly to serve divergent cases, split it into a tighter shared core plus meaningful specialized variants, or use composition, under a clear subsystem owner.
 - Put code in a shared or common folder only when it is truly cross-cutting and concern-agnostic.
-- **Signals:** shared structures that still carry redundant fields, overlapping representations, or mixed meanings after extraction.
-- **Check:** Which shared data structures, schemas, DTOs, mappers, or types need tightening so redundant attributes or overlapping representations are removed instead of standardized?
+- Each fact is derived by one owner. Other parts read the stored or returned result, or verify it and refuse a mismatch; they do not recompute it.
+- When a stored or shared structure is split, re-kinded or extended, list the code that reads it and the code that reads anything derived from it (views, endpoint sets, validators, indexes, streams), with the decision for each.
+- **Signals:** shared structures that still carry redundant fields, overlapping representations, or mixed meanings after extraction; the same value worked out in two places or on two nodes; an inventory that lists only the direct readers of a changed structure.
+- **Check:** Which shared data structures, schemas, DTOs, mappers, or types need tightening so redundant attributes or overlapping representations are removed instead of standardized? Which views, sets, validators, or streams are built from a changed structure, and what does each do with the change?
 
 ### 12. File Responsibility And Placement
 
@@ -247,7 +253,10 @@ Dead code is code that nothing in the product reaches anymore. It makes the code
 
 - If provider selection, fallback, retry, aggregation, routing, fan-out, or validation logic repeats across callers, give that policy a clear owner.
 - If a proposed layer or module only forwards calls and owns no policy, translation, or boundary concern, remove it.
-- **Signals:** the same coordination policy repeated in several callers; empty indirection layers that only pass work through.
+- One sequence has one owner that calls each of its mechanisms itself, in order. A mechanism does not reach another collaborator through a function passed in (for example `engine.send(input, transmit)` where `transmit` belongs to another component): that splits the sequence between two owners even when every dependency points the right way. Callbacks are for notifications (events, lifecycle hooks). A component whose rules branch on which side or context it runs in holds two roles; give each its owner.
+- A behavior the requirements name is decided by an explicit rule with its own result, not reached because a lookup finds nothing, an event is missing, or one status counts as another.
+- **Signals:** the same coordination policy repeated in several callers ("the same shape in each root"); empty indirection layers that only pass work through; one sequence split between collaborators; "finds no X, so …", "counts as", or a lifecycle end that changes no state.
+- **Check:** Who drives each sequence, and in what order? Which required behavior happens only because something is missing?
 
 ### 14. A Spine-First, Concrete Design Document
 
@@ -287,6 +296,10 @@ When a trigger fires, apply the principle it names and record in the design spec
 | Legacy cleanup | a solution keeps wrappers, dual paths, or fallbacks only for old behavior | 8 |
 | Persisted-data transition | a code model, serialization contract, or storage schema changes | 5 |
 | Example clarity | a design point would stay abstract or easy to misread | 14 |
+| Several kinds or forms | a mechanism serves several kinds of subject or entry forms, or two paths serve one capability | 1 |
+| Split sequence | a mechanism gets a function that reaches another collaborator, an owner reads "A + B", or rules branch on the side a component runs on | 2, 13 |
+| Derived data | a fact is computed in two places, or a changed structure feeds views, sets, validators, or streams | 11 |
+| Behavior by absence | a required behavior follows from a failed lookup, a missing event, or "counts as" | 13 |
 
 ## Task Design Health Assessment
 

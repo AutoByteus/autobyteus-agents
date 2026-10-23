@@ -32,7 +32,7 @@ inputs to the configured handoff rules; they do not select recipients.
 
 ## Architecture Investigation Evidence
 
-Link the architecture-level evidence gathered after requirements approval from the canonical investigation notes. Those notes own both product and technical observations; this section maps evidence to design decisions without duplicating the raw log.
+Link the architecture-level evidence gathered after requirements approval from the canonical investigation notes. Those notes own both product and technical observations; this section maps evidence to design decisions without duplicating the raw log. Every statement in this spec about existing code cites a row here or its file and line (Principle 1).
 
 | Source / Command / Probe | Exact Path / Reference | Observation | Design Decision Supported | Remaining Uncertainty |
 | --- | --- | --- | --- | --- |
@@ -47,6 +47,7 @@ A short statement of the intended delta, written at the start of design. The fin
 Write this last, once the design is decided; it appears early so readers see the boundary first. Reviewers use it with the requirements doc's Scope Guardrail to tell this ticket's findings from follow-ups.
 
 - In scope: the Scope Guardrail use-case IDs this design covers, and the areas this change modifies (the file list stays in Target Subsystem / Folder / File Mapping):
+- Derived consumers, when a stored or shared structure changes: the views, sets, validators, or streams built from it, with the decision for each (Principle 11), or `N/A`:
 - Deliberately left alone: nearby areas, components or behaviors this change does not touch, and why:
 - Follow-ups: the `follow-ups.md` IDs ([ticket-scope.md](../references/ticket-scope.md)) of problems found during design that this ticket does not fix, such as dead code elsewhere and refactors the Task Design Health Assessment defers, or `None`:
 
@@ -161,7 +162,7 @@ When migration is required, complete or gate it before affected current runtime 
 
 ## Data-Flow Spine Inventory
 
-List every relevant spine that matters to understanding the design.
+List every relevant spine that matters to understanding the design. When a mechanism serves several kinds of subject or entry forms, give each its row or name it in Scope (Principle 1).
 
 | Spine ID | Scope (`Primary End-to-End`/`Return-Event`/`Bounded Local`) | Related Behavior ID(s) | Start | End | Governing Owner | Why It Matters |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -169,7 +170,7 @@ List every relevant spine that matters to understanding the design.
 
 ## Primary Execution Spine(s)
 
-Write each primary execution spine as a short arrow chain, for example:
+Write each primary execution spine as a short arrow chain in the actual call order, callbacks included, with one governing owner per node that calls each mechanism itself (Principles 2 and 13), for example:
 `Input -> Manager -> Run -> Backend -> Engine / Client -> Provider`
 
 ## Spine Narratives (Mandatory)

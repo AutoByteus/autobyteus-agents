@@ -48,6 +48,7 @@ Complete this understanding and alignment gate before applying the structural ch
 - Approved change, preserved behavior, and outside scope understood:
 - Every prospective blocking `Design Impact` finding is traceable to an approved requirement, acceptance criterion, or preserved-behavior ID (`Yes`/`No`):
 - Remaining material ambiguity, if any:
+- Statements about existing code the design relies on, opened at their cited lines (an unsourced or false one is a finding; Principle 1):
 
 | Behavior ID | Kind | Design Alignment With Approved Intent (`Pass`/`Fail`) | Approved Trigger / Contract And Current-State Evidence (`Pass`/`Fail`/`Unclear`) | Target Outcome / Path / Spine Coherence (`Pass`/`Fail`/`Unclear`) | Status (`Confirmed`/`Needs Correction`/`Unclear`) | Required Action |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -78,7 +79,7 @@ If no supplemental task artifacts exist, write `None`.
 
 ## Spine Inventory Verdict
 
-| Spine ID | Scope | Spine Is Readable? (`Pass`/`Fail`) | Narrative Is Clear? (`Pass`/`Fail`) | Facade Vs Governing Owner Is Clear? (`Pass`/`Fail`/`N/A`) | Main Domain Subject Naming Is Clear? (`Pass`/`Fail`) | Ownership Is Clear? (`Pass`/`Fail`) | Off-Spine Concerns Stay Off Main Line? (`Pass`/`Fail`) | Verdict (`Pass`/`Fail`) |
+| Spine ID | Scope | Spine Is Readable? (`Pass`/`Fail`) | Narrative Is Clear? (`Pass`/`Fail`) | Facade Vs Governing Owner Is Clear? (`Pass`/`Fail`/`N/A`) | Main Domain Subject Naming Is Clear? (`Pass`/`Fail`) | One Owner Per Node, In Call Order? (`Pass`/`Fail`) | Off-Spine Concerns Stay Off Main Line? (`Pass`/`Fail`) | Verdict (`Pass`/`Fail`) |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |  |  |
 
@@ -112,6 +113,8 @@ If no supplemental task artifacts exist, write `None`.
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
 
+A mechanism that gets a function reaching another collaborator (the owner should call each mechanism itself), a compound owner ("A + B"), or a kind or entry form the spine does not trace fails the row (Principles 1, 2, 13).
+
 ## Reusable Owned Structures Verdict
 
 | Repeated Structure / Logic | Extraction Need Was Evaluated? (`Pass`/`Fail`) | Shared File Choice Is Sound? (`Pass`/`Fail`/`N/A`) | Ownership Of Shared Structure Is Clear? (`Pass`/`Fail`/`N/A`) | Verdict (`Pass`/`Fail`) | Notes |
@@ -123,6 +126,8 @@ If no supplemental task artifacts exist, write `None`.
 | Shared Structure / Type / Schema | One Clear Meaning Per Field? (`Pass`/`Fail`) | Redundant Attributes Removed? (`Pass`/`Fail`) | Overlapping Representation Risk Is Controlled? (`Pass`/`Fail`) | Shared Core Vs Specialized Variant / Composition Decision Is Sound? (`Pass`/`Fail`/`N/A`) | Verdict (`Pass`/`Fail`) | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |
+
+Derived consumers of a changed structure listed with a decision for each (Principle 11): `Pass` / `Fail` / `N/A`
 
 ## File Responsibility Mapping Verdict
 
