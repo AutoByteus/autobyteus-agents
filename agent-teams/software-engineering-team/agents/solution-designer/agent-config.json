@@ -18,7 +18,9 @@
     "read_page",
     "run_script",
     "screenshot",
-    "get_handoff_rules"
+    "get_handoff_rules",
+    "list_available_agents",
+    "update_task"
   ],
   "skillNames": [
     "solution-designer"

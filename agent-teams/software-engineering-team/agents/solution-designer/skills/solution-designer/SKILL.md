@@ -156,7 +156,14 @@ gate.
   context and classify `Product Design Requested`. If the user names who should
   do it, send the context there as the agent instructions describe; otherwise
   use the handoff rules. Forward the user's requested outcome without
-  prescribing how the design work is done.
+  prescribing how the design work is done. When you delegate it with a
+  description (your brief from the investigation: the user's words, the
+  requirement and constraints, what the design must answer), keep the
+  `task_id` it returns. When the Product Team reports the design approved and
+  integrated, with its worktree and branch removed, mark that Task DONE with
+  `update_task` (CANCELLED if the design is dropped); do not keep it open to
+  keep the team available. When you are yourself working on a delegated Task,
+  your delegation has no Task of its own to close.
 - On returned Product outcomes, use their evidence to clarify requirements
   with the user, request a user-directed revision, integrate approved UI/UX
   decisions, or preserve the precise blocker/not-recommended rationale. Keep
