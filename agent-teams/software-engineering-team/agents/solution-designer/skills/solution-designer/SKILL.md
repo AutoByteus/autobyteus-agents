@@ -274,6 +274,9 @@ Revising requirements or design re-enters that phase, so its reading gate applie
 | A prerequisite routed to you as a `Requirement Gap` | Handle it as Prerequisites describes | The ticket waits until the prerequisite is delivered |
 | Non-requirement external blocker | Preserve actual evidence, missing prerequisite and needed user/external action | Return Blocked without inventing requirements |
 
+When you fix a design mistake that the design principles describe, whichever
+role found it, add it as a case to [design-examples.md](references/design-examples.md#cases-from-our-own-reviews).
+
 After a requirements change is approved, rebuild affected design and evidence
 links, reclassify the completed solution, append the completed SR round and
 repeat any applicable review. Previous approvals or review passes apply only
