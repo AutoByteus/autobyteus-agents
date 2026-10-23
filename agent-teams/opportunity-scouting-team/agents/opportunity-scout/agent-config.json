@@ -1,0 +1,17 @@
+{
+  "toolNames": [
+    "read_file",
+    "write_file",
+    "edit_file",
+    "run_bash",
+    "search_web",
+    "read_url",
+    "list_projects",
+    "create_task",
+    "get_handoff_rules",
+    "send_message_to"
+  ],
+  "skillNames": [
+    "opportunity-scouting"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "coordinatorMemberName": "opportunity_scout",
+  "members": [
+    {
+      "memberName": "opportunity_scout",
+      "ref": "opportunity-scout",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "deep_researcher",
+      "ref": "deep-researcher",
+      "refType": "agent",
+      "refScope": "shared"
+    }
+  ],
+  "handoffs": [
+    {
+      "from": "/opportunity_scout",
+      "to": "/deep_researcher",
+      "rules": [
+        "When a research-request.md for an opportunity is saved and ready."
+      ]
+    },
+    {
+      "from": "/deep_researcher",
+      "to": "/opportunity_scout",
+      "rules": [
+        "When the research brief for an Opportunity Scout request is saved."
+      ]
+    }
+  ]
+}
