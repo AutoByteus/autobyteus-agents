@@ -37,7 +37,7 @@ the Marketing Team runs in.
    route each delegated result to `/project_task_manager`: a verified delivery
    from the Solution Designer, a design result, a finished marketing Task, a
    package result. It checks the result against the Task's done criteria and
-   the user's checks, then closes the Task.
+   the delivery evidence, then closes the Task.
 4. **Work one member needs from another goes through the Project Task
    Manager.** A design for a software Task, a product claim for a marketing
    draft, marketing for a release: the member sends the need to

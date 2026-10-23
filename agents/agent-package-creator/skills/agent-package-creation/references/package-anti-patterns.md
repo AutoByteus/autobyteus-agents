@@ -35,6 +35,7 @@ Concrete mistakes found in real package work. The [package design principles](pa
 | 25 | A link that exists only for another file's links | Package design |
 | 26 | Softening requirements while restructuring | Creator process |
 | 27 | Judging a change from a run that did not exercise it | Creator process |
+| 28 | A live check that starts real work | Creator process |
 
 ## Package design
 
@@ -226,3 +227,10 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Breaks:** [step 4](../SKILL.md#4-validate-and-recover), real use: a run on the final text that shows the change at work.
 - **Instead:** Create consistent test data that makes each point of the change happen, and leave the agent the tools and reading it has in real use ([live-checks.md](live-checks.md)). After the run, map each point to where it happened; build data for any point that did not, and rerun.
 - **Detect:** In the result's validation, each point of the change names the run and the step where it was observed; a point without one is listed as untested.
+
+### 28. A live check that starts real work
+
+- **Incident:** Task autobyteus-agents-55 tested how the Project Task Manager moves a Task to another worker, in isolated apps that held the whole package. The PM delegated for real: two Agent Package Creator copies started on the seeded Task, and one committed on a new branch in a worktree of the user's agents repository and started another test instance. A guard script meant to stop such runs hung on its terminate call (2026-10-23).
+- **Breaks:** [live-checks.md](live-checks.md): an isolated instance must not act on the user's repositories or data.
+- **Instead:** When the scenario only needs the agent's choice, load only the agent under test and put placeholder run IDs on its board, so a delegation is refused and seen in the traces; when the worker's work is the point, give its Task a test repository.
+- **Detect:** Before sending, list each `delegate_task` or `send_message_to` the scenario can lead to and where it would land; after the run, check the instance's runs and the repositories' branches and worktrees.
