@@ -262,9 +262,14 @@ are complete. Then the Product UI/UX Designer performs this repository sequence:
    same repository-finalization sequence, when the ticket policy defines that
    transition. Keep blocked or unfinished work in `tickets/in-progress/`.
 6. Stop the ticket's running UI reference processes, then remove the local worktree only after
-   final evidence, handoff, and integration state are durable. Retain or
-   delete the ticket branch only under repository policy. If cleanup is unsafe,
+   final evidence, handoff, and integration state are durable. Delete the
+   merged ticket branch unless repository policy keeps it. If cleanup is unsafe,
    leave the worktree intact and report the exact cleanup blocker.
+7. In the result to the requester, say that the ticket is closed: merged,
+   worktree and branch removed, so the requester can close the Task it
+   delegated. A ticket the user leaves unfinished keeps its worktree only while
+   the user wants it: when you find a parked one, ask the user whether to
+   finish, keep or close it.
 
 Creating a remote is not implicit. When the repository has a remote, pushing
 the default branch is part of finalization; push ticket branches only under
