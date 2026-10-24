@@ -26,6 +26,7 @@ Team and Org configuration own their respective routing boundaries. Start with:
 | Agent | Purpose |
 | --- | --- |
 | [Agent Package Creator](agents/agent-package-creator/agent.md) | Creates, analyzes, and updates skills, Agents, Agent Teams, and Agent Orgs via the bundled `agent-package-creation` skill. |
+| [Chemistry Module Designer](agents/chemistry-module-designer/agent.md) | Builds interactive German-language chemistry teaching modules (Gymnasium grades 7–12) as offline HTML: animations, pupil interactions, graded tasks with solutions, teacher notes, checked chemistry and experiment safety. |
 | [Computer Use Operator](agents/computer-use-operator/agent.md) | Completes tasks on the computer: operates websites through the visible browser UI and uses command-line tools, software, and media files. Keeps per-site and per-tool workspace knowledge. Shared by the Marketing and Event Scouting teams. |
 | [Data Engineer](agents/data-engineer/agent.md) | Ingests, cleans, normalizes, validates, and prepares datasets and JSON content collections. |
 | [Deep Researcher](agents/deep-researcher/agent.md) | In-depth, primary-source research delivering a sourced brief and a claims check. Shared by the Marketing and Opportunity Scouting teams. |
@@ -55,6 +56,7 @@ Coordinator is the entry member; routing lives in each team's `team-config.json`
 | [Kids Coloring Story Team](agent-teams/kids-coloring-story-team/team.md) | `story_activity_designer` | Coloring Page Illustrator, Child Experience Reviewer, Printable Pack Producer | Printable coloring stories, sheets, and activity pages. |
 | [Kids Picture Story Team](agent-teams/kids-picture-story-team/team.md) | `story_picture_book_author` | Book Production Editor, Picture Book Illustrator, Picture Book Reviewer | Reading-first illustrated picture books with digital and print exports. |
 | English Bridge Team (`agent-teams/english-bridge-team`) | `english_translator` | Worker | Translates user requests into English and sends them unchanged to a worker. |
+| [Chemistry Teaching Team](agent-teams/chemistry-teaching-team/team.md) | `curriculum_planner` | (+ shared Chemistry Module Designer) | From the chemistry curriculum (Gymnasium 7–12) to teaching plans with terms, methods, diagnosis and differentiation, interactive modules, and an offline library with search for quick lookup in class. |
 | [Classroom Simulation Team](agent-teams/classroom-simulation-team/team.md) | `professor` | Student | Two-role teacher–student demo of agent-to-agent file-based communication. |
 
 ## Agent Orgs

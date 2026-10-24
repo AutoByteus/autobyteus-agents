@@ -1,0 +1,7 @@
+# Creator's own checks on the team's module, 2026-10-24
+ok      Fe + S -> FeS
+ok      Fe + S -> FeS
+ok      2 Cu + S -> Cu2S
+3 Gleichungen, 0 mit Fehlern
+Folien: 30, Schritt-Animationen: 2
+Keine Probleme gefunden.

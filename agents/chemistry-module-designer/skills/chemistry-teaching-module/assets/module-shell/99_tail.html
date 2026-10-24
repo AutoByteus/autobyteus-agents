@@ -1,0 +1,195 @@
+
+</main>
+<aside id="notesPanel" aria-label="Lehrerhinweise"></aside>
+<div id="help"><div class="in">
+  <h3 style="font-family:var(--serif);color:var(--petrol);font-size:22px;margin:0 0 8px">Bedienung</h3>
+  <p><kbd>→</kbd> / <kbd>Leertaste</kbd> nächster Animationsschritt, dann nächste Folie · <kbd>←</kbd> zurück · <kbd>Bild↓</kbd>/<kbd>Bild↑</kbd> ganze Folie weiter/zurück · <kbd>Pos1</kbd>/<kbd>Ende</kbd> erste/letzte Folie</p>
+  <p><kbd>F</kbd> Vollbild · <kbd>N</kbd> Lehrerhinweise ein/aus · <kbd>L</kbd> alle Lösungen auf-/zudecken · <kbd>P</kbd> Drucken / PDF</p>
+  <p>Animationen: mit ◀ ▶ Schritt für Schritt oder mit „Abspielen“. Einzelne Lösungen: auf „Lösung zeigen“ klicken.</p>
+  <p class="mut">Esc oder Klick schließt dieses Fenster.</p>
+</div></div>
+<nav id="bar" aria-label="Navigation">
+  <div class="sec" id="secName"></div>
+  <span class="cnt" id="cnt"></span>
+  <button id="bPrev" title="Zurück (←)">‹</button>
+  <button id="bNext" title="Weiter (→)">›</button>
+  <button id="bSol" title="Alle Lösungen (L)">✓ Lösungen</button>
+  <button id="bNotes" title="Lehrerhinweise (N)">✎ Lehrer</button>
+  <button id="bFs" title="Vollbild (F)">⛶</button>
+  <button id="bPrint" title="Drucken / PDF (P)">⎙</button>
+  <button id="bHelp" title="Hilfe (?)">?</button>
+</nav>
+<script>
+(function(){
+"use strict";
+const errors=[];
+window.addEventListener("error",e=>errors.push(String(e.message||e)));
+const slides=[...document.querySelectorAll(".slide")];
+const N=slides.length;
+const stage=document.getElementById("stage");
+const params=new URLSearchParams(location.search);
+if(params.has("shot")||params.has("check"))document.body.classList.add("shot");
+let cur=0;
+
+/* ---------- Schritt-Animationen ---------- */
+function animState(a){
+  if(!a._st){
+    const steps=+a.dataset.steps||1;
+    const ctl=document.createElement("div");ctl.className="actl";
+    ctl.innerHTML='<button data-a="first" title="Anfang">↺</button><button data-a="prev" title="Schritt zurück">◀</button><span class="sc"></span><button data-a="next" title="Schritt weiter">▶</button><button data-a="play" title="Abspielen">▶︎ Abspielen</button>';
+    a.appendChild(ctl);
+    a._st={k:0,steps,timer:null,ctl};
+    ctl.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const s=a._st;
+      if(b.dataset.a==="first")setStep(a,0);
+      if(b.dataset.a==="prev")setStep(a,s.k-1);
+      if(b.dataset.a==="next")setStep(a,s.k+1);
+      if(b.dataset.a==="play")play(a);});
+  }
+  return a._st;
+}
+function setStep(a,k){
+  const s=animState(a);k=Math.max(0,Math.min(s.steps,k));s.k=k;
+  a.querySelectorAll("[data-show],[data-hide]").forEach(e=>{const d=e.dataset;
+    e.classList.toggle("off",(d.show!==undefined&&k<+d.show)||(d.hide!==undefined&&k>=+d.hide));});
+  a.querySelectorAll("[data-at]").forEach(e=>e.classList.toggle("at",k>=+e.dataset.at));
+  let best=null;a.querySelectorAll("[data-cap]").forEach(e=>{e.classList.remove("cur");if(+e.dataset.cap<=k&&(!best||+e.dataset.cap>=+best.dataset.cap))best=e;});
+  if(best)best.classList.add("cur");
+  s.ctl.querySelector(".sc").textContent="Schritt "+k+" / "+s.steps;
+  a.dispatchEvent(new CustomEvent("step",{detail:k}));
+}
+function stopPlay(a){const s=animState(a);if(s.timer){clearInterval(s.timer);s.timer=null;}}
+function play(a){
+  const s=animState(a);stopPlay(a);if(s.k>=s.steps)setStep(a,0);
+  s.timer=setInterval(()=>{if(s.k>=s.steps){stopPlay(a);return;}setStep(a,s.k+1);},+a.dataset.ms||1800);
+}
+const anims=[...document.querySelectorAll(".anim[data-steps]")];
+anims.forEach(a=>setStep(a,0));
+function slideAnims(i){return [...slides[i].querySelectorAll(".anim[data-steps]")];}
+/* Leertaste/→: erst die Animationen der Folie durchschalten, dann weiter */
+function forward(){
+  for(const a of slideAnims(cur)){const s=animState(a);if(s.k<s.steps){stopPlay(a);setStep(a,s.k+1);return;}}
+  go(cur+1);
+}
+function backward(){
+  const as=slideAnims(cur).reverse();
+  for(const a of as){const s=animState(a);if(s.k>0){stopPlay(a);setStep(a,s.k-1);return;}}
+  go(cur-1,true);
+}
+
+/* ---------- Vorhersage ---------- */
+document.querySelectorAll(".predict").forEach(p=>{
+  p.querySelectorAll(".opts button").forEach(b=>b.addEventListener("click",()=>{
+    if(p.classList.contains("done"))return;
+    p.classList.add("done");
+    p.querySelectorAll(".opts button").forEach(x=>{if(x.hasAttribute("data-correct"))x.classList.add("ok");});
+    if(!b.hasAttribute("data-correct"))b.classList.add("no");
+  }));
+  const r=document.createElement("button");r.textContent="↺";r.title="Neu versuchen";r.style.cssText="border:0;background:none;color:var(--muted);cursor:pointer";
+  r.addEventListener("click",()=>{p.classList.remove("done");p.querySelectorAll(".opts button").forEach(x=>x.classList.remove("ok","no"));});
+  const o=p.querySelector(".opts");if(o)o.appendChild(r);
+});
+
+/* ---------- Zuordnen ---------- */
+document.querySelectorAll(".sort").forEach(S=>{
+  const pool=S.querySelector(".pool");let sel=null;
+  const items=[...S.querySelectorAll(".item")];
+  items.forEach(it=>it.addEventListener("click",e=>{e.stopPropagation();items.forEach(x=>x.classList.remove("sel","ok","no"));sel=(sel===it)?null:it;if(sel)sel.classList.add("sel");}));
+  S.querySelectorAll(".bin").forEach(bin=>bin.addEventListener("click",()=>{if(!sel)return;bin.appendChild(sel);sel.classList.remove("sel");sel=null;}));
+  if(pool)pool.addEventListener("click",()=>{if(sel){pool.appendChild(sel);sel.classList.remove("sel");sel=null;}});
+  const ctl=document.createElement("div");ctl.className="sctl";
+  ctl.innerHTML='<button data-a="check">Prüfen</button><button data-a="reset">Zurücksetzen</button><span class="small mut"></span>';
+  S.appendChild(ctl);
+  ctl.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
+    if(b.dataset.a==="reset"){items.forEach(x=>{x.classList.remove("ok","no","sel");pool.appendChild(x);});ctl.querySelector("span").textContent="";return;}
+    let ok=0,placed=0;
+    items.forEach(x=>{const bin=x.closest(".bin");x.classList.remove("ok","no");if(!bin)return;placed++;const r=bin.dataset.bin===x.dataset.bin;x.classList.add(r?"ok":"no");if(r)ok++;});
+    ctl.querySelector("span").textContent=ok+" von "+items.length+" richtig"+(placed<items.length?" ("+(items.length-placed)+" noch nicht zugeordnet)":"");
+  });
+});
+
+/* ---------- Eigene interaktive Modelle: <div data-widget="name"> + WIDGETS.name = function(el){...} ---------- */
+document.querySelectorAll("[data-widget]").forEach(el=>{
+  const f=window.WIDGETS[el.dataset.widget];
+  if(f){try{f(el);}catch(e){errors.push("widget "+el.dataset.widget+": "+e.message);}}
+  else errors.push("widget fehlt: "+el.dataset.widget);
+});
+
+/* ---------- Lösungen ---------- */
+const sols=[...document.querySelectorAll(".sol")];
+sols.forEach(s=>{s.classList.add("hidden");const b=document.createElement("button");b.className="sol-btn";b.innerHTML="<span>Lösung zeigen</span>";b.addEventListener("click",()=>s.classList.remove("hidden"));s.appendChild(b);});
+function toggleSol(){const anyHidden=sols.some(s=>s.classList.contains("hidden"));sols.forEach(s=>s.classList.toggle("hidden",!anyHidden));document.getElementById("bSol").classList.toggle("on",anyHidden);}
+
+/* ---------- Mini-Check (im Browser gespeichert) ---------- */
+document.querySelectorAll(".check input[type=checkbox]").forEach((c,i)=>{const k="chk:"+location.pathname+":"+i;try{c.checked=localStorage.getItem(k)==="1";c.addEventListener("change",()=>localStorage.setItem(k,c.checked?"1":"0"));}catch(e){}});
+
+/* ---------- Navigation ---------- */
+function fit(){const W=innerWidth,H=innerHeight-56;const s=Math.min(W/1280,H/720);stage.style.transform="translate(-50%,-50%) scale("+s+")";stage.style.top=(H/2)+"px";}
+function notes(){const n=slides[cur].querySelector("aside.notes");document.getElementById("notesPanel").innerHTML="<h3>Lehrerhinweise · Folie "+(cur+1)+"</h3>"+(n?n.innerHTML:"<p class='mut'>Keine Hinweise.</p>");}
+function go(i,back){
+  i=Math.max(0,Math.min(N-1,i));
+  slideAnims(cur).forEach(stopPlay);
+  slides[cur].classList.remove("active");cur=i;slides[cur].classList.add("active");
+  if(!back)slideAnims(cur).forEach(a=>setStep(a,0)); else slideAnims(cur).forEach(a=>setStep(a,animState(a).steps));
+  document.getElementById("cnt").textContent=(cur+1)+" / "+N;
+  document.getElementById("secName").textContent=slides[cur].dataset.section||"";
+  document.getElementById("progress").style.width=((cur+1)/N*100)+"%";
+  history.replaceState(null,"","#"+(cur+1));
+  notes();
+}
+function fs(){if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen();}
+function toggleNotes(){document.body.classList.toggle("notes-on");document.getElementById("bNotes").classList.toggle("on");}
+function printAll(){anims.forEach(a=>setStep(a,animState(a).steps));sols.forEach(s=>s.classList.remove("hidden"));setTimeout(()=>print(),200);}
+document.getElementById("bPrev").onclick=()=>go(cur-1);
+document.getElementById("bNext").onclick=()=>go(cur+1);
+document.getElementById("bSol").onclick=toggleSol;
+document.getElementById("bNotes").onclick=toggleNotes;
+document.getElementById("bFs").onclick=fs;
+document.getElementById("bPrint").onclick=printAll;
+const help=document.getElementById("help");
+document.getElementById("bHelp").onclick=()=>help.classList.add("open");
+help.onclick=()=>help.classList.remove("open");
+addEventListener("keydown",e=>{
+  if(e.target.closest&&e.target.closest("input,select,textarea"))return;
+  const k=e.key;
+  if(k==="ArrowRight"||k===" "){e.preventDefault();forward();}
+  else if(k==="ArrowLeft"){e.preventDefault();backward();}
+  else if(k==="PageDown")go(cur+1);
+  else if(k==="PageUp")go(cur-1);
+  else if(k==="Home")go(0);
+  else if(k==="End")go(N-1);
+  else if(k==="f"||k==="F")fs();
+  else if(k==="n"||k==="N")toggleNotes();
+  else if(k==="l"||k==="L")toggleSol();
+  else if(k==="p"||k==="P")printAll();
+  else if(k==="?")help.classList.add("open");
+  else if(k==="Escape")help.classList.remove("open");
+});
+addEventListener("resize",fit);
+addEventListener("beforeprint",()=>anims.forEach(a=>setStep(a,animState(a).steps)));
+fit();
+/* #5 = Folie 5; #5:3 = Folie 5, alle Animationen auf Schritt 3 */
+const m=/^#(\d+)(?::(\d+))?$/.exec(location.hash);
+slides[0].classList.add("active");
+go(m?(+m[1]-1):0);
+if(m&&m[2]!==undefined)slideAnims(cur).forEach(a=>setStep(a,+m[2]));
+
+/* ---------- Prüfmodus ?check: Überlauf und Skriptfehler je Folie ---------- */
+if(params.has("check")){
+  const out={slides:N,overflow:[],errors,anims:[]};
+  slides.forEach((s,i)=>{
+    slides.forEach(x=>x.classList.remove("active"));s.classList.add("active");s.style.animation="none";
+    s.querySelectorAll(".anim[data-steps]").forEach(a=>{out.anims.push({slide:i+1,steps:animState(a).steps});setStep(a,animState(a).steps);});
+    s.querySelectorAll(".sol").forEach(x=>x.classList.remove("hidden"));
+    s.querySelectorAll(".predict").forEach(x=>x.classList.add("done"));
+    const sr=s.getBoundingClientRect();const lim=sr.bottom-30*(sr.height/720);
+    let worst=0,what="";
+    s.querySelectorAll(".body *, h2, .lq-line").forEach(el=>{const r=el.getBoundingClientRect();if(r.height===0)return;const over=Math.max(r.bottom-lim,r.right-sr.right+8);if(over>worst){worst=over;what=el.className||el.tagName;}});
+    s.querySelectorAll(".box,.vis,.col").forEach(el=>{if(el.scrollHeight>el.clientHeight+2&&getComputedStyle(el).overflow!=="visible"){worst=Math.max(worst,el.scrollHeight-el.clientHeight);what=el.className;}});
+    if(worst>1)out.overflow.push({slide:i+1,px:Math.round(worst),element:String(what).slice(0,60)});
+  });
+  const p=document.createElement("pre");p.id="checkout";p.textContent="CHECK"+JSON.stringify(out);document.body.appendChild(p);
+}
+})();
+</script>
+</body>
+</html>
