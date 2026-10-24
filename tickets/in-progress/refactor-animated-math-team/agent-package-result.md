@@ -82,6 +82,15 @@ its harness, and Reviewer repeated the affected checks. This is observed recover
 not a claim of perfect autonomy. Creator did not author or repair application code.
 No real learner outcome is implied.
 
+## Repository delivery
+
+Implementation commit: `924a2be704c0402112d2a3aba9d5d057e49b865e`, based on public `main`
+`3ceaae52cabe9e869862776ab7358caae3e3f68d`. Delivery:
+[PR #120](https://github.com/AutoByteus/autobyteus-agents/pull/120).
+Its post-merge receipt records the final merge hash, local/remote-main equality,
+unchanged unrelated-work fingerprints and task branch/worktree cleanup. This
+result's later documentation-only commit does not alter tested runtime text.
+
 ## Reopen and activation
 
 ```sh
