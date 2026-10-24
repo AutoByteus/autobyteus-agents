@@ -32,8 +32,8 @@ export const BAUSTEINE = {
   },
   reihenfolge: { zweck: "Elemente in die richtige Reihenfolge bringen; elemente stehen in der richtigen Reihenfolge, die App mischt sie", felder: { elemente: { kind: "plain", pflicht: true }, aufloesung: { kind: "lang" } } },
   abstimmung: {
-    zweck: "Klassenabstimmung: die Lehrkraft zählt Hände je Antwort (+/−), dann Auflösung; richtig: true markiert die richtige Antwort",
-    felder: { optionen: { kind: "liste", pflicht: true, felder: { text: { kind: "text", pflicht: true }, richtig: { kind: "plain" } } }, aufloesung: { kind: "lang", pflicht: true } },
+    zweck: "Klassenabstimmung: die Lehrkraft zählt Hände je Antwort (+/−), dann Auflösung; richtig: true markiert die richtige Antwort. merken: ein Schlüssel, unter dem die Zahlen im Browser bleiben; vergleich: zeigt die unter einem anderen Schlüssel gemerkten Zahlen als „vorher“ (Abstimmung vor und nach der Stunde)",
+    felder: { optionen: { kind: "liste", pflicht: true, felder: { text: { kind: "text", pflicht: true }, richtig: { kind: "plain" } } }, aufloesung: { kind: "lang", pflicht: true }, merken: { kind: "plain" }, vergleich: { kind: "plain" } },
   },
   vorhersage: {
     zweck: "Erst vermuten, dann auflösen: eine Option antippen, dann erscheint die Auflösung; richtig: true markiert die richtige Option",

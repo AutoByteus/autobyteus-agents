@@ -101,7 +101,14 @@ function lehrkraftTexte(wurzel) {
       for (const w of Object.values(kap.wissen || {})) for (const feld of ["sachanalyse", "didaktik", "lehrerskript"]) nimm(w[feld]);
     }
   }
-  return [...texte];
+  // A sentence that is also on a slide (for example an expected answer shown as the solution) is not a leak.
+  let schueler = "";
+  for (const f of fs.readdirSync(ordner).filter((x) => x.endsWith(".js") && !x.endsWith(".lehrkraft.js") && x !== "katalog.js")) {
+    const alle = lade(path.join(ordner, f), "CHEM_DATEN") || {};
+    schueler += Object.values(alle).map((k) => JSON.stringify(k.folienDaten || {})).join(" ");
+  }
+  schueler = schueler.replace(/<[^>]+>/g, " ").replace(/&[a-z#0-9]+;/gi, " ").replace(/\\[nt]/g, " ").replace(/\s+/g, " ");
+  return [...texte].filter((t) => !schueler.includes(t));
 }
 const enthalten = (text, texte) => texte.filter((t) => text.includes(t));
 

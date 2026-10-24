@@ -4525,7 +4525,7 @@ var BAUSTEINE = {
 		}
 	},
 	abstimmung: {
-		zweck: "Klassenabstimmung: die Lehrkraft zählt Hände je Antwort (+/−), dann Auflösung; richtig: true markiert die richtige Antwort",
+		zweck: "Klassenabstimmung: die Lehrkraft zählt Hände je Antwort (+/−), dann Auflösung; richtig: true markiert die richtige Antwort. merken: ein Schlüssel, unter dem die Zahlen im Browser bleiben; vergleich: zeigt die unter einem anderen Schlüssel gemerkten Zahlen als „vorher“ (Abstimmung vor und nach der Stunde)",
 		felder: {
 			optionen: {
 				kind: "liste",
@@ -4541,7 +4541,9 @@ var BAUSTEINE = {
 			aufloesung: {
 				kind: "lang",
 				pflicht: true
-			}
+			},
+			merken: { kind: "plain" },
+			vergleich: { kind: "plain" }
 		}
 	},
 	vorhersage: {
@@ -5107,6 +5109,9 @@ function baueFolie(roh, kontext, erlaubteZiele) {
 		}
 		if (b.art === "vorhersage" && Array.isArray(b.optionen) && !b.optionen.some((o) => o && o.richtig)) bericht.h(datei, bw, "vorhersage ohne richtige Option");
 		if (b.art === "aufgabe" && b.afb && !NIVEAU.includes(String(b.afb))) bericht.f(datei, bw, "afb muss I, II oder III sein");
+		if (b.art === "versuch") {
+			for (const g of b.ghs || []) if (!/^GHS0[1-9]$/.test(g)) bericht.f(datei, bw, `ghs: „${g}“ ist kein Code GHS01–GHS09`);
+		}
 		const aus = wandleFelder(spec.felder, b, kontext, bw);
 		if (b.art === "gleichung") aus.html = /->|<=>|<->|⇌|→/.test(b.formel || "") ? gleichungHtml(b.formel) : formelHtml(b.formel || "");
 		if (b.art === "reihenfolge") aus.elemente = (b.elemente || []).map((e) => md(e, {
@@ -5510,6 +5515,12 @@ function lese(wurzel) {
 			};
 		}
 	}
+	const gemerkt = /* @__PURE__ */ new Set(), verglichen = [];
+	for (const d of Object.values(kapitelDaten)) for (const f of Object.values(d.student.folienDaten)) for (const bs of f.bausteine) {
+		if (bs.art === "abstimmung" && bs.merken) gemerkt.add(bs.merken);
+		if (bs.art === "abstimmung" && bs.vergleich) verglichen.push([f.id, bs.vergleich]);
+	}
+	for (const [fid, k] of verglichen) if (!gemerkt.has(k)) bericht.h(bibDatei, fid, `vergleich „${k}“: keine Abstimmung merkt diesen Schlüssel`);
 	const alt = scanAlt(wurzel, bericht);
 	for (const a of alt) {
 		suche.push({
@@ -5901,7 +5912,13 @@ function lehrkraftTexte(wurzel) {
 			]) nimm(w[feld]);
 		}
 	}
-	return [...texte];
+	let schueler = "";
+	for (const f of fs.readdirSync(ordner).filter((x) => x.endsWith(".js") && !x.endsWith(".lehrkraft.js") && x !== "katalog.js")) {
+		const alle = lade(path.join(ordner, f), "CHEM_DATEN") || {};
+		schueler += Object.values(alle).map((k) => JSON.stringify(k.folienDaten || {})).join(" ");
+	}
+	schueler = schueler.replace(/<[^>]+>/g, " ").replace(/&[a-z#0-9]+;/gi, " ").replace(/\\[nt]/g, " ").replace(/\s+/g, " ");
+	return [...texte].filter((t) => !schueler.includes(t));
 }
 var enthalten = (text, texte) => texte.filter((t) => text.includes(t));
 function zipEintraege(buf) {
