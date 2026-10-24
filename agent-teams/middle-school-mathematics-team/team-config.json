@@ -1,0 +1,23 @@
+{
+  "coordinatorMemberName": "learning_guide",
+  "members": [
+    {"memberName": "learning_guide", "ref": "learning-guide", "refType": "agent", "refScope": "team_local"},
+    {"memberName": "mathematical_reviewer", "ref": "mathematical-reviewer", "refType": "agent", "refScope": "team_local"}
+  ],
+  "handoffs": [
+    {
+      "from": "/learning_guide",
+      "to": "/mathematical_reviewer",
+      "rules": [
+        "When the Guide has persisted a Review requested result for an episode revision, including the proposed learner prompts, visual-to-symbol mapping, worked key, hints, and transfer check, and this revision has not yet been reviewed."
+      ]
+    },
+    {
+      "from": "/mathematical_reviewer",
+      "to": "/learning_guide",
+      "rules": [
+        "When a revision-specific review is persisted with Checked, Revise, or Blocked, the evidence and any corrections or missing input, and the Guide must decide whether to teach, revise, or pause."
+      ]
+    }
+  ]
+}

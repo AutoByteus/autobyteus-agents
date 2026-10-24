@@ -1,0 +1,68 @@
+{
+  "createdAt": "2026-10-24T12:34:26.607Z",
+  "archivedAt": null,
+  "applicationBinding": null,
+  "handoffs": [
+    {
+      "from": "/learning_guide",
+      "to": "/mathematical_reviewer",
+      "rules": [
+        "When the Guide has persisted a Review requested result for an episode revision, including the proposed learner prompts, visual-to-symbol mapping, worked key, hints, and transfer check, and this revision has not yet been reviewed."
+      ]
+    },
+    {
+      "from": "/mathematical_reviewer",
+      "to": "/learning_guide",
+      "rules": [
+        "When a revision-specific review is persisted with Checked, Revise, or Blocked, the evidence and any corrections or missing input, and the Guide must decide whether to teach, revise, or pause."
+      ]
+    }
+  ],
+  "rootTeam": {
+    "address": "/",
+    "teamDefinitionId": "middle-school-mathematics-team",
+    "teamDefinitionName": "Middle School Mathematics Team",
+    "teamRunId": "middle_school_mathematics_team_cfa4ca6473c544d188f1849729f9740a",
+    "coordinatorAddress": "/learning_guide",
+    "defaultLaunchConfiguration": {
+      "runtimeKind": "codex_app_server",
+      "llmModelIdentifier": "gpt-6.1-sol",
+      "llmConfig": null,
+      "autoExecuteTools": true,
+      "workspaceRootPath": "/tmp/middle-school-math-strong"
+    },
+    "members": [
+      {
+        "address": "/learning_guide",
+        "agentDefinitionId": "team-local-agent:middle-school-mathematics-team:learning-guide",
+        "role": null,
+        "description": null,
+        "agentRunId": "learning_guide_4bb81d149af741879c824297ec73d523",
+        "platformAgentRunId": "01a16de7-c078-7273-a279-5abe6b27853b",
+        "launchConfiguration": {
+          "runtimeKind": "codex_app_server",
+          "llmModelIdentifier": "gpt-6.1-sol",
+          "llmConfig": null,
+          "autoExecuteTools": true,
+          "workspaceRootPath": "/tmp/middle-school-math-strong"
+        }
+      },
+      {
+        "address": "/mathematical_reviewer",
+        "agentDefinitionId": "team-local-agent:middle-school-mathematics-team:mathematical-reviewer",
+        "role": null,
+        "description": null,
+        "agentRunId": "mathematical_reviewer_3c528fca29be4653a279ee7589df68ed",
+        "platformAgentRunId": "01a16de8-62f7-78b0-b1f4-a84c4cf2018c",
+        "launchConfiguration": {
+          "runtimeKind": "codex_app_server",
+          "llmModelIdentifier": "gpt-6.1-sol",
+          "llmConfig": null,
+          "autoExecuteTools": true,
+          "workspaceRootPath": "/tmp/middle-school-math-strong"
+        }
+      }
+    ],
+    "taskExecutions": []
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-24",
+  "layer": "isolated AutoByteus server/runtime, not desktop UI",
+  "serverPackageVersion": "0.1.1",
+  "serverEntrySha256": "e8229f8dcdd4d4109310653c20851ac9b293d42190efc9a7a949779a0c752fc4",
+  "runtimeKind": "codex_app_server",
+  "acceptanceModel": "gpt-6.1-sol",
+  "probeModel": "gpt-5.6-luna",
+  "acceptanceRun": {
+    "run": "middle_school_mathematics_team_cfa4ca6473c544d188f1849729f9740a",
+    "guide": "learning_guide_4bb81d149af741879c824297ec73d523",
+    "reviewer": "mathematical_reviewer_3c528fca29be4653a279ee7589df68ed"
+  },
+  "standaloneReviewerRun": "mathematical_reviewer_9d50ad6f77de4a799ff7c60171a0e0d7",
+  "syntheticOnly": true,
+  "privatePackagesCopied": false,
+  "userAppMutated": false
+}

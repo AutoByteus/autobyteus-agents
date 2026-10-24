@@ -1,0 +1,54 @@
+{
+  "agentDefinitions": [
+    {
+      "id": "team-local-agent:middle-school-mathematics-team:learning-guide",
+      "name": "Learning Guide",
+      "skillNames": [
+        "guide-visual-math-learning"
+      ],
+      "toolNames": [
+        "read_file",
+        "write_file",
+        "edit_file",
+        "run_bash",
+        "get_handoff_rules",
+        "send_message_to",
+        "delegate_task"
+      ],
+      "loadIssue": null
+    },
+    {
+      "id": "team-local-agent:middle-school-mathematics-team:mathematical-reviewer",
+      "name": "Mathematical Reviewer",
+      "skillNames": [
+        "review-visual-math"
+      ],
+      "toolNames": [
+        "read_file",
+        "write_file",
+        "run_bash",
+        "get_handoff_rules",
+        "send_message_to",
+        "delegate_task"
+      ],
+      "loadIssue": null
+    }
+  ],
+  "availableToolNames": [
+    "delegate_task",
+    "edit_file",
+    "get_handoff_rules",
+    "read_file",
+    "run_bash",
+    "send_message_to",
+    "write_file"
+  ],
+  "agentTeamDefinitions": [
+    {
+      "id": "middle-school-mathematics-team",
+      "name": "Middle School Mathematics Team",
+      "coordinatorMemberName": "learning_guide",
+      "loadIssues": []
+    }
+  ]
+}
