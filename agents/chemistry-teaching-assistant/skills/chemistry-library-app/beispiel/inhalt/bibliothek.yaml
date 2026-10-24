@@ -1,0 +1,26 @@
+# Beispiel-Bibliothek: zeigt das Datenformat und dient als Testdaten. Kein echter Lehrplantext.
+titel: Chemie-Bibliothek (Beispiel)
+land: Beispiel
+lehrplan:
+  titel: Beispiel-Lehrplan Chemie
+  fassung: "2026"
+  quelle: lehrplan/quellen/
+klassen:
+  - id: K7
+    titel: Klasse 7
+    lernbereiche:
+      - id: K7-LB1
+        titel: Stoffe und ihre Eigenschaften
+        ustd: 10
+        seite: 4
+        text: Beispieltext. Hier steht der Lernbereich wörtlich aus dem Lehrplan, mit Seite.
+      - id: K7-WB1
+        titel: Stoffe im Haushalt
+        wahl: true
+  - id: K8
+    titel: Klasse 8
+    lernbereiche:
+      - id: K8-LB1
+        titel: Chemische Reaktion
+        ustd: 12
+        seite: 9

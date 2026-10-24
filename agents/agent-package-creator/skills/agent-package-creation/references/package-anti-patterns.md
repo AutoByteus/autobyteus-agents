@@ -102,7 +102,7 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Incidents:** A request to help a chemistry teacher plan and design lessons got two Agents, a planner and a designer; after testing, the user found one Agent worked better. In the Marketing Team, the content creator asks the Deep Researcher for research; the research is good, but the brief it returns carries less than the context the researcher built, so the draft is written with less (2026-10-25).
 - **Breaks:** [principles §1](package-design-principles.md#1-choose-the-package-boundary-from-the-work): start with one Agent and one skill.
 - **Instead:** Begin with one Agent and one skill, and split only on evidence from runs. Before proposing a second Agent, apply the test in principles §1 (full context: keep together; independent judgement or different limits: split), and write down what each handoff would lose and what the split gains.
-- **Detect:** For each handoff in a proposed or existing package, ask what the receiver will not know that the sender knew, and whether one Agent with both skills would do the work without that loss.
+- **Detect:** For each handoff in a proposed or existing package, ask what the receiver will not know that the sender knew, and whether one Agent with both skills would do the work without that loss. Two Agents writing one record, or a request that restates fields of a record both share, are the clearest signs.
 
 ## Skill content
 
