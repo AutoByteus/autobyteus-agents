@@ -14,7 +14,7 @@ Follow the AutoByteus repository's testing guide (`TESTING.md`, "Isolated deskto
 
 ## 3. Start a run
 
-- **Models:** `providerModelCatalogSnapshots(runtimeKind: "claude_agent_sdk") { llmModels { modelIdentifier name } }`. Use a capable model for the role under test and a cheap one for the rest.
+- **Models:** `providerModelCatalogSnapshots(runtimeKind: "claude_agent_sdk") { llmModels { modelIdentifier name } }`. Run the role under test on the model it runs on in real use, and a cheap one for the rest. When that model ignores a rule, one run on a stronger model tells unclear wording from the model's own habit.
 - **Single agent:** `createAgentRun(input: { agentDefinitionId, workspaceRootPath, llmModelIdentifier, runtimeKind, autoExecuteTools: true }) { success message runId }`.
 - **Team:** `createAgentTeamRun(input: { teamDefinitionId, teamConfigs: [{ teamAddress: "/", runtimeKind, llmModelIdentifier, autoExecuteTools: true, workspaceRootPath }], memberConfigs: [{ memberAddress, agentDefinitionId, runtimeKind, llmModelIdentifier, autoExecuteTools: true, workspaceRootPath }] })`. Every member needs an entry.
 - **Org:** `createAgentOrgRun(input: { agentOrgDefinitionId, rootConfiguration: { runtimeKind, llmModelIdentifier, autoExecuteTools: true, workspaceRootPath }, teamOverrides: [], agentOverrides: [] })`.

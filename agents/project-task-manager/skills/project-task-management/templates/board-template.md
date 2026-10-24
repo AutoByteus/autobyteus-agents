@@ -36,7 +36,7 @@ Tasks you delegated that are not yet closed. Copy ID: what `delegate_task` takes
 
 ## Closed dispatches
 
-Recent Tasks that are DONE or CANCELLED, kept for follow-up Tasks to the same copy or for reopening. Keep the row of the copy that cut the latest release: the next release goes to it as a follow-up. Drop other rows once neither is likely.
+Recent Tasks that are DONE or CANCELLED, kept for follow-up Tasks to the same copy or for reopening. Keep the row of the copy that cut the latest release: the next release goes to it as a follow-up. Move other rows to an archive file beside the board once neither is likely.
 
 | Key | Task | Worker | Copy ID | Message ID | Closed |
 | --- | --- | --- | --- | --- | --- |
