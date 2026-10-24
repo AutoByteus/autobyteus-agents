@@ -1,41 +1,74 @@
 ---
 name: review-visual-math
-description: Check a proposed mathematics learning episode for valid reasoning, faithful visual representations, accessible prompts, and a genuine learner attempt before answers.
+description: Independently review a mathematics plan, an implemented animated learning frontend, or explicit chat material, with stage-specific correctness and observed interaction checks.
 ---
 
 # Review Visual Math
 
-Receive the episode note, revision, and diagram paths. Read the proposed
-material and [learning-standard.md](learning-standard.md). Check the actual
-files, not just the sender's description; missing files or unreadable diagrams
-are a limitation, not an assumed pass. Follow the episode's privacy boundary.
+Read the actual proposed material and
+[learning-standard.md](learning-standard.md). Receive a review stage (`plan`,
+`experience`, or explicit `chat`), revision, artifact paths and, for an experience,
+the build report. Missing files are a blocker, not an assumed pass. Follow the
+workspace privacy boundary; do not edit the brief, app or learner records.
 
-Independently derive the answers for the core and transfer problems. Check each
-equivalence and its domain, units, diagram-to-symbol mapping, hints, and stated
-model limits. Use exact arithmetic or a small computation when useful; numerical
-examples can refute a general claim but cannot alone prove it. A labelled sketch
-need not be to scale, but it must not invite measurement as proof. If rendered
-appearance cannot be inspected, say what was checked from the SVG source or text
-and leave visual legibility unverified.
+## Plan or chat review
 
-Check that the learner has something meaningful to predict, explain, or derive;
-that the first learner prompt does not contain the answer; and that a transfer
-task tests the stated connection rather than mere copying. Judge against the
-shared standard, not a guessed country-specific curriculum or a learning-style
-label. Do not impersonate a learner to claim that teaching worked.
+Independently derive core and transfer answers. Check each consequential
+transformation, equivalence/domain, units, diagram-to-symbol mapping, hints and
+model limits. Use exact arithmetic or a small computation when useful; numerical examples
+can refute a universal claim but cannot alone prove it. A schematic illustration must not invite measurement as proof. Do not force
+negative quantities into ordinary lengths/counts or assume a curriculum.
 
-Write `review-r<revision>.md` beside the episode, naming the reviewed revision
-and exact diagram files (include content hashes for assets). Give the independent
-answer checks, any limitation, and one decision:
+Check the learner has a meaningful prediction, choice or explanation before
+answers, adequate text alternatives, accepted valid alternatives and a fresh
+transfer opportunity. Challenge coincidental answers that can be copied from
+given quantities. For an experience plan, check that its proposed state changes
+and animation explain mathematics and support the complete journey; a static
+opening plus vague promises of motion is not implementation-ready.
 
-- `Checked`: no material issue found in this revision. This is permission to use
-  the checked material, not a guarantee of truth or evidence of learner benefit.
-- `Revise`: cite the exact false, misleading, answer-revealing, or inaccessible
-  part and the required correction, with a counterexample when useful.
-- `Blocked`: name the missing input or capability that prevents the check.
+## Experience review — operate the real app
 
-Leave the episode and learner records unchanged. Hand off the review; the lesson
-owner decides how to revise, teach, or pause. A corrected revision gets a new
-review; do not reply to informational acknowledgements or initiate another
-lesson. If invoked alone, the review is a usable terminal result without any
-parent organization.
+Read the checked brief and build report, inspect the source fingerprint and
+independently derive the mathematics again where implementation changes it.
+Start the documented local app with a test-owned server/browser, or use a
+verified managed preview provided for this review. Use browser automation through
+shell tools to open and operate the actual page; do not infer usability from
+build output, source code, a screenshot or the Builder's assertion alone.
+
+Check the core visual transformation before, during and after motion, including
+what objects/regions move, what quantity they represent, and when equations and
+explanations change. Verify the mathematical invariant or explicitly labelled
+counterexample throughout. Trace a wrong attempt, requested hint/explanation,
+correct reasoning, reset/replay and a fresh transfer. Inspect keyboard use,
+narrow layout, reduced motion and actual feedback with the shared standard.
+A correct answer accepted without the intended reasoning opportunity is a defect;
+no browser check demonstrates human understanding. If rendered appearance cannot
+be viewed with image tooling, disclose that limitation; if the actual interactive
+path cannot be operated, do not return an experience-stage Checked verdict.
+
+Reuse valid build evidence for unchanged mechanical checks; own the independent
+mathematical and rendered-interaction observations. Record focused evidence under
+`validation/`, name the actions and observed states, and distinguish untested
+branches. Stop any server/browser you started and record cleanup. Do not contact
+real learners, add telemetry, publish, or keep a hidden preview running.
+
+## Decision and result
+
+Write `review-plan-r<revision>.md` or `review-chat-r<revision>.md` for those stages.
+Use `review-experience-r<revision>-<short-source-hash>.md` for an experience; a
+changed source fingerprint needs a new report, not overwriting an earlier verdict.
+Record exact reviewed paths, revision and source/asset hashes, independent answer
+checks, observed browser evidence when required, limitations and one decision:
+
+- `Checked`: no material issue found for this **stage and revision**. A checked
+  plan permits implementation, not delivery; only a checked experience supports
+  frontend readiness. Neither proves truth or learner benefit.
+- `Revise`: cite the false, misleading, broken, inaccessible, answer-revealing or
+  missing experience behavior and the required correction, with a counterexample
+  or reproduction steps. Mark whether the brief or implementation owns the fix.
+- `Blocked`: name missing input/capability and the smallest next action. Unrun
+  browser behavior is not a pass and an earlier snapshot cannot certify changed code.
+
+Hand off the review; its recipient owns revision/delivery decisions. Do not
+initiate another lesson or reply to informational acknowledgements. When invoked
+alone, return the review as a terminal result without inventing a parent route.
