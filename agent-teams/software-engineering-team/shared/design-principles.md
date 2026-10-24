@@ -21,6 +21,7 @@ This is the canonical shared design reference for the software engineering team.
   - [12. File Responsibility And Placement](#12-file-responsibility-and-placement)
   - [13. One Owner For Coordination Policy, No Empty Layers](#13-one-owner-for-coordination-policy-no-empty-layers)
   - [14. A Spine-First, Concrete Design Document](#14-a-spine-first-concrete-design-document)
+  - [15. One Vocabulary: One Word, One Meaning; One Meaning, One Word](#15-one-vocabulary-one-word-one-meaning-one-meaning-one-word)
 - [Practical Application Guide](#practical-application-guide)
 - [Structural Triggers](#structural-triggers)
 - [Task Design Health Assessment](#task-design-health-assessment)
@@ -266,13 +267,23 @@ Dead code is code that nothing in the product reaches anymore. It makes the code
 - Use concrete examples when they materially improve clarity. Do not leave a non-obvious design entirely abstract when a short example would explain the intended shape faster: when a spine, interface split, folder choice, or bounded local flow would otherwise stay abstract or easy to misread, add a short good-shape example and, when useful, a bad-shape anti-example.
 - **Check:** Which parts of the design need a concrete example to make the intended shape obvious? What is the change or refactor path from the current state to the target?
 
+### 15. One Vocabulary: One Word, One Meaning; One Meaning, One Word
+
+- A domain word means one thing everywhere it appears: code identifiers, stored fields, API and wire fields, schemas, tool names and texts, UI words, and docs. A concept has one name everywhere. Each change's names can look natural on their own while the system drifts, so judge a name against its other uses, not only against its own file.
+- Give different aspects different words, for example `remote` for a location (another node) and `peer` for a relationship (a remote node registered with this one). Name an ID for what it identifies; two different IDs never share a name.
+- A qualifier that repeats the noun (`RemotePeer`) or contradicts the thing (`listAvailableNodes` returning unavailable nodes too) is a finding.
+- When the project keeps a glossary (its `DESIGN.md` says where), it is the authority for domain words: a design that introduces a word, or gives a word a new meaning, adds it there in the same change. Without one, list the domain words the design uses in the design spec's Terminology and record `No project glossary found`.
+- A rename that removes a second meaning or a second name changes code, wire, tool, and UI names together, as a clean cut (Principle 8). A stored name changes only through the persisted-data decision (Principle 5).
+- **Signals:** two names for one concept ("X, also called Y"); a name whose meaning depends on the file it is in; a tool or API name that says less or more than it does.
+- **Check:** Which domain words does this design use or introduce, and does each mean the same thing everywhere it appears? Is any concept named two ways, or any name used for two concepts?
+
 ## Practical Application Guide
 
 Design in this order. Each step applies the principle it names; the design spec's section fill order records the result.
 
 1. Read the current code path and establish the behavioral baseline (Principle 1); confirm the supported scenario basis (Principle 6).
 2. Build the spine inventory and write each primary spine (Principle 2).
-3. Name the main-line nodes and define what each owns (Principle 3); attach off-spine concerns to their owner, reusing existing capability areas first (Principle 4).
+3. Name the main-line nodes in the project's vocabulary (Principle 15) and define what each owns (Principle 3); attach off-spine concerns to their owner, reusing existing capability areas first (Principle 4).
 4. Decide boundaries, dependency direction, and interfaces (Principles 3, 9, 10).
 5. Draft file responsibilities, then extract reusable owned structures where repetition appears and tighten them (Principle 11), re-tighten the file responsibilities, and only then finalize folder and path mapping (Principle 12).
 6. List what the target makes unnecessary and the dead code in the touched files (Principles 7, 8); make each persisted-data transition decision (Principle 5).
@@ -300,6 +311,7 @@ When a trigger fires, apply the principle it names and record in the design spec
 | Split sequence | a mechanism gets a function that reaches another collaborator, an owner reads "A + B", or rules branch on the side a component runs on | 2, 13 |
 | Derived data | a fact is computed in two places, or a changed structure feeds views, sets, validators, or streams | 11 |
 | Behavior by absence | a required behavior follows from a failed lookup, a missing event, or "counts as" | 13 |
+| Vocabulary drift | a domain word gets a second meaning, a concept a second name, or a name says less or more than the thing does | 15 |
 
 ## Task Design Health Assessment
 

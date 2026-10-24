@@ -129,6 +129,8 @@ A mechanism that gets a function reaching another collaborator (the owner should
 
 Derived consumers of a changed structure listed with a decision for each (Principle 11): `Pass` / `Fail` / `N/A`
 
+Each domain word the design uses or introduces keeps one meaning, and each concept one name, across code, data, wire, tools, UI, and docs (Principle 15): `Pass` / `Fail`
+
 ## File Responsibility Mapping Verdict
 
 | File | Responsibility Is Singular And Clear? (`Pass`/`Fail`) | Responsibility Matches The Intended Owner/Boundary? (`Pass`/`Fail`) | Responsibilities Were Re-Tightened After Shared-Structure Extraction? (`Pass`/`Fail`/`N/A`) | Verdict (`Pass`/`Fail`) | Notes |
