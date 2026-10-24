@@ -1008,7 +1008,7 @@ Principle 11.
 - **The mistake:** the design's table of code that reads the changed structure left out the stored-state validators, which still required both message endpoints to be local. After a restart, the validators dropped the stored state and replies were refused. End-to-end testing found it; design and architecture review had not.
 - **The better design:** a row for the validators in that table; they check endpoints against the store's endpoint set, which has one owner.
 - **The lesson:** code that reads what is derived from a structure (views, endpoint sets, validators, streams) breaks as surely as code that reads it directly.
-- **Notice it by:** an inventory that lists only the direct readers of a changed structure.
+- **Notice it by:** an inventory that lists only the direct readers of a changed structure, or only the server side of a changed rule. User-visible text that states the rule is a consumer too, and so is the code that matches an error code to a message; a new field or mark with no named reader is a sign of the same gap.
 
 ### Case 4: Behavior By Absence
 
@@ -1028,7 +1028,7 @@ Principle 1.
 - **The mistake:** one counted "14 readers" of a port method; it had exactly one. The inflated count kept a second method beside the new one, and a dead field. The other said a new idle shutdown "mirrors" an existing one, but it used the user's Stop, which interrupts work in progress.
 - **The better design:** the new method replaces the old one on the port, its one reader moves, and the dead field is removed. The idle shutdown happens only when every member prepares a quiet termination, reusing the existing quiet rule.
 - **The lesson:** a count and a "mirrors" are claims; checked against the cited code, rule by rule, both fell apart.
-- **Notice it by:** "mirrors", "as today", "the compiler enforces", a count with no source.
+- **Notice it by:** "mirrors", "as today", "the compiler enforces", a count with no source; a module called production code without listing its importers; "unchanged" for a merge of copies that were never compared line by line; "unrecoverable" or "the layout matches" without opening the existing files or asking how they were made.
 
 ### Case 6: One Word, Two Meanings
 
@@ -1040,10 +1040,20 @@ Principle 15.
 - **The lesson:** a name is right only against its other uses in the system, not against its own file.
 - **Notice it by:** an identifier whose meaning depends on the file it is in; "X, also called Y"; a list or tool whose name says less or more than it returns.
 
+### Case 7: One Rule Applied By Several Callers
+
+Principle 13.
+
+- **Situation:** after startup migrations run, a runner reports which capabilities are ready. Two startup hosts and a manual-retry path each have to apply that answer.
+- **The mistake:** each of the three callers read the answer and set each capability itself: three copies of one sequence. The "pending" state before the runner answers was left to each consumer's default.
+- **The better design:** one owner, `applyCapabilityReadiness(readiness)` with `markCapabilitiesPending()`, called by all three paths, and the pending state set explicitly right after the schema check.
+- **The lesson:** copies of one sequence drift. The next capability lands in one caller and not the others, and the state before the answer depends on which default each consumer has.
+- **Notice it by:** "the same shape in each host", "each caller configures …", and a state that exists only because nothing set it yet.
+
 ## How To Use These Examples
 
 - Start from the example whose shape is closest to the current task.
-- Read the case studies when a design touches the same shape: several kinds or entry forms, a sequence across components, derived data, a decision by absence, a claim about existing code, or a name used in several places.
+- Read the case studies when a design touches the same shape: several kinds or entry forms, a sequence across components, derived data, a decision by absence, a claim about existing code, a rule applied by several callers, or a name used in several places.
 - Reuse the reasoning style, not the exact names.
 - The rules these examples illustrate live in [design-principles.md](design-principles.md): spine-first design (Principles 2 and 14), explicit ownership and named facades (3), off-spine concerns (4), singular interfaces (10), reachable premises (6), persisted-data decisions (5), file placement after the design story (12), and one vocabulary (15).
 - Judge a finding outside a ticket's scope with [ticket-scope.md](ticket-scope.md#common-situations).
