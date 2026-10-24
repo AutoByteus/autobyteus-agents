@@ -36,6 +36,7 @@ Concrete mistakes found in real package work. The [package design principles](pa
 | 26 | Softening requirements while restructuring | Creator process |
 | 27 | Judging a change from a run that did not exercise it | Creator process |
 | 28 | A live check that starts real work | Creator process |
+| 29 | Asking the user what the evidence already answers | Creator process |
 
 ## Package design
 
@@ -234,3 +235,10 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Breaks:** [live-checks.md](live-checks.md): an isolated instance must not act on the user's repositories or data.
 - **Instead:** When the scenario only needs the agent's choice, load only the agent under test and put placeholder run IDs on its board, so a delegation is refused and seen in the traces; when the worker's work is the point, give its Task a test repository.
 - **Detect:** Before sending, list each `delegate_task` or `send_message_to` the scenario can lead to and where it would land; after the run, check the instance's runs and the repositories' branches and worktrees.
+
+### 29. Asking the user what the evidence already answers
+
+- **Incident:** For a teaching team, the Creator sent the teacher six questions (region, library location, plan format, devices, first topic, textbook), each with a recommendation. Her own modules already named her region and curriculum, and a normal school day settled the rest. She answered: "make it as simple … think about the reality … instead of asking me those questions". The first skill drafts also told the agents to ask her everything at once and to wait for plan approval (2026-10-24).
+- **Breaks:** [§4](package-design-principles.md#4-apply-one-authoring-standard), grounding: derive what you can from the user's materials and a realistic use, and decide it.
+- **Instead:** Before asking, check each question against the user's files and a realistic day of the user's work; decide what they settle, and report the decision in the result. Ask only where a wrong guess would make the result unusable, in one short line. Give the roles you write the same habit: infer, deliver, let the user correct.
+- **Detect:** For each question in a message to the user, name the evidence you looked at and why it does not settle the question. In skills, search for "ask", "confirm" and "approval" and check that each one names why the role cannot infer the answer.

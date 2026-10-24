@@ -1,0 +1,166 @@
+<!-- Bausteine-Beispiel: zeigt jeden Baustein der Vorlage einmal. Im echten Modul durch eigene Teile ersetzen
+     (10_start.html, 20_….html …). Platzhalter in ‹…› müssen vor der Abgabe ersetzt sein. -->
+
+<!-- ================= Titelfolie ================= -->
+<section class="slide dark" data-section="Einstieg">
+  <div class="kicker">Chemie · Klasse ‹X› · ‹Lehrplanbezug›</div>
+  <div class="body" style="justify-content:center">
+    <h1>‹Titel›</h1>
+    <p style="font-size:22px;color:#cfe6e2;margin-top:12px">‹Untertitel: worum es geht, als Frage oder Phänomen›</p>
+  </div>
+  <aside class="notes">
+    <p><b>Unterrichtsziel:</b> ‹…›</p>
+    <p><b>Zeitbedarf:</b> ‹…›</p>
+  </aside>
+</section>
+
+<!-- ================= Schritt-Animation (Teilchenebene ↔ Symbolebene) ================= -->
+<section class="slide" data-section="Redoxreaktion auf Teilchenebene">
+  <div class="kicker"><span class="ch">A</span> Beispiel: Schritt-Animation</div>
+  <h2>Was passiert mit den Teilchen, wenn Zink in Kupfer(II)-sulfat-Lösung taucht?</h2>
+  <p class="lq-line"><span class="lq">Leitfrage</span>Woher kommt das Kupfer, und warum verschwindet das Zink?</p>
+  <style>
+    /* Bewegung je Element: Zustand ab Schritt data-at */
+    .zc .e1.at{transform:translate(196px,4px)} .zc .e2.at{transform:translate(196px,-4px)}
+    .zc .zn,.zc .cu{transform-origin:center}
+    /* Größen im richtigen Verhältnis: Ionen sind etwa halb so groß wie die Atome */
+    .zc .zn.at{fill:#c9d3d6;transform:scale(.55)} .zc .cu.at{fill:#c8733a;transform:scale(1.75)}
+  </style>
+  <div class="body">
+    <div class="gL fill">
+      <div class="vis anim zc" data-steps="4" data-ms="1800">
+        <svg viewBox="0 0 620 250" aria-label="Elektronenübergang von einem Zinkatom auf ein Kupfer-Ion">
+          <circle class="zn" data-at="3" cx="150" cy="120" r="54" fill="#9aa5a9" stroke="#56656a" stroke-width="2"/>
+          <text x="150" y="128" text-anchor="middle" font-size="26" font-weight="700" data-hide="3">Zn</text>
+          <text x="150" y="127" text-anchor="middle" font-size="19" font-weight="700" data-show="3" class="off">Zn<tspan dy="-8" font-size="13">2+</tspan></text>
+          <circle class="cu" data-at="3" cx="450" cy="120" r="30" fill="#5b8fd6" stroke="#2a62b8" stroke-width="2"/>
+          <text x="450" y="127" text-anchor="middle" font-size="19" font-weight="700" data-hide="3">Cu<tspan dy="-8" font-size="13">2+</tspan></text>
+          <text x="450" y="128" text-anchor="middle" font-size="26" font-weight="700" data-show="3" class="off">Cu</text>
+          <g data-show="1" data-hide="3"><circle class="e1" data-at="2" cx="205" cy="110" r="11" fill="#d98a12"/><circle class="e2" data-at="2" cx="205" cy="134" r="11" fill="#d98a12"/></g>
+          <text x="300" y="60" text-anchor="middle" font-size="16" fill="#b26b00" font-weight="700" data-show="2" data-hide="3">2 e⁻ gehen über</text>
+          <text x="150" y="215" text-anchor="middle" font-size="15" fill="#5b6b70" data-hide="3">Zinkatom (im Zinkblech)</text>
+          <text x="150" y="215" text-anchor="middle" font-size="15" fill="#5b6b70" data-show="3">Zink-Ion (geht in Lösung)</text>
+          <text x="450" y="215" text-anchor="middle" font-size="15" fill="#5b6b70" data-hide="3">Kupfer-Ion (in der Lösung)</text>
+          <text x="450" y="215" text-anchor="middle" font-size="15" fill="#5b6b70" data-show="3">Kupferatom (scheidet sich ab)</text>
+        </svg>
+        <p class="cap" data-cap="0">Ausgangslage: ein Zinkatom an der Oberfläche, ein Kupfer-Ion in der Lösung.</p>
+        <p class="cap" data-cap="1">Das Zinkatom hat zwei Außenelektronen (orange), die es leicht abgibt.</p>
+        <p class="cap" data-cap="2">Die zwei Elektronen gehen vom Zinkatom auf das Kupfer-Ion über.</p>
+        <p class="cap" data-cap="3">Aus dem Zinkatom wird ein kleineres Zink-Ion, aus dem Kupfer-Ion ein größeres Kupferatom.</p>
+        <p class="cap" data-cap="4">Die Teilchenzahl bleibt gleich: 1 Zn + 1 Cu²⁺ → 1 Zn²⁺ + 1 Cu.</p>
+      </div>
+      <div class="col">
+        <div class="box stoff"><span class="tag">Stoffebene · Beobachtung</span>Das graue Zinkblech überzieht sich mit einem rotbraunen Belag, die blaue Lösung wird heller.</div>
+        <div class="box teilchen"><span class="tag">Teilchenebene · Deutung</span>Zinkatome geben Elektronen an Kupfer-Ionen ab.</div>
+        <div class="box def"><span class="tag">Symbolebene</span>
+          <div class="eq" data-eq="Zn -> Zn^2+ + 2 e^-">Zn → Zn<sup>2+</sup> + <span class="el">2 e<sup>−</sup></span></div>
+          <div class="eq" data-eq="Cu^2+ + 2 e^- -> Cu">Cu<sup>2+</sup> + <span class="el">2 e<sup>−</sup></span> → Cu</div>
+          <div class="eq" data-eq="Zn + Cu^2+ -> Zn^2+ + Cu">Zn + Cu<sup>2+</sup> → Zn<sup>2+</sup> + Cu</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>Bedienung:</b> → oder Leertaste schaltet die Animation Schritt für Schritt weiter, danach die Folie.</p>
+    <p><b>Typischer Fehler:</b> ‹Schülervorstellung, die diese Folie aufgreift›</p>
+    <p><b>Grenzen des Modells:</b> Die Hydrathülle der Ionen und das Metallgitter sind weggelassen; die Größen stimmen nur ungefähr (Ionenradius etwa halb so groß wie Atomradius).</p>
+  </aside>
+</section>
+
+<!-- ================= Vorhersage, Zuordnen, Regler-Modell ================= -->
+<section class="slide" data-section="Interaktionen">
+  <div class="kicker"><span class="ch">B</span> Beispiel: Interaktionen</div>
+  <h2>Vorhersagen, zuordnen, ausprobieren</h2>
+  <div class="body">
+    <div class="g2 fill">
+      <div class="col">
+        <div class="box bsp predict"><span class="tag">Vorhersage</span>
+          <p>Ein Kupferblech wird in Zinksulfat-Lösung getaucht. Was beobachtest du?</p>
+          <div class="opts"><button>Grauer Belag auf dem Kupfer</button><button data-correct>Keine Veränderung</button><button>Die Lösung wird blau</button></div>
+          <div class="reveal small">Kupfer ist edler als Zink: Kupferatome geben ihre Elektronen nicht an Zink-Ionen ab. Es findet keine Reaktion statt.</div>
+        </div>
+        <div class="box bsp sort"><span class="tag">Zuordnen · antippen, dann Feld antippen</span>
+          <div class="pool">
+            <button class="item" data-bin="ox">Zn → Zn<sup>2+</sup> + 2 e<sup>−</sup></button>
+            <button class="item" data-bin="re">Cu<sup>2+</sup> + 2 e<sup>−</sup> → Cu</button>
+            <button class="item" data-bin="re">Ag<sup>+</sup> + e<sup>−</sup> → Ag</button>
+            <button class="item" data-bin="ox">Fe → Fe<sup>2+</sup> + 2 e<sup>−</sup></button>
+          </div>
+          <div class="bins"><div class="bin" data-bin="ox"><b>Oxidation</b></div><div class="bin" data-bin="re"><b>Reduktion</b></div></div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="vis fill" data-widget="teilchenTemperatur"><svg viewBox="0 0 400 240"></svg>
+          <label class="slider" style="width:100%"><span>Temperatur</span><input type="range" min="1" max="10" value="3"><span class="tv">niedrig</span></label>
+          <p class="cap">Je höher die Temperatur, desto schneller bewegen sich die Teilchen.</p>
+        </div>
+        <div class="box aufgabe"><span class="tag">Aufgabe</span><span class="niv n2">II</span>Beschreibe mithilfe des Modells, was mit der Bewegung der Teilchen geschieht, wenn du die Temperatur erhöhst.</div>
+        <div class="box sol"><span class="tag">Lösung</span>Die Teilchen bewegen sich schneller und stoßen häufiger zusammen. Die Teilchen selbst werden dabei nicht größer.</div>
+      </div>
+    </div>
+  </div>
+  <script>
+  /* Eigenes interaktives Modell: Teilchenbewegung abhängig vom Regler */
+  WIDGETS.teilchenTemperatur = function(el){
+    const svg = el.querySelector("svg"), NS = "http://www.w3.org/2000/svg";
+    const r = el.querySelector("input"), tv = el.querySelector(".tv");
+    const W = 400, H = 240, R = 11, P = [];
+    let seed = 7; const rnd = () => (seed = seed * 16807 % 2147483647) / 2147483647;
+    for (let i = 0; i < 16; i++) {
+      const c = document.createElementNS(NS, "circle");
+      c.setAttribute("r", R); c.setAttribute("fill", "#6d28d9"); c.setAttribute("opacity", ".85");
+      svg.appendChild(c);
+      const a = rnd() * 6.283;
+      const p = {x: R + rnd() * (W - 2 * R), y: R + rnd() * (H - 2 * R), vx: Math.cos(a), vy: Math.sin(a), c};
+      c.setAttribute("cx", p.x.toFixed(1)); c.setAttribute("cy", p.y.toFixed(1)); P.push(p);
+    }
+    function label() { const v = +r.value; tv.textContent = v < 4 ? "niedrig" : v < 8 ? "mittel" : "hoch"; }
+    r.addEventListener("input", label); label();
+    function frame() {
+      if (el.offsetParent !== null) {           /* nur auf der sichtbaren Folie rechnen */
+        const s = +r.value * 0.6;
+        for (const p of P) {
+          p.x += p.vx * s; p.y += p.vy * s;
+          if (p.x < R || p.x > W - R) { p.vx *= -1; p.x = Math.max(R, Math.min(W - R, p.x)); }
+          if (p.y < R || p.y > H - R) { p.vy *= -1; p.y = Math.max(R, Math.min(H - R, p.y)); }
+          p.c.setAttribute("cx", p.x.toFixed(1)); p.c.setAttribute("cy", p.y.toFixed(1));
+        }
+      }
+      requestAnimationFrame(frame);
+    }
+    frame();
+  };
+  </script>
+  <aside class="notes"><p><b>Hinweis:</b> Vorhersage zuerst ohne Auflösung abfragen (Handzeichen), dann antippen.</p></aside>
+</section>
+
+<!-- ================= Versuch mit Sicherheit ================= -->
+<section class="slide" data-section="Versuch">
+  <div class="kicker"><span class="ch">C</span> Beispiel: Versuch</div>
+  <h2>‹Versuchstitel›</h2>
+  <div class="body">
+    <div class="g3 fill">
+      <div class="col">
+        <div class="box sicher"><span class="tag">Sicherheit · ‹Schülerversuch / Lehrerversuch›</span>
+          <div class="ghs"><span><i>‹GHS0x›</i></span></div>
+          <p class="small">‹Stoff›: ‹Signalwort, H-Sätze aus GESTIS oder Sicherheitsdatenblatt›</p>
+          <p class="small">Schutzbrille tragen. ‹weitere Schutzmaßnahmen, Entsorgung›</p>
+        </div>
+        <div class="box hinter"><span class="tag">Material</span>‹Geräte, Chemikalien mit Konzentration und Menge›</div>
+      </div>
+      <div class="col">
+        <div class="vis fill"><svg viewBox="0 0 300 260"><!-- Versuchsaufbau als SVG-Skizze --></svg><p class="cap">‹Versuchsaufbau›</p></div>
+      </div>
+      <div class="col">
+        <div class="box hinter"><span class="tag">Durchführung</span><ol class="steps"><li>‹…›</li></ol></div>
+        <div class="box aufgabe"><span class="tag">Beobachtung</span><span class="niv n1">I</span>Beschreibe deine Beobachtung.</div>
+        <div class="box sol"><span class="tag">Lösung</span>‹erwartete Beobachtung›</div>
+      </div>
+    </div>
+    <ul class="check"><li><label><input type="checkbox"> Ich kann ‹Lernziel als Ich-kann-Satz›.</label></li></ul>
+  </div>
+  <aside class="notes">
+    <p><b>Gefährdungsbeurteilung:</b> bleibt Aufgabe der Lehrkraft. Quellen: ‹GESTIS-Einträge, Stoffliste, RiSU-Abschnitt›</p>
+    <p><b>Entsorgung:</b> ‹…›</p>
+  </aside>
+</section>
