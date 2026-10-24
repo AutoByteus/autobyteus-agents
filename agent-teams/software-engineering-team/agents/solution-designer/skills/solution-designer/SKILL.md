@@ -275,7 +275,8 @@ Revising requirements or design re-enters that phase, so its reading gate applie
 | Non-requirement external blocker | Preserve actual evidence, missing prerequisite and needed user/external action | Return Blocked without inventing requirements |
 
 When you fix a design mistake that the design principles describe, whichever
-role found it, add it as a case to [design-examples.md](references/design-examples.md#cases-from-our-own-reviews).
+role found it, add it to the project's own design cases, where its `DESIGN.md`
+says; when it names no place, suggest one to the user in your handoff.
 
 After a requirements change is approved, rebuild affected design and evidence
 links, reclassify the completed solution, append the completed SR round and

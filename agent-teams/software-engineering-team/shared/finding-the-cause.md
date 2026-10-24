@@ -31,10 +31,10 @@ They are never the fix: the fix belongs to its owner, normally implementation.
   problem goes into the package with its path and command. The implementation
   engineer starts from it failing, and the fix turns it green.
 
-## Examples (MCP work, 2026-10-19/20)
+## Examples
 
-| Ticket | What happened | Lesson |
+| Situation | What happened | Lesson |
 | --- | --- | --- |
-| autobyteus-179, HTTP headers dropped | Reading suggested the cause, but the unit test used a fake SDK. A probe against a real local server proved that no header arrived. | Reading suggested it; a real-dependency probe proved it. |
-| autobyteus-194, a 60-second start wait | The first probe reported leftover processes; a second probe showed they were the probe's own. The user asked: "Did you reproduce this problem?" | Say which paths were run and which only read. |
-| autobyteus-179, -181 and -189 | Three premises were wrong: a test seam that became dead, a base class whose types were too loose, a start command that did not exist. | Run or type-check a premise that is cheap to check. |
+| HTTP headers dropped on the way to a server | Reading suggested the cause, but the unit test used a fake SDK. A probe against a real local server proved that no header arrived. | Reading suggested it; a real-dependency probe proved it. |
+| A 60-second wait at start-up | The first probe reported leftover processes; a second probe showed they were the probe's own. The user asked: "Did you reproduce this problem?" | Say which paths were run and which only read. |
+| Three premises in one investigation | All three were wrong: a test seam that became dead, a base class whose types were too loose, a start command that did not exist. | Run or type-check a premise that is cheap to check. |

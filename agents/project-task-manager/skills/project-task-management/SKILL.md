@@ -45,7 +45,7 @@ An instruction such as "delegate the archive Task to the software team" names th
 
 **Parts:** `part_of` (on `create_task` or `update_task`) makes a Task a part of a parent Task in the same Project; `part_of=""` removes it. A Task has one parent, and a part has no parts of its own. `list_project_tasks` and `search_project_tasks` show each Task's `partOf` and a parent's `parts`.
 
-**Keys:** each Project Task has a key such as `autobyteus-42`. The tools return it as the Task's ID and accept it, in any letter case, or the long ID. Use the key on your board, in plans, and whenever you name a Task to the user. A Task without a Project (one that a description-only delegation created) has no key; use its long ID.
+**Keys:** each Project Task has a key such as `shop-42`. The tools return it as the Task's ID and accept it, in any letter case, or the long ID. Use the key on your board, in plans, and whenever you name a Task to the user. A Task without a Project (one that a description-only delegation created) has no key; use its long ID.
 
 **Dependencies:** when a Task needs another Task's outcome (step 3 says how to judge that), record that Task in its `depends_on` when you create it, or later with `update_task` (the list you give replaces the saved one). This applies on the direct path too, for example a follow-up on earlier work. Dependencies only inform: they show in the app as Blocked by and guide your dispatch (step 6), but they never stop work.
 

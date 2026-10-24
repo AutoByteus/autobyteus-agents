@@ -59,22 +59,22 @@ a follow-up.
 
 ## Example: a prerequisite
 
-The ticket (autobyteus-175) asked what works today for Jira through a ready-made
+The ticket asked what works today for an issue tracker through a ready-made
 MCP server.
-- Tracing a connection end to end, from the settings form through `mcps.json`
-  and the MCP server class into the MCP SDK, the designer found that our
-  transport options pass `headers`, but the SDK reads `requestInit.headers`.
+- Tracing a connection end to end, from the settings form through the stored
+  server configuration and the app's MCP server class into the MCP SDK, the
+  designer found that the app's transport options pass `headers`, but the SDK reads `requestInit.headers`.
   The unit test replaced the SDK with a fake, so it could not show this.
 - A probe against a real local server proved that no `Authorization` header
   arrived, and a control proved the fix.
-- Test: if this stays, can the ticket reach its goal? No, because Atlassian's
+- Test: if this stays, can the ticket reach its goal? No, because the tracker's
   server cannot connect at all. Whose functionality is it? The MCP transport's,
-  not the Jira preset's. So it is a prerequisite.
+  not the tracker preset's. So it is a prerequisite.
 - The designer wrote it down and sent it, with its evidence and a suggested
   Task, to the Project Task Manager. The fix became its own
-  Task (autobyteus-179), done first, and the Jira work continued on top of it.
-- Two more prerequisites came from the same investigation: the vault could not
-  hold MCP secrets, and the MCP gateway exposed credentialed tools without a
+  Task, done first, and the tracker work continued on top of it.
+- Two more prerequisites came from the same investigation: the secret store could not
+  hold MCP secrets, and a gateway exposed credentialed tools without a
   token.
 
 ## Example: a follow-up found during technical review

@@ -16,7 +16,7 @@ Tasks created for later dispatch that wait for the user's word, a release, or an
 
 | Key | Task | Waiting for | Created |
 | --- | --- | --- | --- |
-| `<key, e.g. autobyteus-42>` | <short title> | <e.g. the user's go-ahead; the next release> | <date> |
+| `<key, e.g. shop-42>` | <short title> | <e.g. the user's go-ahead; the next release> | <date> |
 
 ## Your questions waiting for the user
 

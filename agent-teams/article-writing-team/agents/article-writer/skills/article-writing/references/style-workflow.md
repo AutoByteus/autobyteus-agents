@@ -85,7 +85,7 @@ Treat these files as the source of truth. Do not redo research. If they have a c
 - Do not literal-translate paragraph by paragraph.
 - Rewrite naturally for each language while preserving logic, examples, and claims.
 - Preserve the chosen rhetorical mode across revisions and conversions. In `factual-technical` mode, prefer mechanism -> evidence -> implication order over persuasion-first framing.
-- In builder-report narratives, prefer direct subject-first openings such as `In AutoByteus, we first used...` over detached meta-openers like `This article explains...` or `This note describes...`, unless the user explicitly wants report prose.
+- In builder-report narratives, prefer direct subject-first openings such as `In our app, we first used...` over detached meta-openers like `This article explains...` or `This note describes...`, unless the user explicitly wants report prose.
 - Keep the subject exact at sentence level. If the draft says `runtime`, `system`, `application`, or `interface`, make sure the reader can tell which one it means from local context; use the longer noun when precision matters.
 - For math-heavy content, define symbols on first use and keep notation stable.
 
