@@ -1,5 +1,6 @@
-Date: 2026-10-24
+Date: 2026-10-24; final pre-merge verification
 Base: 38db51edc6cb8166aacfa1c484b0b02d5a642d42
+Runtime package commit: 3024e1e6a1e8e5b2f8464afd0617da33b9e37b31
 $ python3 tickets/in-progress/create-middle-school-mathematics-team/validate.py
 PASS: JSON, frontmatter, two members, attached skills, links, coordinator, unique rooted routes
 PASS: four exact example keys, divide-first alternative, negative-model boundary, three fault counterexamples, 1331 distribution samples (not a proof)
@@ -9,7 +10,7 @@ $ quick_validate.py guide-visual-math-learning
 Skill is valid!
 $ quick_validate.py review-visual-math
 Skill is valid!
-$ check-links.py (new package and task evidence)
+$ check-links.py (README, new package, and task evidence)
 0 broken link(s), 0 unnamed link(s)
-$ git diff --check
-PASS: whitespace check
+$ compare package with acceptance manifest
+PASS: all 15 package entries match the final acceptance manifest

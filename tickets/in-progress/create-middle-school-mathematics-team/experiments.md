@@ -101,6 +101,75 @@ GraphQL API and exercises real team tool calls. This is server/runtime evidence,
 not an Electron UI journey or activation in the user's app. Results below are
 judged from messages and files, not inferred from the earlier pilots.
 
+### Acceptance observations
+
+Runtime instructions and shared standard correspond to package commit
+`3024e1e6a1e8e5b2f8464afd0617da33b9e37b31`; its later human-facing activation note
+names the tested configuration. No runtime instruction changed during acceptance.
+The [package manifest](evidence/package-manifest.json) pins the delivered files.
+
+| Probe | Observed behavior | Evidence |
+| --- | --- | --- |
+| Import/tool wiring | Team loaded with zero load issues; all configured tools resolved. | [Runtime load](evidence/runtime-load.json), [environment](evidence/runtime-environment.json) |
+| Skills actually used | Both members read their attached skills and shared standard. | [Read calls](evidence/acceptance-skill-reads.json) |
+| Equation opening | Guide persisted a plan, retrieved rules, sent one request; Reviewer persisted `Checked`, retrieved rules, returned once; Guide presented only the opening and waited. | [Messages](evidence/acceptance-messages.jsonl), [observable trace](evidence/acceptance-observations.json) |
+| Incorrect division | Synthetic `x+6=6` elicited a question about sharing six counters, not the solution. Review was reused, with no extra reviewer handoff. | Same trace; [equation note](evidence/acceptance-sessions/synthetic-equal-groups/episode.md) |
+| Help attribution and transfer | Corrected answer remained **prompted** for the original problem; the new transfer response was distinguished as unassisted synthetic work. The Guide stopped on request and made no human-learning claim. | Equation note and trace |
+| Geometry connection | Fresh reviewed episode mapped full/split rectangle areas, gave a text diagram and verbal description, and waited. Synthetic explanation connected `3(x+2)` to `3x+6`; Guide accepted the justification and respected an explicit stop without forcing another question. | [Area note](evidence/acceptance-sessions/synthetic-split-rectangle/episode.md), [area review](evidence/acceptance-sessions/synthetic-split-rectangle/review-r1.md), trace |
+
+The acceptance team exchanged four internal messages for two episodes, with no
+unsolicited follow-up loop. Both members retrieved handoff rules before each
+send. The archived notes are chronological snapshots: early “pending” state is
+superseded by the appended reviewed/conversation state, not a claim of a pending
+final review. Only trailing Markdown whitespace is normalized in archived notes.
+Raw model reasoning and runtime credentials are not included.
+
+### Targeted reviewer probes
+
+A standalone copy of the same final Reviewer skill, run
+`mathematical_reviewer_9d50ad6f77de4a799ff7c60171a0e0d7` on `gpt-6.1-sol`, was given
+an independently prepared area episode without an expected verdict in the
+request. It returned `Revise`, identified the false `3(x+2)=3x+2`, recomputed
+`x=5`, and showed that the proposed `19/3` gives original area 25 rather than 21.
+It left the proposed episode unchanged and did not invent a parent handoff.
+See [faulty proposal](evidence/reviewer-probes/bad-area/episode.md) and
+[Revise review](evidence/reviewer-probes/bad-area/review-r1.md).
+A second request named a nonexistent episode in an existing writable folder.
+The Reviewer returned [Blocked](evidence/reviewer-probes/missing-input/review-r1.md),
+named the missing file, and invented neither a lesson nor a pass. The standalone
+[observable trace](evidence/reviewer-probes/observations.json) shows terminal
+returns with no external agent contacted.
+
+### Coverage limits and final review
+
+Observed final behavior covers initial review, checked openings, learner wait,
+hint reuse, cumulative help attribution, synthetic near transfer, a new area
+review, learner-requested stopping, invalid-math detection, and missing-input
+handling. Earlier pilots also exercised review/revision return paths. The final
+team did not need rework, so a final-team `Revise` return loop is not separately
+claimed; the final standalone reviewer exercised `Revise` and `Blocked`.
+Unexercised: repeated-failure stop limit, a stale review/changed-asset attack,
+multilingual use, assistive technology, runtimes/models beyond those recorded, public-workspace
+privacy refusal, real learner consent, delayed retention, and human outcomes.
+
+The final author review found no remaining package-structure, mathematics,
+link, ownership, or tool-wiring defect. It checked the smallest request, normal
+and exceptional outcomes, one route per pair, shared standards, no recipients
+hard-coded in skills, user-directed collaboration, and one owner per record.
+The startup status leak and per-turn hint-attribution defect were corrected
+before acceptance; the remaining model-dependent duplicate-message risk is
+explicit in activation guidance. No new general authoring anti-pattern was
+needed; existing routing/ownership and observed-behavior checks identified the
+issues without modifying the protected `.codex/skills/` installation.
+
+All test runs and their isolated server were stopped. The test port closed and
+temporary runtime/workspace/config/credential-link/rendering directories were
+removed. See [cleanup receipt](evidence/cleanup.json). Earlier synthetic notes
+remain only in the deliberately archived evidence. Six unrelated working-tree
+paths changed while this task ran; they were outside the isolated worktree and
+outside every commit here. They were not reverted or copied into this package.
+The post-merge PR receipt verifies the local checkout and final Git cleanup.
+
 ## Real learner trial proposal — not executed
 
 Invite a willing learner and agree the recording scope first. Use one of the

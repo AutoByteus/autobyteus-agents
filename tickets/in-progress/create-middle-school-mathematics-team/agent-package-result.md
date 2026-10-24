@@ -1,6 +1,6 @@
 # Middle School Mathematics Team — Package Result
 
-- Status: `Validation in progress` — implementation exists; delivery is not yet finalized.
+- Status: `Completed` — package and tested configuration validated; see the delivery receipt for base-branch integration.
 - Operation: `create`
 - Package type: `team`
 - Update intent: `new-package`
@@ -85,7 +85,13 @@ loaded the team with no load issues and resolved all configured tool names.
 Both SVG renders were inspected. See [validation.log](validation.log) and
 [runtime load evidence](evidence/runtime-load.json).
 
-Live validation and final review are recorded in [experiments.md](experiments.md).
+Live validation and final review pass on the documented `codex_app_server` /
+`gpt-6.1-sol` configuration. Both learning episodes routed once each direction,
+waited for synthetic learner reasoning, and stopped when asked. The equation
+episode reused reviewed hints and retained prompted status after help. Standalone fault/missing-input probes
+returned `Revise` and `Blocked`. Two instruction refinements followed observed
+pilot defects. Full evidence and untested branches are recorded in
+[experiments.md](experiments.md).
 No static script is presented as a model-behavior test. No synthetic rehearsal
 is presented as evidence of human learning.
 
@@ -100,6 +106,25 @@ is presented as evidence of human learning.
 - Text/SVG inspection does not establish accessibility on every device.
 - Private tutor notes are not access-controlled answer hiding.
 - Real learner transfer, retention, benefit, and review-delay tolerance are untested.
+
+## Base branch, commit evidence, and cleanup
+
+- Initial base: `main` and `origin/main` both at
+  `38db51edc6cb8166aacfa1c484b0b02d5a642d42`.
+- Package implementation: `3024e1e6a1e8e5b2f8464afd0617da33b9e37b31`.
+  Remaining commits on this branch contain result/evidence finalization only.
+- Delivery: [pull request #117](https://github.com/AutoByteus/autobyteus-agents/pull/117),
+  targeting `main`. Its post-merge receipt records the exact merge commit, local
+  `main`/`origin/main` equality, final validation, and removal of the task branch
+  and worktree. This durable external receipt avoids claiming a future merge
+  SHA inside the commit that is itself being merged.
+- Runtime cleanup completed before delivery: [receipt](evidence/cleanup.json).
+  No user's application, runtime data, or other repository was changed.
+- The original checkout is intentionally **not globally clean**: unrelated
+  marketing edits and untracked files must remain. Six unrelated paths changed
+  concurrently during this task; none is in this task's diff or was reverted.
+  The post-merge check compares current unrelated contents across integration.
+- No release, deployment, real learner trial, or user-app activation was performed.
 
 ## Next expected action
 
