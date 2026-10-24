@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 320" role="img" aria-labelledby="title desc">
+  <title id="title">A rectangle of height three split into widths x and two</title>
+  <desc id="desc">A rectangle has height 3 cm and total area 21 square centimetres. A vertical line splits its width into x cm on the left and 2 cm on the right. Both parts have height 3 cm. Schematic, not to scale.</desc>
+  <rect width="680" height="320" fill="white"/>
+  <rect x="110" y="85" width="320" height="135" fill="#edf4ff" stroke="#183153" stroke-width="2"/>
+  <rect x="430" y="85" width="140" height="135" fill="#fff3d6" stroke="#183153" stroke-width="2"/>
+  <g fill="#183153" font-family="sans-serif" text-anchor="middle">
+    <text x="340" y="29" font-size="21">One rectangle, two parts</text>
+    <g font-size="20"><text x="270" y="66">x cm</text><text x="500" y="66">2 cm</text><text x="58" y="159">3 cm</text><text x="270" y="160">Left part</text><text x="500" y="160">Right part</text><text x="340" y="257">Whole area = 21 cm²</text></g>
+    <text x="340" y="298" font-size="16">Schematic, not to scale. How does each part contribute to the whole?</text>
+  </g>
+</svg>

@@ -1,0 +1,47 @@
+{
+  "agent-teams/middle-school-mathematics-team/README.md": {
+    "sha256": "952ed461e50b3cb35f6fe6e539258e6ff26d1409c8bca7c86876c3b484af879a"
+  },
+  "agent-teams/middle-school-mathematics-team/agents/learning-guide/agent-config.json": {
+    "sha256": "33dd282d99c34ea0c11292dcbb166e1db32cd423c93e15eb207cfc0795bb68d1"
+  },
+  "agent-teams/middle-school-mathematics-team/agents/learning-guide/agent.md": {
+    "sha256": "e948a7c6bb1a6b3ac0c098b576f83a6e65e980e2aba8b40f5a93c9066ebc7c4e"
+  },
+  "agent-teams/middle-school-mathematics-team/agents/learning-guide/skills/guide-visual-math-learning/SKILL.md": {
+    "sha256": "757679ee6339a90cfefb6c948e301b89ad04eed10af45eaf8ff7e6313826289c"
+  },
+  "agent-teams/middle-school-mathematics-team/agents/learning-guide/skills/guide-visual-math-learning/assets/equal-groups.svg": {
+    "sha256": "08b3ddd035bf03d57c6abdd725d8cec7c0ac27705ce7deabb74d36e80d8d4f7f"
+  },
+  "agent-teams/middle-school-mathematics-team/agents/learning-guide/skills/guide-visual-math-learning/assets/split-rectangle.svg": {
+    "sha256": "c6d3fbdf7761ab2c0ea41bd60320ecc955f2d9d26f53218796c97a5342a11767"
+  },
+  "agent-teams/middle-school-mathematics-team/agents/learning-guide/skills/guide-visual-math-learning/learning-standard.md": {
+    "symlink": "../../../../shared/learning-standard.md"
+  },
+  "agent-teams/middle-school-mathematics-team/agents/learning-guide/skills/guide-visual-math-learning/references/starter-episodes.md": {
+    "sha256": "130372177a11654ad5b6fad48c33b1b4443ca5593405be01484aad7c555a1788"
+  },
+  "agent-teams/middle-school-mathematics-team/agents/mathematical-reviewer/agent-config.json": {
+    "sha256": "726b982812596f57133e49d6342ffa5a688a88b7be7c92578ed597e81a280034"
+  },
+  "agent-teams/middle-school-mathematics-team/agents/mathematical-reviewer/agent.md": {
+    "sha256": "d3d3befbc8dff54271967813efb7e98033f822ae1a25862d75ed8691d4fb52f5"
+  },
+  "agent-teams/middle-school-mathematics-team/agents/mathematical-reviewer/skills/review-visual-math/SKILL.md": {
+    "sha256": "ba9bfd30a0eab9c1e25761f3a3ed96f06a22f792ab66824ed37066df09f97393"
+  },
+  "agent-teams/middle-school-mathematics-team/agents/mathematical-reviewer/skills/review-visual-math/learning-standard.md": {
+    "symlink": "../../../../shared/learning-standard.md"
+  },
+  "agent-teams/middle-school-mathematics-team/shared/learning-standard.md": {
+    "sha256": "45bfd2f0fe05f6a021e0919a0a33af9ec66a4f28fce192bd0d7e53f063be02da"
+  },
+  "agent-teams/middle-school-mathematics-team/team-config.json": {
+    "sha256": "c93f1e249a61f2039c008f7c170e92df3bc5a5e647fe7ff88b8f60139efd86d6"
+  },
+  "agent-teams/middle-school-mathematics-team/team.md": {
+    "sha256": "e487397504ba0c4b0794190518d4a75b8ee568cbd9eb432f1dbaebc62818f6a1"
+  }
+}

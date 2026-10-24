@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 230" role="img" aria-labelledby="title desc">
+  <title id="title">Three equal unknown bags and six counters total eighteen</title>
+  <desc id="desc">Three outlined boxes each labelled x, plus six loose counters, equal eighteen counters. Each bag contains the same unknown whole number. Schematic, not to scale.</desc>
+  <rect width="780" height="230" fill="white"/>
+  <g fill="#edf4ff" stroke="#183153" stroke-width="2">
+    <rect x="25" y="65" width="90" height="75" rx="10"/>
+    <rect x="135" y="65" width="90" height="75" rx="10"/>
+    <rect x="245" y="65" width="90" height="75" rx="10"/>
+  </g>
+  <g fill="#183153" font-family="sans-serif" text-anchor="middle">
+    <text x="390" y="30" font-size="20">Equal groups: 3x + 6 = 18</text>
+    <g font-size="30"><text x="70" y="113">x</text><text x="180" y="113">x</text><text x="290" y="113">x</text><text x="365" y="113">+</text><text x="540" y="113">=</text><text x="655" y="106">18</text></g>
+    <text x="655" y="135" font-size="18">counters</text>
+    <text x="180" y="170" font-size="17">Three bags; same number in each</text>
+    <text x="450" y="170" font-size="17">6 loose counters</text>
+    <text x="390" y="211" font-size="16">Schematic, not to scale. What stays equal if counters are removed?</text>
+  </g>
+  <g fill="#183153"><circle cx="414" cy="86" r="9"/><circle cx="450" cy="86" r="9"/><circle cx="486" cy="86" r="9"/><circle cx="414" cy="122" r="9"/><circle cx="450" cy="122" r="9"/><circle cx="486" cy="122" r="9"/></g>
+</svg>

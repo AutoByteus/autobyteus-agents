@@ -57,6 +57,7 @@ Coordinator is the entry member; routing lives in each team's `team-config.json`
 | [Kids Picture Story Team](agent-teams/kids-picture-story-team/team.md) | `story_picture_book_author` | Book Production Editor, Picture Book Illustrator, Picture Book Reviewer | Reading-first illustrated picture books with digital and print exports. |
 | English Bridge Team (`agent-teams/english-bridge-team`) | `english_translator` | Worker | Translates user requests into English and sends them unchanged to a worker. |
 | [Chemistry Teaching Team](agent-teams/chemistry-teaching-team/team.md) | `curriculum_planner` | (+ shared Chemistry Module Designer) | From the chemistry curriculum (Gymnasium 7–12) to teaching plans with terms, methods, diagnosis and differentiation, interactive modules, and an offline library with search for quick lookup in class. |
+| [Middle School Mathematics Team](agent-teams/middle-school-mathematics-team/team.md) | `learning_guide` | Mathematical Reviewer | Two-member experiment connecting visual models with learner-led algebraic and geometric deductions. |
 | [Classroom Simulation Team](agent-teams/classroom-simulation-team/team.md) | `professor` | Student | Two-role teacher–student demo of agent-to-agent file-based communication. |
 
 ## Agent Orgs
