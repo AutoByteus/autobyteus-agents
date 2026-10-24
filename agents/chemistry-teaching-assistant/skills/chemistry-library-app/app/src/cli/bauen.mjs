@@ -192,6 +192,9 @@ function baueFolie(roh, kontext, erlaubteZiele) {
   folie.worte = wortzahl(sichtbar);
   if (folie.worte > 40) bericht.h(datei, wo, `${folie.worte} sichtbare Wörter (Ziel ≤ 40); Erklärungen gehören in die Notizen`);
   const notizen = md(roh.notizen, { datei, wo: `${wo}.notizen`, bericht });
+  // The library must run offline: nothing on a slide may load from the internet.
+  const fern = /(?:src|href|xlink:href)\s*=\s*\\?["']?(https?:)?\/\/[^"'\s>]+/i.exec(JSON.stringify(folie.bausteine) + folie.frage + folie.merke);
+  if (fern) bericht.f(datei, wo, `lädt aus dem Internet (${fern[0].slice(0, 60)}); das Bild nach inhalt/medien/ kopieren und mit Quelle eintragen`);
   return { folie, notizen };
 }
 

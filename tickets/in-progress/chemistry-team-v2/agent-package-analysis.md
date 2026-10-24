@@ -2,8 +2,8 @@
 
 - Status: `Completed` (analysis); planned changes approved by the Task direction
 - Operation: `update`
-- Package type: `team` (plus the shared Chemistry Module Designer)
-- Target package: `agent-teams/chemistry-teaching-team/`, `agents/chemistry-module-designer/`
+- Package type: `team` → `agent` (revised, see F11)
+- Target package: before: `agent-teams/chemistry-teaching-team/`, `agents/chemistry-module-designer/`; after: `agents/chemistry-teaching-assistant/`
 - Scope: the library as an offline app, slides as data with shared components, low-text slides, private presenter notes, lesson export, a click-every-control test; retire the old index script
 - Request reference: Project Task autobyteus-agents-4; the Curriculum Planner's request `k8-01-feedback-and-skill-changes.md`; the teacher's brief `user-brief.md` (2026-10-24)
 - Update intent: `extend` and `repair` (the teacher's six feedback points)
@@ -57,6 +57,7 @@ Ordered by the authoring-standard priority.
 | F8 | `build_library_index.py` overwrites the start page | Script writes `index.html` unconditionally | Planner skill | Destroys the library app (Constraints) | Remove the script; the app build owns `index.html` and keeps a non-app `index.html` as a backup once |
 | F9 | Plans are HTML pages | Planner §3, `plan-template.html` | Planner skill | Content not reusable as data; duplicate of knowledge points | Knowledge points as data (nine fields) in the shared format; the app shows and prints them; remove the template |
 | F10 | Visual quality not covered | Designer skill: "SVG in code" only | Designer skill | Flat clipart (feedback 1) | Photos (own or licensed, attribution list) or consistent illustrations; correct molecule models; purposeful animation; checked at projector size |
+| F11 | Two producing roles for one record | In the data format a knowledge point and its slides are one YAML file; the planner wrote the nine fields, the designer `folien`; each request restated goals and misconceptions the file holds; the delivery note repeated the build report; the automated check left neither role a decision of its own | Team topology | Handoff overhead, two writers of one record, consistency between terms, misconceptions and their slides across roles | One agent (Chemistry Teaching Assistant) with two skills; team and Module Designer removed. Raised by the user, approved 2026-10-24 |
 
 Proposals A–C from the planner are mostly adopted:
 - **A1 (app):** Vue 3 + Vite built to static files that run from `file://` (a classic script bundle).
@@ -70,16 +71,24 @@ Alternative considered for F1: put the app into one member's bundled skill. Reje
 
 ## Planned changes
 
-1. **Add** `agent-teams/chemistry-teaching-team/skills/chemistry-library-app/`:
+Revised after F11. The user approved one agent and asked for a full refactor, including the name and folder.
+
+1. **Add** `agents/chemistry-teaching-assistant/` (`agent.md`, `agent-config.json`):
+   - skill `chemistry-teaching`, merging the planning skill and the slide skill;
+   - skill `chemistry-library-app`, the shared skill below, now bundled with this one owner;
+   - remove `agent-teams/chemistry-teaching-team/` and `agents/chemistry-module-designer/`.
+   The manager closed the team's open tasks first (chemie-unterricht-2 cancelled; the ad-hoc task closed).
+2. **Add** `chemistry-library-app`:
    - `SKILL.md`: install or update the app in a library, the data format, building, the quality gate, exports.
    - `references/data-format.md`: knowledge point, slide and component schema.
    - `app/`: Vue 3 + Vite source with `package-lock.json`.
    - `dist/`: the prebuilt runtime and the node build/test tool, so a library builds offline without npm.
    - `beispiel/`: a small neutral example library, which is also the test data.
-2. **Planner skill:** the library is the app; knowledge points are data files; plans are printed from the app; remove `build_library_index.py` and `plan-template.html`; reply in the teacher's language; attach `chemistry-library-app`.
-3. **Designer skill:** slides as data with components; low text; notes; visual quality; the quality gate. Remove the module shell and `check_module.py` (replaced). `check_equations.py` also reads equations from data files. Attach `chemistry-library-app`.
-4. **team.md, team-config.json:** cooperation text and route conditions follow the new outputs (request in `auftraege/`; slides delivered with note).
-5. **README:** the team row mentions the app.
+3. **Teaching skill** (from the planner skill): the library is the app; knowledge points are data files; plans are printed from the app; remove `build_library_index.py` and `plan-template.html`; reply in the teacher's language; attach `chemistry-library-app`.
+4. **Teaching skill** (from the designer skill): slides as data with components; low text; notes; visual quality; the quality gate. Remove the module shell and `check_module.py` (replaced). `check_equations.py` also reads equations from data files. Attach `chemistry-library-app`.
+5. **team.md, team-config.json:** removed with the team.
+6. **README:** one row for the agent replaces the team and designer rows.
+7. **Creator anti-pattern 30:** two producing roles for one record.
 
 ## Open questions
 

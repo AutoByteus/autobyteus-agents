@@ -70,6 +70,8 @@ can open exactly the one a pupil did not understand (an Oxonium-Ion, not "acids"
 Write each with all nine fields. This is where she prepares, so be complete and correct:
 
 - the curriculum quote with page and its requirement level;
+- the technical terms, each marked kennen or anwenden, with an explanation phrased the way
+  she can say it to this class: what she looks up when a question comes up in class;
 - checkable goals and how she sees them reached;
 - the chemistry at the depth she needs;
 - how to teach it, and what to do if pupils do not understand;
@@ -89,6 +91,8 @@ The requirement level sets how many slides a point needs and of which types:
 
 A point can have slides for first learning, short revision, diagnosis and extension. It
 needs only those that serve its goals and misconceptions. Each slide stands alone.
+Differentiate across slides: levels I–III, graded hints in tasks, language support
+(word banks, sentence starters) for those who need it, extension slides for the fast.
 
 **Little text.**
 - One core question per slide.
@@ -150,7 +154,9 @@ Write a short delivery note in German to `lieferungen/<date>-<topic>.md` and rep
 it, in her language. It says:
 
 - what she can use: the knowledge point IDs and the suggested lesson;
-- that the library opens with a double click on `index.html` and runs offline;
+- that the library opens with a double click on `index.html` and runs offline, and how to
+  present: „Präsentieren“ opens the audience window for the projector; → and ← step,
+  L shows solutions, B blacks out, G inserts basics and Z returns;
 - which safety points she must confirm in her risk assessment;
 - every fact you could not confirm from a source;
 - what the app could not show yet, if anything.
