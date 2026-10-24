@@ -66,7 +66,7 @@ A live team run on a copy of her folder produced all of this from that one line,
 
 ## Approval state
 
-- State: Approved for building (Task and the user's "decide yourself"); acceptance of the example pending with the teacher
+- State: Approved for building (Task and the user's "decide yourself"). Acceptance of the example is pending with the teacher; the PR merge is pending a maintainer review (https://github.com/AutoByteus/autobyteus-agents/pull/112)
 - Evidence: Task autobyteus-agents-1 and the Project Task Manager's relayed messages of 2026-10-24
 
 ## Validation
@@ -111,7 +111,9 @@ A live team run on a copy of her folder produced all of this from that one line,
 
 ## Next expected action
 
-The teacher opens `/Users/normy/normy-projects/Chemie_Folie_Beispiel_Team/index.html` and checks the plan and module. With the team now merged, she can also try it on a real request of her own in her AutoByteus app (Chemistry Teaching Team, workspace = her module folder) and say what to change.
+1. The teacher opens `/Users/normy/normy-projects/Chemie_Folie_Beispiel_Team/index.html` and checks the plan and module.
+2. To try the team on a real request of her own before the merge, import the branch worktree `/Users/normy/autobyteus-org/autobyteus-task-worktrees/create-chemistry-module-designer` as a local package in AutoByteus. Then start the Chemistry Teaching Team with her module folder as the workspace.
+3. PR #112 needs a maintainer's review or merge (branch protection: REVIEW_REQUIRED; earlier PRs were merged by `ryan-zheng-teki`). After the merge, update the local checkout `/Users/normy/autobyteus-org/autobyteus-agents`. It has staged and unstaged work in SE configs and `design-examples.md`, which do not overlap this PR's files; preserve it and pull.
 
 ## Handoff state
 
