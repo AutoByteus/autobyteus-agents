@@ -1,6 +1,6 @@
 # Agent Package Creation Result
 
-- Status: `Completed` once the PR is merged and the checkout updated (see Handoff state)
+- Status: `Completed` (package and validation); merge pending maintainer review, then checkout update (see Handoff state)
 - Operation: `update`
 - Package type: `agent` (was `team`)
 - Update intent: `extend` and `repair` (the teacher's six feedback points); `simplify` (one agent instead of a team, user-approved)
@@ -131,4 +131,10 @@ The rebuilt result, for the teacher to open: `/Users/normy/normy-projects/Chemie
 
 ## Handoff state
 
-HANDOFF_PLACEHOLDER
+- `get_handoff_rules` called: Yes; no rules (standalone Creator copy).
+- Caller return: Yes, to the Project Task Manager, the sender of Task autobyteus-agents-4.
+- Delivery: PR https://github.com/AutoByteus/autobyteus-agents/pull/121, which needs a maintainer's review (this account cannot merge).
+- After the merge:
+  - update the local checkout `/Users/normy/autobyteus-org/autobyteus-agents`, preserving its uncommitted work;
+  - the running app and the installed skill links read from that checkout;
+  - re-create the K8-01 rework as a Task for `/chemistry_teaching_assistant`.
