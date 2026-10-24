@@ -37,6 +37,7 @@ Concrete mistakes found in real package work. The [package design principles](pa
 | 27 | Judging a change from a run that did not exercise it | Creator process |
 | 28 | A live check that starts real work | Creator process |
 | 29 | Asking the user what the evidence already answers | Creator process |
+| 30 | Two producing roles for one record | Package design |
 
 ## Package design
 
@@ -95,6 +96,13 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Breaks:** [§3](package-design-principles.md#3-give-each-rule-one-authoritative-file): what a role reads is owned by its skill; a shared file must not decide it through its own links.
 - **Instead:** A role links only the files its skill names. A shared file links only files that every role reading it also has, and names the others in plain text ("Core Principle 7 in the team's design principles").
 - **Detect:** [check-links.py](../scripts/check-links.py) reports links no file of the skill names, and broken links in a shared file seen through a role's folder.
+
+### 30. Two producing roles for one record
+
+- **Incident:** A teaching team had a planner writing each knowledge point's teacher fields and a designer writing the slides in the same YAML file. Every slide request restated goals and misconceptions the file already held, and every delivery note repeated what the build report said. Once an automated check covered the mechanical quality, neither role owned a decision the other did not. The user asked whether two roles were needed; one agent with two skills replaced the team (2026-10-24).
+- **Breaks:** [§1](package-design-principles.md#1-choose-the-package-boundary-from-the-work): add a role only if it owns a distinct decision, transformation, approval boundary, lifecycle or output.
+- **Instead:** Give one role the whole record and split the procedure into skills. A second role is worth its handoff only when it decides something the first does not, such as an independent review or another approval boundary.
+- **Detect:** For each pair of roles, list the files each writes and what each handoff carries. Two producers writing one record, or a request that restates fields of a record both roles share, mark a split to merge.
 
 ## Skill content
 
