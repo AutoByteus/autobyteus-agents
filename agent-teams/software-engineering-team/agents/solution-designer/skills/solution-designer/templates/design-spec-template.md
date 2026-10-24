@@ -263,9 +263,9 @@ Rule:
 
 ## Main Domain Subject Naming Check
 
-| Node / Subject | Current / Proposed Name | Name Is Natural And Self-Descriptive? (`Yes`/`No`) | Naming Drift Risk | Corrective Action |
-| --- | --- | --- | --- | --- |
-|  |  |  |  |  |
+| Node / Subject | Current / Proposed Name | Name Is Natural And Self-Descriptive? (`Yes`/`No`) | Same Meaning And Name Everywhere It Appears, Per The Glossary? (`Yes`/`No`; Principle 15) | Naming Drift Risk | Corrective Action |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
 
 ## Existing Capability / Subsystem Reuse Check
 

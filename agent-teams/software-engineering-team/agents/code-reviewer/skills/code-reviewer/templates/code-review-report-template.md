@@ -172,7 +172,7 @@ Review test structure proportionately when test files are relevant. Do not apply
 | File placement check (file/folder path matches owning concern or explicitly justified shared boundary) |  |  |  |
 | Flat-vs-over-split layout judgment (layout is readable for the scope and not artificially fragmented) |  |  |  |
 | Interface/API/query/command/service-method boundary clarity (one subject, one responsibility, explicit identity shape) |  |  |  |
-| Naming quality and naming-to-responsibility alignment check (files, folders, APIs, types, functions, parameters, variables) |  |  |  |
+| Naming quality and naming-to-responsibility alignment check (files, folders, APIs, types, functions, parameters, variables); each domain word keeps one meaning and each concept one name across the system (Core Principle 15) |  |  |  |
 | No unjustified duplication of code / repeated structures in changed scope |  |  |  |
 | Patch-on-patch complexity control |  |  |  |
 | Dead code removed in the touched files and modules (Core Principle 7) |  |  |  |
