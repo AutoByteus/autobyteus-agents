@@ -1,0 +1,212 @@
+id: K7-01.2
+titel: Teilchenmodell und Aggregatzustände
+kurz: Stoffe bestehen aus Teilchen; ihr Abstand und ihre Ordnung bestimmen den Aggregatzustand.
+begriffe:
+  - begriff: Teilchenmodell
+    stufe: A
+    erklaerung: Vorstellung, dass alle Stoffe aus winzigen Teilchen bestehen, die sich bewegen.
+  - begriff: Aggregatzustand
+    stufe: A
+    erklaerung: fest, flüssig oder gasförmig.
+
+lehrplan:
+  zitat: "Beispieltext: Aggregatzustände mit dem Teilchenmodell erklären."
+  seite: 5
+  ebene: Übertragen
+  art: { experiment: false, modell: true, rechnen: false, erkenntnisgewinnung: true, anwendung: false }
+lernziele:
+  - id: Z1
+    afb: II
+    text: Die Schülerinnen und Schüler können die drei Aggregatzustände mit Abstand und Ordnung der Teilchen erklären.
+  - id: Z2
+    afb: II
+    text: Die Schülerinnen und Schüler können begründen, dass Teilchen beim Verdampfen nicht größer werden.
+erfolgskriterien:
+  - ziel: Z1
+    text: beschreibt zu jedem Zustand Abstand und Ordnung
+  - ziel: Z2
+    text: wählt in der Abstimmung die richtige Antwort und begründet sie
+sachanalyse: |
+  Im Teilchenmodell sind Teilchen kleine Kugeln in ständiger Bewegung. Fest: dicht, geordnet, schwingen am Platz.
+  Flüssig: dicht, ungeordnet, gegeneinander verschiebbar. Gasförmig: große Abstände, schnelle freie Bewegung.
+  Die Teilchen selbst ändern beim Zustandswechsel weder Größe noch Form noch Anzahl.
+  Grenzen des Modells: Größenverhältnisse, Kräfte zwischen den Teilchen und die Bewegung werden vereinfacht.
+didaktik: |
+  Schritt-Animation zeigt die drei Zustände nacheinander; die Klasse beschreibt jeden Schritt.
+  Alternative: Schülerinnen und Schüler spielen die Teilchen (stehen dicht – laufen umher).
+lehrerskript: |
+  „Wir können Teilchen nicht sehen. Deshalb benutzen wir ein Modell: Kugeln. Schaut, wie sie im Eis liegen …“
+fehlvorstellungen:
+  - vorstellung: Beim Verdampfen werden die Teilchen größer.
+    warum: Nur der Abstand wächst; das Teilchen bleibt gleich.
+    diagnose: Abstimmung K7-01.2-DI1
+    korrektur: Animation erneut zeigen, Teilchengröße vergleichen.
+    folie: K7-01.2-ER1
+    verstanden: erklärt mit dem Abstand, nicht mit der Teilchengröße
+aufgaben:
+  - afb: II
+    aufgabe: Zeichne Wasser als Eis, als Flüssigkeit und als Dampf im Teilchenmodell.
+    loesung: Eis geordnet und dicht; Wasser dicht, ungeordnet; Dampf wenige Teilchen mit großen Abständen; alle Teilchen gleich groß.
+verknuepfungen:
+  - rel: vorwissen
+    ref: K7-01.1
+    text: Schmelztemperatur als Stoffeigenschaft
+  - rel: spaeter
+    ref: K8-LB1
+    text: Bei chemischen Reaktionen gruppieren sich Teilchen um.
+
+folien:
+  - id: K7-01.2-ER1
+    titel: Fest, flüssig, gasförmig im Teilchenmodell
+    zweck: Schritt-Animation der drei Aggregatzustände
+    ziele: [Z1]
+    einsatz: neu
+    niveau: II
+    min: 5
+    frage: Wie liegen die Teilchen?
+    layout: voll
+    bausteine:
+      - art: schritte
+        svg: aggregatzustaende.svg
+        alt: Teilchen im festen, flüssigen und gasförmigen Zustand
+        schritte:
+          - text: Im Eis liegen die Teilchen dicht und geordnet.
+            zeigen: fest
+          - text: Im Wasser sind sie dicht, aber ungeordnet.
+            zeigen: fluessig
+            verbergen: fest
+          - text: Im Dampf sind sie weit voneinander entfernt.
+            zeigen: gas
+            verbergen: fluessig
+    notizen: |
+      Mit → durch die Schritte. Bei jedem Schritt fragen: „Was ändert sich – und was bleibt gleich?“ (Teilchengröße bleibt!)
+      Gas-Bild ist ein Ausschnitt; im gleichen Gefäß wären es gleich viele Teilchen wie vorher.
+
+  - id: K7-01.2-EN1
+    titel: Eis, Wasser, Dampf im Glas
+    zweck: Drei Zustände im Alltagsbild finden
+    ziele: [Z1]
+    einsatz: neu
+    niveau: I
+    min: 3
+    frage: Wo siehst du welchen Zustand?
+    bausteine:
+      - art: hotspot
+        datei: wasser.png
+        alt: Glas mit Eiswürfel in heißem Wasser, darüber Nebel
+        punkte:
+          - x: 47
+            y: 47
+            titel: Eis – fest
+          - x: 55
+            y: 70
+            titel: Wasser – flüssig
+          - x: 50
+            y: 18
+            titel: Nebel – flüssig!
+            text: Wasserdampf ist unsichtbar. Der Nebel sind winzige Tröpfchen.
+    notizen: |
+      Falle: Der sichtbare „Dampf“ ist Nebel aus Tröpfchen. Echter Wasserdampf ist unsichtbar.
+
+  - id: K7-01.2-UE1
+    titel: Ordne nach dem Teilchenabstand
+    zweck: Reihenfolge vom kleinsten zum größten Abstand
+    ziele: [Z1]
+    einsatz: wdh
+    niveau: I
+    min: 2
+    frage: Ordne vom kleinsten zum größten Abstand.
+    bausteine:
+      - art: reihenfolge
+        elemente: [Eis, flüssiges Wasser, Wasserdampf]
+        aufloesung: Im Eis liegen die Teilchen am dichtesten, im Dampf am weitesten auseinander.
+    notizen: |
+      Kurze Wiederholung am Stundenbeginn.
+
+  - id: K7-01.2-DI1
+    titel: Abstimmung – werden Teilchen größer?
+    zweck: Fehlvorstellung zur Teilchengröße aufdecken
+    ziele: [Z2]
+    einsatz: neu
+    niveau: II
+    min: 3
+    frage: Werden die Teilchen größer, wenn Wasser verdampft?
+    bausteine:
+      - art: abstimmung
+        optionen:
+          - text: Ja, sie dehnen sich aus.
+          - text: Nein, nur der Abstand wird größer.
+            richtig: true
+          - text: Die Teilchen verschwinden.
+        aufloesung: Die Teilchen bleiben gleich groß. Nur ihr Abstand wächst.
+        merken: k7012-teilchengroesse-vorher
+    notizen: |
+      Hände zählen, mit + eintragen, dann „Auflösen“. Häufigste Fehlvorstellung: Teilchen dehnen sich aus.
+      Die Zahlen bleiben gespeichert; K7-01.2-DI2 am Stundenende vergleicht damit.
+
+  - id: K7-01.2-DI2
+    titel: Abstimmung nachher – werden Teilchen größer?
+    zweck: Dieselbe Frage am Ende der Stunde, mit den Zahlen vom Anfang
+    ziele: [Z2]
+    einsatz: wdh
+    niveau: II
+    min: 2
+    frage: Und jetzt – werden die Teilchen größer?
+    bausteine:
+      - art: abstimmung
+        optionen:
+          - text: Ja, sie dehnen sich aus.
+          - text: Nein, nur der Abstand wird größer.
+            richtig: true
+          - text: Die Teilchen verschwinden.
+        aufloesung: Die Teilchen bleiben gleich groß. Nur ihr Abstand wächst.
+        merken: k7012-teilchengroesse-nachher
+        vergleich: k7012-teilchengroesse-vorher
+    notizen: |
+      Gestrichelt: die Zahlen vom Stundenanfang. Mit „Neu zählen“ für die nächste Klasse leeren.
+
+  - id: K7-01.2-VT1
+    titel: Wasser aus Wasserstoff und Sauerstoff
+    zweck: Ausblick auf die chemische Reaktion mit Reaktionsgleichung
+    ziele: [Z1]
+    einsatz: neu
+    niveau: III
+    min: 3
+    frage: Woraus entsteht Wasser?
+    bausteine:
+      - art: gleichung
+        wort: Wasserstoff + Sauerstoff → Wasser
+        formel: 2 H2 + O2 -> 2 H2O
+      - art: versuch
+        form: Lehrerversuch
+        ghs: [GHS02, GHS04]
+        schutz:
+          - Schutzbrille
+          - nur ein Reagenzglas Wasserstoff
+    notizen: |
+      Nur als Ausblick für schnelle Lernende; die Reaktionsgleichung kommt in Klasse 8 ausführlich.
+      Wasserstoff: GHS02 und GHS04, Gefahr, H220 und H280 (GESTIS). Knallgasprobe nur als Lehrerversuch, Kleinstmenge, Öffnung vom Gesicht weg.
+
+  - id: K7-01.2-EN2
+    titel: Teilchenbewegung und Temperatur
+    zweck: Regler zeigt, dass Teilchen sich bei höherer Temperatur schneller bewegen
+    ziele: [Z1]
+    einsatz: neu
+    niveau: I
+    min: 3
+    frage: Was ändert sich, wenn es wärmer wird?
+    layout: voll
+    bausteine:
+      - art: regler
+        name: Temperatur
+        stufen:
+          - wert: kalt
+            svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 400"><style>.tb{fill:#6d28d9;stroke:#4c1d95;stroke-width:3;animation:zittern 1.6s ease-in-out infinite alternate}@keyframes zittern{0%{transform:translate(-4px,2px)}50%{transform:translate(4px,-4px)}100%{transform:translate(-2px,4px)}}</style><rect x="6" y="6" width="848" height="388" rx="20" fill="#f4f0fd" stroke="#c4b5fd" stroke-width="4"/><circle class="tb" cx="59" cy="57" r="22" style="animation-delay:-0.05s"/><circle class="tb" cx="151" cy="69" r="22" style="animation-delay:-0.56s"/><circle class="tb" cx="248" cy="60" r="22" style="animation-delay:-0.61s"/><circle class="tb" cx="370" cy="50" r="22" style="animation-delay:-0.15s"/><circle class="tb" cx="461" cy="63" r="22" style="animation-delay:-0.27s"/><circle class="tb" cx="549" cy="57" r="22" style="animation-delay:-0.99s"/><circle class="tb" cx="665" cy="59" r="22" style="animation-delay:-1.00s"/><circle class="tb" cx="765" cy="52" r="22" style="animation-delay:-0.12s"/><circle class="tb" cx="54" cy="146" r="22" style="animation-delay:-0.71s"/><circle class="tb" cx="160" cy="165" r="22" style="animation-delay:-0.95s"/><circle class="tb" cx="262" cy="162" r="22" style="animation-delay:-0.24s"/><circle class="tb" cx="357" cy="161" r="22" style="animation-delay:-0.61s"/><circle class="tb" cx="450" cy="150" r="22" style="animation-delay:-0.04s"/><circle class="tb" cx="564" cy="160" r="22" style="animation-delay:-0.37s"/><circle class="tb" cx="658" cy="145" r="22" style="animation-delay:-0.67s"/><circle class="tb" cx="754" cy="148" r="22" style="animation-delay:-0.59s"/><circle class="tb" cx="55" cy="257" r="22" style="animation-delay:-0.77s"/><circle class="tb" cx="153" cy="259" r="22" style="animation-delay:-0.09s"/><circle class="tb" cx="269" cy="239" r="22" style="animation-delay:-0.35s"/><circle class="tb" cx="357" cy="250" r="22" style="animation-delay:-0.86s"/><circle class="tb" cx="449" cy="248" r="22" style="animation-delay:-0.58s"/><circle class="tb" cx="570" cy="241" r="22" style="animation-delay:-0.45s"/><circle class="tb" cx="662" cy="241" r="22" style="animation-delay:-0.40s"/><circle class="tb" cx="762" cy="259" r="22" style="animation-delay:-0.99s"/><circle class="tb" cx="53" cy="333" r="22" style="animation-delay:-0.57s"/><circle class="tb" cx="150" cy="346" r="22" style="animation-delay:-0.02s"/><circle class="tb" cx="248" cy="335" r="22" style="animation-delay:-0.80s"/><circle class="tb" cx="360" cy="355" r="22" style="animation-delay:-0.33s"/><circle class="tb" cx="458" cy="343" r="22" style="animation-delay:-0.43s"/><circle class="tb" cx="563" cy="335" r="22" style="animation-delay:-0.21s"/><circle class="tb" cx="662" cy="337" r="22" style="animation-delay:-0.44s"/><circle class="tb" cx="763" cy="356" r="22" style="animation-delay:-0.32s"/></svg>'
+          - wert: warm
+            svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 400"><style>.tb{fill:#6d28d9;stroke:#4c1d95;stroke-width:3;animation:zittern 0.7s ease-in-out infinite alternate}@keyframes zittern{0%{transform:translate(-12px,6px)}50%{transform:translate(12px,-12px)}100%{transform:translate(-6px,12px)}}</style><rect x="6" y="6" width="848" height="388" rx="20" fill="#f4f0fd" stroke="#c4b5fd" stroke-width="4"/><circle class="tb" cx="59" cy="57" r="22" style="animation-delay:-0.09s"/><circle class="tb" cx="151" cy="69" r="22" style="animation-delay:-0.63s"/><circle class="tb" cx="248" cy="60" r="22" style="animation-delay:-0.10s"/><circle class="tb" cx="370" cy="50" r="22" style="animation-delay:-0.78s"/><circle class="tb" cx="461" cy="63" r="22" style="animation-delay:-0.03s"/><circle class="tb" cx="549" cy="57" r="22" style="animation-delay:-0.78s"/><circle class="tb" cx="665" cy="59" r="22" style="animation-delay:-0.81s"/><circle class="tb" cx="765" cy="52" r="22" style="animation-delay:-0.50s"/><circle class="tb" cx="54" cy="146" r="22" style="animation-delay:-0.71s"/><circle class="tb" cx="160" cy="165" r="22" style="animation-delay:-0.25s"/><circle class="tb" cx="262" cy="162" r="22" style="animation-delay:-0.74s"/><circle class="tb" cx="357" cy="161" r="22" style="animation-delay:-0.43s"/><circle class="tb" cx="450" cy="150" r="22" style="animation-delay:-0.23s"/><circle class="tb" cx="564" cy="160" r="22" style="animation-delay:-0.96s"/><circle class="tb" cx="658" cy="145" r="22" style="animation-delay:-0.40s"/><circle class="tb" cx="754" cy="148" r="22" style="animation-delay:-0.37s"/><circle class="tb" cx="55" cy="257" r="22" style="animation-delay:-0.86s"/><circle class="tb" cx="153" cy="259" r="22" style="animation-delay:-0.37s"/><circle class="tb" cx="269" cy="239" r="22" style="animation-delay:-0.67s"/><circle class="tb" cx="357" cy="250" r="22" style="animation-delay:-0.17s"/><circle class="tb" cx="449" cy="248" r="22" style="animation-delay:-0.84s"/><circle class="tb" cx="570" cy="241" r="22" style="animation-delay:-0.26s"/><circle class="tb" cx="662" cy="241" r="22" style="animation-delay:-0.05s"/><circle class="tb" cx="762" cy="259" r="22" style="animation-delay:-0.98s"/><circle class="tb" cx="53" cy="333" r="22" style="animation-delay:-0.17s"/><circle class="tb" cx="150" cy="346" r="22" style="animation-delay:-0.95s"/><circle class="tb" cx="248" cy="335" r="22" style="animation-delay:-0.99s"/><circle class="tb" cx="360" cy="355" r="22" style="animation-delay:-0.61s"/><circle class="tb" cx="458" cy="343" r="22" style="animation-delay:-0.01s"/><circle class="tb" cx="563" cy="335" r="22" style="animation-delay:-0.06s"/><circle class="tb" cx="662" cy="337" r="22" style="animation-delay:-0.21s"/><circle class="tb" cx="763" cy="356" r="22" style="animation-delay:-0.39s"/></svg>'
+          - wert: heiß
+            svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 400"><style>.tb{fill:#6d28d9;stroke:#4c1d95;stroke-width:3;animation:zittern 0.3s ease-in-out infinite alternate}@keyframes zittern{0%{transform:translate(-22px,11px)}50%{transform:translate(22px,-22px)}100%{transform:translate(-11px,22px)}}</style><rect x="6" y="6" width="848" height="388" rx="20" fill="#f4f0fd" stroke="#c4b5fd" stroke-width="4"/><circle class="tb" cx="59" cy="57" r="22" style="animation-delay:-0.61s"/><circle class="tb" cx="151" cy="69" r="22" style="animation-delay:-0.97s"/><circle class="tb" cx="248" cy="60" r="22" style="animation-delay:-0.35s"/><circle class="tb" cx="370" cy="50" r="22" style="animation-delay:-0.14s"/><circle class="tb" cx="461" cy="63" r="22" style="animation-delay:-0.56s"/><circle class="tb" cx="549" cy="57" r="22" style="animation-delay:-0.14s"/><circle class="tb" cx="665" cy="59" r="22" style="animation-delay:-0.09s"/><circle class="tb" cx="765" cy="52" r="22" style="animation-delay:-0.56s"/><circle class="tb" cx="54" cy="146" r="22" style="animation-delay:-0.70s"/><circle class="tb" cx="160" cy="165" r="22" style="animation-delay:-0.07s"/><circle class="tb" cx="262" cy="162" r="22" style="animation-delay:-0.45s"/><circle class="tb" cx="357" cy="161" r="22" style="animation-delay:-0.70s"/><circle class="tb" cx="450" cy="150" r="22" style="animation-delay:-0.76s"/><circle class="tb" cx="564" cy="160" r="22" style="animation-delay:-0.38s"/><circle class="tb" cx="658" cy="145" r="22" style="animation-delay:-0.89s"/><circle class="tb" cx="754" cy="148" r="22" style="animation-delay:-0.17s"/><circle class="tb" cx="55" cy="257" r="22" style="animation-delay:-0.72s"/><circle class="tb" cx="153" cy="259" r="22" style="animation-delay:-0.77s"/><circle class="tb" cx="269" cy="239" r="22" style="animation-delay:-0.88s"/><circle class="tb" cx="357" cy="250" r="22" style="animation-delay:-0.49s"/><circle class="tb" cx="449" cy="248" r="22" style="animation-delay:-0.10s"/><circle class="tb" cx="570" cy="241" r="22" style="animation-delay:-0.05s"/><circle class="tb" cx="662" cy="241" r="22" style="animation-delay:-0.53s"/><circle class="tb" cx="762" cy="259" r="22" style="animation-delay:-0.17s"/><circle class="tb" cx="53" cy="333" r="22" style="animation-delay:-0.63s"/><circle class="tb" cx="150" cy="346" r="22" style="animation-delay:-0.08s"/><circle class="tb" cx="248" cy="335" r="22" style="animation-delay:-0.78s"/><circle class="tb" cx="360" cy="355" r="22" style="animation-delay:-0.22s"/><circle class="tb" cx="458" cy="343" r="22" style="animation-delay:-0.01s"/><circle class="tb" cx="563" cy="335" r="22" style="animation-delay:-0.18s"/><circle class="tb" cx="662" cy="337" r="22" style="animation-delay:-0.46s"/><circle class="tb" cx="763" cy="356" r="22" style="animation-delay:-0.56s"/></svg>'
+      - art: text
+        text: Je wärmer, desto schneller bewegen sich die Teilchen.
+    notizen: |
+      Regler von „kalt“ nach „heiß“ schieben lassen. Frage: Werden die Teilchen dabei größer? (Nein, sie bewegen sich nur schneller.)
