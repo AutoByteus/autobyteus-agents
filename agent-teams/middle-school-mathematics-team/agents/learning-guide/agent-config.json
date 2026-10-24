@@ -1,4 +1,14 @@
 {
-  "toolNames": ["read_file", "write_file", "edit_file", "run_bash", "get_handoff_rules", "send_message_to", "delegate_task"],
-  "skillNames": ["guide-visual-math-learning"]
+  "toolNames": [
+    "read_file",
+    "write_file",
+    "edit_file",
+    "run_bash",
+    "get_handoff_rules",
+    "send_message_to",
+    "delegate_task"
+  ],
+  "skillNames": [
+    "guide-visual-math-learning"
+  ]
 }

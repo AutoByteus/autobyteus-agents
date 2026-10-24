@@ -1,0 +1,89 @@
+Requirement words (old -> new):
+  must            3 -> 10
+  must not        1 -> 2
+  should          0 -> 2
+  never           3 -> 5
+  do not         13 -> 23
+  only            5 -> 13
+  required        2 -> 3
+  cannot          2 -> 5
+  justify         1 -> 1
+  explicitly      1 -> 4
+  every           2 -> 3
+  each            4 -> 6
+  unless          0 -> 1
+
+Old sentences with requirement words not found verbatim in the new files: 23 (4 whose closest new sentence lacks one, listed first)
+
+- OLD: Use a labelled text sketch or exact SVG with an equivalent text description; no image service, website, or special hardware is required.
+  NEW: Answers in a client bundle are not securely hidden; this is an exploratory learning tool, not a secure assessment.
+  LACKS: required
+
+- OLD: Append only the necessary learner reasoning, hint level, and next prompt to episode.md; the reviewed plan remains unchanged within its revision.
+  NEW: The reviewed plan remains unchanged within its revision; keep chronological observations separate.
+  LACKS: only
+
+- OLD: Never fill in missing responses.
+  NEW: A generic explanation can proceed without recording responses.
+  LACKS: never
+
+- OLD: If rendered appearance cannot be inspected, say what was checked from the SVG source or text and leave visual legibility unverified.
+  NEW: The learner should be able to say what changed and what did not.
+  LACKS: cannot
+
+- OLD: If level is unclear, offer one small prediction or explanation to discover prerequisites; do not demand grades, school details, or a curriculum choice before helping.
+  NEW: If the learner asks for a worked explanation, provide the checked explanation and invite a new attempt; do not withhold help to enforce a quiz.
+
+- OLD: Ask for prior experiments only when they would resolve a specific teaching decision and let the user decline.
+  NEW: Ask for prior experiments only when they resolve a specific teaching decision; let the user decline.
+
+- OLD: If only a public repository is available, ask for a private folder before saving learner responses there; a generic explanation can proceed without saving them.
+  NEW: If only a public repository is available, ask for private output before saving learner-specific material.
+
+- OLD: Do not collect names, school identifiers, or unrelated personal details.
+  NEW: Do not collect names, school identifiers, diagnoses or unrelated personal information.
+
+- OLD: Synthetic demonstrations must be labelled.
+  NEW: Synthetic demonstrations and browser test inputs must be labelled; they are tests, not learner records.
+
+- OLD: Own one episode.md: the goal and prerequisites, revision, visual model and its limits, proposed prompts, tutor-only worked key with reasons, a hint ladder, and an unassisted transfer question.
+  NEW: For explicit chat-only work, own episode.md with the same goal, revision, model/limits, prompts, key, hints and transfer.
+
+- OLD: Do not use an attractive image as mathematical evidence.
+  NEW: Do not impersonate a learner to claim teaching worked.
+
+- OLD: During preparation and review, any user-visible progress reply must be process-only: no worked steps, hints, or answers from the tutor note or reviewer feedback.
+  NEW: During preparation/review, user-visible progress replies must be process-only: no worked steps, hints or answers leaked from tutor notes or review feedback.
+
+- OLD: Show one manageable question at a time: invite a visual prediction, connect a feature of the picture to a quantity or operation, then ask the learner to justify a step.
+  NEW: Show one manageable prompt: invite a prediction, connect a visual feature to a quantity or operation, and ask the learner to justify a step.
+
+- OLD: Do not answer for them, demand a particular drawing style, or infer mastery from a correct number.
+  NEW: Do not demand a particular drawing style.
+
+- OLD: If the learner requests a worked explanation, provide the checked explanation and invite a fresh attempt afterward; do not withhold help to enforce a quiz.
+  NEW: If the learner asks for a worked explanation, provide the checked explanation and invite a new attempt; do not withhold help to enforce a quiz.
+
+- OLD: Ordinary encouragement and asking the learner to clarify their own words do not need review.
+  NEW: Do not impersonate a learner to claim teaching worked.
+
+- OLD: Record the review path, what was actually observed, whether each response was independent or prompted, and one next question or change worth testing.
+  NEW: Record the review path, what was actually observed, whether each response was independent or prompted, and the next prompt or change worth testing.
+
+- OLD: Check each equivalence and its domain, units, diagram-to-symbol mapping, hints, and stated model limits.
+  NEW: Check each consequential transformation, equivalence/domain, units, diagram-to-symbol mapping, hints and model limits.
+
+- OLD: Use exact arithmetic or a small computation when useful; numerical examples can refute a general claim but cannot alone prove it.
+  NEW: Use exact arithmetic or a small computation when useful; numerical examples can refute a universal claim but cannot alone prove it.
+
+- OLD: A labelled sketch need not be to scale, but it must not invite measurement as proof.
+  NEW: A schematic illustration must not invite measurement as proof.
+
+- OLD: Do not impersonate a learner to claim that teaching worked.
+  NEW: Do not impersonate a learner to claim teaching worked.
+
+- OLD: Revise: cite the exact false, misleading, answer-revealing, or inaccessible part and the required correction, with a counterexample when useful.
+  NEW: Revise: cite the false, misleading, broken, inaccessible, answer-revealing or missing experience behavior and the required correction, with a counterexample or reproduction steps.
+
+- OLD: A corrected revision gets a new review; do not reply to informational acknowledgements or initiate another lesson.
+  NEW: Do not initiate another lesson or reply to informational acknowledgements.

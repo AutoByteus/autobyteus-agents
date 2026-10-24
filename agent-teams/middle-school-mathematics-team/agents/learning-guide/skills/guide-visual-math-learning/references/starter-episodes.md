@@ -1,8 +1,10 @@
-# Starter Episodes — Tutor Reference
+# Starter Episodes — Interaction Design References
 
 These are original, synthetic teaching examples, not records of learner trials.
-Use one prompt at a time; response branches below are possible answers, not
-observed ones. The shared learning standard is the quality bar for adaptations.
+Use one prompt at a time during use; the frontend must implement the complete
+journey before delivery. Response branches below are possibilities, not observed
+answers. The SVGs are mathematical reference sketches, not finished products.
+The shared learning standard is the quality bar for adaptations.
 
 ## A. Equal groups and an equation
 
@@ -10,7 +12,7 @@ observed ones. The shared learning standard is the quality bar for adaptations.
 Prerequisites: adding, subtracting, and sharing whole numbers equally. Here `x`
 is the nonnegative whole number of counters in each of three identical bags.
 
-Learner-facing diagram: [equal-groups.svg](../assets/equal-groups.svg).
+Reference sketch (embed/adapt into an interactive scene, not a deliverable): [equal-groups.svg](../assets/equal-groups.svg).
 Equivalent text, also usable as a chat sketch:
 
 ```text
@@ -35,8 +37,8 @@ one bag and how to check the result in the original picture.
 | `x = 4` | Share each side into three equal groups; three is nonzero. |
 | `3·4 + 6 = 18` | Substitute four counters per bag into the original relation. |
 
-**Hints, smallest first:** point to the loose counters; ask which inverse
-operation removes them; offer `3x = 18 − 6` and let the learner finish.
+**Hints, smallest first:** point to the loose counters; ask what operation
+would remove them; offer `3x = 18 − 6` and let the learner finish.
 If a possible response is “18/3 − 6 = 0,” ask whether dividing the *whole*
 left side by three leaves six loose counters or two in each share. An alternative
 valid route is `x + 2 = 6`, then `x = 4`; do not demand only subtraction first.
@@ -57,7 +59,7 @@ before using it in a learner episode.
 use that explanation to solve for a missing length. Prerequisites: rectangle
 area, multiplication, and the meaning of a variable length. Here `x > 0`, in cm.
 
-Learner-facing diagram: [split-rectangle.svg](../assets/split-rectangle.svg).
+Reference sketch (embed/adapt into an interactive scene, not a deliverable): [split-rectangle.svg](../assets/split-rectangle.svg).
 Equivalent text:
 
 ```text
@@ -102,13 +104,24 @@ not fit an ordinary rectangle. The algebraic identity extends to real numbers,
 but that broader statement needs an algebraic argument, not a claimed drawing
 of negative area. No general proof is required in this first episode.
 
-## Cooperation example
+## Turn the mathematics into an experience
 
-The Guide writes B's prompts, diagram, key, and transfer task to a private episode
-note. The Reviewer independently checks `x = 5` and `y = 6`, the cm/cm² labels,
-and that the opening leaves the part areas for the learner to derive. If the
-Guide accidentally wrote `3(x + 2) = 3x + 2`, the Reviewer returns `Revise` with
-the missing factor of 3, not a second learner-facing explanation. After revision
-and `Checked`, the Guide asks the opening and waits. A learner's subsequent
-explanation and help received inform the next step; their response is not
-fabricated to keep the two agents talking.
+For A, let the learner predict which change leaves equal totals, then animate
+removing matching quantities from both descriptions and sharing into equal groups.
+Show a justified symbolic step beside the same moving objects. An unequal-sided
+move can be an explicitly labelled counterexample, not a silently accepted action.
+Retain the alternative valid divide-first route in explanations. A static count
+sketch or a Next button revealing the key alone does not meet the experience bar.
+
+For B, let the learner propose how the two areas contribute, then visibly split
+and rejoin a rectangle while its common height and width labels stay traceable.
+Connect the whole product to the sum of products, then inspect removing a known
+strip and recovering width from remaining area. Avoid revealing the unknown
+through an already-numbered answer-length scale in the opening. Let the learner
+reason, retry and compare a new rectangle; don't merely play an animation for them.
+
+The Guide owns the brief and keys. A plan review checks that mathematics and
+interaction intent before the Builder implements it. A separate experience review
+then operates the rendered project, including wrong responses and the actual
+transitions. The Guide delivers only the checked project and its local reopen
+instructions. No human-learning claim follows from those engineering checks.

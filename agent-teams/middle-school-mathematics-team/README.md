@@ -1,47 +1,56 @@
 # Middle School Mathematics Team
 
-**Two members:** [Learning Guide](agents/learning-guide/agent.md) teaches and
-listens; [Mathematical Reviewer](agents/mathematical-reviewer/agent.md) checks
-the mathematics and the planned learning interaction. See [team.md](team.md)
-for the cooperation contract.
+**Three members:** [Learning Guide](agents/learning-guide/agent.md) designs and
+coordinates; [Experience Builder](agents/experience-builder/agent.md) implements
+the frontend and motion; [Mathematical Reviewer](agents/mathematical-reviewer/agent.md)
+checks the plan and then operates the actual app. [team.md](team.md) describes
+cooperation; [team-config.json](team-config.json) owns routing.
 
-## Try the first version
+## What it delivers
 
-Import this repository as a local AutoByteus agent package, or refresh the
-existing import after updating it. Select **Middle School Mathematics Team**,
-configure available models for both members, and choose a **private, writable
-learning workspace outside this public repository**. No shared-agent package,
-image generator, browser, or future organization is required. The model runtime
-must supply the file, shell, and team-handoff tools listed in the member configs.
-The acceptance rehearsal used `codex_app_server` with `gpt-6.1-sol` for both
-members (2026-10-24). Use that tested combination when available for the first
-trial, or run a synthetic check of your chosen configuration first. A
-`gpt-5.6-luna` probe sent duplicate review requests; other models are not certified
-by this package. Model availability and behavior can change.
+A local frontend project with a complete learner journey: predict, manipulate,
+inspect meaningful animation, explain, receive feedback and try a new problem.
+SVG may be a scene component, but a standalone SVG or thin wrapper is not a
+finished experience. Explicit chat-only tutoring remains available when requested.
 
-Example request to the coordinator:
+For a new small project the Builder can use React, Vite and Motion; it chooses
+compatible versions and writes a lockfile. Existing suitable stacks can be reused.
+No AI API, hosted backend, account or public deployment is needed. Dependencies
+may need downloading at setup; ordinary learning interaction should then run
+locally without sending learner data anywhere.
 
-> Help me understand 3x + 6 = 18 using equal groups. Ask me to explain my steps,
-> rather than showing the whole solution first. Use this private workspace.
+## Activate and try
 
-Or:
+Refresh/import this repository as an AutoByteus package and start a **new team
+run** so the three-member roster and revised skills are loaded. Choose available
+models for every member and a private writable output folder outside this public
+repository. Provide file/shell, local Node/browser capability, image inspection
+and team-routing tools listed in the configs. A sandboxed test-owned browser is
+required for acceptance, not the user's existing browser profile.
 
-> Why does splitting a rectangle help explain 3(x + 2)? Let me work it out.
+Example request:
 
-The [starter episodes](agents/learning-guide/skills/guide-visual-math-learning/references/starter-episodes.md) contain tutor keys and sample
-prompts, not learner-trial results. They demonstrate algebra–geometry connections
-without prescribing a curriculum. Text sketches work in chat; the optional SVGs
-can be opened locally. Tutor notes are separate from the learner-facing chat,
-but not access-controlled: do not promise hidden answers in a shared workspace.
+> Build a complete animated local learning experience about why splitting a
+> rectangle explains multiplication over a sum. Let me predict, manipulate,
+> explain and try a new problem. Use this private output folder. Provide source,
+> working launch instructions and observed browser/mathematical evidence.
 
-## Evaluation and next iteration
+The app's README supplies its exact install, launch URL, test and stop commands.
+The team should leave source and a way to reopen the preview, not an orphan server.
+The authoring request finishes without asking the observer to role-play a learner.
 
-The creation task's [experiment record](../../tickets/in-progress/create-middle-school-mathematics-team/experiments.md)
-separates automated checks, live agent behavior, and unrun human trials. Start
-with a willing learner only after agreeing what, if anything, to record. Their
-earlier examples may be used privately when supplied; none were copied here.
+## Evidence and boundaries
 
-Open questions: which representation helps this learner explain equality; whether
-area decomposition helps them justify distribution; when hints help versus give
-away the reasoning; and whether they can explain a new problem later without
-help. Decide the next episode from evidence before adding roles or subjects.
+[This refactor's result](../../tickets/in-progress/refactor-animated-math-team/agent-package-result.md)
+and [analysis](../../tickets/in-progress/refactor-animated-math-team/agent-package-analysis.md)
+record the actual tested configuration, demonstration and remaining limits.
+[Earlier experiments](../../tickets/in-progress/create-middle-school-mathematics-team/experiments.md)
+are historical evidence for the original two-member chat design, not validation
+of the new frontend workflow. Earlier model-specific routing failures remain a
+reason to rehearse your chosen model/runtime rather than assume equivalence.
+
+Mathematical review and browser checks do not establish engagement, understanding
+or retention. A real learner trial and any recording require separate agreement.
+Keep learner-specific material private. Tutor notes and client-side answers are
+not access-controlled assessment secrets. Prior examples can be supplied privately;
+no larger curriculum or organization is required before trying one experience.

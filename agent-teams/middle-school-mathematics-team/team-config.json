@@ -1,22 +1,59 @@
 {
   "coordinatorMemberName": "learning_guide",
   "members": [
-    {"memberName": "learning_guide", "ref": "learning-guide", "refType": "agent", "refScope": "team_local"},
-    {"memberName": "mathematical_reviewer", "ref": "mathematical-reviewer", "refType": "agent", "refScope": "team_local"}
+    {
+      "memberName": "learning_guide",
+      "ref": "learning-guide",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "experience_builder",
+      "ref": "experience-builder",
+      "refType": "agent",
+      "refScope": "team_local"
+    },
+    {
+      "memberName": "mathematical_reviewer",
+      "ref": "mathematical-reviewer",
+      "refType": "agent",
+      "refScope": "team_local"
+    }
   ],
   "handoffs": [
     {
       "from": "/learning_guide",
       "to": "/mathematical_reviewer",
       "rules": [
-        "When the Guide has persisted a Review requested result for an episode revision, including the proposed learner prompts, visual-to-symbol mapping, worked key, hints, and transfer check, and this revision has not yet been reviewed."
+        "When the Guide persists Plan review requested for a new or revised learning brief, or Chat review requested for changed mathematics in explicit chat-only tutoring, and that revision has not yet been reviewed."
       ]
     },
     {
       "from": "/mathematical_reviewer",
       "to": "/learning_guide",
       "rules": [
-        "When a revision-specific review is persisted with Checked, Revise, or Blocked, the evidence and any corrections or missing input, and the Guide must decide whether to teach, revise, or pause."
+        "When the Reviewer persists a stage-specific Checked, Revise, or Blocked review naming the plan revision and, for an experience, the exact source fingerprint and observed browser evidence. The Guide decides whether to build, revise, deliver, or pause."
+      ]
+    },
+    {
+      "from": "/learning_guide",
+      "to": "/experience_builder",
+      "rules": [
+        "When the Guide persists Build requested with a Checked plan review, a private output directory and concrete learning/animation acceptance expectations, including a bounded implementation correction after an experience review. Changed mathematics must have a fresh plan check first."
+      ]
+    },
+    {
+      "from": "/experience_builder",
+      "to": "/mathematical_reviewer",
+      "rules": [
+        "When the Builder persists Experience review requested with runnable source, a source fingerprint, the checked plan and implementation/browser evidence; the Reviewer must operate and independently check the actual experience."
+      ]
+    },
+    {
+      "from": "/experience_builder",
+      "to": "/learning_guide",
+      "rules": [
+        "When implementation is Blocked or reveals Design impact requiring a decision about the learning brief, environment, or scope rather than an unreviewed substitute deliverable."
       ]
     }
   ]
