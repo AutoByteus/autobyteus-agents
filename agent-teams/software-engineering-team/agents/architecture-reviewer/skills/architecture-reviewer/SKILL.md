@@ -48,7 +48,7 @@ Use [templates/architecture-review-revision-record-template.md](templates/archit
 
 - When judging whether a design is concrete enough, compare its shape against [design-examples.md](references/design-examples.md) whenever examples would clarify the target shape.
 - Use that file as a benchmark for what a clear design explanation can look like across different cases, and for what bad practice looks like when boundaries become generic or fragmented.
-- When a prospective finding depends on an assumed production, failure, or lifecycle scenario, consult [Example 9](references/design-examples.md#example-9-rejecting-an-unreachable-edge-case-during-technical-review) before finalizing the premise or finding.
+- When a prospective finding depends on an assumed production, failure, or lifecycle scenario, consult [Example 7](references/design-examples.md#example-7-rejecting-an-unreachable-edge-case-during-technical-review) before finalizing the premise or finding.
 
 ## Review Basis And Sequence
 

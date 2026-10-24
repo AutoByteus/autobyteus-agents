@@ -47,6 +47,9 @@ principles and respect the project's own as well.
   record the discrepancy.
 - When a project has no `DESIGN.md`, follow the conventions visible in its
   existing code and record `No project DESIGN.md found`.
+- A project can keep its own design cases (real mistakes and their fixes, with
+  its tickets and names) where its `DESIGN.md` says. Read them with the case
+  studies in the team's design examples when a design touches the same shape.
 
 ## Terminology
 
@@ -72,7 +75,7 @@ A principle may end with **Signals** (what shows the rule is broken) and **Check
 - Before applying structural principles, establish the relevant behavioral baseline: existing behavior, the approved change, and behavior that must remain unchanged or outside scope.
 - Understand the complete relevant behavior and production path from a supported trigger or governing contract to its meaningful outcome. The behavior may be user-initiated, system-initiated, operational, or contract-driven. Trace enough of its lifecycle boundaries to judge the change correctly; this does not require understanding unrelated parts of the product.
 - Read the current code path before defining the target design.
-- When a mechanism serves several kinds of subject (for example root kinds, Agent or Team, local or remote) or a capability has several entry forms (for example a tool's parameter modes), trace the path for each kind and each form; a path traced for one is not evidence for another. When two parallel paths serve one capability, compare their gates and refusals: a gate on one path only is a finding or an explicit decision.
+- When a mechanism serves several kinds of subject (for example a person or a company account, local or remote) or a capability has several entry forms (for example a tool's parameter modes), trace the path for each kind and each form; a path traced for one is not evidence for another. When two parallel paths serve one capability, compare their gates and refusals: a gate on one path only is a finding or an explicit decision.
 - Cite the file and line for each statement about existing code that the design relies on. Compare "mirrors X", "the same as Y" and "as today" rule by rule against that code, and count callers at their call sites, not declarations.
 - **Signals:** a generic subject ("the root", "a run") standing for several kinds; one example standing for every entry form; a gate on only one of two parallel paths; "the compiler enforces", "mirrors", "as today", or a count without a source.
 - **Check:** Which kinds and entry forms does each mechanism serve, and where is each one traced? Which statements about existing code carry no citation?
@@ -184,7 +187,7 @@ A principle may end with **Signals** (what shows the rule is broken) and **Check
 - Without a supported product scenario and its observed or governing production path, the premise cannot drive a finding or new machinery. A scenario that is `Technically Possible but Unsupported/Contrived` is not promoted merely because its code path can be reached.
 - Persist the supported scenario basis and every additional material-premise classification in the applicable design or review artifact, including scenarios rejected as unsupported or `Not Reachable`. Record the complete relevant behavior and production path, actual system lifecycle, and evidence that makes the scenario supported, unsupported, reachable, unreachable, or unclear.
 - Require additional state, APIs, abstractions, coordination, or recovery behavior only when they address a supported reachable material problem and are proportionate to its consequence. Technical completeness means correctness for supported behavior and real operational constraints, not handling every imaginable state.
-- See Example 10, Supported Product Scenario Versus Technical Possibility, in the team's design examples for positive normal and explicit-edge examples, rejected technical-only scenarios, and the downstream review treatment.
+- See Example 8, Supported Product Scenario Versus Technical Possibility, in the team's design examples for positive normal and explicit-edge examples, rejected technical-only scenarios, and the downstream review treatment.
 - **Signals:** a technical finding or new machinery is justified only by a hypothetical state, generic capability, or test-only path rather than approved behavior and current or target-production reachability.
 
 ### 7. No Dead Code
@@ -271,7 +274,7 @@ Dead code is code that nothing in the product reaches anymore. It makes the code
 
 - A domain word means one thing everywhere it appears: code identifiers, stored fields, API and wire fields, schemas, tool names and texts, UI words, and docs. A concept has one name everywhere. Each change's names can look natural on their own while the system drifts, so judge a name against its other uses, not only against its own file.
 - Give different aspects different words, for example `remote` for a location (another node) and `peer` for a relationship (a remote node registered with this one). Name an ID for what it identifies; two different IDs never share a name.
-- A qualifier that repeats the noun (`RemotePeer`) or contradicts the thing (`listAvailableNodes` returning unavailable nodes too) is a finding.
+- A qualifier that repeats the noun (`ActiveSession` where every session is active) or contradicts the thing (`listOpenOrders` returning closed orders too) is a finding.
 - When the project keeps a glossary (its `DESIGN.md` says where), it is the authority for domain words: a design that introduces a word, or gives a word a new meaning, adds it there in the same change. Without one, list the domain words the design uses in the design spec's Terminology and record `No project glossary found`.
 - A rename that removes a second meaning or a second name changes code, wire, tool, and UI names together, as a clean cut (Principle 8). A stored name changes only through the persisted-data decision (Principle 5).
 - **Signals:** two names for one concept ("X, also called Y"); a name whose meaning depends on the file it is in; a tool or API name that says less or more than it does.
@@ -465,7 +468,7 @@ Do not introduce a pattern if it obscures the spine, blurs ownership, or creates
 - Solves: continuous dispatch, polling, or async work handling.
 - Best fit: inside one owned runtime or worker-style node.
 - Avoid: letting the loop become the whole architecture instead of the internal mechanism of one owner.
-- Example shape: `AgentRuntime -> AgentWorker`, where the runtime owns lifecycle and the worker owns the serialized event loop.
+- Example shape: `JobRuntime -> JobWorker`, where the runtime owns lifecycle and the worker owns the serialized event loop.
 
 ### Factory
 
@@ -507,4 +510,4 @@ Do not introduce a pattern if it obscures the spine, blurs ownership, or creates
 - Solves: explicit coordination only when authority and lifecycle ownership are clear.
 - Best fit: top-level orchestration with narrow, well-defined ownership.
 - Avoid: vague coordination blobs that accumulate unrelated responsibilities.
-- Example shape: `TeamManager` owns lazy member creation, node startup, and team-level node routing, while runtime loops and handlers stay elsewhere.
+- Example shape: `PipelineManager` owns lazy step creation, step startup, and pipeline-level routing, while runtime loops and handlers stay elsewhere.

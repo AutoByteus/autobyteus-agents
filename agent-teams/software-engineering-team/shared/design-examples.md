@@ -1,37 +1,19 @@
 # Design Examples
 
-These examples are not rigid templates.
-Use them to learn how a good design spec can read when the architecture is organized around:
-
-- data-flow spine inventory
-- main domain subject nodes
-- ownership
-- off-spine concerns around the spine
-- interface boundaries with explicit identity shape
-- approved behavior, production journeys, and edge-case reachability
-- derived subsystem, optional module grouping, folder, and file placement
-
-Do not copy these literally.
-Use them to recognize the shape of a clear design.
-This file includes both good examples and bad-practice anti-examples.
-Folder layouts in these examples are illustrative projections of the design, not universal conventions.
-When mapping a design into code, follow the spine and ownership model, but also respect the established codebase style when it stays readable.
-The examples are intentionally detailed. Preserve them rather than shortening or removing them for concision, and add examples when new structural practices need concrete shape guidance.
+Worked examples of clear designs and of the shapes to avoid, followed by short case studies of real design mistakes. They are not templates: use them to recognize the shape of a clear design, and reuse the reasoning, not the names. Folder layouts are illustrative projections of the design, not universal conventions; respect the codebase's established style when it stays readable.
 
 ## Contents
 
 - [Example 1: CRUD Request Flow](#example-1-crud-request-flow)
-- [Example 2: Agent Run Runtime With Internal Event Loop](#example-2-agent-run-runtime-with-internal-event-loop)
-- [Example 3: Event-Driven Agent Runtime With Thin Facade And Internal Worker Loop](#example-3-event-driven-agent-runtime-with-thin-facade-and-internal-worker-loop)
-- [Example 4: Team Run Orchestration](#example-4-team-run-orchestration)
-- [Example 5: Workflow With State Machine](#example-5-workflow-with-state-machine)
-- [Example 6: Generic List Surface To Avoid](#example-6-generic-list-surface-to-avoid)
-- [Example 7: Current-Schema Runtime With Required Data Migration](#example-7-current-schema-runtime-with-required-data-migration)
-- [Example 8: Schema Contraction With No Data Migration](#example-8-schema-contraction-with-no-data-migration)
-- [Example 9: Rejecting An Unreachable Edge Case During Technical Review](#example-9-rejecting-an-unreachable-edge-case-during-technical-review)
-- [Example 10: Supported Product Scenario Versus Technical Possibility](#example-10-supported-product-scenario-versus-technical-possibility)
+- [Example 2: Job Runtime With A Thin Facade And An Internal Worker Loop](#example-2-job-runtime-with-a-thin-facade-and-an-internal-worker-loop)
+- [Example 3: Related Subjects Keep Separate Interfaces](#example-3-related-subjects-keep-separate-interfaces)
+- [Example 4: Workflow With State Machine](#example-4-workflow-with-state-machine)
+- [Example 5: Current-Schema Runtime With Required Data Migration](#example-5-current-schema-runtime-with-required-data-migration)
+- [Example 6: Schema Contraction With No Data Migration](#example-6-schema-contraction-with-no-data-migration)
+- [Example 7: Rejecting An Unreachable Edge Case During Technical Review](#example-7-rejecting-an-unreachable-edge-case-during-technical-review)
+- [Example 8: Supported Product Scenario Versus Technical Possibility](#example-8-supported-product-scenario-versus-technical-possibility)
 - [Common Bad-Practice Patterns](#common-bad-practice-patterns)
-- [Cases From Our Own Reviews](#cases-from-our-own-reviews)
+- [Case Studies](#case-studies)
 - [How To Use These Examples](#how-to-use-these-examples)
 
 ## Example 1: CRUD Request Flow
@@ -164,327 +146,151 @@ Why this folder shape also hurts:
 - generic helpers accumulate because the folder no longer communicates boundaries
 - it looks feature-grouped on paper, but the files themselves no longer reflect clear owned boundaries
 
-## Example 2: Agent Run Runtime With Internal Event Loop
+## Example 2: Job Runtime With A Thin Facade And An Internal Worker Loop
 
 ### Situation
 
-A client starts an agent run.
-The run enters a runtime engine.
-Inside that runtime, an event loop consumes provider events and emits normalized run events back upward.
+A client submits a job. The public `JobClient` surface stays thin. `JobRuntime` owns the job's lifecycle and event submission, and `JobWorker` owns the serialized event loop that consumes provider events and emits normalized job events back upward. Queues, dispatch, status, bootstrap, shutdown, and streaming serve that runtime instead of competing with it.
 
 ### Spine Inventory
 
 | Spine ID | Scope | Start | End | Governing Owner | Why It Matters |
 | --- | --- | --- | --- | --- | --- |
-| DS-101 | `Primary End-to-End` | `GraphQL / WS / External Input` | `Provider Runtime` | `AgentRun` | main run execution line |
-| DS-102 | `Return-Event` | `Provider Runtime Events` | `Frontend / Callbacks` | `AgentRun` | normalized event return path |
-| DS-103 | `Bounded Local` | `Provider Event Queue` | `Normalized Runtime Event` | `RuntimeEngine` | runtime-internal loop that materially shapes behavior |
+| DS-101 | `Primary End-to-End` | `API / Queue Input` | `Provider` | `JobRuntime` | main path from submission into runtime processing |
+| DS-102 | `Return-Event` | `Provider Events` | `Stream / Callback Consumer` | `JobRuntime` | outward event and status visibility |
+| DS-103 | `Bounded Local` | `Input Event Queue` | `Handled Event Or Follow-Up Event` | `JobWorker` | serialized worker loop that materially shapes runtime behavior |
 
-### Primary Execution Spine
+### Spines
 
-`GraphQL / WS / External Input -> AgentRunManager -> AgentRun -> AgentRunBackend -> RuntimeEngine / Client -> Provider Runtime`
+- Primary: `API -> JobClient -> JobRuntime -> JobInputQueue -> JobWorker -> WorkerEventDispatcher -> Event Handler -> Provider`
+- Return/event: `Provider Events -> Event Handler / Status Projection -> JobEventNotifier -> Stream / Callback -> Client`
+- Bounded local, parent owner `JobWorker`: `Input Event Queue -> JobWorker.run() -> WorkerEventDispatcher -> Event Handler -> Derived Event / Next Queue Item`
 
-### Return/Event Spine
-
-`Provider Runtime Events -> RuntimeEngine / Client -> AgentRunBackend -> AgentRun -> WS / History / External Callback -> Frontend`
-
-### Bounded Local Spine
-
-Parent owner: `RuntimeEngine`
-
-`Provider Event Queue -> Runtime Loop -> Event Handler / Transition -> Normalized Runtime Event`
-
-This is not a second architecture.
-It is the internal control flow of one owned node.
+The bounded local spine is not a second architecture; it is the internal control flow of one owned node.
 
 ### Main Domain Subject Nodes
 
 | Node | Role | Ownership |
 | --- | --- | --- |
-| `AgentRunManager` | run entry owner | creation and lookup |
-| `AgentRun` | run lifecycle owner | run state and run-level behavior |
-| `AgentRunBackend` | adaptation owner | provider/runtime normalization |
-| `RuntimeEngine` | runtime control owner | provider session, loop, dispatch |
+| `JobClient` | thin public facade | public entry convenience only; should not own runtime sequencing |
+| `JobRuntime` | governing runtime owner | lifecycle, event submission, outward notifier wiring |
+| `JobWorker` | bounded local owner | serialized worker loop and shutdown path |
+| `WorkerEventDispatcher` | dispatch owner inside the worker flow | applies status projection and routes each event to a concrete handler |
 
 ### Off-Spine Concerns Around The Spine
 
 | Off-Spine Concern | Serves Which Owner | Responsibility |
 | --- | --- | --- |
-| `RunDefinitionResolver` | `AgentRunManager` | definition lookup |
-| `WorkspaceResolver` | `AgentRun` | workspace context lookup |
-| `RunHistoryStore` | `AgentRun` | persistence/history |
-| `WsEventMapper` | `AgentRun` | websocket message mapping |
-| `ExternalCallbackBinder` | `AgentRun` | callback transport binding |
-
-### Interface Boundary Mapping
-
-Avoid:
-
-- `getRunResumeConfig(runId)`
-
-Prefer:
-
-| Interface | Subject Owned | Identity Shape | Why |
-| --- | --- | --- | --- |
-| `getAgentRunResumeConfig(runId)` | `AgentRun` | `runId` | standalone run |
-| `getTeamRunResumeConfig(teamRunId)` | `TeamRun` | `teamRunId` | team run |
-| `getTeamMemberRunResumeConfig(teamRunId, memberKey)` | team-member run | `teamRunId + memberKey` | explicit member identity |
-
-### Derived Subsystem / Folder / File Mapping
-
-One valid folder shape:
-
-```text
-runs/
-  entry/
-    AgentRunManager.ts
-  lifecycle/
-    AgentRun.ts
-  backend/
-    AgentRunBackend.ts
-  transport/
-    WsEventMapper.ts
-runtime/
-  engine/
-    RuntimeEngine.ts
-  provider/
-    ProviderClient.ts
-```
-
-| Path | Owner | Responsibility |
-| --- | --- | --- |
-| `runs/entry/AgentRunManager.ts` | run entry owner | run creation and lookup |
-| `runs/lifecycle/AgentRun.ts` | run lifecycle owner | run state |
-| `runs/backend/AgentRunBackend.ts` | adaptation owner | runtime normalization |
-| `runtime/engine/RuntimeEngine.ts` | runtime owner | event loop and provider interaction |
-| `runtime/provider/ProviderClient.ts` | provider adapter | provider protocol transport |
-| `runs/transport/WsEventMapper.ts` | off-spine concern | transport mapping |
-
-This is one good projection of the design into code.
-Another layout can also be valid if it keeps the same ownership and structural boundaries readable.
-
-### Why This Is Clean
-
-- The main run execution path stays readable.
-- The runtime loop is explicit without replacing the main spine.
-- Resume-config interfaces are split by subject instead of guessed from a generic ID.
-
-### Bad Practice To Avoid
-
-`GraphQL -> RuntimeCompositionService -> RuntimeSessionStore -> EventBridge -> SnapshotService -> CodexClient`
-
-Why this degrades:
-
-- off-spine concerns sit on the main line instead of serving it
-- there is no obvious main domain subject
-- sequencing authority is blurred across generic coordination pieces
-- the next engineer has to reconstruct the real flow from fragments
-
-Flat folder shape that often accompanies this smell:
-
-```text
-runtime/
-  RuntimeCompositionService.ts
-  RuntimeSessionStore.ts
-  EventBridge.ts
-  SnapshotService.ts
-  CodexClient.ts
-```
-
-Why this folder shape also hurts:
-
-- the folder hides which files are main-line nodes versus off-spine concerns
-- runtime control, persistence-ish storage, mapping, and transport are mixed together
-- the directory layout stops helping the reader understand the architecture
-
-## Example 3: Event-Driven Agent Runtime With Thin Facade And Internal Worker Loop
-
-### Situation
-
-An external caller posts a user or inter-agent message to an agent.
-The public `Agent` surface stays thin.
-`AgentRuntime` owns lifecycle and submission, while `AgentWorker` owns the serialized event loop.
-Queues, dispatchers, registries, status projection, bootstrap, shutdown, and streaming serve that runtime instead of competing with it.
-
-### Spine Inventory
-
-| Spine ID | Scope | Start | End | Governing Owner | Why It Matters |
-| --- | --- | --- | --- | --- | --- |
-| DS-151 | `Primary End-to-End` | `Caller / Agent Client` | `Concrete Event Handler` | `AgentRuntime` | main path for request intake into runtime processing |
-| DS-152 | `Return-Event` | `Handled / Derived Event` | `External Notifier / Stream Consumer` | `AgentRuntime` | outward event/status visibility |
-| DS-153 | `Bounded Local` | `Input Event Queues` | `Handled Event Or Follow-Up Event` | `AgentWorker` | serialized worker loop that materially shapes runtime behavior |
-
-### Primary Execution Spine
-
-`Caller -> Agent -> AgentRuntime -> AgentInputEventQueueManager -> AgentWorker -> WorkerEventDispatcher -> Event Handler`
-
-### Return/Event Spine
-
-`Event Handler / Status Projection -> AgentExternalEventNotifier -> External Stream / Consumer`
-
-### Bounded Local Spine
-
-Parent owner: `AgentWorker`
-
-`Input Event Queues -> AgentWorker.asyncRun() -> WorkerEventDispatcher -> Event Handler -> Derived Event / Next Queue Item`
-
-### Main Domain Subject Nodes
-
-| Node | Role | Ownership |
-| --- | --- | --- |
-| `Agent` | thin public facade | public entry convenience only; should not own runtime sequencing |
-| `AgentRuntime` | governing runtime owner | lifecycle, event submission, outward notifier wiring |
-| `AgentWorker` | bounded local owner | serialized worker loop and shutdown path |
-| `WorkerEventDispatcher` | dispatch owner inside worker flow | applies status projection and routes each event to a concrete handler |
-
-### Off-Spine Concerns Around The Spine
-
-| Off-Spine Concern | Serves Which Owner | Responsibility |
-| --- | --- | --- |
-| `AgentInputEventQueueManager` | `AgentWorker` | prioritized queue intake and delivery |
+| `JobInputQueue` | `JobWorker` | prioritized queue intake and delivery |
 | `EventHandlerRegistry` | `WorkerEventDispatcher` | handler lookup by event type |
-| `AgentStatusManager` / status derivation | `AgentRuntime` | runtime-visible status projection |
-| `AgentEventStore` | `AgentWorker` | event persistence/history |
-| `AgentExternalEventNotifier` | `AgentRuntime` | outward event/status publishing |
-| `AgentBootstrapper` | `AgentWorker` | startup sequencing |
-| `AgentShutdownOrchestrator` | `AgentWorker` | cleanup and shutdown sequencing |
+| `JobStatusProjector` | `JobRuntime` | runtime-visible status |
+| `JobEventStore` | `JobWorker` | event history |
+| `JobEventNotifier` | `JobRuntime` | outward event and status publishing |
+| `JobBootstrapper`, `JobShutdown` | `JobWorker` | startup and cleanup sequencing |
+
+### Derived Folder / File Mapping
+
+```text
+jobs/
+  job-client.ts
+  runtime/
+    job-runtime.ts
+    job-worker.ts
+  events/
+    job-events.ts
+    job-input-queue.ts
+    worker-event-dispatcher.ts
+    job-event-notifier.ts
+  handlers/
+    event-handler-registry.ts
+    provider-result-handler.ts
+  status/
+    job-status-projector.ts
+  bootstrap/
+    job-bootstrapper.ts
+  shutdown/
+    job-shutdown.ts
+```
+
+- `runtime/` keeps the governing owner and the loop owner together without hiding the distinction between them.
+- `events/`, `handlers/`, `status/`, `bootstrap/`, and `shutdown/` are capability areas around the runtime: a new responsibility of one of those kinds should land there, not in a new ad hoc helper.
+- The layout is a readable projection of ownership and depth, not one folder per spine step.
 
 ### Design Lesson
 
-This is a strong example of how a real design can have several spines at once:
-
-- a public request spine
-- a return/event spine
-- a bounded local worker-loop spine
-
-It also shows an important ownership distinction:
-the first public class in the flow (`Agent`) is not automatically the deepest owner.
-Sometimes a public facade exists mainly to forward into the true governing owner (`AgentRuntime`), and the bounded local loop owner (`AgentWorker`) sits one level deeper again.
-It also shows capability-area reuse:
-once the system already has `events/`, `handlers/`, `status/`, `context/`, `streaming/`, `bootstrap-steps/`, and `shutdown-steps`, new off-spine responsibilities in those categories should normally land there instead of becoming new ad hoc helpers.
-
-### Derived Subsystem / Folder / File Mapping
-
-One valid runtime-oriented shared-structure projection:
-
-```text
-agent/
-  agent.ts
-  runtime/
-    agent-runtime.ts
-    agent-worker.ts
-  events/
-    agent-events.ts
-    agent-input-event-queue-manager.ts
-    worker-event-dispatcher.ts
-    notifiers.ts
-  handlers/
-    event-handler-registry.ts
-    user-input-message-event-handler.ts
-    tool-result-event-handler.ts
-  status/
-    manager.ts
-    status-deriver.ts
-  context/
-    agent-context.ts
-    agent-runtime-state.ts
-  streaming/
-    agent-event-stream.ts
-  bootstrap-steps/
-    agent-bootstrapper.ts
-  shutdown-steps/
-    agent-shutdown-orchestrator.ts
-```
-
-Why this folder shape is good:
-
-- `runtime/` keeps the governing runtime owner and the bounded local worker owner together without hiding the distinction between them
-- `events/`, `handlers/`, `status/`, `context/`, and `streaming/` are clear off-spine concerns around that runtime
-- the layout is not pretending to be one-folder-per-spine-step; it is a readable projection of ownership and runtime depth
+A real design can have several spines at once: a request spine, a return/event spine, and a bounded local loop. The first public class in the flow (`JobClient`) is not automatically the owner: a thin facade may forward to the governing owner (`JobRuntime`), and the loop owner (`JobWorker`) sits one level deeper.
 
 ### Bad Practice To Avoid
 
+Generic coordinators on the main line:
+
+`API -> RuntimeCompositionService -> SessionStore -> EventBridge -> SnapshotService -> ProviderClient`
+
+- off-spine concerns sit on the main line instead of serving it, and there is no obvious main domain subject
+- sequencing authority is blurred across generic coordination pieces
+- the next engineer has to reconstruct the real flow from fragments
+
+The flat folder that usually comes with it:
+
 ```text
-agent/
-  Agent.ts
+jobs/
+  JobClient.ts
   RuntimeService.ts
   QueueService.ts
   DispatchService.ts
   StatusService.ts
   StreamService.ts
   BootstrapService.ts
-  ShutdownService.ts
 ```
 
-Why this degrades:
+- facade, governing owner, loop owner, and off-spine concerns collapse into one directory
+- generic `...Service` names blur authority, and queues, dispatch, and status start competing with the runtime
+- the bounded worker loop becomes hard to see
 
-- thin facade, governing runtime owner, loop owner, and off-spine concerns collapse into one flat directory
-- many generic `...Service` names blur authority
-- queues, dispatch, status, and streaming start competing with the runtime instead of clearly serving it
-- the bounded local worker-loop spine becomes hard to see
-
-## Example 4: Team Run Orchestration
+## Example 3: Related Subjects Keep Separate Interfaces
 
 ### Situation
 
-A team run coordinates multiple member runs.
-Each member run has its own runtime, but the team run owns the higher-level orchestration and event multiplexing.
+A system runs standalone jobs and pipelines. A pipeline coordinates several steps; each step runs as its own job, and the pipeline owns the higher-level orchestration and event multiplexing.
 
-### Spine Inventory
+### Spines
 
-| Spine ID | Scope | Start | End | Governing Owner | Why It Matters |
-| --- | --- | --- | --- | --- | --- |
-| DS-201 | `Primary End-to-End` | `GraphQL / WS / External Input` | `member runtimes` | `TeamRun` | top-level team execution line |
-| DS-202 | `Return-Event` | `member runtime events` | `Frontend / Callbacks` | `TeamRun` | team event multiplexing line |
-
-### Primary Execution Spine
-
-`GraphQL / WS / External Input -> AgentTeamRunManager -> TeamRun -> TeamRunBackend -> member AgentRuns -> member backends -> runtime engines / clients`
-
-### Return/Event Spine
-
-`member runtime events -> member backends normalize to AgentRunEvent -> TeamRunBackend multiplexes to TeamRunEvent -> TeamRun -> WS / History / External Callback -> Frontend`
+- Primary: `API -> PipelineManager -> Pipeline -> step Jobs -> JobRuntime -> Provider`
+- Return/event: `step job events -> Pipeline multiplexes them into PipelineEvent -> Stream -> Client`
 
 ### Main Domain Subject Nodes
 
 | Node | Role | Ownership |
 | --- | --- | --- |
-| `AgentTeamRunManager` | entry owner | team-run creation and lookup |
-| `TeamRun` | orchestration owner | team lifecycle and member coordination |
-| `TeamRunBackend` | multiplexing owner | team/backend adaptation and event multiplexing |
-| `AgentRun` | member owner | member run lifecycle |
+| `PipelineManager` | entry owner | pipeline creation and lookup |
+| `Pipeline` | orchestration owner | pipeline lifecycle and step coordination |
+| `Job` | step owner | one step's lifecycle |
 
 ### Interface Boundary Mapping
 
 | Interface | Subject Owned | Identity Shape |
 | --- | --- | --- |
-| `startTeamRun(teamRunId, teamDefinition)` | `TeamRun` | `teamRunId + definition` |
-| `getTeamRun(teamRunId)` | `TeamRun` | `teamRunId` |
-| `getTeamMemberRun(teamRunId, memberKey)` | member-in-team | `teamRunId + memberKey` |
-
-### Design Lesson
-
-Do not flatten team-level and member-level boundaries into one generic `run` interface.
-The team run and the member run are related, but they are not the same subject.
+| `startPipeline(pipelineId, definition)` | `Pipeline` | `pipelineId + definition` |
+| `getPipelineStep(pipelineId, stepKey)` | step in a pipeline | `pipelineId + stepKey` |
+| `getJobResumeConfig(jobId)` | standalone `Job` | `jobId` |
+| `getPipelineResumeConfig(pipelineId)` | `Pipeline` | `pipelineId` |
+| `getPipelineStepResumeConfig(pipelineId, stepKey)` | step in a pipeline | `pipelineId + stepKey` |
 
 ### Bad Practice To Avoid
 
-`Input -> RunService -> RunBackend -> Runtime`
+A surface that started as `listRuns(filter)` and now returns standalone jobs, pipelines, and pipeline steps, with `getRun(runId)` and `getRunResumeConfig(runId)` beside it:
 
-with one generic interface family like:
+- the caller no longer knows what subject it is dealing with
+- IDs and filters become ambiguous, and ownership drifts into mapping code and conditionals
+- later logic grows around guessing which kind of run the caller meant
 
-- `getRun(runId)`
-- `getRunResumeConfig(runId)`
-- `listRuns(filter)`
+Better: split by subject (`listJobs(jobFilter)`, `listPipelines(pipelineFilter)`, `listPipelineSteps(pipelineId, stepFilter)`), or require an explicit compound selector (`listRuns({ subjectType, subjectFilter })`).
 
-Why this degrades:
+### Design Lesson
 
-- team-level and member-level ownership get mixed together
-- caller intent is unclear
-- ID meaning becomes ambiguous
-- later logic grows around guessing what kind of run the caller meant
+A pipeline and its steps are related, but they are not the same subject. Do not flatten a parent and its parts into one generic interface because it is convenient today.
 
-## Example 5: Workflow With State Machine
+## Example 4: Workflow With State Machine
 
 ### Situation
 
@@ -543,45 +349,7 @@ Why this degrades:
 - the state machine stops being a clear bounded local flow
 - helper and registry structures quietly become business owners
 
-## Example 6: Generic List Surface To Avoid
-
-### Situation
-
-A service starts with one endpoint:
-
-`listRuns(filter)`
-
-Over time it starts returning:
-
-- standalone agent runs
-- team runs
-- team member runs
-
-with different semantics and identity shapes.
-
-### Why This Degrades
-
-- the caller no longer knows what subject it is dealing with
-- filters and IDs become ambiguous
-- ownership drifts into mapping code and conditionals
-- naming becomes weaker over time
-
-### Better Shapes
-
-Split by subject:
-
-- `listAgentRuns(agentFilter)`
-- `listTeamRuns(teamFilter)`
-- `listTeamMemberRuns(teamRunId, memberFilter)`
-
-Or require an explicit compound selector:
-
-- `listRuns({ subjectType, subjectFilter })`
-
-The key rule is:
-do not let a generic list surface become a mixed-subject bag just because it is convenient today.
-
-## Example 7: Current-Schema Runtime With Required Data Migration
+## Example 5: Current-Schema Runtime With Required Data Migration
 
 ### Situation
 
@@ -711,7 +479,7 @@ This is bad because:
 
 Preserving existing data does not require preserving an obsolete runtime contract. Transform the data at an explicit, owned, testable migration boundary; then keep the business path structurally clean and current-schema-only.
 
-## Example 8: Schema Contraction With No Data Migration
+## Example 6: Schema Contraction With No Data Migration
 
 ### Situation
 
@@ -786,15 +554,15 @@ This is bad when no concrete requirement needs the rewrite. It converts a safe m
 
 A stored representation does not need to be byte-for-byte identical to the current in-memory model. When the normal reader consumes the data correctly and required meaning is preserved, record the no-migration decision and its evidence instead of rewriting data for representational cleanliness.
 
-## Example 9: Rejecting An Unreachable Edge Case During Technical Review
+## Example 7: Rejecting An Unreachable Edge Case During Technical Review
 
 ### Situation
 
-A desktop application manages settings for multiple server nodes. Selecting a node opens or focuses a separate node-specific window. During window bootstrap, the settings store is bound to that window's node and remains bound for the lifetime of the window.
+A desktop mail application manages settings for several mail accounts. Selecting an account opens or focuses a separate account window. During window bootstrap, the settings store is bound to that window's account and remains bound for the lifetime of the window.
 
-A settings card saves several values through an existing per-setting update action. Elsewhere in the codebase, a separate mobile-session flow can call `bindNodeContext(...)`, and the store contains a `bindingRevision` field.
+A settings card saves several values through an existing per-setting update action. Elsewhere in the codebase, a separate background-sync flow can call `bindAccountContext(...)`, and the store contains a `bindingRevision` field.
 
-A reviewer notices that each setting update can resolve the current client. From those local facts alone, the reviewer imagines that the window could switch from node A to node B in the middle of one save and proposes:
+A reviewer notices that each setting update can resolve the current client. From those local facts alone, the reviewer imagines that the window could switch from account A to account B in the middle of one save and proposes:
 
 - a captured client for the whole save
 - revision fencing
@@ -807,36 +575,36 @@ Those mechanisms are technically coherent, but the premise must be checked again
 
 ### Upstream Behavior And Production-Path Map
 
-The approved behavior is to edit settings for the node represented by the current node-specific window. No requirement introduces in-place node switching for that window.
+The approved behavior is to edit settings for the account represented by the current account window. No requirement introduces in-place account switching for that window.
 
 The solution designer records this basis before review:
 
 | Behavior ID | Kind | Approved Requirement / Intent | Approved Trigger / Contract | Relevant Existing Behavior And Evidence | Approved Change / Preserved Outcome | Target Production Path / Lifecycle And Spine ID(s) |
 | --- | --- | --- | --- | --- | --- | --- |
-| `BEH-SETTINGS-001` | User | Settings apply to the node represented by the current node-specific window | User opens or focuses one node-specific window | Window creation/focus, bootstrap binding, production callers of `bindNodeContext(...)`, and the settings action show that node identity remains stable for the window lifetime | Preserve node identity while saving the approved setting changes | `DS-SETTINGS-001`: `Node Manager -> node-specific window -> bootstrap binding -> settings card -> existing setting action` |
+| `BEH-SETTINGS-001` | User | Settings apply to the account represented by the current account window | User opens or focuses one account window | Window creation/focus, bootstrap binding, production callers of `bindAccountContext(...)`, and the settings action show that account identity remains stable for the window lifetime | Preserve account identity while saving the approved setting changes | `DS-SETTINGS-001`: `Account list -> account window -> bootstrap binding -> settings card -> existing setting action` |
 
 The architecture reviewer validates this map against the approved requirements, investigation evidence, and current code before applying structural checks. The relevant evidence shows:
 
-- ordinary desktop node selection opens or focuses a node-specific window
+- ordinary account selection opens or focuses an account window
 - bootstrap binds the store once for that window
-- the settings card does not expose an in-window node-switch action
-- the only normal `bindNodeContext(...)` caller belongs to a separate mobile-session lifecycle
-- `bindingRevision` protects that separate lifecycle; its existence does not prove desktop rebinding
+- the settings card does not expose an in-window account-switch action
+- the only normal `bindAccountContext(...)` caller belongs to a separate background-sync lifecycle
+- `bindingRevision` protects that separate lifecycle; its existence does not prove window rebinding
 
 ### Material Edge-Case Record
 
-#### `EDGE-SETTINGS-001` — Node binding changes during one multi-setting save
+#### `EDGE-SETTINGS-001` — Account binding changes during one multi-setting save
 
-- Related approved requirement or established contract: settings apply to the node represented by the current node-specific window.
+- Related approved requirement or established contract: settings apply to the account represented by the current account window.
 - Relevant behavior ID(s): `BEH-SETTINGS-001`.
 - Initiating basis kind: `User`.
-- Independent product-supported initiating trigger or applicable governing contract: the user opens or focuses one node-specific window.
-- Support evidence: the Node Manager exposes that product surface and its window creation/focus path implements the supported user action.
-- Forward current or approved target production caller/event path that exercises the initiating basis and reaches the claimed state: `Node Manager -> node-specific window -> bootstrap binding -> settings card -> existing setting action`. No caller on that path invokes node rebinding during save.
-- Lifecycle preconditions and material consequence at the claimed point: the window is already bound before the card becomes interactive and remains bound for its lifetime, so the claimed cross-node save consequence cannot occur. A generic binding method, revision field, and separate mobile caller do not change this lifecycle.
-- Scenario validity: `Technically Possible but Unsupported/Contrived`; the exposed setting action and unrelated mobile binding capability do not establish a coherent cross-node save workflow or an explicitly supported concurrent product behavior.
+- Independent product-supported initiating trigger or applicable governing contract: the user opens or focuses one account window.
+- Support evidence: the Account list exposes that product surface and its window creation/focus path implements the supported user action.
+- Forward current or approved target production caller/event path that exercises the initiating basis and reaches the claimed state: `Account list -> account window -> bootstrap binding -> settings card -> existing setting action`. No caller on that path invokes account rebinding during save.
+- Lifecycle preconditions and material consequence at the claimed point: the window is already bound before the card becomes interactive and remains bound for its lifetime, so the claimed cross-account save consequence cannot occur. A generic binding method, revision field, and separate background-sync caller do not change this lifecycle.
+- Scenario validity: `Technically Possible but Unsupported/Contrived`; the exposed setting action and unrelated background-sync binding capability do not establish a coherent cross-account save workflow or an explicitly supported concurrent product behavior.
 - Reachability: `Not Reachable`.
-- Review consequence / proportionate response: do not require a revision-fenced save protocol. Reuse the existing setting action, preserve truthful partial-persistence behavior, and stop on the first actual same-node failure when that is the approved behavior.
+- Review consequence / proportionate response: do not require a revision-fenced save protocol. Reuse the existing setting action, preserve truthful partial-persistence behavior, and stop on the first actual same-account failure when that is the approved behavior.
 
 ### Why The Initial Finding Is Invalid
 
@@ -844,7 +612,7 @@ Bad finding shape:
 
 ```text
 The store can rebind and exposes bindingRevision.
-Therefore a multi-setting save can cross nodes.
+Therefore a multi-setting save can cross accounts.
 Add revision fencing and rebinding recovery.
 ```
 
@@ -870,9 +638,9 @@ For any condition that is material, prove the complete witness: supported trigge
 
 Reclassify the premise if evidence shows that the current or approved target product supports any of the following:
 
-- in-place node switching inside the settings window
+- in-place account switching inside the settings window
 - a production event that rebinds the same window while save is active
-- concurrent lifecycle behavior that can replace the window's node context
+- concurrent lifecycle behavior that can replace the window's account context
 
 If such a path exists, record its trigger, lifecycle, material consequence, and evidence. Then evaluate whether fencing or recovery is proportionate. Until that evidence exists, classify missing material evidence as `Unclear` rather than assuming either reachability or safety.
 
@@ -880,7 +648,7 @@ If such a path exists, record its trigger, lifecycle, material consequence, and 
 
 The code reviewer receives the design spec's `BEH-SETTINGS-001` map row and the design review report's `EDGE-SETTINGS-001` decision.
 
-- If the implementation preserves the node-specific window lifecycle, mark the behavior and edge-case decision `Confirmed` by ID without copying the full reasoning.
+- If the implementation preserves the account window lifecycle, mark the behavior and edge-case decision `Confirmed` by ID without copying the full reasoning.
 - If the implementation introduces a real in-window rebinding path, reuse `EDGE-SETTINGS-001`, record the changed evidence, and reclassify it.
 - Do not recreate the rejected hypothetical merely because the implementation still contains `bindingRevision` or a generic binding method.
 
@@ -888,13 +656,13 @@ The code reviewer receives the design spec's `BEH-SETTINGS-001` map row and the 
 
 Technical review begins from approved behavior, a supported product scenario, and the complete relevant production path. Local capability is not proof of scenario validity or reachability. Persisting the behavior, evidence, and decision makes the reasoning auditable, prevents unsupported complexity, and lets downstream reviewers confirm or challenge the decision when later evidence changes.
 
-## Example 10: Supported Product Scenario Versus Technical Possibility
+## Example 8: Supported Product Scenario Versus Technical Possibility
 
 ### Situation
 
-A product manages a hierarchy of Teams and Agent Packages. Users can edit the
-active hierarchy in the Studio and can remove a package from Settings. The
-implementation also contains lower-level package loaders, fallback branches,
+A product manages a hierarchy of Sites built from installable Plugins. Users
+can edit the active hierarchy in the Editor and can remove a plugin from Settings. The
+implementation also contains lower-level plugin loaders, fallback branches,
 and test helpers that can construct states not normally created by the product.
 
 The technical reviewer must decide whether an observed implementation behavior
@@ -909,18 +677,18 @@ coherent actor goal or supported event
 -> material consequence
 ```
 
-### Supported Normal Scenario: Edit The Active Team Hierarchy
+### Supported Normal Scenario: Edit The Active Site Hierarchy
 
-The user wants to rename a Team and save the change through the Studio.
+The user wants to rename a Site and save the change through the Editor.
 
 | Field | Evidence-backed basis |
 | --- | --- |
-| Scenario ID | `SCN-TEAM-EDIT-001` |
-| Actor and coherent goal | A user edits the active Team hierarchy and wants the saved name to appear on the next load |
-| Supported entry surface | Studio Team editor and its Save action |
-| Forward production path | `Studio editor -> Team API -> authoritative hierarchy manager -> persisted Team definition -> reload/published hierarchy` |
+| Scenario ID | `SCN-SITE-EDIT-001` |
+| Actor and coherent goal | A user edits the active Site hierarchy and wants the saved name to appear on the next load |
+| Supported entry surface | Editor and its Save action |
+| Forward production path | `Editor -> Site API -> authoritative hierarchy manager -> persisted Site definition -> reload/published hierarchy` |
 | Lifecycle and consequence | The edit is claimed, persisted, and visible after reload; failure to preserve the name is material |
-| Independent evidence | Approved requirement, Studio route, normal API caller, persistence code, and an end-to-end journey |
+| Independent evidence | Approved requirement, Editor route, normal API caller, persistence code, and an end-to-end journey |
 | Scenario validity | `Supported Normal Scenario` |
 
 This scenario can support an implementation finding. For example, if the API
@@ -931,40 +699,40 @@ independently established.
 
 ### Supported Explicit Edge Scenario: Retain A Detached Definition
 
-The product explicitly supports temporarily removing a Team from the active
-root hierarchy while retaining its authored Team definition for later reuse.
+The product explicitly supports temporarily removing a Site from the active
+root hierarchy while retaining its authored Site definition for later reuse.
 
 | Field | Evidence-backed basis |
 | --- | --- |
-| Scenario ID | `SCN-TEAM-DETACH-001` |
-| Actor and coherent goal | A user temporarily detaches a Team from the active topology without deleting its authored definition |
-| Supported entry surface | The documented topology-management action in the Studio |
-| Forward production path | `Studio detach action -> topology manager -> active-root manifest -> definition library remains addressable -> later checkout/re-attach` |
-| Lifecycle and consequence | The Team is inactive in the current topology but remains available for later reuse |
+| Scenario ID | `SCN-SITE-DETACH-001` |
+| Actor and coherent goal | A user temporarily detaches a Site from the active topology without deleting its authored definition |
+| Supported entry surface | The documented topology-management action in the Editor |
+| Forward production path | `Editor detach action -> topology manager -> active-root manifest -> definition library remains addressable -> later checkout/re-attach` |
+| Lifecycle and consequence | The Site is inactive in the current topology but remains available for later reuse |
 | Independent evidence | Approved product behavior and a normal save/reload or checkout journey that demonstrates retention |
 | Scenario validity | `Supported Explicit Edge Scenario` |
 
 This is an unusual workflow, but it is reviewable because the product
 explicitly supports it. A code reviewer must not demand physical deletion of
-the detached Team directory merely because the active manifest no longer lists
+the detached Site directory merely because the active manifest no longer lists
 it. The topology and definition-library responsibilities are different.
 
 ### Negative Example: Two Exposed Actions Do Not Prove A Concurrent Workflow
 
 Suppose a reviewer observes that:
 
-1. Studio can save a Team definition; and
-2. Settings can remove the Agent Package that supplied that Team.
+1. the Editor can save a Site definition; and
+2. Settings can remove the Plugin that supplied that Site.
 
 The reviewer then imagines that a user opens two browser tabs, starts saving in
-one tab, and deliberately removes the supplying package in the other tab during
+one tab, and deliberately removes the supplying plugin in the other tab during
 the narrow interval before the save claims its ownership. The reviewer proposes
 revision fencing, re-resolution, partial-admission behavior, and recovery
 machinery.
 
 | Field | Correct assessment |
 | --- | --- |
-| Scenario ID | `SCN-TEAM-RACE-001` |
+| Scenario ID | `SCN-SITE-RACE-001` |
 | Observed technical facts | Both actions are individually callable |
 | Missing product basis | No coherent user goal, collaboration requirement, or explicit concurrent-edit contract explains the contradictory timing |
 | Missing independent path | The two action endpoints do not prove that this ordering is a supported workflow |
@@ -972,7 +740,7 @@ machinery.
 | Review use | `Reject`; do not score, route, or prescribe machinery from it |
 
 The fact that both actions exist in production is insufficient. If the product
-later adds multi-user collaboration or explicitly documents concurrent package
+later adds multi-user collaboration or explicitly documents concurrent plugin
 removal during saves, record that contract and re-evaluate the scenario as a
 supported edge case. Until then, the reviewer must not turn a mechanically
 constructible race into a product defect.
@@ -1007,14 +775,14 @@ An implementation rejects every symbolic link because symbolic links are
 considered difficult to reason about. A reviewer verifies that the rejection
 branch works and treats the rule as correct.
 
-That is incomplete. If the normal installed Agent Packages contain legitimate
+That is incomplete. If the normal installed Plugins contain legitimate
 internal symbolic links, the rule breaks an established installation journey:
 
 ```text
-normal installation -> package discovery -> package import -> Team publication
+normal installation -> plugin discovery -> plugin import -> Site publication
 ```
 
-The reviewer must inspect representative normal package data before accepting
+The reviewer must inspect representative normal plugin data before accepting
 the restriction. The relevant scenario may be a supported system installation
 event rather than a user clicking a button. A technically clean restriction is
 not automatically a valid product rule when it rejects normal supported data.
@@ -1196,76 +964,86 @@ Better direction:
 - name the deeper governing owner explicitly
 - if a bounded local loop exists below that, name it too
 
-## Cases From Our Own Reviews
+## Case Studies
 
-Real design mistakes from this team's tickets: what the design said, the fix that was adopted, and how to notice the shape next time. Each case is short; its ticket holds the full story.
+Real design mistakes and their fixes, written without the project they came from: the situation, the mistake, the better design, and the lesson.
 
-When a design mistake that the principles describe is fixed, add it here in the same shape: ticket and finding, what the design said (❌), the fix (✅), why it mattered, and how to notice it. When a new case repeats an existing one, add its ticket to that case instead of a new entry.
-
-### Case 1: One Sequence, Two Owners (autobyteus-191, AR-005)
+### Case 1: One Sequence, Two Owners
 
 Principles 2 and 13.
 
-- **The design said:** to message a run on another node, the root gets the endpoint from `RemoteRunLinks`, then calls `engine.sendToRemote(input, transmit)`. The engine checks the message, assigns its ID, calls `transmit`, which goes back into `RemoteRunLinks` and the channel, and then commits. The spine's owner read "root + `RemoteRunLinks`". Every dependency pointed the right way, and the second review passed it.
+- **Situation:** a run sends a message to a run on another server. A link registry knows the remote endpoint; a messaging engine checks messages, assigns their IDs, and keeps the sender's log.
+- **The mistake:** the root gets the endpoint from the registry, then calls `engine.sendToRemote(input, transmit)`. The engine checks the message, assigns its ID, calls `transmit`, which goes back into the registry and the channel, and then commits. The spine's owner read "root + registry". Every dependency pointed the right way, and a second review passed it.
 
   ```text
-  ❌ root → RemoteRunLinks.endpointFor → engine.sendToRemote(input, transmit)
-                                            └─ transmit() → RemoteRunLinks → channel
-                                         → engine commits the sender's log
+  ❌ root → links.endpointFor → engine.sendToRemote(input, transmit)
+                                  └─ transmit() → links → channel
+                               → engine commits the sender's log
   ```
 
-- **The fix:** the root's message delivery owns the order and calls each mechanism itself.
+- **The better design:** the root's message delivery owns the order and calls each mechanism itself.
 
   ```text
-  ✅ root: endpoint.allowsSender → engine.prepareRemoteSend → RemoteRunLinks.deliver → engine.commitSentToRemote
+  ✅ root: endpoint.allowsSender → engine.prepareRemoteSend → links.deliver → engine.commitSentToRemote
   ```
 
-- **Why it mattered:** with the callback, refusal, timeout and partial failure had no single owner, and the next retry or queueing rule would have landed on whichever side someone touched first.
+- **The lesson:** with the callback, refusal, timeout, and partial failure had no single owner, and the next retry or queueing rule would have landed on whichever side someone touched first.
 - **Notice it by:** a function passed to one mechanism so it can reach another collaborator; an owner written "A + B". A chain of many coordinators with no main owner is a different mistake ([Common Bad-Practice Pattern 2](#2-fragmented-coordinator-chain)).
 
-### Case 2: One Entry Form Traced, Another Left Open (autobyteus-191, AR-003)
+### Case 2: One Entry Form Traced, Another Left Open
 
 Principle 1.
 
-- **The design said:** remote delegation was designed for `delegate_task` with `node`. The tool's other entry form, giving a saved Task (`task_id`) to an existing copy by its run ID, was not traced; given a remote run, it would have tried to assign a saved Task across nodes.
-- **The fix:** each entry form of `delegate_task` traced; the existing-copy form refuses a remote run (`REMOTE_SAVED_TASK_NOT_SUPPORTED`) before it resolves the Task.
-- **Why it mattered:** a path traced for one form says nothing about another; the untraced form is the one that fails in use.
+- **Situation:** a delegation tool has two entry forms: start a new worker for a description, or give a saved task to an existing worker by its run ID. A change adds workers on other servers.
+- **The mistake:** remote support was designed for the first form only. Given a remote worker's run ID, the second form would have tried to hand a saved task across servers.
+- **The better design:** each entry form traced; the existing-worker form refuses a remote worker with an explicit error before it resolves the task.
+- **The lesson:** a path traced for one form says nothing about another; the untraced form is the one that fails in use.
 - **Notice it by:** one example standing for every entry form of a tool or API, or one kind ("a run") standing for several.
 
-### Case 3: A Reader Of Derived Data Left Out (autobyteus-191, F-002)
+### Case 3: A Reader Of Derived Data Left Out
 
 Principle 11.
 
-- **The design said:** Team and Org stores compose delegator ↔ remote messages into their stored view. Its table of code reading the changed structure left out the package validators, which still required both message endpoints to be local agents.
-- **What happened:** after a restart the validators dropped the stored package, and replies were refused. API/E2E found it; design and architecture review had not.
-- **The fix:** a table row "Package-state validation: include as message endpoints"; both validators check endpoints against the store's endpoint set, the one owner of that set.
-- **Why it mattered:** code that reads what is derived from a structure (views, endpoint sets, validators, streams) breaks as surely as code that reads it directly.
+- **Situation:** group stores compose messages between local and remote participants into their stored view.
+- **The mistake:** the design's table of code that reads the changed structure left out the stored-state validators, which still required both message endpoints to be local. After a restart, the validators dropped the stored state and replies were refused. End-to-end testing found it; design and architecture review had not.
+- **The better design:** a row for the validators in that table; they check endpoints against the store's endpoint set, which has one owner.
+- **The lesson:** code that reads what is derived from a structure (views, endpoint sets, validators, streams) breaks as surely as code that reads it directly.
 - **Notice it by:** an inventory that lists only the direct readers of a changed structure.
 
-### Case 4: Behavior By Absence (autobyteus-191, AR-007)
+### Case 4: Behavior By Absence
 
 Principle 13.
 
-- **The design said:** closing a Task fences off its run on another node because the release lookup finds no authority for it (`NO_AUTHORITY`), which then counts as "stopped".
-- **The fix:** an explicit `fenced_remote` result where Task executions are released: no release is invoked, the message says what happened, and it is the hook for a later "stop on the peer".
-- **Why it mattered:** a behavior reached through a failed lookup works by accident and breaks silently when the lookup changes.
+- **Situation:** closing a task must stop tracking the task's run on another server.
+- **The mistake:** the design reached that outcome because the release lookup found no authority for the remote run (`NO_AUTHORITY`), which then counted as "stopped".
+- **The better design:** an explicit result (`fenced_remote`) where task runs are released: no release is invoked, the message says what happened, and it is the hook for a later "stop on the remote server".
+- **The lesson:** a behavior reached through a failed lookup works by accident and breaks silently when the lookup changes.
 - **Notice it by:** "finds no X, so …", "counts as".
 
-### Case 5: Claims About The Code Taken On Trust (autobyteus-245, AR-202; autobyteus-247, AR-301)
+### Case 5: Claims About The Code Taken On Trust
 
 Principle 1.
 
-- **The designs said:**
-  - autobyteus-245 counted "14 readers" of `rootLaunchConfiguration`; the port method had exactly one. The inflated count kept a second method beside the new one and a dead `rootKind`.
-  - autobyteus-247 said the idle shutdown of a Team started by a peer "mirrors `StandaloneHostIdleShutdown`", but it used the user's Stop, which interrupts work in progress.
-- **The fixes:** `launchBase()` replaces `rootLaunchConfiguration()` on the port, its one reader, and `rootKind` is removed; the peer-started Team shuts down only when every started member prepares a quiet termination, reusing the Team copy's quiet rule.
-- **Why it mattered:** a count and a "mirrors" are claims; checked against the cited code, rule by rule, both fell apart.
+- **Situation:** two designs justified their shape with statements about existing code.
+- **The mistake:** one counted "14 readers" of a port method; it had exactly one. The inflated count kept a second method beside the new one, and a dead field. The other said a new idle shutdown "mirrors" an existing one, but it used the user's Stop, which interrupts work in progress.
+- **The better design:** the new method replaces the old one on the port, its one reader moves, and the dead field is removed. The idle shutdown happens only when every member prepares a quiet termination, reusing the existing quiet rule.
+- **The lesson:** a count and a "mirrors" are claims; checked against the cited code, rule by rule, both fell apart.
 - **Notice it by:** "mirrors", "as today", "the compiler enforces", a count with no source.
+
+### Case 6: One Word, Two Meanings
+
+Principle 15.
+
+- **Situation:** an app that connects to several servers grew over several changes, each of which named its things locally.
+- **The mistake:** a new stored field `nodeId` held another server's instance ID, while `nodeId` already named a client-side connection profile, and one screen carried both. A tool named for "available" servers also returned unavailable ones. The word for a registered remote server was already an existing contract's word for an independent run. Each name looked natural in its own file, and the reviews passed them.
+- **The better design:** the ID named for what it identifies, the same name in code, storage, wire, and API; the list named for what it returns; one word per meaning in the project's glossary, with the second meanings renamed away in the same change.
+- **The lesson:** a name is right only against its other uses in the system, not against its own file.
+- **Notice it by:** an identifier whose meaning depends on the file it is in; "X, also called Y"; a list or tool whose name says less or more than it returns.
 
 ## How To Use These Examples
 
 - Start from the example whose shape is closest to the current task.
-- Read the cases from our own reviews when a design touches the same shape: several kinds or entry forms, a sequence across components, derived data, a decision by absence, or a claim about existing code.
+- Read the case studies when a design touches the same shape: several kinds or entry forms, a sequence across components, derived data, a decision by absence, a claim about existing code, or a name used in several places.
 - Reuse the reasoning style, not the exact names.
-- The rules these examples illustrate live in [design-principles.md](design-principles.md): spine-first design (Principles 2 and 14), explicit ownership and named facades (3), off-spine concerns (4), singular interfaces (10), reachable premises (6), persisted-data decisions (5), and file placement after the design story (12).
+- The rules these examples illustrate live in [design-principles.md](design-principles.md): spine-first design (Principles 2 and 14), explicit ownership and named facades (3), off-spine concerns (4), singular interfaces (10), reachable premises (6), persisted-data decisions (5), file placement after the design story (12), and one vocabulary (15).
 - Judge a finding outside a ticket's scope with [ticket-scope.md](ticket-scope.md#common-situations).
