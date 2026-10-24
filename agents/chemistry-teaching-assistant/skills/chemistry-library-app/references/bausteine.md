@@ -72,12 +72,14 @@ Elemente in die richtige Reihenfolge bringen; elemente stehen in der richtigen R
 
 ## abstimmung
 
-Klassenabstimmung: die Lehrkraft zählt Hände je Antwort (+/−), dann Auflösung; richtig: true markiert die richtige Antwort.
+Klassenabstimmung: die Lehrkraft zählt Hände je Antwort (+/−), dann Auflösung; richtig: true markiert die richtige Antwort. merken: ein Schlüssel, unter dem die Zahlen im Browser bleiben; vergleich: zeigt die unter einem anderen Schlüssel gemerkten Zahlen als „vorher“ (Abstimmung vor und nach der Stunde).
 
 - `optionen` (Pflicht): Liste
   - `text` (Pflicht): kurzer Text (Markdown, {{Formel}})
   - `richtig`: Wert
 - `aufloesung` (Pflicht): Text, darf länger sein (erst nach Aufdecken sichtbar)
+- `merken`: Wert
+- `vergleich`: Wert
 
 ## vorhersage
 

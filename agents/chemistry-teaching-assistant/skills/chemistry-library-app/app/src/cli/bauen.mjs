@@ -173,6 +173,7 @@ function baueFolie(roh, kontext, erlaubteZiele) {
     if (b.art === "sortieren" && Array.isArray(b.faecher)) for (const k of b.karten || []) if (k && !b.faecher.includes(k.fach)) bericht.f(datei, bw, `Karte „${k.text}“: Fach „${k.fach}“ gibt es nicht`);
     if (b.art === "vorhersage" && Array.isArray(b.optionen) && !b.optionen.some((o) => o && o.richtig)) bericht.h(datei, bw, "vorhersage ohne richtige Option");
     if (b.art === "aufgabe" && b.afb && !NIVEAU.includes(String(b.afb))) bericht.f(datei, bw, "afb muss I, II oder III sein");
+    if (b.art === "versuch") for (const g of b.ghs || []) if (!/^GHS0[1-9]$/.test(g)) bericht.f(datei, bw, `ghs: „${g}“ ist kein Code GHS01–GHS09`);
     const aus = wandleFelder(spec.felder, b, kontext, bw);
     if (b.art === "gleichung") { aus.html = /->|<=>|<->|⇌|→/.test(b.formel || "") ? gleichungHtml(b.formel) : formelHtml(b.formel || ""); }
     if (b.art === "reihenfolge") aus.elemente = (b.elemente || []).map((e) => md(e, { inline: true, datei, wo: bw, bericht }));
@@ -329,6 +330,12 @@ export function lese(wurzel) {
       kapitelDaten[kr.id] = { student: { ...student, folienDaten }, lehrkraft };
     }
   }
+  const gemerkt = new Set(), verglichen = [];
+  for (const d of Object.values(kapitelDaten)) for (const f of Object.values(d.student.folienDaten)) for (const bs of f.bausteine) {
+    if (bs.art === "abstimmung" && bs.merken) gemerkt.add(bs.merken);
+    if (bs.art === "abstimmung" && bs.vergleich) verglichen.push([f.id, bs.vergleich]);
+  }
+  for (const [fid, k] of verglichen) if (!gemerkt.has(k)) bericht.h(bibDatei, fid, `vergleich „${k}“: keine Abstimmung merkt diesen Schlüssel`);
   const alt = scanAlt(wurzel, bericht);
   for (const a of alt) {
     suche.push({ t: "alt", titel: a.titel, text: "", ziel: `alt:${a.datei}`, klasse: a.klasse });

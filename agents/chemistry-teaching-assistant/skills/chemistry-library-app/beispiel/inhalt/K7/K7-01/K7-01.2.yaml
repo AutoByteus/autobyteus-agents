@@ -139,8 +139,31 @@ folien:
             richtig: true
           - text: Die Teilchen verschwinden.
         aufloesung: Die Teilchen bleiben gleich groß. Nur ihr Abstand wächst.
+        merken: k7012-teilchengroesse-vorher
     notizen: |
       Hände zählen, mit + eintragen, dann „Auflösen“. Häufigste Fehlvorstellung: Teilchen dehnen sich aus.
+      Die Zahlen bleiben gespeichert; K7-01.2-DI2 am Stundenende vergleicht damit.
+
+  - id: K7-01.2-DI2
+    titel: Abstimmung nachher – werden Teilchen größer?
+    zweck: Dieselbe Frage am Ende der Stunde, mit den Zahlen vom Anfang
+    ziele: [Z2]
+    einsatz: wdh
+    niveau: II
+    min: 2
+    frage: Und jetzt – werden die Teilchen größer?
+    bausteine:
+      - art: abstimmung
+        optionen:
+          - text: Ja, sie dehnen sich aus.
+          - text: Nein, nur der Abstand wird größer.
+            richtig: true
+          - text: Die Teilchen verschwinden.
+        aufloesung: Die Teilchen bleiben gleich groß. Nur ihr Abstand wächst.
+        merken: k7012-teilchengroesse-nachher
+        vergleich: k7012-teilchengroesse-vorher
+    notizen: |
+      Gestrichelt: die Zahlen vom Stundenanfang. Mit „Neu zählen“ für die nächste Klasse leeren.
 
   - id: K7-01.2-VT1
     titel: Wasser aus Wasserstoff und Sauerstoff
@@ -154,10 +177,15 @@ folien:
       - art: gleichung
         wort: Wasserstoff + Sauerstoff → Wasser
         formel: 2 H2 + O2 -> 2 H2O
-      - art: text
-        text: Aus zwei Stoffen entsteht ein neuer Stoff mit neuen Eigenschaften.
+      - art: versuch
+        form: Lehrerversuch
+        ghs: [GHS02, GHS04]
+        schutz:
+          - Schutzbrille
+          - nur ein Reagenzglas Wasserstoff
     notizen: |
       Nur als Ausblick für schnelle Lernende; die Reaktionsgleichung kommt in Klasse 8 ausführlich.
+      Wasserstoff: GHS02 und GHS04, Gefahr, H220 und H280 (GESTIS). Knallgasprobe nur als Lehrerversuch, Kleinstmenge, Öffnung vom Gesicht weg.
 
   - id: K7-01.2-EN2
     titel: Teilchenbewegung und Temperatur
