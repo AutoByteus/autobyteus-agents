@@ -1,17 +1,17 @@
 Requirement words (old -> new):
-  must            3 -> 10  
-  must not        1 -> 2   
-  should          0 -> 2   
-  never           3 -> 5   
-  do not         13 -> 23  
-  only            5 -> 13  
-  required        2 -> 3   
-  cannot          2 -> 5   
-  justify         1 -> 1   
-  explicitly      1 -> 4   
-  every           2 -> 3   
-  each            4 -> 6   
-  unless          0 -> 1   
+  must            3 -> 10
+  must not        1 -> 2
+  should          0 -> 2
+  never           3 -> 5
+  do not         13 -> 23
+  only            5 -> 13
+  required        2 -> 3
+  cannot          2 -> 5
+  justify         1 -> 1
+  explicitly      1 -> 4
+  every           2 -> 3
+  each            4 -> 6
+  unless          0 -> 1
 
 Old sentences with requirement words not found verbatim in the new files: 23 (4 whose closest new sentence lacks one, listed first)
 
