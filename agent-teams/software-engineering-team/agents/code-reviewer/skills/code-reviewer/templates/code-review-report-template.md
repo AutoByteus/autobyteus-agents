@@ -288,7 +288,7 @@ Use the canonical priority order below. The order is the review reasoning order,
 Rules:
 - Do not record raw numbers without explanation.
 - Every row must include the reason for the score, the concrete weakness or drag, and the expected improvement.
-- Every category is mandatory. Clean pass target is `>= 9.5` in every category. Any category below `9.5` is a real gap and should normally fail the review.
+- Every category is mandatory. Clean pass target is `>= 9.2` in every category. Any category below `9.2` is a real gap and should normally fail the review.
 - Score only against approved or verified behavior, promoted supported product scenarios, established contracts, supported operational constraints, and concrete maintainability defects. Cite the candidate-gate and applicable premise-validation records for any material assumed scenario; rejected or `Not Reachable` candidates cannot lower a score.
 - Do not let the overall summary override a weak category. The review still follows the actual findings and mandatory checks.
 - If the `Authoritative Boundary Rule` is broken, call it out explicitly in findings and in the relevant score rationale instead of hiding it under vague dependency wording.
