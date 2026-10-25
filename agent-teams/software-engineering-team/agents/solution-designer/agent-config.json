@@ -20,7 +20,8 @@
     "screenshot",
     "get_handoff_rules",
     "list_available_agents",
-    "update_task"
+    "update_task",
+    "get_project_task"
   ],
   "skillNames": [
     "solution-designer"
