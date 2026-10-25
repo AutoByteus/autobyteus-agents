@@ -270,8 +270,7 @@ The scorecard explains the current quality level; it does not override the revie
 Use the canonical priority order below. The order is the review reasoning order, not an equal-weight category list.
 
 - Overall score (`/10`):
-- Overall score (`/100`):
-- Score calculation note: report `/10` and `/100` for summary/trend visibility only. If an overall score is reported, a simple average across the ten categories below is acceptable, but the average is never the review decision rule.
+- Score calculation note: report the overall score on the `/10` scale for summary/trend visibility only. If an overall score is reported, a simple average across the ten categories below is acceptable, but the average is never the review decision rule.
 
 | Priority | Category | Score (`1.0-10.0`) | Why This Score | What Is Weak / Holding It Down | What Should Improve |
 | --- | --- | --- | --- | --- | --- |
@@ -289,7 +288,7 @@ Use the canonical priority order below. The order is the review reasoning order,
 Rules:
 - Do not record raw numbers without explanation.
 - Every row must include the reason for the score, the concrete weakness or drag, and the expected improvement.
-- Every category is mandatory. Clean pass target is `>= 9.0` in every category. Any category below `9.0` is a real gap and should normally fail the review.
+- Every category is mandatory. Clean pass target is `>= 9.5` in every category. Any category below `9.5` is a real gap and should normally fail the review.
 - Score only against approved or verified behavior, promoted supported product scenarios, established contracts, supported operational constraints, and concrete maintainability defects. Cite the candidate-gate and applicable premise-validation records for any material assumed scenario; rejected or `Not Reachable` candidates cannot lower a score.
 - Do not let the overall summary override a weak category. The review still follows the actual findings and mandatory checks.
 - If the `Authoritative Boundary Rule` is broken, call it out explicitly in findings and in the relevant score rationale instead of hiding it under vague dependency wording.
