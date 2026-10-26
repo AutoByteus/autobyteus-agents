@@ -1,0 +1,11 @@
+html, body { margin: 0; height: 100%; background: #0b2324; font-family: var(--sans); }
+.p-start { background: #f4f7f7; min-height: 100%; padding: 28px 40px; color: var(--ink); }
+.p-start header { display: flex; gap: 24px; align-items: baseline; flex-wrap: wrap; }
+.p-start h1 { font: 700 30px/1.2 var(--serif); color: var(--petrol); margin: 0; }
+.p-knopf { font: 700 18px/1 var(--sans); background: var(--amber); color: #fff; border: 0; border-radius: 999px; padding: 12px 22px; cursor: pointer; }
+.p-hinweis { color: #8a3a12; background: #fff1ea; border-radius: 10px; padding: 10px 14px; }
+.p-liste { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 16px; }
+.p-liste li { display: grid; grid-template-columns: 320px 1fr; gap: 18px; background: #fff; border-radius: 12px; padding: 12px; }
+.p-bild { aspect-ratio: 16/9; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.p-liste small { display: block; color: var(--muted); }
+.p-notiz { font-size: 15px; margin-top: 6px; }

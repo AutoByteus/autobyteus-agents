@@ -1,0 +1,45 @@
+/* Presenter view (Vortrag) and audience view (Leinwand), shared by the app and the exported files. */
+.leinwand { position: fixed; inset: 0; background: #0b1416; }
+.leinwand.schwarz { background: #000; }
+.leinwand .folie-huelle { position: absolute; inset: 0; }
+.lw-warten { color: #cfe6e2; font: 22px var(--sans); text-align: center; margin-top: 40vh; }
+.lw-nav { position: fixed; right: 16px; bottom: 12px; display: flex; gap: 10px; align-items: center; color: #9fbcb8; font: 16px var(--sans); opacity: .35; transition: opacity .2s; }
+.lw-nav:hover, .lw-nav:focus-within { opacity: 1; }
+.lw-k { background: #16323a; color: #fff; border: 0; border-radius: 8px; width: 44px; height: 40px; font-size: 18px; cursor: pointer; }
+.vortrag { position: fixed; inset: 0; background: #10262a; color: #e6f2f0; display: grid; grid-template-rows: auto auto 1fr auto; font-family: var(--sans); }
+.v-kopf { display: flex; gap: 18px; align-items: center; padding: 10px 16px; background: #0b1c1f; flex-wrap: wrap; font-size: 16px; }
+.v-ausflug { background: #b45309; color: #fff; border-radius: 8px; padding: 4px 10px; font-weight: 700; }
+.v-pos, .v-zeit { color: #b7d3cf; }
+.v-zeit { font-variant-numeric: tabular-nums; font-size: 20px; font-weight: 700; color: #fff; }
+.v-knoepfe { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+.vk { background: #1d3d43; color: #fff; border: 1px solid #2f5a61; border-radius: 9px; padding: 8px 12px; font: 600 15px/1 var(--sans); cursor: pointer; }
+.vk:hover:not(:disabled) { background: #27525a; } .vk:disabled { opacity: .4; cursor: default; } .vk.an { background: #0e8f80; border-color: #0e8f80; } .vk.klein { padding: 4px 8px; font-size: 13px; }
+.v-warnung { margin: 0; background: #7c2d12; color: #fff; padding: 8px 16px; font-size: 15px; }
+.v-info { margin: 0; background: #12343a; color: #b7d3cf; padding: 6px 16px; font-size: 14px; }
+.v-rumpf { display: grid; grid-template-columns: 1.7fr 1fr; gap: 14px; padding: 14px; min-height: 0; }
+.v-aktuell, .v-seite { min-height: 0; display: flex; flex-direction: column; gap: 14px; }
+.v-buehne { flex: 1; min-height: 0; border-radius: 10px; overflow: hidden; background: #000; }
+.v-buehne.schwarz { outline: 4px solid #e0921f; }
+.v-naechste h4, .v-notizen h4 { margin: 0 0 6px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: #8fb9b3; display: flex; justify-content: space-between; align-items: center; }
+.v-mini { aspect-ratio: 16/9; border-radius: 8px; overflow: hidden; background: #0b1416; }
+.v-ende { color: #8fb9b3; text-align: center; margin-top: 18%; }
+.v-notizen { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.v-notiztext { flex: 1; overflow: auto; background: #fbfaf6; color: #1f2a2e; border-radius: 10px; padding: 14px 18px; line-height: 1.45; }
+.v-notiztext p { margin: 0 0 .6em; }
+.v-leiste { display: flex; gap: 6px; padding: 8px 14px 12px; overflow-x: auto; }
+.v-daumen { min-width: 40px; height: 32px; border-radius: 6px; border: 1px solid #2f5a61; background: #16323a; color: #cfe6e2; cursor: pointer; font-weight: 700; }
+.v-daumen.an { background: #e0921f; color: #fff; border-color: #e0921f; }
+.modal { position: fixed; inset: 0; background: rgba(5, 20, 21, .72); display: flex; align-items: center; justify-content: center; z-index: 50; }
+.modal-in { background: #fff; color: #1f2a2e; border-radius: 14px; padding: 18px 20px; max-width: 94vw; max-height: 92vh; overflow: auto; }
+.modal-in.ausflug { width: 560px; }
+.modal-in.ausflug ul { list-style: none; padding: 0; max-height: 50vh; overflow: auto; display: flex; flex-direction: column; gap: 6px; }
+.modal-in.ausflug .k2 { width: 100%; text-align: left; }
+/* shared controls */
+.k2 { font: 600 14px/1.1 var(--sans); background: #fff; color: var(--petrol); border: 1px solid var(--line); border-radius: 8px; padding: 7px 11px; cursor: pointer; }
+.k2:hover:not(:disabled) { background: #eef6f5; } .k2:disabled { opacity: .45; cursor: default; }
+.k2.klein { padding: 4px 8px; font-size: 13px; }
+.k2.rein { background: var(--hin); color: #fff; border-color: var(--hin); }
+.k2.raus { background: #fff1ea; color: #9a3412; border-color: #f2c4ad; }
+.filter { font: 15px var(--sans); padding: 7px 10px; border: 1px solid var(--line); border-radius: 8px; width: 100%; box-sizing: border-box; }
+.knopf-p { font: 700 15px/1 var(--sans); background: var(--amber); color: #fff; border: 0; border-radius: 999px; padding: 9px 16px; cursor: pointer; }
+.knopf-p:disabled { opacity: .5; cursor: default; }
