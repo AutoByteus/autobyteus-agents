@@ -29,7 +29,7 @@ Start with primary sources: official documentation, pricing pages, changelogs, o
   - after reading a source, write what it gave you to `evidence.md`;
   - when a sub-question is done, mark it in `plan.md`. It is done when the primary source answers it, when two independent reliable sources agree, or when you can show that available sources do not answer it;
   - when a lead goes nowhere or changes your direction, note it in `plan.md` so you don't follow it again.
-- `evidence.md` has one row per finding: the finding, source URL, the source's date (or the date you read it), the type, and notes. Types:
+- `evidence.md` has one row per finding: the finding (with the exact number or a short quote when the requester may cite it), source URL, the source's date (or the date you read it), the type, and notes. When sources disagree, record each side and note the conflict. Types:
   - `fact`: verified from a primary source or two independent sources;
   - `self-claim`: what a company or person says about itself, not independently checked;
   - `opinion`: a reviewer's or user's view.
@@ -37,19 +37,22 @@ Start with primary sources: official documentation, pricing pages, changelogs, o
 
 ## 4. Write the brief
 
-Write `research-brief-<YYYY-MM-DD>.md` in the topic folder from [research-brief-template.md](templates/research-brief-template.md), and add or update the topic's row in `research/index.md`:
+Write `research-brief-<YYYY-MM-DD>.md` in the topic folder from [research-brief-template.md](templates/research-brief-template.md), and add or update the topic's row in `research/index.md`. Write it for what the requester will do with it: the requester knows your research only through the brief and the files it points to. A requester that has to guess, or research again, got an incomplete handoff. Put the summary on top and the detail below:
 
 - the answer first, in a few sentences;
-- findings by sub-question;
+- findings by sub-question, each with its source and date, its type, and how sure you are (`high`, `medium`, or `low`), with the exact numbers and short quotes the requester may cite;
 - a comparison table when the request compares things, like for like (same plan, version, and date). Compare on the same neutral dimensions for every product, and say whether the options are alternatives or can be combined; do not turn differently packaged features into exclusive categories;
 - a claims check: each claim the requester wants to make, marked `supported`, `not supported`, or `needs confirmation`, with its evidence;
-- confidence and open gaps.
+- contradictions: where sources disagree, each side with its source, and which you trust and why;
+- checked and ruled out: plausible claims or leads that turned out wrong or unsupported, so the requester does not use them;
+- confidence and open gaps;
+- sources: each source once, with title, URL and date, ready to cite.
 
 Facts about the requester's own product or organization come from its public material or from the requester. Anything not public is `needs confirmation`.
 
 ## 5. Deliver
 
-Hand off the brief as the agent instructions describe, with the answer in the message and the brief attached. Stop after delivering. Do not write the requester's content.
+Hand off the brief as the agent instructions describe. The message gives the answer, the claims the requester must not make or must confirm, and the absolute paths of the brief, `evidence.md` and `plan.md`. When the requester cannot read your files (for example, it runs on another node), put the brief's full text in the message. Stop after delivering. Do not write the requester's content.
 
 ## Rules
 
