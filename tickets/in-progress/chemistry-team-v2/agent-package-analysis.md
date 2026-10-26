@@ -88,7 +88,7 @@ Revised after F11. The user approved one agent and asked for a full refactor, in
 4. **Teaching skill** (from the designer skill): slides as data with components; low text; notes; visual quality; the quality gate. Remove the module shell and `check_module.py` (replaced). `check_equations.py` also reads equations from data files. Attach `chemistry-library-app`.
 5. **team.md, team-config.json:** removed with the team.
 6. **README:** one row for the agent replaces the team and designer rows.
-7. **Creator anti-pattern 30:** two producing roles for one record.
+7. **Creator anti-pattern 30** (added upstream in #125 for this case): one sentence added to its Detect line.
 
 ## Open questions
 

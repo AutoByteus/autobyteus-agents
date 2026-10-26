@@ -50,7 +50,7 @@ The team was replaced by one agent with two skills, because a knowledge point an
 | App technology | Vue 3 + Vite, built to classic scripts | Her positive experience with Vue apps; module scripts do not load from `file://` |
 | Media in exports | Embedded as data URIs | On `file://`, exporting to PNG/PPTX cannot read separate files |
 | Lessons | Saved in her browser, with file export and import; the agent sets a suggested lesson per chapter, taken over with one click | The agent cannot write into her browser storage |
-| Team or agent | One agent | See analysis F11 and anti-pattern 30 |
+| Team or agent | One agent | See analysis F11 and anti-pattern 30 (upstream) |
 
 ## Changed paths
 
@@ -62,7 +62,7 @@ The team was replaced by one agent with two skills, because a knowledge point an
 
 ### Modified
 - `README.md`: one row replaces the team and designer rows.
-- `agents/agent-package-creator/skills/agent-package-creation/references/package-anti-patterns.md`: entry 30.
+- `agents/agent-package-creator/skills/agent-package-creation/references/package-anti-patterns.md`: one sentence added to the Detect line of entry 30 (added upstream in #125 for this same case).
 
 ### Moved or renamed
 - `agents/chemistry-module-designer/` → `agents/chemistry-teaching-assistant/`
