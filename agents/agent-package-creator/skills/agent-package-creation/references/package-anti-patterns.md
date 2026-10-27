@@ -37,6 +37,7 @@ Concrete mistakes found in real package work. The [package design principles](pa
 | 27 | Judging a change from a run that did not exercise it | Creator process |
 | 28 | A live check that starts real work | Creator process |
 | 29 | Asking the user what the evidence already answers | Creator process |
+| 30 | More Agents than the work needs | Package design |
 
 ## Package design
 
@@ -95,6 +96,13 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Breaks:** [§3](package-design-principles.md#3-give-each-rule-one-authoritative-file): what a role reads is owned by its skill; a shared file must not decide it through its own links.
 - **Instead:** A role links only the files its skill names. A shared file links only files that every role reading it also has, and names the others in plain text ("Core Principle 7 in the team's design principles").
 - **Detect:** [check-links.py](../scripts/check-links.py) reports links no file of the skill names, and broken links in a shared file seen through a role's folder.
+
+### 30. More Agents than the work needs
+
+- **Incidents:** A request to help a chemistry teacher plan and design lessons got two Agents, a planner and a designer; after testing, the user found one Agent worked better. In the Marketing Team, the content creator asks the Deep Researcher for research; the research is good, but the brief it returns carries less than the context the researcher built, so the draft is written with less (2026-10-25).
+- **Breaks:** [principles §1](package-design-principles.md#1-choose-the-package-boundary-from-the-work): start with one Agent and one skill.
+- **Instead:** Begin with one Agent and one skill, and split only on evidence from runs. Before proposing a second Agent, apply the test in principles §1 (full context: keep together; independent judgement or different limits: split), and write down what each handoff would lose and what the split gains.
+- **Detect:** For each handoff in a proposed or existing package, ask what the receiver will not know that the sender knew, and whether one Agent with both skills would do the work without that loss. Two Agents writing one record, or a request that restates fields of a record both share, are the clearest signs.
 
 ## Skill content
 

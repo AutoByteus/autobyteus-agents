@@ -4,7 +4,7 @@
 - Question: <as asked>
 - Used for: <what the answer will be used for>
 - Scope and assumptions: <products, period, region, audience; assumptions made>
-- Evidence: `<absolute path to evidence.md>`
+- Evidence and plan: `<absolute path to evidence.md>`, `<absolute path to plan.md>`
 
 ## Answer
 
@@ -14,7 +14,7 @@
 
 ### <Sub-question>
 
-- <finding> — <source>, <date> (`fact` / `self-claim` / `opinion`)
+- <finding, with the exact number or a short quote when it may be cited> — <source>, <date> (`fact` / `self-claim` / `opinion`; sure: `high` / `medium` / `low`)
 
 ## Comparison
 
@@ -29,7 +29,21 @@
 | --- | --- | --- |
 | <claim> | `supported` / `not supported` / `needs confirmation` | <source and date, or what is missing> |
 
+## Contradictions
+
+- <what the sources disagree on>: <source A says …>; <source B says …>. Trusted: <which, and why>. (Or None.)
+
+## Checked and ruled out
+
+- <plausible claim or lead> — <why it is wrong or unsupported, with the source>. (Or None.)
+
 ## Confidence and open gaps
 
 - Confidence: <high / medium / low, and why>
 - Open gaps: <what could not be found or verified, or None>
+
+## Sources
+
+| # | Title | URL | Date |
+| --- | --- | --- | --- |
+| 1 | <title> | <url> | <date> |

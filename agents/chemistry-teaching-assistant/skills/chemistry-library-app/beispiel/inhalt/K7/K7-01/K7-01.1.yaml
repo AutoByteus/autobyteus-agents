@@ -1,0 +1,203 @@
+# Ein Wissenspunkt = eine Datei: Lehrkraft-Teil (neun Felder) und Folien.
+id: K7-01.1
+titel: Stoffe an Eigenschaften erkennen
+kurz: Ein Stoff ist an einer typischen Kombination von Eigenschaften zu erkennen.
+begriffe:
+  - begriff: Stoffeigenschaft
+    stufe: A
+    erklaerung: Ein Merkmal, an dem man einen Stoff erkennt, zum Beispiel Schmelztemperatur oder Löslichkeit.
+  - begriff: Schmelztemperatur
+    stufe: K
+    erklaerung: Die Temperatur, bei der ein fester Stoff flüssig wird.
+
+lehrplan:
+  zitat: "Beispieltext: Stoffe anhand ihrer Eigenschaften unterscheiden."
+  seite: 4
+  ebene: Anwenden
+  art: { experiment: true, modell: false, rechnen: false, erkenntnisgewinnung: true, anwendung: true }
+  eigen: Einstieg über zwei gleich aussehende Pulver (eigene Planung).
+lernziele:
+  - id: Z1
+    afb: I
+    text: Die Schülerinnen und Schüler können fünf Stoffeigenschaften nennen.
+  - id: Z2
+    afb: II
+    text: Die Schülerinnen und Schüler können Zucker und Kochsalz an zwei Eigenschaften unterscheiden.
+erfolgskriterien:
+  - ziel: Z1
+    text: nennt ohne Hilfe mindestens fünf Eigenschaften
+  - ziel: Z2
+    text: ordnet im Sortierspiel mindestens vier von fünf Karten richtig zu
+sachanalyse: |
+  Reinstoffe haben feste Kenneigenschaften (Schmelz- und Siedetemperatur, Dichte, Löslichkeit, Leitfähigkeit).
+  Erst die **Kombination** mehrerer Eigenschaften erlaubt eine sichere Zuordnung.
+  Saccharose zersetzt sich ab etwa 185 °C (Karamellisieren); Natriumchlorid schmilzt bei 801 °C.
+  Eine wässrige Kochsalzlösung leitet den Strom, weil sie bewegliche Ionen enthält; Zuckerlösung leitet nicht.
+didaktik: |
+  Einstieg: zwei weiße Pulver, „Probieren verboten“. Die Klasse schlägt Untersuchungen vor.
+  Alternative, wenn es nicht verstanden wird: Steckbrief für einen bekannten Stoff (Wasser) gemeinsam ausfüllen.
+lehrerskript: |
+  „Hier stehen zwei weiße Pulver. Eines ist Zucker, eines Kochsalz. Im Chemieraum probieren wir nie. Wie finden wir es trotzdem heraus?“
+  … „Genau: Wir vergleichen Eigenschaften. Eine allein reicht oft nicht.“
+fehlvorstellungen:
+  - vorstellung: Was gleich aussieht, ist derselbe Stoff.
+    warum: Farbe und Form sind bei vielen Stoffen gleich; entscheidend sind messbare Eigenschaften.
+    diagnose: „Sind die beiden Pulver derselbe Stoff, weil beide weiß sind?“
+    korrektur: Zwei Eigenschaften vergleichen (Schmelzen, Leitfähigkeit der Lösung).
+    folie: K7-01.1-DI1
+    verstanden: begründet mit mindestens zwei Eigenschaften
+aufgaben:
+  - afb: I
+    aufgabe: Nenne fünf Stoffeigenschaften.
+    loesung: Farbe, Geruch, Löslichkeit, Schmelztemperatur, Dichte (auch Leitfähigkeit, Härte).
+  - afb: II
+    aufgabe: Beschreibe, wie du Zucker und Kochsalz ohne Probieren unterscheidest.
+    loesung: Erhitzen (Zucker wird braun, Salz bleibt unverändert) oder Lösung auf Leitfähigkeit prüfen (nur Salzlösung leitet).
+verknuepfungen:
+  - rel: spaeter
+    ref: K7-01.2
+    text: Das Teilchenmodell erklärt, warum Stoffe schmelzen.
+  - rel: oberstufe
+    ref: K8-LB1
+    text: Ionen erklären die Leitfähigkeit der Salzlösung.
+
+folien:
+  - id: K7-01.1-EI1
+    titel: Zucker oder Salz?
+    zweck: Einstieg mit zwei gleich aussehenden Pulvern, erst vermuten
+    ziele: [Z1]
+    einsatz: neu
+    niveau: I
+    min: 4
+    frage: Welches Pulver ist Zucker?
+    bausteine:
+      - art: bild
+        datei: pulver.png
+        alt: Zwei Schalen mit weißem Pulver, beschriftet A und B
+      - art: vorhersage
+        optionen:
+          - text: Farbe vergleichen
+          - text: Vorsichtig erhitzen
+            richtig: true
+          - text: Daran riechen
+        aufloesung: Zucker wird beim Erhitzen braun. Kochsalz bleibt fest.
+    notizen: |
+      Pulver nicht probieren lassen. Erst Vermutungen sammeln (Handzeichen), dann antippen.
+      Erwartet: „Farbe“ – beide sind weiß, also untauglich. Überleitung zu messbaren Eigenschaften.
+
+  - id: K7-01.1-ER1
+    titel: Eigenschaften, an denen man Stoffe erkennt
+    zweck: Sechs Eigenschaften auf Karten zum Umdrehen
+    ziele: [Z1]
+    einsatz: neu
+    niveau: I
+    min: 5
+    frage: Woran erkennt man einen Stoff?
+    bausteine:
+      - art: aufdecken
+        karten:
+          - vorne: Farbe
+            hinten: Zucker und Salz sind beide weiß.
+          - vorne: Löslichkeit
+            hinten: Beide lösen sich gut in Wasser.
+          - vorne: Schmelzen
+            hinten: Zucker zersetzt sich ab 185 °C, Salz schmilzt bei 801 °C.
+          - vorne: Leitfähigkeit
+            hinten: Nur die Salzlösung leitet Strom.
+    merke: Eine Eigenschaft reicht nicht – vergleiche mehrere.
+    notizen: |
+      Karten nacheinander von der Klasse aufdecken lassen. Bei „Leitfähigkeit“: Die Erklärung (Ionen) folgt in Klasse 8, hier nur beobachten.
+
+  - id: K7-01.1-UE1
+    titel: Sortieren – Zucker oder Kochsalz
+    zweck: Eigenschaften zuordnen mit Rückmeldung je Karte
+    ziele: [Z2]
+    einsatz: neu
+    niveau: II
+    min: 4
+    frage: Gehört das zu Zucker oder zu Kochsalz?
+    bausteine:
+      - art: sortieren
+        faecher: [Zucker, Kochsalz]
+        karten:
+          - text: wird beim Erhitzen braun
+            fach: Zucker
+          - text: schmilzt bei 801 °C
+            fach: Kochsalz
+            rueckmeldung: Zucker hält 801 °C nicht aus – er zersetzt sich schon ab 185 °C.
+          - text: Lösung leitet Strom
+            fach: Kochsalz
+            rueckmeldung: Zuckerlösung leitet keinen Strom.
+          - text: würfelförmige Kristalle
+            fach: Kochsalz
+    notizen: |
+      Antippen, dann Fach antippen; zu zweit an der Tafel. Danach „Prüfen“.
+
+  - id: K7-01.1-DI1
+    titel: Richtig oder falsch – Stoffe erkennen
+    zweck: Fehlvorstellung „gleich aussehend = gleicher Stoff“ prüfen
+    ziele: [Z1, Z2]
+    einsatz: wdh
+    niveau: II
+    min: 3
+    frage: Richtig oder falsch?
+    bausteine:
+      - art: richtigfalsch
+        aussagen:
+          - text: Gleich aussehende Stoffe sind derselbe Stoff.
+            richtig: false
+            erklaerung: Zucker und Salz sehen gleich aus und sind verschieden.
+          - text: Kochsalzlösung leitet elektrischen Strom.
+            richtig: true
+          - text: Eine einzige Eigenschaft reicht immer.
+            richtig: false
+            erklaerung: Erst mehrere Eigenschaften zusammen sind sicher.
+    notizen: |
+      Diagnose: Wer die erste Aussage für richtig hält, hat die Fehlvorstellung. Mit K7-01.1-ER1 nacharbeiten.
+
+  - id: K7-01.1-EN1
+    titel: Temperatur-Regler
+    zweck: Beim Erhitzen zeigen sich die Unterschiede
+    ziele: [Z2]
+    einsatz: neu
+    niveau: I
+    min: 3
+    frage: Was passiert beim Erhitzen?
+    bausteine:
+      - art: regler
+        name: Temperatur
+        stufen:
+          - wert: 20 °C
+            text: Beide Pulver sind fest.
+          - wert: 190 °C
+            text: Zucker schmilzt und wird braun. Salz bleibt fest.
+          - wert: 801 °C
+            text: Erst jetzt schmilzt Kochsalz.
+    notizen: |
+      Regler langsam schieben und vorher fragen: „Was erwartet ihr?“ Die Zersetzung des Zuckers ist kein reines Schmelzen (Karamellisieren).
+
+  - id: K7-01.1-AK1
+    titel: Versuch – Zucker und Salz erhitzen
+    zweck: Lehrerversuch mit Sicherheit und Beobachtungsauftrag
+    ziele: [Z2]
+    einsatz: neu
+    niveau: I
+    min: 6
+    frage: Wir erhitzen beide Pulver. Was beobachtest du?
+    bausteine:
+      - art: versuch
+        form: Lehrerversuch
+        ghs: []
+        schutz:
+          - Schutzbrille tragen
+          - Reagenzglas mit Klammer halten
+          - Öffnung von Personen weg
+      - art: aufgabe
+        afb: I
+        aufgabe: Beschreibe deine Beobachtung.
+        hilfen:
+          - Achte auf Farbe und Geruch.
+        loesung: Zucker schmilzt, wird braun und riecht nach Karamell. Kochsalz bleibt unverändert.
+    notizen: |
+      Kleine Portionen (Spatelspitze). Zucker kann sich entzünden, wenn zu stark erhitzt wird: Flamme klein halten.
+      Entsorgung: abgekühlte Reste in den Hausmüll.

@@ -1,0 +1,34 @@
+id: K7-01
+titel: Stoffe erkennen und beschreiben
+lernbereich: K7-LB1
+kurz: Stoffe an Eigenschaften erkennen; das Teilchenmodell erklärt die Aggregatzustände.
+einheit: |
+  Hier steht die Einheit so, wie die Lehrkraft sie geschrieben hat (wörtlich).
+stunde:
+  titel: Musterstunde 45 min
+  folien: [K7-01.1-EI1, K7-01.1-ER1, K7-01.1-UE1, K7-01.2-ER1, K7-01.2-DI1, K7-01-AK1]
+  text: |
+    Einstieg mit den zwei Pulvern, Eigenschaften sammeln, sortieren; danach Teilchenmodell und Abstimmung; Ausgangskarte.
+versuche: |
+  **Schmelzen von Zucker und Kochsalz** (Lehrerversuch): kleine Portionen im Reagenzglas, Schutzbrille, Öffnung von Personen weg.
+quellen: |
+  Schmelztemperaturen: Saccharose zersetzt sich ab etwa 185 °C; Natriumchlorid schmilzt bei 801 °C (GESTIS-Stoffdatenbank).
+folien:
+  - id: K7-01-AK1
+    titel: Ausgangskarte
+    zweck: Kurzer Abschluss mit einer Aufgabe auf drei Niveaus
+    ziele: [K7-01.1-Z1, K7-01.2-Z1]
+    einsatz: neu
+    niveau: II
+    min: 5
+    frage: Was hast du heute gelernt?
+    bausteine:
+      - art: aufgabe
+        afb: II
+        aufgabe: Erkläre mit dem Teilchenmodell, warum Wasserdampf mehr Platz braucht als flüssiges Wasser.
+        hilfen:
+          - Denk an den Abstand der Teilchen.
+          - Die Teilchen selbst bleiben gleich groß.
+        loesung: Im Wasserdampf sind die Teilchen viel weiter voneinander entfernt als im flüssigen Wasser. Die Teilchen selbst werden nicht größer.
+    notizen: |
+      Ausgangskarte einsammeln. Wer „Teilchen werden größer“ schreibt, braucht K7-01.2-DI1 in der nächsten Stunde.
