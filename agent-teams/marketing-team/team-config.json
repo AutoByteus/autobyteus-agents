@@ -4,25 +4,21 @@
     {
       "memberName": "marketing_content_creator",
       "ref": "marketing-content-creator",
-      "refType": "agent",
       "refScope": "team_local"
     },
     {
       "memberName": "marketing_performance_analyst",
       "ref": "marketing-performance-analyst",
-      "refType": "agent",
       "refScope": "team_local"
     },
     {
       "memberName": "deep_researcher",
       "ref": "deep-researcher",
-      "refType": "agent",
       "refScope": "shared"
     },
     {
       "memberName": "computer_use_operator",
       "ref": "computer-use-operator",
-      "refType": "agent",
       "refScope": "shared"
     }
   ],
@@ -112,5 +108,11 @@
         "When the research brief for a Marketing Performance Analyst request is saved, or that research is blocked and needs the requester's decision."
       ]
     }
-  ]
+  ],
+  "avatarUrl": null,
+  "defaultLaunchConfig": {
+    "llmModelIdentifier": "gemini-3.8-flash-high",
+    "runtimeKind": "antigravity_cli",
+    "llmConfig": null
+  }
 }

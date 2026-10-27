@@ -18,5 +18,17 @@
   ],
   "skillNames": [
     "project-task-management"
-  ]
+  ],
+  "skillScope": "CONFIGURED",
+  "inputProcessorNames": [],
+  "llmResponseProcessorNames": [],
+  "toolExecutionResultProcessorNames": [],
+  "toolInvocationPreprocessorNames": [],
+  "lifecycleProcessorNames": [],
+  "avatarUrl": null,
+  "defaultLaunchConfig": {
+    "llmModelIdentifier": "gemini-4-argon-medium",
+    "runtimeKind": "antigravity_cli",
+    "llmConfig": null
+  }
 }
