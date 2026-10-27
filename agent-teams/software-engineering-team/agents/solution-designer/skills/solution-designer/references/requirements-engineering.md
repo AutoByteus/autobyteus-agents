@@ -12,7 +12,9 @@ Read during discovery, requirements refinement and requirement-impact recovery. 
 - For every relevant behavior, establish the supported product-scenario basis before interpreting technical evidence as a requirement. Record the product-level trigger and behavior sequence separately from the technical caller or component path.
 - Mark an unusual scenario as `Supported Explicit Edge Scenario` only when an explicit product, security, operational, or governing contract supports it. If the scenario is merely callable or the evidence is missing, record `Technically Possible but Unsupported/Contrived` or `Unclear` rather than approving it.
 - For genuinely new behavior, record that no current supported behavior exists and identify the proposed target trigger, recording its approval reference once approved.
-- Treat feasibility findings as evidence. Do not silently weaken an intended outcome because the current code makes it inconvenient.
+- **Feasibility per requirement.** A requirement whose outcome depends on uncertain technology (model output, ranking or classification, a confidence or relevance grade, performance, an external service) cites the measurement or experiment that shows it can be achieved; without one it stays `Unclear`. For a grade, label or filter computed from scores, measure the scores of real matches and of verified non-matches (cases counted as absent in the real data, not assumed): when the two overlap, no absolute grade can be promised.
+- **Challenge what the evidence contradicts,** whoever wrote the requirement. Before approval, bring the user the evidence in numbers, what can be delivered instead, and the decision needed; record the answer as a user decision and in the revision record. Never keep the wording and reinterpret it, and do not silently weaken an intended outcome because the current code makes it inconvenient.
+  - Example: a request asked that each search result show how strong its match is. Measurement showed that embedding scores have no absolute meaning: unrelated queries scored 0.74–0.83 and real answers 0.80–0.92. The requirement was kept as "a strength in words, not a number", the product design turned it into Strong / Fair / Weak, and three rounds of per-model threshold calibration followed before the user asked whether it was possible at all and removed the labels. The challenge on day one would have offered what was delivered in the end: show the matched words, or "related by meaning" for a match by meaning.
 - When persisted data may be affected, identify what must be preserved, what loss is acceptable, relevant volume and constraints, and current reader/writer behavior. Do not prescribe migration merely because a schema changes; the architecture phase owns the transition mechanism.
 
 ## Requirements Rules
@@ -60,6 +62,7 @@ When Product Team support is requested, include:
 - existing product or frontend context when it is part of the request or
   supported by requirements investigation; do not turn it into a bootstrap
   payload or prescribe how the Product UI/UX Designer should inspect it
+- the feasibility status of each requirement, with the unproven ones marked, so that no visible element is designed on an unproven claim
 - the canonical requirements and investigation artifact paths
 
 Record the handoff outcome as `Product Design Requested` only to indicate that
@@ -123,6 +126,7 @@ Before presenting the package as ready for approval or a downstream route, confi
 - quality and operational constraints are measurable when relevant
 - data-preservation and acceptable-loss requirements are explicit when relevant
 - every relevant behavior and requirement has a supported scenario or governing-contract basis, with validity and evidence recorded
+- every requirement that depends on uncertain technology has feasibility evidence, and every challenged requirement carries the user's decision
 - assumptions and unresolved decisions are visible
 - no target architecture has been invented to fill a requirements gap
 

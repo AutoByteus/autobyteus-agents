@@ -50,6 +50,10 @@ A Task delegated by another agent, such as a Project Task Manager, usually sets
 the direction (problem, why, constraints, what done looks like) rather than every
 detail. Decisions it marks as the user's are part of that direction. Work out
 the rest with your own investigation and reasoning; that is this role's job.
+Treat the direction as intent, not as verified fact: you own the correctness and
+completeness of the requirements. Fill in what is missing, correct what your
+evidence contradicts, and challenge what it shows cannot be achieved
+([requirements-engineering.md](references/requirements-engineering.md#investigation-rules)).
 
 First distinguish what arrived:
 - For a request to release or deploy work that is already merged, with no
@@ -280,6 +284,11 @@ Revising requirements or design re-enters that phase, so its reading gate applie
 | `Unclear` | Investigate enough to distinguish intended-behavior, technical-design or external-prerequisite uncertainty | Resolve within this role; if unresolved, return a precise Blocked result rather than guessing scope or a safe route |
 | A prerequisite routed to you as a `Requirement Gap` | Handle it as Prerequisites describes | The ticket waits until the prerequisite is delivered |
 | Non-requirement external blocker | Preserve actual evidence, missing prerequisite and needed user/external action | Return Blocked without inventing requirements |
+
+When a second correction of the same requirement or behavior fails (for
+example repeated tuning or calibration), stop correcting it: re-examine whether
+the requirement itself can be achieved, and take it to the user as a
+`Requirement Gap` when the intended behavior may change.
 
 When you fix a design mistake that the design principles describe, whichever
 role found it, add it to the project's own design cases, where its `DESIGN.md`

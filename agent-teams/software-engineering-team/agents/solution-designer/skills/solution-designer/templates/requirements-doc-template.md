@@ -80,9 +80,9 @@ Problems in other functionality without which this ticket's goal cannot be reach
 
 ## Requirements
 
-| Requirement ID | Requirement | Related Behavior IDs | Priority / Criticality | Rationale | Source / Decision Reference |
-| --- | --- | --- | --- | --- | --- |
-| REQ-001 |  |  |  |  |  |
+| Requirement ID | Requirement | Related Behavior IDs | Priority / Criticality | Rationale | Feasibility Evidence (measurement or experiment, `N/A` when no uncertain technology is involved) | Source / Decision Reference |
+| --- | --- | --- | --- | --- | --- | --- |
+| REQ-001 |  |  |  |  |  |  |
 
 Requirements state behavior or measurable constraints. Do not prescribe target modules, files, classes, services, or data-flow structure unless the user explicitly requires a concrete implementation constraint.
 
