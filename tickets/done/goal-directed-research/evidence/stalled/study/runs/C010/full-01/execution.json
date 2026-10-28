@@ -1,0 +1,66 @@
+{
+  "author": "Researcher",
+  "study": "Synthetic threshold study",
+  "cycle": "C010",
+  "goal": "G1",
+  "started_utc": "2026-10-28T14:11:05.106093+00:00",
+  "cwd": "/tmp/research-goal-check.XJcMUu/studies/stalled",
+  "output_directory": "/tmp/research-goal-check.XJcMUu/studies/stalled/runs/C010/full-01",
+  "python_version": "3.13.15 (main, Aug  6 2026, 11:06:22) [GCC 13.3.0]",
+  "python_executable": "/usr/local/bin/python3",
+  "platform": "Linux-6.12.54-linuxkit-aarch64-with-glibc2.39",
+  "environment_overrides": {
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "invocation": "timeout 30s python3 -B runs/C010/run.py --out runs/C010/full-01",
+  "seed": null,
+  "randomness": "None; deterministic fixed threshold rules.",
+  "commands": [
+    {
+      "name": "evaluation",
+      "command": "timeout 30s python3 -B sources/evaluate.py --split evaluation",
+      "argv": [
+        "timeout",
+        "30s",
+        "python3",
+        "-B",
+        "sources/evaluate.py",
+        "--split",
+        "evaluation"
+      ],
+      "timeout_seconds": 30,
+      "started_utc": "2026-10-28T14:11:05.112287+00:00",
+      "stdout": "runs/C010/full-01/evaluation.stdout.json",
+      "stderr": "runs/C010/full-01/evaluation.stderr.txt",
+      "exit_code": 0,
+      "elapsed_seconds": 0.0196733339689672,
+      "finished_utc": "2026-10-28T14:11:05.132016+00:00"
+    },
+    {
+      "name": "analysis",
+      "command": "timeout 30s python3 -B runs/C010/analyze.py --raw runs/C010/full-01/evaluation.stdout.json --out runs/C010/full-01/analysis",
+      "argv": [
+        "timeout",
+        "30s",
+        "python3",
+        "-B",
+        "runs/C010/analyze.py",
+        "--raw",
+        "runs/C010/full-01/evaluation.stdout.json",
+        "--out",
+        "runs/C010/full-01/analysis"
+      ],
+      "timeout_seconds": 30,
+      "started_utc": "2026-10-28T14:11:05.132116+00:00",
+      "stdout": "runs/C010/full-01/analysis.stdout.json",
+      "stderr": "runs/C010/full-01/analysis.stderr.txt",
+      "exit_code": 0,
+      "elapsed_seconds": 0.021493875072337687,
+      "finished_utc": "2026-10-28T14:11:05.153648+00:00"
+    }
+  ],
+  "finished_utc": "2026-10-28T14:11:05.154850+00:00",
+  "elapsed_seconds": 0.04874408396426588,
+  "exit_code": 0,
+  "no_background_job_started": true
+}

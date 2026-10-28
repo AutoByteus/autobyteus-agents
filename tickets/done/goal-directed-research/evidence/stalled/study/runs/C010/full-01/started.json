@@ -1,0 +1,19 @@
+{
+  "author": "Researcher",
+  "study": "Synthetic threshold study",
+  "cycle": "C010",
+  "goal": "G1",
+  "started_utc": "2026-10-28T14:11:05.106093+00:00",
+  "cwd": "/tmp/research-goal-check.XJcMUu/studies/stalled",
+  "output_directory": "/tmp/research-goal-check.XJcMUu/studies/stalled/runs/C010/full-01",
+  "python_version": "3.13.15 (main, Aug  6 2026, 11:06:22) [GCC 13.3.0]",
+  "python_executable": "/usr/local/bin/python3",
+  "platform": "Linux-6.12.54-linuxkit-aarch64-with-glibc2.39",
+  "environment_overrides": {
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "invocation": "timeout 30s python3 -B runs/C010/run.py --out runs/C010/full-01",
+  "seed": null,
+  "randomness": "None; deterministic fixed threshold rules.",
+  "commands": []
+}

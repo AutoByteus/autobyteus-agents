@@ -1,0 +1,31 @@
+Requirement words (old -> new):
+  must            2 -> 1     DROPPED
+  must not        1 -> 0     DROPPED
+  never           6 -> 6
+  do not         16 -> 19
+  only            8 -> 8
+  required        1 -> 1
+  cannot          3 -> 3
+  justify         1 -> 1
+  explicitly      2 -> 2
+  every           2 -> 2
+  each            3 -> 2     DROPPED
+  except          1 -> 0     DROPPED
+
+Old sentences with requirement words not found verbatim in the new files: 4 (4 whose closest new sentence lacks one, listed first)
+
+- OLD: Use the user's limits; otherwise declare a conservative default of six researcher batches, each with at most 15 minutes of local experiment runtime, no new paid services or cloud jobs, and a stop after
+  NEW: Execute a bounded research assignment with source-grounded methods, experiments or proofs, reproducible evidence and candid claims for independent supervisory review.
+  LACKS: each
+
+- OLD: A larger study can request an extension, but must not silently reset the counter on resume.
+  NEW: Write the study and first assignment with decision Continue, then hand off.
+  LACKS: must, must not
+
+- OLD: Deliver partial findings and unverified requirements with an extension proposal; do not label them complete or automatically start another loop.
+  NEW: All non-complete terminal states retain partial findings, unmet requirements and a specific restart condition.
+  LACKS: do not
+
+- OLD: Ignore an already-reviewed identical handoff except to return its saved decision; changed evidence needs a new revision and check, not a second concurrent assignment.
+  NEW: Changed evidence needs a new revision and check, not a second concurrent assignment.
+  LACKS: except

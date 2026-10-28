@@ -1,5 +1,7 @@
 # Supervised Research Team — design and acceptance
 
+> Historical creation snapshot. Its fixed research-count stopping policy was superseded by [Task 8](../goal-directed-research/agent-package-analysis.md). Preserve its observations as baseline evidence; use [current validation](../goal-directed-research/validation.md) for the corrected package.
+
 Task `autobyteus-agents-5`, Project `project_4b3f19d9-7fba-44b5-9747-84d2cd47dbc0`, delegated 2026-10-28. Operation: create; update intent: new-package. Base inspected: `origin/main` `020a8e0`. Work is isolated on `feat/supervised-research-team`; the user's unrelated uncommitted Creator launch configuration is untouched.
 
 ## Goal and boundaries

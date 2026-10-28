@@ -1,0 +1,13 @@
+{
+  "observed_utc": "2026-10-28T14:29:31.906887+00:00",
+  "terminated_team_runs": 4,
+  "server_pid": 33974,
+  "server_process_absent": true,
+  "port": 56219,
+  "port_closed": true,
+  "remaining_test_codex_home_processes": [],
+  "temporary_root_removed": "/tmp/research-goal-check.XJcMUu",
+  "private_auth_symlink_removed_with_root": true,
+  "auth_target_untouched": true,
+  "production_app_and_real_study_not_modified": true
+}

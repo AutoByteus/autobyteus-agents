@@ -29,8 +29,8 @@ unavailable access, record the exact limitation, not an invented source. Respect
 source licenses, privacy, permission and resource boundaries.
 
 Before experiments, record the hypothesis or competing explanations, case selection,
-baselines, metric computation, controls, falsification conditions and budget in the
-run's method notes. Use cheap validity checks before expensive evaluations. Do not
+baselines, metric computation, controls, falsification conditions and actual resource
+limits in the run's method notes. Use cheap validity checks before expensive evaluations. Do not
 scale a failed prerequisite or count smoke tests as the requested evaluation. Preserve
 failed runs, counterexamples, negative findings and changes of interpretation.
 For improvement work compare against the recorded baseline and prior best, including
@@ -64,9 +64,10 @@ Propose the next informative test when important uncertainty remains.
 Check that cited artifacts exist and commands/methods reproduce the claimed result.
 Distinguish planned, attempted and executed work. Choose the report status from the
 shared contract: `Review requested`, `Checkpoint`, `Blocked` or `Decision needed`.
-Reaching a batch limit is a checkpoint, not proof that research is complete. A valid
-negative answer is reviewable; missing work must stay visible. Save before handing
-off, and stop after the handoff rather than privately launching the next batch.
+An experiment timeout is a checkpoint with its actual remaining work and constraint,
+not proof that research is complete. A valid negative answer is reviewable; missing
+work must stay visible. Save before handing off, and stop after the handoff rather
+than privately launching the next batch.
 
 On a continuation, execute the new bounded assignment and resolve its findings with
 new verifiable work. Do not require the user to repeat the goal or remind you to

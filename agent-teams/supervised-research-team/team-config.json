@@ -19,7 +19,7 @@
       "from": "/research_supervisor",
       "to": "/researcher",
       "rules": [
-        "When the supervisor persists Continue with a new numbered assignment, an unchanged or explicitly revised study goal, remaining budget and no other delivered assignment awaiting a report: perform the assigned research, including work returned after an insufficient-evidence or premature-completion review. Include absolute paths to the study, assignment and review that motivates it. Do not route a terminal assessment or an already-delivered identical assignment."
+        "When the supervisor persists Continue with a new numbered assignment, an unchanged or explicitly revised study goal, useful work within actual resource and permission constraints and no other delivered assignment awaiting a report: perform the assigned research, including work returned after an insufficient-evidence or premature-completion review. Include absolute paths to the study, assignment and review that motivates it. Do not route a terminal assessment or an already-delivered identical assignment."
       ]
     },
     {

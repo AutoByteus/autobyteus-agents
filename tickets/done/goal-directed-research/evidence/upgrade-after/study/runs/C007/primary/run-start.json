@@ -1,0 +1,60 @@
+{
+  "cwd": "/tmp/research-goal-check.XJcMUu/studies/upgrade",
+  "run_started_utc": "2026-10-28T14:09:33.872965+00:00",
+  "invocation_argv": [
+    "runs/C007/run.py",
+    "--out",
+    "runs/C007/primary"
+  ],
+  "outer_command": "timeout 30s python3 -B runs/C007/run.py --out runs/C007/primary",
+  "outer_timeout_seconds": 30,
+  "evaluator_argv": [
+    "python3",
+    "-B",
+    "sources/evaluate.py",
+    "--split",
+    "evaluation"
+  ],
+  "evaluator_timeout_seconds": 30,
+  "pinned_sha256": {
+    "sources/cases.csv": "25d07594722389f069659c063a2ce0f0e12c83e9c180a67de2cf086023ce6182",
+    "sources/evaluate.py": "3b2615cb92debca462ccc6a0f971d7b1f263091bc09dd9969254f918944bc896",
+    "runs/C007/method.md": "c2b97771d9a1deb3b8b2b8c7359787f14dda836baf3b7d830faee24a1a3279b1",
+    "runs/C007/run.py": "7352c84824df960bfe4daa663c9370664a9f9c4cf0793d5e4d465c517c882863",
+    "runs/C007/analyze.py": "db84e40e42e8da35e62305ec5bef100a883bca3b2611ff4edfaab3d29528a150"
+  },
+  "environment": {
+    "python": "3.13.15 (main, Aug  6 2026, 11:06:22) [GCC 13.3.0]",
+    "python_executable": "/usr/local/bin/python3",
+    "python3_resolved": "/usr/local/bin/python3",
+    "timeout_resolved": "/usr/bin/timeout",
+    "platform": "Linux-6.12.54-linuxkit-aarch64-with-glibc2.39",
+    "environment": {
+      "LANG": "C.UTF-8",
+      "LC_ALL": "C.UTF-8",
+      "TZ": null,
+      "PYTHONHASHSEED": null,
+      "PYTHONPATH": null
+    },
+    "randomness": "None; fixed deterministic integer thresholds, no seeds needed",
+    "dependencies": "Python standard library and existing local timeout utility"
+  },
+  "planned_unique_rows": 12,
+  "planned_ids": [
+    "n1",
+    "n2",
+    "n3",
+    "n4",
+    "d1",
+    "d2",
+    "d3",
+    "d4",
+    "b1",
+    "b2",
+    "b3",
+    "b4"
+  ],
+  "attempted_unique_rows": 0,
+  "completed_unique_rows": 0,
+  "status": "preflight pending"
+}

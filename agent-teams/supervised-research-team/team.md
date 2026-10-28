@@ -20,6 +20,7 @@ workspace and any resource or access limits. An unfinished study is a valid inpu
 
 The researcher keeps tightly coupled research work together. The supervisor sends
 insufficient work back with verifiable gaps while useful authorized work remains.
+Continuation is goal-directed, not limited by research-cycle or return counts.
 An honest negative or inconclusive answer can finish a study; a missing experiment
 cannot be disguised as such an answer. Research completion and manuscript readiness
 are different decisions. External publication is not part of this team.

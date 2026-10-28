@@ -1,0 +1,14 @@
+{
+  "started_utc": "2026-10-28T14:21:08.096057+00:00",
+  "cwd": "/tmp/research-goal-check.XJcMUu/studies/upgrade",
+  "outer_command": "timeout 30s python3 -B checks/C007/verify-full.py --out checks/C007/full-review",
+  "outer_timeout_seconds": 30,
+  "evaluator_argv": [
+    "python3",
+    "-B",
+    "sources/evaluate.py",
+    "--split",
+    "evaluation"
+  ],
+  "evaluator_timeout_seconds": 30
+}

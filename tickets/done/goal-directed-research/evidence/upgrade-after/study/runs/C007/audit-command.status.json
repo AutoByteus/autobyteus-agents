@@ -1,0 +1,1 @@
+{"command":"timeout 30s python3 -B runs/C007/finalize.py","exit_code":0}

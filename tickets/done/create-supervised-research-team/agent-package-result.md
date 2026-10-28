@@ -1,5 +1,7 @@
 # Agent Package Creation Result
 
+> Historical creation snapshot. Its fixed research-count stopping policy was superseded by [Task 8](../goal-directed-research/agent-package-analysis.md). Preserve its observations as baseline evidence; use [current validation](../goal-directed-research/validation.md) for the corrected package.
+
 - Status: **Completed — package creation and validation**
 - Operation: `create`
 - Package type: `team`

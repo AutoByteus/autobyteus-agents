@@ -1,0 +1,60 @@
+{
+  "status": "all assertions passed",
+  "smoke_rerun": {
+    "semantic_match_to_saved": true,
+    "n": 2,
+    "candidate_correct": 2,
+    "baseline_correct": 2
+  },
+  "inventory": {
+    "total_source_rows": 14,
+    "evaluation_rows": 12,
+    "evaluation_ids": [
+      "n1",
+      "n2",
+      "n3",
+      "n4",
+      "d1",
+      "d2",
+      "d3",
+      "d4",
+      "b1",
+      "b2",
+      "b3",
+      "b4"
+    ],
+    "evaluation_rows_by_family": {
+      "boundary": 4,
+      "nominal": 4,
+      "shifted": 4
+    },
+    "unique_ids": true,
+    "smoke_evaluation_id_overlap": []
+  },
+  "targeted_counterexample": {
+    "id": "n3",
+    "family": "nominal",
+    "x": 4,
+    "label": 1,
+    "candidate": 0,
+    "baseline": 1,
+    "candidate_correct": false,
+    "baseline_correct": true,
+    "method": "Trace supplied evaluate.py line 7; independent integer threshold calculation"
+  },
+  "researcher_raw_files_found": [
+    "runs/smoke.json"
+  ],
+  "coverage": {
+    "evaluation_rows_required": 12,
+    "researcher_evaluation_rows_with_saved_predictions": 0,
+    "supervisor_evaluation_rows_spot_checked": 1,
+    "full_evaluation_rerun": false
+  },
+  "limits": [
+    "Smoke reproducibility is not full evaluation or generalization.",
+    "The n3 counterexample disproves perfection only on the supplied benchmark.",
+    "One case does not establish aggregate or per-family relative accuracy.",
+    "No researcher experiment, missing per-family analysis, or independent dataset was created."
+  ]
+}

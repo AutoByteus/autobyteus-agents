@@ -1,0 +1,1 @@
+Review the latest researcher handoff in /tmp/research-goal-check.XJcMUu/studies/upgrade using your attached research-supervision skill and the original goal. Use the team normally and return the supported decision. The files contain the current study state. All writes must remain in this synthetic study; the package is read-only. No external collaborators or other repositories.

@@ -39,8 +39,8 @@ to create empty files when no work of that kind exists:
 
 | Record | Owner and content |
 | --- | --- |
-| `study.md` | Supervisor: original request and requester; objective and scope; explicit requirements with IDs and evidence needed; access/resource limits; current cycle and state; links to latest assignment/review; budget used/remaining; changes to scope with user decision provenance. Keep the original goal visible; narrowing the conclusion is not permission to erase an unmet requirement. |
-| `cycles/CNNN/assignment.md` | Supervisor: study/requirement IDs and goal revision; bounded question or review findings to resolve; evidence expected; work budget/stop condition; allowed actions and relevant prior artifact links. This is the next work order, not a second copy of the study. |
+| `study.md` | Supervisor: original request and requester; objective and scope; explicit requirements with IDs and evidence needed; access/resource limits; current cycle and state; links to latest assignment/review; historical cycle/return accounting and actual resource usage/constraints; changes to scope with user decision provenance. Keep the original goal visible; narrowing the conclusion is not permission to erase an unmet requirement. |
+| `cycles/CNNN/assignment.md` | Supervisor: study/requirement IDs and goal revision; bounded question or review findings to resolve; evidence expected; experiment timeouts, real resource constraints and checkpoint conditions; allowed actions and relevant prior artifact links. This is the next work order, not a second copy of the study. |
 | `evidence.md` | Append-only evidence records from both roles: ID, author, source or run, provenance/version, method/command, actual result and raw path, limits. Researcher records research; supervisor records its own checks under distinct IDs. Refer to existing records rather than copy their measurements into new logs. |
 | `cycles/CNNN/report.md` | Researcher: assignment/revision, status, claims with supporting and opposing evidence IDs, requirement coverage, methods/deviations, limitations, unresolved findings and precise next action. A proposal of completion is not a supervisory decision. |
 | `cycles/CNNN/review.md` | Supervisor: report and evidence revision checked, checks performed with evidence IDs, original-goal coverage, findings and closure evidence, decision and next-assignment link or terminal assessment, manuscript-readiness judgment and reasons. |
@@ -63,8 +63,8 @@ Researcher reports one of:
   what was tried and the dependency's owner.
 - `Decision needed`: scope, permission or cost needs the user's decision.
 
-Supervisor decisions are `Continue`, `Complete`, `Blocked`, `Decision needed`,
-`Budget exhausted` or `Paused`. Only `Continue` contains a new actionable assignment.
+Supervisor decisions are `Continue`, `Complete`, `Blocked`, `Decision needed`
+or `Paused`. Only `Continue` contains a new actionable assignment.
 Only `Complete` certifies the original agreed investigation, not publication.
 `Paused` requires an explicit user pause. All non-complete terminal states retain
 partial findings, unmet requirements and a specific restart condition.
@@ -75,8 +75,10 @@ The result links to remaining evidence. Check returned delivery status. A messag
 accepted by the platform is not evidence that research ran or was approved. If
 routing is unavailable or delivery fails, preserve a pending handoff and report it
 to the caller; do not silently treat the workflow as complete or duplicate work.
-Ignore an already-reviewed identical handoff except to return its saved decision;
-changed evidence needs a new revision and check, not a second concurrent assignment.
+For an already-reviewed identical handoff with unchanged goal, instructions and
+constraints, return its saved decision instead of duplicating work. New user authority
+can supersede a saved stop without rewriting it. Changed evidence needs a new revision
+and check, not a second concurrent assignment.
 
 ## Runtime and recovery limits
 
