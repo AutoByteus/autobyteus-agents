@@ -1,0 +1,17 @@
+{
+  "date_utc": "2026-10-28",
+  "layer": "installed isolated AutoByteus server + real Codex runtime; no Electron UI",
+  "server": "/app/autobyteus-server-ts/dist/app.js",
+  "server_package_version": "0.1.1",
+  "server_entry_sha256": "e8229f8dcdd4d4109310653c20851ac9b293d42190efc9a7a949779a0c752fc4",
+  "node": "v22.23.3",
+  "codex": "codex-cli 0.164.0",
+  "platform": "Linux-6.12.54-linuxkit-aarch64-with-glibc2.39",
+  "runtime": "codex_app_server",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "high",
+  "data_root": "/tmp/supervised-research-check.cuWmHC/data",
+  "server_url": "http://127.0.0.1:45051",
+  "source_package_matches_live_copy": true,
+  "external_publication_or_real_research": false
+}

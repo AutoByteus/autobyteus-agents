@@ -1,0 +1,74 @@
+{
+  "createdAt": "2026-10-28T05:22:16.046Z",
+  "archivedAt": null,
+  "applicationBinding": null,
+  "handoffs": [
+    {
+      "from": "/research_supervisor",
+      "to": "/researcher",
+      "rules": [
+        "When the supervisor persists Continue with a new numbered assignment, an unchanged or explicitly revised study goal, remaining budget and no other delivered assignment awaiting a report: perform the assigned research, including work returned after an insufficient-evidence or premature-completion review. Include absolute paths to the study, assignment and review that motivates it. Do not route a terminal assessment or an already-delivered identical assignment."
+      ]
+    },
+    {
+      "from": "/researcher",
+      "to": "/research_supervisor",
+      "rules": [
+        "When the researcher persists a new cycle report classified Review requested, Checkpoint, Blocked or Decision needed: independently assess its evidence against the original study goal and decide the next action. Include the absolute report and study paths and evidence needed for review. Do not route an already-delivered identical report."
+      ]
+    }
+  ],
+  "rootTeam": {
+    "address": "/",
+    "teamDefinitionId": "supervised-research-team",
+    "teamDefinitionName": "Supervised Research Team",
+    "teamRunId": "supervised_research_team_1aefb67bbf1e4402b3dccd70f04ba0d8",
+    "coordinatorAddress": "/research_supervisor",
+    "defaultLaunchConfiguration": {
+      "runtimeKind": "codex_app_server",
+      "llmModelIdentifier": "gpt-6-astra",
+      "llmConfig": {
+        "reasoning_effort": "high"
+      },
+      "autoExecuteTools": true,
+      "workspaceRootPath": "/tmp/supervised-research-check.cuWmHC/studies/case-c"
+    },
+    "members": [
+      {
+        "address": "/research_supervisor",
+        "agentDefinitionId": "team-local-agent:supervised-research-team:research-supervisor",
+        "role": null,
+        "description": null,
+        "agentRunId": "research_supervisor_b9fc24ab1bb44178a0abe5d8f912ce45",
+        "platformAgentRunId": "01a180f5-9123-7ff3-b52d-2d3ad8717677",
+        "launchConfiguration": {
+          "runtimeKind": "codex_app_server",
+          "llmModelIdentifier": "gpt-6-astra",
+          "llmConfig": {
+            "reasoning_effort": "high"
+          },
+          "autoExecuteTools": true,
+          "workspaceRootPath": "/tmp/supervised-research-check.cuWmHC/studies/case-c"
+        }
+      },
+      {
+        "address": "/researcher",
+        "agentDefinitionId": "team-local-agent:supervised-research-team:researcher",
+        "role": null,
+        "description": null,
+        "agentRunId": "researcher_1d13edd918094655b5d20a8e14a4962d",
+        "platformAgentRunId": null,
+        "launchConfiguration": {
+          "runtimeKind": "codex_app_server",
+          "llmModelIdentifier": "gpt-6-astra",
+          "llmConfig": {
+            "reasoning_effort": "high"
+          },
+          "autoExecuteTools": true,
+          "workspaceRootPath": "/tmp/supervised-research-check.cuWmHC/studies/case-c"
+        }
+      }
+    ],
+    "taskExecutions": []
+  }
+}
