@@ -1,0 +1,20 @@
+{
+  "toolNames": [
+    "read_file",
+    "write_file",
+    "edit_file",
+    "run_bash",
+    "search_web",
+    "read_url",
+    "read_media_file",
+    "get_handoff_rules",
+    "send_message_to",
+    "delegate_task",
+    "start_background_process",
+    "get_process_output",
+    "stop_background_process"
+  ],
+  "skillNames": [
+    "evidence-research"
+  ]
+}

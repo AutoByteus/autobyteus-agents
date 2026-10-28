@@ -1,0 +1,2 @@
+# Preserve the exact bytes of CSV evidence; Python's csv writer emits CRLF.
+evidence/**/sources/cases.csv -text whitespace=cr-at-eol

@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "evaluation_rows_independently_checked": 12,
+  "per_case_report_matches": true,
+  "source_and_prior_artifact_hashes_match": true,
+  "researcher_reproduction_matches": true,
+  "candidate_correct": 7,
+  "baseline_correct": 8,
+  "candidate_only": [
+    "b3"
+  ],
+  "baseline_only": [
+    "n3",
+    "b1"
+  ],
+  "limits": "Same synthetic fixture; no label validation, external peer review or population generalization."
+}

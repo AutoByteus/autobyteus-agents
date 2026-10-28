@@ -1,0 +1,40 @@
+PASS research_supervisor: frontmatter, local ref, tools and skill attachment
+PASS researcher: frontmatter, local ref, tools and skill attachment
+PASS coordinator, unique rooted handoffs, symlinks, no unfinished markers
+{
+  "agents/research-supervisor/agent-config.json": {
+    "sha256": "b8396b1165d37f062ffcc8084087a57bf55eb941f255f154667637ad65de8973"
+  },
+  "agents/research-supervisor/agent.md": {
+    "sha256": "c31ab0648748fb99694b87f71b7059bb16b6ee674d02d5dc78aeb8832baa8f42"
+  },
+  "agents/research-supervisor/skills/research-supervision/SKILL.md": {
+    "sha256": "0f54841a1559f2adb3bb5b9ebf2747335280b3a9ef6751e0296d47ff509085fb"
+  },
+  "agents/research-supervisor/skills/research-supervision/research-contract.md": {
+    "symlink": "../../../../shared/research-contract.md",
+    "sha256": "a5eb9837c58de4b97ea9423a3041126a163e8275d04e2e839536a076c939c39e"
+  },
+  "agents/researcher/agent-config.json": {
+    "sha256": "8221c7e1ca1dc382626c0a8e7d29ca3fae4bf2055249f07888486196a32d350a"
+  },
+  "agents/researcher/agent.md": {
+    "sha256": "a940e751457147afe27dda47de7b037a3806d034a1149741054d5467c17b5d36"
+  },
+  "agents/researcher/skills/evidence-research/SKILL.md": {
+    "sha256": "2fba4624e51a3d514edbd64f7304ef04dc59e4870fde3bdbe63d6b0d82c82af6"
+  },
+  "agents/researcher/skills/evidence-research/research-contract.md": {
+    "symlink": "../../../../shared/research-contract.md",
+    "sha256": "a5eb9837c58de4b97ea9423a3041126a163e8275d04e2e839536a076c939c39e"
+  },
+  "shared/research-contract.md": {
+    "sha256": "a5eb9837c58de4b97ea9423a3041126a163e8275d04e2e839536a076c939c39e"
+  },
+  "team-config.json": {
+    "sha256": "a85e92c78c20fdc6f768a4cc30934521704eef2cba305ac427a5e3fc6712c0ea"
+  },
+  "team.md": {
+    "sha256": "0a1a46948490c750750a1f72a6882099a277f221da118674f6d942734a229a8d"
+  }
+}

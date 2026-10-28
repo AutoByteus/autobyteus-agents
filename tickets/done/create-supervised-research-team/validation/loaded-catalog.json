@@ -1,0 +1,34 @@
+{
+  "agentTeamDefinitions": [
+    {
+      "id": "supervised-research-team",
+      "name": "Supervised Research Team",
+      "coordinatorMemberName": "research_supervisor",
+      "loadIssues": []
+    }
+  ],
+  "agentDefinitions": [
+    {
+      "id": "autobyteus-daily-assistant",
+      "name": "Daily Assistant",
+      "skillNames": [],
+      "loadIssue": null
+    },
+    {
+      "id": "team-local-agent:supervised-research-team:research-supervisor",
+      "name": "Research Supervisor",
+      "skillNames": [
+        "research-supervision"
+      ],
+      "loadIssue": null
+    },
+    {
+      "id": "team-local-agent:supervised-research-team:researcher",
+      "name": "Researcher",
+      "skillNames": [
+        "evidence-research"
+      ],
+      "loadIssue": null
+    }
+  ]
+}

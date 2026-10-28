@@ -1,0 +1,14 @@
+{
+  "timestamp_utc": "2026-10-28T05:24:59.041268+00:00",
+  "source": "sources/private-cohort.csv",
+  "cwd": "/tmp/supervised-research-check.cuWmHC/studies/case-b",
+  "python": "3.13.15 (main, Aug  6 2026, 11:06:22) [GCC 13.3.0]",
+  "platform": "Linux-6.12.54-linuxkit-aarch64-with-glibc2.39",
+  "probe_sha256": "cf12d514f665749d732e4a4c8f741ed52a31ef6070cd0b52f0f52a48a9278389",
+  "source_location_sha256": "e1d1de35ac056b1ab963048e8ac06c870db7e4f78a22e466c84a918f594e1569",
+  "status": "absent",
+  "error_type": "FileNotFoundError",
+  "errno": 2,
+  "error": "[Errno 2] No such file or directory: 'sources/private-cohort.csv'",
+  "elapsed_seconds": 0.003632292035035789
+}

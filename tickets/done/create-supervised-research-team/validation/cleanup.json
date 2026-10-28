@@ -1,0 +1,12 @@
+{
+  "terminated_team_runs": 3,
+  "server_pid": 8917,
+  "server_stopped": true,
+  "port": 45051,
+  "port_closed": true,
+  "processes_using_test_codex_home": [],
+  "temporary_root": "/tmp/supervised-research-check.cuWmHC",
+  "temporary_root_removed": true,
+  "real_research_or_paper_submission": false,
+  "primary_checkout_status": "M agents/agent-package-creator/agent-config.json"
+}
