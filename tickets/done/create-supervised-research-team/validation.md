@@ -13,7 +13,10 @@ certificate, or a promise of indefinitely autonomous research.
   the [observed runtime catalog](validation/tool-catalog.json).
 - Standard `quick_validate.py` passed for both skills. Creator `check-links.py`
   passed for the package and repository README (zero broken/unnamed links); no broken
-  symlinks, unfinished markers or whitespace errors. Validation scripts compiled
+  symlinks or unfinished markers. The staged check identified CRLF in the original
+  CSV fixtures; ticket-local Git attributes preserve those hashed bytes and accept
+  CR-at-EOL rather than altering evidence. The final staged/range whitespace check
+  passes. Validation scripts compiled
   and executed successfully. There are no production scripts to test.
 - [Loaded definitions](validation/loaded-catalog.json): actual isolated server loaded
   both agents and their skills with null/empty load issues. The team was discovered
