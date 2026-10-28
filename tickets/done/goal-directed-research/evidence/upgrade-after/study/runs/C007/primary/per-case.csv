@@ -1,0 +1,13 @@
+id,family,split,x,label,candidate,baseline,candidate_correct,baseline_correct,paired_outcome
+n1,nominal,evaluation,2,0,0,0,True,True,both_correct
+n2,nominal,evaluation,6,1,1,1,True,True,both_correct
+n3,nominal,evaluation,4,1,0,1,False,True,baseline_only
+n4,nominal,evaluation,5,1,1,1,True,True,both_correct
+d1,shifted,evaluation,3,1,0,0,False,False,both_wrong
+d2,shifted,evaluation,8,1,1,1,True,True,both_correct
+d3,shifted,evaluation,7,0,1,1,False,False,both_wrong
+d4,shifted,evaluation,1,0,0,0,True,True,both_correct
+b1,boundary,evaluation,4,1,0,1,False,True,baseline_only
+b2,boundary,evaluation,5,0,1,1,False,False,both_wrong
+b3,boundary,evaluation,4,0,0,1,True,False,candidate_only
+b4,boundary,evaluation,5,1,1,1,True,True,both_correct

@@ -1,0 +1,134 @@
+{
+  "study.md": {
+    "sha256": "8797e968e3fa0a262551cc573da5e0040f6bd71a44220a4b820b92a6edd9a52d",
+    "bytes": 8228
+  },
+  "evidence.md": {
+    "sha256": "79244b6e41e5c0d4e33f512dfb8c4a97ed6a6b69eb059512ffcfc15196d5e214",
+    "bytes": 4918
+  },
+  "follow-ups.md": {
+    "sha256": "5dc6efbd5d77a141c40efca5b9ce6fbfb1a73146f1f70adc11e76f892bd9d2df",
+    "bytes": 3274
+  },
+  "runs/smoke.json": {
+    "sha256": "7aa8ae89e03cede719d337aa3209bb4453791320320c170a0aa64c4769746067",
+    "bytes": 494
+  },
+  "sources/cases.csv": {
+    "sha256": "25d07594722389f069659c063a2ce0f0e12c83e9c180a67de2cf086023ce6182",
+    "bytes": 397
+  },
+  "sources/evaluate.py": {
+    "sha256": "3b2615cb92debca462ccc6a0f971d7b1f263091bc09dd9969254f918944bc896",
+    "bytes": 678
+  },
+  "checks/C006/README.md": {
+    "sha256": "4976915f684deced6b58878d1f9aa9a545c0a3fd0207313db815a633784c0ee1",
+    "bytes": 2001
+  },
+  "checks/C006/check-results.json": {
+    "sha256": "f421df7fc01de80094a4f81a2e1d9cdc3e799e39653761fb2064ac8b56675134",
+    "bytes": 1492
+  },
+  "checks/C006/review-inputs.json": {
+    "sha256": "5a4e56ae5ac6bddfdcce444e78d608638c5d11abbd80e962dcd6b8fff4ff1b17",
+    "bytes": 2422
+  },
+  "checks/C006/smoke-rerun.json": {
+    "sha256": "7aa8ae89e03cede719d337aa3209bb4453791320320c170a0aa64c4769746067",
+    "bytes": 494
+  },
+  "checks/C006/verify.py": {
+    "sha256": "3c581372784cf166e36e7a548ba7d988575dee33c0843cdbf903c6491754677b",
+    "bytes": 4330
+  },
+  "checks/C007/resumption-inputs.json": {
+    "sha256": "c7a3b5196ebe5b7047e6f55c5a3232ca8874f1116f80e7ee76d7280e417c37c7",
+    "bytes": 3498
+  },
+  "cycles/C001/assignment.md": {
+    "sha256": "cf8cba9e27e373d57934bdf5300a6e94cd2bcf6f38c02a77c58db6bf79f1e1e5",
+    "bytes": 69
+  },
+  "cycles/C001/report.md": {
+    "sha256": "234d36bb2e9ca06f0f9b855b0d50f86b84a44f3cac2bd677750fbce2a2dd0d14",
+    "bytes": 430
+  },
+  "cycles/C001/review.md": {
+    "sha256": "b1eab92ebb5453d4f3d6a0cdbe9620a57508a2d379d36868ad19297580da2cf1",
+    "bytes": 109
+  },
+  "cycles/C002/assignment.md": {
+    "sha256": "0c0e411a963658ffe712654378cfbb70cd4b34ce4eca56b83b2184c0224bc1e0",
+    "bytes": 69
+  },
+  "cycles/C002/report.md": {
+    "sha256": "97fcd0152c878f2b8dd224794eba34293fe771e6d844eea225bfb7cda683d8f7",
+    "bytes": 430
+  },
+  "cycles/C002/review.md": {
+    "sha256": "fd4b635700d47d2ed20ea580e191af9ebd273f3ba107631a8d3bd71926260270",
+    "bytes": 109
+  },
+  "cycles/C003/assignment.md": {
+    "sha256": "bfd14f22427cc55501278e637cd38a3fa29b4f6a779704fbaf74eeb5931baebb",
+    "bytes": 69
+  },
+  "cycles/C003/report.md": {
+    "sha256": "bfe539e31bf7a335ae8518b051694a6b3ed73aff244b46011427e2552213d85a",
+    "bytes": 430
+  },
+  "cycles/C003/review.md": {
+    "sha256": "b41a53955ac7207b7b8b776c7c149f65751915e1a4960806342597b8c8d94186",
+    "bytes": 109
+  },
+  "cycles/C004/assignment.md": {
+    "sha256": "a863c70f051827b3ffe4116bbe6c15af542bb9e2905657d2e9bf48271b344028",
+    "bytes": 69
+  },
+  "cycles/C004/report.md": {
+    "sha256": "0e17d00811844e8fb8b9e2b50499ef757bc172a9091ce3cbc9760388c51e699a",
+    "bytes": 430
+  },
+  "cycles/C004/review.md": {
+    "sha256": "47e007ac1e0770966c17e31a31fd9af2b5ca9534d369cedd95f6c43d8a4f4e21",
+    "bytes": 109
+  },
+  "cycles/C005/assignment.md": {
+    "sha256": "4f057f0f612969c74db98ed23e01adb3175089d1555d9edd77e77f630c25e820",
+    "bytes": 69
+  },
+  "cycles/C005/report.md": {
+    "sha256": "9f33c6485f900ce357cbf5118c505ef3017b583fefe3fe7474b27b061701e817",
+    "bytes": 430
+  },
+  "cycles/C005/review.md": {
+    "sha256": "3582adc9b55cb5c1237907142651aaeaba0c4ddaf6669804f354cbb885c592fd",
+    "bytes": 109
+  },
+  "cycles/C006/assignment.md": {
+    "sha256": "5c984c6f847a03352bf9ab746d55d3d14047b231ccf9a2624fa42bd56446fa89",
+    "bytes": 69
+  },
+  "cycles/C006/report.md": {
+    "sha256": "657eb6edaa43cebbca6722951e5deb0abe25c8512dfe3fc507e285768b8c8a87",
+    "bytes": 430
+  },
+  "cycles/C006/review.md": {
+    "sha256": "f953ca2b31027c9e273c8615cda83813e5f9328f86f8a46b9b54ca55976fafab",
+    "bytes": 8855
+  },
+  "cycles/C007/assignment.md": {
+    "sha256": "bc83810658ba5f1154c24bce09915488d51640ca16801e9b151408100113661b",
+    "bytes": 4739
+  },
+  "cycles/C007/handoff.md": {
+    "sha256": "b5fee7444fe201be17c63ccefe877e8e15f5bca98530d27a3280d3c0fa54d476",
+    "bytes": 900
+  },
+  "cycles/C007/resumption-review.md": {
+    "sha256": "e86c945dc1b1cafbc44a9999ebe9ba49b4f522759433bfd76a108ec3c842240b",
+    "bytes": 5095
+  }
+}

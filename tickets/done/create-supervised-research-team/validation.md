@@ -1,5 +1,7 @@
 # Validation — Supervised Research Team
 
+> Historical creation snapshot. Its fixed research-count stopping policy was superseded by [Task 8](../goal-directed-research/agent-package-analysis.md). Preserve its observations as baseline evidence; use [current validation](../goal-directed-research/validation.md) for the corrected package.
+
 **Result: Pass for the scoped package and observed scenarios.** This is evidence
 of package behavior, not a scientific validation of SemFlow, a publishability
 certificate, or a promise of indefinitely autonomous research.

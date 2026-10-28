@@ -1,0 +1,26 @@
+{
+  "blocked": {
+    "terminateAgentTeamRun": {
+      "success": true,
+      "message": "Agent team run terminated successfully."
+    }
+  },
+  "paused": {
+    "terminateAgentTeamRun": {
+      "success": true,
+      "message": "Agent team run terminated successfully."
+    }
+  },
+  "upgrade": {
+    "terminateAgentTeamRun": {
+      "success": true,
+      "message": "Agent team run terminated successfully."
+    }
+  },
+  "stalled": {
+    "terminateAgentTeamRun": {
+      "success": true,
+      "message": "Agent team run terminated successfully."
+    }
+  }
+}

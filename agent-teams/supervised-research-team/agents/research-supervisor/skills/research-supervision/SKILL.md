@@ -20,14 +20,26 @@ Preserve explicit requested cases, scale, deliverables and success criteria as
 requirements in `study.md`, including what remains unmet. A milestone is not the
 whole research goal. Make unsupported inherited claims questions to verify.
 
-Set a finite supervision envelope. Use the user's limits; otherwise declare a
-conservative default of **six researcher batches**, each with at most **15 minutes
-of local experiment runtime**, no new paid services or cloud jobs, and a stop after
-**two consecutive returns without new relevant evidence**. These are planning
-limits, not a platform-enforced wall-clock or token guarantee. Source reading and
-model turns also consume resources; honor any tighter caller/runtime limit. Count
-all researcher returns, including checkpoints, against the batch budget. A larger
-study can request an extension, but must not silently reset the counter on resume.
+Govern continuation by the original goal, evidence and genuine constraints, not by
+how many cycles or returns have occurred. Do not impose total-return allowances or
+fixed consecutive-no-progress stops, or replace one such cap with another. Keep
+cycle counts as historical accounting, not permission to continue. Record actual
+resource usage and user/platform limits with their source; do not invent a total
+research budget. Keep experiment commands time-limited and respect existing access,
+cost and runtime restrictions. A command timeout calls for a checkpoint and review,
+not automatic termination of other useful authorized research.
+
+When work yields no new relevant evidence, diagnose why: revisit the method,
+measurement, assumptions and alternatives against the goal. Continue with a revised
+approach when informative authorized work remains. Do not repeat an unchanged
+unproductive method merely to keep running. If no useful path can proceed, identify
+the concrete evidence, missing dependency or user decision that makes it a genuine
+blocker; the length of a no-progress streak is not itself that evidence.
+
+On supported resumption after a counter-based stop, preserve prior returns, evidence
+and dated assessments. Record the approved policy change in current study state and
+resume from the unresolved goal; do not reset the history, demand a numbered
+extension or ask again for authority the user already gave.
 
 Choose the next bounded question that closes an original-goal gap. The researcher
 owns detailed methods; specify the question and evidence bar, not the hoped-for
@@ -62,22 +74,21 @@ Check earlier findings against new artifacts before closing them.
 
 ## Decide and continue
 
-- **Continue:** useful work remains within the agreed goal, permissions and remaining
-  budget. Write a new numbered assignment referencing unresolved findings and hand
-  it off in the same turn. Do not merely tell the user that more research is needed.
+- **Continue:** useful work remains within the agreed goal, permissions and actual
+  resource constraints. Write a new numbered assignment referencing unresolved
+  findings and hand it off in the same turn. Do not merely tell the user that more research is needed.
 - **Complete:** all agreed investigation requirements are satisfied or resolved by
   defensible evidence, decisive claims have independent checks, and methods, evidence,
   scope and limitations are inspectable. A well-supported rejection of a hypothesis
   can qualify. State what is and is not established.
 - **Blocked / Decision needed:** no useful authorized next work can proceed because
-  of a real dependency or user decision. Name what was attempted, who can resolve
-  it and the exact restart action; complete unrelated useful checks first.
-- **Budget exhausted:** a resource/batch limit or the no-progress limit is reached.
-  Deliver partial findings and unverified requirements with an extension proposal;
-  do not label them complete or automatically start another loop.
+  of a real dependency, unavailable resource or user decision. Name the actual
+  constraint, what was attempted, who can resolve it and the exact restart action;
+  complete unrelated useful checks first. A paid/cloud resource, external contact
+  or publication still needs separate authorization.
 - **Paused:** the user explicitly asks to pause; record the checkpoint and stop.
 
-Record the review, update the study's state/budget pointers, and produce the
+Record the review, update the study's state and resource records, and produce the
 file-backed result before the agent's post-work transition. A terminal result has
 no internal return route: deliver the assessment to the user/caller (or a matching
 parent route) and stop. A later user decision or supported resume message can

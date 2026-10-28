@@ -1,0 +1,24 @@
+{
+  "status": "all preflight assertions passed",
+  "recorded_utc": "2026-10-28T14:10:56.554773+00:00",
+  "evaluation_ids": [
+    "n1",
+    "n2",
+    "n3",
+    "n4",
+    "d1",
+    "d2",
+    "d3",
+    "d4",
+    "b1",
+    "b2",
+    "b3",
+    "b4"
+  ],
+  "evaluation_rows": 12,
+  "smoke_rows_excluded": 2,
+  "source_sha256": {
+    "sources/cases.csv": "25d07594722389f069659c063a2ce0f0e12c83e9c180a67de2cf086023ce6182",
+    "sources/evaluate.py": "3b2615cb92debca462ccc6a0f971d7b1f263091bc09dd9969254f918944bc896"
+  }
+}

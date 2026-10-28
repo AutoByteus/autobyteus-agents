@@ -1,0 +1,26 @@
+{
+  "started_utc": "2026-10-28T14:10:56.554861+00:00",
+  "argv": [
+    "python3",
+    "-B",
+    "sources/evaluate.py",
+    "--split",
+    "evaluation"
+  ],
+  "timeout_seconds": 30,
+  "requested_ids": [
+    "n1",
+    "n2",
+    "n3",
+    "n4",
+    "d1",
+    "d2",
+    "d3",
+    "d4",
+    "b1",
+    "b2",
+    "b3",
+    "b4"
+  ],
+  "requested_row_count": 12
+}

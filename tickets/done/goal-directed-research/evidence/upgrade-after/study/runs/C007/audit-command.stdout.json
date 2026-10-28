@@ -1,0 +1,13 @@
+{
+  "status": "all self-audit assertions passed",
+  "audit": "runs/C007/audit.json",
+  "matching_outputs": [
+    "evaluation.stdout.json",
+    "evaluation.stderr.txt",
+    "per-case.csv",
+    "failures.json",
+    "comparison.json",
+    "validation.json"
+  ],
+  "S003_fields_all_agree": true
+}

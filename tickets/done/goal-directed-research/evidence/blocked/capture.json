@@ -1,0 +1,86 @@
+{
+  "captured_at_utc": "2026-10-28T14:03:48.089140+00:00",
+  "case": "blocked",
+  "team_run_id": "supervised_research_team_d81caaf38c554b9ea88a54d1215be90c",
+  "app_package_version": "0.1.1",
+  "source_manifest": {
+    "agents/research-supervisor/agent-config.json": {
+      "sha256": "b8396b1165d37f062ffcc8084087a57bf55eb941f255f154667637ad65de8973"
+    },
+    "agents/research-supervisor/agent.md": {
+      "sha256": "c31ab0648748fb99694b87f71b7059bb16b6ee674d02d5dc78aeb8832baa8f42"
+    },
+    "agents/research-supervisor/skills/research-supervision/SKILL.md": {
+      "sha256": "3cf9ae6c035e28168429cfbee76094b9c5fb1266f894c2441e2aa6561720648d"
+    },
+    "agents/research-supervisor/skills/research-supervision/research-contract.md": {
+      "sha256": "cea53663c52b84f975a1a664227819878b1dcdeffa6934cfa703b7123d8b7805",
+      "symlink": "../../../../shared/research-contract.md"
+    },
+    "agents/researcher/agent-config.json": {
+      "sha256": "8221c7e1ca1dc382626c0a8e7d29ca3fae4bf2055249f07888486196a32d350a"
+    },
+    "agents/researcher/agent.md": {
+      "sha256": "a940e751457147afe27dda47de7b037a3806d034a1149741054d5467c17b5d36"
+    },
+    "agents/researcher/skills/evidence-research/SKILL.md": {
+      "sha256": "8c53cc13aa04607a43351c8e3df6da393c72f71d6e4bf8814924489f1e358e43"
+    },
+    "agents/researcher/skills/evidence-research/research-contract.md": {
+      "sha256": "cea53663c52b84f975a1a664227819878b1dcdeffa6934cfa703b7123d8b7805",
+      "symlink": "../../../../shared/research-contract.md"
+    },
+    "shared/research-contract.md": {
+      "sha256": "cea53663c52b84f975a1a664227819878b1dcdeffa6934cfa703b7123d8b7805"
+    },
+    "team-config.json": {
+      "sha256": "eb5d6c2c31e22053aaa3a4c42b7fb4ddd3812db5c251eb155bf3c1093fac562c"
+    },
+    "team.md": {
+      "sha256": "d355f782bfb21290949e1636b9d7206052cc5148ee11528285e3de036d738fdc"
+    }
+  },
+  "study_manifest": {
+    "checks/C001/check_source_access.py": {
+      "sha256": "eca41efc121bffcf58a7d95f551b83f5ae5750d8096196315cf96285ad78f9b9"
+    },
+    "checks/C001/review-provenance.txt": {
+      "sha256": "215b032a49c69565d9a95b321cebe0ea50af9ecf03e83026d0d36db188f88a0a"
+    },
+    "checks/C001/source-access.exit-code": {
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "checks/C001/source-access.json": {
+      "sha256": "15f9a3565e80c2dbafeb6d6b0584e0d1400cb9bfc451440002f3d29a5a9466af"
+    },
+    "checks/C001/source-access.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cycles/C001/assignment.md": {
+      "sha256": "9ebc3d27d84e3936636940f0c17fb187ad6c08d90390cb98c287ecb31e2d7e45"
+    },
+    "cycles/C001/review.md": {
+      "sha256": "cde45f9067d9c777cdad3a51d6e20f2aa59d98d5d6df9752d3c1ed9bc65b2829"
+    },
+    "evidence.md": {
+      "sha256": "b1777a65adb9fe61049a3fc66b1f422214417dc0b47b7fbeec854588d0de7831"
+    },
+    "follow-ups.md": {
+      "sha256": "bb608fca65c112c1a551ff08ba861e02f05d1368e25a27f86b45985b28c13d95"
+    },
+    "source-location.txt": {
+      "sha256": "ae72ab54c48f83b52e7c51d6ae1587988d61207dec8b4681dc4ff8425eeb5c4e"
+    },
+    "study.md": {
+      "sha256": "199b485076997d31938f8aab32225a10c662bea3cfa7f2bd8a9edc1bac00628f"
+    }
+  },
+  "exclusions": [
+    "reasoning",
+    "system_instruction",
+    ".codex",
+    "__pycache__",
+    ".git"
+  ],
+  "history_note": "Pre-existing cycles were seeded synthetic records, not claimed live executions."
+}

@@ -1,0 +1,70 @@
+Broad immutable-archive scan (expected relocation exception):
+tickets/done/goal-directed-research/evidence/stalled/study/checks/C010/verification-01/intake-study.md: checks/C009/intake-study.md (missing target)
+tickets/done/goal-directed-research/evidence/stalled/study/checks/C010/verification-01/intake-study.md: cycles/C009/report.md (missing target)
+tickets/done/goal-directed-research/evidence/stalled/study/checks/C010/verification-01/intake-study.md: cycles/C009/review.md (missing target)
+tickets/done/goal-directed-research/evidence/stalled/study/checks/C010/verification-01/intake-study.md: cycles/C010/assignment.md (missing target)
+tickets/done/goal-directed-research/evidence/stalled/study/checks/C010/verification-01/intake-study.md: cycles/C010/handoff.md (missing target)
+5 broken link(s), 0 unnamed link(s)
+
+PASS: all five links resolve against the snapshot's original study root; bytes preserved.
+Current documents + all other archive Markdown:
+0 broken link(s), 0 unnamed link(s)
+
+$ python3 tickets/done/create-supervised-research-team/validation/validate_package.py agent-teams/supervised-research-team
+PASS research_supervisor: frontmatter, local ref, tools and skill attachment
+PASS researcher: frontmatter, local ref, tools and skill attachment
+PASS coordinator, unique rooted handoffs, symlinks, no unfinished markers
+{
+  "agents/research-supervisor/agent-config.json": {
+    "sha256": "b8396b1165d37f062ffcc8084087a57bf55eb941f255f154667637ad65de8973"
+  },
+  "agents/research-supervisor/agent.md": {
+    "sha256": "c31ab0648748fb99694b87f71b7059bb16b6ee674d02d5dc78aeb8832baa8f42"
+  },
+  "agents/research-supervisor/skills/research-supervision/SKILL.md": {
+    "sha256": "3cf9ae6c035e28168429cfbee76094b9c5fb1266f894c2441e2aa6561720648d"
+  },
+  "agents/research-supervisor/skills/research-supervision/research-contract.md": {
+    "symlink": "../../../../shared/research-contract.md",
+    "sha256": "cea53663c52b84f975a1a664227819878b1dcdeffa6934cfa703b7123d8b7805"
+  },
+  "agents/researcher/agent-config.json": {
+    "sha256": "8221c7e1ca1dc382626c0a8e7d29ca3fae4bf2055249f07888486196a32d350a"
+  },
+  "agents/researcher/agent.md": {
+    "sha256": "a940e751457147afe27dda47de7b037a3806d034a1149741054d5467c17b5d36"
+  },
+  "agents/researcher/skills/evidence-research/SKILL.md": {
+    "sha256": "8c53cc13aa04607a43351c8e3df6da393c72f71d6e4bf8814924489f1e358e43"
+  },
+  "agents/researcher/skills/evidence-research/research-contract.md": {
+    "symlink": "../../../../shared/research-contract.md",
+    "sha256": "cea53663c52b84f975a1a664227819878b1dcdeffa6934cfa703b7123d8b7805"
+  },
+  "shared/research-contract.md": {
+    "sha256": "cea53663c52b84f975a1a664227819878b1dcdeffa6934cfa703b7123d8b7805"
+  },
+  "team-config.json": {
+    "sha256": "eb5d6c2c31e22053aaa3a4c42b7fb4ddd3812db5c251eb155bf3c1093fac562c"
+  },
+  "team.md": {
+    "sha256": "d355f782bfb21290949e1636b9d7206052cc5148ee11528285e3de036d738fdc"
+  }
+}
+
+$ python3 tickets/done/goal-directed-research/validation/check_policy.py agent-teams/supervised-research-team
+PASS: no old count gate; goal-directed review, actual constraints, explicit pause,
+history, one-assignment handoff, evidence independence and recovery safeguards remain.
+Limit: lexical regression checks are not a proof of arbitrary future model behavior.
+
+$ python3 tickets/done/goal-directed-research/validation/verify_evidence.py tickets/done/goal-directed-research agent-teams/supervised-research-team
+PASS upgrade-after: researcher ['C007/replay/evaluation.stdout.json', 'C007/primary/evaluation.stdout.json']; supervisor ['C007/full-review/evaluation.stdout.json']; delivered loop, same-source reproducibility.
+PASS stalled: researcher ['C010/full-01/evaluation.stdout.json']; supervisor ['C010/verification-01/replay.stdout.json']; delivered loop, same-source reproducibility.
+PASS: hashes, historical artifacts, same upgrade members, update notice, no delegates, blocked/pause without dispatch.
+Limits: review judgments require human-readable inspection; these are finite synthetic tests, not generalization or crash recovery.
+
+PASS: final Python helper syntax; fixture regeneration exercised by history verification.
+
+Staged-check adjustment: preserve the immutable researcher report's Markdown hard breaks with a file-specific attribute; trim cosmetic alignment spaces in the generated wording-comparison log. No study bytes or hashes changed.
+
+PASS: staged whitespace check, including every new artifact.

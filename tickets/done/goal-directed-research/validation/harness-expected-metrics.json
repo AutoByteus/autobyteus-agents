@@ -1,0 +1,22 @@
+{
+  "n": 12,
+  "candidate_correct": 7,
+  "baseline_correct": 8,
+  "families": {
+    "nominal": {
+      "n": 4,
+      "candidate_correct": 3,
+      "baseline_correct": 4
+    },
+    "shifted": {
+      "n": 4,
+      "candidate_correct": 2,
+      "baseline_correct": 2
+    },
+    "boundary": {
+      "n": 4,
+      "candidate_correct": 2,
+      "baseline_correct": 2
+    }
+  }
+}

@@ -1,5 +1,7 @@
 # Live-check recipe and observed setup
 
+> Historical baseline recipe, including the old counter-stop expectation. For current regression coverage see [Task 8 validation](../../goal-directed-research/validation.md); archived fixtures and evidence remain unchanged.
+
 Run only in a disposable instance. The original runtime directory
 `/tmp/supervised-research-check.cuWmHC` and port 45051 were removed after evidence
 collection. Replace them with a fresh root/free port; never target the user's node.
