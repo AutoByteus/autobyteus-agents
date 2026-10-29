@@ -5,6 +5,7 @@
     "update_project",
     "list_project_tasks",
     "search_project_tasks",
+    "search_memory",
     "get_project_task",
     "create_task",
     "update_task",

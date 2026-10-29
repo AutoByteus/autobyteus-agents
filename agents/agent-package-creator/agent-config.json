@@ -4,6 +4,7 @@
     "read_file",
     "write_file",
     "run_bash",
+    "search_memory",
     "get_handoff_rules",
     "send_message_to"
   ],
