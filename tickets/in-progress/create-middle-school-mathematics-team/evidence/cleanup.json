@@ -18,12 +18,7 @@
   "earlierPilotRuns": "Three earlier pilot teams were terminated with successful mutation responses before each subsequent run.",
   "unrelatedFilesCheckedBeforeMerge": 11,
   "unrelatedDifferencesBeforeMerge": [
-    "task-plans/board.md",
-    "tickets/in-progress/job-search-application-team/agent-package-analysis.md",
-    "tickets/in-progress/job-search-application-team/agent-package-result.md",
-    "tickets/in-progress/job-search-application-team/source-inventory.json",
-    "tickets/in-progress/job-search-application-team/sync-reassessment-evidence.json",
-    "tickets/in-progress/job-search-application-team/unrelated-baseline.json"
+    "task-plans/board.md"
   ],
   "testProcessesRemaining": [],
   "testPortClosed": true,
