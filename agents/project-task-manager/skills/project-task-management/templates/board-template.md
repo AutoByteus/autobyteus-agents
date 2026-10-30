@@ -1,6 +1,7 @@
 # Board — <Project name>
 
 - Project ID: `<project_id>`
+- Last follow-up audit: <date, or none yet>
 
 ## Workers
 
@@ -38,6 +39,6 @@ Tasks you delegated that are not yet closed. Copy ID: what `delegate_task` takes
 
 Recent Tasks that are DONE or CANCELLED, kept for follow-up Tasks to the same copy or for reopening. Keep the row of the copy that cut the latest release: the next release goes to it as a follow-up. Move other rows to an archive file beside the board once neither is likely.
 
-| Key | Task | Worker | Copy ID | Message ID | Closed |
-| --- | --- | --- | --- | --- | --- |
-| `<key>` | <short title> | `<address>` | `<target_team_run_id or target_agent_run_id>` | `<agent run ID>` | <DONE or CANCELLED, date> |
+| Key | Task | Worker | Copy ID | Message ID | Closed | Follow-ups → homes |
+| --- | --- | --- | --- | --- | --- | --- |
+| `<key>` | <short title> | `<address>` | `<target_team_run_id or target_agent_run_id>` | `<agent run ID>` | <DONE or CANCELLED, date> | <e.g. FU-1, FU-3 → shop-51; FU-2 → shop-48; or none> |
