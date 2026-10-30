@@ -1,4 +1,0 @@
-PASS upgrade-after: researcher ['C007/replay/evaluation.stdout.json', 'C007/primary/evaluation.stdout.json']; supervisor ['C007/full-review/evaluation.stdout.json']; delivered loop, same-source reproducibility.
-PASS stalled: researcher ['C010/full-01/evaluation.stdout.json']; supervisor ['C010/verification-01/replay.stdout.json']; delivered loop, same-source reproducibility.
-PASS: hashes, historical artifacts, same upgrade members, update notice, no delegates, blocked/pause without dispatch.
-Limits: review judgments require human-readable inspection; these are finite synthetic tests, not generalization or crash recovery.

@@ -1,7 +1,0 @@
-# Case: ATW-05
-# Step: Run 1: review decision (draft sent before the brief)
-# App: isolated instance iso-56497-602e of the installed AutoByteus 1.5.6-beta.7 (own data root); package: branch article-team-deep-researcher (/tmp/atdr) imported as a local package
-# Runtime: claude_agent_sdk, model haiku | Date: 2026-10-19
-
-4:- Decision: `Evidence Gap`
-120:## Decision Rationale

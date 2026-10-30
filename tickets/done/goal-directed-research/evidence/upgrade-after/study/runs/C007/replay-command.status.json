@@ -1,1 +1,0 @@
-{"command":"timeout 30s python3 -B runs/C007/run.py --out runs/C007/replay","exit_code":0}

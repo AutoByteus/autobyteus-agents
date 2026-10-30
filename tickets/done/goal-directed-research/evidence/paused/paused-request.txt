@@ -1,1 +1,0 @@
-The study is at /tmp/research-goal-check.XJcMUu/studies/paused. Pause the research now; do not dispatch any more work. Use your attached research-supervision skill to save a truthful checkpoint and preserve the evidence. Do not infer completion or perform experiments. All writes stay in this study.

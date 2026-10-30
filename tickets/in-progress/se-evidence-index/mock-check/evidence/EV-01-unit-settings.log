@@ -1,6 +1,0 @@
-# Command: pnpm vitest run tests/unit/settings/theme-toggle.test.ts
-# Commit: 4f2a9c1 (ticket branch dark-mode-toggle) | Env: macOS 15.5, Node 22.23.1 | Date: 2026-10-18 | Case: API-01
- ✓ theme toggle > persists the chosen theme across reloads (12 ms)
- ✓ theme toggle > falls back to the system theme when nothing is saved (4 ms)
- Test Files  1 passed (1)
-      Tests  2 passed (2)

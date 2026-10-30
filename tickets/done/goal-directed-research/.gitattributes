@@ -1,4 +1,0 @@
-# Preserve the observed CSV bytes and hashes, including CRLF from csv.writer.
-evidence/**/*.csv -text whitespace=cr-at-eol
-# This immutable report uses Markdown's two-space hard line breaks.
-evidence/stalled/study/cycles/C010/report.md whitespace=-blank-at-eol
