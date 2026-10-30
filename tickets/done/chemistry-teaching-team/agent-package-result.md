@@ -44,7 +44,7 @@ A live team run on a copy of her folder produced all of this from that one line,
 ### Added
 - `agents/chemistry-module-designer/` (`agent.md`, `agent-config.json`, `skills/chemistry-teaching-module/`: `SKILL.md`, `references/chemistry-and-safety.md`, `assets/module-shell/` with 4 parts and `build.py`, `scripts/check_equations.py`, `scripts/check_module.py`)
 - `agent-teams/chemistry-teaching-team/` (`team.md`, `team-config.json`, `agents/curriculum-planner/` with `agent.md`, `agent-config.json`, `skills/chemistry-curriculum-planning/`: `SKILL.md`, `scripts/build_library_index.py`, `templates/plan-template.html`)
-- `tickets/in-progress/chemistry-teaching-team/` (this result and evidence)
+- `tickets/done/chemistry-teaching-team/` (this result and evidence)
 
 ### Modified
 - `README.md`: index rows for the agent and the team
