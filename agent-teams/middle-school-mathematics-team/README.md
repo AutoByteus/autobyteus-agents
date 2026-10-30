@@ -41,11 +41,9 @@ The authoring request finishes without asking the observer to role-play a learne
 
 ## Evidence and boundaries
 
-[This refactor's result](../../tickets/in-progress/refactor-animated-math-team/agent-package-result.md)
-and [analysis](../../tickets/in-progress/refactor-animated-math-team/agent-package-analysis.md)
-record the actual tested configuration, demonstration and remaining limits.
-[Earlier experiments](../../tickets/in-progress/create-middle-school-mathematics-team/experiments.md)
-are historical evidence for the original two-member chat design, not validation
+This refactor's result and analysis, kept with the maintainers' work records
+outside this repository, record the actual tested configuration, demonstration
+and remaining limits. Earlier experiments are historical evidence for the original two-member chat design, not validation
 of the new frontend workflow. Earlier model-specific routing failures remain a
 reason to rehearse your chosen model/runtime rather than assume equivalence.
 

@@ -1,8 +1,0 @@
-PASS: JSON, frontmatter, three members, attached skills, links, coordinator, unique rooted routes
-PASS: four exact example keys, divide-first alternative, negative-model boundary, three fault counterexamples, 1331 distribution samples (not a proof)
-PASS: accessible SVG structure, six counters, aligned nonoverlapping equal-height rectangle parts
-LIMIT: arithmetic/structure checks do not validate all prose, model behavior, rendering, or learning outcomes
-Skill is valid!
-Skill is valid!
-Skill is valid!
-0 broken link(s), 0 unnamed link(s)

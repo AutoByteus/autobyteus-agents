@@ -1,4 +1,0 @@
-cycles/C001/assignment.md: OK
-cycles/C001/report.md: OK
-cycles/C001/review.md: OK
-runs/smoke.json: OK

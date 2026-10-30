@@ -11,6 +11,8 @@ This repository contains reusable AutoByteus agent, agent-team, and agent-org de
 | [`agent-orgs/`](agent-orgs) | Agent Orgs (`org.md`, `org-config.json`) that mount Teams and Agents and own cross-team routing. |
 | [`docs/`](docs) | Authoring documentation. |
 
+Only packages and repository files are committed here. Work records (`tickets/`, `task-plans/`, `.codex/`) stay local: `.gitignore` excludes them.
+
 ## Designing And Updating Agent Packages
 
 A Skill owns reusable task procedure; an Agent owns a role and its attachments;

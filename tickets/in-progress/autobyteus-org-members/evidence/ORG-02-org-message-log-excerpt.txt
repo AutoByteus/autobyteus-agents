@@ -1,8 +1,0 @@
-# Case: ORG-02..04
-# Step: Org message log after the three routing tests (sender run ID -> content)
-# App: isolated instance iso-49453-e799 of the installed AutoByteus 1.5.6-beta.7 (own data root); package: branch autobyteus-org-members (/tmp/aorg) imported as a local package
-# Runtime: claude_agent_sdk, model haiku | Date: 2026-10-19
-
-agent_package_creator_53cd8cfb8f564b738f3507d9a54b9e69 -> Routing test: package result for Task test-1 is complete; result at /tmp/aorg-iso-ws/result.md
-agent_package_creator_27a23fa8e2294d01b15a0a906a773916 -> Delegated routing test complete.
-solution_designer_b2d9f56c9b994751a676f14f2cdbf976 -> Team-copy routing test complete.

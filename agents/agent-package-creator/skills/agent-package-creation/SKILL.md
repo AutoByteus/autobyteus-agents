@@ -11,7 +11,7 @@ Read [package-design-principles.md](references/package-design-principles.md) for
 
 ## Inputs and operation
 
-Identify the requested outcome, repository and path, target kind (`skill`, `agent`, `team`, or `org`), users, constraints, approvals, and artifact workspace. Choose the source root and artifact workspace from the user's direction or confirmed repository conventions; if neither resolves them, ask before writing. When the package repository is public, keep the artifact workspace outside it, for example in the user's private repository: analyses, results, and evidence carry absolute paths and the user's data.
+Identify the requested outcome, repository and path, target kind (`skill`, `agent`, `team`, or `org`), users, constraints, approvals, and artifact workspace. Choose the source root and artifact workspace from the user's direction or confirmed repository conventions; if neither resolves them, ask before writing. When the package repository is public, keep the artifact workspace out of its commits, in a folder the repository ignores (such as `tickets/` here) or outside it: analyses, results, and evidence carry absolute paths and the user's data.
 
 Use three operations:
 
