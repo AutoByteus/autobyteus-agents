@@ -29,7 +29,7 @@ This repository is public, so nothing private about its maintainers may be commi
 git config core.hooksPath .githooks
 ```
 
-It runs [`check-private-info.py`](agents/agent-package-creator/skills/agent-package-creation/scripts/check-private-info.py) on the staged changes and the commit message, and stops a commit that adds an email address, phone number, home-folder path, secret, agent server-data or journal path, or a term from your private terms list (kept outside this repository; see the script's `--help`). It also stops a commit whose author email is not a GitHub noreply address.
+It runs [`check-private-info.py`](agents/agent-package-creator/skills/agent-package-creation/scripts/check-private-info.py) on the staged changes and the commit message, and stops a commit that adds an email address, phone number, home-folder path, secret, agent server-data or journal path, or a term from your private terms list: names, accounts, private repositories, and personal topics such as career plans (kept outside this repository; see the script's `--help`).
 
 ## Standalone Agents
 

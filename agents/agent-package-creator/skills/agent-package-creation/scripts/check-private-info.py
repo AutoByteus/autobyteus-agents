@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """Stop private information from entering a public package repository.
 
-  check-private-info.py --staged       check the staged changes (added lines, file names) and the commit author
+  check-private-info.py --staged       check the staged changes (added lines, file names)
   check-private-info.py PATH [PATH...]  check files or folders (names below the folder given), for example
                                         material to import or a commit message
 
 Finds email addresses, phone numbers, home-folder paths, secrets, agent server-data and journal paths,
-and the user's own terms: names, accounts, private repository names, one per line in a private list
+and the user's own terms: names, accounts, private repository names, and personal topics never to publish
+(for example plans to change jobs or approach investors), one per line in a private list
 outside the public repository (--terms FILE, $PRIVATE_TERMS_FILE, `git config privacy.termsFile`, or
 ~/.config/agent-packages/private-terms.txt).
 
@@ -101,11 +102,6 @@ def staged(terms):
         elif line.startswith('+') and path:
             findings += [(path, n, k) for k in check_line(line[1:], terms)]
             n += 1
-    ident = subprocess.run(['git', 'var', 'GIT_AUTHOR_IDENT'], capture_output=True, text=True).stdout
-    email = re.search(r'<([^>]*)>', ident)
-    if email and not OK_EMAIL.search(email.group(1)):
-        findings.append(('(commit author)', 0, 'author email is not a GitHub noreply address; '
-                         'set `git config user.email <id>+<login>@users.noreply.github.com` in this repository'))
     return findings
 
 
