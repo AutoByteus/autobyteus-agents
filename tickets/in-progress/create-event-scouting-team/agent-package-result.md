@@ -17,7 +17,7 @@ Update after a simulated run against live Luma (`agent-package-analysis.md` in t
 
 ## Ownership and design decisions
 
-- Topology: two members suffice. A separate profile strategist (as in the private job-search team) was not added; the profile is small and has no independent decision.
+- Topology: two members suffice. A separate profile strategist was not added; the profile is small and has no independent decision.
 - Judgment, tracker, shortlist, approvals: Event Scout skill. Website actions: Operator (unchanged).
 - Recipients: `team-config.json` only; one requester, so no `Requested by` line is needed.
 - Registration safety: the request records the user's approval, the exact event, the approved answers, and the price, so the Operator's confirmation gate accepts it; any unapproved question or price change returns `Needs Decision`.
@@ -51,7 +51,7 @@ Update after a simulated run against live Luma (`agent-package-analysis.md` in t
 
 - Result: `/Users/normy/autobyteus_org/autobyteus-agents-event-scouting/tickets/in-progress/create-event-scouting-team/agent-package-result.md`
 - Analysis: N/A (`create`)
-- Design/requirements: user request; Marketing Team and the private Job Search Application Team as reference patterns
+- Design/requirements: user request; Marketing Team as a reference pattern
 - Validation evidence: command output summarized below
 - Generated package artifacts: None
 
