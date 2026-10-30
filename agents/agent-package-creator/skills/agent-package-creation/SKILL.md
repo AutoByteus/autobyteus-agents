@@ -11,7 +11,7 @@ Read [package-design-principles.md](references/package-design-principles.md) for
 
 ## Inputs and operation
 
-Identify the requested outcome, repository and path, target kind (`skill`, `agent`, `team`, or `org`), users, constraints, approvals, and artifact workspace. Choose the source root and artifact workspace from the user's direction or confirmed repository conventions; if neither resolves them, ask before writing.
+Identify the requested outcome, repository and path, target kind (`skill`, `agent`, `team`, or `org`), users, constraints, approvals, and artifact workspace. Choose the source root and artifact workspace from the user's direction or confirmed repository conventions; if neither resolves them, ask before writing. When the package repository is public, keep the artifact workspace outside it, for example in the user's private repository: analyses, results, and evidence carry absolute paths and the user's data.
 
 Use three operations:
 
@@ -55,6 +55,8 @@ Write each change by the shared authoring standard, the same one an analysis jud
 
 Design handoffs as [package-design-principles.md](references/package-design-principles.md) §2 and §6 describe. Keep human documentation navigational rather than a competing runtime procedure.
 
+**Keep private information out of public packages.** Other people install and clone a public package repository, so a package there carries nothing private about the user: names, contact details, employers or clients, CV and application material, family and friends, journals and chats, home-folder paths, secrets, private repository names, or data from private repositories and server data. Material from a private source or from the user's own work enters a public package only generalized (neutral names, `/Users/<user>/`, `user@example.com`); otherwise it stays in a private repository. Check such material with [check-private-info.py](scripts/check-private-info.py) `PATH...` before you copy it in. The user's own terms (names, accounts, private repository names) are in a private list outside the repository, which the script's `--help` locates; when the script reports none, tell the user, and add a private term you meet to that list, never to a public file.
+
 ### 4. Validate and recover
 
 Validate what the selected kind and changed files require, and record observed evidence:
@@ -71,6 +73,8 @@ Correct an in-scope canonical owner and rerun affected checks. When a finding sh
 ### 5. Persist, deliver, and route the result
 
 Before handoff, read [result-and-handoff-contract.md](references/result-and-handoff-contract.md). For `analyze`, the analysis file from step 2 is the result. For `create` and `update`, write one result using [agent-package-result-template.md](templates/agent-package-result-template.md); an `update` result links its analysis. Record observed validation and limitations; use absolute artifact paths in handoff messages.
+
+Before every commit to a public package repository, run `check-private-info.py --staged` (the repository's `.githooks/pre-commit` runs it when enabled) and fix every finding before committing. Never bypass it with `--no-verify`; mark a line `privacy-check: allow` only when its text is public and general. The script names the file, line, and kind without the text; keep it that way in messages and results.
 
 Deliver the change the way the repository works, usually a pull request, and merge it yourself once it passes step 4: every check the change needs, and, where step 4 calls for a live check, an evaluation that shows the change working as intended (better than the old text, where they were compared). That evidence is the approval, so do not ask the user to approve the merge. Ask first only when the evaluation could not run, was inconclusive, or showed something worse, or when the user asked to review that change. Do not publish, release, or deploy beyond the merge without the user's explicit authorization.
 

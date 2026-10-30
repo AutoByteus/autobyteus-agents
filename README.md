@@ -21,6 +21,16 @@ Team and Org configuration own their respective routing boundaries. Start with:
 - [Agent Package Authoring](docs/agent-package-authoring.md): file responsibilities, packaging, coordinator roles, handoff conventions, examples, and validation.
 - [Agent Package Creation skill](agents/agent-package-creator/skills/agent-package-creation/SKILL.md): the create, analyze, and update workflow used by Agent Package Creator.
 
+## Privacy Check Before Commits
+
+This repository is public, so nothing private about its maintainers may be committed. Enable the pre-commit check once per clone:
+
+```sh
+git config core.hooksPath .githooks
+```
+
+It runs [`check-private-info.py`](agents/agent-package-creator/skills/agent-package-creation/scripts/check-private-info.py) on the staged changes and the commit message, and stops a commit that adds an email address, phone number, home-folder path, secret, agent server-data or journal path, or a term from your private terms list (kept outside this repository; see the script's `--help`). It also stops a commit whose author email is not a GitHub noreply address.
+
 ## Standalone Agents
 
 | Agent | Purpose |
