@@ -1,0 +1,4 @@
+#!/bin/sh
+# Stops a commit that would publish private information (see the Agent Package Creator's
+# check-private-info.py). Enable once per clone: git config core.hooksPath .githooks
+exec python3 "$(git rev-parse --show-toplevel)/agents/agent-package-creator/skills/agent-package-creation/scripts/check-private-info.py" --staged

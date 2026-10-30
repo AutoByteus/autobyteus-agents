@@ -38,6 +38,7 @@ Concrete mistakes found in real package work. The [package design principles](pa
 | 28 | A live check that starts real work | Creator process |
 | 29 | Asking the user what the evidence already answers | Creator process |
 | 30 | More Agents than the work needs | Package design |
+| 31 | Private information in a public package | Creator process |
 
 ## Package design
 
@@ -250,3 +251,10 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Breaks:** [§4](package-design-principles.md#4-apply-one-authoring-standard), grounding: derive what you can from the user's materials and a realistic use, and decide it.
 - **Instead:** Before asking, check each question against the user's files and a realistic day of the user's work; decide what they settle, and report the decision in the result. Ask only where a wrong guess would make the result unusable, in one short line. Give the roles you write the same habit: infer, deliver, let the user correct.
 - **Detect:** For each question in a message to the user, name the evidence you looked at and why it does not settle the question. In skills, search for "ask", "confirm" and "approval" and check that each one names why the role cannot infer the answer.
+
+### 31. Private information in a public package
+
+- **Incident:** An audit of the public agents repository found the user's name in an author style profile, his home-folder paths and server-data paths in committed work records, private group-chat names and admin session URLs in marketer packages removed months earlier but still in history, and his personal email as the author of many commits. People install and clone the repository directly; the user: "very, very important, no private information" (2026-10-30).
+- **Breaks:** [Create or update canonical files](../SKILL.md#3-create-or-update-canonical-files): a public package carries nothing private about the user, and material from private sources enters only generalized.
+- **Instead:** Generalize before writing, keep work records outside a public repository, and run [check-private-info.py](../scripts/check-private-info.py) on imported material and before every commit, with the user's own terms in a private list.
+- **Detect:** `check-private-info.py --staged` before a commit; `check-private-info.py <package folders>` for the current files; for history, the same patterns over every blob reachable from the remote's branches, tags, and pull-request refs.
