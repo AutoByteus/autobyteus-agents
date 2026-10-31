@@ -41,7 +41,9 @@ Use [templates/implementation-revision-record-template.md](templates/implementat
 
 - Accept the package up to design ([handoff.md](references/handoff.md#the-tickets-documents)),
   with the architecture review when it was selected. A missing design or missing
-  post-design classification is an upstream gap, not a review-bypass route.
+  post-design classification is an upstream gap, not a review-bypass route; so
+  is a design spec that shows the user's approval of the design as `Pending`:
+  return it to the Solution Designer instead of waiting.
 - On an implementation-owned `Local Fix`, accept the finding with its source or packaging evidence and the sender's report and revision record; the ticket's other documents stay where they are.
 - Treat the full received package as active implementation context, not just one
   artifact in isolation. Skipping independent review does not waive the design.
