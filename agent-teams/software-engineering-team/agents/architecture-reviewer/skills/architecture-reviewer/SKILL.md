@@ -33,7 +33,7 @@ Use [templates/architecture-review-revision-record-template.md](templates/archit
 ## Upstream Inputs
 
 - Accept the architecture package from the Solution Designer: its documents and supplements ([handoff.md](references/handoff.md#the-tickets-documents)).
-- The package must include `task_size` (`Small`/`Medium`/`Large`), `architectural_risk` (`Low`/`High`), the classification rationale, and a selected `Architecture Review` route. This role normally receives only `Large` or `High` work; if the classification does not justify review, return the routing inconsistency to the Solution Designer instead of reviewing an incorrectly selected gate.
+- The package must include `task_size` (`Small`/`Medium`/`Large`), `architectural_risk` (`Low`/`High`), the classification rationale, and a selected `Architecture Review` route. This role normally receives only `Large` or `High` work; if the classification does not justify review, or the design spec shows the user's approval of the design as `Pending`, return the routing inconsistency to the Solution Designer instead of reviewing.
 - On later review rounds, also accept the existing design review report, architecture review revision record, triggering solution revision entry, and any still-relevant downstream report, revision record, or evidence that caused design rework.
 - Treat the requirements doc, investigation notes, and supplemental task artifacts as active review context, not as substitutes for independent design judgment.
 - Verify that the investigation notes contain the canonical supplement inventory; each supplement is linked from the core artifact it materially supports; its purpose, scope, status, and approval applicability are clear; and it remains consistent with the related core artifacts.
@@ -84,7 +84,7 @@ Do not issue the structural verdict until the behavior basis is sufficiently est
 
 - Hand off as [handoff.md](references/handoff.md) describes. Preserve the task-size and architectural-risk classification in every result.
 - Every handoff carries your own documents: `design-review-report.md` and `architecture-review-revision-record.md`. Add the other files the receiver needs for its next step; you decide which, as [handoff.md](references/handoff.md) describes, and do not forward everything you received. Give absolute paths and attach the files in the reference-files field.
-- On pass, first send the result to the exact returned recipient for the primary pass rule (implementation).
+- On pass, first send the result to the exact returned recipient for the primary pass rule (implementation), with no hold or condition of your own.
 - After the primary handoff succeeds, send the exact returned recipient for the informational pass rule (the Solution Designer) a short notification containing `Pass`, the current `ARCH-REV-*`, applicable `SR-*`, the design-review report path, the primary returned recipient as the next recipient, and `Informational — no action required`.
 - End the stage only after every required pass message succeeds.
 - On `Fail` or `Blocked`, choose `Design Impact`, `Requirement Gap`, or `Unclear` as the failure classification, and route the result through the handoff rules to its owner, normally the Solution Designer. Do not send a failed design to implementation.

@@ -260,8 +260,13 @@ trigger in `design-spec.md`. Classify the completed design's actual scope, not
 an early estimate or the volume of investigation notes.
 
 Confirm that the design and supplements align with the approved requirements,
-resolve material gaps and update the solution revision record. Then classify
-`Architecture Design Complete` and use Result And Handoff. Missing material
+resolve material gaps and update the solution revision record. When the
+direction requires the user's approval of the design before it is built (the
+Task or the user says so), ask the user now, once, before any handoff, as
+step 2 describes, and record the answer in the design spec's approval basis.
+Route only after the user approves; never leave the question to a later role
+or repeat it in later reports. Then classify `Architecture Design Complete` and use Result
+And Handoff. Missing material
 classification evidence is not Low risk: investigate it or return `Blocked`
 with the missing evidence identified, without a forward-ready claim.
 
@@ -367,7 +372,7 @@ Persist owned artifacts and classify the result before routing:
   correction on a returned receipt), a `User/External Prerequisite` blocker, and
   `Waiting For Prerequisite` (a prerequisite Task this ticket waits for, by its
   Task key).
-  A routine approval hold remains in the requirements conversation
+  A routine approval hold remains in your conversation with the user
   rather than triggering a handoff.
 - `Terminal`: verified delivery receipt as defined below; no repeated delivery.
 

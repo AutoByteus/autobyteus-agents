@@ -7,6 +7,7 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Current solution revision ID: `SR-*`
 - Approved requirements baseline / revision, who approved, and approval reference:
 - Behavior-defining supplements and their approval references:
+- User approval of the design, when the direction requires it: `Not required` / `Obtained` (who, when, reference) / `Pending`
 - Design status: `Draft` / `Ready` / `Needs Revision` / `Blocked`
 - Canonical investigation-notes path:
 - Authorities read (design reading gate; file and date): `references/architecture-design.md`, `references/design-principles.md`, applicable project `DESIGN.md` path(s) (or `No project DESIGN.md found`); `references/design-examples.md` sections, if used:
