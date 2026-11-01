@@ -66,28 +66,51 @@ Research and analysis data goes under `data/`.
 
    If the request came as a handoff file, read it first and treat it as the source of truth.
 2. Load the voice, each target channel's `content-guide.md`, and the positioning file when the content touches the product. Load `marketing-strategy/strategy.md` when it exists:
-   - If its next review date has passed, tell the user a performance review is due (step 9).
+   - If its next review date has passed, tell the user a performance review is due (step 10).
    - If it has bets with status `testing` for this channel, propose which bet this piece applies, or none. Record the user's choice as `strategy_bet` in `metadata.json` and draft to it.
 3. Find or create the conversation and work folder (see Content folders). Save the source before drafting:
    - `source-material.md` for your own post: user notes, links, media, and constraints.
    - `source-post.md` for a reply or comment: the full visible post or comment being answered, its URL, and its media.
 
-   Read public links the user supplies with `read_url`. If the source needs the browser or a login (a target post, a paywall-prone article), ask the Computer Use Operator (step 5).
+   Read public links the user supplies with `read_url`. If the source needs the browser or a login (a target post, a paywall-prone article), ask the Computer Use Operator (step 6).
 4. Ask only for inputs you cannot infer and that would change the draft.
 
-## 2. Draft and revise
+## 2. Review earlier work on the topic
 
-1. Draft to the voice and channel guide. Run the guide's checklist.
+Do this before the first draft of every piece, including drafting-only requests. Earlier approved pieces hold the message, wording, and visual proof the user already chose, so a new piece builds on them. Reading a few past posts for style does not replace this step.
+
+1. From the brief or target post, list the core topic, its themes, and search terms. Include word variants and what we would say in answer, not only the post's own words.
+2. Search the text of `final-approved*` files in every channel folder. Use `published-index.md` to see which results were published and when; it has no topic column and may not list older pieces, so it cannot be the only search. Other people's captures and unapproved drafts are not our position.
+3. Read the closest pieces, newest first, until more add nothing new. Check each one's `media/` folder and `media.md`, and open its images and video frames to see what each proves. Do this even when the brief asks for no media: proof the user approved earlier is often what a new piece should reuse.
+4. Save `precedent-review.md` in the work folder. A short reply gets a short file:
+   - the terms searched
+   - the pieces read: path, date, live URL, and the media it used
+   - the established position and the key phrases, quoted
+   - facts and numbers, with the date each was stated
+   - reusable media: path, what it shows, its date (`none` only when the pieces read have none)
+   - what this piece will carry over (by default the established position, key phrases, and media), what it leaves out and why, and what it will add or change
+
+   If the search finds nothing, save the terms searched and `none found`.
+
+When feedback brings in a new theme, search it too and update the file before the next draft.
+
+The brief, the user's framing, and the current strategy and positioning outrank a precedent, and a newer precedent outranks an older one; tell the user about a conflict you find. A precedent approves nothing: reused wording or media goes through step 4 like any other. A number or product claim was true on its date, so give that date or confirm it is still true. Reuse phrases and proof rather than reposting a whole piece.
+
+A cross-post of an already approved package has no new draft and skips this step.
+
+## 3. Draft and revise
+
+1. Draft to the voice, the channel guide, and the plan in `precedent-review.md`. Run the guide's checklist.
 2. Save `draft-vN` before showing it:
    - `.txt` holds the exact publishable text.
    - `.md` is a review package when media is involved: exact text, ordered media, and the approval question.
-3. Show the exact draft and ask the user to approve or request changes.
+3. Show the exact draft, name the earlier pieces and media it builds on, and ask the user to approve or request changes.
 4. On feedback, revise, re-run the checklist, and save the next `draft-vN`. A user correction of wording or framing is binding for the run.
 5. **Learn lasting preferences.** When feedback states a rule beyond this piece, tell the user which file you will record it in, for example "I'll add 'LinkedIn replies: under 600 characters' to the LinkedIn guide". Rules of this kind include "too wordy", "don't soften my wording", and "never open with a question". After the piece is approved, write the rule into the voice or channel guide unless the user declined. Edit the existing rule if one covers it; do not add a contradiction.
 
-Never invent claims, metrics, quotes, customers, endorsements, or personal experience. When a draft depends on facts you do not have, such as a comparison with other products, market data, a statistic, or a quote, get them through research (step 10) before drafting that part. Keep the user's framing. Do not soften, decorate, or reinterpret it.
+Never invent claims, metrics, quotes, customers, endorsements, or personal experience. When a draft depends on facts you do not have, such as a comparison with other products, market data, a statistic, or a quote, get them through research (step 11) before drafting that part. Keep the user's framing. Do not soften, decorate, or reinterpret it.
 
-## 3. Approve
+## 4. Approve
 
 Approval is per channel and covers the exact text, media set and order, and destination. Approval on another channel is not approval here. The exception is when the user explicitly asks to publish the same approved package on another channel; that instruction is the approval for the exact cross-post.
 
@@ -99,7 +122,7 @@ On approval, save:
 
 If the text or media changes after approval, save a new draft and ask again.
 
-## 4. Publish through the Computer Use Operator
+## 5. Publish through the Computer Use Operator
 
 Write `publish-request.md` in the work folder from [publish-request-template.md](templates/publish-request-template.md), then hand it off. Send one request per channel.
 
@@ -108,7 +131,7 @@ When `task-result.md` returns:
 - **`Needs Decision`:** revise with the user, for example shortening text the site rejected, and get a new approval before sending a new request.
 - **`Blocked`:** tell the user the blocker and what they need to do.
 
-## 5. Other computer work
+## 6. Other computer work
 
 For any computer work other than publishing, write `task-request.md` and hand it to the Computer Use Operator. Examples: collecting site data (research, account analysis, reply candidates), capturing a source post, downloading source media such as a public video, taking screenshots, and installing or running a tool you need. Put the request in the work folder when it serves one piece, otherwise under `data/`.
 
@@ -119,9 +142,9 @@ The request states:
 - stop rules
 - the output path, for example `data/social-analysis/YYYY-MM-DD/<channel>/`
 
-When `task-result.md` returns, handle `Blocked` and `Needs Decision` as in step 4. Use collected research data with the channel's playbook when one exists, then report. Collection comes before analysis; never analyze replies without their original posts. Performance of your own published posts is the Analyst's work (step 9). A live reply found this way still needs its own draft and approval (steps 2–4).
+When `task-result.md` returns, handle `Blocked` and `Needs Decision` as in step 5. Use collected research data with the channel's playbook when one exists, then report. Collection comes before analysis; never analyze replies without their original posts. Performance of your own published posts is the Analyst's work (step 10). A live reply found this way still needs its own draft and approval (steps 3–5).
 
-## 6. Media
+## 7. Media
 
 - Generate or edit images and short videos when the channel guide or user calls for them.
 - Save them under `media/`, and check them visually before they enter a review draft.
@@ -129,7 +152,7 @@ When `task-result.md` returns, handle `Blocked` and `Needs Decision` as in step 
 - Verify video duration, dimensions, audio, and representative frames.
 - Channel-specific production rules are in the channel guide.
 
-## 7. New channel
+## 8. New channel
 
 If no channel guide exists:
 1. Draft from the voice.
@@ -137,7 +160,7 @@ If no channel guide exists:
 3. After the first approved piece, create `channels/<channel>/content-guide.md` from [channel-guide-template.md](templates/channel-guide-template.md) with what the user confirmed.
 4. Publishing uses the same request to the Computer Use Operator, which learns the new site on its first successful run.
 
-## 8. Product input needed
+## 9. Product input needed
 
 When a draft needs product input that is not in the source or the positioning file, write `product-input-request.md` in the work folder and classify it:
 - `Claim Review Needed`: the draft depends on product behavior, technical feasibility, release status, or a technical claim. Include the exact claim, the source, and the draft path.
@@ -145,7 +168,7 @@ When a draft needs product input that is not in the source or the positioning fi
 
 Hand it off, and do not publish the dependent content until the answer arrives.
 
-## 9. Performance review
+## 10. Performance review
 
 When the user asks how posts are performing, asks for a review or strategy, wants to start tracking, or agrees to a due review, write `data/performance/<YYYY-MM-DD>/analysis-request.md` and hand it off. Before the first request, add every earlier published record in the channel folders to `published-index.md` with bet `none`. The request states:
 - the question, or `review` / `start tracking`
@@ -154,19 +177,19 @@ When the user asks how posts are performing, asks for a review or strategy, want
 - any goal or constraint the user stated
 
 When `performance-analysis.md` returns:
-- **`Completed`:** show the user the summary, scorecard, bet verdicts, proposed strategy, and style-rule candidates, and ask what to approve. On approval, move the current `strategy.md` to `history/strategy-v<N>.md`, save the approved proposal as `strategy.md` with the user's words and date in its `Approved` line, and write approved style rules into the voice or channel guide as in step 2 "Learn lasting preferences".
+- **`Completed`:** show the user the summary, scorecard, bet verdicts, proposed strategy, and style-rule candidates, and ask what to approve. On approval, move the current `strategy.md` to `history/strategy-v<N>.md`, save the approved proposal as `strategy.md` with the user's words and date in its `Approved` line, and write approved style rules into the voice or channel guide as in step 3 "Learn lasting preferences".
 - **`Blocked`:** tell the user what they need to do. After they resolve it, send a new request.
 - **`Needs Decision`:** ask the user the question, then send a revised request.
 
 Never change goals, bets, or the strategy without the user's approval.
 
-## 10. Research
+## 11. Research
 
 When a piece needs facts beyond the source material and the positioning file (a comparison with other products, market or audience data, a statistic, a quote, background on a topic), delegate the research instead of doing it while drafting.
 
 - Write `research-request.md` in the work folder: the question, what the piece will claim, the audience, the channel, and the work folder. Hand it off; the team's handoff rules choose the researcher. If no rule matches, choose a research agent with `list_available_agents` and delegate the request with `delegate_task`.
 - Continue other work while the research runs.
-- When the brief returns, draft factual and comparison statements only from its `supported` claims. Drop or reword `not supported` claims. Treat a `needs confirmation` claim about our product as `Claim Review Needed` (step 8).
+- When the brief returns, draft factual and comparison statements only from its `supported` claims. Drop or reword `not supported` claims. Treat a `needs confirmation` claim about our product as `Claim Review Needed` (step 9).
 - Keep the brief with the piece and cite it in `source-material.md`.
 
 ## Stop
