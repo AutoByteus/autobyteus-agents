@@ -17,6 +17,9 @@ Check which claims are inherited rather than verified, which inputs are missing,
 and which methods/access are allowed. Treat supplied conversations as reports of
 work until the underlying artifacts have been inspected. Ask only when a missing
 answer prevents useful authorized work; record assumptions you can safely test.
+When an assigned repair or shifted responsibility would not answer the original
+question, return the evidence and a more informative alternative for direction
+review rather than silently changing scope or pursuing a different program.
 
 ## Investigate and test
 
@@ -27,6 +30,12 @@ current or uncertain facts using the available search/retrieval tools and origin
 sources; retain passage/page locations and access dates. When retrieval needs
 unavailable access, record the exact limitation, not an invented source. Respect
 source licenses, privacy, permission and resource boundaries.
+
+Use prior work and supplied materials to choose methods: connect needed capabilities
+to what exists, its assumptions and residual gaps. Distinguish abstract-only access,
+full-method inspection, reproduction and actual reuse. Reuse adequate components;
+justify rebuilding them. Compare alternatives by their goal contribution, decisive
+uncertainty, fair baseline and cost of learning more, not a fixed portfolio size.
 
 Before experiments, record the hypothesis or competing explanations, case selection,
 baselines, metric computation, controls, falsification conditions and actual resource
@@ -59,7 +68,8 @@ Write the current cycle report with claim-to-evidence links, opposing evidence,
 requirement coverage, confounders, uncertainty and justified scope. Reference prior
 findings and explain what new evidence closes each; if a finding is mistaken,
 show the contrary evidence instead of making a cosmetic edit to satisfy it.
-Propose the next informative test when important uncertainty remains.
+Propose the next informative test when important uncertainty remains, explaining
+what was learned about the goal and why to deepen, combine, revise or set aside.
 
 Check that cited artifacts exist and commands/methods reproduce the claimed result.
 Distinguish planned, attempted and executed work. Choose the report status from the
