@@ -39,6 +39,7 @@ Concrete mistakes found in real package work. The [package design principles](pa
 | 29 | Asking the user what the evidence already answers | Creator process |
 | 30 | More Agents than the work needs | Package design |
 | 31 | Private information in a public package | Creator process |
+| 32 | Answering repeated feedback with another rule | Creator process |
 
 ## Package design
 
@@ -234,9 +235,10 @@ Concrete mistakes found in real package work. The [package design principles](pa
   - **An evidence check:** the first test data cited an evidence folder that did not exist, and the PM held the Task to rescue the evidence instead of showing the rule under test.
   - **A judgment check:** the first question told both copies not to run any tools, so neither opened the skill under test, and both answered from general caution.
   - **A probe check:** the data never made a probe mislead, so "a surprising result gets a second check" went unexercised and was nearly reported as passed. The user pointed out that evaluation sometimes needs test data created for it. Two more fixtures (a stale count, a stale server on the default port) were sidestepped by careful agents that used their own file and port. The user: "agents are really really smart … if you babysit a smart model, maybe it doesn't work". The point was dropped from the guide instead.
+  - **A check that could not fail the real way (2026-11-01):** the user's complaint was that a research team did not study existing work before going deep. The check gave old and new text a fictional corpus, forbade the network and seeded the history, so neither could skip real reading. Both passed, and the change merged while the real behaviour stayed.
 - **Breaks:** [step 4](../SKILL.md#4-validate-and-recover), real use: a run on the final text that shows the change at work.
-- **Instead:** Create consistent test data that makes each point of the change happen, and leave the agent the tools and reading it has in real use ([live-checks.md](live-checks.md)). After the run, map each point to where it happened; build data for any point that did not, and rerun.
-- **Detect:** In the result's validation, each point of the change names the run and the step where it was observed; a point without one is listed as untested.
+- **Instead:** Create consistent test data that makes each point of the change happen, and leave the agent the tools and reading it has in real use ([live-checks.md](live-checks.md)). After the run, map each point to where it happened; build data for any point that did not, and rerun. When old and new text both pass, first ask whether the scenario lets the real failure happen at all: it needs the conditions of real use, such as open access to the real sources and no prepared answer. Write the pass criteria before the first run, and run the old text first.
+- **Detect:** In the result's validation, each point of the change names the run and the step where it was observed; a point without one is listed as untested. For a change that answers a real failure, name what the real run had that the test withholds or supplies.
 
 ### 28. A live check that starts real work
 
@@ -258,3 +260,10 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Breaks:** [Create or update canonical files](../SKILL.md#3-create-or-update-canonical-files): a public package carries nothing private about the user, and material from private sources enters only generalized.
 - **Instead:** Generalize before writing, keep work records outside a public repository, and run [check-private-info.py](../scripts/check-private-info.py) on imported material and before every commit, with the user's own terms in a private list.
 - **Detect:** `check-private-info.py --staged` before a commit; `check-private-info.py <package folders>` for the current files; for history, the same patterns over every blob reachable from the remote's branches, tags, and pull-request refs.
+
+### 32. Answering repeated feedback with another rule
+
+- **Incident:** A user corrected a research team's method again and again: start from existing work, compare directions, do not drop into small holes. Each correction added sentences to the skills while the assignment, report and review cycle that produced the behaviour stayed the same. A review format still asked for "the smallest useful next work", so it still produced a repair queue beside a new sentence saying not to. The user: "I have provided quite a lot of feedback in the past and I don't know why it's still not really improved" (2026-11-01).
+- **Breaks:** [§9](package-design-principles.md#9-update-and-restructure-safely): diagnose structure and flow before wording.
+- **Instead:** When the same kind of correction returns, stop adding text. Find what produces the behaviour: which record the role fills in, what its first step is, what a review asks, who checks whom, and what a role is never asked. Change that, and remove the sentences it replaces. Also check how the correction travelled, since a role can narrow it on the way to you.
+- **Detect:** Read the package's history for the same complaint across commits. For each repeated one, name the record, step, review question or route that now makes the behaviour hard to repeat; if the answer is only a new sentence, the cause is untouched.

@@ -1,6 +1,6 @@
 ---
 name: Research Supervisor
-description: Preserves the research goal, independently checks evidence, requests continued work and assesses completion and manuscript readiness.
+description: Preserves the research goal, sets direction from an understanding of existing work, independently checks evidence, requests continued work and assesses completion and manuscript readiness.
 category: research
 role: research supervisor
 ---
