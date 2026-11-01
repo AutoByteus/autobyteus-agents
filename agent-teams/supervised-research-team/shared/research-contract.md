@@ -2,6 +2,40 @@
 
 Read this before doing or reviewing a study. It is the common evidence standard
 and artifact interface; each role's skill owns its decisions and procedure.
+The user may not be a researcher. The team owns the method: it finds its own weak
+spots instead of waiting for the user to notice them.
+
+## How a study moves
+
+A study starts from the goal and asks what already exists and how far that gets us.
+Maybe existing work, or a combination of it, already reaches the goal. If not, the
+team keeps what contributes and works on what is left. Work comes in three kinds, and
+every assignment names one. Results can send the team back to any of them.
+
+- **Understand:** study the existing work around the goal (papers, tools, code,
+  practice, the supplied materials) and build the research map.
+- **Probe:** a cheap, faithful test of whether a direction deserves deeper work.
+- **Deepen:** serious building or validation of a chosen direction.
+
+Deepen needs a saved direction decision that compares the directions on the research
+map, and a method review of that decision. A partial or negative result stays in the
+map with its exact scope, and may still contribute. These are the conditions for going
+deep, not phases with an allowance: no number of papers, directions or returns
+satisfies them or uses them up.
+
+Understanding is enough to choose a direction when all of these hold. Scale them to
+the question: a narrow question needs a short map.
+
+- Searching in the field's own terms and following citations from its central works
+  mostly returns work already in the map, so a specialist would find no major approach
+  missing. What could not be searched or opened is stated.
+- The works a direction depends on and its strongest competitors were read in full,
+  or the access failure is stated. No decision rests on an abstract, a snippet or a
+  remembered paper or case.
+- For each part of the goal, the map says how far existing work or a combination gets,
+  including whether it may already be enough, and why any gap remains. Practical
+  estimates are qualitative: no invented percentages.
+- The user's own idea or an inherited result is one candidate, judged like the others.
 
 ## Evidence and claims
 
@@ -51,17 +85,19 @@ to create empty files when no work of that kind exists:
 
 | Record | Owner and content |
 | --- | --- |
-| `study.md` | Supervisor: original request and requester; objective, evaluation unit and scope; explicit requirements with IDs and evidence needed; current direction and why it addresses the goal, linking supporting research; access/resource limits; current cycle and state; links to latest assignment/review; historical cycle/return accounting and actual resource usage/constraints; changes to scope with user decision provenance. Keep the original goal visible; narrowing the conclusion is not permission to erase an unmet requirement. |
-| `cycles/CNNN/assignment.md` | Supervisor: study/requirement IDs and goal revision; bounded question or review findings to resolve and the goal-relevant decision they inform; evidence expected; experiment timeouts, real resource constraints and checkpoint conditions; allowed actions and relevant prior artifact links. This is the next work order, not a second copy of the study. |
+| `study.md` | Supervisor: original request and requester; objective, evaluation unit and scope; explicit requirements with IDs and evidence needed; current direction decision: why it addresses the goal, which alternatives lost and why, what would change it, linking the research map; access/resource limits; current cycle and state; links to latest assignment/review; historical cycle/return accounting and actual resource usage/constraints; changes to scope with user decision provenance. Keep the original goal visible; narrowing the conclusion is not permission to erase an unmet requirement. |
+| `research-map.md` | Researcher, kept current across the whole study, and read first by every role. What the team knows: the parts the goal needs; existing work by approach, with what it showed, on what evidence, how deeply we read it (abstract, full text, code run, reproduced) and whether it can be reused; how far existing work and our own results get toward each part, and what is left; directions compared (expected contribution, main uncertainty, strongest fair comparator, cost of learning more, and status); the search trail and where it stopped. Our own partial and negative results go here too. |
+| `method-reviews.md` | Method reviewer appends each review; supervisor appends its answer to each finding. |
+| `cycles/CNNN/assignment.md` | Supervisor: study/requirement IDs and goal revision; work kind (Understand, Probe or Deepen); the question, the gap in the research map it addresses and the goal-relevant decision it informs; review findings to resolve, if any; evidence expected; experiment timeouts, real resource constraints and checkpoint conditions; allowed actions and relevant prior artifact links. This is the next work order, not a second copy of the study. |
 | `evidence.md` | Append-only evidence records from both roles: ID, author, source or run, provenance/version, method/command, actual result and raw path, limits. Researcher records research; supervisor records its own checks under distinct IDs. Refer to existing records rather than copy their measurements into new logs. |
 | `cycles/CNNN/report.md` | Researcher: assignment/revision, status, claims with supporting and opposing evidence IDs, requirement coverage, methods/deviations, limitations, unresolved findings and precise next action. A proposal of completion is not a supervisory decision. |
-| `cycles/CNNN/review.md` | Supervisor: report and evidence revision checked, checks performed with evidence IDs, original-goal coverage, findings and closure evidence, decision and next-assignment link or terminal assessment, manuscript-readiness judgment and reasons. |
+| `cycles/CNNN/review.md` | Supervisor: report and evidence revision checked, checks performed with evidence IDs, original-goal coverage, findings and closure evidence, the step back on what changed about reaching the goal, decision and next-assignment link or terminal assessment, manuscript-readiness judgment and reasons. |
 | `follow-ups.md` | Both roles append unresolved out-of-scope work, decisions and restart needs here with IDs; the supervisor reports them to the caller. Reviews and reports cite IDs instead of keeping separate backlogs. |
 | `runs/`, `sources/`, optional manuscript | Researcher-owned primary artifacts. Supervisor reruns go in a separate `checks/` directory; neither role edits the other's evidence to make a check pass. |
 
 Record important method decisions and unexpected observations while working, not
-only in a final summary. On resumption read the study, current assignment, latest
-report/review and their evidence before choosing work. Fingerprint the report and
+only in a final summary. On resumption read the study, research map, current assignment,
+latest report/review and their evidence before choosing work. Fingerprint the report and
 material evidence at review so later edits do not silently inherit approval.
 
 ## States and handoff envelope

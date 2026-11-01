@@ -1,6 +1,6 @@
 ---
 name: evidence-research
-description: Execute a bounded research assignment with source-grounded methods, experiments or proofs, reproducible evidence and candid claims for independent supervisory review.
+description: Build the team's understanding of existing work and carry out research assignments with source-grounded methods, experiments or proofs, reproducible evidence and candid claims for independent review.
 ---
 
 # Evidence Research
@@ -11,8 +11,8 @@ your report requests independent review, not team completion.
 
 ## Understand the assignment
 
-Read the study's original goal, current assignment, relevant prior evidence and
-review findings. Keep the full goal in view while working on the bounded question.
+Read the study's original goal, research map, current assignment, relevant prior
+evidence and review findings. Keep the full goal in view while working on the question.
 Check which claims are inherited rather than verified, which inputs are missing,
 and which methods/access are allowed. Treat supplied conversations as reports of
 work until the underlying artifacts have been inspected. Ask only when a missing
@@ -20,6 +20,22 @@ answer prevents useful authorized work; record assumptions you can safely test.
 When an assigned repair or shifted responsibility would not answer the original
 question, return the evidence and a more informative alternative for direction
 review rather than silently changing scope or pursuing a different program.
+
+## Understand existing work
+
+For Understand work, and whenever a question takes you beyond the map, study what
+exists before building anything. Has someone already solved this, or most of it? Could a
+combination reach the goal? Start from surveys and the field's own terms, then follow
+citations backward and forward from the central works, and look for the tools and code
+people actually use. Read the central works in full; your design depends on them, so you
+do this reading yourself. Try an existing tool cheaply before you plan to rebuild it.
+Write into `research-map.md` as you read. Stop when the shared contract's bar for
+understanding is met, not at a count, and hand off with the directions you would compare.
+
+Free routes to papers (observed 2026-11): OpenAlex and Crossref for search and citation
+links, arXiv, DBLP, and authors' and institutional pages. Download a PDF with `run_bash`
+and convert it with `pdftotext` when installed. Where these fail, try another copy before
+recording the work as abstract-only.
 
 ## Investigate and test
 
@@ -64,12 +80,15 @@ reviewer can see what changed and reproduce a decisive result independently.
 
 ## Analyze and return
 
-Write the current cycle report with claim-to-evidence links, opposing evidence,
+Update the research map with what this work changed: how far we are, what contributed
+and what is left. Then write the current cycle report with claim-to-evidence links, opposing evidence,
 requirement coverage, confounders, uncertainty and justified scope. Reference prior
 findings and explain what new evidence closes each; if a finding is mistaken,
 show the contrary evidence instead of making a cosmetic edit to satisfy it.
 Propose the next informative test when important uncertainty remains, explaining
 what was learned about the goal and why to deepen, combine, revise or set aside.
+Say where your own method is weakest: what you did not read, chose for convenience or
+could not compare.
 
 Check that cited artifacts exist and commands/methods reproduce the claimed result.
 Distinguish planned, attempted and executed work. Choose the report status from the
@@ -79,7 +98,7 @@ not proof that research is complete. A valid negative answer is reviewable; miss
 work must stay visible. Save before handing off, and stop after the handoff rather
 than privately launching the next batch.
 
-On a continuation, execute the new bounded assignment and resolve its findings with
+On a continuation, execute the new assignment and resolve its findings with
 new verifiable work. Do not require the user to repeat the goal or remind you to
 continue. Do not write or change the supervisory review to approve your own work.
 When manuscript writing is requested, keep it grounded in the same evidence and

@@ -1,6 +1,6 @@
 ---
 name: research-supervision
-description: Supervise a research study through independent evidence checks, actionable continuation requests and honest completion or manuscript-readiness decisions; not research authorship or external publication.
+description: Supervise a research study by setting direction from an understanding of existing work, getting that direction reviewed, independently checking evidence, and making honest continuation, completion and manuscript-readiness decisions; not research authorship or external publication.
 ---
 
 # Research Supervision
@@ -43,17 +43,56 @@ and dated assessments. Record the approved policy change in current study state 
 resume from the unresolved goal; do not reset the history, demand a numbered
 extension or ask again for authority the user already gave.
 
-Choose the next bounded question by the goal-relevant decision it can change, not
-the next defect in a repair queue. Use prior work, reusable capabilities and residual
-gaps to justify the direction against plausible alternatives and a fair comparator;
-a single direction can be justified. Prefer a faithful informative probe before
-exhaustive polishing. Fix flaws that could reverse the decision, not peripheral
-cleanup that cannot affect it. The researcher owns detailed methods; specify the
-question and evidence bar, not the hoped-for answer. Write the study and first
-assignment with decision `Continue`, then hand off. For a resumed study, review
-existing work first rather than discarding it or
-restarting a complete experiment sequence. Do not make another assignment while
-one is outstanding; recover it or report why it cannot be recovered.
+## Choose the work
+
+The next work comes from the research map's biggest gap toward the goal, not from the
+latest report. Choose the next question by the goal-relevant decision it can change, not
+the next defect in a repair queue.
+
+A study with no adequate research map starts with Understand work, sized to the goal.
+The user's prototype, an idea they favour and an inherited study's results are evidence
+and one candidate direction, not the frame for the study. For a resumed study, review
+existing work rather than discarding it or restarting a complete experiment sequence,
+and put what it shows into the map. A promising idea can get a Probe at any time.
+
+To go deep, save a direction decision in `study.md`. Use prior work, reusable
+capabilities and residual gaps to justify the direction against plausible alternatives
+and a fair comparator, all from the map; a single direction can be justified when the
+map shows why the others fall short. Then get a method review before the Deepen
+assignment. Prefer a faithful informative probe before exhaustive polishing. Fix flaws
+that could reverse the decision, not peripheral cleanup that cannot affect it.
+
+The researcher owns detailed methods; specify the question and evidence bar, not the
+hoped-for answer. Size an assignment to its question, so that Understand work is not cut
+to fit a short report. Write the study and first assignment with decision `Continue`,
+then hand off. Do not make another assignment while one is outstanding; recover it or
+report why it cannot be recovered.
+
+## Get the method reviewed
+
+You set the direction, so you cannot be its only check. Request a method review:
+
+- when a direction decision is saved, before any Deepen assignment under it;
+- when the user corrects how the team works;
+- when work has continued but the map's account of how far we are has not changed since
+  the last review;
+- before a `Complete` decision.
+
+Answer every finding in `method-reviews.md`: accepted, with what changes, or rejected,
+with the evidence. If `Correct first` comes back, correct it before deepening or
+completing, unless you record evidence that the reviewer is wrong. When no reviewer can
+be reached, write the strongest challenge you can in the same file, label it a
+self-review and report that limit; never present it as independent.
+
+## When the user corrects the method
+
+A correction means the team missed something it should have found itself. Ask what
+general failure it shows, check the whole study for that failure, and change the plan
+now. Restating it as a rule for the next review, or applying it only to the item in
+hand, does not fix it. Keep history as it happened; never backdate. Record the correction
+and what it changed in `study.md`. When the failure is not specific to this study, add
+it to `follow-ups.md` as a package lesson and report it to the caller. Do not ask the
+user to supply the method.
 
 ## Review the actual work
 
@@ -74,13 +113,21 @@ completing the larger assignment. Do not lower the goal just to close the study;
 a material scope change needs the user's decision and a saved revision.
 
 Write actionable findings: requirement/claim ID, observed defect or evidence gap,
-why it affects the conclusion, the smallest useful next work, and the evidence that
-would close it. Challenge the proposed method or hypothesis when evidence calls
+why it affects the conclusion, and the evidence that would close it. A flaw that could
+reverse a conclusion must be fixed before that conclusion is used. A finding that
+cannot change a goal decision goes to `follow-ups.md`, not into the next assignment.
+Challenge the proposed method or hypothesis when evidence calls
 for it, but do not demand repeated experiments until a preferred answer appears.
 Check earlier findings against new artifacts before closing them.
 Assess what was learned about the goal, not just which artifacts passed. Decide
 whether to deepen, combine, revise or set aside; consider an evidence-backed
 challenge to the assignment rather than automatically returning it for repairs.
+
+Then step back and write the answers in the review: What do we now know about reaching
+the goal that we did not know before? Did the map's account of how far we are change? Is
+this direction still the best use of the work? What would a specialist in this field
+challenge first? If recent work improved artifacts but not that understanding, change
+the work, not only the next item.
 
 ## Decide and continue
 
@@ -88,8 +135,8 @@ challenge to the assignment rather than automatically returning it for repairs.
   resource constraints. Write a new numbered assignment referencing unresolved
   findings and hand it off in the same turn. Do not merely tell the user that more research is needed.
 - **Complete:** all agreed investigation requirements are satisfied or resolved by
-  defensible evidence, decisive claims have independent checks, and methods, evidence,
-  scope and limitations are inspectable. A well-supported rejection of a hypothesis
+  defensible evidence, decisive claims have independent checks, the method has been
+  reviewed, and methods, evidence, scope and limitations are inspectable. A well-supported rejection of a hypothesis
   can qualify. State what is and is not established.
 - **Blocked / Decision needed:** no useful authorized next work can proceed because
   of a real dependency, unavailable resource or user decision. Name the actual

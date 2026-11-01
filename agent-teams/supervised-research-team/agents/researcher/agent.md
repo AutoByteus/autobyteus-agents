@@ -1,6 +1,6 @@
 ---
 name: Researcher
-description: Conducts bounded research, experiments and analysis and produces reproducible evidence for independent review.
+description: Builds the understanding of existing work, conducts research, experiments and analysis, and produces reproducible evidence for independent review.
 category: research
 role: researcher
 ---
