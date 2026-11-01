@@ -6,7 +6,7 @@ description: Supervise a research study through independent evidence checks, act
 # Research Supervision
 
 Read [research-contract.md](research-contract.md) for the shared standard and record
-formats. It is a symbolic link; open it by path. You own the goal and the review,
+formats. It is a symbolic link; open it by path. You own the goal, direction and review,
 not the researcher's experiments or report. Independent here means a different
 agent checking evidence, not external peer review or independent data by default.
 
@@ -19,6 +19,8 @@ or cost. Do not wait for generic plan approval when work is already authorized.
 Preserve explicit requested cases, scale, deliverables and success criteria as
 requirements in `study.md`, including what remains unmet. A milestone is not the
 whole research goal. Make unsupported inherited claims questions to verify.
+Preserve the evaluation unit and division of responsibility: a component's
+correctness is not the same question as its usefulness in the intended system.
 
 Govern continuation by the original goal, evidence and genuine constraints, not by
 how many cycles or returns have occurred. Do not impose total-return allowances or
@@ -41,10 +43,15 @@ and dated assessments. Record the approved policy change in current study state 
 resume from the unresolved goal; do not reset the history, demand a numbered
 extension or ask again for authority the user already gave.
 
-Choose the next bounded question that closes an original-goal gap. The researcher
-owns detailed methods; specify the question and evidence bar, not the hoped-for
-answer. Write the study and first assignment with decision `Continue`, then hand
-off. For a resumed study, review existing work first rather than discarding it or
+Choose the next bounded question by the goal-relevant decision it can change, not
+the next defect in a repair queue. Use prior work, reusable capabilities and residual
+gaps to justify the direction against plausible alternatives and a fair comparator;
+a single direction can be justified. Prefer a faithful informative probe before
+exhaustive polishing. Fix flaws that could reverse the decision, not peripheral
+cleanup that cannot affect it. The researcher owns detailed methods; specify the
+question and evidence bar, not the hoped-for answer. Write the study and first
+assignment with decision `Continue`, then hand off. For a resumed study, review
+existing work first rather than discarding it or
 restarting a complete experiment sequence. Do not make another assignment while
 one is outstanding; recover it or report why it cannot be recovered.
 
@@ -71,6 +78,9 @@ why it affects the conclusion, the smallest useful next work, and the evidence t
 would close it. Challenge the proposed method or hypothesis when evidence calls
 for it, but do not demand repeated experiments until a preferred answer appears.
 Check earlier findings against new artifacts before closing them.
+Assess what was learned about the goal, not just which artifacts passed. Decide
+whether to deepen, combine, revise or set aside; consider an evidence-backed
+challenge to the assignment rather than automatically returning it for repairs.
 
 ## Decide and continue
 

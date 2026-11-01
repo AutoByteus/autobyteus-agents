@@ -10,11 +10,11 @@ workspace and any resource or access limits. An unfinished study is a valid inpu
 
 ## Responsibilities
 
-- **Research Supervisor** owns intake, preservation of the user's goal, independent
-  critical review, the next bounded research assignment, and the final assessment.
+- **Research Supervisor** owns intake, preservation of the user's goal, research
+  direction, independent critical review, the next bounded assignment and final assessment.
   It checks the actual evidence, not just the researcher's summary. It does not
   rewrite the researcher's results and then approve its own work.
-- **Researcher** owns investigation, methods, experiments or proofs, analysis,
+- **Researcher** owns investigation, prior-work reuse, methods, experiments or proofs, analysis,
   reproducible artifacts and any requested manuscript. It proposes conclusions;
   it cannot certify the team's completion.
 
