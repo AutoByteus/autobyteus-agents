@@ -98,15 +98,14 @@ verb in the order the data gives them):
 1. Build the prompt: the project's shared style bullets (character
    appearance, square format, no text in the image, ...) followed by the
    word's image concept from Step 1.
-2. Call the image-generation tool with that prompt for a square image. Save
-   the result to `images/<family>/<NN>_<word>.png` (zero-padded two-digit
-   `NN`).
-3. Open the saved file and inspect it: the character matches the project's
-   established appearance, the prefix's visible effect from the concept is
-   actually shown, the format is square, and there is no stray text, letter,
-   watermark, or caption baked into the image. If a check fails, regenerate
-   that word's image with an adjusted prompt before moving on; do not batch
-   ahead on an unconfirmed image.
+2. Call `generate_image` with that prompt for a square image. Save the
+   result to `images/<family>/<NN>_<word>.png` (zero-padded two-digit `NN`).
+3. Open the saved file with `read_media_file` and inspect it: the character
+   matches the project's established appearance, the prefix's visible effect
+   from the concept is actually shown, the format is square, and there is no
+   stray text, letter, watermark, or caption baked into the image. If a
+   check fails, regenerate that word's image with an adjusted prompt before
+   moving on; do not batch ahead on an unconfirmed image.
 4. Check `check_family_assets.py` first if re-running on a family that may
    already have some images (e.g. resuming after a partial run); skip a word
    whose image already exists unless the user asked to redo it.
@@ -115,16 +114,17 @@ verb in the order the data gives them):
 
 - Run `check_family_assets.py` for the family's codes to see which
   `_word.mp3` / `_sentence.mp3` files are already present. Generate only the
-  missing ones; this project already has audio for every family it had
-  before this skill existed, so most calls to this skill will find nothing
-  to do here.
+  missing ones — a family whose words were already planned before this
+  skill existed may already have all of its audio, in which case there is
+  nothing to do here.
 - If the project has no recorded voice choice yet for this skill (no prior
-  production log naming one), check the available voices for the speech tool
-  and pick one German-capable voice; record that choice in the production
-  log so later families stay consistent with it. If a prior log already
-  names a voice, reuse it without re-deciding.
+  production log naming one), call `list_audio_models` if available and pick
+  one German-capable voice; record that choice in the production log so
+  later families stay consistent with it. If a prior log already names a
+  voice, reuse it without re-deciding.
 - Generate the word audio (the single word, spoken) and the sentence audio
-  (the full example sentence, spoken) for each missing file.
+  (the full example sentence, spoken) for each missing file, with whichever
+  speech tool the run has, `generate_speech` or `speak`.
 - Speech generation is serial-only: one call, wait for the result, inspect
   and log it, then `sleep 60` before the next speech-tool call — including
   after a retry or a failure. Never issue two speech-tool calls concurrently
