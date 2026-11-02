@@ -1,0 +1,21 @@
+{
+  "toolNames": [
+    "read_file",
+    "write_file",
+    "edit_file",
+    "run_bash",
+    "start_background_process",
+    "get_process_output",
+    "stop_background_process",
+    "generate_image",
+    "read_media_file",
+    "list_audio_models",
+    "generate_speech",
+    "speak",
+    "send_message_to",
+    "get_handoff_rules"
+  ],
+  "skillNames": [
+    "german-flashcard-deck-builder"
+  ]
+}
