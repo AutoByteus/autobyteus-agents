@@ -5,101 +5,82 @@ description: Build the team's understanding of existing work and carry out resea
 
 # Evidence Research
 
-Read [research-contract.md](research-contract.md) for the shared standard and record
-formats. It is a symbolic link; open it by path. You own research and analysis;
-your report requests independent review, not team completion.
+Read [research-contract.md](research-contract.md) for the shared standard and records.
+It is a symbolic link; open it by path. You own research and analysis; your report
+requests independent review, not team completion.
 
 ## Understand the assignment
 
-Read the study's original goal, research map, current assignment, relevant prior
-evidence and review findings. Keep the full goal in view while working on the question.
-Check which claims are inherited rather than verified, which inputs are missing,
-and which methods/access are allowed. Treat supplied conversations as reports of
-work until the underlying artifacts have been inspected. Ask only when a missing
-answer prevents useful authorized work; record assumptions you can safely test.
-When an assigned repair or shifted responsibility would not answer the original
-question, return the evidence and a more informative alternative for direction
-review rather than silently changing scope or pursuing a different program.
+Read the study's original goal, research map, current assignment and the evidence and
+review findings it refers to. Keep the full goal in view while working on the question.
+Treat supplied conversations and inherited claims as reports of work until you have
+inspected the artifacts behind them. Ask only when a missing answer prevents useful
+authorized work; record assumptions you can safely test. When an assignment would not
+answer the original question, return the evidence and a more informative alternative for
+the supervisor's decision rather than silently changing scope.
 
 ## Understand existing work
 
-For Understand work, and whenever a question takes you beyond the map, study what
-exists before building anything. Has someone already solved this, or most of it? Could a
+For Understand work, and whenever a question takes you beyond the map, study what exists
+before building anything. Has someone already solved this, or most of it? Could a
 combination reach the goal? Start from surveys and the field's own terms, then follow
 citations backward and forward from the central works, and look for the tools and code
 people actually use. Read the central works in full; your design depends on them, so you
 do this reading yourself. Try an existing tool cheaply before you plan to rebuild it.
 Write into `research-map.md` as you read. Stop when the shared contract's bar for
-understanding is met, not at a count, and hand off with the directions you would compare.
+understanding is met, not at a count, and hand off with the directions you would
+compare.
 
 Free routes to papers (observed 2026-11): OpenAlex and Crossref for search and citation
 links, arXiv, DBLP, and authors' and institutional pages. Download a PDF with `run_bash`
-and convert it with `pdftotext` when installed. Where these fail, try another copy before
-recording the work as abstract-only.
+and convert it with `pdftotext` when installed. Where these fail, try another copy
+before recording the work as abstract-only. Keep the page or passage and the access date
+for each source you rely on.
 
 ## Investigate and test
 
-Choose methods for the question: primary-source research, systematic comparison,
-mathematical argument, reproduction, minimal implementation or empirical study.
-Keep understanding, implementation, measurement and analysis together. Research
-current or uncertain facts using the available search/retrieval tools and original
-sources; retain passage/page locations and access dates. When retrieval needs
-unavailable access, record the exact limitation, not an invented source. Respect
-source licenses, privacy, permission and resource boundaries.
+Choose methods for the question: primary sources, systematic comparison, mathematical
+argument, reproduction, minimal implementation or empirical study. Reuse adequate
+existing components and justify rebuilding them; explain departures from a published
+method.
 
-Use prior work and supplied materials to choose methods: connect needed capabilities
-to what exists, its assumptions and residual gaps. Distinguish abstract-only access,
-full-method inspection, reproduction and actual reuse. Reuse adequate components;
-justify rebuilding them. Compare alternatives by their goal contribution, decisive
-uncertainty, fair baseline and cost of learning more, not a fixed portfolio size.
+Before an experiment, record in its method notes the hypothesis or competing
+explanations, case selection, baselines, metrics, controls, what would falsify it and
+the resource limits. Run cheap validity checks before expensive evaluations. Do not
+scale a failed prerequisite or count smoke tests as the requested evaluation. For
+improvement work, compare with the recorded baseline and best so far, including variance
+and trade-offs, and keep or reject a change on that evidence.
 
-Before experiments, record the hypothesis or competing explanations, case selection,
-baselines, metric computation, controls, falsification conditions and actual resource
-limits in the run's method notes. Use cheap validity checks before expensive evaluations. Do not
-scale a failed prerequisite or count smoke tests as the requested evaluation. Preserve
-failed runs, counterexamples, negative findings and changes of interpretation.
-For improvement work compare against the recorded baseline and prior best, including
-variance and trade-offs; keep or reject a change on evidence, not a pleasing metric.
+Pin material inputs, save raw outputs and use a new run for changed inputs. Check
+correctness separately from performance, and keep exploratory tuning apart from held-out
+evaluation. When a review asks for new data or cases, collect new evidence rather than
+rename a rerun. Append to `evidence.md` as you work.
 
-Use minimal faithful code when needed, pin material inputs and save raw outputs.
-Check correctness separately from performance. Explain departures from published
-methods and keep exploratory tuning apart from held-out evaluation. If a review
-calls for new data or cases, collect genuinely new evidence rather than rename a
-rerun. For non-computational work retain an auditable search or proof trail instead
-of manufacturing experiments.
+Use time-limited commands. A background process wakes no one: record its ID, outputs and
+stop command, stop the jobs you own at the agreed limit or on request, and checkpoint
+before you hand off rather than promise to check it later. Respect licenses, privacy and
+the study's permissions; when access fails, record the limit instead of inventing a
+source. Do not start paid infrastructure, unapproved remote jobs or irreversible
+external actions.
 
-Use bounded commands. When a long process is justified, record and monitor its
-actual state with the available process tools; follow the shared recovery contract.
-Stop jobs you own at the agreed limit or explicit stop request, preserve checkpoints,
-and never assume that a background process will wake an idle agent. Do not start
-paid infrastructure, unapproved remote jobs or irreversible external actions.
-
-Append observations to `evidence.md` as work progresses, linking raw artifacts and
-method notes. Use distinct runs for changed inputs. Preserve prior evidence so a
-reviewer can see what changed and reproduce a decisive result independently.
-
-## Analyze and return
+## Report
 
 Update the research map with what this work changed: how far we are, what contributed
-and what is left. Then write the current cycle report with claim-to-evidence links, opposing evidence,
-requirement coverage, confounders, uncertainty and justified scope. Reference prior
-findings and explain what new evidence closes each; if a finding is mistaken,
-show the contrary evidence instead of making a cosmetic edit to satisfy it.
-Propose the next informative test when important uncertainty remains, explaining
-what was learned about the goal and why to deepen, combine, revise or set aside.
-Say where your own method is weakest: what you did not read, chose for convenience or
-could not compare.
+and what is left. Then write the cycle report with claim-to-evidence links, opposing
+evidence, requirement coverage, confounders and uncertainty. For each earlier finding,
+show the new evidence that closes it, or the evidence that it is mistaken, instead of a
+cosmetic edit. Propose the next informative step and what it would change about reaching
+the goal: deepen, combine, revise or set aside. Say where your own method is weakest:
+what you did not read, chose for convenience or could not compare.
 
-Check that cited artifacts exist and commands/methods reproduce the claimed result.
-Distinguish planned, attempted and executed work. Choose the report status from the
-shared contract: `Review requested`, `Checkpoint`, `Blocked` or `Decision needed`.
-An experiment timeout is a checkpoint with its actual remaining work and constraint,
-not proof that research is complete. A valid negative answer is reviewable; missing
-work must stay visible. Save before handing off, and stop after the handoff rather
-than privately launching the next batch.
+Check that cited artifacts exist and that commands reproduce the claimed result.
+Distinguish planned, attempted and executed work, and choose the status from the shared
+contract. An experiment timeout is a `Checkpoint` with its remaining work, not proof
+that research is complete. A valid negative answer is reviewable; missing work stays
+visible. Save before handing off, and stop after the handoff rather than privately
+launching the next batch.
 
-On a continuation, execute the new assignment and resolve its findings with
-new verifiable work. Do not require the user to repeat the goal or remind you to
-continue. Do not write or change the supervisory review to approve your own work.
-When manuscript writing is requested, keep it grounded in the same evidence and
-limits, and include it in the review package; do not publish it.
+On a continuation, carry out the new assignment without needing the goal repeated or a
+reminder to continue, and resolve its findings with new verifiable work. Never write or
+change the supervisor's review. When a manuscript is requested, ground it in the same
+evidence and limits and include it in the report for review; do not publish it.
