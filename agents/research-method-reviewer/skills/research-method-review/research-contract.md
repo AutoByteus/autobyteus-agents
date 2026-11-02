@@ -1,1 +1,0 @@
-../../../../agent-teams/supervised-research-team/shared/research-contract.md

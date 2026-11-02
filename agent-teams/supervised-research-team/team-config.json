@@ -12,11 +12,6 @@
       "ref": "researcher",
       "refType": "agent",
       "refScope": "team_local"
-    },
-    {
-      "memberName": "research_method_reviewer",
-      "ref": "research-method-reviewer",
-      "refScope": "shared"
     }
   ],
   "handoffs": [
@@ -24,28 +19,14 @@
       "from": "/research_supervisor",
       "to": "/researcher",
       "rules": [
-        "When the supervisor persists Continue with a new numbered assignment, an unchanged or explicitly revised study goal, useful work within actual resource and permission constraints and no other delivered assignment awaiting a report: perform the assigned research, including work returned after an insufficient-evidence or premature-completion review. Include absolute paths to the study, assignment and review that motivates it. Do not route a terminal assessment, an already-delivered identical assignment, or a Deepen assignment whose direction decision has no saved method review."
+        "When the supervisor saves decision Continue with a new numbered assignment: carry out the assigned research. Include absolute paths to the study, the assignment and the review behind it."
       ]
     },
     {
       "from": "/researcher",
       "to": "/research_supervisor",
       "rules": [
-        "When the researcher persists a new cycle report classified Review requested, Checkpoint, Blocked or Decision needed: independently assess its evidence against the original study goal and decide the next action. Include the absolute report and study paths and evidence needed for review. Do not route an already-delivered identical report."
-      ]
-    },
-    {
-      "from": "/research_supervisor",
-      "to": "/research_method_reviewer",
-      "rules": [
-        "When the supervisor saves a direction decision, the user corrects how the team works, work has continued without changing how far the research map says the team is, or a Complete decision is being considered: review the study's method. Include the absolute study path and what prompted the review. Do not route an already-delivered identical request."
-      ]
-    },
-    {
-      "from": "/research_method_reviewer",
-      "to": "/research_supervisor",
-      "rules": [
-        "When the reviewer appends a method review classified Sound enough to proceed or Correct first: answer each finding and decide the next action. Include the absolute study path and the review ID."
+        "When the researcher saves a new cycle report with status Review requested, Checkpoint, Blocked or Decision needed: review its evidence against the study's original goal and decide the next action. Include absolute paths to the report and the study."
       ]
     }
   ]
