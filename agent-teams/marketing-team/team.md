@@ -8,7 +8,7 @@ The Marketing Team separates content, performance analysis, and computer work (w
 
 ## Members
 
-- `marketing_content_creator`: the entry point. Owns briefs, drafts, the user's feedback and approval loop, media, the workspace style library (`marketing-style/`), platform content folders (`linkedin/`, `x/`, …), published records, the published-post index and the content catalog, and the approved strategy (`marketing-strategy/`).
+- `marketing_content_creator`: the entry point. Owns briefs, drafts, the user's feedback and approval loop, media, the workspace style library (`marketing-style/`), platform content folders (`linkedin/`, `x/`, …), published records, the published-post index, the content and media catalogs, and the approved strategy (`marketing-strategy/`).
 - `marketing_performance_analyst`: owns measurement and learning. Keeps the performance ledger and scorecard (`data/performance/`), judges each strategy bet by views, likes, and replies, and proposes goals and the next strategy version.
 - `deep_researcher`: the shared Deep Researcher. Answers research questions from primary sources and returns a brief with a claims check (`supported`, `not supported`, `needs confirmation`); keeps research notes in `research/`.
 - `computer_use_operator`: the shared Computer Use Operator. Owns every website action (publishing, replying, collecting data) using real mouse and keyboard input, and computer work such as downloading source media or installing the tools for it. Keeps site knowledge in `web-ui-sites/` and tool knowledge in `computer-tools/`.
