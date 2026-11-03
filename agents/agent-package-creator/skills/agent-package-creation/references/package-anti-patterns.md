@@ -40,6 +40,7 @@ Concrete mistakes found in real package work. The [package design principles](pa
 | 30 | More Agents than the work needs | Package design |
 | 31 | Private information in a public package | Creator process |
 | 32 | Answering repeated feedback with another rule | Creator process |
+| 33 | Making a role find earlier work by guessing words | Package design |
 
 ## Package design
 
@@ -105,6 +106,13 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Breaks:** [principles §1](package-design-principles.md#1-choose-the-package-boundary-from-the-work): start with one Agent and one skill.
 - **Instead:** Begin with one Agent and one skill, and split only on evidence from runs. Before proposing a second Agent, apply the test in principles §1 (full context: keep together; independent judgement or different limits: split), and write down what each handoff would lose and what the split gains. A role that checks another checker needs evidence that the owner's own review fails; first give the owner that review's questions.
 - **Detect:** For each handoff in a proposed or existing package, ask what the receiver will not know that the sender knew, and whether one Agent with both skills would do the work without that loss. Two Agents writing one record, or a request that restates fields of a record both share, are the clearest signs.
+
+### 33. Making a role find earlier work by guessing words
+
+- **Incident:** A content creator had to reuse earlier replies by guessing search words and reading whole approved posts (186 pieces); a topic catalog was rejected as a copy of the posts. In the next two days it skipped the look-up for 4 of 8 new pieces, and when it searched, it missed answers worded differently from the question ("worktrees and tickets" was answered as "file-based handoffs"). The user, who had reminded it again and again, asked for something "like a book's table of contents" (2026-11-03).
+- **Breaks:** [§2](package-design-principles.md#2-design-responsibilities-before-files), information the roles share: a record serves the way its reader looks things up.
+- **Instead:** When a role often looks up earlier work by meaning (the question it answered, the decision it made), give it a record keyed that way: topics pointing to the items, with what each says, kept current where items are made and fixed when a look-up misses. It holds a fact no other file holds, so it is not a duplicate.
+- **Detect:** For each step that tells a role to check earlier work, name the record it reads and what that record is keyed by. A step that greps raw items with guessed terms, or that runs logs show being skipped, is a lead.
 
 ## Skill content
 
