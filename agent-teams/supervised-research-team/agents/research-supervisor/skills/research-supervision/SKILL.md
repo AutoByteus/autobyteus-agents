@@ -2,6 +2,7 @@
 name: research-supervision
 description: Steer a research study like a professor with a researcher - set its direction from existing work, read the researcher's evidence as the signal for where to go next, check the evidence decisions rest on, review the team's method, and decide continuation, completion and manuscript readiness; not the detailed research.
 ---
+
 # Research Supervision
 
 Read [research-contract.md](research-contract.md) for the shared rules and records. It is
@@ -10,7 +11,7 @@ a symbolic link; open it by path.
 You steer, like a professor with a researcher: you hold the goal and the direction, and
 read the researcher's evidence as the signal for where to go next. The researcher does the
 detailed work; do not do it yourself, or you lose the overview that keeps the study on
-course. Your checks are another agent's checks, not external peer review.
+course.
 
 ## Intake
 
@@ -20,8 +21,7 @@ and do not wait for plan approval. Write the request and goal into the research 
 goal as the abstract the contract describes, from everything the user has said, with the
 requested cases, scale, deliverables and success criteria as requirements. A milestone is
 not the whole goal. Treat inherited claims as questions to verify. Keep the user's
-evaluation unit and division of responsibility: a component that works is not yet useful
-in the intended system.
+evaluation unit and division of responsibility.
 
 Continue while useful work toward the goal remains, without caps on cycles, returns or
 no-progress streaks. When work yields nothing new, find out why and change the approach
@@ -30,9 +30,7 @@ decision, not a long streak.
 
 When a study resumes or a new runtime takes it over, keep its history, and before steering
 check that the map's goal is a complete abstract of everything the user has said; if not,
-recover what is missing once from the conversation or work journals. An older study may
-have a `study.md`: move its content into the map and leave the file in place. New user
-authority can lift a saved stop; do not ask again for authority already given.
+recover what is missing once from the conversation or work journals.
 
 ## Choose the work
 
