@@ -69,6 +69,43 @@ A conclusion is verifiable when another reader can find its source or recreate i
 decisive evidence from the recorded versions, commands, parameters and raw results.
 Record what was checked, what failed and what could not be checked.
 
+## The research map
+
+`research-map.md` is the study's one living document: what we are trying to achieve,
+what is known, how far we are and what we decided. Every role reads it first. Keep it
+current: replace outdated statements rather than add contradicting ones beside them;
+the cycle files keep the history of how the picture changed. Its sections, in order:
+
+1. **Request and limits.** The user's original request, word for word and never
+   edited; permissions and resource limits.
+2. **Goal.** The big aim and what success looks like, in plain words; what is in and
+   out of scope, and the evaluation unit. Then its breakdown into parts (G1, G2…), each
+   with its requirements (R1, R2…), what success means and the evidence it needs. The aim and success criteria change only with the user's decision. Either
+   role refines the breakdown and the detailed requirements as understanding grows,
+   noting each change with its date and reason. Never drop an unmet requirement
+   silently; narrowing a conclusion never erases one.
+3. **How far we are, per part.** What existing work reaches, what our own results
+   added, what is left and why. Overall: may existing work, or a combination, already
+   be enough? Practical estimates are qualitative: no invented percentages.
+4. **Existing work, by approach.** What each showed, on what evidence, how deeply we
+   read it (abstract, full text, code run, reproduced), whether it can be reused and
+   which parts of the goal it serves.
+5. **Our experiments and results.** For each: the question, what was done, the result,
+   and what it shows and does not show for which parts, with evidence IDs. Partial and
+   negative results stay. Mark the results the supervisor has checked.
+6. **Directions compared, and the current decision.** For each direction: expected
+   contribution, main uncertainty, strongest fair comparator, cost of learning more and
+   status. The supervisor's direction decision: why it serves the goal, which
+   alternatives lost and why, and what would change it.
+7. **Search trail.** What was searched, which citations were followed, what could not
+   be opened, and where the search stopped and why.
+8. **Current state.** Cycle, status, latest assignment and review, resource use, and
+   scope changes with the user's decisions.
+
+Only one role works at a time, so both edit the file, each updating what its work
+changed: mainly sections 3 to 5 and 7 for the researcher, and the request, goal,
+decision and state for the supervisor.
+
 ## The study folder
 
 Reuse the supplied study folder or create `research/<study-slug>/` in the workspace. Use
@@ -78,10 +115,9 @@ of all to make a check pass. Create a record only when there is something to put
 
 | Record | Owner and what it holds |
 | --- | --- |
-| `study.md` | Supervisor. The original request, kept visible; requirements with IDs and the evidence each needs; scope, evaluation unit, permissions and resource limits; the current direction decision (why it serves the goal, which alternatives lost and why, what would change it); current cycle and state; scope changes with the user's decision. Narrowing a conclusion never erases an unmet requirement. |
-| `research-map.md` | Researcher, kept current across the whole study, and read first by every role. What the team knows: the parts the goal needs; existing work by approach, with what it showed, on what evidence, how deeply we read it (abstract, full text, code run, reproduced) and whether it can be reused; how far existing work and our own results get toward each part, and what is left; directions compared (expected contribution, main uncertainty, strongest fair comparator, cost of learning more, and status); the search trail and where it stopped. Our own partial and negative results go here too. |
+| `research-map.md` | Both, as described above. |
 | `method-reviews.md` | Supervisor: each method review, appended. |
-| `cycles/CNNN/assignment.md` | Supervisor: work kind; the question, the map gap it addresses and the decision it informs; findings to resolve; evidence expected; time limits and allowed actions. |
+| `cycles/CNNN/assignment.md` | Supervisor: work kind; the question, the goal part and map gap it addresses and the decision it informs; findings to resolve; evidence expected; time limits and allowed actions. |
 | `cycles/CNNN/report.md` | Researcher: claims with supporting and opposing evidence IDs, requirement coverage, deviations, limitations, status and next step. A proposal to complete is not a decision. |
 | `cycles/CNNN/review.md` | Supervisor: the report and evidence revision checked, so later edits do not inherit approval; findings, the step back, the decision and the next assignment or terminal assessment. |
 | `evidence.md` | Both, append-only, each author with its own IDs: source or run, version, method or command, result, raw path, limits. |

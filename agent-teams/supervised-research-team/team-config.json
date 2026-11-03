@@ -19,14 +19,14 @@
       "from": "/research_supervisor",
       "to": "/researcher",
       "rules": [
-        "When the supervisor saves decision Continue with a new numbered assignment: carry out the assigned research. Include absolute paths to the study, the assignment and the review behind it."
+        "When the supervisor saves decision Continue with a new numbered assignment: carry out the assigned research. Include absolute paths to the research map, the assignment and the review behind it."
       ]
     },
     {
       "from": "/researcher",
       "to": "/research_supervisor",
       "rules": [
-        "When the researcher saves a new cycle report with status Review requested, Checkpoint, Blocked or Decision needed: review its evidence against the study's original goal and decide the next action. Include absolute paths to the report and the study."
+        "When the researcher saves a new cycle report with status Review requested, Checkpoint, Blocked or Decision needed: review its evidence against the goal in the research map and decide the next action. Include absolute paths to the report and the research map."
       ]
     }
   ]
