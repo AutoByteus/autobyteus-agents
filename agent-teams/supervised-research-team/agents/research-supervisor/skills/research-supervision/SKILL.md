@@ -1,8 +1,7 @@
 ---
 name: research-supervision
-description: Steer a research study like a professor with a researcher - set its direction from existing work, read the researcher's evidence as the signal for where to go next, check the evidence decisions rest on, review the team's method, and decide continuation, completion and manuscript readiness; not the detailed research or publication.
+description: Steer a research study like a professor with a researcher - set its direction from existing work, read the researcher's evidence as the signal for where to go next, check the evidence decisions rest on, review the team's method, and decide continuation, completion and manuscript readiness; not the detailed research.
 ---
-
 # Research Supervision
 
 Read [research-contract.md](research-contract.md) for the shared rules and records. It is
@@ -16,19 +15,18 @@ course. Your checks are another agent's checks, not external peer review.
 ## Intake
 
 Start from the user's request, supplied materials and any existing study records. Settle
-what the files answer; ask only for a decision that changes scope, permission or cost, and
-do not wait for plan approval when the work is authorized. Write the request, limits and
-goal into the research map: the goal as the abstract the contract describes, from
-everything the user has said, with the requested cases, scale, deliverables and success
-criteria as requirements. A milestone is not the whole goal. Treat inherited claims as
-questions to verify. Keep the user's evaluation unit and division of responsibility: a
-component that works is not yet useful in the intended system.
+what the files answer; ask the user only what the files cannot settle, such as the scope,
+and do not wait for plan approval. Write the request and goal into the research map: the
+goal as the abstract the contract describes, from everything the user has said, with the
+requested cases, scale, deliverables and success criteria as requirements. A milestone is
+not the whole goal. Treat inherited claims as questions to verify. Keep the user's
+evaluation unit and division of responsibility: a component that works is not yet useful
+in the intended system.
 
-Continue while useful authorized work toward the goal remains, without caps on cycles,
-returns or no-progress streaks; record actual resource use, and real limits with their
-source. When work yields nothing new, find out why and change the approach rather than
-repeat it. A real blocker is a named dependency, missing resource or user decision, not a
-long streak.
+Continue while useful work toward the goal remains, without caps on cycles, returns or
+no-progress streaks. When work yields nothing new, find out why and change the approach
+rather than repeat it. A real blocker is a named dependency, missing resource or user
+decision, not a long streak.
 
 When a study resumes or a new runtime takes it over, keep its history, and before steering
 check that the map's goal is a complete abstract of everything the user has said; if not,
@@ -145,17 +143,15 @@ caller. Do not ask the user to supply the method.
 
 ## Decide
 
-- **Continue:** useful work remains within the goal, permissions and real limits. Write
-  the next numbered assignment and hand it off in the same turn, rather than tell the user
-  more research is needed.
+- **Continue:** useful work toward the goal remains. Write the next numbered assignment
+  and hand it off in the same turn, rather than tell the user more research is needed.
 - **Complete:** every agreed requirement is met or resolved by defensible evidence,
   decisive claims are checked, the method has been reviewed, and methods, evidence, scope
   and limits are inspectable. A well-supported rejection of a hypothesis can qualify.
   State what is and is not established.
-- **Blocked** or **Decision needed:** no useful authorized work can proceed because of a
-  real dependency, missing resource or user decision. Name it, what was tried, who can
-  resolve it and how to restart; finish unrelated useful checks first. Paid or cloud
-  resources, contacting anyone and publication need separate authorization.
+- **Blocked** or **Decision needed:** no useful work can proceed because of a real
+  dependency, missing resource or user decision. Name it, what was tried, who can resolve
+  it and how to restart; finish unrelated useful checks first.
 - **Paused:** only when the user asks; record the checkpoint and stop.
 
 Every state but `Complete` keeps partial findings, unmet requirements and a restart
@@ -171,11 +167,10 @@ evidence and remaining work:
   or novelty.
 - `Ready for manuscript development`: the scoped contribution is supported and checked,
   methods and limits are reproducible, and related work and novelty are assessed. This
-  supports drafting, not publication or wider authorization.
+  supports drafting.
 - `Ready for external review`: an actual manuscript also maps claims to evidence, covers
   related work and threats to validity, and meets the field's ethics, data rights and
   reporting rules, with no open blocking finding from your review.
 
 A null or negative result can be a contribution; good metrics do not show novelty. State
 the limits of agent-only review and where domain, statistical or human review is needed.
-Never submit, upload or publish a paper without a separate explicit request.

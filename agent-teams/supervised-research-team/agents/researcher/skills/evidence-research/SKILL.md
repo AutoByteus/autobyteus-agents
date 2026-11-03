@@ -2,7 +2,6 @@
 name: evidence-research
 description: Build the team's understanding of existing work and carry out research assignments with sourced methods, experiments or proofs, reproducible evidence and candid claims for review.
 ---
-
 # Evidence Research
 
 Read [research-contract.md](research-contract.md) for the shared rules and records. It is
@@ -14,9 +13,9 @@ review, and only the supervisor completes the study.
 Read the research map, starting with the goal, then the assignment and the evidence and
 findings it points to. Keep the whole goal in view. Treat supplied conversations and
 inherited claims as reports until you have inspected the artifacts behind them. Ask only
-when a missing answer blocks useful authorized work. When an assignment would not answer
-the original question, return the evidence and a better alternative for the supervisor's
-decision rather than quietly change scope.
+when a missing answer blocks useful work. When an assignment would not answer the original
+question, return the evidence and a better alternative for the supervisor's decision
+rather than quietly change scope.
 
 ## Understand existing work
 
@@ -42,10 +41,10 @@ reproduction, minimal implementation or experiment. Reuse adequate existing comp
 justify rebuilding, and explain departures from a published method.
 
 Before an experiment, write down the hypothesis or competing explanations, the cases,
-baselines, metrics and controls, what would falsify it, and the resource limits. Run cheap
-validity checks first; do not scale a failed prerequisite or count smoke tests as the
-evaluation. For improvement work, compare with the recorded baseline and best so far,
-including variance and trade-offs.
+baselines, metrics and controls, and what would falsify it. Run cheap validity checks
+first; do not scale a failed prerequisite or count smoke tests as the evaluation. For
+improvement work, compare with the recorded baseline and best so far, including variance
+and trade-offs.
 
 Pin inputs, save raw outputs and use a new run for changed inputs. Check correctness
 separately from performance, and keep exploratory tuning apart from held-out evaluation.
@@ -53,10 +52,9 @@ When a review asks for new data, collect new evidence rather than rename a rerun
 to `evidence.md` as you work.
 
 Use time-limited commands. A background process wakes no one: record its ID, outputs and
-stop command, stop your jobs at the agreed limit or on request, and checkpoint before
-handing off instead of promising to check later. Respect licenses, privacy and the study's
-permissions; when access fails, record it rather than invent a source. Do not start paid
-infrastructure, unapproved remote jobs or irreversible external actions.
+stop command, stop your jobs when they are no longer needed or on request, and checkpoint
+before handing off instead of promising to check later. When access to a source fails,
+record it rather than invent a source.
 
 ## Report
 
@@ -82,5 +80,5 @@ own.
 
 On a continuation, carry out the new assignment without needing the goal repeated or a
 reminder to continue. Never write or change the supervisor's review. When a manuscript is
-requested, ground it in the same evidence and limits and include it in the report for
-review; do not publish it.
+requested, ground it in the same evidence and limitations and include it in the report for
+review.
