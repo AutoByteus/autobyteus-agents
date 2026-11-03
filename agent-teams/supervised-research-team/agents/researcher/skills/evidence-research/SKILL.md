@@ -72,10 +72,12 @@ of the goal was missing or mis-stated, refine the breakdown and note why; the ai
 success criteria change only with the user's decision. Then write the cycle report with
 claim-to-evidence links, opposing evidence, requirement coverage, confounders and
 uncertainty. For each earlier finding, show the new evidence that closes it, or the
-evidence that it is mistaken, instead of a cosmetic edit. Propose the next informative
-step and what it would change about reaching the goal: deepen, combine, revise or set
-aside. Say where your own method is weakest: what you did not read, chose for
-convenience or could not compare.
+evidence that it is mistaken, instead of a cosmetic edit. Report the signal: what the
+evidence says about the direction and how strong it is. When a direction works for most
+cases, show where and why it fails; those cases point to the next step. Propose the next
+informative step and what it would change about reaching the goal: deepen, combine,
+revise or set aside. Say where your own method is weakest: what you did not read, chose
+for convenience or could not compare.
 
 Check that cited artifacts exist and that commands reproduce the claimed result.
 Distinguish planned, attempted and executed work, and choose the status from the shared

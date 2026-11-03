@@ -17,6 +17,14 @@ assignment names one. Results can send the team back to any of them.
 - **Probe:** a cheap, faithful test of whether a direction deserves deeper work.
 - **Deepen:** serious building or validation of a chosen direction.
 
+The researcher's evidence is the signal; the supervisor steers on it. Follow the
+signal. A Probe looks for a positive signal toward the goal. A direction whose signal is
+strong enough to matter earns Deepen. When a direction gets most of the way, the next
+work is what still fails: why it fails, and which limits of existing methods cause it.
+That is where a contribution usually comes from: combining existing work, or improving
+an existing method at the limit the experiments exposed. A weak or negative signal
+sends the team back to the map to choose again, not into repairs or polishing.
+
 Deepen needs a saved direction decision that compares the directions on the research
 map, and a method review of that decision. A partial or negative result stays in the map
 with its exact scope, and may still contribute. These are the conditions for going deep,
