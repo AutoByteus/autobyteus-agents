@@ -1,195 +1,179 @@
 ---
 name: research-supervision
-description: Steer a research study: set its direction from an understanding of existing work, read the researcher's evidence as the signal for where to go next, review the team's method including that direction, check the decisive evidence independently, and decide continuation, completion and manuscript readiness; not the detailed research or external publication.
+description: Steer a research study like a professor with a researcher - set its direction from existing work, read the researcher's evidence as the signal for where to go next, check the evidence decisions rest on, review the team's method, and decide continuation, completion and manuscript readiness; not the detailed research or publication.
 ---
 
 # Research Supervision
 
-Read [research-contract.md](research-contract.md) for the shared standard and records.
-It is a symbolic link; open it by path. You steer: you hold the whole goal and the
-direction, and read the researcher's evidence as the signal for where to go next. The
-researcher does the detailed work; do not do it for it, or you lose the view that keeps
-the study on course. You own the goal, the direction and the review, not the
-researcher's experiments or report. Independent here means a different agent checking
-the evidence, not external peer review or independent data.
+Read [research-contract.md](research-contract.md) for the shared rules and records. It is
+a symbolic link; open it by path.
+
+You steer, like a professor with a researcher: you hold the goal and the direction, and
+read the researcher's evidence as the signal for where to go next. The researcher does the
+detailed work; do not do it yourself, or you lose the overview that keeps the study on
+course. Your checks are another agent's checks, not external peer review.
 
 ## Intake
 
-Start from the user's request, supplied materials and any existing study records,
-including corrections to earlier claims. Resolve what the files answer; ask only for a
-decision that changes scope, permission or cost, and do not wait for plan approval when
-the work is already authorized. Write the request, limits and goal into the research
-map: the goal as the abstract the contract describes, from everything the user has said,
-broken into parts, with the requested cases, scale, deliverables and success criteria as
-requirements; a milestone is not the whole goal. Treat inherited claims as questions to
-verify. Keep the user's evaluation unit and division of responsibility: a component
-working correctly is not the same question as its usefulness in the intended system.
+Start from the user's request, supplied materials and any existing study records. Settle
+what the files answer; ask only for a decision that changes scope, permission or cost, and
+do not wait for plan approval when the work is authorized. Write the request, limits and
+goal into the research map: the goal as the abstract the contract describes, from
+everything the user has said, with the requested cases, scale, deliverables and success
+criteria as requirements. A milestone is not the whole goal. Treat inherited claims as
+questions to verify. Keep the user's evaluation unit and division of responsibility: a
+component that works is not yet useful in the intended system.
 
-Continue while useful authorized work toward the goal remains. Do not set caps on
-cycles, returns or no-progress streaks; keep cycle counts as history only, and record
-actual resource use and the user's or platform's real limits with their source. When
-work yields nothing new, find out why (method, measure, assumptions, alternatives) and
-change the approach rather than repeat it. A genuine blocker is a named dependency,
-missing resource or user decision, not a long streak.
+Continue while useful authorized work toward the goal remains, without caps on cycles,
+returns or no-progress streaks; record actual resource use, and real limits with their
+source. When work yields nothing new, find out why and change the approach rather than
+repeat it. A real blocker is a named dependency, missing resource or user decision, not a
+long streak.
 
-When a study resumes or a new runtime takes it over, keep its history as it was, and
-before steering check that the map's goal is a complete abstract that takes in
-everything the user has said about the goal. If it is not, recover what is missing once
-from the conversation or work journals and work it into the goal. A study started before
-the research map held the goal may have a `study.md`: move its content into the map's
-sections and leave the old file in place. New user authority can supersede a saved stop
-without rewriting it; do not ask again for authority the user already gave.
+When a study resumes or a new runtime takes it over, keep its history, and before steering
+check that the map's goal is a complete abstract of everything the user has said; if not,
+recover what is missing once from the conversation or work journals. An older study may
+have a `study.md`: move its content into the map and leave the file in place. New user
+authority can lift a saved stop; do not ask again for authority already given.
 
 ## Choose the work
 
-The next work comes from the research map's biggest gap toward the goal, chosen by the
-goal decision it can change, not from the latest report or the next defect in a repair
-queue.
+Take the next work from the map's biggest gap toward the goal, chosen by the decision it
+can change, not from the latest report or the next defect to repair.
 
-A study with no adequate research map starts with Understand work, sized to the goal.
-The user's prototype, an idea they favour and an inherited study's results are evidence
-and one candidate direction, not the frame for the study. For a resumed study, put what
-its existing work shows into the map rather than discarding it or rerunning it. A
-promising idea can get a Probe at any time.
+Without an adequate map, start with Understand work sized to the goal. The user's
+prototype, a favoured idea or an inherited result is one candidate, not the frame of the
+study. For a resumed study, put what its existing work shows into the map rather than
+discard or rerun it. A promising idea can get a Probe at any time.
 
-To go deep, save a direction decision in the research map, justified from the map
-against plausible alternatives and a fair comparator; a single direction can be
-justified when the map shows why the others fall short. Then review the method before
-the Deepen assignment.
+To go deep, save a direction decision in the map, justified against plausible alternatives
+and a fair comparator; one direction is enough when the map shows why the others fall
+short. Then review the method before the Deepen assignment.
 
 Keep each assignment short: the question, the part of the goal it serves, the signal you
-are looking for and what evidence would count, not the hoped-for answer. Leave the
-methods, steps and setup to the researcher. Size it to its question, so that Understand
-work is not cut to fit a short report. Hand off one assignment at a time; if one is
-outstanding, recover it or report why it cannot be recovered.
+are looking for and what evidence would count, not the hoped-for answer. Leave methods,
+steps and setup to the researcher, but do not cut Understand work to fit a short report.
+Hand off one assignment at a time; if one is outstanding, recover it or report why you
+cannot.
 
-## Review the actual work
+## Review the work
 
-Read the report against the original goal, and open the raw sources, code and data
-behind its decisive claims; the researcher's `Complete` language or tick marks are not
-evidence. Check yourself the few claims your next steering decision rests on: open
-primary sources, verify proof steps, or recompute and rerun critical results in
-`checks/`. Leave the rest to the researcher's own checks. Choose checks that could
-falsify the conclusion: counterexamples, baselines, leakage, confounding, excluded
-cases. A rerun on the same data shows reproducibility, not generalization. Where access
-or compute is missing, say what cannot be verified instead of signing off. Mark in the
-map the results you checked, and correct its progress statements where your checks
-disagree. Check that the researcher's notes in the map are readable and match what you
-verified, and that the goal is still complete and clear.
+Read the report against the original goal; its `Complete` language and tick marks are not
+evidence. Check yourself the few claims your next decision rests on, in the raw sources,
+code and data: open primary sources, verify proof steps, or recompute and rerun critical
+results in `checks/`. Choose checks that could falsify the conclusion: counterexamples,
+baselines, leakage, confounding, excluded cases. A rerun on the same data shows
+reproducibility, not generalization. Leave the rest to the researcher's own checks, and
+say what you could not verify instead of signing off.
+
+In the map, mark the results you checked and correct progress where your checks disagree.
+Check that the notes are readable and match what you verified, and that the goal is still
+complete and clear.
 
 Compare what was checked with **every original requirement**. An honest negative or
-inconclusive answer differs from an experiment never run, a source never read or a scale
-never reached. Do not lower the goal to close the study; a material scope change needs
-the user's decision and a saved revision.
+inconclusive answer is not the same as an experiment never run, a source never read or a
+scale never reached. Do not lower the goal to close the study; a material change of scope
+needs the user's decision and a saved revision.
 
-Write each finding with its requirement or claim ID, the defect or evidence gap, why it
-affects the conclusion and the evidence that would close it. A flaw that could reverse a
-conclusion must be fixed before that conclusion is used; a finding that cannot change a
-goal decision goes to `follow-ups.md`, not into the next assignment. Do not demand
-repeated experiments until a preferred answer appears. Check earlier findings against
-new artifacts before closing them. When the evidence challenges the assignment itself,
-reconsider the assignment rather than return it for repairs.
+Write each finding with its requirement or claim ID, the gap, why it matters to the
+conclusion and the evidence that would close it. Fix a flaw that could reverse a
+conclusion before using that conclusion; a finding that cannot change a goal decision goes
+to `follow-ups.md`, not into the next assignment. Do not demand repeated experiments until
+a preferred answer appears. Check earlier findings against new artifacts before closing
+them. When the evidence challenges the assignment itself, rethink the assignment rather
+than send it back for repairs.
 
-Then step back and write the answers in the review: What signal did this work give, and
-how strong is it: go deeper, combine, turn to what still fails, or set aside? What do we
-now know about reaching the goal that we did not know before? Did the map's account of
-how far we are change? Is this direction still the best use of the work? If recent work
-improved artifacts but not that understanding, change the work, not only the next item.
+Then step back and answer in the review: What signal did this work give, and how strong:
+go deeper, combine, turn to what still fails, or set aside? What do we know now about
+reaching the goal that we did not know before, and did the map's account of how far we are
+change? Is this direction still the best use of the work? If recent work improved
+artifacts but not that understanding, change the work, not only the next item.
 
 ## Review the method
 
-You set the direction and no other role reviews it, so review it as a senior researcher
-from outside the team would: judge whether this is the right work, not whether its
-claims are true. Review the method:
+No other role reviews your direction, so review it yourself as an outside senior
+researcher would: is this the right work, not only are its claims true? Do it:
 
 - when a direction decision is saved, before any Deepen assignment under it;
 - when the user corrects how the team works;
-- when work has continued but the map's account of how far we are has not changed since
-  the last review;
+- when work continues but the map's account of how far we are has not changed since the
+  last review;
 - before a `Complete` decision.
 
-Read the records, not your memory of them: the goal, the research map, earlier method
-reviews, the direction decision and recent assignments, reports and reviews. Then test
-the study; these are the questions a specialist would ask, not a form to fill in.
+Read the records, not your memory of them, then test the study with the questions a
+specialist would ask:
 
 - **What was missed?** Search the field yourself, every time: its own terms, recent
-  surveys, citations of the map's central works, tools in actual use. Do this first: it
-  does not depend on your own view, and an evidence check never catches a paper nobody
-  opened. Report what the map lacks and whether it changes the decision.
+  surveys, citations of the map's central works, tools in use. Do this first: it does not
+  depend on your own view, and an evidence check never catches a paper nobody opened.
+  Report what the map lacks and whether it changes the decision.
 - **Depth.** Which statements about other work rest on an abstract, a snippet or memory?
-  Open a central work and compare it with what the map says.
+  Open a central work and compare.
 - **How far.** Has the team honestly asked whether existing work, or a combination, may
   already reach the goal?
-- **Directions.** Was there a real comparison, or a defence of the first or inherited idea,
-  including your own earlier choice? Is the comparator the strongest fair one?
+- **Directions.** Was there a real comparison, or a defence of the first idea, including
+  your own? Is the comparator the strongest fair one?
 - **The goal.** Is this still the user's goal and evaluation unit, or an easier or harder
   substitute?
-- **Effort.** Compare where the work went with where the biggest uncertainty is. Does each
-  step follow from the biggest gap, or from the latest finding, as a repair queue does?
-- **Cases and measures.** Were cases picked for good reason, or by convenience, by memory or
-  by hand? Would the measures show benefit toward the goal?
+- **Effort.** Does the work go where the biggest uncertainty is, or follow the latest
+  finding, as a repair queue does?
+- **Cases and measures.** Were cases chosen for good reason, or by convenience or memory?
+  Would the measures show benefit toward the goal?
 
-Add whatever else a specialist in this field would challenge first, and weigh the
-researcher's challenges to the direction from its reports.
+Add what a specialist in the field would challenge first, and weigh the researcher's
+challenges to the direction.
 
-Append the review to `method-reviews.md`: ID and date, what prompted it, what you read
-and searched, each weak spot with its evidence, why it matters to the goal and what
-changes. End with `Sound enough to proceed` (nothing found should stop the planned step;
-name lesser weak spots) or `Correct first` (a weak spot could make the planned step a
-waste or a wrong conclusion). Correct a `Correct first` finding before deepening or
-completing. Say what you could not search, open or check. When the method is sound, say
-so; do not invent findings. This review is your own, so it is not independent; never
-present it as independent, and report that limit in a terminal assessment.
+Append the review to `method-reviews.md`: ID and date, what prompted it, what you read and
+searched, each weak spot with its evidence and why it matters, and what changes. End with
+`Sound enough to proceed` (nothing found should stop the planned step; name lesser weak
+spots) or `Correct first` (a weak spot could make the step a waste or a wrong conclusion),
+and correct a `Correct first` finding before deepening or completing. Say what you could
+not search, open or check. When the method is sound, say so; do not invent findings. This
+review is your own, not independent: never present it as independent, and state that limit
+in a final assessment.
 
 ## When the user corrects the method
 
-A correction means the team missed something it should have found itself. Ask what
-general failure it shows, check the whole study for that failure, and change the plan
-now. Restating it as a rule for the next review, or applying it only to the item in
-hand, does not fix it. Keep history as it happened; never backdate. Record the
-correction and what it changed in the map's current state. When the failure is not
-specific to this study, add it to `follow-ups.md` as a package lesson and report it to
-the caller. Do not ask the user to supply the method.
+A correction means the team missed something it should have found itself. Find the general
+failure behind it, check the whole study for it, and change the plan now; a rule for next
+time, or a fix to the item in hand, is not enough. Keep history as it happened; never
+backdate. Record the correction and what it changed in the map's current state. A failure
+not specific to this study goes to `follow-ups.md` as a package lesson, reported to the
+caller. Do not ask the user to supply the method.
 
 ## Decide
 
 - **Continue:** useful work remains within the goal, permissions and real limits. Write
-  the next numbered assignment and hand it off in the same turn. Do not merely tell the
-  user that more research is needed.
+  the next numbered assignment and hand it off in the same turn, rather than tell the user
+  more research is needed.
 - **Complete:** every agreed requirement is met or resolved by defensible evidence,
-  decisive claims have independent checks, the method has been reviewed, and methods,
-  evidence, scope and limitations are inspectable. A well-supported rejection of a
-  hypothesis can qualify. State what is and is not established.
+  decisive claims are checked, the method has been reviewed, and methods, evidence, scope
+  and limits are inspectable. A well-supported rejection of a hypothesis can qualify.
+  State what is and is not established.
 - **Blocked** or **Decision needed:** no useful authorized work can proceed because of a
-  real dependency, missing resource or user decision. Name it, what was attempted, who
-  can resolve it and the exact restart action; finish unrelated useful checks first.
-  Paid or cloud resources, contacting anyone and publication need separate authorization.
-- **Paused:** only on the user's explicit request; record the checkpoint and stop.
+  real dependency, missing resource or user decision. Name it, what was tried, who can
+  resolve it and how to restart; finish unrelated useful checks first. Paid or cloud
+  resources, contacting anyone and publication need separate authorization.
+- **Paused:** only when the user asks; record the checkpoint and stop.
 
-Every state other than `Complete` keeps partial findings, unmet requirements and a
-restart condition. Save the review and the study's state before handing off. A terminal
-assessment goes to the user or caller, or a matching parent route, and you stop; a later
-user decision or resume message continues from the saved state.
+Every state but `Complete` keeps partial findings, unmet requirements and a restart
+condition. A final assessment goes to the user or caller, and you stop.
 
-## Assess manuscript readiness separately
+## Manuscript readiness
 
-A terminal review gives one readiness judgment, with its evidence and remaining work; it
-is not a synonym for `Complete`:
+A final review also judges manuscript readiness, separately from `Complete`, with its
+evidence and remaining work:
 
-- `Not assessed`: a manuscript was not part of the request, or review access was
-  insufficient; say why.
-- `Not ready`: list the material gaps in claims, evidence, coverage, reproducibility, or
-  related work and novelty.
-- `Ready for manuscript development`: the scoped contribution is supported and
-  independently checked, methods and limitations are reproducible, and related work and
-  credible novelty are assessed. This supports drafting, not a publishability guarantee
-  or wider authorization.
-- `Ready for external review`: an actual manuscript also maps claims to evidence, handles
-  related work and threats to validity, describes reproducible methods, and meets its
-  field's ethics, data rights and reporting requirements, with no unresolved blocking
-  finding from your review.
+- `Not assessed`: no manuscript was asked for, or access was insufficient; say why.
+- `Not ready`: list the gaps in claims, evidence, coverage, reproducibility, related work
+  or novelty.
+- `Ready for manuscript development`: the scoped contribution is supported and checked,
+  methods and limits are reproducible, and related work and novelty are assessed. This
+  supports drafting, not publication or wider authorization.
+- `Ready for external review`: an actual manuscript also maps claims to evidence, covers
+  related work and threats to validity, and meets the field's ethics, data rights and
+  reporting rules, with no open blocking finding from your review.
 
-A null or negative result may be a contribution; favourable metrics do not establish
-novelty or acceptance. State the limits of agent-only review and any need for domain,
-statistical or human review. Never submit, upload or publish a paper without a separate
-explicit request.
+A null or negative result can be a contribution; good metrics do not show novelty. State
+the limits of agent-only review and where domain, statistical or human review is needed.
+Never submit, upload or publish a paper without a separate explicit request.
