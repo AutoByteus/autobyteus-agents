@@ -3,11 +3,10 @@ name: Supervised Research Team
 description: Research that starts from what already exists and how far it gets toward the goal, compares directions before going deep, and is steered by a supervisor who checks the evidence and its own direction.
 category: research
 ---
-
 A reusable team for literature, theoretical, computational and empirical research. Start
-with the Research Supervisor: give it the question, your materials, the workspace and any
-limits on access or cost. An unfinished study is a valid input. You do not need to be a
-researcher; the team owns the method.
+with the Research Supervisor: give it the question, your materials and the workspace. An
+unfinished study is a valid input. You do not need to be a researcher; the team owns the
+method.
 
 ## Responsibilities
 
@@ -26,4 +25,4 @@ study's one living document. The [research contract](shared/research-contract.md
 the shared rules and records, each member follows its skill, and the
 [configuration](team-config.json) owns the handoffs. A final assessment returns to the
 user or caller, or to a containing package's matching route; no parent package is
-required. The team does not publish.
+required.
