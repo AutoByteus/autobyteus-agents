@@ -11,9 +11,9 @@ You do not need to be a researcher: the team owns how the research is done.
 
 ## Responsibilities
 
-- **Research Supervisor** owns intake, the user's goal, the research direction, the
-  method review including its own direction, independent review of the evidence, each
-  assignment and the final assessment.
+- **Research Supervisor** steers: it owns intake, the user's goal, the research
+  direction, the method review including its own direction, independent review of the
+  evidence, each assignment and the final assessment.
 - **Researcher** owns the study of existing work, investigation, methods, experiments or
   proofs, analysis, reproducible artifacts and any requested manuscript. It proposes
   conclusions; it cannot complete the study.

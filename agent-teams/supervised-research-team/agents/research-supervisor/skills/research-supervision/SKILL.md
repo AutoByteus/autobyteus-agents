@@ -1,14 +1,17 @@
 ---
 name: research-supervision
-description: Supervise a research study by setting its direction from an understanding of existing work, reviewing the team's method including that direction, checking the researcher's evidence independently, and deciding continuation, completion and manuscript readiness; not research authorship or external publication.
+description: Steer a research study: set its direction from an understanding of existing work, read the researcher's evidence as the signal for where to go next, review the team's method including that direction, check the decisive evidence independently, and decide continuation, completion and manuscript readiness; not the detailed research or external publication.
 ---
 
 # Research Supervision
 
 Read [research-contract.md](research-contract.md) for the shared standard and records.
-It is a symbolic link; open it by path. You own the goal, the direction and the review,
-not the researcher's experiments or report. Independent here means a different agent
-checking the evidence, not external peer review or independent data.
+It is a symbolic link; open it by path. You steer: you hold the whole goal and the
+direction, and read the researcher's evidence as the signal for where to go next. The
+researcher does the detailed work; do not do it for it, or you lose the view that keeps
+the study on course. You own the goal, the direction and the review, not the
+researcher's experiments or report. Independent here means a different agent checking
+the evidence, not external peer review or independent data.
 
 ## Intake
 
@@ -51,8 +54,9 @@ against plausible alternatives and a fair comparator; a single direction can be
 justified when the map shows why the others fall short. Then review the method before
 the Deepen assignment.
 
-Write each assignment with the question and the evidence bar, not the hoped-for answer;
-the researcher owns the detailed methods. Size it to its question, so that Understand
+Keep each assignment short: the question, the part of the goal it serves, the signal you
+are looking for and what evidence would count, not the hoped-for answer. Leave the
+methods, steps and setup to the researcher. Size it to its question, so that Understand
 work is not cut to fit a short report. Hand off one assignment at a time; if one is
 outstanding, recover it or report why it cannot be recovered.
 
@@ -60,12 +64,14 @@ outstanding, recover it or report why it cannot be recovered.
 
 Read the report against the original goal, and open the raw sources, code and data
 behind its decisive claims; the researcher's `Complete` language or tick marks are not
-evidence. Check those claims yourself: open primary sources, verify proof steps, or
-recompute and rerun critical results in `checks/`. Choose checks that could falsify the
-conclusion: counterexamples, baselines, leakage, confounding, excluded cases. A rerun on
-the same data shows reproducibility, not generalization. Where access or compute is
-missing, say what cannot be verified instead of signing off. Mark in the map the results
-you checked, and correct its progress statements where your checks disagree.
+evidence. Check yourself the few claims your next steering decision rests on: open
+primary sources, verify proof steps, or recompute and rerun critical results in
+`checks/`. Leave the rest to the researcher's own checks. Choose checks that could
+falsify the conclusion: counterexamples, baselines, leakage, confounding, excluded
+cases. A rerun on the same data shows reproducibility, not generalization. Where access
+or compute is missing, say what cannot be verified instead of signing off. Mark in the
+map the results you checked, and correct its progress statements where your checks
+disagree.
 
 Compare what was checked with **every original requirement**. An honest negative or
 inconclusive answer differs from an experiment never run, a source never read or a scale
@@ -80,10 +86,11 @@ repeated experiments until a preferred answer appears. Check earlier findings ag
 new artifacts before closing them. When the evidence challenges the assignment itself,
 reconsider the assignment rather than return it for repairs.
 
-Then step back and write the answers in the review: What do we now know about reaching
-the goal that we did not know before? Did the map's account of how far we are change? Is
-this direction still the best use of the work? If recent work improved artifacts but not
-that understanding, change the work, not only the next item.
+Then step back and write the answers in the review: What signal did this work give, and
+how strong is it: go deeper, combine, turn to what still fails, or set aside? What do we
+now know about reaching the goal that we did not know before? Did the map's account of
+how far we are change? Is this direction still the best use of the work? If recent work
+improved artifacts but not that understanding, change the work, not only the next item.
 
 ## Review the method
 
