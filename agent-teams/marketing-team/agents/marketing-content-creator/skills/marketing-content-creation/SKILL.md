@@ -38,7 +38,7 @@ The approved strategy and the record of published posts live beside it:
 - proof media: path and what it shows
 - the pieces that answer it, newest first: work folder path and one line on what that piece says or adds
 
-A piece that answers several topics is listed under each. The text stays in the pieces and the dates and URLs in the index; the catalog points to them. If the workspace has published pieces and no catalog, build it from them before the next draft.
+The same message published on several channels (cross-posts, translations) is one entry that lists all its copies' paths, noting a copy that differs, such as a translation; a look-up opens one copy, not each. A piece that answers several topics is listed under each. The text stays in the pieces and the dates and URLs in the index; the catalog points to them. If the workspace has published pieces and no catalog, build it from them before the next draft.
 
 Use the voice the user or channel guide names; if the library has one voice, use it. A channel guide can adjust tone for its audience; the voice still governs facts and wording fidelity. If no voice exists, draft from the user's writing samples (ask for one or two if none were supplied), and after the first approved piece create `voices/<name>.md` with the rules the user confirmed.
 
