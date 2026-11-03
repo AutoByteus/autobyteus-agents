@@ -132,7 +132,7 @@ when there is something to put in it.
 | `method-reviews.md` | Supervisor: each method review, appended. |
 | `cycles/CNNN/assignment.md` | Supervisor: work kind; the question, the goal part and map gap it addresses, and the decision it informs; findings to resolve; evidence expected. |
 | `cycles/CNNN/report.md` | Researcher: claims with evidence IDs for and against, requirement coverage, deviations, limitations, status and next step. Proposing completion is not deciding it. |
-| `cycles/CNNN/review.md` | Supervisor: which version of the report and evidence it checked, so later edits are not covered by the review; findings; the step back; the decision and the next assignment or final assessment. |
+| `cycles/CNNN/review.md` | Supervisor: what it checked, findings, the step back, the decision and the next assignment or final assessment. |
 | `evidence.md` | Both, append-only, each author with its own IDs: source or run, version, method or command, result, raw path, limits. |
 | `follow-ups.md` | Both: out-of-scope work, decisions and restart needs, with IDs. The supervisor reports them to the caller. |
 | `runs/`, `sources/`, manuscript | Researcher. The supervisor's reruns go in `checks/`. |
@@ -154,17 +154,14 @@ its skill says when. Only `Continue` carries a new assignment, and only `Complet
 finishes the study.
 
 Save the result before sending it. A handoff names the study, cycle, status, main finding
-and next action, with absolute paths to the result and the few files needed next. A
-delivered message does not show the work ran. If delivery fails, keep the handoff pending
-and report it. Do not repeat delivered work: for an identical handoff already answered,
-with nothing changed, return the saved decision; changed evidence needs a new revision,
-not a second assignment.
+and next action, with absolute paths to the result and the few files needed next. If
+delivery fails, report it. For a handoff already answered with nothing changed, return the
+saved decision instead of redoing the work.
 
 ## Runtime limits
 
-Work moves only by delivered messages: writing a file wakes no one, and no role watches a
-stopped run, so do not promise to. After an interruption, inspect the actual files and
-jobs before retrying, keep partial outputs and do not start a duplicate job. An explicit
-user pause holds until the user resumes: until then review, launch and assign nothing. A
-package update is not a resume: read the new guidance and keep the checkpoint, with
-unreviewed work still unreviewed.
+Work moves only by delivered messages; no role watches a stopped run. After an
+interruption, inspect the actual files and jobs before retrying, keep partial outputs and
+do not start a duplicate job. An explicit user pause holds until the user resumes: until
+then review, launch and assign nothing. A package update is not a resume: read the new
+guidance and keep the checkpoint, with unreviewed work still unreviewed.

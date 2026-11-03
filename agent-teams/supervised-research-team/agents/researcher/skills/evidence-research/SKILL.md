@@ -2,6 +2,7 @@
 name: evidence-research
 description: Build the team's understanding of existing work and carry out research assignments with sourced methods, experiments or proofs, reproducible evidence and candid claims for review.
 ---
+
 # Evidence Research
 
 Read [research-contract.md](research-contract.md) for the shared rules and records. It is
@@ -72,13 +73,9 @@ the next step. Propose the next step and what it would change: deepen, combine, 
 set aside. Say where your own method is weakest: what you did not read, chose for
 convenience or could not compare.
 
-Check that cited artifacts exist and that commands reproduce the result. Keep planned,
-attempted and done work apart, and choose the status from the contract. A timeout is a
-`Checkpoint` with its remaining work, not completion; a negative answer is reviewable;
-missing work stays visible. Save, hand off and stop; do not start the next batch on your
-own.
+Check that cited artifacts exist and that commands reproduce the result. Choose the status
+from the contract. Save, hand off and stop; do not start the next batch on your own.
 
 On a continuation, carry out the new assignment without needing the goal repeated or a
-reminder to continue. Never write or change the supervisor's review. When a manuscript is
-requested, ground it in the same evidence and limitations and include it in the report for
-review.
+reminder to continue. When a manuscript is requested, ground it in the same evidence and
+limitations and include it in the report for review.
