@@ -80,33 +80,46 @@ Record what was checked, what failed and what could not be checked.
 ## The research map
 
 `research-map.md` is the study's one living document: what we are trying to achieve,
-what is known, how far we are and what we decided. Every role reads it first. Keep it
-current: replace outdated statements rather than add contradicting ones beside them;
-the cycle files keep the history of how the picture changed. Its sections, in order:
+what is known, how far we are and what we decided. Every role reads it first. Write it
+in plain language for a reader who is not a researcher: the user, or a new supervisor
+taking over, should understand the study from the map alone, without work journals or
+cycle files. Keep it current: replace outdated statements rather than add contradicting
+ones beside them; the cycle files keep the history of how the picture changed. Its
+sections, in order:
 
-1. **Request and limits.** The user's original request, word for word and never
-   edited; permissions and resource limits.
-2. **Goal.** The big aim and what success looks like, in plain words; what is in and
-   out of scope, and the evaluation unit. Then its breakdown into parts (G1, G2…), each
-   with its requirements (R1, R2…), what success means and the evidence it needs. The aim and success criteria change only with the user's decision. Either
-   role refines the breakdown and the detailed requirements as understanding grows,
-   noting each change with its date and reason. Never drop an unmet requirement
-   silently; narrowing a conclusion never erases one.
-3. **How far we are, per part.** What existing work reaches, what our own results
-   added, what is left and why. Overall: may existing work, or a combination, already
-   be enough? Practical estimates are qualitative: no invented percentages.
+1. **Request and limits.** The user's original request, word for word and never edited;
+   permissions and resource limits.
+2. **Goal.** The goal written like a paper's abstract: several paragraphs, not a
+   one-line summary, which loses the idea and drifts. It explains the problem; how it is
+   handled today; the key idea or intuition; what is to be built or found; what must be
+   shown, with the hypotheses to test; what success looks like; what is in and out of
+   scope, and the evaluation unit. It takes in every idea the user has given, including
+   later clarifications and intuitions, organized into one clear text rather than
+   collected as notes or quotes, so nothing is lost when the conversation is gone. Keep
+   refining it as understanding grows, so that it gets clearer each time; whoever
+   changes it notes the date and what changed. Then its breakdown into parts (G1, G2…),
+   each with its requirements (R1, R2…), what success means and the evidence it needs.
+   The aim and success criteria change only with the user's decision. Either role
+   refines the breakdown and the detailed requirements as understanding grows, noting
+   each change with its date and reason. Never drop an unmet requirement silently;
+   narrowing a conclusion never erases one.
+3. **How far we are, per part.** What existing work reaches, what our own results added,
+   what is left and why. Overall: may existing work, or a combination, already be
+   enough? Practical estimates are qualitative: no invented percentages.
 4. **Existing work, by approach.** What each showed, on what evidence, how deeply we
    read it (abstract, full text, code run, reproduced), whether it can be reused and
    which parts of the goal it serves.
-5. **Our experiments and results.** For each: the question, what was done, the result,
-   and what it shows and does not show for which parts, with evidence IDs. Partial and
-   negative results stay. Mark the results the supervisor has checked.
+5. **Our experiments and results.** First the story so far: a few paragraphs on the path
+   of the study, what each important step tried and found, and where it leaves us. Then
+   one row per cycle: what we tried, what happened, what it means for the goal and what
+   it does not show, with evidence IDs. Partial and negative results stay. Mark the
+   results the supervisor has checked.
 6. **Directions compared, and the current decision.** For each direction: expected
    contribution, main uncertainty, strongest fair comparator, cost of learning more and
    status. The supervisor's direction decision: why it serves the goal, which
    alternatives lost and why, and what would change it.
-7. **Search trail.** What was searched, which citations were followed, what could not
-   be opened, and where the search stopped and why.
+7. **Search trail.** What was searched, which citations were followed, what could not be
+   opened, and where the search stopped and why.
 8. **Current state.** Cycle, status, latest assignment and review, resource use, and
    scope changes with the user's decisions.
 
