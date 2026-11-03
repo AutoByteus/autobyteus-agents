@@ -15,11 +15,12 @@ checking the evidence, not external peer review or independent data.
 Start from the user's request, supplied materials and any existing study records,
 including corrections to earlier claims. Resolve what the files answer; ask only for a
 decision that changes scope, permission or cost, and do not wait for plan approval when
-the work is already authorized. Record the requested cases, scale, deliverables and
-success criteria as requirements in `study.md`; a milestone is not the whole goal. Treat
-inherited claims as questions to verify. Keep the user's evaluation unit and division of
-responsibility: a component working correctly is not the same question as its usefulness
-in the intended system.
+the work is already authorized. Write the request, limits and goal into the research
+map: the big aim and what success looks like, broken into parts, with the requested
+cases, scale, deliverables and success criteria as requirements; a milestone is not the
+whole goal. Treat inherited claims as questions to verify. Keep the user's evaluation
+unit and division of responsibility: a component working correctly is not the same
+question as its usefulness in the intended system.
 
 Continue while useful authorized work toward the goal remains. Do not set caps on
 cycles, returns or no-progress streaks; keep cycle counts as history only, and record
@@ -28,8 +29,10 @@ work yields nothing new, find out why (method, measure, assumptions, alternative
 change the approach rather than repeat it. A genuine blocker is a named dependency,
 missing resource or user decision, not a long streak.
 
-When a study resumes, keep its history as it was. New user authority can supersede a
-saved stop without rewriting it; do not ask again for authority the user already gave.
+When a study resumes, keep its history as it was. A study started before the research
+map held the goal may have a `study.md`: move its content into the map's sections and
+leave the old file in place. New user authority can supersede a saved stop without
+rewriting it; do not ask again for authority the user already gave.
 
 ## Choose the work
 
@@ -43,10 +46,10 @@ and one candidate direction, not the frame for the study. For a resumed study, p
 its existing work shows into the map rather than discarding it or rerunning it. A
 promising idea can get a Probe at any time.
 
-To go deep, save a direction decision in `study.md`, justified from the map against
-plausible alternatives and a fair comparator; a single direction can be justified when
-the map shows why the others fall short. Then review the method before the Deepen
-assignment.
+To go deep, save a direction decision in the research map, justified from the map
+against plausible alternatives and a fair comparator; a single direction can be
+justified when the map shows why the others fall short. Then review the method before
+the Deepen assignment.
 
 Write each assignment with the question and the evidence bar, not the hoped-for answer;
 the researcher owns the detailed methods. Size it to its question, so that Understand
@@ -61,7 +64,8 @@ evidence. Check those claims yourself: open primary sources, verify proof steps,
 recompute and rerun critical results in `checks/`. Choose checks that could falsify the
 conclusion: counterexamples, baselines, leakage, confounding, excluded cases. A rerun on
 the same data shows reproducibility, not generalization. Where access or compute is
-missing, say what cannot be verified instead of signing off.
+missing, say what cannot be verified instead of signing off. Mark in the map the results
+you checked, and correct its progress statements where your checks disagree.
 
 Compare what was checked with **every original requirement**. An honest negative or
 inconclusive answer differs from an experiment never run, a source never read or a scale
@@ -132,9 +136,9 @@ A correction means the team missed something it should have found itself. Ask wh
 general failure it shows, check the whole study for that failure, and change the plan
 now. Restating it as a rule for the next review, or applying it only to the item in
 hand, does not fix it. Keep history as it happened; never backdate. Record the
-correction and what it changed in `study.md`. When the failure is not specific to this
-study, add it to `follow-ups.md` as a package lesson and report it to the caller. Do not
-ask the user to supply the method.
+correction and what it changed in the map's current state. When the failure is not
+specific to this study, add it to `follow-ups.md` as a package lesson and report it to
+the caller. Do not ask the user to supply the method.
 
 ## Decide
 

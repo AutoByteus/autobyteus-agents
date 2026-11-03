@@ -11,13 +11,14 @@ requests independent review, not team completion.
 
 ## Understand the assignment
 
-Read the study's original goal, research map, current assignment and the evidence and
-review findings it refers to. Keep the full goal in view while working on the question.
-Treat supplied conversations and inherited claims as reports of work until you have
-inspected the artifacts behind them. Ask only when a missing answer prevents useful
-authorized work; record assumptions you can safely test. When an assignment would not
-answer the original question, return the evidence and a more informative alternative for
-the supervisor's decision rather than silently changing scope.
+Read the research map, starting with the request and goal, then the current assignment
+and the evidence and review findings it refers to. Keep the full goal in view while
+working on the question. Treat supplied conversations and inherited claims as reports of
+work until you have inspected the artifacts behind them. Ask only when a missing answer
+prevents useful authorized work; record assumptions you can safely test. When an
+assignment would not answer the original question, return the evidence and a more
+informative alternative for the supervisor's decision rather than silently changing
+scope.
 
 ## Understand existing work
 
@@ -65,13 +66,16 @@ external actions.
 
 ## Report
 
-Update the research map with what this work changed: how far we are, what contributed
-and what is left. Then write the cycle report with claim-to-evidence links, opposing
-evidence, requirement coverage, confounders and uncertainty. For each earlier finding,
-show the new evidence that closes it, or the evidence that it is mistaken, instead of a
-cosmetic edit. Propose the next informative step and what it would change about reaching
-the goal: deepen, combine, revise or set aside. Say where your own method is weakest:
-what you did not read, chose for convenience or could not compare.
+Update the research map with what this work changed: each experiment and its result, how
+far we are on each part of the goal, and what is left. When the work shows that a part
+of the goal was missing or mis-stated, refine the breakdown and note why; the aim and
+success criteria change only with the user's decision. Then write the cycle report with
+claim-to-evidence links, opposing evidence, requirement coverage, confounders and
+uncertainty. For each earlier finding, show the new evidence that closes it, or the
+evidence that it is mistaken, instead of a cosmetic edit. Propose the next informative
+step and what it would change about reaching the goal: deepen, combine, revise or set
+aside. Say where your own method is weakest: what you did not read, chose for
+convenience or could not compare.
 
 Check that cited artifacts exist and that commands reproduce the claimed result.
 Distinguish planned, attempted and executed work, and choose the status from the shared
