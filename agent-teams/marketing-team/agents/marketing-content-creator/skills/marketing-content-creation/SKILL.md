@@ -26,9 +26,19 @@ The approved strategy and the record of published posts live beside it:
   strategy.md               # approved baseline, goals, bets, next review date
   history/strategy-vN.md    # earlier approved versions
   published-index.md        # one row per published piece
+  content-catalog.md        # what we have already said, by topic
 ```
 
 `published-index.md` columns: published at, channel, type, live URL, bet id (or `none`), absolute path to the approved final text. The Analyst reads this index and those final texts, not your working files.
+
+`content-catalog.md` is the table of contents of what we have said in public, with one section per topic: a question people ask or a problem they raise. Each section holds:
+- other ways people ask it, in their words
+- our answer: the established position in a few lines, with the date of any number
+- key phrases the user approved, quoted
+- proof media: path and what it shows
+- the pieces that answer it, newest first: work folder path and one line on what that piece says or adds
+
+A piece that answers several topics is listed under each. The text stays in the pieces and the dates and URLs in the index; the catalog points to them. If the workspace has published pieces and no catalog, build it from them before the next draft.
 
 Use the voice the user or channel guide names; if the library has one voice, use it. A channel guide can adjust tone for its audience; the voice still governs facts and wording fidelity. If no voice exists, draft from the user's writing samples (ask for one or two if none were supplied), and after the first approved piece create `voices/<name>.md` with the rules the user confirmed.
 
@@ -75,26 +85,28 @@ Research and analysis data goes under `data/`.
    Read public links the user supplies with `read_url`. If the source needs the browser or a login (a target post, a paywall-prone article), ask the Computer Use Operator (step 6).
 4. Ask only for inputs you cannot infer and that would change the draft.
 
-## 2. Review earlier work on the topic
+## 2. Find what we already said
 
-Do this before the first draft of every piece, including drafting-only requests. Earlier approved pieces hold the message, wording, and visual proof the user already chose, so a new piece builds on them. Reading a few past posts for style does not replace this step.
+Do this before the first draft of every piece, including drafting-only requests and short replies. The same questions come up again and again, and a new reply is often mostly an earlier answer adapted to the new post. Earlier approved pieces hold the message, wording, and visual proof the user already chose. Reading a few past posts for style does not replace this step.
 
-1. From the brief or target post, list the core topic, its themes, and search terms. Include word variants and what we would say in answer, not only the post's own words.
-2. Search the text of `final-approved*` files in every channel folder. Use `published-index.md` to see which results were published and when; it has no topic column and may not list older pieces, so it cannot be the only search. Other people's captures and unapproved drafts are not our position.
-3. Read the closest pieces, newest first, until more add nothing new. Check each one's `media/` folder and `media.md`, and open its images and video frames to see what each proves. Do this even when the brief asks for no media: proof the user approved earlier is often what a new piece should reuse.
+1. Read `content-catalog.md` and pick each topic the brief or target post raises. Match the question being asked, not only its words.
+2. Open the pieces those topics list, newest first: their approved text, `media/` folder and `media.md`. Open the images and video frames to see what each proves, even when the brief asks for no media: proof the user approved earlier is often what a new piece should reuse. When no topic fits, or the post raises something the catalog lacks, also search the text of `final-approved*` files in every channel folder, with word variants and the words we would use in answer; `published-index.md` shows whether and when a hit was published. Other people's captures and unapproved drafts are not our position.
+3. Choose what to build on. When an earlier piece already answers the same question, start from its text and media and adapt them to this post: its specifics, today's facts, the channel's limits. When several pieces each answer a part, combine them. Write new text only for what none of them covers. Never post an identical copy of an earlier piece.
 4. Save `precedent-review.md` in the work folder. A short reply gets a short file:
-   - the terms searched
-   - the pieces read: path, date, live URL, and the media it used
-   - the established position and the key phrases, quoted
+   - the topics used and any terms searched
+   - the pieces read: path and the media each used
+   - the base piece, roughly how much of it the draft keeps (for example "about 80%"), and what changes and why
+   - the established position and key phrases, quoted, and which the draft carries over or leaves out, with the reason
    - facts and numbers, with the date each was stated
    - reusable media: path, what it shows, its date (`none` only when the pieces read have none)
-   - what this piece will carry over (by default the established position, key phrases, and media), what it leaves out and why, and what it will add or change
 
-   If the search finds nothing, save the terms searched and `none found`.
+   If nothing matches, save the topics and terms checked and `none found`.
 
-When feedback brings in a new theme, search it too and update the file before the next draft.
+When feedback brings in a new theme, look it up the same way and update the file before the next draft. When the user points you to an earlier piece the lookup missed, add it to its topic in the catalog now, with the way the question was asked this time, so the next lookup finds it.
 
-The brief, the user's framing, and the current strategy and positioning outrank a precedent, and a newer precedent outranks an older one; tell the user about a conflict you find. A precedent approves nothing: reused wording or media goes through step 4 like any other. A number or product claim was true on its date, so give that date or confirm it is still true. Reuse phrases and proof rather than reposting a whole piece.
+The catalog and the approved pieces hold what we have said in public. `search_memory` searches past runs: use it for the user's explanations and corrections behind a position (how a team works, why we said something) when the pieces do not settle it. When the user says "search memory" or "look at what we posted", start with the catalog.
+
+The brief, the user's framing, and the current strategy and positioning outrank a precedent, and a newer precedent outranks an older one; tell the user about a conflict you find. A precedent approves nothing: reused wording or media goes through step 4 like any other. A number or product claim was true on its date, so give that date or confirm it is still true.
 
 A cross-post of an already approved package has no new draft and skips this step.
 
@@ -104,7 +116,7 @@ A cross-post of an already approved package has no new draft and skips this step
 2. Save `draft-vN` before showing it:
    - `.txt` holds the exact publishable text.
    - `.md` is a review package when media is involved: exact text, ordered media, and the approval question.
-3. Show the exact draft, name the earlier pieces and media it builds on, and ask the user to approve or request changes.
+3. Show the exact draft. Start the message with what it builds on: the base piece, how much of it the draft keeps, and the media reused, or that nothing earlier covers this topic. Then ask the user to approve or request changes.
 4. On feedback, revise, re-run the checklist, and save the next `draft-vN`. A user correction of wording or framing is binding for the run.
 5. **Learn lasting preferences.** When feedback states a rule beyond this piece, tell the user which file you will record it in, for example "I'll add 'LinkedIn replies: under 600 characters' to the LinkedIn guide". Rules of this kind include "too wordy", "don't soften my wording", and "never open with a question". After the piece is approved, write the rule into the voice or channel guide unless the user declined. Edit the existing rule if one covers it; do not add a contradiction.
 
@@ -127,7 +139,7 @@ If the text or media changes after approval, save a new draft and ask again.
 Write `publish-request.md` in the work folder from [publish-request-template.md](templates/publish-request-template.md), then hand it off. Send one request per channel.
 
 When `task-result.md` returns:
-- **`Completed`:** write `published.txt` or `published.md` with the live URL, the timestamp, the media, and the operator's evidence paths. Set `publish_state` in `metadata.json`, append a row to `marketing-strategy/published-index.md`, and report to the user.
+- **`Completed`:** write `published.txt` or `published.md` with the live URL, the timestamp, the media, and the operator's evidence paths. Set `publish_state` in `metadata.json`, append a row to `marketing-strategy/published-index.md`, add the piece to `content-catalog.md`, and report to the user. In the catalog, list the piece under each topic it answers, or a new topic when none fits, and update a topic's answer, phrases, or media when this piece changed them.
 - **`Needs Decision`:** revise with the user, for example shortening text the site rejected, and get a new approval before sending a new request.
 - **`Blocked`:** tell the user the blocker and what they need to do.
 
