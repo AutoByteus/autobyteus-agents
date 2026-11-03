@@ -111,9 +111,10 @@ sections, in order:
    which parts of the goal it serves.
 5. **Our experiments and results.** First the story so far: a few paragraphs on the path
    of the study, what each important step tried and found, and where it leaves us. Then
-   one row per cycle: what we tried, what happened, what it means for the goal and what
-   it does not show, with evidence IDs. Partial and negative results stay. Mark the
-   results the supervisor has checked.
+   one row per cycle: what we tried; the key result and the evidence that shows it (the
+   numbers or sources, with evidence IDs); the signal it gives for the direction and how
+   strong it is; and what it does not show. These rows are what the supervisor steers
+   on. Partial and negative results stay. Mark the results the supervisor has checked.
 6. **Directions compared, and the current decision.** For each direction: expected
    contribution, main uncertainty, strongest fair comparator, cost of learning more and
    status. The supervisor's direction decision: why it serves the goal, which
