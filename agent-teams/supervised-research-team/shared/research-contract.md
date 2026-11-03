@@ -47,12 +47,16 @@ failed and inconclusive results. Keep apart what was observed, what a source cla
 is inferred and what is only a hypothesis. Never invent a citation, measurement,
 experiment, review or reproduction.
 
-A claim is no broader than its evidence. Choose cases that test it: strong comparisons,
-failure cases, and held-out cases when claiming generalization; a toy or smoke test only
-checks setup. Count planned, attempted, completed and checked cases separately, justify
-every exclusion, and do not keep only favourable outcomes. Fix metrics and how to read
-them before seeing results; label later changes exploratory. Use the field's own methods;
-not every study needs code.
+A claim is no broader than its evidence. A small or easy case can check that a method
+works as built, but only a case where the question is actually open can show its value: at
+the difficulty the goal names, in the gap the map shows. A problem that is trivial, or
+already handled by known methods or a capable model, says nothing about that gap however
+carefully it is run; this holds for probes too. To test a claim, choose strong
+comparisons, failure cases, and held-out cases when claiming generalization. Count
+planned, attempted, completed and checked cases separately, justify every exclusion, and
+do not keep only favourable outcomes. Fix metrics and how to read them before seeing
+results; label later changes exploratory. Use the field's own methods; not every study
+needs code.
 
 A component that works is not yet useful for the goal, novel or ready for a paper. A proxy
 or an activity count does not show benefit; say what a proxy leaves unproved before
