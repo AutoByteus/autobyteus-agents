@@ -27,6 +27,7 @@ The approved strategy and the record of published posts live beside it:
   history/strategy-vN.md    # earlier approved versions
   published-index.md        # one row per published piece
   content-catalog.md        # what we have already said, by topic
+  media-catalog.md          # images and videos we have published, by what they prove
 ```
 
 `published-index.md` columns: published at, channel, type, live URL, bet id (or `none`), absolute path to the approved final text. The Analyst reads this index and those final texts, not your working files.
@@ -35,10 +36,19 @@ The approved strategy and the record of published posts live beside it:
 - other ways people ask it, in their words
 - our answer: the established position in a few lines, with the date of any number
 - key phrases the user approved, quoted
-- proof media: path and what it shows
+- proof media: the IDs of the images in `media-catalog.md` that prove it
 - the pieces that answer it, newest first: work folder path and one line on what that piece says or adds
 
 The same message published on several channels (cross-posts, translations) is one entry that lists all its copies' paths, noting a copy that differs, such as a translation; a look-up opens one copy, not each. A piece that answers several topics is listed under each. The text stays in the pieces and the dates and URLs in the index; the catalog points to them. If the workspace has published pieces and no catalog, build it from them before the next draft.
+
+`media-catalog.md` lists the images and videos we have published, grouped by subject (what they show, such as the team at work, the task board, code review, cost), with an index of subjects on top. Each distinct image is one entry, however many post folders hold a copy; a set made together is one entry. Each entry holds:
+- an ID, which the content catalog and `media.md` use to refer to it
+- what it shows and what it proves, in plain words, with the language of any text in it when not English
+- the date it was first published and any numbers it shows: a screenshot shows the product as it was then
+- one file path
+- the posts that used it, each post once with the channels it went to
+
+Only published images belong in it, not drafts or unused variants. If the workspace has published images and no media catalog, build it from them before the next draft that needs media.
 
 Use the voice the user or channel guide names; if the library has one voice, use it. A channel guide can adjust tone for its audience; the voice still governs facts and wording fidelity. If no voice exists, draft from the user's writing samples (ask for one or two if none were supplied), and after the first approved piece create `voices/<name>.md` with the rules the user confirmed.
 
@@ -90,7 +100,7 @@ Research and analysis data goes under `data/`.
 Do this before the first draft of every piece, including drafting-only requests and short replies. The same questions come up again and again, and a new reply is often mostly an earlier answer adapted to the new post. Earlier approved pieces hold the message, wording, and visual proof the user already chose. Reading a few past posts for style does not replace this step.
 
 1. Read `content-catalog.md` and pick each topic the brief or target post raises. Match the question being asked, not only its words.
-2. Open the pieces those topics list, newest first: their approved text, `media/` folder and `media.md`. Open the images and video frames to see what each proves, even when the brief asks for no media: proof the user approved earlier is often what a new piece should reuse. When no topic fits, or the post raises something the catalog lacks, also search the text of `final-approved*` files in every channel folder, with word variants and the words we would use in answer; `published-index.md` shows whether and when a hit was published. Other people's captures and unapproved drafts are not our position.
+2. Open the pieces those topics list, newest first: their approved text. For proof, take the topics' proof media and look in `media-catalog.md` under each subject that fits what the draft claims; open the images and video frames to see what each proves and whether it still shows the product as it is. Do this even when the brief asks for no media: proof the user approved earlier is often what a new piece should reuse. When no topic fits, or the post raises something the catalog lacks, also search the text of `final-approved*` files in every channel folder, with word variants and the words we would use in answer; `published-index.md` shows whether and when a hit was published. Other people's captures and unapproved drafts are not our position.
 3. Choose what to build on. When an earlier piece already answers the same question, start from its text and media and adapt them to this post: its specifics, today's facts, the channel's limits. When several pieces each answer a part, combine them. Write new text only for what none of them covers. Never post an identical copy of an earlier piece.
 4. Save `precedent-review.md` in the work folder. A short reply gets a short file:
    - the topics used and any terms searched
@@ -98,11 +108,11 @@ Do this before the first draft of every piece, including drafting-only requests 
    - the base piece, roughly how much of it the draft keeps (for example "about 80%"), and what changes and why
    - the established position and key phrases, quoted, and which the draft carries over or leaves out, with the reason
    - facts and numbers, with the date each was stated
-   - reusable media: path, what it shows, its date (`none` only when the pieces read have none)
+   - reusable media: media catalog ID, what it shows, its date, and whether the draft uses it and why (`none` only when the catalog has nothing that fits)
 
    If nothing matches, save the topics and terms checked and `none found`.
 
-When feedback brings in a new theme, look it up the same way and update the file before the next draft. When the user points you to an earlier piece the lookup missed, add it to its topic in the catalog now, with the way the question was asked this time, so the next lookup finds it.
+When feedback brings in a new theme, look it up the same way and update the file before the next draft. When the user points you to an earlier piece or image the lookup missed, add it now, so the next lookup finds it: a piece to its topic in the content catalog, with the way the question was asked this time; an image to its subject in the media catalog, with what it proves.
 
 The catalog and the approved pieces hold what we have said in public. `search_memory` searches past runs: use it for the user's explanations and corrections behind a position (how a team works, why we said something) when the pieces do not settle it. When the user says "search memory" or "look at what we posted", start with the catalog.
 
@@ -129,7 +139,7 @@ Approval is per channel and covers the exact text, media set and order, and dest
 On approval, save:
 - `final-approved` (exact text; `.md` when the channel has a title, tags, or media)
 - `approval-record.md` (the user's words, a timestamp, and the approved files)
-- `media/` and `media.md` (ordered files with source paths)
+- `media/` and `media.md` (ordered files with source paths, and the media catalog ID of each reused image)
 - `metadata.json` (`approval_state`, `publish_state`, file references)
 
 If the text or media changes after approval, save a new draft and ask again.
@@ -139,7 +149,7 @@ If the text or media changes after approval, save a new draft and ask again.
 Write `publish-request.md` in the work folder from [publish-request-template.md](templates/publish-request-template.md), then hand it off. Send one request per channel.
 
 When `task-result.md` returns:
-- **`Completed`:** write `published.txt` or `published.md` with the live URL, the timestamp, the media, and the operator's evidence paths. Set `publish_state` in `metadata.json`, append a row to `marketing-strategy/published-index.md`, add the piece to `content-catalog.md`, and report to the user. In the catalog, list the piece under each topic it answers, or a new topic when none fits, and update a topic's answer, phrases, or media when this piece changed them.
+- **`Completed`:** write `published.txt` or `published.md` with the live URL, the timestamp, the media, and the operator's evidence paths. Set `publish_state` in `metadata.json`, append a row to `marketing-strategy/published-index.md`, update both catalogs, and report to the user. In `content-catalog.md`, list the piece under each topic it answers, or a new topic when none fits, and update a topic's answer, phrases, or media when this piece changed them. In `media-catalog.md`, add each image published for the first time under its subject, and add this post to the entry of each image it reused.
 - **`Needs Decision`:** revise with the user, for example shortening text the site rejected, and get a new approval before sending a new request.
 - **`Blocked`:** tell the user the blocker and what they need to do.
 
