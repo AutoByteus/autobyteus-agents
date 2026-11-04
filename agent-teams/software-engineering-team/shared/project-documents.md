@@ -1,0 +1,50 @@
+# The Project's Own Documents
+
+A project keeps its own rules in three documents at its repository root. The
+team follows them; each role's skill says when it reads them. When a project
+lacks one, the team creates it, so the next ticket finds the project's rules in
+one place instead of working them out again.
+
+| Document | What it holds | Read by | Created, when missing, by |
+| --- | --- | --- | --- |
+| `DESIGN.md` | The project's architecture, the conventions its code follows, its own design principles, and its design cases | Solution Designer before design; implementation and the reviewers | Solution Designer, during architecture design |
+| `TESTING.md`, the testing guideline | How the project is tested: setup, test layers and their commands, gated suites, environments, credentials and test data, and the rules every test run follows | Implementation, API/E2E, code reviewer | API/E2E engineer, before it hands off its first result |
+| `RELEASE.md`, the release guide | How a change is finalized, released and rolled out | Delivery engineer | Delivery engineer, before the final commit (before tagging on a release request) |
+
+A document counts as present when the project keeps it under another name and
+its `AGENTS.md` names that file for the purpose, such as a README section for
+releases. Closer `DESIGN*.md` or `TESTING*.md` files for parts of the
+repository refine the root one; they do not replace a missing root file.
+
+## Creating a missing document
+
+- Create it in the ticket that first needs it, in the ticket's worktree, from
+  your skill's template for it. Commit it on the ticket branch with your other
+  documents, so it is finalized with the ticket, and record its path as created
+  in your report.
+- Write what this work established: what you read in the code, configuration
+  and existing docs, and what you ran. Leave out a section you know nothing
+  about rather than guessing; a later ticket adds it when it learns it. A first
+  version is short.
+- Keep it to what every future change in this project follows. A ticket's
+  results, evidence and decisions stay in the ticket's documents, and the
+  team's general practice stays in the team's files: do not copy it in.
+- A rule the project has not decided, such as whether a change is released by
+  default or which data tests may use, is the user's decision. Write what you
+  observed and used, and name the open decision in your report.
+- When the project has a root `AGENTS.md`, add one line to it naming the new
+  document and when to read it.
+- From then on it is the project's document, like one the project wrote.
+
+## Keeping them current
+
+- When a ticket changes what a document describes (a component, a convention,
+  a test command, a release step), the ticket updates it. Delivery's docs sync
+  checks the three documents against the final change, including discrepancies
+  the ticket's reports recorded, such as a command that no longer works.
+- The Solution Designer adds the project's design cases to its `DESIGN.md`
+  (its skill's Recovery).
+- A rule the project set stays the project's: when the work shows one is
+  wrong, propose the fix in your report, and change it only when the user
+  agrees or the ticket is about it. When a document says how it may be
+  updated, follow that.

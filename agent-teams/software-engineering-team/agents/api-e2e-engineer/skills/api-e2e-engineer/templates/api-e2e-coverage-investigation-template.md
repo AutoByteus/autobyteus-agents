@@ -69,7 +69,7 @@ Identify behavior added, changed, removed, or intentionally preserved.
 
 - Assigned task worktree / workspace:
 - Project type and runtime stack:
-- Project testing guideline path(s), or `No project testing guideline found`:
+- Project testing guideline path(s), or `None found` and the `TESTING.md` you create (`Created: <path>`):
 - Conflicting, missing, or unclear project instructions:
 - Required environment variables or secrets available: `Yes` / `No` / `N/A` (do not record secret values)
 

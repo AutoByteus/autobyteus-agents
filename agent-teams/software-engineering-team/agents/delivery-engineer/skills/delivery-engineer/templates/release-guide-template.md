@@ -3,7 +3,7 @@
 How a verified change in this repository is finalized, released and rolled out.
 Read it before merging a ticket into the target branch, tagging, publishing or
 deploying. A generic delivery process covers the order of the steps; this file
-holds what is specific to this repository. Point to it from `AGENTS.md`.
+holds what is specific to this repository.
 
 Keep each section to what someone releasing needs; delete a section that does
 not apply.

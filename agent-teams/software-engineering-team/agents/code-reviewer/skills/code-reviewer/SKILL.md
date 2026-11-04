@@ -72,7 +72,7 @@ For API/E2E failure-origin review:
 - Consult [design-examples.md](references/design-examples.md) only when a concrete example is needed to judge the implementation, its alignment with the reviewed design, or a finding's scope.
 - When a prospective finding or score rationale depends on an assumed production, failure, or lifecycle scenario, consult [Example 7](references/design-examples.md#example-7-rejecting-an-unreachable-edge-case-during-technical-review) before finalizing it.
 - For the later entry points, reread only the requirements, design, changed tests, relevant source paths, and prior findings needed for the bounded review.
-- For test-code review and failure-origin review, also read the project's testing guideline(s) that the coverage investigation records, or note `No project testing guideline found` when it records none. Apply this skill's general test-review rules and respect the project's testing rules as well. When the two conflict, follow this skill and record the conflict; record a guideline rule that no longer matches the repository as a discrepancy.
+- For test-code review and failure-origin review, also read the project's testing guideline(s) that the coverage investigation records, including one the API/E2E engineer created for this project. Apply this skill's general test-review rules and respect the project's testing rules as well. When the two conflict, follow this skill and record the conflict; record a guideline rule that no longer matches the repository as a discrepancy.
 
 ## Implementation Review Basis And Sequence
 
