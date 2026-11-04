@@ -46,9 +46,11 @@ principles and respect the project's own as well.
   question for the user. When a project rule no longer matches the repository,
   record the discrepancy.
 - When a project has no `DESIGN.md`, follow the conventions visible in its
-  existing code and record `No project DESIGN.md found`.
-- A project can keep its own design cases (real mistakes and their fixes, with
-  its tickets and names) where its `DESIGN.md` says. Read them with the case
+  existing code. The Solution Designer creates one during the ticket's
+  architecture design, as the team's `project-documents.md` describes.
+- A project keeps its own design cases (real mistakes and their fixes, with
+  its tickets and names) in its `DESIGN.md`: a `Design Cases` section, or where
+  that file says. Read them with the case
   studies in the team's design examples when a design touches the same shape.
 
 ## Terminology

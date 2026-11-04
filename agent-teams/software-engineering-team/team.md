@@ -71,3 +71,10 @@ says whether a problem found is part of this ticket, a prerequisite (its own
 Task first, which the Solution Designer asks the delegating agent to create), or
 a follow-up, recorded in the ticket's `follow-ups.md` and sent by the Solution
 Designer when the ticket leaves the team.
+
+## Project Documents
+
+A project keeps its own rules in its `DESIGN.md`, `TESTING.md` and
+`RELEASE.md`. When a project lacks one, the team creates it in the ticket that
+first needs it. [shared/project-documents.md](shared/project-documents.md)
+says which role creates each, and how they are written and kept current.

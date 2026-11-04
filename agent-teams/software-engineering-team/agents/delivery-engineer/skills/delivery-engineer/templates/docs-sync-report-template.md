@@ -17,6 +17,8 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 ## Long-Lived Docs Reviewed
 
+Include the project's `DESIGN.md`, testing guideline and release guide.
+
 | Doc Path | Why It Was Reviewed | Result (`Updated`/`No change`/`Needs follow-up`) | Notes |
 | --- | --- | --- | --- |
 |  |  |  |  |

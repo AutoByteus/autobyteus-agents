@@ -6,7 +6,7 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 
 ## Project Release Guide
 
-- Release guide path and revision, or `No project release guide`:
+- Release guide path and revision (`Created: <path>` when this delivery wrote it):
 - Deviations from the guide and why: `None` / list
 - Proposed guide fixes, and whether the user agreed: `None` / list
 

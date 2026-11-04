@@ -67,8 +67,8 @@ Use [templates/delivery-revision-record-template.md](templates/delivery-revision
 
 - Before repository finalization, release, publication, or deployment, read the project's release guide: `RELEASE.md` at the repository root, or the file the project's `AGENTS.md` points to for releases. It holds what is specific to the project, such as the finalization target, the release decision, checks before tagging, release commands, what to watch after publishing, recovery, rollback, and deployment.
 - Where the guide and the generic steps below differ on how to finalize, release, or deploy, follow the guide. Verification from evidence and truthful reporting still apply. Record the guide's path and revision in the release/deployment report, with any deviation and why.
-- Without a guide, use the generic steps, record `No project release guide` in the report, and suggest creating one from [templates/release-guide-template.md](templates/release-guide-template.md).
-- The project owns its guide. When this delivery shows the guide is wrong or missing a step, record that in the report with a proposed fix; change the guide only when the user agrees or the ticket is about it.
+- Without a guide, use the generic steps. Then write the project's `RELEASE.md` at its repository root from [templates/release-guide-template.md](templates/release-guide-template.md), with the finalization and release steps this delivery used, as [project-documents.md](references/project-documents.md) describes, before the final commit (on a release request, finalize it before tagging). Record it as created in the report.
+- The project owns its guide, including one you created. When this delivery shows the guide is wrong or missing a step, record that in the report with a proposed fix; change it as [project-documents.md](references/project-documents.md) allows.
 
 ## Verify From Evidence
 
@@ -134,6 +134,7 @@ not a receipt-only evidence correction.
 - Keep docs sync focused on the final integrated and validated implementation state. Include independent review evidence when the selected route produced it; record review gates as `Not Applicable` for the direct route. Use the integrated state as primary truth and upstream artifacts as supporting context.
 - Preserve `task_size`, `architectural_risk`, and the selected review route in delivery-owned artifacts. Delivery does not reclassify the task; if final integration reveals new design impact, route it upstream instead of silently changing the classification.
 - Update long-lived docs to match final implemented behavior, promote durable design/runtime knowledge into canonical project docs, and record removed or replaced components so the docs do not preserve obsolete understanding.
+- Docs sync includes the project's `DESIGN.md`, testing guideline and release guide, also ones this ticket created: bring what they describe in line with the final change, including discrepancies the ticket's reports recorded, such as a command that no longer works ([project-documents.md](references/project-documents.md#keeping-them-current)).
 - If there is no docs impact, say so explicitly and explain why the current long-lived docs already remain accurate.
 - A problem you find outside this ticket, such as a long-lived doc that is wrong about behavior this change does not touch, is a follow-up: add it to the ticket's `follow-ups.md` ([ticket-scope.md](references/ticket-scope.md#recording-follow-ups)) and cite its ID in your report.
 - If docs cannot be updated truthfully because the final implementation state or intended behavior is still unclear, block delivery and route the issue explicitly instead of guessing in the docs.

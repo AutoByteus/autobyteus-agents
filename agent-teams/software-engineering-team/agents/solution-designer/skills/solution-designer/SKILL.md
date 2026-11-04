@@ -248,7 +248,12 @@ as well as how to design.
    Once the design is decided, write its Change Scope: the areas and files this
    change modifies, what nearby it deliberately leaves alone, and the IDs of the
    follow-ups found during design.
-5. Resolve requirement implications using Recovery below, rather than silently
+5. When the project has no `DESIGN.md`, write one at its repository root from
+   [project-design-template.md](templates/project-design-template.md), with
+   the architecture and conventions your investigation established, as
+   [project-documents.md](references/project-documents.md) describes. Record
+   it as created in the design spec's `Authorities read` and its Change Scope.
+6. Resolve requirement implications using Recovery below, rather than silently
    changing intended behavior to fit the architecture.
 
 ### 4. Classify The Completed Solution
@@ -296,8 +301,10 @@ the requirement itself can be achieved, and take it to the user as a
 `Requirement Gap` when the intended behavior may change.
 
 When you fix a design mistake that the design principles describe, whichever
-role found it, add it to the project's own design cases, where its `DESIGN.md`
-says; when it names no place, suggest one to the user in your handoff.
+role found it, add it to the project's own design cases: the `Design Cases`
+section of its `DESIGN.md`, or where that file says. When there is no such
+place, add the section, in the form
+[project-design-template.md](templates/project-design-template.md) shows.
 
 After a requirements change is approved, rebuild affected design and evidence
 links, reclassify the completed solution, append the completed SR round and
