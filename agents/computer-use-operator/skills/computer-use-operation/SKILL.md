@@ -41,7 +41,7 @@ Neither is a run log. Record how sites and tools work. Do not record passwords, 
 
 - **Known operation:** follow its SOP. Find each recorded control on the current screen by its look and place; if it moved or changed, locate it again and continue.
 - **New operation or first visit:** explore the site. Record how each control looks and where it is, a stable page locator for the fallback (CSS, role, label, visible text, `id`, `data-*`, `aria-*`, shadow-DOM host path), page URLs, and a working step sequence.
-- **Look.** [`scripts/screen_capture.py`](scripts/screen_capture.py) captures the whole screen and prints the sizes needed to click from it. Open the PNG with the tool that shows you images (`read_media_file`, or your runtime's own file reader). The screenshot shows what is on top, such as a dialog or another window; a native click lands there.
+- **Look.** [`scripts/screen_capture.py`](scripts/screen_capture.py) captures the whole screen and prints the sizes needed to click from it. Open the PNG with the tool that shows you images (`read_file`, or your runtime's own file reader). The screenshot shows what is on top, such as a dialog or another window; a native click lands there.
 - **Click what you see.** Read the target's centre in the image and click it with [`scripts/native_click.py`](scripts/native_click.py) `--at X,Y --scale S`. `S` is `screen_per_image_px` from the capture, multiplied by (`image=` width / the width you see) when your runtime shows the image smaller than the file; it may state that factor. If the target is not in the screenshot, scroll or navigate and look again rather than guessing a point.
 - **Check what changed.** After a click whose result matters, such as opening the composer, attaching a file or switching a setting, take a new screenshot and compare it with the one before: the expected change is there and nothing else changed. A routine step with an obvious result needs no extra check.
 - **Locate through the page instead** (a read-only locate script, then `native_click.py --rect`) when:
@@ -61,7 +61,7 @@ Neither is a run log. Record how sites and tools work. Do not record passwords, 
 - **Install when needed.** Use the official source, and prefer a user-level or isolated install (`pipx`, a virtual environment, `~/.local/bin`) over a system-wide one. Verify the installed version before use. List every install in the report.
 - **Long jobs:** run large downloads and conversions as background processes and check their output.
 - **Access limits:** use only ordinary public access, or access the user has supplied for this task. Do not bypass DRM, paywalls, login, or access controls. Do not share or export cookies or credentials. If the source itself denies access (401/403 on the original, a login wall, a geo-block), report it instead of working around it; trying a different ordinary tool on a public source is fine.
-- **Verify outputs:** check that the file exists and is not empty, and check media duration, dimensions, and audio with a metadata probe (for example `ffprobe`, or `read_media_file`).
+- **Verify outputs:** check that the file exists and is not empty, and check media duration, dimensions, and audio with a metadata probe (for example `ffprobe`), and open it with `read_file` when you need to see or hear it.
 
 ### Both capabilities
 

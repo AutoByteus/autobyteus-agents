@@ -40,9 +40,10 @@ Use [book-production-report-template.md](templates/book-production-report-templa
    margins, optional cover/end matter, and known limitations in the plan.
 2. Assemble only the approved page images. Preserve page pixels, exact in-image text,
    order, composition, and proportions. Add cover or end matter only when storyboarded.
-3. Open the exported pages (`read_media_file`, or your runtime's own image reader) and
-   validate file existence and opening, page count, order, dimensions, safe margins,
-   image integrity, text readability, and export integrity. Confirm no unapproved page,
+3. Open the exported pages (`read_file`, or your runtime's own image reader; `read_file`
+   refuses a PDF, so render a PDF export's pages to images, for example with
+   `pdftoppm -png`, and open those) and validate file existence and opening, page count,
+   order, dimensions, safe margins, image integrity, text readability, and export integrity. Confirm no unapproved page,
    overlay, caption, watermark, or production note entered the package.
 4. Write the report with pass, fix required, or blocked evidence before handoff.
 5. Hand off the final package, as the principles' artifact and handoff discipline

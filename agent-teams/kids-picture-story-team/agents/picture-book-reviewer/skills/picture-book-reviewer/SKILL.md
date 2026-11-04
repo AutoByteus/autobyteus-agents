@@ -30,7 +30,7 @@ Use [picture-book-review-report-template.md](templates/picture-book-review-repor
 
 1. Verify every prerequisite, absolute path, approval state, page id, and actual image. If
    a required image cannot be inspected, write `Blocked` and route it to the owner.
-2. Open every page (`read_media_file`, or your runtime's own image reader) and compare it with its storyboard row. Check narrative beat, required
+2. Open every page (`read_file`, or your runtime's own image reader) and compare it with its storyboard row. Check narrative beat, required
    characters and motifs, page-turn function, language, exact words, word-free status,
    composition, dimensions, and safe margins.
 3. Compare recurring characters with the actual approved reference and with every other

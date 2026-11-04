@@ -10,7 +10,6 @@
     "send_message_to",
     "generate_image",
     "edit_image",
-    "read_media_file",
     "get_handoff_rules"
   ],
   "skillNames": [

@@ -66,7 +66,7 @@ characters, motifs, text placement, and page-turn intent.
    approved character reference as an image input/reference when a recurring character
    appears. Compose the exact approved words into the image; never let a prompt invent
    captions.
-6. Open and inspect every actual output (`read_media_file`, or your runtime's own image
+6. Open and inspect every actual output (`read_file`, or your runtime's own image
    reader). Record the tool used, prompt id, source and candidate
    paths, passed/needs-edit/rejected/blocked status, defects, and next action in the index
    and log. Rework failures from the correct approved source.
