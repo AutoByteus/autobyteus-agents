@@ -8,7 +8,6 @@
     "edit_file",
     "run_bash",
     "read_url",
-    "read_media_file",
     "search_memory",
     "generate_image",
     "edit_image",

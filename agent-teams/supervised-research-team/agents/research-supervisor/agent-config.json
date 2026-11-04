@@ -6,7 +6,6 @@
     "run_bash",
     "search_web",
     "read_url",
-    "read_media_file",
     "get_handoff_rules",
     "send_message_to",
     "delegate_task"

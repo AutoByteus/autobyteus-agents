@@ -6,7 +6,6 @@
     "run_bash",
     "search_web",
     "read_url",
-    "read_media_file",
     "list_tabs",
     "open_tab",
     "navigate_to",

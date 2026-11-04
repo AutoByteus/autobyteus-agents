@@ -6,7 +6,6 @@
     "start_background_process",
     "get_process_output",
     "stop_background_process",
-    "read_media_file",
     "get_handoff_rules",
     "send_message_to",
     "delegate_task"

@@ -18,7 +18,6 @@
     "download_media",
     "download_video",
     "download_audio",
-    "read_media_file",
     "get_handoff_rules",
     "send_message_to"
   ],
