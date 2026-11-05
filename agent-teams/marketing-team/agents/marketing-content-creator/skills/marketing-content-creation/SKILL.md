@@ -155,7 +155,7 @@ When `task-result.md` returns:
 
 ## 6. Other computer work
 
-For any computer work other than publishing, write `task-request.md` and hand it to the Computer Use Operator. Examples: collecting site data (research, account analysis, reply candidates), capturing a source post, downloading source media such as a public video, taking screenshots, and installing or running a tool you need. Put the request in the work folder when it serves one piece, otherwise under `data/`.
+For any computer work other than publishing, write `task-request.md` and hand it to the Computer Use Operator. Examples: collecting site data (research, account analysis), capturing a source post, downloading source media such as a public video, taking screenshots, and installing or running a tool you need. Put the request in the work folder when it serves one piece, otherwise under `data/`.
 
 The request states:
 - `Requested by: Marketing Content Creator`
@@ -213,6 +213,10 @@ When a piece needs facts beyond the source material and the positioning file (a 
 - Continue other work while the research runs.
 - When the brief returns, draft factual and comparison statements only from its `supported` claims. Drop or reword `not supported` claims. Treat a `needs confirmation` claim about our product as `Claim Review Needed` (step 9).
 - Keep the brief with the piece and cite it in `source-material.md`.
+
+## 12. Reply queue
+
+The Marketing Reply Scout finds posts worth replying to and keeps them in `outreach/reply-queue.md`. When it hands off new candidates, show the user each one: the post, why to reply and the earlier piece it builds on, its reach and age. Ask which to reply to. When the user picks one, mark its entry `picked → <work folder>` and start at step 1 with that post as the target; the entry's catalog topic and base piece are where step 2 starts. Pass the user's wishes about searching (run a search now, start or stop the timer, change a watch list, skip a candidate) to the Scout.
 
 ## Stop
 

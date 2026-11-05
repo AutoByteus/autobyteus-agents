@@ -7,6 +7,11 @@
       "refScope": "team_local"
     },
     {
+      "memberName": "marketing_reply_scout",
+      "ref": "marketing-reply-scout",
+      "refScope": "team_local"
+    },
+    {
       "memberName": "marketing_performance_analyst",
       "ref": "marketing-performance-analyst",
       "refScope": "team_local"
@@ -28,7 +33,7 @@
       "to": "/computer_use_operator",
       "rules": [
         "When a publish-request.md for a user-approved channel package is saved and ready for publishing.",
-        "When a task-request.md for other computer work (site data, research, reply candidates, source capture, media download, screenshots, or tool work) is saved and ready."
+        "When a task-request.md for other computer work (site data, research, source capture, media download, screenshots, or tool work) is saved and ready."
       ]
     },
     {
@@ -36,6 +41,34 @@
       "to": "/marketing_content_creator",
       "rules": [
         "When task-result.md is saved for a request marked 'Requested by: Marketing Content Creator', with outcome Completed, Blocked, or Needs Decision."
+      ]
+    },
+    {
+      "from": "/marketing_content_creator",
+      "to": "/marketing_reply_scout",
+      "rules": [
+        "When the user asks to run a reply search now, to start, stop or change the reply timer or a watch list, or to skip a reply candidate."
+      ]
+    },
+    {
+      "from": "/marketing_reply_scout",
+      "to": "/marketing_content_creator",
+      "rules": [
+        "When reply-queue.md has new candidates for the user, when a reply search came back Blocked, or when a request from the Content Creator is done."
+      ]
+    },
+    {
+      "from": "/marketing_reply_scout",
+      "to": "/computer_use_operator",
+      "rules": [
+        "When a task-request.md for a read-only collection of recent posts, marked 'Requested by: Marketing Reply Scout', is saved and ready."
+      ]
+    },
+    {
+      "from": "/computer_use_operator",
+      "to": "/marketing_reply_scout",
+      "rules": [
+        "When task-result.md is saved for a request marked 'Requested by: Marketing Reply Scout', with outcome Completed, Blocked, or Needs Decision."
       ]
     },
     {
