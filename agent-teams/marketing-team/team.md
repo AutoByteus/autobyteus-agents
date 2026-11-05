@@ -9,6 +9,7 @@ The Marketing Team separates content, performance analysis, and computer work (w
 ## Members
 
 - `marketing_content_creator`: the entry point. Owns briefs, drafts, the user's feedback and approval loop, media, the workspace style library (`marketing-style/`), platform content folders (`linkedin/`, `x/`, …), published records, the published-post index, the content and media catalogs, and the approved strategy (`marketing-strategy/`).
+- `marketing_reply_scout`: finds posts worth replying to. On a timer or on request it asks the Operator for read-only collections from each channel's watch list, judges them against the content catalog, and keeps the ranked reply queue (`outreach/`). It never drafts or publishes.
 - `marketing_performance_analyst`: owns measurement and learning. Keeps the performance ledger and scorecard (`data/performance/`), judges each strategy bet by views, likes, and replies, and proposes goals and the next strategy version.
 - `deep_researcher`: the shared Deep Researcher. Answers research questions from primary sources and returns a brief with a claims check (`supported`, `not supported`, `needs confirmation`); keeps research notes in `research/`.
 - `computer_use_operator`: the shared Computer Use Operator. Owns every website action (publishing, replying, collecting data) using real mouse and keyboard input, and computer work such as downloading source media or installing the tools for it. Keeps site knowledge in `web-ui-sites/` and tool knowledge in `computer-tools/`.
@@ -17,8 +18,9 @@ The Marketing Team separates content, performance analysis, and computer work (w
 
 - The user works with the Content Creator. Nothing is published without the user's approval of the exact package for that channel, and no goal or strategy changes without the user's approval.
 - **Build:** the Content Creator drafts from the approved strategy, records which bet each piece tests, and sends one `publish-request.md` per channel or a `task-request.md` for other computer work.
+- **Find replies:** the Reply Scout adds posts worth replying to to `outreach/reply-queue.md` and tells the Content Creator, which shows them to the user; a post the user picks goes through the same draft and approval loop.
 - **Measure and learn:** on a review request (`analysis-request.md`), the Analyst asks the Operator to collect public metrics, then returns `performance-analysis.md` with the scorecard, bet verdicts, and a proposed strategy. The Content Creator presents it and saves what the user approves.
 - Any member can ask the Operator for website or computer work. The Operator returns `task-result.md` classified `Completed`, `Blocked`, or `Needs Decision` to the member named in the request's `Requested by` line.
 - **Research:** any member who needs research sends a `research-request.md` to the Deep Researcher: the Content Creator for facts a piece needs, drafting only from the brief's supported claims; the Analyst for strategy context. The Deep Researcher asks the Operator for pages behind sign-in.
-- A new channel needs no new member: the Content Creator adds a channel guide, and the Operator learns the site on its first successful run.
+- A new channel needs no new member: the Content Creator adds a channel guide, the Reply Scout a watch list, and the Operator learns the site on its first successful run.
 - Login, 2FA, CAPTCHA, QR verification, and permission prompts go to the user; no member bypasses them.
