@@ -45,7 +45,7 @@ Return `Understanding Gap`, `Source Gap` or `Evidence Gap` (load-bearing claims 
 
 ### Step 4 - The outline (pre-draft review)
 
-This review is light: it decides whether the direction is sound before drafting; do not ask for paragraph plans. Check that `outline.md` agrees with the style notes and the understanding package, and judge it by the principles: the point (section 4), the mode and opening (section 3), one logic spine and a section chain where each section adds one contribution and follows from the last (sections 4 and 5), a real anchor planned early (section 6), an ending that lands the point, and a representation decision wherever an idea earns an image (section 8).
+This review is light: it decides whether the direction is sound before drafting; do not ask for paragraph plans. Check that `outline.md` agrees with the style notes and the understanding package, and judge it by the principles: the point, the reader's problem and the map (section 4), the mode and opening (section 3), one logic spine and a section chain where each section adds one contribution and follows from the last (sections 4 and 5), a real anchor planned early (section 6), an ending that lands the point, and a representation decision wherever an idea earns an image (section 8).
 
 Return `Outline Revision` when the outline is only a list of topics, a section restates another, the order does not follow, or a representation decision is missing or unexplained. Do not let drafting start on a weak outline unless the user skipped the gate or the writer used the short path.
 
@@ -59,7 +59,7 @@ Return `Outline Revision` when a representation decision is missing or unclear u
 
 **Cold read first.** Before opening the outline, notes or ledger, read only the draft, top to bottom, as a first-time reader. Write down each place you were lost: an unexplained term, a jump, a claim whose source you wondered about, a point where you stopped seeing why you were reading. Do this on the first draft review and after any structural revision.
 
-Then open the package and judge the draft by the principles in their order: the title, the point, mode, opening and ownership; the section chain and continuity, with the reverse outline and the first-time-reader checks (section 5); the paragraphs; the evidence and visuals; style fit against `style-profile-notes.md`; platform fit; the sentences. Classify the reverse-outline problem as `Outline Revision` or `Draft Revision` by whether the outline or the draft diverged first. Run the line-level pass only after the structure holds; `Pass` needs both.
+Then open the package and judge the draft by the principles in their order: the title, the point, mode, opening and ownership, with the reader's problem, the answer and the map before any detail; the section chain and continuity, with the reverse outline and the first-time-reader checks (section 5); the paragraphs; the evidence and visuals; style fit against `style-profile-notes.md`; platform fit; the sentences. Classify the reverse-outline problem as `Outline Revision` or `Draft Revision` by whether the outline or the draft diverged first. Run the line-level pass only after the structure holds; `Pass` needs both.
 
 **Information check.** Mark every sentence that carries no information (principles, section 5): a story bridge, a rhetorical question, an emphasis line, a teaser, a slogan, or the main point restated as a refrain. Record the count and the examples in the report; more than a few is a `Draft Revision`.
 

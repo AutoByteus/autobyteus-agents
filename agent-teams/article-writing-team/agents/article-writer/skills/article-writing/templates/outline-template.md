@@ -17,7 +17,9 @@ Keep this short. It fixes the point and the order of the sections; the paragraph
 ## Opening And Reader
 
 - Working title options:
-- Opening (principles, section 3): the subject and what it does, the question, the answer:
+- The problem, as the reader experiences it (with its source):
+- The answer in a few sentences:
+- The map: the parts and how they connect (a few lines, a list or one figure); each section below is one part:
 - Justified opening exception, if the first move is intentionally negative or contrastive:
 - Reader starting point: what the reader likely knows, assumes, or needs before the article begins:
 - Primary logic spine (principles, section 4): concepts in the order the reader needs them (`technical-blog`) / `causal` / `problem-solution` / `question-answer` / `comparative` / `derivational` / `chronological` (only for a history) / other:
@@ -64,6 +66,7 @@ For each section where the visualization-load trigger fires, or the text-only de
 ## Structural Gate
 
 - The main claim can be stated in one sentence, and it is stated once
+- The opening gives the reader's problem, the answer and the map before any detail
 - The mode fits the kind of article (a technical topic is `technical-blog` unless the user asked otherwise), and no section exists only to tell a story or bridge to the next
 - The opening fits the mode; any negative or contrastive first move has a recorded exception
 - Every section adds a new contribution and follows from the one before it
