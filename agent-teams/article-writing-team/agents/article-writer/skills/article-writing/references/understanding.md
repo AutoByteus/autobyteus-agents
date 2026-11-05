@@ -17,7 +17,7 @@ Add to it only when:
 
 ## 2. Choose who investigates
 
-Use the investigation modes in [the writing principles](../../../../../shared/writing-principles.md) (section 2), the smallest set that supports the article.
+Use the investigation modes in [the writing principles](writing-principles.md) (section 2), the smallest set that supports the article.
 
 - **You:** `supplied-source` (what the user gave you, including a quick read of a link or file they supplied), `workspace-source` (project files, code, docs, tests, logs, commands), and `experiential-builder` (the user's firsthand sequence, decisions, and observations).
 - **The Deep Researcher:** `online-research` and `paper-document` work that needs several sources, current facts, or a check of claims the article will make. Write `research-request.md` in the work folder and hand it off; the team's handoff rules send it to the Deep Researcher. While it runs, work on what does not depend on it, such as the style package and the section structure. Do not draft the claims the request covers, and do not send anything for review, until the brief has come back.

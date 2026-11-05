@@ -42,6 +42,7 @@ Concrete mistakes found in real package work. The [package design principles](pa
 | 32 | Answering repeated feedback with another rule | Creator process |
 | 33 | Making a role find earlier work by guessing words | Package design |
 | 34 | Optimizing a package's form while its rules produce the failure | Creator process |
+| 35 | A link that leaves the skill folder | Package design |
 
 ## Package design
 
@@ -283,4 +284,11 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Breaks:** [§9](package-design-principles.md#9-update-and-restructure-safely): diagnose observed defects and their owners before choosing edits; and [step 1](../SKILL.md#1-map-the-target-and-ownership-spine): find who owns the rule that failed.
 - **Instead:** When the request comes from a bad result, read the result first, name each failure in it (with examples), and trace each to the rule, default or missing rule that produced it, before or alongside the structural clean-up. A restructure moves rules; it must also judge them.
 - **Detect:** The analysis lists the failures seen in the output, each with the rule that caused it. A restructure whose findings are all about form, after the user complained about the output, is a lead.
+
+### 35. A link that leaves the skill folder
+
+- **Incident:** The Article Writing Team's skills linked their shared standard as `../../../../shared/writing-principles.md`. The link resolves inside the repository, so the link check passed, but the app installs each skill into the workspace on its own (`.claude/skills/<skill>`), where the path leads nowhere. In a live run the writer searched the disk, did not find the file, and both agents worked without the team's standard (2026-11-05).
+- **Breaks:** [§3](package-design-principles.md#3-give-each-rule-one-authoritative-file): a rule needs a home every role applying it can read, as the role runs.
+- **Instead:** Give each skill a `references/` symbolic link to every shared file it reads, link to that local path, and add the hint anti-pattern 20 asks for, as the Software Engineering Team does.
+- **Detect:** For every Markdown link in a skill folder (not following symbolic links), resolve it and flag any target outside that skill's folder.
 

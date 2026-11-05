@@ -1,6 +1,6 @@
 # Style And Language Workflow
 
-Read this in Step 3 of `article-writing` when the user asks for an author's voice, bilingual drafting or platform packaging. It owns profile loading, the style notes, native expression in each language, conversion, and style checks. The modes, the opening rules, the user's correction cues and the one priority order are in [the writing principles](../../../../../shared/writing-principles.md) (sections 3 and 10); a profile never overrides them.
+Read this in Step 3 of `article-writing` when the user asks for an author's voice, bilingual drafting or platform packaging. It owns profile loading, the style notes, native expression in each language, conversion, and style checks. The modes, the opening rules, the user's correction cues and the one priority order are in [the writing principles](writing-principles.md) (sections 3 and 10); a profile never overrides them.
 
 ## 1. Resolve the target
 
@@ -45,7 +45,7 @@ The outline's point, section order, evidence and ending stay as approved; style 
 - The draft matches the profile's constraints and stays inside the chosen variant, without drifting into a louder neighboring one.
 - No sales or manifesto tone, forced binary contrast or claim inflated beyond the evidence, unless the user asked for that tone.
 - In `technical-blog` and `paper-report`, observations or the system description come before strong conclusions, and causal claims stay bounded.
-- Platform fit follows [the platform output rules](../../../../../shared/platform-output-rules.md), including the legibility of text in visuals; check the rendered result, not only the export resolution.
+- Platform fit follows [the platform output rules](platform-output-rules.md), including the legibility of text in visuals; check the rendered result, not only the export resolution.
 - When style fit is weak, revise rhythm, transitions and structural moves, not isolated words.
 
 For a requested revision, run a focused pass: `logic`, `voice`, `depth`, `length`, `title` or `tone-temperature`. For technical architecture articles, also:

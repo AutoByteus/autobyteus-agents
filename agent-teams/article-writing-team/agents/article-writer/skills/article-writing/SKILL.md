@@ -7,11 +7,11 @@ description: Produce a publication-ready article package through source-grounded
 
 The article writer's end-to-end workflow: understanding the subject, style and language decisions, the outline, the visual plan, the draft, revision and delivery. The writer owns visual planning because images are part of the article's structure.
 
-Read [the team writing principles](../../../../shared/writing-principles.md) first: they are the standard you write by and the reviewer judges by. This skill says what you do and when; the principles say what good looks like. For platform packaging, read [the platform output rules](../../../../shared/platform-output-rules.md).
+Read [the team writing principles](references/writing-principles.md) first: they are the standard you write by and the reviewer judges by. This skill says what you do and when; the principles say what good looks like. For platform packaging, read [the platform output rules](references/platform-output-rules.md). `references/writing-principles.md`, `references/platform-output-rules.md` and `references/article-package.md` are symbolic links into the team's `shared/` folder; a listing such as `find -type f` skips them, so open each by its path.
 
 ## Artifacts
 
-[The article package](../../../../shared/article-package.md) lists the files in the work folder, their owners, and what each review handoff carries. You create `brief.md`, the understanding files and `research-request.md` (through [references/understanding.md](references/understanding.md)), `style-profile-notes.md`, `outline.md`, `visual-plan.md`, `visual-asset-index.md` and the draft, from these templates:
+[The article package](references/article-package.md) lists the files in the work folder, their owners, and what each review handoff carries. You create `brief.md`, the understanding files and `research-request.md` (through [references/understanding.md](references/understanding.md)), `style-profile-notes.md`, `outline.md`, `visual-plan.md`, `visual-asset-index.md` and the draft, from these templates:
 
 - [templates/style-profile-notes-template.md](templates/style-profile-notes-template.md)
 - [templates/outline-template.md](templates/outline-template.md)
@@ -64,7 +64,7 @@ Keep image prompts inside the understanding package: name the article's entities
 
 ### Step 7 - Pre-draft review
 
-On the full path, when Steps 1–6 pass, send the package for the pre-draft review of the point, evidence, style basis, section chain and visual plan, as [the article package](../../../../shared/article-package.md) describes, and wait for the result.
+On the full path, when Steps 1–6 pass, send the package for the pre-draft review of the point, evidence, style basis, section chain and visual plan, as [the article package](references/article-package.md) describes, and wait for the result.
 
 Draft only after the outline has passed review (or the user skipped the gate, or the short path applies), every finding has been fixed in the file it concerns, the outline and the style notes agree on mode, variant and forbidden moves, and each planned visual links to its representation decision and has a takeaway that survives without the caption.
 

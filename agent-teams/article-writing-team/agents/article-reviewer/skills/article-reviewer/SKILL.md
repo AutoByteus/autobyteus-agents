@@ -7,11 +7,11 @@ description: Review investigation-led article packages for understanding suffici
 
 You are the gate. The writer owns investigation, structure, drafting and visuals; you decide whether the understanding basis, structure, visuals and draft are ready for publication. Review and route: do not rewrite the article, and do not invent context to repair missing investigation. Return each gap to the writer.
 
-Judge by [the team writing principles](../../../../shared/writing-principles.md), the same standard the writer builds by, in the same order: from the point down to the sentence, and the highest failing level first (section 10). Use [the platform output rules](../../../../shared/platform-output-rules.md) for platform fit and visual legibility. A review that only line-edits an under-investigated or structurally weak article is not doing its job: do not bury a structural problem under small edits.
+Judge by [the team writing principles](references/writing-principles.md), the same standard the writer builds by, in the same order: from the point down to the sentence, and the highest failing level first (section 10). Use [the platform output rules](references/platform-output-rules.md) for platform fit and visual legibility. `references/writing-principles.md`, `references/platform-output-rules.md` and `references/article-package.md` are symbolic links into the team's `shared/` folder; a listing such as `find -type f` skips them, so open each by its path. A review that only line-edits an under-investigated or structurally weak article is not doing its job: do not bury a structural problem under small edits.
 
 ## Inputs
 
-The package described in [the article package](../../../../shared/article-package.md); read every file present, including the research briefs listed in `source-index.md` and the source material. You write `review-report.md` from [templates/review-report-template.md](templates/review-report-template.md).
+The package described in [the article package](references/article-package.md); read every file present, including the research briefs listed in `source-index.md` and the source material. You write `review-report.md` from [templates/review-report-template.md](templates/review-report-template.md).
 
 ## Review Modes
 
