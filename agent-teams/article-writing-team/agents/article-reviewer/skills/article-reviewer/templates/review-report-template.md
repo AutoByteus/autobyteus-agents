@@ -1,52 +1,17 @@
 # Article Review Report
 
-- Review mode:
+- Review mode and round:
 - Decision:
-- Requested platform:
-- Language mode:
-- Style profile:
-- Style profile notes:
-- Understanding mode:
-- Visual expectations:
 
 ## Artifacts Reviewed
 
-- `brief.md`
-- `understanding-notes.md`:
-- `source-index.md`:
-- `claim-evidence-ledger.md`:
-- research briefs (Deep Researcher):
-- `style-profile-notes.md`:
-- `outline.md`
-- `visual-plan.md`:
-- `visual-asset-index.md`:
-- source basis:
-- draft files:
+- Package files read (with paths), including research briefs and the source material:
 
-## Style Package Check
+## Understanding And Evidence
 
-- Profile and examples:
-- Variant and rhetorical mode:
-- Platform/language constraints:
-- Forbidden style moves:
-- Style basis gaps:
-
-## Understanding And Evidence Check
-
-- Understanding basis:
-- Source support:
-- Unsupported or over-strong claims:
-- Style-created claims, opponents, or contrasts:
+- Understanding basis and source support:
+- Unsupported or over-strong claims, including style-created contrasts, opponents or common beliefs:
 - Open source or investigation gaps:
-
-## Opening Progression Check
-
-- Selected opening stance:
-- Positive-first progression for non-essay modes: subject/system -> capability/current use -> observed pressure/question -> change, explanation, or proposal:
-- First-paragraph result: `pass` / `draft revision`
-- Negative or contrastive first move present:
-- Justified exception recorded in the outline:
-- Opening decision: `pass` / `draft revision` / `outline revision`:
 
 ## Primary-Source Spot Checks
 
@@ -58,37 +23,27 @@
 
 - Where the draft lost the reader before the package was opened:
 
-## Structure Check
+## Structure (in the principles' order)
 
-- Main claim, scope, and bounded answer:
-- Primary logic spine and reader starting point:
-- Anchor example: real, early, reused:
-- Section chain: what each section adds, the question it answers, and what it leads to:
-- Section entry/exit bridges:
-- Representation decisions where the visualization-load trigger fires:
-- Paragraph jobs and known-to-new movement (draft review):
-- Reverse outline: section and paragraph summaries of the draft compared with `outline.md` (draft review):
+- The point, the mode (does it fit the kind of article?), the opening and the ownership stance:
+- The logic spine and the section chain: what each section adds, the question it answers, what it leads to:
+- Continuity: bridges, the reverse outline compared with `outline.md`, the first-time-reader marks (draft review):
+- Paragraph jobs (draft review):
+- The anchor example: real, early, reused:
 - First failing level: `article` / `section` / `paragraph` / `sentence`:
-- Structure decision: `pass` / `outline revision` / `draft revision`:
 
-## Visual Plan Check
+## Information Check (draft review)
 
-- Visual strategy:
-- Section references:
-- Representation modes:
-- Visual propositions and visible entity/relationship coverage:
-- Prose/image responsibility split:
-- Paired prose/image flow:
-- Minimum reader takeaways without captions/body prose:
-- Needed visuals missing:
-- Visuals disconnected from nearby content:
-- Decorative or redundant visuals:
-- Generic-replacement test failures:
-- Image-generation tool order and medium rationale:
-- In-image label accuracy and raster readability:
-- Unsupported visual details or captions:
-- Asset/source/generation gaps:
-- Article flow and placement:
+- Sentences that carry no information (story bridges, rhetorical questions, emphasis lines, teasers, slogans, the point restated as a refrain): count and examples:
+
+## Style Fit (only when an author's voice was requested)
+
+- Against `style-profile-notes.md`: variant, voice, forbidden moves:
+
+## Visuals
+
+- For each visual (principles, section 8): earned, proposition visible, prose and image each carry their part, nothing invented, caption supported, raster legible at mobile width:
+- Representation decisions missing or `prose-only` without a reason:
 
 ## High-Priority Findings
 
@@ -96,7 +51,7 @@
 
 ## Strengths To Preserve
 
-- 
+-
 
 ## Required Revisions
 
@@ -106,8 +61,8 @@ Mark a finding `recurring` when the previous report raised it and it is still op
 
 ## Decision Rationale
 
-- 
+-
 
 ## Next Action For The Writer
 
-- Expected next action:
+-

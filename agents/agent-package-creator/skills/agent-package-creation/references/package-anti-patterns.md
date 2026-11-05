@@ -41,6 +41,7 @@ Concrete mistakes found in real package work. The [package design principles](pa
 | 31 | Private information in a public package | Creator process |
 | 32 | Answering repeated feedback with another rule | Creator process |
 | 33 | Making a role find earlier work by guessing words | Package design |
+| 34 | Optimizing a package's form while its rules produce the failure | Creator process |
 
 ## Package design
 
@@ -275,3 +276,11 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Breaks:** [§9](package-design-principles.md#9-update-and-restructure-safely): diagnose structure and flow before wording.
 - **Instead:** When the same kind of correction returns, stop adding text. Find what produces the behaviour: which record the role fills in, what its first step is, what a review asks, who checks whom, and what a role is never asked. Change that, and remove the sentences it replaces. Also check how the correction travelled, since a role can narrow it on the way to you.
 - **Detect:** Read the package's history for the same complaint across commits. For each repeated one, name the record, step, review question or route that now makes the behaviour hard to repeat; if the answer is only a new sentence, the cause is untouched.
+
+### 34. Optimizing a package's form while its rules produce the failure
+
+- **Incident:** The user found an article from a writing team "like a novel", not a technical blog. The Creator's analysis of the team judged only its form (repeated rules, six priority lists, duplicate records), and the restructure carried one rule over unchanged: choose the narrative mode for any firsthand material. That rule, chosen by whose material it was rather than what kind of article it was, produced the story-style article. The user pointed at the output before the Creator did (2026-11-05).
+- **Breaks:** [§9](package-design-principles.md#9-update-and-restructure-safely): diagnose observed defects and their owners before choosing edits; and [step 1](../SKILL.md#1-map-the-target-and-ownership-spine): find who owns the rule that failed.
+- **Instead:** When the request comes from a bad result, read the result first, name each failure in it (with examples), and trace each to the rule, default or missing rule that produced it, before or alongside the structural clean-up. A restructure moves rules; it must also judge them.
+- **Detect:** The analysis lists the failures seen in the output, each with the rule that caused it. A restructure whose findings are all about form, after the user complained about the output, is a lead.
+

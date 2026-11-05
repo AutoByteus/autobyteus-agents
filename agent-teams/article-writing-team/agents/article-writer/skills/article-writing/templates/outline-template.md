@@ -5,7 +5,7 @@ Keep this short. It fixes the point and the order of the sections; the paragraph
 - Article package:
 - Last updated:
 - Outline status: `draft` / `ready for review` / `passed`
-- Mode, platform, language, audience, depth target:
+- Target: see `brief.md` (mode, platform, language, audience, depth)
 
 ## The Point
 
@@ -17,11 +17,10 @@ Keep this short. It fixes the point and the order of the sections; the paragraph
 ## Opening And Reader
 
 - Working title options:
-- Opening stance:
-- Opening progression: positive subject/system -> capability/current use -> observed pressure/question -> change, explanation, or proposal:
+- Opening (principles, section 3): the subject and what it does, the question, the answer:
 - Justified opening exception, if the first move is intentionally negative or contrastive:
 - Reader starting point: what the reader likely knows, assumes, or needs before the article begins:
-- Primary logic spine: `causal` / `chronological` / `problem-solution` / `question-answer` / `comparative` / `derivational` / other:
+- Primary logic spine (principles, section 4): concepts in the order the reader needs them (`technical-blog`) / `causal` / `problem-solution` / `question-answer` / `comparative` / `derivational` / `chronological` (only for a history) / other:
 
 ## Anchor Example
 
@@ -64,8 +63,9 @@ For each section where the visualization-load trigger fires, or the text-only de
 
 ## Structural Gate
 
-- The main claim can be stated in one sentence
-- Opening progression matches the selected stance; any negative or contrastive first move has a recorded exception
+- The main claim can be stated in one sentence, and it is stated once
+- The mode fits the kind of article (a technical topic is `technical-blog` unless the user asked otherwise), and no section exists only to tell a story or bridge to the next
+- The opening fits the mode; any negative or contrastive first move has a recorded exception
 - Every section adds a new contribution and follows from the one before it
 - One logic spine is named and used consistently
 - Every meaningful shift in topic, time, actor, abstraction, scope, or evidence type has a bridge
