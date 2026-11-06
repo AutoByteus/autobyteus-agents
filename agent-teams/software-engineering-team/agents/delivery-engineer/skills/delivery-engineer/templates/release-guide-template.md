@@ -24,6 +24,9 @@ example none, beta, stable), with the default.
 
 Commands to run on the merged state before a tag or release exists, and what
 each one rejects, such as file names other operating systems cannot check out.
+Only checks no earlier stage can run belong here, such as a pipeline run for
+another operating system's packaging; a check a local machine can run belongs
+in the testing guideline.
 
 ## Cutting The Release
 
@@ -37,8 +40,10 @@ release is complete. Say what a partial release looks like.
 
 ## Recovery
 
-What to do when a release fails: which failures need a new version and which
-can be re-run, with the commands.
+What to do when a release fails: how to tell a failure of the platform (the
+runners, signing or store services, the network) from one of this
+repository's code, configuration or workflow in a failed job's log; how to
+rerun a failed job; and which failures need a new version, with the commands.
 
 ## Rollback
 

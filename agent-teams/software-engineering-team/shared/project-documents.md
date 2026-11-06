@@ -48,3 +48,21 @@ repository refine the root one; they do not replace a missing root file.
   wrong, propose the fix in your report, and change it only when the user
   agrees or the ticket is about it. When a document says how it may be
   updated, follow that.
+
+## When a later stage catches a problem
+
+A problem that passed one stage and was caught at a later one, such as a
+release pipeline failing on a change that passed validation, is fixed twice:
+the defect through the normal route, and the stage that let it through.
+
+- The check that would have caught it goes into the document of the earliest
+  stage that can reproduce it, whoever owns that document: usually the
+  testing guideline (a rule or a test), not the document of the role that
+  noticed it.
+- The release guide gets a check, such as a pipeline run before tagging, only
+  for what no local machine can reproduce, such as another operating
+  system's packaging or a limit of the release runner. That a local machine
+  cannot reproduce it is shown by a real attempt from a fresh start, not
+  assumed.
+- Adding that check is part of the ticket that caught the problem. Changing
+  or removing a rule the project set still follows the rule above.

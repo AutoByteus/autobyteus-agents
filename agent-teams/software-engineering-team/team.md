@@ -77,4 +77,5 @@ Designer when the ticket leaves the team.
 A project keeps its own rules in its `DESIGN.md`, `TESTING.md` and
 `RELEASE.md`. When a project lacks one, the team creates it in the ticket that
 first needs it. [shared/project-documents.md](shared/project-documents.md)
-says which role creates each, and how they are written and kept current.
+says which role creates each, how they are written and kept current, and which
+document gets the check when a later stage catches a problem.

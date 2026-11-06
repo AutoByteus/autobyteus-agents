@@ -144,7 +144,7 @@
       "from": "/delivery_engineer",
       "to": "/implementation_engineer",
       "rules": [
-        "When delivery discovers a code or packaging Local Fix that must be corrected by implementation before finalization can continue."
+        "When delivery discovers a code or packaging Local Fix that must be corrected by implementation before finalization can continue. A failed release pipeline job or check before tagging goes to API/E2E first, to reproduce it locally."
       ]
     },
     {
@@ -174,7 +174,8 @@
       "from": "/delivery_engineer",
       "to": "/api_e2e_engineer",
       "rules": [
-        "When delivery judges the validation evidence too weak to prove the change works and API/E2E must add or strengthen evidence, such as a missing journey, an unproven acceptance criterion, or an unrecorded user-only check."
+        "When delivery judges the validation evidence too weak to prove the change works and API/E2E must add or strengthen evidence, such as a missing journey, an unproven acceptance criterion, or an unrecorded user-only check.",
+        "When a release pipeline job or a check before tagging fails on this ticket's change because of our own code, configuration or workflow, not the platform, and API/E2E must reproduce it locally from a fresh start and turn it into a durable local check. Include the run, the failed job and the log lines that show the cause. The defect itself follows API/E2E's failure route."
       ]
     }
   ]
