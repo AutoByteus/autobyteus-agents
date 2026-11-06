@@ -5,6 +5,10 @@ before designing a solution, architecture or refactor, and during
 implementation and review. It holds what is specific to this project; general
 design practice is not repeated here.
 
+It holds what every future change here follows. One ticket's decisions and
+evidence stay in that ticket's documents; a design case keeps only the lesson a
+future design of the same shape needs.
+
 Keep each section to what someone designing a change here needs; delete a
 section that does not apply.
 

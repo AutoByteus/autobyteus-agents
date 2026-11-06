@@ -1,20 +1,38 @@
 # The Project's Own Documents
 
-A project keeps its own rules in three documents at its repository root. The
-team follows them; each role's skill says when it reads them. When a project
-lacks one, the team creates it, so the next ticket finds the project's rules in
-one place instead of working them out again.
+A project keeps its own rules in three documents at its repository root. They
+are project-level, standing documents: they hold what every future change in
+the project follows, not the record of one ticket, release or failure. The team
+follows them; each role's skill says when it reads them. When a project lacks
+one, the team creates it, so the next ticket finds the project's rules in one
+place instead of working them out again.
 
-| Document | What it holds | Read by | Created, when missing, by |
+| Document | What it holds | Read by | Owner: creates it when missing, adds and changes its rules |
 | --- | --- | --- | --- |
-| `DESIGN.md` | The project's architecture, the conventions its code follows, its own design principles, and its design cases | Solution Designer before design; implementation and the reviewers | Solution Designer, during architecture design |
-| `TESTING.md`, the testing guideline | How the project is tested: setup, test layers and their commands, gated suites, environments, credentials and test data, and the rules every test run follows | Implementation, API/E2E, code reviewer | API/E2E engineer, before it hands off its first result |
-| `RELEASE.md`, the release guide | How a change is finalized, released and rolled out | Delivery engineer | Delivery engineer, before the final commit (before tagging on a release request) |
+| `DESIGN.md` | The project's architecture, the conventions its code follows, its own design principles, and its design cases | Solution Designer before design; implementation and the reviewers | Solution Designer; creates it during architecture design |
+| `TESTING.md`, the testing guideline | How the project is tested: setup, test layers and their commands, gated suites, environments, credentials and test data, and the rules every test run follows | Implementation, API/E2E, code reviewer | API/E2E engineer; creates it before it hands off its first result |
+| `RELEASE.md`, the release guide | How a change is finalized, released and rolled out | Delivery engineer | Delivery engineer; creates it before the final commit (before tagging on a release request) |
 
 A document counts as present when the project keeps it under another name and
 its `AGENTS.md` names that file for the purpose, such as a README section for
 releases. Closer `DESIGN*.md` or `TESTING*.md` files for parts of the
 repository refine the root one; they do not replace a missing root file.
+
+## What goes in them
+
+- What every future change in the project follows: a rule, practice,
+  principle or convention, a command, a component and its owner. Write it as
+  the rule, with its reason when the reason helps a reader apply it.
+- Not the story of one ticket, release or failure: what happened, its runs,
+  versions, dates, decisions, evidence and results stay in that ticket's
+  documents, which are archived with it. When an incident teaches something,
+  write the rule it teaches, not the incident.
+- Not the team's general practice: it stays in the team's files; do not copy
+  it in.
+- The one exception is `DESIGN.md`'s design cases: a design mistake whose
+  lesson future designs of the same shape need, kept to what such a design
+  needs. The testing guideline and the release guide have no case sections; a
+  lesson from a test or release failure goes in as a rule.
 
 ## Creating a missing document
 
@@ -26,9 +44,7 @@ repository refine the root one; they do not replace a missing root file.
   and existing docs, and what you ran. Leave out a section you know nothing
   about rather than guessing; a later ticket adds it when it learns it. A first
   version is short.
-- Keep it to what every future change in this project follows. A ticket's
-  results, evidence and decisions stay in the ticket's documents, and the
-  team's general practice stays in the team's files: do not copy it in.
+- Keep it to what goes in them (above).
 - A rule the project has not decided, such as whether a change is released by
   default or which data tests may use, is the user's decision. Write what you
   observed and used, and name the open decision in your report.
@@ -39,9 +55,10 @@ repository refine the root one; they do not replace a missing root file.
 ## Keeping them current
 
 - When a ticket changes what a document describes (a component, a convention,
-  a test command, a release step), the ticket updates it. Delivery's docs sync
-  checks the three documents against the final change, including discrepancies
-  the ticket's reports recorded, such as a command that no longer works.
+  a test command, a release step), the ticket updates it; a new or changed rule
+  is written by the document's owner. Delivery's docs sync checks the three
+  documents against the final change, including discrepancies the ticket's
+  reports recorded, such as a command that no longer works.
 - The Solution Designer adds the project's design cases to its `DESIGN.md`
   (its skill's Recovery).
 - A rule the project set stays the project's: when the work shows one is
