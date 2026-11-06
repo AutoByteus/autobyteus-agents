@@ -5,6 +5,10 @@ Read it before merging a ticket into the target branch, tagging, publishing or
 deploying. A generic delivery process covers the order of the steps; this file
 holds what is specific to this repository.
 
+It holds what every future release follows. One release's runs, results and
+incidents belong in that release's report; a lesson from one goes in here as a
+step or rule.
+
 Keep each section to what someone releasing needs; delete a section that does
 not apply.
 
