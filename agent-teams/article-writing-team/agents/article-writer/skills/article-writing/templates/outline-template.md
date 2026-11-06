@@ -12,7 +12,7 @@ Keep this short. It fixes the point and the order of the sections; the paragraph
 From the problem analysis in `understanding-notes.md`:
 
 - The most important problem, as the reader feels it, and the evidence that others feel it too:
-- Its cause:
+- Its cause, and why it is a different kind of problem from the ones solved before it:
 - The answer (one or two sentences, bounded by the evidence):
 - What is still open:
 - Strongest evidence (source IDs or paths):
@@ -20,7 +20,7 @@ From the problem analysis in `understanding-notes.md`:
 
 ## Opening And Reader
 
-- Working title options:
+- Working title options (each states the point, not the path):
 - The opening, written as an abstract (the point above, in the reader's words):
 - The map: the parts and how they connect (a few lines, a list or one figure); each section below is one part:
 - Justified opening exception, if the first move is intentionally negative or contrastive:
