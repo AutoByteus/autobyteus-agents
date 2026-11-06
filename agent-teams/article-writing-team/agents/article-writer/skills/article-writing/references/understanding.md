@@ -17,7 +17,7 @@ Add to it only when:
 
 ## 2. Choose who investigates
 
-Use the investigation modes in [the writing principles](../../../../../shared/writing-principles.md) (section 2), the smallest set that supports the article.
+Use the investigation modes in [the writing principles](writing-principles.md) (section 2), the smallest set that supports the article.
 
 - **You:** `supplied-source` (what the user gave you, including a quick read of a link or file they supplied), `workspace-source` (project files, code, docs, tests, logs, commands), and `experiential-builder` (the user's firsthand sequence, decisions, and observations).
 - **The Deep Researcher:** `online-research` and `paper-document` work that needs several sources, current facts, or a check of claims the article will make. Write `research-request.md` in the work folder and hand it off; the team's handoff rules send it to the Deep Researcher. While it runs, work on what does not depend on it, such as the style package and the section structure. Do not draft the claims the request covers, and do not send anything for review, until the brief has come back.
@@ -45,6 +45,8 @@ Record:
 - the user's firsthand sequence or product observations;
 - uncertainty, caveats, source limitations, and user corrections that override earlier assumptions;
 - **Open questions:** what is still missing, narrowed, or blocked, and whom you asked.
+
+**Problem analysis.** For an article that explains how problems were solved (most technical articles), work out the problems before anything else, because the opening and the order of the article come from them. Add a `## Problem analysis` section with the entries and the ranking that [the writing principles](writing-principles.md) (section 4) require. Ask the Deep Researcher for the outside evidence when the user's sources do not already hold it. The point of the article (`article-writing`, Step 4) comes from this ranking.
 
 For product-builder or architecture articles, keep practical sequences as they happened, for example `we used X -> it did Y -> we observed Z -> we changed to W -> we noticed Q`. Do not compress them into generic claims.
 
@@ -78,6 +80,7 @@ Before Step 3 of `article-writing`, check:
 - comparison dimensions are neutral, consistent across products, and do not mislabel composable primitives as exclusive modes;
 - claims that another product lacks a capability are checked by the Deep Researcher against current authoritative evidence, or qualified as `not observed in the checked sources`;
 - builder-owned design rationale, the product surface, and a representative scenario are captured when central to the article;
+- for an article about solved problems, the problem analysis meets the principles (section 4) and names the most important problem;
 - a concrete anchor is identified when one exists (a worked example, runnable code or commands, real numbers, or an artifact), with its source;
 - every research brief you asked for has come back, and its open gaps are resolved, narrowed, or listed under Open questions;
 - you would not need broad discovery before outlining; a narrow gap found later is fixed through this file.

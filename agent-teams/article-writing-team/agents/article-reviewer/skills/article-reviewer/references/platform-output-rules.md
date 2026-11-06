@@ -1,0 +1,1 @@
+../../../../../shared/platform-output-rules.md

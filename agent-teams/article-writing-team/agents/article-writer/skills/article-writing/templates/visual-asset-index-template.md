@@ -1,26 +1,16 @@
 # Visual Asset Index
 
+What was produced for each visual. The proposition, responsibilities and takeaways are in `visual-plan.md` under the same Visual ID; this file records the asset itself.
+
 ## Assets
 
 ### Asset 1
 
 - Visual ID:
-- Section reference:
-- Representation mode: `image-led` / `prose-and-image`:
-- Asset path:
-- Source:
-- Visual class: conceptual cover / explanatory image / lifecycle or sequence / comparison / evidence / other:
-- Production method:
-- Medium rationale:
-- Generated prompt or source capture note:
-- Evidence anchor:
-- Prose responsibility:
-- Image responsibility:
-- Combined reader takeaway:
-- Semantic coverage: visible entities, relationships, direction, state, or action:
-- Required labels or text:
-- Self-contained reader takeaway check:
-- Inserted in:
+- Asset path, and where it is inserted in the article:
+- Source: generated (with the prompt or a pointer to it) / captured or sourced (with the capture note):
+- Production method, and any fallback:
+- Final raster inspected: labels accurate and readable at mobile width (yes / fixed / failed):
 - Caption:
 - License, attribution, or usage note:
 - Status:
@@ -34,9 +24,5 @@
 ## Integrity Check
 
 - No fake UI, screenshot, metric, architecture, chart, benchmark, logo, or source evidence:
-- Captions supported by source basis:
-- Production method follows the tool order in the writing principles; any fallback is documented:
-- Final raster inspected for accurate, readable labels and article-specific content:
-- Image cannot be replaced by a generic illustration without losing the planned explanation:
-- Asset paths valid:
-- Article references match asset paths:
+- Captions supported by the source basis:
+- Asset paths valid, and article references match them:

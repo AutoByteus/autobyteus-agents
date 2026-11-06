@@ -5,23 +5,27 @@ Keep this short. It fixes the point and the order of the sections; the paragraph
 - Article package:
 - Last updated:
 - Outline status: `draft` / `ready for review` / `passed`
-- Mode, platform, language, audience, depth target:
+- Target: see `brief.md` (mode, platform, language, audience, depth)
 
 ## The Point
 
-- Main claim, central question, or bounded main observation (one or two sentences):
-- Why this reader cares, or what is new for them:
+From the problem analysis in `understanding-notes.md` (for a comparison or an explainer, the same fields for the reader's question and its answer):
+
+- The most important problem, as the reader feels it, and the evidence that others feel it too:
+- Its cause, and why it is a different kind of problem from the ones solved before it:
+- The answer (one or two sentences, bounded by the evidence):
+- What is still open:
 - Strongest evidence (source IDs or paths):
 - Scope and explicit non-goals:
 
 ## Opening And Reader
 
-- Working title options:
-- Opening stance:
-- Opening progression: positive subject/system -> capability/current use -> observed pressure/question -> change, explanation, or proposal:
+- Working title options (each states the point, not the path):
+- The opening, written as an abstract (the point above, in the reader's words):
+- The map: the parts and how they connect (a few lines, a list or one figure); each section below is one part:
 - Justified opening exception, if the first move is intentionally negative or contrastive:
 - Reader starting point: what the reader likely knows, assumes, or needs before the article begins:
-- Primary logic spine: `causal` / `chronological` / `problem-solution` / `question-answer` / `comparative` / `derivational` / other:
+- Primary logic spine (principles, section 4): the problem chain (an article about solved problems) / `comparative` (the same dimensions for every product) / `causal` / `problem-solution` / `question-answer` / `derivational` / `chronological` (only for a history) / other:
 
 ## Anchor Example
 
@@ -64,8 +68,11 @@ For each section where the visualization-load trigger fires, or the text-only de
 
 ## Structural Gate
 
-- The main claim can be stated in one sentence
-- Opening progression matches the selected stance; any negative or contrastive first move has a recorded exception
+- The main claim can be stated in one sentence, and it is stated once
+- The opening works as an abstract (principles, section 4) and the map follows before any detail
+- The sections follow the named spine: the problem chain in the order the opening raises the pains, or, for a comparison, the same dimensions for every product
+- The mode fits the kind of article (a technical topic is `technical-blog` unless the user asked otherwise), and no section exists only to tell a story or bridge to the next
+- The opening fits the mode; any negative or contrastive first move has a recorded exception
 - Every section adds a new contribution and follows from the one before it
 - One logic spine is named and used consistently
 - Every meaningful shift in topic, time, actor, abstraction, scope, or evidence type has a bridge

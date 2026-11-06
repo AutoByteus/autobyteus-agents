@@ -1,70 +1,37 @@
 # Style Profile Notes
 
+Only when the user asked for an author's voice. The target (mode, platform, language, audience, takeaway) is in `brief.md`; style-sensitive claims and their evidence are in `claim-evidence-ledger.md`.
+
 - Status:
 - Article package:
-- Writer:
 - Last updated:
-
-## Target
-
-- Mode:
-- Platform:
-- Language:
-- Rhetorical mode:
-- Opening stance:
-- Opening progression:
-- Justified opening exception, if any:
-- Audience:
-- One-sentence takeaway:
-- Depth target:
 
 ## Profile Basis
 
-- Requested profile:
-- Normalized profile ID:
-- Profile file path:
-- Style registry path:
-- Example file paths:
-- Profile status:
-- Bootstrapping limitations:
+- Requested profile and normalized profile ID:
+- Profile file path and example file paths:
+- Profile status and bootstrapping limitations:
 
 ## Selected Direction
 
-- Selected variant or stance mode:
-- Why this variant fits the request:
-- Pressure level:
-- Platform/language constraints:
-- Active user corrections:
+- Selected variant, and why it fits the request:
+- Platform and language constraints that change the wording:
 
 ## Style Constraints
 
 - Voice:
-- Structure:
 - Paragraph rhythm:
-- Terminology:
+- Terminology to keep stable:
 - Evidence style:
 - Ending shape:
 
-## Forbidden Moves
+## Forbidden Moves For This Request
 
-- Unsupported contrast:
-- Unsupported `should` recommendation:
-- Unsupported common-belief framing:
-- Unsupported root-cause framing:
-- Detached analyst voice:
-- Sales or manifesto tone:
-- Repetition risks:
+Moves the profile allows in general but this article must not make (the principles' rules apply in any case):
 
-## Evidence Constraints
-
-List style-sensitive moves that are allowed only if evidence anchors exist.
-
-| Claim or style move | Evidence anchor | Source path or ID | Allowed? | Notes |
-| --- | --- | --- | --- | --- |
-|  |  |  |  |  |
+-
 
 ## Reviewer Notes
 
 - What the reviewer should preserve:
-- What the reviewer should challenge:
 - Known style-fit risks:
