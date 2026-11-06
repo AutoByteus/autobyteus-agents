@@ -68,7 +68,7 @@ Use [templates/delivery-revision-record-template.md](templates/delivery-revision
 - Before repository finalization, release, publication, or deployment, read the project's release guide: `RELEASE.md` at the repository root, or the file the project's `AGENTS.md` points to for releases. It holds what is specific to the project, such as the finalization target, the release decision, checks before tagging, release commands, what to watch after publishing, recovery, rollback, and deployment.
 - Where the guide and the generic steps below differ on how to finalize, release, or deploy, follow the guide. Verification from evidence and truthful reporting still apply. Record the guide's path and revision in the release/deployment report, with any deviation and why.
 - Without a guide, use the generic steps. Then write the project's `RELEASE.md` at its repository root from [templates/release-guide-template.md](templates/release-guide-template.md), with the finalization and release steps this delivery used, as [project-documents.md](references/project-documents.md) describes, before the final commit (on a release request, finalize it before tagging). Record it as created in the report.
-- The project owns its guide, including one you created. When this delivery shows the guide is wrong or missing a step, record that in the report with a proposed fix; change it as [project-documents.md](references/project-documents.md) allows.
+- The project owns its guide, including one you created. When this delivery shows the guide is wrong or missing a step, record that in the report with a proposed fix; change it as [project-documents.md](references/project-documents.md) allows. A check an earlier stage could run is not a missing step of the guide: it belongs in that stage's document (Release Failures below).
 
 ## Verify From Evidence
 
@@ -151,11 +151,40 @@ not a receipt-only evidence correction.
 - Before the final commit, check that the names and paths of committed files, including ticket evidence, work on every operating system the project builds on or is checked out on, using the rules or checks the release guide gives. Rename what fails.
 - When the repository uses ticket-branch finalization, run it in this order: commit the ticket branch, push the ticket branch, update the recorded finalization target branch from remote, merge the ticket branch into it, then push the updated target branch.
 - Treat release, publication, and deployment as a separate conditional step after repository finalization, taken only as the Release Decision allows and using the release guide's method when there is one.
-- After publishing, watch every pipeline the release triggered to completion and check the published artifacts against what the release should produce. When only some pipelines succeed, record a partial release as partial.
+- After publishing, watch every pipeline the release triggered to completion and check the published artifacts against what the release should produce. When only some pipelines succeed, record a partial release as partial. Act on a failed job as Release Failures below describes.
 - Never move or delete a published tag; other pipelines may already have published from it. Fix forward with the next version.
 - When release notes are required, create or update `tickets/in-progress/<ticket-name>/release-notes.md` before finalization, then pass the archived `tickets/done/<ticket-name>/release-notes.md` artifact into the release/publication path when that path is applicable.
 - After repository finalization and any applicable release/publication/deployment work, clean up ticket worktrees and branches when they were created for this task and when the recorded finalization target makes that cleanup safe.
 - If any finalization, release, deployment, or cleanup step fails, keep final handoff blocked and record the blocker explicitly. Do not undo already-completed repository finalization.
+
+## Release Failures
+
+A failed release pipeline job or check before tagging is triaged before
+anything is changed. Read the failed job's log, or the check's output, and
+classify the failure:
+
+- **The platform's:** the runner, a signing, notarization or store service, a
+  CDN, the network, an outage. The same commit would pass on a rerun. Rerun
+  the failed job the way the release guide's Recovery says, and record it.
+  When the log does not settle which kind it is, one rerun of the failed job
+  does; a second identical failure is ours.
+- **Ours:** our code, configuration, dependencies or workflow; the same
+  commit would fail again. On a ticket, hand it to API/E2E with the run, the failed
+  job and the log lines that show the cause: it reproduces the failure
+  locally from a fresh start and turns it into a durable local check, and the
+  defect follows its failure route to the fix. On a release request, the fix
+  is a new change for the Solution Designer: give it the same evidence and
+  say that the fix includes that local check.
+
+The check that prevents it again goes into the stage that let it through, not
+the stage that noticed it
+([project-documents.md](references/project-documents.md#when-a-later-stage-catches-a-problem)).
+Never add a release-stage check, such as a pipeline run before every tag, for
+a failure an earlier stage can reproduce. The release guide gets a check only
+when API/E2E tried and showed that no local machine can reproduce the
+failure; do not conclude that alone. Record each failed job's
+classification, log lines, action and result in the release/deployment
+report. A new version still follows the tag rule above.
 
 ## Handoff Rules
 
@@ -164,7 +193,7 @@ not a receipt-only evidence correction.
 ## Routing Rules
 
 - Resolve documentation-local or deployment-local issues directly when possible.
-- For code or packaging `Local Fix`, `Design Impact`, `Requirement Gap`, `Unclear`, or evidence too weak to verify the change, hand it off to its owner: implementation for implementation fixes, API/E2E for missing or weak evidence, the Solution Designer for upstream issues.
+- For code or packaging `Local Fix`, `Design Impact`, `Requirement Gap`, `Unclear`, or evidence too weak to verify the change, hand it off to its owner: implementation for implementation fixes, API/E2E for missing or weak evidence and for a release failure of ours (Release Failures), the Solution Designer for upstream issues.
 - If final handoff is blocked by a non-deployment issue, record the classification and recommended recipient explicitly in the release/publication/deployment report instead of leaving only a generic blocker note.
 
 ## Terminal Return To Solution Designer

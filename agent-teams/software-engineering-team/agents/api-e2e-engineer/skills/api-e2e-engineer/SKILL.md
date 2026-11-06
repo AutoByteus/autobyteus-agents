@@ -27,6 +27,7 @@ First establish what the project expects and how it is run, then evaluate and ma
 - On a rerun after a prior execution, also accept the existing coverage investigation, execution coverage report, and API/E2E revision record. Use them to locate prior decisions and results, then update the canonical artifacts rather than creating copies.
 - When failure-origin review returns a failure as a pre-existing problem unrelated to this change, record it in that case's Notes in the execution report as out of scope, with the follow-up ID the reviewer added, and finish the result on the in-scope checks.
 - On an API/E2E-owned `Local Fix` from code review or delivery, or delivery's request for more or stronger evidence, also accept the specific test, fixture, environment, execution, reporting, or evidence gap and its evidence. For an evidence gap, go deeper until the evidence proves the behavior, or until you can show it cannot be reached without the user. When delivery discovered the issue, accept the delivery revision record and relevant `DR-*` entry. Resume the affected API/E2E work and preserve the classification.
+- On a release failure delivery hands you (a failed release pipeline job or check before tagging, with the run, the job and the log lines), reproduce it locally and turn it into a durable local check, as Fresh-Start Build Proof below describes.
 - Treat the full upstream package as active validation context, not just the latest implementation handoff or code review report.
 - The `references/` files are symbolic links into the team's `shared/` folder; a listing such as `find -type f` skips them, so open each by its path.
 - Read the implementation handoff's `Legacy / Compatibility Removal Check` and `Persisted Data Transition Check` before finalizing coverage. Treat any non-clean answer, or any mismatch between those sections and the implementation, as an active validation signal.
@@ -116,6 +117,36 @@ Test the product the way its real users and real system events use it.
 - Record each case's exact command, working directory and important configuration in its Cases row, with its environment, result and evidence.
 - If new evidence changes a test-validity or coverage decision, update the investigation before continuing.
 - Keep durable coverage changes narrow, requirement-linked, boundary-appropriate, and maintainable. Do not use this stage to introduce unrelated test or source architecture changes. A problem you find outside this ticket is a follow-up: add it to the ticket's `follow-ups.md` ([ticket-scope.md](references/ticket-scope.md#recording-follow-ups)) and cite its ID.
+
+## Fresh-Start Build Proof
+
+A release runner starts with nothing: it clones the commit, installs the
+dependencies and runs the release job's commands. A local build can pass only
+because something is already there, such as a package an earlier setup step
+built, and then fail on the runner. A project with no CI or release pipeline needs
+none of this.
+
+- **When:** compare the ticket's changed paths (`git diff --name-only <base>...HEAD`)
+  with the build-input paths the testing guideline lists, and run this proof
+  when any matches. When the guideline has no such list, write one from the
+  release workflow (what its build job installs, generates, builds and checks:
+  manifests and their scripts, the lockfile, compiler and bundler
+  configuration, code generation, the workflow files, imports between the
+  repository's packages) into the guideline's Fresh-Start Build section.
+- **How:** a fresh clone of the commit under test, with no build output; the
+  release job's install command alone (its frozen-lockfile install); then the
+  job's build commands in the job's order, read from the workflow file. Never
+  the project's development setup order, which may build what the runner does
+  not have. Record it as a case with the commands. A step that needs another
+  operating system or the runner's secrets is `Not Tested`, with the reason.
+- **A release failure delivery hands you:** reproduce it this way from its log
+  lines. When it reproduces, turn it into a durable local check that makes the
+  next change that would cause it fail before merge: a test, or a guideline
+  rule such as the build-input path the list missed. Report the failing case
+  as a `Fail`; the fix turns it green. When a true fresh start does not reproduce
+  it, record what you ran and what still differs from the runner: that is the
+  evidence delivery needs to give the release guide a check for it
+  ([project-documents.md](references/project-documents.md#when-a-later-stage-catches-a-problem)).
 
 ## Recording Progress And Cases
 

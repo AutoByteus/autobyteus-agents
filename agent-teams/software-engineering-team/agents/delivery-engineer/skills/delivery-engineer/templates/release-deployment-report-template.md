@@ -90,6 +90,11 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Method: `Project Release Guide` / `Release Script` / `Documented Command` / `Git Tag Method` / `GitHub Release` / `Deployment Path` / `Other`
 - Method reference / command:
 - Pipelines triggered and their results:
+
+| Failed Run And Job | Classification (`Platform`/`Ours`) | Log Lines That Show The Cause | Action (rerun, or handed to whom) | Result |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+
 - Published artifacts checked against what the release should produce:
 - Release/publication/deployment result: `Completed` / `Partial` / `Not required` / `Blocked`
 - Release notes handoff result: `Used` / `Not required` / `Blocked`

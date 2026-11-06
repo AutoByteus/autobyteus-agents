@@ -71,6 +71,7 @@ Identify behavior added, changed, removed, or intentionally preserved.
 - Project type and runtime stack:
 - Project testing guideline path(s), or `None found` and the `TESTING.md` you create (`Created: <path>`):
 - Conflicting, missing, or unclear project instructions:
+- Changed build-input paths (the guideline's list compared with `git diff --name-only <base>...HEAD`): `None` / list, and the fresh-start build case
 - Required environment variables or secrets available: `Yes` / `No` / `N/A` (do not record secret values)
 
 | Instruction / Configuration Path | Authority / Purpose | Commands, Setup, Or Constraints Learned |

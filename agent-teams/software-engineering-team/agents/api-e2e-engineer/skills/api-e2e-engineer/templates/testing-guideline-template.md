@@ -26,6 +26,16 @@ matter, and the working directory commands run from.
 Name each gated suite (one that needs a real service, key or device) with the
 variable or flag that turns it on.
 
+## Fresh-Start Build
+
+How to prove the build the way the release runner runs it: from a fresh clone
+with no build output, the release job's install command alone, then its build
+commands in the job's order, not the Setup above when Setup builds what the
+runner does not have. Then the build-input paths: the files and folders whose
+change requires this proof, as paths or patterns a `git diff --name-only` can
+be compared with, such as the manifests, the lockfile, build and compiler
+configuration, code generation and the release workflow files.
+
 ## Choosing The Layer
 
 Which layer proves which kind of change, and what each layer cannot prove, for
