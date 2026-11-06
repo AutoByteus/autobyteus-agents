@@ -4,7 +4,7 @@ Packaging for each platform. The writer applies these rules before delivery; the
 
 ## WeChat (Chinese)
 
-- A concise title with a clear signal of the point.
+- A concise title (what a title must say is in the writing principles, section 4).
 - Clear section headings and visible structure; short paragraphs for mobile reading.
 - Bullet lists for process steps and key claims; tables when they clarify stages, roles or mechanism differences.
 - Precise technical terms, with the English term in parentheses where it helps.
