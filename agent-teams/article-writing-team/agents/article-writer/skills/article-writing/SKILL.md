@@ -48,7 +48,7 @@ When the user asks for an author's voice, bilingual work or platform packaging, 
 
 ### Step 4 - Decide the point and check the basis
 
-Write the point at the top of the outline (principles, section 4) with the anchor example (section 6). If the point is not specific, or not new or useful to this reader, go back to the research or ask the user before outlining.
+Write the point at the top of the outline, decided from the problem analysis in your understanding notes (principles, section 4), with the anchor example (section 6). If the point is not specific, or not new or useful to this reader, go back to the research or ask the user before outlining.
 
 Then check that the understanding files passed their Ready-to-outline check, that the planned opening fits the mode (section 3), and that no planned contrast, common-belief claim, recommendation, root-cause claim or production observation lacks an evidence anchor (section 1). If a check fails, fix the upstream file first.
 

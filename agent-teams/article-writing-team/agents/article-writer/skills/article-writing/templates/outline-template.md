@@ -9,20 +9,23 @@ Keep this short. It fixes the point and the order of the sections; the paragraph
 
 ## The Point
 
-- Main claim, central question, or bounded main observation (one or two sentences):
-- Why this reader cares, or what is new for them:
+From the problem analysis in `understanding-notes.md`:
+
+- The most important problem, as the reader feels it, and the evidence that others feel it too:
+- Its cause:
+- The answer (one or two sentences, bounded by the evidence):
+- What is still open:
 - Strongest evidence (source IDs or paths):
 - Scope and explicit non-goals:
 
 ## Opening And Reader
 
 - Working title options:
-- The problem, as the reader experiences it (with its source):
-- The answer in a few sentences:
+- The opening, written as an abstract (the point above, in the reader's words):
 - The map: the parts and how they connect (a few lines, a list or one figure); each section below is one part:
 - Justified opening exception, if the first move is intentionally negative or contrastive:
 - Reader starting point: what the reader likely knows, assumes, or needs before the article begins:
-- Primary logic spine (principles, section 4): concepts in the order the reader needs them (`technical-blog`) / `causal` / `problem-solution` / `question-answer` / `comparative` / `derivational` / `chronological` (only for a history) / other:
+- Primary logic spine (principles, section 4): the problem chain in the order the reader meets the pains (`technical-blog`) / `causal` / `problem-solution` / `question-answer` / `comparative` / `derivational` / `chronological` (only for a history) / other:
 
 ## Anchor Example
 
@@ -66,7 +69,8 @@ For each section where the visualization-load trigger fires, or the text-only de
 ## Structural Gate
 
 - The main claim can be stated in one sentence, and it is stated once
-- The opening gives the reader's problem, the answer and the map before any detail
+- The opening works as an abstract (the most important problem, its cause, the answer, what is open) and the map follows before any detail
+- The sections follow the problem chain, in the order the pains appear in the opening
 - The mode fits the kind of article (a technical topic is `technical-blog` unless the user asked otherwise), and no section exists only to tell a story or bridge to the next
 - The opening fits the mode; any negative or contrastive first move has a recorded exception
 - Every section adds a new contribution and follows from the one before it
