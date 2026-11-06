@@ -46,15 +46,7 @@ Record:
 - uncertainty, caveats, source limitations, and user corrections that override earlier assumptions;
 - **Open questions:** what is still missing, narrowed, or blocked, and whom you asked.
 
-**Problem analysis.** For an article that explains how problems were solved (most technical articles), work out the problems before anything else, because the opening and the order of the article come from them. Add a `## Problem analysis` section with one entry per problem:
-
-- **The pain, as the reader feels it**, in their own words: what they do, what goes wrong, what it costs them.
-- **Evidence that it is real and shared:** the user's sources, plus, for each top-ranked pain, at least one source by someone other than the author that describes the same pain (vendor guidance, research, product releases, public complaints). The author's own posts and replies show that the author felt it, not that it is shared. Ask the Deep Researcher for that outside evidence when the user's sources do not already hold it.
-- **Its cause:** why it happens, not only that it happens.
-- **What kind of problem it is, and its status:** solvable with engineering approaches, or needing research first (a new understanding before it can be engineered); solved, partly solved, or open.
-- **What solving it revealed next:** problems often appear one after another, each visible only once the one before it is solved.
-
-Then rank the problems and name the most important one: one concrete problem, not an umbrella that contains the others. It is usually where the chain ends: the problem that is still open, that the others depend on, or that needs research where the others needed engineering. The point of the article (`article-writing`, Step 4) comes from this ranking.
+**Problem analysis.** For an article that explains how problems were solved (most technical articles), work out the problems before anything else, because the opening and the order of the article come from them. Add a `## Problem analysis` section with the entries and the ranking that [the writing principles](writing-principles.md) (section 4) require. Ask the Deep Researcher for the outside evidence when the user's sources do not already hold it. The point of the article (`article-writing`, Step 4) comes from this ranking.
 
 For product-builder or architecture articles, keep practical sequences as they happened, for example `we used X -> it did Y -> we observed Z -> we changed to W -> we noticed Q`. Do not compress them into generic claims.
 
@@ -88,7 +80,7 @@ Before Step 3 of `article-writing`, check:
 - comparison dimensions are neutral, consistent across products, and do not mislabel composable primitives as exclusive modes;
 - claims that another product lacks a capability are checked by the Deep Researcher against current authoritative evidence, or qualified as `not observed in the checked sources`;
 - builder-owned design rationale, the product surface, and a representative scenario are captured when central to the article;
-- the problem analysis lists each pain with its evidence, cause, kind and status, ranks them, and names the most important one as one concrete problem;
+- for an article about solved problems, the problem analysis meets the principles (section 4) and names the most important problem;
 - a concrete anchor is identified when one exists (a worked example, runnable code or commands, real numbers, or an artifact), with its source;
 - every research brief you asked for has come back, and its open gaps are resolved, narrowed, or listed under Open questions;
 - you would not need broad discovery before outlining; a narrow gap found later is fixed through this file.
