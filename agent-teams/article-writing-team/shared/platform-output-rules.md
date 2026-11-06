@@ -15,7 +15,7 @@ Packaging for each platform. The writer applies these rules before delivery; the
 
 - Section headers with conceptual or technical labels that match the section's content.
 - Explanation progression explicit and skimmable; bullets for criteria, principles and outcomes when they help inspection, without forcing lists into explanatory prose.
-- Tables when they clarify stages, roles or mechanism differences.
+- No Markdown tables: Medium does not render them. Use a list, or an image of the table when a comparison needs columns.
 - Compact equations followed by a plain-language interpretation.
 - A concise conclusion that states the result and its implication; in `technical-blog` and `paper-report`, a bounded implication, not a slogan.
 
