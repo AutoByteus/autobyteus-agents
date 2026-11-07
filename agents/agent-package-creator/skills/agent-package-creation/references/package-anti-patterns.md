@@ -34,8 +34,8 @@ Concrete mistakes found in real package work. The [package design principles](pa
 | 24 | Judging only the fix the request proposes | Creator process |
 | 25 | A link that exists only for another file's links | Package design |
 | 26 | Softening requirements while restructuring | Creator process |
-| 27 | Judging a change from a run that did not exercise it | Creator process |
-| 28 | A live check that starts real work | Creator process |
+| 27 | Moved to the evaluation skill (`agent-package-evaluation`, evaluation mistakes 1) | Creator process |
+| 28 | Moved to the evaluation skill (`agent-package-evaluation`, evaluation mistakes 2) | Creator process |
 | 29 | Asking the user what the evidence already answers | Creator process |
 | 30 | More Agents than the work needs | Package design |
 | 31 | Private information in a public package | Creator process |
@@ -238,24 +238,6 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Breaks:** [§9](package-design-principles.md#9-update-and-restructure-safely): a restructure moves and joins text; it does not change what the text requires.
 - **Instead:** Carry each requirement word, qualifier, and named case with the text it belongs to. Reword only where the meaning stays the same strength. Merge two statements only when they say the same thing; when they cover different cases, keep both.
 - **Detect:** Run [compare-wording.py](../scripts/compare-wording.py) on the old and new files, and read every sentence it lists beside its new home, starting with those whose closest match lacks a requirement word. A dropped count is a lead, not a verdict: merged duplicates also lower it.
-
-### 27. Judging a change from a run that did not exercise it
-
-- **Incidents:** Three on 2026-10-20.
-  - **An evidence check:** the first test data cited an evidence folder that did not exist, and the PM held the Task to rescue the evidence instead of showing the rule under test.
-  - **A judgment check:** the first question told both copies not to run any tools, so neither opened the skill under test, and both answered from general caution.
-  - **A probe check:** the data never made a probe mislead, so "a surprising result gets a second check" went unexercised and was nearly reported as passed. The user pointed out that evaluation sometimes needs test data created for it. Two more fixtures (a stale count, a stale server on the default port) were sidestepped by careful agents that used their own file and port. The user: "agents are really really smart … if you babysit a smart model, maybe it doesn't work". The point was dropped from the guide instead.
-  - **A check that could not fail the real way (2026-11-01):** the user's complaint was that a research team did not study existing work before going deep. The check gave old and new text a fictional corpus, forbade the network and seeded the history, so neither could skip real reading. Both passed, and the change merged while the real behaviour stayed.
-- **Breaks:** [step 4](../SKILL.md#4-validate-and-recover), real use: a run on the final text that shows the change at work.
-- **Instead:** Create consistent test data that makes each point of the change happen, and leave the agent the tools and reading it has in real use ([live-checks.md](live-checks.md)). After the run, map each point to where it happened; build data for any point that did not, and rerun. When old and new text both pass, first ask whether the scenario lets the real failure happen at all: it needs the conditions of real use, such as open access to the real sources and no prepared answer. Write the pass criteria before the first run, and run the old text first.
-- **Detect:** In the result's validation, each point of the change names the run and the step where it was observed; a point without one is listed as untested. For a change that answers a real failure, name what the real run had that the test withholds or supplies.
-
-### 28. A live check that starts real work
-
-- **Incident:** A live check tested how the Project Task Manager moves a Task to another worker, in isolated apps that held the whole package. The PM delegated for real: two Agent Package Creator copies started on the seeded Task, and one committed on a new branch in a worktree of the user's agents repository and started another test instance. A guard script meant to stop such runs hung on its terminate call (2026-10-23).
-- **Breaks:** [live-checks.md](live-checks.md): an isolated instance must not act on the user's repositories or data.
-- **Instead:** When the scenario only needs the agent's choice, load only the agent under test and put placeholder run IDs on its board, so a delegation is refused and seen in the traces; when the worker's work is the point, give its Task a test repository.
-- **Detect:** Before sending, list each `delegate_task` or `send_message_to` the scenario can lead to and where it would land; after the run, check the instance's runs and the repositories' branches and worktrees.
 
 ### 29. Asking the user what the evidence already answers
 
