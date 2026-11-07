@@ -22,6 +22,7 @@ Team and Org configuration own their respective routing boundaries. Start with:
 - [Skill Authoring Principles](agents/agent-package-creator/skills/agent-package-creation/references/skill-authoring-principles.md): standalone and bundled skill design and validation.
 - [Agent Package Authoring](docs/agent-package-authoring.md): file responsibilities, packaging, coordinator roles, handoff conventions, examples, and validation.
 - [Agent Package Creation skill](agents/agent-package-creator/skills/agent-package-creation/SKILL.md): the create, analyze, and update workflow used by Agent Package Creator.
+- [Agent Package Evaluation skill](agents/agent-package-creator/skills/agent-package-evaluation/SKILL.md): how Agent Package Creator evaluates a package in real runs, old text against new.
 
 ## Privacy Check Before Commits
 
@@ -37,7 +38,7 @@ It runs [`check-private-info.py`](agents/agent-package-creator/skills/agent-pack
 
 | Agent | Purpose |
 | --- | --- |
-| [Agent Package Creator](agents/agent-package-creator/agent.md) | Creates, analyzes, and updates skills, Agents, Agent Teams, and Agent Orgs via the bundled `agent-package-creation` skill. |
+| [Agent Package Creator](agents/agent-package-creator/agent.md) | Creates, analyzes, updates, and evaluates skills, Agents, Agent Teams, and Agent Orgs via the bundled `agent-package-creation` and `agent-package-evaluation` skills. |
 | [Chemistry Teaching Assistant](agents/chemistry-teaching-assistant/agent.md) | Prepares chemistry teaching (Gymnasium 7–12) from the curriculum: knowledge points with everything the teacher needs, low-text interactive slides, and an offline library app with lessons, presenter mode, downloads and a click-every-control check. |
 | [Computer Use Operator](agents/computer-use-operator/agent.md) | Completes tasks on the computer: operates websites through the visible browser UI and uses command-line tools, software, and media files. Keeps per-site and per-tool workspace knowledge. Shared by the Marketing and Event Scouting teams. |
 | [Data Engineer](agents/data-engineer/agent.md) | Ingests, cleans, normalizes, validates, and prepares datasets and JSON content collections. |

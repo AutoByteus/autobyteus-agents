@@ -9,6 +9,7 @@
     "send_message_to"
   ],
   "skillNames": [
-    "agent-package-creation"
+    "agent-package-creation",
+    "agent-package-evaluation"
   ]
 }
