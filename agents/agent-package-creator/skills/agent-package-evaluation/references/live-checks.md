@@ -20,6 +20,13 @@ Follow the AutoByteus repository's testing guide (`TESTING.md`, "Isolated deskto
 - **Org:** `createAgentOrgRun(input: { agentOrgDefinitionId, rootConfiguration: { runtimeKind, llmModelIdentifier, autoExecuteTools: true, workspaceRootPath }, teamOverrides: [], agentOverrides: [] })`.
 - **Member run IDs** are in `<dataRoot>/server-data/memory/agent_teams/<teamRunId>/team_run_execution_tree.json`, or for an Org in `getAgentOrgRunInspection(orgRunId)`.
 
+## 3a. Agents with browser or screen tools
+
+An isolated app still reaches the user's own browser through the browser bridge, and the user's own screen through the desktop the app runs on, where the user is signed in and has tabs of their own. Give the agent under test a browser and a screen of its own instead:
+- **A separate display and browser:** for example `Xvnc :120 -localhost`, and Chromium on it with its own `--user-data-dir` and `--remote-debugging-port`. Never use the user's display or debugging port.
+- **A test bridge:** run [test-browser-bridge.mjs](../scripts/test-browser-bridge.mjs) against that browser, and start the app with `AUTOBYTEUS_BROWSER_BRIDGE_BASE_URL` and `AUTOBYTEUS_BROWSER_BRIDGE_TOKEN` pointing at it and `DISPLAY` set to the test display. `open_tab`, `navigate_to`, `list_tabs`, `close_tab`, `read_page`, `screenshot` and `run_script` then work as in real use.
+- **Seed and read the state:** its test routes open a tab "another task" owns, and list every tab, who opened it and whether it is still open. Before the first call, check that the app's environment names only the test display and bridge, and afterwards that no tool call names the user's.
+
 ## 4. Send and observe
 
 - **Send** the message with [send-message.mjs](../scripts/send-message.mjs): `--kind agent --agent <runId>` for a single agent; `--kind team` or `org` with `--run <teamRunId|orgRunId> --agent <member runId>`; `--text-file` for a long request. Run it from a folder outside the repositories, and point `--ws-module` at a `package.json` whose `node_modules` contains `ws`, for example the AutoByteus server's.

@@ -39,6 +39,7 @@ Neither is a run log. Record how sites and tools work. Do not record passwords, 
 
 ### Screen
 
+- **Tabs:** the browser is the user's own, and other tasks use it at the same time; a tab is yours, to navigate or close, only if you opened it for this task. Work in one tab where you can: open it with `open_tab` and go from page to page in it with `navigate_to`, rather than opening a tab for each page. Keep the `tab_id` of every tab you open, and note any tab or window the site opens for you, such as a link that opens a new tab or a sign-in window. `list_tabs` also shows tabs that other tasks opened, and a tab you reach with `reuse_existing` was not opened by you.
 - **Known operation:** follow its SOP. Find each recorded control on the current screen by its look and place; if it moved or changed, locate it again and continue.
 - **New operation or first visit:** explore the site. Record how each control looks and where it is, a stable page locator for the fallback (CSS, role, label, visible text, `id`, `data-*`, `aria-*`, shadow-DOM host path), page URLs, and a working step sequence.
 - **Look.** [`scripts/screen_capture.py`](scripts/screen_capture.py) captures the whole screen and prints the sizes needed to click from it. Open the PNG with the tool that shows you images (`read_file`, or your runtime's own file reader). The screenshot shows what is on top, such as a dialog or another window; a native click lands there.
@@ -80,6 +81,8 @@ If the site or tool has no file yet, create it from its template (a site file's 
 
 ## 4. Report and stop
 
+**Close what you opened.** When the task ends, whether it completed, is blocked, needs a decision, or was stopped, close the tabs you opened for it with `close_tab`, and any tab or window the site opened for you; close one with the keyboard only when a fresh screenshot shows it is that one, in front. Never close a tab or window you did not open. Leave one open only when the next step needs it there, such as a sign-in or a review screen the user is about to act on.
+
 Classify the outcome:
 - `Completed`: the requested result was verified.
 - `Blocked`: a login, security, permission, access, or site/tool failure stopped the task.
@@ -92,5 +95,6 @@ Report:
 - any software installed
 - any blocker and what is needed next
 - whether the knowledge files changed
+- the tabs you opened and closed, and any you left open with the reason
 
 If the request came as a file, write this report as `task-result.md` in the folder the request names, or else next to the request file. Then stop.
