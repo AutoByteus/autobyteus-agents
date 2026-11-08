@@ -43,6 +43,7 @@ Concrete mistakes found in real package work. The [package design principles](pa
 | 33 | Making a role find earlier work by guessing words | Package design |
 | 34 | Optimizing a package's form while its rules produce the failure | Creator process |
 | 35 | A link that leaves the skill folder | Package design |
+| 36 | Leaving behind what a role created in the user's shared space | Package design |
 
 ## Package design
 
@@ -115,6 +116,13 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Breaks:** [§2](package-design-principles.md#2-design-responsibilities-before-files), information the roles share: a record serves the way its reader looks things up.
 - **Instead:** When a role often looks up earlier work by meaning (the question it answered, the decision it made), give it a record keyed that way: topics pointing to the items, with what each says, kept current where items are made and fixed when a look-up misses. It holds a fact no other file holds, so it is not a duplicate.
 - **Detect:** For each step that tells a role to check earlier work, name the record it reads and what that record is keyed by. A step that greps raw items with guessed terms, or that runs logs show being skipped, is a lead.
+
+### 36. Leaving behind what a role created in the user's shared space
+
+- **Incident:** The Computer Use Operator, shared by three teams, works in the user's own signed-in browser. Its skill never said that the tabs it opens are its to close, so closing was each run's habit: over 23 runs, 32 of 97 tasks left their tabs open, and the busiest run opened a new tab for every page and closed none of 58. The user found about 20 stale tabs and closed them by hand (2026-11-08).
+- **Breaks:** [§2](package-design-principles.md#2-design-responsibilities-before-files): the path from request to completion includes what a role leaves behind.
+- **Instead:** When a role works in a space the user or other roles also use (a browser, a desktop, background processes, a shared folder), its skill says how the role tells its own items from others' (here the tab IDs its own calls returned, since the tool lists every task's tabs), that it removes its own when the task ends in any outcome and never others', and that its report names anything it left and why.
+- **Detect:** For each agent with tools that create shared state (`open_tab`, `start_background_process`, desktop input), find the skill step that cleans it up at the end and how the role identifies its own items.
 
 ## Skill content
 
