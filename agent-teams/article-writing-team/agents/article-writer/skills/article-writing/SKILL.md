@@ -7,11 +7,11 @@ description: Produce a publication-ready article package through source-grounded
 
 The article writer's end-to-end workflow: understanding the subject, style and language decisions, the outline, the visual plan, the draft, revision and delivery. The writer owns visual planning because images are part of the article's structure.
 
-Read [the team writing principles](references/writing-principles.md) first: they are the standard you write by and the reviewer judges by. This skill says what you do and when; the principles say what good looks like. For platform packaging, read [the platform output rules](references/platform-output-rules.md). `references/writing-principles.md`, `references/platform-output-rules.md` and `references/article-package.md` are symbolic links into the team's `shared/` folder; a listing such as `find -type f` skips them, so open each by its path.
+Read [the team writing principles](references/writing-principles.md) first: they are the standard you write by and the reviewer judges by. This skill says what you do and when; the principles say what good looks like. For platform packaging, read [the platform output rules](references/platform-output-rules.md). `references/writing-principles.md`, `references/platform-output-rules.md`, `references/article-package.md` and `scripts/publish-folder.py` are symbolic links into the team's `shared/` folder; a listing such as `find -type f` skips them, so open or run each by its path.
 
 ## Artifacts
 
-[The article package](references/article-package.md) lists the files in the work folder, their owners, and what each review handoff carries. You create `brief.md`, the understanding files and `research-request.md` (through [references/understanding.md](references/understanding.md)), `style-profile-notes.md`, `outline.md`, `visual-plan.md`, `visual-asset-index.md` and the draft, from these templates:
+[The article package](references/article-package.md) lists the files in the work folder, their owners, and what each review handoff carries. You create `brief.md`, the understanding files and `research-request.md` (through [references/understanding.md](references/understanding.md)), `style-profile-notes.md`, `outline.md`, `visual-plan.md`, `visual-asset-index.md`, the draft and its publish folder, from these templates:
 
 - [templates/style-profile-notes-template.md](templates/style-profile-notes-template.md)
 - [templates/outline-template.md](templates/outline-template.md)
@@ -76,7 +76,8 @@ Before drafting, check that every research brief you requested has come back ([u
 - Introduce the anchor example early. Run any code or command you show and keep its real output; mark anything not run.
 - Write only claims the understanding package or the user supports (principles, section 1). An assumption is marked as one and stays only if the user accepts it.
 - Compose each planned visual with its prose as one unit: each carries its recorded part of the takeaway. Insert it where it clarifies the section, with a caption and nearby prose that says why the reader is seeing it. Update `visual-asset-index.md` as assets are generated, sourced, inserted or omitted. If a planned visual cannot be produced truthfully, keep an explicit placeholder and mark it in `visual-plan.md`; never substitute a generic image.
-- Write `article.md` for single-language work, or the full draft set for bilingual or conversion work.
+- Write `article.md` for single-language work, or one `article-<lang>.md` per language for bilingual or conversion work.
+- Build the publish folder of each draft (the platform output rules, "Website Publish Folder"): `python3 <this skill's folder>/scripts/publish-folder.py build <draft> <work folder>/publish/<name> --slug <slug> [--cover <image>]`, adding `--author` or `--date` only when the user gave them. Fix every problem it reports in the draft, not in the copy, and build again until it reports none.
 - Send the whole package for draft review.
 
 ### Step 9 - Revise after review
@@ -86,8 +87,8 @@ Before drafting, check that every research brief you requested has come back ([u
 - Keep the audience and direction unless the review shows the direction itself is wrong.
 - If a finding needs information only the user has (brief details, source access, platform, a decision), ask the user instead of guessing.
 - If the same finding survives two revisions, or the fix needs a decision the package cannot settle, stop and give the user the review report and the choice.
-- Send the whole updated package for re-review.
+- Build each publish folder again from the revised draft, then send the whole updated package for re-review.
 
 ### Step 10 - Deliver
 
-When the reviewer's decision is `Pass`, give the user the absolute paths of the final article files and the visual assets, the platform and language of each draft, and any limitation the review report recorded.
+When the reviewer's decision is `Pass`, run `scripts/publish-folder.py check <publish folder> --draft <draft>` once more for each language. Then give the user the absolute path of each publish folder first (the folder to drop on the website's Articles page), with the title, address and excerpt the check printed; then the absolute paths of the final drafts, the visual assets and the work folder, the platform and language of each draft, and any limitation the review report recorded.

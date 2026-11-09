@@ -8,7 +8,7 @@ This team turns an article request into a publication-ready package: investigati
 
 ## Roles
 
-- `article_writer` is the entry and coordinator. It receives the user's request, asks the user for what only the user can supply, builds the package (understanding, style, outline, visual plan, draft), revises after review, and delivers the final package to the user. Its work is defined by the `article-writing` skill.
+- `article_writer` is the entry and coordinator. It receives the user's request, asks the user for what only the user can supply, builds the package (understanding, style, outline, visual plan, draft), revises after review, and delivers the final package to the user with a publish folder ready to drop on the AutoByteus website. Its work is defined by the `article-writing` skill.
 - `deep_researcher` is the shared Deep Researcher. When the article needs online or paper research, the writer sends it a `research-request.md` (the question, the depth, the scope, and the claims to check), and it returns a sourced brief with a claims check. It researches and reports; it does not write the article.
 - `article_reviewer` is the gate. It judges the understanding basis, style basis, outline, visual plan, draft, and publication readiness, and writes `review-report.md`. It does not rewrite the article or repair missing investigation. Its work is defined by the `article-reviewer` skill.
 
@@ -25,5 +25,6 @@ Recipients for each result come from `team-config.json`.
 ## Shared files
 
 - [`shared/writing-principles.md`](shared/writing-principles.md): the quality bar both roles apply. Skills add role-specific rules but do not contradict it.
-- [`shared/platform-output-rules.md`](shared/platform-output-rules.md): packaging and visual-legibility rules for WeChat and Medium.
+- [`shared/platform-output-rules.md`](shared/platform-output-rules.md): packaging and visual-legibility rules for WeChat and Medium, and the website publish folder.
+- `shared/publish-folder.py`: builds and checks a publish folder; linked into both skills as `scripts/publish-folder.py`.
 - [`shared/article-package.md`](shared/article-package.md): the files in one request's work folder and what each handoff carries.

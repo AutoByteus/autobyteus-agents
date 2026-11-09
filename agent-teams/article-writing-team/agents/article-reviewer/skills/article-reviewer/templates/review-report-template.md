@@ -45,6 +45,10 @@
 - For each visual (principles, section 8): earned, proposition visible, prose and image each carry their part, nothing invented, caption supported, raster legible at mobile width:
 - Representation decisions missing or `prose-only` without a reason:
 
+## Publish Folder (draft review)
+
+- For each publish folder: its path, the `check` result (problems, or none), and the title, address and excerpt it printed:
+
 ## High-Priority Findings
 
 1.

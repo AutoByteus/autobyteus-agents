@@ -19,8 +19,11 @@ Create one dedicated work folder per request. Keep every file below in it, and u
 | `outline.md` | `article-writing` | Always |
 | `visual-plan.md` | `article-writing` | Visuals are requested or earned by the visualization-load trigger |
 | `visual-asset-index.md` | `article-writing` | Visual assets are sourced, generated, inserted, or intentionally omitted |
-| `article.md` or the bilingual draft set | `article-writing` | After the outline passes review |
+| `article.md`, or one `article-<lang>.md` per language for bilingual or conversion work (for example `article-zh.md`, `article-en.md`) | `article-writing` | After the outline passes review |
+| `publish/<name>/`, or `publish/<name>-<lang>/` per language: `article.md` and `images/` ([platform output rules](platform-output-rules.md), "Website Publish Folder") | `article-writing`, built from the draft by `scripts/publish-folder.py` | With every draft sent for review, rebuilt after each revision |
 | `review-report.md` | `article-reviewer` | After every review |
+
+`<name>` is a short lowercase-hyphen name of the article, kept for all its rounds. The website recognizes a re-import of the same draft by its folder name and title, so two articles never share a folder name.
 
 ## What each handoff carries
 
@@ -28,6 +31,7 @@ Send the whole package each time, not only the latest file:
 
 - Every artifact above that exists (a research brief by its path), plus the source material or source article.
 - For bilingual or cross-language work, both the source and target drafts.
+- With a draft, each publish folder and the writer's last `check` result for it.
 - The user's active corrections ([writing principles](writing-principles.md), section 10) until the article passes.
 - On a return to the writer, the latest `review-report.md`.
 
