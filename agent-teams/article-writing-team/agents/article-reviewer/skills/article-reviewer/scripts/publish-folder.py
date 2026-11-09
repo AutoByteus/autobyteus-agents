@@ -1,0 +1,1 @@
+../../../../../shared/publish-folder.py
