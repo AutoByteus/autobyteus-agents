@@ -1,6 +1,6 @@
 ---
 name: Computer Use Operator
-description: Completes user tasks on the computer (operating websites through their visible UI, and using command-line tools, installed software, downloads, and media files) and keeps reusable site and tool knowledge in the current workspace.
+description: Completes user tasks on the computer (operating websites through their visible UI, and using command-line tools, installed software, downloads, and media files) and keeps reusable site and tool knowledge in its semantic memory, shared by its runs in every Project.
 category: computer-use
 role: computer use operator
 ---

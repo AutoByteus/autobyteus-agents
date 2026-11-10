@@ -44,6 +44,7 @@ Concrete mistakes found in real package work. The [package design principles](pa
 | 34 | Optimizing a package's form while its rules produce the failure | Creator process |
 | 35 | A link that leaves the skill folder | Package design |
 | 36 | Leaving behind what a role created in the user's shared space | Package design |
+| 37 | An agent's own reusable knowledge kept in a Project's folder | Package design |
 
 ## Package design
 
@@ -123,6 +124,13 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Breaks:** [§2](package-design-principles.md#2-design-responsibilities-before-files): the path from request to completion includes what a role leaves behind.
 - **Instead:** When a role works in a space the user or other roles also use (a browser, a desktop, background processes, a shared folder), its skill says how the role tells its own items from others' (here the tab IDs its own calls returned, since the tool lists every task's tabs), that it removes its own when the task ends in any outcome and never others', and that its report names anything it left and why.
 - **Detect:** For each agent with tools that create shared state (`open_tab`, `start_background_process`, desktop input), find the skill step that cleans it up at the end and how the role identifies its own items.
+
+### 37. An agent's own reusable knowledge kept in a Project's folder
+
+- **Incident:** The Computer Use Operator, shared by three teams, kept what it learned about each website in the workspace (`<workspace>/web-ui-sites/`), so each Project's runs learned the same sites again. Three sites had two or three copies that had drifted apart: one copy learned how to send a DM, another how to search the inbox. The user: a Project's memory is documents in the Project's folder, and an agent's own experience is documents in the agent's own place (2026-11-09).
+- **Breaks:** [§2](package-design-principles.md#2-design-responsibilities-before-files), knowledge an agent reuses across Projects.
+- **Instead:** Turn on semantic memory for the agent. Its skill keeps the agent's craft there and leaves only the Project's own part (which account, the Project's steps) in the Project. It also says how concurrent runs write, and where the files go when semantic memory is off.
+- **Detect:** For each skill that writes files meant for later tasks (knowledge, notes, an index of earlier work), ask whose they are: the Project's work or state, or the agent's craft that another Project would reuse. The second, under `<workspace>/`, is a lead.
 
 ## Skill content
 

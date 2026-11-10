@@ -49,7 +49,7 @@ For `create`, write the required definition files at the confirmed location, plu
 Write each change by the shared authoring standard, the same one an analysis judges with.
 
 - **Skill:** Write or update `SKILL.md` and justified local resources. Follow [skill-authoring-principles.md](references/skill-authoring-principles.md) for standalone versus bundled placement, naming, and attachment. If the request targets only an existing skill, leave Agent identity and Team/Org routing unchanged unless the binding or contract actually changes.
-- **Agent:** Write `agent.md` and `agent-config.json` with an explicit tool list and `skillNames` (empty when no skill is needed). Put detailed specialist procedure in an attached skill when needed; a simple Agent may keep a compact work contract in `agent.md`.
+- **Agent:** Write `agent.md` and `agent-config.json` with an explicit tool list and `skillNames` (empty when no skill is needed), and `"semanticMemoryEnabled": true` when the role keeps knowledge it reuses across Projects ([principles §2](references/package-design-principles.md#2-design-responsibilities-before-files)). Put detailed specialist procedure in an attached skill when needed; a simple Agent may keep a compact work contract in `agent.md`.
 - **Team:** Write `team.md`, `team-config.json`, and the definitions of team-local members. The summary owns cooperation; the config owns roster, coordinator, and conditional internal routes; members own their specialist work.
 - **Org:** Write `org.md`, `org-config.json`, and any org-local members. The Org owns placements and cross-member routes; mounted Teams retain their coordinators and internal routes. Verify shared references against the available catalog rather than copying the shared member.
 

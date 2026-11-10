@@ -12,7 +12,7 @@ The Marketing Team separates content, performance analysis, and computer work (w
 - `marketing_reply_scout`: finds posts worth replying to. On a timer or on request it asks the Operator for read-only collections from each channel's watch list, judges them against the content catalog, and keeps the ranked reply queue (`outreach/`). It never drafts or publishes.
 - `marketing_performance_analyst`: owns measurement and learning. Keeps the performance ledger and scorecard (`data/performance/`), judges each strategy bet by views, likes, and replies, and proposes goals and the next strategy version.
 - `deep_researcher`: the shared Deep Researcher. Answers research questions from primary sources and returns a brief with a claims check (`supported`, `not supported`, `needs confirmation`); keeps research notes in `research/`.
-- `computer_use_operator`: the shared Computer Use Operator. Owns every website action (publishing, replying, collecting data) using real mouse and keyboard input, and computer work such as downloading source media or installing the tools for it. Keeps site knowledge in `web-ui-sites/` and tool knowledge in `computer-tools/`.
+- `computer_use_operator`: the shared Computer Use Operator. Owns every website action (publishing, replying, collecting data) using real mouse and keyboard input, and computer work such as downloading source media or installing the tools for it. Keeps its own site and tool knowledge.
 
 ## Cooperation
 

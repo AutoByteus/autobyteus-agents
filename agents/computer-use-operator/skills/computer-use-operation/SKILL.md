@@ -1,20 +1,31 @@
 ---
 name: computer-use-operation
-description: Complete a user's task on the computer by operating websites and apps through what is on the screen (screenshots to see, native input to act) and by using command-line tools, installed software, downloads, and media files. Maintains workspace knowledge per website (how controls look and where, locators, operation SOPs, pitfalls) and per tool (install, working commands, pitfalls) so later tasks are fast.
+description: Complete a user's task on the computer by operating websites and apps through what is on the screen (screenshots to see, native input to act) and by using command-line tools, installed software, downloads, and media files. Keeps knowledge per website (how controls look and where, locators, operation SOPs, pitfalls) and per tool (install, working commands, pitfalls) in its semantic memory, shared by its runs in every Project, so later tasks are fast.
 ---
 
 # Computer Use Operation
 
-This skill owns the task loop and the workspace knowledge that makes later tasks fast. It has two capabilities, chosen per step:
+This skill owns the task loop and the knowledge that makes later tasks fast. It has two capabilities, chosen per step:
 - **Screen:** operate a website or app the way a person does: look at a screenshot, act with native mouse and keyboard input, and look again. `web-ui-automation` supplies the page (DOM) mechanics and native-input rules; here the screenshot is how you find a target, and the page is the fallback.
 - **Computer tools:** use the shell, installed software, and media tools for work that is not a site's UI. Examples are downloading a public video with `yt-dlp`, converting media with `ffmpeg`, and preparing files.
 
 ## Knowledge
 
+What you learn about a website or a tool is yours, and your runs in every Project use it. Keep it in your semantic memory, the folder your Semantic Memory instructions name:
+
 ```text
-<workspace>/web-ui-sites/<site-slug>/site-knowledge.md   # one per website
-<workspace>/computer-tools/<tool>.md                     # one per tool
+<semantic memory>/web-ui-sites/<site-slug>/site-knowledge.md   # one per website
+<semantic memory>/computer-tools/<tool>.md                     # one per tool
 ```
+
+A Project keeps only its own part, in its workspace:
+
+```text
+<workspace>/web-ui-sites/<site-slug>/project-notes.md   # for a site
+<workspace>/computer-tools/<tool>/project-notes.md       # for a tool
+```
+
+If your instructions have no Semantic Memory section, semantic memory is off: keep the site and tool files in the workspace instead, at `<workspace>/web-ui-sites/<site-slug>/site-knowledge.md` and `<workspace>/computer-tools/<tool>.md`.
 
 **Site knowledge** is a reference for operating the site, structured by [site-knowledge-template.md](templates/site-knowledge-template.md). It contains:
 - access and operating rules
@@ -27,13 +38,15 @@ This skill owns the task loop and the workspace knowledge that makes later tasks
 
 **Tool knowledge** is structured by [tool-knowledge-template.md](templates/tool-knowledge-template.md). It records how the tool is installed and located, the exact commands that worked, and pitfalls.
 
-Neither is a run log. Record how sites and tools work. Do not record passwords, tokens, one-time codes, cookies, payment data, or the user's personal documents or answers.
+**Project notes** hold what is true only for that Project: which account, channel or profile it acts as, and its own steps or rules for the site or tool. Write site and tool knowledge so that any Project can use it; where a step depends on the account, refer to it as the Project's (for example `<own handle>`).
+
+None of these is a run log. Record how sites and tools work. Do not record passwords, tokens, one-time codes, cookies, payment data, or the user's personal documents or answers.
 
 ## 1. Prepare
 
 1. Identify the goal, the target site or files, supplied inputs (files, text, choices), and the expected result. If a message references a request file, read that file first; it is the request's source of truth. If a required input is missing, such as which resume to use or the text to post, ask before starting.
 2. For each step, choose the capability. Interacting with a site's or app's UI uses the screen capability. Retrieving or processing files uses the computer-tools capability, even when the file's source is a public URL.
-3. Read the knowledge file for each site or tool you will use, if one exists. Treat a site's operating rules as the app-specific rules that `web-ui-automation` defers to.
+3. Read the knowledge file for each site or tool you will use, if one exists, and the Project's notes for it. Treat a site's operating rules as the app-specific rules that `web-ui-automation` defers to.
 
 ## 2. Execute
 
@@ -77,7 +90,9 @@ Update a site or tool knowledge file only when this run proved something new or 
 - a new operation SOP, install path, or a corrected or faster step
 - a new pitfall or point of no return
 
-If the site or tool has no file yet, create it from its template (a site file's heading is the site slug). Edit an existing entry in place instead of appending a contradiction, and set its `Last verified` date. A routine run that matched the file changes nothing. Do not record guesses or one-off failures you could not explain.
+If the site or tool has no file yet, create it from its template (a site file's heading is the site slug). Edit an existing entry in place instead of appending a contradiction, and set its `Last verified` date. A routine run that matched the file changes nothing. Do not record guesses or one-off failures you could not explain. A fact that holds only for this Project, such as the account it uses, goes in its project notes.
+
+Other runs of yours use the same files at the same time. Read a file right before you change it, change only the entry with `edit_file`, and never write a whole file back from an earlier read: that would undo what another run wrote in the meantime. If the edit no longer matches, read the file again and redo the change.
 
 ## 4. Report and stop
 
@@ -94,7 +109,7 @@ Report:
 - any saved output paths
 - any software installed
 - any blocker and what is needed next
-- whether the knowledge files changed
+- whether the knowledge files or project notes changed
 - the tabs you opened and closed, and any you left open with the reason
 
 If the request came as a file, write this report as `task-result.md` in the folder the request names, or else next to the request file. Then stop.
