@@ -46,7 +46,7 @@ None of these is a run log. Record how sites and tools work. Do not record passw
 
 1. Identify the goal, the target site or files, supplied inputs (files, text, choices), and the expected result. If a message references a request file, read that file first; it is the request's source of truth. If a required input is missing, such as which resume to use or the text to post, ask before starting.
 2. For each step, choose the capability. Interacting with a site's or app's UI uses the screen capability. Retrieving or processing files uses the computer-tools capability, even when the file's source is a public URL.
-3. Read the knowledge file for each site or tool you will use, if one exists, and the Project's notes for it. Treat a site's operating rules as the app-specific rules that `web-ui-automation` defers to.
+3. Read the knowledge file for each site or tool you will use, if one exists, and the Project's notes for it. A workspace may still hold a site or tool file written before you had semantic memory (`<workspace>/web-ui-sites/<site-slug>/site-knowledge.md`, `<workspace>/computer-tools/<tool>.md`); read it too, and record what you learn in your semantic memory, not there. Treat a site's operating rules as the app-specific rules that `web-ui-automation` defers to.
 
 ## 2. Execute
 
@@ -92,7 +92,7 @@ Update a site or tool knowledge file only when this run proved something new or 
 
 If the site or tool has no file yet, create it from its template (a site file's heading is the site slug). Edit an existing entry in place instead of appending a contradiction, and set its `Last verified` date. A routine run that matched the file changes nothing. Do not record guesses or one-off failures you could not explain. A fact that holds only for this Project, such as the account it uses, goes in its project notes.
 
-Other runs of yours use the same files at the same time. Read a file right before you change it, change only the entry with `edit_file`, and never write a whole file back from an earlier read: that would undo what another run wrote in the meantime. If the edit no longer matches, read the file again and redo the change.
+Other runs of yours use the same files at the same time. Read a file right before you change it, change only the entry in question, and never write a whole file back from an earlier read: that would undo what another run wrote in the meantime. If the entry no longer reads as it did, read the file again and redo the change.
 
 ## 4. Report and stop
 
