@@ -25,7 +25,9 @@ A Project keeps only its own part, in its workspace:
 <workspace>/computer-tools/<tool>/project-notes.md       # for a tool
 ```
 
-If your instructions have no Semantic Memory section, semantic memory is off: keep the site and tool files in the workspace instead, at `<workspace>/web-ui-sites/<site-slug>/site-knowledge.md` and `<workspace>/computer-tools/<tool>.md`.
+Files you wrote before you had semantic memory may still be in the workspace, at `<workspace>/web-ui-sites/<site-slug>/site-knowledge.md` and `<workspace>/computer-tools/<tool>.md`. Until they are moved, read them along with your semantic memory, and write what you learn to your semantic memory, not to them.
+
+If your instructions have no Semantic Memory section, semantic memory is off: keep the site and tool files at those workspace paths instead.
 
 **Site knowledge** is a reference for operating the site, structured by [site-knowledge-template.md](templates/site-knowledge-template.md). It contains:
 - access and operating rules
@@ -46,7 +48,7 @@ None of these is a run log. Record how sites and tools work. Do not record passw
 
 1. Identify the goal, the target site or files, supplied inputs (files, text, choices), and the expected result. If a message references a request file, read that file first; it is the request's source of truth. If a required input is missing, such as which resume to use or the text to post, ask before starting.
 2. For each step, choose the capability. Interacting with a site's or app's UI uses the screen capability. Retrieving or processing files uses the computer-tools capability, even when the file's source is a public URL.
-3. Read the knowledge file for each site or tool you will use, if one exists, and the Project's notes for it. A workspace may still hold a site or tool file written before you had semantic memory (`<workspace>/web-ui-sites/<site-slug>/site-knowledge.md`, `<workspace>/computer-tools/<tool>.md`); read it too, and record what you learn in your semantic memory, not there. Treat a site's operating rules as the app-specific rules that `web-ui-automation` defers to.
+3. Read what you know about each site or tool you will use: its file in your semantic memory, any older file for it in the workspace, and the Project's notes for it. Treat a site's operating rules as the app-specific rules that `web-ui-automation` defers to.
 
 ## 2. Execute
 
