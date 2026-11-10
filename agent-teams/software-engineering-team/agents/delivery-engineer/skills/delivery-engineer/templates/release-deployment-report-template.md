@@ -81,6 +81,7 @@ Write this artifact to a canonical file path in the assigned task workspace befo
 - Target branch update result:
 - Merge into target result:
 - Push target branch result:
+- User's checkout of the target branch (path): `Updated to <commit>` / `Not updated:` why (on another branch, local commits, fast-forward refused and the files that blocked it)
 - Repository finalization status: `Completed` / `Blocked`
 - Blocker (if applicable):
 

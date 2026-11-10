@@ -22,7 +22,8 @@ separate requirements owner is required.
 - `api_e2e_engineer` owns executable coverage and validation.
 - `delivery_engineer` owns integrated delivery, documentation sync,
   verification from the evidence, finalization and the release the user or the
-  release guide decides, deployment and cleanup.
+  release guide decides, deployment, cleanup, and bringing the user's own
+  checkout of the target branch up to date afterwards.
 
 ## Route Contract
 
