@@ -45,7 +45,7 @@ Keep it in proportion: a small change needs a small record.
 - what stays in the Project: its own choices and state, such as which account it uses;
 - how runs that write the same file at once avoid undoing each other, since the app does not coordinate them;
 - where the files go when the section is absent (semantic memory is off, or the app predates it).
-- for an agent that already keeps such files in Projects, that it reads them until they are moved, and records new knowledge in semantic memory.
+- for an agent that already keeps such files in Projects, that it uses them where its semantic memory has nothing yet, and records new knowledge in semantic memory.
 
 Leave it off for an agent whose files are the Project's own work or state, such as a board, a catalog or a brief.
 

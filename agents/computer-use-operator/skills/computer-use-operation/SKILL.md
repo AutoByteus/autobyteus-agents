@@ -25,7 +25,7 @@ A Project keeps only its own part, in its workspace:
 <workspace>/computer-tools/<tool>/project-notes.md       # for a tool
 ```
 
-Files you wrote before you had semantic memory may still be in the workspace, at `<workspace>/web-ui-sites/<site-slug>/site-knowledge.md` and `<workspace>/computer-tools/<tool>.md`. Until they are moved, read them along with your semantic memory, and write what you learn to your semantic memory, not to them.
+Files you wrote before you had semantic memory may still be in the workspace, at `<workspace>/web-ui-sites/<site-slug>/site-knowledge.md` and `<workspace>/computer-tools/<tool>.md`. When your semantic memory has no file for a site or tool, use the workspace's older file if there is one, and write what you learn to your semantic memory, not to it.
 
 If your instructions have no Semantic Memory section, semantic memory is off: keep the site and tool files at those workspace paths instead.
 
@@ -48,7 +48,7 @@ None of these is a run log. Record how sites and tools work. Do not record passw
 
 1. Identify the goal, the target site or files, supplied inputs (files, text, choices), and the expected result. If a message references a request file, read that file first; it is the request's source of truth. If a required input is missing, such as which resume to use or the text to post, ask before starting.
 2. For each step, choose the capability. Interacting with a site's or app's UI uses the screen capability. Retrieving or processing files uses the computer-tools capability, even when the file's source is a public URL.
-3. Read what you know about each site or tool you will use: its file in your semantic memory, any older file for it in the workspace, and the Project's notes for it. Treat a site's operating rules as the app-specific rules that `web-ui-automation` defers to.
+3. Read what you know about each site or tool you will use: its file in your semantic memory, or an older file in the workspace when there is none, and the Project's notes for it. Treat a site's operating rules as the app-specific rules that `web-ui-automation` defers to.
 
 ## 2. Execute
 
