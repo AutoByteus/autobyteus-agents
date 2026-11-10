@@ -9,7 +9,7 @@ The Event Scouting Team separates judgment from computer work (websites).
 ## Members
 
 - `event_scout`: the entry point. Owns the user's event profile, search requests, fit assessment, the event tracker, the shortlist, the user's approvals, and registration records (`events/`).
-- `computer_use_operator`: the shared Computer Use Operator. Owns every website action: browsing event sites, collecting event details, and registering for approved events, using real mouse and keyboard input. Keeps site knowledge in `web-ui-sites/`.
+- `computer_use_operator`: the shared Computer Use Operator. Owns every website action: browsing event sites, collecting event details, and registering for approved events, using real mouse and keyboard input. Keeps its own site knowledge.
 
 ## Cooperation
 

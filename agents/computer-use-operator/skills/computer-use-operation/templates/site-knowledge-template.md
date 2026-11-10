@@ -3,7 +3,7 @@
 ## Access and operating rules
 
 - Base URL(s):
-- Account and login (for example, "session persists in browser profile"; "2FA via phone"):
+- Account and login (how sign-in works, for example "session persists in browser profile"; "2FA via phone"; which account a Project uses goes in its project notes):
 - Operating rules stricter than web-ui-automation defaults, if any:
 - Screen setup the controls below were seen in (browser window size, page zoom), if it matters:
 - Anti-automation sensitivity (observed warnings or blocks and what triggered them):
