@@ -4,6 +4,7 @@ This is the canonical shared design reference for the software engineering team.
 
 ## Contents
 
+- [Applying These Principles: Purpose And Judgment](#applying-these-principles-purpose-and-judgment)
 - [Project-Specific Design Principles](#project-specific-design-principles)
 - [Terminology](#terminology)
 - [Core Principles](#core-principles)
@@ -28,6 +29,18 @@ This is the canonical shared design reference for the software engineering team.
 - [Task Design Health Assessment](#task-design-health-assessment)
 - [Task Size And Architectural Risk](#task-size-and-architectural-risk)
 - [Common Local Patterns](#common-local-patterns)
+
+## Applying These Principles: Purpose And Judgment
+
+Each principle exists to keep ownership, ordering and behavior clear and correct. Architecture fits the case: apply a principle where it solves a real problem in the change at hand. Applying it where it only adds structure is itself a design defect, not compliance. This holds for every role that uses these principles: designing, reviewing a design, implementing, and reviewing code. Example 10 in the team's design examples shows a justified departure and a rejected over-application.
+
+- **Purpose first.** Before applying a rule, name the problem it solves here: a bug, a behavior risk, a hidden dependency that matters, a cycle, a policy that will drift between copies, dead code in touched files. When there is none, the rule calls for no new structure.
+- **The smallest structure that works.** Prefer the smallest structure that keeps the design clear. Add a component, port, layer or pattern only for a concrete need: a real cycle, a real difference in what callers need, real repetition, a real hidden dependency that bites.
+- **Deviation with a reason.** A design may knowingly depart from a principle when the reason holds for this case. It records the departure and the reason in the design spec (a choice made during implementation goes in the implementation handoff), and reviewers judge the reason, not the conformance. A reason names what following the principle would cost here and why the departure causes no problem the principle exists to prevent.
+- **What stays firm.** Judgment decides how much structure a case needs; it does not waive what the principles protect: the supported behavior basis and product reachability (Principles 1, 6), a clear owner for each concern (3), an evidence-backed persisted-data decision (5), no dead code in touched files (7), clean-cut replacement (8), and no behavior decided by a missing owner or a silent fallback (13, 16). A departure from one of these needs what that principle itself names, such as the user's approval for a compatibility path (8), not a recorded reason alone.
+- **Signals are leads.** A principle's Signals show where to look. A signal alone is not a finding until it names the problem it causes in this change.
+- **Findings name the problem.** A review finding names the concrete problem the design or code causes, not only "Principle X not followed". A different structure the reviewer would prefer, where the design works and causes no such problem, is a suggestion, not a finding ([ticket-scope.md](ticket-scope.md#common-situations)).
+- **Rulings hold.** Once a review round accepts a shape for a stated reason, later rounds keep that ruling unless new evidence shows a problem with it, and name that evidence when they change it.
 
 ## Project-Specific Design Principles
 
@@ -245,6 +258,7 @@ Dead code is code that nothing in the product reaches anymore. It makes the code
 - Put code in a shared or common folder only when it is truly cross-cutting and concern-agnostic.
 - Each fact is derived by one owner. Other parts read the stored or returned result, or verify it and refuse a mismatch; they do not recompute it.
 - When a stored or shared structure is split, re-kinded or extended, list the code that reads it and the code that reads anything derived from it (views, endpoint sets, validators, indexes, streams), with the decision for each.
+- **Where it bends:** extract a structure when its copies share one meaning and must change together. Shapes that look alike but serve different subjects or change for different reasons stay separate; forcing them into one shared base is the overreach this principle warns about.
 - **Signals:** shared structures that still carry redundant fields, overlapping representations, or mixed meanings after extraction; the same value worked out in two places or on two nodes; an inventory that lists only the direct readers of a changed structure.
 - **Check:** Which shared data structures, schemas, DTOs, mappers, or types need tightening so redundant attributes or overlapping representations are removed instead of standardized? Which views, sets, validators, or streams are built from a changed structure, and what does each do with the change?
 
@@ -254,6 +268,7 @@ Dead code is code that nothing in the product reaches anymore. It makes the code
 - File placement must follow ownership; move or split files when their paths no longer match their real concern.
 - Subsystem, folder, and file mapping should be spine-led and ownership-led, but not mechanical: do not impose a rigid one-folder-per-step rule. Specify target subsystems and files explicitly; use optional module groupings only when they improve readability or reflect an established codebase pattern.
 - Distinct structural depths often deserve distinct folders, but do not force artificial over-splitting. If a flatter layout is clearer, justify it explicitly; if the layout splits more, make sure each split reflects a real owner or boundary.
+- **Where it bends:** the codebase's existing layout is the default while it keeps ownership readable. Split or move a file for a real second concern or a path that misleads, not to match an ideal layout.
 - **Signals:** names that do not describe the actual owner or role; misplaced files whose paths hide the real concern; folder layouts so flat they hide boundaries, or so split that they create artificial structure with no real owner.
 - **Check:** Which subsystems and files should own the target structure, and are any optional module groupings actually needed? Does the subsystem, folder, and file layout make ownership and structural depth readable without artificial fragmentation?
 
@@ -263,6 +278,7 @@ Dead code is code that nothing in the product reaches anymore. It makes the code
 - If a proposed layer or module only forwards calls and owns no policy, translation, or boundary concern, remove it.
 - One sequence has one owner that calls each of its mechanisms itself, in order. A mechanism does not reach another collaborator through a function passed in (for example `engine.send(input, transmit)` where `transmit` belongs to another component): that splits the sequence between two owners even when every dependency points the right way. Callbacks are for notifications (events, lifecycle hooks). A component whose rules branch on which side or context it runs in holds two roles; give each its owner.
 - A behavior the requirements name is decided by an explicit rule with its own result, not reached because a lookup finds nothing, an event is missing, or one status counts as another.
+- **Where it bends:** a coordination policy is a rule with choices (which provider, when to retry, what counts as ready); the same one-line call in two places is not one. A thin entry the framework or transport requires, such as a route handler that parses and forwards, owns that boundary and is not an empty layer.
 - **Signals:** the same coordination policy repeated in several callers ("the same shape in each root"); empty indirection layers that only pass work through; one sequence split between collaborators; "finds no X, so …", "counts as", or a lifecycle end that changes no state.
 - **Check:** Who drives each sequence, and in what order? Which required behavior happens only because something is missing?
 
@@ -295,7 +311,10 @@ An owner's dependencies are part of the architecture: a reader must see what an 
 - Exception: read-only values fixed before startup, such as configuration, a logger, or a clock, may be read process-wide. An owner with state or behavior is not such a value, however widely it is used. When a framework creates objects itself and offers only a global container, read the container in one adapter at the framework's edge and pass what it returns to the owners.
 - A design that keeps or adds a process-wide lookup for an owner records it as a fired Structural Trigger with the reason the owner cannot be passed in, and the reviewers judge that reason. "The composition binds it at startup" describes the lookup; it is not a reason.
 - In code a change touches, a new dependency is passed in, even where nearby code still uses lookups. Replacing those older lookups is a follow-up ([ticket-scope.md](ticket-scope.md#recording-follow-ups)) unless the design decides the refactor is needed now; for an older lookup the change only uses, that follow-up is the recorded reason.
-- See Example 9, Owners Wired In One Composition Root, in the team's design examples.
+- **Where it bends:**
+  - A notification listener or callback wired in the composition root after both owners exist is acceptable: the wiring is visible there, and the emitter behaves the same with or without a listener. A setter or closure that supplies a collaborator the owner needs to do its work (a read, a decision, a required call) is a late binding that hides the order; that is the case this principle rejects.
+  - Split out a narrower port only for a real cycle or a real difference in what callers need, not to replace a working listener.
+- See Example 9, Owners Wired In One Composition Root, and Example 10, A Justified Departure And A Rejected Over-Application, in the team's design examples.
 - **Signals:** a module-level `bind…`, `set…Instance`, `find…` or `get…()` that hands out an owner; `?.` on a looked-up owner followed by `?? fallback` or nothing; a comment explaining that X is bound before or after Y; tests that bind, reset or replace a global to swap in a fake; a design that lists a process binding, global registry or service locator as a facade, boundary or approved shape.
 - **Check:** How does each owner the change adds or touches get each collaborator it needs, and where is the order in which owners are created visible? Which process-wide lookups does the change add or use, and does any of them hand out an owner rather than a fixed read-only value?
 
@@ -313,7 +332,7 @@ Design in this order. Each step applies the principle it names; the design spec'
 
 ## Structural Triggers
 
-When a trigger fires, apply the principle it names and record in the design spec which triggers fired, with evidence.
+When a trigger fires, apply the principle it names and record in the design spec which triggers fired, with evidence, and the response: the structure the principle asks for, or a departure with its reason ([Applying These Principles](#applying-these-principles-purpose-and-judgment)).
 
 | Trigger | Fires when | Principle |
 | --- | --- | --- |

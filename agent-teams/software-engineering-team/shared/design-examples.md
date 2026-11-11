@@ -13,6 +13,7 @@ Worked examples of clear designs and of the shapes to avoid, followed by short c
 - [Example 7: Rejecting An Unreachable Edge Case During Technical Review](#example-7-rejecting-an-unreachable-edge-case-during-technical-review)
 - [Example 8: Supported Product Scenario Versus Technical Possibility](#example-8-supported-product-scenario-versus-technical-possibility)
 - [Example 9: Owners Wired In One Composition Root](#example-9-owners-wired-in-one-composition-root)
+- [Example 10: A Justified Departure And A Rejected Over-Application](#example-10-a-justified-departure-and-a-rejected-over-application)
 - [Common Bad-Practice Patterns](#common-bad-practice-patterns)
 - [Case Studies](#case-studies)
 - [How To Use These Examples](#how-to-use-these-examples)
@@ -899,6 +900,28 @@ Why this degrades:
 
 How an owner gets its collaborators is part of the design, not an implementation detail. Passing them in from one composition root keeps the dependencies and the startup order visible, makes a missing owner fail at startup, and lets tests build the owner directly.
 
+## Example 10: A Justified Departure And A Rejected Over-Application
+
+Applying These Principles: Purpose And Judgment; Principles 10 and 16.
+
+### A Justified Departure
+
+- **Situation:** a change adds a run status badge. The run store already has `getRun(runId)`, which returns agent, team and org runs alike. Principle 10 prefers subject-specific methods.
+- **The design records:** "Kept `getRun(runId)`. Run IDs are unique across kinds, and every caller (status badge, list view, archive) treats all kinds the same; none branches on the kind. Three subject-specific methods would have identical bodies."
+- **The review:** the reviewer checks the reason against the callers and finds none that guesses the subject. The check passes as `Pass — deviation recorded, reason holds`.
+- **When the decision would change:** a caller that branches on the run's kind, or a kind whose ID can collide, is the problem Principle 10 exists to prevent; then the split is needed.
+
+### A Rejected Over-Application
+
+- **Situation:** the Task service emits "entries changed". The run view listens, so the composition root creates both owners and then registers the view's listener on the service: `taskService.onEntriesChanged(view.refresh)`.
+- **The proposed finding:** "Late binding. Add a `TaskChangeNotifierPort`, split the service, and pass the listener through a constructor (Principle 16)."
+- **Why it is not a finding:** the wiring is visible in the composition root, and the service behaves the same with or without a listener; it waits on no result. The finding names no bug, cycle or hidden dependency, only a structure the reviewer prefers. It adds a port, a split and churn for no problem. At most it is a suggestion.
+- **The contrast that is a problem:** the run services need `isOpen(task)` from the Task service, but the Task service needs run control, which needs the run services. So the design creates the Task service later and sets it afterwards with `runServices.setTaskReader(taskService)`. Until that call, `isOpen` has no answer. That is a required collaborator supplied late: it hides a real cycle, and Principle 16 rejects it. Here a narrower port built from what already exists (the Task records) solves the cycle, so the split is justified.
+
+### Design Lesson
+
+Judge a shape by the problem it causes, not by its likeness to a rule's wording. A recorded reason that holds passes; added structure that solves nothing is a defect of its own.
+
 ## Common Bad-Practice Patterns
 
 ### 1. Generalist Boundary
@@ -1135,5 +1158,5 @@ Principle 13.
 - Start from the example whose shape is closest to the current task.
 - Read the case studies when a design touches the same shape: several kinds or entry forms, a sequence across components, derived data, a decision by absence, a claim about existing code, a rule applied by several callers, or a name used in several places.
 - Reuse the reasoning style, not the exact names.
-- The rules these examples illustrate live in [design-principles.md](design-principles.md): spine-first design (Principles 2 and 14), explicit ownership and named facades (3), off-spine concerns (4), singular interfaces (10), reachable premises (6), persisted-data decisions (5), file placement after the design story (12), one vocabulary (15), and visible dependencies wired in one composition root (16).
+- The rules these examples illustrate live in [design-principles.md](design-principles.md): spine-first design (Principles 2 and 14), explicit ownership and named facades (3), off-spine concerns (4), singular interfaces (10), reachable premises (6), persisted-data decisions (5), file placement after the design story (12), one vocabulary (15), visible dependencies wired in one composition root (16), and applying each with purpose and judgment (Applying These Principles).
 - Judge a finding outside a ticket's scope with [ticket-scope.md](ticket-scope.md#common-situations).

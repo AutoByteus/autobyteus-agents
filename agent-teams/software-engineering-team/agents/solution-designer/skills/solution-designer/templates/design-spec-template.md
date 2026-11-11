@@ -78,7 +78,8 @@ Apply [Task Design Health Assessment](../references/design-principles.md#task-de
 
 - Change posture (`Feature`/`Bug Fix`/`Behavior Change`/`Refactor`/`Cleanup`/`Performance`/`Larger Requirement`):
 - Current design issue found (`Yes`/`No`/`Unclear`):
-- Structural triggers that fire, each with evidence; if none fire, name the triggers this change could plausibly hit and the evidence ruling each out:
+- Structural triggers that fire, each with evidence and the response (the principle's structure, or a departure listed below); if none fire, name the triggers this change could plausibly hit and the evidence ruling each out:
+- Deliberate departures from a principle ([Applying These Principles](../references/design-principles.md#applying-these-principles-purpose-and-judgment)), each with the principle, what the design does instead, and why the reason holds for this case, or `None`:
 - Root cause classification (`Local Implementation Defect`/`Missing Invariant`/`Boundary Or Ownership Issue`/`Duplicated Policy Or Coordination`/`File Placement Or Responsibility Drift`/`Shared Structure Looseness`/`Legacy Or Compatibility Pressure`/`No Design Issue Found`/`Unclear`):
 - Refactor needed now (`Yes`/`No`/`Deferred`/`Unclear`):
 - Evidence:
