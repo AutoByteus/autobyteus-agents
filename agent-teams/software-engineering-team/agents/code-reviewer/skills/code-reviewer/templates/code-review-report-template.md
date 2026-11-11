@@ -168,6 +168,7 @@ Review test structure proportionately when test files are relevant. Do not apply
 | Empty indirection check (no pass-through-only boundary) |  |  |  |
 | Scope-appropriate separation of concerns and file responsibility clarity |  |  |  |
 | Ownership-driven dependency check (no forbidden shortcuts or unjustified cycles) |  |  |  |
+| Visible dependencies check (Core Principle 16): each dependency the change adds is passed in, not looked up; no new process-wide binding, registry, or `get…()` singleton hands out an owner unless the design records why; no new `find…()?.… ?? fallback` lets a missing owner decide behavior; older lookups the change only uses are follow-ups |  |  |  |
 | Authoritative Boundary Rule check (callers do not depend on both an outer owner and that owner's internal manager/repository/helper/lower-level concern) |  |  |  |
 | File placement check (file/folder path matches owning concern or explicitly justified shared boundary) |  |  |  |
 | Flat-vs-over-split layout judgment (layout is readable for the scope and not artificially fragmented) |  |  |  |
