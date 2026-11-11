@@ -55,8 +55,13 @@ carefully it is run; this holds for probes too. To test a claim, choose strong
 comparisons, failure cases, and held-out cases when claiming generalization. Count
 planned, attempted, completed and checked cases separately, justify every exclusion, and
 do not keep only favourable outcomes. Fix metrics and how to read them before seeing
-results; label later changes exploratory. Use the field's own methods; not every study
-needs code.
+results; label later changes exploratory. Use the field's own methods; not every study needs code.
+
+Keep the experimenter apart from the subject. When a study tests a method meant for others
+to use, such as a skill and a tool for coding agents, the team does not do the subject's
+work, build the cases it then scores, or operate the subject by hand. It packages the
+method and gives each test run to a separate, clean subject, with the method or as a
+control; the team designs, collects and evaluates.
 
 A component that works is not yet useful for the goal, novel or ready for a paper. A proxy
 or an activity count does not show benefit; say what a proxy leaves unproved before
@@ -135,6 +140,8 @@ when there is something to put in it.
 | `cycles/CNNN/review.md` | Supervisor: what it checked, findings, the step back, the decision and the next assignment or final assessment. |
 | `evidence.md` | Both, append-only, each author with its own IDs: source or run, version, method or command, result, raw path, limits. |
 | `follow-ups.md` | Both: out-of-scope work, decisions and restart needs, with IDs. The supervisor reports them to the caller. |
+| `runs/CNNN/test-request.md` | Researcher: the research question, the treatment and its version (skill and tool paths), the control, the task, the criteria and what each run must not see. |
+| `runs/CNNN/tests/` | Agent package creator: the agents it built, each run's evidence and validity check, and the old-versus-new comparison when an agent was updated. |
 | `runs/`, `sources/`, manuscript | Researcher. The supervisor's reruns go in `checks/`. |
 
 ## Statuses and handoffs

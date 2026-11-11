@@ -12,6 +12,12 @@
       "ref": "researcher",
       "refType": "agent",
       "refScope": "team_local"
+    },
+    {
+      "memberName": "agent_package_creator",
+      "ref": "agent-package-creator",
+      "refType": "agent",
+      "refScope": "shared"
     }
   ],
   "handoffs": [
@@ -27,6 +33,20 @@
       "to": "/research_supervisor",
       "rules": [
         "When the researcher saves a new cycle report with status Review requested, Checkpoint, Blocked or Decision needed: review its evidence against the goal in the research map and decide the next action. Include absolute paths to the report and the research map."
+      ]
+    },
+    {
+      "from": "/researcher",
+      "to": "/agent_package_creator",
+      "rules": [
+        "When the researcher saves a test request for agents that should use a method under study: create or update the agents it names, with the treatment and as a control, in the study folder, never in a package repository; run each on the given task in its own isolated AutoByteus instance, with a fresh copy of the code and no access to the study or the other runs; check each run is valid; and save the evidence under the given criteria, with an old-versus-new comparison when an agent was updated. Include absolute paths to the test request and the study folder."
+      ]
+    },
+    {
+      "from": "/agent_package_creator",
+      "to": "/researcher",
+      "rules": [
+        "When the agent package creator has saved the evidence for a test request: evaluate it against the research question and decide the next step. Include absolute paths to the evidence and the test request."
       ]
     }
   ]
