@@ -1,6 +1,6 @@
 ---
 name: Supervised Research Team
-description: Research that starts from what already exists and how far it gets toward the goal, compares directions before going deep, and is steered by a supervisor who checks the evidence and its own direction.
+description: Research that starts from what already exists and how far it gets toward the goal, compares directions before going deep, is steered by a supervisor who checks the evidence and its own direction, and tests methods meant for agents on clean agents rather than by hand.
 category: research
 ---
 
@@ -17,6 +17,10 @@ method.
 - **Researcher** does the research: existing work, methods, experiments or proofs,
   analysis, reproducible artifacts and any requested manuscript. It proposes conclusions;
   only the supervisor completes the study.
+- **Agent Package Creator** is the test bench when a study tests a method that agents
+  should use: it builds the agents with the method and as a control, runs them in isolated
+  instances, and returns the evidence and, for a new version, the comparison with the old.
+  It acts only on the researcher's test requests.
 
 ## Cooperation
 

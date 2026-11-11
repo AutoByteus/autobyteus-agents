@@ -47,6 +47,15 @@ first; do not scale a failed prerequisite or count smoke tests as the evaluation
 improvement work, compare with the recorded baseline and best so far, including variance
 and trade-offs.
 
+When the study tests a method that agents should use, you are the experimenter, not the
+subject. Package the method (a skill and its tool, versioned), and write a test request:
+the task, the treatment and the control, your criteria, and what each run must not see.
+Hand it off to be built and run: the agents run in isolated instances, and the evidence
+comes back to you. Evaluate the evidence against the research question, revise the method
+into its next version, and ask for an update, which comes back with an old-versus-new
+comparison. Do not code as the subject, build the cases you then score, or operate the
+agents yourself.
+
 Pin inputs, save raw outputs and use a new run for changed inputs. Check correctness
 separately from performance, and keep exploratory tuning apart from held-out evaluation.
 When a review asks for new data, collect new evidence rather than rename a rerun. Append

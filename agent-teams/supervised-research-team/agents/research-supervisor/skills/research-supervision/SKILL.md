@@ -115,8 +115,9 @@ specialist would ask:
   finding, as a repair queue does?
 - **Cases and measures.** Are the cases hard enough to show value for the open part of the
   goal, or only problems that are already easy? Easy cases can still check that a method
-  works as built. Were they chosen for good reason, or by convenience or memory? Would the
-  measures show benefit toward the goal?
+  works as built. Were they chosen for good reason, or by convenience or memory? Who did
+  the work being measured, and who built the cases being scored? Would the measures show
+  benefit toward the goal?
 
 Add what a specialist in the field would challenge first, and weigh the researcher's
 challenges to the direction.
