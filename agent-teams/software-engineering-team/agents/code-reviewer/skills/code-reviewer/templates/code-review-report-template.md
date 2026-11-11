@@ -153,8 +153,9 @@ Use the mandatory structural checks below on every implementation review. Do not
 Treat the `Authoritative Boundary Rule` as one of the highest-signal structural checks in this section. Apply these checks only after establishing the behavior basis and Supported Product Scenario Gate above; use only promoted candidates in findings or score rationale.
 Work from macro structure toward detail: data-flow spine, ownership and boundaries, interfaces and dependencies, subsystem and file responsibilities, then local implementation and test readiness.
 Review test structure proportionately when test files are relevant. Do not apply implementation-source size thresholds to tests, and do not fail a coherent test suite merely because its files are large.
+Judge each check by its purpose ([Applying These Principles](../references/design-principles.md#applying-these-principles-purpose-and-judgment)). Where the design or the implementation handoff records a departure from a principle, judge the reason: when it holds for this case, write `Pass — deviation recorded, reason holds` and where the reason is recorded. `Fail` needs a concrete problem the code causes, named in Evidence; a structure you would prefer is a suggestion, not a failure.
 
-| Check | Result (`Pass`/`Fail`) | Evidence | Required Action |
+| Check | Result (`Pass`/`Pass — deviation recorded, reason holds`/`Fail`) | Evidence | Required Action |
 | --- | --- | --- | --- |
 | Task design health assessment is present, evidence-backed, and preserved by the implementation |  |  |  |
 | Implementation matches approved behavior-defining supplemental artifacts |  |  |  |
@@ -168,7 +169,7 @@ Review test structure proportionately when test files are relevant. Do not apply
 | Empty indirection check (no pass-through-only boundary) |  |  |  |
 | Scope-appropriate separation of concerns and file responsibility clarity |  |  |  |
 | Ownership-driven dependency check (no forbidden shortcuts or unjustified cycles) |  |  |  |
-| Visible dependencies check (Core Principle 16): each dependency the change adds is passed in, not looked up; no new process-wide binding, registry, or `get…()` singleton hands out an owner unless the design records why; no new `find…()?.… ?? fallback` lets a missing owner decide behavior; older lookups the change only uses are follow-ups |  |  |  |
+| Visible dependencies check (Core Principle 16): each dependency the change adds is passed in, or reached through a lookup or an after-construction connection where nothing uses it before it is set, a missing one fails loudly, and no loop that tangles ownership hides behind it; no new `find…()?.… ?? fallback` lets a missing owner decide behavior; an older lookup the change only uses is a follow-up only when it causes one of those problems |  |  |  |
 | Authoritative Boundary Rule check (callers do not depend on both an outer owner and that owner's internal manager/repository/helper/lower-level concern) |  |  |  |
 | File placement check (file/folder path matches owning concern or explicitly justified shared boundary) |  |  |  |
 | Flat-vs-over-split layout judgment (layout is readable for the scope and not artificially fragmented) |  |  |  |
@@ -290,7 +291,7 @@ Rules:
 - Do not record raw numbers without explanation.
 - Every row must include the reason for the score, the concrete weakness or drag, and the expected improvement.
 - Every category is mandatory. Clean pass target is `>= 9.2` in every category. Any category below `9.2` is a real gap and should normally fail the review.
-- Score only against approved or verified behavior, promoted supported product scenarios, established contracts, supported operational constraints, and concrete maintainability defects. Cite the candidate-gate and applicable premise-validation records for any material assumed scenario; rejected or `Not Reachable` candidates cannot lower a score.
+- Score only against approved or verified behavior, promoted supported product scenarios, established contracts, supported operational constraints, and concrete maintainability defects. Cite the candidate-gate and applicable premise-validation records for any material assumed scenario; rejected or `Not Reachable` candidates cannot lower a score. A recorded departure whose reason holds, or a structure you would merely prefer, cannot lower a score either.
 - Do not let the overall summary override a weak category. The review still follows the actual findings and mandatory checks.
 - If the `Authoritative Boundary Rule` is broken, call it out explicitly in findings and in the relevant score rationale instead of hiding it under vague dependency wording.
 
@@ -300,7 +301,7 @@ Rules:
 - Reuse the same finding ID when the same issue persists across rounds.
 - Create a new finding ID only for newly discovered issues.
 - After the initial result, mark resolved or obsolete earlier findings in the current `CRR-*` entry's prior-finding resolution table instead of silently dropping them.
-- Tie every finding to affected approved behavior, relevant existing behavior, an established engineering contract, or a real supported operational constraint.
+- Tie every finding to affected approved behavior, relevant existing behavior, an established engineering contract, or a real supported operational constraint, and name the concrete problem the code causes (a bug, a behavior risk, a hidden dependency that matters, a cycle, dead code in touched files); a principle's name alone is not one.
 - Every finding must link to a promoted candidate in the Supported Product Scenario Gate or to an approved engineering contract. When it depends on an additional production, failure, or lifecycle premise, cite its material-premise validation ID and include the independent trigger/path, evidence, material consequence, and why the required action is proportionate.
 - Do not include a candidate marked `Hold for Evidence`, `Reject`, `Unclear`, or `Technically Possible but Unsupported/Contrived` as an actionable finding or score deduction.
 - If dead/obsolete/legacy/compatibility issues exist, enumerate each one explicitly with the concrete file/path/item, evidence, and required removal or cleanup action.

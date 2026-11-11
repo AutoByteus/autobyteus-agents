@@ -78,7 +78,8 @@ Apply [Task Design Health Assessment](../references/design-principles.md#task-de
 
 - Change posture (`Feature`/`Bug Fix`/`Behavior Change`/`Refactor`/`Cleanup`/`Performance`/`Larger Requirement`):
 - Current design issue found (`Yes`/`No`/`Unclear`):
-- Structural triggers that fire, each with evidence; if none fire, name the triggers this change could plausibly hit and the evidence ruling each out:
+- Structural triggers that fire, each with evidence and the response (the principle's structure, or a departure listed below); if none fire, name the triggers this change could plausibly hit and the evidence ruling each out:
+- Deliberate departures from a principle ([Applying These Principles](../references/design-principles.md#applying-these-principles-purpose-and-judgment)), each with the principle, what the design does instead, and why the reason holds for this case, or `None`:
 - Root cause classification (`Local Implementation Defect`/`Missing Invariant`/`Boundary Or Ownership Issue`/`Duplicated Policy Or Coordination`/`File Placement Or Responsibility Drift`/`Shared Structure Looseness`/`Legacy Or Compatibility Pressure`/`No Design Issue Found`/`Unclear`):
 - Refactor needed now (`Yes`/`No`/`Deferred`/`Unclear`):
 - Evidence:
@@ -245,7 +246,7 @@ Name which boundaries are authoritative public entrypoints versus internal owned
 
 State who may depend on, call, or emit to whom, and name the shortcuts or cross-boundary dependencies that are forbidden.
 Make boundary-bypass rules explicit when one public boundary is supposed to encapsulate a lower-level concern.
-State how each owner this change adds or touches receives its collaborators (constructor or call argument, from the composition root), and list each process-wide binding, registry, or singleton the design adds or uses to reach an owner, with why that owner cannot be passed in, or `None` (Principle 16).
+State how each owner this change adds or touches receives its collaborators (constructor or call argument, from the composition root), and list each process-wide binding, registry, or singleton, and each collaborator connected after construction, that the design adds or uses to reach an owner, with why Principle 16's conditions hold (nothing uses it before it is set, a missing one fails loudly, it hides no loop that tangles ownership), or `None` (Principle 16).
 
 ## Interface Boundary Mapping
 

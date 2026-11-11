@@ -135,3 +135,4 @@ but it does not reopen work that already does what the ticket promised.
 | The change adds behavior without tests, and an old feature nearby has none either | Tests for the new behavior: this ticket; the old feature's coverage: a follow-up | Asking for the old feature's tests here |
 | An old security or data-loss risk near the change that the change does not reach or expose | Follow-up marked urgent, with its evidence; this ticket if the change exposes it | Fixing it quietly here, or dropping it as out of scope |
 | The code meets the design and works, but the reviewer would structure it differently | Not a finding | Sending it back for a preferred structure |
+| The design departs from a design principle and records a reason that holds for this case | Not a finding; the reviewer judges the reason (the design principles' Applying These Principles section) | Failing it for not following the principle's wording |

@@ -13,6 +13,7 @@ Worked examples of clear designs and of the shapes to avoid, followed by short c
 - [Example 7: Rejecting An Unreachable Edge Case During Technical Review](#example-7-rejecting-an-unreachable-edge-case-during-technical-review)
 - [Example 8: Supported Product Scenario Versus Technical Possibility](#example-8-supported-product-scenario-versus-technical-possibility)
 - [Example 9: Owners Wired In One Composition Root](#example-9-owners-wired-in-one-composition-root)
+- [Example 10: A Justified Departure And A Rejected Over-Application](#example-10-a-justified-departure-and-a-rejected-over-application)
 - [Common Bad-Practice Patterns](#common-bad-practice-patterns)
 - [Case Studies](#case-studies)
 - [How To Use These Examples](#how-to-use-these-examples)
@@ -860,7 +861,7 @@ expect(runs.stopped).toEqual([taskId]);
 ```
 
 - `TaskService`'s constructor shows that closing a task depends on run control; the spine `Close action -> TaskService -> RunControl -> Run` reads the same in the design and in the code.
-- The order in which owners exist is the order of the lines in `server-composition.ts`. If `RunControl` ever needed `TaskService` too, that cycle would show up here as code that cannot be written, and the design would split out what both need.
+- The order in which owners exist is the order of the lines in `server-composition.ts`. If `RunControl` ever needed `TaskService` too, that cycle would show up here as code that cannot be written, and the design would judge the loop: split out what both need when it tangles ownership, or connect one after construction when it only constrains the order (Example 10).
 
 ### Bad Shape
 
@@ -893,11 +894,36 @@ Why this degrades:
 
 - **Read-only values fixed before startup.** Configuration, a logger, or a clock may be read process-wide: they hold no state the product changes and need no order beyond "before startup".
 - **A framework that creates the objects.** When a framework instantiates handlers itself and offers only a global container, read the container in one adapter at the framework's edge and pass what it returns into the owners. The owners still receive their collaborators.
-- **A recorded reason.** If an owner truly cannot be passed in (for example a callback a third-party library invokes without context), the design records the lookup as a fired Hidden dependency trigger with that reason, keeps it at one edge, and fails clearly when the owner is missing instead of falling back.
+- **A recorded reason.** A lookup or a collaborator connected after construction is acceptable when startup order guarantees nothing uses it before it is set, a missing one fails loudly, and it hides no loop that tangles ownership (for example a callback a third-party library invokes without context). The design records it as a fired Hidden dependency trigger with that reason when the choice is not obvious. Example 10 shows a setter judged this way.
 
 ### Design Lesson
 
 How an owner gets its collaborators is part of the design, not an implementation detail. Passing them in from one composition root keeps the dependencies and the startup order visible, makes a missing owner fail at startup, and lets tests build the owner directly.
+
+## Example 10: A Justified Departure And A Rejected Over-Application
+
+Applying These Principles: Purpose And Judgment; Principles 10 and 16.
+
+### A Justified Departure
+
+- **Situation:** a change adds a run status badge. The run store already has `getRun(runId)`, which returns agent, team and org runs alike. Principle 10 prefers subject-specific methods.
+- **The design records:** "Kept `getRun(runId)`. Run IDs are unique across kinds, and every caller (status badge, list view, archive) treats all kinds the same; none branches on the kind. Three subject-specific methods would have identical bodies."
+- **The review:** the reviewer checks the reason against the callers and finds none that guesses the subject. The check passes as `Pass — deviation recorded, reason holds`.
+- **When the decision would change:** a caller that branches on the run's kind, or a kind whose ID can collide, is the problem Principle 10 exists to prevent; then the split is needed.
+
+### A Rejected Over-Application
+
+- **Situation:** the Task service emits "entries changed". The run view listens, so the composition root creates both owners and then registers the view's listener on the service: `taskService.onEntriesChanged(view.refresh)`.
+- **The proposed finding:** "Late binding. Add a `TaskChangeNotifierPort`, split the service, and pass the listener through a constructor (Principle 16)."
+- **Why it is not a finding:** the wiring is visible in the composition root, and the service behaves the same with or without a listener; it waits on no result. The finding names no bug, cycle or hidden dependency, only a structure the reviewer prefers. It adds a port, a split and churn for no problem. At most it is a suggestion.
+- **A setter for a needed collaborator, judged by what can go wrong:** the run services need `isOpen(task)` from the Task service, but the Task service needs run control, which needs the run services. So the composition root creates the Task service later and connects it with `runServices.setTaskReader(taskService)`.
+  - It is a problem only if something can call `isOpen` before the setter runs and gets no answer, or quietly does nothing, for example `this.reader?.isOpen(task) ?? true`.
+  - If startup guarantees the order (no run can start before the composition root finishes) and an unset reader throws, the setter is a legitimate choice. A narrower port is then an option, not a requirement.
+  - A real case: a design declined exactly this setter as a "late binding" and added a narrow Task-records port instead, and the review approved it citing the rule. No run could ask `isOpen` before startup completed, so nothing would have broken; the port works, but it exists for the rule's wording. What the principle really caught in the same change were silent fallbacks (a Task closure that skipped stopping its runs when an owner was not wired yet), a second startup path that quietly gave agents a different message, and a loop where runs called the delegation owners that need the runs.
+
+### Design Lesson
+
+Judge a shape by what can actually go wrong, not by its likeness to a rule's wording. A recorded reason that holds passes; added structure that solves nothing is a defect of its own.
 
 ## Common Bad-Practice Patterns
 
@@ -1135,5 +1161,5 @@ Principle 13.
 - Start from the example whose shape is closest to the current task.
 - Read the case studies when a design touches the same shape: several kinds or entry forms, a sequence across components, derived data, a decision by absence, a claim about existing code, a rule applied by several callers, or a name used in several places.
 - Reuse the reasoning style, not the exact names.
-- The rules these examples illustrate live in [design-principles.md](design-principles.md): spine-first design (Principles 2 and 14), explicit ownership and named facades (3), off-spine concerns (4), singular interfaces (10), reachable premises (6), persisted-data decisions (5), file placement after the design story (12), one vocabulary (15), and visible dependencies wired in one composition root (16).
+- The rules these examples illustrate live in [design-principles.md](design-principles.md): spine-first design (Principles 2 and 14), explicit ownership and named facades (3), off-spine concerns (4), singular interfaces (10), reachable premises (6), persisted-data decisions (5), file placement after the design story (12), one vocabulary (15), visible dependencies wired in one composition root (16), and applying each with purpose and judgment (Applying These Principles).
 - Judge a finding outside a ticket's scope with [ticket-scope.md](ticket-scope.md#common-situations).
