@@ -861,7 +861,7 @@ expect(runs.stopped).toEqual([taskId]);
 ```
 
 - `TaskService`'s constructor shows that closing a task depends on run control; the spine `Close action -> TaskService -> RunControl -> Run` reads the same in the design and in the code.
-- The order in which owners exist is the order of the lines in `server-composition.ts`. If `RunControl` ever needed `TaskService` too, that cycle would show up here as code that cannot be written, and the design would split out what both need.
+- The order in which owners exist is the order of the lines in `server-composition.ts`. If `RunControl` ever needed `TaskService` too, that cycle would show up here as code that cannot be written, and the design would judge the loop: split out what both need when it tangles ownership, or connect one after construction when it only constrains the order (Example 10).
 
 ### Bad Shape
 
@@ -894,7 +894,7 @@ Why this degrades:
 
 - **Read-only values fixed before startup.** Configuration, a logger, or a clock may be read process-wide: they hold no state the product changes and need no order beyond "before startup".
 - **A framework that creates the objects.** When a framework instantiates handlers itself and offers only a global container, read the container in one adapter at the framework's edge and pass what it returns into the owners. The owners still receive their collaborators.
-- **A recorded reason.** If an owner truly cannot be passed in (for example a callback a third-party library invokes without context), the design records the lookup as a fired Hidden dependency trigger with that reason, keeps it at one edge, and fails clearly when the owner is missing instead of falling back.
+- **A recorded reason.** A lookup or a collaborator connected after construction is acceptable when startup order guarantees nothing uses it before it is set, a missing one fails loudly, and it hides no loop that tangles ownership (for example a callback a third-party library invokes without context). The design records it as a fired Hidden dependency trigger with that reason when the choice is not obvious. Example 10 shows a setter judged this way.
 
 ### Design Lesson
 
@@ -916,11 +916,14 @@ Applying These Principles: Purpose And Judgment; Principles 10 and 16.
 - **Situation:** the Task service emits "entries changed". The run view listens, so the composition root creates both owners and then registers the view's listener on the service: `taskService.onEntriesChanged(view.refresh)`.
 - **The proposed finding:** "Late binding. Add a `TaskChangeNotifierPort`, split the service, and pass the listener through a constructor (Principle 16)."
 - **Why it is not a finding:** the wiring is visible in the composition root, and the service behaves the same with or without a listener; it waits on no result. The finding names no bug, cycle or hidden dependency, only a structure the reviewer prefers. It adds a port, a split and churn for no problem. At most it is a suggestion.
-- **The contrast that is a problem:** the run services need `isOpen(task)` from the Task service, but the Task service needs run control, which needs the run services. So the design creates the Task service later and sets it afterwards with `runServices.setTaskReader(taskService)`. Until that call, `isOpen` has no answer. That is a required collaborator supplied late: it hides a real cycle, and Principle 16 rejects it. Here a narrower port built from what already exists (the Task records) solves the cycle, so the split is justified.
+- **A setter for a needed collaborator, judged by what can go wrong:** the run services need `isOpen(task)` from the Task service, but the Task service needs run control, which needs the run services. So the composition root creates the Task service later and connects it with `runServices.setTaskReader(taskService)`.
+  - It is a problem only if something can call `isOpen` before the setter runs and gets no answer, or quietly does nothing, for example `this.reader?.isOpen(task) ?? true`.
+  - If startup guarantees the order (no run can start before the composition root finishes) and an unset reader throws, the setter is a legitimate choice. A narrower port is then an option, not a requirement.
+  - A real case: a design declined exactly this setter as a "late binding" and added a narrow Task-records port instead, and the review approved it citing the rule. No run could ask `isOpen` before startup completed, so nothing would have broken; the port works, but it exists for the rule's wording. What the principle really caught in the same change were silent fallbacks (a Task closure that skipped stopping its runs when an owner was not wired yet), a second startup path that quietly gave agents a different message, and a loop where runs called the delegation owners that need the runs.
 
 ### Design Lesson
 
-Judge a shape by the problem it causes, not by its likeness to a rule's wording. A recorded reason that holds passes; added structure that solves nothing is a defect of its own.
+Judge a shape by what can actually go wrong, not by its likeness to a rule's wording. A recorded reason that holds passes; added structure that solves nothing is a defect of its own.
 
 ## Common Bad-Practice Patterns
 

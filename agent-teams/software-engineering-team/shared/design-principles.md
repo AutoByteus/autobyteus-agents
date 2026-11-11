@@ -238,7 +238,7 @@ Dead code is code that nothing in the product reaches anymore. It makes the code
 
 - Dependency direction follows ownership; name allowed directions and forbidden shortcuts explicitly.
 - Layering is optional explanatory output only. Do not use layering as a first principle. If layering is used as explanation, it must still follow ownership and encapsulation: a higher layer should not skip an owning boundary and directly reach into a deeper layer that the intermediate boundary already owns (Principle 3).
-- Direction says who may depend on whom; Principle 16 says how an owner obtains what it depends on. A dependency that points the right way but is reached through a process-wide lookup still fails Principle 16.
+- Direction says who may depend on whom; Principle 16 says how an owner obtains what it depends on. A dependency that points the right way but is reached through a process-wide lookup is judged by Principle 16's conditions.
 - **Check:** Which dependencies are allowed, and which shortcuts are forbidden?
 
 ### 10. Interfaces Follow Ownership
@@ -302,21 +302,28 @@ Dead code is code that nothing in the product reaches anymore. It makes the code
 
 ### 16. Visible Dependencies, One Composition Root
 
-An owner's dependencies are part of the architecture: a reader must see what an owner needs and in what order owners come to exist. A process-wide lookup hides both, and turns a wiring mistake into code that quietly does nothing.
+An owner's dependencies are part of the architecture: a reader should see what an owner needs and in what order owners come to exist. The principle exists to prevent three real problems: behavior that silently does nothing or falls back when an owner is missing; a wiring mistake that surfaces only on some later request instead of at startup; and hidden loops between owners that tangle who drives what. A setter or a global is not the problem in itself; these are.
 
-- An owner receives the collaborators it depends on through its constructor, or as arguments of the call that needs them. Its signature then shows what it needs, and a test builds it with fakes.
-- One composition root (the server's or app's startup code) creates the owners and passes each one its collaborators. The order in which owners must exist is visible there, in code, not in comments elsewhere. When the order cannot be written down because two owners need each other, that cycle is a design problem to solve (split out what both need, or pass a narrower collaborator); a binding only hides it.
-- An owner is not reached through a process-wide lookup: a module-level `bind…`/`find…`/`get…()` singleton, a global registry, or a service locator. Such a lookup hides the dependency from the signature and from the spine, and moves a wiring mistake from startup to whichever request first needs it.
-- A required collaborator that is missing is a construction or startup error. Code never checks whether an owner exists yet and then quietly does nothing or falls back (`find…()?.do() ?? fallback`): that is behavior decided by absence (Principle 13).
+- By default an owner receives the collaborators it depends on through its constructor, or as arguments of the call that needs them. Its signature then shows what it needs, and a test builds it with fakes.
+- One composition root (the server's or app's startup code) creates the owners and passes each one its collaborators. The order in which owners must exist is visible there, in code, not in comments elsewhere.
+- When two owners need each other, judge the loop. If it tangles ownership (each drives part of the other's sequence, Principle 13), it is a design problem to solve: split out what both need, or pass a narrower collaborator. If it only constrains the order of construction, connecting one collaborator after construction in the composition root is an acceptable choice under the conditions below.
+- A process-wide lookup (a module-level `bind…`/`find…`/`get…()` singleton, a global registry, a service locator) or a collaborator connected after construction is an acceptable choice when all of these hold:
+  - startup order guarantees that nothing uses it before it is set;
+  - a missing collaborator fails loudly, never silently;
+  - it does not hide a loop that tangles ownership.
+
+  Otherwise pass the collaborator in. A lookup also hides the dependency from the signature and from the spine, so prefer passing in where it costs little.
+- A required collaborator that is missing is a construction or startup error, or a loud failure where it is used. Code never checks whether an owner exists yet and then quietly does nothing or falls back (`find…()?.do() ?? fallback`): that is behavior decided by absence (Principle 13).
 - Exception: read-only values fixed before startup, such as configuration, a logger, or a clock, may be read process-wide. An owner with state or behavior is not such a value, however widely it is used. When a framework creates objects itself and offers only a global container, read the container in one adapter at the framework's edge and pass what it returns to the owners.
-- A design that keeps or adds a process-wide lookup for an owner records it as a fired Structural Trigger with the reason the owner cannot be passed in, and the reviewers judge that reason. "The composition binds it at startup" describes the lookup; it is not a reason.
-- In code a change touches, a new dependency is passed in, even where nearby code still uses lookups. Replacing those older lookups is a follow-up ([ticket-scope.md](ticket-scope.md#recording-follow-ups)) unless the design decides the refactor is needed now; for an older lookup the change only uses, that follow-up is the recorded reason.
+- A design that adds or keeps a lookup or an after-construction connection for an owner, where the choice is not obvious, records it as a fired Structural Trigger with why the three conditions hold, and the reviewers judge that reason. "The composition binds it at startup" only describes the lookup; the reason says why nothing can use it earlier and how a missing one fails.
+- In code a change touches, prefer passing a new dependency in, even where nearby code still uses lookups. An older lookup the change only uses stays as it is; one that causes one of the three problems is a follow-up ([ticket-scope.md](ticket-scope.md#recording-follow-ups)) unless the design decides to fix it now.
 - **Where it bends:**
-  - A notification listener or callback wired in the composition root after both owners exist is acceptable: the wiring is visible there, and the emitter behaves the same with or without a listener. A setter or closure that supplies a collaborator the owner needs to do its work (a read, a decision, a required call) is a late binding that hides the order; that is the case this principle rejects.
-  - Split out a narrower port only for a real cycle or a real difference in what callers need, not to replace a working listener.
+  - A notification listener or callback wired in the composition root after both owners exist is acceptable: the wiring is visible there, and the emitter behaves the same with or without a listener.
+  - A setter or closure that supplies a needed collaborator after construction is judged by the three conditions above, not by its form: when startup guarantees the order and a missing one throws, it is a legitimate choice.
+  - Split out a narrower port only for a loop that tangles ownership or a real difference in what callers need, not to replace a working setter or listener.
 - See Example 9, Owners Wired In One Composition Root, and Example 10, A Justified Departure And A Rejected Over-Application, in the team's design examples.
-- **Signals:** a module-level `bind…`, `set…Instance`, `find…` or `get…()` that hands out an owner; `?.` on a looked-up owner followed by `?? fallback` or nothing; a comment explaining that X is bound before or after Y; tests that bind, reset or replace a global to swap in a fake; a design that lists a process binding, global registry or service locator as a facade, boundary or approved shape.
-- **Check:** How does each owner the change adds or touches get each collaborator it needs, and where is the order in which owners are created visible? Which process-wide lookups does the change add or use, and does any of them hand out an owner rather than a fixed read-only value?
+- **Signals:** a module-level `bind…`, `set…Instance`, `find…` or `get…()` that hands out an owner; a use that can run before a setter or binding does; `?.` on a looked-up owner followed by `?? fallback` or nothing; a comment explaining that X is bound before or after Y; tests that bind, reset or replace a global to swap in a fake; a design that lists a process binding, global registry or service locator as a facade, boundary or approved shape.
+- **Check:** How does each owner the change adds or touches get each collaborator it needs, and where is the order in which owners are created visible? For each lookup or after-construction connection the change adds or uses: can anything use it before it is set, does a missing one fail loudly, and does it hide a loop that tangles ownership?
 
 ## Practical Application Guide
 
@@ -353,7 +360,7 @@ When a trigger fires, apply the principle it names and record in the design spec
 | Derived data | a fact is computed in two places, or a changed structure feeds views, sets, validators, or streams | 11 |
 | Behavior by absence | a required behavior follows from a failed lookup, a missing event, or "counts as" | 13 |
 | Vocabulary drift | a domain word gets a second meaning, a concept a second name, or a name says less or more than the thing does | 15 |
-| Hidden dependency | code reaches an owner through a process-wide binding, registry, or `get…()` singleton instead of receiving it, or a design lists such a binding as a boundary | 16 |
+| Hidden dependency | code reaches an owner through a process-wide binding, registry, or `get…()` singleton, or connects it after construction, instead of receiving it; or a design lists such a binding as a boundary | 16 |
 
 ## Task Design Health Assessment
 
