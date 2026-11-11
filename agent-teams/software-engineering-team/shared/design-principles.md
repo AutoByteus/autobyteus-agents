@@ -22,6 +22,7 @@ This is the canonical shared design reference for the software engineering team.
   - [13. One Owner For Coordination Policy, No Empty Layers](#13-one-owner-for-coordination-policy-no-empty-layers)
   - [14. A Spine-First, Concrete Design Document](#14-a-spine-first-concrete-design-document)
   - [15. One Vocabulary: One Word, One Meaning; One Meaning, One Word](#15-one-vocabulary-one-word-one-meaning-one-meaning-one-word)
+  - [16. Visible Dependencies, One Composition Root](#16-visible-dependencies-one-composition-root)
 - [Practical Application Guide](#practical-application-guide)
 - [Structural Triggers](#structural-triggers)
 - [Task Design Health Assessment](#task-design-health-assessment)
@@ -224,6 +225,7 @@ Dead code is code that nothing in the product reaches anymore. It makes the code
 
 - Dependency direction follows ownership; name allowed directions and forbidden shortcuts explicitly.
 - Layering is optional explanatory output only. Do not use layering as a first principle. If layering is used as explanation, it must still follow ownership and encapsulation: a higher layer should not skip an owning boundary and directly reach into a deeper layer that the intermediate boundary already owns (Principle 3).
+- Direction says who may depend on whom; Principle 16 says how an owner obtains what it depends on. A dependency that points the right way but is reached through a process-wide lookup still fails Principle 16.
 - **Check:** Which dependencies are allowed, and which shortcuts are forbidden?
 
 ### 10. Interfaces Follow Ownership
@@ -282,6 +284,21 @@ Dead code is code that nothing in the product reaches anymore. It makes the code
 - **Signals:** two names for one concept ("X, also called Y"); a name whose meaning depends on the file it is in; a tool or API name that says less or more than it does.
 - **Check:** Which domain words does this design use or introduce, and does each mean the same thing everywhere it appears? Is any concept named two ways, or any name used for two concepts?
 
+### 16. Visible Dependencies, One Composition Root
+
+An owner's dependencies are part of the architecture: a reader must see what an owner needs and in what order owners come to exist. A process-wide lookup hides both, and turns a wiring mistake into code that quietly does nothing.
+
+- An owner receives the collaborators it depends on through its constructor, or as arguments of the call that needs them. Its signature then shows what it needs, and a test builds it with fakes.
+- One composition root (the server's or app's startup code) creates the owners and passes each one its collaborators. The order in which owners must exist is visible there, in code, not in comments elsewhere. When the order cannot be written down because two owners need each other, that cycle is a design problem to solve (split out what both need, or pass a narrower collaborator); a binding only hides it.
+- An owner is not reached through a process-wide lookup: a module-level `bind…`/`find…`/`get…()` singleton, a global registry, or a service locator. Such a lookup hides the dependency from the signature and from the spine, and moves a wiring mistake from startup to whichever request first needs it.
+- A required collaborator that is missing is a construction or startup error. Code never checks whether an owner exists yet and then quietly does nothing or falls back (`find…()?.do() ?? fallback`): that is behavior decided by absence (Principle 13).
+- Exception: read-only values fixed before startup, such as configuration, a logger, or a clock, may be read process-wide. An owner with state or behavior is not such a value, however widely it is used. When a framework creates objects itself and offers only a global container, read the container in one adapter at the framework's edge and pass what it returns to the owners.
+- A design that keeps or adds a process-wide lookup for an owner records it as a fired Structural Trigger with the reason the owner cannot be passed in, and the reviewers judge that reason. "The composition binds it at startup" describes the lookup; it is not a reason.
+- In code a change touches, a new dependency is passed in, even where nearby code still uses lookups. Replacing those older lookups is a follow-up ([ticket-scope.md](ticket-scope.md#recording-follow-ups)) unless the design decides the refactor is needed now; for an older lookup the change only uses, that follow-up is the recorded reason.
+- See Example 9, Owners Wired In One Composition Root, in the team's design examples.
+- **Signals:** a module-level `bind…`, `set…Instance`, `find…` or `get…()` that hands out an owner; `?.` on a looked-up owner followed by `?? fallback` or nothing; a comment explaining that X is bound before or after Y; tests that bind, reset or replace a global to swap in a fake; a design that lists a process binding, global registry or service locator as a facade, boundary or approved shape.
+- **Check:** How does each owner the change adds or touches get each collaborator it needs, and where is the order in which owners are created visible? Which process-wide lookups does the change add or use, and does any of them hand out an owner rather than a fixed read-only value?
+
 ## Practical Application Guide
 
 Design in this order. Each step applies the principle it names; the design spec's section fill order records the result.
@@ -289,7 +306,7 @@ Design in this order. Each step applies the principle it names; the design spec'
 1. Read the current code path and establish the behavioral baseline (Principle 1); confirm the supported scenario basis (Principle 6).
 2. Build the spine inventory and write each primary spine (Principle 2).
 3. Name the main-line nodes in the project's vocabulary (Principle 15) and define what each owns (Principle 3); attach off-spine concerns to their owner, reusing existing capability areas first (Principle 4).
-4. Decide boundaries, dependency direction, and interfaces (Principles 3, 9, 10).
+4. Decide boundaries, dependency direction, and interfaces (Principles 3, 9, 10), and how each owner receives its collaborators from the composition root (Principle 16).
 5. Draft file responsibilities, then extract reusable owned structures where repetition appears and tighten them (Principle 11), re-tighten the file responsibilities, and only then finalize folder and path mapping (Principle 12).
 6. List what the target makes unnecessary and the dead code in the touched files (Principles 7, 8); make each persisted-data transition decision (Principle 5).
 7. Record the change inventory and sequence, and add short examples where a shape would stay abstract (Principle 14).
@@ -317,6 +334,7 @@ When a trigger fires, apply the principle it names and record in the design spec
 | Derived data | a fact is computed in two places, or a changed structure feeds views, sets, validators, or streams | 11 |
 | Behavior by absence | a required behavior follows from a failed lookup, a missing event, or "counts as" | 13 |
 | Vocabulary drift | a domain word gets a second meaning, a concept a second name, or a name says less or more than the thing does | 15 |
+| Hidden dependency | code reaches an owner through a process-wide binding, registry, or `get…()` singleton instead of receiving it, or a design lists such a binding as a boundary | 16 |
 
 ## Task Design Health Assessment
 
@@ -476,14 +494,14 @@ Do not introduce a pattern if it obscures the spine, blurs ownership, or creates
 
 - Solves: controlled construction of objects, backends, adapters, or runtime variants.
 - Best fit: boundary creation points with explicit ownership.
-- Avoid: turning a factory into a hidden service locator or policy container.
+- Avoid: turning a factory into a hidden service locator that code asks for owners at runtime (Principle 16), or into a policy container.
 - Example shape: `AgentFactory` creates runtime/context/handler-registry wiring at the creation boundary instead of scattering construction across runtime code.
 
 ### Registry
 
 - Solves: lookup of capabilities, handlers, providers, or definitions by key.
 - Best fit: off-spine concern for indexed lookup.
-- Avoid: hiding business decisions or orchestration inside the registry.
+- Avoid: hiding business decisions or orchestration inside the registry; making it a process-wide place where code looks up owners (Principle 16). The registry itself is passed to the owner that uses it.
 - Example shape: `EventHandlerRegistry` or a parser strategy registry stays as lookup infrastructure for a dispatcher or parser owner.
 
 ### Adapter

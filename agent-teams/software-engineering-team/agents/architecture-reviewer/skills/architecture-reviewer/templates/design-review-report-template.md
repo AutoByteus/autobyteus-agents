@@ -95,6 +95,8 @@ If no supplemental task artifacts exist, write `None`.
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
 
+Owners receive their collaborators from the composition root; a process-wide binding, registry, or singleton that hands out an owner is absent, or recorded with a reason that holds; no missing collaborator becomes a silent no-op or fallback (Principle 16): `Pass` / `Fail`
+
 ## Interface Boundary Verdict
 
 | Interface / API / Query / Command / Method | Subject Is Clear? (`Pass`/`Fail`) | Responsibility Is Singular? (`Pass`/`Fail`) | Identity Shape Is Explicit? (`Pass`/`Fail`) | Generic Boundary Risk (`Low`/`Medium`/`High`) | Verdict (`Pass`/`Fail`) |

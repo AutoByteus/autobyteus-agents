@@ -12,6 +12,7 @@ Worked examples of clear designs and of the shapes to avoid, followed by short c
 - [Example 6: Schema Contraction With No Data Migration](#example-6-schema-contraction-with-no-data-migration)
 - [Example 7: Rejecting An Unreachable Edge Case During Technical Review](#example-7-rejecting-an-unreachable-edge-case-during-technical-review)
 - [Example 8: Supported Product Scenario Versus Technical Possibility](#example-8-supported-product-scenario-versus-technical-possibility)
+- [Example 9: Owners Wired In One Composition Root](#example-9-owners-wired-in-one-composition-root)
 - [Common Bad-Practice Patterns](#common-bad-practice-patterns)
 - [Case Studies](#case-studies)
 - [How To Use These Examples](#how-to-use-these-examples)
@@ -819,6 +820,85 @@ contractual workflow. Good design and review require both. This prevents
 bottom-up reasoning from endpoints, fields, tests, or callbacks from creating
 false defects and unnecessary architecture.
 
+## Example 9: Owners Wired In One Composition Root
+
+Principle 16.
+
+### Situation
+
+A server manages tasks and the runs that work on them. Closing a task must stop its runs, and archiving a run must be refused while a run it delegated to is still working. So `TaskService` needs `RunControl`, and `ArchiveGuard` needs `DelegationTree` and `RunControl`. The task side and the run side are separate subsystems, each with its own startup code.
+
+### Good Shape
+
+The startup code is the one composition root. It creates the owners in order and passes each one what it needs:
+
+```ts
+// server-composition.ts
+const config = loadConfig();                               // read-only, fixed before startup
+const taskStore = new TaskStore(config.dataDir);
+const delegationTree = new DelegationTree(taskStore);
+const runControl = new RunControl(runRegistry);
+const taskService = new TaskService(taskStore, runControl);
+const archiveGuard = new ArchiveGuard(delegationTree, runControl);
+startHttpServer({ taskService, archiveGuard });
+```
+
+```ts
+// task-service.ts
+class TaskService {
+  constructor(private readonly store: TaskStore, private readonly runs: RunControl) {}
+  close(task: TaskId) { /* … */ this.runs.stopForTaskClosure(task); }
+}
+```
+
+A test builds the owner with fakes, without touching any global:
+
+```ts
+const runs = new FakeRunControl();
+new TaskService(new InMemoryTaskStore(), runs).close(taskId);
+expect(runs.stopped).toEqual([taskId]);
+```
+
+- `TaskService`'s constructor shows that closing a task depends on run control; the spine `Close action -> TaskService -> RunControl -> Run` reads the same in the design and in the code.
+- The order in which owners exist is the order of the lines in `server-composition.ts`. If `RunControl` ever needed `TaskService` too, that cycle would show up here as code that cannot be written, and the design would split out what both need.
+
+### Bad Shape
+
+Each subsystem publishes its owner in a module-level slot, and callers look it up when they need it:
+
+```ts
+// run-control.ts
+let current: RunControl | null = null;
+export const bindRunControl = (control: RunControl) => { current = control; };
+export const findRunControl = () => current;
+
+// task-composition.ts — "the task side is composed before the run services"
+const taskService = new TaskService(taskStore, {
+  stop: (task) => findRunControl()?.stopForTaskClosure(task) ?? null,
+});
+
+// archive-guard.ts
+const working = (findDelegationTree()?.openChildrenOf(run) ?? [])
+  .filter((child) => findRunControl()?.status(child) === "running");
+```
+
+Why this degrades:
+
+- `TaskService` and `ArchiveGuard` do not show what they depend on; the run-control dependency is visible only inside a closure and a filter.
+- The startup order lives in a comment. Until `bindRunControl` runs, closing a task does not stop its runs and archiving is allowed, with no error: the missing owner decides the behavior (Principle 13).
+- Tests call `bindRunControl(fake)` and must remember to unbind, so one test's fake can leak into the next.
+- Each new feature tends to add another `bind…`/`find…` pair, because that is how the code around it is reached. A design that names "process binding" as an approved facade passes review unless a rule says otherwise.
+
+### When The Decision Would Change
+
+- **Read-only values fixed before startup.** Configuration, a logger, or a clock may be read process-wide: they hold no state the product changes and need no order beyond "before startup".
+- **A framework that creates the objects.** When a framework instantiates handlers itself and offers only a global container, read the container in one adapter at the framework's edge and pass what it returns into the owners. The owners still receive their collaborators.
+- **A recorded reason.** If an owner truly cannot be passed in (for example a callback a third-party library invokes without context), the design records the lookup as a fired Hidden dependency trigger with that reason, keeps it at one edge, and fails clearly when the owner is missing instead of falling back.
+
+### Design Lesson
+
+How an owner gets its collaborators is part of the design, not an implementation detail. Passing them in from one composition root keeps the dependencies and the startup order visible, makes a missing owner fail at startup, and lets tests build the owner directly.
+
 ## Common Bad-Practice Patterns
 
 ### 1. Generalist Boundary
@@ -1055,5 +1135,5 @@ Principle 13.
 - Start from the example whose shape is closest to the current task.
 - Read the case studies when a design touches the same shape: several kinds or entry forms, a sequence across components, derived data, a decision by absence, a claim about existing code, a rule applied by several callers, or a name used in several places.
 - Reuse the reasoning style, not the exact names.
-- The rules these examples illustrate live in [design-principles.md](design-principles.md): spine-first design (Principles 2 and 14), explicit ownership and named facades (3), off-spine concerns (4), singular interfaces (10), reachable premises (6), persisted-data decisions (5), file placement after the design story (12), and one vocabulary (15).
+- The rules these examples illustrate live in [design-principles.md](design-principles.md): spine-first design (Principles 2 and 14), explicit ownership and named facades (3), off-spine concerns (4), singular interfaces (10), reachable premises (6), persisted-data decisions (5), file placement after the design story (12), one vocabulary (15), and visible dependencies wired in one composition root (16).
 - Judge a finding outside a ticket's scope with [ticket-scope.md](ticket-scope.md#common-situations).
