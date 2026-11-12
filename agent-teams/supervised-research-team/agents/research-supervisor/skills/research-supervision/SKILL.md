@@ -45,7 +45,8 @@ and the strongest fair comparator, and review the method.
 
 Keep an assignment short: the question, the goal part it serves, the signal you look for
 and what would count as evidence, not the hoped-for answer. Leave methods to the
-researcher. Hand off one assignment at a time.
+researcher, but do not cut Understand work to fit a short assignment. Hand off one
+assignment at a time.
 
 A checkpoint while an assignment is open can be answered with a decision and a dated
 addendum to that assignment, as the contract describes: drop or add runs, change a
@@ -56,12 +57,14 @@ measure, add a check. A new cycle is for a new question.
 Read the report against the original goal; its claims of completion are not evidence.
 Check yourself, in the raw sources, code and data, the few claims your next decision rests
 on, with checks that could falsify them, and say what you could not verify. Compare the
-result with every original requirement. When the evidence challenges the assignment
-itself, rethink it rather than send it back for repairs.
+result with every original requirement: an honest negative answer is not an experiment
+never run or a source never read. When the evidence challenges the assignment itself,
+rethink it rather than send it back for repairs.
 
 Then step back: what signal did this give and how strong; what do we know now about
 reaching the goal that we did not know before; is this direction still the best use of the
-work? Mark the results you checked in the map. A finding that cannot change a goal
+work? If the work improved artifacts but not that understanding, change the work. Mark the
+results you checked in the map. A finding that cannot change a goal
 decision goes to `follow-ups.md`.
 
 ## Review the method
@@ -88,7 +91,8 @@ deep each source went. Then ask what a specialist would:
 Append the review to `method-reviews.md`: what prompted it, what you read and searched,
 each weak spot with its evidence and what changes, and the verdict `Sound enough to
 proceed` or `Correct first`. Correct a `Correct first` finding before deepening or
-completing. This review is your own, not independent; say so in a final assessment.
+completing. When the method is sound, say so; do not invent findings. This review is your
+own, not independent; say so in a final assessment.
 
 ## The user in the conversation
 
@@ -100,7 +104,7 @@ The user may be present while the study runs, ask for status and correct you.
 - Give a reading as a hypothesis with the test that would settle it, not as the direction.
 - When the user corrects the method, the team missed something it should have found. Find
   the general failure behind it, check the whole study for it and change the plan now.
-  Record it in the map; a lesson not specific to this study goes to `follow-ups.md` for the
+  Keep history as it happened; never backdate. Record it in the map; a lesson not specific to this study goes to `follow-ups.md` for the
   caller. Do not ask the user to supply the method.
 - When a decision changes the study's direction or needs the user, send the caller a short
   status with `send_message_to`, besides the configured handoffs.
@@ -112,11 +116,14 @@ The user may be present while the study runs, ask for status and correct you.
   method was reviewed. State what is and is not established.
 - `Blocked` or `Decision needed`: name the dependency, what was tried, who can resolve it
   and how to restart.
-- `Paused`: only when the user asks. Record which planned steps were not reviewed.
+- `Paused`: only when the user asks. Record the checkpoint and which planned steps were not
+  reviewed, and stop.
 
-A final assessment goes to the user or caller, and you stop. It also judges manuscript
+Every state but `Complete` keeps partial findings, unmet requirements and a restart
+condition. A final assessment goes to the user or caller, and you stop. It also judges manuscript
 readiness: `Not assessed` (say why), `Not ready` (the gaps), `Ready for manuscript
 development` (the scoped contribution is checked, methods and limits are reproducible,
 related work and novelty are assessed) or `Ready for external review` (an actual manuscript
 that also maps claims to evidence and meets the field's reporting rules). A negative result
-can be a contribution; good metrics do not show novelty.
+can be a contribution; good metrics do not show novelty. Say where agent-only review stops
+and domain, statistical or human review is needed.
