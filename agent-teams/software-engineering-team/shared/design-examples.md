@@ -902,7 +902,7 @@ How an owner gets its collaborators is part of the design, not an implementation
 
 ## Example 10: A Justified Departure And A Rejected Over-Application
 
-Applying These Principles: Purpose And Judgment; Principles 10 and 16.
+Applying These Principles: Purpose And Judgment; Principles 10, 13 and 16.
 
 ### A Justified Departure
 
@@ -915,15 +915,15 @@ Applying These Principles: Purpose And Judgment; Principles 10 and 16.
 
 - **Situation:** the Task service emits "entries changed". The run view listens, so the composition root creates both owners and then registers the view's listener on the service: `taskService.onEntriesChanged(view.refresh)`.
 - **The proposed finding:** "Late binding. Add a `TaskChangeNotifierPort`, split the service, and pass the listener through a constructor (Principle 16)."
-- **Why it is not a finding:** the wiring is visible in the composition root, and the service behaves the same with or without a listener; it waits on no result. The finding names no bug, cycle or hidden dependency, only a structure the reviewer prefers. It adds a port, a split and churn for no problem. At most it is a suggestion.
+- **Why it is not a finding:** the wiring is visible in the composition root, and the service behaves the same with or without a listener; it waits on no result. The finding names no bug, cycle or hidden dependency, only a structure the reviewer prefers. It is not a suggestion either: the port it asks for would have one implementation, only forward to the service, and solve no problem, so it meets conditions (a)–(c) of Principle 13's empty indirection check. A design that added it would fail review.
 - **A setter for a needed collaborator, judged by what can go wrong:** the run services need `isOpen(task)` from the Task service, but the Task service needs run control, which needs the run services. So the composition root creates the Task service later and connects it with `runServices.setTaskReader(taskService)`.
   - It is a problem only if something can call `isOpen` before the setter runs and gets no answer, or quietly does nothing, for example `this.reader?.isOpen(task) ?? true`.
   - If startup guarantees the order (no run can start before the composition root finishes) and an unset reader throws, the setter is a legitimate choice. A narrower port is then an option, not a requirement.
-  - A real case: a design declined exactly this setter as a "late binding" and added a narrow Task-records port instead, and the review approved it citing the rule. No run could ask `isOpen` before startup completed, so nothing would have broken; the port works, but it exists for the rule's wording. What the principle really caught in the same change were silent fallbacks (a Task closure that skipped stopping its runs when an owner was not wired yet), a second startup path that quietly gave agents a different message, and a loop where runs called the delegation owners that need the runs.
+  - A real case, a borderline one that passes the empty indirection check: a design took the other option. The run services need two things from the Task side: whether a run's Task entry is open, and to mark that run's Task changed when the run's status changes. The design gave them a two-method port, `RunTaskRecords` (`isOpen`, `statusChanged`), built in the composition root from the Task records and the Task change marks, both created before the run services. It has one implementation, and a setter would have served as well. But it does not only forward: `isOpen` reads the Task records, while `statusChanged` finds the run's Task in those records and marks it changed in a second owner, never throwing. About eight run services take that combined capability as one dependency. So it fails condition (b) and passes the check. Removing it would push the combining into each consumer: churn that fixes no bug. What the principle really caught in the same change were silent fallbacks (a Task closure that skipped stopping its runs when an owner was not wired yet), a second startup path that quietly gave agents a different message, and a loop where runs called the delegation owners that need the runs.
 
 ### Design Lesson
 
-Judge a shape by what can actually go wrong, not by its likeness to a rule's wording. A recorded reason that holds passes; added structure that solves nothing is a defect of its own.
+Judge a shape by what can actually go wrong, not by its likeness to a rule's wording. A recorded reason that holds passes. Added structure that solves nothing is a defect of its own, and Principle 13's empty indirection check says when it fails review: one implementation, it only forwards, and it solves no problem you can name. A port that combines several owners into one capability for several consumers is not empty, even when it looks like one.
 
 ## Common Bad-Practice Patterns
 

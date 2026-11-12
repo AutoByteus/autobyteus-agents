@@ -166,7 +166,7 @@ Judge each check by its purpose ([Applying These Principles](../references/desig
 | Reusable owned structures check (repeated structures extracted into the right owned file instead of copied across files) |  |  |  |
 | Shared-structure/data-model tightness check (no kitchen-sink base, no overlapping parallel shapes, specialization/composition used meaningfully) |  |  |  |
 | Repeated coordination ownership check (shared policy has a clear owner instead of being repeated across callers) |  |  |  |
-| Empty indirection check (no pass-through-only boundary) |  |  |  |
+| Empty indirection check (Core Principle 13): no pass-through-only boundary; no new interface, port, adapter or wrapper with one implementation that only forwards to an owner and solves no problem you can name. It fails even though it works |  |  |  |
 | Scope-appropriate separation of concerns and file responsibility clarity |  |  |  |
 | Ownership-driven dependency check (no forbidden shortcuts or unjustified cycles) |  |  |  |
 | Visible dependencies check (Core Principle 16): each dependency the change adds is passed in, or reached through a lookup or an after-construction connection where nothing uses it before it is set, a missing one fails loudly, and no loop that tangles ownership hides behind it; no new `find…()?.… ?? fallback` lets a missing owner decide behavior; an older lookup the change only uses is a follow-up only when it causes one of those problems |  |  |  |

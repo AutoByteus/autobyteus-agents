@@ -257,6 +257,7 @@ State how each owner this change adds or touches receives its collaborators (con
 Rule:
 - Do not use one generic boundary when the subject or identity meaning differs.
 - Split boundaries by subject or require an explicit compound identity shape.
+- For each interface, port, adapter or wrapper this design adds, say what it adds beyond forwarding (a real boundary, a second implementation, owners it combines, a translation or invariant) or the problem it solves. One that only forwards to one owner and solves no problem fails Principle 13's empty indirection check; give its consumers the owner or a narrowed type of it.
 
 ## Interface Boundary Check
 

@@ -105,6 +105,8 @@ Owners receive their collaborators from the composition root; a process-wide bin
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
 
+Each interface, port, adapter or wrapper the design adds passes Principle 13's empty indirection check. One that has one implementation, only forwards to one owner and solves no problem you can name fails here, before code review would fail the code built from it: `Pass` / `Fail` / `N/A`
+
 ## Existing Capability / Subsystem Reuse Verdict
 
 | Need / Concern | Existing Capability Area Was Checked? (`Pass`/`Fail`) | Reuse / Extension Decision Is Sound? (`Pass`/`Fail`) | New Support Piece Is Justified? (`Pass`/`Fail`/`N/A`) | Verdict (`Pass`/`Fail`) | Notes |

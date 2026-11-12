@@ -32,14 +32,14 @@ This is the canonical shared design reference for the software engineering team.
 
 ## Applying These Principles: Purpose And Judgment
 
-Each principle exists to keep ownership, ordering and behavior clear and correct. Architecture fits the case: apply a principle where it solves a real problem in the change at hand. Applying it where it only adds structure is itself a design defect, not compliance. This holds for every role that uses these principles: designing, reviewing a design, implementing, and reviewing code. Example 10 in the team's design examples shows a justified departure and a rejected over-application.
+Each principle exists to keep ownership, ordering and behavior clear and correct. Architecture fits the case: apply a principle where it solves a real problem in the change at hand. Applying it where it only adds structure is itself a design defect, not compliance. This holds for every role that uses these principles: designing, reviewing a design, implementing, and reviewing code. Example 10 in the team's design examples shows a justified departure, a rejected over-application, and a port that passes the empty indirection check.
 
 - **Purpose first.** Before applying a rule, name the problem it solves here: a bug, a behavior risk, a hidden dependency that matters, a cycle, a policy that will drift between copies, dead code in touched files. When there is none, the rule calls for no new structure.
 - **The smallest structure that works.** Prefer the smallest structure that keeps the design clear. Add a component, port, layer or pattern only for a concrete need: a real cycle, a real difference in what callers need, real repetition, a real hidden dependency that bites.
 - **Deviation with a reason.** A design may knowingly depart from a principle when the reason holds for this case. It records the departure and the reason in the design spec (a choice made during implementation goes in the implementation handoff), and reviewers judge the reason, not the conformance. A reason names what following the principle would cost here and why the departure causes no problem the principle exists to prevent.
 - **What stays firm.** Judgment decides how much structure a case needs; it does not waive what the principles protect: the supported behavior basis and product reachability (Principles 1, 6), a clear owner for each concern (3), an evidence-backed persisted-data decision (5), no dead code in touched files (7), clean-cut replacement (8), and no behavior decided by a missing owner or a silent fallback (13, 16). A departure from one of these needs what that principle itself names, such as the user's approval for a compatibility path (8), not a recorded reason alone.
 - **Signals are leads.** A principle's Signals show where to look. A signal alone is not a finding until it names the problem it causes in this change.
-- **Findings name the problem.** A review finding names the concrete problem the design or code causes, not only "Principle X not followed". A different structure the reviewer would prefer, where the design works and causes no such problem, is a suggestion, not a finding ([ticket-scope.md](ticket-scope.md#common-situations)).
+- **Findings name the problem.** A review finding names the concrete problem the design or code causes, not only "Principle X not followed". A different structure the reviewer would prefer, where the design works and causes no such problem, is a suggestion, not a finding ([ticket-scope.md](ticket-scope.md#common-situations)). Added structure that does nothing is not such a preference: an interface, port, adapter or wrapper that meets Principle 13's empty indirection check is a finding, even though it works.
 - **Rulings hold.** Once a review round accepts a shape for a stated reason, later rounds keep that ruling unless new evidence shows a problem with it, and name that evidence when they change it.
 
 ## Project-Specific Design Principles
@@ -276,11 +276,17 @@ Dead code is code that nothing in the product reaches anymore. It makes the code
 
 - If provider selection, fallback, retry, aggregation, routing, fan-out, or validation logic repeats across callers, give that policy a clear owner.
 - If a proposed layer or module only forwards calls and owns no policy, translation, or boundary concern, remove it.
+- **Empty indirection check.** A new interface, port, adapter or wrapper is such a layer, a defect and a review `Fail` even though it works, when all three hold:
+  - (a) it has one implementation and no real reason for a second: no I/O or remote boundary, no plugin point, no test that needs a fake where the real owner cannot be used;
+  - (b) it only forwards: its consumers could take the owner directly, or a narrowed type of it (in TypeScript `Pick<Owner, "isOpen">`; elsewhere an interface the owner itself implements), and it adds no combining of owners, no translation and no invariant;
+  - (c) it solves no problem you can name (no cycle, no startup-order constraint, no boundary): it exists to match a rule's wording.
+
+  The problem it causes is the indirection itself: one more type that every reader steps through and every change to the owner must follow. Give its consumers the owner, or a narrowed type of it, instead. Not empty: a narrowed type of the real owner; a port at a real boundary; an adapter that combines several owners into one capability that several consumers use (Example 10 in the team's design examples).
 - One sequence has one owner that calls each of its mechanisms itself, in order. A mechanism does not reach another collaborator through a function passed in (for example `engine.send(input, transmit)` where `transmit` belongs to another component): that splits the sequence between two owners even when every dependency points the right way. Callbacks are for notifications (events, lifecycle hooks). A component whose rules branch on which side or context it runs in holds two roles; give each its owner.
 - A behavior the requirements name is decided by an explicit rule with its own result, not reached because a lookup finds nothing, an event is missing, or one status counts as another.
 - **Where it bends:** a coordination policy is a rule with choices (which provider, when to retry, what counts as ready); the same one-line call in two places is not one. A thin entry the framework or transport requires, such as a route handler that parses and forwards, owns that boundary and is not an empty layer.
-- **Signals:** the same coordination policy repeated in several callers ("the same shape in each root"); empty indirection layers that only pass work through; one sequence split between collaborators; "finds no X, so …", "counts as", or a lifecycle end that changes no state.
-- **Check:** Who drives each sequence, and in what order? Which required behavior happens only because something is missing?
+- **Signals:** the same coordination policy repeated in several callers ("the same shape in each root"); empty indirection layers that only pass work through; a port or wrapper with one implementation whose methods each call one method of one owner; one sequence split between collaborators; "finds no X, so …", "counts as", or a lifecycle end that changes no state.
+- **Check:** Who drives each sequence, and in what order? Which required behavior happens only because something is missing? What does each new interface, port, adapter or wrapper add beyond forwarding, or which problem does it solve?
 
 ### 14. A Spine-First, Concrete Design Document
 
@@ -320,7 +326,7 @@ An owner's dependencies are part of the architecture: a reader should see what a
 - **Where it bends:**
   - A notification listener or callback wired in the composition root after both owners exist is acceptable: the wiring is visible there, and the emitter behaves the same with or without a listener.
   - A setter or closure that supplies a needed collaborator after construction is judged by the three conditions above, not by its form: when startup guarantees the order and a missing one throws, it is a legitimate choice.
-  - Split out a narrower port only for a loop that tangles ownership or a real difference in what callers need, not to replace a working setter or listener.
+  - Split out a narrower port only for a loop that tangles ownership or a real difference in what callers need, not to replace a working setter or listener. A port with no such loop or difference behind it, that only forwards to one owner, fails Principle 13's empty indirection check.
 - See Example 9, Owners Wired In One Composition Root, and Example 10, A Justified Departure And A Rejected Over-Application, in the team's design examples.
 - **Signals:** a module-level `bind…`, `set…Instance`, `find…` or `get…()` that hands out an owner; a use that can run before a setter or binding does; `?.` on a looked-up owner followed by `?? fallback` or nothing; a comment explaining that X is bound before or after Y; tests that bind, reset or replace a global to swap in a fake; a design that lists a process binding, global registry or service locator as a facade, boundary or approved shape.
 - **Check:** How does each owner the change adds or touches get each collaborator it needs, and where is the order in which owners are created visible? For each lookup or after-construction connection the change adds or uses: can anything use it before it is set, does a missing one fail loudly, and does it hide a loop that tangles ownership?
@@ -346,7 +352,7 @@ When a trigger fires, apply the principle it names and record in the design spec
 | Repeated coordination | selection, fallback, retry, aggregation, routing, or fan-out logic repeats across callers | 13 |
 | Responsibility overload | one file owns several unrelated concerns, or a grouping becomes a catch-all | 12 |
 | Ambiguous boundary | a method takes a generic ID or selector for different subjects, or returns a mixed-subject list | 10 |
-| Empty indirection | a layer only forwards calls | 13 |
+| Empty indirection | a layer only forwards calls, or the design adds an interface, port, adapter or wrapper (judge it with the empty indirection check) | 13 |
 | Authoritative boundary | a caller depends on both an outer boundary and one of its internals | 3 |
 | Shared folder | code lands in a shared or common folder without being truly cross-cutting | 11 |
 | Shared-structure tightness | a proposed shared type still has redundant fields or overlapping representations | 11 |
