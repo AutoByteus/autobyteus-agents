@@ -33,9 +33,9 @@ Each case names the environment it ran in.
 
 ## Cases
 
-The one record of what ran and what it proves, under the case IDs the investigation planned (add new IDs only for newly found cases, and reuse them across rounds). Write a case's row when it completes. A case that was interrupted or never ran is `Not Tested`, with the reason in Notes; never infer a result. A `Reused` case names its implementation check (for example `IMP-03`) in Command Or Steps and leaves Env, Evidence Files and Look For to that check's row in the implementation handoff; Notes says why it still holds.
+The one record of what ran and what it proves, under the case IDs the investigation planned (add new IDs only for newly found cases, and reuse them across rounds). Write a case's row when it completes. A case that could not run (a missing dependency, named in Notes) or was interrupted is `Not Tested`; a case left for the next round is `Next Round`, with what it waits for in Notes. Never infer a result. A `Reused` case names its implementation check (for example `IMP-03`) in Command Or Steps and leaves Env, Evidence Files and Look For to that check's row in the implementation handoff; Notes says why it still holds.
 
-| Case ID | Criteria (AC / Requirement IDs) | Boundary / Surface | Command Or Steps | Env | Result (`Pass`/`Fail`/`Blocked`/`Not Tested`) | Evidence Files | Look For | Notes |
+| Case ID | Criteria (AC / Requirement IDs) | Boundary / Surface | Command Or Steps | Env | Result (`Pass`/`Fail`/`Blocked`/`Not Tested`/`Next Round`) | Evidence Files | Look For | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  | <exact command, or the journey steps> | ENV-1 |  | <paths inside the evidence folder> | <the key line quoted exactly as in the file, a count, or a screenshot detail> |  |
 

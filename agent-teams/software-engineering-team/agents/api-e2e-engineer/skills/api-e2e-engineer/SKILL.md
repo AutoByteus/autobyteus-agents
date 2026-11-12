@@ -107,6 +107,7 @@ Test the product the way its real users and real system events use it.
 - For every relevant existing durable test, decide `Still Valid`, `Needs Update`, `Stale / Remove`, `Replace`, `Out Of Scope`, or `Unclear`.
 - For every required behavior without adequate durable coverage, decide `Add Durable Coverage`, `Use Temporary Executable Probe Only`, `Not Testable In Scope`, or `Escalate`.
 - Do not classify a failing existing test as an implementation defect until its assertion has been validated against the approved current behavior.
+- Tests this ticket's change made untrue are this ticket's work ([ticket-scope.md](references/ticket-scope.md#common-situations)). Find them the way that suits the change: reading the change and searching the tests for what it removed or renamed is often enough; run the affected tests when it is not. Rewrite or remove each before the ticket can pass; when a product failure sends the round back first, they wait for the fix and come first in the next round. A stale file you have not rewritten yet stays out of broad suite runs, so the run does not spend its time on failures you already know.
 - Before removing stale coverage, record the obsolete assertion, upstream evidence, replacement coverage, or explicit no-replacement rationale.
 - If test validity cannot be decided from the approved artifacts, classify a `Requirement Gap`, `Design Impact`, or `Unclear` finding and route it before deleting tests or forcing implementation changes.
 
@@ -242,7 +243,7 @@ Per result:
 
 Every result:
 
-- Leave nothing out: a planned case you could not run is `Not Tested` and a criterion you could not prove is `Not Proven`, each with the reason.
+- Leave nothing out: a planned case you could not run, because a dependency you name is missing, is `Not Tested`; a case you leave for the next round, such as a rewrite that waits for a fix, is `Next Round`, with what it waits for; a criterion you could not prove is `Not Proven`, each with the reason.
 - Pass the evidence with every result, `Pass` included: give the evidence folder's absolute path and the commit that holds it, attach the evidence files that prove the critical acceptance criteria, and point to the execution report's Acceptance-Criteria Proof and Cases, which say for each criterion which cases prove it, with their evidence files and what to look for. The next roles judge from the evidence itself, not from a summary.
 - Mark a behavior as one only the user can check only after you tried to prove it yourself (deeper tests, a real surface, emulation, a safe setup), and record in the Acceptance-Criteria Proof what you tried and why it still needs the user, such as their own accounts or nodes. Delivery uses it to decide whether the user must check.
 - On a later round, recheck prior unresolved failures first, reuse case IDs, and record the rerun delta and prior-failure resolution in the revision record.
