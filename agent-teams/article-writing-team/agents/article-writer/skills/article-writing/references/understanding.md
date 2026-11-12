@@ -62,11 +62,11 @@ One row per source you used, and one row per research brief:
 - what it contributed; credibility, freshness, or limitation notes;
 - status: `used`, `background`, `rejected`, or `open`.
 
-For workspace sources, record exact file paths and commands. For papers or documents you read yourself, record enough detail to support the claims; never infer from a title or abstract.
+For workspace sources, record exact file paths and commands. For papers or documents you read yourself, record enough detail to support the claims, and what you read (full text, or only the abstract because the full text was blocked); never infer from a title or abstract.
 
 ## 5. `claim-evidence-ledger.md`
 
-Create it when the article depends on factual, technical, source-backed, or interpretive claims. For each load-bearing claim: the claim, its evidence anchor (a source ID, a path, or a brief's claims-check row), confidence, caveats, and what would make it too strong.
+Create it when the article depends on factual, technical, source-backed, or interpretive claims. For each load-bearing claim: the claim, its evidence anchor (a source ID, a path, or a brief's claims-check row), confidence, caveats, and what would make it too strong. For a claim about what a product has today, the anchor names who opened which primary source and when; when you cannot open it, mark the row `unchecked` and ask the requester or the reviewer to check it before drafting.
 
 Always track style-sensitive claims when used: contrast frames such as `not X, but Y`; claims that a belief is common, shallow, wrong, or incomplete; `should` recommendations; root-cause claims such as `the deeper problem is`; production observations such as `we observed`, `we found`, or `this worked`. Record which framings the evidence allows and which it forbids, with wording traps to avoid. If the evidence does not support the setup side of a contrast or recommendation, remove that framing and write the supported mechanism directly.
 

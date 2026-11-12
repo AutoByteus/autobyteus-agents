@@ -33,6 +33,8 @@ Record the target once, here: mode (principles, section 3: `technical-blog` for 
 
 If a missing detail changes the article's direction and the request, workspace and sources cannot settle it, ask the user a targeted question before continuing.
 
+A draft or outline that comes with the request is source material; its order is not the article's. When the author has not said what kind of article it is and in what order the reader should meet the ideas (often when someone else relays the request), ask the author once, through the requester if you cannot reach them: what the reader should understand at the end, in what order, and how technical. Record the answer in the brief.
+
 ### Step 2 - Build the understanding package
 
 When the article needs factual, technical, document, source-code or supplied-material understanding, follow [references/understanding.md](references/understanding.md). It owns the understanding files and their Ready-to-outline check, and says which investigation you do and which you ask the Deep Researcher for with `research-request.md`.

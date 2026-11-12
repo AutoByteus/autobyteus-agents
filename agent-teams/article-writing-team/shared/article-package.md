@@ -21,6 +21,7 @@ Create one dedicated work folder per request. Keep every file below in it, and u
 | `visual-asset-index.md` | `article-writing` | Visual assets are sourced, generated, inserted, or intentionally omitted |
 | `article.md`, or one `article-<lang>.md` per language for bilingual or conversion work (for example `article-zh.md`, `article-en.md`) | `article-writing` | After the outline passes review |
 | `publish/<name>/`, or `publish/<name>-<lang>/` per language: `article.md` and `images/` ([platform output rules](platform-output-rules.md), "Website Publish Folder") | `article-writing`, built from the draft by `scripts/publish-folder.py` | With every draft sent for review, rebuilt after each revision |
+| Companion pieces the request asks for (a post, key points, a claims note) | `article-writing` | Written from the draft once no structure or evidence finding is open, so a restructure does not leave them stale; reviewed with the draft |
 | `review-report.md` | `article-reviewer` | After every review |
 
 `<name>` is a short lowercase-hyphen name of the article, kept for all its rounds. The website recognizes a re-import of the same draft by its folder name and title, so two articles never share a folder name.
@@ -34,5 +35,7 @@ Send the whole package each time, not only the latest file:
 - With a draft, each publish folder and the writer's last `check` result for it.
 - The user's active corrections ([writing principles](writing-principles.md), section 10) until the article passes.
 - On a return to the writer, the latest `review-report.md`.
+
+Before each handoff, the writer makes the package agree with itself: every file says what the draft says, no line remains that a later answer or correction replaced (a `pending` row, an old wording, an old order), the user's latest direction is in `brief.md` with its source, and the draft and companion pieces are within the brief's lengths or the requester's OK is recorded.
 
 The first handoff to the reviewer has no draft: it asks for the pre-draft review of the point, the evidence, the style basis, the outline, and the visual plan. The second carries the draft. On the short path, only the second is sent.
