@@ -6,20 +6,17 @@ How to operate an AutoByteus app for an [evaluation](../SKILL.md): start it, loa
 
 Follow the AutoByteus repository's testing guide (`TESTING.md`, "Isolated desktop instance"): from that repository, `pnpm --silent isolated-app start --app /Applications/AutoByteus.app`. Keep `instanceId`, `graphqlUrl`, `serverPort`, and `dataRoot` from its JSON output. Stop it at the end with `pnpm --silent isolated-app stop <instanceId>`, which also removes its data. `pnpm --silent isolated-app list` shows the instances and whether each is running.
 
-## 1a. A private process list and room in memory
+## 1a. A private process list where it is cheap, and room in memory
 
 An isolated instance has its own data, but its agents still see the whole computer's process list: `ps` shows every program's command line, such as the user's own app with its data folder and other agents' workspaces. A subject that lists processes sends those lines to its model provider. It may also take another subject's process for its own leftover and wait for it or stop it. Several heavy subjects at once can run the computer out of memory, and a starved run fails for reasons that are not the text's.
 
-- **Its own process list, always.** Start every instance that runs a subject in a process namespace of its own, with its own `/proc`.
-  - **On Linux, as root:** `unshare --pid --fork --mount-proc --kill-child <start command>`. The app becomes process 1 and sees only what it starts.
-  - **In a container where an unprivileged sandbox cannot mount `/proc`:** create the namespace as root first and start the sandbox inside it.
-  - **On macOS or Windows,** which have no process namespaces: run the instance in a Linux container or VM.
-  - **If none of these is possible,** do not run a subject that has a shell or process tools; the evaluation could not run.
-- **Check it before the first request:** list the processes from inside (`nsenter --target <the app's host pid> --pid --mount ps -eo pid,user,args`). Only the instance's own processes may show. Record the count in the report.
-- **Stop it** by sending SIGKILL to the `unshare` process, which ignores SIGTERM. `--kill-child` then ends every process in the namespace.
+- **A private process list is a practice, used where it pays.** It matters most on a bench that runs many subjects at once, where one subject can meet another's processes, and it is cheap on Linux with root: start the instance with `unshare --pid --fork --mount-proc --kill-child <start command>`, so the app becomes process 1 and sees only what it starts. In a container where an unprivileged sandbox cannot mount `/proc`, create the namespace as root first and start the sandbox inside it. Check it before the first request (`nsenter --target <the app's host pid> --pid --mount ps -eo pid,user,args`: only the instance's own processes show), and stop it by sending SIGKILL to the `unshare` process, which ignores SIGTERM. Whoever runs such a bench decides how far to isolate it.
+- **Otherwise the shared host works.** On the user's own machine (macOS, Windows, or Linux without root), a private list would need a Linux container or VM with the app, a display and the user's sign-in inside, which costs more than it protects. Run the instance on the host as usual; the user's own agents see the same process list every day. What protects the test there:
+  - run one subject that starts processes (servers, builds, browsers, tests) at a time, so no subject meets another's processes;
+  - scan the transcript after the run ([SKILL.md](../SKILL.md#4-judge)), and treat a run that acted on a foreign process as not valid.
 - **Memory.** A heavy subject builds, tests, or runs dev servers or a browser.
-  - **Before starting one,** read the available memory and swap (`/proc/meminfo`). Start it only if, after its expected peak, the user's own apps still have room: at least 2 GB left, and swap not nearly used up.
-  - **The expected peak** is the largest one measured for that kind of subject. While a subject runs, sample its namespace's total resident memory (`nsenter … ps -eo rss=`) and record the peak.
+  - **Before starting one,** read the free memory and swap (Linux: `/proc/meminfo`; macOS: `memory_pressure` or `vm_stat`). Start it only if, after its expected peak, the user's own apps still have room: at least 2 GB left, and swap not nearly used up.
+  - **The expected peak** is the largest one measured for that kind of subject: sample the resident memory of the instance's processes while it runs (`ps -o rss=` over the app's process tree, or inside a namespace `nsenter … ps -eo rss=`) and record the peak.
   - **Until a kind of subject has been measured,** run heavy subjects one at a time.
 
 ## 2. Load the package under test

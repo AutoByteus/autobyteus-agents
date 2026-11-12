@@ -11,7 +11,8 @@ usage: scan-transcript.py TRACES... --allow ROOT [--allow ROOT ...] [--marker TE
              or the host user's home. It is flagged wherever it appears in a process row or in a call.
   --foreign-user  a user name that only other subjects' or the host's processes run as (for example `nobody`
              when each sandbox sees the others under it); checked in the user column of process rows only
-  --ignore   a root to skip besides the system folders (/usr, /bin, /lib, /etc, /proc, /sys, /dev, /run, /var)
+  --ignore   a root to skip besides the system folders (/usr, /bin, /lib, /etc, /proc, /sys, /dev, /run, /var, and
+             on macOS /System, /Library, /opt/homebrew)
   --watch-tmp  also check paths under /tmp (skipped by default; pass --marker for other instances' /tmp folders)
 
 Findings:
@@ -29,7 +30,7 @@ import argparse, datetime, json, os, re, sys
 from pathlib import Path
 
 SYSTEM = ("/usr", "/bin", "/sbin", "/lib", "/lib32", "/lib64", "/libx32", "/etc", "/proc", "/sys", "/dev", "/run",
-          "/var", "/boot")
+          "/var", "/boot", "/System", "/Library", "/opt/homebrew", "/private/etc", "/private/var/db")  # Linux and macOS
 READ_TOOLS = {"Read", "read_file", "Grep", "Glob", "NotebookRead", "WebFetch", "read_page", "dom_snapshot",
               "view", "search_files", "list_directory"}
 PROC_CMD = re.compile(r"(?:^|[\s;&|(`$])(?:ps|pgrep|pkill|top|htop|pstree|lsof|fuser|pidof)(?:\s|$)"
