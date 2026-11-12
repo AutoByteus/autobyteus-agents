@@ -97,7 +97,7 @@ If no supplemental task artifacts exist, write `None`.
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
 
-Owners receive their collaborators from the composition root; a process-wide binding, registry, or singleton, or a collaborator connected after construction, that reaches an owner is absent or meets Principle 16's conditions (nothing uses it before it is set, a missing one fails loudly, it hides no loop that tangles ownership); no missing collaborator becomes a silent no-op or fallback (Principle 16): `Pass` / `Fail`
+Owners receive their collaborators from the composition root; a process-wide binding, registry, or singleton, or a collaborator connected after construction, that reaches an owner is absent or meets Principle 16's conditions (nothing uses it before it is set, a missing one fails loudly, it hides no loop that tangles ownership); no missing collaborator becomes a silent no-op or fallback, and none is optional only because tests leave it out (Principle 16): `Pass` / `Fail`
 
 ## Interface Boundary Verdict
 
@@ -134,6 +134,8 @@ A mechanism that gets a function reaching another collaborator (the owner should
 |  |  |  |  |  |  |  |
 
 Derived consumers of a changed structure listed with a decision for each (Principle 11): `Pass` / `Fail` / `N/A`
+
+Each picture shown in several places has one builder, and every place shows what it returns (Principle 11): `Pass` / `Fail` / `N/A`
 
 Each domain word the design uses or introduces keeps one meaning, and each concept one name, across code, data, wire, tools, UI, and docs (Principle 15): `Pass` / `Fail`
 
