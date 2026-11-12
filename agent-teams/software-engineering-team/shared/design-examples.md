@@ -1208,10 +1208,43 @@ Principles 9, 13 and 16.
 - **The lesson:** both the setter and the port were fine. The effort belonged on the problems that could go wrong.
 - **Notice it by:** a design decision or finding that cites a principle's wording ("late binding") but names nothing that can go wrong.
 
+### Case 9: A Required Collaborator Made Optional For Tests
+
+Principle 16.
+
+- **Situation:** a new delegation tree lists each run's children through a reader of each run's agents. The startup code always passes the reader.
+- **The mistake:** the constructor made the reader optional so tests could leave it out, and the code skipped it when absent. Two more new owners had optional members for the same reason. Had one been missing, children would have vanished from every view and list, a refusal would have been skipped, or a reply address dropped, all without an error.
+
+  ```ts
+  ❌ constructor(source: RunSource, reader: () => AgentsReader | null = () => null)
+     … this.reader()?.agentsOf(run) ?? []
+  ✅ constructor(source: RunSource, reader: AgentsReader)   // a test passes a fake reader
+  ```
+
+- **The lesson:** an optional parameter says the owner works without it. When it does not, a wiring mistake shows up as missing data instead of an error.
+- **Notice it by:** `dep?`, `Partial<Pick<…>>`, or a default that returns nothing, on a collaborator every production construction supplies. An optional collaborator is right when the product runs without it, such as a notification listener, and the code handles that on purpose: an explicit branch, or a no-op passed in.
+
+### Case 10: One Picture, Two Builders
+
+Principle 11.
+
+- **Situation:** a run that delegated work shows its child runs under it: in its open view, in the run list, in an inspection query, and in the phone layout.
+- **The mistake:** each place built the children's rows itself, and the copies drifted three times. The inspection left out the children's statuses; team and org lists showed no children; the open view and the list placed, named and badged the same children in separate code, so a row could move or change its name when the run was opened.
+- **The better design:** one builder takes the children's identities and statuses and returns the rows. The open view feeds it from the loaded run, the list from its poll, and every place shows what it returns.
+
+  ```text
+  ❌ open view → its own rows          list poll → rows rebuilt by the list
+  ✅ open view ─┐
+     list poll ─┴→ childRows(identities, statuses) → open view, list, phone
+  ```
+
+- **The lesson:** a picture shown in several places is one derived fact. Every second builder is a place the next change must remember.
+- **Notice it by:** the same rows, names or statuses composed in two places: an open view and a list, desktop and phone, a server query and a stream snapshot.
+
 ## How To Use These Examples
 
 - Start from the example whose shape is closest to the current task.
-- Read the case studies when a design touches the same shape: several kinds or entry forms, a sequence across components, derived data, a decision by absence, a claim about existing code, a rule applied by several callers, a name used in several places, or a port or setter chosen to break a cycle.
+- Read the case studies when a design touches the same shape: several kinds or entry forms, a sequence across components, derived data, a decision by absence, a claim about existing code, a rule applied by several callers, a name used in several places, a port or setter chosen to break a cycle, a collaborator optional only for tests, or a picture shown in several places.
 - Reuse the reasoning style, not the exact names.
 - The practices these examples illustrate live in [design-principles.md](design-principles.md): spine-first design (Principles 2 and 14), explicit ownership and named facades (3), off-spine concerns (4), singular interfaces (10), reachable premises (6), persisted-data decisions (5), file placement after the design story (12), one vocabulary (15), two owners that need each other (9), visible dependencies wired in one composition root (16), and choosing practices by context (The Approach: Spine First, Practices In Context).
 - Judge a finding outside a ticket's scope with [ticket-scope.md](ticket-scope.md#common-situations).
