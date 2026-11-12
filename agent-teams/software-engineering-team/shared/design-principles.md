@@ -1,10 +1,10 @@
 # Design Principles
 
-This is the canonical shared design reference for the software engineering team. Use it for design work and technical review. Each rule has one home: its principle states the rule, how to apply it, the signals that it is broken, and the question a reviewer asks. The sections after the principles order the work, list the structural triggers, assess design health, classify size and risk, and describe local patterns; they point back to the principles rather than restating them.
+This is the canonical shared design reference for the software engineering team. Use it for design work and technical review. Each practice has one home: its principle states the practice, how to apply it, the signals that it may be broken, and the question a reviewer asks. The sections after the principles order the work, list the structural triggers, assess design health, classify size and risk, and describe local patterns; they point back to the principles rather than restating them.
 
 ## Contents
 
-- [Applying These Principles: Purpose And Judgment](#applying-these-principles-purpose-and-judgment)
+- [The Approach: Spine First, Practices In Context](#the-approach-spine-first-practices-in-context)
 - [Project-Specific Design Principles](#project-specific-design-principles)
 - [Terminology](#terminology)
 - [Core Principles](#core-principles)
@@ -30,14 +30,16 @@ This is the canonical shared design reference for the software engineering team.
 - [Task Size And Architectural Risk](#task-size-and-architectural-risk)
 - [Common Local Patterns](#common-local-patterns)
 
-## Applying These Principles: Purpose And Judgment
+## The Approach: Spine First, Practices In Context
 
-Each principle exists to keep ownership, ordering and behavior clear and correct. Architecture fits the case: apply a principle where it solves a real problem in the change at hand. Applying it where it only adds structure is itself a design defect, not compliance. This holds for every role that uses these principles: designing, reviewing a design, implementing, and reviewing code. Example 10 in the team's design examples shows a justified departure, a rejected over-application, and a port that passes the empty indirection check.
+The method is spine first. Start from the end-to-end data-flow spine of each use case, with its secondary, return/event and bounded local spines (Principle 2). The spines locate ownership: each node on them owns something concrete (Principle 3), and the concerns around them attach to an owner (Principle 4). Owners group into subsystems and modules, and those map to files (Principles 11, 12). Most dependencies follow from this: each owner depends on the next owner on its spine and on the concerns it uses (Principle 9). A dependency the spine does not show, above all one that points back against it, is the one to look at closely.
 
-- **Purpose first.** Before applying a rule, name the problem it solves here: a bug, a behavior risk, a hidden dependency that matters, a cycle, a policy that will drift between copies, dead code in touched files. When there is none, the rule calls for no new structure.
-- **The smallest structure that works.** Prefer the smallest structure that keeps the design clear. Add a component, port, layer or pattern only for a concrete need: a real cycle, a real difference in what callers need, real repetition, a real hidden dependency that bites.
-- **Deviation with a reason.** A design may knowingly depart from a principle when the reason holds for this case. It records the departure and the reason in the design spec (a choice made during implementation goes in the implementation handoff), and reviewers judge the reason, not the conformance. A reason names what following the principle would cost here and why the departure causes no problem the principle exists to prevent.
-- **What stays firm.** Judgment decides how much structure a case needs; it does not waive what the principles protect: the supported behavior basis and product reachability (Principles 1, 6), a clear owner for each concern (3), an evidence-backed persisted-data decision (5), no dead code in touched files (7), clean-cut replacement (8), and no behavior decided by a missing owner or a silent fallback (13, 16). A departure from one of these needs what that principle itself names, such as the user's approval for a compatibility path (8), not a recorded reason alone.
+The other principles are practices that support this method. Each exists to keep ownership, ordering and behavior clear and correct, and each fits some contexts and not others. Practices can pull against each other: extract a shared structure or keep two apart (11), split a file or keep the codebase's layout (12), add a port or give consumers the owner (13), pass a collaborator in or connect it after construction (16). The context decides which one applies. This holds for every role that uses these principles: designing, reviewing a design, implementing, and reviewing code. Examples 10 and 11 in the team's design examples show practices chosen by context.
+
+- **Purpose first.** Before applying a practice, name the problem it solves here: a bug, a behavior risk, a hidden dependency that matters, a cycle that tangles ownership, a policy that will drift between copies, dead code in touched files. When there is none, the practice calls for no new structure. Applying it where it only adds structure is itself a design defect, not compliance.
+- **The smallest structure that works.** Prefer the smallest structure that keeps the design clear. Add a component, port, layer or pattern only for a concrete need: a cycle that tangles ownership, a real difference in what callers need, real repetition, a real hidden dependency that bites.
+- **Deviation with a reason.** A design may knowingly deviate from a practice when the reason holds for this case. It records the deviation and the reason in the design spec (a choice made during implementation goes in the implementation handoff), and reviewers judge the reason, not the conformance. A reason names what following the practice would cost here and why the deviation causes no problem the practice exists to prevent.
+- **What holds in every context.** A few things are not trade-offs, because the problem they prevent is real in every context: the supported behavior basis and product reachability (Principles 1, 6), a clear owner for each concern (3), an evidence-backed persisted-data decision (5), no dead code in touched files (7), clean-cut replacement (8), and no behavior decided by a missing owner or a silent fallback (13, 16). A deviation from one of these needs what that principle itself names, such as the user's approval for a compatibility path (8), not a recorded reason alone.
 - **Signals are leads.** A principle's Signals show where to look. A signal alone is not a finding until it names the problem it causes in this change.
 - **Findings name the problem.** A review finding names the concrete problem the design or code causes, not only "Principle X not followed". A different structure the reviewer would prefer, where the design works and causes no such problem, is a suggestion, not a finding ([ticket-scope.md](ticket-scope.md#common-situations)). Added structure that does nothing is not such a preference: an interface, port, adapter or wrapper that meets Principle 13's empty indirection check is a finding, even though it works.
 - **Rulings hold.** Once a review round accepts a shape for a stated reason, later rounds keep that ruling unless new evidence shows a problem with it, and name that evidence when they change it.
@@ -83,7 +85,7 @@ principles and respect the project's own as well.
 
 Apply these principles from behavioral foundation through macro structure before detailed checks. Every design and technical review must establish the supported product-scenario basis for the behavior it serves. The detailed premise gate in Principle 6 is conditional only for an additional material scenario or mechanism not already established by that basis; it is not a separate edge-case discovery stage.
 
-A principle may end with **Signals** (what shows the rule is broken) and **Check** (the question a design or review answers).
+A principle may end with **Signals** (what suggests the practice may be broken) and **Check** (the question a design or review answers).
 
 ### 1. Approved Behavior And Production Reality
 
@@ -239,7 +241,15 @@ Dead code is code that nothing in the product reaches anymore. It makes the code
 - Dependency direction follows ownership; name allowed directions and forbidden shortcuts explicitly.
 - Layering is optional explanatory output only. Do not use layering as a first principle. If layering is used as explanation, it must still follow ownership and encapsulation: a higher layer should not skip an owning boundary and directly reach into a deeper layer that the intermediate boundary already owns (Principle 3).
 - Direction says who may depend on whom; Principle 16 says how an owner obtains what it depends on. A dependency that points the right way but is reached through a process-wide lookup is judged by Principle 16's conditions.
-- **Check:** Which dependencies are allowed, and which shortcuts are forbidden?
+- **When two owners need each other.** The spine usually shows one direction as the main line: an order belongs to a user, so orders depend on users. Find out what the backward need really is, and choose by context:
+  - a reaction to the other's change (cancel a user's open orders when the user is deactivated): an event or listener, so the backward direction is only a notification (Principle 16);
+  - a use case that needs both (delete a user only when no order is open): an owner above both that drives the sequence (Principle 13);
+  - a check the upstream owner must enforce itself: a small interface the upstream owner defines and the downstream owner implements, so the dependency between modules stays one-way;
+  - data both need: a third owner both depend on, or one owner when the two are one concept split badly;
+  - only the order of construction: connect one collaborator after construction, or give it a narrow interface (Principle 16). Neither is required, and a reviewer does not swap one for the other.
+
+  A cycle in which each owner drives part of the other's sequence tangles ownership; that is the one to redesign. See Example 11 in the team's design examples.
+- **Check:** Which dependencies are allowed, and which shortcuts are forbidden? For each dependency that points back against the spine, what is the need behind it, and which answer above fits?
 
 ### 10. Interfaces Follow Ownership
 
@@ -267,7 +277,7 @@ Dead code is code that nothing in the product reaches anymore. It makes the code
 - One file owns one concrete concern. If one file owns multiple unrelated concerns, split it. If a subsystem or optional module grouping becomes a mixed catch-all, reorganize it into clearer owned files and boundaries.
 - File placement must follow ownership; move or split files when their paths no longer match their real concern.
 - Subsystem, folder, and file mapping should be spine-led and ownership-led, but not mechanical: do not impose a rigid one-folder-per-step rule. Specify target subsystems and files explicitly; use optional module groupings only when they improve readability or reflect an established codebase pattern.
-- Distinct structural depths often deserve distinct folders, but do not force artificial over-splitting. If a flatter layout is clearer, justify it explicitly; if the layout splits more, make sure each split reflects a real owner or boundary.
+- Distinct structural depths often deserve distinct folders, but do not force artificial over-splitting. When the layout deviates from the codebase's existing one, flatter or more split, record why; when it splits more, make sure each split reflects a real owner or boundary.
 - **Where it bends:** the codebase's existing layout is the default while it keeps ownership readable. Split or move a file for a real second concern or a path that misleads, not to match an ideal layout.
 - **Signals:** names that do not describe the actual owner or role; misplaced files whose paths hide the real concern; folder layouts so flat they hide boundaries, or so split that they create artificial structure with no real owner.
 - **Check:** Which subsystems and files should own the target structure, and are any optional module groupings actually needed? Does the subsystem, folder, and file layout make ownership and structural depth readable without artificial fragmentation?
@@ -279,10 +289,10 @@ Dead code is code that nothing in the product reaches anymore. It makes the code
 - **Empty indirection check.** A new interface, port, adapter or wrapper is such a layer, a defect and a review `Fail` even though it works, when all three hold:
   - (a) it has one implementation and no real reason for a second: no I/O or remote boundary, no plugin point, no test that needs a fake where the real owner cannot be used;
   - (b) it only forwards: its consumers could take the owner directly, or a narrowed type of it (in TypeScript `Pick<Owner, "isOpen">`; elsewhere an interface the owner itself implements), and it adds no combining of owners, no translation and no invariant;
-  - (c) it solves no problem you can name (no cycle, no startup-order constraint, no boundary): it exists to match a rule's wording.
+  - (c) it solves no problem you can name (no dependency cycle, no startup-order constraint, no boundary): it exists to match a practice's wording.
 
-  The problem it causes is the indirection itself: one more type that every reader steps through and every change to the owner must follow. Give its consumers the owner, or a narrowed type of it, instead. Not empty: a narrowed type of the real owner; a port at a real boundary; an adapter that combines several owners into one capability that several consumers use (Example 10 in the team's design examples).
-- One sequence has one owner that calls each of its mechanisms itself, in order. A mechanism does not reach another collaborator through a function passed in (for example `engine.send(input, transmit)` where `transmit` belongs to another component): that splits the sequence between two owners even when every dependency points the right way. Callbacks are for notifications (events, lifecycle hooks). A component whose rules branch on which side or context it runs in holds two roles; give each its owner.
+  The problem it causes is the indirection itself: one more type that every reader steps through and every change to the owner must follow. Give its consumers the owner, or a narrowed type of it, instead. Not empty: a narrowed type of the real owner; a port at a real boundary; an adapter that combines several owners into one capability that several consumers use (Case 8 in the team's design examples).
+- One sequence has one owner that calls each of its mechanisms itself, in order. A mechanism does not take over a step of another owner's sequence through a function passed in (for example `engine.send(input, transmit)`, where `transmit` belongs to another component and the engine decides when it runs and what its failure means): that splits the sequence between two owners even when every dependency points the right way. Otherwise a function passed in is a one-method interface and is judged like one: a question the receiver asks (`isOpen(task)`) or a notification (events, lifecycle hooks) is fine. A component whose rules branch on which side or context it runs in holds two roles; give each its owner.
 - A behavior the requirements name is decided by an explicit rule with its own result, not reached because a lookup finds nothing, an event is missing, or one status counts as another.
 - **Where it bends:** a coordination policy is a rule with choices (which provider, when to retry, what counts as ready); the same one-line call in two places is not one. A thin entry the framework or transport requires, such as a route handler that parses and forwards, owns that boundary and is not an empty layer.
 - **Signals:** the same coordination policy repeated in several callers ("the same shape in each root"); empty indirection layers that only pass work through; a port or wrapper with one implementation whose methods each call one method of one owner; one sequence split between collaborators; "finds no X, so …", "counts as", or a lifecycle end that changes no state.
@@ -308,28 +318,27 @@ Dead code is code that nothing in the product reaches anymore. It makes the code
 
 ### 16. Visible Dependencies, One Composition Root
 
-An owner's dependencies are part of the architecture: a reader should see what an owner needs and in what order owners come to exist. The principle exists to prevent three real problems: behavior that silently does nothing or falls back when an owner is missing; a wiring mistake that surfaces only on some later request instead of at startup; and hidden loops between owners that tangle who drives what. A setter or a global is not the problem in itself; these are.
+An owner's dependencies are part of the architecture: a reader should see what an owner needs and in what order owners come to exist. Passing collaborators in is the default because it keeps two things cheap: the signature shows what an owner needs, and a test builds the owner with fakes, with no global state that leaks from one test into the next. A lookup or a connection after construction gives those up; that is a cost to weigh, not a finding. Three problems make it a finding: behavior that silently does nothing or falls back when an owner is missing; a wiring mistake that surfaces only on some later request instead of at startup; and a hidden cycle in which owners drive parts of each other's sequence. A setter or a global is not the problem in itself; these are.
 
-- By default an owner receives the collaborators it depends on through its constructor, or as arguments of the call that needs them. Its signature then shows what it needs, and a test builds it with fakes.
+- By default an owner receives the collaborators it depends on through its constructor, or as arguments of the call that needs them.
 - One composition root (the server's or app's startup code) creates the owners and passes each one its collaborators. The order in which owners must exist is visible there, in code, not in comments elsewhere.
-- When two owners need each other, judge the loop. If it tangles ownership (each drives part of the other's sequence, Principle 13), it is a design problem to solve: split out what both need, or pass a narrower collaborator. If it only constrains the order of construction, connecting one collaborator after construction in the composition root is an acceptable choice under the conditions below.
+- When two owners need each other, Principle 9 says how to choose. When only the order of construction is left, connecting one collaborator after construction in the composition root is an acceptable choice under the conditions below, and so is a narrow interface; neither is required.
 - A process-wide lookup (a module-level `bind…`/`find…`/`get…()` singleton, a global registry, a service locator) or a collaborator connected after construction is an acceptable choice when all of these hold:
   - startup order guarantees that nothing uses it before it is set;
   - a missing collaborator fails loudly, never silently;
-  - it does not hide a loop that tangles ownership.
+  - it does not hide a cycle that tangles ownership.
 
-  Otherwise pass the collaborator in. A lookup also hides the dependency from the signature and from the spine, so prefer passing in where it costs little.
+  Otherwise pass the collaborator in.
 - A required collaborator that is missing is a construction or startup error, or a loud failure where it is used. Code never checks whether an owner exists yet and then quietly does nothing or falls back (`find…()?.do() ?? fallback`): that is behavior decided by absence (Principle 13).
-- Exception: read-only values fixed before startup, such as configuration, a logger, or a clock, may be read process-wide. An owner with state or behavior is not such a value, however widely it is used. When a framework creates objects itself and offers only a global container, read the container in one adapter at the framework's edge and pass what it returns to the owners.
-- A design that adds or keeps a lookup or an after-construction connection for an owner, where the choice is not obvious, records it as a fired Structural Trigger with why the three conditions hold, and the reviewers judge that reason. "The composition binds it at startup" only describes the lookup; the reason says why nothing can use it earlier and how a missing one fails.
+- Exception: read-only values fixed before startup, such as configuration, a logger, or a clock, may be read process-wide. An owner with state or behavior is not such a value, however widely it is used. When a framework creates objects itself and offers only a global container, prefer reading the container in one adapter at the framework's edge and passing what it returns to the owners: that keeps the framework coupling in one place.
+- A design that adds or keeps a lookup, or connects a needed collaborator after construction, where the choice is not obvious, records it as a fired Structural Trigger with why the three conditions hold, and the reviewers judge that reason. "The composition binds it at startup" only describes the lookup; the reason says why nothing can use it earlier and how a missing one fails.
 - In code a change touches, prefer passing a new dependency in, even where nearby code still uses lookups. An older lookup the change only uses stays as it is; one that causes one of the three problems is a follow-up ([ticket-scope.md](ticket-scope.md#recording-follow-ups)) unless the design decides to fix it now.
 - **Where it bends:**
   - A notification listener or callback wired in the composition root after both owners exist is acceptable: the wiring is visible there, and the emitter behaves the same with or without a listener.
   - A setter or closure that supplies a needed collaborator after construction is judged by the three conditions above, not by its form: when startup guarantees the order and a missing one throws, it is a legitimate choice.
-  - Split out a narrower port only for a loop that tangles ownership or a real difference in what callers need, not to replace a working setter or listener. A port with no such loop or difference behind it, that only forwards to one owner, fails Principle 13's empty indirection check.
-- See Example 9, Owners Wired In One Composition Root, and Example 10, A Justified Departure And A Rejected Over-Application, in the team's design examples.
-- **Signals:** a module-level `bind…`, `set…Instance`, `find…` or `get…()` that hands out an owner; a use that can run before a setter or binding does; `?.` on a looked-up owner followed by `?? fallback` or nothing; a comment explaining that X is bound before or after Y; tests that bind, reset or replace a global to swap in a fake; a design that lists a process binding, global registry or service locator as a facade, boundary or approved shape.
-- **Check:** How does each owner the change adds or touches get each collaborator it needs, and where is the order in which owners are created visible? For each lookup or after-construction connection the change adds or uses: can anything use it before it is set, does a missing one fail loudly, and does it hide a loop that tangles ownership?
+- See Examples 9, 10 and 11 in the team's design examples.
+- **Signals:** a module-level `bind…`, `set…Instance`, `find…` or `get…()` that hands out an owner; a use that can run before a setter or binding does; `?.` on a looked-up owner followed by `?? fallback` or nothing; a comment explaining that X is bound before or after Y; tests that bind, reset or replace a global to swap in a fake; a design that lists a process binding, global registry or service locator as a facade or boundary, or approves one without the reasons the three conditions need.
+- **Check:** How does each owner the change adds or touches get each collaborator it needs, and where is the order in which owners are created visible? For each lookup or after-construction connection the change adds or uses: can anything use it before it is set, does a missing one fail loudly, and does it hide a cycle that tangles ownership?
 
 ## Practical Application Guide
 
@@ -338,14 +347,14 @@ Design in this order. Each step applies the principle it names; the design spec'
 1. Read the current code path and establish the behavioral baseline (Principle 1); confirm the supported scenario basis (Principle 6).
 2. Build the spine inventory and write each primary spine (Principle 2).
 3. Name the main-line nodes in the project's vocabulary (Principle 15) and define what each owns (Principle 3); attach off-spine concerns to their owner, reusing existing capability areas first (Principle 4).
-4. Decide boundaries, dependency direction, and interfaces (Principles 3, 9, 10), and how each owner receives its collaborators from the composition root (Principle 16).
+4. Decide boundaries, dependency direction, and interfaces (Principles 3, 9, 10), including what each dependency that points back against the spine really needs (Principle 9), and how each owner receives its collaborators from the composition root (Principle 16).
 5. Draft file responsibilities, then extract reusable owned structures where repetition appears and tighten them (Principle 11), re-tighten the file responsibilities, and only then finalize folder and path mapping (Principle 12).
 6. List what the target makes unnecessary and the dead code in the touched files (Principles 7, 8); make each persisted-data transition decision (Principle 5).
 7. Record the change inventory and sequence, and add short examples where a shape would stay abstract (Principle 14).
 
 ## Structural Triggers
 
-When a trigger fires, apply the principle it names and record in the design spec which triggers fired, with evidence, and the response: the structure the principle asks for, or a departure with its reason ([Applying These Principles](#applying-these-principles-purpose-and-judgment)).
+When a trigger fires, apply the principle it names and record in the design spec which triggers fired, with evidence, and the response: the structure the principle asks for, or a deviation with its reason ([The Approach](#the-approach-spine-first-practices-in-context)).
 
 | Trigger | Fires when | Principle |
 | --- | --- | --- |
@@ -366,7 +375,8 @@ When a trigger fires, apply the principle it names and record in the design spec
 | Derived data | a fact is computed in two places, or a changed structure feeds views, sets, validators, or streams | 11 |
 | Behavior by absence | a required behavior follows from a failed lookup, a missing event, or "counts as" | 13 |
 | Vocabulary drift | a domain word gets a second meaning, a concept a second name, or a name says less or more than the thing does | 15 |
-| Hidden dependency | code reaches an owner through a process-wide binding, registry, or `get…()` singleton, or connects it after construction, instead of receiving it; or a design lists such a binding as a boundary | 16 |
+| Hidden dependency | code reaches an owner through a process-wide binding, registry, or `get…()` singleton, or connects a collaborator the owner needs after construction, instead of receiving it; or a design lists such a binding as a boundary (a notification listener does not fire it) | 16 |
+| Backward dependency | two owners need each other, or a dependency points back against the spine | 9 |
 
 ## Task Design Health Assessment
 
@@ -526,14 +536,14 @@ Do not introduce a pattern if it obscures the spine, blurs ownership, or creates
 
 - Solves: controlled construction of objects, backends, adapters, or runtime variants.
 - Best fit: boundary creation points with explicit ownership.
-- Avoid: turning a factory into a hidden service locator that code asks for owners at runtime (Principle 16), or into a policy container.
+- Avoid: turning a factory into a service locator that code asks for owners at runtime without Principle 16's conditions, or into a policy container.
 - Example shape: `AgentFactory` creates runtime/context/handler-registry wiring at the creation boundary instead of scattering construction across runtime code.
 
 ### Registry
 
 - Solves: lookup of capabilities, handlers, providers, or definitions by key.
 - Best fit: off-spine concern for indexed lookup.
-- Avoid: hiding business decisions or orchestration inside the registry; making it a process-wide place where code looks up owners (Principle 16). The registry itself is passed to the owner that uses it.
+- Avoid: hiding business decisions or orchestration inside the registry. By default the registry itself is passed to the owner that uses it; a process-wide registry where code looks up owners needs Principle 16's conditions.
 - Example shape: `EventHandlerRegistry` or a parser strategy registry stays as lookup infrastructure for a dispatcher or parser owner.
 
 ### Adapter

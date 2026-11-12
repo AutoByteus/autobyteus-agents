@@ -153,7 +153,7 @@ Use the mandatory structural checks below on every implementation review. Do not
 Treat the `Authoritative Boundary Rule` as one of the highest-signal structural checks in this section. Apply these checks only after establishing the behavior basis and Supported Product Scenario Gate above; use only promoted candidates in findings or score rationale.
 Work from macro structure toward detail: data-flow spine, ownership and boundaries, interfaces and dependencies, subsystem and file responsibilities, then local implementation and test readiness.
 Review test structure proportionately when test files are relevant. Do not apply implementation-source size thresholds to tests, and do not fail a coherent test suite merely because its files are large.
-Judge each check by its purpose ([Applying These Principles](../references/design-principles.md#applying-these-principles-purpose-and-judgment)). Where the design or the implementation handoff records a departure from a principle, judge the reason: when it holds for this case, write `Pass — deviation recorded, reason holds` and where the reason is recorded. `Fail` needs a concrete problem the code causes, named in Evidence; a structure you would prefer is a suggestion, not a failure.
+Judge each check by its purpose ([The Approach](../references/design-principles.md#the-approach-spine-first-practices-in-context)). Where the design or the implementation handoff records a deviation from a principle, judge the reason: when it holds for this case, write `Pass — deviation recorded, reason holds` and where the reason is recorded. `Fail` needs a concrete problem the code causes, named in Evidence; a structure you would prefer is a suggestion, not a failure.
 
 | Check | Result (`Pass`/`Pass — deviation recorded, reason holds`/`Fail`) | Evidence | Required Action |
 | --- | --- | --- | --- |
@@ -291,7 +291,7 @@ Rules:
 - Do not record raw numbers without explanation.
 - Every row must include the reason for the score, the concrete weakness or drag, and the expected improvement.
 - Every category is mandatory. Clean pass target is `>= 9.2` in every category. Any category below `9.2` is a real gap and should normally fail the review.
-- Score only against approved or verified behavior, promoted supported product scenarios, established contracts, supported operational constraints, and concrete maintainability defects. Cite the candidate-gate and applicable premise-validation records for any material assumed scenario; rejected or `Not Reachable` candidates cannot lower a score. A recorded departure whose reason holds, or a structure you would merely prefer, cannot lower a score either.
+- Score only against approved or verified behavior, promoted supported product scenarios, established contracts, supported operational constraints, and concrete maintainability defects. Cite the candidate-gate and applicable premise-validation records for any material assumed scenario; rejected or `Not Reachable` candidates cannot lower a score. A recorded deviation whose reason holds, or a structure you would merely prefer, cannot lower a score either.
 - Do not let the overall summary override a weak category. The review still follows the actual findings and mandatory checks.
 - If the `Authoritative Boundary Rule` is broken, call it out explicitly in findings and in the relevant score rationale instead of hiding it under vague dependency wording.
 

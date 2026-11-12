@@ -60,7 +60,7 @@ After the initial review result, complete the applicable prior-finding resolutio
 
 Apply the remaining technical sections proportionately. If a whole section is genuinely inapplicable, write `N/A` with a short reason; do not invent a design concern to populate the template.
 
-Judge each check by its purpose ([Applying These Principles](../references/design-principles.md#applying-these-principles-purpose-and-judgment)). Where the design records a departure from a principle, judge the reason: when it holds for this case, the check passes as `Pass — deviation recorded, reason holds`, with where the reason is recorded. Fail a check for a concrete problem the design causes, not for a structure you would prefer; a preference goes under Residual Risks as a suggestion.
+Judge each check by its purpose ([The Approach](../references/design-principles.md#the-approach-spine-first-practices-in-context)). Where the design records a deviation from a principle, judge the reason: when it holds for this case, the check passes as `Pass — deviation recorded, reason holds`, with where the reason is recorded. Fail a check for a concrete problem the design causes, not for a structure you would prefer; a preference goes under Residual Risks as a suggestion.
 
 ## Supplemental Artifact Coherence Verdict
 
@@ -245,7 +245,7 @@ Rules:
 - A blocking `Design Impact` finding must have scope status `Within Approved Scope` and cite its approved authority. A `Requirement Gap — User Approval Required` may block progression while clarification is unresolved, but it must not prescribe the proposed new behavior as a mandatory design correction before approval.
 - An `Out-of-Scope Recommendation` is non-blocking. A problem that should become its own Task is a follow-up: add it to the ticket's `follow-ups.md` ([ticket-scope.md](../references/ticket-scope.md)) and cite its ID; a risk that needs no Task stays under Residual Risks.
 - A reachable technical premise proves that a state can occur; it does not prove that the ticket authorizes changing that behavior.
-- A structure you would prefer, where the design works and causes no such problem, and a recorded departure whose reason holds, are not findings ([ticket-scope.md](../references/ticket-scope.md#common-situations)).
+- A structure you would prefer, where the design works and causes no such problem, and a recorded deviation whose reason holds, are not findings ([ticket-scope.md](../references/ticket-scope.md#common-situations)).
 - Reuse the same finding ID when the same issue persists across rounds.
 - Create a new finding ID only for newly discovered issues.
 - After the initial result, mark resolved or obsolete earlier findings in the current `ARCH-REV-*` entry's prior-finding resolution table instead of silently dropping them.

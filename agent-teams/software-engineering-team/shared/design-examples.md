@@ -13,7 +13,8 @@ Worked examples of clear designs and of the shapes to avoid, followed by short c
 - [Example 7: Rejecting An Unreachable Edge Case During Technical Review](#example-7-rejecting-an-unreachable-edge-case-during-technical-review)
 - [Example 8: Supported Product Scenario Versus Technical Possibility](#example-8-supported-product-scenario-versus-technical-possibility)
 - [Example 9: Owners Wired In One Composition Root](#example-9-owners-wired-in-one-composition-root)
-- [Example 10: A Justified Departure And A Rejected Over-Application](#example-10-a-justified-departure-and-a-rejected-over-application)
+- [Example 10: A Justified Deviation And A Rejected Over-Application](#example-10-a-justified-deviation-and-a-rejected-over-application)
+- [Example 11: Two Services That Need Each Other](#example-11-two-services-that-need-each-other)
 - [Common Bad-Practice Patterns](#common-bad-practice-patterns)
 - [Case Studies](#case-studies)
 - [How To Use These Examples](#how-to-use-these-examples)
@@ -174,7 +175,7 @@ The bounded local spine is not a second architecture; it is the internal control
 
 | Node | Role | Ownership |
 | --- | --- | --- |
-| `JobClient` | thin public facade | public entry convenience only; should not own runtime sequencing |
+| `JobClient` | thin public facade | public entry convenience only; should not own runtime sequencing. A port at a real boundary, so not empty indirection (Principle 13) |
 | `JobRuntime` | governing runtime owner | lifecycle, event submission, outward notifier wiring |
 | `JobWorker` | bounded local owner | serialized worker loop and shutdown path |
 | `WorkerEventDispatcher` | dispatch owner inside the worker flow | applies status projection and routes each event to a concrete handler |
@@ -838,6 +839,7 @@ The startup code is the one composition root. It creates the owners in order and
 const config = loadConfig();                               // read-only, fixed before startup
 const taskStore = new TaskStore(config.dataDir);
 const delegationTree = new DelegationTree(taskStore);
+const runRegistry = new RunRegistry();
 const runControl = new RunControl(runRegistry);
 const taskService = new TaskService(taskStore, runControl);
 const archiveGuard = new ArchiveGuard(delegationTree, runControl);
@@ -861,7 +863,7 @@ expect(runs.stopped).toEqual([taskId]);
 ```
 
 - `TaskService`'s constructor shows that closing a task depends on run control; the spine `Close action -> TaskService -> RunControl -> Run` reads the same in the design and in the code.
-- The order in which owners exist is the order of the lines in `server-composition.ts`. If `RunControl` ever needed `TaskService` too, that cycle would show up here as code that cannot be written, and the design would judge the loop: split out what both need when it tangles ownership, or connect one after construction when it only constrains the order (Example 10).
+- The order in which owners exist is the order of the lines in `server-composition.ts`. If `RunControl` ever needed `TaskService` too, that cycle would show up here as code that cannot be written, and Principle 9 says how to choose (Example 11).
 
 ### Bad Shape
 
@@ -885,10 +887,9 @@ const working = (findDelegationTree()?.openChildrenOf(run) ?? [])
 
 Why this degrades:
 
-- `TaskService` and `ArchiveGuard` do not show what they depend on; the run-control dependency is visible only inside a closure and a filter.
-- The startup order lives in a comment. Until `bindRunControl` runs, closing a task does not stop its runs and archiving is allowed, with no error: the missing owner decides the behavior (Principle 13).
-- Tests call `bindRunControl(fake)` and must remember to unbind, so one test's fake can leak into the next.
-- Each new feature tends to add another `bind…`/`find…` pair, because that is how the code around it is reached. A design that names "process binding" as an approved facade passes review unless a rule says otherwise.
+- The problem: the startup order lives in a comment, and until `bindRunControl` runs, closing a task does not stop its runs and archiving is allowed, with no error. The missing owner decides the behavior (Principle 13), and a wiring mistake shows up only on a later request.
+- Costs on top: `TaskService` and `ArchiveGuard` do not show what they depend on (the run-control dependency is visible only inside a closure and a filter), and tests call `bindRunControl(fake)` and must remember to unbind, so one test's fake can leak into the next.
+- Each new feature tends to add another `bind…`/`find…` pair, because that is how the code around it is reached. A design that lists such a binding as a facade, without the reasons Principle 16's conditions need, hides all of this.
 
 ### When The Decision Would Change
 
@@ -900,11 +901,11 @@ Why this degrades:
 
 How an owner gets its collaborators is part of the design, not an implementation detail. Passing them in from one composition root keeps the dependencies and the startup order visible, makes a missing owner fail at startup, and lets tests build the owner directly.
 
-## Example 10: A Justified Departure And A Rejected Over-Application
+## Example 10: A Justified Deviation And A Rejected Over-Application
 
-Applying These Principles: Purpose And Judgment; Principles 10, 13 and 16.
+The Approach: Spine First, Practices In Context; Principles 10, 13 and 16.
 
-### A Justified Departure
+### A Justified Deviation
 
 - **Situation:** a change adds a run status badge. The run store already has `getRun(runId)`, which returns agent, team and org runs alike. Principle 10 prefers subject-specific methods.
 - **The design records:** "Kept `getRun(runId)`. Run IDs are unique across kinds, and every caller (status badge, list view, archive) treats all kinds the same; none branches on the kind. Three subject-specific methods would have identical bodies."
@@ -916,14 +917,54 @@ Applying These Principles: Purpose And Judgment; Principles 10, 13 and 16.
 - **Situation:** the Task service emits "entries changed". The run view listens, so the composition root creates both owners and then registers the view's listener on the service: `taskService.onEntriesChanged(view.refresh)`.
 - **The proposed finding:** "Late binding. Add a `TaskChangeNotifierPort`, split the service, and pass the listener through a constructor (Principle 16)."
 - **Why it is not a finding:** the wiring is visible in the composition root, and the service behaves the same with or without a listener; it waits on no result. The finding names no bug, cycle or hidden dependency, only a structure the reviewer prefers. It is not a suggestion either: the port it asks for would have one implementation, only forward to the service, and solve no problem, so it meets conditions (a)–(c) of Principle 13's empty indirection check. A design that added it would fail review.
-- **A setter for a needed collaborator, judged by what can go wrong:** the run services need `isOpen(task)` from the Task service, but the Task service needs run control, which needs the run services. So the composition root creates the Task service later and connects it with `runServices.setTaskReader(taskService)`.
-  - It is a problem only if something can call `isOpen` before the setter runs and gets no answer, or quietly does nothing, for example `this.reader?.isOpen(task) ?? true`.
-  - If startup guarantees the order (no run can start before the composition root finishes) and an unset reader throws, the setter is a legitimate choice. A narrower port is then an option, not a requirement.
-  - A real case, a borderline one that passes the empty indirection check: a design took the other option. The run services need two things from the Task side: whether a run's Task entry is open, and to mark that run's Task changed when the run's status changes. The design gave them a two-method port, `RunTaskRecords` (`isOpen`, `statusChanged`), built in the composition root from the Task records and the Task change marks, both created before the run services. It has one implementation, and a setter would have served as well. But it does not only forward: `isOpen` reads the Task records, while `statusChanged` finds the run's Task in those records and marks it changed in a second owner, never throwing. About eight run services take that combined capability as one dependency. So it fails condition (b) and passes the check. Removing it would push the combining into each consumer: churn that fixes no bug. What the principle really caught in the same change were silent fallbacks (a Task closure that skipped stopping its runs when an owner was not wired yet), a second startup path that quietly gave agents a different message, and a loop where runs called the delegation owners that need the runs.
 
 ### Design Lesson
 
-Judge a shape by what can actually go wrong, not by its likeness to a rule's wording. A recorded reason that holds passes. Added structure that solves nothing is a defect of its own, and Principle 13's empty indirection check says when it fails review: one implementation, it only forwards, and it solves no problem you can name. A port that combines several owners into one capability for several consumers is not empty, even when it looks like one.
+Judge a shape by what can actually go wrong, not by its likeness to a practice's wording. A recorded reason that holds passes. Added structure that solves nothing is a defect of its own, and Principle 13's empty indirection check says when it fails review: one implementation, it only forwards, and it solves no problem you can name. Case 8 shows a port that looked empty and was not.
+
+## Example 11: Two Services That Need Each Other
+
+Principles 9, 13 and 16.
+
+### Situation
+
+An online shop has a user service and an order service. Creating an order checks that the user exists and is active and reads the shipping address, so the order service needs the user service. Several needs seem to point back: deactivating a user must cancel the user's open orders; a user with an open order cannot be deleted; both sides read the user's credit limit.
+
+### Read The Spine First
+
+The main line is `Checkout -> OrderService -> UserService (active? address) -> OrderStore`: orders depend on users. Each need that points back is a different kind of need, with its own answer (Principle 9):
+
+| Need that points back | What it really is | Answer |
+| --- | --- | --- |
+| Deactivating a user cancels the user's open orders | a reaction | `UserService` publishes `userDeactivated`; the composition root subscribes the order service. The user side knows nothing about orders. |
+| Delete a user only when no order is open | a use case that needs both | `DeleteUserUseCase` asks the order service, then deletes through the user service. It owns the order of the steps. |
+| The user service itself must refuse such a deletion, whoever calls it | a check the upstream owner enforces | `UserService` defines `OpenOrdersCheck { hasOpenOrders(userId) }`; the order side implements it. The modules stay one-way. |
+| Both read the credit limit | shared data | A `CustomerAccount` owner that both depend on, or one owner if users and accounts turn out to be one concept. |
+
+```ts
+// server-composition.ts
+const users = new UserService(userStore, userEvents);
+const orders = new OrderService(orderStore, users);
+userEvents.on("userDeactivated", (u) => orders.cancelOpenOrders(u.id)); // a reaction: a notification
+const deleteUser = new DeleteUserUseCase(orders, users);                // a use case above both
+```
+
+### When Only Construction Order Is Left
+
+Take the third row: `UserService` needs an `OpenOrdersCheck`, and the order service that implements it also needs `UserService`. Neither drives the other's sequence, so the cycle only fixes the order of construction. Two answers are fine (Principle 16):
+
+- connect after construction: `users.setOpenOrdersCheck(orders)` in the composition root, before any request is served, with `UserService.delete` throwing when the check is unset;
+- or a narrow implementation built from what exists first, such as one that reads the order store, passed to `UserService` in its constructor.
+
+Neither is required, and a reviewer does not swap one for the other. The setter is a problem only if something can call `delete` before it is set and get no answer, or quietly do nothing, for example `this.check?.hasOpenOrders(id) ?? false`.
+
+### Bad Shape
+
+`UserService.deactivate` calls `orders.cancelOpenOrders(id)`, and while cancelling, the order service calls back `users.recordCancellation(...)`. Each drives part of the other's sequence, so retries, failures and a half-finished cancellation have no single owner. That cycle tangles ownership. A setter or a port only hides it; the fix is one of the answers above, here the reaction or a use case that owns the whole sequence.
+
+### Design Lesson
+
+A need that points back against the spine is a question, not a verdict. Name what the need is, and the answer usually removes the cycle. Only a cycle that fixes construction order is left to wiring, and there several choices are fine.
 
 ## Common Bad-Practice Patterns
 
@@ -1029,7 +1070,7 @@ Why it hurts:
 Better direction:
 
 - let folder structure reflect real architectural boundaries
-- keep different structural depths in different folders when the change is non-trivial
+- keep different structural depths in different folders when that makes ownership readable; the codebase's existing layout is the default unless it hides ownership (Principle 12)
 - do this with judgment, not by mechanically copying every flow step into its own directory
 - treat file placement as a readable projection of the spine and ownership model
 
@@ -1066,7 +1107,7 @@ Why it hurts:
 
 Better direction:
 
-- name the thin facade explicitly
+- name the thin facade explicitly; a public entry facade is a port at a real boundary, not empty indirection (Principle 13)
 - name the deeper governing owner explicitly
 - if a bounded local loop exists below that, name it too
 
@@ -1156,10 +1197,21 @@ Principle 13.
 - **The lesson:** copies of one sequence drift. The next capability lands in one caller and not the others, and the state before the answer depends on which default each consumer has.
 - **Notice it by:** "the same shape in each host", "each caller configures …", and a state that exists only because nothing set it yet.
 
+### Case 8: A Port Where A Setter Would Have Served
+
+Principles 9, 13 and 16.
+
+- **Situation:** run services need two things from the task side: whether a run's task entry is open, and to mark the run's task changed when the run's status changes. The task service also needs run control, which needs the run services: a cycle that only fixes construction order.
+- **What happened:** the design declined a setter as a "late binding" and gave the run services a two-method port, built in the composition root from the task records and the task change marks, both created before the run services. The review approved it, citing the principle. No run could ask before startup completed, so a setter that throws when unset would have served as well.
+- **Why the port still passes:** it does not only forward. `isOpen` reads the task records; `statusChanged` finds the run's task in them and marks it changed in a second owner. Doing nothing for a run without a task is correct only when that is a supported state, and then it belongs in an explicit branch; if every run must have a task, a missing one should throw. Several run services take the combined capability as one dependency, so removing the port would push the combining into each of them: churn that fixes no bug.
+- **What the principle really caught in the same change:** silent fallbacks (a task closure that skipped stopping its runs when an owner was not wired yet), a second startup path that quietly gave agents a different message, and a cycle in which runs called the delegation owners that need the runs.
+- **The lesson:** both the setter and the port were fine. The effort belonged on the problems that could go wrong.
+- **Notice it by:** a design decision or finding that cites a principle's wording ("late binding") but names nothing that can go wrong.
+
 ## How To Use These Examples
 
 - Start from the example whose shape is closest to the current task.
-- Read the case studies when a design touches the same shape: several kinds or entry forms, a sequence across components, derived data, a decision by absence, a claim about existing code, a rule applied by several callers, or a name used in several places.
+- Read the case studies when a design touches the same shape: several kinds or entry forms, a sequence across components, derived data, a decision by absence, a claim about existing code, a rule applied by several callers, a name used in several places, or a port or setter chosen to break a cycle.
 - Reuse the reasoning style, not the exact names.
-- The rules these examples illustrate live in [design-principles.md](design-principles.md): spine-first design (Principles 2 and 14), explicit ownership and named facades (3), off-spine concerns (4), singular interfaces (10), reachable premises (6), persisted-data decisions (5), file placement after the design story (12), one vocabulary (15), visible dependencies wired in one composition root (16), and applying each with purpose and judgment (Applying These Principles).
+- The practices these examples illustrate live in [design-principles.md](design-principles.md): spine-first design (Principles 2 and 14), explicit ownership and named facades (3), off-spine concerns (4), singular interfaces (10), reachable premises (6), persisted-data decisions (5), file placement after the design story (12), one vocabulary (15), two owners that need each other (9), visible dependencies wired in one composition root (16), and choosing practices by context (The Approach: Spine First, Practices In Context).
 - Judge a finding outside a ticket's scope with [ticket-scope.md](ticket-scope.md#common-situations).
