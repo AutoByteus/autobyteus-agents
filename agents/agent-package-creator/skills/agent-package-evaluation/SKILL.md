@@ -32,7 +32,7 @@ Add criteria for a later run before that run, and never rewrite earlier ones to 
 
 - Run the old text first, then the new, with the same request word for word.
 - Give each run its own copy of the work folder: runs write notes there, and a later run that finds an earlier run's notes builds on them instead of judging independently.
-- Each instance is a full desktop app on the user's machine, so keep few running. Use one isolated instance per version of the text under test, shared by that version's runs, and start a fresh one for a new round on changed text. Runs of the same request need separate instances, since a later run can find an earlier one's work journal through memory search; run them one after another, stopping each instance when its run is done. Keep at most two instances running at once, and stop every instance as soon as its runs are done. Give every instance its own process list, and start a heavy subject only when memory allows ([live-checks.md](references/live-checks.md#1a-a-private-process-list-and-room-in-memory)).
+- Each instance is a full desktop app on the user's machine, so keep few running. Use one isolated instance per version of the text under test, shared by that version's runs, and start a fresh one for a new round on changed text. Runs of the same request need separate instances, since a later run can find an earlier one's work journal through memory search; run them one after another, stopping each instance when its run is done. Keep at most two instances running at once, and stop every instance as soon as its runs are done. Give an instance its own process list where that pays and is cheap (a bench running many subjects, Linux with root); on the user's own machine run on the shared host, one subject that starts processes at a time. Start a heavy subject only when memory allows ([live-checks.md](references/live-checks.md#1a-a-private-process-list-where-it-is-cheap-and-room-in-memory)).
 - Run the roles under test on the models they use in real use, and a cheap one for the rest. When that model ignores a rule, one run on a stronger model tells unclear wording from the model's own habit.
 - Do not change an output while the evaluation runs; the agents do the work.
 - A run stopped before its result (an app or computer restart) is started again from scratch, with a fresh copy and an instance that holds no trace of it; a resumed run is not the same test.
@@ -43,7 +43,7 @@ Add criteria for a later run before that run, and never rewrite earlier ones to 
 
 - **First check that each run is a valid test.**
   - **Scan:** run [scan-transcript.py](scripts/scan-transcript.py) on each subject's transcript. Give it the roots that belong to the subject (its workspace, the instance's data, the package copy, the app it runs) and markers for what must never appear (the user's data folder, other instances' folders). Read every finding.
-  - **Not a valid test:** a run that saw or acted on a foreign process, or hit a resource failure (out of memory, killed, a crashed browser, a full disk). Record it in the report, fix the cause, and run it again on a fresh instance.
+  - **Not a valid test:** a run that acted on a foreign process or changed its work because of one, or hit a resource failure (out of memory, killed, a crashed browser, a full disk). Record it in the report, fix the cause, and run it again on a fresh instance. On a shared host a run that only saw foreign processes in a listing is valid; record it.
   - **A foreign path in a transcript** has also reached the model provider: tell the user.
 - **Then read each output whole,** as its user would, before checking any criterion, and note what that user would notice.
 - **Next, each criterion,** against what the change should produce: the order of messages, the rule an agent quotes from `get_handoff_rules`, the file it writes, where it stops. Name the run and the step where each was observed. A point the run did not exercise is untested, not passed: build data that exercises it and run again.
@@ -55,7 +55,7 @@ Add criteria for a later run before that run, and never rewrite earlier ones to 
 
 Copy the outputs out of temporary folders, then write one evaluation report per evaluation, next to the criteria, from [the report template](templates/evaluation-report-template.md). Every evaluation ends with it, whether it was asked for on its own or is part of a change; the report, not a chat message, carries the verdict:
 
-- the runs: package commit, instance, model, date, and the request; each instance's process-list check and memory peak, and each run's transcript scan;
+- the runs: package commit, instance, model, date, and the request; each instance's isolation (private process list or shared host), the memory peak of a heavy subject, and each run's transcript scan;
 - what the user of the output would notice, reading it whole;
 - each criterion's result, with the evidence and where it was observed;
 - the old against the new;

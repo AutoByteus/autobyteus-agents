@@ -13,7 +13,7 @@
 
 | Run | Text (old/new) | Request | Model | Instance | Isolation and scan | Output |
 | --- | --- | --- | --- | --- | --- | --- |
-| | | | | | `<processes seen from inside; memory peak; scan: clean, or each finding and what was done>` | `<path>` |
+| | | | | | `<private process list or shared host; memory peak of a heavy subject; scan: clean, or each finding and what was done>` | `<path>` |
 
 ## Read as its user
 

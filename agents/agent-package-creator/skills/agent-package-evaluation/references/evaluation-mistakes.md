@@ -57,6 +57,13 @@ Concrete mistakes found in real evaluations of agent packages. The [evaluation s
   - On 2026-11-11 subjects listed processes and saw the user's own app with its data folder, another agent's workspace, and other subjects' processes. Those lines went to the model providers. No credential was found.
   - Two scored runs changed what they did; one waited for another subject's probe, taking it for its own leftover.
   - Concurrent heavy subjects also ran the machine out of memory.
-- **Breaks:** [live-checks.md](live-checks.md#1a-a-private-process-list-and-room-in-memory) and [§4](../SKILL.md#4-judge): every instance has its own process list, and a run counts only after its transcript scan.
-- **Instead:** For each gap a bench names, ask what a subject could do with it, and close it rather than list it. Scan every subject's transcript before counting its run.
+- **Breaks:** [live-checks.md](live-checks.md#1a-a-private-process-list-where-it-is-cheap-and-room-in-memory) and [§4](../SKILL.md#4-judge): on a bench that runs many subjects, each instance has its own process list, and a run counts only after its transcript scan.
+- **Instead:** For each gap a bench names, ask what a subject could do with it, and close it where that is cheap for the bench rather than list it (but see mistake 8). Scan every subject's transcript before counting its run.
 - **Detect:** The report names, per instance, the processes seen from inside and the memory peak, and per run the scan result. A bench protocol that lists a "residual" says what a subject could do with it.
+
+## 8. A safeguard that blocks the evaluation
+
+- **Incident:** The fix for mistake 7 made a private process list a requirement for every instance: on macOS or Windows a Linux container or VM, otherwise "the evaluation could not run". The next evaluation on the user's Mac, of a change to the software engineering team's design principles, was blocked: a container would have needed an AutoByteus Linux build, a display and the user's sign-in inside. Every earlier evaluation on that machine had run well. The user: a requirement that is not easy or does not give enough benefit is rejected; it is a practice, good to have, and the use case decides (2026-11-12).
+- **Breaks:** [§3](../SKILL.md#3-run-the-old-text-and-the-new-independently): safeguards fit the setup they protect.
+- **Instead:** Name what the safeguard prevents and where that risk is real. Require it only where the risk is real and the safeguard is cheap; elsewhere use the cheaper protection (one subject that starts processes at a time, the transcript scan). A setup that needs more isolation decides that for itself.
+- **Detect:** For each requirement that can end in "could not run", name the setup it protects and the cost of meeting it on the user's own machine.
