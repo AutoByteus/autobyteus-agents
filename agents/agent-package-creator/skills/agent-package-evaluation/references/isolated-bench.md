@@ -2,7 +2,12 @@
 
 How to build a bench that seals each subject off, and what still leaks once it is built. Observed on a Linux bench (Docker container, root, bubblewrap) that ran hundreds of subjects for a research study (2026-11).
 
-**Only where it pays.** Build this when a bench runs many subjects at once, or a study needs subjects that cannot see the host, and you have Linux with root. On the user's own machine (macOS, Windows, Linux without root) it costs more than it protects, and evaluations work on the shared host ([live-checks.md](live-checks.md#1a-a-private-process-list-where-it-is-cheap-and-room-in-memory)). How far to isolate is the bench owner's decision; take from here what that bench needs.
+**How much isolation depends on the task and the machine.** Ask two questions:
+
+- **What could a run of this task do wrong without it?** A skill evaluation whose agent reads and writes files in its own workspace needs no sandbox. Agents that start servers, builds or browsers can meet each other's processes; one at a time on the shared host is enough ([live-checks.md](live-checks.md#1a-a-private-process-list-where-it-is-cheap-and-room-in-memory)). A study that runs many subjects at once, or whose subjects must not see the host, the user's data or the study's own files, needs a sealed bench.
+- **What does the machine make cheap?** On Linux with root (a container is enough) a sealed bench is cheap to build. On the user's own machine (macOS, Windows, Linux without root) it needs a Linux VM with the app, a display and the user's sign-in inside, which costs more than it protects.
+
+Build the sealed bench only when the task needs it and the machine allows it, and take from here only the parts the task needs.
 
 ## 1. What each subject gets
 
