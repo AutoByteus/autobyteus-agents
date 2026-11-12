@@ -21,11 +21,18 @@ From the problem analysis in `understanding-notes.md` (for a comparison or an ex
 ## Opening And Reader
 
 - Working title options (each states the point, not the path):
-- The opening, written as an abstract (the point above, in the reader's words), or, for a derivation, the question and the route (principles, section 4):
+- The opening (principles, the foundation): the point, when the reader can place every word of it; otherwise the question and the route:
 - The map: the parts and how they connect (a few lines, a list or one figure); each section below is one part:
 - Justified opening exception, if the first move is intentionally negative or contrastive:
-- Reader starting point: what the reader likely knows, assumes, or needs before the article begins:
 - Primary logic spine (principles, section 4): the problem chain (an article about solved problems) / `comparative` (the same dimensions for every product) / `causal` / `problem-solution` / `question-answer` / `derivational` / `chronological` (only for a history) / other:
+
+## Concepts In Order
+
+The understanding road (principles, the foundation). The reader starts with the concepts `brief.md` records; each new concept follows in the order it appears:
+
+| New concept | Rests on, and how it relates | First appears |
+| --- | --- | --- |
+|  |  |  |
 
 ## Anchor Example
 
@@ -69,8 +76,8 @@ For each section where the visualization-load trigger fires, or the text-only de
 ## Structural Gate
 
 - The main claim can be stated in one sentence, and it is stated once
-- The opening works as an abstract, or for a derivation gives the question and the route (principles, section 4), and the map follows before any detail
-- No product, component or coined term appears before the concepts it rests on; in a derivation the opening names no product and states no status, unless the author's own words say otherwise (quoted here with their source)
+- The opening and the map use only words the reader has, and the map comes before any detail
+- Every concept in the table comes after what it rests on, and no paragraph is planned to add more than two; in a derivation the opening states no status and names the product, if at all, in one plain sentence, unless the author's own words say otherwise (quoted here with their source)
 - The sections follow the named spine: the problem chain in the order the opening raises the pains, or, for a comparison, the same dimensions for every product
 - The mode fits the kind of article (a technical topic is `technical-blog` unless the user asked otherwise), and no section exists only to tell a story or bridge to the next
 - The opening fits the mode; any negative or contrastive first move has a recorded exception
