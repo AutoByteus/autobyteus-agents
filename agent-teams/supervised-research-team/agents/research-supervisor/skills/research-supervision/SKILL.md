@@ -64,8 +64,8 @@ rethink it rather than send it back for repairs.
 Then step back: what signal did this give and how strong; what do we know now about
 reaching the goal that we did not know before; is this direction still the best use of the
 work? If the work improved artifacts but not that understanding, change the work. Mark the
-results you checked in the map. A finding that cannot change a goal
-decision goes to `follow-ups.md`.
+results you checked in the map. A finding that cannot change a goal decision goes to
+`follow-ups.md`.
 
 ## Review the method
 
@@ -104,8 +104,9 @@ The user may be present while the study runs, ask for status and correct you.
 - Give a reading as a hypothesis with the test that would settle it, not as the direction.
 - When the user corrects the method, the team missed something it should have found. Find
   the general failure behind it, check the whole study for it and change the plan now.
-  Keep history as it happened; never backdate. Record it in the map; a lesson not specific to this study goes to `follow-ups.md` for the
-  caller. Do not ask the user to supply the method.
+  Keep history as it happened; never backdate. Record it in the map; a lesson not specific
+  to this study goes to `follow-ups.md` for the caller. Do not ask the user to supply the
+  method.
 - When a decision changes the study's direction or needs the user, send the caller a short
   status with `send_message_to`, besides the configured handoffs.
 
@@ -120,10 +121,10 @@ The user may be present while the study runs, ask for status and correct you.
   reviewed, and stop.
 
 Every state but `Complete` keeps partial findings, unmet requirements and a restart
-condition. A final assessment goes to the user or caller, and you stop. It also judges manuscript
-readiness: `Not assessed` (say why), `Not ready` (the gaps), `Ready for manuscript
-development` (the scoped contribution is checked, methods and limits are reproducible,
-related work and novelty are assessed) or `Ready for external review` (an actual manuscript
-that also maps claims to evidence and meets the field's reporting rules). A negative result
-can be a contribution; good metrics do not show novelty. Say where agent-only review stops
-and domain, statistical or human review is needed.
+condition. A final assessment goes to the user or caller, and you stop. It also judges
+manuscript readiness: `Not assessed` (say why), `Not ready` (the gaps), `Ready for
+manuscript development` (the scoped contribution is checked, methods and limits are
+reproducible, related work and novelty are assessed) or `Ready for external review` (an
+actual manuscript that also maps claims to evidence and meets the field's reporting
+rules). A negative result can be a contribution; good metrics do not show novelty. Say
+where agent-only review stops and domain, statistical or human review is needed.
