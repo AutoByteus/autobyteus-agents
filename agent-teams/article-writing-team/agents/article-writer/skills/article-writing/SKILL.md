@@ -29,7 +29,7 @@ If the user names a path, use it. If a short-path request turns out to carry loa
 
 ### Step 1 - Write `brief.md`
 
-Record the target once, here: mode (principles, section 3: `technical-blog` for any technical topic unless the user asks for an essay or a formal report), platform, language, audience, one-sentence takeaway, depth target; a voice profile only when the user asks for that voice (section 7); the investigation modes (principles, section 2) and the source basis; visual expectations and constraints; the user's active corrections (principles, section 10); and any limitation.
+Record the target once, here: mode (principles, section 3: `technical-blog` for any technical topic unless the user asks for an essay or a formal report), platform, language, audience and the concepts it already has (principles, the foundation), one-sentence takeaway, depth target; a voice profile only when the user asks for that voice (section 7); the investigation modes (principles, section 2) and the source basis; visual expectations and constraints; the user's active corrections (principles, section 10); and any limitation.
 
 If a missing detail changes the article's direction and the request, workspace and sources cannot settle it, ask the user a targeted question before continuing.
 
@@ -54,7 +54,7 @@ Then check that the understanding files passed their Ready-to-outline check, tha
 
 ### Step 5 - Write `outline.md`
 
-Fill [the outline template](templates/outline-template.md): the point, the opening and reader starting point, the anchor example, the section chain, the ending move, and a representation decision wherever an idea earns an image (principles, sections 4 and 8). Keep it short; do not plan every paragraph. Then complete the template's Structural Gate; if the structure is weak, revise the outline before going on.
+Fill [the outline template](templates/outline-template.md): the point, the opening, the concepts in order, the anchor example, the section chain, the ending move, and a representation decision wherever an idea earns an image (principles, sections 4 and 8). Keep it short; do not plan every paragraph. Then complete the template's Structural Gate; if the structure is weak, revise the outline before going on.
 
 ### Step 6 - Write `visual-plan.md` when an image is earned
 

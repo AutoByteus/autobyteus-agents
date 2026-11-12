@@ -75,7 +75,7 @@ Always track style-sensitive claims when used: contrast frames such as `not X, b
 Before Step 3 of `article-writing`, check:
 
 - `brief.md` records the investigation modes, source basis, depth, and constraints;
-- the files answer: what the article is about; what the reader needs to understand first, and what they likely know or assume; the questions to answer in order; the mechanisms, chronology, definitions, or product sequence to preserve; which claims are backed and by what; which are uncertain, stale, too strong, or unsupported; which contrasts, recommendations, root-cause statements, or production observations the evidence allows;
+- the files answer: what the article is about; what the reader needs to understand first, beyond the concepts `brief.md` says they have; the questions to answer in order; the mechanisms, chronology, definitions, or product sequence to preserve; which claims are backed and by what; which are uncertain, stale, too strong, or unsupported; which contrasts, recommendations, root-cause statements, or production observations the evidence allows;
 - the ledger exists when evidence tracking is needed, and no planned style-sensitive claim lacks an anchor;
 - comparison dimensions are neutral, consistent across products, and do not mislabel composable primitives as exclusive modes;
 - claims that another product lacks a capability are checked by the Deep Researcher against current authoritative evidence, or qualified as `not observed in the checked sources`;
