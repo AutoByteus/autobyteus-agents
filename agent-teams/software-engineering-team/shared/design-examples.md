@@ -1222,7 +1222,7 @@ Principle 16.
   ```
 
 - **The lesson:** an optional parameter says the owner works without it. When it does not, a wiring mistake shows up as missing data instead of an error.
-- **Notice it by:** `dep?`, `Partial<Pick<…>>`, or a default that returns nothing, on a collaborator every production construction supplies. An optional collaborator is right when the product runs without it and the code branches on that on purpose, such as a notification listener.
+- **Notice it by:** `dep?`, `Partial<Pick<…>>`, or a default that returns nothing, on a collaborator every production construction supplies. An optional collaborator is right when the product runs without it, such as a notification listener, and the code handles that on purpose: an explicit branch, or a no-op passed in.
 
 ### Case 10: One Picture, Two Builders
 

@@ -246,7 +246,7 @@ Name which boundaries are authoritative public entrypoints versus internal owned
 
 State who may depend on, call, or emit to whom, and name the shortcuts or cross-boundary dependencies that are forbidden.
 Make boundary-bypass rules explicit when one public boundary is supposed to encapsulate a lower-level concern.
-State how each owner this change adds or touches receives its collaborators (constructor or call argument, from the composition root), and list each process-wide binding, registry, or singleton, and each collaborator connected after construction, that the design adds or uses to reach an owner, with why Principle 16's conditions hold (nothing uses it before it is set, a missing one fails loudly, it hides no loop that tangles ownership), or `None` (Principle 16). A required collaborator is a required parameter, not optional so tests can leave it out.
+State how each owner this change adds or touches receives its collaborators (constructor or call argument, from the composition root), and list each process-wide binding, registry, or singleton, and each collaborator connected after construction, that the design adds or uses to reach an owner, with why Principle 16's conditions hold (nothing uses it before it is set, a missing one fails loudly, it hides no loop that tangles ownership), or `None` (Principle 16). A required collaborator passed in is a required parameter, not optional so tests can leave it out.
 
 ## Interface Boundary Mapping
 
@@ -300,7 +300,7 @@ Treat this as the first concrete pass, not the final answer.
 ## Reusable Owned Structures Check
 
 When repeated data structures, types, normalizers, converters, mappers, or schemas appear across several files, decide whether they should be extracted into reusable owned files under the correct subsystem.
-For each picture this change shows in several places (an open view, a list, an inspection, another layout or client), name the one builder that makes it and the places that show it (Principle 11).
+For each picture this change shows in several places (an open view, a list, an inspection, another layout or client of the same data), name the one builder that makes it and the places that show it (Principle 11).
 
 | Repeated Structure / Logic | Candidate Shared File | Owning Subsystem | Why Shared | Redundant Attributes Removed? (`Yes`/`No`) | Overlapping Representations Removed? (`Yes`/`No`) | Must Not Become |
 | --- | --- | --- | --- | --- | --- | --- |
