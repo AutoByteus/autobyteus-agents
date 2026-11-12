@@ -46,6 +46,7 @@ Concrete mistakes found in real package work. The [package design principles](pa
 | 36 | Leaving behind what a role created in the user's shared space | Package design |
 | 37 | An agent's own reusable knowledge kept in a Project's folder | Package design |
 | 38 | Checking a new rule only against its own lines | Creator process |
+| 39 | A rule for every incident | Creator process |
 
 ## Package design
 
@@ -297,3 +298,10 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Breaks:** [Step 4](../SKILL.md#4-validate-and-recover): one owner per rule and no competing rules across the package.
 - **Instead:** Read the whole set. For each rule, exception, example and template line on the same ground, say whether the new rule agrees with it, contradicts it, or repeats it. Then judge the rule as a practitioner would, including where following it to the letter does harm.
 - **Detect:** The result lists, for each added or changed rule, what it was checked against and the outcome.
+
+### 39. A rule for every incident
+
+- **Incident:** One ticket's review found a collaborator made optional for tests and the same rows built twice for a list and an open view. The Creator drafted both as new bullets, Signals, Checks and template lines in a team's design principles, though "a missing collaborator fails loudly" and "each fact is derived by one owner" already covered them; a test run on the old text caught the first. The user: each incident adds another point, with no end; the principles should stay at the level of structure (2026-11-12).
+- **Breaks:** [§2](package-design-principles.md#2-design-responsibilities-before-files) (extend the owner instead of adding a place) and [§9](package-design-principles.md#9-update-and-restructure-safely) (diagnose before adding).
+- **Instead:** Ask first whether the incident shows a general gap at the set's level. If an existing rule covers it, the incident becomes an example or case study, or a rule in the project's own documents, and the existing rule gains at most a few words naming the missed form.
+- **Detect:** For each rule a change adds, name the existing rule closest to it and why that rule does not cover the incident. Read the set's recent history: a rule, Signal or Check added per incident is a lead for a consolidation pass.
