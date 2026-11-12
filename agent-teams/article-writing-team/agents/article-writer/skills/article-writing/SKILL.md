@@ -33,7 +33,7 @@ Record the target once, here: mode (principles, section 3: `technical-blog` for 
 
 If a missing detail changes the article's direction and the request, workspace and sources cannot settle it, ask the user a targeted question before continuing.
 
-A draft or outline that comes with the request is source material; its order is not the article's. When the author has not said what kind of article it is and in what order the reader should meet the ideas (often when someone else relays the request), ask the author once, through the requester if you cannot reach them: what the reader should understand at the end, in what order, and how technical. Record the answer in the brief.
+A draft or outline that comes with the request is source material; its order is not the article's. When the request comes with such a draft, or someone other than the author wrote it, ask the author once, through the requester if you cannot reach them: what kind of article, what the reader should understand at the end, in what order, and how technical. A relayed order is the requester's reading, not the author's answer. Record the answer in the brief.
 
 ### Step 2 - Build the understanding package
 

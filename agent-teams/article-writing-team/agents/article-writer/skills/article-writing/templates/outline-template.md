@@ -70,7 +70,7 @@ For each section where the visualization-load trigger fires, or the text-only de
 
 - The main claim can be stated in one sentence, and it is stated once
 - The opening works as an abstract, or for a derivation gives the question and the route (principles, section 4), and the map follows before any detail
-- No product, component or coined term appears before the concepts it rests on
+- No product, component or coined term appears before the concepts it rests on; in a derivation the opening names no product and states no status, unless the author's own words say otherwise (quoted here with their source)
 - The sections follow the named spine: the problem chain in the order the opening raises the pains, or, for a comparison, the same dimensions for every product
 - The mode fits the kind of article (a technical topic is `technical-blog` unless the user asked otherwise), and no section exists only to tell a story or bridge to the next
 - The opening fits the mode; any negative or contrastive first move has a recorded exception
