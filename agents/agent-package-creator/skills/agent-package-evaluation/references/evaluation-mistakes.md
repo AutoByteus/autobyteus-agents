@@ -50,3 +50,13 @@ Concrete mistakes found in real evaluations of agent packages. The [evaluation s
 - **Breaks:** [§3](../SKILL.md#3-run-the-old-text-and-the-new-independently): few instances, one per version of the text, each stopped as soon as its runs are done.
 - **Instead:** Share an instance among a version's runs of different requests; give runs of the same request separate instances one after another; keep at most two running.
 - **Detect:** During an evaluation, `isolated-app list` shows no more than two running instances; the run log names which instance each run used and when it was stopped.
+
+## 7. An isolation gap accepted as a residual
+
+- **Incident:** A research study's test bench gave each subject its own data, network and user, but the host's process list. Its protocol named this a known residual, and every reviewer accepted it.
+  - On 2026-11-11 subjects listed processes and saw the user's own app with its data folder, another agent's workspace, and other subjects' processes. Those lines went to the model providers. No credential was found.
+  - Two scored runs changed what they did; one waited for another subject's probe, taking it for its own leftover.
+  - Concurrent heavy subjects also ran the machine out of memory.
+- **Breaks:** [live-checks.md](live-checks.md#1a-a-private-process-list-and-room-in-memory) and [§4](../SKILL.md#4-judge): every instance has its own process list, and a run counts only after its transcript scan.
+- **Instead:** For each gap a bench names, ask what a subject could do with it, and close it rather than list it. Scan every subject's transcript before counting its run.
+- **Detect:** The report names, per instance, the processes seen from inside and the memory peak, and per run the scan result. A bench protocol that lists a "residual" says what a subject could do with it.

@@ -11,9 +11,9 @@
 
 ## Runs
 
-| Run | Text (old/new) | Request | Model | Instance | Output |
-| --- | --- | --- | --- | --- | --- |
-| | | | | | `<path>` |
+| Run | Text (old/new) | Request | Model | Instance | Isolation and scan | Output |
+| --- | --- | --- | --- | --- | --- | --- |
+| | | | | | `<processes seen from inside; memory peak; scan: clean, or each finding and what was done>` | `<path>` |
 
 ## Read as its user
 
