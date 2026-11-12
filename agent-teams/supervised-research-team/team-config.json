@@ -25,7 +25,7 @@
       "from": "/research_supervisor",
       "to": "/researcher",
       "rules": [
-        "When the supervisor saves decision Continue with a new numbered assignment: carry out the assigned research. Include absolute paths to the research map, the assignment and the review behind it."
+        "When the supervisor saves decision Continue with a new numbered assignment or an addendum to the open one: carry out the assigned research. Include absolute paths to the research map, the assignment, any addendum and the review behind it."
       ]
     },
     {

@@ -55,7 +55,8 @@ carefully it is run; this holds for probes too. To test a claim, choose strong
 comparisons, failure cases, and held-out cases when claiming generalization. Count
 planned, attempted, completed and checked cases separately, justify every exclusion, and
 do not keep only favourable outcomes. Fix metrics and how to read them before seeing
-results; label later changes exploratory. Use the field's own methods; not every study needs code.
+results, with any bar inside the range the measure can take on the chosen cases; label
+later changes exploratory. Use the field's own methods; not every study needs code.
 
 Keep the experimenter apart from the subject. When a study tests a method meant for others
 to use, such as a skill and a tool for coding agents, the team does not do the subject's
@@ -121,8 +122,8 @@ goal, decision and state.
    and why, and what would change it.
 7. **Search trail.** What was searched, which citations were followed, what could not be
    opened, and where the search stopped and why.
-8. **Current state.** Cycle, status, latest assignment and review, and scope changes with
-   the user's decisions.
+8. **Current state.** Cycle, status, latest assignment and review, planned steps not yet
+   reviewed, and scope changes with the user's decisions.
 
 ## The study folder
 
@@ -136,6 +137,7 @@ when there is something to put in it.
 | `research-map.md` | Both, as above. |
 | `method-reviews.md` | Supervisor: each method review, appended. |
 | `cycles/CNNN/assignment.md` | Supervisor: work kind; the question, the goal part and map gap it addresses, and the decision it informs; findings to resolve; evidence expected. |
+| `cycles/CNNN/addendum-NN.md` | Supervisor: a dated change to the open assignment at a checkpoint (runs dropped or added, a measure changed, a check added) and why. It belongs to the same cycle. |
 | `cycles/CNNN/report.md` | Researcher: claims with evidence IDs for and against, requirement coverage, deviations, limitations, status and next step. Proposing completion is not deciding it. |
 | `cycles/CNNN/review.md` | Supervisor: what it checked, findings, the step back, the decision and the next assignment or final assessment. |
 | `evidence.md` | Both, append-only, each author with its own IDs: source or run, version, method or command, result, raw path, limits. |
@@ -157,8 +159,8 @@ The researcher's report ends with one status:
 - `Decision needed`: something only the user can decide, such as the scope.
 
 The supervisor decides `Continue`, `Complete`, `Blocked`, `Decision needed` or `Paused`;
-its skill says when. Only `Continue` carries a new assignment, and only `Complete`
-finishes the study.
+its skill says when. Only `Continue` carries a new assignment, or an addendum to the open
+one after a `Checkpoint`, and only `Complete` finishes the study.
 
 Save the result before sending it. A handoff names the study, cycle, status, main finding
 and next action, with absolute paths to the result and the few files needed next. If
