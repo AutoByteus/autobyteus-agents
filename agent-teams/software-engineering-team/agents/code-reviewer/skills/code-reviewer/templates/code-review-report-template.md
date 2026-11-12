@@ -163,13 +163,13 @@ Judge each check by its purpose ([The Approach](../references/design-principles.
 | Ownership boundary preservation and clarity |  |  |  |
 | Off-spine concern clarity (off-spine concerns serve clear owners and stay off the main line) |  |  |  |
 | Existing capability/subsystem reuse check (no fresh helper where an existing subsystem should own it) |  |  |  |
-| Reusable owned structures check (repeated structures extracted into the right owned file instead of copied across files; each fact, including a picture shown in several places, built by one owner, Core Principle 11) |  |  |  |
+| Reusable owned structures check (repeated structures extracted into the right owned file instead of copied across files) |  |  |  |
 | Shared-structure/data-model tightness check (no kitchen-sink base, no overlapping parallel shapes, specialization/composition used meaningfully) |  |  |  |
 | Repeated coordination ownership check (shared policy has a clear owner instead of being repeated across callers) |  |  |  |
 | Empty indirection check (Core Principle 13): no pass-through-only boundary; no new interface, port, adapter or wrapper with one implementation that only forwards to an owner and solves no problem you can name. It fails even though it works |  |  |  |
 | Scope-appropriate separation of concerns and file responsibility clarity |  |  |  |
 | Ownership-driven dependency check (no forbidden shortcuts or unjustified cycles) |  |  |  |
-| Visible dependencies check (Core Principle 16): each dependency the change adds is passed in, or reached through a lookup or an after-construction connection where nothing uses it before it is set, a missing one fails loudly, and no loop that tangles ownership hides behind it; no new `find…()?.… ?? fallback` lets a missing owner decide behavior; no required collaborator is optional (`dep?`, a default that does nothing) only because tests leave it out; an older lookup the change only uses is a follow-up only when it causes one of those problems |  |  |  |
+| Visible dependencies check (Core Principle 16): each dependency the change adds is passed in, or reached through a lookup or an after-construction connection where nothing uses it before it is set, a missing one fails loudly, and no loop that tangles ownership hides behind it; no new `find…()?.… ?? fallback` lets a missing owner decide behavior; an older lookup the change only uses is a follow-up only when it causes one of those problems |  |  |  |
 | Authoritative Boundary Rule check (callers do not depend on both an outer owner and that owner's internal manager/repository/helper/lower-level concern) |  |  |  |
 | File placement check (file/folder path matches owning concern or explicitly justified shared boundary) |  |  |  |
 | Flat-vs-over-split layout judgment (layout is readable for the scope and not artificially fragmented) |  |  |  |
