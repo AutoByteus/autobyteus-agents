@@ -45,6 +45,7 @@ Concrete mistakes found in real package work. The [package design principles](pa
 | 35 | A link that leaves the skill folder | Package design |
 | 36 | Leaving behind what a role created in the user's shared space | Package design |
 | 37 | An agent's own reusable knowledge kept in a Project's folder | Package design |
+| 38 | Checking a new rule only against its own lines | Creator process |
 
 ## Package design
 
@@ -290,3 +291,9 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Instead:** Give each skill a `references/` symbolic link to every shared file it reads, link to that local path, and add the hint anti-pattern 20 asks for, as the Software Engineering Team does.
 - **Detect:** For every Markdown link in a skill folder (not following symbolic links), resolve it and flag any target outside that skill's folder.
 
+### 38. Checking a new rule only against its own lines
+
+- **Incident:** Two rules added to a team's design principles (a required collaborator is a required parameter; one builder for a picture shown in several places) passed the link, wording and privacy checks and went to the user. A whole-set read afterwards found that the first contradicted the same principle's accepted setter (a collaborator connected after construction), and the second asked for one builder across a server and its clients, which separate codebases cannot share. The user asked for this check after every principles update (2026-11-12).
+- **Breaks:** [Step 4](../SKILL.md#4-validate-and-recover): one owner per rule and no competing rules across the package.
+- **Instead:** Read the whole set. For each rule, exception, example and template line on the same ground, say whether the new rule agrees with it, contradicts it, or repeats it. Then judge the rule as a practitioner would, including where following it to the letter does harm.
+- **Detect:** The result lists, for each added or changed rule, what it was checked against and the outcome.
