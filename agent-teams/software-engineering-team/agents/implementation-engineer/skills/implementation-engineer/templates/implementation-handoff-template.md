@@ -77,7 +77,7 @@ upstream behavior narrative.
 - Dead code found elsewhere, added to `follow-ups.md`: <FU IDs, or None>
 - Shared structures remain tight (no one-for-all base or overlapping parallel shapes introduced): `Yes` / `No (blocked)`
 - Canonical shared design guidance was reapplied during implementation, and file-level design weaknesses were routed upstream when needed: `Yes` / `No (blocked)`
-- Departures from a design principle decided during implementation, each with the principle and why the reason holds for this case: `None` / list
+- Deviations from a design principle decided during implementation, each with the principle and why the reason holds for this case: `None` / list
 - Changed source implementation files stayed within proactive size-pressure guardrails (no file taken over `>500` or grown while already over it by this change; files already over it and not grown added to `follow-ups.md`; `>220` assessed/acted on): `Yes` / `No (blocked)`
 - Notes:
 
