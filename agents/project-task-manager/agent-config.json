@@ -19,7 +19,8 @@
     "run_bash"
   ],
   "skillNames": [
-    "project-task-management"
+    "project-task-management",
+    "reflection"
   ],
   "skillScope": "CONFIGURED",
   "inputProcessorNames": [],
