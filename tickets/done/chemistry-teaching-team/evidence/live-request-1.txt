@@ -1,0 +1,5 @@
+Hallo! Ich unterrichte Chemie an einem Gymnasium in Berlin, Klassen 7 bis 12. In diesem Ordner liegen meine bisherigen Foliensätze (z. B. redoxreaktionen.html mit Quellen in src_redox/).
+
+Bitte erstelle mir ein Modul für Klasse 8 zum Thema „Die chemische Reaktion am Beispiel von Eisen und Schwefel“. Die Schülerinnen und Schüler sollen verstehen, was bei einer chemischen Reaktion auf Teilchenebene passiert (Umgruppierung der Teilchen, neuer Stoff mit neuen Eigenschaften), dass dabei Energie umgesetzt wird, und wie man den Versuch sicher durchführt.
+
+Du kannst direkt loslegen, ich schaue mir das Ergebnis danach an.
