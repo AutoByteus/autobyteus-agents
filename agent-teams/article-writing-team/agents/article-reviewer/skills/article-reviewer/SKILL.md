@@ -23,7 +23,7 @@ The package described in [the article package](references/article-package.md); r
 
 ### Step 1 - The brief
 
-Read `brief.md` for the target, the style, the format, the investigation modes, the visual expectations and the user's active corrections. Return `Brief Gap` when the writer could not reasonably target the article from it, and `Source Gap` when the source basis is too weak for the article's confidence, or a conversion has no reliable source text.
+Read `brief.md` for the target, the style, the format, the investigation modes, the visual expectations and the user's active corrections. The author's direction recorded there (the style, the point, the order, the opening, a claim the author holds as certain) is the target, not a finding: judge whether the article achieves it. Check the facts under it as usual; a conviction or forecast of the author is written as theirs, not softened (principles, section 6). When you think the direction itself is wrong, say so once in the report as a question for the author, never as a required revision. Return `Brief Gap` when the writer could not reasonably target the article from it, and `Source Gap` when the source basis is too weak for the article's confidence, or a conversion has no reliable source text.
 
 ### Step 2 - The style package
 
