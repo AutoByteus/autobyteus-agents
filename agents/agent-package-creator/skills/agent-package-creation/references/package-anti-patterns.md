@@ -319,5 +319,5 @@ Concrete mistakes found in real package work. The [package design principles](pa
 
 - **Incident:** For a large change to a writing team, the user asked to see the wording before the merge. The Creator opened three draft pull requests to show it, before any live evaluation had run. The skill tied only the merge to the evaluation ("merge it yourself once it passes step 4"), and gave no other way to show wording. The user: a pull request means the change is proven better; why was it created before the evaluation (2026-11-15)?
 - **Breaks:** [Step 5](../SKILL.md#5-persist-deliver-and-route-the-result): the pull request follows step 4, the evaluation included.
-- **Instead:** Keep the change on its branch until it passes step 4. To show the wording earlier, give the branch's diff, a compare link or a diff file.
+- **Instead:** Keep the change on its branch until it passes step 4. To show the wording earlier, give the branch's diff, a compare link or a diff file. Every change is evaluated by default; only the user's word for that change waives it (the user: "unless the user specifically says evaluation is not needed, the default is always evaluation").
 - **Detect:** Each pull request the Creator opens links an evaluation report dated before it; a pull request with "waiting for the evaluation" in its description is a lead.
