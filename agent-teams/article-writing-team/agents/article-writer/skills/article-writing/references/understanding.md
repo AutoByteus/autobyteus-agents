@@ -41,7 +41,7 @@ Record:
 - the question or article objective;
 - source-by-source notes for your own sources;
 - workspace files, code paths, commands, or observations that matter;
-- **Must preserve:** definitions, mechanisms, chronology, terms, and the 5–12 source-backed facts the article can safely use;
+- **Must preserve:** definitions, mechanisms, chronology, terms, and the 5–12 source-backed facts the article can safely use; when the author has written on the topic before (posts, replies, talks), read it and keep their names for the ideas and the reasons they give;
 - the user's firsthand sequence or product observations;
 - uncertainty, caveats, source limitations, and user corrections that override earlier assumptions;
 - **Open questions:** what is still missing, narrowed, or blocked, and whom you asked.

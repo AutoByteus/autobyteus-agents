@@ -4,7 +4,7 @@ The one quality standard of the team. The writer builds an article by it and the
 
 ## The Foundation: Build Understanding, Then Write It
 
-An article has two layers. The bottom layer is the understanding the reader builds: the concepts, how they relate, and the road from what the reader already holds to the point, each new idea placed on ideas they already have. The top layer is the writing (mode, sections, paragraphs, sentences, style), and it reflects the bottom layer: plan the road in the outline first, then write it. Writing cannot repair a broken road. A reader who meets several words they cannot place skips the paragraph, even when each word is defined.
+An article has two layers. The bottom layer is the understanding the reader builds: the concepts, how they relate, and the road from what the reader already holds to the point, each new idea placed on ideas they already have. The top layer is the writing (style, sections, paragraphs, sentences, voice), and it reflects the bottom layer: plan the road in the outline first, then write it. Writing cannot repair a broken road. A reader who meets several words they cannot place skips the paragraph, even when each word is defined.
 
 - **Start from what the reader has.** The brief records the concepts the reader already brings.
 - **A concept comes after what it rests on.** A product, a component, a coined term or what a number means appears only once the concepts it rests on are in place, in words the reader has or the article has already given.
@@ -21,7 +21,7 @@ An article is built like software:
 
 ## 1. Grounding: Style Never Creates Facts
 
-- Every claim, opponent, common belief, observation, causal explanation, production experience and source context in the article comes from the understanding package (section 2) or from the user, including the small links between claims: that two things are the same, that one caused the other, who did something. Style may shape voice, rhythm, order, emphasis, title and rhetorical pressure; it never adds facts. This holds in every mode, in conversions and in polish passes.
+- Every claim, opponent, common belief, observation, causal explanation, production experience and source context in the article comes from the understanding package (section 2) or from the user, including the small links between claims: that two things are the same, that one caused the other, who did something. Style may shape voice, rhythm, order, emphasis, title and rhetorical pressure; it never adds facts. This holds in every style, in conversions and in polish passes.
 - Credit each outside source only with what it says. A model the article builds from several sources is the article's own, and says so.
 - When the article describes parts that run and parts only designed or planned, the reader can tell which is which at every mention, in the companion pieces too: a planned part is never written in plain present tense.
 - A contrast such as `not X, but Y`, `the common explanation is`, `the deeper problem is` or `X should start with Y` is allowed only when the `X` side is grounded in a source, a supplied note, an inspected code path, an observed workflow, a prior implementation, or an explicit user claim. If it is not, remove the contrast and write the supported claim directly.
@@ -40,18 +40,11 @@ An article is built like software:
 - Mechanism claims about code or a workspace rest on concrete paths, commands, observed behavior or artifacts. So do claims about what a product has today (built, not built, in use, released): the ledger names who opened which primary source. A teammate's or the requester's statement that names no source says where to look; it is not the check. A claim no one on the team could check is written as unverified or left out. Current-world claims carry source dates and uncertainty. Claims about a paper or document come from reading it, not from its title or abstract; when the full text cannot be opened, the source index says so and the claim stays within what was read.
 - If understanding is weak, narrow the claims or investigate more before polishing prose. Going back to investigate at any stage is normal; record what was added.
 
-## 3. Mode, Opening And Ownership
+## 3. Style, Opening And Ownership
 
-Choose the mode by the kind of article, never by whose material it is:
-
-| Mode | Use when | How it reads |
-| --- | --- | --- |
-| `technical-blog` | **The default for any technical topic**, including the author's own product, workflow or experience. | An engineer explaining how something works and what they learned. It opens as the foundation says (the point, or the question and the route), gives a short map, and follows one logic spine (section 4); each part shows how its mechanism works, with a real example or number. It speaks to the reader about their problem (`you`) and names what they already do in words they already use. Low rhetoric. |
-| `essay` | Only when the user asks for an argument, opinion or strategic viewpoint. | The thesis in the first paragraph; a grounded contrast may open; medium to high rhetorical pressure. |
-| `paper-report` | Only when the user asks for a formal, report-like or scientific document. | Scope, method, observations, limitations and bounded conclusions, in that order. |
-
-- A story told in time order (we used, then it broke, then we changed) is not a mode. Use time order only when the topic itself is a history or a postmortem the user asked for; otherwise the history appears inside a concept section as evidence.
-- Naming an author profile does not change the mode or authorize rhetoric (section 7).
+- Choose the style by the kind of article and the reader, never by whose material it is. [The styles](styles/index.md) say when each is used and what each changes: the reader, the opening, the order, the density and the page. Sections 4 to 6 hold in every style except `narrative`, which has its own shape.
+- A story told in time order (we used, then it broke, then we changed) is the `narrative` style, used only when the user asks for a story. Otherwise use time order only when the topic itself is a history or a postmortem the user asked for; the history appears inside a concept section as evidence.
+- Naming an author profile does not change the style or authorize rhetoric (section 7).
 - Do not open with `we did not`, `not X`, `unlike`, `rather than` or another negative frame about an alternative when it only sets up the subject (a real problem the reader has is not such a frame); a negative first move needs an explicit user request or an essential source-grounded correction recorded in the outline, and the article makes that reason clear before going on. Grounding a contrast does not make it the right opening. Do not open with meta-lines such as `This article explains…` or `This note describes…`.
 - When the article is about the author's own product, workflow or runtime, the author's facts are written in first person (`we built`, `we measured`, `I review`), as evidence. Do not turn them into detached analyst prose, unless the user asks for it.
 
@@ -69,7 +62,7 @@ Choose the mode by the kind of article, never by whose material it is:
 - **A derivation builds before it names.** When the article derives a model (a behavior, the concepts drawn from it, the model, its mapping to engineering, then the implementation), the reader cannot yet place the answer's words, so the opening gives the question and the route, and the answer comes where the derivation reaches it. The opening states no status and names the product, if at all, in one plain sentence in the reader's words; the product line, its parts and what runs today come where the implementation begins. Placing them earlier needs the author's own words, recorded in the outline with their source.
 - **When the problems came one after another, the solved ones are the path and the point is where the path ends:** the most important problem, why it is a different kind of problem from the ones solved before it, and what solving it takes. The solved problems support that conclusion; they are not the point.
 - **The title states the point for a reader who has not read the article:** the conclusion, not the path or an inventory of what was solved. From the title alone, someone scrolling past knows the subject and the most important problem or answer, in words they already use. A term or metaphor the article coins (a name it defines later, a phrase from its own map) never carries the title, because the reader cannot decode it yet.
-- **Give the reader the map before the detail.** After the opening, show the parts and how they connect, in words the reader already has, in a few lines, a short list or one figure, so the reader sees the whole line before entering any part. Each section then picks up its part of the map; the shared problem is stated once in the opening, and a section names only the part it solves.
+- **Give the reader the map before the detail.** After the opening, show the parts and how they connect, in words the reader already has, as statements about the subject or one figure, so the reader sees the whole line before entering any part. The map names parts of the subject, never parts of the article (`In the rest of this article`, `We start with`). Each section then picks up its part of the map; the shared problem is stated once in the opening, and a section names only the part it solves.
 - **Choose one logic spine** and name it: for an article about how problems were solved, the problem chain in the order the reader meets the pains (pain → cause → solution and what kind of problem it was → what it revealed next), each part building on the ones before; for a comparison, comparative, on the same neutral dimensions for every product; otherwise causal, problem-solution, question-answer, derivational, or chronological for a history. Do not switch organizing principle halfway without a signpost.
 - **The section chain is the spine made concrete:** what the reader understands → the next idea → why it follows now → the question it creates. Each section has one claim, the reader question it answers, its evidence or mechanism, and what it leads to. A list of related topics is not a chain.
 - **Preserve the user's own reasoning.** When the user derives a design (prior system → who or what did the work → what changed → new decomposition or boundary → product or workflow consequence → bounded conclusion), keep that logic inside the concept it explains; do not flatten it into generic claims. A sequence of events (`we used X → it did Y → we observed Z → we changed to W`) is evidence for a concept, not the article's structure, unless the user asks for the story.
@@ -80,7 +73,7 @@ Choose the mode by the kind of article, never by whose material it is:
 - **Each section does one job and adds one contribution:** a claim, mechanism, evidence, example, decision or implication. Typical jobs: define the claim, correct a shallow explanation, give evidence, introduce a model, explain implications, compress the conclusion. Split a section that mixes unrelated jobs.
 - **Reader continuity.** Every section has an entry (what the reader knows and why they are here), a movement (the one new thing it adds) and an exit (what is resolved and why the next section follows). Bridge every shift in topic, time, actor, abstraction level, scope or evidence type that the reader cannot follow; name the relation (continuation, consequence, contrast, example, qualification, return to the question) in a clause, not in a sentence of its own. A bridge works without the author's private context. New ideas are allowed; unprepared ones are not.
 - **Paragraphs:** one dominant job each; known-to-new movement (the foundation: start from an established referent, introduce one or two concepts, state their relation, then move on). A useful default for explanation is claim → mechanism → evidence or example → implication; drop what the paragraph does not need.
-- **Every sentence carries information:** a fact, a number, a mechanism, a definition, an example, a source, or the answer to the question the reader just reached. A sentence that only moves the reader along carries nothing: a story bridge (`There's a second lesson here`, `Go back to the list`), a rhetorical question (`So what is still mine?`), an emphasis line, a teaser, or a slogan. Cut it, or fold the relation into the next informative sentence as a clause. Write as an engineer explains to a colleague, not as a narrator.
+- **Every sentence carries information:** a fact, a number, a mechanism, a definition, an example, a source, or the answer to the question the reader just reached. A sentence that only moves the reader along carries nothing: a story bridge (`There's a second lesson here`, `Go back to the list`), an announcement (`Three things have happened`, `In the rest of this article`), a rhetorical question (`So what is still mine?`), an emphasis line, a teaser, or a slogan. Cut it, or fold the relation into the next informative sentence as a clause. Write as an engineer explains to a colleague, not as a narrator.
 - **One home per idea.** State the main point once, in the opening, then support it; do not repeat it as a subtitle, a refrain or a closing motto. Repeating a key noun is fine; repeating a claim without new evidence, mechanism or implication is a structural failure. Do not restate the central claim in the opening, a transition and the ending unless its function changes; do not add a second table or summary that repeats the first; cut phrases such as `the important point is` that add nothing. The ending compresses the resolved argument; it introduces no new central idea.
 - **Terms keep their boundaries.** When the article relies on distinctions (for example human doer, software work surface, application logic, application UI, agent runtime, agent team runtime, delivery boundary, artifact), keep them explicit; do not collapse them into `system`, `runtime`, `interface` or `process`. A word keeps one meaning throughout. A smoother sentence that is less accurate loses.
 - **Write for a reader outside the team: give them what they need to follow the point, and keep the proof in the package.** A detail belongs in the article only when the reader needs it to understand or believe the point: what happened, why, and the one number that shows it. Ticket IDs, internal titles, version numbers, file names, configuration values, test counts, scorecard labels and quoted internal messages are the proof trail; they stay in the ledger and the source index, which back the claim without the reader having to read them. Explaining an internal detail does not make the reader need it.
@@ -90,13 +83,13 @@ Choose the mode by the kind of article, never by whose material it is:
 
 ## 6. Evidence And The Anchor
 
-- Claims are carried by a concrete example, a repeated observed pattern, a named mechanism, a comparison, or a source. Evidence must change whether the claim is believable; decorative evidence does not count. A strong claim without support is a structural problem. Date or qualify a claim once, where the reader needs it; do not pile qualifiers on every number.
+- Claims are carried by a concrete example, a repeated observed pattern, a named mechanism, a comparison, or a source. Evidence must change whether the claim is believable; decorative evidence does not count. A strong claim without support is a structural problem. Date or qualify a claim once, where the reader needs it; do not pile qualifiers on every number, and do not label a claim the author holds (a conviction, a forecast) as opinion: state it as theirs, with what it rests on.
 - **Show the thing early:** a real anchor (a worked example, real code, a command and its output, real numbers, a real artifact) that a reader outside the team can picture, told in terms they know (section 5), with what it demonstrates; later sections reuse it to carry the argument. Code shown was run, or is marked as not run; numbers, quotes and outputs trace to the research package. An invented example is allowed only when labeled illustrative and adding no factual claim. Explanation with no anchor is a structural weakness.
 
-## 7. Style And Platform
+## 7. Voice Profile And Platform
 
 - Use an author's voice profile only when the user asks for that voice. Do not adopt a voice from what the workspace contains, such as a social-media voice guide or earlier posts, unless the user asks for it.
-- A requested profile shapes word choice, rhythm, tone and examples, inside the chosen mode (section 3) and within the source basis (section 1). It never changes the mode or the structure, and never distorts the reasoning.
+- A requested profile shapes word choice, rhythm, tone and examples, inside the chosen style (section 3) and within the source basis (section 1). It never changes the style or the structure, and never distorts the reasoning.
 - If the profile is bootstrapping or weakly evidenced, keep structure and truth before attempting imitation. If it has variants, choose one and stay in it.
 - Platform fit shapes title, pacing and formatting, never the argument. The packaging rules are in [platform-output-rules.md](platform-output-rules.md).
 
@@ -109,7 +102,14 @@ Choose the mode by the kind of article, never by whose material it is:
 - **Where the trigger fires, decide:** `prose-only` (with the reason the reader needs no mental model), `image-led`, or `prose-and-image` (with what would be lost without either). Plan visuals from the reasoning flow, never append them, and place each where it clarifies the nearby section rather than interrupting it.
 - **Each visual has a proposition, defined before its art direction:** the one nearby idea it makes concrete, the entities and relationships that must be visible, and a takeaway that survives without the caption. Reject a visual a generic illustration could replace without changing what the reader learns, unless it is intentionally a cover image; omit decorative images.
 - **Visuals are claims.** No fake UI states, charts, architecture, screenshots, benchmarks, logos or source material; captions add no facts the understanding package does not hold.
-- **Production:** high-quality raster images. Use the built-in `image_gen__imagegen` tool first when the runtime has it, image-to-image editing when a real reference improves fidelity, and the configured `generate_image` when the first is unavailable or fails. An ordinary SVG diagram is not the default; an HTML-rendered or rasterized diagram is an explicit exception when it is clearly more truthful. Short exact labels are allowed when they help; inspect the final raster and regenerate any wrong, invented or unreadable text.
+- **Production:** draw diagrams (structure, flow, roles and handoffs, comparisons, charts) as code, in HTML, CSS or SVG, so every box, arrow and label is exact; in a Markdown article, render each to a PNG. Make illustrations and covers with an image model: the built-in `image_gen__imagegen` tool first when the runtime has it, image-to-image editing when a real reference improves fidelity, and the configured `generate_image` when the first is unavailable or fails; never a diagram whose parts are claims. Inspect the final page or raster and fix any wrong, invented or unreadable text.
+- **Motion** only where the idea moves (work handed on, a sequence, a build-up). It starts when the figure scrolls into view, and the writer watches it from start to end before anyone sees it.
+- **The page** serves reading:
+  - body text of at least 16 px, one type scale, and text in figures as legible as the body at phone width;
+  - colour only where it carries meaning, used the same way throughout;
+  - the important things stand out in the text's flow (a highlighted statement, a large number, a figure); a box styled as a side note (tinted, with a border on one side) reads as something to skip, so never put the main point in one;
+  - fewer, larger elements: a figure or a highlight where it carries an idea, not on every paragraph;
+  - the style decides the rest ([the styles](styles/index.md), "The page").
 
 ## 9. Bilingual Fidelity (Only For Bilingual Or Conversion Work)
 
@@ -122,7 +122,7 @@ One order for writing, revising and reviewing. Fix the highest failing level fir
 
 1. Factual and mechanism accuracy, including the user's corrections.
 2. Understanding and source support: load-bearing claims checked against the primary source, not only the writer's notes.
-3. The point, the mode and opening, and the ownership stance.
+3. The point, the style and opening, and the ownership stance.
 4. The concept road (the foundation), the section chain and reader continuity.
 5. Paragraph jobs and bridges.
 6. Evidence weight, and visual usefulness and factuality.
@@ -134,7 +134,7 @@ The user's feedback is a hard constraint on the next pass, carried until the art
 
 | User cue | Response |
 | --- | --- |
-| `too salesy`, `too much Medium tone`, `too much rhetoric`, `reads like a novel`, `like literature` | Move to `technical-blog` (or `paper-report` if asked); remove contrastive hooks, emphasis lines, rhetorical questions and story bridges. |
+| `too salesy`, `too much Medium tone`, `too much rhetoric`, `reads like a novel`, `like literature` | Move to the `progressive` or `professional` style (`scientific-paper` if asked); remove contrastive hooks, emphasis lines, rhetorical questions and story bridges. |
 | `be direct`, `start from what we used`, `write from our product perspective` | Open on the system as it is and what it does; the author's facts in first person. |
 | `too detached`, `sounds like someone else built it` | Restore builder ownership language throughout. |
 | `too repetitive`, `don't repeat again and again` | Remove repeated restatements, duplicate summaries and second comparison tables. |
@@ -143,5 +143,6 @@ The user's feedback is a hard constraint on the next pass, carried until the art
 | `not accurate`, with new detail | Replace the generic explanation with the user's mechanism. |
 | `this feels vague` | Replace blurred nouns with the exact components (section 5). |
 | `too many details`, `readers can't understand this` | Move the proof trail (IDs, versions, file names, counts, internal quotes) out of the prose into the package (section 5). |
+| `remove this kind of sentence`, `not concise`, `what does this sentence mean` | Remove every sentence of that kind in the whole article, not only the one named: run the information check (section 5) again. |
 
 When several cues apply, follow the order above.

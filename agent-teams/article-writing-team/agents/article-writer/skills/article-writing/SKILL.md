@@ -5,13 +5,13 @@ description: Produce a publication-ready article package through source-grounded
 
 # Article Writing
 
-The article writer's end-to-end workflow: understanding the subject, style and language decisions, the outline, the visual plan, the draft, revision and delivery. The writer owns visual planning because images are part of the article's structure.
+The article writer's end-to-end workflow: understanding the subject, the style, the voice and language, the outline, the visual plan, the draft as a web project or Markdown, revision and delivery. The writer owns visual planning because images are part of the article's structure.
 
-Read [the team writing principles](references/writing-principles.md) first: they are the standard you write by and the reviewer judges by. This skill says what you do and when; the principles say what good looks like. For platform packaging, read [the platform output rules](references/platform-output-rules.md). `references/writing-principles.md`, `references/platform-output-rules.md`, `references/article-package.md` and `scripts/publish-folder.py` are symbolic links into the team's `shared/` folder; a listing such as `find -type f` skips them, so open or run each by its path.
+Read [the team writing principles](references/writing-principles.md) first: they are the standard you write by and the reviewer judges by, with [the article's style](references/styles/index.md). This skill says what you do and when; the principles and the style say what good looks like. For the formats and platforms, read [the platform output rules](references/platform-output-rules.md). `references/writing-principles.md`, `references/platform-output-rules.md`, `references/article-package.md`, the folder `references/styles/` and the scripts `scripts/publish-folder.py` and `scripts/html-article.py` are symbolic links into the team's `shared/` folder; a listing such as `find -type f` skips them, so open or run each by its path.
 
 ## Artifacts
 
-[The article package](references/article-package.md) lists the files in the work folder, their owners, and what each review handoff carries. You create `brief.md`, the understanding files and `research-request.md` (through [references/understanding.md](references/understanding.md)), `style-profile-notes.md`, `outline.md`, `visual-plan.md`, `visual-asset-index.md`, the draft and its publish folder, from these templates:
+[The article package](references/article-package.md) lists the files in the work folder, their owners, and what each review handoff carries. You create `brief.md`, the understanding files and `research-request.md` (through [references/understanding.md](references/understanding.md)), `style-profile-notes.md`, `outline.md`, `visual-plan.md`, `visual-asset-index.md`, and the draft (a web project, or Markdown with its publish folder), from these templates:
 
 - [templates/style-profile-notes-template.md](templates/style-profile-notes-template.md)
 - [templates/outline-template.md](templates/outline-template.md)
@@ -29,20 +29,20 @@ If the user names a path, use it. If a short-path request turns out to carry loa
 
 ### Step 1 - Write `brief.md`
 
-Record the target once, here: mode (principles, section 3: `technical-blog` for any technical topic unless the user asks for an essay or a formal report), platform, language, audience and the concepts it already has (principles, the foundation), one-sentence takeaway, depth target; a voice profile only when the user asks for that voice (section 7); the investigation modes (principles, section 2) and the source basis; visual expectations and constraints; the user's active corrections (principles, section 10); and any limitation.
+Record the target once, here: the style ([the styles](references/styles/index.md): the one the user names, otherwise by the kind of article and the reader), the format (a web project, the website's default, or Markdown: [platform output rules](references/platform-output-rules.md)), platform, language, audience and the concepts it already has (principles, the foundation), one-sentence takeaway, depth target; a voice profile only when the user asks for that voice (section 7); the investigation modes (principles, section 2) and the source basis; visual expectations and constraints; the user's active corrections (principles, section 10); and any limitation.
 
 If a missing detail changes the article's direction and the request, workspace and sources cannot settle it, ask the user a targeted question before continuing.
 
 ### Step 2 - Build the understanding package
 
-When the article needs factual, technical, document, source-code or supplied-material understanding, follow [references/understanding.md](references/understanding.md). It owns the understanding files and their Ready-to-outline check, and says which investigation you do and which you ask the Deep Researcher for with `research-request.md`.
+When the article needs factual, technical, document, source-code or supplied-material understanding (for fiction, only the facts it uses about the real world), follow [references/understanding.md](references/understanding.md). It owns the understanding files and their Ready-to-outline check, and says which investigation you do and which you ask the Deep Researcher for with `research-request.md`.
 
 - Reuse existing understanding files and research briefs before starting new discovery.
 - Do not outline from vague notes: the files must pass the Ready-to-outline check.
 - Understanding is not closed after Step 2. When outlining or drafting exposes a gap, return to the reference with the exact missing claim (and, for outside research, a new or narrower `research-request.md`), then continue.
 - If the source basis cannot support the intended article, narrow the claims or ask a targeted question before outlining.
 
-### Step 3 - Resolve the style package
+### Step 3 - Resolve the voice and language
 
 When the user asks for an author's voice, bilingual work or platform packaging, follow [references/style-workflow.md](references/style-workflow.md) and write `style-profile-notes.md`, so the reviewer can judge style fit from the file, not from chat.
 
@@ -50,7 +50,7 @@ When the user asks for an author's voice, bilingual work or platform packaging, 
 
 Write the point at the top of the outline, decided from the problem analysis in your understanding notes (principles, section 4), with the anchor example (section 6). If the point is not specific, or not new or useful to this reader, go back to the research or ask the user before outlining.
 
-Then check that the understanding files passed their Ready-to-outline check, that the planned opening fits the mode (section 3), and that no planned contrast, common-belief claim, recommendation, root-cause claim or production observation lacks an evidence anchor (section 1). If a check fails, fix the upstream file first.
+Then check that the understanding files passed their Ready-to-outline check, that the planned opening fits the style (section 3), and that no planned contrast, common-belief claim, recommendation, root-cause claim or production observation lacks an evidence anchor (section 1). If a check fails, fix the upstream file first.
 
 ### Step 5 - Write `outline.md`
 
@@ -62,11 +62,13 @@ Create it when the user asks for visuals, when an idea earns an image (principle
 
 Keep image prompts inside the understanding package: name the article's entities, relationships, action or state, and the one proposition; never ask the model to invent interfaces, metrics, architecture, people, logos or evidence. A caption may extend the image's meaning, but must not be the only place where the article's mechanism exists.
 
-### Step 7 - Pre-draft review
+### Step 7 - Show the author, then the pre-draft review
 
-On the full path, when Steps 1–6 pass, send the package for the pre-draft review of the point, evidence, style basis, section chain and visual plan, as [the article package](references/article-package.md) describes, and wait for the result.
+On the full path, when Steps 1–6 pass, show the person the article is for one page before anything goes to the reviewer: the style, the reader and what they already hold, the point, the section chain with the planned figures, and the opening paragraph. Show it in this conversation, or through the requester when that is how the author is reached. Record the answer in `brief.md` and change the files it affects. When the author cannot be reached, go on and record that. When the author says they will read before the reviewer, send the reviewer nothing until they release it.
 
-Draft only after the outline has passed review (or the user skipped the gate, or the short path applies), every finding has been fixed in the file it concerns, the outline and the style notes agree on mode, variant and forbidden moves, and each planned visual links to its representation decision and has a takeaway that survives without the caption.
+Then send the package for the pre-draft review of the point, evidence, style basis, section chain and visual plan, as [the article package](references/article-package.md) describes, and wait for the result.
+
+Draft only after the outline has passed review (or the user skipped the gate, or the short path applies), every finding has been fixed in the file it concerns, the outline and the style notes agree on style, variant and forbidden moves, and each planned visual links to its representation decision and has a takeaway that survives without the caption.
 
 ### Step 8 - Draft
 
@@ -76,8 +78,14 @@ Before drafting, check that every research brief you requested has come back ([u
 - Introduce the anchor example early. Run any code or command you show and keep its real output; mark anything not run.
 - Write only claims the understanding package or the user supports (principles, section 1). An assumption is marked as one and stays only if the user accepts it.
 - Compose each planned visual with its prose as one unit: each carries its recorded part of the takeaway. Insert it where it clarifies the section, with a caption and nearby prose that says why the reader is seeing it. Update `visual-asset-index.md` as assets are generated, sourced, inserted or omitted. If a planned visual cannot be produced truthfully, keep an explicit placeholder and mark it in `visual-plan.md`; never substitute a generic image.
-- Write `article.md` for single-language work, or one `article-<lang>.md` per language for bilingual or conversion work.
-- Build the publish folder of each draft (the platform output rules, "Website Publish Folder"): `python3 <this skill's folder>/scripts/publish-folder.py build <draft> <work folder>/publish/<name> --slug <slug> [--cover <image>]`, adding `--author` or `--date` only when the user gave them. Fix every problem it reports in the draft, not in the copy, and build again until it reports none.
+- Write the draft in the brief's format, one per language for bilingual or conversion work:
+  - **Web project:** `site/` in the work folder (the platform output rules, "Website: Web Project"), checked with `python3 <this skill's folder>/scripts/html-article.py check <site>` until it reports nothing to fix. Keep sources and build tools outside `site/`.
+  - **Markdown:** `article.md` (or `article-<lang>.md`), and its publish folder (the platform output rules, "Website: Markdown Folder"): `python3 <this skill's folder>/scripts/publish-folder.py build <draft> <work folder>/publish/<name> --slug <slug> [--cover <image>]`, adding `--author` or `--date` only when the user gave them. Fix every problem it reports in the draft, not in the copy, and build again until it reports none.
+  - When both are asked, build both from one text source, so they never differ.
+- **Check before anyone reads it.** Before any version goes to the reviewer or the author, including each version the author reads directly:
+  - run the draft checks on the text (principles, section 5: reverse outline, first-time reader, information check; for a web project, read it with `html-article.py text`);
+  - open the page in the browser (`open_tab` on its file path) and look at all of it with screenshots, at desktop width and at phone width (`set_device_emulation`); scroll so each figure appears, and watch each animation from start to end. For Markdown, view each figure at phone width (platform output rules).
+  - Fix what you find and look again. Say exactly what you looked at, and close the tabs you opened.
 - Send the whole package for draft review.
 
 ### Step 9 - Revise after review
@@ -87,8 +95,8 @@ Before drafting, check that every research brief you requested has come back ([u
 - Keep the audience and direction unless the review shows the direction itself is wrong.
 - If a finding needs information only the user has (brief details, source access, platform, a decision), ask the user instead of guessing.
 - If the same finding survives two revisions, or the fix needs a decision the package cannot settle, stop and give the user the review report and the choice.
-- Build each publish folder again from the revised draft, then send the whole updated package for re-review.
+- Check the revised draft again as in Step 8 (the script, the draft checks, the page), then send the whole updated package for re-review.
 
 ### Step 10 - Deliver
 
-When the reviewer's decision is `Pass`, run `scripts/publish-folder.py check <publish folder> --draft <draft>` once more for each language. Then give the user the absolute path of each publish folder first (the folder to drop on the website's Articles page), with the title, address and excerpt the check printed; then the absolute paths of the final drafts, the visual assets and the work folder, the platform and language of each draft, and any limitation the review report recorded.
+When the reviewer's decision is `Pass`, run the check once more for each language: for a web project, `scripts/html-article.py zip <site> <work folder>/<name>.zip`, which checks and packs it; for Markdown, `scripts/publish-folder.py check <publish folder> --draft <draft>`. Then give the user first what to drop on the website's Articles page (the `.zip`, or the publish folder) by absolute path, with the title, address and excerpt the check printed; then the absolute paths of the final drafts, the visual assets and the work folder, the platform and language of each draft, and any limitation the review report recorded.

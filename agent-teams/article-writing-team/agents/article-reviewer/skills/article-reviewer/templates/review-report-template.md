@@ -25,7 +25,7 @@
 
 ## Structure (in the principles' order)
 
-- The point, the mode (does it fit the kind of article?), the opening and the ownership stance:
+- The point, the style (does it fit the kind of article and the reader?), the opening and the ownership stance:
 - The logic spine and the section chain: what each section adds, the question it answers, what it leads to:
 - Continuity: bridges, the reverse outline compared with `outline.md`, the first-time-reader marks (draft review):
 - Paragraph jobs (draft review):
@@ -45,9 +45,10 @@
 - For each visual (principles, section 8): earned, proposition visible, prose and image each carry their part, nothing invented, caption supported, raster legible at mobile width:
 - Representation decisions missing or `prose-only` without a reason:
 
-## Publish Folder (draft review)
+## Output (draft review)
 
-- For each publish folder: its path, the `check` result (problems, or none), and the title, address and excerpt it printed:
+- For each web project or publish folder: its path, the `check` result (problems, or none), and the title, address and excerpt it printed:
+- For a web project, the page as you saw it in the browser (desktop and phone width, figures and animations): what you looked at, and the problems:
 
 ## High-Priority Findings
 
