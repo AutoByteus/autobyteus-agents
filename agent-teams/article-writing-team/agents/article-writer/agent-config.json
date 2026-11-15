@@ -11,10 +11,13 @@
     "read_url",
     "generate_image",
     "edit_image",
+    "search_memory",
     "get_handoff_rules",
     "send_message_to"
   ],
   "skillNames": [
-    "article-writing"
-  ]
+    "article-writing",
+    "reflection"
+  ],
+  "semanticMemoryEnabled": true
 }

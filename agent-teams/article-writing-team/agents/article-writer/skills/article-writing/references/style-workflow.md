@@ -14,10 +14,9 @@ Ask the user only when a missing detail changes the article's direction and cann
 
 ## 2. Load the profile
 
-1. Read [the style registry](style-registry.md) and normalize the requested author to its `profile_id` (lowercase hyphen-case, for example `Jane Doe` → `jane-doe`).
-2. Read the profile file and, when listed, its example file. If the profile does not exist, add it as the registry's "Add New Author Profile" section describes.
-3. If the profile has variants, choose one before the outline is finalized: the one that answers the user's actual stance request, not the loudest one.
-4. A `bootstrapping` profile needs 2–5 sample articles before final drafting.
+1. Load the author's voice profile and its examples as [voice-profiles.md](voice-profiles.md) describes; if there is none, add it as that file describes.
+2. If the profile has variants, choose one before the outline is finalized: the one that answers the user's actual stance request, not the loudest one.
+3. A `bootstrapping` profile needs 2–5 sample articles before final drafting.
 
 Write `style-profile-notes.md` from [its template](../templates/style-profile-notes-template.md): the profile and example paths, the variant and mode, the voice constraints, the forbidden moves for this request, and the evidence constraints for style-sensitive moves, so the reviewer can judge style fit from the file.
 
@@ -63,6 +62,5 @@ For a requested revision, run a focused pass: `logic`, `voice`, `depth`, `length
 
 ## Resources
 
-- [style-registry.md](style-registry.md): the profiles, their status, and how to add or update one.
-- `profiles/`: one file per author profile, and [profile-template.md](profiles/profile-template.md) for a new one.
-- `examples/`: few-shot examples per profile, and [example-template.md](examples/example-template.md) for a new one.
+- [voice-profiles.md](voice-profiles.md): where the profiles live, and how to load, add or update one.
+- [profile-template.md](profiles/profile-template.md) and [example-template.md](examples/example-template.md): the templates for a new profile.
