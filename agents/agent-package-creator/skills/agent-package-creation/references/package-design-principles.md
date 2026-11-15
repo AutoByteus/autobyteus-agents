@@ -135,13 +135,19 @@ Before creating, inspect the repository's instructions, analogous packages, and 
 
 When optimizing, compare the observed package with intended and preserved behavior. Diagnose structure and ownership, flow, grounding, then wording; repeated text may signal a wrong owner or broken flow. Choose whether to add, move, merge, remove, or update a rule before trimming sentences.
 
-**Restructure at the right level.** A package drifts as many small changes land, each right on its own. Judge its structure at three levels:
+**Restructure as you go, as code is refactored.** A package's folders, file names and file boundaries are never fixed. A package drifts as many small changes land, each right on its own, and structure left for later is rarely fixed. So every update judges the structure again, at three levels:
 
 1. **Inside a file:** order, repeats, wording.
 2. **A file:** whether its name still describes most of what it holds, and whether it sits where its readers look. Split a file whose parts serve different readers or different moments in the work; merge files that do one job.
 3. **The file set:** what each file is for, who reads it and when, and how the files connect. Ask whether you would draw these boundaries if you started fresh.
 
-The full read before an update shows the signals: a name that no longer fits the content; a file that keeps gaining sections for other readers; one task that sends the reader through many files, or one rule that needs many cross-links; fixes that each add a file or section instead of extending an owner; one concept under several names. Record them as findings. Propose a restructure above the file level as its own change, separate from the behavior change in hand, unless that change cannot be done well without it. Start it from the readers and what each needs when, map every old file, section, and name to its new home, keep every requirement as strong as it was, update every link, and check in a live run that the agents still behave as before.
+The full read before an update shows the signals: a name that no longer fits the content; a file that keeps gaining sections for other readers; one task that sends the reader through many files, or one rule that needs many cross-links; fixes that each add a file or section instead of extending an owner; one concept under several names. Record them as findings, each with what this task does about it:
+
+- **In the files the change touches,** fix small things with the change: a name that no longer fits, a section in the wrong file, a repeat.
+- **When the change lands in a structure that no longer fits** (new content with no home, a file that would mix readers further, a patch sentence such as "this section does not apply to X"), restructure first, then make the change on the new structure: make the change easy, then make the easy change. Keep the restructure its own commit or pull request, so a reader can see that it moves text and changes no rule.
+- **A restructure larger than the task,** such as other members or other teams, becomes its own Task with its findings, never a note in a chat.
+
+Start a restructure from the readers and what each needs when, map every old file, section, and name to its new home, keep every requirement as strong as it was, update every link, and check in a live run that the agents still behave as before.
 
 Apply the change at its owner and reconcile configured names, member references, routes, links, and human docs. Remove obsolete paths when an approved replacement makes them stale; keep a compatibility path only when its consumer and lifecycle are justified.
 

@@ -47,6 +47,7 @@ Concrete mistakes found in real package work. The [package design principles](pa
 | 37 | An agent's own reusable knowledge kept in a Project's folder | Package design |
 | 38 | Checking a new rule only against its own lines | Creator process |
 | 39 | A rule for every incident | Creator process |
+| 40 | Leaving the structure for later | Creator process |
 
 ## Package design
 
@@ -305,3 +306,10 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Breaks:** [§2](package-design-principles.md#2-design-responsibilities-before-files) (extend the owner instead of adding a place) and [§9](package-design-principles.md#9-update-and-restructure-safely) (diagnose before adding).
 - **Instead:** Name the general practice of the field the incident shows (for design principles, an established architecture practice), and add a rule only when the set does not yet state that practice. If it does, the incident becomes an example or case study, or a rule in the project's own documents, and the existing rule gains at most a few words naming the missed form.
 - **Detect:** For each rule a change adds, name the general practice it states and the existing rule closest to it; a rule that names a case rather than a practice, or that the closest rule already covers, is a lead. Read the set's recent history: a rule, Signal or Check added per incident is a lead for a consolidation pass.
+
+### 40. Leaving the structure for later
+
+- **Incident:** A writing team was extended with five article styles and a second format. The Creator added a `styles/` folder, patched the shared principles with "sections 4 to 6 hold in every style except narrative", renamed only the heading of a file whose name no longer fit, and listed six structure problems in a chat as a restructure "after the merge". The skill had told it to record such signals and to propose the restructure as a separate change. The user: a package's folders and files are reorganized constantly, as code is refactored (2026-11-15).
+- **Breaks:** [§9](package-design-principles.md#9-update-and-restructure-safely): restructure as you go.
+- **Instead:** Record each structure signal as a finding with its action in this task. Fix small things in the touched files with the change; when the change does not fit the structure, restructure first in its own commit or pull request, then make the change; give a larger restructure its own Task.
+- **Detect:** The analysis lists the structure signals as findings, each with an action and where it is done. A patch sentence that excepts a case from a rule, a renamed heading under an old file name, or a "restructure later" without a Task is a lead.
