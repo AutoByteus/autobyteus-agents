@@ -4,7 +4,9 @@ How to operate an AutoByteus app for an [evaluation](../SKILL.md): start it, loa
 
 ## 1. Start an isolated app
 
-Follow the AutoByteus repository's testing guide (`TESTING.md`, "Isolated desktop instance"): from that repository, `pnpm --silent isolated-app start --app /Applications/AutoByteus.app`. Keep `instanceId`, `graphqlUrl`, `serverPort`, and `dataRoot` from its JSON output. Stop it at the end with `pnpm --silent isolated-app stop <instanceId>`, which also removes its data. `pnpm --silent isolated-app list` shows the instances and whether each is running.
+Follow the AutoByteus repository's testing guide (`TESTING.md`, "Isolated desktop instance"): from that repository, `pnpm --silent isolated-app start --app /Applications/AutoByteus.app --data-root /tmp/<short-name>`. Keep `instanceId`, `graphqlUrl`, `serverPort`, and `dataRoot` from its JSON output. Stop it at the end with `pnpm --silent isolated-app stop <instanceId>`, which also removes its data. `pnpm --silent isolated-app list` shows the instances and whether each is running.
+
+**Credentials (AutoByteus 1.5.13 and later).** Every request to a node needs its credential; without one GraphQL answers 401. Get an owner credential for your instance with [node-credential.py](../scripts/node-credential.py) `<dataRoot> <serverPort> <file>`: it asks the node for a setup code over its local control socket and exchanges it, and writes the credential to the file (mode 0600) without printing it. The socket path must stay under 104 bytes on macOS, so give the instance a short `--data-root` (the default temporary folder is too long, and the node then starts without the socket). Send the credential as `Authorization: Bearer` on GraphQL calls and to [send-message.mjs](../scripts/send-message.mjs) with `--credential-file`. Never print, log or store it in evidence, and delete the file when the instance stops.
 
 ## 1a. A private process list where it is cheap, and room in memory
 
