@@ -64,7 +64,7 @@ Keep image prompts inside the understanding package: name the article's entities
 
 ### Step 7 - Show the author, then the pre-draft review
 
-On the full path, when Steps 1–6 pass, show the person the article is for one page before anything goes to the reviewer: the style, the reader and what they already hold, the point, the section chain with the planned figures, and the opening paragraph. Show it in this conversation, or through the requester when that is how the author is reached. Record the answer in `brief.md` and change the files it affects. When the author cannot be reached, go on and record that. When the author says they will read before the reviewer, send the reviewer nothing until they release it.
+On the full path, when Steps 1–6 pass, show the person the article is for one page: the style, the reader and what they already hold, the point, the section chain with the planned figures, and the opening paragraph. Show it in this conversation, or through the requester when that is how the author is reached, and wait for the answer: nothing goes to the reviewer before it. Record the answer in `brief.md` and change the files it affects. When the author cannot be reached, go on and record that. When the author says they will read before the reviewer, send the reviewer nothing until they release it.
 
 Then send the package for the pre-draft review of the point, evidence, style basis, section chain and visual plan, as [the article package](references/article-package.md) describes, and wait for the result.
 

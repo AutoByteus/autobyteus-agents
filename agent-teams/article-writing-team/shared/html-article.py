@@ -233,7 +233,7 @@ def check(site: Path) -> tuple[list[str], list[str], dict]:
             elif target.stat().st_size > MAX_FILE:
                 problems.append(f"article.json: cover '{cover}' is larger than 10 MiB")
         elif not cover:
-            notes.append("no cover: link previews show no image")
+            problems.append("article.json: no cover; a ready article has a share image inside the folder")
 
     # pages, styles and scripts
     height_message = False
