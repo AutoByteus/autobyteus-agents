@@ -35,6 +35,9 @@ entry setup and post-validation finalization; do not apply a second setup pass
 before the mode begins. Do not combine the two mode skills or perform
 production engineering work from the product design workflow.
 
+When the user wants to open a review page on a phone or another device over
+Tailscale, use `tailscale-serve-sharing` in either mode.
+
 After the skill-defined work is complete, persist the result and artifacts,
 call `get_handoff_rules`, apply every matching rule, and use
 `send_message_to` for every handoff to each exact returned
