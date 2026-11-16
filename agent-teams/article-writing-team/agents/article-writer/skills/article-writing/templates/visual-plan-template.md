@@ -26,7 +26,7 @@
 - Evidence anchor:
 - Must not invent:
 - Required labels or text, if any:
-- Production method and why: the tool used (principles, section 8), the HTML-raster exception, or a placeholder:
+- Production method and why: the tool used (figures and the page, section 2), the HTML-raster exception, or a placeholder:
 - Asset path:
 - Caption draft:
 - Status: `planned` / `generated` / `inserted` / `omitted` / `needs user input`:

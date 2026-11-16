@@ -24,7 +24,8 @@ Recipients for each result come from `team-config.json`.
 
 ## Shared files
 
-- [`shared/writing-principles.md`](shared/writing-principles.md): the quality bar both roles apply. Skills add role-specific rules but do not contradict it.
-- [`shared/platform-output-rules.md`](shared/platform-output-rules.md): packaging and visual-legibility rules for WeChat and Medium, and the website publish folder.
+- [`shared/writing-principles.md`](shared/writing-principles.md): the quality bar both roles apply, with [`shared/explanatory-writing.md`](shared/explanatory-writing.md) (how an explanatory article is built) and [`shared/figures-and-page.md`](shared/figures-and-page.md) (figures). Skills add role-specific rules but do not contradict them.
+- [`shared/formats.md`](shared/formats.md): the website's publish folder.
+- [`shared/platform-output-rules.md`](shared/platform-output-rules.md): WeChat, Medium and bilingual delivery.
 - `shared/publish-folder.py`: builds and checks a publish folder; linked into both skills as `scripts/publish-folder.py`.
 - [`shared/article-package.md`](shared/article-package.md): the files in one request's work folder and what each handoff carries.

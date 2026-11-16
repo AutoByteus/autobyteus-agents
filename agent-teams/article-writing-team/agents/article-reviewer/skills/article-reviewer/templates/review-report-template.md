@@ -42,7 +42,7 @@
 
 ## Visuals
 
-- For each visual (principles, section 8): earned, proposition visible, prose and image each carry their part, nothing invented, caption supported, raster legible at mobile width:
+- For each visual (figures and the page): earned, proposition visible, prose and image each carry their part, nothing invented, caption supported, raster legible at mobile width:
 - Representation decisions missing or `prose-only` without a reason:
 
 ## Publish Folder (draft review)

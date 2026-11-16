@@ -1,6 +1,6 @@
-# Style And Language Workflow
+# Voice And Language Workflow
 
-Read this in Step 3 of `article-writing` when the user asks for an author's voice, bilingual drafting or platform packaging. It owns profile loading, the style notes, native expression in each language, conversion, and style checks. The modes, the opening rules, the user's correction cues and the one priority order are in [the writing principles](writing-principles.md) (sections 3 and 10); a profile never overrides them.
+Read this in Step 3 of `article-writing` when the user asks for an author's voice, bilingual drafting or platform packaging. It owns profile loading, the style notes, native expression in each language, conversion, and style checks. The modes, the opening rules, the user's correction cues and the one priority order are in [the writing principles](writing-principles.md) (sections 3 and 6); a profile never overrides them.
 
 ## 1. Resolve the target
 
@@ -36,7 +36,7 @@ The outline's point, section order, evidence and ending stay as approved; style 
 - **Conversion:** the source draft is the canonical logic.
   1. Extract its thesis map and section intent.
   2. Rewrite into the target language with native rhythm and platform fit, not paragraph by paragraph.
-  3. Check fidelity (principles, section 9).
+  3. Check fidelity (principles, section 5).
   4. Return the target draft with 3–6 alignment notes on the logic preserved.
 
 ## 5. Style checks

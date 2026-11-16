@@ -7,7 +7,7 @@ description: Produce a publication-ready article package through source-grounded
 
 The article writer's end-to-end workflow: understanding the subject, style and language decisions, the outline, the visual plan, the draft, revision and delivery. The writer owns visual planning because images are part of the article's structure.
 
-Read [the team writing principles](references/writing-principles.md) first: they are the standard you write by and the reviewer judges by. This skill says what you do and when; the principles say what good looks like. For platform packaging, read [the platform output rules](references/platform-output-rules.md). `references/writing-principles.md`, `references/platform-output-rules.md`, `references/article-package.md` and `scripts/publish-folder.py` are symbolic links into the team's `shared/` folder; a listing such as `find -type f` skips them, so open or run each by its path.
+Read [the team writing principles](references/writing-principles.md) first, with [explanatory writing](references/explanatory-writing.md) and [figures and the page](references/figures-and-page.md): they are the standard you write by and the reviewer judges by. This skill says what you do and when; the principles say what good looks like. For the website's format, read [the formats](references/formats.md); for platform packaging, [the platform output rules](references/platform-output-rules.md). `references/writing-principles.md`, `references/explanatory-writing.md`, `references/figures-and-page.md`, `references/formats.md`, `references/platform-output-rules.md`, `references/article-package.md` and `scripts/publish-folder.py` are symbolic links into the team's `shared/` folder; a listing such as `find -type f` skips them, so open or run each by its path.
 
 ## Artifacts
 
@@ -29,7 +29,7 @@ If the user names a path, use it. If a short-path request turns out to carry loa
 
 ### Step 1 - Write `brief.md`
 
-Record the target once, here: mode (principles, section 3: `technical-blog` for any technical topic unless the user asks for an essay or a formal report), platform, language, audience and the concepts it already has (principles, the foundation), one-sentence takeaway, depth target; a voice profile only when the user asks for that voice (section 7); the investigation modes (principles, section 2) and the source basis; visual expectations and constraints; the user's active corrections (principles, section 10); and any limitation.
+Record the target once, here: mode (principles, section 3: `technical-blog` for any technical topic unless the user asks for an essay or a formal report), platform, language, audience and the concepts it already has (principles, the foundation), one-sentence takeaway, depth target; a voice profile only when the user asks for that voice (section 4); the investigation modes (principles, section 2) and the source basis; visual expectations and constraints; the user's active corrections (principles, section 6); and any limitation.
 
 If a missing detail changes the article's direction and the request, workspace and sources cannot settle it, ask the user a targeted question before continuing.
 
@@ -44,21 +44,21 @@ When the article needs factual, technical, document, source-code or supplied-mat
 
 ### Step 3 - Resolve the style package
 
-When the user asks for an author's voice, bilingual work or platform packaging, follow [references/style-workflow.md](references/style-workflow.md) and write `style-profile-notes.md`, so the reviewer can judge style fit from the file, not from chat.
+When the user asks for an author's voice, bilingual work or platform packaging, follow [references/voice-and-language.md](references/voice-and-language.md) and write `style-profile-notes.md`, so the reviewer can judge style fit from the file, not from chat.
 
 ### Step 4 - Decide the point and check the basis
 
-Write the point at the top of the outline, decided from the problem analysis in your understanding notes (principles, section 4), with the anchor example (section 6). If the point is not specific, or not new or useful to this reader, go back to the research or ask the user before outlining.
+Write the point at the top of the outline, decided from the problem analysis in your understanding notes ([explanatory writing](references/explanatory-writing.md), section 2), with the anchor example (section 4). If the point is not specific, or not new or useful to this reader, go back to the research or ask the user before outlining.
 
-Then check that the understanding files passed their Ready-to-outline check, that the planned opening fits the mode (section 3), and that no planned contrast, common-belief claim, recommendation, root-cause claim or production observation lacks an evidence anchor (section 1). If a check fails, fix the upstream file first.
+Then check that the understanding files passed their Ready-to-outline check, that the planned opening fits the mode (principles, section 3, and explanatory writing, section 1), and that no planned contrast, common-belief claim, recommendation, root-cause claim or production observation lacks an evidence anchor (principles, section 1). If a check fails, fix the upstream file first.
 
 ### Step 5 - Write `outline.md`
 
-Fill [the outline template](templates/outline-template.md): the point, the opening, the concepts in order, the anchor example, the section chain, the ending move, and a representation decision wherever an idea earns an image (principles, sections 4 and 8). Keep it short; do not plan every paragraph. Then complete the template's Structural Gate; if the structure is weak, revise the outline before going on.
+Fill [the outline template](templates/outline-template.md): the point, the opening, the concepts in order, the anchor example, the section chain, the ending move, and a representation decision wherever an idea earns an image (explanatory writing, section 2; [figures and the page](references/figures-and-page.md)). Keep it short; do not plan every paragraph. Then complete the template's Structural Gate; if the structure is weak, revise the outline before going on.
 
 ### Step 6 - Write `visual-plan.md` when an image is earned
 
-Create it when the user asks for visuals, when an idea earns an image (principles, section 8), or when the platform or audience expects visual pacing. If the article stays text-only, record that decision in the outline. Fill [the visual plan template](templates/visual-plan-template.md) for each visual.
+Create it when the user asks for visuals, when an idea earns an image (figures and the page), or when the platform or audience expects visual pacing. If the article stays text-only, record that decision in the outline. Fill [the visual plan template](templates/visual-plan-template.md) for each visual.
 
 Keep image prompts inside the understanding package: name the article's entities, relationships, action or state, and the one proposition; never ask the model to invent interfaces, metrics, architecture, people, logos or evidence. A caption may extend the image's meaning, but must not be the only place where the article's mechanism exists.
 
@@ -72,17 +72,17 @@ Draft only after the outline has passed review (or the user skipped the gate, or
 
 Before drafting, check that every research brief you requested has come back ([understanding.md](references/understanding.md), section 2).
 
-- Draft from the outline, from large to small: the point, the sections, the paragraphs, the sentences (principles, sections 3–6). Keep the approved section order; if drafting reveals a structural problem, stop and revise `outline.md` instead of improvising a new shape.
+- Draft from the outline, from large to small: the point, the sections, the paragraphs, the sentences (principles, section 3, and explanatory writing). Keep the approved section order; if drafting reveals a structural problem, stop and revise `outline.md` instead of improvising a new shape.
 - Introduce the anchor example early. Run any code or command you show and keep its real output; mark anything not run.
 - Write only claims the understanding package or the user supports (principles, section 1). An assumption is marked as one and stays only if the user accepts it.
 - Compose each planned visual with its prose as one unit: each carries its recorded part of the takeaway. Insert it where it clarifies the section, with a caption and nearby prose that says why the reader is seeing it. Update `visual-asset-index.md` as assets are generated, sourced, inserted or omitted. If a planned visual cannot be produced truthfully, keep an explicit placeholder and mark it in `visual-plan.md`; never substitute a generic image.
 - Write `article.md` for single-language work, or one `article-<lang>.md` per language for bilingual or conversion work.
-- Build the publish folder of each draft (the platform output rules, "Website Publish Folder"): `python3 <this skill's folder>/scripts/publish-folder.py build <draft> <work folder>/publish/<name> --slug <slug> [--cover <image>]`, adding `--author` or `--date` only when the user gave them. Fix every problem it reports in the draft, not in the copy, and build again until it reports none.
+- Build the publish folder of each draft (the formats, "Markdown Folder"): `python3 <this skill's folder>/scripts/publish-folder.py build <draft> <work folder>/publish/<name> --slug <slug> [--cover <image>]`, adding `--author` or `--date` only when the user gave them. Fix every problem it reports in the draft, not in the copy, and build again until it reports none.
 - Send the whole package for draft review.
 
 ### Step 9 - Revise after review
 
-- Fix in the principles' order (section 10): the highest failing level first, and after a structural edit, run the draft checks (section 5) again before polishing.
+- Fix in the principles' order (principles, section 6): the highest failing level first, and after a structural edit, run the draft checks (explanatory writing, section 3) again before polishing.
 - An `Understanding Gap`, `Source Gap` or `Evidence Gap` goes back to the understanding files before any prose edit; a `Visual Plan Gap` goes back to the outline, the visual plan, the captions or the assets.
 - Keep the audience and direction unless the review shows the direction itself is wrong.
 - If a finding needs information only the user has (brief details, source access, platform, a decision), ask the user instead of guessing.

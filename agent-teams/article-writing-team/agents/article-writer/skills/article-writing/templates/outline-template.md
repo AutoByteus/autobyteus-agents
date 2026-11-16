@@ -24,7 +24,7 @@ From the problem analysis in `understanding-notes.md` (for a comparison or an ex
 - The opening (principles, the foundation): the point, when the reader can place every word of it; otherwise the question and the route:
 - The map: the parts and how they connect (a few lines, a list or one figure); each section below is one part:
 - Justified opening exception, if the first move is intentionally negative or contrastive:
-- Primary logic spine (principles, section 4): the problem chain (an article about solved problems) / `comparative` (the same dimensions for every product) / `causal` / `problem-solution` / `question-answer` / `derivational` / `chronological` (only for a history) / other:
+- Primary logic spine (explanatory writing, section 2): the problem chain (an article about solved problems) / `comparative` (the same dimensions for every product) / `causal` / `problem-solution` / `question-answer` / `derivational` / `chronological` (only for a history) / other:
 
 ## Concepts In Order
 

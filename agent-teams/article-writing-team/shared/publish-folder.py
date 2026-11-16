@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Build and check an article's publish folder: the article's Markdown plus its images, in the format
-the AutoByteus website's article import takes (platform-output-rules.md, "Website Publish Folder").
+the AutoByteus website's article import takes (formats.md, "Markdown Folder").
 
   publish-folder.py build DRAFT OUT [--slug S] [--cover IMAGE] [--author A] [--date YYYY-MM-DD]
       Writes OUT/article.md (the draft, image links changed to images/..., settings block on top)
