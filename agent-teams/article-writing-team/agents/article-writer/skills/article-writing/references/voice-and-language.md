@@ -1,7 +1,5 @@
 # Voice And Language Workflow
 
-Read this in Step 3 of `article-writing` when the user asks for an author's voice, bilingual drafting or platform packaging. It owns profile loading, the style notes, native expression in each language, conversion, and style checks. The article's style ([the styles](styles/index.md)), the opening rules, the user's correction cues and the one priority order are in [the writing principles](writing-principles.md) (sections 3 and 6); a profile never overrides them.
-
 ## 1. Resolve the target
 
 Record the target in `brief.md` (Step 1 of `article-writing`). For voice and language work, also resolve:
@@ -25,8 +23,6 @@ Write `style-profile-notes.md` from [its template](../templates/style-profile-no
 The outline's point, section order, evidence and ending stay as approved; the voice changes how they are said, not what they are.
 
 - In `essay`, express the outline's thesis with the chosen pressure; do not replace it with a more dramatic one. In the other styles, keep the outline's scope, mechanism, evidence and bounded conclusion, and add no debate frame for effect.
-- For a comparison of products or system designs, follow the reader journey chosen in the outline. Keep reusable definitions, live executions, work records, communication, UI interaction, result review and artifact transfer distinct, labeled as alternatives, independent axes or composable layers. Use a scenario as a design derivation, not a promotional example; avoid a predetermined `best fit`, a universal `should`, or a frame built only around the home product.
-- This reference may report a style or language problem to the writer; it does not bypass the outline gate.
 
 ## 4. Native expression
 
@@ -51,16 +47,3 @@ For a requested revision, run a focused pass: `logic`, `voice`, `depth`, `length
 - `subject-precision`: replace vague nouns with the exact components;
 - `derivation-flow`: each section follows from the previous one instead of jumping to the conclusion;
 - `transition-smoothing`: fix jumps where the referent or causal chain is lost.
-
-## Output Modes
-
-- `Outline`: title options plus the structure.
-- `Single-language draft`: one full WeChat or Medium article.
-- `Cross-language conversion`: the source article adapted into the target language.
-- `Bilingual pair`: Chinese and English drafts with one thesis and argument order.
-- `Polish pass`: the revised draft plus a compact change log.
-
-## Resources
-
-- [voice-profiles.md](voice-profiles.md): where the profiles live, and how to load, add or update one.
-- [profile-template.md](profiles/profile-template.md) and [example-template.md](examples/example-template.md): the templates for a new profile.

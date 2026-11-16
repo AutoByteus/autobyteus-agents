@@ -1,7 +1,5 @@
 # Platform Output Rules
 
-Packaging for WeChat and Medium, and bilingual delivery. The writer applies these rules before delivery; the reviewer uses them to judge platform fit. The website's formats are in [formats.md](formats.md); the style, opening and structure rules in [writing-principles.md](writing-principles.md) and [explanatory-writing.md](explanatory-writing.md). A platform shapes packaging, never the argument.
-
 ## WeChat (Chinese)
 
 - A concise title (what a title must say is in [explanatory writing](explanatory-writing.md), section 2).
@@ -28,5 +26,3 @@ When the user asks for both languages, deliver in this order:
 3. Optional alignment notes (3–6 bullets) on the logic preserved.
 
 Each language gets its own web project or publish folder.
-
-The conversion steps are in the writer's voice and language workflow; the fidelity rules are in the writing principles, section 5.

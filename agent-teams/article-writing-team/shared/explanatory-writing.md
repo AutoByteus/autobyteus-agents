@@ -1,7 +1,5 @@
 # Explanatory Writing
 
-How an explanatory article is built: every style except `narrative` (the progressive and professional technical articles, the essay, the scientific paper). It adds to the [writing principles](writing-principles.md), which hold for every article; the article's [style](styles/index.md) says what it changes.
-
 ## 1. The Opening
 
 - Do not open with `we did not`, `not X`, `unlike`, `rather than` or another negative frame about an alternative when it only sets up the subject (a real problem the reader has is not such a frame); a negative first move needs an explicit user request or an essential source-grounded correction recorded in the outline, and the article makes that reason clear before going on. Grounding a contrast does not make it the right opening. Do not open with meta-lines such as `This article explains…` or `This note describes…`.

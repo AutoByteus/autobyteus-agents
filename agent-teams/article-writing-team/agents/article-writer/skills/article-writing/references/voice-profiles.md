@@ -1,6 +1,6 @@
 # Voice Profiles
 
-A voice profile records how one author writes, for when the user asks for that author's voice (writing principles, section 4). Profiles are the user's own material, built from their articles, and serve every Project, so they are not kept in this skill.
+A voice profile records how one author writes, for when the user asks for that author's voice (writing principles, section 4).
 
 ## Where they live
 
