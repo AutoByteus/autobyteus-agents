@@ -1,6 +1,6 @@
 # Agent Package Design Principles
 
-Use these package boundaries and writing principles with [Agent Package Creation](../SKILL.md). [package-anti-patterns.md](package-anti-patterns.md) shows real mistakes against them. For skill internals, see [skill-authoring-principles.md](skill-authoring-principles.md). Adapt examples to the target repository's schema and catalog.
+Adapt the examples to the target repository's schema and catalog.
 
 ## 1. Choose the package boundary from the work
 
@@ -13,7 +13,7 @@ Use these package boundaries and writing principles with [Agent Package Creation
 
 An Agent definition can be standalone, team-local under a Team's `agents/`, or org-local under an Org's `agents/`. A Team can be shared or org-local under an Org's `agent-teams/`. Reuse a shared member by reference instead of copying its internal package. A reference to an imported shared member is viable only when that member ID is present in the runtime catalog.
 
-**Start with one Agent and one skill.** Every handoff loses context: the receiver gets the sender's result, not what the sender learned on the way (a research brief carries less than the research behind it), and every member is another run to start and steer. So begin with one Agent whose one skill does the whole job, and test it on real tasks. Split the skill into stages only when runs show it is too big or unreliable: the agent compacts in the middle of the work, or one skill mixes domains that need different instructions. The Software Engineering Team grew this way: one big skill that worked, then a staged workflow skill, then one Agent per stage once whole-workflow runs compacted too often to be reliable.
+**Start with one Agent and one skill.** Every handoff loses context: the receiver gets the sender's result, not what the sender learned on the way (a research brief carries less than the research behind it), and every member is another run to start and steer. So begin with one Agent whose one skill does the whole job, and test it on real tasks. Split the skill into stages only when runs show it is too big or unreliable: the agent compacts in the middle of the work, or one skill mixes domains that need different instructions.
 
 **Before proposing a second Agent, ask: does the next step need everything the first step learned, or must it judge that work independently or run with different limits?** Keep one Agent for the first. Research then writing stays together: a separate writer would have to re-load and re-understand the evidence the researcher already holds. Split for the second. Implementation then review splits: an author reviewing its own work thinks it did well, while a fresh Agent whose job is to criticize finds the problems, and it still reads the requirements and the work. Split for independence, not for sequence; a mode or skill switch inside one Agent keeps the same context and blind spots. Other reasons to split are a context that overflows or compacts too often (try notes the agent keeps for itself first), different tools, permissions or models, work that runs in parallel (helpers may gather in parallel, but one Agent does the thinking that needs it all), and a security boundary. A distinct decision or output alone is not one. Record in the result what each handoff loses and what the split gains, and give the Agents clean handoff rules. A reviewer or coordinator needs a real work contract, not a title.
 
@@ -69,13 +69,13 @@ Short pointers are useful; competing procedures are not. When an Agent has a ski
 
 **Design a package like software.** The boundaries (§1) are its architecture; the path from request to result (§2) is its data-flow spine; one owner per rule and per fact (§2, §3) is its single source of truth, and one home per kind of record is its one table per entity; handoffs and their files are its interfaces; restructuring compares old and new so no check is lost; validation and real runs are its tests. Duplication is a smell, as in code. Two differences matter. The runtime is a model that interprets: state the purpose, the boundary, and the few things that must happen, and trust its judgement for the rest; do not script every step. And its bugs are silent: two drifting copies or wrong wording fail without an error, so owners and real runs matter even more than in code.
 
-Use the same quality principles when creating, analyzing, or updating any target kind. An analysis uses them as its review criteria; create and update apply them in this order while designing and writing, with cross-file consistency throughout:
+The standard has five levels, from the flow down to the lines. Creating, analyzing and updating any target kind use the same levels: an analysis judges the whole affected package by them (the quality check, [Agent Package Creation](../SKILL.md) step 2), and create and update design and write by them. Fix the highest failing level first: a wrong flow makes work on files and lines wasted, and a structure that no longer fits is refactored before the change goes into it.
 
-1. **Structure and ownership:** Choose the smallest package topology that can own the requested work; assign each behavior, route, and output one authoritative file before polishing prose.
-2. **Content architecture and flow:** Make the path from trigger and inputs through decisions, work, outputs, validation/recovery, and handoff or stop coherent. Put prerequisites before dependent actions and exceptions beside the action they modify.
-3. **Behavioral and factual grounding:** Derive obligations from the user's request, confirmed repository contract, observed files/tools, or explicit approvals. Qualify assumptions and unresolved decisions rather than presenting an inferred capability, path, or outcome as fact.
-4. **Clarity and precision:** Name the actor, action, object, condition, and expected result where ambiguity would change execution. Keep terminology stable across definitions, configuration, and references. Give an example of the desired artifact when a boundary would otherwise stay abstract.
-5. **Economy and plain language:** Write direct prose in descriptions, instructions, examples, results, handoffs, and docs. Remove words that change no action, condition, scope, owner, evidence, output, or safety boundary. Keep meaningful distinctions; replace duplicate rules with pointers. Retain prohibitions that prevent plausible authority, safety, ambiguity, recovery, validation, or output failures.
+1. **The flow:** for each use case, the path from trigger and inputs through decisions, work, outputs, recovery, and handoff or stop works end to end. Every result a role hands on has a route; every step has the tools it needs, and every tool serves a step. Prerequisites come before the actions that depend on them.
+2. **The nodes:** the smallest topology that can own the work (§1); each behavior, route, rule, fact and kind of record has one owner, and the others point to it (§2, §3).
+3. **The files:** each file has one purpose and serves one reader at one moment of the work; its name says what it holds; each skill links only the files it uses. When this fails, restructure (§9).
+4. **Inside each file:** the order follows the flow, and exceptions sit beside the action they modify. Obligations come from the user's request, the repository's contract, observed files and tools, or approvals; assumptions are marked as such. Rules agree with each other ([step 4](../SKILL.md#4-validate-and-recover), "a rule in a set of rules"). Terms stay stable; name the actor, action, object, condition and result where ambiguity would change what is done; give an example where a boundary would stay abstract.
+5. **The lines:** each line changes what the agent does: an action, a condition, a scope, an owner, the evidence, the output, or a safety boundary. Cut a line that describes its file or who uses it (the files that use it link it and say when), an announcement, a repeat of a rule that has a home, history or incident detail the rule does not need, an instruction for what the model does anyway, and jargon. Keep meaningful distinctions and the prohibitions that prevent plausible failures. A package grows only by lines that do something.
 
 The same test prevents both wordiness and over-shortening:
 
@@ -83,12 +83,13 @@ The same test prevents both wordiness and over-shortening:
 | --- | --- | --- |
 | “In order to validate the package, perform validation of the changed files.” | “Validate the changed files.” | The extra words add no action or condition. |
 | “Follow the bundled `agent-package-creation` skill as the authoritative workflow for creating agent packages.” | “Follow `agent-package-creation`.” | Its attachment and scope are already clear. |
+| “This shared principle is used by the writer and the reviewer.” | The principle itself. | The writer's and the reviewer's skills link it and say when to read it; the line changes nothing either does. |
 | “Send the result.” | “Send the result to every exact `recipient_address` returned.” | The shorter version loses the routing requirement. |
 | “Unverified currency.” | “Possibly outdated.” | Jargon hides the meaning. |
 | “Verify in proportion to the diff.” | “Check what the diff touched.” | Names the action instead of a quality. |
 | “Judge it by provenance, independence, deterministic/resettable behavior, and proportionate complexity.” | A short list: where it came from, needs no live service, same result every run. | A chain of abstract nouns and slash compounds becomes checks an agent can perform. |
 
-This standard guides the analysis, the changes, and the final review of the changed text ([Agent Package Creation](../SKILL.md) steps 2–4). Independent review occurs only when requested (the `analyze` operation) or required by the containing workflow. For a skill's trigger, instruction flow, and resources, apply the [skill-authoring principles](skill-authoring-principles.md).
+Independent review occurs only when requested (the `analyze` operation) or required by the containing workflow. For a skill's trigger, instruction flow, and resources, apply the [skill-authoring principles](skill-authoring-principles.md).
 
 ## 5. Attach skills deliberately
 
