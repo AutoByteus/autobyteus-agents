@@ -1,6 +1,6 @@
 # Writing Principles
 
-The team's quality standard for every article. The writer builds an article by it and the reviewer judges by it, in the same order. Three files add to it: [explanatory-writing.md](explanatory-writing.md) for every style except a narrative, [figures-and-page.md](figures-and-page.md) for figures and the web page, and the article's [style](styles/index.md). The skills say who does what and when; the rules live in these files. Every statement below is a requirement: "each section does one job" means each section must.
+Every statement below is a requirement: "each section does one job" means each section must.
 
 ## The Foundation: Build Understanding, Then Write It
 

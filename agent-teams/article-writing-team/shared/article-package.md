@@ -1,7 +1,5 @@
 # Article Package
 
-The files one article request produces, who owns each, and what every handoff carries. The writer and the reviewer use this file; `article-writing`, `article-reviewer`, and the Deep Researcher's `deep-research` own how each file is made or judged.
-
 ## Work folder
 
 Create one dedicated work folder per request. Keep every file below in it, and use absolute paths in messages.

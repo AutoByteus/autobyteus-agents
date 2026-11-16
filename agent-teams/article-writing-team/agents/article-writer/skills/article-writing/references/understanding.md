@@ -1,8 +1,6 @@
 # Understanding The Subject
 
-Read this in Step 2 of `article-writing`, and again whenever outlining, drafting or review exposes a gap. It owns the article's understanding files: `understanding-notes.md`, `source-index.md` and `claim-evidence-ledger.md`, plus the research fields of `brief.md`. General research from outside sources is the Deep Researcher's work; this file says when to ask for it and how to use what comes back.
-
-Understanding becomes durable files, not chat context. It is ready when you can outline and draft from the files without repeating discovery. When writing exposes a gap, return here with the exact missing claim and add it.
+Understanding becomes durable files, not chat context. It is ready when you can outline and draft from the files without repeating discovery.
 
 ## 1. Reuse first
 
@@ -50,7 +48,7 @@ Record:
 
 For product-builder or architecture articles, keep practical sequences as they happened, for example `we used X -> it did Y -> we observed Z -> we changed to W -> we noticed Q`. Do not compress them into generic claims.
 
-For a comparison of products or architectures, build a primitive inventory before choosing a taxonomy or an article spine. Use the same neutral dimensions for every product when relevant: reusable definitions and organization; execution units and lifetime; communication and human interaction; task or work state; result return, review, and acceptance; context and artifact transfer. Keep definition, live execution, work record, communication, and review state distinct. Mark whether dimensions are alternatives, independent axes, or composable layers; do not turn differently packaged primitives into exclusive categories. Add one scenario walked through every product the same way.
+For a comparison of products or architectures, build a primitive inventory before choosing a taxonomy or an article spine. Use the same neutral dimensions for every product when relevant: reusable definitions and organization; execution units and lifetime; communication and human interaction; task or work state; result return, review, and acceptance; context and artifact transfer. Keep definition, live execution, work record, communication, and review state distinct. Mark whether dimensions are alternatives, independent axes, or composable layers; do not turn differently packaged primitives into exclusive categories. Add one scenario walked through every product the same way, as a design derivation, not a promotional example; avoid a predetermined `best fit`, a universal `should`, or a frame built only around the home product.
 
 For a builder-owned design explanation, capture mechanism and intent: the problem that motivated each primitive, who initiates and owns each transition, what the user can see or control, one continuous scenario that exercises the primitives together, and which conclusions the scenario supports versus preferences or tradeoffs. When these are not observable in the material, ask the user targeted questions such as `Why was this primitive created?` or `What can the user inspect or control here?`.
 

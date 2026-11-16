@@ -1,6 +1,6 @@
 # Article Styles
 
-A style is how an article reads: for which reader, how it opens, in what order, how dense, and how its page looks. The [writing principles](../writing-principles.md) hold in every style; a style file says only what it changes. The writer records one style in `brief.md` and shows it to the author before the pre-draft review; the reviewer judges the article by the principles and that style.
+A style is how an article reads: for which reader, how it opens, in what order, how dense, and how its page looks.
 
 ## Choose the style
 
@@ -15,8 +15,6 @@ Use the style the user names or describes ("step by step", "professional", "a pa
 | [narrative](narrative.md) | Only when the user asks for a story: fiction, such as a novel or a short story, or narrative non-fiction. |
 
 `progressive` and `professional` are both technical articles: an engineer explaining how something works and what they learned, about the reader's problem (`you`), in words the reader uses, with a real example or number for each mechanism, and low rhetoric. They differ in what the reader already holds, and so in the opening, the order and the density.
-
-An author's voice profile is separate: it shapes wording inside the style and never changes the style (principles, section 4).
 
 ## Add a style
 

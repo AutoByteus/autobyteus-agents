@@ -1,7 +1,5 @@
 # Figures And The Page
 
-When an article gets a figure, how figures are made, and how a web article's page reads. The writer applies it and the reviewer judges by it, in every style; the [style](styles/index.md) says what its page adds.
-
 ## 1. Figures Are Structure
 
 - **When an idea earns an image:** when following it requires the reader to hold several entities and how they move or relate at once (a roster of roles with a handoff, a package moving between parties, a before/after, a spatial or process layout, an object the reader has not seen). If the idea survives as one proposition the reader can hold, text is enough.
