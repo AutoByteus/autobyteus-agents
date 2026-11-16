@@ -9,12 +9,22 @@
     "stop_background_process",
     "search_web",
     "read_url",
+    "open_tab",
+    "navigate_to",
+    "screenshot",
+    "set_device_emulation",
+    "run_script",
+    "read_page",
+    "close_tab",
     "generate_image",
     "edit_image",
+    "search_memory",
     "get_handoff_rules",
     "send_message_to"
   ],
   "skillNames": [
-    "article-writing"
-  ]
+    "article-writing",
+    "reflection"
+  ],
+  "semanticMemoryEnabled": true
 }

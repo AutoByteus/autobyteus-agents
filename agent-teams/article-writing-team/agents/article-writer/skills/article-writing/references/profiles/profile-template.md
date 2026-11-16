@@ -2,7 +2,7 @@
 
 Status: `bootstrapping`
 Profile ID: `<profile-id>`
-Example file: `references/examples/<profile-id>-examples.md` (create from `references/examples/example-template.md`)
+Example file: `<profile-id>-examples.md`, next to this profile (from the skill's `references/examples/example-template.md`)
 
 Use this template for any new author. Replace all placeholders.
 
