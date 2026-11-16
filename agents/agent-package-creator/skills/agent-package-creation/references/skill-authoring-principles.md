@@ -1,7 +1,5 @@
 # Skill Authoring Principles
 
-Use this reference for standalone and Agent-bundled skills. The [package design principles](package-design-principles.md) cover package boundaries and writing standards; this file covers skill instructions. [package-anti-patterns.md](package-anti-patterns.md) shows real mistakes against both.
-
 ## Choose ownership and location
 
 A Skill defines repeatable **how-to work**: its trigger, inputs, decisions, actions, outputs, checks, recovery, and stopping point. It has no role identity, tool grants, member roster, or recipient matrix. Those belong to its owning Agent or containing Team/Org configuration.
@@ -77,7 +75,3 @@ agents/source-researcher/
 ```
 
 Here `agent.md` owns the researcher's identity and runtime stance; `agent-config.json` owns tool and skill wiring; `SKILL.md` owns the dossier procedure. If several Agents should share the same skill independently, move that procedure to a confirmed standalone skill source and configure each consumer rather than maintaining divergent copies.
-
-## Validate the skill as loaded
-
-[Agent Package Creation](../SKILL.md#4-validate-and-recover) step 4 owns the checks for a skill.

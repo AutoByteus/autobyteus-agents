@@ -1,6 +1,6 @@
 # Live Checks In An AutoByteus App
 
-How to operate an AutoByteus app for an [evaluation](../SKILL.md): start it, load the package, run it, send the request, observe, clean up. Use an isolated instance, never the user's running app or data. Observed with AutoByteus 1.5.6 (2026-10-19); if a call below fails, read the app's GraphQL schema (introspection) and adapt.
+Use an isolated instance, never the user's running app or data. Observed with AutoByteus 1.5.6 (2026-10-19) and 1.5.13 (2026-11-15); if a call below fails, read the app's GraphQL schema (introspection) and adapt.
 
 ## 1. Start an isolated app
 

@@ -1,7 +1,5 @@
 # Result And Handoff Contract
 
-This file defines the analysis and result fields and the handoff for [Agent Package Creation](../SKILL.md). [agent-package-analysis-template.md](../templates/agent-package-analysis-template.md) and [agent-package-result-template.md](../templates/agent-package-result-template.md) supply the formats.
-
 The persisted file that is routed is the analysis for `analyze` and the result for `create` and `update`.
 
 ## Required analysis fields
@@ -15,7 +13,9 @@ An analysis is written for `analyze` and before editing in `update`.
 | `package_type`, `target_package`, `scope`, `request_reference` | As defined for the result. |
 | `baseline` | Each file read in full and what it currently owns, including linked shared files. |
 | `preserved_behavior` | Triggers, outputs, approvals, routes, and safeguards that must stay intact. |
-| `findings` | Each defect, missing behavior, or risk with evidence (file and line or observed check), owning file, impact, and recommended change, ordered by the authoring-standard priority. |
+| `cause` | For an update, what produced the reported problem, its owner, and the fix designed for it; for a review, the question. |
+| `quality_check` | Each level of principles §4, the anti-pattern detection checks run, and the size per changed file, with result and evidence; `Pass` rows say what was checked. |
+| `findings` | Each defect, missing behavior, or risk with evidence (file and line or observed check), owning file, impact, and recommended change, ordered by level. |
 | `changes` | Recommended (unapplied) changes for `analyze`; planned edits by file for `update`; `None` when no change is needed. |
 | `open_questions` | Decisions, assumptions to confirm, and approval state. |
 | `checks` | Read-only checks run, observed result, and limitations. |

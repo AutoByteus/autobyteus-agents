@@ -1,23 +1,17 @@
 # Evaluation Mistakes
 
-Concrete mistakes found in real evaluations of agent packages. The [evaluation skill](../SKILL.md) is the authority; each entry shows how it was broken, what to do instead, and how to catch it. Keep entries short and general: one cause per entry, and merge entries that share a cause. Entries 1 and 2 were anti-patterns 27 and 28 of the package anti-pattern catalog.
+Keep entries short and general: one cause per entry, the incident in one or two sentences, and merge entries that share a cause.
 
 ## 1. Judging a change from a run that did not exercise it
 
-- **Incidents:** Three on 2026-10-20.
-  - **An evidence check:** the first test data cited an evidence folder that did not exist, and the PM held the Task to rescue the evidence instead of showing the rule under test.
-  - **A judgment check:** the first question told both copies not to run any tools, so neither opened the skill under test, and both answered from general caution.
-  - **A probe check:** the data never made a probe mislead, so "a surprising result gets a second check" went unexercised and was nearly reported as passed. The user pointed out that evaluation sometimes needs test data created for it. Two more fixtures (a stale count, a stale server on the default port) were sidestepped by careful agents that used their own file and port. The user: "agents are really really smart … if you babysit a smart model, maybe it doesn't work". The point was dropped from the guide instead.
-  - **A check that could not fail the real way (2026-11-01):** the user's complaint was that a research team did not study existing work before going deep. The check gave old and new text a fictional corpus, forbade the network and seeded the history, so neither could skip real reading. Both passed, and the change merged while the real behaviour stayed.
-  - **A fresh request for a failure that came from drift (2026-11-07):** a rule on when an Agent gets a second skill was tested with three fresh requests; old and new text decided alike. The real miss had grown inside an existing skill over many changes; a second test, a skill that had grown a second job, also showed no difference, and the rule was dropped.
-  - **A request the agent could meet without the change (2026-11-08):** a check that the operator closes the tabs it opens first asked for facts from three public pages; the operator fetched them with `curl` and opened no tab. The scored requests then needed the site's own interface (a search box, a menu).
+- **Incidents:** Test data cited a missing evidence folder; a question forbade tools so no copy opened the skill; data never made a probe mislead (2026-10-20); a fictional corpus with no network let neither text skip real reading (2026-11-01); fresh requests tested a failure that came from drift (2026-11-07); public pages could be fetched without the browser the change was about (2026-11-08). The user: "agents are really really smart … if you babysit a smart model, maybe it doesn't work".
 - **Breaks:** [§2 and §4](../SKILL.md#2-build-a-scenario-where-the-real-failure-can-happen): a scenario where the real failure can happen, and every point mapped to where it was observed.
 - **Instead:** Create consistent test data that makes each point of the change happen, and leave the agent the tools and reading it has in real use ([live-checks.md](live-checks.md)). After the run, map each point to where it happened; build data for any point that did not, and rerun. When old and new text both pass, first ask whether the scenario lets the real failure happen at all: it needs the conditions of real use, such as open access to the real sources and no prepared answer. Write the pass criteria before the first run, and run the old text first.
 - **Detect:** In the result's validation, each point of the change names the run and the step where it was observed; a point without one is listed as untested. For a change that answers a real failure, name what the real run had that the test withholds or supplies.
 
 ## 2. A live check that starts real work
 
-- **Incident:** A live check tested how the Project Task Manager moves a Task to another worker, in isolated apps that held the whole package. The PM delegated for real: two Agent Package Creator copies started on the seeded Task, and one committed on a new branch in a worktree of the user's agents repository and started another test instance. A guard script meant to stop such runs hung on its terminate call (2026-10-23).
+- **Incident:** A live check of the Project Task Manager let it delegate for real: two Creator copies started on the seeded Task and one committed to the user's agents repository (2026-10-23).
 - **Breaks:** [live-checks.md](live-checks.md): an isolated instance must not act on the user's repositories or data.
 - **Instead:** When the scenario only needs the agent's choice, load only the agent under test and put placeholder run IDs on its board, so a delegation is refused and seen in the traces; when the worker's work is the point, give its Task a test repository.
 - **Detect:** Before sending, list each `delegate_task` or `send_message_to` the scenario can lead to and where it would land; after the run, check the instance's runs and the repositories' branches and worktrees.
@@ -32,7 +26,7 @@ Concrete mistakes found in real evaluations of agent packages. The [evaluation s
 
 ## 4. A verdict without an evaluation report
 
-- **Incident:** The same writing team was evaluated six times; the verdicts for the first four rounds exist only in chat, so later rounds could not be compared with them from files. The user asked whether an evaluation file is written every time (2026-11-07). In a live check the same day, a Creator asked how good a package was recorded its evaluation as a package analysis with a verdict section, because no evaluation report existed; the user: "for evaluation we need to have an evaluation result or evaluation report".
+- **Incident:** Four rounds of a writing team's evaluation left their verdicts only in chat, and a Creator recorded an evaluation as an analysis; the user: "for evaluation we need to have an evaluation result or evaluation report" (2026-11-07).
 - **Breaks:** [§5](../SKILL.md#5-record-the-evaluation): one evaluation report per evaluation, from the template.
 - **Instead:** Write the evaluation report before telling anyone the verdict, and link it from the result.
 - **Detect:** Each evaluation in the artifact workspace has a report from the template naming its runs.
@@ -53,17 +47,14 @@ Concrete mistakes found in real evaluations of agent packages. The [evaluation s
 
 ## 7. An isolation gap accepted as a residual
 
-- **Incident:** A research study's test bench gave each subject its own data, network and user, but the host's process list. Its protocol named this a known residual, and every reviewer accepted it.
-  - On 2026-11-11 subjects listed processes and saw the user's own app with its data folder, another agent's workspace, and other subjects' processes. Those lines went to the model providers. No credential was found.
-  - Two scored runs changed what they did; one waited for another subject's probe, taking it for its own leftover.
-  - Concurrent heavy subjects also ran the machine out of memory.
+- **Incident:** A bench gave subjects their own data but the host's process list; subjects saw the user's app and other subjects' processes, two changed their work because of them, and the machine ran out of memory (2026-11-11).
 - **Breaks:** [live-checks.md](live-checks.md#1a-a-private-process-list-where-it-is-cheap-and-room-in-memory) and [§4](../SKILL.md#4-judge): on a bench that runs many subjects, each instance has its own process list, and a run counts only after its transcript scan.
 - **Instead:** For each gap a bench names, ask what a subject could do with it, and close it where that is cheap for the bench rather than list it (but see mistake 8). Scan every subject's transcript before counting its run.
 - **Detect:** The report names, per instance, the processes seen from inside and the memory peak, and per run the scan result. A bench protocol that lists a "residual" says what a subject could do with it.
 
 ## 8. A safeguard that blocks the evaluation
 
-- **Incident:** The fix for mistake 7 made a private process list a requirement for every instance: on macOS or Windows a Linux container or VM, otherwise "the evaluation could not run". The next evaluation on the user's Mac, of a change to the software engineering team's design principles, was blocked: a container would have needed an AutoByteus Linux build, a display and the user's sign-in inside. Every earlier evaluation on that machine had run well. The user: a requirement that is not easy or does not give enough benefit is rejected; it is a practice, good to have, and the use case decides (2026-11-12).
+- **Incident:** The fix for mistake 7 required a private process list everywhere, which blocked an evaluation on the user's Mac; the user: a requirement that is not easy or does not give enough benefit is a practice, and the use case decides (2026-11-12).
 - **Breaks:** [§3](../SKILL.md#3-run-the-old-text-and-the-new-independently): safeguards fit the setup they protect.
 - **Instead:** Name what the safeguard prevents and where that risk is real. Require it only where the risk is real and the safeguard is cheap; elsewhere use the cheaper protection (one subject that starts processes at a time, the transcript scan). A setup that needs more isolation decides that for itself.
 - **Detect:** For each requirement that can end in "could not run", name the setup it protects and the cost of meeting it on the user's own machine.
