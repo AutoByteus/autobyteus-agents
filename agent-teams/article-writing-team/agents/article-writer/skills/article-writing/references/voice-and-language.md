@@ -1,10 +1,10 @@
 # Voice And Language Workflow
 
-Read this in Step 3 of `article-writing` when the user asks for an author's voice, bilingual drafting or platform packaging. It owns profile loading, the style notes, native expression in each language, conversion, and style checks. The modes, the opening rules, the user's correction cues and the one priority order are in [the writing principles](writing-principles.md) (sections 3 and 6); a profile never overrides them.
+Read this in Step 3 of `article-writing` when the user asks for an author's voice, bilingual drafting or platform packaging. It owns profile loading, the style notes, native expression in each language, conversion, and style checks. The article's style ([the styles](styles/index.md)), the opening rules, the user's correction cues and the one priority order are in [the writing principles](writing-principles.md) (sections 3 and 6); a profile never overrides them.
 
 ## 1. Resolve the target
 
-Record the target in `brief.md` (Step 1 of `article-writing`). For style work, also resolve:
+Record the target in `brief.md` (Step 1 of `article-writing`). For voice and language work, also resolve:
 
 - the work type: `original-draft` (the default, in one language first), `cross-language-conversion` (with an explicit source and target language), or `dual-draft`;
 - the platform (WeChat, Medium, or both) and the language;
@@ -14,24 +14,23 @@ Ask the user only when a missing detail changes the article's direction and cann
 
 ## 2. Load the profile
 
-1. Read [the style registry](style-registry.md) and normalize the requested author to its `profile_id` (lowercase hyphen-case, for example `Jane Doe` → `jane-doe`).
-2. Read the profile file and, when listed, its example file. If the profile does not exist, add it as the registry's "Add New Author Profile" section describes.
-3. If the profile has variants, choose one before the outline is finalized: the one that answers the user's actual stance request, not the loudest one.
-4. A `bootstrapping` profile needs 2–5 sample articles before final drafting.
+1. Load the author's voice profile and its examples as [voice-profiles.md](voice-profiles.md) describes; if there is none, add it as that file describes.
+2. If the profile has variants, choose one before the outline is finalized: the one that answers the user's actual stance request, not the loudest one.
+3. A `bootstrapping` profile needs 2–5 sample articles before final drafting.
 
-Write `style-profile-notes.md` from [its template](../templates/style-profile-notes-template.md): the profile and example paths, the variant and mode, the voice constraints, the forbidden moves for this request, and the evidence constraints for style-sensitive moves, so the reviewer can judge style fit from the file.
+Write `style-profile-notes.md` from [its template](../templates/style-profile-notes-template.md): the profile and example paths, the variant and style, the voice constraints, the forbidden moves for this request, and the evidence constraints for style-sensitive moves, so the reviewer can judge style fit from the file.
 
-## 3. Bind style to the approved structure
+## 3. Bind the voice to the approved structure
 
-The outline's point, section order, evidence and ending stay as approved; style changes how they are said, not what they are.
+The outline's point, section order, evidence and ending stay as approved; the voice changes how they are said, not what they are.
 
-- In `essay`, express the outline's thesis with the chosen pressure; do not replace it with a more dramatic one. In the other modes, keep the outline's scope, mechanism, evidence and bounded conclusion, and add no debate frame for style.
+- In `essay`, express the outline's thesis with the chosen pressure; do not replace it with a more dramatic one. In the other styles, keep the outline's scope, mechanism, evidence and bounded conclusion, and add no debate frame for effect.
 - For a comparison of products or system designs, follow the reader journey chosen in the outline. Keep reusable definitions, live executions, work records, communication, UI interaction, result review and artifact transfer distinct, labeled as alternatives, independent axes or composable layers. Use a scenario as a design derivation, not a promotional example; avoid a predetermined `best fit`, a universal `should`, or a frame built only around the home product.
 - This reference may report a style or language problem to the writer; it does not bypass the outline gate.
 
 ## 4. Native expression
 
-- Write `original-draft` work fully in the chosen language. Keep the chosen mode across revisions and conversions; in `technical-blog` and `paper-report`, prefer mechanism → evidence → implication over persuasion-first framing.
+- Write `original-draft` work fully in the chosen language. Keep the chosen style across revisions and conversions; in `progressive`, `professional` and `scientific-paper`, prefer mechanism → evidence → implication over persuasion-first framing.
 - For math-heavy content, define symbols on first use and keep notation stable.
 - **Conversion:** the source draft is the canonical logic.
   1. Extract its thesis map and section intent.
@@ -39,13 +38,13 @@ The outline's point, section order, evidence and ending stay as approved; style 
   3. Check fidelity (principles, section 5).
   4. Return the target draft with 3–6 alignment notes on the logic preserved.
 
-## 5. Style checks
+## 5. Voice checks
 
 - Style edits keep the approved claim, section order and conclusion; a structural conflict goes back to the outline, not into silent reshaping.
 - The draft matches the profile's constraints and stays inside the chosen variant, without drifting into a louder neighboring one.
 - No sales or manifesto tone, forced binary contrast or claim inflated beyond the evidence, unless the user asked for that tone.
-- In `technical-blog` and `paper-report`, observations or the system description come before strong conclusions, and causal claims stay bounded.
-- Platform fit follows [the platform output rules](platform-output-rules.md), including the legibility of text in visuals; check the rendered result, not only the export resolution.
+- In `progressive`, `professional` and `scientific-paper`, observations or the system description come before strong conclusions, and causal claims stay bounded.
+- Platform fit follows [the platform output rules](platform-output-rules.md), and the legibility of text in figures follows [figures and the page](figures-and-page.md); check the rendered result, not only the export resolution.
 - When style fit is weak, revise rhythm, transitions and structural moves, not isolated words.
 
 For a requested revision, run a focused pass: `logic`, `voice`, `depth`, `length`, `title` or `tone-temperature`. For technical architecture articles, also:
@@ -63,6 +62,5 @@ For a requested revision, run a focused pass: `logic`, `voice`, `depth`, `length
 
 ## Resources
 
-- [style-registry.md](style-registry.md): the profiles, their status, and how to add or update one.
-- `profiles/`: one file per author profile, and [profile-template.md](profiles/profile-template.md) for a new one.
-- `examples/`: few-shot examples per profile, and [example-template.md](examples/example-template.md) for a new one.
+- [voice-profiles.md](voice-profiles.md): where the profiles live, and how to load, add or update one.
+- [profile-template.md](profiles/profile-template.md) and [example-template.md](examples/example-template.md): the templates for a new profile.

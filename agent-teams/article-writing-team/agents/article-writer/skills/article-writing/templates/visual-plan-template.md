@@ -1,7 +1,7 @@
 # Visual Plan
 
 - Article:
-- Platform:
+- Format and platform:
 - Language:
 - Visual constraints:
 - Text-only decision, if applicable:
@@ -26,7 +26,7 @@
 - Evidence anchor:
 - Must not invent:
 - Required labels or text, if any:
-- Production method and why: the tool used (figures and the page, section 2), the HTML-raster exception, or a placeholder:
+- Production method (figures and the page, section 2): drawn as code (HTML, CSS, SVG; rendered to PNG for Markdown), an image model (illustration or cover), or a placeholder; any motion, and what moves:
 - Asset path:
 - Caption draft:
 - Status: `planned` / `generated` / `inserted` / `omitted` / `needs user input`:

@@ -1,6 +1,6 @@
 # Style Profile Notes
 
-Only when the user asked for an author's voice. The target (mode, platform, language, audience, takeaway) is in `brief.md`; style-sensitive claims and their evidence are in `claim-evidence-ledger.md`.
+Only when the user asked for an author's voice. The target (style, format, platform, language, audience, takeaway) is in `brief.md`; style-sensitive claims and their evidence are in `claim-evidence-ledger.md`.
 
 - Status:
 - Article package:

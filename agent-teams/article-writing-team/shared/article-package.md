@@ -10,7 +10,7 @@ Create one dedicated work folder per request. Keep every file below in it, and u
 
 | File | Owner | Present when |
 | --- | --- | --- |
-| `brief.md` | `article-writing` | Always |
+| `brief.md` (with the style, the format, and the author's answer to the one-page plan) | `article-writing` | Always |
 | `understanding-notes.md`, `source-index.md` | `article-writing` (its understanding reference) | The article needs investigation or source grounding |
 | `claim-evidence-ledger.md` | `article-writing` (its understanding reference) | Factual, technical, or interpretive claims need explicit support |
 | `research-request.md` | `article-writing` | The article needs online or paper research |
@@ -19,8 +19,9 @@ Create one dedicated work folder per request. Keep every file below in it, and u
 | `outline.md` | `article-writing` | Always |
 | `visual-plan.md` | `article-writing` | Visuals are requested or earned by the visualization-load trigger |
 | `visual-asset-index.md` | `article-writing` | Visual assets are sourced, generated, inserted, or intentionally omitted |
-| `article.md`, or one `article-<lang>.md` per language for bilingual or conversion work (for example `article-zh.md`, `article-en.md`) | `article-writing` | After the outline passes review |
-| `publish/<name>/`, or `publish/<name>-<lang>/` per language: `article.md` and `images/` ([formats](formats.md), "Markdown Folder") | `article-writing`, built from the draft by `scripts/publish-folder.py` | With every draft sent for review, rebuilt after each revision |
+| Web project: `site/`, or `site-<lang>/` per language ([formats](formats.md), "Web Project"); its sources and build tools beside it, outside `site/`; on delivery, `<name>.zip` | `article-writing`, checked and packed by `scripts/html-article.py` | The format is a web project; after the outline passes review |
+| Markdown: `article.md`, or one `article-<lang>.md` per language for bilingual or conversion work (for example `article-zh.md`, `article-en.md`) | `article-writing` | The format is Markdown; after the outline passes review |
+| `publish/<name>/`, or `publish/<name>-<lang>/` per language: `article.md` and `images/` ([formats](formats.md), "Markdown Folder") | `article-writing`, built from the draft by `scripts/publish-folder.py` | With every Markdown draft sent for review, rebuilt after each revision |
 | Companion pieces the request asks for (a post, key points, a claims note) | `article-writing` | Written from the draft once no structure or evidence finding is open, so a restructure does not leave them stale; reviewed with the draft |
 | `review-report.md` | `article-reviewer` | After every review |
 
@@ -32,7 +33,7 @@ Send the whole package each time, not only the latest file:
 
 - Every artifact above that exists (a research brief by its path), plus the source material or source article.
 - For bilingual or cross-language work, both the source and target drafts.
-- With a draft, each publish folder and the writer's last `check` result for it.
+- With a draft, each web project or publish folder, the writer's last `check` result for it, and what the writer looked at in the browser.
 - The user's active corrections ([writing principles](writing-principles.md), section 6) until the article passes.
 - On a return to the writer, the latest `review-report.md`.
 

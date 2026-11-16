@@ -1,6 +1,6 @@
 # Platform Output Rules
 
-Packaging for WeChat and Medium, and bilingual delivery. The writer applies these rules before delivery; the reviewer uses them to judge platform fit. The website's format is in [formats.md](formats.md); the mode, opening and structure rules in [writing-principles.md](writing-principles.md) and [explanatory-writing.md](explanatory-writing.md). A platform shapes packaging, never the argument.
+Packaging for WeChat and Medium, and bilingual delivery. The writer applies these rules before delivery; the reviewer uses them to judge platform fit. The website's formats are in [formats.md](formats.md); the style, opening and structure rules in [writing-principles.md](writing-principles.md) and [explanatory-writing.md](explanatory-writing.md). A platform shapes packaging, never the argument.
 
 ## WeChat (Chinese)
 
@@ -17,7 +17,7 @@ Packaging for WeChat and Medium, and bilingual delivery. The writer applies thes
 - Explanation progression explicit and skimmable; bullets for criteria, principles and outcomes when they help inspection, without forcing lists into explanatory prose.
 - No Markdown tables: Medium does not render them. Use a list, or an image of the table when a comparison needs columns.
 - Compact equations followed by a plain-language interpretation.
-- A concise conclusion that states the result and its implication; in `technical-blog` and `paper-report`, a bounded implication, not a slogan.
+- A concise conclusion that states the result and its implication; outside `essay` and `narrative`, a bounded implication, not a slogan.
 
 ## Bilingual Delivery
 
@@ -27,6 +27,6 @@ When the user asks for both languages, deliver in this order:
 2. The Medium English draft.
 3. Optional alignment notes (3–6 bullets) on the logic preserved.
 
-Each language gets its own publish folder ([formats](formats.md)).
+Each language gets its own web project or publish folder.
 
 The conversion steps are in the writer's voice and language workflow; the fidelity rules are in the writing principles, section 5.
