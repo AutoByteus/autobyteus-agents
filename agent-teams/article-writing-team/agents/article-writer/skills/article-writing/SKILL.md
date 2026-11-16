@@ -21,7 +21,7 @@ Read [the team writing principles](references/writing-principles.md) first: they
 ## Choose The Path
 
 - **Full path (Steps 1–11):** a new article that makes technical, factual or current-world claims.
-- **Short path:** a style rewrite, a cross-language conversion, a short note, or a draft the user supplied. Write a short `brief.md`; request research only for claims that need it; write `outline.md` as the point plus the section list; skip the visual plan unless an idea earns an image; draft and check it (Steps 8 and 9); and send the draft package for draft review (the reviewer then skips the pre-draft review). Steps 10 and 11 apply unchanged.
+- **Short path:** a style rewrite, a cross-language conversion, a short note, or a draft the user supplied. Write a short `brief.md`; request research only for claims that need it; write `outline.md` as the point plus the section list; show the author the one-page plan and wait for the answer (Step 7); skip the visual plan unless an idea earns an image; draft and check it (Steps 8 and 9); and send the draft package for draft review (the reviewer then skips the pre-draft review). Steps 10 and 11 apply unchanged.
 
 If the user names a path, use it. If a short-path request turns out to carry load-bearing claims you cannot support, move to the full path.
 
@@ -64,9 +64,9 @@ Keep image prompts inside the understanding package: name the article's entities
 
 ### Step 7 - Show the author, then the pre-draft review
 
-On the full path, when Steps 1–6 pass, show the person the article is for one page: the style, the reader and what they already hold, the point, the section chain with the planned figures, and the opening paragraph. Show it in this conversation, or through the requester when that is how the author is reached, and wait for the answer: nothing goes to the reviewer before it. Record the answer in `brief.md` and change the files it affects. When the author cannot be reached, go on and record that. When the author says they will read before the reviewer, send the reviewer nothing until they release it.
+On either path, when the outline is written (on the full path, when Steps 1–6 pass), show the person the article is for one page: the style, the reader and what they already hold, the point, the section chain with the planned figures, and the opening paragraph. Show it in this conversation, or through the requester when that is how the author is reached, and wait for the answer: nothing goes to the reviewer before it. Record the answer in `brief.md` and change the files it affects. When the author cannot be reached, go on and record that. When the author says they will read before the reviewer, send the reviewer nothing until they release it.
 
-Then send the package for the pre-draft review of the point, evidence, style basis, section chain and visual plan, as [the article package](references/article-package.md) describes, and wait for the result.
+Then, on the full path, send the package for the pre-draft review of the point, evidence, style basis, section chain and visual plan, as [the article package](references/article-package.md) describes, and wait for the result.
 
 Draft only after the outline has passed review (or the user skipped the gate, or the short path applies), every finding has been fixed in the file it concerns, the outline and the style notes agree on style, variant and forbidden moves, and each planned visual links to its representation decision and has a takeaway that survives without the caption.
 
