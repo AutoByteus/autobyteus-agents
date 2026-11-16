@@ -1,8 +1,6 @@
 # Package Anti-Patterns
 
-Concrete mistakes found in real package work. The [package design principles](package-design-principles.md) and [skill authoring principles](skill-authoring-principles.md) remain the authority; each entry shows how one of them was broken, what to do instead, and how to catch it.
-
-[Agent Package Creation](../SKILL.md) says when to read this file and when to add to it. Keep entries short and general: one cause per entry, the incident as a single line, and merge entries that share a cause.
+Keep entries short and general: one cause per entry, the incident in one or two sentences, and merge entries that share a cause.
 
 ## Index
 
@@ -30,12 +28,9 @@ Concrete mistakes found in real package work. The [package design principles](pa
 | 20 | Symlinked references the reader cannot see in a listing | Skill content |
 | 21 | A tool list that does not match the work | Skill content |
 | 22 | A review standard the reviewer cannot read | Skill content |
-| 23 | Merged into 4 | Package design |
 | 24 | Judging only the fix the request proposes | Creator process |
 | 25 | A link that exists only for another file's links | Package design |
 | 26 | Softening requirements while restructuring | Creator process |
-| 27 | Moved to the evaluation skill (`agent-package-evaluation`, evaluation mistakes 1) | Creator process |
-| 28 | Moved to the evaluation skill (`agent-package-evaluation`, evaluation mistakes 2) | Creator process |
 | 29 | Asking the user what the evidence already answers | Creator process |
 | 30 | More Agents than the work needs | Package design |
 | 31 | Private information in a public package | Creator process |
@@ -49,6 +44,8 @@ Concrete mistakes found in real package work. The [package design principles](pa
 | 39 | A rule for every incident | Creator process |
 | 40 | Leaving the structure for later | Creator process |
 | 41 | A pull request before the evaluation | Creator process |
+| 42 | Text that describes the file instead of the work | Skill content |
+| 43 | A package that grows with every update | Creator process |
 
 ## Package design
 
@@ -75,7 +72,7 @@ Concrete mistakes found in real package work. The [package design principles](pa
 
 ### 4. One rule, fact or kind of record in several places
 
-- **Incident:** The `delegate_task` ban appeared in the Solution Designer's `agent.md`, its skill, `team.md`, an Org summary, and another team's agent, so fixing one left the others refusing. In the Article Writing Team the opening-progression rule sat in eight files and the image-tool order in five (2026-10-14). The API/E2E report wrote each test case's result and evidence in up to seven places, and a first fix added an eighth, an Evidence Index. The API/E2E engineer reran the implementation engineer's 5,830 unit tests because those results had no commit or evidence. A review of the team called its documents "too much paperwork"; the user corrected that the problem was the information structure, not the amount (2026-10-18). Follow-ups lived in five places (design spec, design review, implementation handoff, two code review reports) and two roles sent them, one guessing the recipient; the Creator first proposed keeping them in each report, because each follow-up was written only once, and the user pointed out that one kind of record needs one home (2026-10-20).
+- **Incidents:** The `delegate_task` ban sat in five files of two teams, so fixing one left the others refusing (2026-10-14); the API/E2E report wrote each result in up to seven places, and follow-ups lived in five documents with two senders (2026-10-18, 2026-10-20). The user: the problem is the information structure, not the amount of documents.
 - **Breaks:** [§3](package-design-principles.md#3-give-each-rule-one-authoritative-file) and [§2](package-design-principles.md#2-design-responsibilities-before-files), information the roles share: one owner per rule, per fact, and per kind of record; others point to it.
 - **Instead:** State the rule once (universal transition in `agent.md`, shared rules in the shared file) and use pointers elsewhere. For the documents roles produce: keep the documents the agents need. Find where each fact lives, extend that owner, and point to it elsewhere (one update kept the plan, progress log, record and history, each fact written once; another extended the implementation handoff into a Checks Run table that later roles reuse by ID). Compare the old and new structure so no check is lost (that comparison restored three). Records of one kind that several roles produce get one file the roles add to, and one sender if they leave the team.
 - **Detect:** Search the repository for a distinctive phrase of the rule before and after editing; every hit is a copy to remove or reconcile. For each fact a template records (a result, a commit, an evidence path, a score), count the places it is written. For each check a role runs, see whether an earlier role already recorded it in a form that could be reused. For each kind of record (follow-ups, decisions, evidence), count the documents that hold such records; more than one, with a reader who needs them all, is a scattered collection even when no record is copied.
@@ -103,35 +100,35 @@ Concrete mistakes found in real package work. The [package design principles](pa
 
 ### 25. A link that exists only for another file's links
 
-- **Incident:** The Software Engineering Team's shared `ticket-scope.md` links two design files. When delivery and API/E2E got `ticket-scope.md`, those links broke in their skill folders, and the Creator linked both design files into those roles too. The roles never use them, and every change to the 1,800 lines sent their agents an update notice; the user asked why delivery has the design principles (2026-10-20). The STORM team has the same coupling the other way round: its shared file links a file no role has, so the link is broken in six skills.
+- **Incident:** A shared file linked two design files, so the Creator linked them into delivery and API/E2E, which never use them; every change to them sent those agents an update notice (2026-10-20).
 - **Breaks:** [§3](package-design-principles.md#3-give-each-rule-one-authoritative-file): what a role reads is owned by its skill; a shared file must not decide it through its own links.
 - **Instead:** A role links only the files its skill names. A shared file links only files that every role reading it also has, and names the others in plain text ("Core Principle 7 in the team's design principles").
 - **Detect:** [check-links.py](../scripts/check-links.py) reports links no file of the skill names, and broken links in a shared file seen through a role's folder.
 
 ### 30. More Agents than the work needs
 
-- **Incidents:** A request to help a chemistry teacher plan and design lessons got two Agents, a planner and a designer; after testing, the user found one Agent worked better. In the Marketing Team, the content creator asks the Deep Researcher for research; the research is good, but the brief it returns carries less than the context the researcher built, so the draft is written with less (2026-10-25). A research team got a third Agent to review the supervisor's direction; the user kept two: the supervisor already reviews the researcher, so the role that owns the direction also owns its challenge, and a reviewer of the reviewer only adds a run and a wait (2026-11-02).
+- **Incidents:** A teacher's planner and designer worked better as one Agent; a researcher's brief to a separate writer carried less than the research behind it (2026-10-25); a reviewer of the reviewer only added a run and a wait (2026-11-02).
 - **Breaks:** [principles §1](package-design-principles.md#1-choose-the-package-boundary-from-the-work): start with one Agent and one skill.
 - **Instead:** Begin with one Agent and one skill, and split only on evidence from runs. Before proposing a second Agent, apply the test in principles §1 (full context: keep together; independent judgement or different limits: split), and write down what each handoff would lose and what the split gains. A role that checks another checker needs evidence that the owner's own review fails; first give the owner that review's questions.
 - **Detect:** For each handoff in a proposed or existing package, ask what the receiver will not know that the sender knew, and whether one Agent with both skills would do the work without that loss. Two Agents writing one record, or a request that restates fields of a record both share, are the clearest signs.
 
 ### 33. Making a role find earlier work by guessing words
 
-- **Incident:** A content creator had to reuse earlier replies by guessing search words and reading whole approved posts (186 pieces); a topic catalog was rejected as a copy of the posts. In the next two days it skipped the look-up for 4 of 8 new pieces, and when it searched, it missed answers worded differently from the question ("worktrees and tickets" was answered as "file-based handoffs"). The user, who had reminded it again and again, asked for something "like a book's table of contents" (2026-11-03).
+- **Incident:** A content creator reused earlier replies by guessing search words over 186 posts, skipped the look-up for 4 of 8 new pieces and missed answers worded differently; the user asked for "a book's table of contents" (2026-11-03).
 - **Breaks:** [§2](package-design-principles.md#2-design-responsibilities-before-files), information the roles share: a record serves the way its reader looks things up.
 - **Instead:** When a role often looks up earlier work by meaning (the question it answered, the decision it made), give it a record keyed that way: topics pointing to the items, with what each says, kept current where items are made and fixed when a look-up misses. It holds a fact no other file holds, so it is not a duplicate.
 - **Detect:** For each step that tells a role to check earlier work, name the record it reads and what that record is keyed by. A step that greps raw items with guessed terms, or that runs logs show being skipped, is a lead.
 
 ### 36. Leaving behind what a role created in the user's shared space
 
-- **Incident:** The Computer Use Operator, shared by three teams, works in the user's own signed-in browser. Its skill never said that the tabs it opens are its to close, so closing was each run's habit: over 23 runs, 32 of 97 tasks left their tabs open, and the busiest run opened a new tab for every page and closed none of 58. The user found about 20 stale tabs and closed them by hand (2026-11-08). A Product designer asked to "serve this with Tailscale" had only `run_bash` and no word on it: it ran `tailscale serve --bg --https=443 …` without reading the configuration, which replaced the entry the user's phone used to reach his app, and its clean-up then removed it (2026-11-16).
+- **Incidents:** The Computer Use Operator's skill never said the tabs it opens are its to close; 32 of 97 tasks left tabs open in the user's signed-in browser, and the user closed about 20 by hand (2026-11-08). A Product designer ran `tailscale serve` without reading the configuration and replaced the entry the user's phone used, then removed it in its clean-up (2026-11-16).
 - **Breaks:** [§2](package-design-principles.md#2-design-responsibilities-before-files): the path from request to completion includes what a role leaves behind.
 - **Instead:** When a role works in a space the user or other roles also use (a browser, a desktop, background processes, a shared folder), its skill says how the role tells its own items from others' (here the tab IDs its own calls returned, since the tool lists every task's tabs), that it reads the shared state before changing it and adds only where nothing exists (a new entry can replace another's), that it removes its own when the task ends in any outcome and never others', and that its report names anything it left and why. A procedure several roles need goes into one skill they share.
 - **Detect:** For each agent with tools that create shared state (`open_tab`, `start_background_process`, desktop input), or with `run_bash` and work that changes the machine's settings (Tailscale Serve, listening ports, firewall, sharing), find the skill step that reads the state first, the one that cleans up at the end, and how the role identifies its own items.
 
 ### 37. An agent's own reusable knowledge kept in a Project's folder
 
-- **Incident:** The Computer Use Operator, shared by three teams, kept what it learned about each website in the workspace (`<workspace>/web-ui-sites/`), so each Project's runs learned the same sites again. Three sites had two or three copies that had drifted apart: one copy learned how to send a DM, another how to search the inbox. The user: a Project's memory is documents in the Project's folder, and an agent's own experience is documents in the agent's own place (2026-11-09).
+- **Incident:** The Computer Use Operator kept its knowledge of each website in each Project's workspace, so Projects relearned the same sites and three sites had drifting copies (2026-11-09).
 - **Breaks:** [§2](package-design-principles.md#2-design-responsibilities-before-files), knowledge an agent reuses across Projects.
 - **Instead:** Turn on semantic memory for the agent. Its skill keeps the agent's craft there and leaves only the Project's own part (which account, the Project's steps) in the Project. It also says how concurrent runs write, and where the files go when semantic memory is off.
 - **Detect:** For each skill that writes files meant for later tasks (knowledge, notes, an index of earlier work), ask whose they are: the Project's work or state, or the agent's craft that another Project would reuse. The second, under `<workspace>/`, is a lead.
@@ -140,14 +137,14 @@ Concrete mistakes found in real package work. The [package design principles](pa
 
 ### 6. Project specifics in a reusable skill
 
-- **Incidents:** A team skill hard-coded one project's migration guideline path for every project. A Task asked to teach the API/E2E engineer a full-rerun rule after a ticket missed two broken tests; the Creator first proposed a skill edit. The ticket's report showed the engineer had applied the project's `TESTING.md` rule exactly; the rule's wording was the gap. The user: agent packages are general, and project-specific rules live in the project's own files (2026-10-20).
+- **Incidents:** A team skill hard-coded one project's migration guide for every project; a missed test was blamed on the API/E2E skill although the engineer had followed the project's own `TESTING.md` exactly (2026-10-20).
 - **Breaks:** [Ground and prioritize instructions](skill-authoring-principles.md#ground-and-prioritize-instructions): name a project only when it changes behavior.
 - **Instead:** Point to the project's own guidance (for example its `DESIGN.md` or `TESTING.md`) and let the project link its documents. When a project problem proposes a package change, fix the project's document when the agent followed it, and leave the package general.
 - **Detect:** Search skills for repository names, absolute paths, and product names. For a problem from project work, check the agent's own record against the project document it followed before changing the package.
 
 ### 7. Over-structuring what people write naturally
 
-- **Incident:** Project Task descriptions were given required fields ("Depends on", "report back"); the user wanted ordinary, detailed task descriptions. A prerequisite procedure was written as five numbered steps; the user asked for one short paragraph that trusts the model's judgement (2026-10-19). The Project Task Manager's follow-up intake was drafted as eight steps, half of them restating rules the skill already had (search before creating, approval for each dispatch); a live run showed the model did all of them from the purpose alone (2026-10-20). A guide on finding a bug's cause first listed how to debug (read, reproduce, add logging, re-check a surprising result). Live runs showed the old text already did all of it, and the user said: "the model is so smart … you're giving some kind of instruction they don't even need". The guide kept only what the model could not know: the team's diagnostic boundaries and reporting conventions (2026-10-20).
+- **Incidents:** Task descriptions got required fields and a prerequisite became five numbered steps (2026-10-19); an eight-step intake and a debugging guide restated what live runs showed the model did from the purpose alone. The user: "you're giving some kind of instruction they don't even need" (2026-10-20).
 - **Breaks:** [Write the operating contract](skill-authoring-principles.md#write-the-operating-contract): prescribe exact structure only where the operation is fragile.
 - **Instead:** Describe what a good result contains; keep tracking data (dependencies, order) in the role's own records. State the purpose, the boundary, and the few things that must happen; trust a capable model with the rest. Spell out exact steps only where there is one safe way: a tool that behaves surprisingly, an irreversible action, a fixed format another system parses.
 - **Detect:** For each required field or template, name what breaks without it; if nothing does, make it guidance. For each step in a list, ask whether a capable model would do it anyway from the purpose, or whether another part of the skill already says it; if so, cut it.
@@ -168,14 +165,14 @@ Concrete mistakes found in real package work. The [package design principles](pa
 
 ### 13. Treating a proxy signal as decisive evidence
 
-- **Incidents:** Product guidance equated megabyte/captured fixtures with real-data copying and an older baseline-report pin with stale UI, prompting an unsupported refresh (2026-10-07). A research package invented a six-return cap and a two-no-progress-return stop; its first real study halted at six despite new evidence and useful authorized work remaining. The user rejected both the cap and a proposed two-return extension (2026-10-28). Research supervision later prioritized repair and test-count progress without establishing which work could change the goal-level decision (2026-11-01).
+- **Incidents:** Fixture size was taken as real-data copying (2026-10-07); an invented six-return cap halted a study that still had useful work (2026-10-28); test-count progress displaced the goal-level decision (2026-11-01).
 - **Breaks:** [§4](package-design-principles.md#4-apply-one-authoring-standard), grounding: obligations need evidence, not an unqualified heuristic.
 - **Instead:** Treat size, method, and metadata as reasons to look closer. Before blocking work or starting new work, tell apart a confirmed failure, unknown origin or freshness, optional cleanup, and an explicit request. Tie the next work to the user's goal: an activity count or a correctly working component does not establish system usefulness or novelty.
 - **Detect:** For every rule that blocks work or forces an action, name the evidence it requires; flag rules triggered by a proxy (size, age, method, naming, metadata, cycle or no-progress count) alone. Search package instructions for numeric retry/revision/return limits next to stop or escalation rules; distinguish an explicit user boundary or a real operational resource limit from an agent-invented substitute for goal/evidence review. For progress and completion rules, check what the metric actually establishes and whether peripheral repairs can displace the main decision.
 
 ### 14. Writing in jargon instead of plain actions
 
-- **Incident:** One update's guidance used "unverified currency" (for "possibly outdated"), "proportionate" about 20 times, slash compounds such as "generation/capture", and sentences that chained abstract nouns; the meaning was right but hard to act on (2026-10-07). The API/E2E "test-case ledger" was a progress log whose name hid its purpose; the user asked why it was called a ledger (renamed "test progress", 2026-10-18).
+- **Incident:** Guidance used "unverified currency", "proportionate" about 20 times and slash compounds (2026-10-07); a progress log was called a "ledger" (2026-10-18).
 - **Breaks:** [§4](package-design-principles.md#4-apply-one-authoring-standard), clarity and plain language: name the actor, action, and result in everyday words.
 - **Instead:** Say what to do. Use a short list when there are several criteria, and a concrete check instead of "proportionately".
 - **Detect:** Search changed text for slash compounds (`word/word`), vague qualifiers ("proportionate", "appropriate", "as needed", "relevant"), and sentences that pile up nouns ending in -ity, -ance, or -ence; for each, ask what exactly the agent does.
@@ -222,6 +219,13 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Instead:** Put a standard that writer and reviewer both apply in a file shared at the Team level and link it from both skills.
 - **Detect:** For each dimension a reviewer judges, find the file that states the bar and check that the reviewer's skill can reach it.
 
+### 42. Text that describes the file instead of the work
+
+- **Incident:** Every shared file of a writing team opened with who uses it ("The writer applies it and the reviewer judges by it"), and the Creator's own references opened the same way; the user: if you have a principle, state the principle (2026-11-16).
+- **Breaks:** [§4](package-design-principles.md#4-apply-one-authoring-standard), the lines: each line changes what the agent does.
+- **Instead:** State the rule. The files that use it link it and say when to read it; what a file is for shows in its name and its content.
+- **Detect:** Read the first lines of each file and every sentence that names the file itself, its readers or who applies it ("this file", "used by", "applies it", "shared by"); ask what the agent does differently because of it.
+
 ## Creator process
 
 ### 10. Deciding from a stale or partial view of the package
@@ -247,77 +251,84 @@ Concrete mistakes found in real package work. The [package design principles](pa
 
 ### 24. Judging only the fix the request proposes
 
-- **Incident:** A Task proposed a "Follow-up Tasks go to" field so roles would know where to send follow-ups. The Creator compared that field with a stricter "Requested by" and recommended the field. It did not first map where follow-ups are recorded: five places, two senders. The user asked for one home and one sender; a fresh Creator asked a neutral question recommended exactly that (2026-10-20).
+- **Incident:** A Task proposed a "Follow-up Tasks go to" field; the Creator recommended it without first mapping where follow-ups were recorded (five places, two senders), and the user asked for one home and one sender (2026-10-20).
 - **Breaks:** [§2](package-design-principles.md#2-design-responsibilities-before-files): trace the information and the path from request to result before choosing a design.
 - **Instead:** Read a proposed fix as the requester's view of the problem. Map the information or flow it concerns across every role first: where each kind of record is written, who reads it, who sends it. Then judge the proposal against that map, and say so when a different structure is better.
 - **Detect:** Check that the analysis maps the current information or flow before it discusses the proposed fix, and that it names at least one alternative to the proposal.
 
 ### 26. Softening requirements while restructuring
 
-- **Incident:** A restructure regrouped the SE design-principles guide so each rule had one home. The map showed every old section's new home, but rewording had softened eleven requirements: "should be derived" became "is derived", "justify it explicitly" became "record why", "File placement must follow ownership" and "the operational benefit justifies the risk" dropped out in merges. The user asked whether anything was lost; a line-by-line read found four and a requirement-word comparison seven more (2026-10-20).
+- **Incident:** A restructure of the design principles mapped every section to its new home, but rewording softened eleven requirements ("should be derived" became "is derived"); the user asked whether anything was lost (2026-10-20).
 - **Breaks:** [§9](package-design-principles.md#9-update-and-restructure-safely): a restructure moves and joins text; it does not change what the text requires.
 - **Instead:** Carry each requirement word, qualifier, and named case with the text it belongs to. Reword only where the meaning stays the same strength. Merge two statements only when they say the same thing; when they cover different cases, keep both.
 - **Detect:** Run [compare-wording.py](../scripts/compare-wording.py) on the old and new files, and read every sentence it lists beside its new home, starting with those whose closest match lacks a requirement word. A dropped count is a lead, not a verdict: merged duplicates also lower it.
 
 ### 29. Asking the user what the evidence already answers
 
-- **Incident:** For a teaching team, the Creator sent the teacher six questions (region, library location, plan format, devices, first topic, textbook), each with a recommendation. Her own modules already named her region and curriculum, and a normal school day settled the rest. She answered: "make it as simple … think about the reality … instead of asking me those questions". The first skill drafts also told the agents to ask her everything at once and to wait for plan approval (2026-10-24).
+- **Incident:** The Creator sent a teacher six questions her own modules and a normal school day already answered; she said: "think about the reality … instead of asking me those questions" (2026-10-24).
 - **Breaks:** [§4](package-design-principles.md#4-apply-one-authoring-standard), grounding: derive what you can from the user's materials and a realistic use, and decide it.
 - **Instead:** Before asking, check each question against the user's files and a realistic day of the user's work; decide what they settle, and report the decision in the result. Ask only where a wrong guess would make the result unusable, in one short line. Give the roles you write the same habit: infer, deliver, let the user correct.
 - **Detect:** For each question in a message to the user, name the evidence you looked at and why it does not settle the question. In skills, search for "ask", "confirm" and "approval" and check that each one names why the role cannot infer the answer.
 
 ### 31. Private information in a public package
 
-- **Incident:** An audit of the public agents repository found the user's name in an author style profile, his home-folder paths and server-data paths in committed work records, private group-chat names and admin session URLs in marketer packages removed months earlier but still in history, and references to his private career and investor plans on a task board and in evidence files. People install and clone the repository directly; the user: "very, very important, no private information" (2026-10-30).
+- **Incident:** An audit of the public agents repository found the user's name in a style profile, his home and server-data paths, private chat names and his career plans in files and history; the user: "very, very important, no private information" (2026-10-30).
 - **Breaks:** [Create or update canonical files](../SKILL.md#3-create-or-update-canonical-files): a public package carries nothing private about the user, and material from private sources enters only generalized.
 - **Instead:** Generalize before writing, keep work records outside a public repository, and run [check-private-info.py](../scripts/check-private-info.py) on imported material and before every commit, with the user's own terms in a private list.
 - **Detect:** `check-private-info.py --staged` before a commit; `check-private-info.py <package folders>` for the current files; for history, the same patterns over every blob reachable from the remote's branches, tags, and pull-request refs.
 
 ### 32. Answering repeated feedback with another rule
 
-- **Incident:** A user corrected a research team's method again and again: start from existing work, compare directions, do not drop into small holes. Each correction added sentences to the skills while the assignment, report and review cycle that produced the behaviour stayed the same. A review format still asked for "the smallest useful next work", so it still produced a repair queue beside a new sentence saying not to. The user: "I have provided quite a lot of feedback in the past and I don't know why it's still not really improved" (2026-11-01).
+- **Incident:** A user corrected a research team's method again and again; each correction added sentences while the review format still asked for "the smallest useful next work" and kept producing the repair queue (2026-11-01).
 - **Breaks:** [§9](package-design-principles.md#9-update-and-restructure-safely): diagnose structure and flow before wording.
 - **Instead:** When the same kind of correction returns, stop adding text. Find what produces the behaviour: which record the role fills in, what its first step is, what a review asks, who checks whom, and what a role is never asked. Change that, and remove the sentences it replaces. Also check how the correction travelled, since a role can narrow it on the way to you.
 - **Detect:** Read the package's history for the same complaint across commits. For each repeated one, name the record, step, review question or route that now makes the behaviour hard to repeat; if the answer is only a new sentence, the cause is untouched.
 
 ### 34. Optimizing a package's form while its rules produce the failure
 
-- **Incident:** The user found an article from a writing team "like a novel", not a technical blog. The Creator's analysis of the team judged only its form (repeated rules, six priority lists, duplicate records), and the restructure carried one rule over unchanged: choose the narrative mode for any firsthand material. That rule, chosen by whose material it was rather than what kind of article it was, produced the story-style article. The user pointed at the output before the Creator did (2026-11-05).
+- **Incident:** A writing team's article read "like a novel"; the Creator's analysis judged only the team's form and carried over the rule that produced it (narrative mode for any firsthand material) (2026-11-05).
 - **Breaks:** [§9](package-design-principles.md#9-update-and-restructure-safely): diagnose observed defects and their owners before choosing edits; and [step 1](../SKILL.md#1-map-the-target-and-ownership-spine): find who owns the rule that failed.
 - **Instead:** When the request comes from a bad result, read the result first, name each failure in it (with examples), and trace each to the rule, default or missing rule that produced it, before or alongside the structural clean-up. A restructure moves rules; it must also judge them.
 - **Detect:** The analysis lists the failures seen in the output, each with the rule that caused it. A restructure whose findings are all about form, after the user complained about the output, is a lead.
 
 ### 35. A link that leaves the skill folder
 
-- **Incident:** The Article Writing Team's skills linked their shared standard as `../../../../shared/writing-principles.md`. The link resolves inside the repository, so the link check passed, but the app installs each skill into the workspace on its own (`.claude/skills/<skill>`), where the path leads nowhere. In a live run the writer searched the disk, did not find the file, and both agents worked without the team's standard (2026-11-05).
+- **Incident:** Skills linked `../../../../shared/writing-principles.md`; the link check passed in the repository, but the app installs each skill on its own, and in a live run both agents worked without the standard (2026-11-05).
 - **Breaks:** [§3](package-design-principles.md#3-give-each-rule-one-authoritative-file): a rule needs a home every role applying it can read, as the role runs.
 - **Instead:** Give each skill a `references/` symbolic link to every shared file it reads, link to that local path, and add the hint anti-pattern 20 asks for, as the Software Engineering Team does.
 - **Detect:** For every Markdown link in a skill folder (not following symbolic links), resolve it and flag any target outside that skill's folder.
 
 ### 38. Checking a new rule only against its own lines
 
-- **Incident:** Two rules added to a team's design principles (a required collaborator is a required parameter; one builder for a picture shown in several places) passed the link, wording and privacy checks and went to the user. A whole-set read afterwards found that the first contradicted the same principle's accepted setter (a collaborator connected after construction), and the second asked for one builder across a server and its clients, which separate codebases cannot share. The user asked for this check after every principles update (2026-11-12).
+- **Incident:** Two new design principles passed the link, wording and privacy checks; a whole-set read then found one contradicted an accepted setter and the other asked for one builder across separate codebases (2026-11-12).
 - **Breaks:** [Step 4](../SKILL.md#4-validate-and-recover): one owner per rule and no competing rules across the package.
 - **Instead:** Read the whole set. For each rule, exception, example and template line on the same ground, say whether the new rule agrees with it, contradicts it, or repeats it. Then judge the rule as a practitioner would, including where following it to the letter does harm.
 - **Detect:** The result lists, for each added or changed rule, what it was checked against and the outcome.
 
 ### 39. A rule for every incident
 
-- **Incident:** One ticket's review found a collaborator made optional for tests and the same rows built twice for a list and an open view. The Creator drafted both as new bullets, Signals, Checks and template lines in a team's design principles, though "a missing collaborator fails loudly" and "each fact is derived by one owner" already covered them; a test run on the old text caught the first. The user: each incident adds another point, with no end; the principles should stay at the level of structure (2026-11-12).
+- **Incident:** One ticket's review findings were drafted as new bullets, Signals, Checks and template lines although existing rules covered both; the user: each incident adds another point, with no end (2026-11-12).
 - **Breaks:** [§2](package-design-principles.md#2-design-responsibilities-before-files) (extend the owner instead of adding a place) and [§9](package-design-principles.md#9-update-and-restructure-safely) (diagnose before adding).
 - **Instead:** Name the general practice of the field the incident shows (for design principles, an established architecture practice), and add a rule only when the set does not yet state that practice. If it does, the incident becomes an example or case study, or a rule in the project's own documents, and the existing rule gains at most a few words naming the missed form.
 - **Detect:** For each rule a change adds, name the general practice it states and the existing rule closest to it; a rule that names a case rather than a practice, or that the closest rule already covers, is a lead. Read the set's recent history: a rule, Signal or Check added per incident is a lead for a consolidation pass.
 
 ### 40. Leaving the structure for later
 
-- **Incident:** A writing team was extended with five article styles and a second format. The Creator added a `styles/` folder, patched the shared principles with "sections 4 to 6 hold in every style except narrative", renamed only the heading of a file whose name no longer fit, and listed six structure problems in a chat as a restructure "after the merge". The skill had told it to record such signals and to propose the restructure as a separate change. The user: a package's folders and files are reorganized constantly, as code is refactored, and the analysis's result includes the structure changes, applied at once, never deferred (2026-11-15).
+- **Incident:** Extending a writing team, the Creator patched the principles with "sections 4 to 6 hold in every style except narrative" and left six structure problems in a chat for "after the merge"; the user: folders and files are reorganized constantly, as code is refactored (2026-11-15).
 - **Breaks:** [§9](package-design-principles.md#9-update-and-restructure-safely): restructure as you go.
 - **Instead:** Put the structure changes into the analysis's planned changes and apply them in the same update, first and in their own commit; then make the content change on the new structure.
 - **Detect:** The analysis's planned changes include the structure changes its findings call for, and the result shows them applied. A patch sentence that excepts a case from a rule, a renamed heading under an old file name, or a restructure left "for later" is a lead.
 
 ### 41. A pull request before the evaluation
 
-- **Incident:** For a large change to a writing team, the user asked to see the wording before the merge. The Creator opened three draft pull requests to show it, before any live evaluation had run. The skill tied only the merge to the evaluation ("merge it yourself once it passes step 4"), and gave no other way to show wording. The user: a pull request means the change is proven better; why was it created before the evaluation (2026-11-15)?
+- **Incident:** To show the user wording before the merge, the Creator opened three pull requests before any evaluation; the skill tied only the merge to the evaluation. The user: a pull request means the change is proven better (2026-11-15).
 - **Breaks:** [Step 5](../SKILL.md#5-persist-deliver-and-route-the-result): the pull request follows step 4, the evaluation included.
 - **Instead:** Keep the change on its branch until it passes step 4. To show the wording earlier, give the branch's diff, a compare link or a diff file. Every change is evaluated by default; only the user's word for that change waives it (the user: "unless the user specifically says evaluation is not needed, the default is always evaluation").
 - **Detect:** Each pull request the Creator opens links an evaluation report dated before it; a pull request with "waiting for the evaluation" in its description is a lead.
+
+### 43. A package that grows with every update
+
+- **Incident:** In one day a writing team grew from 1,105 to 1,227 lines and the Creator's anti-patterns from 307 to 323, with no line having to show what it does; text that adds nothing passed every analysis (2026-11-16).
+- **Breaks:** [§4](package-design-principles.md#4-apply-one-authoring-standard), the lines: a package grows only by lines that do something.
+- **Instead:** The quality check records each changed file's size before and after and what each added line does, and the update removes what the change makes unnecessary.
+- **Detect:** The analysis's size row; across the history, line counts per file that only rise.

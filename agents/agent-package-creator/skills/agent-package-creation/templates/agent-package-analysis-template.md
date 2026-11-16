@@ -21,13 +21,31 @@ Use [result-and-handoff-contract.md](../references/result-and-handoff-contract.m
 
 - `<trigger, output, approval, route, or safeguard that must stay intact>`
 
+## Cause
+
+<What produced the problem the request reports, its owner, and the fix designed for it. For a review: the question.>
+
+## Quality check
+
+The whole affected package as it will be with the fix in it, by the levels of [principles §4](../references/package-design-principles.md#4-apply-one-authoring-standard). Every row is filled, `Pass` with what was checked when nothing is found.
+
+| Level | Result | Evidence | What this update does |
+| --- | --- | --- | --- |
+| 1. The flow | | | |
+| 2. The nodes | | | |
+| 3. The files | | | |
+| 4. Inside each file | | | |
+| 5. The lines | | | |
+| Anti-patterns (detection checks run) | | | |
+| Size (lines per changed file, before → after; what each added line does) | | | |
+
 ## Findings
 
-Include defects in existing files and behavior the request or package purpose needs but the package lacks, and structure signals at the file and file-set level ([principles §9](../references/package-design-principles.md#9-update-and-restructure-safely)). Order by the authoring-standard priority: structure and ownership, content flow, grounding, clarity, economy.
+Defects in existing files and behavior the request or package purpose needs but the package lacks, ordered by level.
 
-| # | Priority area | Evidence | Owner | Impact | Recommended change |
+| # | Level | Evidence | Owner | Impact | Recommended change |
 | --- | --- | --- | --- | --- | --- |
-| 1 | `<area>` | `<file:line or observed check>` | `<owning file>` | `<effect on behavior or readers>` | `<add / move / merge / remove / update>` |
+| 1 | `<level>` | `<file:line or observed check>` | `<owning file>` | `<effect on behavior or readers>` | `<add / move / merge / remove / update>` |
 
 ## Recommended or planned changes
 
