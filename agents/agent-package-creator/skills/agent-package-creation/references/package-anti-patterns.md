@@ -47,6 +47,8 @@ Concrete mistakes found in real package work. The [package design principles](pa
 | 37 | An agent's own reusable knowledge kept in a Project's folder | Package design |
 | 38 | Checking a new rule only against its own lines | Creator process |
 | 39 | A rule for every incident | Creator process |
+| 40 | Leaving the structure for later | Creator process |
+| 41 | A pull request before the evaluation | Creator process |
 
 ## Package design
 
@@ -305,3 +307,17 @@ Concrete mistakes found in real package work. The [package design principles](pa
 - **Breaks:** [§2](package-design-principles.md#2-design-responsibilities-before-files) (extend the owner instead of adding a place) and [§9](package-design-principles.md#9-update-and-restructure-safely) (diagnose before adding).
 - **Instead:** Name the general practice of the field the incident shows (for design principles, an established architecture practice), and add a rule only when the set does not yet state that practice. If it does, the incident becomes an example or case study, or a rule in the project's own documents, and the existing rule gains at most a few words naming the missed form.
 - **Detect:** For each rule a change adds, name the general practice it states and the existing rule closest to it; a rule that names a case rather than a practice, or that the closest rule already covers, is a lead. Read the set's recent history: a rule, Signal or Check added per incident is a lead for a consolidation pass.
+
+### 40. Leaving the structure for later
+
+- **Incident:** A writing team was extended with five article styles and a second format. The Creator added a `styles/` folder, patched the shared principles with "sections 4 to 6 hold in every style except narrative", renamed only the heading of a file whose name no longer fit, and listed six structure problems in a chat as a restructure "after the merge". The skill had told it to record such signals and to propose the restructure as a separate change. The user: a package's folders and files are reorganized constantly, as code is refactored, and the analysis's result includes the structure changes, applied at once, never deferred (2026-11-15).
+- **Breaks:** [§9](package-design-principles.md#9-update-and-restructure-safely): restructure as you go.
+- **Instead:** Put the structure changes into the analysis's planned changes and apply them in the same update, first and in their own commit; then make the content change on the new structure.
+- **Detect:** The analysis's planned changes include the structure changes its findings call for, and the result shows them applied. A patch sentence that excepts a case from a rule, a renamed heading under an old file name, or a restructure left "for later" is a lead.
+
+### 41. A pull request before the evaluation
+
+- **Incident:** For a large change to a writing team, the user asked to see the wording before the merge. The Creator opened three draft pull requests to show it, before any live evaluation had run. The skill tied only the merge to the evaluation ("merge it yourself once it passes step 4"), and gave no other way to show wording. The user: a pull request means the change is proven better; why was it created before the evaluation (2026-11-15)?
+- **Breaks:** [Step 5](../SKILL.md#5-persist-deliver-and-route-the-result): the pull request follows step 4, the evaluation included.
+- **Instead:** Keep the change on its branch until it passes step 4. To show the wording earlier, give the branch's diff, a compare link or a diff file. Every change is evaluated by default; only the user's word for that change waives it (the user: "unless the user specifically says evaluation is not needed, the default is always evaluation").
+- **Detect:** Each pull request the Creator opens links an evaluation report dated before it; a pull request with "waiting for the evaluation" in its description is a lead.

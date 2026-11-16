@@ -6,6 +6,7 @@
 //        --agent <member agentRunId> --text "<message>"
 //   options: [--text-file <path> instead of --text] [--seconds 20] [--log <events.jsonl>]
 //        [--ws-module <path to a package.json whose node_modules has "ws">]
+//        [--credential-file <file holding the node credential>] (nodes from AutoByteus 1.5.13 refuse requests without one)
 import { createRequire } from "node:module";
 import { appendFileSync, readFileSync, writeFileSync } from "node:fs";
 
@@ -30,7 +31,8 @@ const routes = {
     target_agent_run_id: args.agent, command_id: id, ...common }],
 };
 const [path, payload] = routes[args.kind];
-const ws = new WebSocket(`ws://127.0.0.1:${args.port}${path}`);
+const headers = args["credential-file"] ? { Authorization: `Bearer ${readFileSync(args["credential-file"], "utf8").trim()}` } : {};
+const ws = new WebSocket(`ws://127.0.0.1:${args.port}${path}`, { headers });
 let sent = false;
 ws.on("message", (raw) => {
   appendFileSync(log, `${raw}\n`);

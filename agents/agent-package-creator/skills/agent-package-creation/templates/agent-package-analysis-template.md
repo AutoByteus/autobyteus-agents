@@ -31,7 +31,7 @@ Include defects in existing files and behavior the request or package purpose ne
 
 ## Recommended or planned changes
 
-<For `analyze`: recommended changes, left unapplied. For `update`: the planned edits by file. Write `None` when the package needs no change.>
+<For `analyze`: recommended changes, left unapplied. For `update`: the planned edits by file, starting with the structure changes the findings call for (folders, files, names, boundaries; applied first, in their own commit). Write `None` when the package needs no change.>
 
 - `<path>`: `<change>`
 
