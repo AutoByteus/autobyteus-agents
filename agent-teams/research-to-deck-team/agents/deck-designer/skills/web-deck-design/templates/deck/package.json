@@ -1,0 +1,11 @@
+{
+  "name": "deck",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A slide deck as a static web project (HTML/CSS, no build step, no dependencies).",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "export": "node scripts/export.mjs"
+  }
+}
