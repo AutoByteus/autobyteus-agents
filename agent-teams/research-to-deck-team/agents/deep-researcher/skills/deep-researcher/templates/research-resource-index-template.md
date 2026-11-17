@@ -9,13 +9,12 @@
 - Research notes path:
 - Claim evidence ledger path:
 - Last updated:
-- Owner: deep_researcher
 
 ## Source And Resource Index
 
-| Resource ID | Type | Path / URL | Origin | Date / Version | What It Contains | Credibility / Limits | Deck Use Potential | Candidate Slide IDs | Prompt Grounding Use | Image Input Use | Evidence IDs | Status | Notes |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| res001 | article / source / PDF / image / chart / table / user file / web page / notes / other |  | user supplied / web research / local file / generated research artifact |  |  |  | useful for claim / useful for visual / background only / not usable |  | read before prompt / cite as evidence / background only / not usable | direct image input / visual reference only / no image input / not usable |  | active / superseded / rejected / needs confirmation |  |
+| Resource ID | Type | Path / URL | Origin | Date / Version | What It Contains | Credibility / Limits | Deck Use Potential | Candidate Slide IDs | Evidence IDs | Status | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| res001 | article / source / PDF / image / chart / table / user file / web page / notes / other |  | user supplied / web research / local file / generated research artifact |  |  |  | useful for claim / supplied image or chart for a slide / background only / not usable |  |  | active / superseded / rejected / needs confirmation |  |
 
 ## Deck-Relevant Claims
 

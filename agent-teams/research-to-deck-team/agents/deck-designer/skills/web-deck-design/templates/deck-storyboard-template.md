@@ -1,39 +1,19 @@
 # Deck Storyboard
 
-## Storyboard Contract
-
-- Topic:
-- Audience:
-- Article path:
-- Research resource index:
-- Claim evidence ledger:
+- Topic and audience:
 - Deck goal:
-- Slide count target:
-- Aspect ratio:
-- Language:
-- User slide-plan approval status:
-- User feedback / requested changes:
+- Research package: `article.md`, `claim_evidence_ledger.md`, `research-resource-index.md`
+- Slide count, language:
+- User approval: pending / approved on YYYY-MM-DD / changes requested (what)
 
-## Slide Flow
+## Slides
 
-| Slide ID | Narrative Role | Core Message | Must-Appear Text | Must-Use Evidence / Claim IDs | Input Resource Candidates (Text / File / Image IDs) | Visual Job | Transition From Previous | Risk |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| slide01 | opening / context / tension / evidence / framework / implication / close |  |  |  |  |  |  |  |
+| Slide | Role (opening, context, problem, evidence, framework, implication, close) | Core message | Must-appear text | Claim IDs | Visual (diagram, numbers, cards, quote, supplied image) | Risk |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | | | | | | |
 
-## Deck Arc
+## Arc
 
-- Opening hook:
-- Core tension:
+- Opening:
 - Main evidence sequence:
-- Turning point:
-- Practical implication:
 - Closing takeaway:
-
-## Handoff To Visual Plan
-
-- Style implications:
-- Per-slide resource/input implications:
-- Slides requiring generated diagrams:
-- Slides requiring source-based image edits:
-- Slides with high text-fidelity risk:
-- Slides needing split or simplification:

@@ -1,53 +1,16 @@
 # Slide Review Report
 
-## Review Contract
+- Deck version and PDF reviewed:
+- Storyboard approval and user edits checked against:
+- Outcome: Review Passed / Deck Fix / Research Gap
 
-- Topic:
-- Review version:
-- Research resource index:
-- Claim evidence ledger:
-- User-approved deck storyboard:
-- Slides visual plan:
-- Deck source index:
-- Slide generation log:
-- Review decision: pass / fixes required / blocked
-- Final delivery feedback status: none / received / routed
-
-## Slide Review
-
-| Slide ID | Image Path | Generated / Edited Output | Prompt Grounding | Image Input Mapping | Self-Check Present | Text Fidelity | Readability | Research Alignment | Decision | Finding | Required Fix |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| slide01 |  | generate_image / edit_image | pass / fail | pass / fail | yes / no | pass / fail | pass / fail | pass / fail | pass / fix required / reject |  |  |
-
-## Deck-Level QA
-
-- Consistent style pack:
-- Consistent typography and spacing:
-- 16:9 horizontal throughout:
-- Slide order follows deck storyboard:
-- No unsupported claims:
-- No random text, watermark, or wrong language:
-- No sensitive-data exposure:
-- Required fixes:
-
-## Reviewed Slide Manifest
-
-Only list slides that passed internal review and follow the user-approved deck storyboard.
-
-| Slide ID | Reviewed Image Path | Prompt Ref | Source / Evidence Anchors | Deck Storyboard Alignment | Notes |
+| Slide | Text matches the plan | Claims supported | Layout (clipping, wrapping, icons, border) | Finding and the correct result | Blocking |
 | --- | --- | --- | --- | --- | --- |
-| slide01 |  |  |  | pass / fail |  |
+| 1 | yes / no | yes / no | ok / issue | | yes / no |
 
-## Routing Decision
+## Deck as a whole
 
-- Next specialist:
-- Slides requiring `Deck Fix`:
-- Issues requiring `Research Gap`:
-- Open non-blocking risks:
-
-## Final Delivery Feedback
-
-- User feedback:
-- Changes requested:
-- Routed to:
-- Feedback status:
+- Page count equals slide count:
+- Style consistent:
+- Nothing private exposed:
+- Non-blocking findings:

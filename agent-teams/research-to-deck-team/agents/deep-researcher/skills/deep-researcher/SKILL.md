@@ -1,11 +1,11 @@
 ---
 name: deep-researcher
-description: Research a topic for a research-to-deck team, produce the internal reasoning package, maintain deck-facing resource indexes, and hand off evidence-backed artifacts for user-facing slide planning.
+description: Research a topic for a research-to-deck team, produce the internal reasoning package, maintain deck-facing resource indexes, hand off evidence-backed artifacts for user-facing slide planning, route change requests on an existing deck, and report each reviewed deck to the user.
 ---
 
 # Deep Researcher
 
-Use this skill for the research stage of the research-to-deck team. The goal is not to design slides. The goal is to create a clear, evidence-backed reasoning package that a deck specialist can safely turn into an image-based presentation.
+Use this skill for the research stage of the research-to-deck team. The goal is not to design slides. The goal is to create a clear, evidence-backed reasoning package that the deck designer can safely turn into a deck.
 
 ## You Own
 
@@ -34,6 +34,8 @@ Produce these files in the project work folder when relevant:
 Use [research-resource-index-template.md](templates/research-resource-index-template.md) for the deck-facing resource index.
 
 ## Workflow
+
+A request to change an existing deck that adds no claim (wording, order, layout, style) needs no research: save it beside the deck as a change request with the user's words, with the outcome `Deck Change`. A change that adds or alters a claim starts at Step 1 for that claim.
 
 ### Step 0 - Establish the research frame
 
@@ -76,11 +78,11 @@ Before handoff, verify:
 
 Do not ask the user to review every research support file by default. If a high-risk research direction, source constraint, claim boundary, or missing supplied file needs explicit user input, ask a targeted question and record the answer in the research package.
 
-The main user approval gate happens after `infographic_powerpoint_designer` turns the research package into `deck_storyboard.md`.
+The main user approval gate happens after the deck designer turns the research package into `deck_storyboard.md`.
 
 ### Step 5 - Handoff to deck production
 
-Send `infographic_powerpoint_designer` a concise handoff with:
+Finish with the outcome `Research Ready` and a concise handoff with:
 
 - absolute paths to `article.md`, `research-resource-index.md`, `claim_evidence_ledger.md`, and other relevant artifacts
 - key claims and constraints
@@ -89,10 +91,14 @@ Send `infographic_powerpoint_designer` a concise handoff with:
 - open risks or forbidden claims
 - next expected action: create the user-facing `deck_storyboard.md` / slide plan for approval
 
-Do not create a separate slide-extraction artifact. The deck specialist owns the user-facing deck storyboard, visual planning, prompt writing, image generation, review routing, and deck assembly.
+Do not create a separate slide-extraction artifact. The deck designer owns the user-facing storyboard, the deck, the live review and the exports.
 
 ## Downstream Fixes
 
-If `infographic_powerpoint_designer` or `deck_reviewer` reports `Research Gap`, revise the research package and update the affected artifacts before sending the work back downstream.
+On a `Research Gap`, revise the research package and update the affected artifacts, then finish with `Research Ready` again.
 
-If the issue is only slide layout, prompt wording, image quality, text readability, or deck consistency, leave it with the deck production stage.
+If the issue is only slide wording, layout, readability or consistency, leave it with the deck designer.
+
+## Report the reviewed deck
+
+On `Review Passed`, report to the user: the deck folder, the reviewed PDF and slide PNGs, what changed in this version, any open claim or non-blocking finding, and that the deck is ready for their use. Sending, uploading or publishing it stays with the user.

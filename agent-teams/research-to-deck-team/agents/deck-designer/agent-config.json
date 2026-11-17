@@ -1,19 +1,21 @@
 {
   "toolNames": [
-    "edit_file",
     "read_file",
     "write_file",
+    "edit_file",
     "run_bash",
     "start_background_process",
     "get_process_output",
     "stop_background_process",
-    "search_web",
+    "open_tab",
+    "navigate_to",
+    "close_tab",
+    "screenshot",
     "read_url",
-    "generate_image",
-    "edit_image",
+    "get_handoff_rules",
     "send_message_to"
   ],
   "skillNames": [
-    "infographic-powerpoint-designer"
+    "web-deck-design"
   ]
 }
