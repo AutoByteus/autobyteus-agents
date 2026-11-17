@@ -9,7 +9,7 @@ A deck is a small static web project: HTML/CSS slides with real text, diagrams i
 ## Research before slides
 
 - The research package (`article.md`, `research_notes.md`, `claim_evidence_ledger.md`, `research-resource-index.md`) is the source of truth for every claim on a slide.
-- Never invent a claim, statistic, quote, date or implication to make a slide stronger. A claim the research cannot support is a `Research Gap` for the researcher, not a wording problem for the designer.
+- Never invent a claim, statistic, quote, date or implication to make a slide stronger. A qualifier is part of the claim: "first", "only", "fastest" or "leading" needs a source as a number does. A claim the research cannot support is a `Research Gap` for the researcher, not a wording problem for the designer.
 - A change to an existing deck that adds no claim (wording, order, layout, style) needs no new research.
 
 ## The user's decisions

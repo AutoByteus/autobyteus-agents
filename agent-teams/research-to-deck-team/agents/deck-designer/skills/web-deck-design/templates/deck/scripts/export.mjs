@@ -1,6 +1,6 @@
 // Export with headless Chromium:
 //   exports/<name>.pdf            one 1280x720 page per slide (from ?overview, print CSS)
-//   exports/slides/slide-NN.png   one screenshot per slide (from ?export#N)
+//   exports/<name>/slide-NN.png   one screenshot per slide (from ?export#N); each version keeps its own
 // Usage: node scripts/export.mjs --name Deck-YYYY-MM-DD     (CHROME=/path/to/chromium to choose the browser)
 // Exits non-zero when Chromium fails or the PDF's page count differs from the number of slides.
 import { spawnSync } from 'node:child_process';
@@ -22,7 +22,7 @@ if (!chrome) { console.error('No Chromium found; set CHROME=/path/to/chrome'); p
 const index = pathToFileURL(join(root, 'index.html')).href;
 const slides = (readFileSync(join(root, 'index.html'), 'utf8').match(/<section class="slide\b/g) || []).length;
 const outDir = join(root, 'exports');
-const shotDir = join(outDir, 'slides');
+const shotDir = join(outDir, name);
 rmSync(shotDir, { recursive: true, force: true });
 mkdirSync(shotDir, { recursive: true });
 

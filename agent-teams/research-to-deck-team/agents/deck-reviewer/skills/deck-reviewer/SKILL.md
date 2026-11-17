@@ -15,7 +15,7 @@ Read [deck-production-principles.md](deck-production-principles.md) first. It is
    - the research package's `claim_evidence_ledger.md` and `article.md`.
 2. **Look at every exported PNG and the PDF.** For each slide:
    - it says what the storyboard and the user's recorded edits say, with no extra or missing text;
-   - every claim on it has a supported row in `CLAIMS.md`, and numbers carry their date and caveat;
+   - every claim on it, word for word with its qualifiers, is supported by the ledger row its `CLAIMS.md` row names, and numbers carry their date and caveat;
    - nothing is clipped, overflowing, unreadable at presentation size or broken at a hyphen;
    - icons and fonts render;
    - the border is on every page;

@@ -16,14 +16,14 @@ Read [deck-production-principles.md](deck-production-principles.md) first. It is
   deck.js               present mode (arrows), ?overview (all slides), ?export#N (one slide, no chrome)
   assets/               vendored font and icons with their licences, so the deck works offline
   scripts/serve.mjs     local server for the live review
-  scripts/export.mjs    PDF (one page per slide) and exports/slides/slide-NN.png, with headless Chromium
+  scripts/export.mjs    PDF (one page per slide) and one PNG per slide, with headless Chromium
   CLAIMS.md             the claim and source map
   README.md             version, status, how to present, export and edit
-  exports/              <Deck-name-YYYY-MM-DD>.pdf and slides/
+  exports/              <name>.pdf and <name>/slide-NN.png, one pair per version
 ```
 
 - **A new deck:** copy [the scaffold](templates/deck/) into `deck/` in the work folder, or into the folder the request names.
-- **An existing deck:** work in its folder and keep its style. A changed deck is a new version: export it under a new dated name, and keep the earlier exports.
+- **An existing deck:** work in its folder and keep its style. A changed deck is a new version: export it under a new name (`<Deck-name>-YYYY-MM-DD`, with `-v2` for a second version the same day), and keep the earlier exports.
 - **No dependencies:** no package install is needed to view or export. Nothing loads from the network: vendor the font and icons into `assets/` with their licences (`scripts/vendor-icons.mjs` copies icons from an unpacked `lucide-static` package).
 
 ## 1. Plan the slides with the user
@@ -42,10 +42,10 @@ A **change request** (`Deck Change`) on an existing deck skips this step, unless
 
 ## 3. Review it live with the user
 
-- **Serve the deck:** run `node scripts/serve.mjs` as a background process (`PORT` sets the port) and open its `http://127.0.0.1:<port>/` with `open_tab`. The tab tool refuses `file://` URLs. Never launch a browser on a display yourself.
+- **Serve the deck:** start `node scripts/serve.mjs` in the background. It takes a free port, so it never collides with another project's server, and prints the deck's URL (also saved in `.server.json`). Open that URL with `open_tab`; the tab tool refuses `file://` URLs. Never launch a browser on a display yourself.
 - **Tell the user:** give them the URL and say that the tab is open.
 - **Each edit:** change `index.html` or `styles.css`, update the claim's row when a claim changed, and reload the tab with `navigate_to` on the same URL.
-- **The tab and the server are yours:** close the tab and stop the server when the review ends. If you leave them for a review still going on, say so.
+- **The tab and the server are yours:** when the review ends, close the tab and stop the server with `node scripts/serve.mjs stop`, which stops this deck's server and no other. Never stop servers by name: another deck's server runs the same script. If you leave them for a review still going on, say so.
 
 ## 4. Export and look at every page
 
@@ -61,4 +61,4 @@ A **change request** (`Deck Change`) on an existing deck skips this step, unless
 ## 5. Hand off
 
 - **For review:** save the deck's `README.md` (version, export paths, what changed, what you checked, open claims), with the outcome `Review Requested`.
-- **After a `Deck Fix`:** fix, export again under a new dated name, and request review again.
+- **After a `Deck Fix`:** fix, export again under a new name, and request review again.
