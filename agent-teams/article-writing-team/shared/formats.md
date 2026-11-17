@@ -6,11 +6,11 @@ A web article is a small static website the website shows in a frame below its o
 
 - **What it holds:** a `site/` folder with `index.html` and `article.json` at its top and every file the page uses (styles, scripts, images, fonts), linked by relative paths. Nothing loads from another website: no outside fonts, scripts, styles or images. Sources and build tools stay outside `site/`. The website keeps only `.html .htm .css .js .mjs .json .txt .svg .png .jpg .jpeg .gif .webp .avif .ico .woff .woff2 .ttf .otf`: no audio or video.
 - **`article.json`:** `title` (up to 300 characters; the same title updates the same article), `excerpt` (up to 240 characters, the list's summary: the opening or a subtitle), `slug` (a short address from the title's key words, lowercase letters or digits joined by `-`), `cover` (a PNG, JPEG, WebP or GIF inside `site/`, at most 10 MiB: the share image; the website accepts none, but a ready article has one), and `author` and `date` (YYYY-MM-DD) only when the user gives them. No other field.
-- **The page:** no title, byline or date of its own (the website shows them above the frame) and no empty space above the first line. Laid out for a content width of about 1024 px on a desktop and the screen width on a phone. It posts its height to the website whenever the height changes, and sizes nothing with `vh`:
+- **The page:** no title, byline or date of its own (the website shows them above the frame) and no empty space above the first line. Laid out for a content width of about 1024 px on a desktop and the screen width on a phone. It posts the height of its root box, rounded up, at once, on load and whenever it changes; not `scrollHeight`, which browsers round down and which never lets the frame shrink. `html` and `body` never take the frame's height: no `height: 100%` and no `vh`.
 
   ```js
-  const send = () => parent.postMessage({ type: 'article-height', height: document.documentElement.scrollHeight }, '*')
-  new ResizeObserver(send).observe(document.body)
+  const send = () => parent.postMessage({ type: 'article-height', height: Math.ceil(document.documentElement.getBoundingClientRect().height) }, '*')
+  new ResizeObserver(send).observe(document.documentElement)
   addEventListener('load', send)
   send()
   ```

@@ -38,6 +38,9 @@ OUTSIDE = re.compile(r"^(?:[a-z][a-z0-9+.-]*:|//)", re.I)
 CSS_URL = re.compile(r"""url\(\s*['"]?([^'")]+)['"]?\s*\)|@import\s+['"]([^'"]+)['"]""", re.I)
 JS_OUTSIDE = re.compile(r"""(?:\bimport\b[^;'"]*|\bfetch\s*\(\s*|\bimport\s*\(\s*)['"`](?:https?:)?//""")
 WORD = re.compile(r"[A-Za-z0-9'’-]+|[^\x00-\x7f\s]")
+CSS_RULE = re.compile(r"([^{}]+)\{([^{}]*)\}")
+ROOT_SELECTOR = re.compile(r"(?:^|[\s,>+~])(?:html|body|:root)(?=$|[\s,.:#\[>+~])", re.I)
+FULL_HEIGHT = re.compile(r"(?:^|;)\s*(?:min-)?height\s*:\s*100%", re.I)
 VH = re.compile(r"(?<![\w-])\d*\.?\d+(?:d|s|l)?vh\b")
 IMAGE_MAGIC = ((b"\x89PNG\r\n\x1a\n", "PNG"), (b"\xff\xd8\xff", "JPEG"), (b"GIF87a", "GIF"), (b"GIF89a", "GIF"))
 
@@ -69,6 +72,7 @@ class Page(HTMLParser):
         self.links: list[tuple[str, dict]] = []  # (href, attrs) of <a>
         self.h1 = 0
         self.inline_styles: list[str] = []
+        self.root_styles: list[str] = []         # style attributes of <html> and <body>
         self.inline_scripts: list[str] = []
         self.text: list[str] = []
         self._skip = 0
@@ -91,6 +95,8 @@ class Page(HTMLParser):
             self.links.append((a["href"], a))
         if a.get("style"):
             self.inline_styles.append(a["style"])
+            if tag in ("html", "body"):
+                self.root_styles.append(a["style"])
         if tag in self.SKIP:
             self._skip += 1
         self._tag_stack.append(tag)
@@ -262,6 +268,9 @@ def check(site: Path) -> tuple[list[str], list[str], dict]:
                         problems.append(f"{rel}: link '{href}' is not a file inside the folder")
             styles = "\n".join(page.inline_styles)
             scripts = "\n".join(page.inline_scripts)
+            if any(FULL_HEIGHT.search(";" + st) for st in page.root_styles):
+                problems.append(f"{rel}: <html> or <body> takes the frame's height (height: 100%); "
+                                "its height must follow the content")
         elif suffix == ".css":
             styles, scripts = path.read_text(encoding="utf-8", errors="replace"), ""
         elif suffix in (".js", ".mjs"):
@@ -279,10 +288,24 @@ def check(site: Path) -> tuple[list[str], list[str], dict]:
         if VH.search(styles) or VH.search(scripts):
             problems.append(f"{rel}: sizes with vh; in the website's frame the height then grows every time "
                             "it is reported")
+        for selector, declarations in CSS_RULE.findall(styles):
+            if ROOT_SELECTOR.search(selector) and FULL_HEIGHT.search(";" + declarations):
+                problems.append(f"{rel}: '{selector.strip()}' takes the frame's height (height: 100%); "
+                                "html and body must follow the content")
         if JS_OUTSIDE.search(scripts):
             problems.append(f"{rel}: a script loads from another website; nothing outside the folder loads")
         if "article-height" in scripts:
             height_message = True
+            if "scrollHeight" in scripts:
+                problems.append(f"{rel}: the height script uses scrollHeight; browsers round it down and it never "
+                                "lets the frame shrink: post Math.ceil(document.documentElement"
+                                ".getBoundingClientRect().height) (formats.md)")
+            elif not re.search(r"Math\.ceil\s*\(\s*document\.documentElement\.getBoundingClientRect\(\)\.height", scripts):
+                problems.append(f"{rel}: the height script does not post Math.ceil(document.documentElement"
+                                ".getBoundingClientRect().height) (formats.md)")
+            if not re.search(r"\.observe\(\s*document\.documentElement\s*\)", scripts):
+                problems.append(f"{rel}: the height script does not observe document.documentElement with a "
+                                "ResizeObserver, so the frame misses height changes (formats.md)")
     if index.is_file() and not height_message:
         problems.append("no script posts the page's height ('article-height'); the frame would be one screen "
                         "high and scroll")
