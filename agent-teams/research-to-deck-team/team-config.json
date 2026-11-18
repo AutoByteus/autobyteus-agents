@@ -8,8 +8,8 @@
       "refScope": "team_local"
     },
     {
-      "memberName": "infographic_powerpoint_designer",
-      "ref": "infographic-powerpoint-designer",
+      "memberName": "deck_designer",
+      "ref": "deck-designer",
       "refType": "agent",
       "refScope": "team_local"
     },
@@ -23,37 +23,39 @@
   "handoffs": [
     {
       "from": "/deep_researcher",
-      "to": "/infographic_powerpoint_designer",
+      "to": "/deck_designer",
       "rules": [
-        "When the evidence-backed research package, reasoning artifact, source index, and research limitations are ready for deck planning."
+        "When the outcome is Research Ready: plan the slides with the user, or revise the deck, from the research package. Include absolute paths to article.md, claim_evidence_ledger.md, research-resource-index.md and any existing deck folder.",
+        "When the outcome is Deck Change: apply the user's change to the existing deck without new research. Include absolute paths to the change request and the deck folder."
       ]
     },
     {
-      "from": "/infographic_powerpoint_designer",
+      "from": "/deck_designer",
       "to": "/deep_researcher",
       "rules": [
-        "When deck production exposes a material evidence gap or unsupported claim that requires research clarification."
+        "When the outcome is Research Gap: a slide needs a claim the research does not support. Include the slide, the claim and the deck folder."
       ]
     },
     {
-      "from": "/infographic_powerpoint_designer",
+      "from": "/deck_designer",
       "to": "/deck_reviewer",
       "rules": [
-        "When the slide plan, generated slide images, and images-only PowerPoint package are ready for fidelity and readability review."
+        "When the outcome is Review Requested: a deck version is exported and self-checked. Include absolute paths to the deck folder, its README.md, CLAIMS.md, deck_storyboard.md and the research package."
       ]
     },
     {
       "from": "/deck_reviewer",
-      "to": "/infographic_powerpoint_designer",
+      "to": "/deck_designer",
       "rules": [
-        "When slides need corrections to research fidelity, readability, visual quality, or prompt-output accuracy."
+        "When the outcome is Deck Fix: fix the findings and export a new version. Include the absolute path to slide-review-report.md."
       ]
     },
     {
       "from": "/deck_reviewer",
       "to": "/deep_researcher",
       "rules": [
-        "When the deck passes review and the coordinator needs the final package status, evidence limits, and residual risks."
+        "When the outcome is Research Gap: revise the research package for the claims the review names. Include the absolute path to slide-review-report.md.",
+        "When the outcome is Review Passed: report the reviewed deck to the user. Include absolute paths to slide-review-report.md, the reviewed PDF and the deck folder."
       ]
     }
   ]

@@ -1,110 +1,37 @@
 ---
 name: deck-reviewer
-description: Review image-only research/pitch deck slide images before final PowerPoint assembly.
+description: Review a web deck version (its exported PDF and PNGs and the slide text) against the research package and the user-approved slide plan, and decide whether it can be delivered.
 ---
 
 # Deck Reviewer
 
-Use this skill to review generated or edited slide images before final deck assembly.
-Keep this role separate from `infographic_powerpoint_designer` so slide QA remains independent.
+Read [deck-production-principles.md](deck-production-principles.md) first. It is a symbolic link; open it by path. You are independent of the designer: judge what was exported, not what the designer reports.
 
-## Expected Inputs
+## Review a version
 
-- `article.md`
-- `research-resource-index.md`
-- `claim_evidence_ledger.md`
-- user-approved `deck_storyboard.md`
-- `slides_visual_plan.md`
-- `prompts.md`
-- `deck-source-index.md`
-- `slide-generation-log.md`
-- candidate slide images under `slides/`
+1. **Read the inputs:**
+   - the deck's `README.md` (version, export paths, what changed);
+   - `CLAIMS.md` and `deck_storyboard.md` (the user-approved plan, with any later user edits recorded);
+   - the research package's `claim_evidence_ledger.md` and `article.md`.
+2. **Look at every exported PNG and the PDF.** For each slide:
+   - it says what the storyboard and the user's recorded edits say, with no extra or missing text;
+   - every claim on it, word for word with its qualifiers, is supported by the ledger row its `CLAIMS.md` row names, and numbers carry their date and caveat;
+   - nothing is clipped, overflowing, unreadable at presentation size or broken at a hyphen;
+   - icons and fonts render;
+   - the border is on every page;
+   - the order is right.
+3. **For the deck as a whole:**
+   - the page count matches the slide count;
+   - a search of the slide text (`pdftotext` on the PDF, or `index.html`) finds none of the terms the ledger rules out, and no qualifier such as "first", "only" or "leading" without its source: reading alone passes over a familiar phrase;
+   - the style is consistent;
+   - nothing private or restricted is exposed;
+   - the PDF is the version the README names.
 
-## Produced Artifacts
+## Decide
 
-- `slide-review-report.md`
+Write `slide-review-report.md` beside the deck from [the template](templates/slide-review-report-template.md), with one outcome:
+- `Review Passed`: no blocking finding. List any non-blocking ones.
+- `Deck Fix`: each finding with its slide, what is wrong and what correct looks like.
+- `Research Gap`: a claim the research does not support. A version can carry both a `Deck Fix` and a `Research Gap`.
 
-Use [slide-review-report-template.md](templates/slide-review-report-template.md).
-
-## Required Shared Reads
-
-- Read `deck-production-principles.md` before review when it is present in this agent folder.
-
-## Workflow
-
-### Step 1 - Confirm the review package
-
-Confirm that the package includes:
-
-- research package
-- user-approved deck storyboard
-- visual plan
-- prompt artifact
-- deck source index
-- slide generation log
-- candidate slide image paths
-- resource/input mapping from storyboard through visual plan to image output
-
-If anything needed for review is missing, route `Deck Fix` to `infographic_powerpoint_designer`.
-
-### Step 2 - Review each slide image
-
-For each slide, inspect the actual image and verify:
-
-- the image is a `generate_image` or `edit_image` output
-- any visible text, callout, arrow, highlight, crop/resize, overlay, redaction, cleanup, or polish was produced through `generate_image` or `edit_image`, not scripts or manual composition
-- designer self-check decision exists and is not `needs edit`, `rejected`, or `blocked`
-- 16:9 horizontal format
-- all must-appear text is present and readable
-- no extra words, watermark, random text, or wrong language
-- claims match the article, claim evidence ledger, and user-approved deck storyboard
-- prompt-grounding resources used for the slide match the storyboard, visual plan, prompt/edit instruction, and `deck-source-index.md`
-- relevant text, file, URL, or source excerpt resources were read before prompt writing when the slide depends on them
-- relevant user-provided product/source image assets were used as image inputs when the slide depends on them, or a clear no-image-input rationale is logged
-- visual metaphor, chart, diagram, or illustration does not misrepresent the research
-- style pack, motif, typography, margins, and visual density are consistent across slides
-- slide is readable at presentation distance
-- no sensitive or restricted source material is exposed
-
-Treat missing self-check evidence, missing resource/input mapping, unread prompt-grounding resources, unreadable text, wrong text, unsupported claim, unindexed source image, ignored relevant source assets, raw non-generated final slide, script-composed image edits, wrong aspect ratio, or random generated text as blocking.
-
-### Step 3 - Write `slide-review-report.md`
-
-For each slide, record:
-
-- pass, fix required, or reject
-- exact issue
-- required correction
-- whether the issue belongs to deck production or research
-
-### Step 4 - Route decision
-
-If blocking issues remain, send `Deck Fix` to `infographic_powerpoint_designer`.
-If the issue is weak evidence or unsupported claims, route `Research Gap` to `deep_researcher`.
-
-Repeat the fix/review loop until no blocking issues remain.
-
-Internal review passes when the slide images match the research package and user-approved deck storyboard with no blocking findings.
-
-If the user gives feedback after final deck delivery, classify it:
-
-- slide wording, readability, style, layout, image quality, or deck flow -> `Deck Fix` to `infographic_powerpoint_designer`
-- claim, evidence, argument, source, or research direction -> `Research Gap` to `deep_researcher`
-
-After user-requested fixes change final slide images, review the revised slide package again before final assembly or redelivery.
-
-### Step 5 - Handoff reviewed slides
-
-After internal review passes, send the reviewed slide package back to `infographic_powerpoint_designer` for final images-only PowerPoint assembly.
-
-Include:
-
-- absolute path to `slide-review-report.md`
-- absolute paths to internally reviewed slide images
-- review summary
-- open non-blocking risks
-
-## Routing Rules
-
-- Slide prompt, layout, style, readability, generated-image, or text-fidelity defects -> `infographic_powerpoint_designer`
-- Unsupported claims, weak evidence, or missing source anchors -> `deep_researcher`
+Review a revised version again in full when it changed any text; when only layout changed, check the changed slides and the page count.

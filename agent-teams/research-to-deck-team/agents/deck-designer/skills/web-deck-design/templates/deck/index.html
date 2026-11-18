@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deck title</title>
+<!-- Edit the text here. Sources for every claim: CLAIMS.md. Export: node scripts/export.mjs --name Deck-YYYY-MM-DD -->
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="deck">
+
+<!-- 1 · Cover -->
+<section class="slide cover" data-title="Cover">
+  <div class="kicker">Company name</div>
+  <h1>One line that says what the company makes <span class="accent">and for whom.</span></h1>
+  <p class="lead">A short sentence on why it matters now.</p>
+  <div class="byline">Presenter · Role · City</div>
+</section>
+
+<!-- 2 · Problem -->
+<section class="slide" data-title="Problem">
+  <h2>The problem, in the customer's words</h2>
+  <div class="cards three">
+    <div class="card"><i data-icon="circle-alert"></i><h3>First pain</h3><p>One or two lines with a concrete example.</p></div>
+    <div class="card"><i data-icon="history"></i><h3>Second pain</h3><p>One or two lines with a concrete example.</p></div>
+    <div class="card"><i data-icon="layers"></i><h3>Third pain</h3><p>One or two lines with a concrete example.</p></div>
+  </div>
+</section>
+
+<!-- 3 · Traction -->
+<section class="slide" data-title="Traction">
+  <h2>Traction so far</h2>
+  <div class="numbers">
+    <div><div class="big">1,234</div><div class="label">downloads to date</div></div>
+    <div><div class="big">12</div><div class="label">releases in the last 90 days</div></div>
+  </div>
+  <p class="note">As of YYYY-MM-DD. Downloads are not active users; releases include betas.</p>
+</section>
+
+</div>
+<div class="hud" aria-hidden="true"></div>
+<script src="assets/icons.js"></script>
+<script src="deck.js"></script>
+</body>
+</html>
