@@ -1,18 +1,18 @@
 # Research contract
 
-The shared rules for a study: how it moves, what counts as evidence, and its records. Each
-role's skill owns its own work. The team owns the method and finds its own weak spots; the
-user, who may not be a researcher, should not have to point them out.
+The shared rules for a study: how it moves, what counts as evidence, and where its records
+live. Each role's skill owns its own work. The team owns the method and finds its own weak
+spots; the user, who may not be a researcher, should not have to point them out.
 
 ## How a study moves
 
 A study starts from the goal and asks what already exists and how far that gets us. Maybe
 existing work, or a combination of it, already reaches the goal. If not, keep what helps
-and work on what is left. Every assignment is one of three kinds, and results can send the
-team back to any of them:
+and work on what is left. Every cycle is one of three kinds, and results can send the team
+back to any of them:
 
 - **Understand:** study the existing work around the goal (papers, tools, code, practice,
-  the supplied materials) and build the research map.
+  the supplied materials).
 - **Probe:** a cheap, faithful test of whether a direction deserves deeper work.
 - **Deepen:** serious building or validation of a chosen direction.
 
@@ -32,8 +32,8 @@ Understanding is enough to choose a direction when all of these hold, scaled to 
 question:
 
 - Searching in the field's own terms and following citations from its central works mostly
-  returns work already in the map, so a specialist would miss nothing major. What could
-  not be searched or opened is stated.
+  returns work already known, so a specialist would miss nothing major. What could not be
+  searched or opened is stated.
 - The works a direction depends on, and its strongest competitors, were read in full, or
   the access failure is stated. No decision rests on an abstract, a snippet or memory.
 - For each part of the goal, the map says how far existing work, or a combination, gets
@@ -65,10 +65,11 @@ method and gives each test run to a separate, clean subject, with the method or 
 control; the team designs, collects and evaluates.
 
 A component that works is not yet useful for the goal, novel or ready for a paper. A proxy
-or an activity count does not show benefit; say what a proxy leaves unproved before
-optimizing it. Compare with credible existing practice, and test parts together rather
-than assume their separate successes add up. Validate as deeply as the claim and its
-decision need; a probe need not be production quality.
+or an activity count does not show benefit, and neither does a result at a lower level than
+the goal's, such as a function where the goal is about architecture; say what a proxy
+leaves unproved before optimizing it. Compare with credible existing practice, and test
+parts together rather than assume their separate successes add up. Validate as deeply as
+the claim and its decision need; a probe need not be production quality.
 
 Check inputs, selection and data format before trusting a result, and take counts and
 denominators from the actual records: an empty or wrongly filtered selection that passes
@@ -80,71 +81,72 @@ Another reader must be able to find each conclusion's source, or recreate its de
 evidence from the recorded versions, commands, parameters and raw results. Record what was
 checked, what failed and what could not be checked.
 
-## The research map
-
-`research-map.md` is the study's one living document: what we are trying to achieve, what
-is known, how far we are and what we decided. Every role reads it first. Write it in plain
-language for a reader who is not a researcher: the user, or a new supervisor taking over,
-should understand the study from the map alone. Keep it current, replacing outdated text
-rather than adding contradictions; the cycle files keep the history. Both roles edit it,
-one at a time: the researcher mainly sections 3, 4, 5 and 7, the supervisor the request,
-goal, decision and state.
-
-1. **Request.** The user's original request, word for word and never edited.
-2. **Goal.** Written like a paper's abstract, in several paragraphs, never a one-line
-   summary, which loses the idea and drifts. It explains the problem, how it is handled
-   today, the key idea or intuition, what is to be built or found, what must be shown and
-   the hypotheses to test, what success looks like, the scope and the evaluation unit. It
-   takes in every idea the user has given, later ones included, organized into one clear
-   text, not notes or quotes.
-
-   Then the breakdown into parts (G1, G2…), each with its requirements (R1, R2…), what
-   success means for it and the evidence it needs. Both roles refine the goal and its
-   breakdown as understanding grows, so the goal gets clearer over time, and note the
-   date, what changed and why. The aim and success criteria change only with the user's
-   decision. Never drop an unmet requirement silently; narrowing a conclusion does not
-   erase one.
-3. **How far we are, per part.** What existing work reaches, what our results added, what
-   is left and why. Overall: might existing work, or a combination, already be enough?
-   Estimates are qualitative: no invented percentages.
-4. **Existing work, by approach.** What each showed and on what evidence, how deeply we
-   read it (abstract, full text, code run, reproduced), whether we can reuse it, and which
-   parts of the goal it serves.
-5. **Our experiments and results.** First the story so far: a few paragraphs on the path
-   of the study, what each important step tried and found, and where it leaves us. Then
-   one row per cycle: what we tried; the key result and the evidence for it (numbers or
-   sources, with evidence IDs); the signal for the direction and how strong it is; and
-   what it does not show. The supervisor steers on these rows and marks the results it
-   checked. Partial and negative results stay.
-6. **Directions compared, and the current decision.** Each direction's expected
-   contribution, main uncertainty, strongest fair comparator, cost of learning more and
-   status; then the supervisor's decision: why it serves the goal, which alternatives lost
-   and why, and what would change it.
-7. **Search trail.** What was searched, which citations were followed, what could not be
-   opened, and where the search stopped and why.
-8. **Current state.** Cycle, status, latest assignment and review, planned steps not yet
-   reviewed, and scope changes with the user's decisions.
-
 ## The study folder
 
 Reuse the supplied study folder or create `research/<study-slug>/`. Use stable IDs and
 relative links inside it, and absolute paths in messages. Never overwrite past cycles or
 raw outputs, and never edit the other role's records or artifacts. Create a record only
-when there is something to put in it.
+when there is something to put in it. Write everything in plain language for a reader who
+is not a researcher.
 
-| Record | Owner and what it holds |
-| --- | --- |
-| `research-map.md` | Both, as above. |
-| `method-reviews.md` | Supervisor: each method review, appended. |
-| `cycles/CNNN/assignment.md` | Supervisor: work kind; the question, the goal part and map gap it addresses, and the decision it informs; findings to resolve; evidence expected. |
-| `cycles/CNNN/addendum-NN.md` | Supervisor: a dated change to the open assignment at a checkpoint (runs dropped or added, a measure changed, a check added) and why. It belongs to the same cycle. |
-| `cycles/CNNN/report.md` | Researcher: claims with evidence IDs for and against, requirement coverage, deviations, limitations, status and next step. Proposing completion is not deciding it. |
-| `cycles/CNNN/review.md` | Supervisor: what it checked, findings, the step back, the decision and the next assignment or final assessment. |
-| `evidence.md` | Both, append-only, each author with its own IDs: source or run, version, method or command, result, raw path, limits. |
-| `follow-ups.md` | Both: out-of-scope work, decisions and restart needs, with IDs. The supervisor reports them to the caller. |
-| `runs/CNNN/test-request.md` | Researcher: the research question, the treatment and its version (skill and tool paths), the control, the task, the criteria and what each run must not see. |
-| `runs/CNNN/tests/` | Agent package creator: the agents it built, each run's evidence and validity check, and the old-versus-new comparison when an agent was updated. |
-| `runs/`, `sources/`, manuscript | Researcher. The supervisor's reruns go in `checks/`. |
+- **`research-map.md`**: the current picture, short enough to read in one sitting. Every
+  role reads it first. It holds no history: replace what is outdated, and leave detail to
+  the cycles and `existing-work.md`, linked by ID.
+  1. **Request:** the user's original request, word for word and never edited.
+  2. **Goal:** written like a paper's abstract, in several paragraphs, never a one-line
+     summary, which loses the idea and drifts. It explains the problem, how it is handled
+     today, the key idea or intuition, what is to be built or found, what must be shown and
+     the hypotheses to test, what success looks like, the scope and the evaluation unit. It
+     takes in every idea the user has given, later ones included, organized into one clear
+     text, not notes or quotes. Then the parts of the goal, each with its requirements and
+     what success means for it. Both roles refine the goal as understanding grows, so it
+     gets clearer over time, and note the date, what changed and why. The aim and success
+     criteria change only with the user's decision. Never drop an unmet requirement
+     silently; narrowing a conclusion does not erase one.
+  3. **What we have learned:** each insight about the problem in a few plain sentences,
+     with the cycles and evidence behind it; replaced when overturned.
+  4. **How far we are, per part:** what existing work and our cycles reach, what is left
+     and why. Overall: might existing work, or a combination, already be enough? Estimates
+     are qualitative: no invented percentages.
+  5. **The story so far:** a few paragraphs on the path of the study and where it leaves us.
+  6. **Directions and the current decision:** each direction's expected contribution, main
+     uncertainty, strongest fair comparator and status; the supervisor's decision, the
+     alternatives that lost and why, and what would change it.
+  7. **Current state:** cycle, status, latest assignment and review, planned steps not yet
+     reviewed, and scope changes with the user's decisions.
+- **`existing-work.md`**: the field by approach: what each work showed and on what
+  evidence, how deeply we read it (abstract, full text, code run, reproduced), whether we
+  can reuse it and which parts of the goal it serves; then the search trail: what was
+  searched, which citations were followed, what could not be opened, and where the search
+  stopped and why.
+- **`cycles/index.md`**: one line per cycle: kind, question, key result with its evidence
+  and the signal it gives, what it does not show, and a link. The supervisor marks the
+  results it checked.
+- **`cycles/CNNN/`** (a short name may follow): everything of one cycle.
+  - `assignment.md` (supervisor): kind, question, the goal part and gap it serves, the
+    decision it informs, findings to resolve, evidence expected;
+  - `addendum-NN.md` (supervisor): a dated change to the open assignment at a checkpoint,
+    and why;
+  - `report.md` (researcher): claims with evidence for and against, requirement coverage,
+    deviations, limitations, status and next step. Proposing completion is not deciding it;
+  - `review.md` (supervisor): what it checked, findings, the step back, the decision and
+    the next assignment or final assessment;
+  - `evidence.md` (both, append-only): each record with its ID (`RES-` or `SUP-`, then the
+    cycle), source or run, version, method or command, result, raw path and limits;
+  - the raw runs, sources and the supervisor's own checks;
+  - for agent tests, `test-request.md` (researcher: the question, the treatment and its
+    version, the control, the task, the criteria and what each run must not see) and
+    `tests/` (agent package creator: the agents built, each run's evidence and validity
+    check, and the old-versus-new comparison when an agent was updated).
+- **`method-reviews.md`** (supervisor): each method review, appended.
+- **`follow-ups.md`** (both): out-of-scope work, decisions and restart needs, with IDs. The
+  supervisor reports them to the caller.
+
+A library, skill or other software the study delivers lives in its own repository,
+versioned with tags; a test request names the tag. An older study keeps its folders: new
+cycles use this layout, the map is slimmed once: its per-cycle rows become the index
+lines, results included, the literature and search trail move to `existing-work.md`, and
+insights move out of the goal.
 
 ## Statuses and handoffs
 
