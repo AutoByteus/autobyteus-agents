@@ -12,29 +12,9 @@
       "ref": "deck-reviewer",
       "refType": "agent",
       "refScope": "team_local"
-    },
-    {
-      "memberName": "deep_researcher",
-      "ref": "deep-researcher",
-      "refType": "agent",
-      "refScope": "shared"
     }
   ],
   "handoffs": [
-    {
-      "from": "/deck_designer",
-      "to": "/deep_researcher",
-      "rules": [
-        "When the designer saves a research-request.md for a new deck, or for a change or review finding that adds or alters a claim. Include the request's absolute path and the deck's work folder."
-      ]
-    },
-    {
-      "from": "/deep_researcher",
-      "to": "/deck_designer",
-      "rules": [
-        "When the research brief for the designer's research-request.md is saved, or that research is blocked and needs the requester's decision. Include the brief's absolute path, the answer in a few sentences, the claims not to make, and the open gaps."
-      ]
-    },
     {
       "from": "/deck_designer",
       "to": "/deck_reviewer",

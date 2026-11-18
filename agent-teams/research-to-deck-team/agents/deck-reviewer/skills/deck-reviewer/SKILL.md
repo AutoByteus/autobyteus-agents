@@ -12,7 +12,7 @@ Read [deck-production-principles.md](deck-production-principles.md) first. It is
 1. **Read the inputs:**
    - the deck's `README.md` (version, export paths, what changed);
    - `CLAIMS.md` and `deck_storyboard.md` (the user-approved plan, with any later user edits recorded);
-   - the Deep Researcher's brief (its findings, claims check and "checked and ruled out" list) and its `evidence.md`.
+   - the research brief (its findings, claims check and "checked and ruled out" list) and its `evidence.md`.
 2. **Look at every exported PNG and the PDF.** For each slide:
    - it says what the storyboard and the user's recorded edits say, with no extra or missing text;
    - every claim on it, word for word with its qualifiers, is `supported` in the brief row its `CLAIMS.md` row names (or confirmed by the user, as `CLAIMS.md` records), and numbers carry their date and caveat;

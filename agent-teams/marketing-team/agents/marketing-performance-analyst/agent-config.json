@@ -1,12 +1,15 @@
 {
   "skillNames": [
-    "marketing-performance-analysis"
+    "marketing-performance-analysis",
+    "deep-research"
   ],
   "toolNames": [
     "read_file",
     "write_file",
     "edit_file",
     "run_bash",
+    "search_web",
+    "read_url",
     "get_handoff_rules",
     "send_message_to"
   ]

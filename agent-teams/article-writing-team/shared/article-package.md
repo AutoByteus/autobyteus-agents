@@ -11,8 +11,7 @@ Create one dedicated work folder per request. Keep every file below in it, and u
 | `brief.md` (with the style, the format, and the author's answer to the one-page plan) | `article-writing` | Always |
 | `understanding-notes.md`, `source-index.md` | `article-writing` (its understanding reference) | The article needs investigation or source grounding |
 | `claim-evidence-ledger.md` | `article-writing` (its understanding reference) | Factual, technical, or interpretive claims need explicit support |
-| `research-request.md` | `article-writing` | The article needs online or paper research |
-| The research brief and its `evidence.md` | The Deep Researcher (`deep-research`), saved where its message says; `source-index.md` records the brief's path | A research request was answered |
+| Research briefs and their `evidence.md` | `article-writing`, with `deep-research`, in the workspace's `research/` folder; `source-index.md` records each brief's path | The article needs online or paper research |
 | `style-profile-notes.md` | `article-writing` | The user asked for an author's voice |
 | `outline.md` | `article-writing` | Always |
 | `visual-plan.md` | `article-writing` | Visuals are requested or earned by the visualization-load trigger |

@@ -12,7 +12,7 @@ A thought such as "it annoys me that …" may point at a product nobody has buil
 Use the user's opportunities workspace, outside any product repository. It is the run's workspace, or the folder the user names; record it in its `README.md` the first time. Keep:
 
 - `thoughts/<date>-<slug>.md`: each thought exactly as the user gave it, with the date;
-- `opportunities/<slug>/`: `research-request.md`, the Deep Researcher's brief, and `brief.md`;
+- `opportunities/<slug>/brief.md`, which links its research in `research/`;
 - `backlog.md`: one row per opportunity (slug, one-line problem, verdict, confidence, date, status), best first.
 
 If the workspace is a git repository, commit after each brief.
@@ -21,18 +21,16 @@ If the workspace is a git repository, commit after each brief.
 
 Save it as given. Start straight away. Ask the user at most one question, and only when the thought is too vague to research, for example when it is unclear which tool or situation it means.
 
-## 2. Ask for research
+## 2. Research
 
-Write `research-request.md`: the problem in the user's words, and the questions to answer.
+Research it with `deep-research`: the problem in the user's words, and these questions.
 
 - **Existing solutions:** what solves this today (products, features of tools the user already has, open-source projects, workarounds), what each costs, who it serves, and where it falls short.
 - **Demand:** who else has this problem and how much it hurts them. Look for people describing it in their own words (Reddit, Hacker News and other forums, app-store and review-site complaints, GitHub issues), search interest, and competitors' pricing and traction.
 
-Hand it to the Deep Researcher. A quick fact you can check yourself in a search or two needs no request.
-
 ## 3. Judge
 
-Read the research brief and its sources. Then decide:
+Decide from the research brief and its sources:
 
 - **Existing solutions:** "use X" (a good solution exists), "good enough" (alternatives are imperfect but adequate), or "gap" (nothing serves this well).
 - **Demand:** real, weak, or unknown. Mark every figure or user count as *measured* (seen in a source, with its date) or *claimed* (someone's statement), and say what you looked for and could not find. Never invent numbers, users or quotes. One loud complaint is not a market.

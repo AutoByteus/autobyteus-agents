@@ -9,13 +9,16 @@
     "stop_background_process",
     "open_tab",
     "navigate_to",
+    "read_page",
     "close_tab",
     "screenshot",
+    "search_web",
     "read_url",
     "get_handoff_rules",
     "send_message_to"
   ],
   "skillNames": [
-    "web-deck-design"
+    "web-deck-design",
+    "deep-research"
   ]
 }
