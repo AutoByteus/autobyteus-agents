@@ -20,6 +20,10 @@ A deck is a small static web project: HTML/CSS slides with real text, diagrams i
 
 Every claim on a slide has a row in the deck's `CLAIMS.md`: the exact wording, its source (the brief's finding or claims-check row, with the source it cites), the date checked, the type and the caveat shown. Numbers carry their date and caveat on the slide; a figure that counts something other than what it seems to (downloads are not active users) says so.
 
+## Temporary files
+
+Scratch work (unpacked packages, page renders, text dumps) goes in a folder of your own made with `mktemp -d`, never loose in `/tmp` or the work folder. Remove that folder before you hand off or report, in any outcome, and only that folder: other folders in `/tmp` belong to other work. If you must leave something, say what and why in your result.
+
 ## Review gate
 
 The deck reviewer reviews the exported pages of every version the team delivers. A version with blocking findings, or one changed after review, is not delivered as reviewed.

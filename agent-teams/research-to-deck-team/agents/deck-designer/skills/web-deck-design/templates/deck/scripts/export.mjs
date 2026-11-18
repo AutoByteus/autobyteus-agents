@@ -4,6 +4,8 @@
 // Usage: node scripts/export.mjs --name Deck-YYYY-MM-DD     (CHROME=/path/to/chromium to choose the browser)
 // Exits non-zero when Chromium fails or the PDF's page count differs from the number of slides.
 // Each Chromium call has 60 s; a call that hangs is stopped and tried once more.
+// Chromium's temporary files go in each call's throwaway profile, which is removed after the call, also when the
+// export is interrupted.
 import { spawn } from 'node:child_process';
 import { mkdirSync, mkdtempSync, readFileSync, statSync, existsSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -30,27 +32,35 @@ mkdirSync(shotDir, { recursive: true });
 const base = ['--headless=new', '--no-first-run', '--disable-gpu', '--no-sandbox', '--hide-scrollbars', '--allow-file-access-from-files',
   '--run-all-compositor-stages-before-draw', '--virtual-time-budget=4000'];
 const LIMIT = 60000;
-function once(args) {
+let profile = null, child = null;
+const stop = (c) => { try { process.kill(-c.pid, 'SIGKILL'); } catch { c.kill('SIGKILL'); } };
+const cleanUp = () => { if (child) stop(child); child = null; if (profile) rmSync(profile, { recursive: true, force: true }); profile = null; };
+process.on('exit', cleanUp);
+for (const sig of ['SIGINT', 'SIGTERM']) process.on(sig, () => process.exit(130));
+function once(args, tmp) {
   return new Promise((resolve) => {
     // Its own process group, so a hung browser is stopped with all its helper processes.
-    const child = spawn(chrome, args, { stdio: ['ignore', 'ignore', 'pipe'], detached: process.platform !== 'win32' });
+    const env = { ...process.env, TMPDIR: tmp, TMP: tmp, TEMP: tmp };
+    const c = child = spawn(chrome, args, { stdio: ['ignore', 'ignore', 'pipe'], detached: process.platform !== 'win32', env });
     let stderr = '';
-    child.stderr.on('data', (d) => { stderr += d; });
-    const done = (r) => { clearTimeout(timer); child.stderr.destroy(); resolve(r); };
+    c.stderr.on('data', (d) => { stderr += d; });
+    const done = (r) => { clearTimeout(timer); c.stderr.destroy(); resolve(r); };
     const timer = setTimeout(() => {
-      try { process.kill(-child.pid, 'SIGKILL'); } catch { child.kill('SIGKILL'); }
+      stop(c);
       done({ timedOut: true, stderr });
     }, LIMIT);
-    child.on('exit', (code) => done({ code, stderr }));
-    child.on('error', (e) => done({ code: -1, stderr: String(e) }));
+    c.on('exit', (code) => { if (child === c) child = null; done({ code, stderr }); });
+    c.on('error', (e) => done({ code: -1, stderr: String(e) }));
   });
 }
 async function run(extra, url) {
   for (let attempt = 1; attempt <= 2; attempt++) {
     // A throwaway profile per call, so Chromium never hands the job to a browser the user has open.
-    const profile = mkdtempSync(join(tmpdir(), 'deck-export-'));
-    const r = await once(['--user-data-dir=' + profile, ...base, ...extra, url]);
-    rmSync(profile, { recursive: true, force: true });
+    profile = mkdtempSync(join(tmpdir(), 'deck-export-'));
+    const tmp = join(profile, 'tmp');
+    mkdirSync(tmp);
+    const r = await once(['--user-data-dir=' + join(profile, 'profile'), ...base, ...extra, url], tmp);
+    cleanUp();
     if (r.code === 0) return;
     if (!r.timedOut) { console.error(r.stderr); throw new Error('Chromium failed for ' + url); }
     console.error(`Chromium did not finish within ${LIMIT / 1000} s for ${url}${attempt === 1 ? '; trying again.' : '.'}`);

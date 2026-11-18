@@ -24,7 +24,7 @@ Read [deck-production-principles.md](deck-production-principles.md) first. It is
 
 - **A new deck:** copy [the scaffold](templates/deck/) into `deck/` in the work folder, or into the folder the request names.
 - **An existing deck:** work in its folder and keep its style. A changed deck is a new version: export it under a new name (`<Deck-name>-YYYY-MM-DD`, with `-v2` for a second version the same day), and keep the earlier exports.
-- **No dependencies:** no package install is needed to view or export. Nothing loads from the network: vendor the font and icons into `assets/` with their licences. Fetch them with `npm pack lucide-static` and `npm pack @fontsource/inter` in a temporary folder (`scripts/vendor-icons.mjs` copies the icons the slides use); do not search the disk for them.
+- **No dependencies:** no package install is needed to view or export. Nothing loads from the network: vendor the font and icons into `assets/` with their licences. Fetch them with `npm pack lucide-static` and `npm pack @fontsource/inter` in your temporary folder (`scripts/vendor-icons.mjs` copies the icons the slides use); do not search the disk for them.
 
 ## 0. Take the request
 
