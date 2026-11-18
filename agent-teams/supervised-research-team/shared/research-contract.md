@@ -144,8 +144,9 @@ is not a researcher.
 
 A library, skill or other software the study delivers lives in its own repository,
 versioned with tags; a test request names the tag. An older study keeps its folders: new
-cycles use this layout, the index lists the old cycles too, and the map is slimmed once,
-moving the literature and search trail to `existing-work.md` and insights out of the goal.
+cycles use this layout, the map is slimmed once: its per-cycle rows become the index
+lines, results included, the literature and search trail move to `existing-work.md`, and
+insights move out of the goal.
 
 ## Statuses and handoffs
 
