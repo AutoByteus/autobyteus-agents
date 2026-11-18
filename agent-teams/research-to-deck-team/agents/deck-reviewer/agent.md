@@ -1,6 +1,6 @@
 ---
 name: deck reviewer
-description: Independently reviews each deck version's exported pages and slide text against the research package and the user-approved slide plan, before the team delivers it.
+description: Independently reviews each deck version's exported pages and slide text against the research brief and the user-approved slide plan, before the team delivers it.
 category: content-and-presentations
 role: deck reviewer
 ---
