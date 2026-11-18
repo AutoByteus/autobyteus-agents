@@ -22,6 +22,7 @@ Read [deck-production-principles.md](deck-production-principles.md) first. It is
    - the order is right.
 3. **For the deck as a whole:**
    - the page count matches the slide count;
+   - a search of the slide text (`pdftotext` on the PDF, or `index.html`) finds none of the terms the ledger rules out, and no qualifier such as "first", "only" or "leading" without its source: reading alone passes over a familiar phrase;
    - the style is consistent;
    - nothing private or restricted is exposed;
    - the PDF is the version the README names.

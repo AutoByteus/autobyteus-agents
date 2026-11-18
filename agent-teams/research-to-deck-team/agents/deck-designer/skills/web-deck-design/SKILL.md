@@ -24,7 +24,7 @@ Read [deck-production-principles.md](deck-production-principles.md) first. It is
 
 - **A new deck:** copy [the scaffold](templates/deck/) into `deck/` in the work folder, or into the folder the request names.
 - **An existing deck:** work in its folder and keep its style. A changed deck is a new version: export it under a new name (`<Deck-name>-YYYY-MM-DD`, with `-v2` for a second version the same day), and keep the earlier exports.
-- **No dependencies:** no package install is needed to view or export. Nothing loads from the network: vendor the font and icons into `assets/` with their licences (`scripts/vendor-icons.mjs` copies icons from an unpacked `lucide-static` package).
+- **No dependencies:** no package install is needed to view or export. Nothing loads from the network: vendor the font and icons into `assets/` with their licences. Fetch them with `npm pack lucide-static` and `npm pack @fontsource/inter` in a temporary folder (`scripts/vendor-icons.mjs` copies the icons the slides use); do not search the disk for them.
 
 ## 1. Plan the slides with the user
 
@@ -42,7 +42,8 @@ A **change request** (`Deck Change`) on an existing deck skips this step, unless
 
 ## 3. Review it live with the user
 
-- **Serve the deck:** start `node scripts/serve.mjs` in the background. It takes a free port, so it never collides with another project's server, and prints the deck's URL (also saved in `.server.json`). Open that URL with `open_tab`; the tab tool refuses `file://` URLs. Never launch a browser on a display yourself.
+- **Serve the deck:** start `node scripts/serve.mjs` in the background. It takes a free port, so it never collides with another project's server, and prints the deck's URL (also saved in `.server.json`). Open that URL with `open_tab`; the tab tool refuses `file://` URLs.
+- **Look through the tab or the export:** use the tab's `screenshot`, or run the export, which uses a throwaway browser profile. Never start a browser yourself: it may use the user's own profile or screen.
 - **Tell the user:** give them the URL and say that the tab is open.
 - **Each edit:** change `index.html` or `styles.css`, update the claim's row when a claim changed, and reload the tab with `navigate_to` on the same URL.
 - **The tab and the server are yours:** when the review ends, close the tab and stop the server with `node scripts/serve.mjs stop`, which stops this deck's server and no other. Never stop servers by name: another deck's server runs the same script. If you leave them for a review still going on, say so.
