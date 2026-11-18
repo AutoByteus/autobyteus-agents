@@ -6,7 +6,7 @@ A deck is a small static web project: HTML/CSS slides with real text, diagrams i
 
 ## Research before slides
 
-- The Deep Researcher's brief for the deck is the source of truth for every claim on a slide: its findings, its claims check (`supported`, `not supported`, `needs confirmation`) and its "checked and ruled out" list, with `evidence.md` behind them. A slide carries only `supported` claims; a `needs confirmation` claim goes on a slide only after the user confirms it, recorded in `CLAIMS.md`.
+- The research brief for the deck is the source of truth for every claim on a slide: its findings, its claims check (`supported`, `not supported`, `needs confirmation`) and its "checked and ruled out" list, with `evidence.md` behind them. A slide carries only `supported` claims; a `needs confirmation` claim goes on a slide only after the user confirms it, recorded in `CLAIMS.md`.
 - Never invent a claim, statistic, quote, date or implication to make a slide stronger. A qualifier is part of the claim: "first", "only", "fastest" or "leading" needs a source as a number does. A claim the brief does not support needs research or comes off the slide; it is not a wording problem.
 - A change to an existing deck that adds no claim (wording, order, layout, style) needs no new research.
 

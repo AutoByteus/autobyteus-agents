@@ -36,7 +36,7 @@ Check that the understanding files and research briefs show enough understanding
 - supplied materials are identified and actually used, and their limits are explicit;
 - for workspace or code articles, mechanism claims map to concrete paths, commands or observations the writer inspected;
 - online, paper and document sources were read deeply enough, with dates and uncertainty where recency matters, and with opposing evidence and caveats visible;
-- from a Deep Researcher brief, the article uses only claims marked `supported`; `needs confirmation` and `not supported` claims are dropped or qualified;
+- from a research brief, the article uses only claims marked `supported`; `needs confirmation` and `not supported` claims are dropped or qualified;
 - for builder-experience articles, the user's practical sequence, firsthand observations and ownership stance are preserved.
 
 Return `Understanding Gap`, `Source Gap` or `Evidence Gap` (load-bearing claims without recorded support, including author-style moves that create an unsupported contrast, opponent, common belief, recommendation, root-cause claim or production observation). Do not ask for missing understanding to be fixed through prose, and do not ask for proof to be shown in the prose: the fix for an `Evidence Gap` goes into the understanding files and the ledger, and the article states only what the reader needs to believe the claim.

@@ -11,7 +11,7 @@ Read [the team writing principles](references/writing-principles.md) first, with
 
 ## Artifacts
 
-[The article package](references/article-package.md) lists the files in the work folder, their owners, and what each review handoff carries. You create `brief.md`, the understanding files and `research-request.md` (through [references/understanding.md](references/understanding.md)), `style-profile-notes.md`, `outline.md`, `visual-plan.md`, `visual-asset-index.md`, and the draft (a web project, or Markdown with its publish folder), from these templates:
+[The article package](references/article-package.md) lists the files in the work folder, their owners, and what each review handoff carries. You create `brief.md` and the understanding files (through [references/understanding.md](references/understanding.md)), `style-profile-notes.md`, `outline.md`, `visual-plan.md`, `visual-asset-index.md`, and the draft (a web project, or Markdown with its publish folder), from these templates:
 
 - [templates/style-profile-notes-template.md](templates/style-profile-notes-template.md)
 - [templates/outline-template.md](templates/outline-template.md)
@@ -21,7 +21,7 @@ Read [the team writing principles](references/writing-principles.md) first, with
 ## Choose The Path
 
 - **Full path (Steps 1–11):** a new article that makes technical, factual or current-world claims.
-- **Short path:** a style rewrite, a cross-language conversion, a short note, or a draft the user supplied. Write a short `brief.md`; request research only for claims that need it; write `outline.md` as the point plus the section list; show the author the one-page plan and wait for the answer (Step 7); skip the visual plan unless an idea earns an image; draft and check it (Steps 8 and 9); and send the draft package for draft review (the reviewer then skips the pre-draft review). Steps 10 and 11 apply unchanged.
+- **Short path:** a style rewrite, a cross-language conversion, a short note, or a draft the user supplied. Write a short `brief.md`; research only the claims that need it; write `outline.md` as the point plus the section list; show the author the one-page plan and wait for the answer (Step 7); skip the visual plan unless an idea earns an image; draft and check it (Steps 8 and 9); and send the draft package for draft review (the reviewer then skips the pre-draft review). Steps 10 and 11 apply unchanged.
 
 If the user names a path, use it. If a short-path request turns out to carry load-bearing claims you cannot support, move to the full path.
 
@@ -35,11 +35,11 @@ If a missing detail changes the article's direction and the request, workspace a
 
 ### Step 2 - Build the understanding package
 
-When the article needs factual, technical, document, source-code or supplied-material understanding (for fiction, only the facts it uses about the real world), follow [references/understanding.md](references/understanding.md). It owns the understanding files and their Ready-to-outline check, and says which investigation you do and which you ask the Deep Researcher for with `research-request.md`.
+When the article needs factual, technical, document, source-code or supplied-material understanding (for fiction, only the facts it uses about the real world), follow [references/understanding.md](references/understanding.md). It owns the understanding files, how you investigate (outside sources with `deep-research`), and the Ready-to-outline check.
 
 - Reuse existing understanding files and research briefs before starting new discovery.
 - Do not outline from vague notes: the files must pass the Ready-to-outline check.
-- Understanding is not closed after Step 2. When outlining or drafting exposes a gap, return to the reference with the exact missing claim (and, for outside research, a new or narrower `research-request.md`), then continue.
+- Understanding is not closed after Step 2. When outlining or drafting exposes a gap, return to the reference with the exact missing claim (and, for outside research, `deep-research` on the narrower question), then continue.
 - If the source basis cannot support the intended article, narrow the claims or ask a targeted question before outlining.
 
 ### Step 3 - Resolve the voice and language
@@ -71,8 +71,6 @@ Then, on the full path, send the package for the pre-draft review of the point, 
 Draft only after the outline has passed review (or the user skipped the gate, or the short path applies), every finding has been fixed in the file it concerns, the outline and the style notes agree on style, variant and forbidden moves, and each planned visual links to its representation decision and has a takeaway that survives without the caption.
 
 ### Step 8 - Draft
-
-Before drafting, check that every research brief you requested has come back ([understanding.md](references/understanding.md), section 2).
 
 - Draft from the outline, from large to small: the point, the sections, the paragraphs, the sentences (explanatory writing and the style). Keep the approved section order; if drafting reveals a structural problem, stop and revise `outline.md` instead of improvising a new shape.
 - Introduce the anchor example early. Run any code or command you show and keep its real output; mark anything not run.

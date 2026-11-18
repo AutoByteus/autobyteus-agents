@@ -1,6 +1,6 @@
 ---
 name: web-deck-design
-description: Take a deck request, get its research from the Deep Researcher, and turn the brief into a user-approved slide plan and a deck built as a small web project - HTML/CSS slides with real text, shown live in a browser tab for the user's review and edits, exported to a PDF and one PNG per slide, with a claim/source map. Also applies change requests to an existing deck, and reports each reviewed deck to whoever asked for it.
+description: Take a deck request, research its subject, and turn the research into a user-approved slide plan and a deck built as a small web project - HTML/CSS slides with real text, shown live in a browser tab for the user's review and edits, exported to a PDF and one PNG per slide, with a claim/source map. Also applies change requests to an existing deck, and reports each reviewed deck to whoever asked for it.
 ---
 
 # Web Deck Design
@@ -31,21 +31,14 @@ Read [deck-production-principles.md](deck-production-principles.md) first. It is
 The requester is the user, or the agent that delegated the deck to you; answer an agent by its run ID. Plan approval, the live review and the final report go to the requester.
 
 - **Work out the deck:** topic, audience, what the deck is for, language, slide count, the supplied files, the deck folder, and whether web research is allowed (yes, unless the requester rules it out). Ask the requester once when a missing detail would change the deck; otherwise state your assumption in the storyboard.
-- **A new deck, or a change that adds or alters a claim:** write `research-request.md` in the work folder and hand it off. It carries:
-  - `Requested by:` the deck designer, with the work folder's absolute path;
-  - the topic, the audience and what the deck is for;
-  - the supplied files by absolute path, and whether web research is allowed;
-  - the claims the deck is likely to make, to be checked one by one with their qualifiers ("first", "only", "leading"), and the numbers and quotes the slides may show;
-  - for a change: the deck folder and the claim it adds or alters.
-
-  Continue at step 1 when the brief arrives. If the research is blocked and needs a decision, put the question to the requester.
+- **A new deck, or a change that adds or alters a claim:** research it with `deep-research`, from the supplied files and, unless the requester rules it out, the web. Its claims check covers the claims the deck is likely to make, with their qualifiers, and the numbers and quotes the slides may show; for a change, the claim it adds or alters. If the research is blocked and needs a decision, put the question to the requester.
 - **A change that adds no claim** (wording, order, layout, style): apply it from step 2 or 3, record it in `CLAIMS.md` › Changes, and export and request review as for any version. If it changes the story, revise the storyboard and ask again first.
 
 ## 1. Plan the slides with the requester
 
-1. **Read the brief:** its answer, findings, claims check, "checked and ruled out" list and open gaps; open `evidence.md` for a finding you need in more detail. A claim a slide needs that the brief does not support goes into a new research request.
+1. **Plan from the brief:** its answer, findings, claims check, "checked and ruled out" list and open gaps, with `evidence.md` behind them. A claim a slide needs that the brief does not support is researched further or stays off the slides.
 2. **Write `deck_storyboard.md`** from [the storyboard template](templates/deck-storyboard-template.md): each slide's role, core message, must-appear text and claims.
-3. **Ask the requester to approve it.** Revise it on their feedback. A change that alters a claim or the argument goes into a new research request. Build nothing before the approval.
+3. **Ask the requester to approve it.** Revise it on their feedback. A change that alters a claim or the argument is researched first. Build nothing before the approval.
 
 ## 2. Build
 
@@ -76,7 +69,7 @@ The requester is the user, or the agent that delegated the deck to you; answer a
 
 - **For review:** save the deck's `README.md` (version, export paths, what changed, what you checked, open claims), with the outcome `Review Requested`.
 - **After a `Deck Fix`:** fix, export again under a new name, and request review again.
-- **After a `Research Gap`:** send a research request for the claims the review names. A claim the new brief does not support comes off the slide or is reworded to what the brief supports; then export and request review again.
+- **After a `Research Gap`:** research the claims the review names. A claim the research does not support comes off the slide or is reworded to what it supports; then export and request review again.
 
 ## 6. Report the reviewed deck
 

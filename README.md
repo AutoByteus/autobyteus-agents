@@ -11,6 +11,8 @@ This repository contains reusable AutoByteus agent, agent-team, and agent-org de
 | [`agent-orgs/`](agent-orgs) | Agent Orgs (`org.md`, `org-config.json`) that mount Teams and Agents and own cross-team routing. |
 | [`docs/`](docs) | Authoring documentation. |
 
+Some agents also attach shared skills by name from [autobyteus-skills](https://github.com/AutoByteus/autobyteus-skills), such as `deep-research` and `reflection`; add that repository as a skill source when you install these packages.
+
 Only packages and repository files are committed here. Work records (`tickets/`, `task-plans/`, `.codex/`) stay local: `.gitignore` excludes them.
 
 ## Designing And Updating Agent Packages
@@ -42,7 +44,8 @@ It runs [`check-private-info.py`](agents/agent-package-creator/skills/agent-pack
 | [Chemistry Teaching Assistant](agents/chemistry-teaching-assistant/agent.md) | Prepares chemistry teaching (Gymnasium 7–12) from the curriculum: knowledge points with everything the teacher needs, low-text interactive slides, and an offline library app with lessons, presenter mode, downloads and a click-every-control check. |
 | [Computer Use Operator](agents/computer-use-operator/agent.md) | Completes tasks on the computer: operates websites through the visible browser UI and uses command-line tools, software, and media files. Keeps its per-site and per-tool knowledge in its semantic memory, shared across Projects. Shared by the Marketing and Event Scouting teams. |
 | [Data Engineer](agents/data-engineer/agent.md) | Ingests, cleans, normalizes, validates, and prepares datasets and JSON content collections. |
-| [Deep Researcher](agents/deep-researcher/agent.md) | In-depth, primary-source research delivering a sourced brief and a claims check. Shared by the Marketing, Opportunity Scouting, Article Writing and Research To Deck teams. |
+| [Deep Researcher](agents/deep-researcher/agent.md) | In-depth, primary-source research delivering a sourced brief and a claims check, for the user or another agent that hands a study off. Roles whose own work builds on research run the same shared `deep-research` skill themselves. |
+| [Opportunity Scout](agents/opportunity-scout/agent.md) | Turns the user's everyday frustrations into researched product opportunities: existing solutions, honest demand evidence, build / buy / ignore, a ranked backlog, and approved ones handed to engineering as Project Tasks. |
 | [Project Task Manager](agents/project-task-manager/agent.md) | Breaks a Project request into dependency-ordered Project Tasks, dispatches them with user approval, and tracks them. |
 | [Research Engineer](agents/research-engineer/agent.md) | Adaptive research work: source discovery, notes, implementation, validation, benchmarking, and analysis. |
 | [Resume Designer](agents/resume-designer/agent.md) | Builds frontend-rendered resume packages and exports print-ready PDFs. |
@@ -56,14 +59,13 @@ Coordinator is the entry member; routing lives in each team's `team-config.json`
 | --- | --- | --- | --- |
 | [Software Engineering Team](agent-teams/software-engineering-team/team.md) | `solution_designer` | Architecture Reviewer, Implementation Engineer, Code Reviewer, API/E2E Engineer, Delivery Engineer | Requirements, design, implementation, validation, review, and delivery. Large or High-risk work gets independent architecture and code reviews. |
 | [Product Team](agent-teams/product-team/team.md) | `product_ui_ux_designer` | UI Baseline Bootstrapper | Code-first Product UI/UX design in runnable references, producing approved `ui-ux-spec.md`. |
-| [Marketing Team](agent-teams/marketing-team/team.md) | `marketing_content_creator` | Marketing Performance Analyst (+ shared Computer Use Operator, Deep Researcher) | Draft–approve–publish content loop and build-measure-learn performance strategy. |
+| [Marketing Team](agent-teams/marketing-team/team.md) | `marketing_content_creator` | Marketing Performance Analyst (+ shared Computer Use Operator) | Draft–approve–publish content loop and build-measure-learn performance strategy. |
 | [Event Scouting Team](agent-teams/event-scouting-team/team.md) | `event_scout` | (+ shared Computer Use Operator) | Finds, assesses, shortlists, and registers for worthwhile events (e.g. on Luma) after user approval. |
-| [Opportunity Scouting Team](agent-teams/opportunity-scouting-team/team.md) | `opportunity_scout` | (+ shared Deep Researcher) | Turns the user's everyday frustrations into researched product opportunities: existing solutions, honest demand evidence, build / buy / ignore, a ranked backlog, and approved ones handed to engineering as Project Tasks. |
 | [Evidence-Driven Delivery Team](agent-teams/evidence-driven-delivery-team/team.md) | `planner` | Investigator, Implementer, Validator | Canonical example of incremental investigation, planning, micro-task execution, and validation. |
 | [Article Writing Team](agent-teams/article-writing-team/team.md) | `article_writer` | Article Reviewer | Research-to-article and style-aware writing with a publication-readiness gate. |
 | [STORM Team](agent-teams/storm-team/team.md) | `topic_research_coordinator` | Perspective Miner, Expert Interviewer, Outline Architect, Cited Article Writer, Article Polisher Verifier | Stanford STORM-inspired knowledge curation and cited article writing. |
 | [Supervised Research Team](agent-teams/supervised-research-team/team.md) | `research_supervisor` | Researcher | Goal-preserving independent evidence review, goal-directed research continuation and honest completion/manuscript-readiness assessment. |
-| [Research To Deck Team](agent-teams/research-to-deck-team/team.md) | `deck_designer` | Deck Reviewer (+ shared Deep Researcher) | Research, a user-approved slide plan, a deck built as a web project (HTML/CSS slides with real text) with a live review in a browser tab, an independent review, and PDF and PNG export. |
+| [Research To Deck Team](agent-teams/research-to-deck-team/team.md) | `deck_designer` | Deck Reviewer | Research, a user-approved slide plan, a deck built as a web project (HTML/CSS slides with real text) with a live review in a browser tab, an independent review, and PDF and PNG export. |
 | [Narrated Presentation Video Team](agent-teams/narrated-presentation-video-team/team.md) | `presentation_director` | Narration Script Reviewer, Slide Video Producer | Slide-based explainer videos with reviewed narration and voiceover. |
 | [Software Product Promo Video Team](agent-teams/software-product-promo-video-team/team.md) | `promo_director` | Visual Director, Visual Reviewer, Promo Video Producer | Promo videos for software products, apps, and SaaS tools. |
 | [Manga Video Studio Team](agent-teams/manga-video-studio-team/team.md) | `manga_showrunner` | Storyboard Director, Manga Illustrator, Voice Video Producer | Story-first manga ideas to narrated motion-comic videos. |

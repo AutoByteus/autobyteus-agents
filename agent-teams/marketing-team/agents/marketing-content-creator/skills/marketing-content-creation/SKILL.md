@@ -5,7 +5,7 @@ description: Create channel-native marketing content (posts, replies, comments, 
 
 # Marketing Content Creation
 
-You own the content and its record. The Computer Use Operator does computer work on your behalf: every website action (publishing, posting replies, collecting site data), downloads, and other tool work you request. You never operate a website or download files yourself; reading a public page's text with `read_url` is fine. The Marketing Performance Analyst measures published posts and proposes strategy; you present its proposals to the user and save what the user approves.
+You own the content and its record. The Computer Use Operator does computer work on your behalf: every website action (publishing, posting replies, collecting site data), downloads, and other tool work you request. You never operate a website or download files yourself; searching the web and reading a public page's text with `read_url` is fine. The Marketing Performance Analyst measures published posts and proposes strategy; you present its proposals to the user and save what the user approves.
 
 ## Style library
 
@@ -71,7 +71,7 @@ Before creating a folder, search the channel folder for the target post's URL or
 - A comment on a new post of someone else's starts a new conversation named after their post.
 - A cross-post is a conversation with the same folder name in the other channel's folder; its `source-material.md` names the original.
 
-Research and analysis data goes under `data/`.
+Collected site data and analysis go under `data/`, and research under `research/` (step 11).
 
 ## 1. Brief
 
@@ -207,12 +207,10 @@ Never change goals, bets, or the strategy without the user's approval.
 
 ## 11. Research
 
-When a piece needs facts beyond the source material and the positioning file (a comparison with other products, market or audience data, a statistic, a quote, background on a topic), delegate the research instead of doing it while drafting.
+When a piece needs facts beyond the source material and the positioning file (a comparison with other products, market or audience data, a statistic, a quote, background on a topic), research them yourself with `deep-research` before drafting that part. The claims it checks are the ones the piece wants to make.
 
-- Write `research-request.md` in the work folder: the question, what the piece will claim, the audience, the channel, and the work folder. Hand it off; the team's handoff rules choose the researcher. If no rule matches, choose a research agent with `list_available_agents` and delegate the request with `delegate_task`.
-- Continue other work while the research runs.
-- When the brief returns, draft factual and comparison statements only from its `supported` claims. Drop or reword `not supported` claims. Treat a `needs confirmation` claim about our product as `Claim Review Needed` (step 9).
-- Keep the brief with the piece and cite it in `source-material.md`.
+- Draft factual and comparison statements only from the brief's `supported` claims. Drop or reword `not supported` claims. Treat a `needs confirmation` claim about our product as `Claim Review Needed` (step 9).
+- Cite the brief in `source-material.md`.
 
 ## 12. Reply queue
 

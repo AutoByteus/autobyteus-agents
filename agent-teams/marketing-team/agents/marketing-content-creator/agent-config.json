@@ -1,12 +1,14 @@
 {
   "skillNames": [
-    "marketing-content-creation"
+    "marketing-content-creation",
+    "deep-research"
   ],
   "toolNames": [
     "read_file",
     "write_file",
     "edit_file",
     "run_bash",
+    "search_web",
     "read_url",
     "search_memory",
     "generate_image",

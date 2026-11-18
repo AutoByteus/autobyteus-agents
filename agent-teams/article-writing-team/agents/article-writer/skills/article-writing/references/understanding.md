@@ -13,24 +13,14 @@ Add to it only when:
 - a source is stale for a current-world claim;
 - the reviewer or the user names an understanding, source, or evidence gap.
 
-## 2. Choose who investigates
+## 2. Investigate
 
-Use the investigation modes in [the writing principles](writing-principles.md) (section 2), the smallest set that supports the article.
+Use the investigation modes in [the writing principles](writing-principles.md) (section 2), the smallest set that supports the article:
 
-- **You:** `supplied-source` (what the user gave you, including a quick read of a link or file they supplied), `workspace-source` (project files, code, docs, tests, logs, commands), and `experiential-builder` (the user's firsthand sequence, decisions, and observations).
-- **The Deep Researcher:** `online-research` and `paper-document` work that needs several sources, current facts, or a check of claims the article will make. Write `research-request.md` in the work folder and hand it off; the team's handoff rules send it to the Deep Researcher. While it runs, work on what does not depend on it, such as the style package and the section structure. Do not draft the claims the request covers, and do not send anything for review, until the brief has come back.
+- `supplied-source` (what the user gave you, including a quick read of a link or file they supplied), `workspace-source` (project files, code, docs, tests, logs, commands), and `experiential-builder` (the user's firsthand sequence, decisions, and observations), from the material itself;
+- `online-research` and `paper-document` work that needs several sources, current facts, or a check of claims the article will make, with `deep-research`. Its claims check covers the claims the article wants to make, including any "does not support", "cannot", or "only" claim about another product; when the article will quote a source, record the exact wording and its location.
 
-`research-request.md` tells the researcher what you need:
-
-- `Requested by:` the article writer, with the work folder's absolute path;
-- the question, and what the article will use the answer for;
-- the audience and the depth you need (a quick fact check, or a full comparison);
-- the scope: products, versions, period, region;
-- the claims the article wants to make, to be checked one by one, including any "does not support", "cannot", or "only" claim about another product;
-- what you will quote or show: ask for exact wording with its location when the article will quote a source;
-- anything you already know and its source, so the researcher does not redo it.
-
-The brief comes back with its answer, findings with source and date, a claims check (`supported`, `not supported`, `needs confirmation`), confidence, and open gaps. Add one row for it to `source-index.md` (its path), and use its claims check in the ledger. Write factual and comparison statements only from `supported` claims; drop or qualify the others. Do not copy the brief's sources into your files; point to the brief.
+Add one row for each research brief to `source-index.md` (its path), and use its claims check in the ledger. Write factual and comparison statements only from `supported` claims; drop or qualify the others. Do not copy the brief's sources into your files; point to the brief.
 
 ## 3. `understanding-notes.md`
 
@@ -44,7 +34,7 @@ Record:
 - uncertainty, caveats, source limitations, and user corrections that override earlier assumptions;
 - **Open questions:** what is still missing, narrowed, or blocked, and whom you asked.
 
-**Problem analysis.** For an article that explains how problems were solved (most technical articles), work out the problems before anything else, because the opening and the order of the article come from them. Add a `## Problem analysis` section with the entries and the ranking that [explanatory writing](explanatory-writing.md) (section 2) require. Ask the Deep Researcher for the outside evidence when the user's sources do not already hold it. The point of the article (`article-writing`, Step 4) comes from this ranking.
+**Problem analysis.** For an article that explains how problems were solved (most technical articles), work out the problems before anything else, because the opening and the order of the article come from them. Add a `## Problem analysis` section with the entries and the ranking that [explanatory writing](explanatory-writing.md) (section 2) require. Research the outside evidence with `deep-research` when the user's sources do not already hold it. The point of the article (`article-writing`, Step 4) comes from this ranking.
 
 For product-builder or architecture articles, keep practical sequences as they happened, for example `we used X -> it did Y -> we observed Z -> we changed to W -> we noticed Q`. Do not compress them into generic claims.
 
@@ -76,11 +66,11 @@ Before Step 3 of `article-writing`, check:
 - the files answer: what the article is about; what the reader needs to understand first, beyond the concepts `brief.md` says they have; the questions to answer in order; the mechanisms, chronology, definitions, or product sequence to preserve; which claims are backed and by what; which are uncertain, stale, too strong, or unsupported; which contrasts, recommendations, root-cause statements, or production observations the evidence allows;
 - the ledger exists when evidence tracking is needed, and no planned style-sensitive claim lacks an anchor;
 - comparison dimensions are neutral, consistent across products, and do not mislabel composable primitives as exclusive modes;
-- claims that another product lacks a capability are checked by the Deep Researcher against current authoritative evidence, or qualified as `not observed in the checked sources`;
+- claims that another product lacks a capability are checked against current authoritative evidence, or qualified as `not observed in the checked sources`;
 - builder-owned design rationale, the product surface, and a representative scenario are captured when central to the article;
 - for an article about solved problems, the problem analysis meets explanatory writing (section 2) and names the most important problem;
 - a concrete anchor is identified when one exists (a worked example, runnable code or commands, real numbers, or an artifact), with its source;
-- every research brief you asked for has come back, and its open gaps are resolved, narrowed, or listed under Open questions;
+- the research the article needs is done, and each brief's open gaps are resolved, narrowed, or listed under Open questions;
 - you would not need broad discovery before outlining; a narrow gap found later is fixed through this file.
 
 If a check fails, add to the files, request research, or ask the user a targeted question before outlining.

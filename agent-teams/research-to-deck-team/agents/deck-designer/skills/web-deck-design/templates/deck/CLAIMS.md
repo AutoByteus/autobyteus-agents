@@ -12,7 +12,7 @@ Type is one of: founder-stated, primary source, internal metric, third-party cla
 
 ## Open claims
 
-Claims without support or a date, in a research request or waiting for the user's confirmation. None open when this list is empty.
+Claims without support or a date, still being researched or waiting for the user's confirmation. None open when this list is empty.
 
 ## Changes
 
