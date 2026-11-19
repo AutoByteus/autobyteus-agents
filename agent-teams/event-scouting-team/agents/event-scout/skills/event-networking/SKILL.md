@@ -1,6 +1,6 @@
 ---
 name: event-networking
-description: Arrange the right conversations at an event the user attends, before they arrive. Read the event's guest list and the profiles the user approves through the Computer Use Operator, shortlist people for the user's goal with evidence-based reasons, draft short invitations in the user's own style, send only the messages the user approves, track replies and agreed meetings, and give the user a day-of list. Success is meetings confirmed before arrival, not the number of messages.
+description: Arrange the right conversations at an event the user attends, before they arrive. Read the event's guest list and the profiles the user approves through the Computer Use Operator, score each candidate against criteria from the user's purpose with evidence-based reasons, draft short invitations in the user's own style, send only the messages the user approves, track replies and agreed meetings, and give the user a day-of list. Success is meetings confirmed before arrival, not the number of messages.
 ---
 
 # Event Networking
@@ -18,15 +18,17 @@ Everything you do here concerns other people. Use only what their pages show to 
   requests/<NN-kind>/   # operator-request.md, task-result.md, captures (guest list, profile pages)
 ```
 
-The event itself stays in `events/event-tracker.md` (the `event-scouting` skill owns it); if it has no row yet, add one from the Operator's capture. The user's standing preferences are in `events/event-profile.md`, in its sections "People to meet", "Message style" and "Day-of list"; add a section the profile lacks. Keep them there, not in the event folder.
+The event itself stays in `events/event-tracker.md` (the `event-scouting` skill owns it); if it has no row yet, add one from the Operator's capture. The user's standing preferences are in `events/event-profile.md`, in its sections "Purposes", "Contacting people", "Message style" and "Day-of list"; add a section the profile lacks. Keep them there, not in the event folder.
 
-`people.md` has one row per person (name, kind, link, status, one-line reason) and one section per shortlisted person below it. Statuses: `found`, `shortlisted`, `skipped`, `drafted`, `approved`, `sent`, `replied`, `meeting agreed`, `met`, `declined`, `no reply`. Identify a person by their event-site profile URL and never add a second row for them.
+`people.md` has one row per person (name, kind, score, link, status, one-line reason) and one section per shortlisted person below it. Statuses: `found`, `shortlisted`, `skipped`, `drafted`, `approved`, `sent`, `replied`, `meeting agreed`, `met`, `declined`, `no reply`. Identify a person by their event-site profile URL and never add a second row for them.
 
 ## 1. Goal and timing
 
 Start as soon as the user is registered and the guest list is visible, ideally five or more days before the event; a guest list is often visible only to registered guests, and only when the host shows it. If the event is close, say what is still realistic (for example, a day-of list without outreach).
 
-Write the event's goal at the top of `people.md`: the kinds of people the user wants to meet, with what counts and what does not for each, how many conversations they want, and the channels allowed. Start from "People to meet" in the profile and ask only what it does not answer. Make the kinds specific enough to rank by. For example, for a co-founder search keep technical builders apart from people who understand the product and can sell it, and do not count a sales title alone as product understanding. When the user corrects the ranking, change the goal, rank again from it, and save a lasting correction in the profile.
+Write the event's goal at the top of `people.md`: the purpose this event serves (named from "Purposes" in the profile, not copied), how many conversations the user wants, the channels allowed, and anything this event changes. Ask only what the profile does not answer.
+
+Under the goal, write the scoring criteria for each kind of person the purpose names: what raises the score and what lowers it. For example, for technical builders: has built and shipped similar systems, owned what they built, seniority, and whether they are free to join. Make the kinds specific enough to score by. For a co-founder search, keep technical builders apart from people who understand the product and can sell it, and do not count a sales title alone as product understanding. When the user corrects a ranking, change the criteria or the purpose, score again, and save a lasting correction in the profile.
 
 ## 2. Guest list
 
@@ -46,7 +48,7 @@ When the pages return, check that each one belongs to the guest (name, city, a d
 
 ## 5. Shortlist
 
-Rank the people for each kind of the goal. For each shortlisted person write in their section: who they are now, the evidence from their pages (role, company, what they build or sell, with dates), why they fit this goal, and anything that changes the ask (already connected, busy with their own company, someone the user already knows). Show the shortlist to the user and record their changes.
+Score each person whose pages were read against the criteria for their kind, from 1 to 10, with a short note per criterion naming the evidence. A criterion their pages do not show counts as unknown, not as a fail; say how many were unknown. Rank each kind by score. For each shortlisted person write in their section: the score and its notes, who they are now, the evidence from their pages (role, company, what they build or sell, with dates), why they fit this goal, and anything that changes the ask (already connected, busy with their own company, someone the user already knows). Show the shortlist to the user and record their changes.
 
 ## 6. Drafts
 

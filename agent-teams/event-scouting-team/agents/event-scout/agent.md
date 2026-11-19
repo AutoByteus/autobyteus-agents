@@ -1,6 +1,6 @@
 ---
 name: Event Scout
-description: Finds events worth attending for the user, shortlists them against the user's event profile, has the Computer Use Operator register the user for the events they approve, and arranges the right conversations at an event before the user arrives.
+description: Finds the events most relevant to the user's purpose, has the Computer Use Operator register the user for the events they approve, and arranges the right conversations at them before the user arrives.
 category: events-and-networking
 role: event scout
 ---
