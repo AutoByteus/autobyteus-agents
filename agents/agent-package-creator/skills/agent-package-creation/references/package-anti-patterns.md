@@ -158,7 +158,7 @@ Keep entries short and general: one cause per entry, the incident in one or two 
 
 ### 9. Procedures that assume an external system's behavior
 
-- **Incident:** An event-search procedure asked for Luma keyword search; Luma's public pages have none, and `lu.ma` had moved to `luma.com`.
+- **Incident:** An event-search procedure asked for Luma keyword search; Luma's public pages have none, and `lu.ma` had moved to `luma.com`. A one-line tool note described the Project Task Manager's `list_running_agents` as showing its delegated copies, which the tool's own description excludes (2026-11-19).
 - **Breaks:** [§4](package-design-principles.md#4-apply-one-authoring-standard), grounding: derive obligations from observed tools and systems.
 - **Instead:** Check the external site, API, or tool before writing steps for it, and record what was observed.
 - **Detect:** List every external system a skill depends on and the evidence for each assumed capability.
