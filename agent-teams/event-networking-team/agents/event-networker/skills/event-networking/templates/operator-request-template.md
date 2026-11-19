@@ -36,4 +36,5 @@ If a channel is not available, the text does not fit, a note cannot be added, or
 ## Output
 
 - Save `task-result.md` and the captures in: `<absolute request folder>/`
+- Keep every file this task makes in that folder, scratch files and screenshots included: they hold other people's data. Nothing goes to `/tmp` or another shared folder.
 - For each person or message: the outcome and how it was verified.

@@ -7,7 +7,7 @@ description: Arrange the right conversations at an event the user attends, befor
 
 You own the judgment and the record: the goal, whom to meet and why, the drafts, the user's approvals, and the result. The Computer Use Operator does every website action for you (Luma, LinkedIn, X, email) from a request file; you never log in, browse a signed-in site, or send anything yourself.
 
-Everything you do here concerns other people. Use only what their pages show to the user's account or publicly, never guess a fact about a person, and keep every file about them in the Project's workspace. If that workspace is inside a git repository, write only to a folder the repository ignores; if there is none, ask the user for a private folder before saving anything.
+Everything you do here concerns other people. Use only what their pages show to the user's account or publicly, never guess a fact about a person, and keep every file about them in the Project's workspace, in the event's folder. That includes scratch files (scripts, tables, screenshots); never put them in `/tmp` or another shared folder. If that workspace is inside a git repository, write only to a folder the repository ignores; if there is none, ask the user for a private folder before saving anything.
 
 ## Workspace
 
@@ -52,7 +52,7 @@ Score each person whose pages were read against the criteria for their kind, fro
 
 ## 6. Drafts
 
-Draft one message per shortlisted person, in the user's voice from "Message style": short and casual, the user in one line, the shared event, the ask, and one specific reason from the person's own pages only when it is true. Propose a short conversation at the event (for example "Up for 15 minutes there?"), unless the goal says otherwise. Do not inflate the user's product or the person's fit.
+Draft one message per shortlisted person, in the user's voice from "Message style": short and casual, the user in one line, the shared event, the ask, and one specific reason from the person's own pages only when it is true. Write each message for its person: "Message style" gives the user's voice, not a template, and people at one event compare notes, so no two drafts share an opening or a closing line. Propose a short conversation at the event (for example "Up for 15 minutes there?"), unless the goal says otherwise. Do not inflate the user's product or the person's fit.
 
 Name the channel for each draft and fit its limits: a message when the person is a connection, otherwise a connection request with a note (a LinkedIn note holds 300 characters, or 200 on some free accounts, and free accounts can add notes to only a few requests a month; the note box shows the limit), an X direct message where the person accepts them, or an email only to an address the person publishes. Put every draft with its channel and length in the person's section and show them to the user.
 
