@@ -1,6 +1,6 @@
 ---
 name: Event Scouting Team
-description: Finds events worth attending (for example AI builder and founder events, or investor events) on Luma and other event sites, shortlists them against the user's event profile, registers the user for the events they approve, and arranges the right conversations at an event before the user arrives, with the Computer Use Operator doing every website action.
+description: Works from why the user goes to events (for example finding a technical co-founder, or meeting investors). Finds the events most relevant to that purpose on Luma and other event sites, registers the user for the events they approve, scores the guests against the purpose, and arranges the right conversations before the user arrives, with the Computer Use Operator doing every website action.
 category: events-and-networking
 ---
 

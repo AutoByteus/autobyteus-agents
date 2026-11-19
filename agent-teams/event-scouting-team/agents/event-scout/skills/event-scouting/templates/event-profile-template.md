@@ -2,12 +2,28 @@
 
 - Confirmed by the user: <date>
 
-## Lanes
+## Purposes
 
-| Lane | What a good event looks like | Keywords |
+Why the user goes to events. Each purpose names the people the user wants to meet; an event is relevant when those people are likely to be there and can be met.
+
+### <for example: find a technical co-founder>
+
+| Kind of person | Counts | Does not count |
 | --- | --- | --- |
-| <for example AI builders and founders> | <who attends, format> | <search keywords> |
-| <for example investors> | <who attends, format> | <search keywords> |
+| <for example technical builders> | <what they have built, roles> | <titles without building> |
+
+- A relevant event: <who attends, host, format with time to talk, size>
+- Keywords: <search keywords>
+
+### <for example: meet early-stage investors>
+
+<same fields>
+
+## Contacting people
+
+- Channels allowed: <for example LinkedIn only; X; email from <account>>
+- Profile reads: <for example ask before each batch; private browsing on or off>
+- Captured profile pages after the event: <delete / keep>
 
 ## Calendars and hosts to follow
 
@@ -16,7 +32,7 @@
 ## Where and when
 
 - City and travel radius: <city, km or travel time>
-- Online events count: <yes / no / only for some lanes>
+- Online events count: <yes / no / only for some purposes>
 - Time window to search: <for example the next 4 weeks>
 - Available days and times: <for example weekday evenings, not Sundays>
 
@@ -35,18 +51,8 @@ Use only these in registration forms; ask the user for anything else.
 - Company and role: <if the user wants them shared>
 - LinkedIn URL: <profile URL>
 - One-line intro: <who you are and what you are building>
-- Why I want to join, per lane: <one approved answer for each lane>
+- Why I want to join, per purpose: <one approved answer for each purpose>
 - Other standard answers: <for example "What do you hope to get out of this?">
-
-## People to meet
-
-| Kind of person | Counts | Does not count |
-| --- | --- | --- |
-| <for example technical builders> | <what they have built, roles> | <titles without building> |
-
-- Channels allowed: <for example LinkedIn only; X; email from <account>>
-- Profile reads: <for example ask before each batch; private browsing on or off>
-- Captured profile pages after the event: <delete / keep>
 
 ## Message style
 
