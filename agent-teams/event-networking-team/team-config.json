@@ -1,9 +1,9 @@
 {
-  "coordinatorMemberName": "event_scout",
+  "coordinatorMemberName": "event_networker",
   "members": [
     {
-      "memberName": "event_scout",
-      "ref": "event-scout",
+      "memberName": "event_networker",
+      "ref": "event-networker",
       "refType": "agent",
       "refScope": "team_local"
     },
@@ -16,7 +16,7 @@
   ],
   "handoffs": [
     {
-      "from": "/event_scout",
+      "from": "/event_networker",
       "to": "/computer_use_operator",
       "rules": [
         "When a search-request.md to collect events from event sites is saved and ready.",
@@ -26,9 +26,9 @@
     },
     {
       "from": "/computer_use_operator",
-      "to": "/event_scout",
+      "to": "/event_networker",
       "rules": [
-        "When task-result.md for an Event Scout request is saved with outcome Completed, Blocked, or Needs Decision."
+        "When task-result.md for an Event Networker request is saved with outcome Completed, Blocked, or Needs Decision."
       ]
     }
   ]
