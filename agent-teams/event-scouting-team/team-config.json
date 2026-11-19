@@ -20,7 +20,8 @@
       "to": "/computer_use_operator",
       "rules": [
         "When a search-request.md to collect events from event sites is saved and ready.",
-        "When a registration-request.md for a user-approved event is saved and ready."
+        "When a registration-request.md for a user-approved event is saved and ready.",
+        "When an operator-request.md for event networking is saved and ready: read only (a guest list, profiles, or replies), or sending messages the user approved."
       ]
     },
     {

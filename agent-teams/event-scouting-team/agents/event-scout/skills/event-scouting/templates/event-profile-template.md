@@ -38,6 +38,25 @@ Use only these in registration forms; ask the user for anything else.
 - Why I want to join, per lane: <one approved answer for each lane>
 - Other standard answers: <for example "What do you hope to get out of this?">
 
+## People to meet
+
+| Kind of person | Counts | Does not count |
+| --- | --- | --- |
+| <for example technical builders> | <what they have built, roles> | <titles without building> |
+
+- Channels allowed: <for example LinkedIn only; X; email from <account>>
+- Profile reads: <for example ask before each batch; private browsing on or off>
+- Captured profile pages after the event: <delete / keep>
+
+## Message style
+
+- <how the user writes to someone new: tone, greeting, how they introduce themselves, the usual ask>
+- Approved examples: <messages the user approved or wrote, word for word>
+
+## Day-of list
+
+- How the user reads it on their phone: <for example a link shared to their devices, or sent to themselves>
+
 ## Learned preferences
 
 - <hosts worth following, formats that worked or wasted time, from past events>

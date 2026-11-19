@@ -1,6 +1,7 @@
 {
   "skillNames": [
-    "event-scouting"
+    "event-scouting",
+    "event-networking"
   ],
   "toolNames": [
     "read_file",
