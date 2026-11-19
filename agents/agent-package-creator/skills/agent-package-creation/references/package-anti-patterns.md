@@ -179,7 +179,7 @@ Keep entries short and general: one cause per entry, the incident in one or two 
 
 ### 15. One full procedure for every request
 
-- **Incident:** The Project Task Manager ran investigate, plan file, approval, propose, and dispatch even when the user said "delegate this Task to the software team", which already named the Task and worker and gave approval (2026-10-08).
+- **Incident:** The Project Task Manager ran investigate, plan file, approval, propose, and dispatch even when the user said "delegate this Task to the software team", which already named the Task and worker and gave approval (2026-10-08). The Creator itself ran its full read, analysis and evaluation gate for a two-line tool grant; the user: "very much heavy process just to add new line" (2026-11-19).
 - **Breaks:** [Write the operating contract](skill-authoring-principles.md#write-the-operating-contract): the shortest coherent path, with gates only where they protect something.
 - **Instead:** Give the small, common request its own short path, and say that an explicit user instruction is the approval it grants.
 - **Detect:** Walk the smallest realistic request through the skill (one named item, a direct instruction); flag each step or approval that adds nothing for it.
@@ -323,7 +323,7 @@ Keep entries short and general: one cause per entry, the incident in one or two 
 
 - **Incident:** To show the user wording before the merge, the Creator opened three pull requests before any evaluation; the skill tied only the merge to the evaluation. The user: a pull request means the change is proven better (2026-11-15).
 - **Breaks:** [Step 5](../SKILL.md#5-persist-deliver-and-route-the-result): the pull request follows step 4, the evaluation included.
-- **Instead:** Keep the change on its branch until it passes step 4. To show the wording earlier, give the branch's diff, a compare link or a diff file. Every change is evaluated by default; only the user's word for that change waives it (the user: "unless the user specifically says evaluation is not needed, the default is always evaluation").
+- **Instead:** Keep the change on its branch until it passes step 4. To show the wording earlier, give the branch's diff, a compare link or a diff file. Every change except a [small change](../SKILL.md#inputs-and-operation) is evaluated by default; only the user's word for that change waives it (the user: "unless the user specifically says evaluation is not needed, the default is always evaluation").
 - **Detect:** Each pull request the Creator opens links an evaluation report dated before it; a pull request with "waiting for the evaluation" in its description is a lead.
 
 ### 43. A package that grows with every update

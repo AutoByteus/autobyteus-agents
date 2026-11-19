@@ -5,7 +5,7 @@ description: Evaluate how well a skill, Agent, Team, or Org works in real runs, 
 
 # Agent Package Evaluation
 
-Find out from real runs how well a package does its job: on its own, when someone asks how good a package is, or after every change `agent-package-creation` makes, unless the user waived the evaluation for it. Wording is silent when it is wrong, so a run shows what reading does not.
+Find out from real runs how well a package does its job: on its own, when someone asks how good a package is, or after every change `agent-package-creation` makes, except a small change and unless the user waived the evaluation for it. Wording is silent when it is wrong, so a run shows what reading does not.
 
 How to operate the app is in [references/live-checks.md](references/live-checks.md). Mistakes made in earlier evaluations, and how to catch them, are in [references/evaluation-mistakes.md](references/evaluation-mistakes.md).
 
