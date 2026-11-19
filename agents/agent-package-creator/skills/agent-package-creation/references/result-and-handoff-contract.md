@@ -1,6 +1,6 @@
 # Result And Handoff Contract
 
-The persisted file that is routed is the analysis for `analyze` and the result for `create` and `update`.
+The persisted file that is routed is the analysis for `analyze` and the result for `create` and `update`; for a [small change](../SKILL.md#inputs-and-operation), the pull request carries the result.
 
 ## Required analysis fields
 
