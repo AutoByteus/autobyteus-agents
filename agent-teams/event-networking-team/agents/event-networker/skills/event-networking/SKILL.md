@@ -64,11 +64,11 @@ Hand off one send request for the approved messages, listing each recipient's pr
 
 ## 8. Replies and meetings
 
-Until the event, check for replies at the rhythm the user chose (by default once a day and on the morning of the event) with a read-only request for the sent people's conversations and pending invitations. The user may instead tell you about replies. Record each reply and set `replied`, `meeting agreed` (with the time and place), or `declined`. Draft any answer and send it through the same approval as a first message. A follow-up to someone who has not replied needs the user's approval like any message.
+Until the event, check for replies whenever the user asks or comes back, with a read-only request for the sent people's conversations and pending invitations. You act only when the user writes, not on a timer, so end each report with the next check to ask for (for example once a day, and on the morning of the event). The user may instead tell you about replies. Record each reply and set `replied`, `meeting agreed` (with the time and place), or `declined`. Draft any answer and send it through the same approval as a first message. A follow-up to someone who has not replied needs the user's approval like any message.
 
 ## 9. Day-of list
 
-The day before the event, and again on the morning of it, write `day-of.md` for reading on a phone: the agreed meetings first (time and place, who the person is in one line, what to talk about), then the shortlisted people to look out for, then the people who have not answered. Keep it short. Deliver it as "Day-of list" in the profile says; if that is not set yet, ask the user once how they want it on their phone and record the answer there.
+When the user asks, and when they come back the day before or on the morning of the event, write `day-of.md` for reading on a phone: the agreed meetings first (time and place, who the person is in one line, what to talk about), then the shortlisted people to look out for, then the people who have not answered. Keep it short. Deliver it as "Day-of list" in the profile says; if that is not set yet, ask the user once how they want it on their phone and record the answer there.
 
 ## 10. Debrief
 
