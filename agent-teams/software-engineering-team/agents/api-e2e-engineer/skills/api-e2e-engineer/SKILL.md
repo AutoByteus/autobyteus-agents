@@ -28,6 +28,7 @@ First establish what the project expects and how it is run, then evaluate and ma
 - When failure-origin review returns a failure as a pre-existing problem unrelated to this change, record it in that case's Notes in the execution report as out of scope, with the follow-up ID the reviewer added, and finish the result on the in-scope checks.
 - On an API/E2E-owned `Local Fix` from code review or delivery, or delivery's request for more or stronger evidence, also accept the specific test, fixture, environment, execution, reporting, or evidence gap and its evidence. For an evidence gap, go deeper until the evidence proves the behavior, or until you can show it cannot be reached without the user. When delivery discovered the issue, accept the delivery revision record and relevant `DR-*` entry. Resume the affected API/E2E work and preserve the classification.
 - On a release failure delivery hands you (a failed release pipeline job or check before tagging, with the run, the job and the log lines), reproduce it locally and turn it into a durable local check, as Fresh-Start Build Proof below describes.
+- On the Solution Designer's evidence decision, act on it as When A Check Cannot Run Here describes.
 - Treat the full upstream package as active validation context, not just the latest implementation handoff or code review report.
 - The `references/` files are symbolic links into the team's `shared/` folder; a listing such as `find -type f` skips them, so open each by its path.
 - Read the implementation handoff's `Legacy / Compatibility Removal Check` and `Persisted Data Transition Check` before finalizing coverage. Treat any non-clean answer, or any mismatch between those sections and the implementation, as an active validation signal.
@@ -73,7 +74,7 @@ Do not begin with browser interaction merely because browser tools are available
 - Work from the assigned worktree and choose project-appropriate setup that does not collide with or damage other active work.
 - Do not stop, reset, delete, or reuse a process or data store unless ownership is known. Clean up only resources created or explicitly assigned for this validation run.
 - Use existing project fixtures, seed commands, public setup APIs, or documented bootstrap paths where possible. Create the smallest deterministic setup that proves the required behavior; do not manipulate production or unrelated shared data.
-- If a required secret, account, device, service, or environment cannot be safely provided or emulated, record the exact missing dependency and the affected evidence rather than fabricating success.
+- If a required secret, account, device, service, or environment cannot be safely provided or emulated, record the exact missing dependency and the affected evidence rather than fabricating success, and follow When A Check Cannot Run Here.
 
 ## Desktop Application Validation Strategy
 
@@ -139,7 +140,8 @@ none of this.
   job's build commands in the job's order, read from the workflow file. Never
   the project's development setup order, which may build what the runner does
   not have. Record it as a case with the commands. A step that needs another
-  operating system or the runner's secrets is `Not Tested`, with the reason.
+  operating system or the runner's secrets is `Not Tested`, with the reason
+  (When A Check Cannot Run Here).
 - **A release failure delivery hands you:** reproduce it this way from its log
   lines. When it reproduces, turn it into a durable local check that makes the
   next change that would cause it fail before merge: a test, or a guideline
@@ -188,14 +190,14 @@ Interpolate only when the evidence genuinely falls between anchors, and explain 
 Decision rules:
 
 - Score every category over real-use scenarios only; an untested contrived scenario is not a gap.
-- A score never overrides a missing or failing critical acceptance criterion; unproven critical behavior blocks `Pass`, except a part only the user can check (next rule).
-- A part you marked as one only the user can check (Result And Handoff) is not a gap here: score and gate over what can be proven without the user, and list that part for delivery, which takes it to the user. It does not block `Pass`. `Blocked` is for a missing dependency that stops validation itself, such as a secret, service, or environment.
+- A score never overrides a missing or failing critical acceptance criterion; unproven critical behavior blocks `Pass`, except a part only the user can check or a part the Solution Designer accepted as unverified risk (next rule).
+- A part you marked as one only the user can check (Result And Handoff), or one the Solution Designer's evidence decision accepted as unverified risk (When A Check Cannot Run Here), is not a gap here: score and gate over the rest, and list that part for delivery, which takes a user-only part to the user. It does not block `Pass`.
 - The default clean target requires overall confidence of at least `95%`, no applicable category below `90%`, direct proof for every critical acceptance criterion, and no material broader-validation risk.
 - At `90-94%`, identify the confidence gap and choose the targeted executable surface most likely to close it. Browser testing is one option, not the default.
 - If overall confidence or any applicable category is below `90%`, do not declare `Pass`; perform additional validation, reroute the discovered problem, or record a real blocker.
 - Record the broader-validation decision in the report as `Required`, `Not Required`, or `Blocked`, with the residual risk, expected evidence gain, selected execution mode, and rationale.
 - Use `Not Required` only when repository evidence already exercises the real changed boundary and no material broader-validation risk remains. “Tests passed” alone is not sufficient rationale.
-- Use `Blocked` only after safe documented setup, local reproduction, focused probes, fixtures, mocks, or emulation cannot reasonably provide the required evidence.
+- Use `Blocked` only after safe documented setup, local reproduction, focused probes, fixtures, mocks, or emulation cannot reasonably provide the required evidence, and then follow When A Check Cannot Run Here.
 
 Do not award confidence merely because a command passed. Tie every percentage to the directness, realism, completeness, and quality of the validation performed.
 
@@ -222,6 +224,19 @@ Browser validation is normally unnecessary for a backend-local change when valid
 - Reassess confidence after broader execution. Record what uncertainty was eliminated, what remains, and whether the result is `Pass`, `Fail`, or `Blocked`.
 - Clean up processes, browser state, data, and temporary artifacts created for the validation as appropriate to the project. Keep the evidence.
 
+## When A Check Cannot Run Here
+
+A check the plan needs may require what the available environment cannot safely give: another operating system or CPU architecture, credentials or signing keys, a privileged change to the host, a production workflow, or a device, service or account you cannot reach or emulate. Call it that only after the safe ways (documented setup, emulation, fixtures, a focused probe, an isolated instance) cannot give the evidence. A setup error you can fix is your own work, and a check that ran and failed is a `Fail` for failure-origin review.
+
+When evidence the requirements, design or project documents already accept gives the proof, such as the release guide's pipeline check before tagging, use it and cite it. Otherwise, when the missing check leaves a critical criterion unproven or keeps confidence below the gate:
+
+1. Record the case as `Not Tested` with the reason.
+2. Ask the Solution Designer for an evidence decision as soon as you know, through the handoff rules: the criterion, the evidence you have, the proof that is missing, the risk if the behavior is wrong there, and the feasible alternatives with what each needs. This request is not your result: after it is sent, continue.
+3. Run every case that does not depend on it. When none remain and the decision has not arrived, record the round as `Blocked`, waiting for the decision, and end your turn without a handoff.
+4. On the decision, run in the arranged environment or the other evidence it names, or record the criterion as `Accepted Unverified Risk` with the decision's `DEC-*` ID. Then finish the result.
+
+Do not make this decision yourself or ask the user for credentials or host changes; the Solution Designer takes to the user what needs the user. Never record the missing proof as `Pass` or `Fail`.
+
 ## Special Validation Constraints
 
 - Treat the team's no-backward-compatibility and no-legacy-retention rule as an active constraint.
@@ -239,11 +254,11 @@ Per result:
 
 - `Pass`: record every added, updated, or removed durable coverage path and the two classification fields. On the direct `Small` or `Medium` + `Low` route, record the test-review decision `Not Required — direct low-risk route`. On the reviewed `Large` or `High` route, request proportional test-code review of the changed durable test code. The message states the result, final confidence, broader-validation decision, residual risks, the coverage paths, and the test-review decision or request.
 - `Fail`: record the preliminary classification and recommended owner, and request focused failure-origin review, not successful-test review. The message states the failing case and acceptance-criteria IDs, exact commands or execution mode, expected versus observed behavior, relevant logs/screenshots/artifacts, and the preliminary classification.
-- `Blocked` (a missing dependency that stops validation itself; see the confidence gate): do not hand off to another member. Preserve the reports, logs, and temporary evidence, then ask the user for the exact missing dependency. State what was attempted, why validation cannot continue, and how work resumes.
+- `Blocked` (waiting for an evidence decision you already requested; When A Check Cannot Run Here): no handoff. Preserve the reports, logs, and temporary evidence, and record what you tried, what ran, what waits for the decision, and how work resumes.
 
 Every result:
 
-- Leave nothing out: a planned case you could not run, because a dependency you name is missing, is `Not Tested`; a case you leave for the next round, such as a rewrite that waits for a fix, is `Next Round`, with what it waits for; a criterion you could not prove is `Not Proven`, each with the reason.
+- Leave nothing out: a planned case you could not run, because a dependency you name is missing, is `Not Tested`; a case you leave for the next round, such as a rewrite that waits for a fix, is `Next Round`, with what it waits for; a criterion you could not prove is `Not Proven`, each with the reason; a criterion the Solution Designer accepted unproven is `Accepted Unverified Risk` with its `DEC-*` ID.
 - Pass the evidence with every result, `Pass` included: give the evidence folder's absolute path and the commit that holds it, attach the evidence files that prove the critical acceptance criteria, and point to the execution report's Acceptance-Criteria Proof and Cases, which say for each criterion which cases prove it, with their evidence files and what to look for. The next roles judge from the evidence itself, not from a summary.
 - Mark a behavior as one only the user can check only after you tried to prove it yourself (deeper tests, a real surface, emulation, a safe setup), and record in the Acceptance-Criteria Proof what you tried and why it still needs the user, such as their own accounts or nodes. Delivery uses it to decide whether the user must check.
 - On a later round, recheck prior unresolved failures first, reuse case IDs, and record the rerun delta and prior-failure resolution in the revision record.

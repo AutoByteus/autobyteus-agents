@@ -50,10 +50,13 @@ lists the ticket's documents and when each exists.
 
 Requirement/design/unclear findings return to Solution Designer, which obtains
 renewed approval for changed intended behavior before revising the affected
-authoritative design. Reviewer pass notifications do not trigger duplicate
-forwarding. Delivery Engineer returns `Delivery Completed` to Solution Designer
-only after its completion gates pass. Solution Designer verifies the receipt
-and returns `Terminal` to the user/caller when no handoff rule matches.
+authoritative design. When a check cannot run safely in the available
+environment, API/E2E asks Solution Designer for an evidence decision and keeps
+running its other checks; the decision returns to API/E2E. Reviewer pass
+notifications do not trigger duplicate forwarding. Delivery Engineer returns
+`Delivery Completed` to Solution Designer only after its completion gates pass.
+Solution Designer verifies the receipt and returns `Terminal` to the
+user/caller when no handoff rule matches.
 
 ## Communication Convention
 

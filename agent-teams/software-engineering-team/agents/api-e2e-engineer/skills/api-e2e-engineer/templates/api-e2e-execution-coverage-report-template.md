@@ -43,7 +43,7 @@ The one record of what ran and what it proves, under the case IDs the investigat
 
 Each criterion and the cases that prove it; the cases hold the evidence.
 
-| Acceptance-Criteria ID | Critical (`Yes`/`No`) | Proven By Case IDs | Result (`Proven`/`Not Proven`/`Only The User Can Check`) | For A User-Only Part: What You Tried And Why It Still Needs The User |
+| Acceptance-Criteria ID | Critical (`Yes`/`No`) | Proven By Case IDs | Result (`Proven`/`Not Proven`/`Only The User Can Check`/`Accepted Unverified Risk (DEC-*)`) | For A User-Only Or Accepted-Risk Part: What You Tried And Why It Could Not Be Proven Here |
 | --- | --- | --- | --- | --- |
 |  |  |  |  |  |
 
@@ -64,7 +64,7 @@ Fill the post-repository scores after the repository cases, then the final score
 - Overall post-repository confidence:
 - Overall final confidence:
 - Calculation method:
-- Every critical acceptance criterion directly proven, apart from parts only the user can check: `Yes` / `No`
+- Every critical acceptance criterion directly proven, apart from parts only the user can check or accepted as unverified risk: `Yes` / `No`
 - Any final applicable category below `90%`: `No` / `Yes` — list:
 - Default final confidence target of `95%` met: `Yes` / `No`
 - Confidence-limiting residual risks:
@@ -142,8 +142,9 @@ This is the API/E2E engineer's evidence-based recommendation. The failure-origin
 
 The outcome; the reasons are in the sections above.
 
-- Result: `Pass` / `Fail` / `Blocked`
-- Criteria not proven, or parts only the user can check (IDs): `None` / list
+- Result: `Pass` / `Fail` / `Blocked` (waiting for an evidence decision)
+- Criteria not proven, parts only the user can check, or accepted as unverified risk (IDs, with `DEC-*`): `None` / list
+- Evidence decisions requested (criterion, date sent, `DEC-*` once decided): `None` / list
 - Preliminary classification and recommended owner (on `Fail`):
-- Next recipient from `get_handoff_rules` (`Blocked` -> user request):
+- Next recipient from `get_handoff_rules` (`Blocked`: none):
 - Notes:
