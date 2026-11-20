@@ -179,6 +179,8 @@ Every row carries reasoning first, then the recommendation. Status: `Decided` (b
 | --- | --- | --- | --- | --- | --- | --- |
 | DEC-001 |  |  |  |  |  |  |
 
+An evidence decision also names the acceptance criterion, the evidence and missing proof, the untested scope it accepts, and its follow-up ID when there is one.
+
 ## Traceability
 
 | Requirement ID | Use-Case IDs | Behavior IDs | Acceptance-Criteria IDs | Scenario IDs | Supplemental / Product Design Evidence |

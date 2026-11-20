@@ -159,7 +159,15 @@
       "from": "/api_e2e_engineer",
       "to": "/solution_designer",
       "rules": [
-        "When coverage investigation or test-validity analysis establishes a Requirement Gap, Design Impact or Unclear upstream issue before executable validation can proceed. Include the supported scenario basis and concrete evidence. Execution failures still follow the Code Reviewer failure-origin route."
+        "When coverage investigation or test-validity analysis establishes a Requirement Gap, Design Impact or Unclear upstream issue before executable validation can proceed. Include the supported scenario basis and concrete evidence. Execution failures still follow the Code Reviewer failure-origin route.",
+        "When a check needed to prove an acceptance criterion cannot run safely in the available environment, no already-accepted evidence gives the proof, and API/E2E needs the Solution Designer's evidence decision. Send it as soon as it is known, with the criterion, available evidence, missing proof, risk and feasible alternatives; API/E2E keeps running its independent checks. Execution failures still follow the Code Reviewer failure-origin route."
+      ]
+    },
+    {
+      "from": "/solution_designer",
+      "to": "/api_e2e_engineer",
+      "rules": [
+        "When Solution Designer classifies Evidence Decision: it has decided and recorded an evidence decision API/E2E requested, and neither the requirements nor the design change. Include the DEC-* ID, the criterion, the environment or evidence to use or the accepted untested scope, and who decided with the approval reference."
       ]
     },
     {

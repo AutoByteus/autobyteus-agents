@@ -95,6 +95,10 @@ You own that judgement, as a delivery lead would.
   goes deeper (more journeys, a real surface, stronger assertions, higher
   confidence) as many rounds as it takes; a defect goes to its owner. Judge
   again each time. Proving the change is API/E2E's job, not the user's.
+- A criterion the Solution Designer's evidence decision accepted as unverified
+  risk (its `DEC-*` row in the requirements doc) is neither proven nor a gap to
+  send back: check that the decision covers what was not tested, and list it
+  with its `DEC-*` ID in your verification record and terminal message.
 - A change proven by evidence needs no repeat check by the user; for example,
   screenshots that show a UI change matching the approved design.
 - Involve the user only as a last resort, and say why: when API/E2E shows what
@@ -201,7 +205,7 @@ report. A new version still follows the tag rule above.
 ## Terminal Return To Solution Designer
 
 - Send the successful terminal message only after verification (from the evidence, or the user's check where one was needed), repository finalization, and every applicable release, deployment, rollout, and safe cleanup step is `Completed` or truthfully `Not required`. Return it through the handoff rules; the terminal rule selects the Solution Designer.
-- The terminal message must carry your own documents (`handoff-summary.md`, the docs sync report, the release/deployment report, `delivery-revision-record.md` and `release-notes.md` when written; for a release request, those it wrote) and the archived ticket folder, plus the other files the receipt check needs, which you decide as [handoff.md](references/handoff.md) describes; state `task_size`, `architectural_risk`, selected route, final validation evidence, verification record (your evidence judgement, or the user's check where one was needed), release decision, final branch/commit/merge/push state, the user's checkout (updated to which commit, or not and why), release/deployment outcome when applicable, and durable final artifact paths.
+- The terminal message must carry your own documents (`handoff-summary.md`, the docs sync report, the release/deployment report, `delivery-revision-record.md` and `release-notes.md` when written; for a release request, those it wrote) and the archived ticket folder, plus the other files the receipt check needs, which you decide as [handoff.md](references/handoff.md) describes; state `task_size`, `architectural_risk`, selected route, final validation evidence, verification record (your evidence judgement, or the user's check where one was needed), accepted unverified risks with their `DEC-*` IDs, release decision, final branch/commit/merge/push state, the user's checkout (updated to which commit, or not and why), release/deployment outcome when applicable, and durable final artifact paths.
 - State that this is the authoritative terminal completion package and that Solution Designer may verify the package and return the verified engineering result through the applicable parent handoff or to the standalone caller only after checking it.
 - While verification is open or any finalization blocker remains, continue the applicable verification, recovery, or reroute flow; do not send a successful completion message.
 - After the terminal message succeeds, end the delivery stage; act only on a later explicit rework message.

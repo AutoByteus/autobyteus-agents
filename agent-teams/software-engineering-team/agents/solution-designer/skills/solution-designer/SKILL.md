@@ -69,6 +69,8 @@ First distinguish what arrived:
   the returned durable paths, even if the original task worktree was cleaned up.
 - For word that a prerequisite you raised is delivered, resume as Prerequisites
   describes.
+- For an evidence decision request from API/E2E, decide as Evidence Decisions
+  describes.
 - For a request, Product result or material finding, use the bootstrap and
   recovery rules below for the solution work actually needed.
 
@@ -335,6 +337,37 @@ create that Task and give it to you, so you do it first, then stop. You continue
 this ticket once the prerequisite is done. When the user asked you directly,
 tell the user instead.
 
+## Evidence Decisions
+
+API/E2E asks for one when a check needed to prove a criterion cannot run
+safely in the available environment and no accepted evidence gives the proof.
+It keeps running its other checks meanwhile, so decide promptly. Judge the
+request against the requirements and choose, for that criterion and
+environment only:
+
+- **Arrange a safe environment:** name it and how it is obtained safely.
+- **Use other evidence:** name it and what it leaves unproven.
+- **Accept the unverified risk:** only when the risk is genuinely low and
+  bounded; say why, and name the untested scope.
+
+Weigh how likely the behavior is to fail in the untested environment and what
+a failure there would cost. A choice needs the user when it uses credentials
+or signing keys, changes the host's privileges or security settings, runs a
+production workflow or a release, needs money or hardware the team does not
+have, or accepts a risk that is not low; ask as step 2 describes, with its
+`DEC-*` row marked `Needs user`. Otherwise decide it yourself, as step 1
+describes: when the risk is genuinely low, choose the other evidence or the
+acceptance rather than asking the user to choose, tell the user briefly which
+option you did not take, and continue. Dropping or narrowing a supported
+platform or behavior changes the requirements: a `Requirement Gap` with
+renewed approval (Recovery).
+
+Record it as a `DEC-*` row in the requirements doc's Decisions and in the
+solution revision record. When a later Task should close the untested scope,
+add it to `follow-ups.md` and cite its ID. Then classify `Evidence Decision`
+and hand off. A decision that changes the requirements or the design goes
+through Recovery and the normal route instead.
+
 ## Artifacts And Solution Revision Record
 
 Maintain `requirements-doc.md`, `investigation-notes.md` and
@@ -370,6 +403,9 @@ Persist owned artifacts and classify the result before routing:
   solution revision record, supplements, final `task_size`, `architectural_risk`,
   classification evidence; include prior review artifacts when applicable,
   accurately identifying their reviewed basis.
+- `Evidence Decision`: the `DEC-*` ID, the criterion, the decision (the
+  environment or evidence to use, or the accepted untested scope), who decided
+  and the approval reference.
 - `Release Requested`: the handoff file with the user's request in their
   words (release kind such as beta or stable, a version when given, what to
   include or leave out), who requested it, and the worktree, branch and base.
@@ -394,7 +430,8 @@ your result to the user.
 
 Every result carries the stable package identifier, current SR entry when one
 exists, absolute artifact paths, approval state, scope, workspace/base/finalization
-context, open risks, relevant scenario IDs/evidence uncertainty and next expected action.
+context, open risks (including risks an evidence decision accepted, with their
+`DEC-*` IDs), relevant scenario IDs/evidence uncertainty and next expected action.
 The investigation notes' supplement inventory lists every supplement; mark
 inapplicable paths truthfully rather than inventing them.
 
