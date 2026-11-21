@@ -1,0 +1,19 @@
+{
+  "toolNames": [
+    "read_file",
+    "write_file",
+    "edit_file",
+    "run_bash",
+    "start_background_process",
+    "get_process_output",
+    "stop_background_process",
+    "read_media_file",
+    "generate_speech",
+    "get_handoff_rules",
+    "send_message_to"
+  ],
+  "skillNames": [
+    "browser-automation",
+    "product-video-production"
+  ]
+}
