@@ -47,9 +47,9 @@ Keep entries short and general: one cause per entry, the incident in one or two 
 
 ## 7. An isolation gap accepted as a residual
 
-- **Incident:** A bench gave subjects their own data but the host's process list; subjects saw the user's app and other subjects' processes, two changed their work because of them, and the machine ran out of memory (2026-11-11).
+- **Incident:** A bench gave subjects their own data but the host's process list; subjects saw the user's app and other subjects' processes, two changed their work because of them, and the machine ran out of memory (2026-11-11). Files are the same gap: with the old and new copies under one folder, an old-text run diffed the new skill and followed it, and a new-text run found and read the criteria file in the artifact workspace (2026-11-21).
 - **Breaks:** [live-checks.md](live-checks.md#1a-a-private-process-list-where-it-is-cheap-and-room-in-memory) and [§4](../SKILL.md#4-judge): on a bench that runs many subjects, each instance has its own process list, and a run counts only after its transcript scan.
-- **Instead:** For each gap a bench names, ask what a subject could do with it, and close it where that is cheap for the bench rather than list it (but see mistake 8). Scan every subject's transcript before counting its run.
+- **Instead:** For each gap a bench names, ask what a subject could do with it, and close it where that is cheap for the bench rather than list it (but see mistake 8). Keep each version's package, workspace and data where the other version's subjects cannot reach them, and the artifact workspace (criteria, fixtures) too; on Linux with root a private mount namespace hides them cheaply. Scan every subject's transcript before counting its run.
 - **Detect:** The report names, per instance, the processes seen from inside and the memory peak, and per run the scan result. A bench protocol that lists a "residual" says what a subject could do with it.
 
 ## 8. A safeguard that blocks the evaluation
