@@ -307,10 +307,10 @@ Keep entries short and general: one cause per entry, the incident in one or two 
 
 ### 39. A rule for every incident
 
-- **Incident:** One ticket's review findings were drafted as new bullets, Signals, Checks and template lines although existing rules covered both; the user: each incident adds another point, with no end (2026-11-12).
+- **Incident:** One ticket's review findings were drafted as new bullets, Signals, Checks and template lines although existing rules covered both; the user: each incident adds another point, with no end (2026-11-12). The same happened in a rule set a role keeps for the user: a content creator's learning step filed each correction of a voice as one more dated item, 22 in all, until the general opening rule no longer caught a new form ("I just published a short video on…"), and the user had to correct it again (2026-11-21).
 - **Breaks:** [§2](package-design-principles.md#2-design-responsibilities-before-files) (extend the owner instead of adding a place) and [§9](package-design-principles.md#9-update-and-restructure-safely) (diagnose before adding).
 - **Instead:** Name the general practice of the field the incident shows (for design principles, an established architecture practice), and add a rule only when the set does not yet state that practice. If it does, the incident becomes an example or case study, or a rule in the project's own documents, and the existing rule gains at most a few words naming the missed form.
-- **Detect:** For each rule a change adds, name the general practice it states and the existing rule closest to it; a rule that names a case rather than a practice, or that the closest rule already covers, is a lead. Read the set's recent history: a rule, Signal or Check added per incident is a lead for a consolidation pass.
+- **Detect:** For each rule a change adds, name the general practice it states and the existing rule closest to it; a rule that names a case rather than a practice, or that the closest rule already covers, is a lead. Read the set's recent history: a rule, Signal or Check added per incident is a lead for a consolidation pass. For a role that records the user's corrections (a voice, a style or review guide), check that its learning step rewords the practice a correction belongs to instead of appending an item.
 
 ### 40. Leaving the structure for later
 
