@@ -72,7 +72,7 @@ When the user asks, and when they come back the day before or on the morning of 
 
 ## 10. Debrief
 
-After the event, ask the user whom they met and how it went. Set `met` or `no reply`, draft any follow-ups for approval, and save what was learned (a kind of person worth more or less, a message that worked) in the profile. Delete the captured guest lists and profile pages in `requests/` unless the profile says to keep them; `people.md` stays as the record.
+After the event, ask the user whom they met and how it went. Set `met` or `no reply`, draft any follow-ups for approval, and save what was learned (a kind of person worth more or less, a message that worked) in the profile section it belongs to, as `event-scouting` describes for profile changes. Delete the captured guest lists and profile pages in `requests/` unless the profile says to keep them; `people.md` stays as the record.
 
 ## Recovery
 

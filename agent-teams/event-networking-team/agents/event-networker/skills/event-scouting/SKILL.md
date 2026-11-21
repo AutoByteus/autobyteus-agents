@@ -24,7 +24,7 @@ You own the judgment and the record. The Computer Use Operator does every websit
 
 If `event-profile.md` is missing, build it with the user from [event-profile-template.md](templates/event-profile-template.md): the purposes they go to events for (for example finding a technical co-founder, or meeting investors), and for each the people they want to meet, what counts and what does not, and what a relevant event looks like; the calendars and hosts worth following, city and travel radius, whether online events count, the time window and available days, cost limit, languages, and anything they never want. Ask only what you cannot infer, and get the user's confirmation of the saved profile.
 
-When the user changes a preference, or says how an event went, update the profile, for example a host worth following or a format that wastes time.
+When the user changes a preference, or says how an event went, change the profile in the section the lesson belongs to: a host worth following under "Calendars and hosts to follow", a format that wastes time under the purpose's relevant event, a kind of person in its purpose table, a message that worked under "Message style". When a line there already covered it and did not work, reword that line; otherwise add one. Tell the user which: a line that failed, or one that was missing.
 
 ## 2. Search
 

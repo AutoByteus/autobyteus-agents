@@ -62,7 +62,3 @@ Use only these in registration forms; ask the user for anything else.
 ## Day-of list
 
 - How the user reads it on their phone: <for example a link shared to their devices, or sent to themselves>
-
-## Learned preferences
-
-- <hosts worth following, formats that worked or wasted time, from past events>
