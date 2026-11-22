@@ -130,7 +130,7 @@ Keep entries short and general: one cause per entry, the incident in one or two 
 
 - **Incident:** The Computer Use Operator kept its knowledge of each website in each Project's workspace, so Projects relearned the same sites and three sites had drifting copies (2026-11-09).
 - **Breaks:** [§2](package-design-principles.md#2-design-responsibilities-before-files), knowledge an agent reuses across Projects.
-- **Instead:** Turn on semantic memory for the agent. Its skill keeps the agent's craft there and leaves only the Project's own part (which account, the Project's steps) in the Project. It also says how concurrent runs write, and where the files go when semantic memory is off.
+- **Instead:** Keep it in the agent's semantic memory, which every agent has. Its skill keeps the agent's craft there and leaves only the Project's own part (which account, the Project's steps) in the Project. It also says how concurrent runs write, and where the files go when the app gives no semantic memory.
 - **Detect:** For each skill that writes files meant for later tasks (knowledge, notes, an index of earlier work), ask whose they are: the Project's work or state, or the agent's craft that another Project would reuse. The second, under `<workspace>/`, is a lead.
 
 ## Skill content

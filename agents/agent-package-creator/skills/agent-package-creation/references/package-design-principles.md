@@ -40,21 +40,21 @@ Trace a normal path and each meaningful return path from intake to terminal resu
 
 Keep it in proportion: a small change needs a small record.
 
-**Knowledge an agent reuses across Projects.** A run works in one Project's workspace, so the files it writes there serve that Project. What an agent learns about its own craft, such as how a website or a tool works, serves its runs in every Project; kept in one Project's folder, it is missing in the next. For such an agent, turn on semantic memory with `"semanticMemoryEnabled": true` in `agent-config.json`. The app then gives the agent one private folder, shared by all its runs in every Project and team, and names it in a `## Semantic Memory` section of each run's instructions. The agent's skill says:
+**Knowledge an agent reuses across Projects.** A run works in one Project's workspace, so the files it writes there serve that Project. What an agent learns about its own craft, such as how a website or a tool works, serves its runs in every Project; kept in one Project's folder, it is missing in the next. Every agent has semantic memory; `agent-config.json` has no switch for it. The app gives each agent one private folder, shared by all its runs in every Project and team, and names it in a `## Semantic Memory` section of each run's instructions, which tells the agent to keep its reusable knowledge there. A `## Global Semantic Memory` section names the node's folder for facts true for every agent, such as what the product is, its words and the user's standing rules; an agent's own craft goes to its own folder. When an agent's craft builds files that later runs look up (one per website, one per tool), its skill says:
 - what goes there and how it is laid out;
 - what stays in the Project: its own choices and state, such as which account it uses;
 - how runs that write the same file at once avoid undoing each other, since the app does not coordinate them;
-- where the files go when the section is absent (semantic memory is off, or the app predates it).
+- where the files go when the section is absent (an app older than semantic memory);
 - for an agent that already keeps such files in Projects, that it uses them where its semantic memory has nothing yet, and records new knowledge in semantic memory.
 
-Leave it off for an agent whose files are the Project's own work or state, such as a board, a catalog or a brief.
+An agent whose files are the Project's own work or state, such as a board, a catalog or a brief, keeps them in the Project; its skill needs no semantic memory text.
 
 ## 3. Give each rule one authoritative file
 
 | Concern | Owner |
 | --- | --- |
 | Agent identity, purpose, runtime stance, attached-skill reminder when applicable, universal post-work transition; compact work contract if no skill is attached | `agent.md` |
-| Tool names, skill attachment, semantic memory switch, processors, lifecycle/runtime settings | `agent-config.json` |
+| Tool names, skill attachment, processors, lifecycle/runtime settings | `agent-config.json` |
 | Specialist inputs, procedure, decisions, artifacts, validation, recovery, result classification | Its `SKILL.md` |
 | Team purpose, member boundaries, entry contract, high-level cooperation | `team.md` |
 | Team roster, coordinator, rooted addresses, conditional internal routes | `team-config.json` |
