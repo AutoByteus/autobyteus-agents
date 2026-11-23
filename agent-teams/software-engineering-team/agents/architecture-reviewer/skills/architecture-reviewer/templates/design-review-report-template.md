@@ -79,6 +79,14 @@ If no supplemental task artifacts exist, write `None`.
 | Refactor needed now / no refactor needed / deferred decision is explicit |  |  |  |
 | Refactor decision is supported by the concrete design sections or residual-risk rationale |  |  |  |
 
+## Data Contract Verdict
+
+Judge the design spec's Data Contract with [Principle 17](../references/design-principles.md#17-data-contract-first) before the spines. Write `N/A` with a short reason when no stored or exchanged shape changes; fail it when one changes and the contract is missing.
+
+| Record / Message | Each Field Has A Meaning, A Writer And A Reader? (`Pass`/`Fail`) | Identities, Relationships And Lifecycle Are Explicit? (`Pass`/`Fail`) | Each In-Scope Flow Walked Through It, With An Example Per Case? (`Pass`/`Fail`) | Checked Against Existing Data And Real Dependencies It Relies On? (`Pass`/`Fail`/`N/A`) | The Layers Above Follow It Without Mappings, Recomputed Facts Or Second Copies? (`Pass`/`Fail`) | Verdict (`Pass`/`Fail`) |
+| --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |
+
 ## Spine Inventory Verdict
 
 | Spine ID | Scope | Spine Is Readable? (`Pass`/`Fail`) | Narrative Is Clear? (`Pass`/`Fail`) | Facade Vs Governing Owner Is Clear? (`Pass`/`Fail`/`N/A`) | Main Domain Subject Naming Is Clear? (`Pass`/`Fail`) | One Owner Per Node, In Call Order? (`Pass`/`Fail`) | Off-Spine Concerns Stay Off Main Line? (`Pass`/`Fail`) | Verdict (`Pass`/`Fail`) |

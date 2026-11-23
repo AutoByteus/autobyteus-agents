@@ -102,7 +102,7 @@ Design reasoning follows [design-principles.md](../references/design-principles.
 
 1. current-state read, architecture investigation evidence, and intended change
 2. relevant behavior and production-path map plus applicable supplemental context
-3. task design-health, legacy-removal, and persisted-data decisions
+3. data contract and its validation, then task design-health, legacy-removal, and persisted-data decisions
 4. data-flow spines, ownership, and off-spine concerns
 5. ownership boundaries, dependency rules, and interfaces
 6. subsystem / capability-area allocation
@@ -120,6 +120,30 @@ Apply the design principles' [Principle 8, Clean-Cut Replacement And Explicit Re
 
 - Obsolete legacy paths and files in this scope:
 - Compatibility wrappers, dual paths, or legacy fallbacks this design keeps: `None` / <item and why; the design is invalid unless the user approved it>
+
+## Data Contract (Mandatory When The Change Stores Or Exchanges Data)
+
+Design and validate it with [Principle 17](../references/design-principles.md#17-data-contract-first) before the sections that follow. If no stored or exchanged shape changes, write `Not Affected` with a brief reason. When the project keeps the contract in its own document, update it there and link it here.
+
+- Contract location: this section / project document path:
+- User informed, or user approval when needed (reference):
+
+| Record / Message | Stored Where, Or Boundary It Crosses | Field | Meaning | Written By | Read By |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+- Identities and relationships (what identifies each record, which refers to which, on which side the reference is stored, how many):
+- Invariants and lifecycle (the states, and what creates, changes and removes each record):
+- One example per case (JSON, rows or messages), including the edge states the scenarios support:
+
+### Data Contract Validation
+
+| Use Case / Scenario ID | Flow Step (Refusals Included) | Reads | Writes | Served By The Contract? (`Yes` / `No`: the change made) |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+
+- Checks run against existing data or real dependencies (what ran, read-only, result, evidence path), or `None needed` and why:
+- Contract changes the validation caused:
 
 ## Persisted Data / State Transition Decision (Mandatory When Persisted Data May Be Affected)
 

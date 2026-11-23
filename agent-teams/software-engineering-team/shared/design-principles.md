@@ -24,6 +24,7 @@ This is the canonical shared design reference for the software engineering team.
   - [14. A Spine-First, Concrete Design Document](#14-a-spine-first-concrete-design-document)
   - [15. One Vocabulary: One Word, One Meaning; One Meaning, One Word](#15-one-vocabulary-one-word-one-meaning-one-meaning-one-word)
   - [16. Visible Dependencies, One Composition Root](#16-visible-dependencies-one-composition-root)
+  - [17. Data Contract First](#17-data-contract-first)
 - [Practical Application Guide](#practical-application-guide)
 - [Structural Triggers](#structural-triggers)
 - [Task Design Health Assessment](#task-design-health-assessment)
@@ -32,14 +33,14 @@ This is the canonical shared design reference for the software engineering team.
 
 ## The Approach: Data And Spine First, Practices In Context
 
-The method is spine first. Start from the end-to-end data-flow spine of each use case, with its secondary, return/event and bounded local spines (Principle 2). The spines locate ownership: each node on them owns something concrete (Principle 3), and the concerns around them attach to an owner (Principle 4). Owners group into subsystems and modules, and those map to files (Principles 11, 12). Most dependencies follow from this: each owner depends on the next owner on its spine and on the concerns it uses (Principle 9). A dependency the spine does not show, above all one that points back against it, is the one to look at closely.
+When a change stores data or passes it across a boundary, the method starts with the data: design the data contract and prove that it serves every supported flow before any other design decision (Principle 17). The layers above are shaped by the data, so a contract left to fall out of the code bends the logic built on it. Then the method is spine first. Start from the end-to-end data-flow spine of each use case, with its secondary, return/event and bounded local spines (Principle 2). The spines locate ownership: each node on them owns something concrete (Principle 3), and the concerns around them attach to an owner (Principle 4). Owners group into subsystems and modules, and those map to files (Principles 11, 12). Most dependencies follow from this: each owner depends on the next owner on its spine and on the concerns it uses (Principle 9). A dependency the spine does not show, above all one that points back against it, is the one to look at closely.
 
 The other principles are practices that support this method. Each exists to keep ownership, ordering and behavior clear and correct, and each fits some contexts and not others. Practices can pull against each other: extract a shared structure or keep two apart (11), split a file or keep the codebase's layout (12), add a port or give consumers the owner (13), pass a collaborator in or connect it after construction (16). The context decides which one applies. This holds for every role that uses these principles: designing, reviewing a design, implementing, and reviewing code. Examples 10 and 11 in the team's design examples show practices chosen by context.
 
 - **Purpose first.** Before applying a practice, name the problem it solves here: a bug, a behavior risk, a hidden dependency that matters, a cycle that tangles ownership, a policy that will drift between copies, dead code in touched files. When there is none, the practice calls for no new structure. Applying it where it only adds structure is itself a design defect, not compliance.
 - **The smallest structure that works.** Prefer the smallest structure that keeps the design clear. Add a component, port, layer or pattern only for a concrete need: a cycle that tangles ownership, a real difference in what callers need, real repetition, a real hidden dependency that bites.
 - **Deviation with a reason.** A design may knowingly deviate from a practice when the reason holds for this case. It records the deviation and the reason in the design spec (a choice made during implementation goes in the implementation handoff), and reviewers judge the reason, not the conformance. A reason names what following the practice would cost here and why the deviation causes no problem the practice exists to prevent.
-- **What holds in every context.** A few things are not trade-offs, because the problem they prevent is real in every context: the supported behavior basis and product reachability (Principles 1, 6), a clear owner for each concern (3), an evidence-backed persisted-data decision (5), no dead code in touched files (7), clean-cut replacement (8), and no behavior decided by a missing owner or a silent fallback (13, 16). A deviation from one of these needs what that principle itself names, such as the user's approval for a compatibility path (8), not a recorded reason alone.
+- **What holds in every context.** A few things are not trade-offs, because the problem they prevent is real in every context: the supported behavior basis and product reachability (Principles 1, 6), a clear owner for each concern (3), an evidence-backed persisted-data decision (5), a validated data contract when the change stores or exchanges data (17), no dead code in touched files (7), clean-cut replacement (8), and no behavior decided by a missing owner or a silent fallback (13, 16). A deviation from one of these needs what that principle itself names, such as the user's approval for a compatibility path (8), not a recorded reason alone.
 - **Signals are leads.** A principle's Signals show where to look. A signal alone is not a finding until it names the problem it causes in this change.
 - **Findings name the problem.** A review finding names the concrete problem the design or code causes, not only "Principle X not followed". A different structure the reviewer would prefer, where the design works and causes no such problem, is a suggestion, not a finding ([ticket-scope.md](ticket-scope.md#common-situations)). Added structure that does nothing is not such a preference: an interface, port, adapter or wrapper that meets Principle 13's empty indirection check is a finding, even though it works.
 - **Rulings hold.** Once a review round accepts a shape for a stated reason, later rounds keep that ruling unless new evidence shows a problem with it, and name that evidence when they change it.
@@ -83,7 +84,7 @@ principles and respect the project's own as well.
 
 ## Core Principles
 
-Apply these principles from behavioral foundation through macro structure before detailed checks. Every design and technical review must establish the supported product-scenario basis for the behavior it serves. The detailed premise gate in Principle 6 is conditional only for an additional material scenario or mechanism not already established by that basis; it is not a separate edge-case discovery stage.
+Apply these principles from behavioral foundation through macro structure before detailed checks, in the order of the [Practical Application Guide](#practical-application-guide): the data contract (Principle 17) comes right after the behavioral foundation. Every design and technical review must establish the supported product-scenario basis for the behavior it serves. The detailed premise gate in Principle 6 is conditional only for an additional material scenario or mechanism not already established by that basis; it is not a separate edge-case discovery stage.
 
 A principle may end with **Signals** (what suggests the practice may be broken) and **Check** (the question a design or review answers).
 
@@ -301,7 +302,7 @@ Dead code is code that nothing in the product reaches anymore. It makes the code
 
 ### 14. A Spine-First, Concrete Design Document
 
-- The design document should read spine-first, not file-first. Files, folders, and any optional module groupings are a derived implementation mapping, not the primary structure of the architecture story; let them appear after the design story is clear.
+- The design document should read contract-first and spine-first, not file-first: the data contract when the change has one (Principle 17), then the spines. Files, folders, and any optional module groupings are a derived implementation mapping, not the primary structure of the architecture story; let them appear after the design story is clear.
 - Record the change inventory explicitly: `Add`, `Modify`, `Rename/Move`, `Remove`.
 - When the change is not greenfield, define the change or refactor sequence from the current state to the target, including migration only when the approved persisted-data decision requires it (Principle 5).
 - Use concrete examples when they materially improve clarity. Do not leave a non-obvious design entirely abstract when a short example would explain the intended shape faster: when a spine, interface split, folder choice, or bounded local flow would otherwise stay abstract or easy to misread, add a short good-shape example and, when useful, a bad-shape anti-example.
@@ -341,17 +342,37 @@ An owner's dependencies are part of the architecture: a reader should see what a
 - **Signals:** a module-level `bind…`, `set…Instance`, `find…` or `get…()` that hands out an owner; a use that can run before a setter or binding does; `?.` on a looked-up owner, or on a required collaborator made optional, followed by `?? fallback` or nothing; a comment explaining that X is bound before or after Y; tests that bind, reset or replace a global to swap in a fake; a design that lists a process binding, global registry or service locator as a facade or boundary, or approves one without the reasons the three conditions need.
 - **Check:** How does each owner the change adds or touches get each collaborator it needs, and where is the order in which owners are created visible? For each lookup or after-construction connection the change adds or uses: can anything use it before it is set, does a missing one fail loudly, and does it hide a cycle that tangles ownership?
 
+### 17. Data Contract First
+
+- **When it applies:** the change adds or changes data that is stored (a file, record, table or log entry) or that crosses a boundary between components (an API or tool payload, an event or stream message, a file or plugin format, a message between processes, the shape a view or client receives). A change that leaves every such shape as it is, as most bug fixes do, has no contract to design.
+- **Design the contract before the code around it.** After the architecture investigation and before the spines, write each record and message the change adds or changes:
+  - each field: its meaning, what writes it, and the code that reads it. A field that nothing reads yet stays out; a contract grows later by an optional field (Principle 11);
+  - identities and relationships: what identifies each record, which record refers to which, on which side the reference is stored, and how many;
+  - invariants and lifecycle: the states a record moves through, and what creates, changes and removes it;
+  - names from the project's vocabulary (Principle 15).
+- **Validate it before designing further:**
+  - walk each in-scope use case through the contract, its main flows and its refusals (supported scenarios only, Principle 6): what each step reads and writes. Each step finds what it needs, each fact has one owner (Principle 11), and each field has a reader;
+  - write one concrete example per case, such as a JSON document, a row or a message, including the edge states the scenarios support;
+  - where the contract relies on existing data or on a dependency's behavior, check it against them by running something: a read-only script over representative stored data, or a small prototype with the real dependency;
+  - when a walk or a check fails, change the contract and validate it again. Record the contract, the walks and the checks in the design spec. Then decide how existing data reaches the contract (Principle 5).
+- **The rest of the design follows the contract.** The spines carry its records and messages, owners own them, and interfaces expose its shapes. When a later step shows the contract does not fit, change the contract and validate it again; do not bend the layers above it with mappings, recomputed facts or second copies.
+- **Where it bends:** a change to one field needs a few lines: the field, its readers and one walk. A contract the project already keeps in its own document is updated there, and the design spec points to it.
+- See Case 11 in the team's design examples.
+- **Signals:** spines, interfaces or files decided before the stored or exchanged shape is written down; a field with no named reader; callers that map, join or recompute data to get what a flow needs; a backend change whose view or client payload changes are not part of the contract; a contract never checked against the data already stored.
+- **Check:** Which records and messages does the change add or change, and what are each field's meaning, writer and readers? Was each in-scope flow walked through the contract, with an example per case, and checked against the real data and dependencies it relies on?
+
 ## Practical Application Guide
 
 Design in this order. Each step applies the principle it names; the design spec's section fill order records the result.
 
 1. Read the current code path and establish the behavioral baseline (Principle 1); confirm the supported scenario basis (Principle 6).
-2. Build the spine inventory and write each primary spine (Principle 2).
-3. Name the main-line nodes in the project's vocabulary (Principle 15) and define what each owns (Principle 3); attach off-spine concerns to their owner, reusing existing capability areas first (Principle 4).
-4. Decide boundaries, dependency direction, and interfaces (Principles 3, 9, 10), including what each dependency that points back against the spine really needs (Principle 9), and how each owner receives its collaborators from the composition root (Principle 16).
-5. Draft file responsibilities, then extract reusable owned structures where repetition appears and tighten them (Principle 11), re-tighten the file responsibilities, and only then finalize folder and path mapping (Principle 12).
-6. List what the target makes unnecessary and the dead code in the touched files (Principles 7, 8); make each persisted-data transition decision (Principle 5).
-7. Record the change inventory and sequence, and add short examples where a shape would stay abstract (Principle 14).
+2. When the change stores or exchanges data, design the data contract and validate it (Principle 17); then make each persisted-data transition decision (Principle 5).
+3. Build the spine inventory and write each primary spine (Principle 2).
+4. Name the main-line nodes in the project's vocabulary (Principle 15) and define what each owns (Principle 3); attach off-spine concerns to their owner, reusing existing capability areas first (Principle 4).
+5. Decide boundaries, dependency direction, and interfaces (Principles 3, 9, 10), including what each dependency that points back against the spine really needs (Principle 9), and how each owner receives its collaborators from the composition root (Principle 16).
+6. Draft file responsibilities, then extract reusable owned structures where repetition appears and tighten them (Principle 11), re-tighten the file responsibilities, and only then finalize folder and path mapping (Principle 12).
+7. List what the target makes unnecessary and the dead code in the touched files (Principles 7, 8).
+8. Record the change inventory and sequence, and add short examples where a shape would stay abstract (Principle 14).
 
 ## Structural Triggers
 
@@ -369,6 +390,7 @@ When a trigger fires, apply the principle it names and record in the design spec
 | Shared-base overreach | a base type accumulates optional fields to serve divergent cases | 11 |
 | Capability-area reuse | the spine needs status, events, handlers, persistence, streaming, bootstrap, shutdown, or similar off-spine behavior | 4 |
 | Legacy cleanup | a solution keeps wrappers, dual paths, or fallbacks only for old behavior | 8 |
+| Data contract | a change adds or changes a stored record, or a shape that crosses a boundary (API, tool, event, stream, file format, the payload a view or client receives) | 17 |
 | Persisted-data transition | a code model, serialization contract, or storage schema changes | 5 |
 | Example clarity | a design point would stay abstract or easy to misread | 14 |
 | Several kinds or forms | a mechanism serves several kinds of subject or entry forms, or two paths serve one capability | 1 |

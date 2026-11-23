@@ -1241,10 +1241,20 @@ Principle 11.
 - **The lesson:** a picture shown in several places is one derived fact. Every second builder is a place the next change must remember.
 - **Notice it by:** the same rows, names or statuses composed in two places: an open view and a list, desktop and phone, a server query and a stream snapshot.
 
+### Case 11: The Layers Above Built Before The Data
+
+Principle 17.
+
+- **Situation:** runs started by another run had to outlive the run that started them. Which run delegated what, and who may message whom, was stored in a tree owned by the delegating run, and the views read that tree.
+- **The mistake:** the design started from spines and owners and left the stored shape to follow from them; the user had to stop it and ask for the data model first. Designed and validated then, the model stored the relationship on each task and on the delegated run, and the stored tree went away. But the shape the backend sent to the views was not held as part of the contract: each review finding was fixed by changing what the backend sent and what the client did, until more than a hundred client files had changed while nothing the user saw had.
+- **The better design:** the stored records and the view payloads written first, walked through every flow (start, message, close, restart) with a JSON example per case, and checked against every stored message; the views keep their shapes, built from the new records.
+- **The lesson:** the data decides the layers above it. Fixed last, it is fixed by bending them, and a shape another component receives is as much part of the contract as a stored file.
+- **Notice it by:** spines and files drafted before any record or payload is written down; review rounds that each change a payload; client changes with no change the user sees.
+
 ## How To Use These Examples
 
 - Start from the example whose shape is closest to the current task.
-- Read the case studies when a design touches the same shape: several kinds or entry forms, a sequence across components, derived data, a decision by absence, a claim about existing code, a rule applied by several callers, a name used in several places, a port or setter chosen to break a cycle, a collaborator optional only for tests, or a picture shown in several places.
+- Read the case studies when a design touches the same shape: several kinds or entry forms, a sequence across components, derived data, a decision by absence, a claim about existing code, a rule applied by several callers, a name used in several places, a port or setter chosen to break a cycle, a collaborator optional only for tests, a picture shown in several places, or a stored record or payload the change adds or changes.
 - Reuse the reasoning style, not the exact names.
-- The practices these examples illustrate live in [design-principles.md](design-principles.md): spine-first design (Principles 2 and 14), explicit ownership and named facades (3), off-spine concerns (4), singular interfaces (10), reachable premises (6), persisted-data decisions (5), file placement after the design story (12), one vocabulary (15), two owners that need each other (9), visible dependencies wired in one composition root (16), and choosing practices by context (The Approach: Data And Spine First, Practices In Context).
+- The practices these examples illustrate live in [design-principles.md](design-principles.md): the data contract first (Principle 17), spine-first design (Principles 2 and 14), explicit ownership and named facades (3), off-spine concerns (4), singular interfaces (10), reachable premises (6), persisted-data decisions (5), file placement after the design story (12), one vocabulary (15), two owners that need each other (9), visible dependencies wired in one composition root (16), and choosing practices by context (The Approach: Data And Spine First, Practices In Context).
 - Judge a finding outside a ticket's scope with [ticket-scope.md](ticket-scope.md#common-situations).

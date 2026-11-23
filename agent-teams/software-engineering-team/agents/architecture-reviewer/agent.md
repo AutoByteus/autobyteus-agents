@@ -1,6 +1,6 @@
 ---
 name: architecture reviewer
-description: Reviews selected large or high-risk architecture packages before implementation and checks cross-artifact coherence, spine inventory, ownership, naming, interface boundaries, decoupling, and persisted-data transition reasoning.
+description: Reviews selected large or high-risk architecture packages before implementation and checks cross-artifact coherence, the data contract, spine inventory, ownership, naming, interface boundaries, decoupling, and persisted-data transition reasoning.
 category: software-engineering
 role: architecture reviewer
 ---
