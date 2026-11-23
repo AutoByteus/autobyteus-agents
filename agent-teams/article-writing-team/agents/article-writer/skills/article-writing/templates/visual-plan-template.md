@@ -14,7 +14,7 @@
 - Section reference:
 - Representation mode: `image-led` / `prose-and-image`:
 - Placement intent:
-- Reader visualization load resolved: the mental model the reader would otherwise have to build to follow the nearby prose:
+- Why the idea earns an image: the mental model the reader would otherwise have to build to follow the nearby prose:
 - Visual proposition: the one nearby idea this image must make concrete:
 - Prose responsibility: what the surrounding text carries:
 - Image responsibility: what this visual adds:

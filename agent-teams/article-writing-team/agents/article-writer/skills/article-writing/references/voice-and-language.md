@@ -10,11 +10,10 @@ Record the target in `brief.md` (Step 1 of `article-writing`). For voice and lan
 
 Ask the user only when a missing detail changes the article's direction and cannot be inferred from the request.
 
-## 2. Load the profile
+## 2. Load the profile (only when the user asks for an author's voice)
 
 1. Load the author's voice profile and its examples as [voice-profiles.md](voice-profiles.md) describes; if there is none, add it as that file describes.
 2. If the profile has variants, choose one before the outline is finalized: the one that answers the user's actual stance request, not the loudest one.
-3. A `bootstrapping` profile needs 2–5 sample articles before final drafting.
 
 Write `style-profile-notes.md` from [its template](../templates/style-profile-notes-template.md): the profile and example paths, the variant and style, the voice constraints, the forbidden moves for this request, and the evidence constraints for style-sensitive moves, so the reviewer can judge style fit from the file.
 

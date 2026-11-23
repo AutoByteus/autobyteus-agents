@@ -14,7 +14,7 @@ Create one dedicated work folder per request. Keep every file below in it, and u
 | Research briefs and their `evidence.md` | `article-writing`, with `deep-research`, in the workspace's `research/` folder; `source-index.md` records each brief's path | The article needs online or paper research |
 | `style-profile-notes.md` | `article-writing` | The user asked for an author's voice |
 | `outline.md` | `article-writing` | Always |
-| `visual-plan.md` | `article-writing` | Visuals are requested or earned by the visualization-load trigger |
+| `visual-plan.md` | `article-writing` | Visuals are requested, or an idea earns an image ([figures and the page](figures-and-page.md)) |
 | `visual-asset-index.md` | `article-writing` | Visual assets are sourced, generated, inserted, or intentionally omitted |
 | Web project: `site/`, or `site-<lang>/` per language ([formats](formats.md), "Web Project"); its sources and build tools beside it, outside `site/`; on delivery, `<name>.zip` | `article-writing`, checked and packed by `scripts/html-article.py` | The format is a web project; after the outline passes review |
 | Markdown: `article.md`, or one `article-<lang>.md` per language for bilingual or conversion work (for example `article-zh.md`, `article-en.md`) | `article-writing` | The format is Markdown; after the outline passes review |

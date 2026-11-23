@@ -1,7 +1,5 @@
 # <Author> Few-Shot Examples Template
 
-Use this template to add example-driven guidance for any new profile.
-
 ## Example A: Source-Language Opening Pattern
 
 ### Prompt Shape

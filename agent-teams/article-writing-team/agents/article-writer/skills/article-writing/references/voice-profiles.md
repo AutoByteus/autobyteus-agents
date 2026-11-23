@@ -16,8 +16,6 @@ Several runs may write at once: read `index.md` just before you change it, and c
 
 1. Read `index.md` and resolve the requested author to a `profile_id`.
 2. Read the profile file and, when listed, its examples file.
-3. Read [the platform output rules](platform-output-rules.md) and [the formats](formats.md).
-4. Draft only after the profile and the platform constraints are loaded.
 
 ## Add a profile
 

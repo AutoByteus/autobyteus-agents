@@ -67,7 +67,7 @@ One entry per section, in reading order. Each entry says what this section adds 
 
 ## Visual Opportunities
 
-For each section where the visualization-load trigger fires, or the text-only decision with its reason. Details go in `visual-plan.md`.
+For each section where an idea earns an image ([figures and the page](../references/figures-and-page.md)), or the text-only decision with its reason. Details go in `visual-plan.md`.
 
 - Section:
 - Mental model the reader would otherwise have to hold:
@@ -78,13 +78,12 @@ For each section where the visualization-load trigger fires, or the text-only de
 - The main claim can be stated in one sentence, and it is stated once
 - The opening and the map use only words the reader has, and the map comes before any detail
 - Every concept in the table comes after what it rests on, and no paragraph is planned to add more than two; in a derivation the opening states no status and names the product, if at all, in one plain sentence, unless the author's own words say otherwise (quoted here with their source)
-- The sections follow the named spine: the problem chain in the order the opening raises the pains, or, for a comparison, the same dimensions for every product
 - The style fits the kind of article and the reader, and the author saw it (writer Step 7); no section exists only to tell a story or bridge to the next
 - The opening fits the style; any negative or contrastive first move has a recorded exception
 - Every section adds a new contribution and follows from the one before it
-- One logic spine is named and used consistently
+- One logic spine is named and the sections follow it: the problem chain in the order the opening raises the pains, or, for a comparison, the same dimensions for every product
 - Every meaningful shift in topic, time, actor, abstraction, scope, or evidence type has a bridge
 - The anchor example is real and appears early
-- Every trigger moment has a representation decision
+- Every idea that earns an image has a representation decision
 - The ending resolves rather than reopens the article
 - Reviewer decision and date:

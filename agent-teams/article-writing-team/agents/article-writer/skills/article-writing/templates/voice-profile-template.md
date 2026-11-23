@@ -4,8 +4,6 @@ Status: `bootstrapping`
 Profile ID: `<profile-id>`
 Example file: `<profile-id>-examples.md`, next to this profile (from the skill's `templates/voice-examples-template.md`)
 
-Use this template for any new author. Replace all placeholders.
-
 ## Source Corpus
 
 - Sample count:
