@@ -79,7 +79,7 @@ Apply [Task Design Health Assessment](../references/design-principles.md#task-de
 - Change posture (`Feature`/`Bug Fix`/`Behavior Change`/`Refactor`/`Cleanup`/`Performance`/`Larger Requirement`):
 - Current design issue found (`Yes`/`No`/`Unclear`):
 - Structural triggers that fire, each with evidence and the response (the principle's structure, or a deviation listed below); if none fire, name the triggers this change could plausibly hit and the evidence ruling each out:
-- Deliberate deviations from a principle ([The Approach](../references/design-principles.md#the-approach-spine-first-practices-in-context)), each with the principle, what the design does instead, and why the reason holds for this case, or `None`:
+- Deliberate deviations from a principle ([The Approach](../references/design-principles.md#the-approach-data-and-spine-first-practices-in-context)), each with the principle, what the design does instead, and why the reason holds for this case, or `None`:
 - Root cause classification (`Local Implementation Defect`/`Missing Invariant`/`Boundary Or Ownership Issue`/`Duplicated Policy Or Coordination`/`File Placement Or Responsibility Drift`/`Shared Structure Looseness`/`Legacy Or Compatibility Pressure`/`No Design Issue Found`/`Unclear`):
 - Refactor needed now (`Yes`/`No`/`Deferred`/`Unclear`):
 - Evidence:
@@ -305,7 +305,7 @@ When repeated data structures, types, normalizers, converters, mappers, or schem
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |
 
-## Shared Structure / Data Model Tightness Check
+## Shared Structure Tightness Check
 
 Use this section to verify that extracted shared structures are not only reusable, but also semantically tight.
 

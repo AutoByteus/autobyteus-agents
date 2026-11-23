@@ -4,7 +4,7 @@ This is the canonical shared design reference for the software engineering team.
 
 ## Contents
 
-- [The Approach: Spine First, Practices In Context](#the-approach-spine-first-practices-in-context)
+- [The Approach: Data And Spine First, Practices In Context](#the-approach-data-and-spine-first-practices-in-context)
 - [Project-Specific Design Principles](#project-specific-design-principles)
 - [Terminology](#terminology)
 - [Core Principles](#core-principles)
@@ -30,7 +30,7 @@ This is the canonical shared design reference for the software engineering team.
 - [Task Size And Architectural Risk](#task-size-and-architectural-risk)
 - [Common Local Patterns](#common-local-patterns)
 
-## The Approach: Spine First, Practices In Context
+## The Approach: Data And Spine First, Practices In Context
 
 The method is spine first. Start from the end-to-end data-flow spine of each use case, with its secondary, return/event and bounded local spines (Principle 2). The spines locate ownership: each node on them owns something concrete (Principle 3), and the concerns around them attach to an owner (Principle 4). Owners group into subsystems and modules, and those map to files (Principles 11, 12). Most dependencies follow from this: each owner depends on the next owner on its spine and on the concerns it uses (Principle 9). A dependency the spine does not show, above all one that points back against it, is the one to look at closely.
 
@@ -355,7 +355,7 @@ Design in this order. Each step applies the principle it names; the design spec'
 
 ## Structural Triggers
 
-When a trigger fires, apply the principle it names and record in the design spec which triggers fired, with evidence, and the response: the structure the principle asks for, or a deviation with its reason ([The Approach](#the-approach-spine-first-practices-in-context)).
+When a trigger fires, apply the principle it names and record in the design spec which triggers fired, with evidence, and the response: the structure the principle asks for, or a deviation with its reason ([The Approach](#the-approach-data-and-spine-first-practices-in-context)).
 
 | Trigger | Fires when | Principle |
 | --- | --- | --- |

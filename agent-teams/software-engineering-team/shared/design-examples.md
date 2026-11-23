@@ -903,7 +903,7 @@ How an owner gets its collaborators is part of the design, not an implementation
 
 ## Example 10: A Justified Deviation And A Rejected Over-Application
 
-The Approach: Spine First, Practices In Context; Principles 10, 13 and 16.
+The Approach: Data And Spine First, Practices In Context; Principles 10, 13 and 16.
 
 ### A Justified Deviation
 
@@ -1246,5 +1246,5 @@ Principle 11.
 - Start from the example whose shape is closest to the current task.
 - Read the case studies when a design touches the same shape: several kinds or entry forms, a sequence across components, derived data, a decision by absence, a claim about existing code, a rule applied by several callers, a name used in several places, a port or setter chosen to break a cycle, a collaborator optional only for tests, or a picture shown in several places.
 - Reuse the reasoning style, not the exact names.
-- The practices these examples illustrate live in [design-principles.md](design-principles.md): spine-first design (Principles 2 and 14), explicit ownership and named facades (3), off-spine concerns (4), singular interfaces (10), reachable premises (6), persisted-data decisions (5), file placement after the design story (12), one vocabulary (15), two owners that need each other (9), visible dependencies wired in one composition root (16), and choosing practices by context (The Approach: Spine First, Practices In Context).
+- The practices these examples illustrate live in [design-principles.md](design-principles.md): spine-first design (Principles 2 and 14), explicit ownership and named facades (3), off-spine concerns (4), singular interfaces (10), reachable premises (6), persisted-data decisions (5), file placement after the design story (12), one vocabulary (15), two owners that need each other (9), visible dependencies wired in one composition root (16), and choosing practices by context (The Approach: Data And Spine First, Practices In Context).
 - Judge a finding outside a ticket's scope with [ticket-scope.md](ticket-scope.md#common-situations).

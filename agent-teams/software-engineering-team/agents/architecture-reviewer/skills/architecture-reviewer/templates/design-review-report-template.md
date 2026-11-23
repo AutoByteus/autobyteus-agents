@@ -60,7 +60,7 @@ After the initial review result, complete the applicable prior-finding resolutio
 
 Apply the remaining technical sections proportionately. If a whole section is genuinely inapplicable, write `N/A` with a short reason; do not invent a design concern to populate the template.
 
-Judge each check by its purpose ([The Approach](../references/design-principles.md#the-approach-spine-first-practices-in-context)). Where the design records a deviation from a principle, judge the reason: when it holds for this case, the check passes as `Pass — deviation recorded, reason holds`, with where the reason is recorded. Fail a check for a concrete problem the design causes, not for a structure you would prefer; a preference goes under Residual Risks as a suggestion.
+Judge each check by its purpose ([The Approach](../references/design-principles.md#the-approach-data-and-spine-first-practices-in-context)). Where the design records a deviation from a principle, judge the reason: when it holds for this case, the check passes as `Pass — deviation recorded, reason holds`, with where the reason is recorded. Fail a check for a concrete problem the design causes, not for a structure you would prefer; a preference goes under Residual Risks as a suggestion.
 
 ## Supplemental Artifact Coherence Verdict
 
@@ -127,7 +127,7 @@ A mechanism that gets a function reaching another collaborator (the owner should
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
 
-## Shared Structure / Data Model Tightness Verdict
+## Shared Structure Tightness Verdict
 
 | Shared Structure / Type / Schema | One Clear Meaning Per Field? (`Pass`/`Fail`) | Redundant Attributes Removed? (`Pass`/`Fail`) | Overlapping Representation Risk Is Controlled? (`Pass`/`Fail`) | Shared Core Vs Specialized Variant / Composition Decision Is Sound? (`Pass`/`Fail`/`N/A`) | Verdict (`Pass`/`Fail`) | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
