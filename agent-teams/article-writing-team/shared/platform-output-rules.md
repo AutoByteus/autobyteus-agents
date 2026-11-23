@@ -6,7 +6,7 @@
 - Clear section headings and visible structure; short paragraphs for mobile reading.
 - Bullet lists for process steps and key claims; tables when they clarify stages, roles or mechanism differences.
 - Precise technical terms, with the English term in parentheses where it helps.
-- Formulas as readable LaTeX blocks, with symbols explained in nearby text.
+- Formulas in the form [the formats](formats.md) show (in Markdown, a code block or an image), with symbols explained in nearby text.
 - End with a compact takeaway section (a "最后的想法" style is acceptable).
 
 ## Medium (English)

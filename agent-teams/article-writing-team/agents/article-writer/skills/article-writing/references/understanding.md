@@ -60,7 +60,7 @@ Always track style-sensitive claims when used: contrast frames such as `not X, b
 
 ## 6. Ready to outline
 
-Before Step 3 of `article-writing`, check:
+Before outlining (`article-writing`, Step 4), check:
 
 - `brief.md` records the investigation modes, source basis, depth, and constraints;
 - the files answer: what the article is about; what the reader needs to understand first, beyond the concepts `brief.md` says they have; the questions to answer in order; the mechanisms, chronology, definitions, or product sequence to preserve; which claims are backed and by what; which are uncertain, stale, too strong, or unsupported; which contrasts, recommendations, root-cause statements, or production observations the evidence allows;
@@ -73,4 +73,4 @@ Before Step 3 of `article-writing`, check:
 - the research the article needs is done, and each brief's open gaps are resolved, narrowed, or listed under Open questions;
 - you would not need broad discovery before outlining; a narrow gap found later is fixed through this file.
 
-If a check fails, add to the files, request research, or ask the user a targeted question before outlining.
+If a check fails, add to the files, research it with `deep-research`, or ask the user a targeted question before outlining.

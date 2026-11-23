@@ -19,8 +19,8 @@
       "from": "/article_writer",
       "to": "/article_reviewer",
       "rules": [
-        "When the research package, style notes, outline, and visual plan (if any) are written and the writer's own gates passed, and the package is ready for the pre-draft review.",
-        "When the full draft package is written and ready for draft review, or after revisions that need a full-package re-review."
+        "When the understanding files, style notes and visual plan (if any), and outline are written and the writer's own gates passed, and the package is ready for the pre-draft review.",
+        "When the full draft package is written and ready for draft review, or revised after a review."
       ]
     },
     {

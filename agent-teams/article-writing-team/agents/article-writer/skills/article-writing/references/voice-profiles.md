@@ -7,8 +7,8 @@ A voice profile records how one author writes, for when the user asks for that a
 In `voice-profiles/` inside the folder your Semantic Memory instructions name; without that section, in `<workspace>/voice-profiles/`.
 
 - `index.md`: one row per profile: `profile_id` (lowercase hyphen-case, for example `Jane Doe` → `jane-doe`), display name, status (`bootstrapping` or `ready`), languages, profile file, examples file, primary use, source basis.
-- `<profile_id>.md`, from [the profile template](profiles/profile-template.md).
-- `<profile_id>-examples.md`, from [the example template](examples/example-template.md).
+- `<profile_id>.md`, from [the profile template](../templates/voice-profile-template.md).
+- `<profile_id>-examples.md`, from [the examples template](../templates/voice-examples-template.md).
 
 Several runs may write at once: read `index.md` just before you change it, and change only your own row.
 
@@ -16,8 +16,6 @@ Several runs may write at once: read `index.md` just before you change it, and c
 
 1. Read `index.md` and resolve the requested author to a `profile_id`.
 2. Read the profile file and, when listed, its examples file.
-3. Read [the platform output rules](platform-output-rules.md) and [the formats](formats.md).
-4. Draft only after the profile and the platform constraints are loaded.
 
 ## Add a profile
 

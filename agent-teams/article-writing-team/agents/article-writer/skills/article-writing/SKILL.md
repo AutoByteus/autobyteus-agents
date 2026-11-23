@@ -5,8 +5,6 @@ description: Produce a publication-ready article package through source-grounded
 
 # Article Writing
 
-The writer owns visual planning because images are part of the article's structure.
-
 Read [the team writing principles](references/writing-principles.md) first, with [explanatory writing](references/explanatory-writing.md) for every style but a narrative, [figures and the page](references/figures-and-page.md), and [the article's style](references/styles/index.md); for the formats, [the formats](references/formats.md); for Medium, WeChat and bilingual delivery, [the platform output rules](references/platform-output-rules.md). `references/writing-principles.md`, `references/explanatory-writing.md`, `references/figures-and-page.md`, `references/formats.md`, `references/platform-output-rules.md`, `references/article-package.md`, the folder `references/styles/` and the scripts `scripts/publish-folder.py` and `scripts/html-article.py` are symbolic links into the team's `shared/` folder; a listing such as `find -type f` skips them, so open or run each by its path.
 
 ## Artifacts
@@ -44,7 +42,7 @@ When the article needs factual, technical, document, source-code or supplied-mat
 
 ### Step 3 - Resolve the voice and language
 
-When the user asks for an author's voice, bilingual work or platform packaging, follow [references/voice-and-language.md](references/voice-and-language.md) and write `style-profile-notes.md`, so the reviewer can judge style fit from the file, not from chat.
+When the user asks for an author's voice, bilingual work or platform packaging, follow [references/voice-and-language.md](references/voice-and-language.md). For an author's voice, write `style-profile-notes.md`, so the reviewer can judge style fit from the file, not from chat.
 
 ### Step 4 - Decide the point and check the basis
 
@@ -73,7 +71,7 @@ Draft only after the outline has passed review (or the user skipped the gate, or
 ### Step 8 - Draft
 
 - Draft from the outline, from large to small: the point, the sections, the paragraphs, the sentences (explanatory writing and the style). Keep the approved section order; if drafting reveals a structural problem, stop and revise `outline.md` instead of improvising a new shape.
-- Introduce the anchor example early. Run any code or command you show and keep its real output; mark anything not run.
+- Introduce the anchor example early. Run any code or command you show and keep its real output; mark anything not run, and stop each background process you started.
 - Write only claims the understanding package or the user supports (principles, section 1). An assumption is marked as one and stays only if the user accepts it.
 - Compose each planned visual with its prose as one unit: each carries its recorded part of the takeaway. Insert it where it clarifies the section, with a caption and nearby prose that says why the reader is seeing it. Update `visual-asset-index.md` as assets are generated, sourced, inserted or omitted. If a planned visual cannot be produced truthfully, keep an explicit placeholder and mark it in `visual-plan.md`; never substitute a generic image.
 - Write the draft in the brief's format, one per language for bilingual or conversion work:
@@ -87,7 +85,7 @@ Before any version goes to the reviewer or the author, including each version th
 
 - Run the draft checks on the text (explanatory writing, section 3: reverse outline, first-time reader, information check; for a web project, read it with `html-article.py text`).
 - Open the page in the browser (`open_tab` on its file path) and look at all of it with screenshots, at desktop width and at phone width (`set_device_emulation`); scroll so each figure appears, and watch each animation from start to end. For Markdown, view each figure at phone width (figures and the page, section 4).
-- Fix what you find and look again. Say exactly what you looked at, and close the tabs you opened.
+- Fix what you find and look again. Say exactly what you looked at, and close the tabs you opened (by the IDs your `open_tab` calls returned).
 
 Then send the whole package for draft review.
 
