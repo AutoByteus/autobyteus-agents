@@ -231,17 +231,28 @@ as well as how to design.
    [architecture-design.md](references/architecture-design.md), recording the
    governing convention and predecessor source dispositions before choosing
    migration success semantics or an application-startup gate.
-3. Make the design decisions by applying the design principles: map behavior
-   IDs to target production paths and lifecycle boundaries, then decide spines,
-   owners, off-spine concerns, subsystems, interfaces, reusable structures,
-   file responsibilities and folder placement. Assess design health, root cause
-   and refactor need against the principles' Task Design Health Assessment and
-   Structural Triggers. Decide clean-cut removal, dependency rules,
-   evidence-based persisted-data transitions (never inferred solely from a
-   schema change) and change sequencing. Use
-   [design-examples.md](references/design-examples.md) when concrete shape guidance helps;
-   use the examples as guidance, not mechanical templates.
-4. Write `design-spec.md` from
+3. When the change adds or changes data that is stored or crosses a boundary,
+   design its data contract and validate it before any other design decision,
+   as [Principle 17](references/design-principles.md#17-data-contract-first)
+   describes, then decide its persisted-data transition (never inferred solely
+   from a schema change); record both in their design-spec sections. Your
+   next message to the user leads with the contract (its records and fields)
+   and what the validation showed. When the direction requires the user's
+   approval of the design, or a contract decision needs the user (step 1's
+   criteria, such as a migration or deletion that is hard to undo), send that
+   message now and wait for the answer before designing the rest; otherwise
+   continue. A validation finding that changes intended behavior goes through
+   Recovery.
+4. Make the remaining design decisions from the contract by applying the
+   design principles: map behavior IDs to target production paths and
+   lifecycle boundaries, then decide spines, owners, off-spine concerns,
+   subsystems, interfaces, reusable structures, file responsibilities and
+   folder placement. Assess design health, root cause and refactor need
+   against the principles' Task Design Health Assessment and Structural
+   Triggers. Decide clean-cut removal, dependency rules and change sequencing.
+   Use [design-examples.md](references/design-examples.md) when concrete shape
+   guidance helps; use the examples as guidance, not mechanical templates.
+5. Write `design-spec.md` from
    [design-spec-template.md](templates/design-spec-template.md); every solution
    needs one before implementation handoff. For a narrow local change, keep the
    written design concise: explain the existing owner/path, intended delta,
@@ -250,12 +261,12 @@ as well as how to design.
    Once the design is decided, write its Change Scope: the areas and files this
    change modifies, what nearby it deliberately leaves alone, and the IDs of the
    follow-ups found during design.
-5. When the project has no `DESIGN.md`, write one at its repository root from
+6. When the project has no `DESIGN.md`, write one at its repository root from
    [project-design-template.md](templates/project-design-template.md), with
    the architecture and conventions your investigation established, as
    [project-documents.md](references/project-documents.md) describes. Record
    it as created in the design spec's `Authorities read` and its Change Scope.
-6. Resolve requirement implications using Recovery below, rather than silently
+7. Resolve requirement implications using Recovery below, rather than silently
    changing intended behavior to fit the architecture.
 
 ### 4. Classify The Completed Solution
@@ -269,8 +280,9 @@ an early estimate or the volume of investigation notes.
 Confirm that the design and supplements align with the approved requirements,
 resolve material gaps and update the solution revision record. When the
 direction requires the user's approval of the design before it is built (the
-Task or the user says so), ask the user now, once, before any handoff, as
-step 2 describes, and record the answer in the design spec's approval basis.
+Task or the user says so), ask the user now, once for the completed design
+(the contract came first, in step 3), before any handoff, as step 2 describes,
+and record the answer in the design spec's approval basis.
 Route only after the user approves; never leave the question to a later role
 or repeat it in later reports. Then classify `Architecture Design Complete` and use Result
 And Handoff. Missing material
