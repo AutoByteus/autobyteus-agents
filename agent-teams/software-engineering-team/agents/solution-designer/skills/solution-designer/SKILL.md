@@ -235,14 +235,14 @@ as well as how to design.
    design its data contract and validate it before any other design decision,
    as [Principle 17](references/design-principles.md#17-data-contract-first)
    describes, then decide its persisted-data transition (never inferred solely
-   from a schema change); record both in their design-spec sections. Before
-   you design anything else, post the user a short message in your
-   conversation: the records and fields, and what the validation showed. Then
-   continue without waiting, so the user can step in early. When the direction
-   requires the user's approval of the design, or a contract decision needs the
-   user (step 1's criteria, such as a migration or deletion that is hard to
-   undo), wait for the answer to that message before designing the rest. A
-   validation finding that changes intended behavior goes through Recovery.
+   from a schema change); record both in their design-spec sections. Your
+   next message to the user leads with the contract (its records and fields)
+   and what the validation showed. When the direction requires the user's
+   approval of the design, or a contract decision needs the user (step 1's
+   criteria, such as a migration or deletion that is hard to undo), send that
+   message now and wait for the answer before designing the rest; otherwise
+   continue. A validation finding that changes intended behavior goes through
+   Recovery.
 4. Make the remaining design decisions from the contract by applying the
    design principles: map behavior IDs to target production paths and
    lifecycle boundaries, then decide spines, owners, off-spine concerns,

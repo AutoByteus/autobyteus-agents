@@ -126,7 +126,7 @@ Apply the design principles' [Principle 8, Clean-Cut Replacement And Explicit Re
 Design and validate it with [Principle 17](../references/design-principles.md#17-data-contract-first) before the sections that follow. If no stored or exchanged shape changes, write `Not Affected` with a brief reason. When the project keeps the contract in its own document, update it there and link it here.
 
 - Contract location: this section / project document path:
-- User informed, or user approval when needed (reference):
+- Shown to the user (the message that carried it: the result, or the approval request), and the user's answer when needed:
 
 | Record / Message | Stored Where, Or Boundary It Crosses | Field | Meaning | Written By | Read By |
 | --- | --- | --- | --- | --- | --- |
