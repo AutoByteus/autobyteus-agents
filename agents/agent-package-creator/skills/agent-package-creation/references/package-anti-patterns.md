@@ -45,6 +45,7 @@ Keep entries short and general: one cause per entry, the incident in one or two 
 | 40 | Leaving the structure for later | Creator process |
 | 41 | A pull request before the evaluation | Creator process |
 | 42 | Text that describes the file instead of the work | Skill content |
+| 44 | A step before an irreversible action that only prose holds | Package design |
 | 43 | A package that grows with every update | Creator process |
 
 ## Package design
@@ -132,6 +133,13 @@ Keep entries short and general: one cause per entry, the incident in one or two 
 - **Breaks:** [§2](package-design-principles.md#2-design-responsibilities-before-files), knowledge an agent reuses across Projects.
 - **Instead:** Keep it in the agent's semantic memory, which every agent has. Its skill keeps the agent's craft there and leaves only the Project's own part (which account, the Project's steps) in the Project. It also says how concurrent runs write, and where the files go when the app gives no semantic memory.
 - **Detect:** For each skill that writes files meant for later tasks (knowledge, notes, an index of earlier work), ask whose they are: the Project's work or state, or the agent's craft that another Project would reuse. The second, under `<workspace>/`, is a lead.
+
+### 44. A step before an irreversible action that only prose holds
+
+- **Incident:** A pipeline agent kept its records in a register a script checked. Its ladder said every record is qualified before it is ranked and contacted, but the script checked one later stage only. In practice the agent went from sourced straight to ranked, and no record was ever qualified. Under a request for speed, it qualified contacts from their own profile headlines and queued messages to them, two of which went out to the wrong people (2026-11-24).
+- **Breaks:** [Write the operating contract](skill-authoring-principles.md#write-the-operating-contract): prescribe scripts where the operation is fragile. A step that guards an action outside the workspace (a message, a submission, a payment) is fragile: skipping it fails silently until someone outside is harmed.
+- **Instead:** Give each step a result field in the record, and have the checker refuse a record at a stage without every earlier stage's result. The agent keeps the judgement (what counts as evidence); the checker keeps the order. An approval is a recorded result too: it names what the approver saw.
+- **Detect:** For each skill with a stage ladder or gates and a checker script, list each stage's required result and whether the script refuses a record without it. A stage the counts show as always empty is a lead.
 
 ## Skill content
 
