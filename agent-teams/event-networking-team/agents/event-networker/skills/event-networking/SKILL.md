@@ -12,15 +12,21 @@ Everything you do here concerns other people. Use only what their pages show to 
 ## Workspace
 
 ```text
-<workspace>/events/people/<YYYY-MM-DD-event-slug>/
-  people.md        # the record: goal, every person considered, status, reason, draft, approval, outcome
-  day-of.md        # the list the user reads at the event
-  requests/<NN-kind>/   # operator-request.md, task-result.md, captures (guest list, profile pages)
+<workspace>/events/people/
+  known-people.md          # what the user has said about people, for every event
+  <YYYY-MM-DD-event-slug>/
+    people.md              # the record: goal, every person considered, status, reason, draft, approval, outcome
+    day-of.md              # the list the user reads at the event
+    requests/<NN-kind>/    # operator-request.md, task-result.md, captures (guest list, profile pages)
 ```
 
 The event itself stays in `events/event-tracker.md` (the `event-scouting` skill owns it); if it has no row yet, add one from the Operator's capture. The user's standing preferences are in `events/event-profile.md`, in its sections "Purposes", "Contacting people", "Message style" and "Day-of list"; add a section the profile lacks. Keep them there, not in the event folder.
 
-`people.md` has one row per person (name, kind, score, link, status, one-line reason) and one section per shortlisted person below it. Statuses: `found`, `shortlisted`, `skipped`, `drafted`, `approved`, `sent`, `replied`, `meeting agreed`, `met`, `declined`, `no reply`. Identify a person by their event-site profile URL and never add a second row for them.
+`people.md` has one row per person (name, kind, score, links, connection degree, status, one-line reason) and one section per shortlisted person below it. Statuses: `found`, `shortlisted`, `skipped`, `drafted`, `approved`, `sent`, `replied`, `meeting agreed`, `met`, `declined`, `no reply`. Identify a person by their profile links (event site, LinkedIn, X) and never add a second row for them.
+
+`known-people.md` is one table, `| Person | Profile links | Status | The user's words | Date |`, one row per person. Status `ruled out`: the user said they are not a fit or not to be contacted; never shortlisted, drafted for or contacted again, unless the user names them. `known`: the user knows them; contact them only as their words say. `not known`: connected, but the user does not know them. Whenever the user says they know, met or contacted someone, rules someone out, or answers whether they know someone, add or update that person's row with their words, at any step and for any event.
+
+`scripts/check_people.py <file>` checks every person a file links, by profile URL, against `known-people.md` and the other events' `people.md`. It lists who is ruled out, who is marked `1st` (connected to the user) with no row in `known-people.md`, what the user said about the others, and what earlier events record about them. It fails while the file names a ruled-out person or such a connection on a line not marked `skipped`.
 
 ## 1. Goal and timing
 
@@ -34,7 +40,7 @@ Under the goal, write the scoring criteria for each kind of person the purpose n
 
 Hand off an operator request (read-only, from [operator-request-template.md](templates/operator-request-template.md)) to capture the full guest list: for each guest the name, the event-site bio as written, links (LinkedIn, X, website, others) and the event-site profile URL, plus the total the event shows and how many could be seen. If the user named the event only by name or date, the request asks the Operator to find it among the events the user is registered for and to report `Needs Decision` with the candidates when more than one matches.
 
-Add every guest to `people.md` as `found`. Before the event, ask for a fresh capture once more and add only the new guests.
+Add every guest to `people.md` as `found`, and run the check on the capture: mark each ruled-out guest `skipped` with the user's words, and add to a guest's reason what the user said about them and what an earlier event records (a message sent, a meeting). Before the event, ask for a fresh capture once more, and add and check only the new guests.
 
 ## 3. First pass
 
@@ -44,11 +50,11 @@ From the captured data alone, mark the likely candidates for each kind with a on
 
 Profile pages show the real signal, but every view comes from the user's account, and people on LinkedIn may see who viewed them unless the user browses in private mode. Before each batch, tell the user how many profiles will be opened, on which site, and that the views may be visible, and propose a scope (for example, the candidates and the unknowns with a LinkedIn link). Hand off a read-only request only for the batch the user approves.
 
-When the pages return, check that each one belongs to the guest (name, city, a detail from the bio); record a mismatch and do not use that page. Record whether the user is already connected with the person, since that decides the channel.
+When the pages return, check that each one belongs to the guest (name, city, a detail from the bio); record a mismatch and do not use that page. Record the connection degree in the person's row (`1st` when the user is already connected), and run the check on the result.
 
 ## 5. Shortlist
 
-Score each person whose pages were read against the criteria for their kind, from 1 to 10, with a short note per criterion naming the evidence. A criterion their pages do not show counts as unknown, not as a fail; say how many were unknown. Rank each kind by score. For each shortlisted person write in their section: the score and its notes, who they are now, the evidence from their pages (role, company, what they build or sell, with dates), why they fit this goal, and anything that changes the ask (already connected, busy with their own company, someone the user already knows). Show the shortlist to the user and record their changes.
+Score each person whose pages were read against the criteria for their kind, from 1 to 10, with a short note per criterion naming the evidence. A criterion their pages do not show counts as unknown, not as a fail; say how many were unknown. Rank each kind by score. For each shortlisted person write in their section: the score and its notes, who they are now, the evidence from their pages (role, company, what they build or sell, with dates), why they fit this goal, and anything that changes the ask (busy with their own company, what the user said about them, an earlier message or meeting). Before you show a shortlist or drafts, each round, run the check on `people.md` and take off everyone it reports ruled out. A connection it reports may be someone the user already knows or has ruled out: if you would shortlist them, list them apart under "Already connected" with what their pages show, draft nothing for them, and ask the user whether they know them and whether to contact them. Show the shortlist to the user and record their changes.
 
 ## 6. Drafts
 
@@ -60,7 +66,7 @@ Name the channel for each draft and fit its limits: a message when the person is
 
 Nothing is sent without the user's approval of that person's exact text and channel. The user may approve one person or a batch ("send 1–5 as written"). Record the approval in the person's section with the user's words and the time, and set `approved`. If the user edits a message, save the edited text as the approved one, and add their wording to "Message style" as an example.
 
-Hand off one send request for the approved messages, listing each recipient's profile URL, channel and exact text, with the user's approval. The Operator returns one result per message. Set `sent` only for a message it verified; report anything not sent and why.
+Hand off one send request for the approved messages, listing each recipient's profile URL, channel and exact text, with the user's approval; run the check on it first, and hand it off only when it passes. The Operator returns one result per message. Set `sent` only for a message it verified; report anything not sent and why.
 
 ## 8. Replies and meetings
 
@@ -72,7 +78,7 @@ When the user asks, and when they come back the day before or on the morning of 
 
 ## 10. Debrief
 
-After the event, ask the user whom they met and how it went. Set `met` or `no reply`, draft any follow-ups for approval, and save what was learned (a kind of person worth more or less, a message that worked) in the profile section it belongs to, as `event-scouting` describes for profile changes. Delete the captured guest lists and profile pages in `requests/` unless the profile says to keep them; `people.md` stays as the record.
+After the event, ask the user whom they met and how it went. Set `met` or `no reply`, add what the user says about each person to `known-people.md`, draft any follow-ups for approval, and save what was learned (a kind of person worth more or less, a message that worked) in the profile section it belongs to, as `event-scouting` describes for profile changes. Delete the captured guest lists and profile pages in `requests/` unless the profile says to keep them; `people.md` stays as the record.
 
 ## Recovery
 

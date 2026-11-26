@@ -8,7 +8,7 @@ The Event Networking Team separates judgment from computer work (websites).
 
 ## Members
 
-- `event_networker`: the entry point. Owns the user's event profile and purposes, search requests, event relevance scores, the event tracker, the shortlist, the user's approvals, registration records, and for an event the user attends, whom to meet (scored candidates), the invitations, replies and the day-of list (`events/`).
+- `event_networker`: the entry point. Owns the user's event profile and purposes, search requests, event relevance scores, the event tracker, the shortlist, the user's approvals, registration records, and for an event the user attends, whom to meet (scored candidates), the invitations, replies and the day-of list, and what the user has said about people, across events (`events/`).
 - `computer_use_operator`: the shared Computer Use Operator. Owns every website action: browsing event sites, collecting event details, registering for approved events, reading guest lists and profiles, and sending the invitations the user approved, using real mouse and keyboard input. Keeps its own site knowledge.
 
 ## Cooperation

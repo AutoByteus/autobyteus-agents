@@ -14,7 +14,7 @@
 Open and read only. Do not click Connect, Follow, Message, RSVP or any other control that changes something or that others can see.
 
 - Pages to read: <the guest list of the event / the profile URLs listed below / the conversations and pending invitations of the people listed below>
-- Capture for each: <for a guest list: name, bio as written, links (LinkedIn, X, website, others), event-site profile URL; for a profile: headline, current and past roles with companies and dates, and whether the user is already connected; for an inbox: each message with its date and sender, and whether an invitation was accepted>
+- Capture for each: <for a guest list: name, bio as written, links (LinkedIn, X, website, others), event-site profile URL; for a profile: headline, current and past roles with companies and dates, and the connection degree (1st, 2nd, 3rd); for an inbox: each message with its date and sender, and whether an invitation was accepted>
 - Approved scope: <for profile reads: the number of profiles the user approved, with the user's words and time>
 - Pace: read profiles in short batches with pauses. Stop at any security check, warning or limit and report `Blocked`.
 - People:
